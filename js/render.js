@@ -205,8 +205,8 @@ const KalkanData = (() => {
   // Hizmet card
   function hizmetCard(h) {
     return `
-      <article class="card" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);">
-        ${h.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1">${safeImage(h.image, h.name)}</div>` : ''}
+      <article class="card service-card" data-service="${escape(h.id||'')}" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08),0 0 0 0 transparent';">
+        ${h.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1">${safeImage(h.image, h.name)}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div><div class="pm-hint" style="position:absolute;bottom:0;left:0;right:0;padding:6px 12px;color:#f4b53d;font-size:0.63rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:4px;">→ Sağlayıcıları Gör</div></div>` : ''}
         <div class="flex items-start gap-3">
           <div class="text-3xl">${escape(h.icon||'🛠️')}</div>
           <div class="flex-1 min-w-0">
@@ -217,7 +217,7 @@ const KalkanData = (() => {
         <p class="text-sm text-ink-700/80 mt-3">${escape(h.summary||'')}</p>
         ${(h.details||[]).length ? `<ul class="text-xs text-ink-700/70 mt-3 space-y-1">${(h.details||[]).map(d => `<li class="flex items-start gap-1.5"><span class="text-sea-600">•</span>${escape(d)}</li>`).join('')}</ul>` : ''}
         <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8">
-          ${h.phone && h.phone!=='—' ? `<a href="tel:${escape(h.phone.replace(/\\s/g,''))}" class="text-sea-600 text-xs font-bold hover:underline">${escape(h.phone)}</a>` : '<span class="text-xs text-ink-700/50">${escape(h.hours||"")}</span>'}
+          ${h.phone && h.phone!=='—' ? `<a href="tel:${escape(h.phone.replace(/\\s/g,''))}" class="text-sea-600 text-xs font-bold hover:underline" onclick="event.stopPropagation();">${escape(h.phone)}</a>` : `<span class="text-xs text-ink-700/50">${escape(h.hours||'')}</span>`}
           ${h.hours ? `<span class="text-[11px] text-ink-700/60">${escape(h.hours)}</span>` : ''}
         </div>
       </article>

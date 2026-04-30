@@ -1,0 +1,201 @@
+{
+  "_meta": {
+    "title": "Likya Yolu",
+    "subtitle": "Türkiye'nin ilk uzun mesafe yürüyüş rotası",
+    "totalDistance": "540 km",
+    "established": 1999,
+    "founder": "Kate Clow",
+    "updated": "2026-04-30"
+  },
+  "info": {
+    "overview": "Likya Yolu, Fethiye'den Antalya'ya uzanan 540 km'lik uzun mesafe yürüyüş parkurudur. Antik Likya medeniyetinin izlerinden geçer; antik kentleri, kayalık mezarları, gizli koyları ve Akdeniz manzarasını birleştirir.",
+    "best_time": "Şubat–Mayıs ve Eylül–Kasım. Yaz ayları (Haz–Ağu) çok sıcak, dağ etapları haricinde önerilmez.",
+    "difficulty": "Karışık — düz sahil etaplarından dağ tırmanışlarına kadar. Genel olarak orta-zor.",
+    "marking": "Beyaz-kırmızı GR (Grande Randonnée) işaretleri.",
+    "water": "Bazı etaplarda 6-8 saat su yok. Min 3 lt taşıyın yaz sıcaklarında.",
+    "accommodation": "Köy pansiyonları, çadır kamp alanları, butik oteller. Kalkan/Kaş gibi merkezlerde lüks villa seçenekleri."
+  },
+  "stages": [
+    {
+      "id": 1,
+      "from": "Ovacık (Fethiye)",
+      "to": "Faralya",
+      "distance": "13 km",
+      "duration": "5-6 saat",
+      "difficulty": "Orta",
+      "highlights": ["Kelebekler Vadisi'ne yukarıdan bakış", "Ölüdeniz lagünü panoraması", "Babadağ etekleri boyunca yürüyüş", "Sarp kayalıklar üzerinde patika"]
+    },
+    {
+      "id": 2,
+      "from": "Faralya",
+      "to": "Kabak",
+      "distance": "8 km",
+      "duration": "3-4 saat",
+      "difficulty": "Kolay-Orta",
+      "highlights": ["Kabak koyu nefes kesen mavi su", "Kelebekler Vadisi'ne alt erişim patikası", "Akdeniz panoraması", "Kamp alanları ve eko-pansiyonlar"]
+    },
+    {
+      "id": 3,
+      "from": "Kabak",
+      "to": "Alınca",
+      "distance": "16 km",
+      "duration": "6-7 saat",
+      "difficulty": "Zor",
+      "highlights": ["Gidros ve Bel Yokuşu tırmanışı", "Akdeniz fundası ve kekik kokusu", "Izole koylar", "Göçebe yaylalarına uğrama"]
+    },
+    {
+      "id": 4,
+      "from": "Alınca",
+      "to": "Bel (Sidyma)",
+      "distance": "14 km",
+      "duration": "5-6 saat",
+      "difficulty": "Orta-Zor",
+      "highlights": ["Sidyma antik kenti kalıntıları", "Dodurga köyü otantik atmosferi", "Dağ ormanı gölgesi", "Antik mezar lahitleri köy içinde"]
+    },
+    {
+      "id": 5,
+      "from": "Bel (Sidyma)",
+      "to": "Gavuragılı (Pınara yakını)",
+      "distance": "16 km",
+      "duration": "6 saat",
+      "difficulty": "Orta",
+      "highlights": ["Eşen Vadisi manzarası", "Pinara antik kenti opsiyonel ziyaret", "Zeytinlikler ve çam ormanları", "Izole köy yolları"]
+    },
+    {
+      "id": 6,
+      "from": "Gavuragılı",
+      "to": "Xanthos (Kınık)",
+      "distance": "11 km",
+      "duration": "4-5 saat",
+      "difficulty": "Kolay-Orta",
+      "highlights": ["Xanthos UNESCO Dünya Mirası antik kenti", "Eşen Çayı vadisi boyunca yürüyüş", "Harpya Anıtı ve Roma tiyatrosu", "Yeşil vadi tarım arazileri"]
+    },
+    {
+      "id": 7,
+      "from": "Xanthos (Kınık)",
+      "to": "Letoon",
+      "distance": "8 km",
+      "duration": "3 saat",
+      "difficulty": "Kolay",
+      "highlights": ["Letoon UNESCO kutsal alanı — üç tapınak", "Su altında kalan tapınak temelleri", "Neoklassik nehir köprüsü", "Çoban yolları ve tarlalar arası patika"]
+    },
+    {
+      "id": 8,
+      "from": "Letoon",
+      "to": "Patara",
+      "distance": "9 km",
+      "duration": "3-4 saat",
+      "difficulty": "Kolay",
+      "highlights": ["Patara UNESCO antik kenti — Likya başkenti", "Dünyanın bilinen ilk demokratik meclisi", "18 km'lik Patara plajına erişim", "Apollo Tapınağı ve deniz feneri"]
+    },
+    {
+      "id": 9,
+      "from": "Patara",
+      "to": "Kalkan",
+      "distance": "12 km",
+      "duration": "4-5 saat",
+      "difficulty": "Kolay-Orta",
+      "highlights": ["Patara plajı boyunca yürüyüş", "Caretta caretta yuvalama alanı", "Kalkan limanına sarp yamaç inişi", "Akdeniz maki örtüsü", "Kalkan marina panoraması"]
+    },
+    {
+      "id": 10,
+      "from": "Kalkan",
+      "to": "Bezirgan (Phellos yakını)",
+      "distance": "13 km",
+      "duration": "5-6 saat",
+      "difficulty": "Orta-Zor",
+      "highlights": ["Kalkan limanından dağa tırmanış", "Phellos antik kenti dağ tepesinde", "Kaş ve Meis Adası panoraması", "Kireçtaşı platolar ve çalılıklar"]
+    },
+    {
+      "id": 11,
+      "from": "Bezirgan",
+      "to": "Kaş (Antiphellos)",
+      "distance": "11 km",
+      "duration": "4-5 saat",
+      "difficulty": "Orta",
+      "highlights": ["Antiphellos antik tiyatrosu — deniz manzaralı", "Kaş Likya lahdi (Kral Mezarı)", "Çukurbağ Yarımadası kıyı manzarası", "Kaş kasabası — yemek ve konaklama"]
+    },
+    {
+      "id": 12,
+      "from": "Kaş",
+      "to": "Gömbe (Apollonia yakını)",
+      "distance": "17 km",
+      "duration": "7-8 saat",
+      "difficulty": "Zor",
+      "highlights": ["Sarp yamaç tırmanışı", "Apollonia antik kenti — 80+ mezar", "Kekova körfezi yukandan kuş bakışı", "Uzun ve yalnız dağ yürüyüşü", "Kekik ve laden kokusu"]
+    },
+    {
+      "id": 13,
+      "from": "Gömbe",
+      "to": "Üçağız",
+      "distance": "19 km",
+      "duration": "7 saat",
+      "difficulty": "Orta-Zor",
+      "highlights": ["Kekova körfezi yaklaşımı", "Aperlae batık antik liman opsiyonel", "İstlada (Kapaklı) köyü antik kalıntıları", "Üçağız balıkçı köyü"]
+    },
+    {
+      "id": 14,
+      "from": "Üçağız",
+      "to": "Kaleköy (Simena)",
+      "distance": "7 km",
+      "duration": "2-3 saat",
+      "difficulty": "Kolay",
+      "highlights": ["Kekova batık şehri karşısından yürüyüş", "Simena antik tiyatrosu — dünyanın en küçüğü", "Türk kalesi zirve manzarası", "Tekne ile Kekova körfezi keşfi", "Yerel pansiyonlar"]
+    },
+    {
+      "id": 15,
+      "from": "Kaleköy (Simena)",
+      "to": "Myra (Demre)",
+      "distance": "21 km",
+      "duration": "8-9 saat",
+      "difficulty": "Zor",
+      "highlights": ["Kyaneai antik kenti — 100+ mezar", "Demre ovasına dağlardan iniş", "Myra kayalık ev tipi mezarları", "Aziz Nikolas Kilisesi — 4. yy bazilika", "Portakal bahçeleri içinden geçiş"]
+    },
+    {
+      "id": 16,
+      "from": "Myra (Demre)",
+      "to": "Finike",
+      "distance": "22 km",
+      "duration": "7-8 saat",
+      "difficulty": "Kolay-Orta",
+      "highlights": ["Andriake antik limanı — Roma tahıl ambarı", "Likya Uygarlıkları Müzesi", "Sahil boyunca düz yürüyüş", "Finike limanı", "Portakal ve yemiş bahçeleri"]
+    },
+    {
+      "id": 17,
+      "from": "Finike",
+      "to": "Adrasan (Çavuşköy)",
+      "distance": "25 km",
+      "duration": "8-9 saat",
+      "difficulty": "Zor",
+      "highlights": ["Melanion antik kenti opsiyonel", "Tahtalı Dağı (Olympos Dağı) yaklaşımı", "Sarp uçurum kıyıları", "Çamyuva sahili", "Adrasan koyu — kamp cenneti"]
+    },
+    {
+      "id": 18,
+      "from": "Adrasan",
+      "to": "Olympos",
+      "distance": "14 km",
+      "duration": "5-6 saat",
+      "difficulty": "Orta",
+      "highlights": ["Olympos antik kenti — ormana gömülü", "Chimaera ebedi alevleri (Yanartaş) gece görüşü", "Çıralı plajı ve Caretta caretta", "Geniş ve korunmuş koy", "Bungalov pansiyonlar"]
+    },
+    {
+      "id": 19,
+      "from": "Olympos",
+      "to": "Phaselis (Antalya yaklaşımı)",
+      "distance": "20 km",
+      "duration": "7-8 saat",
+      "difficulty": "Orta-Zor",
+      "highlights": ["Phaselis antik kenti — üç liman", "Büyük İskender kışladığı yer", "Çam ormanı gölgesinde yürüyüş", "Antalya körfezi panoraması", "Likya Yolu bitiş coşkusu"]
+    }
+  ],
+  "kalkanRegionStages": [
+    {
+      "etapNo": "8-9",
+      "desc": "Patara–Kalkan arası (etap 8-9) Likya Yolu'nun en popüler bölümü. Antik kent + plaj + liman üçlüsü."
+    },
+    {
+      "etapNo": "10-11",
+      "desc": "Kalkan–Kaş arası (etap 10-11). Dağ tepesinden Phellos geçişi, manzara zirvesi."
+    }
+  ]
+}
