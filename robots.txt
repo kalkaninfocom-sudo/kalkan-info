@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin/
+Disallow: /generate-icons.mjs
+Disallow: /inject-pwa.mjs
+Disallow: /inject-seo.mjs
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin.html
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin.html
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://kalkaninfo.com/sitemap.xml
+
+# Host
+Host: https://kalkaninfo.com

@@ -1,0 +1,26 @@
+{
+  "name": "kalkan-info-functions",
+  "version": "1.0.0",
+  "description": "Kalkan Info — Firebase Cloud Functions (Node 20)",
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint":  "eslint .",
+    "build": "echo 'No build step — CommonJS source runs directly'",
+    "serve": "firebase emulators:start --only functions,firestore",
+    "shell": "firebase functions:shell",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin":    "^12.0.0",
+    "firebase-functions": "^5.0.0",
+    "@anthropic-ai/sdk": "^0.32.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "private": true
+}

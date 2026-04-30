@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kalkan Haberleri — Etkinlik, Sezon, Duyuru | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: {
+          50:  '#eaf2f9',
+          100: '#cfdfee',
+          200: '#9cc0dd',
+          300: '#5d97c4',
+          400: '#2f74a8',
+          500: '#1a5e93',
+          600: '#134c79',
+          700: '#0d3a5f',
+          800: '#0a2e4c',
+          900: '#072136',
+        },
+        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        coral:{ 500: '#e74c3c', 600: '#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card:   '0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep:   '0 8px 32px -8px rgba(13,58,95,0.35)',
+        glow:   '0 0 0 4px rgba(232,152,18,0.18)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+  .marquee{animation:marquee 35s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tile-icon{transition:transform .28s cubic-bezier(.34,1.56,.64,1), background .22s ease;}
+  .group:hover .tile-icon{transform:translateY(-4px);}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .breaking::before{content:'';display:inline-block;width:6px;height:6px;border-radius:9999px;background:#fff;margin-right:8px;animation:pulse 1.4s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease, border-color .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+  .photo-treatment::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,58,95,0.3) 0%,transparent 60%);mix-blend-mode:multiply;}
+  .section-alt{background:#eef4f9;}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+  .filter-btn{transition:background .18s ease,color .18s ease,border-color .18s ease;}
+  .filter-btn.active{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+  .badge-sehir{background:#0a2e4c;color:#fff;}
+  .badge-sezon{background:#e89812;color:#fff;}
+  .badge-lezzet{background:#e74c3c;color:#fff;}
+  .badge-tur{background:#1a5e93;color:#fff;}
+  .badge-ulasim{background:#134c79;color:#fff;}
+  .badge-etkinlik{background:#7c3aed;color:#fff;}
+  .badge-koy{background:#065f46;color:#fff;}
+  .badge-saglik{background:#dc2626;color:#fff;}
+  .badge-kultur{background:#92400e;color:#fff;}
+  .badge-ekonomi{background:#0d3a5f;color:#fff;}
+  .badge-doga{background:#166534;color:#fff;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- SEO -->
+<meta name="description" content="Kalkan, Kaş ve Patara'dan güncel haberler. Sezon açılışı, etkinlikler, yeni restoran açılışları, Mavi Bayrak duyuruları, hava uyarıları.">
+<meta name="keywords" content="Kalkan haberleri, Patara haberleri, Kalkan etkinlik, sezon açılışı, Mavi Bayrak, Kalkan duyuru">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://kalkaninfo.com/haberler.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Kalkan Haberleri — Etkinlik, Sezon, Duyuru | Kalkan Info">
+<meta property="og:description" content="Kalkan, Kaş ve Patara'dan güncel haberler. Sezon açılışı, etkinlikler, yeni restoran açılışları, Mavi Bayrak duyuruları, hava uyarıları.">
+<meta property="og:url" content="https://kalkaninfo.com/haberler.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan Haberleri — Etkinlik, Sezon, Duyuru | Kalkan Info">
+<meta name="twitter:description" content="Kalkan, Kaş ve Patara'dan güncel haberler. Sezon açılışı, etkinlikler, yeni restoran açılışları, Mavi Bayrak duyuruları, hava uyarıları.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=1200&q=80">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2655;29.4138">
+<meta name="ICBM" content="36.2655, 29.4138">
+
+<!-- Structured data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalkan Info","url":"https://kalkaninfo.com","logo":"https://kalkaninfo.com/icons/icon-512.png","sameAs":["https://instagram.com/kalkaninfo","https://facebook.com/kalkaninfo"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com","inLanguage":"tr-TR","potentialAction":{"@type":"SearchAction","target":"https://kalkaninfo.com/index.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Kalkan Haberleri","item":"https://kalkaninfo.com/haberler.html"}]}</script>
+<!-- /SEO -->
+</head>
+<body class="bg-[#dce6ef]">
+
+<!-- ============== HERO HEADER ============== -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-40" alt="Haberler" style="filter:saturate(1.4) contrast(1.1);" />
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span class="hidden md:inline opacity-80">☀ 22°C / Açık</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-16 md:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400 animate-pulse"></span> Güncel · Nisan 2026
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Haberler</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;">Marina projelerinden Mavi Bayraklı plajlara, yeni restoranlardan kültür etkinliklerine — Kalkan'dan güncel.</p>
+  </div>
+</header>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3" style="transition:background .18s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+    </button>
+    <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
+        Concierge
+      </a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle">İşletme Ekle</a>
+      <span class="px-2 text-white/40">·</span>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" aria-disabled="true" title="Türkçe (aktif)">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" aria-disabled="true" title="English — yakında">EN</a>
+    </div>
+  </div>
+  <!-- info ribbon -->
+  <div class="ribbon-bg grain text-[12px]">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+          <span class="mr-10">📰 Kalkan Marina yeni iskele projesi onaylandı — Nisan 2026</span>
+          <span class="mr-10">🏖️ Patara Plajı Mavi Bayrak yenilendi — 2026 sezonu açık</span>
+          <span class="mr-10">🚌 Kalkan-Antalya yeni shuttle servisi başladı</span>
+          <span class="mr-10">⛵ Kekova yaz festivali takvimi açıklandı</span>
+          <span class="mr-10">📰 Kalkan Marina yeni iskele projesi onaylandı — Nisan 2026</span>
+          <span class="mr-10">🏖️ Patara Plajı Mavi Bayrak yenilendi — 2026 sezonu açık</span>
+          <span class="mr-10">🚌 Kalkan-Antalya yeni shuttle servisi başladı</span>
+          <span class="mr-10">⛵ Kekova yaz festivali takvimi açıklandı</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== FILTER BAR ============== -->
+<section class="bg-white border-b border-sea-100" style="box-shadow:0 2px 12px -4px rgba(7,33,54,0.1);">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center gap-3">
+    <span class="text-xs uppercase tracking-widest text-sea-500 font-bold mr-1">Kategori:</span>
+    <button onclick="filterNews('tumu')" class="filter-btn active text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="tumu">Tümü (12)</button>
+    <button onclick="filterNews('sehir')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="sehir">Şehir</button>
+    <button onclick="filterNews('sezon')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="sezon">Sezon</button>
+    <button onclick="filterNews('lezzet')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="lezzet">Lezzet</button>
+    <button onclick="filterNews('kultur')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="kultur">Kültür & Doğa</button>
+    <button onclick="filterNews('etkinlik')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-full border border-sea-200 bg-white text-sea-700" data-filter="etkinlik">Etkinlik & Tur</button>
+    <div class="ml-auto flex items-center gap-2">
+      <span class="text-xs text-sea-400">Sıralama:</span>
+      <select class="text-xs border border-sea-200 rounded-md px-3 py-2 text-sea-700 bg-white focus:outline-none focus:border-sea-400">
+        <option>En Yeni</option>
+        <option>En Eski</option>
+        <option>Kategori A–Z</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HABER KARTLARI ============== -->
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="flex items-end justify-between mb-8">
+    <div>
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-coral-500 font-bold">
+        <span class="w-1.5 h-1.5 rounded-full bg-coral-500 animate-pulse"></span> Güncel Haberler
+      </div>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Nisan 2026 Arşivi</h2>
+    </div>
+    <p class="hidden md:block text-sm text-sea-500">12 haber · Kalkan & çevresi</p>
+  </div>
+
+  <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+    <!-- 1. Marina -->
+    <article id="article-1" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="sehir" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Kalkan Marina" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(13,58,95,0.3) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-sehir text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Şehir</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">28 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Kalkan Marina'da yeni iskele projesi onaylandı</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Yat kapasitesi 2027 sezonuna kadar iki katına çıkacak. Proje Kaş Belediyesi tarafından onaylandı.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-1" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Patara -->
+    <article id="article-2" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="sezon" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Patara Plajı" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-sezon text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Sezon</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">26 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Patara Plajı 2026 sezonu: Mavi Bayrak yenilendi</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Türkiye'nin en uzun plajı 2026 sezonu için Mavi Bayrak belgesini yeniledi. Haziran-Eylül açık.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-2" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Yeni Restoranlar -->
+    <article id="article-3" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="lezzet" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1517022812141-23620dba5c23?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Restoranlar" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(231,76,60,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-lezzet text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Lezzet</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">22 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Bu yıl Kalkan'da açılan 5 yeni restoran rehberi</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Çatı terasından deniz yataklarına, akdeniz mutfağından fusion mönülere kadar sezonun öne çıkanları.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-3" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Tekne Turları -->
+    <article id="article-4" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="etkinlik" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Tekne Turu" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(26,94,147,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 text-white text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;background:#1a5e93;">Tur</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">19 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Günlük tekne turları başladı: 6 koy, 1 batık, 1 mağara</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Kalkan limanından 09:30 hareketle günlük koy turu sezonu açıldı. Öğle yemeği ve şnorkel dahil.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-4" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Shuttle -->
+    <article id="article-5" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="sehir" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Shuttle Servisi" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(19,76,121,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-ulasim text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Ulaşım</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">18 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Kalkan-Antalya ulaşımında yeni shuttle servisi</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Hafta içi 3 sefer, hafta sonu 5 sefer. Sabah 07:00'dan akşam 21:00'e kadar düzenli güzergah.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-5" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Kekova Festivali -->
+    <article id="article-6" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="etkinlik" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1591018653-3c4e7b14d6cb?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Kekova Festivali" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(124,58,237,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-etkinlik text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Etkinlik</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">15 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Kekova bölgesinde yaz festivali takvimi açıklandı</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Haziran'dan Eylül'e 14 etkinlik. Müzik, gastronomi ve deniz sporları. Bilet ön satışı başladı.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-6" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. Zeytin Hasadı -->
+    <article id="article-7" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="kultur" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Zeytin Hasadı" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(6,95,70,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-koy text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Köy</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">12 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">İslamlar köyünde geleneksel zeytin hasadı dönemi</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Yüzyıllık zeytin bahçeleri ve geleneksel hasat ritüelleri. Ziyaretçiler hasada katılabilir.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-7" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. Vegan Brunch -->
+    <article id="article-8" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="lezzet" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Vegan Brunch" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(231,76,60,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-lezzet text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Lezzet</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">10 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Kalkan'ın ilk vegan brunch noktası açıldı</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Tamamen bitki bazlı menü, panoramik deniz manzarası. Cumartesi-Pazar 09:00–14:00 arası hizmet.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-8" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Nöbetçi Eczane -->
+    <article id="article-9" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="sehir" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Eczane" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(220,38,38,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-saglik text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Sağlık</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">8 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Yaz aylarında nöbetçi eczane sirkülasyonu</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Haziran-Eylül arası Kalkan, Kaş ve Patara'da haftalık nöbet takvimi yayımlandı. Bilgi için Concierge.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-9" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. Patara Kazılar -->
+    <article id="article-10" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="kultur" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Patara Antik Kent" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(146,64,14,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-kultur text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Kültür</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">5 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Patara antik kentinde yeni kazılar başladı</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Likya uygarlığına ait yeni bulgular bekleniyor. Kazı alanı sınırlı ziyaretçi kapasitesiyle açık.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-10" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11. Emlak -->
+    <article id="article-11" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="sehir" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Emlak" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(13,58,95,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 text-white text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;background:#0d3a5f;">Ekonomi</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">3 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Kalkan'da emlak fiyatları %18 arttı: 2026 raporu</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">Yabancı alıcı talebinin artmasıyla birlikte villa ve arsa fiyatları geçen yıla göre %18 yükseldi.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-11" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12. Likya Yolu -->
+    <article id="article-12" class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="kultur" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+      <div class="relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1593685087671-78a8b4cdd95b?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Likya Yolu" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(22,101,52,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <span class="absolute top-3 left-3 badge-doga text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;">Doğa</span>
+      </div>
+      <div class="p-4">
+        <div class="text-[11px] uppercase tracking-wider text-sea-400 font-semibold">1 Nisan 2026</div>
+        <h3 class="font-display font-bold text-sea-800 mt-1.5 leading-snug">Likya Yolu yürüyüşçülerine yeni rehber kitap</h3>
+        <p class="text-sm text-sea-700/70 mt-2 line-clamp-2">500 km'lik rotanın tamamını kapsayan güncel rehber. Kalkan'dan Fethiye'ye tüm konaklama noktaları.</p>
+        <div class="mt-3 pt-3 border-t border-sea-100">
+          <a href="#article-12" aria-disabled="true" title="Yakında" class="text-xs font-semibold text-sea-500 hover:text-sea-700 inline-flex items-center gap-1 cursor-not-allowed opacity-60">Devamını Oku <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /news-grid -->
+
+  <!-- Pagination placeholder -->
+  <div class="mt-10 flex items-center justify-center gap-2">
+    <button class="w-9 h-9 rounded-md border border-sea-200 bg-white hover:bg-sea-50 grid place-items-center text-sea-600 transition"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="w-9 h-9 rounded-md bg-sea-800 text-white grid place-items-center font-bold text-sm">1</button>
+    <button class="w-9 h-9 rounded-md border border-sea-200 bg-white hover:bg-sea-50 grid place-items-center text-sea-600 font-semibold text-sm transition opacity-40 cursor-not-allowed" aria-disabled="true" title="Yakında">2</button>
+    <button class="w-9 h-9 rounded-md border border-sea-200 bg-white hover:bg-sea-50 grid place-items-center text-sea-600 transition"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+      <div class="flex items-center gap-3 mt-5">
+        <a href="https://instagram.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg>
+        </a>
+        <a href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-emerald-600 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+        </a>
+        <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.46 1.46-3.82 3.7-3.82 1.07 0 2.2.2 2.2.2v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.9h-2.29v6.98A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
+        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Yerel</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="index.html#nobetci">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#acil">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#taksi">Taksi Durakları</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kayip">Kayıp & Bulunan</a></li>
+        <li><a class="hover:text-sun-400 text-sun-400" href="haberler.html">Haberler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
+        <li><a class="hover:text-sun-400" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#isletme-ekle">İşletme Ekle</a></li>
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info?subject=Reklam+Talebi">Reklam Ver</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kvkk">Gizlilik & KVKK</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div class="flex items-center gap-3">
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">App Store</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">Google Play</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">PWA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== Floating Concierge ============== -->
+<a href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+<script>
+  const fmt = new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+  const el = document.getElementById('today-date'); if(el) el.textContent = fmt.format(new Date());
+
+  function filterNews(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-filter="'+cat+'"]').classList.add('active');
+    document.querySelectorAll('.news-card').forEach(card => {
+      if (cat === 'tumu' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+<script src="js/render.js"></script>
+<script>
+(async () => {
+  const data = await KalkanData.load('haberler');
+  const grid = document.getElementById('card-grid');
+  function render() {
+    const items = (data.items || []);
+    grid.innerHTML = items.map(KalkanData.haberCard).join('') || '<div class="col-span-full text-center py-12 text-sea-700/60">Henüz haber yok.</div>';
+  }
+  render();
+})();
+</script>
+<script src="js/pwa.js?v=2" defer></script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kalkan Kiralık Villalar — Havuzlu, Deniz Manzaralı | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: {
+          50:  '#eaf2f9',
+          100: '#cfdfee',
+          200: '#9cc0dd',
+          300: '#5d97c4',
+          400: '#2f74a8',
+          500: '#1a5e93',
+          600: '#134c79',
+          700: '#0d3a5f',
+          800: '#0a2e4c',
+          900: '#072136',
+        },
+        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        coral:{ 500: '#e74c3c', 600: '#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card:   '0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep:   '0 8px 32px -8px rgba(13,58,95,0.35)',
+        glow:   '0 0 0 4px rgba(232,152,18,0.18)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+  .marquee{animation:marquee 35s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tile-icon{transition:transform .28s cubic-bezier(.34,1.56,.64,1), background .22s ease;}
+  .group:hover .tile-icon{transform:translateY(-4px);}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .breaking::before{content:'';display:inline-block;width:6px;height:6px;border-radius:9999px;background:#fff;margin-right:8px;animation:pulse 1.4s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease, border-color .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+  .photo-treatment::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,58,95,0.3) 0%,transparent 60%);mix-blend-mode:multiply;}
+  .section-alt{background:#eef4f9;}
+  .section-dark{background:#0d3a5f;}
+  .nav-primary{background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);}
+  .nav-secondary{background:#072136;}
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;}
+  .section-label::before{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:2px;}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- SEO -->
+<meta name="description" content="Kalkan'da seçili kiralık villalar. 2+1'den 6+1'e havuzlu, deniz manzaralı, butik konumlu villalar — fiyat, kapasite, özellik karşılaştırması.">
+<meta name="keywords" content="Kalkan kiralık villa, havuzlu villa, deniz manzaralı villa, Kalamar villa, Kaş villa, lüks villa kiralama">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://kalkaninfo.com/villalar.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Kalkan Kiralık Villalar — Havuzlu, Deniz Manzaralı | Kalkan Info">
+<meta property="og:description" content="Kalkan'da seçili kiralık villalar. 2+1'den 6+1'e havuzlu, deniz manzaralı, butik konumlu villalar — fiyat, kapasite, özellik karşılaştırması.">
+<meta property="og:url" content="https://kalkaninfo.com/villalar.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan Kiralık Villalar — Havuzlu, Deniz Manzaralı | Kalkan Info">
+<meta name="twitter:description" content="Kalkan'da seçili kiralık villalar. 2+1'den 6+1'e havuzlu, deniz manzaralı, butik konumlu villalar — fiyat, kapasite, özellik karşılaştırması.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2655;29.4138">
+<meta name="ICBM" content="36.2655, 29.4138">
+
+<!-- Structured data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalkan Info","url":"https://kalkaninfo.com","logo":"https://kalkaninfo.com/icons/icon-512.png","sameAs":["https://instagram.com/kalkaninfo","https://facebook.com/kalkaninfo"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com","inLanguage":"tr-TR","potentialAction":{"@type":"SearchAction","target":"https://kalkaninfo.com/index.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Kalkan Kiralık Villalar","item":"https://kalkaninfo.com/villalar.html"}]}</script>
+<!-- /SEO -->
+</head>
+<body class="bg-[#dce6ef]">
+
+<!-- ============== HERO HEADER ============== -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-40" alt="Kalkan villaları" style="filter:saturate(1.6) contrast(1.1);" onerror="this.src='https://picsum.photos/seed/kalkan-villa-hero/1920/600'" />
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ana Sayfa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span class="hidden md:inline opacity-80">☀ 22°C / Açık</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-16 md:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Kalkan Villaları</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;">Seçili Konaklama — özel havuzlu, deniz manzaralı, concierge destekli villalar.</p>
+  </div>
+</header>
+
+<!-- ============== STICKY NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="index.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3" style="transition:background .18s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+    </a>
+    <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
+        Concierge
+      </a>
+      <span class="px-2 text-white/40">·</span>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" aria-disabled="true" title="Türkçe (aktif)">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" aria-disabled="true" title="English — yakında">EN</a>
+    </div>
+  </div>
+  <div class="ribbon-bg grain text-[12px]">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
+          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== FILTER BAR ============== -->
+<section style="background:#0a2e4c;">
+  <div class="max-w-7xl mx-auto px-4 py-5">
+    <div class="bg-white rounded-xl px-4 py-4 flex flex-wrap items-center gap-3" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
+      <!-- Region -->
+      <div class="flex flex-col gap-1">
+        <label class="text-[10px] uppercase tracking-widest text-sea-600 font-bold">Bölge</label>
+        <select class="text-sm border border-sea-200 rounded-md px-3 py-1.5 text-sea-800 bg-sea-50 focus:outline-none focus:ring-2 focus:ring-sun-400 font-medium">
+          <option>Tümü</option>
+          <option>Kalkan</option>
+          <option>Kaş</option>
+          <option>Patara</option>
+          <option>Kınık</option>
+        </select>
+      </div>
+      <div class="w-px h-8 bg-sea-100 hidden md:block"></div>
+      <!-- Capacity -->
+      <div class="flex flex-col gap-1">
+        <label class="text-[10px] uppercase tracking-widest text-sea-600 font-bold">Kapasite</label>
+        <select class="text-sm border border-sea-200 rounded-md px-3 py-1.5 text-sea-800 bg-sea-50 focus:outline-none focus:ring-2 focus:ring-sun-400 font-medium">
+          <option>Tüm Kapasiteler</option>
+          <option>2 Yatak</option>
+          <option>3 Yatak</option>
+          <option>4 Yatak</option>
+          <option>5+ Yatak</option>
+        </select>
+      </div>
+      <div class="w-px h-8 bg-sea-100 hidden md:block"></div>
+      <!-- Sort -->
+      <div class="flex flex-col gap-1">
+        <label class="text-[10px] uppercase tracking-widest text-sea-600 font-bold">Sırala</label>
+        <select class="text-sm border border-sea-200 rounded-md px-3 py-1.5 text-sea-800 bg-sea-50 focus:outline-none focus:ring-2 focus:ring-sun-400 font-medium">
+          <option>Önerilen</option>
+          <option>En Yeni</option>
+          <option>En Popüler</option>
+        </select>
+      </div>
+      <div class="ml-auto">
+        <span class="text-xs text-sea-600 font-semibold bg-sea-50 border border-sea-200 rounded-full px-3 py-1.5">12 villa listelendi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VILLA LİSTELEME ============== -->
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="mb-6 flex items-end justify-between">
+    <div>
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+        <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Seçili Villalar
+      </div>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Kalkan Villaları</h2>
+    </div>
+  </div>
+
+  <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+      <div class="flex items-center gap-3 mt-5">
+        <a href="https://instagram.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.94c-3.15 0-3.5.01-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04C2.69 9.5 2.68 9.85 2.68 13s.01 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04a3.4 3.4 0 0 0-.83-1.27 3.4 3.4 0 0 0-1.27-.83c-.39-.15-.97-.33-2.04-.38C15.5 4.11 15.15 4.1 12 4.1Zm0 3.3a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 7.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5.85-7.74a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"/></svg>
+        </a>
+        <a href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-emerald-600 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+        </a>
+        <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.46 1.46-3.82 3.7-3.82 1.07 0 2.2.2 2.2.2v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.9h-2.29v6.98A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
+        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Yerel</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="index.html#nobetci">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#acil">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#taksi">Taksi Durakları</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kayip">Kayıp & Bulunan</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
+        <li><a class="hover:text-sun-400" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#isletme-ekle">İşletme Ekle</a></li>
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info?subject=Reklam+Talebi">Reklam Ver</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kvkk">Gizlilik & KVKK</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div class="flex items-center gap-3">
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">App Store</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">Google Play</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">PWA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== Floating Concierge ============== -->
+<a id="concierge" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+<!-- ============== KVKK ============== -->
+<section id="kvkk" class="bg-white border-t border-sea-100">
+  <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold mb-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Gizlilik & KVKK
+    </div>
+    <p class="text-sea-700/70 text-sm max-w-xl mx-auto">Kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır. Detaylı politika yakında yayımlanacaktır. Sorularınız için <a href="mailto:info@kalkan.info" class="text-sea-600 underline hover:text-sun-600">info@kalkan.info</a> adresine yazabilirsiniz.</p>
+  </div>
+</section>
+
+<script>
+  const fmt = new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+  const el = document.getElementById('today-date'); if(el) el.textContent = fmt.format(new Date());
+</script>
+<script src="js/render.js"></script>
+<script src="js/pwa.js?v=2" defer></script>
+<script>
+(async () => {
+  const data = await KalkanData.load('villalar');
+  const grid = document.getElementById('card-grid');
+  const searchEl = document.getElementById('search-input');
+  const catEl = document.getElementById('category-filter');
+  if (catEl && data.categories) {
+    catEl.innerHTML = '<option value="">Tüm Kategoriler</option>' + data.categories.map(c => `<option>${c}</option>`).join('');
+  }
+  function render() {
+    const items = KalkanData.filterItems(data.items, { q: searchEl?.value || '', category: catEl?.value || '' });
+    grid.innerHTML = items.map(KalkanData.villaCard).join('') || '<div class="col-span-full text-center py-12 text-sea-700/60">Sonuç bulunamadı.</div>';
+  }
+  searchEl?.addEventListener('input', render);
+  catEl?.addEventListener('change', render);
+  render();
+})();
+</script>
+
+<style>
+  .villa-card:hover .villa-arrow { opacity:1!important; }
+  .villa-arrow:hover { background:rgba(7,33,54,0.85)!important; }
+  .villa-card { cursor:default; }
+  .villa-gallery { touch-action:pan-y; }
+</style>
+
+<script>
+/* Villa carousel — gallery slide kontrolü, hover arrows, dot navigation, swipe */
+(function() {
+  function setSlide(card, idx) {
+    const slides = card.querySelectorAll('.villa-slide');
+    const dots   = card.querySelectorAll('.villa-dot');
+    if (!slides.length) return;
+    const n = slides.length;
+    const next = ((idx % n) + n) % n;
+    slides.forEach((s, i) => s.style.opacity = (i === next ? 1 : 0));
+    dots.forEach((d, i) => d.style.background = (i === next ? '#fff' : 'rgba(255,255,255,0.45)'));
+    card.dataset.cur = next;
+  }
+  function curIdx(card) { return parseInt(card.dataset.cur || '0', 10); }
+
+  // Click delegation: arrows + dots
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.villa-card');
+    if (!card) return;
+    if (e.target.closest('.villa-prev')) { e.preventDefault(); setSlide(card, curIdx(card) - 1); return; }
+    if (e.target.closest('.villa-next')) { e.preventDefault(); setSlide(card, curIdx(card) + 1); return; }
+    const dot = e.target.closest('.villa-dot');
+    if (dot) { e.preventDefault(); setSlide(card, parseInt(dot.dataset.idx, 10)); return; }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    if (!e.target.closest('.villa-card')) return;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const card = e.target.closest('.villa-card');
+    if (!card) return;
+    const dx = (e.changedTouches[0].clientX - touchStartX);
+    if (Math.abs(dx) < 40) return;
+    setSlide(card, curIdx(card) + (dx < 0 ? 1 : -1));
+  });
+
+  // Klavye: kart focus'ta ok tuşları
+  document.addEventListener('keydown', (e) => {
+    const card = document.activeElement?.closest?.('.villa-card');
+    if (!card) return;
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); setSlide(card, curIdx(card) - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); setSlide(card, curIdx(card) + 1); }
+  });
+})();
+</script>
+</body>
+</html>

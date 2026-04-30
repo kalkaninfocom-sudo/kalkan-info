@@ -1,0 +1,31 @@
+{
+  "site": {
+    "name": "Kalkan Info",
+    "tagline": "Yerel bilgi, seçili tavsiyeler, kurumsal hizmet",
+    "language": "tr",
+    "primaryColor": "#1a5e93",
+    "accentColor": "#f4b53d",
+    "logo": "",
+    "favicon": ""
+  },
+  "contact": {
+    "email": "info@kalkaninfo.com",
+    "phone": "+90 242 844 00 00",
+    "whatsapp": "+90 532 000 00 00",
+    "address": "Atatürk Cad. No:1, Kalkan/Kaş/Antalya",
+    "instagram": "https://instagram.com/kalkaninfo",
+    "facebook": "https://facebook.com/kalkaninfo"
+  },
+  "hero": {
+    "image": "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1920&q=80",
+    "imageAlt": "Kaputaş Plajı",
+    "showWeather": true
+  },
+  "footer": {
+    "about": "Kalkan Info — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Patara ve çevresi için tarafsız rehber."
+  },
+  "admin": {
+    "passwordHash": "kalkan2026",
+    "_note": "GEÇİCİ — production'da Firebase Auth ya da daha güçlü hash kullan."
+  }
+}

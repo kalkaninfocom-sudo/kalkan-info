@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Antik Kentler — Patara, Xanthos, Tlos | Kalkan Info</title>
+<meta name="description" content="Kalkan çevresindeki 10 antik kent rehberi. Patara, Xanthos, Letoon, Tlos, Pinara, Simena ve diğerleri. Tarihçe, fotoğraflar, ziyaret bilgisi ve interaktif harita.">
+<meta name="keywords" content="Patara, Xanthos, Tlos, Letoon, Pinara, Simena, Likya, Antalya antik kentler, Kalkan tarih, UNESCO">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+
+<!-- OG -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Antik Kentler — Patara, Xanthos, Tlos | Kalkan Info">
+<meta property="og:description" content="Kalkan çevresindeki 10 antik kent — interaktif harita ve detaylı rehber.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1602080858428-57174f9431cf?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Leaflet (open-street-map) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: { 50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',800:'#0a2e4c',900:'#072136' },
+        sun: { 400:'#f4b53d', 500:'#e89812', 600:'#c97c08' },
+        coral: { 500:'#e74c3c', 600:'#c0392b' },
+        ink: { 700:'#11304d', 800:'#0c2034', 900:'#0a1626' }
+      },
+      fontFamily: { display:['Montserrat','system-ui','sans-serif'], body:['Inter','system-ui','sans-serif'] }
+    }
+  }
+};
+</script>
+<style>
+html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+.ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+.grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+.marquee{animation:marquee 35s linear infinite;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.underline-grow{position:relative;}
+.underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+.underline-grow:hover::after{transform:scaleX(1);}
+.nav-active{color:#f4b53d!important;}
+.nav-active::after{transform:scaleX(1)!important;}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+#map{height:520px;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px -8px rgba(13,58,95,0.35);z-index:1;}
+.leaflet-popup-content-wrapper{border-radius:12px;}
+.leaflet-popup-content{margin:0;width:280px!important;}
+.popup-card{padding:0;}
+.popup-card img{width:100%;height:140px;object-fit:cover;}
+.popup-card-body{padding:12px 14px;}
+.kent-marker{
+  background:#e89812;width:32px;height:32px;border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;
+  border:3px solid #fff;box-shadow:0 4px 12px rgba(7,33,54,0.4);
+}
+.kent-marker.unesco{background:#1a5e93;}
+.kent-marker.denizden{background:#10b981;}
+.kent-marker span{transform:rotate(45deg);font-size:14px;}
+.detail-modal{position:fixed;inset:0;z-index:60;background:rgba(7,22,38,0.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem;}
+.detail-modal.active{display:flex;}
+.detail-card{background:white;border-radius:16px;max-width:1024px;width:100%;box-shadow:0 24px 60px -12px rgba(7,22,38,0.5);overflow:hidden;}
+.tab-btn.active{background:#0a2e4c;color:white;border-color:#0a2e4c;}
+</style>
+</head>
+<body class="bg-[#dce6ef]">
+
+<!-- HERO -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-50" alt="Antik Kentler" style="filter:saturate(1.5) contrast(1.1);" />
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide">30 Nisan 2026</span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span class="hidden md:inline opacity-80">☀ 22°C / Açık</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-14 md:pt-20 pb-14 md:pb-18 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Likya Medeniyeti · UNESCO Mirası
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Antik Kentler</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed">Kalkan çevresinde 10 antik kent — Patara'dan Xanthos'a, Tlos'tan Simena'ya 3000 yıllık tarih.</p>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2 py-3.5">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700" href="https://wa.me/905551112233" target="_blank">Concierge</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAP SECTION -->
+<section class="bg-[#0a2e4c] py-8">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap items-end justify-between gap-3 mb-4">
+      <div class="text-white">
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-400 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> İnteraktif Harita
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1">10 Antik Kent — Tek Bakışta</h2>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button class="tab-btn active px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-white/30 text-white" data-filter="">Hepsi</button>
+        <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-white/30 text-white" data-filter="UNESCO Mirası">UNESCO</button>
+        <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-white/30 text-white" data-filter="Likya">Likya</button>
+        <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-white/30 text-white" data-filter="Denizden">Denizden</button>
+      </div>
+    </div>
+    <div id="map"></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 text-white/80 text-xs">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-sea-500 inline-block"></span>UNESCO Mirası</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-sun-500 inline-block"></span>Karadan Erişim</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>Tekneyle</div>
+      <div class="flex items-center gap-2"><span class="text-sun-400">★</span> Öne çıkan = en çok tavsiye</div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS GRID -->
+<section class="bg-[#dce6ef]">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Detaylar
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Tüm Antik Kentler</h2>
+      </div>
+      <input id="search-input" type="search" placeholder="Antik kent ara..." class="border border-sea-200 rounded-md px-4 py-2 text-sm bg-white shadow w-64 focus:outline-none focus:border-sea-500">
+    </div>
+    <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- DETAIL MODAL -->
+<div id="detail-modal" class="detail-modal" onclick="if(event.target.id==='detail-modal') closeDetail()">
+  <div class="detail-card" id="detail-content"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+    <div class="col-span-2">
+      <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
+        <li><a class="hover:text-sun-400" href="antik-kentler.html">Antik Kentler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Destek</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+        <li><a class="hover:text-sun-400" href="https://wa.me/905551112233">Concierge</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
+    <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+  </div>
+</footer>
+
+<script src="js/render.js"></script>
+<script src="js/pwa.js?v=2" defer></script>
+<script>
+let map, allItems = [], markers = [], currentFilter = '';
+
+(async () => {
+  const data = await KalkanData.load('antik-kentler');
+  allItems = data.items || [];
+  initMap();
+  renderMarkers(allItems);
+  renderCards(allItems);
+  bindFilters();
+  bindSearch();
+})();
+
+function initMap() {
+  map = L.map('map', { scrollWheelZoom: false }).setView([36.30, 29.50], 9);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap',
+    maxZoom: 18
+  }).addTo(map);
+}
+
+function markerIconFor(item) {
+  let cls = '';
+  if (item.category === 'UNESCO Mirası') cls = 'unesco';
+  else if (item.category === 'Denizden') cls = 'denizden';
+  return L.divIcon({
+    html: `<div class="kent-marker ${cls}"><span>🏛</span></div>`,
+    className: '',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -28]
+  });
+}
+
+function renderMarkers(items) {
+  markers.forEach(m => map.removeLayer(m));
+  markers = [];
+  items.forEach(item => {
+    const m = L.marker([item.lat, item.lng], { icon: markerIconFor(item) }).addTo(map);
+    m.bindPopup(`
+      <div class="popup-card">
+        <img src="${item.image}" alt="${KalkanData.escape(item.name)}" />
+        <div class="popup-card-body">
+          <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#1a5e93;font-weight:700;">${KalkanData.escape(item.category)}</div>
+          <h3 style="font-family:Montserrat;font-weight:800;font-size:16px;margin:4px 0;color:#0a2e4c;">${KalkanData.escape(item.name)}</h3>
+          <p style="font-size:12px;color:#11304d;line-height:1.4;margin:0 0 8px;">${KalkanData.escape((item.summary||'').slice(0,120))}...</p>
+          <button onclick="openDetail('${item.id}')" style="background:#0a2e4c;color:white;padding:6px 12px;border:none;border-radius:6px;font-weight:600;font-size:12px;cursor:pointer;">Detayları Gör →</button>
+        </div>
+      </div>
+    `);
+    markers.push(m);
+  });
+  // Fit bounds
+  if (items.length) {
+    const group = L.featureGroup(markers);
+    map.fitBounds(group.getBounds().pad(0.2));
+  }
+}
+
+function renderCards(items) {
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = items.map(item => `
+    <article class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-deep transition cursor-pointer" onclick="openDetail('${item.id}')">
+      <div class="relative aspect-[16/10] overflow-hidden">
+        <img src="${item.image}" alt="${KalkanData.escape(item.name)}" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy">
+        ${item.featured ? '<span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">★ Öne Çıkan</span>' : ''}
+        <span class="absolute top-3 left-3 ${item.category==='UNESCO Mirası'?'bg-sea-600':'bg-ink-900/85'} text-white text-[10px] font-bold px-2 py-1 rounded-full">${KalkanData.escape(item.category)}</span>
+      </div>
+      <div class="p-5">
+        <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${KalkanData.escape(item.name)}</h3>
+        <div class="flex items-center gap-3 text-xs text-ink-700/60 mt-1">
+          <span>📍 ${KalkanData.escape(item.distance||'')}</span>
+          <span>·</span>
+          <span>🕒 ${KalkanData.escape(item.duration||'')}</span>
+        </div>
+        <p class="text-sm text-ink-700/80 mt-3 line-clamp-3">${KalkanData.escape(item.summary||'')}</p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8">
+          <span class="text-sm font-bold text-sea-600">${KalkanData.escape(item.entryFee||'')}</span>
+          <button class="text-sun-600 text-xs font-bold hover:text-sun-500">Detay →</button>
+        </div>
+      </div>
+    </article>
+  `).join('') || '<div class="col-span-full text-center py-12 text-ink-700/60">Sonuç bulunamadı.</div>';
+}
+
+function applyFilter() {
+  let items = allItems;
+  if (currentFilter) items = items.filter(i => i.category === currentFilter);
+  const q = (document.getElementById('search-input').value || '').toLowerCase();
+  if (q) items = items.filter(i => JSON.stringify(i).toLowerCase().includes(q));
+  renderMarkers(items);
+  renderCards(items);
+}
+
+function bindFilters() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      applyFilter();
+    });
+  });
+}
+
+function bindSearch() {
+  document.getElementById('search-input').addEventListener('input', applyFilter);
+}
+
+function openDetail(id) {
+  const item = allItems.find(i => i.id === id);
+  if (!item) return;
+  const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`;
+  document.getElementById('detail-content').innerHTML = `
+    <div class="relative aspect-[2/1] overflow-hidden">
+      <img src="${item.image}" alt="${KalkanData.escape(item.name)}" class="w-full h-full object-cover">
+      <button onclick="closeDetail()" class="absolute top-4 right-4 w-10 h-10 grid place-items-center rounded-full bg-white/90 hover:bg-white text-ink-900 shadow-lg">✕</button>
+      <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-ink-900/95 to-transparent text-white">
+        <span class="inline-block bg-sun-500 text-ink-900 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">${KalkanData.escape(item.category)}</span>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-2">${KalkanData.escape(item.name)}</h2>
+      </div>
+    </div>
+    <div class="p-6 md:p-8 grid md:grid-cols-3 gap-6">
+      <div class="md:col-span-2">
+        <p class="text-ink-700 leading-relaxed">${KalkanData.escape(item.summary||'')}</p>
+        <h3 class="font-display font-extrabold text-ink-900 text-lg mt-6 mb-2">Tarihçe</h3>
+        <p class="text-sm text-ink-700/90 leading-relaxed">${KalkanData.escape(item.history||'')}</p>
+        <h3 class="font-display font-extrabold text-ink-900 text-lg mt-6 mb-2">Öne Çıkanlar</h3>
+        <ul class="text-sm text-ink-700/90 space-y-1.5">
+          ${(item.highlights||[]).map(h => `<li class="flex gap-2"><span class="text-sun-500">▶</span><span>${KalkanData.escape(h)}</span></li>`).join('')}
+        </ul>
+        <h3 class="font-display font-extrabold text-ink-900 text-lg mt-6 mb-2">İpuçları</h3>
+        <p class="text-sm text-ink-700/90 leading-relaxed bg-sun-400/10 border-l-4 border-sun-500 p-3 rounded">${KalkanData.escape(item.tips||'')}</p>
+        <h3 class="font-display font-extrabold text-ink-900 text-lg mt-6 mb-2">Ulaşım</h3>
+        <p class="text-sm text-ink-700/90">${KalkanData.escape(item.transport||'')}</p>
+      </div>
+      <aside class="space-y-3">
+        <a href="${mapsUrl}" target="_blank" class="block w-full bg-sea-600 hover:bg-sea-700 text-white font-bold text-center py-3 rounded-lg transition">📍 Google Maps Yol Tarifi</a>
+        <div class="bg-sea-50 rounded-lg p-4 space-y-3 text-sm">
+          <div class="flex justify-between"><span class="text-ink-700/60">Mesafe</span><span class="font-bold">${KalkanData.escape(item.distance||'—')}</span></div>
+          <div class="flex justify-between"><span class="text-ink-700/60">Sürüş</span><span class="font-bold">${KalkanData.escape(item.drive||'—')}</span></div>
+          <div class="flex justify-between"><span class="text-ink-700/60">Süre</span><span class="font-bold">${KalkanData.escape(item.duration||'—')}</span></div>
+          <div class="flex justify-between"><span class="text-ink-700/60">Giriş</span><span class="font-bold text-sea-600">${KalkanData.escape(item.entryFee||'Ücretsiz')}</span></div>
+          <div class="flex justify-between"><span class="text-ink-700/60">Saatler</span><span class="font-bold text-right">${KalkanData.escape(item.hours||'—')}</span></div>
+          <div class="flex justify-between"><span class="text-ink-700/60">Puan</span><span class="font-bold text-sun-600">★ ${item.rating||'—'}</span></div>
+        </div>
+        <div class="bg-ink-900 rounded-lg p-4 text-white">
+          <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-2">Etiketler</div>
+          <div class="flex flex-wrap gap-1">
+            ${(item.tags||[]).map(t => `<span class="text-[11px] bg-white/10 px-2 py-1 rounded-full">${KalkanData.escape(t)}</span>`).join('')}
+          </div>
+        </div>
+      </aside>
+    </div>
+  `;
+  document.getElementById('detail-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detail-modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+window.openDetail = openDetail;
+window.closeDetail = closeDetail;
+</script>
+</body>
+</html>

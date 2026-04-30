@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+package-lock.json.tmp
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.env
+
+# Build outputs
+dist/
+build/
+
+# Firebase
+.firebase/
+.firebaserc.local
+firebase-debug.log
+firebase-debug.*.log
+firestore-debug.log
+ui-debug.log
+*.log
+
+# OMC / dev tooling
+.omc/state/
+.omc/logs/
+.omc/sessions/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Project temp
+temporary screenshots/
+data/temporary screenshots/
+data/.omc/
+
+# Secrets — KESİNLİKLE COMMIT ETME
+**/serviceAccount*.json
+**/firebase-adminsdk-*.json
+*-key.json

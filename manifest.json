@@ -1,0 +1,70 @@
+{
+  "name": "Kalkan Info — Yerel Bilgi Rehberi",
+  "short_name": "Kalkan Info",
+  "description": "Kalkan, Kaş ve Patara için yerel bilgi, plaj, restoran, villa, tur, hizmet ve nöbetçi eczane rehberi.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#dce6ef",
+  "theme_color": "#0a2e4c",
+  "lang": "tr",
+  "dir": "ltr",
+  "categories": ["travel", "lifestyle", "navigation"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nöbetçi Eczane",
+      "short_name": "Eczane",
+      "description": "Bugün hizmet veren eczane",
+      "url": "./hizmetler.html#eczane",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Acil Numaralar",
+      "short_name": "Acil",
+      "description": "Polis, ambulans, jandarma",
+      "url": "./hizmetler.html#acil",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Plajlar",
+      "short_name": "Plajlar",
+      "description": "Bölgenin en güzel plajları",
+      "url": "./plajlar.html",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Restoranlar",
+      "short_name": "Restoranlar",
+      "description": "Kalkan'ın en iyi 25 restoranı",
+      "url": "./restoranlar.html",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any" }]
+    }
+  ]
+}

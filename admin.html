@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kalkan Info — Admin Panel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans:['Inter','system-ui','sans-serif'], display:['Orbitron','system-ui','sans-serif'] },
+      colors: {
+        ink:    {900:'#0a1626', 800:'#0c2034', 700:'#11304d', 600:'#143a5c'},
+        sea:    {600:'#1a5e93', 500:'#2477b5', 400:'#3a91d4'},
+        sun:    {500:'#f4b53d', 400:'#f5c054'},
+        ok:     {500:'#10b981'},
+        bad:    {500:'#ef4444'},
+      }
+    }
+  }
+}
+</script>
+<style>
+body { font-family: Inter, system-ui, sans-serif; background:#f5f7fa; }
+.font-display { font-family: Orbitron, system-ui, sans-serif; }
+.sidebar-link { transition: background 120ms ease, color 120ms ease; }
+.sidebar-link:hover { background:rgba(255,255,255,0.08); }
+.sidebar-link.active { background:rgba(244,181,61,0.18); color:#f4b53d; border-left:3px solid #f4b53d; }
+input[type=text], input[type=number], input[type=url], input[type=tel], textarea, select {
+  width:100%; padding:0.55rem 0.75rem; border:1px solid #d8dde5; border-radius:8px; background:white;
+  font-size:0.875rem; transition:border-color 120ms ease, box-shadow 120ms ease;
+}
+input:focus, textarea:focus, select:focus { outline:none; border-color:#1a5e93; box-shadow:0 0 0 3px rgba(26,94,147,0.12); }
+.btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.55rem 1rem; border-radius:8px; font-weight:600; font-size:0.875rem; transition:transform 80ms ease, box-shadow 120ms ease, background 120ms ease; cursor:pointer; border:none; }
+.btn:hover { transform:translateY(-1px); }
+.btn:active { transform:translateY(0); }
+.btn-primary { background:#1a5e93; color:white; box-shadow:0 4px 12px -2px rgba(26,94,147,0.4); }
+.btn-primary:hover { background:#11304d; }
+.btn-success { background:#10b981; color:white; }
+.btn-danger  { background:#ef4444; color:white; }
+.btn-ghost   { background:white; color:#11304d; border:1px solid #d8dde5; }
+.btn-ghost:hover { background:#f5f7fa; }
+.card { background:white; border-radius:12px; box-shadow:0 1px 3px rgba(7,33,54,0.08); border:1px solid rgba(26,94,147,0.06); }
+.tag { display:inline-flex; align-items:center; padding:0.15rem 0.55rem; border-radius:999px; background:rgba(26,94,147,0.1); color:#1a5e93; font-size:0.7rem; font-weight:600; }
+.tag-sun  { background:rgba(244,181,61,0.16); color:#9a6b00; }
+.tag-ok   { background:rgba(16,185,129,0.14); color:#0a7858; }
+.tag-bad  { background:rgba(239,68,68,0.14);  color:#a21f1f; }
+.tag-mute { background:#f0f3f7; color:#4d5a6b; }
+table { width:100%; border-collapse:collapse; font-size:0.875rem; }
+th { text-align:left; padding:0.65rem 0.75rem; background:#f0f3f7; color:#11304d; font-weight:600; border-bottom:1px solid #d8dde5; }
+td { padding:0.6rem 0.75rem; border-bottom:1px solid #eef1f5; vertical-align:top; }
+tr:hover td { background:#fafbfd; }
+.modal-bg { position:fixed; inset:0; background:rgba(7,22,38,0.55); backdrop-filter:blur(4px); z-index:50; display:flex; align-items:flex-start; justify-content:center; padding:2rem 1rem; overflow-y:auto; }
+.modal { background:white; border-radius:14px; max-width:760px; width:100%; box-shadow:0 24px 60px -12px rgba(7,22,38,0.5); }
+.toast { position:fixed; bottom:1.5rem; right:1.5rem; padding:0.75rem 1rem; border-radius:10px; color:white; font-weight:600; font-size:0.875rem; box-shadow:0 8px 24px -4px rgba(7,22,38,0.4); z-index:80; animation:slideIn 200ms ease; }
+@keyframes slideIn { from { transform:translateY(20px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+<meta name="mobile-web-app-capable" content="yes">
+</head>
+<body class="text-ink-800">
+
+<!-- ============== LOGIN ============== -->
+<div id="login-screen" class="fixed inset-0 z-40 grid place-items-center" style="background:linear-gradient(135deg,#0a1626 0%,#11304d 60%,#1a5e93 100%);">
+  <div class="card w-full max-w-md p-8">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl grid place-items-center font-display text-white text-xl font-extrabold" style="background:linear-gradient(135deg,#1a5e93,#11304d);">K</div>
+      <div>
+        <div class="font-display text-xl font-extrabold tracking-wide">KALKAN <span class="text-sun-500">INFO</span></div>
+        <div class="text-xs text-ink-700/70">Admin Panel</div>
+      </div>
+    </div>
+    <div class="text-sm text-ink-700/80 mb-4">Yönetim paneline erişmek için şifrenizi girin.</div>
+    <input id="login-pwd" type="password" placeholder="Şifre" class="mb-3" />
+    <button id="login-btn" class="btn btn-primary w-full justify-center">Giriş yap</button>
+    <div id="login-err" class="text-bad-500 text-xs mt-3 text-center hidden">Şifre hatalı.</div>
+    <div class="text-[11px] text-ink-700/50 mt-6 text-center">© 2026 Kalkan Info</div>
+  </div>
+</div>
+
+<!-- ============== APP SHELL ============== -->
+<div id="app-shell" class="hidden flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 text-white flex-shrink-0 flex flex-col" style="background:linear-gradient(180deg,#0a1626 0%,#11304d 100%);">
+    <div class="px-5 py-5 border-b border-white/10">
+      <div class="font-display text-lg font-extrabold tracking-wide">KALKAN <span class="text-sun-500">INFO</span></div>
+      <div class="text-[11px] text-white/50 mt-0.5">Admin Panel · v1.0</div>
+    </div>
+    <nav class="flex-1 py-4 overflow-y-auto" id="nav">
+      <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2">Genel</div>
+      <a class="sidebar-link active flex items-center gap-3 px-5 py-2.5 text-sm" data-page="dashboard"><span>🏠</span>Anasayfa</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="config"><span>⚙️</span>Site Ayarları</a>
+
+      <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">İçerik</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="plajlar"><span>🏖️</span>Plajlar</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="villalar"><span>🏡</span>Villalar</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="turlar"><span>⛵</span>Turlar</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="restoranlar"><span>🍽️</span>Restoranlar</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="haberler"><span>📰</span>Haberler</a>
+
+      <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">Hizmetler</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="hizmetler"><span>🛠️</span>Hizmet Listesi</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="eczane"><span>💊</span>Nöbetçi Eczane</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="acil"><span>🚨</span>Acil Numaralar</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="taksi"><span>🚕</span>Taksi Durakları</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="kayip"><span>🔍</span>Kayıp & Bulunan</a>
+
+      <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">Sistem</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="export"><span>📤</span>Yedekle / İndir</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="import"><span>📥</span>Geri Yükle</a>
+    </nav>
+    <div class="px-5 py-4 border-t border-white/10 flex items-center justify-between">
+      <div class="text-[11px] text-white/60">Berkay</div>
+      <button id="logout-btn" class="text-[11px] text-white/70 hover:text-sun-500">Çıkış</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 flex flex-col min-w-0">
+    <header class="bg-white border-b border-ink-700/8 px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+      <div>
+        <div id="page-title" class="text-lg font-bold text-ink-900">Anasayfa</div>
+        <div id="page-subtitle" class="text-xs text-ink-700/60">Admin paneline hoş geldin.</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="preview-btn" class="btn btn-ghost"><span>🔗</span>Siteyi Önizle</button>
+        <button id="save-btn" class="btn btn-success"><span>💾</span>Tüm Değişiklikleri İndir</button>
+      </div>
+    </header>
+    <div id="page-body" class="flex-1 p-6 overflow-y-auto"></div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal-bg hidden">
+  <div class="modal" id="modal-inner"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="hidden"></div>
+
+<script src="admin/admin.js"></script>
+<script src="js/pwa.js?v=2" defer></script>
+</body>
+</html>

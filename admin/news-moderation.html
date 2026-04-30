@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Haber Moderasyonu — Kalkan Info Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea:  { 50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',800:'#0a2e4c',900:'#072136' },
+        sun:  { 400:'#f4b53d', 500:'#e89812', 600:'#c97c08' },
+        coral:{ 500:'#e74c3c', 600:'#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat','system-ui','sans-serif'],
+        body:    ['Inter','system-ui','sans-serif'],
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body { font-family:'Inter',system-ui,sans-serif; background:#dce6ef; color:#0a2e4c; }
+  h1,h2,h3,.font-display { font-family:'Montserrat',system-ui,sans-serif; letter-spacing:-0.02em; }
+  .card-base { background:#fff; box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14); }
+  .badge { display:inline-flex; align-items:center; padding:2px 10px; border-radius:9999px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+  .tab-btn { transition: color .18s ease, border-color .18s ease; }
+  .tab-btn.active { color:#1a5e93; border-bottom-color:#1a5e93; }
+  .tab-btn:not(.active) { color:#64748b; border-bottom-color:transparent; }
+  #modal-overlay { backdrop-filter:blur(4px); }
+  .conf-bar-fill { transition:width .4s ease; height:6px; border-radius:3px; }
+  .checkbox-item:checked + label { background:#eaf2f9; border-color:#2f74a8; }
+  .spinner { border:3px solid #cfdfee; border-top-color:#1a5e93; border-radius:50%; width:28px; height:28px; animation:spin .7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+</style>
+<!-- Firebase (replace with your config) -->
+<script type="module" src="news-moderation.js"></script>
+</head>
+<body class="min-h-screen">
+
+<!-- Auth guard overlay -->
+<div id="auth-guard" class="fixed inset-0 z-50 flex items-center justify-center bg-sea-900">
+  <div class="text-center">
+    <div class="spinner mx-auto mb-4"></div>
+    <p class="text-sea-200 text-sm">Yetki kontrol ediliyor…</p>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="nav-primary sticky top-0 z-30" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="admin.html" class="text-sea-300 hover:text-white transition-colors text-sm">&larr; Admin</a>
+      <span class="text-sea-600">|</span>
+      <span class="font-display font-700 text-white text-lg">Haber Moderasyonu</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="user-email" class="text-sea-300 text-sm hidden"></span>
+      <button id="bulk-publish-btn" class="hidden bg-sun-500 hover:bg-sun-600 text-white text-sm font-600 px-4 py-1.5 rounded-lg transition-colors" onclick="bulkAction('publish')">
+        Seçilenleri Yayınla
+      </button>
+      <button id="bulk-reject-btn" class="hidden bg-coral-500 hover:bg-coral-600 text-white text-sm font-600 px-4 py-1.5 rounded-lg transition-colors" onclick="bulkAction('reject')">
+        Seçilenleri Reddet
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== TABS ===== -->
+<div class="border-b border-sea-100 bg-white sticky top-[52px] z-20">
+  <div class="max-w-5xl mx-auto px-4 flex gap-0">
+    <button class="tab-btn active border-b-2 py-3 px-5 text-sm font-600" data-tab="pending" onclick="switchTab('pending')">
+      Onay Bekleyen <span id="badge-pending" class="badge bg-sun-400 text-white ml-1">0</span>
+    </button>
+    <button class="tab-btn border-b-2 py-3 px-5 text-sm font-600" data-tab="published" onclick="switchTab('published')">
+      Yayınlandı <span id="badge-published" class="badge bg-sea-200 text-sea-700 ml-1">0</span>
+    </button>
+    <button class="tab-btn border-b-2 py-3 px-5 text-sm font-600" data-tab="rejected" onclick="switchTab('rejected')">
+      Reddedildi <span id="badge-rejected" class="badge bg-coral-500 text-white ml-1">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="max-w-5xl mx-auto px-4 py-6">
+
+  <!-- Pending tab -->
+  <div id="tab-pending" class="tab-panel space-y-4">
+    <div id="pending-empty" class="hidden text-center py-16 text-sea-400">
+      <svg class="mx-auto mb-3 w-10 h-10 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>
+      <p class="text-sm font-500">Onay bekleyen haber yok</p>
+    </div>
+    <div id="pending-list" class="space-y-4"></div>
+  </div>
+
+  <!-- Published tab -->
+  <div id="tab-published" class="tab-panel hidden space-y-4">
+    <div id="published-empty" class="hidden text-center py-16 text-sea-400">
+      <p class="text-sm font-500">Henüz yayınlanan haber yok</p>
+    </div>
+    <div id="published-list" class="space-y-4"></div>
+  </div>
+
+  <!-- Rejected tab -->
+  <div id="tab-rejected" class="tab-panel hidden space-y-4">
+    <div id="rejected-empty" class="hidden text-center py-16 text-sea-400">
+      <p class="text-sm font-500">Reddedilen haber yok</p>
+    </div>
+    <div id="rejected-list" class="space-y-4"></div>
+  </div>
+
+</main>
+
+<!-- ===== EDIT MODAL ===== -->
+<div id="modal-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-sea-900/60">
+  <div class="card-base rounded-2xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-sea-100">
+      <h2 class="font-display font-700 text-sea-800 text-lg">Haberi Düzenle</h2>
+      <button onclick="closeModal()" class="text-sea-400 hover:text-sea-700 transition-colors text-2xl leading-none">&times;</button>
+    </div>
+    <div class="px-6 py-5 space-y-5">
+      <!-- Category -->
+      <div>
+        <label class="block text-xs font-700 text-sea-500 uppercase tracking-widest mb-2">Kategori</label>
+        <select id="modal-category" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm text-sea-800 focus:outline-none focus:ring-2 focus:ring-sea-400">
+          <option value="genel">Genel</option>
+          <option value="etkinlik">Etkinlik</option>
+          <option value="acil">Acil</option>
+          <option value="eczane">Eczane</option>
+          <option value="hava">Hava</option>
+        </select>
+      </div>
+      <!-- Summaries -->
+      <div class="space-y-3">
+        <label class="block text-xs font-700 text-sea-500 uppercase tracking-widest">Özetler (5 dil)</label>
+        <div>
+          <label class="block text-xs text-sea-400 mb-1">Türkçe</label>
+          <textarea id="modal-tr" rows="2" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" maxlength="280"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs text-sea-400 mb-1">English</label>
+          <textarea id="modal-en" rows="2" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" maxlength="280"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs text-sea-400 mb-1">Русский</label>
+          <textarea id="modal-ru" rows="2" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" maxlength="280"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs text-sea-400 mb-1">日本語</label>
+          <textarea id="modal-ja" rows="2" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" maxlength="280"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs text-sea-400 mb-1">العربية</label>
+          <textarea id="modal-ar" rows="2" dir="rtl" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" maxlength="280"></textarea>
+        </div>
+      </div>
+      <!-- Cover image URL -->
+      <div>
+        <label class="block text-xs font-700 text-sea-500 uppercase tracking-widest mb-2">Kapak Görsel URL</label>
+        <input id="modal-image" type="url" class="w-full border border-sea-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400" placeholder="https://..." />
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 px-6 py-4 border-t border-sea-100">
+      <button onclick="closeModal()" class="px-5 py-2 text-sm font-600 text-sea-600 hover:text-sea-800 transition-colors">İptal</button>
+      <button onclick="saveModal()" class="px-5 py-2 text-sm font-600 bg-sea-500 hover:bg-sea-600 text-white rounded-lg transition-colors">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TEMPLATES ===== -->
+<template id="tpl-pending">
+  <div class="card-base rounded-xl overflow-hidden flex gap-0 flex-col" data-news-id="">
+    <div class="flex items-start gap-4 p-4">
+      <!-- Checkbox -->
+      <input type="checkbox" class="mt-1 w-4 h-4 accent-sea-500 bulk-checkbox" />
+      <div class="flex-1 min-w-0">
+        <!-- Header row -->
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="badge-category badge"></span>
+          <span class="badge bg-sun-400/20 text-sun-600 text-[10px]">WhatsApp</span>
+          <span class="text-xs text-sea-400 created-at"></span>
+        </div>
+        <!-- Summary -->
+        <p class="text-sea-800 text-sm leading-relaxed mb-3 summary-text"></p>
+        <!-- Claude confidence bar -->
+        <div class="mb-3">
+          <div class="flex justify-between text-[11px] text-sea-400 mb-1">
+            <span>Claude güveni</span>
+            <span class="conf-label font-600 text-sea-600"></span>
+          </div>
+          <div class="w-full bg-sea-50 rounded-full h-1.5">
+            <div class="conf-bar-fill bg-sea-400 rounded-full"></div>
+          </div>
+        </div>
+        <!-- Raw text toggle -->
+        <details class="mb-3">
+          <summary class="text-xs text-sea-400 cursor-pointer hover:text-sea-600 select-none">Ham mesaj gör</summary>
+          <p class="mt-2 text-xs text-sea-500 bg-sea-50 rounded-lg p-3 raw-text leading-relaxed"></p>
+        </details>
+        <!-- Actions -->
+        <div class="flex flex-wrap gap-2">
+          <button class="btn-publish px-4 py-1.5 bg-sun-500 hover:bg-sun-600 text-white text-xs font-700 rounded-lg transition-colors">Yayınla</button>
+          <button class="btn-reject px-4 py-1.5 bg-coral-500 hover:bg-coral-600 text-white text-xs font-700 rounded-lg transition-colors">Reddet</button>
+          <button class="btn-edit px-4 py-1.5 border border-sea-200 text-sea-600 hover:border-sea-400 text-xs font-600 rounded-lg transition-colors">Düzenle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-published">
+  <div class="card-base rounded-xl p-4 flex flex-col gap-3" data-news-id="">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="badge-category badge"></span>
+      <span class="text-xs text-sea-400 published-at"></span>
+    </div>
+    <p class="text-sea-800 text-sm summary-text"></p>
+    <div class="flex flex-wrap gap-2 platform-icons"></div>
+  </div>
+</template>
+
+<template id="tpl-rejected">
+  <div class="card-base rounded-xl p-4 flex flex-col gap-3" data-news-id="">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class="badge-category badge"></span>
+      <span class="text-xs text-sea-400 created-at"></span>
+    </div>
+    <p class="text-sea-800 text-sm summary-text"></p>
+    <p class="text-xs text-coral-500 italic reason-text"></p>
+    <button class="btn-restore w-max px-4 py-1.5 border border-sea-300 text-sea-600 hover:bg-sea-50 text-xs font-600 rounded-lg transition-colors">Geri al (verified'a çevir)</button>
+  </div>
+</template>
+
+</body>
+</html>

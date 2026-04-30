@@ -1,0 +1,182 @@
+rules_version = '2';
+
+// Kalkan Info — Firestore Security Rules
+// Üretime hazır. Custom claim `admin: true` Cloud Function ile set edilir.
+// Hiçbir client-side admin kontrolü YOK.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ========== Helper Functions ==========
+
+    function isAuthed() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthed() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isAuthed() && request.auth.token.admin == true;
+    }
+
+    function isEmailVerified() {
+      return isAuthed() && request.auth.token.email_verified == true;
+    }
+
+    function hasRequiredFields(data, fields) {
+      return data.keys().hasAll(fields);
+    }
+
+    function isValidString(value, maxLen) {
+      return value is string && value.size() > 0 && value.size() <= maxLen;
+    }
+
+    function isValidRating(value) {
+      return value is number && value >= 1 && value <= 5;
+    }
+
+    function fieldsUnchanged(fields) {
+      return fields.toSet().difference(
+        request.resource.data.diff(resource.data).affectedKeys()
+      ).size() == fields.size();
+    }
+
+    // ========== users/{uid} ==========
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+
+      allow create: if isOwner(uid)
+        && hasRequiredFields(request.resource.data, ['email', 'kvkkConsent', 'createdAt'])
+        && request.resource.data.kvkkConsent.version is string
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.deletedAt == null;
+
+      allow update: if isOwner(uid)
+        && fieldsUnchanged(['email', 'createdAt', 'provider'])
+        && request.resource.data.kvkkConsent.version is string;
+
+      allow delete: if false;
+
+      match /notifications/{notifId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /sessions/{sessionId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if false;
+      }
+
+      match /exports/{exportId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+    }
+
+    // ========== profiles/{profileId} ==========
+    match /profiles/{profileId} {
+      allow read: if resource.data.status == 'active'
+        || (isAuthed() && resource.data.ownerUid == request.auth.uid)
+        || isAdmin();
+
+      allow create: if isAuthed()
+        && isEmailVerified()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && hasRequiredFields(request.resource.data,
+            ['ownerUid', 'type', 'status', 'name', 'slug', 'createdAt'])
+        && isValidString(request.resource.data.name, 200)
+        && isValidString(request.resource.data.slug, 100)
+        && request.resource.data.type in ['restoran', 'villa', 'asci', 'transfer', 'tur', 'hizmet']
+        && (request.resource.data.summary == null
+            || isValidString(request.resource.data.summary, 280));
+
+      allow update: if (
+        (isOwner(resource.data.ownerUid)
+          && fieldsUnchanged(['ownerUid', 'status', 'ratingAvg', 'ratingCount', 'createdAt'])
+        )
+        || isAdmin()
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    // ========== reviews/{reviewId} ==========
+    match /reviews/{reviewId} {
+      allow read: if resource.data.status == 'visible'
+        || (isAuthed() && resource.data.authorUid == request.auth.uid)
+        || isAdmin();
+
+      allow create: if isAuthed()
+        && isEmailVerified()
+        && request.resource.data.authorUid == request.auth.uid
+        && request.resource.data.status == 'visible'
+        && hasRequiredFields(request.resource.data,
+            ['targetType', 'targetId', 'authorUid', 'rating', 'text', 'createdAt'])
+        && isValidRating(request.resource.data.rating)
+        && isValidString(request.resource.data.text, 2000)
+        && request.resource.data.targetType in ['profile', 'activity', 'vacation']
+        && (request.resource.data.photos == null
+            || (request.resource.data.photos is list && request.resource.data.photos.size() <= 5));
+
+      allow update: if (
+        (isOwner(resource.data.authorUid)
+          && fieldsUnchanged(['authorUid', 'targetType', 'targetId', 'createdAt', 'status', 'helpful', 'reply'])
+        )
+        || isAdmin()
+      );
+
+      allow delete: if isOwner(resource.data.authorUid) || isAdmin();
+    }
+
+    // ========== vacations/{planId} ==========
+    match /vacations/{planId} {
+      allow read: if isOwner(resource.data.ownerUid) || isAdmin();
+
+      allow create: if isAuthed()
+        && request.resource.data.ownerUid == request.auth.uid
+        && hasRequiredFields(request.resource.data,
+            ['ownerUid', 'dateRange', 'status', 'createdAt']);
+
+      allow update: if isOwner(resource.data.ownerUid)
+        && fieldsUnchanged(['ownerUid', 'createdAt', 'claudeRequestId']);
+
+      allow delete: if isOwner(resource.data.ownerUid) || isAdmin();
+    }
+
+    // ========== activities/{activityId} ==========
+    match /activities/{activityId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ========== newsItems/{newsId} ==========
+    match /newsItems/{newsId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ========== automations/{jobId} ==========
+    match /automations/{jobId} {
+      allow read, write: if isAdmin();
+    }
+
+    // ========== KVKK audit logs ==========
+    match /kvkk-deletions/{docId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /kvkk-exports/{uid}/{recordId} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if false;
+    }
+
+    // Catch-all deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

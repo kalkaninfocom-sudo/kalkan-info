@@ -1,0 +1,109 @@
+rules_version = '2';
+
+// Kalkan Info — Firebase Storage Rules
+// Üretime hazır. Mime + boyut zorunluluğu var.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // ========== Helper Functions ==========
+
+    function isAuthed() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthed() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isAuthed() && request.auth.token.admin == true;
+    }
+
+    function isEmailVerified() {
+      return isAuthed() && request.auth.token.email_verified == true;
+    }
+
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function maxSize(megabytes) {
+      return request.resource.size < megabytes * 1024 * 1024;
+    }
+
+    function ownsProfile(profileId) {
+      return isAuthed()
+        && firestore.exists(/databases/(default)/documents/profiles/$(profileId))
+        && firestore.get(/databases/(default)/documents/profiles/$(profileId)).data.ownerUid == request.auth.uid;
+    }
+
+    function ownsReview(reviewId) {
+      return isAuthed()
+        && firestore.exists(/databases/(default)/documents/reviews/$(reviewId))
+        && firestore.get(/databases/(default)/documents/reviews/$(reviewId)).data.authorUid == request.auth.uid;
+    }
+
+    // ========== users/{uid}/avatar.* ==========
+    match /users/{uid}/avatar.{ext} {
+      allow read: if true;
+      allow write: if isOwner(uid) && isImage() && maxSize(2);
+      allow delete: if isOwner(uid) || isAdmin();
+    }
+
+    // ========== users/{uid}/exports/** (KVKK) ==========
+    match /users/{uid}/exports/{fileName} {
+      allow read: if isOwner(uid);
+      allow write: if false;
+    }
+
+    // ========== users/{uid}/** catch-all ==========
+    match /users/{uid}/{allPaths=**} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if isOwner(uid) && maxSize(5);
+    }
+
+    // ========== profiles/{profileId}/** ==========
+    match /profiles/{profileId}/{fileName} {
+      allow read: if true;
+      allow create: if ownsProfile(profileId) && isEmailVerified() && isImage() && maxSize(5);
+      allow update: if ownsProfile(profileId) && isImage() && maxSize(5);
+      allow delete: if ownsProfile(profileId) || isAdmin();
+    }
+
+    match /profiles/{profileId}/{folder}/{fileName} {
+      allow read: if true;
+      allow create, update: if ownsProfile(profileId)
+        && isEmailVerified()
+        && isImage()
+        && maxSize(5)
+        && folder in ['gallery', 'menu', 'documents'];
+      allow delete: if ownsProfile(profileId) || isAdmin();
+    }
+
+    // ========== reviews/{reviewId}/** ==========
+    match /reviews/{reviewId}/{fileName} {
+      allow read: if true;
+      allow create: if isAuthed() && isEmailVerified() && isImage() && maxSize(3);
+      allow update: if ownsReview(reviewId) && isImage() && maxSize(3);
+      allow delete: if ownsReview(reviewId) || isAdmin();
+    }
+
+    // ========== news/{newsId}/** ==========
+    match /news/{newsId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin() && isImage() && maxSize(8);
+    }
+
+    // ========== public/** ==========
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Catch-all deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

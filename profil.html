@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title data-i18n="profile.pageTitle">Profilim — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: {
+          50:  '#eaf2f9', 100: '#cfdfee', 200: '#9cc0dd',
+          300: '#5d97c4', 400: '#2f74a8', 500: '#1a5e93',
+          600: '#134c79', 700: '#0d3a5f', 800: '#0a2e4c', 900: '#072136',
+        },
+        sun:   { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        coral: { 500: '#e74c3c', 600: '#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep: '0 8px 32px -8px rgba(13,58,95,0.35)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .nav-primary{background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);}
+  .sidebar-link{
+    display:flex;align-items:center;gap:0.625rem;padding:0.625rem 0.875rem;
+    border-radius:0.5rem;font-weight:500;font-size:0.9rem;color:#134c79;
+    transition:background .18s,color .18s;cursor:pointer;
+  }
+  .sidebar-link:hover{background:#eaf2f9;color:#0a2e4c;}
+  .sidebar-link.active{background:#1a5e93;color:#fff;}
+  .sidebar-link.active svg{stroke:#fff;}
+  .input-field{
+    width:100%;border:1.5px solid #9cc0dd;border-radius:0.5rem;
+    padding:0.625rem 0.875rem;font-size:0.9375rem;color:#0a2e4c;
+    background:#fff;outline:none;transition:border-color .18s,box-shadow .18s;
+  }
+  .input-field:focus{border-color:#1a5e93;box-shadow:0 0 0 3px rgba(26,94,147,0.12);}
+  .input-field:disabled{background:#eaf2f9;color:#5d97c4;cursor:not-allowed;}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    padding:0.625rem 1.25rem;border-radius:0.5rem;
+    background:#1a5e93;color:#fff;font-family:'Montserrat',sans-serif;
+    font-weight:700;font-size:0.875rem;letter-spacing:0.02em;
+    cursor:pointer;border:none;transition:background .18s,transform .15s,box-shadow .18s;
+    box-shadow:0 2px 8px rgba(26,94,147,0.25);
+  }
+  .btn-primary:hover{background:#134c79;transform:translateY(-1px);}
+  .btn-primary:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+  .btn-danger{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    padding:0.625rem 1.25rem;border-radius:0.5rem;
+    background:transparent;color:#c0392b;font-weight:600;font-size:0.875rem;
+    cursor:pointer;border:1.5px solid #e74c3c;transition:background .18s,color .18s;
+  }
+  .btn-danger:hover{background:#e74c3c;color:#fff;}
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    padding:0.625rem 1.25rem;border-radius:0.5rem;
+    background:#eaf2f9;color:#1a5e93;font-weight:600;font-size:0.875rem;
+    cursor:pointer;border:1.5px solid #9cc0dd;transition:background .18s;
+  }
+  .btn-secondary:hover{background:#cfdfee;}
+  .btn-secondary:disabled{opacity:0.6;cursor:not-allowed;}
+  /* Toggle */
+  .toggle{position:relative;display:inline-block;width:2.5rem;height:1.375rem;}
+  .toggle input{opacity:0;width:0;height:0;}
+  .toggle-slider{
+    position:absolute;inset:0;border-radius:9999px;background:#9cc0dd;
+    transition:background .2s;cursor:pointer;
+  }
+  .toggle-slider::before{
+    content:'';position:absolute;left:3px;bottom:3px;
+    width:1rem;height:1rem;border-radius:9999px;background:#fff;
+    transition:transform .2s;
+  }
+  .toggle input:checked + .toggle-slider{background:#1a5e93;}
+  .toggle input:checked + .toggle-slider::before{transform:translateX(1.125rem);}
+  /* Modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(7,33,54,0.55);z-index:50;
+    display:flex;align-items:center;justify-content:center;padding:1rem;
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<meta name="robots" content="noindex">
+</head>
+<body class="bg-[#dce6ef] min-h-screen flex flex-col">
+
+<!-- NAV -->
+<nav class="nav-primary text-white sticky top-0 z-40" style="box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-14">
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button data-action="logout" class="text-sm text-white/70 hover:text-white transition flex items-center gap-1.5" data-i18n="profile.nav.logout">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      Çıkış Yap
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<main class="flex-1 max-w-6xl mx-auto w-full px-4 py-8 md:py-12">
+  <div class="flex flex-col md:flex-row gap-6">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="w-full md:w-64 flex-shrink-0">
+      <div class="bg-white rounded-2xl p-5" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+
+        <!-- Avatar + isim -->
+        <div class="text-center pb-5 border-b border-sea-100 mb-4">
+          <img id="profile-avatar"
+            src="https://ui-avatars.com/api/?name=K&background=1a5e93&color=fff&size=128"
+            alt="Profil fotoğrafı"
+            class="w-20 h-20 rounded-full mx-auto object-cover ring-2 ring-sea-200" />
+          <p class="font-display font-bold text-sea-800 mt-3 text-base" id="profile-name">Yükleniyor...</p>
+          <p class="text-xs text-sea-500 mt-0.5" id="profile-email-display"></p>
+        </div>
+
+        <!-- Sidebar linkleri -->
+        <nav class="space-y-1">
+          <button class="sidebar-link active w-full text-left" data-section="profil">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span data-i18n="profile.sidebar.profile">Profilim</span>
+          </button>
+          <button class="sidebar-link w-full text-left" data-section="isletmeler">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
+            <span data-i18n="profile.sidebar.businesses">İşletmelerim</span>
+          </button>
+          <button class="sidebar-link w-full text-left" data-section="yorumlar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span data-i18n="profile.sidebar.reviews">Yorumlarım</span>
+          </button>
+          <button class="sidebar-link w-full text-left" data-section="ayarlar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            <span data-i18n="profile.sidebar.settings">Ayarlar</span>
+          </button>
+          <hr class="border-sea-100 my-2" />
+          <button data-action="logout" class="sidebar-link w-full text-left text-coral-600 hover:bg-coral-500/8">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span data-i18n="profile.sidebar.logout">Çıkış Yap</span>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="flex-1 space-y-6">
+
+      <!-- ---- PROFIL BÖLÜMÜ ---- -->
+      <section id="section-profil" class="bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-i18n="profile.section.profile">Profil Bilgilerim</h2>
+
+        <div class="space-y-5 max-w-md">
+          <div>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-i18n="auth.field.name">Ad Soyad</label>
+            <input class="input-field" type="text" id="profile-name-input" placeholder="Ad Soyad" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-i18n="auth.field.email">E-posta</label>
+            <input class="input-field" type="email" id="profile-email" disabled />
+            <p class="text-xs text-sea-500 mt-1" data-i18n="profile.emailReadOnly">E-posta adresi değiştirilemez.</p>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-i18n="profile.field.lang">Tercih Edilen Dil</label>
+            <select class="input-field" id="profile-lang">
+              <option value="tr">Türkçe</option>
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+              <option value="ja">日本語</option>
+              <option value="ar">العربية</option>
+            </select>
+          </div>
+
+          <!-- Marketing toggle -->
+          <div class="flex items-center justify-between py-3 border-t border-sea-100">
+            <div>
+              <p class="font-semibold text-sm text-sea-800" data-i18n="profile.field.marketing">Pazarlama Bildirimleri</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-i18n="profile.field.marketingDesc">Kampanya ve yenilik duyurularını e-posta ile al.</p>
+            </div>
+            <label class="toggle ml-4">
+              <input type="checkbox" id="profile-marketing" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <!-- KVKK bilgi -->
+          <div class="bg-sea-50 border border-sea-100 rounded-lg px-4 py-3 text-sm text-sea-700">
+            <p class="font-semibold mb-1" data-i18n="profile.kvkk.title">KVKK Onayı</p>
+            <p>
+              <span data-i18n="profile.kvkk.date">Onay tarihi:</span>
+              <span id="profile-kvkk-date" class="font-medium ml-1">—</span>
+            </p>
+            <a href="kvkk.html" class="text-sea-500 underline text-xs mt-1 inline-block" data-i18n="profile.kvkk.link">Aydınlatma metnini görüntüle</a>
+          </div>
+
+          <div class="text-xs text-sea-500">
+            <span data-i18n="profile.joinedLabel">Üyelik tarihi:</span>
+            <span id="profile-joined" class="font-medium ml-1">—</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---- İŞLETMELER ---- -->
+      <section id="section-isletmeler" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-i18n="profile.section.businesses">İşletmelerim</h2>
+        <div class="text-center py-12 text-sea-500">
+          <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
+          <p class="font-medium" data-i18n="profile.businesses.empty">Henüz işletme eklemediniz.</p>
+          <p class="text-sm mt-1" data-i18n="profile.businesses.emptyDesc">Faz 2'de bu bölüm aktif olacak.</p>
+        </div>
+      </section>
+
+      <!-- ---- YORUMLAR ---- -->
+      <section id="section-yorumlar" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-i18n="profile.section.reviews">Yorumlarım</h2>
+        <div class="text-center py-12 text-sea-500">
+          <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <p class="font-medium" data-i18n="profile.reviews.empty">Henüz yorum yazmadınız.</p>
+        </div>
+      </section>
+
+      <!-- ---- AYARLAR ---- -->
+      <section id="section-ayarlar" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-i18n="profile.section.settings">Hesap Ayarları</h2>
+
+        <div class="space-y-4">
+          <!-- Veri indirme -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-sea-100 rounded-xl">
+            <div>
+              <p class="font-semibold text-sm text-sea-800" data-i18n="profile.settings.downloadTitle">Verilerimi İndir</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-i18n="profile.settings.downloadDesc">KVKK kapsamında tüm kişisel verilerinizi JSON olarak indirin.</p>
+            </div>
+            <button id="btn-download-data" class="btn-secondary whitespace-nowrap">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span data-i18n="profile.settings.downloadBtn">Verilerimi İndir</span>
+            </button>
+          </div>
+
+          <!-- Hesap silme -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-coral-500/30 rounded-xl bg-coral-500/5">
+            <div>
+              <p class="font-semibold text-sm text-coral-600" data-i18n="profile.settings.deleteTitle">Hesabımı Sil</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-i18n="profile.settings.deleteDesc">Tüm verileriniz kalıcı olarak silinir. Bu işlem geri alınamaz (KVKK Madde 7).</p>
+            </div>
+            <button id="btn-delete-account" class="btn-danger whitespace-nowrap">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+              <span data-i18n="profile.settings.deleteBtn">Hesabımı Sil</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /main content -->
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="text-center py-6 text-xs text-sea-600/60 border-t border-sea-200/40 mt-4">
+  <div class="flex items-center justify-center gap-4 flex-wrap">
+    <a href="kvkk.html" class="hover:text-sea-600 transition">KVKK</a>
+    <span class="text-sea-300">·</span>
+    <a href="privacy.html" class="hover:text-sea-600 transition">Gizlilik</a>
+    <span class="text-sea-300">·</span>
+    <a href="terms.html" class="hover:text-sea-600 transition">Kullanım Şartları</a>
+    <span class="text-sea-300">·</span>
+    <a href="index.html" class="hover:text-sea-600 transition">Ana Sayfa</a>
+  </div>
+  <p class="mt-2">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
+</footer>
+
+<!-- ===== MODAL: Hesap Silme ===== -->
+<div id="modal-delete" class="modal-backdrop hidden">
+  <div class="bg-white rounded-2xl p-8 max-w-md w-full" style="box-shadow:0 24px 64px -16px rgba(7,33,54,0.4);">
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 bg-coral-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-lg text-sea-800" data-i18n="profile.deleteModal.title">Hesabınızı silmek istediğinize emin misiniz?</h3>
+      <p class="text-sm text-sea-600 mt-2" data-i18n="profile.deleteModal.desc">Profiliniz, yorumlarınız ve tüm kişisel verileriniz kalıcı olarak silinecektir. Bu işlem geri alınamaz.</p>
+    </div>
+    <div class="flex gap-3">
+      <button id="btn-delete-cancel" class="btn-secondary flex-1 justify-center" data-i18n="profile.deleteModal.cancel">Vazgeç</button>
+      <button id="btn-delete-confirm" class="flex-1 justify-center btn-danger" style="background:#e74c3c;color:#fff;border-color:#e74c3c;" data-i18n="profile.deleteModal.confirm">Evet, Hesabımı Sil</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Sidebar navigation
+document.querySelectorAll('[data-section]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.dataset.section;
+    // Tüm sectionları gizle
+    document.querySelectorAll('section[id^="section-"]').forEach(s => s.classList.add('hidden'));
+    document.getElementById('section-' + section)?.classList.remove('hidden');
+    // Active link
+    document.querySelectorAll('.sidebar-link[data-section]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+<script type="module" src="js/auth.js"></script>
+<script type="module" src="js/profile.js"></script>
+</body>
+</html>

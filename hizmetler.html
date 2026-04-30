@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kalkan Hizmetler — Nöbetçi Eczane, Taksi, Acil | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: {
+          50:  '#eaf2f9',
+          100: '#cfdfee',
+          200: '#9cc0dd',
+          300: '#5d97c4',
+          400: '#2f74a8',
+          500: '#1a5e93',
+          600: '#134c79',
+          700: '#0d3a5f',
+          800: '#0a2e4c',
+          900: '#072136',
+        },
+        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        coral:{ 500: '#e74c3c', 600: '#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        card:   '0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep:   '0 8px 32px -8px rgba(13,58,95,0.35)',
+        glow:   '0 0 0 4px rgba(232,152,18,0.18)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+  .marquee{animation:marquee 35s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tile-icon{transition:transform .28s cubic-bezier(.34,1.56,.64,1), background .22s ease;}
+  .group:hover .tile-icon{transform:translateY(-4px);}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .breaking::before{content:'';display:inline-block;width:6px;height:6px;border-radius:9999px;background:#fff;margin-right:8px;animation:pulse 1.4s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease, border-color .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+  .photo-treatment::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,58,95,0.3) 0%,transparent 60%);mix-blend-mode:multiply;}
+  .section-alt{background:#eef4f9;}
+  .section-dark{background:#0d3a5f;}
+  .nav-primary{background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);}
+  .nav-secondary{background:#072136;}
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;}
+  .section-label::before{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:2px;}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+  .filter-btn{transition:background .18s ease,color .18s ease,border-color .18s ease;}
+  .filter-btn.active{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- SEO -->
+<meta name="description" content="Kalkan'da bugün nöbetçi eczane, acil numaralar, taksi durakları, transfer, market, kuru temizleme, tesisat, catering, çocuk bakımı — tüm yerel servisler.">
+<meta name="keywords" content="Kalkan nöbetçi eczane, Kalkan taksi, Kalkan acil numaralar, Kaş Devlet Hastanesi, transfer, catering, Kalkan hizmetler">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://kalkaninfo.com/hizmetler.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Kalkan Hizmetler — Nöbetçi Eczane, Taksi, Acil | Kalkan Info">
+<meta property="og:description" content="Kalkan'da bugün nöbetçi eczane, acil numaralar, taksi durakları, transfer, market, kuru temizleme, tesisat, catering, çocuk bakımı — tüm yerel servisler.">
+<meta property="og:url" content="https://kalkaninfo.com/hizmetler.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan Hizmetler — Nöbetçi Eczane, Taksi, Acil | Kalkan Info">
+<meta name="twitter:description" content="Kalkan'da bugün nöbetçi eczane, acil numaralar, taksi durakları, transfer, market, kuru temizleme, tesisat, catering, çocuk bakımı — tüm yerel servisler.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2655;29.4138">
+<meta name="ICBM" content="36.2655, 29.4138">
+
+<!-- Structured data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalkan Info","url":"https://kalkaninfo.com","logo":"https://kalkaninfo.com/icons/icon-512.png","sameAs":["https://instagram.com/kalkaninfo","https://facebook.com/kalkaninfo"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com","inLanguage":"tr-TR","potentialAction":{"@type":"SearchAction","target":"https://kalkaninfo.com/index.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Kalkan Hizmetler","item":"https://kalkaninfo.com/hizmetler.html"}]}</script>
+<!-- /SEO -->
+</head>
+<body class="bg-[#dce6ef]">
+
+<!-- ============== HERO HEADER ============== -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1581094488379-72f6b3e96e84?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-40" alt="Hizmetler" style="filter:saturate(1.4) contrast(1.1);" />
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span class="hidden md:inline opacity-80">☀ 22°C / Açık</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-16 md:pt-24 pb-16 md:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Hizmetler</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;">Catering'den tesisat ustasına, havuz bakımdan çocuk bakıcısına — Kalkan'ın güvenilir yerel hizmetleri.</p>
+  </div>
+</header>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3" style="transition:background .18s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+    </button>
+    <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="hizmetler.html">Hizmetler</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
+        Concierge
+      </a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle">İşletme Ekle</a>
+      <span class="px-2 text-white/40">·</span>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" aria-disabled="true" title="Türkçe (aktif)">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" aria-disabled="true" title="English — yakında">EN</a>
+    </div>
+  </div>
+  <!-- info ribbon -->
+  <div class="ribbon-bg grain text-[12px]">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+          <span class="mr-10">🔧 7/24 tesisat ve elektrik — acil durumlarda Concierge'e yazın</span>
+          <span class="mr-10">🏊 Havuz sezon hazırlığı paketleri — şimdi rezervasyon yapın</span>
+          <span class="mr-10">✈️ Dalaman & Antalya transferi — sezon fiyatları geçerli</span>
+          <span class="mr-10">🌿 Bahçe bakım sezonluk paket — erken rezervasyon indirimi</span>
+          <span class="mr-10">🔧 7/24 tesisat ve elektrik — acil durumlarda Concierge'e yazın</span>
+          <span class="mr-10">🏊 Havuz sezon hazırlığı paketleri — şimdi rezervasyon yapın</span>
+          <span class="mr-10">✈️ Dalaman & Antalya transferi — sezon fiyatları geçerli</span>
+          <span class="mr-10">🌿 Bahçe bakım sezonluk paket — erken rezervasyon indirimi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== NÖBETÇİ ECZANE ============== -->
+<section id="nobetci" class="max-w-7xl mx-auto px-4 mt-10">
+  <div id="ecz-card" class="rounded-2xl p-6 md:p-8 grid md:grid-cols-3 gap-6 items-center" style="background:linear-gradient(135deg,#fff5e6 0%,#ffe9c8 100%);border:1px solid rgba(244,181,61,0.4);">
+    <div class="md:col-span-2">
+      <div class="text-[11px] tracking-widest uppercase font-bold text-sun-600">💊 Bugün Nöbetçi Eczane</div>
+      <h2 id="ecz-name" class="font-display text-3xl md:text-4xl font-extrabold text-sea-900 mt-2">—</h2>
+      <p id="ecz-address" class="text-sea-700/80 mt-2 text-sm"></p>
+      <a id="ecz-phone" href="#" class="inline-block mt-3 font-bold text-sea-600 hover:underline"></a>
+    </div>
+    <div class="flex md:justify-end">
+      <a id="ecz-map" href="#" target="_blank" class="bg-sea-600 text-white font-bold px-5 py-3 rounded-lg hover:bg-sea-800 transition">📍 Haritada Gör</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ACİL NUMARALAR ============== -->
+<section id="acil" class="max-w-7xl mx-auto px-4 mt-10">
+  <div class="mb-4">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-coral-600 font-bold">
+      <span class="w-1.5 h-1.5 rounded-full bg-coral-500 animate-pulse"></span> Acil Numaralar
+    </div>
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">7/24 Yardım</h2>
+  </div>
+  <div id="acil-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-4"></div>
+</section>
+
+<!-- ============== TAKSİ DURAKLARI ============== -->
+<section id="taksi" class="max-w-7xl mx-auto px-4 mt-10">
+  <div class="mb-4">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+      <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Bölge Hizmeti
+    </div>
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Taksi Durakları</h2>
+  </div>
+  <div id="taksi-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
+
+<!-- ============== DİĞER HİZMETLER ============== -->
+<section class="max-w-7xl mx-auto px-4 mt-10 pb-4">
+  <div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+        <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Yerel Hizmetler
+      </div>
+      <h2 id="items-heading" class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Tüm Hizmetler</h2>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <select id="cat-filter" class="text-xs border border-sea-200 rounded-md px-3 py-2 text-sea-700 bg-white focus:outline-none focus:border-sea-400">
+        <option value="">Tüm Kategoriler</option>
+      </select>
+      <div class="relative">
+        <input id="search-input" type="text" placeholder="Ara…" class="text-xs border border-sea-200 rounded-md pl-8 pr-3 py-2 text-sea-700 bg-white focus:outline-none focus:border-sea-400 w-48" />
+        <svg class="absolute left-2.5 top-2.5 text-sea-400" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </div>
+    </div>
+  </div>
+  <div id="items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+
+<!-- ============== KAYIP & BULUNAN ============== -->
+<section id="kayip" class="max-w-7xl mx-auto px-4 mt-10 mb-16">
+  <div class="mb-4">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Topluluk
+    </div>
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h2>
+  </div>
+  <div class="rounded-xl border border-sea-100 bg-white p-6" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
+    <div id="kayip-list" class="text-sm text-sea-700/70 mb-4">Yükleniyor…</div>
+    <a href="admin.html" class="inline-flex items-center gap-2 bg-sea-700 hover:bg-sea-800 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition">
+      + Yeni Bildirim
+    </a>
+  </div>
+</section>
+
+<!-- eski hizmet kartları kaldırıldı, dinamik bölümler yukarıda -->
+<section style="display:none">
+  <div id="cards-grid-legacy">
+
+    <!-- 1. Catering -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="yemek" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581094488379-72f6b3e96e84?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Catering" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(26,94,147,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🍽️</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Yemek & Organizasyon</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Catering Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Özel günler, doğum günleri ve kurumsal organizasyonlar için tam kapsamlı menü çözümleri. Şef Volkan Catering örnek işletmesi.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Minimum 10 kişilik etkinlikler için planlama</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Menü kişiselleştirme ve özel diyet seçenekleri</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Kurulum, servis ve temizlik dahil paket</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Min. 10 kişi · Rezervasyonla</span>
+          <a href="https://wa.me/905551112233?text=Catering+hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Özel Barmen -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="yemek" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Barmen" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🍹</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Etkinlik & Villa</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Özel Barmen</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Villa partileri ve etkinlikler için profesyonel mobil bar kurulumu ve kokteyl servisi. Deneyimli barmen ekibi.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Mobil bar kurulumu ve malzeme temini</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Özel kokteyl menüsü hazırlama</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Alkollü/alkolsüz seçenek paketi</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Etkinlik başına · Min. 3 saat</span>
+          <a href="https://wa.me/905551112233?text=%C3%96zel+Barmen+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Tesisat -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="bakim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Tesisat" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(231,76,60,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🔧</div>
+        <div class="absolute top-3 right-3 bg-coral-500 text-white text-[11px] font-bold px-2 py-0.5 rounded">7/24</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-coral-500 font-bold mb-1">Acil Servis</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Tesisat Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Su, elektrik ve klima arızaları için 7/24 acil müdahale. Kalkan Tesisatçısı 24 saat hatta bekliyor.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> 7/24 acil su ve elektrik müdahalesi</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Klima bakım, arıza tespiti ve onarım</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Periyodik kontrol ve sezon hazırlığı</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span> Şu an müsait</span>
+          <a href="https://wa.me/905551112233?text=Tesisat+Hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Bahçe -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="ev" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Bahçe" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(16,185,129,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🌿</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-emerald-600 font-bold mb-1">Ev & Villa</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Bahçe Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Peyzaj tasarımı, sulama sistemi kurulumu ve düzenli ot biçme. Sezonluk bakım paketleri mevcuttur.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Peyzaj tasarımı ve bitki seçimi</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Otomatik sulama sistemi kurulumu</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sezonluk bakım paketi (haftalık / aylık)</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Sezonluk paket mevcuttur</span>
+          <a href="https://wa.me/905551112233?text=Bah%C3%A7e+Hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Havuz Bakım -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="ev" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Havuz Bakım" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(26,94,147,0.3) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🏊</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sea-500 font-bold mb-1">Ev & Villa</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Havuz Bakım & Onarım</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Haftalık düzenli bakım, kimyasal denge kontrolü ve yaz sezonu açılış hazırlığı. Kaçak tespiti ve pompa bakımı dahil.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Haftalık kimyasal denge ve temizlik</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sezon açılışı hazırlık paketi</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Pompa, filtre ve aydınlatma onarımı</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Haftalık · Aylık · Sezonluk</span>
+          <a href="https://wa.me/905551112233?text=Havuz+Bak%C4%B1m+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Transfer -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="ulasim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1551751299-1b51cab2694c?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Transfer" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.25) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">✈️</div>
+        <div class="absolute top-3 right-3 bg-sun-500 text-white text-[11px] font-bold px-2 py-0.5 rounded">7/24</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Ulaşım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Havalimanı Transferi</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Antalya ve Dalaman havalimanından Kalkan'a 7/24 konforlu transfer. Sedan, VIP ve minibüs seçenekleri.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Antalya (≈2.5 saat) & Dalaman (≈1.5 saat)</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sedan, VIP, Minibüs araç seçenekleri</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Uçuş takibi ve ücretsiz bekleme süresi</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">7/24 · Sabit fiyat garantisi</span>
+          <a href="https://wa.me/905551112233?text=Havaliман%C4%B1+Transferi+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. Temizlik -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="ev" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Temizlik" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(26,94,147,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🧹</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sea-500 font-bold mb-1">Ev & Villa</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Temizlik Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Villa, ev ve ofis için profesyonel temizlik. Çıkış temizliği, kiracı değişimi ve derin temizlik paketleri.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Günlük, haftalık veya tek seferlik temizlik</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Çıkış temizliği ve derin temizlik paketi</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Ekolojik ürünlerle villa temizliği seçeneği</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Villa / Ev / Ofis</span>
+          <a href="https://wa.me/905551112233?text=Temizlik+Hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. Nakliyat -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="ulasim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Nakliyat" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🚛</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Ulaşım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Nakliyat Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Şehir içi ve şehirlerarası eşya taşımacılığı. Asansörlü ekip, sigortalı taşıma ve profesyonel paketleme.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Şehir içi ve şehirlerarası taşımacılık</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Asansörlü araç ile güvenli taşıma</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sigortalı taşıma ve paketleme hizmeti</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Sigortalı · Asansörlü</span>
+          <a href="https://wa.me/905551112233?text=Nakliyat+Hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Boya & Badana -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="bakim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Boya Badana" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(26,94,147,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🎨</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sea-500 font-bold mb-1">Bakım & Onarım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Boya & Badana Ustası</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">İç ve dış cephe boyama, alçı ve teras uygulamaları. Sezon öncesi uygun fiyatlı planlama imkânı.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> İç ve dış cephe boyama ve badana</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Alçı sıva ve teras yüzey uygulamaları</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sezon öncesi erken rezervasyon indirimi</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Sezon öncesi uygun fiyat</span>
+          <a href="https://wa.me/905551112233?text=Boya+Badana+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. Taş Duvar -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="bakim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://picsum.photos/seed/kalkan-stone-10/800/500" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Taş Duvar" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🪨</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Bakım & Onarım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Taş Duvar Ustası</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Doğal taş işçiliği, peyzaj duvarları ve bahçe sınır yapıları. Geleneksel Likya ustalığıyla özgün yapılar.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Doğal taşla peyzaj duvarı inşası</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Bahçe sınır ve teraslama projeleri</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Geleneksel Likya taş işçiliği</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Proje bazlı · Keşif ücretsiz</span>
+          <a href="https://wa.me/905551112233?text=Ta%C5%9F+Duvar+Ustas%C4%B1+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11. Çocuk Bakım -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="bakim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://picsum.photos/seed/kalkan-childcare-11/800/500" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Çocuk Bakım" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(16,185,129,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">👶</div>
+        <div class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2 py-0.5 rounded">Sertifikalı</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-emerald-600 font-bold mb-1">Bakım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Çocuk Bakım Hizmetleri</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Sertifikalı bakıcı eşliğinde gündüz ve akşam çocuk bakım hizmeti. Tatil ailelerine özel esneklik.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Sertifikalı ve referanslı bakıcılar</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Gündüz ve akşam esnek saatler</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Tatil aileleri için günlük paket seçeneği</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Saatlik / Günlük · Esneklik</span>
+          <a href="https://wa.me/905551112233?text=%C3%87ocuk+Bak%C4%B1m+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12. Evcil Hayvan Bakımı -->
+    <article class="service-card group rounded-2xl bg-white border border-sea-100 card-hover overflow-hidden" data-cat="bakim" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <div class="relative h-44 overflow-hidden">
+        <img src="https://picsum.photos/seed/kalkan-pet-12/800/500" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="Evcil Hayvan Bakımı" />
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(232,152,18,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
+        <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">🐾</div>
+        <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺</div>
+      </div>
+      <div class="p-5">
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Bakım</div>
+        <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Evcil Hayvan Bakımı</h3>
+        <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Otelcilik, düzenli gezdirme ve acil veteriner ulaşım koordinasyonu. Tatildeyken evcil dostunuz güvende.</p>
+        <ul class="mt-3 space-y-1.5">
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Günlük gezdirme ve beslenme takibi</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Evcil hayvan otelciliği hizmeti</li>
+          <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Veteriner ulaşım koordinasyonu</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
+          <span class="text-xs text-sea-400">Günlük / Haftalık paket</span>
+          <a href="https://wa.me/905551112233?text=Evcil+Hayvan+Bak%C4%B1m%C4%B1+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+            Concierge'e Sor
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /cards-grid -->
+</section>
+
+<!-- ============== CTA BANNER ============== -->
+<section class="bg-gradient-to-br from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-2">İşletmeler için</div>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold">Hizmetinizi Kalkan Info'da listeleyin</h2>
+      <p class="text-white/70 mt-2 max-w-lg">Yerel hizmetinizi binlerce ziyaretçiye duyurun. Öne çıkan listeleme, sezonluk görünürlük.</p>
+    </div>
+    <a href="mailto:info@kalkan.info?subject=Hizmet+Listeleme+Ba%C5%9Fvurusu" class="shrink-0 bg-sun-500 hover:bg-sun-600 text-white font-display font-bold px-6 py-3 rounded-xl transition" style="box-shadow:0 4px 20px -4px rgba(232,152,18,0.5);">Başvuru Yap</a>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+      <div class="flex items-center gap-3 mt-5">
+        <a href="https://instagram.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg>
+        </a>
+        <a href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-emerald-600 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+        </a>
+        <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.46 1.46-3.82 3.7-3.82 1.07 0 2.2.2 2.2.2v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.9h-2.29v6.98A10 10 0 0 0 22 12Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
+        <li><a class="hover:text-sun-400 text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Yerel</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="index.html#nobetci">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#acil">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#taksi">Taksi Durakları</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kayip">Kayıp & Bulunan</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
+        <li><a class="hover:text-sun-400" href="https://wa.me/905551112233?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#isletme-ekle">İşletme Ekle</a></li>
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info?subject=Reklam+Talebi">Reklam Ver</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#kvkk">Gizlilik & KVKK</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div class="flex items-center gap-3">
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">App Store</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">Google Play</a>
+        <span class="opacity-30">·</span>
+        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">PWA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== Floating Concierge ============== -->
+<a href="https://wa.me/905551112233?text=Hizmet+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+<script src="js/render.js"></script>
+<script>
+  // Tarih
+  const fmt = new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+  const dateEl = document.getElementById('today-date'); if(dateEl) dateEl.textContent = fmt.format(new Date());
+
+  // Taksi SVG ikonu
+  const taksiSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2M17 17v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2M5 17l1.5-7.5A2 2 0 0 1 8.46 8h7.08a2 2 0 0 1 1.96 1.5L19 17M3 17h18"/></svg>`;
+
+  (async () => {
+    const data = await KalkanData.load('hizmetler');
+
+    // --- Nöbetçi Eczane ---
+    const ecz = data.nobetciEczane || {};
+    const eczName = document.getElementById('ecz-name');
+    const eczAddr = document.getElementById('ecz-address');
+    const eczPhone = document.getElementById('ecz-phone');
+    const eczMap = document.getElementById('ecz-map');
+    if (eczName) eczName.textContent = ecz.name || '—';
+    if (eczAddr) eczAddr.textContent = ecz.address || '';
+    if (eczPhone) { eczPhone.textContent = ecz.phone || ''; eczPhone.href = 'tel:' + (ecz.phone||'').replace(/\s/g,''); }
+    if (eczMap) eczMap.href = ecz.mapUrl || '#';
+
+    // --- Acil Numaralar ---
+    const acilGrid = document.getElementById('acil-grid');
+    if (acilGrid && data.acilNumaralar && data.acilNumaralar.items) {
+      acilGrid.innerHTML = data.acilNumaralar.items.map(item => `
+        <a href="tel:${KalkanData.escape((item.number||'').replace(/\s/g,''))}"
+           class="group bg-white rounded-xl border border-sea-100 p-4 card-hover hover:border-coral-500 transition flex items-center gap-3"
+           style="box-shadow:0 1px 3px rgba(7,33,54,0.06),0 4px 16px -6px rgba(7,33,54,0.12);">
+          <div class="text-2xl flex-shrink-0">${KalkanData.escape(item.icon||'📞')}</div>
+          <div class="min-w-0">
+            <div class="font-display font-bold text-sea-800 text-sm leading-tight truncate">${KalkanData.escape(item.name)}</div>
+            <div class="font-mono text-sm text-coral-600 font-bold mt-0.5">${KalkanData.escape(item.number)}</div>
+          </div>
+        </a>`).join('');
+    }
+
+    // --- Taksi Durakları ---
+    const taksiGrid = document.getElementById('taksi-grid');
+    if (taksiGrid && data.taksiler && data.taksiler.items) {
+      taksiGrid.innerHTML = data.taksiler.items.map(t => `
+        <a href="tel:${KalkanData.escape(t.phoneRaw||t.phone.replace(/\s/g,''))}"
+           class="group bg-white rounded-xl border border-sea-100 p-5 card-hover hover:border-sun-500 transition"
+           style="box-shadow:0 1px 3px rgba(7,33,54,0.06),0 4px 16px -6px rgba(7,33,54,0.12);">
+          <div class="flex items-center justify-between">
+            <div class="w-10 h-10 rounded-md bg-sun-500 text-white grid place-items-center tile-icon">${taksiSvg}</div>
+            <span class="text-xs text-sea-500">${KalkanData.escape(t.location)}</span>
+          </div>
+          <div class="font-display font-bold text-sea-800 mt-3">${KalkanData.escape(t.name)}</div>
+          <div class="font-mono text-sm text-sea-700 mt-1">${KalkanData.escape(t.phone)}</div>
+        </a>`).join('');
+    }
+
+    // --- Kategori dropdown ---
+    const catFilter = document.getElementById('cat-filter');
+    const allItems = data.items || [];
+    if (catFilter && data.categories) {
+      data.categories.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c; opt.textContent = c;
+        catFilter.appendChild(opt);
+      });
+    }
+
+    // --- Items render ---
+    function renderItems() {
+      const cat = catFilter ? catFilter.value : '';
+      const q = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
+      const filtered = KalkanData.filterItems(allItems, { category: cat || undefined, q: q || undefined });
+      const grid = document.getElementById('items-grid');
+      const heading = document.getElementById('items-heading');
+      if (heading) heading.textContent = filtered.length + ' Hizmet';
+      if (grid) grid.innerHTML = filtered.map(it => KalkanData.hizmetCard(it)).join('');
+    }
+
+    renderItems();
+    if (catFilter) catFilter.addEventListener('change', renderItems);
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.addEventListener('input', renderItems);
+
+    // --- Kayıp & Bulunan ---
+    const kayipList = document.getElementById('kayip-list');
+    if (kayipList) {
+      const items = (data.kayipEsya && data.kayipEsya.items) || [];
+      if (items.length === 0) {
+        kayipList.textContent = 'Henüz kayıp/bulunan kayıt yok.';
+      } else {
+        kayipList.innerHTML = `<ul class="space-y-2">${items.map(i => `
+          <li class="flex items-start gap-3 p-3 rounded-lg bg-sea-50 border border-sea-100">
+            <span class="text-xl">${KalkanData.escape(i.icon||'📦')}</span>
+            <div><div class="font-semibold text-sea-800">${KalkanData.escape(i.title||i.name||'')}</div>
+            <div class="text-xs text-sea-700/70 mt-0.5">${KalkanData.escape(i.date||'')} · ${KalkanData.escape(i.location||'')}</div></div>
+          </li>`).join('')}</ul>`;
+      }
+    }
+  })();
+</script>
+<script src="js/pwa.js?v=2" defer></script>
+</body>
+</html>
