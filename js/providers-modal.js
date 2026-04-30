@@ -479,20 +479,53 @@
   // Cards are dynamically rendered by render.js, so we use event delegation
   // on the grid container instead of querying individual cards.
 
+  // Title → service-id mapping (statik kartlar için)
+  const TITLE_TO_SERVICE = {
+    'catering': 'catering',
+    'barmen': 'barmen',
+    'tesisat': 'tesisat',
+    'bahce': 'bahce', 'bahçe': 'bahce',
+    'havuz': 'havuz',
+    'havalimani': 'transfer-havalimani', 'havalimanı': 'transfer-havalimani', 'transfer': 'transfer-havalimani',
+    'temizlik': 'temizlik',
+    'nakliyat': 'nakliyat',
+    'boya': 'boya',
+    'tas duvar': 'tasduvar', 'taş duvar': 'tasduvar',
+    'cocuk': 'cocukbakim', 'çocuk': 'cocukbakim',
+    'evcil': 'evcilbakim'
+  };
+
+  function inferServiceId(card) {
+    if (card.dataset.service) return card.dataset.service;
+    const h3 = card.querySelector('h3');
+    if (!h3) return null;
+    const title = h3.textContent.toLowerCase();
+    for (const [key, id] of Object.entries(TITLE_TO_SERVICE)) {
+      if (title.includes(key)) return id;
+    }
+    return null;
+  }
+
   function mountProvidersModal() {
-    const grid = document.getElementById('items-grid');
-    if (!grid) return;
-
-    // Event delegation: one listener on the container handles all cards
-    grid.addEventListener('click', e => {
-      // Don't intercept phone links or WhatsApp buttons
+    // Document-level event delegation — statik (hizmetler.html) + dinamik (#items-grid)
+    document.addEventListener('click', e => {
+      // Telefon/WhatsApp linklerini engelleme
       if (e.target.closest('a')) return;
-
-      const card = e.target.closest('.service-card[data-service]');
+      const card = e.target.closest('.service-card');
       if (!card) return;
-
-      const serviceId = card.dataset.service;
-      if (serviceId) openModal(serviceId);
+      const serviceId = inferServiceId(card);
+      if (serviceId) {
+        e.preventDefault();
+        openModal(serviceId);
+      }
+    });
+    // Tüm service kartları görsel olarak tıklanabilir
+    document.querySelectorAll('.service-card').forEach(c => {
+      const sid = inferServiceId(c);
+      if (sid) {
+        c.style.cursor = 'pointer';
+        if (!c.dataset.service) c.dataset.service = sid;
+      }
     });
   }
 
