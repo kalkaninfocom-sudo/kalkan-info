@@ -2,19 +2,25 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /admin/
+Disallow: /profil.html
+Disallow: /login.html
+Disallow: /register.html
 Disallow: /generate-icons.mjs
 Disallow: /inject-pwa.mjs
 Disallow: /inject-seo.mjs
+Disallow: /functions/
 
 User-agent: Googlebot
 Allow: /
 Disallow: /admin.html
 Disallow: /admin/
+Disallow: /profil.html
 
 User-agent: Bingbot
 Allow: /
 Disallow: /admin.html
 Disallow: /admin/
+Disallow: /profil.html
 
 # Sitemap
 Sitemap: https://kalkaninfo.com/sitemap.xml

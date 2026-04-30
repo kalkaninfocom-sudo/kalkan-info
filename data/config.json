@@ -11,7 +11,7 @@
   "contact": {
     "email": "info@kalkaninfo.com",
     "phone": "+90 242 844 00 00",
-    "whatsapp": "+90 532 000 00 00",
+    "whatsapp": "+90 530 665 07 94",
     "address": "Atatürk Cad. No:1, Kalkan/Kaş/Antalya",
     "instagram": "https://instagram.com/kalkaninfo",
     "facebook": "https://facebook.com/kalkaninfo"
@@ -25,7 +25,6 @@
     "about": "Kalkan Info — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Patara ve çevresi için tarafsız rehber."
   },
   "admin": {
-    "passwordHash": "kalkan2026",
-    "_note": "GEÇİCİ — production'da Firebase Auth ya da daha güçlü hash kullan."
+    "_note": "Plaintext password 2026-04-30 itibariyle kaldırıldı. Admin authentication Firebase Auth + custom claim `admin: true` ile yapılır. admin.html ve admin/ klasörü firebase.json hosting ignore listesinde."
   }
 }

@@ -7,7 +7,11 @@
 const DATA_FILES = ['plajlar','villalar','turlar','restoranlar','hizmetler','haberler','config'];
 const LS_KEY = 'kalkan_info_admin_v1';
 const SESSION_KEY = 'kalkan_info_session';
-const PASSWORD = 'kalkan2026'; // config.json admin.passwordHash ile senkron
+// SECURITY: Hardcoded password REMOVED 2026-04-30.
+// Admin authentication MUST be migrated to Firebase Auth + custom claim `admin: true`.
+// Until migration: admin/ klasörü firebase.json hosting ignore listesinde — public erişim yok.
+// `firebase serve` ile sadece lokalden test edilir.
+const PASSWORD = null; // intentionally disabled
 
 // ========== State ==========
 const state = {
