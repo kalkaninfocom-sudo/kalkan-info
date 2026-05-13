@@ -33,6 +33,14 @@ exports.whatsappWebhook = whatsappWebhook;
 const { sendWelcomeEmail } = require('./src/sendWelcomeEmail');
 exports.sendWelcomeEmail = sendWelcomeEmail;
 
+// --- Instagram Haber Hasatçısı (saatlik scheduled) ---
+const { instagramHarvester } = require('./instagramHarvester');
+exports.instagramHarvester = instagramHarvester;
+
+// --- Nöbetçi Eczane Günlük Sync (her gün 06:00 Europe/Istanbul) ---
+const { scheduledNobetciEczaneSync } = require('./scheduledNobetciEczaneSync');
+exports.scheduledNobetciEczaneSync = scheduledNobetciEczaneSync;
+
 // TODO: diğer fonksiyonlar buraya eklenir
 // const { onUserDelete }      = require('./onUserDelete');      exports.onUserDelete = onUserDelete;
 // const { exportUserData }    = require('./exportUserData');    exports.exportUserData = exportUserData;

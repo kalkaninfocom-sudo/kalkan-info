@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>Kalkan Info — Pre-Seed Yatırımcı Sunumu (Mayıs 2026)</title>
+<meta name="viewport" content="width=1920, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --sea-deep:#0a2e4c; --sea-900:#072136; --sea-700:#0d3a5f; --sea-500:#1a5e93;
+  --sea-300:#5d97c4; --sea-100:#cfdfee; --sea-50:#eaf2f9;
+  --sun-400:#f4b53d; --sun-500:#e89812; --sun-600:#c97c08;
+  --coral:#e74c3c; --cream:#f5ede0; --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Inter',system-ui,sans-serif;color:var(--sea-deep);background:#222;}
+.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+.slide{
+  width:1920px; height:1080px; position:relative; overflow:hidden;
+  page-break-after: always; background:var(--cream);
+  display:flex; flex-direction:column; justify-content:flex-start;
+  padding:60px 100px 80px;
+  font-size:18px;
+}
+.slide.dark{background:var(--sea-deep); color:var(--cream);}
+.slide.deep{background:linear-gradient(135deg, var(--sea-deep) 0%, var(--sea-700) 60%, var(--sea-500) 100%); color:var(--cream);}
+.slide-num{position:absolute; top:50px; left:100px; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.18em; color:var(--sun-500); text-transform:uppercase;}
+.slide.dark .slide-num, .slide.deep .slide-num{color:var(--sun-400);}
+.slide-logo{position:absolute; top:50px; right:100px; font-family:'Montserrat'; font-weight:900; font-size:14px; letter-spacing:-0.01em; color:var(--sea-deep); display:flex; align-items:center; gap:6px;}
+.slide.dark .slide-logo, .slide.deep .slide-logo{color:var(--cream);}
+.slide-logo .diamond{color:var(--sun-500); font-size:16px;}
+.slide-footer{position:absolute; bottom:50px; left:100px; right:100px; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--sea-500); font-family:'Montserrat'; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;}
+.slide.dark .slide-footer, .slide.deep .slide-footer{color:rgba(255,255,255,0.45);}
+.slide-footer .accent{color:var(--sun-500);}
+.slide.dark .slide-footer .accent, .slide.deep .slide-footer .accent{color:var(--sun-400);}
+
+/* Headings */
+h1.lead{font-family:'Montserrat'; font-weight:900; font-size:84px; line-height:0.96; letter-spacing:-0.035em; max-width:1500px;}
+h1.cover{font-family:'Montserrat'; font-weight:900; font-size:130px; line-height:0.92; letter-spacing:-0.04em;}
+h2.section{font-family:'Montserrat'; font-weight:900; font-size:62px; line-height:1.0; letter-spacing:-0.03em; max-width:1300px;}
+.eyebrow{display:inline-flex; align-items:center; gap:10px; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--sun-500); padding:8px 18px; border:1.5px solid var(--sun-500); border-radius:999px;}
+.slide.dark .eyebrow, .slide.deep .eyebrow{color:var(--sun-400); border-color:rgba(244,181,61,0.5);}
+.eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--sun-500);}
+.slide.dark .eyebrow::before, .slide.deep .eyebrow::before{background:var(--sun-400);}
+
+/* Generic body */
+.lede{font-size:28px; line-height:1.45; max-width:1300px; color:var(--sea-700); font-weight:400;}
+.slide.dark .lede, .slide.deep .lede{color:rgba(255,255,255,0.78);}
+.kicker{font-family:'Montserrat'; font-weight:800; font-size:16px; letter-spacing:0.14em; text-transform:uppercase; color:var(--sea-500);}
+.slide.dark .kicker, .slide.deep .kicker{color:var(--sun-400);}
+
+/* Cards */
+.cards{display:grid; gap:24px; margin-top:30px;}
+.cards.c2{grid-template-columns:repeat(2,1fr);}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.cards.c4{grid-template-columns:repeat(4,1fr);}
+.card{background:var(--white); border:1px solid var(--sea-100); border-radius:16px; padding:32px; box-shadow:0 8px 24px -8px rgba(13,58,95,0.18);}
+.card.dark{background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.1); color:var(--cream);}
+.card .label{font-family:'Montserrat'; font-weight:800; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--sun-500); margin-bottom:10px;}
+.card .label.coral{color:var(--coral);}
+.card .stat{font-family:'Montserrat'; font-weight:900; font-size:56px; line-height:1.0; color:var(--sea-deep); letter-spacing:-0.025em;}
+.card.dark .stat{color:var(--cream);}
+.card .stat.sun{color:var(--sun-500);}
+.card .desc{font-size:18px; line-height:1.5; color:var(--sea-700); margin-top:8px;}
+.card.dark .desc{color:rgba(255,255,255,0.7);}
+.card h3{font-family:'Montserrat'; font-weight:800; font-size:24px; line-height:1.15; color:var(--sea-deep); margin-bottom:8px;}
+.card.dark h3{color:var(--cream);}
+.card p{font-size:17px; line-height:1.55; color:var(--sea-700);}
+.card.dark p{color:rgba(255,255,255,0.7);}
+.card ul{list-style:none; padding:0; margin-top:8px;}
+.card ul li{font-size:16px; line-height:1.6; color:var(--sea-700); padding-left:18px; position:relative; margin-bottom:4px;}
+.card.dark ul li{color:rgba(255,255,255,0.7);}
+.card ul li::before{content:''; position:absolute; left:0; top:11px; width:8px; height:2px; background:var(--sun-500);}
+
+/* Tables */
+.tbl{width:100%; border-collapse:collapse; font-size:18px; margin-top:24px; background:var(--white); border-radius:14px; overflow:hidden; box-shadow:0 8px 24px -8px rgba(13,58,95,0.15);}
+.tbl thead{background:var(--sea-deep); color:var(--white);}
+.tbl thead th{padding:16px 22px; text-align:left; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.12em; text-transform:uppercase;}
+.tbl tbody tr{border-bottom:1px solid var(--sea-100);}
+.tbl tbody tr:last-child{border-bottom:none;}
+.tbl tbody tr:nth-child(even){background:var(--sea-50);}
+.tbl tbody td{padding:16px 22px; vertical-align:middle; color:var(--sea-700);}
+.tbl tbody td.num{text-align:right; font-family:'Montserrat'; font-weight:700; color:var(--sea-deep); font-variant-numeric:tabular-nums;}
+.tbl tbody td.h{font-weight:700; color:var(--sea-deep);}
+.tbl tbody tr.hi{background:rgba(244,181,61,0.1) !important;}
+.tbl tbody tr.hi td{color:var(--sea-deep); font-weight:700;}
+.tbl tbody tr.total td{background:var(--sea-deep); color:var(--white); font-family:'Montserrat'; font-weight:800;}
+
+/* Pie chart (CSS conic) */
+.pie{width:280px; height:280px; border-radius:50%; position:relative;}
+.pie::after{content:''; position:absolute; inset:30%; background:var(--cream); border-radius:50%;}
+
+/* Bar chart */
+.bars{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:flex-end; height:340px; padding:30px 0;}
+.bar{display:flex; flex-direction:column; align-items:center; gap:10px; height:100%;}
+.bar .col{width:120px; background:linear-gradient(180deg, var(--sun-400) 0%, var(--sun-500) 100%); border-radius:12px 12px 0 0; position:relative; box-shadow:0 -4px 16px rgba(232,152,18,0.3);}
+.bar.muted .col{background:linear-gradient(180deg, var(--sea-300) 0%, var(--sea-500) 100%); box-shadow:none;}
+.bar .v{font-family:'Montserrat'; font-weight:900; font-size:32px; color:var(--sea-deep); margin-top:8px;}
+.bar .l{font-family:'Montserrat'; font-weight:700; font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sea-500);}
+
+/* Pyramid */
+.pyramid{display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:30px;}
+.pyramid .lvl{padding:24px 40px; border-radius:12px; text-align:center; font-family:'Montserrat'; font-weight:800; min-width:300px; position:relative;}
+.pyramid .lvl.tam{background:var(--sea-700); color:var(--cream); width:900px;}
+.pyramid .lvl.sam{background:var(--sea-500); color:var(--cream); width:680px;}
+.pyramid .lvl.som{background:var(--sun-500); color:var(--sea-deep); width:480px;}
+.pyramid .lvl .t{font-size:14px; letter-spacing:0.16em; text-transform:uppercase; opacity:0.85;}
+.pyramid .lvl .v{font-size:36px; line-height:1.2; margin:4px 0;}
+.pyramid .lvl .d{font-size:14px; opacity:0.8; font-weight:600;}
+
+/* Comparison */
+.cmp{width:100%; border-collapse:collapse; font-size:17px; margin-top:24px; background:var(--white); border-radius:14px; overflow:hidden;}
+.cmp thead{background:var(--sea-deep); color:var(--white);}
+.cmp thead th{padding:14px 16px; text-align:center; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.1em; text-transform:uppercase;}
+.cmp thead th:first-child{text-align:left;}
+.cmp tbody tr{border-bottom:1px solid var(--sea-100);}
+.cmp tbody tr:nth-child(even){background:var(--sea-50);}
+.cmp tbody td{padding:14px 16px; text-align:center; font-family:'Montserrat'; font-weight:700;}
+.cmp tbody td:first-child{text-align:left; color:var(--sea-700); font-weight:600;}
+.cmp tbody td .y{display:inline-flex; width:32px; height:32px; align-items:center; justify-content:center; border-radius:50%; background:rgba(244,181,61,0.15); color:var(--sun-600); font-size:18px;}
+.cmp tbody td .n{display:inline-flex; width:32px; height:32px; align-items:center; justify-content:center; border-radius:50%; background:rgba(231,76,60,0.1); color:var(--coral); font-size:18px;}
+.cmp tbody td .p{display:inline-flex; width:32px; height:32px; align-items:center; justify-content:center; border-radius:50%; background:rgba(93,151,196,0.15); color:var(--sea-500); font-size:14px; font-weight:800;}
+.cmp tbody td.us{background:rgba(244,181,61,0.08);}
+
+/* Speaker notes (hidden in PDF) */
+.speaker-notes{margin-top:auto; padding:16px 22px; background:rgba(13,58,95,0.06); border-left:3px solid var(--sun-500); font-size:13px; color:var(--sea-700); font-style:italic; max-width:1200px;}
+.slide.dark .speaker-notes, .slide.deep .speaker-notes{background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.6);}
+
+/* Cover */
+.cover-bg{position:absolute; inset:0; background:linear-gradient(160deg, rgba(7,33,54,0.92) 0%, rgba(13,58,95,0.85) 50%, rgba(26,94,147,0.7) 100%), url('https://images.unsplash.com/photo-1593238739364-44a3a8ed20fb?auto=format&fit=crop&w=2400&q=80') center/cover; z-index:0;}
+.cover-bg::after{content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 90% 100%, rgba(244,181,61,0.18) 0%, transparent 60%);}
+.cover-content{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding-bottom:120px;}
+.cover-tag{font-family:'Montserrat'; font-weight:800; font-size:18px; letter-spacing:0.22em; text-transform:uppercase; color:var(--sun-400); margin-bottom:24px;}
+.cover-title{color:var(--white); margin-bottom:24px;}
+.cover-sub{font-family:'Inter'; font-size:32px; line-height:1.4; max-width:1000px; color:rgba(255,255,255,0.85); margin-bottom:60px;}
+.cover-meta{font-family:'Montserrat'; font-weight:700; font-size:16px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.7); display:flex; gap:32px;}
+.cover-meta .dot{color:var(--sun-400);}
+.confidential{position:absolute; top:50px; right:100px; font-family:'Montserrat'; font-weight:800; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(244,181,61,0.7); padding:6px 12px; border:1px solid rgba(244,181,61,0.4); border-radius:4px; z-index:3;}
+
+/* Placeholder */
+.placeholder{background:rgba(13,58,95,0.08); border:2px dashed var(--sea-300); border-radius:16px; padding:60px; text-align:center; font-family:'Montserrat'; font-weight:700; color:var(--sea-500); font-size:18px; letter-spacing:0.04em;}
+.slide.dark .placeholder, .slide.deep .placeholder{background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.5);}
+
+/* Source notes */
+.source{position:absolute; bottom:80px; left:100px; font-size:12px; color:var(--sea-500); font-style:italic; max-width:1200px;}
+.slide.dark .source, .slide.deep .source{color:rgba(255,255,255,0.4);}
+.source a{color:var(--sea-500); text-decoration:underline;}
+.slide.dark .source a, .slide.deep .source a{color:rgba(255,255,255,0.55);}
+
+/* Layout helpers */
+.flex{display:flex;}
+.flex.between{justify-content:space-between;}
+.flex.gap-30{gap:30px;}
+.flex.col{flex-direction:column;}
+.flex.center{align-items:center;}
+.mt-30{margin-top:30px;} .mt-50{margin-top:50px;} .mt-20{margin-top:20px;}
+.grow{flex:1;}
+.w-50{width:50%;} .w-60{width:60%;} .w-40{width:40%;}
+
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  body{background:transparent;}
+  .speaker-notes{display:none !important;}
+  .slide{margin:0; box-shadow:none; page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 01 — COVER ============ -->
+<section class="slide" style="padding:0; background:transparent;">
+  <div class="cover-bg"></div>
+  <div class="confidential">CONFIDENTIAL · MAYIS 2026</div>
+  <div class="cover-content" style="padding:0 100px 120px;">
+    <div class="cover-tag">PRE-SEED YATIRIMCI SUNUMU</div>
+    <h1 class="cover cover-title">Kalkan<br/>Info<span style="color:var(--sun-400);">.</span></h1>
+    <div class="cover-sub">Akdeniz'in Butik Tatil Ajanı.<br/>AI-Native Operations.</div>
+    <div class="cover-meta">
+      <span>Berkay Elmastaş <span class="dot">·</span> Founder</span>
+      <span><span class="dot">◆</span> kalkaninfo.com</span>
+      <span>Mayıs 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SLIDE 02 — PROBLEM ============ -->
+<section class="slide">
+  <div class="slide-num">02 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Problem</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Kalkan'da tatil planlamak<br/>hâlâ <span style="color:var(--coral);">dağınık</span>, <span style="color:var(--coral);">çok dilli</span>, <span style="color:var(--coral);">manuel</span>.</h1>
+  <p class="lede mt-30" style="margin-top:30px;">Antalya 2025'te dünyada en çok ziyaret edilen 8. şehir oldu. Kalkan butik segment burada — ama platform yok. Turistler 6 ayrı kanal kullanıyor.</p>
+  <div class="cards c4 mt-50">
+    <div class="card">
+      <div class="label coral">Kanal Dağınıklığı</div>
+      <h3>10 Farklı Yerde</h3>
+      <p>Booking, Tripadvisor, Instagram, WhatsApp, Google Maps, lokal rehberler. Tek panel yok.</p>
+    </div>
+    <div class="card">
+      <div class="label coral">Dil Eksikliği</div>
+      <h3>5 Dil Yok</h3>
+      <p>Türk + İngiliz + Alman + Rus + Arap turist. Çoğu platform sadece TR/EN. Premium UX yok.</p>
+    </div>
+    <div class="card">
+      <div class="label coral">Parçalı Pazar</div>
+      <h3>%50+ Listing Örtüşme</h3>
+      <p>Holiday Lettings 709, VRBO 692 villa. Aynı stok birden fazla platformda. Tek envanter yok.</p>
+    </div>
+    <div class="card">
+      <div class="label coral">Birleşik Oyuncu Yok</div>
+      <h3>Villa+Restoran+Tur+AI</h3>
+      <p>Hiçbir oyuncu rehber + villa + restoran + antik kent + tatil planlamayı tek platformda sunmuyor.</p>
+    </div>
+  </div>
+  <aside class="speaker-notes"><strong>Konuşma:</strong> Antalya dünyanın 8. en çok ziyaret edilen şehri. Kalkan butik segment, ama 10 farklı kanaldan dağınık hizmet alıyor. Turist 5 dil bekliyor, çoğu platform 2'de tıkanıyor. Pazar parçalı — Holiday Lettings'de 709, VRBO'da 692 villa, %50+ örtüşme. Tek envanter yok.</aside>
+  <div class="slide-footer"><span>02 — Problem</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 03 — SOLUTION ============ -->
+<section class="slide deep">
+  <div class="slide-num">03 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Çözüm</span>
+  <h1 class="lead mt-20" style="margin-top:24px; color:var(--cream);">Tek platform.<br/><span style="color:var(--sun-400);">Üç katman.</span> Beş dil.</h1>
+  <p class="lede mt-30" style="margin-top:24px;">Saha dışı tüm operasyon AI agent'larıyla. 5 kişi sahada müşteri yüzü. 30 kişilik klasik turizm acentesi rakibinden %70 daha düşük OPEX.</p>
+  <div class="cards c3 mt-50">
+    <div class="card dark">
+      <div class="label">01 · Kullanıcı Kazanım</div>
+      <h3 style="color:var(--sun-400);">Yerel Rehber + AI Tatil Asistanı</h3>
+      <p>Plaj, restoran, antik kent, aktivite kataloğu. Claude AI ile 5 dakikada kişisel tatil planı.</p>
+      <ul>
+        <li>18 sayfa, 40+ JS modülü</li>
+        <li>5 dil (TR · EN · DE · RU · AR)</li>
+        <li>17 antik kent + Likya Yolu</li>
+      </ul>
+    </div>
+    <div class="card dark" style="border:2px solid var(--sun-400); background:rgba(244,181,61,0.08);">
+      <div class="label">02 · Ana Gelir</div>
+      <h3 style="color:var(--sun-400);">Villa Kiralama %20</h3>
+      <p>Doğrudan villa sahibi ile sözleşme. Booking üst bandında ama 5 dil + AI + saha varlığı ile haklı.</p>
+      <ul>
+        <li>%18 ortalama (ilk 50 villa %12)</li>
+        <li>Booking %15, Airbnb %15.5, VRBO %13</li>
+        <li>Y2 hedef: 200 villa</li>
+      </ul>
+    </div>
+    <div class="card dark">
+      <div class="label">03 · Yan Gelir</div>
+      <h3 style="color:var(--sun-400);">B2B Agent Ajansı</h3>
+      <p>WhatsApp grubu izleme + reels üretim + sosyal yayın. Otel/butik için B2B içerik abonesi.</p>
+      <ul>
+        <li>$400/ay × 10 müşteri Y2</li>
+        <li>Restoran %5 + Aktivite %15</li>
+        <li>Premium listing $99/yıl</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-footer"><span>03 — Çözüm</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 04 — WHY NOW ============ -->
+<section class="slide">
+  <div class="slide-num">04 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Neden Şimdi</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Dört kuvvet aynı anda <span style="color:var(--sun-500);">çakışıyor.</span></h1>
+  <div class="cards c4 mt-50">
+    <div class="card">
+      <div class="label">AI Maliyeti</div>
+      <div class="stat sun">−95%</div>
+      <div class="desc">Claude/GPT API maliyetleri 2024→2026 düştü. Agent ekonomisi mümkün.</div>
+    </div>
+    <div class="card">
+      <div class="label">Türkiye Turizm</div>
+      <div class="stat">$65.2B</div>
+      <div class="desc">2025 turizm geliri rekor (+%6.8 YoY). 2026 Q1: $9.8B (+%4.2).</div>
+    </div>
+    <div class="card">
+      <div class="label">Antalya 2025</div>
+      <div class="stat">17.5M</div>
+      <div class="desc">Turist sayısı. Dünyada en çok ziyaret edilen 8. şehir. Türkiye toplamının %26'sı.</div>
+    </div>
+    <div class="card">
+      <div class="label">Premium ARPU</div>
+      <div class="stat">$119</div>
+      <div class="desc">Yabancı turist gecelik harcama 2026 Q1 (rekor). 2017'de $75'tan tırmanış.</div>
+    </div>
+  </div>
+  <div class="cards c2 mt-50" style="margin-top:40px;">
+    <div class="card" style="background:linear-gradient(135deg, var(--sea-50) 0%, var(--white) 100%);">
+      <div class="label">Kalkan Konsantrasyon</div>
+      <h3>İngiliz Turist Yoğunluğu</h3>
+      <p>Kalkan, "British Visitor's Paradise" olarak konumlanmış. UK + İrlanda 2025'te 2-2.5M turist. Yerleşik İngiliz nüfusu mevcut. Tek dilli TR platformlar bu segmenti kaçırıyor.</p>
+    </div>
+    <div class="card" style="background:linear-gradient(135deg, var(--sea-50) 0%, var(--white) 100%);">
+      <div class="label">Düzenleme Boşluğu</div>
+      <h3>7464 Sayılı Yasa Etkisi</h3>
+      <p>2024'ten itibaren <100 gece kiralık konutlara izin belgesi şart. 85K Airbnb listing, sadece 42K belgeli. Pazar konsolidasyon fazında, doğru oyuncuya boşluk açılıyor.</p>
+    </div>
+  </div>
+  <div class="source">Kaynaklar: <a href="https://www.aa.com.tr/tr/ekonomi/turkiyenin-turizm-geliri-2025te-65-2-milyar-dolar-oldu/3814985">AA Türkiye Turizm</a> · <a href="https://www.altid.org.tr/en/bilgi-hizmetleri/antalya-ziyaretci-sayilari-2025/">ALTİD Antalya 2025</a> · <a href="https://www.homesberg.com/airbnb-yasasi-7464-turkiye-2025/">Homesberg 7464 Yasası</a></div>
+  <div class="slide-footer"><span>04 — Neden Şimdi</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 05 — MARKET SIZE ============ -->
+<section class="slide">
+  <div class="slide-num">05 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Pazar Büyüklüğü</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">$10M addressable revenue.<br/>Sadece <span style="color:var(--sun-500);">villa</span> segmentinden.</h1>
+
+  <div class="flex gap-30 mt-30" style="margin-top:40px;">
+    <div class="w-60">
+      <div class="pyramid">
+        <div class="lvl tam"><div class="t">TAM · Türkiye Vacation Rentals 2027</div><div class="v">$1.28B</div><div class="d">Statista, CAGR %5.89, 13.6M kullanıcı</div></div>
+        <div class="lvl sam"><div class="t">SAM · Antalya Turizm Geliri 2025</div><div class="v">$17B</div><div class="d">Türkiye toplamının %26'sı</div></div>
+        <div class="lvl som"><div class="t">SOM · Kalkan Villa Komisyon Havuzu</div><div class="v">$10M / yıl</div><div class="d">★ TAHMİN ★ ±%30</div></div>
+      </div>
+    </div>
+    <div class="w-40">
+      <div class="card" style="height:100%;">
+        <div class="label">SOM Hesabı (★ TAHMİN ★)</div>
+        <table class="tbl" style="margin-top:12px; font-size:16px;">
+          <tbody>
+            <tr><td>Kalkan villa stoku (unique)</td><td class="num">1,500</td></tr>
+            <tr><td>Ortalama haftalık fiyat</td><td class="num">₺80,000</td></tr>
+            <tr><td>Sezon (hafta)</td><td class="num">20</td></tr>
+            <tr><td>Ortalama doluluk</td><td class="num">%85</td></tr>
+            <tr><td class="h">Brüt envanter</td><td class="num">₺2.04B</td></tr>
+            <tr><td class="h">USD karşılığı</td><td class="num">$51M</td></tr>
+            <tr class="hi"><td class="h">%20 komisyon havuzu</td><td class="num">$10.2M</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="source">Kaynaklar: <a href="https://www.statista.com/outlook/mmo/travel-tourism/vacation-rentals/turkey">Statista TR Vacation Rentals</a> · <a href="https://www.holidaylettings.co.uk/kalkan/">Holiday Lettings Kalkan 709 villa</a> · <a href="https://www.vrbo.com/en-gb/holiday-rentals/villas/turkey/antalya-province/kalkan">VRBO Kalkan 692 villa</a></div>
+  <div class="slide-footer"><span>05 — Pazar Büyüklüğü</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 06 — PRODUCT ============ -->
+<section class="slide">
+  <div class="slide-num">06 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Ürün</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">İskelet <span style="color:var(--sun-500);">canlıya hazır.</span></h1>
+  <p class="lede mt-20" style="margin-top:20px;">18 HTML sayfa · 40+ JS modülü · Firebase + Cloud Functions · 5 dil · KVKK uyumlu · PWA.</p>
+
+  <div class="cards c4 mt-30" style="margin-top:30px;">
+    <div class="card"><div class="label">Anasayfa</div><h3 style="font-size:20px;">Hero + Hızlı Erişim</h3><p>Eczane, taksi, hava, marquee, kart sistemi.</p></div>
+    <div class="card"><div class="label">Tatil Asistanı</div><h3 style="font-size:20px;">Claude AI Step Form</h3><p>Tarih · grup · bütçe · konaklama · yemek · aktivite.</p></div>
+    <div class="card"><div class="label">Antik Kentler</div><h3 style="font-size:20px;">17 Ören Yeri + Harita</h3><p>Likya Yolu + Patara + Xanthos + bus tablosu.</p></div>
+    <div class="card"><div class="label">İş İlanları</div><h3 style="font-size:20px;">Listele + İlan Ver</h3><p>Filtre, başvuru modal, 3-step form, 5 dil.</p></div>
+  </div>
+
+  <div class="cards c3 mt-30" style="margin-top:40px;">
+    <div class="card" style="background:var(--sea-deep); color:var(--cream); text-align:center;">
+      <div class="label" style="color:var(--sun-400);">SAYFA</div>
+      <div class="stat" style="color:var(--cream); font-size:64px;">18</div>
+      <div class="desc" style="color:rgba(255,255,255,0.6);">HTML sayfa, hepsi 5 dil hazır</div>
+    </div>
+    <div class="card" style="background:var(--sea-deep); color:var(--cream); text-align:center;">
+      <div class="label" style="color:var(--sun-400);">JS MODÜL</div>
+      <div class="stat" style="color:var(--cream); font-size:64px;">40+</div>
+      <div class="desc" style="color:rgba(255,255,255,0.6);">auth, i18n, vacation, jobs, render...</div>
+    </div>
+    <div class="card" style="background:var(--sea-deep); color:var(--cream); text-align:center;">
+      <div class="label" style="color:var(--sun-400);">CLOUD FUNCTION</div>
+      <div class="stat" style="color:var(--cream); font-size:64px;">10</div>
+      <div class="desc" style="color:rgba(255,255,255,0.6);">whatsappWebhook, vacationPlanner, verify, publish, harvester...</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>06 — Ürün</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 07 — AI AGENT MİMARİSİ ============ -->
+<section class="slide deep">
+  <div class="slide-num">07 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">AI Agent Şirketi</span>
+  <h1 class="lead mt-20" style="margin-top:24px; color:var(--cream);">Saha dışı tüm operasyon<br/><span style="color:var(--sun-400);">11 Claude agent</span> ile.</h1>
+
+  <div class="cards c4 mt-30" style="margin-top:40px; gap:18px;">
+    <div class="card dark"><div class="label">Haiku 4.5</div><h3 style="font-size:18px;">Trend Watcher</h3><p style="font-size:14px;">15dk cron — X/IG/Trends/RSS izle, konu öner</p></div>
+    <div class="card dark"><div class="label">Sonnet 4.6</div><h3 style="font-size:18px;">WhatsApp Ingest</h3><p style="font-size:14px;">Kalkan grup webhook → allowlist filtre → newsItems</p></div>
+    <div class="card dark"><div class="label">Sonnet 4.6</div><h3 style="font-size:18px;">Content Curator</h3><p style="font-size:14px;">Teyit + 5 dil çeviri + 3 başlık + güven skoru</p></div>
+    <div class="card dark"><div class="label">Veo 3 / Runway</div><h3 style="font-size:18px;">Reels Generator</h3><p style="font-size:14px;">9:16 video + ElevenLabs TR/EN voiceover</p></div>
+    <div class="card dark" style="border-color:var(--sun-400);"><div class="label" style="color:var(--sun-400);">İnsan</div><h3 style="font-size:18px;">Admin Approval</h3><p style="font-size:14px;">Berkay/editör onay paneli — onay/red/edit</p></div>
+    <div class="card dark"><div class="label">Orchestration</div><h3 style="font-size:18px;">Social Publisher</h3><p style="font-size:14px;">Publer API → IG/TikTok/X/FB/YT Shorts</p></div>
+    <div class="card dark"><div class="label">Sonnet + Haiku</div><h3 style="font-size:18px;">Live Support</h3><p style="font-size:14px;">Web/WA/Telegram tek havuz, RAG, escalation</p></div>
+    <div class="card dark"><div class="label">Sonnet 4.6</div><h3 style="font-size:18px;">Check-in Concierge</h3><p style="font-size:14px;">T-3 hatırlatma, T-1 PDF, T-0 yönlendirme</p></div>
+    <div class="card dark"><div class="label">Haiku 4.5</div><h3 style="font-size:18px;">Booking Funnel</h3><p style="font-size:14px;">Tarih+bütçe → uygunluk → PayTR/iyzico</p></div>
+    <div class="card dark"><div class="label">Haiku 4.5</div><h3 style="font-size:18px;">Review & Sentiment</h3><p style="font-size:14px;">GMaps + Tripadvisor izle, anomali alert</p></div>
+    <div class="card dark"><div class="label">Haiku 4.5</div><h3 style="font-size:18px;">Job Board</h3><p style="font-size:14px;">İlan kategorize + başvuru-iş eşleştir</p></div>
+    <div class="card dark" style="background:rgba(244,181,61,0.1); border-color:var(--sun-400);"><div class="label" style="color:var(--sun-400);">+ Saha</div><h3 style="font-size:18px; color:var(--sun-400);">5 Kişi · Berkay</h3><p style="font-size:14px;">Müşteri yüzü, villa karşılama, kalite</p></div>
+  </div>
+  <div class="slide-footer"><span>07 — Agent Mimarisi</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 08 — BUSINESS MODEL ============ -->
+<section class="slide">
+  <div class="slide-num">08 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">İş Modeli</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Komisyon × <span style="color:var(--sun-500);">çoklu kanal</span>.</h1>
+
+  <div class="flex gap-30 mt-30" style="margin-top:40px;">
+    <div class="w-60">
+      <table class="tbl">
+        <thead>
+          <tr><th>Gelir Kaynağı</th><th>Oran/Fiyat</th><th>Y2 Baz $</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi"><td class="h">Villa kiralama (ana)</td><td>%18 ort. (early-adopter %12)</td><td class="num">$907K</td></tr>
+          <tr><td>Restoran rezervasyon</td><td>%5 ciro paylaşımı</td><td class="num">$25K</td></tr>
+          <tr><td>Aktivite / tekne turu</td><td>%15 komisyon</td><td class="num">$35K</td></tr>
+          <tr><td>Premium villa listing</td><td>$99/yıl × 80</td><td class="num">$7.9K</td></tr>
+          <tr><td>B2B içerik üretimi</td><td>$400/ay × 10 müşteri</td><td class="num">$48K</td></tr>
+          <tr><td>İş ilanı premium</td><td>$30/ay × 30</td><td class="num">$11K</td></tr>
+          <tr class="total"><td>Y2 BAZ TOPLAM</td><td>—</td><td class="num">$1,034K</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="w-40">
+      <div class="card" style="height:100%;">
+        <div class="label">Komisyon Benchmark</div>
+        <h3>%20 piyasa üst bandında, ama haklı</h3>
+        <table class="tbl" style="font-size:16px; margin-top:14px; box-shadow:none;">
+          <tbody>
+            <tr><td>Airbnb</td><td class="num">%15.5–17.5</td></tr>
+            <tr><td>Booking.com</td><td class="num">%10–25</td></tr>
+            <tr><td>VRBO</td><td class="num">%13–20</td></tr>
+            <tr class="hi"><td class="h">Kalkan Info</td><td class="num">%18–20</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:15px; margin-top:14px;">5 dil + AI tatil asistanı + saha varlığı + Türkçe destek = Booking üst bandını haklı çıkaran differentiator stack.</p>
+      </div>
+    </div>
+  </div>
+  <div class="source">Kaynak: <a href="https://triadvacationrentals.com/blog/how-much-do-airbnb-vrbo-and-booking-com-really-charge-a-complete-fee-breakdown">Triad Komisyon Karşılaştırması 2026</a></div>
+  <div class="slide-footer"><span>08 — İş Modeli</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 09 — GO TO MARKET ============ -->
+<section class="slide">
+  <div class="slide-num">09 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Go-to-Market</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Dört faz, 24 ay.<br/>Her fazda <span style="color:var(--sun-500);">somut KPI</span>.</h1>
+
+  <div class="cards c4 mt-50" style="margin-top:40px;">
+    <div class="card">
+      <div class="label">FAZ 1 · Ay 1–3</div>
+      <h3>Soft Launch</h3>
+      <p>İlk 10 villa onboard. Berkay'ın 9 deploy adımı + Firebase aktif. Organik sosyal + influencer barter.</p>
+      <ul><li>Hedef: 5K MAU</li><li>10 villa, 0 booking</li><li>Maliyet: ~$22K/ay</li></ul>
+    </div>
+    <div class="card">
+      <div class="label">FAZ 2 · Ay 4–9</div>
+      <h3>İlk Sezon</h3>
+      <p>50 villa hedef. Live support agent full. İlk reels yayını. Paid ads start (Meta + Google).</p>
+      <ul><li>Hedef: 25 villa, 100 booking</li><li>Y1 yarısı: $40K gelir</li><li>Maliyet: ~$28K/ay</li></ul>
+    </div>
+    <div class="card">
+      <div class="label">FAZ 3 · Ay 10–12</div>
+      <h3>Kış Stratejisi</h3>
+      <p>B2B içerik pilot (10 otel hedef). KOSGEB Ar-Ge başvuru. Kış kampanya + yurtdışı outreach.</p>
+      <ul><li>Hedef: 50 villa Y1 sonu</li><li>Y1 toplam: $168K (baz)</li><li>EBITDA: -$10K</li></ul>
+    </div>
+    <div class="card" style="border:2px solid var(--sun-400); background:linear-gradient(135deg, var(--white) 0%, rgba(244,181,61,0.05) 100%);">
+      <div class="label">FAZ 4 · Ay 13–24</div>
+      <h3>Y2 Ölçek</h3>
+      <p>200 villa. Kaş/Patara genişleme pilotu. Series A bridge veya bağımsız büyüme. Exit görüşmeleri.</p>
+      <ul><li>Hedef: 200 villa</li><li>Y2 ARR: $1.089M (baz)</li><li>EBITDA: +$420K</li></ul>
+    </div>
+  </div>
+
+  <div class="card mt-30" style="margin-top:30px; background:var(--sea-50);">
+    <div class="label">Kanal Stratejisi · Türkiye Influencer 2025</div>
+    <table class="tbl" style="margin-top:12px; font-size:16px;">
+      <thead><tr><th>Tier</th><th>Takipçi</th><th>Post Fiyat</th><th>Strateji</th></tr></thead>
+      <tbody>
+        <tr><td>Nano</td><td class="num">1K–10K</td><td class="num">$100–500</td><td>Doğal içerik, barter (villa konaklama karşılığı)</td></tr>
+        <tr class="hi"><td class="h">Mikro</td><td class="num">10K–100K</td><td class="num">$100–500</td><td>Ana hedef. Kalkan villa influencer barter = sıfır nakit</td></tr>
+        <tr><td>Makro</td><td class="num">100K–1M</td><td class="num">$500–5K</td><td>Y2 paid kampanya, sezon başı boost</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer"><span>09 — Go-to-Market</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 10 — TRACTION ============ -->
+<section class="slide">
+  <div class="slide-num">10 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Traction & Milestones</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Bugün <span style="color:var(--sun-500);">canlıya hazır.</span><br/>24 ayda <span style="color:var(--sun-500);">$1.089M ARR</span>.</h1>
+
+  <div class="cards c2 mt-30" style="margin-top:40px;">
+    <div class="card">
+      <div class="label">BUGÜN · TAMAMLANDI</div>
+      <ul style="margin-top:12px;">
+        <li>Site canlı (lokal dev), Firebase deploy hazır</li>
+        <li>5 commit, 18 sayfa, 40+ JS modülü</li>
+        <li>5 dil hazır (TR/EN/DE/RU/AR)</li>
+        <li>KVKK aydınlatma + Firestore rules</li>
+        <li>10 Cloud Function iskelet (Mock adapter)</li>
+        <li>16 villa kayıtlı, marka kimliği hazır</li>
+        <li>İş İlanı sekmesi (ilanlar + ilan-ver + jobs.js)</li>
+      </ul>
+    </div>
+    <div class="card" style="background:var(--sea-deep); color:var(--cream);">
+      <div class="label" style="color:var(--sun-400);">DEPLOY HAZIRLIK</div>
+      <ul style="margin-top:12px;">
+        <li style="color:rgba(255,255,255,0.85);">Firebase config (auth.js)</li>
+        <li style="color:rgba(255,255,255,0.85);">Domain DNS (kalkaninfo.com)</li>
+        <li style="color:rgba(255,255,255,0.85);">SendGrid + Anthropic + WhatsApp secrets</li>
+        <li style="color:rgba(255,255,255,0.85);">Custom domain SSL</li>
+        <li style="color:rgba(255,255,255,0.85);">Admin custom claim</li>
+        <li style="color:rgba(255,255,255,0.85);"><strong style="color:var(--sun-400);">Berkay 9 manuel adım — DEPLOY_ROADMAP.md</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="tbl mt-30" style="margin-top:30px;">
+    <thead><tr><th>Çeyrek</th><th>Milestone</th><th>Villa</th><th>Booking</th><th>Çeyrek Geliri</th></tr></thead>
+    <tbody>
+      <tr><td>Q1 (1–3)</td><td>Deploy + 9 adım + soft launch</td><td class="num">10</td><td class="num">0</td><td class="num">$0</td></tr>
+      <tr><td>Q2 (4–6)</td><td>İlk sezon, agent live, ilk reels</td><td class="num">25</td><td class="num">100</td><td class="num">$40K</td></tr>
+      <tr><td>Q3 (7–9)</td><td>Sezon zirve, B2B pilot</td><td class="num">50</td><td class="num">350</td><td class="num">$120K</td></tr>
+      <tr><td>Q4 (10–12)</td><td>Kış stratejisi + Y1 kapanış</td><td class="num">50</td><td class="num">—</td><td class="num">$8K</td></tr>
+      <tr><td>Q5 (13–15)</td><td>Y2 ön-rezervasyon, 100 villa</td><td class="num">100</td><td class="num">—</td><td class="num">$50K</td></tr>
+      <tr><td>Q6 (16–18)</td><td>Y2 başlar, Kaş/Patara pilot</td><td class="num">150</td><td class="num">—</td><td class="num">$450K</td></tr>
+      <tr><td>Q7 (19–21)</td><td>Y2 zirve, EBITDA pozitif</td><td class="num">200</td><td class="num">—</td><td class="num">$700K</td></tr>
+      <tr class="hi"><td class="h">Q8 (22–24)</td><td>Exit / Series A bridge</td><td class="num">200</td><td class="num">—</td><td class="num">$1.089M ARR</td></tr>
+    </tbody>
+  </table>
+  <div class="slide-footer"><span>10 — Traction</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 11 — COMPETITIVE EDGE ============ -->
+<section class="slide">
+  <div class="slide-num">11 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Rekabetçi Üstünlük</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">Pazarda <span style="color:var(--sun-500);">tek</span><br/>birleşik oyuncu.</h1>
+
+  <table class="cmp mt-30" style="margin-top:40px;">
+    <thead>
+      <tr>
+        <th>Özellik</th>
+        <th class="us">Kalkan Info</th>
+        <th>Booking</th>
+        <th>Airbnb</th>
+        <th>TatildeKirala</th>
+        <th>Holiday Lettings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Yerel Türkçe destek</td><td class="us"><span class="y">✓</span></td><td><span class="p">~</span></td><td><span class="p">~</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td></tr>
+      <tr><td>5 dil premium UX</td><td class="us"><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+      <tr><td>AI tatil asistanı</td><td class="us"><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td></tr>
+      <tr><td>Restoran + aktivite + villa tek panel</td><td class="us"><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td></tr>
+      <tr><td>Saha varlığı (insan misafir karşılama)</td><td class="us"><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td></tr>
+      <tr><td>Sosyal medya + reels otomasyon</td><td class="us"><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td></tr>
+      <tr><td>OPEX (vs 30 kişi klasik acente)</td><td class="us"><strong style="color:var(--sun-600);">−%70</strong></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>WhatsApp Kalkan grubu entegrasyonu</td><td class="us"><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td></tr>
+    </tbody>
+  </table>
+  <div class="slide-footer"><span>11 — Rekabetçi Üstünlük</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 12 — TEAM ============ -->
+<section class="slide deep">
+  <div class="slide-num">12 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Takım</span>
+  <h1 class="lead mt-20" style="margin-top:24px; color:var(--cream);">Solo founder + 5 kişi saha + <span style="color:var(--sun-400);">11 AI agent</span>.</h1>
+
+  <div class="flex gap-30 mt-50" style="margin-top:40px;">
+    <div class="card dark" style="width:48%; border-color:var(--sun-400); background:rgba(244,181,61,0.08);">
+      <div class="label">FOUNDER · KURUCU</div>
+      <h3 style="font-size:32px; color:var(--sun-400);">Berkay Elmastaş</h3>
+      <p style="font-size:18px; line-height:1.6; margin-top:8px;">Full-Stack AI Builder · Solo founder · AI-First DNA</p>
+      <ul style="margin-top:14px;">
+        <li>Önceki: <strong style="color:var(--sun-400);">LOA (Land of Airdrop)</strong> — $150M acquisition hedefli, 7 GM AI agent kadrosu</li>
+        <li>AdnanICT (MT5 EA, scalper v4.00) · canICT-B (Polymarket arb bot, Sprint 1 done)</li>
+        <li>Kalkan'da yerleşik — saha bilgisi, dil yetkinliği, yerel ağ</li>
+        <li>Berkay villa karşılama lideri — premium misafir deneyimi</li>
+      </ul>
+    </div>
+    <div class="card dark" style="width:48%;">
+      <div class="label">SAHA KADROSU · 5 Kişi (Y1)</div>
+      <table class="tbl" style="font-size:14px; margin-top:12px;">
+        <thead><tr><th>Pozisyon</th><th>Brüt ₺</th><th>USD/ay</th></tr></thead>
+        <tbody>
+          <tr><td>Operasyon Müdürü</td><td class="num">75K</td><td class="num">$2,760</td></tr>
+          <tr><td>CX Vardiya 1 (TR/EN)</td><td class="num">38K</td><td class="num">$1,400</td></tr>
+          <tr><td>CX Vardiya 2 (TR/RU/DE)</td><td class="num">42K</td><td class="num">$1,547</td></tr>
+          <tr><td>Saha Koordinatörü</td><td class="num">45K</td><td class="num">$1,658</td></tr>
+          <tr><td>Pazarlama Editörü</td><td class="num">50K</td><td class="num">$1,842</td></tr>
+          <tr class="hi"><td class="h">TOPLAM (işveren maliyeti)</td><td class="num">350K</td><td class="num">$9,207</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="lede mt-30" style="margin-top:30px; color:rgba(255,255,255,0.7); font-size:22px;">+ <strong style="color:var(--sun-400);">11 AI Agent</strong> (Slide 07) · Y2'de CTO/COO işe alma planı · Açık danışman slotu (turizm sektör veteranı)</p>
+  <div class="slide-footer"><span>12 — Takım</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 13 — FINANCIALS ============ -->
+<section class="slide">
+  <div class="slide-num">13 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Finansal Projeksiyon · 24 Ay</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">3 senaryo. <span style="color:var(--sun-500);">Baz</span> = $420K EBITDA.</h1>
+
+  <div class="flex gap-30 mt-30" style="margin-top:40px;">
+    <div class="w-60">
+      <table class="tbl">
+        <thead><tr><th>Metrik</th><th>Pesimist</th><th class="us" style="background:var(--sun-500); color:var(--sea-deep);">Baz</th><th>İyimser</th></tr></thead>
+        <tbody>
+          <tr><td>Y1 villa</td><td class="num">30</td><td class="num" style="background:rgba(244,181,61,0.1);">50</td><td class="num">80</td></tr>
+          <tr><td>Y1 gelir</td><td class="num">$77K</td><td class="num" style="background:rgba(244,181,61,0.1);">$168K</td><td class="num">$335K</td></tr>
+          <tr><td>Y2 villa</td><td class="num">80</td><td class="num" style="background:rgba(244,181,61,0.1);">200</td><td class="num">350</td></tr>
+          <tr class="hi"><td class="h">Y2 ARR</td><td class="num">$298K</td><td class="num">$1.089M</td><td class="num">$2.272M</td></tr>
+          <tr><td>Y2 brüt kar marjı</td><td class="num">%78</td><td class="num" style="background:rgba(244,181,61,0.1);">%82</td><td class="num">%85</td></tr>
+          <tr class="total"><td>Y2 EBITDA</td><td class="num">−$10K</td><td class="num">+$420K</td><td class="num">+$1.380K</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="w-40">
+      <div class="card" style="height:100%;">
+        <div class="label">Y2 ARR (Senaryo Karşılaştırma)</div>
+        <div class="bars" style="margin-top:30px;">
+          <div class="bar muted">
+            <div class="col" style="height:13%;"></div>
+            <div class="v">$298K</div>
+            <div class="l">Pesimist</div>
+          </div>
+          <div class="bar">
+            <div class="col" style="height:48%;"></div>
+            <div class="v">$1.089M</div>
+            <div class="l" style="color:var(--sun-600);">Baz</div>
+          </div>
+          <div class="bar muted">
+            <div class="col" style="height:100%;"></div>
+            <div class="v">$2.272M</div>
+            <div class="l">İyimser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="source">Varsayım: Y1 50 villa · €1,800 ortalama haftalık · 10 hafta/villa · %18 ortalama komisyon. Detay: MIMARI_VE_BUTCE.md</div>
+  <div class="slide-footer"><span>13 — Finansal</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 14 — USE OF FUNDS ============ -->
+<section class="slide">
+  <div class="slide-num">14 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Fonun Kullanımı</span>
+  <h1 class="lead mt-20" style="margin-top:24px;"><span style="color:var(--sun-500);">$650K</span> · 24 ay runway.</h1>
+
+  <div class="flex gap-30 mt-30" style="margin-top:40px;">
+    <div class="w-60">
+      <table class="tbl">
+        <thead><tr><th>Kalem</th><th>24 ay $</th><th>%</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td class="h">Saha personeli (5 × 24 ay)</td><td class="num">$220,968</td><td class="num">34.0%</td></tr>
+          <tr><td>Saha yan giderler (konaklama/ofis/araç)</td><td class="num">$114,600</td><td class="num">17.6%</td></tr>
+          <tr><td>Pazarlama (organik+influencer+ads)</td><td class="num">$90,000</td><td class="num">13.8%</td></tr>
+          <tr><td>Berkay maaşı ($3K × 24)</td><td class="num">$72,000</td><td class="num">11.1%</td></tr>
+          <tr><td>Hukuki + KVKK + VERBİS</td><td class="num">$18,000</td><td class="num">2.8%</td></tr>
+          <tr><td>Agent şirketi servis maliyetleri</td><td class="num">$15,900</td><td class="num">2.4%</td></tr>
+          <tr><td>Donanım/yazılım kuruluş</td><td class="num">$12,000</td><td class="num">1.8%</td></tr>
+          <tr><td>KOSGEB/Ar-Ge danışman</td><td class="num">$8,000</td><td class="num">1.2%</td></tr>
+          <tr><td>Buffer/contingency</td><td class="num">$97,500</td><td class="num">15.0%</td></tr>
+          <tr class="total"><td>TOPLAM</td><td class="num">$649,000</td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="w-40">
+      <div class="cards c1" style="grid-template-columns:1fr; gap:18px;">
+        <div class="card"><div class="label">Ay 1–6</div><div class="stat">$22K</div><div class="desc">Aylık kuruluş + soft launch</div></div>
+        <div class="card"><div class="label">Ay 7–12</div><div class="stat">$28K</div><div class="desc">Aylık Y1 sezon + tam kadro + ads</div></div>
+        <div class="card" style="background:rgba(244,181,61,0.08); border-color:var(--sun-400);"><div class="label" style="color:var(--sun-600);">Ay 13–24</div><div class="stat" style="color:var(--sun-600);">$32K</div><div class="desc">Aylık gross — gelir ofset, net azalır</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span>14 — Fonun Kullanımı</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 15 — THE ASK ============ -->
+<section class="slide deep">
+  <div class="slide-num">15 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Yatırım Talebi</span>
+
+  <div class="flex gap-30 mt-30" style="margin-top:60px; align-items:flex-start;">
+    <div class="w-50" style="width:50%;">
+      <div style="font-family:'Montserrat'; font-weight:900; font-size:200px; line-height:1; color:var(--sun-400); letter-spacing:-0.04em;">$650K</div>
+      <div style="font-family:'Montserrat'; font-weight:800; font-size:24px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream); margin-top:20px;">Pre-Seed · 24 Ay Runway</div>
+      <div style="font-size:24px; color:rgba(255,255,255,0.7); margin-top:30px; line-height:1.5;">
+        <strong style="color:var(--sun-400);">%18 SAFE</strong> post-money cap <strong style="color:var(--sun-400);">$4.5M</strong>
+        <br/>MFN clause · %10 ROFR
+      </div>
+      <div style="font-size:18px; color:rgba(255,255,255,0.55); margin-top:30px; line-height:1.6;">
+        Y2 sonu: $1.089M ARR (baz) → Series A bridge<br/>veya $4.36M–25M stratejik exit görüşmesi.
+      </div>
+    </div>
+    <div class="w-50" style="width:50%;">
+      <div class="label" style="color:var(--sun-400); margin-bottom:20px;">ROI Matrisi</div>
+      <table class="tbl">
+        <thead><tr><th>Senaryo</th><th>Y2 ARR</th><th>Çarpan</th><th>Exit</th><th>Yatırımcı %18</th><th>ROI</th></tr></thead>
+        <tbody>
+          <tr><td>Pesimist</td><td class="num">$298K</td><td class="num">3x</td><td class="num">$894K</td><td class="num">$161K</td><td class="num" style="color:var(--coral);">−75%</td></tr>
+          <tr><td>Baz</td><td class="num">$1.089M</td><td class="num">4x</td><td class="num">$4.36M</td><td class="num">$784K</td><td class="num" style="color:var(--sea-500);">+21%</td></tr>
+          <tr class="hi"><td class="h">İyimser</td><td class="num">$2.272M</td><td class="num">5x</td><td class="num">$11.36M</td><td class="num">$2.04M</td><td class="num" style="color:var(--sun-600);">+214%</td></tr>
+          <tr class="hi"><td class="h">Asimetrik</td><td class="num">—</td><td class="num">—</td><td class="num">$20–25M</td><td class="num">$3.6–4.5M</td><td class="num" style="color:var(--sun-600);">+450–590%</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:16px; color:rgba(255,255,255,0.6); margin-top:24px; font-style:italic;">
+        Asimetrik = Aeternum mythos × Kalkan brand multiplier (TripAdvisor TR / Booking lokal partner / Jolly Tur / GetYourGuide regional play).
+      </p>
+    </div>
+  </div>
+  <div class="slide-footer"><span>15 — Yatırım Talebi</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+<!-- ============ SLIDE 16 — VISION ============ -->
+<section class="slide" style="background:var(--cream);">
+  <div class="slide-num">16 / 16</div>
+  <div class="slide-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+  <span class="eyebrow">Vizyon</span>
+  <h1 class="lead mt-20" style="margin-top:24px;">5 yıl sonra <span style="color:var(--sun-500);">Akdeniz'in</span><br/>tek butik tatil agent şirketi.</h1>
+
+  <div class="cards c4 mt-50" style="margin-top:60px;">
+    <div class="card" style="text-align:center;"><div class="label">Y1–Y2</div><h3>Kalkan</h3><p>İskelet + 200 villa</p></div>
+    <div class="card" style="text-align:center;"><div class="label">Y3</div><h3>Kaş · Patara</h3><p>Coğrafi pilot</p></div>
+    <div class="card" style="text-align:center;"><div class="label">Y4</div><h3>Çıralı · Adrasan</h3><p>Antalya derinleşme</p></div>
+    <div class="card" style="text-align:center; background:linear-gradient(135deg, var(--sun-400) 0%, var(--sun-500) 100%); color:var(--sea-deep); border-color:var(--sun-500);"><div class="label" style="color:var(--sea-deep);">Y5</div><h3 style="color:var(--sea-deep);">Bodrum · Çeşme</h3><p style="color:var(--sea-deep);">Akdeniz tam kapsama</p></div>
+  </div>
+
+  <div class="card mt-50" style="margin-top:80px; background:var(--sea-deep); color:var(--cream); padding:60px;">
+    <div style="font-family:'Montserrat'; font-weight:900; font-size:48px; line-height:1.15; max-width:1500px; letter-spacing:-0.025em;">
+      "Kalkan'da tatil, artık çok kolay.<br/>Sıra <span style="color:var(--sun-400);">yatırımcıda</span>."
+    </div>
+    <div style="margin-top:30px; font-family:'Montserrat'; font-weight:700; font-size:18px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.6);">
+      Berkay Elmastaş · Founder · berkayelmastas@gmail.com · kalkaninfo.com
+    </div>
+  </div>
+  <div class="slide-footer"><span>16 — Vizyon</span><span class="accent">Mayıs 2026</span></div>
+</section>
+
+</body>
+</html>

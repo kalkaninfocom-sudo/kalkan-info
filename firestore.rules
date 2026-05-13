@@ -163,6 +163,73 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
 
+    // ========== jobs/{jobId} — İŞ İLANLARI ==========
+    match /jobs/{jobId} {
+      allow read: if (resource.data.status == 'active'
+                     && (resource.data.expiresAt == null
+                         || resource.data.expiresAt > request.time))
+                  || (isAuthed() && resource.data.ownerUid == request.auth.uid)
+                  || isAdmin();
+
+      allow create: if isAuthed()
+        && isEmailVerified()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && hasRequiredFields(request.resource.data,
+            ['ownerUid', 'title', 'category', 'type', 'location',
+             'employerName', 'contactEmail', 'createdAt'])
+        && isValidString(request.resource.data.title, 200)
+        && isValidString(request.resource.data.location, 100)
+        && isValidString(request.resource.data.employerName, 100)
+        && request.resource.data.category in ['restoran','villa','otel','tur','hizmet','ofis','diger']
+        && request.resource.data.type in ['full','part','seasonal','freelance']
+        && (request.resource.data.descriptionHtml == null
+            || isValidString(request.resource.data.descriptionHtml, 10000))
+        && (request.resource.data.requirements == null
+            || (request.resource.data.requirements is list
+                && request.resource.data.requirements.size() <= 20));
+
+      allow update: if (
+        (isOwner(resource.data.ownerUid)
+          && fieldsUnchanged(['ownerUid', 'status', 'createdAt', 'viewCount', 'applicationCount', 'publishedAt'])
+        )
+        || isAdmin()
+      );
+
+      allow delete: if isOwner(resource.data.ownerUid) || isAdmin();
+    }
+
+    // ========== jobApplications/{appId} — BAŞVURULAR ==========
+    match /jobApplications/{appId} {
+      allow read: if isAuthed()
+                  && (resource.data.applicantUid == request.auth.uid
+                      || resource.data.jobOwnerUid == request.auth.uid
+                      || isAdmin());
+
+      allow create: if isAuthed()
+        && request.resource.data.applicantUid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && hasRequiredFields(request.resource.data,
+            ['jobId', 'jobOwnerUid', 'applicantUid', 'applicantName',
+             'applicantPhone', 'applicantEmail', 'createdAt'])
+        && isValidString(request.resource.data.applicantName, 100)
+        && isValidString(request.resource.data.applicantPhone, 30)
+        && isValidString(request.resource.data.applicantEmail, 200)
+        && (request.resource.data.coverNote == null
+            || isValidString(request.resource.data.coverNote, 2000));
+
+      allow update: if (
+        (isAuthed()
+          && resource.data.jobOwnerUid == request.auth.uid
+          && fieldsUnchanged(['jobId', 'jobOwnerUid', 'applicantUid', 'applicantName',
+                              'applicantPhone', 'applicantEmail', 'coverNote', 'cvUrl', 'createdAt'])
+        )
+        || isAdmin()
+      );
+
+      allow delete: if isOwner(resource.data.applicantUid) || isAdmin();
+    }
+
     // ========== KVKK audit logs ==========
     match /kvkk-deletions/{docId} {
       allow read: if isAdmin();

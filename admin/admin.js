@@ -479,34 +479,132 @@ function deleteItem(key, idx) {
 function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
 // ========== Special: Eczane / Acil / Taksi / Kayıp ==========
+// Eczane verisi kalkan_eczane_v1 key'iyle localStorage'a kaydedilir.
+// index.html bu key'i önce okur, yoksa data/eczane.json'a fallback yapar.
+const ECZ_LS_KEY = 'kalkan_eczane_v1';
+
+function loadEczaneLS() {
+  try {
+    const raw = localStorage.getItem(ECZ_LS_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
 function renderEczane() {
-  const e = state.data.hizmetler?.nobetciEczane || {};
+  const saved = loadEczaneLS() || {};
+  const t = saved.today || {};
+  const tm = saved.tomorrow || {};
+  // Bugünün tarihi (YYYY-MM-DD) — varsayılan değer için
+  const bugun = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Istanbul' });
+  const yarin = new Date(Date.now() + 86400000).toLocaleDateString('sv-SE', { timeZone: 'Europe/Istanbul' });
   return `
-    <div class="card p-6 max-w-2xl">
-      <div class="text-sm font-semibold text-ink-900 mb-3">Bugün Nöbetçi Eczane</div>
-      <label class="text-xs font-semibold text-ink-700/80">Eczane Adı</label>
-      <input id="ecz-name" type="text" value="${e.name||''}" class="mb-3" />
-      <label class="text-xs font-semibold text-ink-700/80">Adres</label>
-      <textarea id="ecz-address" rows="2">${e.address||''}</textarea>
-      <label class="text-xs font-semibold text-ink-700/80 mt-3 block">Telefon</label>
-      <input id="ecz-phone" type="tel" value="${e.phone||''}" class="mb-3" />
-      <label class="text-xs font-semibold text-ink-700/80">Google Maps URL</label>
-      <input id="ecz-map" type="url" value="${e.mapUrl||''}" class="mb-3" />
-      <label class="text-xs font-semibold text-ink-700/80">Tarih (YYYY-MM-DD)</label>
-      <input id="ecz-date" type="text" value="${e.date||''}" />
-      <button id="ecz-save" class="btn btn-primary mt-4">💾 Kaydet</button>
+    <div class="space-y-6 max-w-2xl">
+      <!-- BUGÜN -->
+      <div class="card p-6">
+        <div class="flex items-center gap-2 text-sm font-semibold text-ink-900 mb-4"><span>💊</span>Bugün Nöbetçi Eczane</div>
+        <div class="grid grid-cols-1 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Tarih (YYYY-MM-DD)</label>
+            <input id="ecz-today-date" type="text" value="${t.date || bugun}" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Eczane Adı</label>
+            <input id="ecz-today-name" type="text" value="${t.name || ''}" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Adres</label>
+            <textarea id="ecz-today-address" rows="2">${t.address || ''}</textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs font-semibold text-ink-700/80 block mb-1">Telefon (görünür)</label>
+              <input id="ecz-today-phone" type="tel" value="${t.phone || ''}" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-ink-700/80 block mb-1">Telefon (raw, rakam)</label>
+              <input id="ecz-today-phoneRaw" type="text" value="${t.phoneRaw || ''}" placeholder="02428443112" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Google Maps URL</label>
+            <input id="ecz-today-mapUrl" type="url" value="${t.mapUrl || ''}" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Çalışma Saati (opsiyonel)</label>
+            <input id="ecz-today-hours" type="text" value="${t.hours || ''}" placeholder="09:00 (kapanış sonrası 24 saat nöbetçi)" />
+          </div>
+        </div>
+      </div>
+
+      <!-- YARIN -->
+      <div class="card p-6">
+        <div class="flex items-center gap-2 text-sm font-semibold text-ink-900 mb-4"><span>📅</span>Yarın Nöbetçi Eczane (opsiyonel)</div>
+        <div class="grid grid-cols-1 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Tarih (YYYY-MM-DD)</label>
+            <input id="ecz-tmr-date" type="text" value="${tm.date || yarin}" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Eczane Adı</label>
+            <input id="ecz-tmr-name" type="text" value="${tm.name || ''}" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Adres</label>
+            <textarea id="ecz-tmr-address" rows="2">${tm.address || ''}</textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs font-semibold text-ink-700/80 block mb-1">Telefon (görünür)</label>
+              <input id="ecz-tmr-phone" type="tel" value="${tm.phone || ''}" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-ink-700/80 block mb-1">Telefon (raw, rakam)</label>
+              <input id="ecz-tmr-phoneRaw" type="text" value="${tm.phoneRaw || ''}" placeholder="02428443050" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-ink-700/80 block mb-1">Google Maps URL</label>
+            <input id="ecz-tmr-mapUrl" type="url" value="${tm.mapUrl || ''}" />
+          </div>
+        </div>
+      </div>
+
+      <button id="ecz-save" class="btn btn-primary">💾 Kaydet (localStorage)</button>
+      <p class="text-xs text-ink-700/50 mt-1">Kaydedilen veri tarayıcıda saklanır. Site anında güncellenir. JSON dosyasını kalıcı güncellemek için "Tüm Değişiklikleri İndir" butonunu kullan.</p>
     </div>`;
 }
+
 function bindEczane() {
   document.getElementById('ecz-save').addEventListener('click', () => {
-    const h = state.data.hizmetler = state.data.hizmetler || {};
-    h.nobetciEczane = h.nobetciEczane || {};
-    h.nobetciEczane.name = val('ecz-name');
-    h.nobetciEczane.address = val('ecz-address');
-    h.nobetciEczane.phone = val('ecz-phone');
-    h.nobetciEczane.mapUrl = val('ecz-map');
-    h.nobetciEczane.date = val('ecz-date');
-    saveLocal(); toast('Nöbetçi eczane güncellendi.');
+    const eczaneData = {
+      _meta: {
+        title: 'Bugün Nöbetçi Eczane',
+        lastUpdated: new Date().toISOString()
+      },
+      today: {
+        date:     val('ecz-today-date'),
+        name:     val('ecz-today-name'),
+        address:  val('ecz-today-address'),
+        phone:    val('ecz-today-phone'),
+        phoneRaw: val('ecz-today-phoneRaw'),
+        mapUrl:   val('ecz-today-mapUrl'),
+        hours:    val('ecz-today-hours')
+      },
+      tomorrow: {
+        date:     val('ecz-tmr-date'),
+        name:     val('ecz-tmr-name'),
+        address:  val('ecz-tmr-address'),
+        phone:    val('ecz-tmr-phone'),
+        phoneRaw: val('ecz-tmr-phoneRaw'),
+        mapUrl:   val('ecz-tmr-mapUrl')
+      }
+    };
+    try {
+      localStorage.setItem(ECZ_LS_KEY, JSON.stringify(eczaneData));
+      toast('Nöbetçi eczane güncellendi.');
+    } catch(e) {
+      toast('Kayıt hatası: ' + e.message);
+    }
   });
 }
 

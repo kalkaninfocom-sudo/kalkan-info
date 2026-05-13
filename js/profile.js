@@ -4,10 +4,11 @@
  */
 
 import {
-  onAuthStateChanged,
+  safeOnAuthStateChanged,
   auth,
   db,
   deleteUser,
+  isFirebaseConfigured,
 } from './auth.js';
 
 import {
@@ -26,9 +27,12 @@ import {
 // ---------------------------------------------------------------------------
 let _currentUser = null;
 
-onAuthStateChanged(auth, async (user) => {
+safeOnAuthStateChanged(async (user) => {
   if (!user) {
-    window.location.href = 'login.html';
+    // Faz 1: Firebase config yoksa profil sayfası login'e yönlendirmez, boş gösterir
+    if (isFirebaseConfigured) {
+      window.location.href = 'login.html';
+    }
     return;
   }
   _currentUser = user;

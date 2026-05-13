@@ -16,13 +16,15 @@ let _auth = null;
 let _db   = null;
 let _requireAuth = async () => null;
 let _currentUser = () => null;
+let _firebaseConfigured = false;
 
 try {
   const authMod = await import('./auth.js');
-  _requireAuth  = authMod.requireAuth;
-  _currentUser  = authMod.currentUser;
-  _auth         = authMod.auth;
-  _db           = authMod.db;
+  _requireAuth         = authMod.requireAuth;
+  _currentUser         = authMod.currentUser;
+  _auth                = authMod.auth;
+  _db                  = authMod.db;
+  _firebaseConfigured  = authMod.isFirebaseConfigured ?? false;
 } catch {
   console.warn('[onboarding] auth.js yüklenemedi — graceful degrade');
 }
@@ -132,19 +134,46 @@ export async function init(rootSelector = '#onboarding-root') {
   $root = document.querySelector(rootSelector);
   if (!$root) return;
 
-  // Auth zorunlu
-  try {
-    state.user = await _requireAuth('login.html');
-    if (!state.user) return; // redirect oldu
-    if (!state.user.emailVerified) {
-      _showGlobalError('E-posta adresinizi doğrulamanız gerekiyor. Giriş sayfasında doğrulama e-postası gönderebilirsiniz.');
-      setTimeout(() => { window.location.href = 'login.html'; }, 3000);
-      return;
+  // Auth yumuşak kontrol — Firebase config yoksa veya hata olursa redirect yok
+  // _firebaseConfigured false ise apiKey eksik → anında landing göster
+  // Config varsa onAuthStateChanged bekle (max 4s: geçersiz config olursa hiç çağrılmaz)
+  let user = null;
+  if (!_firebaseConfigured) {
+    // Firebase config yok — anında landing ekranı
+    user = null;
+  } else {
+    try {
+      user = await Promise.race([
+        _requireAuth('login.html'),
+        new Promise((resolve) => setTimeout(() => resolve(null), 4000)),
+      ]);
+    } catch {
+      user = null;
     }
-  } catch {
-    window.location.href = 'login.html';
+  }
+
+  // Her durumda loading overlay'i kaldır (varsa)
+  const _overlay = document.getElementById('page-loading');
+  if (_overlay) {
+    _overlay.style.opacity = '0';
+    setTimeout(() => _overlay.remove(), 300);
+  }
+
+  // Auth yok (mock _requireAuth null döndü veya hata) → landing ekranı
+  if (!user) {
+    _renderLanding();
     return;
   }
+
+  // Auth var ama e-posta doğrulanmamış → doğrulama ekranı
+  if (!user.emailVerified) {
+    state.user = user;
+    _renderEmailVerification();
+    return;
+  }
+
+  // Auth var ve doğrulanmış → normal onboarding akışı
+  state.user = user;
 
   // Draft yükle
   _loadDraft();
@@ -155,6 +184,121 @@ export async function init(rootSelector = '#onboarding-root') {
   // Autosave
   document.addEventListener('change', _autosave);
   document.addEventListener('input', _autosave);
+}
+
+// ---------------------------------------------------------------------------
+// Landing ekranı — auth olmadan görüntülenir
+// ---------------------------------------------------------------------------
+function _renderLanding() {
+  $root.innerHTML = `
+<div class="max-w-xl mx-auto">
+  <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+    <!-- Başlık bandı -->
+    <div class="bg-gradient-to-r from-sea-800 to-sea-700 px-8 py-7 text-white">
+      <div class="w-12 h-12 rounded-xl bg-sun-400/20 flex items-center justify-center mb-4">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f4b53d" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <h1 class="font-display font-bold text-xl leading-snug">
+        İşletmenizi Kalkan Info'ya Eklemek<br />İçin Önce Üye Olun
+      </h1>
+      <p class="text-sea-200 text-sm mt-2">Kalkan'ın en kapsamlı rehberine işletmenizi ekleyin.</p>
+    </div>
+
+    <!-- Avantajlar -->
+    <div class="px-8 py-6 space-y-3 border-b border-sea-100">
+      <div class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-sea-100 text-sea-700 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="text-sea-700 text-sm"><strong class="text-sea-800">Ücretsiz kayıt</strong> — kredi kartı gerekmez, sözleşme yok</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-sea-100 text-sea-700 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="text-sea-700 text-sm"><strong class="text-sea-800">24-48 saat onay</strong> — admin inceleme sonrası profiliniz yayına alınır</span>
+      </div>
+      <div class="flex items-start gap-3">
+        <span class="w-6 h-6 rounded-full bg-sea-100 text-sea-700 flex items-center justify-center shrink-0 mt-0.5">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <span class="text-sea-700 text-sm"><strong class="text-sea-800">Müşteri yorumları + WhatsApp Concierge</strong> entegrasyonu ile daha fazla müşteri</span>
+      </div>
+    </div>
+
+    <!-- Butonlar -->
+    <div class="px-8 py-6 space-y-3">
+      <a href="register.html?return=hizmet-ekle.html"
+        class="flex items-center justify-center gap-2 w-full bg-sun-400 hover:bg-sun-500 text-sea-900 font-display font-bold text-sm px-6 py-3.5 rounded-xl transition shadow-deep active:scale-95">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        Ücretsiz Kayıt Ol
+      </a>
+      <a href="login.html?return=hizmet-ekle.html"
+        class="flex items-center justify-center gap-2 w-full bg-white hover:bg-sea-50 text-sea-700 border-2 border-sea-200 hover:border-sea-400 font-display font-bold text-sm px-6 py-3.5 rounded-xl transition active:scale-95">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Zaten Üyeyim, Giriş Yap
+      </a>
+    </div>
+
+    <!-- Alt not -->
+    <div class="px-8 pb-6 text-center">
+      <p class="text-sea-400 text-xs">Hesap oluşturmak 1 dakika sürer · KVKK uyumlu</p>
+    </div>
+  </div>
+</div>`;
+}
+
+// ---------------------------------------------------------------------------
+// E-posta doğrulama ekranı
+// ---------------------------------------------------------------------------
+function _renderEmailVerification() {
+  const resendEmail = async () => {
+    try {
+      const authMod = await import('./auth.js');
+      if (authMod.auth?.currentUser) {
+        const { sendEmailVerification } = await import(
+          'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'
+        );
+        await sendEmailVerification(authMod.auth.currentUser);
+        alert('Doğrulama e-postası gönderildi. Lütfen gelen kutunuzu kontrol edin.');
+      }
+    } catch {
+      alert('E-posta gönderilemedi. Lütfen daha sonra tekrar deneyin.');
+    }
+  };
+
+  $root.innerHTML = `
+<div class="max-w-md mx-auto">
+  <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+    <div class="bg-gradient-to-r from-sea-800 to-sea-700 px-8 py-7 text-white">
+      <div class="w-12 h-12 rounded-xl bg-sun-400/20 flex items-center justify-center mb-4">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f4b53d" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <h1 class="font-display font-bold text-xl">E-postanızı Doğrulayın</h1>
+      <p class="text-sea-200 text-sm mt-2">Hizmet eklemek için e-posta adresinizi doğrulamanız gerekiyor.</p>
+    </div>
+    <div class="px-8 py-6 space-y-3">
+      <button id="ob-resend-btn"
+        class="flex items-center justify-center gap-2 w-full bg-sun-400 hover:bg-sun-500 text-sea-900 font-display font-bold text-sm px-6 py-3.5 rounded-xl transition shadow-deep active:scale-95">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Doğrulama E-postasını Yeniden Gönder
+      </button>
+      <a href="login.html"
+        class="flex items-center justify-center w-full bg-white hover:bg-sea-50 text-sea-700 border-2 border-sea-200 hover:border-sea-400 font-display font-bold text-sm px-6 py-3.5 rounded-xl transition active:scale-95">
+        Giriş Sayfasına Dön
+      </a>
+    </div>
+    <div class="px-8 pb-6 text-center">
+      <p class="text-sea-400 text-xs">E-postayı doğruladıktan sonra sayfayı yenileyin.</p>
+    </div>
+  </div>
+</div>`;
+
+  document.getElementById('ob-resend-btn')?.addEventListener('click', resendEmail);
 }
 
 // ---------------------------------------------------------------------------

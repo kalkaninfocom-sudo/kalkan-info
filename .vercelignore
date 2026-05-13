@@ -1,0 +1,36 @@
+# Firebase — Faz 2'de Supabase'e geçilecek, şimdilik referans olarak kalıyor
+firebase.json
+firestore.rules
+firestore.indexes.json
+storage.rules
+firebase-debug.log
+functions/
+
+# Araçlar / geliştirme
+*.mjs
+.omc/
+.github/
+.git/
+
+# Dokümantasyon (public değil)
+docs/
+ROADMAP.md
+DEPLOY_ROADMAP.md
+SETUP.md
+AGENT_SIRKETI_YOL_HARITASI.md
+
+# Geçici
+"temporary screenshots"/
+
+# Admin (sunucu tarafında korunacak — Faz 2)
+admin/
+
+# Büyük / hassas veri dosyaları
+data/eczane.json
+
+# Yatırımcı materyali (manuel link verilecek)
+investor-deck/
+
+# Node
+node_modules/
+package*.json

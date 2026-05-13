@@ -1,38 +1,44 @@
 /**
  * vacation-planner.js
  * Kalkan Info — Tatil Asistanı istemci mantığı
- * Firebase Functions callable + Firestore kayıt + PDF çıktısı
+ *
+ * 2 mod:
+ *  1. Cloud (Firebase Functions + Firestore) — production'da Claude AI ile gerçek plan
+ *  2. Local fallback — Firebase yoksa veya Function başarısızsa, client-side
+ *     taslak plan + WhatsApp Concierge yönlendirmesi. Site her durumda çalışır.
  */
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+let auth = null, db = null, fns = null;
+let cloudReady = false;
 
-// ---------------------------------------------------------------------------
-// Firebase init — config from project hosting (auto-injected in prod;
-// for local emulator override via window.__FIREBASE_CONFIG__)
-// ---------------------------------------------------------------------------
-const firebaseConfig = window.__FIREBASE_CONFIG__ || {
-  apiKey:            'AIzaSy_PLACEHOLDER',
-  authDomain:        'kalkan-info-prod.firebaseapp.com',
-  projectId:         'kalkan-info-prod',
-  storageBucket:     'kalkan-info-prod.appspot.com',
-  messagingSenderId: '000000000000',
-  appId:             '1:000000000000:web:00000000000000000000',
-};
+try {
+  const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+  const { getFunctions, httpsCallable } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js');
+  const { getFirestore, collection, addDoc, serverTimestamp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+  const { getAuth, onAuthStateChanged } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
 
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db   = getFirestore(app);
-const fns  = getFunctions(app, 'europe-west3');
+  const firebaseConfig = window.__FIREBASE_CONFIG__ || null;
+  if (firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('PLACEHOLDER')) {
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db   = getFirestore(app);
+    fns  = getFunctions(app, 'europe-west3');
+    cloudReady = true;
 
-// Point to emulator when running locally
-if (location.hostname === 'localhost') {
-  const { connectFunctionsEmulator } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js');
-  const { connectFirestoreEmulator }  = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
-  connectFunctionsEmulator(fns, 'localhost', 5001);
-  connectFirestoreEmulator(db, 'localhost', 8080);
+    // Auth state — track current user for save feature
+    onAuthStateChanged(auth, (user) => {
+      window._currentUser = user;
+      const btn = document.getElementById('btn-save');
+      if (btn) btn.textContent = user ? '💾 Planı Kaydet' : '🔐 Kaydetmek için giriş yap';
+    });
+
+    // Expose helpers
+    window.__cloudHelpers = { httpsCallable, collection, addDoc, serverTimestamp };
+  } else {
+    console.info('[vacation-planner] Firebase config yok — local fallback mod aktif.');
+  }
+} catch (err) {
+  console.warn('[vacation-planner] Firebase init başarısız, local fallback mod:', err.message);
 }
 
 // ---------------------------------------------------------------------------
@@ -51,16 +57,6 @@ function checkClientRateLimit() {
 function recordClientRequest() {
   localStorage.setItem(RATE_KEY, String(Date.now()));
 }
-
-// ---------------------------------------------------------------------------
-// Auth state — track current user for save feature
-// ---------------------------------------------------------------------------
-let currentUser = null;
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-  const btn = document.getElementById('btn-save');
-  if (btn) btn.textContent = user ? '💾 Planı Kaydet' : '🔐 Kaydetmek için giriş yap';
-});
 
 // ---------------------------------------------------------------------------
 // Form data collection
@@ -122,17 +118,124 @@ window.regeneratePlan = async function regeneratePlan() {
 async function executePlanRequest(formData) {
   showLoading();
 
-  const callFn = httpsCallable(fns, 'vacationPlanner', { timeout: 545000 });
-
-  try {
-    const result = await callFn(formData);
-    recordClientRequest();
-    renderResult(result.data, formData);
-  } catch (err) {
-    console.error('[vacation-planner] Cloud Function error:', err);
-    const msg = friendlyError(err);
-    showError(msg);
+  // Cloud mode — Firebase Function aktifse onu çağır
+  if (cloudReady && fns && window.__cloudHelpers) {
+    try {
+      const callFn = window.__cloudHelpers.httpsCallable(fns, 'vacationPlanner', { timeout: 545000 });
+      const result = await callFn(formData);
+      recordClientRequest();
+      renderResult(result.data, formData);
+      return;
+    } catch (err) {
+      console.warn('[vacation-planner] Cloud Function başarısız, local fallback:', err.message);
+      // fall through to local fallback
+    }
   }
+
+  // Local fallback — taslak plan üret + Concierge yönlendirmesi
+  try {
+    const draft = generateLocalPlan(formData);
+    recordClientRequest();
+    renderResult(draft, formData);
+  } catch (err) {
+    console.error('[vacation-planner] Local fallback hatası:', err);
+    showError('Plan oluşturulurken sorun yaşandı. Lütfen Concierge ile WhatsApp üzerinden iletişime geçin.');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Local fallback plan generator — Cloud Function olmadığında basit bir taslak
+// ---------------------------------------------------------------------------
+function generateLocalPlan(f) {
+  const start = new Date(f.dateStart);
+  const end   = new Date(f.dateEnd);
+  const nights = Math.max(1, Math.round((end - start) / 86400000));
+  const totalGuests = f.adults + f.children;
+
+  // Basit bütçe dağılımı (kişi başı yaklaşık)
+  const flightPerPerson = f.departureAirport ? Math.round(f.budget * 0.30 / Math.max(totalGuests, 1)) : 0;
+  const transferTotal   = Math.round(f.budget * 0.05);
+  const accomTotal      = Math.round(f.budget * 0.45);
+  const activityTotal   = Math.round(f.budget * 0.15);
+  const mealTotal       = Math.round(f.budget * 0.05);
+  const total = (flightPerPerson * totalGuests) + transferTotal + accomTotal + activityTotal + mealTotal;
+
+  // Activity havuzu
+  const ACTIVITY_POOL = {
+    boat_tour:      { title: '12 Koy Tekne Turu', desc: 'Kalkan limanından kalkış, Sarı Limon ve Beyaz Ada koyları, öğle yemeği dahil.' },
+    ancient_cities: { title: 'Patara Antik Kenti & Plajı', desc: 'Likya tarihiyle iç içe, 18 km kumsal.' },
+    beach:          { title: 'Kaputaş Plajı', desc: 'Türkiye\'nin en güzel koylarından biri, 187 basamaklı iniş.' },
+    diving:         { title: 'Kaş Dalış Merkezi', desc: 'Kalkan\'a 30 dk; sertifikalı eğitmen, ekipman dahil.' },
+    hiking:         { title: 'Likya Yolu — Patara → Kalkan etabı', desc: '12 km, sahil rotası, rehber önerilir.' },
+    spa:            { title: 'Türk Hamamı + Masaj', desc: 'Geleneksel hamam deneyimi.' },
+    kids:           { title: 'Aqua park & çocuk aktiviteleri', desc: 'Bölgenin aile dostu seçenekleri.' },
+    nightlife:      { title: 'Yat Limanı akşamı', desc: 'Sahil restoranları, canlı müzik.' },
+  };
+  const selectedActs = (f.activities || []).map(a => ACTIVITY_POOL[a]).filter(Boolean);
+
+  // Konaklama tipi metni
+  const accomLabels = { villa: 'Özel havuzlu villa', otel: '4-5 yıldız otel', bb: 'Butik B&B' };
+  const accomTitle = accomLabels[f.accommodationType] || 'Konaklama';
+
+  // Yemek
+  const FOOD_POOL = {
+    chef:       { title: 'Evde özel aşçı', desc: 'Villanıza gelen şef, günlük menü hazırlar.' },
+    restaurant: { title: 'Restoran rezervasyonu', desc: 'Bölgenin seçili restoranlarında masa.' },
+    self:       { title: 'Market alışverişi', desc: 'Kalkan Migros, yerel bakkal ve manav önerileri.' },
+  };
+  const foodPicks = (f.food || []).map(x => FOOD_POOL[x]).filter(Boolean);
+
+  // Gün gün plan
+  const days = [];
+  for (let i = 0; i < nights + 1; i++) {
+    const date = new Date(start.getTime() + i * 86400000);
+    const items = [];
+    if (i === 0) {
+      if (f.departureAirport) {
+        items.push({ type:'flight', title: `Uçuş: ${f.departureAirport} → Dalaman (DLM)`, description: 'Tahmini bilet fiyatı kişi başı.', price: flightPerPerson, time: 'Sabah/öğlen' });
+      }
+      items.push({ type:'transfer', title: 'Havalimanı → Kalkan transferi', description: '~1.5 saat (Dalaman) / ~3 saat (Antalya). VIP araç.', price: transferTotal, time: '14:00' });
+      items.push({ type:'accommodation', title: `${accomTitle} — Check-in`, description: `${f.rooms} oda${f.seaView?', deniz manzaralı':''}${f.pool?', özel havuzlu':''}.`, price: Math.round(accomTotal / Math.max(nights,1)), priceNote: '/ gece' });
+    } else if (i === nights) {
+      items.push({ type:'accommodation', title: 'Check-out', description: 'Sabah erken çıkış.' });
+      items.push({ type:'transfer', title: 'Kalkan → Havalimanı transferi', description: 'Uçuş saatine göre planlanır.', price: 0 });
+    } else {
+      items.push({ type:'accommodation', title: `${accomTitle} — gecelik`, description: 'Konaklama devam.', price: Math.round(accomTotal / Math.max(nights,1)), priceNote: '/ gece' });
+      // Activity (varsa rotate)
+      if (selectedActs.length) {
+        const act = selectedActs[(i-1) % selectedActs.length];
+        items.push({ type:'activity', title: act.title, description: act.desc, price: Math.round(activityTotal / Math.max(nights,1)) });
+      }
+      // Meal (varsa rotate)
+      if (foodPicks.length) {
+        const meal = foodPicks[(i-1) % foodPicks.length];
+        items.push({ type:'meal', title: meal.title, description: meal.desc, price: Math.round(mealTotal / Math.max(nights,1)) });
+      }
+    }
+    days.push({ date: date.toISOString().slice(0,10), dayLabel: i === 0 ? 'Varış günü' : (i === nights ? 'Çıkış günü' : ''), items });
+  }
+
+  const conciergeMsg = encodeURIComponent(
+    `Merhaba Kalkan Info, tatil planımı oluşturdum:\n` +
+    `📅 ${f.dateStart} – ${f.dateEnd} (${nights} gece)\n` +
+    `👥 ${f.adults} yetişkin, ${f.children} çocuk\n` +
+    `🏡 ${accomTitle} (${f.rooms} oda)\n` +
+    `✈️ Kalkış: ${f.departureAirport || 'belirtilmedi'}\n` +
+    `💰 Bütçe: ${currencySymbol(f.currency)} ${f.budget.toLocaleString('tr-TR')}\n` +
+    `🗺️ Aktiviteler: ${(f.activities||[]).join(', ') || '—'}\n` +
+    `🍽️ Yemek: ${(f.food||[]).join(', ') || '—'}\n\n` +
+    `Detaylı plan ve rezervasyon için yardım rica ediyorum.`
+  );
+
+  return {
+    days,
+    totalPrice: total,
+    rationale: `Bu, formdaki tercihlerinizden üretilen bir taslak plandır. Fiyatlar yaklaşık tahmindir. ` +
+               `Detaylı, gerçek zamanlı uygunluk ve rezervasyon için Concierge ekibimize WhatsApp üzerinden ulaşabilirsiniz: ` +
+               `https://wa.me/905306650794?text=${conciergeMsg}`,
+    isLocalDraft: true,
+    conciergeUrl: `https://wa.me/905306650794?text=${conciergeMsg}`,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -241,8 +344,24 @@ function renderResult(data, formData) {
   });
 
   // Rationale
-  document.getElementById('result-rationale').textContent =
-    data.rationale || data.reasoning || '';
+  const rationaleEl = document.getElementById('result-rationale');
+  rationaleEl.textContent = data.rationale || data.reasoning || '';
+
+  // Local draft uyarısı + Concierge yönlendirmesi
+  if (data.isLocalDraft && data.conciergeUrl) {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'margin-top:14px;padding:14px 18px;background:#fff8ed;border:1.5px solid #f4b53d;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;';
+    banner.innerHTML = `
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;color:#0a2e4c;font-size:14px;">📋 Bu bir taslak plandır</div>
+        <div style="font-size:12px;color:#5d97c4;margin-top:2px;">Gerçek uygunluk, kesin fiyat ve rezervasyon için Concierge ekibimiz size yardımcı olur.</div>
+      </div>
+      <a href="${data.conciergeUrl}" target="_blank" rel="noopener"
+         style="background:#25D366;color:white;padding:10px 18px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+        💬 Concierge'e Götür
+      </a>`;
+    rationaleEl.parentElement.appendChild(banner);
+  }
 
   // Store plan data for PDF/save
   window._currentPlan = { data, formData };
@@ -252,8 +371,12 @@ function renderResult(data, formData) {
 // Save to Firestore
 // ---------------------------------------------------------------------------
 window.savePlan = async function savePlan() {
+  if (!cloudReady || !db) {
+    alert('Plan kaydetme yakında aktive olacak. Şimdilik PDF indirebilir veya Concierge ile WhatsApp üzerinden paylaşabilirsiniz.');
+    return;
+  }
+  const currentUser = window._currentUser;
   if (!currentUser) {
-    // Redirect to login with return URL
     const returnUrl = encodeURIComponent(location.href);
     location.href = `login.html?return=${returnUrl}`;
     return;
@@ -263,6 +386,7 @@ window.savePlan = async function savePlan() {
   if (!data) return;
 
   try {
+    const { collection, addDoc, serverTimestamp } = window.__cloudHelpers;
     const docRef = await addDoc(collection(db, 'vacations'), {
       ownerUid:        currentUser.uid,
       dateRange:       { start: formData.dateStart, end: formData.dateEnd },

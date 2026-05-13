@@ -38,12 +38,32 @@ const firebaseConfig = {
   // appId: "...",
 };
 
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db   = getFirestore(app);
+export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey);
 
-const googleProvider   = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
+// ---------------------------------------------------------------------------
+// Faz 1 guard — Firebase config boşsa no-op modda başlat
+// ---------------------------------------------------------------------------
+if (!isFirebaseConfigured) {
+  console.log('[kalkan] auth disabled in Phase 1, will be enabled in Phase 2 (Supabase)');
+}
+
+let app, auth, db, googleProvider, facebookProvider;
+
+try {
+  app  = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db   = getFirestore(app);
+  googleProvider   = new GoogleAuthProvider();
+  facebookProvider = new FacebookAuthProvider();
+} catch (_initErr) {
+  // Config boş — no-op nesneler oluştur, sayfaların çökmesini engelle
+  console.warn('[kalkan] Firebase init skipped (Phase 1 — no config):', _initErr.message);
+  app  = null;
+  auth = { currentUser: null };
+  db   = null;
+  googleProvider   = null;
+  facebookProvider = null;
+}
 
 // ---------------------------------------------------------------------------
 // Yardımcı — kullanıcı dokümanı oluştur / güncelle
@@ -160,15 +180,19 @@ export async function logout() {
 
 /** Mevcut kullanıcıyı döner (null = giriş yok) */
 export function currentUser() {
-  return auth.currentUser;
+  return auth?.currentUser ?? null;
 }
 
 /**
  * Giriş zorunluluğu — giriş yoksa redirectTo sayfasına yönlendir
+ * Faz 1: Firebase config yoksa anında null döner (redirect yapmaz).
  * @param {string} redirectTo
  * @returns {Promise<import('firebase/auth').User|null>}
  */
 export function requireAuth(redirectTo = 'login.html') {
+  if (!isFirebaseConfigured || !auth || typeof auth.onAuthStateChanged !== 'function') {
+    return Promise.resolve(null);
+  }
   return new Promise((resolve) => {
     const unsub = onAuthStateChanged(auth, (user) => {
       unsub();
@@ -192,7 +216,19 @@ export async function sendResetEmail(email) {
   }
 }
 
-/** Auth state değişimini dinle */
+/**
+ * Auth state değişimini dinle — Faz 1 safe wrapper.
+ * Firebase config yoksa callback'i hemen null user ile çağırır.
+ */
+export function safeOnAuthStateChanged(callback) {
+  if (!isFirebaseConfigured || !auth || typeof onAuthStateChanged !== 'function') {
+    callback(null);
+    return () => {};
+  }
+  return onAuthStateChanged(auth, callback);
+}
+
+/** @deprecated profile.js tarafından kullanılır — Faz 2'de safeOnAuthStateChanged'e geçilecek */
 export { onAuthStateChanged, auth, db, deleteUser };
 
 // ---------------------------------------------------------------------------

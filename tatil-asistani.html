@@ -260,19 +260,295 @@ tailwind.config = {
         <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Kalkış & Uçuş Tercihi</h2>
         <div>
           <label class="form-label" for="departure-airport">Kalkış havalimanı</label>
-          <input class="form-input" type="text" id="departure-airport" name="departureAirport" placeholder="Şehir veya havalimanı adı yazın..." list="airport-suggestions" />
+          <input class="form-input" type="text" id="departure-airport" name="departureAirport" placeholder="Şehir veya havalimanı adı yazın..." list="airport-suggestions" autocomplete="off" />
           <datalist id="airport-suggestions">
+            <!-- TÜRKİYE -->
+            <option value="İstanbul (IST — İstanbul Havalimanı)">
             <option value="İstanbul (SAW — Sabiha Gökçen)">
-            <option value="İstanbul (IST — Atatürk)">
             <option value="Ankara (ESB — Esenboğa)">
+            <option value="İzmir (ADB — Adnan Menderes)">
+            <option value="Antalya (AYT — Antalya)">
+            <option value="Antalya / Alanya (GZP — Gazipaşa)">
+            <option value="Bodrum (BJV — Milas-Bodrum)">
+            <option value="Dalaman (DLM)">
+            <option value="Trabzon (TZX)">
+            <option value="Adana (ADA — Şakirpaşa)">
+            <option value="Gaziantep (GZT — Oğuzeli)">
+            <option value="Diyarbakır (DIY)">
+            <option value="Konya (KYA)">
+            <option value="Kayseri (ASR — Erkilet)">
+            <option value="Samsun (SZF — Çarşamba)">
+            <option value="Erzurum (ERZ)">
+            <option value="Sivas (VAS — Nuri Demirağ)">
+            <option value="Şanlıurfa (GNY — GAP)">
+            <option value="Van (VAN — Ferit Melen)">
+            <option value="Hatay (HTY)">
+            <option value="Malatya (MLX — Erhaç)">
+            <option value="Elazığ (EZS)">
+            <option value="Mardin (MQM)">
+            <option value="Batman (BAL)">
+            <option value="Şırnak (NKT — Şerafettin Elçi)">
+            <option value="Iğdır (IGD)">
+            <option value="Ağrı (AJI — Ahmed-i Hâni)">
+            <option value="Kars (KSY — Harakani)">
+            <option value="Erzincan (ERC)">
+            <option value="Tokat (TJK)">
+            <option value="Sinop (NOP)">
+            <option value="Çanakkale (CKZ)">
+            <option value="Tekirdağ (TEQ — Çorlu)">
+            <option value="Balıkesir / Edremit (EDO — Koca Seyit)">
+            <option value="Denizli (DNZ — Çardak)">
+            <option value="Isparta (ISE — Süleyman Demirel)">
+            <option value="Kahramanmaraş (KCM)">
+            <option value="Adıyaman (ADF)">
+            <option value="Bursa (YEI — Yenişehir)">
+            <option value="Zonguldak (ONQ — Çaycuma)">
+            <option value="Yüksekova / Hakkari (YKO — Selahaddin Eyyubi)">
+            <option value="Muş (MSR — Sultan Alparslan)">
+            <option value="Nevşehir (NAV — Kapadokya)">
+            <option value="Kastamonu (KFS)">
+            <option value="Bingöl (BGG)">
+            <option value="Siirt (SXZ)">
+            <option value="Eskişehir (AOE — Anadolu)">
+            <option value="Tekirdağ / Çorlu Atatürk (TEQ)">
+            <option value="Ordu / Giresun (OGU)">
+
+            <!-- AVRUPA - Almanya -->
             <option value="Berlin (BER — Brandenburg)">
+            <option value="Frankfurt (FRA)">
+            <option value="München (MUC)">
+            <option value="Hamburg (HAM)">
+            <option value="Düsseldorf (DUS)">
+            <option value="Köln (CGN — Köln/Bonn)">
+            <option value="Stuttgart (STR)">
+            <option value="Hannover (HAJ)">
+            <option value="Nürnberg (NUE)">
+            <option value="Leipzig (LEJ)">
+            <option value="Dortmund (DTM)">
+            <option value="Bremen (BRE)">
+
+            <!-- Birleşik Krallık -->
             <option value="London (LHR — Heathrow)">
             <option value="London (LGW — Gatwick)">
+            <option value="London (STN — Stansted)">
+            <option value="London (LTN — Luton)">
+            <option value="Manchester (MAN)">
+            <option value="Birmingham (BHX)">
+            <option value="Edinburgh (EDI)">
+            <option value="Glasgow (GLA)">
+            <option value="Bristol (BRS)">
+
+            <!-- Fransa -->
+            <option value="Paris (CDG — Charles de Gaulle)">
+            <option value="Paris (ORY — Orly)">
+            <option value="Lyon (LYS)">
+            <option value="Marseille (MRS)">
+            <option value="Nice (NCE)">
+            <option value="Toulouse (TLS)">
+            <option value="Bordeaux (BOD)">
+
+            <!-- Hollanda / Belçika / Lüksemburg -->
+            <option value="Amsterdam (AMS — Schiphol)">
+            <option value="Brussels (BRU)">
+            <option value="Brussels Charleroi (CRL)">
+            <option value="Eindhoven (EIN)">
+            <option value="Rotterdam (RTM)">
+            <option value="Luxembourg (LUX)">
+
+            <!-- İspanya / Portekiz -->
+            <option value="Madrid (MAD — Barajas)">
+            <option value="Barcelona (BCN)">
+            <option value="Málaga (AGP)">
+            <option value="Sevilla (SVQ)">
+            <option value="Valencia (VLC)">
+            <option value="Bilbao (BIO)">
+            <option value="Palma de Mallorca (PMI)">
+            <option value="Alicante (ALC)">
+            <option value="Lisbon (LIS)">
+            <option value="Porto (OPO)">
+            <option value="Faro (FAO)">
+
+            <!-- İtalya -->
+            <option value="Rome (FCO — Fiumicino)">
+            <option value="Rome (CIA — Ciampino)">
+            <option value="Milan (MXP — Malpensa)">
+            <option value="Milan (LIN — Linate)">
+            <option value="Milan (BGY — Bergamo)">
+            <option value="Venice (VCE)">
+            <option value="Naples (NAP)">
+            <option value="Bologna (BLQ)">
+            <option value="Florence (FLR)">
+            <option value="Pisa (PSA)">
+            <option value="Catania (CTA)">
+
+            <!-- Yunanistan / Kıbrıs -->
+            <option value="Athens (ATH)">
+            <option value="Thessaloniki (SKG)">
+            <option value="Heraklion (HER — Girit)">
+            <option value="Rhodes (RHO)">
+            <option value="Larnaca (LCA)">
+            <option value="Paphos (PFO)">
+            <option value="Ercan (ECN — KKTC)">
+
+            <!-- Avusturya / İsviçre -->
+            <option value="Vienna (VIE)">
+            <option value="Salzburg (SZG)">
+            <option value="Innsbruck (INN)">
+            <option value="Zurich (ZRH)">
+            <option value="Geneva (GVA)">
+            <option value="Basel (BSL)">
+
+            <!-- Doğu Avrupa -->
+            <option value="Prague (PRG)">
+            <option value="Warsaw (WAW)">
+            <option value="Krakow (KRK)">
+            <option value="Gdansk (GDN)">
+            <option value="Budapest (BUD)">
+            <option value="Bucharest (OTP)">
+            <option value="Sofia (SOF)">
+            <option value="Belgrade (BEG)">
+            <option value="Zagreb (ZAG)">
+            <option value="Ljubljana (LJU)">
+            <option value="Sarajevo (SJJ)">
+            <option value="Skopje (SKP)">
+            <option value="Tirana (TIA)">
+            <option value="Pristina (PRN)">
+
+            <!-- İskandinavya -->
+            <option value="Stockholm (ARN — Arlanda)">
+            <option value="Gothenburg (GOT)">
+            <option value="Copenhagen (CPH)">
+            <option value="Oslo (OSL)">
+            <option value="Bergen (BGO)">
+            <option value="Helsinki (HEL)">
+            <option value="Reykjavik (KEF)">
+
+            <!-- İrlanda -->
+            <option value="Dublin (DUB)">
+            <option value="Cork (ORK)">
+
+            <!-- RUSYA & BDT -->
             <option value="Moscow (SVO — Sheremetyevo)">
-            <option value="Amsterdam (AMS)">
-            <option value="Paris (CDG)">
+            <option value="Moscow (DME — Domodedovo)">
+            <option value="Moscow (VKO — Vnukovo)">
+            <option value="Saint Petersburg (LED — Pulkovo)">
+            <option value="Kazan (KZN)">
+            <option value="Sochi (AER)">
+            <option value="Ekaterinburg (SVX — Koltsovo)">
+            <option value="Novosibirsk (OVB — Tolmachevo)">
+            <option value="Krasnodar (KRR)">
+            <option value="Mineralnye Vody (MRV)">
+            <option value="Rostov-on-Don (ROV — Platov)">
+            <option value="Ufa (UFA)">
+            <option value="Samara (KUF)">
+            <option value="Vladivostok (VVO)">
+            <option value="Kaliningrad (KGD)">
+            <option value="Kyiv (KBP — Boryspil)">
+            <option value="Kyiv (IEV — Zhuliany)">
+            <option value="Odesa (ODS)">
+            <option value="Lviv (LWO)">
+            <option value="Minsk (MSQ)">
+            <option value="Almaty (ALA)">
+            <option value="Astana / Nur-Sultan (NQZ)">
+            <option value="Tashkent (TAS)">
+            <option value="Baku (GYD — Heydar Aliyev)">
+            <option value="Yerevan (EVN — Zvartnots)">
+            <option value="Tbilisi (TBS)">
+            <option value="Bishkek (FRU — Manas)">
+            <option value="Dushanbe (DYU)">
+            <option value="Ashgabat (ASB)">
+
+            <!-- ORTA DOĞU -->
+            <option value="Dubai (DXB)">
+            <option value="Dubai (DWC — Al Maktoum)">
+            <option value="Abu Dhabi (AUH)">
+            <option value="Sharjah (SHJ)">
+            <option value="Doha (DOH — Hamad)">
+            <option value="Kuwait (KWI)">
+            <option value="Bahrain (BAH)">
+            <option value="Muscat (MCT)">
+            <option value="Riyadh (RUH)">
+            <option value="Jeddah (JED)">
+            <option value="Tel Aviv (TLV — Ben Gurion)">
+            <option value="Beirut (BEY — Rafic Hariri)">
+            <option value="Amman (AMM — Queen Alia)">
+            <option value="Cairo (CAI)">
+            <option value="Hurghada (HRG)">
+            <option value="Sharm El Sheikh (SSH)">
+            <option value="Casablanca (CMN)">
+            <option value="Marrakech (RAK)">
+            <option value="Tunis (TUN)">
+            <option value="Algiers (ALG)">
+
+            <!-- ASYA -->
+            <option value="Tokyo (NRT — Narita)">
+            <option value="Tokyo (HND — Haneda)">
+            <option value="Osaka (KIX — Kansai)">
+            <option value="Seoul (ICN — Incheon)">
+            <option value="Beijing (PEK)">
+            <option value="Beijing (PKX — Daxing)">
+            <option value="Shanghai (PVG — Pudong)">
+            <option value="Guangzhou (CAN)">
+            <option value="Hong Kong (HKG)">
+            <option value="Taipei (TPE — Taoyuan)">
+            <option value="Singapore (SIN — Changi)">
+            <option value="Kuala Lumpur (KUL)">
+            <option value="Bangkok (BKK — Suvarnabhumi)">
+            <option value="Bangkok (DMK — Don Mueang)">
+            <option value="Phuket (HKT)">
+            <option value="Hanoi (HAN)">
+            <option value="Ho Chi Minh City (SGN)">
+            <option value="Manila (MNL)">
+            <option value="Jakarta (CGK)">
+            <option value="Bali / Denpasar (DPS)">
+            <option value="Mumbai (BOM)">
+            <option value="Delhi (DEL)">
+            <option value="Bengaluru (BLR)">
+            <option value="Karachi (KHI)">
+            <option value="Lahore (LHE)">
+            <option value="Islamabad (ISB)">
+            <option value="Dhaka (DAC)">
+            <option value="Colombo (CMB)">
+            <option value="Kabul (KBL)">
+            <option value="Tehran (IKA — Imam Khomeini)">
+
+            <!-- AFRİKA -->
+            <option value="Johannesburg (JNB)">
+            <option value="Cape Town (CPT)">
+            <option value="Nairobi (NBO)">
+            <option value="Addis Ababa (ADD)">
+            <option value="Lagos (LOS)">
+            <option value="Accra (ACC)">
+
+            <!-- AMERİKA -->
+            <option value="New York (JFK)">
+            <option value="New York (EWR — Newark)">
+            <option value="New York (LGA — LaGuardia)">
+            <option value="Los Angeles (LAX)">
+            <option value="Chicago (ORD — O'Hare)">
+            <option value="Miami (MIA)">
+            <option value="San Francisco (SFO)">
+            <option value="Boston (BOS)">
+            <option value="Washington (IAD — Dulles)">
+            <option value="Atlanta (ATL)">
+            <option value="Dallas (DFW)">
+            <option value="Houston (IAH)">
+            <option value="Toronto (YYZ — Pearson)">
+            <option value="Montreal (YUL)">
+            <option value="Vancouver (YVR)">
+            <option value="Mexico City (MEX)">
+            <option value="São Paulo (GRU)">
+            <option value="Rio de Janeiro (GIG)">
+            <option value="Buenos Aires (EZE)">
+
+            <!-- AVUSTRALYA / OKYANUSYA -->
+            <option value="Sydney (SYD)">
+            <option value="Melbourne (MEL)">
+            <option value="Brisbane (BNE)">
+            <option value="Perth (PER)">
+            <option value="Auckland (AKL)">
           </datalist>
-          <p class="text-xs text-sea-400 mt-1.5">Varış havalimanı: Dalaman (DLM) veya Antalya (AYT)</p>
+          <p class="text-xs text-sea-400 mt-1.5">200+ havalimanı listede — yazmaya başlayın, otomatik tamamlama önerir. Varış: Dalaman (DLM) veya Antalya (AYT).</p>
         </div>
 
         <div class="mt-5">
@@ -634,7 +910,7 @@ tailwind.config = {
       <ul class="space-y-2 text-white/80">
         <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
         <li><a class="hover:text-sun-400" href="https://wa.me/905306650794" target="_blank" rel="noopener">Concierge WhatsApp</a></li>
-        <li><a class="hover:text-sun-400" href="#">Gizlilik & KVKK</a></li>
+        <li><a class="hover:text-sun-400" href="kvkk.html">Gizlilik & KVKK</a></li>
       </ul>
     </div>
   </div>
@@ -670,14 +946,43 @@ function updateBudgetDisplay(v) {
 
 // ---- Option card toggle (checkbox) ----
 function toggleOption(card, group) {
-  card.classList.toggle('selected');
+  const input = card.querySelector('input[type="checkbox"], input[type="radio"]');
+  if (!input) return;
+  // 'any' Fark etmez seçilirse, diğer airline seçimlerini temizle
+  if (group === 'airline') {
+    if (input.value === 'any') {
+      card.parentElement.querySelectorAll('input[name="airlines"]').forEach(i => {
+        if (i.value !== 'any') { i.checked = false; i.closest('.option-card')?.classList.remove('selected'); }
+      });
+    } else {
+      const anyCard = document.getElementById('airline-any');
+      if (anyCard) {
+        anyCard.classList.remove('selected');
+        const anyInput = anyCard.querySelector('input');
+        if (anyInput) anyInput.checked = false;
+      }
+    }
+  }
+  input.checked = !input.checked;
+  card.classList.toggle('selected', input.checked);
+  input.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
 // ---- Option card radio ----
 function selectRadio(card, groupId) {
   const container = document.getElementById(groupId) || card.closest('[id]');
-  container.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  if (!container) return;
+  container.querySelectorAll('.option-card').forEach(c => {
+    c.classList.remove('selected');
+    const i = c.querySelector('input[type="radio"]');
+    if (i) i.checked = false;
+  });
   card.classList.add('selected');
+  const input = card.querySelector('input[type="radio"]');
+  if (input) {
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }
 }
 
 // ---- Food chef visibility ----
@@ -685,6 +990,14 @@ document.addEventListener('change', function(e) {
   if (e.target && e.target.name === 'food' && e.target.value === 'chef') {
     document.getElementById('cuisine-section').classList.toggle('hidden', !e.target.checked);
   }
+});
+
+// ---- Default selections sync (DOMContentLoaded) ----
+document.addEventListener('DOMContentLoaded', () => {
+  // Pre-checked input'ları .selected class ile senkronla
+  document.querySelectorAll('.option-card input:checked').forEach(input => {
+    input.closest('.option-card')?.classList.add('selected');
+  });
 });
 
 // ---- Step machine ----
