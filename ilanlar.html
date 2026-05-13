@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kalkan'da İş İlanları — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea: {
+          50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',
+          400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',
+          800:'#0a2e4c',900:'#072136',
+        },
+        sun: { 400:'#f4b53d', 500:'#e89812', 600:'#c97c08' },
+        coral: { 500:'#e74c3c', 600:'#c0392b' },
+      },
+      fontFamily: {
+        display: ['Montserrat','system-ui','sans-serif'],
+        body: ['Inter','system-ui','sans-serif'],
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep: '0 8px 32px -8px rgba(13,58,95,0.35)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+  .card-base{background:#fff;}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease, border-color .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);border-color:#9cc0dd;}
+  .filter-btn{transition:background .18s ease,color .18s ease,border-color .18s ease;}
+  .filter-btn.active{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+  .modal-backdrop{background:rgba(7,33,54,0.65);backdrop-filter:blur(4px);}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .modal-content{animation:fadeIn .22s ease;}
+  /* Pulse for "yeni" badge */
+  .pulse-dot{animation:pulse 1.6s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+
+<!-- SEO -->
+<meta name="description" content="Kalkan, Kaş ve Antalya bölgesinde restoran, villa, tekne, ofis ve hizmet sektöründe iş ilanları. Sezonluk, tam zamanlı ve serbest pozisyonlar tek panelde.">
+<meta name="keywords" content="Kalkan iş ilanları, Kaş iş, Antalya turizm iş, restoran garson, villa concierge, tekne kaptanı, sezonluk iş Kalkan">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/ilanlar">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Kalkan'da İş İlanları — Kalkan Info">
+<meta property="og:description" content="Kalkan, Kaş ve Antalya bölgesinde restoran, villa, tekne, ofis ve hizmet sektöründe iş ilanları.">
+<meta property="og:url" content="https://kalkaninfo.com/ilanlar">
+<meta property="og:image" content="https://kalkaninfo.com/icons/icon-512.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan'da İş İlanları">
+<meta name="twitter:description" content="Sezonluk, tam zamanlı, serbest pozisyonlar tek panelde.">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"İş İlanları","item":"https://kalkaninfo.com/ilanlar"}]}</script>
+
+<script src="js/auth-pill.js" defer></script>
+<script src="js/site-drawer.js" defer></script>
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+
+<!-- ============== HERO HEADER ============== -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-40" alt="Kalkan'da iş ilanları" style="filter:saturate(1.3) contrast(1.1);" />
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date">4 Mayıs 2026</span>
+    </div>
+    <div class="w-9 h-9"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-12 md:pt-20 pb-12 md:pb-16 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400 pulse-dot"></span> İş Pazarı
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Kalkan'da Çalış</h1>
+    <p class="mt-3 text-white/80 max-w-2xl text-base md:text-lg leading-relaxed">
+      Restoran, villa, tekne ve hizmet sektöründe sezonluk ve yıl boyu pozisyonlar.
+      İşveren misin? Aşağıdan ilan ver, 24-48 saatte yayında.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="ilan-ver.html" class="inline-flex items-center gap-2 bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold px-5 py-3 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        İLAN VER
+      </a>
+      <a href="#listeleme" class="inline-flex items-center gap-2 border-2 border-white/30 text-white font-display font-bold px-5 py-3 rounded-xl hover:bg-white/10 transition">
+        İLANLARI GÖR
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== TOP NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3" style="transition:background .18s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+    </button>
+    <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <div class="w-10 h-10"></div>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="ilanlar.html">İş İlanları</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 font-bold flex items-center gap-2" href="ilan-ver.html">+ İlan Ver</a>
+      <a class="px-4 py-3 hover:bg-sea-700" href="profil.html">Profilim</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== FILTER BAR ============== -->
+<section id="listeleme" class="bg-white border-b border-sea-100 sticky top-[100px] md:top-[100px] z-30 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <div class="flex flex-col md:flex-row md:items-center gap-3">
+      <!-- Arama -->
+      <div class="relative flex-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5d97c4" stroke-width="2" class="absolute left-3 top-1/2 -translate-y-1/2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="search-input" type="search" placeholder="Pozisyon, işveren, lokasyon..." class="w-full pl-10 pr-4 py-2.5 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none" />
+      </div>
+
+      <!-- Kategori -->
+      <select id="filter-category" class="ob-select px-3 py-2.5 border border-sea-200 rounded-lg text-sm bg-white focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none">
+        <option value="all">Tüm Kategoriler</option>
+        <option value="restoran">Restoran & Cafe</option>
+        <option value="villa">Villa & Konaklama</option>
+        <option value="otel">Otel & Pansiyon</option>
+        <option value="tur">Tekne & Tur</option>
+        <option value="hizmet">Hizmet & Bakım</option>
+        <option value="ofis">Ofis & Yönetim</option>
+        <option value="diger">Diğer</option>
+      </select>
+
+      <!-- Tip -->
+      <select id="filter-type" class="px-3 py-2.5 border border-sea-200 rounded-lg text-sm bg-white focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none">
+        <option value="all">Tüm Tipler</option>
+        <option value="full">Tam zamanlı</option>
+        <option value="part">Yarı zamanlı</option>
+        <option value="seasonal">Sezonluk</option>
+        <option value="freelance">Serbest</option>
+      </select>
+
+      <!-- Dil -->
+      <select id="filter-language" class="px-3 py-2.5 border border-sea-200 rounded-lg text-sm bg-white focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none">
+        <option value="all">Dil Şartı Yok</option>
+        <option value="en">İngilizce</option>
+        <option value="de">Almanca</option>
+        <option value="ru">Rusça</option>
+        <option value="ar">Arapça</option>
+        <option value="fr">Fransızca</option>
+      </select>
+    </div>
+
+    <div class="flex items-center justify-between mt-3 text-xs text-sea-600">
+      <div id="result-count">Yükleniyor...</div>
+      <button id="clear-filters" class="font-semibold hover:text-sea-800 underline-grow">Filtreleri Temizle</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== JOB LIST ============== -->
+<main class="max-w-7xl mx-auto px-4 py-8 md:py-10">
+  <div id="jobs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="col-span-full text-center py-10 text-sea-600">
+      <div class="w-10 h-10 border-4 border-sea-200 border-t-sea-600 rounded-full animate-spin mx-auto mb-3"></div>
+      Yükleniyor...
+    </div>
+  </div>
+
+  <div id="empty-state" class="hidden text-center py-16">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#5d97c4" stroke-width="1.5" class="mx-auto mb-3"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <h3 class="font-display font-bold text-sea-700 text-lg">Filtrelerinize uygun ilan bulunamadı</h3>
+    <p class="text-sea-600 text-sm mt-1">Farklı kategori veya tip seçmeyi deneyin.</p>
+    <button onclick="document.getElementById('clear-filters').click()" class="mt-4 inline-flex items-center gap-2 bg-sea-800 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sea-700">
+      Filtreleri Temizle
+    </button>
+  </div>
+</main>
+
+<!-- ============== EMPLOYER CTA ============== -->
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="bg-gradient-to-br from-sea-800 to-sea-900 rounded-2xl shadow-deep p-8 md:p-10 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#e89812 0%,transparent 70%);"></div>
+    <div class="relative grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <span class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-sun-400/15 border border-sun-400/40 text-sun-400 px-3 py-1 rounded-full font-bold">
+          İşveren Misin?
+        </span>
+        <h2 class="font-display font-extrabold text-2xl md:text-3xl mt-3 leading-tight">
+          Kalkan'ın doğru ekibini <span class="text-sun-400">tek tıkla</span> bul.
+        </h2>
+        <p class="mt-2 text-white/75 text-sm md:text-base leading-relaxed">
+          Restoran, villa, tekne veya ofisin için ilan ver. Adminden onay sonrası 24-48 saat içinde yayına alınır.
+          5 dilde başvuru kabul edilir, profil sahibi adaylar bir tıkla başvurur.
+        </p>
+      </div>
+      <div class="flex md:justify-end">
+        <a href="ilan-ver.html" class="inline-flex items-center gap-2 bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold px-6 py-3.5 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition text-base">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          İLAN VER — ÜCRETSİZ
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== JOB DETAIL MODAL ============== -->
+<div id="job-modal" class="hidden fixed inset-0 z-50 modal-backdrop p-4 overflow-y-auto" role="dialog" aria-modal="true">
+  <div class="modal-content max-w-3xl mx-auto my-4 md:my-10">
+    <button id="modal-close" aria-label="Kapat" class="ml-auto block mb-2 w-9 h-9 grid place-items-center rounded-full bg-white/15 text-white hover:bg-white/25 transition">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ============== APPLY MODAL ============== -->
+<div id="apply-modal" class="hidden fixed inset-0 z-[60] modal-backdrop p-4 overflow-y-auto" role="dialog" aria-modal="true">
+  <div class="modal-content max-w-md mx-auto my-10 bg-white rounded-2xl shadow-deep p-6 md:p-8">
+    <div class="flex items-start justify-between mb-4">
+      <h2 class="font-display font-extrabold text-xl text-sea-800">Başvurunu Tamamla</h2>
+      <button id="apply-close" aria-label="Kapat" class="w-8 h-8 grid place-items-center rounded-full hover:bg-sea-50">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form id="apply-form" class="space-y-3">
+      <div>
+        <label class="block text-xs font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Ad Soyad</label>
+        <input name="name" required class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none" />
+      </div>
+      <div>
+        <label class="block text-xs font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Telefon</label>
+        <input name="phone" required type="tel" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none" />
+      </div>
+      <div>
+        <label class="block text-xs font-display font-bold text-sea-700 uppercase tracking-wide mb-1">E-posta</label>
+        <input name="email" required type="email" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none" />
+      </div>
+      <div>
+        <label class="block text-xs font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Kısa Mesaj (opsiyonel)</label>
+        <textarea name="coverNote" rows="3" placeholder="Neden bu pozisyon? Önceki tecrüben?" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none"></textarea>
+      </div>
+      <div id="apply-error" class="hidden text-coral-500 text-sm font-semibold"></div>
+      <div id="apply-success" class="hidden text-sea-700 bg-sea-50 border border-sea-200 rounded-lg p-3 text-sm">
+        Başvurun gönderildi. İşveren sana e-posta veya telefon ile dönecek.
+      </div>
+      <button type="submit" class="w-full bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold py-3 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition">
+        BAŞVURUYU GÖNDER
+      </button>
+      <p class="text-[11px] text-sea-500 text-center leading-relaxed">
+        Başvurarak <a href="kvkk.html" class="underline">KVKK Aydınlatma Metni</a>'ni okuduğunu kabul edersin.
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer class="mt-12" style="background:#072136;">
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="grid md:grid-cols-3 gap-8 text-white/70 text-sm">
+      <div>
+        <div class="font-display font-bold text-white text-lg flex items-center gap-2 mb-3">
+          <span class="text-sun-500">◆</span> KALKAN INFO
+        </div>
+        <p class="text-white/60 text-xs leading-relaxed">Kalkan'ın yerel rehberi, villa kiralama platformu ve iş pazarı. Tek panelde, 5 dilde.</p>
+      </div>
+      <div>
+        <div class="font-display font-bold text-white uppercase tracking-wider text-xs mb-3">Hızlı Erişim</div>
+        <ul class="space-y-2">
+          <li><a href="ilanlar.html" class="hover:text-sun-400 transition">Tüm İlanlar</a></li>
+          <li><a href="ilan-ver.html" class="hover:text-sun-400 transition">İlan Ver</a></li>
+          <li><a href="profil.html" class="hover:text-sun-400 transition">Profilim</a></li>
+          <li><a href="hizmet-ekle.html" class="hover:text-sun-400 transition">İşletme Ekle</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-display font-bold text-white uppercase tracking-wider text-xs mb-3">Yasal</div>
+        <ul class="space-y-2">
+          <li><a href="kvkk.html" class="hover:text-sun-400 transition">KVKK</a></li>
+          <li><a href="privacy.html" class="hover:text-sun-400 transition">Gizlilik</a></li>
+          <li><a href="terms.html" class="hover:text-sun-400 transition">Kullanım Şartları</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/10 text-white/40 text-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>© 2026 Kalkan Info. Tüm hakları saklıdır.</div>
+      <div>info@kalkaninfo.com</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script type="module">
+import { listJobs, getJob, applyToJob, renderJobCard, renderJobDetail } from './js/jobs.js';
+
+const grid = document.getElementById('jobs-grid');
+const empty = document.getElementById('empty-state');
+const countEl = document.getElementById('result-count');
+const searchInput = document.getElementById('search-input');
+const filterCat = document.getElementById('filter-category');
+const filterType = document.getElementById('filter-type');
+const filterLang = document.getElementById('filter-language');
+const clearBtn = document.getElementById('clear-filters');
+
+// Modal helpers
+const jobModal = document.getElementById('job-modal');
+const modalBody = document.getElementById('modal-body');
+const modalClose = document.getElementById('modal-close');
+const applyModal = document.getElementById('apply-modal');
+const applyClose = document.getElementById('apply-close');
+const applyForm = document.getElementById('apply-form');
+const applyError = document.getElementById('apply-error');
+const applySuccess = document.getElementById('apply-success');
+
+let _currentJobId = null;
+let _allJobs = [];
+
+function getFilters() {
+  return {
+    search: searchInput.value.trim(),
+    category: filterCat.value,
+    type: filterType.value,
+    language: filterLang.value,
+  };
+}
+
+async function load() {
+  const jobs = await listJobs(getFilters());
+  _allJobs = jobs;
+  if (!jobs.length) {
+    grid.classList.add('hidden');
+    empty.classList.remove('hidden');
+    countEl.textContent = '0 sonuç';
+    return;
+  }
+  grid.classList.remove('hidden');
+  empty.classList.add('hidden');
+  grid.innerHTML = jobs.map(j => renderJobCard(j)).join('');
+  countEl.textContent = `${jobs.length} ilan listeleniyor`;
+
+  // Card click → modal
+  grid.querySelectorAll('[data-job-id]').forEach(card => {
+    card.addEventListener('click', () => openJobModal(card.dataset.jobId));
+  });
+}
+
+async function openJobModal(jobId) {
+  _currentJobId = jobId;
+  const job = await getJob(jobId);
+  modalBody.innerHTML = renderJobDetail(job);
+  jobModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Bind apply + share buttons
+  const applyBtn = modalBody.querySelector('#apply-btn');
+  if (applyBtn) applyBtn.addEventListener('click', () => openApplyModal(jobId));
+
+  const shareBtn = modalBody.querySelector('#share-btn');
+  if (shareBtn) shareBtn.addEventListener('click', () => share(job));
+}
+
+function closeJobModal() {
+  jobModal.classList.add('hidden');
+  document.body.style.overflow = '';
+  _currentJobId = null;
+}
+
+function openApplyModal(jobId) {
+  _currentJobId = jobId;
+  applyForm.reset();
+  applyError.classList.add('hidden');
+  applySuccess.classList.add('hidden');
+  applyForm.querySelector('button[type=submit]').disabled = false;
+  applyModal.classList.remove('hidden');
+}
+
+function closeApplyModal() {
+  applyModal.classList.add('hidden');
+}
+
+async function share(job) {
+  const url = `${location.origin}/ilanlar.html?ilan=${job.id}`;
+  if (navigator.share) {
+    try { await navigator.share({ title: job.title, text: job.title + ' — Kalkan Info', url }); } catch {}
+  } else {
+    try { await navigator.clipboard.writeText(url); alert('Link panoya kopyalandı: ' + url); } catch { alert(url); }
+  }
+}
+
+// Apply form submit
+applyForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  applyError.classList.add('hidden');
+  applySuccess.classList.add('hidden');
+  const fd = new FormData(applyForm);
+  const data = {
+    name: fd.get('name').trim(),
+    phone: fd.get('phone').trim(),
+    email: fd.get('email').trim(),
+    coverNote: (fd.get('coverNote') || '').trim(),
+  };
+
+  // Auth kontrolü — Firebase yoksa demo mod
+  let uid = 'demo-user-' + Date.now();
+  try {
+    const { auth } = await import('./js/auth.js');
+    if (auth && auth.currentUser) uid = auth.currentUser.uid;
+  } catch {}
+
+  const result = await applyToJob(_currentJobId, data, uid);
+  if (result.ok) {
+    applySuccess.classList.remove('hidden');
+    applyForm.querySelector('button[type=submit]').disabled = true;
+    setTimeout(closeApplyModal, 2200);
+  } else {
+    applyError.textContent = result.error || 'Başvuru gönderilemedi.';
+    applyError.classList.remove('hidden');
+  }
+});
+
+// Filter listeners
+let _searchTimer;
+searchInput.addEventListener('input', () => {
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(load, 200);
+});
+filterCat.addEventListener('change', load);
+filterType.addEventListener('change', load);
+filterLang.addEventListener('change', load);
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  filterCat.value = 'all';
+  filterType.value = 'all';
+  filterLang.value = 'all';
+  load();
+});
+
+// Modal listeners
+modalClose.addEventListener('click', closeJobModal);
+jobModal.addEventListener('click', e => { if (e.target === jobModal) closeJobModal(); });
+applyClose.addEventListener('click', closeApplyModal);
+applyModal.addEventListener('click', e => { if (e.target === applyModal) closeApplyModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (!applyModal.classList.contains('hidden')) closeApplyModal();
+    else if (!jobModal.classList.contains('hidden')) closeJobModal();
+  }
+});
+
+// Deep link ?ilan=id
+const params = new URLSearchParams(location.search);
+if (params.get('ilan')) {
+  load().then(() => openJobModal(params.get('ilan')));
+} else {
+  load();
+}
+
+// Update today's date
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' });
+</script>
+</body>
+</html>

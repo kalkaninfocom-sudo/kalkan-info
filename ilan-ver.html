@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İlan Ver — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea:{50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',800:'#0a2e4c',900:'#072136'},
+        sun:{400:'#f4b53d',500:'#e89812',600:'#c97c08'},
+        coral:{500:'#e74c3c',600:'#c0392b'},
+      },
+      fontFamily:{display:['Montserrat','system-ui','sans-serif'],body:['Inter','system-ui','sans-serif']},
+      boxShadow:{
+        card:'0 1px 2px rgba(13,58,95,0.06), 0 8px 24px -8px rgba(13,58,95,0.18)',
+        deep:'0 8px 32px -8px rgba(13,58,95,0.35)',
+      },
+    },
+  },
+};
+</script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .ob-label{display:block;font-size:0.8125rem;font-weight:600;color:#0d3a5f;margin-bottom:0.375rem;font-family:'Montserrat',sans-serif;letter-spacing:-0.01em;}
+  .ob-input,.ob-textarea,.ob-select{width:100%;border:1.5px solid #9cc0dd;border-radius:0.5rem;padding:0.625rem 0.875rem;font-size:0.9375rem;color:#0a2e4c;background:#fff;outline:none;transition:border-color .18s, box-shadow .18s;font-family:'Inter',sans-serif;}
+  .ob-input:focus,.ob-textarea:focus,.ob-select:focus{border-color:#1a5e93;box-shadow:0 0 0 3px rgba(26,94,147,0.12);}
+  .ob-textarea{min-height:120px;resize:vertical;}
+  .ob-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230d3a5f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2.25rem;}
+  .ob-help{font-size:0.7rem;color:#5d97c4;margin-top:0.25rem;font-style:italic;}
+  .ob-err{color:#c0392b;font-size:0.75rem;margin-top:0.25rem;font-weight:600;}
+
+  /* Step progress */
+  .step-dot{width:30px;height:30px;border-radius:9999px;background:#cfdfee;color:#5d97c4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.875rem;transition:background .25s, color .25s, transform .25s;}
+  .step-dot.active{background:#e89812;color:#fff;transform:scale(1.08);box-shadow:0 0 0 4px rgba(232,152,18,0.18);}
+  .step-dot.done{background:#1a5e93;color:#fff;}
+  .step-line{flex:1;height:2px;background:#cfdfee;}
+  .step-line.done{background:#1a5e93;}
+
+  /* Lang chip */
+  .lang-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1.5px solid #9cc0dd;border-radius:9999px;font-weight:600;font-size:0.8125rem;color:#0d3a5f;background:#fff;cursor:pointer;transition:all .18s;user-select:none;}
+  .lang-chip:hover{border-color:#1a5e93;background:#eaf2f9;}
+  .lang-chip.active{background:#0a2e4c;border-color:#0a2e4c;color:#fff;}
+
+  /* Type card */
+  .type-card{padding:14px 16px;border:2px solid #cfdfee;border-radius:0.75rem;background:#fff;cursor:pointer;transition:all .2s;text-align:center;}
+  .type-card:hover{border-color:#1a5e93;background:#eaf2f9;}
+  .type-card.active{border-color:#e89812;background:linear-gradient(135deg,#fff 0%,#fef6e6 100%);box-shadow:0 0 0 3px rgba(232,152,18,0.15);}
+  .type-card.active .type-icon{color:#e89812;}
+</style>
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Kalkan'da çalışacak ekibini bul. İlan ver, 24-48 saatte yayında, ücretsiz.">
+<link rel="canonical" href="https://kalkaninfo.com/ilan-ver">
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+
+<!-- ============== NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="ilanlar.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3 transition">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="font-display font-semibold tracking-wide text-sm hidden sm:inline">İlanlara Dön</span>
+    </a>
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <div class="w-9 h-9 rounded-full bg-sea-600 border-2 border-white/20 overflow-hidden grid place-items-center" id="nav-avatar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white/60"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HEADER ============== -->
+<header style="background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 60%,#134c79 100%);" class="relative overflow-hidden">
+  <div class="absolute inset-0 opacity-15" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#e89812 0%,transparent 70%);"></div>
+  <div class="relative max-w-4xl mx-auto px-4 py-10 md:py-14 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold mb-4">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> İşveren Paneli
+    </div>
+    <h1 class="font-display text-3xl md:text-4xl font-extrabold leading-tight">İlan Ver</h1>
+    <p class="mt-2 text-white/70 text-sm md:text-base max-w-xl leading-relaxed">
+      Restoran, villa, tekne veya hizmetin için ekip arıyorsan doğru yerdesin.
+      Admin onayından sonra 24-48 saat içinde yayında. <strong class="text-sun-400">Ücretsiz.</strong>
+    </p>
+  </div>
+</header>
+
+<!-- ============== STEP PROGRESS ============== -->
+<div class="bg-white border-b border-sea-100 sticky top-[57px] z-30 shadow-sm">
+  <div class="max-w-4xl mx-auto px-4 py-4">
+    <div class="flex items-center gap-2">
+      <div class="step-dot active" data-step="1">1</div>
+      <div class="step-line" data-line="1"></div>
+      <div class="step-dot" data-step="2">2</div>
+      <div class="step-line" data-line="2"></div>
+      <div class="step-dot" data-step="3">3</div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 mt-2 text-[11px] uppercase tracking-wider font-display font-semibold text-sea-500">
+      <div class="text-left">Pozisyon</div>
+      <div class="text-center">Detay & Şartlar</div>
+      <div class="text-right">İletişim & Önizleme</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== MAIN ============== -->
+<main class="max-w-4xl mx-auto px-4 py-8 md:py-10">
+
+  <!-- Auth uyarı -->
+  <div id="auth-warning" class="hidden bg-sun-400/10 border border-sun-400/40 rounded-xl p-4 mb-6">
+    <div class="flex items-start gap-3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e89812" stroke-width="2" class="flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <p class="font-display font-bold text-sea-800 text-sm">İlan vermek için giriş yapmalısın</p>
+        <p class="text-sea-600 text-xs mt-1">İlanını yönetmek, başvuruları takip etmek ve düzenlemek için profil gerekli.</p>
+        <a href="login.html?next=ilan-ver.html" class="inline-block mt-2 bg-sea-800 text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-sea-700">GİRİŞ YAP</a>
+      </div>
+    </div>
+  </div>
+
+  <form id="job-form" class="bg-white rounded-2xl shadow-deep border border-sea-100 p-6 md:p-8">
+
+    <!-- ============ STEP 1: POSITION ============ -->
+    <fieldset id="step-1" class="step-fieldset space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">Pozisyon Bilgileri</h2>
+      <p class="text-sea-600 text-sm mb-4">İlanın başlığı ve genel bilgileri.</p>
+
+      <div>
+        <label class="ob-label" for="title">Pozisyon Başlığı *</label>
+        <input id="title" name="title" required maxlength="100" class="ob-input" placeholder="Örn. Restoran Garson — Sezonluk" />
+        <div class="ob-help">Net ve aranabilir olsun. Pozisyon + tip (sezonluk, tam zamanlı vs.).</div>
+      </div>
+
+      <div>
+        <label class="ob-label">Kategori *</label>
+        <select id="category" name="category" required class="ob-select">
+          <option value="">Seçiniz...</option>
+          <option value="restoran">Restoran & Cafe</option>
+          <option value="villa">Villa & Konaklama</option>
+          <option value="otel">Otel & Pansiyon</option>
+          <option value="tur">Tekne & Tur</option>
+          <option value="hizmet">Hizmet & Bakım</option>
+          <option value="ofis">Ofis & Yönetim</option>
+          <option value="diger">Diğer</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="ob-label">İstihdam Tipi *</label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+          <label class="type-card">
+            <input type="radio" name="type" value="full" class="hidden type-radio" />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800">Tam Zamanlı</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="part" class="hidden type-radio" />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800">Yarı Zamanlı</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="seasonal" class="hidden type-radio" />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800">Sezonluk</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="freelance" class="hidden type-radio" />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800">Serbest</div>
+          </label>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="ob-label" for="location">Lokasyon *</label>
+          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan Merkez" />
+        </div>
+        <div>
+          <label class="ob-label" for="employerName">İşveren / Şirket Adı *</label>
+          <input id="employerName" name="employerName" required maxlength="80" class="ob-input" placeholder="Örn. Aubergine Restaurant" />
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" data-next="2" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
+          Devam Et
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </fieldset>
+
+    <!-- ============ STEP 2: DETAILS ============ -->
+    <fieldset id="step-2" class="step-fieldset hidden space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">Detay & Şartlar</h2>
+      <p class="text-sea-600 text-sm mb-4">Pozisyonun açıklaması, gereksinim ve maaş aralığı.</p>
+
+      <div>
+        <label class="ob-label" for="description">Pozisyon Açıklaması *</label>
+        <textarea id="description" name="description" required rows="6" maxlength="2500" class="ob-textarea" placeholder="Pozisyonun ne yaptığı, çalışma saatleri, lokasyon detayları..."></textarea>
+        <div class="ob-help">2500 karaktere kadar. Düz metin, paragraflar otomatik biçimlendirilir.</div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="requirements">Aranan Nitelikler</label>
+        <textarea id="requirements" name="requirements" rows="4" maxlength="1000" class="ob-textarea" placeholder="Her satıra bir gereksinim:&#10;Min. 1 yıl restoran deneyimi&#10;İngilizce iletişim&#10;Pazartesi-Pazar dönemli vardiya"></textarea>
+        <div class="ob-help">Her satıra bir madde. Boş bırakılırsa "Gereksinim belirtilmedi" görünür.</div>
+      </div>
+
+      <div>
+        <label class="ob-label">Aranan Diller</label>
+        <div class="flex flex-wrap gap-2" id="lang-chips">
+          <span class="lang-chip" data-lang="en">İngilizce</span>
+          <span class="lang-chip" data-lang="de">Almanca</span>
+          <span class="lang-chip" data-lang="ru">Rusça</span>
+          <span class="lang-chip" data-lang="ar">Arapça</span>
+          <span class="lang-chip" data-lang="fr">Fransızca</span>
+        </div>
+        <div class="ob-help">Birden fazla dil seçebilirsin. Türkçe varsayılan kabul edilir.</div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <div>
+          <label class="ob-label" for="experience">Deneyim</label>
+          <input id="experience" name="experience" maxlength="40" class="ob-input" placeholder="Örn. 1 yıl+, Yeni mezun" />
+        </div>
+        <div>
+          <label class="ob-label" for="salaryMin">Maaş — Min</label>
+          <input id="salaryMin" name="salaryMin" type="number" min="0" class="ob-input" placeholder="25000" />
+        </div>
+        <div>
+          <label class="ob-label" for="salaryMax">Maaş — Max</label>
+          <input id="salaryMax" name="salaryMax" type="number" min="0" class="ob-input" placeholder="35000" />
+        </div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="currency">Para Birimi</label>
+        <select id="currency" name="currency" class="ob-select max-w-[200px]">
+          <option value="TRY">₺ Türk Lirası</option>
+          <option value="USD">$ USD</option>
+          <option value="EUR">€ EUR</option>
+        </select>
+        <div class="ob-help">Aylık brüt belirt. Boş bırakırsan "Görüşülecek" görünür.</div>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <button type="button" data-prev="1" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition">Geri</button>
+        <button type="button" data-next="3" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
+          Devam Et
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </fieldset>
+
+    <!-- ============ STEP 3: CONTACT & PREVIEW ============ -->
+    <fieldset id="step-3" class="step-fieldset hidden space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">İletişim & Önizleme</h2>
+      <p class="text-sea-600 text-sm mb-4">Başvurular nereye gelsin? Son adımda ilanını gözden geçir.</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="ob-label" for="contactEmail">İletişim E-posta *</label>
+          <input id="contactEmail" name="contactEmail" required type="email" class="ob-input" placeholder="info@isletmen.com" />
+        </div>
+        <div>
+          <label class="ob-label" for="contactPhone">Telefon (opsiyonel)</label>
+          <input id="contactPhone" name="contactPhone" type="tel" class="ob-input" placeholder="+90 5XX XXX XX XX" />
+        </div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="expiresAt">Başvuru Kapanış Tarihi (opsiyonel)</label>
+        <input id="expiresAt" name="expiresAt" type="date" class="ob-input max-w-[260px]" />
+      </div>
+
+      <!-- Preview -->
+      <div class="bg-sea-50 border border-sea-200 rounded-xl p-5 mt-6">
+        <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-2">İLAN ÖNİZLEME</div>
+        <div id="preview"></div>
+      </div>
+
+      <div class="bg-sun-400/10 border border-sun-400/40 rounded-lg p-3 text-xs text-sea-800 leading-relaxed">
+        <strong class="text-sea-900">Yayın akışı:</strong> İlanın admin onayına gönderilir. Spam, KVKK ihlali veya
+        ayrımcı içerik içermeyen ilanlar 24-48 saat içinde yayına alınır. Onaylandığında e-posta ile bilgilendirilirsin.
+      </div>
+
+      <div id="submit-error" class="hidden text-coral-500 text-sm font-semibold"></div>
+      <div id="submit-success" class="hidden bg-sea-50 border border-sea-200 text-sea-800 rounded-lg p-4 text-sm">
+        <div class="flex items-start gap-3">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <div>
+            <div class="font-display font-bold text-sea-900">İlanın gönderildi!</div>
+            <div class="text-xs mt-1">Admin incelemesi 24-48 saat içinde tamamlanır. Onaylandığında e-posta ile bilgilendirileceksin.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between gap-3 pt-2">
+        <button type="button" data-prev="2" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition">Geri</button>
+        <button type="submit" class="bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold px-6 py-3 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition flex items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          İLANI GÖNDER
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="mt-12" style="background:#072136;">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-white/50 text-xs">
+      <div class="font-display font-bold text-white/80 flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN INFO
+      </div>
+      <div class="flex gap-4">
+        <a href="ilanlar.html" class="hover:text-white transition">Tüm İlanlar</a>
+        <a href="kvkk.html" class="hover:text-white transition">KVKK</a>
+        <a href="privacy.html" class="hover:text-white transition">Gizlilik</a>
+      </div>
+      <div>© 2026 Kalkan Info</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script type="module">
+import { createJob, renderJobCard } from './js/jobs.js';
+
+const form = document.getElementById('job-form');
+const steps = [...document.querySelectorAll('.step-fieldset')];
+const dots = [...document.querySelectorAll('.step-dot')];
+const lines = [...document.querySelectorAll('.step-line')];
+const langChips = [...document.querySelectorAll('.lang-chip')];
+const typeCards = [...document.querySelectorAll('.type-card')];
+const authWarning = document.getElementById('auth-warning');
+const submitErr = document.getElementById('submit-error');
+const submitOk = document.getElementById('submit-success');
+
+let _currentStep = 1;
+let _selectedLangs = new Set();
+let _user = null;
+
+// ----- Auth check
+try {
+  const { auth, onAuthStateChanged } = await import('./js/auth.js');
+  onAuthStateChanged(auth, u => {
+    _user = u;
+    if (!u) authWarning.classList.remove('hidden');
+    else authWarning.classList.add('hidden');
+  });
+} catch {
+  // Firebase yapılandırılmamış — demo mod
+  authWarning.classList.remove('hidden');
+}
+
+// ----- Step navigation
+function goToStep(n) {
+  _currentStep = n;
+  steps.forEach(s => s.classList.toggle('hidden', s.id !== `step-${n}`));
+  dots.forEach((d, i) => {
+    const num = i + 1;
+    d.classList.toggle('active', num === n);
+    d.classList.toggle('done', num < n);
+    if (num < n) d.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+    else d.textContent = num;
+  });
+  lines.forEach((l, i) => l.classList.toggle('done', i + 1 < n));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (n === 3) updatePreview();
+}
+
+document.querySelectorAll('[data-next]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (validateStep(_currentStep)) goToStep(parseInt(btn.dataset.next));
+  });
+});
+document.querySelectorAll('[data-prev]').forEach(btn => {
+  btn.addEventListener('click', () => goToStep(parseInt(btn.dataset.prev)));
+});
+
+function validateStep(n) {
+  if (n === 1) {
+    const title = form.title.value.trim();
+    const cat = form.category.value;
+    const type = form.querySelector('input[name=type]:checked')?.value;
+    const loc = form.location.value.trim();
+    const emp = form.employerName.value.trim();
+    if (!title || !cat || !type || !loc || !emp) {
+      alert('Lütfen tüm zorunlu alanları doldur.');
+      return false;
+    }
+  }
+  if (n === 2) {
+    if (!form.description.value.trim()) {
+      alert('Pozisyon açıklaması zorunlu.');
+      return false;
+    }
+  }
+  return true;
+}
+
+// ----- Lang chips
+langChips.forEach(c => {
+  c.addEventListener('click', () => {
+    const code = c.dataset.lang;
+    if (_selectedLangs.has(code)) {
+      _selectedLangs.delete(code);
+      c.classList.remove('active');
+    } else {
+      _selectedLangs.add(code);
+      c.classList.add('active');
+    }
+  });
+});
+
+// ----- Type cards
+typeCards.forEach(card => {
+  const radio = card.querySelector('.type-radio');
+  card.addEventListener('click', () => {
+    typeCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    radio.checked = true;
+  });
+});
+
+// ----- Preview
+function buildJobObject() {
+  const fd = new FormData(form);
+  const reqs = (fd.get('requirements') || '').split('\n').map(r => r.trim()).filter(Boolean);
+  const min = parseInt(fd.get('salaryMin')) || null;
+  const max = parseInt(fd.get('salaryMax')) || null;
+  const expires = fd.get('expiresAt') ? new Date(fd.get('expiresAt')) : null;
+  const desc = (fd.get('description') || '').trim();
+  const descHtml = desc.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>').replace(/[<>]/g, c => ({ '<':'&lt;','>':'&gt;'}[c]))}</p>`).join('');
+
+  return {
+    title: fd.get('title')?.trim(),
+    category: fd.get('category'),
+    type: fd.get('type'),
+    location: fd.get('location')?.trim(),
+    employerName: fd.get('employerName')?.trim(),
+    descriptionHtml: descHtml,
+    requirements: reqs,
+    languages: [...['tr'], ..._selectedLangs],
+    experience: fd.get('experience')?.trim() || null,
+    salaryMin: min, salaryMax: max,
+    currency: fd.get('currency') || 'TRY',
+    contactEmail: fd.get('contactEmail')?.trim(),
+    contactPhone: fd.get('contactPhone')?.trim() || null,
+    expiresAt: expires,
+  };
+}
+
+function updatePreview() {
+  const job = { ...buildJobObject(), id: 'preview', publishedAt: new Date() };
+  document.getElementById('preview').innerHTML = renderJobCard(job);
+}
+
+// ----- Submit
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  submitErr.classList.add('hidden');
+  if (!_user) {
+    submitErr.textContent = 'İlan vermek için giriş yapmalısın.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+  if (!validateStep(1) || !validateStep(2)) return;
+
+  const data = buildJobObject();
+  if (!data.contactEmail) {
+    submitErr.textContent = 'İletişim e-postası zorunlu.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+
+  const submitBtn = form.querySelector('button[type=submit]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'GÖNDERİLİYOR...';
+
+  const result = await createJob(data, _user.uid);
+  if (result.ok) {
+    submitOk.classList.remove('hidden');
+    submitBtn.classList.add('hidden');
+    setTimeout(() => { window.location.href = 'profil.html#ilanlarim'; }, 2500);
+  } else {
+    submitErr.textContent = result.error || 'İlan gönderilemedi.';
+    submitErr.classList.remove('hidden');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> İLANI GÖNDER';
+  }
+});
+
+// init
+goToStep(1);
+</script>
+</body>
+</html>
