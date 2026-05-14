@@ -1,61 +1,16 @@
 /**
  * onboarding.js — Hizmet Ekle multi-step state machine (ES module)
+ * Supabase port — Faz 2.5
  *
- * Bağımlılıklar (graceful degrade):
- *   js/auth.js  — requireAuth, currentUser, auth, db
- *   js/slug.js  — uniqueSlug
- *   Firebase Storage modular SDK (CDN)
+ * Bağımlılıklar:
+ *   js/auth.js             — requireAuth, currentUser, isSupabaseConfigured
+ *   js/supabase-client.js  — supabase client (DB + Storage)
+ *   js/slug.js             — uniqueSlug
  */
 
+import { supabase } from './supabase-client.js';
+import { isSupabaseConfigured, requireAuth } from './auth.js';
 import { uniqueSlug } from './slug.js';
-
-// ---------------------------------------------------------------------------
-// Firebase imports — graceful degrade: config yoksa mock kullan
-// ---------------------------------------------------------------------------
-let _auth = null;
-let _db   = null;
-let _requireAuth = async () => null;
-let _currentUser = () => null;
-let _firebaseConfigured = false;
-
-try {
-  const authMod = await import('./auth.js');
-  _requireAuth         = authMod.requireAuth;
-  _currentUser         = authMod.currentUser;
-  _auth                = authMod.auth;
-  _db                  = authMod.db;
-  _firebaseConfigured  = authMod.isFirebaseConfigured ?? false;
-} catch {
-  console.warn('[onboarding] auth.js yüklenemedi — graceful degrade');
-}
-
-// Firebase Storage
-let _getStorage, _ref, _uploadBytes, _getDownloadURL;
-try {
-  const storageMod = await import(
-    'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js'
-  );
-  _getStorage    = storageMod.getStorage;
-  _ref           = storageMod.ref;
-  _uploadBytes   = storageMod.uploadBytes;
-  _getDownloadURL = storageMod.getDownloadURL;
-} catch {
-  console.warn('[onboarding] firebase-storage yüklenemedi');
-}
-
-// Firestore
-let _collection, _doc, _setDoc, _serverTimestamp;
-try {
-  const fsm = await import(
-    'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'
-  );
-  _collection      = fsm.collection;
-  _doc             = fsm.doc;
-  _setDoc          = fsm.setDoc;
-  _serverTimestamp = fsm.serverTimestamp;
-} catch {
-  console.warn('[onboarding] firebase-firestore yüklenemedi');
-}
 
 // i18n — opsiyonel
 let _t = (key) => key;
@@ -70,6 +25,7 @@ try {
 const DRAFT_KEY_PREFIX = 'kalkan_onboarding_draft_';
 const MAX_FILE_MB      = 5;
 const MAX_GALLERY      = 8;
+const STORAGE_BUCKET   = 'profiles';
 
 const TYPE_LABELS = {
   restoran: { label: 'Restoran',         icon: '🍽️' },
@@ -96,7 +52,7 @@ const state = {
   step: 1,
   totalSteps: 4,
   user: null,
-  profileId: null,
+  providerId: null,
   data: {
     type: '',
     name: '',
@@ -134,19 +90,17 @@ export async function init(rootSelector = '#onboarding-root') {
   $root = document.querySelector(rootSelector);
   if (!$root) return;
 
-  // Auth yumuşak kontrol — Firebase config yoksa veya hata olursa redirect yok
-  // _firebaseConfigured false ise apiKey eksik → anında landing göster
-  // Config varsa onAuthStateChanged bekle (max 4s: geçersiz config olursa hiç çağrılmaz)
+  // Auth yumuşak kontrol — Supabase config yoksa veya hata olursa redirect yok
   let user = null;
-  if (!_firebaseConfigured) {
-    // Firebase config yok — anında landing ekranı
+  if (!isSupabaseConfigured) {
     user = null;
   } else {
     try {
-      user = await Promise.race([
-        _requireAuth('login.html'),
-        new Promise((resolve) => setTimeout(() => resolve(null), 4000)),
+      const { data: { session } } = await Promise.race([
+        supabase.auth.getSession(),
+        new Promise((resolve) => setTimeout(() => resolve({ data: { session: null } }), 4000)),
       ]);
+      user = session?.user || null;
     } catch {
       user = null;
     }
@@ -159,14 +113,14 @@ export async function init(rootSelector = '#onboarding-root') {
     setTimeout(() => _overlay.remove(), 300);
   }
 
-  // Auth yok (mock _requireAuth null döndü veya hata) → landing ekranı
+  // Auth yok → landing ekranı
   if (!user) {
     _renderLanding();
     return;
   }
 
-  // Auth var ama e-posta doğrulanmamış → doğrulama ekranı
-  if (!user.emailVerified) {
+  // Supabase'de e-posta doğrulama: user.email_confirmed_at dolu mu?
+  if (!user.email_confirmed_at) {
     state.user = user;
     _renderEmailVerification();
     return;
@@ -256,15 +210,13 @@ function _renderLanding() {
 function _renderEmailVerification() {
   const resendEmail = async () => {
     try {
-      const authMod = await import('./auth.js');
-      if (authMod.auth?.currentUser) {
-        const { sendEmailVerification } = await import(
-          'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js'
-        );
-        await sendEmailVerification(authMod.auth.currentUser);
-        alert('Doğrulama e-postası gönderildi. Lütfen gelen kutunuzu kontrol edin.');
-      }
-    } catch {
+      const email = state.user?.email;
+      if (!email) throw new Error('E-posta bulunamadı');
+      const { error } = await supabase.auth.resend({ type: 'signup', email });
+      if (error) throw error;
+      alert('Doğrulama e-postası gönderildi. Lütfen gelen kutunuzu kontrol edin.');
+    } catch (err) {
+      console.error('[onboarding] resend hatası:', err);
       alert('E-posta gönderilemedi. Lütfen daha sonra tekrar deneyin.');
     }
   };
@@ -1000,6 +952,23 @@ function _validateFile(file) {
 }
 
 // ---------------------------------------------------------------------------
+// Storage upload helper — bucket henüz yoksa try/catch
+// ---------------------------------------------------------------------------
+async function _uploadToStorage(path, file) {
+  try {
+    const { error } = await supabase.storage
+      .from(STORAGE_BUCKET)
+      .upload(path, file, { upsert: true, contentType: file.type || 'image/jpeg' });
+    if (error) throw error;
+    const { data } = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+    return data?.publicUrl || null;
+  } catch (err) {
+    console.warn(`[onboarding] storage upload başarısız (${path}):`, err.message);
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Save
 // ---------------------------------------------------------------------------
 async function _save() {
@@ -1011,83 +980,79 @@ async function _save() {
   _hideGlobalError();
 
   try {
-    const uid       = state.user?.uid;
-    const profileId = state.profileId || _generateProfileId();
-    state.profileId = profileId;
+    const uid = state.user?.id;
+    if (!uid) throw new Error('Oturum bilgisi bulunamadı');
 
-    // Görselleri yükle
-    let coverUrl   = state.data.coverUrl;
-    let galleryUrls = [...state.data.galleryUrls];
+    // Görselleri Supabase Storage'a yükle
+    let coverUrl    = state.data.coverUrl?.startsWith('blob:') ? '' : state.data.coverUrl;
+    let galleryUrls = state.data.galleryUrls
+      .map((u) => (u?.startsWith('blob:') ? null : u))
+      .filter(Boolean);
 
-    if (_getStorage && _ref && _uploadBytes && _getDownloadURL) {
-      const storage = _getStorage();
+    const uploadId = state.providerId || `provider_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    state.providerId = uploadId;
 
-      if (state.data.coverFile) {
-        const coverRef = _ref(storage, `profiles/${profileId}/cover.jpg`);
-        await _uploadBytes(coverRef, state.data.coverFile);
-        coverUrl = await _getDownloadURL(coverRef);
-      }
-
-      for (let i = 0; i < state.data.galleryFiles.length; i++) {
-        const file = state.data.galleryFiles[i];
-        if (!file) continue;
-        const gRef = _ref(storage, `profiles/${profileId}/gallery/${i}.jpg`);
-        await _uploadBytes(gRef, file);
-        galleryUrls[i] = await _getDownloadURL(gRef);
-      }
+    if (state.data.coverFile) {
+      const url = await _uploadToStorage(`${uid}/${uploadId}/cover.jpg`, state.data.coverFile);
+      if (url) coverUrl = url;
     }
 
-    // Firestore dokümanı
-    const profileDoc = {
-      ownerUid:    uid,
-      type:        state.data.type,
-      status:      'pending',
-      name:        state.data.name,
-      slug:        uniqueSlug(state.data.name),
-      category:    state.data.category,
-      summary:     state.data.summary,
-      descriptionML: { tr: state.data.description },
-      priceRange:  state.data.priceRange,
-      coverImage:  coverUrl,
-      images:      galleryUrls,
-      menu:        state.data.menuItems.filter((m) => m.name),
-      contact: {
-        phone:    state.data.phone,
-        whatsapp: state.data.whatsapp,
-        email:    state.data.email,
-        website:  state.data.website,
+    for (let i = 0; i < state.data.galleryFiles.length; i++) {
+      const file = state.data.galleryFiles[i];
+      if (!file) continue;
+      const url = await _uploadToStorage(`${uid}/${uploadId}/gallery-${i}.jpg`, file);
+      if (url) galleryUrls.push(url);
+    }
+
+    // providers tablosuna kayıt
+    const row = {
+      owner_id:         uid,
+      type:             state.data.type,
+      status:           'pending',
+      slug:             uniqueSlug(state.data.name),
+      name:             state.data.name,
+      category:         state.data.category || null,
+      summary:          state.data.summary || null,
+      description_i18n: state.data.description ? { tr: state.data.description } : {},
+      price_range:      state.data.priceRange || null,
+      lat:              state.data.lat,
+      lng:              state.data.lng,
+      address:          state.data.address || null,
+      phone:            state.data.phone || null,
+      whatsapp:         state.data.whatsapp || null,
+      email:            state.data.email || null,
+      website:          state.data.website || null,
+      cover_image:      coverUrl || null,
+      gallery:          galleryUrls,
+      data:             {
+        menu: state.data.menuItems.filter((m) => m.name),
       },
-      location: {
-        address: state.data.address,
-        lat:     state.data.lat,
-        lng:     state.data.lng,
-      },
-      ratingAvg:   0,
-      ratingCount: 0,
     };
 
-    if (_db && _doc && _setDoc && _serverTimestamp) {
-      profileDoc.createdAt = _serverTimestamp();
-      profileDoc.updatedAt = _serverTimestamp();
-      await _setDoc(_doc(_db, 'profiles', profileId), profileDoc);
-    }
+    const { data: inserted, error } = await supabase
+      .from('providers')
+      .insert(row)
+      .select('id, slug')
+      .single();
+
+    if (error) throw error;
 
     // Draft temizle
     _clearDraft();
 
     // Başarı ekranı
-    _renderSuccess(profileId);
+    _renderSuccess(inserted?.id);
 
   } catch (err) {
     console.error('[onboarding] save error:', err);
-    _showGlobalError('Kayıt sırasında hata oluştu. Lütfen tekrar deneyin.');
+    _showGlobalError(`Kayıt sırasında hata oluştu: ${err.message || 'Lütfen tekrar deneyin.'}`);
     if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Kaydet ve İncele'; }
   } finally {
     state.saving = false;
   }
 }
 
-function _renderSuccess(profileId) {
+function _renderSuccess(providerId) {
   $root.innerHTML = `
 <div class="bg-white rounded-xl p-8 shadow-card text-center max-w-md mx-auto">
   <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
@@ -1112,7 +1077,7 @@ function _renderSuccess(profileId) {
 function _autosave() {
   if (!state.user) return;
   _syncToState();
-  const key = `${DRAFT_KEY_PREFIX}${state.user.uid}`;
+  const key = `${DRAFT_KEY_PREFIX}${state.user.id}`;
   try {
     localStorage.setItem(key, JSON.stringify({
       step: state.step,
@@ -1129,7 +1094,7 @@ function _autosave() {
 
 function _loadDraft() {
   if (!state.user) return;
-  const key = `${DRAFT_KEY_PREFIX}${state.user.uid}`;
+  const key = `${DRAFT_KEY_PREFIX}${state.user.id}`;
   try {
     const raw = localStorage.getItem(key);
     if (!raw) return;
@@ -1143,14 +1108,7 @@ function _loadDraft() {
 
 function _clearDraft() {
   if (!state.user) return;
-  localStorage.removeItem(`${DRAFT_KEY_PREFIX}${state.user.uid}`);
-}
-
-// ---------------------------------------------------------------------------
-// ID üretici
-// ---------------------------------------------------------------------------
-function _generateProfileId() {
-  return `profile_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+  localStorage.removeItem(`${DRAFT_KEY_PREFIX}${state.user.id}`);
 }
 
 // ---------------------------------------------------------------------------

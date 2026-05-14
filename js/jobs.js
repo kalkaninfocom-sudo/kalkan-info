@@ -1,53 +1,18 @@
 /**
- * Kalkan Info — Job Board Module
+ * Kalkan Info — Job Board Module (Supabase port — Faz 2.5)
  *
- * Firestore koleksiyonları:
- *  - jobs/{jobId}            ilanlar
- *  - jobApplications/{appId} başvurular
+ * Supabase tabloları:
+ *   - jobs              ilanlar (status='active' public)
+ *   - job_applications  başvurular
  *
- * Graceful degrade: Firebase yapılandırılmamışsa demo veri ile çalışır.
+ * Graceful degrade: Supabase yapılandırılmamışsa demo veri ile çalışır.
  */
 
-// auth.js'i lazy import: Firebase config boşsa init patlar, sayfa kırılmasın
-let _firebaseAvailable = null;
-async function _checkFirebase() {
-  if (_firebaseAvailable !== null) return _firebaseAvailable;
-  try {
-    const mod = await import('./auth.js');
-    _firebaseAvailable = Boolean(mod.isFirebaseConfigured);
-  } catch {
-    _firebaseAvailable = false;
-  }
-  return _firebaseAvailable;
-}
-
-let _firestore = null;
-
-async function _getDb() {
-  if (!(await _checkFirebase())) return null;
-  if (_firestore) return _firestore;
-  try {
-    const { getFirestore, collection, query, where, orderBy, limit, getDocs, getDoc, doc, addDoc, setDoc, updateDoc, serverTimestamp } =
-      await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
-    const { initializeApp, getApps } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
-    const apps = getApps();
-    if (!apps.length) {
-      console.warn('[jobs] firebase app henüz init edilmemiş');
-      return null;
-    }
-    _firestore = {
-      db: getFirestore(apps[0]),
-      api: { collection, query, where, orderBy, limit, getDocs, getDoc, doc, addDoc, setDoc, updateDoc, serverTimestamp },
-    };
-    return _firestore;
-  } catch (err) {
-    console.warn('[jobs] firestore yüklenemedi, demo moda düşülüyor:', err.message);
-    return null;
-  }
-}
+import { supabase } from './supabase-client.js';
+import { isSupabaseConfigured } from './auth.js';
 
 // ----------------------------------------------------------------------------
-// Demo veri (Firebase yoksa)
+// Demo veri (Supabase yoksa)
 // ----------------------------------------------------------------------------
 const DEMO_JOBS = [
   {
@@ -59,13 +24,13 @@ const DEMO_JOBS = [
     location: 'Kalkan Merkez',
     languages: ['tr', 'en'],
     experience: '1 yıl+',
-    salaryMin: 25000, salaryMax: 35000, currency: 'TRY',
-    descriptionHtml: '<p>Mayıs-Ekim sezonu boyunca, denize sıfır restoranımızda <strong>akşam vardiyası garsonu</strong> arıyoruz. İngilizce zorunlu, Almanca artı.</p>',
+    salary_min: 25000, salary_max: 35000, currency: 'TRY',
+    description_html: '<p>Mayıs-Ekim sezonu boyunca, denize sıfır restoranımızda <strong>akşam vardiyası garsonu</strong> arıyoruz. İngilizce zorunlu, Almanca artı.</p>',
     requirements: ['Min. 1 yıl restoran deneyimi', 'İngilizce iletişim', 'Pazartesi-Pazar dönemli vardiya'],
-    contactEmail: 'demo@kalkaninfo.com',
-    publishedAt: new Date('2026-04-28'),
-    expiresAt: new Date('2026-06-30'),
-    employerName: 'Aubergine Kalkan',
+    contact_email: 'demo@kalkaninfo.com',
+    published_at: new Date('2026-04-28').toISOString(),
+    expires_at: new Date('2026-06-30').toISOString(),
+    employer_name: 'Aubergine Kalkan',
     status: 'active',
   },
   {
@@ -77,13 +42,13 @@ const DEMO_JOBS = [
     location: 'Kalkan',
     languages: ['tr', 'en', 'ru'],
     experience: '2 yıl+',
-    salaryMin: 35000, salaryMax: 50000, currency: 'TRY',
-    descriptionHtml: '<p>Lüks villa portföyümüzde misafir check-in/check-out, transfer koordinasyonu, günlük destek. Ehliyet zorunlu.</p>',
+    salary_min: 35000, salary_max: 50000, currency: 'TRY',
+    description_html: '<p>Lüks villa portföyümüzde misafir check-in/check-out, transfer koordinasyonu, günlük destek. Ehliyet zorunlu.</p>',
     requirements: ['Ehliyet B sınıfı', 'Akıcı İngilizce', 'Rusça veya Almanca tercih', 'Esnek çalışma saatleri'],
-    contactEmail: 'demo@kalkaninfo.com',
-    publishedAt: new Date('2026-04-25'),
-    expiresAt: new Date('2026-07-15'),
-    employerName: 'Kalkan Premium Villas',
+    contact_email: 'demo@kalkaninfo.com',
+    published_at: new Date('2026-04-25').toISOString(),
+    expires_at: new Date('2026-07-15').toISOString(),
+    employer_name: 'Kalkan Premium Villas',
     status: 'active',
   },
   {
@@ -95,13 +60,13 @@ const DEMO_JOBS = [
     location: 'Kalkan Marina',
     languages: ['tr', 'en'],
     experience: '5 yıl+',
-    salaryMin: 50000, salaryMax: 75000, currency: 'TRY',
-    descriptionHtml: '<p>Günlük 12 kişilik tekne turlarımız için ehliyetli kaptan. Kaş-Kalkan-Kaputaş rotası.</p>',
+    salary_min: 50000, salary_max: 75000, currency: 'TRY',
+    description_html: '<p>Günlük 12 kişilik tekne turlarımız için ehliyetli kaptan. Kaş-Kalkan-Kaputaş rotası.</p>',
     requirements: ['Amatör Denizci Belgesi (ADB) min.', 'Kalkan-Kaş bölge bilgisi', 'Misafirle iletişim becerisi'],
-    contactEmail: 'demo@kalkaninfo.com',
-    publishedAt: new Date('2026-04-20'),
-    expiresAt: new Date('2026-05-31'),
-    employerName: 'Likya Tekne Turları',
+    contact_email: 'demo@kalkaninfo.com',
+    published_at: new Date('2026-04-20').toISOString(),
+    expires_at: new Date('2026-05-31').toISOString(),
+    employer_name: 'Likya Tekne Turları',
     status: 'active',
   },
   {
@@ -113,13 +78,13 @@ const DEMO_JOBS = [
     location: 'Kalkan Civarı',
     languages: ['tr'],
     experience: '3 yıl+',
-    salaryMin: 1500, salaryMax: 3500, currency: 'TRY',
-    descriptionHtml: '<p>Villa misafirlerine günlük ev yemeği. Esnek saatler, günlük ücret.</p>',
+    salary_min: 1500, salary_max: 3500, currency: 'TRY',
+    description_html: '<p>Villa misafirlerine günlük ev yemeği. Esnek saatler, günlük ücret.</p>',
     requirements: ['Türk + Akdeniz mutfağı', 'Hijyen sertifikası', 'Kendi ulaşımı'],
-    contactEmail: 'demo@kalkaninfo.com',
-    publishedAt: new Date('2026-04-22'),
-    expiresAt: new Date('2026-08-15'),
-    employerName: 'Bireysel İşveren',
+    contact_email: 'demo@kalkaninfo.com',
+    published_at: new Date('2026-04-22').toISOString(),
+    expires_at: new Date('2026-08-15').toISOString(),
+    employer_name: 'Bireysel İşveren',
     status: 'active',
   },
 ];
@@ -151,16 +116,18 @@ export function getCategories() { return { ...CATEGORIES }; }
 export function getTypes() { return { ...TYPES }; }
 
 export async function listJobs(filters = {}) {
-  const fb = await _getDb();
-  if (!fb) {
+  if (!isSupabaseConfigured) {
     return DEMO_JOBS.filter(j => _matchesFilters(j, filters));
   }
   try {
-    const { db, api } = fb;
-    let q = api.query(api.collection(db, 'jobs'), api.where('status', '==', 'active'), api.orderBy('publishedAt', 'desc'), api.limit(50));
-    const snap = await api.getDocs(q);
-    const jobs = [];
-    snap.forEach(d => jobs.push({ id: d.id, ...d.data() }));
+    const { data, error } = await supabase
+      .from('jobs')
+      .select('*')
+      .eq('status', 'active')
+      .order('published_at', { ascending: false })
+      .limit(50);
+    if (error) throw error;
+    const jobs = data || [];
     return jobs.filter(j => _matchesFilters(j, filters));
   } catch (err) {
     console.warn('[jobs] listJobs hatası, demo moda düşülüyor:', err.message);
@@ -169,107 +136,120 @@ export async function listJobs(filters = {}) {
 }
 
 export async function getJob(idOrSlug) {
-  const fb = await _getDb();
-  if (!fb) {
+  if (!isSupabaseConfigured) {
     return DEMO_JOBS.find(j => j.id === idOrSlug || j.slug === idOrSlug) || null;
   }
   try {
-    const { db, api } = fb;
-    const ref = api.doc(db, 'jobs', idOrSlug);
-    const snap = await api.getDoc(ref);
-    if (snap.exists()) return { id: snap.id, ...snap.data() };
-    const q = api.query(api.collection(db, 'jobs'), api.where('slug', '==', idOrSlug), api.limit(1));
-    const qsnap = await api.getDocs(q);
-    if (!qsnap.empty) {
-      const d = qsnap.docs[0];
-      return { id: d.id, ...d.data() };
+    // UUID kontrolü — değilse direkt slug ile arar
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
+    if (isUuid) {
+      const { data, error } = await supabase.from('jobs').select('*').eq('id', idOrSlug).maybeSingle();
+      if (error) throw error;
+      if (data) return data;
     }
-    return null;
+    const { data, error } = await supabase.from('jobs').select('*').eq('slug', idOrSlug).maybeSingle();
+    if (error) throw error;
+    return data || null;
   } catch (err) {
+    console.warn('[jobs] getJob hatası:', err.message);
     return DEMO_JOBS.find(j => j.id === idOrSlug || j.slug === idOrSlug) || null;
   }
 }
 
 export async function createJob(data, ownerUid) {
-  const fb = await _getDb();
-  if (!fb) {
-    console.warn('[jobs] Firebase yok, ilan kaydedilmedi (demo).');
-    return { ok: false, error: 'Firebase yapılandırılmamış. Lütfen önce giriş yapın.' };
+  if (!isSupabaseConfigured) {
+    console.warn('[jobs] Supabase yok, ilan kaydedilmedi (demo).');
+    return { ok: false, error: 'Supabase yapılandırılmamış. Lütfen önce giriş yapın.' };
   }
   try {
-    const { db, api } = fb;
-    const ref = api.doc(api.collection(db, 'jobs'));
-    const slug = _slugify(data.title) + '-' + ref.id.slice(-6);
-    await api.setDoc(ref, {
-      ...data,
-      ownerUid,
+    const slug = _slugify(data.title) + '-' + Math.random().toString(36).slice(2, 8);
+    const row = {
+      owner_id:         ownerUid,
       slug,
-      status: 'pending',
-      viewCount: 0,
-      applicationCount: 0,
-      createdAt: api.serverTimestamp(),
-      updatedAt: api.serverTimestamp(),
-      publishedAt: null,
-    });
-    return { ok: true, id: ref.id, slug };
+      title:            data.title,
+      category:         data.category,
+      type:             data.type,
+      location:         data.location,
+      employer_name:    data.employerName ?? data.employer_name ?? '',
+      contact_email:    data.contactEmail ?? data.contact_email ?? '',
+      description_html: data.descriptionHtml ?? data.description_html ?? null,
+      requirements:     data.requirements || [],
+      languages:        data.languages || [],
+      experience:       data.experience || null,
+      salary_min:       data.salaryMin ?? data.salary_min ?? null,
+      salary_max:       data.salaryMax ?? data.salary_max ?? null,
+      currency:         data.currency || 'TRY',
+      status:           'pending',
+      expires_at:       data.expiresAt ?? data.expires_at ?? null,
+    };
+    const { data: inserted, error } = await supabase
+      .from('jobs')
+      .insert(row)
+      .select('id, slug')
+      .single();
+    if (error) throw error;
+    return { ok: true, id: inserted.id, slug: inserted.slug };
   } catch (err) {
     return { ok: false, error: err.message };
   }
 }
 
 export async function applyToJob(jobId, applicantData, applicantUid) {
-  const fb = await _getDb();
-  if (!fb) return { ok: false, error: 'Önce giriş yapın.' };
+  if (!isSupabaseConfigured) return { ok: false, error: 'Önce giriş yapın.' };
   try {
-    const { db, api } = fb;
     const job = await getJob(jobId);
     if (!job) return { ok: false, error: 'İlan bulunamadı.' };
-    const ref = api.doc(api.collection(db, 'jobApplications'));
-    await api.setDoc(ref, {
-      jobId,
-      jobOwnerUid: job.ownerUid,
-      applicantUid,
-      applicantName: applicantData.name,
-      applicantPhone: applicantData.phone,
-      applicantEmail: applicantData.email,
-      coverNote: applicantData.coverNote || '',
-      cvUrl: applicantData.cvUrl || null,
-      status: 'pending',
-      createdAt: api.serverTimestamp(),
-      updatedAt: api.serverTimestamp(),
-    });
-    return { ok: true, id: ref.id };
+    const row = {
+      job_id:          job.id,
+      job_owner_id:    job.owner_id,
+      applicant_id:    applicantUid,
+      applicant_name:  applicantData.name,
+      applicant_phone: applicantData.phone,
+      applicant_email: applicantData.email,
+      cover_note:      applicantData.coverNote || null,
+      cv_url:          applicantData.cvUrl || null,
+      status:          'pending',
+    };
+    const { data: inserted, error } = await supabase
+      .from('job_applications')
+      .insert(row)
+      .select('id')
+      .single();
+    if (error) throw error;
+    return { ok: true, id: inserted.id };
   } catch (err) {
     return { ok: false, error: err.message };
   }
 }
 
 export async function getMyJobs(uid) {
-  const fb = await _getDb();
-  if (!fb) return [];
+  if (!isSupabaseConfigured) return [];
   try {
-    const { db, api } = fb;
-    const q = api.query(api.collection(db, 'jobs'), api.where('ownerUid', '==', uid), api.orderBy('createdAt', 'desc'));
-    const snap = await api.getDocs(q);
-    const jobs = [];
-    snap.forEach(d => jobs.push({ id: d.id, ...d.data() }));
-    return jobs;
+    const { data, error } = await supabase
+      .from('jobs')
+      .select('*')
+      .eq('owner_id', uid)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data || [];
   } catch (err) {
+    console.warn('[jobs] getMyJobs hatası:', err.message);
     return [];
   }
 }
 
 export async function getMyApplications(uid) {
-  const fb = await _getDb();
-  if (!fb) return [];
+  if (!isSupabaseConfigured) return [];
   try {
-    const { db, api } = fb;
-    const q = api.query(api.collection(db, 'jobApplications'), api.where('applicantUid', '==', uid), api.orderBy('createdAt', 'desc'));
-    const snap = await api.getDocs(q);
-    const apps = [];
-    snap.forEach(d => apps.push({ id: d.id, ...d.data() }));
-    return apps;
+    const { data, error } = await supabase
+      .from('job_applications')
+      .select('*')
+      .eq('applicant_id', uid)
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data || [];
   } catch (err) {
+    console.warn('[jobs] getMyApplications hatası:', err.message);
     return [];
   }
 }
@@ -282,8 +262,9 @@ export function renderJobCard(job) {
   const cat = CATEGORIES[job.category] || 'Diğer';
   const type = TYPES[job.type] || '';
   const langs = (job.languages || []).map(l => LANG_LABELS[l] || l.toUpperCase()).join(' · ');
-  const salary = _formatSalary(job.salaryMin, job.salaryMax, job.currency);
-  const date = _formatDate(job.publishedAt);
+  const salary = _formatSalary(_pick(job, 'salary_min', 'salaryMin'), _pick(job, 'salary_max', 'salaryMax'), job.currency);
+  const date = _formatDate(_pick(job, 'published_at', 'publishedAt'));
+  const employer = _pick(job, 'employer_name', 'employerName') || '';
   return `
     <article class="card-base card-hover rounded-xl border border-sea-100 p-5 cursor-pointer" data-job-id="${_esc(job.id)}">
       <div class="flex items-center justify-between mb-3">
@@ -291,7 +272,7 @@ export function renderJobCard(job) {
         <span class="text-[11px] text-sea-500">${_esc(date)}</span>
       </div>
       <h3 class="font-display font-extrabold text-base text-sea-800 leading-tight mb-2">${_esc(job.title)}</h3>
-      <p class="text-sm text-sea-600 mb-3">${_esc(job.employerName || '')}</p>
+      <p class="text-sm text-sea-600 mb-3">${_esc(employer)}</p>
       <div class="space-y-1.5 text-xs text-sea-700">
         <div class="flex items-center gap-2">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -319,7 +300,10 @@ export function renderJobDetail(job) {
   const cat = CATEGORIES[job.category] || 'Diğer';
   const type = TYPES[job.type] || '';
   const langs = (job.languages || []).map(l => LANG_LABELS[l] || l.toUpperCase()).join(' · ');
-  const salary = _formatSalary(job.salaryMin, job.salaryMax, job.currency);
+  const salary = _formatSalary(_pick(job, 'salary_min', 'salaryMin'), _pick(job, 'salary_max', 'salaryMax'), job.currency);
+  const employer = _pick(job, 'employer_name', 'employerName') || '';
+  const expiresAt = _pick(job, 'expires_at', 'expiresAt');
+  const descriptionHtml = _pick(job, 'description_html', 'descriptionHtml') || '';
   const reqs = (job.requirements || []).map(r => `<li class="flex items-start gap-2 text-sm text-sea-700"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e89812" stroke-width="3" class="mt-0.5 flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg><span>${_esc(r)}</span></li>`).join('');
 
   return `
@@ -330,7 +314,7 @@ export function renderJobDetail(job) {
           <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sun-600 bg-sun-400/10 border border-sun-400/30 px-2.5 py-1 rounded">${_esc(type)}</span>
         </div>
         <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-800 leading-tight mb-2">${_esc(job.title)}</h1>
-        <p class="text-sea-600 font-semibold">${_esc(job.employerName || '')}</p>
+        <p class="text-sea-600 font-semibold">${_esc(employer)}</p>
       </header>
 
       <div class="p-6 md:p-8 grid md:grid-cols-3 gap-6 text-sm">
@@ -350,15 +334,15 @@ export function renderJobDetail(job) {
           <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-1">Deneyim</div>
           <div class="text-sea-800 font-semibold">${_esc(job.experience)}</div>
         </div>` : ''}
-        ${job.expiresAt ? `<div>
+        ${expiresAt ? `<div>
           <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-1">Son Başvuru</div>
-          <div class="text-sea-800 font-semibold">${_esc(_formatDate(job.expiresAt))}</div>
+          <div class="text-sea-800 font-semibold">${_esc(_formatDate(expiresAt))}</div>
         </div>` : ''}
       </div>
 
       <div class="px-6 md:px-8 pb-6 md:pb-8">
         <h2 class="font-display font-bold text-lg text-sea-800 mb-3">İlan Detayı</h2>
-        <div class="prose prose-sm max-w-none text-sea-700 leading-relaxed">${job.descriptionHtml || ''}</div>
+        <div class="prose prose-sm max-w-none text-sea-700 leading-relaxed">${descriptionHtml}</div>
 
         ${reqs ? `<h2 class="font-display font-bold text-lg text-sea-800 mt-6 mb-3">Aranan Nitelikler</h2>
         <ul class="space-y-2">${reqs}</ul>` : ''}
@@ -386,10 +370,19 @@ function _matchesFilters(job, f) {
   if (f.language && f.language !== 'all' && !(job.languages || []).includes(f.language)) return false;
   if (f.search) {
     const s = f.search.toLowerCase();
-    const blob = (job.title + ' ' + job.location + ' ' + (job.employerName || '') + ' ' + (job.descriptionHtml || '')).toLowerCase();
+    const employer = _pick(job, 'employer_name', 'employerName') || '';
+    const desc = _pick(job, 'description_html', 'descriptionHtml') || '';
+    const blob = (job.title + ' ' + job.location + ' ' + employer + ' ' + desc).toLowerCase();
     if (!blob.includes(s)) return false;
   }
   return true;
+}
+
+function _pick(obj, ...keys) {
+  for (const k of keys) {
+    if (obj && obj[k] != null) return obj[k];
+  }
+  return null;
 }
 
 function _slugify(s) {
@@ -414,6 +407,6 @@ function _formatSalary(min, max, cur) {
 
 function _formatDate(d) {
   if (!d) return '';
-  const date = d instanceof Date ? d : (d.seconds ? new Date(d.seconds * 1000) : new Date(d));
+  const date = d instanceof Date ? d : (typeof d === 'string' ? new Date(d) : (d.seconds ? new Date(d.seconds * 1000) : new Date(d)));
   return date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
 }

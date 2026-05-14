@@ -1,73 +1,24 @@
 /**
- * Kalkan Info — Reviews Component
+ * Kalkan Info — Reviews Component (Supabase port — Faz 2.5)
  * Faz 3: Yeniden kullanılabilir yorum & değerlendirme sistemi
- * Firebase Firestore SDK v10 (modular, CDN)
+ *
+ * Supabase tablosu: public.reviews
+ *   - target_kind enum: 'listing' | 'provider' | 'vacation'
+ *   - target_id uuid (polymorphic, FK yok)
+ *   - author_id uuid → auth.users(id)
+ *   - rating (1..5), text (10..2000), photos text[]
+ *   - status enum: 'visible' | 'hidden' | 'reported'
+ *
+ * Storage bucket: 'reviews' (public, 3 MB/file)
  *
  * Kullanım:
  *   import { mountReviews } from './reviews.js';
- *   mountReviews({ target: '#reviews-mount', targetType: 'profile', targetId: 'restoran-mehmet' });
+ *   mountReviews({ target: '#reviews-mount', targetType: 'provider', targetId: '<uuid>' });
  */
 
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  orderBy,
-  limit as fsLimit,
-  startAfter,
-  addDoc,
-  serverTimestamp,
-  getDocs,
-  doc,
-  updateDoc,
-  increment,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-import {
-  getStorage,
-  ref as storageRef,
-  uploadBytes,
-  getDownloadURL,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
+import { supabase } from './supabase-client.js';
 
-// ---------------------------------------------------------------------------
-// Firebase bootstrap — auth.js'in init ettiği app'i kullan
-// ---------------------------------------------------------------------------
-let _db   = null;
-let _stor = null;
-
-function _getDB() {
-  if (_db) return _db;
-  try {
-    const { getApp } = /** @type {any} */ (window.__firebaseModules || {});
-    if (getApp) {
-      const app = getApp();
-      _db   = getFirestore(app);
-      _stor = getStorage(app);
-      return _db;
-    }
-    // CDN import path fallback
-    throw new Error('getApp not found');
-  } catch {
-    console.warn('[reviews] Firebase henüz yapılandırılmadı. auth.js yüklendikten sonra çağırın.');
-    return null;
-  }
-}
-
-function _getStor() {
-  if (_stor) return _stor;
-  _getDB(); // side-effect: _stor da set edilir
-  return _stor;
-}
-
-// auth.js'den currentUser import et — yoksa graceful fallback
-let _currentUser = null;
-try {
-  const authMod = await import('./auth.js');
-  _currentUser = authMod.currentUser;
-} catch {
-  _currentUser = () => null;
-}
+const STORAGE_BUCKET = 'reviews';
 
 // ---------------------------------------------------------------------------
 // i18n — js/i18n.js varsa kullan, yoksa Türkçe fallback
@@ -134,7 +85,7 @@ function escapeHtml(str) {
 // ---------------------------------------------------------------------------
 // Yardımcılar
 // ---------------------------------------------------------------------------
-function _stars(rating, interactive = false, name = '') {
+function _stars(rating, interactive = false) {
   const stars = [1, 2, 3, 4, 5];
   if (interactive) {
     return `
@@ -167,7 +118,7 @@ function _avatar(name, photoURL) {
 function _relativeTime(ts) {
   if (!ts) return '';
   const now  = Date.now();
-  const date = ts.toDate ? ts.toDate() : new Date(ts);
+  const date = typeof ts === 'string' ? new Date(ts) : (ts.toDate ? ts.toDate() : new Date(ts));
   const diff = Math.floor((now - date.getTime()) / 1000);
   if (diff < 60)   return 'az önce';
   if (diff < 3600) return `${Math.floor(diff / 60)} dakika önce`;
@@ -181,128 +132,154 @@ function _ratingLabel(r) {
   return labels[r] || '';
 }
 
+// targetType (eski API) → review_target_kind enum eşleştirmesi
+function _normalizeKind(type) {
+  if (!type) return 'listing';
+  // legacy 'profile' → 'provider' (Firestore profiles koleksiyonu = providers tablosu)
+  if (type === 'profile') return 'provider';
+  if (type === 'listing' || type === 'provider' || type === 'vacation') return type;
+  return 'listing';
+}
+
+// review satırı → eski API key normalizasyonu (UI'da kullanılan key'leri yarat)
+function _shapeReview(row) {
+  const author = row.author || {};
+  return {
+    id:          row.id,
+    targetKind:  row.target_kind,
+    targetId:    row.target_id,
+    authorUid:   row.author_id,
+    authorName:  author.display_name || 'Anonim',
+    authorPhoto: author.photo_url || null,
+    rating:      row.rating,
+    text:        row.text,
+    photos:      row.photos || [],
+    status:      row.status,
+    helpful:     row.helpful || 0,
+    reply:       row.reply || null,
+    createdAt:   row.created_at,
+  };
+}
+
 // ---------------------------------------------------------------------------
-// Firestore işlemleri
+// Supabase işlemleri
 // ---------------------------------------------------------------------------
 
 /**
- * Yorumları Firestore'dan yükler
- * @param {string} targetType
+ * Yorumları yükler
+ * @param {string} targetType  legacy alan — 'listing'|'provider'|'vacation' veya 'profile'
  * @param {string} targetId
- * @param {{ limit?: number, after?: any }} opts
- * @returns {Promise<{ reviews: any[], lastDoc: any }>}
+ * @param {{ limit?: number, after?: string }} opts  after = son satırın created_at (cursor)
+ * @returns {Promise<{ reviews: any[], lastCursor: string|null }>}
  */
 export async function loadReviews(targetType, targetId, { limit: lim = 10, after = null } = {}) {
-  const db = _getDB();
-  if (!db) return { reviews: [], lastDoc: null };
-
+  const kind = _normalizeKind(targetType);
   try {
-    const constraints = [
-      where('targetType', '==', targetType),
-      where('targetId',   '==', targetId),
-      where('status',     '==', 'visible'),
-      orderBy('createdAt', 'desc'),
-      fsLimit(lim),
-    ];
-    if (after) constraints.push(startAfter(after));
+    let q = supabase
+      .from('reviews')
+      .select('id, target_kind, target_id, author_id, rating, text, photos, status, helpful, reply, created_at, author:users!reviews_author_id_fkey(display_name, photo_url)')
+      .eq('target_kind', kind)
+      .eq('target_id', targetId)
+      .eq('status', 'visible')
+      .order('created_at', { ascending: false })
+      .limit(lim);
+    if (after) q = q.lt('created_at', after);
 
-    const q   = query(collection(db, 'reviews'), ...constraints);
-    const snap = await getDocs(q);
-    const reviews  = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    const lastDoc  = snap.docs[snap.docs.length - 1] || null;
-    return { reviews, lastDoc };
+    const { data, error } = await q;
+    if (error) throw error;
+    const reviews = (data || []).map(_shapeReview);
+    const lastCursor = reviews.length ? reviews[reviews.length - 1].createdAt : null;
+    return { reviews, lastCursor };
   } catch (err) {
     console.error('[reviews] loadReviews hatası:', err);
-    return { reviews: [], lastDoc: null };
+    return { reviews: [], lastCursor: null };
   }
 }
 
 /**
- * Yorum gönder — auth + e-posta doğrulaması zorunlu
+ * Yorum gönder — auth + e-posta doğrulaması zorunlu (RLS de zorlar)
  * @param {{ targetType: string, targetId: string, rating: number, text: string, photos?: File[] }} params
  */
 export async function submitReview({ targetType, targetId, rating, text, photos = [] }) {
-  const db   = _getDB();
-  const stor = _getStor();
-  const user = _currentUser?.();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user)            return { ok: false, message: t('reviews.login_required') };
-  if (!user.emailVerified) return { ok: false, message: t('reviews.verify_email') };
-  if (!db)              return { ok: false, message: 'Firebase bağlantısı yok.' };
+  if (!user)                        return { ok: false, message: t('reviews.login_required') };
+  if (!user.email_confirmed_at)     return { ok: false, message: t('reviews.verify_email') };
 
   const trimmed = text.trim();
   if (!rating || rating < 1 || rating > 5) return { ok: false, message: t('reviews.select_rating') };
   if (trimmed.length < 10)                  return { ok: false, message: t('reviews.text_min') };
 
-  // Fotoğraf yükleme
-  const photoPaths = [];
-  if (photos.length && stor) {
-    const tempId = doc(collection(db, 'reviews')).id;
+  // Fotoğraf yükleme — bucket henüz yoksa try/catch
+  const photoUrls = [];
+  if (photos.length) {
+    const tempId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
     for (let i = 0; i < Math.min(photos.length, 5); i++) {
       try {
-        const file     = photos[i];
-        const fileRef  = storageRef(stor, `reviews/${tempId}/${i}.jpg`);
-        await uploadBytes(fileRef, file);
-        const url = await getDownloadURL(fileRef);
-        photoPaths.push(url);
+        const file = photos[i];
+        const path = `${user.id}/${tempId}/${i}.jpg`;
+        const { error: upErr } = await supabase.storage
+          .from(STORAGE_BUCKET)
+          .upload(path, file, { upsert: true, contentType: file.type || 'image/jpeg' });
+        if (upErr) throw upErr;
+        const { data: pub } = supabase.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+        if (pub?.publicUrl) photoUrls.push(pub.publicUrl);
       } catch (err) {
-        console.error('[reviews] Fotoğraf yükleme hatası:', err);
+        console.warn('[reviews] Fotoğraf yükleme hatası:', err.message);
       }
     }
   }
 
   try {
-    const docRef = await addDoc(collection(db, 'reviews'), {
-      targetType,
-      targetId,
-      authorUid:   user.uid,
-      authorName:  user.displayName || 'Anonim',
-      authorPhoto: user.photoURL    || null,
-      rating,
-      text:        trimmed,
-      photos:      photoPaths,
-      status:      'visible',
-      helpful:     0,
-      reply:       null,
-      createdAt:   serverTimestamp(),
-    });
-    return { ok: true, id: docRef.id };
+    const kind = _normalizeKind(targetType);
+    const { data: inserted, error } = await supabase
+      .from('reviews')
+      .insert({
+        target_kind: kind,
+        target_id:   targetId,
+        author_id:   user.id,
+        rating,
+        text:        trimmed,
+        photos:      photoUrls,
+        status:      'visible',
+      })
+      .select('id')
+      .single();
+    if (error) throw error;
+    return { ok: true, id: inserted.id };
   } catch (err) {
     console.error('[reviews] submitReview hatası:', err);
-    return { ok: false, message: t('reviews.submit_error') };
+    return { ok: false, message: err.message || t('reviews.submit_error') };
   }
 }
 
 /**
- * Profil sahibi yanıtı — şimdilik Cloud Function üzerinden yapılacak
- * TODO: Cloud Function `replyToReview(reviewId, text)` implemente edilince aktif et
- * @param {string} _reviewId
- * @param {string} _text
+ * Profil sahibi yanıtı — Edge Function gerekiyor
+ * TODO: edge function `reply-to-review` — RLS ile sadece provider sahibi yanıt yazabilir
  */
 export async function replyToReview(_reviewId, _text) {
-  // TODO: getFunctions + httpsCallable ile Cloud Function çağrısı
-  console.info('[reviews] replyToReview: Cloud Function henüz implemente edilmedi.');
+  // TODO: supabase.functions.invoke('reply-to-review', { body: { reviewId, text } })
+  console.info('[reviews] replyToReview: Edge Function henüz implemente edilmedi.');
   return { ok: false, message: 'Yanıt özelliği yakında aktif olacak.' };
 }
 
 /**
- * Yararlı işaretle — Cloud Function callable (TODO)
- * @param {string} _reviewId
+ * Yararlı işaretle — Edge Function gerekiyor (anti-spam için)
+ * TODO: edge function `mark-helpful` — increment + rate limit
  */
 export async function markHelpful(_reviewId) {
-  // TODO: Cloud Function `markHelpful` callable
-  console.info('[reviews] markHelpful: Cloud Function henüz implemente edilmedi.');
+  // TODO: supabase.functions.invoke('mark-helpful', { body: { reviewId } })
+  console.info('[reviews] markHelpful: Edge Function henüz implemente edilmedi.');
   return { ok: false, message: 'Yakında' };
 }
 
 /**
- * Yorum şikayet et — Cloud Function callable (TODO)
- * @param {string} _reviewId
- * @param {string} _reason
+ * Yorum şikayet et — Edge Function gerekiyor
+ * TODO: edge function `report-review`
  */
 export async function reportReview(_reviewId, _reason) {
-  // TODO: Cloud Function `reportReview` callable
-  console.info('[reviews] reportReview: Cloud Function henüz implemente edilmedi.');
+  // TODO: supabase.functions.invoke('report-review', { body: { reviewId, reason } })
+  console.info('[reviews] reportReview: Edge Function henüz implemente edilmedi.');
   return { ok: false, message: 'Yakında' };
 }
 
@@ -310,29 +287,28 @@ export async function reportReview(_reviewId, _reason) {
 // Özet bandı (ortalama puan, dağılım)
 // ---------------------------------------------------------------------------
 async function _buildSummary(targetType, targetId) {
-  const db = _getDB();
-  if (!db) return { avg: 0, count: 0, dist: { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 } };
-
+  const kind = _normalizeKind(targetType);
   try {
-    const q    = query(
-      collection(db, 'reviews'),
-      where('targetType', '==', targetType),
-      where('targetId',   '==', targetId),
-      where('status',     '==', 'visible'),
-    );
-    const snap = await getDocs(q);
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('rating')
+      .eq('target_kind', kind)
+      .eq('target_id', targetId)
+      .eq('status', 'visible');
+
+    if (error) throw error;
+
     const dist = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
     let total  = 0;
-
-    snap.docs.forEach(d => {
-      const r = d.data().rating;
+    (data || []).forEach(d => {
+      const r = d.rating;
       if (r >= 1 && r <= 5) {
         dist[r]++;
         total += r;
       }
     });
 
-    const count = snap.docs.length;
+    const count = data?.length || 0;
     const avg   = count ? Math.round((total / count) * 10) / 10 : 0;
     return { avg, count, dist };
   } catch (err) {
@@ -386,7 +362,7 @@ function _renderWriteCard(user) {
       </div>`;
   }
 
-  if (!user.emailVerified) {
+  if (!user.email_confirmed_at) {
     return `
       <div class="reviews-verify-prompt card-base rounded-xl p-5 mb-6 text-amber-700 bg-amber-50 border border-amber-200 text-sm">
         ${escapeHtml(t('reviews.verify_email'))}
@@ -543,7 +519,7 @@ function _openLightbox(url, container) {
 // ---------------------------------------------------------------------------
 // Yorum yazma formu — event binding
 // ---------------------------------------------------------------------------
-function _bindWriteCard(container, targetType, targetId, onSubmitted) {
+function _bindWriteCard(container, targetType, targetId, currentUser, onSubmitted) {
   const form = container.querySelector('.reviews-form');
   if (!form) return;
 
@@ -564,7 +540,7 @@ function _bindWriteCard(container, targetType, targetId, onSubmitted) {
   if (starsContainer) {
     const starBtns = starsContainer.querySelectorAll('.star-btn');
 
-    const _updateStars = (val, isHover = false) => {
+    const _updateStars = (val) => {
       starBtns.forEach((btn, i) => {
         btn.style.color = i < val ? '#f4b53d' : '#d1d5db';
         btn.style.transform = i < val ? 'scale(1.15)' : 'scale(1)';
@@ -572,7 +548,7 @@ function _bindWriteCard(container, targetType, targetId, onSubmitted) {
     };
 
     starBtns.forEach((btn) => {
-      btn.addEventListener('mouseenter', () => _updateStars(+btn.dataset.value, true));
+      btn.addEventListener('mouseenter', () => _updateStars(+btn.dataset.value));
       btn.addEventListener('mouseleave', () => _updateStars(selectedRating));
       btn.addEventListener('click', () => {
         selectedRating = +btn.dataset.value;
@@ -649,20 +625,21 @@ function _bindWriteCard(container, targetType, targetId, onSubmitted) {
     submitBtn.textContent = t('reviews.submitting');
 
     // Optimistic UI — anlık yorum
-    const user = _currentUser?.();
+    const profile = currentUser?.profile || {};
     const optimisticReview = {
       id:          '_optimistic_' + Date.now(),
-      targetType,  targetId,
-      authorUid:   user?.uid || '',
-      authorName:  user?.displayName || 'Anonim',
-      authorPhoto: user?.photoURL    || null,
+      targetKind:  _normalizeKind(targetType),
+      targetId,
+      authorUid:   currentUser?.id || '',
+      authorName:  profile.display_name || currentUser?.user_metadata?.full_name || 'Anonim',
+      authorPhoto: profile.photo_url    || currentUser?.user_metadata?.avatar_url || null,
       rating,
       text,
       photos:      selectedFiles.map(f => URL.createObjectURL(f)),
       status:      'visible',
       helpful:     0,
       reply:       null,
-      createdAt:   { toDate: () => new Date() },
+      createdAt:   new Date().toISOString(),
     };
 
     if (onSubmitted) onSubmitted(optimisticReview, 'optimistic');
@@ -732,7 +709,20 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
       </div>
     </section>`;
 
-  const user = _currentUser?.();
+  // Aktif kullanıcı
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // Kullanıcı profilini bir defalık çek (avatar/display_name için)
+  if (user) {
+    try {
+      const { data: profile } = await supabase
+        .from('users')
+        .select('display_name, photo_url')
+        .eq('id', user.id)
+        .maybeSingle();
+      user.profile = profile || {};
+    } catch { /* yok */ }
+  }
 
   // Özet & liste paralel yükle
   const [summary, initial] = await Promise.all([
@@ -740,7 +730,7 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
     loadReviews(targetType, targetId, { limit: 10 }),
   ]);
 
-  let lastDoc       = initial.lastDoc;
+  let lastCursor    = initial.lastCursor;
   let reviewsList   = [...initial.reviews];
 
   // Optimistik listesini track et
@@ -754,7 +744,7 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
       return;
     }
     listEl.innerHTML = reviewsList.map(_renderReviewCard).join('') +
-      (lastDoc ? `
+      (lastCursor ? `
         <button type="button"
           class="load-more-btn w-full py-3 rounded-xl border border-sea-200 text-sea-600 text-sm font-medium hover:bg-sea-50 hover:border-sea-400 active:bg-sea-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sea-400 mt-2">
           ${t('reviews.load_more')}
@@ -787,8 +777,8 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
       loadMoreBtn.addEventListener('click', async () => {
         loadMoreBtn.disabled    = true;
         loadMoreBtn.textContent = 'Yükleniyor…';
-        const more = await loadReviews(targetType, targetId, { limit: 10, after: lastDoc });
-        lastDoc       = more.lastDoc;
+        const more = await loadReviews(targetType, targetId, { limit: 10, after: lastCursor });
+        lastCursor    = more.lastCursor;
         reviewsList   = [...reviewsList, ...more.reviews];
         _renderList();
       });
@@ -802,14 +792,12 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
       reviewsList = [review, ...reviewsList.filter(r => !_optimisticIds.has(r.id))];
       _renderList();
     } else if (phase === 'confirmed') {
-      // Optimistik kaydı gerçek ID ile değiştir
-      _optimisticIds.delete(review.id.startsWith('_optimistic') ? review.id : null);
       reviewsList = reviewsList.map(r =>
-        r.id.startsWith('_optimistic_') ? review : r
+        (typeof r.id === 'string' && r.id.startsWith('_optimistic_')) ? review : r
       );
       _renderList();
     } else if (phase === 'rollback') {
-      reviewsList = reviewsList.filter(r => !r.id.startsWith('_optimistic_'));
+      reviewsList = reviewsList.filter(r => !(typeof r.id === 'string' && r.id.startsWith('_optimistic_')));
       _renderList();
     }
   }
@@ -823,14 +811,14 @@ export async function mountReviews({ target, targetType, targetId, locale = 'tr'
     </section>`;
 
   _renderList();
-  _bindWriteCard(container, targetType, targetId, _onSubmitted);
+  _bindWriteCard(container, targetType, targetId, user, _onSubmitted);
 }
 
 // ---------------------------------------------------------------------------
 // Toast yardımcısı
 // ---------------------------------------------------------------------------
-function _showToast(container, message) {
-  const existing = container.querySelector('.reviews-toast');
+function _showToast(_container, message) {
+  const existing = document.body.querySelector('.reviews-toast');
   if (existing) existing.remove();
 
   const toast = document.createElement('div');
