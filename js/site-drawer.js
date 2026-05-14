@@ -129,4 +129,60 @@
   } else {
     mountDrawer();
   }
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // Bugünün tarihi — her sayfa için merkezi güncelleme.
+  // Hedef: hardcoded "29/30 Nisan 2026" string'lerinin yerine bugünün tarihi.
+  // Eleman: <span id="today-date"> veya <span data-today>
+  // ──────────────────────────────────────────────────────────────────────────
+  function updateToday() {
+    try {
+      var fmt = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+      var text = fmt.format(new Date());
+      var nodes = document.querySelectorAll('#today-date, [data-today]');
+      nodes.forEach(function (n) { n.textContent = text; });
+    } catch (e) { /* ignore */ }
+  }
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // Hava durumu — Kalkan (36.27, 29.41). Open-Meteo, CORS açık, anahtarsız.
+  // Hedef eleman: <span data-weather>  (örn. "☀ 22°C / Açık")
+  // Fallback: çağrı başarısızsa eleman gizlenir (fake veri göstermek yerine).
+  // ──────────────────────────────────────────────────────────────────────────
+  function updateWeather() {
+    var targets = document.querySelectorAll('[data-weather]');
+    if (!targets.length) return;
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=36.27&longitude=29.41&current=temperature_2m,weather_code&timezone=Europe%2FIstanbul';
+    fetch(url).then(function (r) { return r.json(); }).then(function (data) {
+      var c = data && data.current;
+      if (!c || typeof c.temperature_2m !== 'number') {
+        targets.forEach(function (n) { n.style.display = 'none'; });
+        return;
+      }
+      var code = c.weather_code;
+      // WMO weather code → emoji + Türkçe etiket (özet eşleme)
+      var map = {
+        0:  ['☀', 'Açık'],            1:  ['🌤', 'Çoğunlukla açık'],
+        2:  ['⛅', 'Parçalı bulutlu'], 3:  ['☁',  'Bulutlu'],
+        45: ['🌫', 'Sis'],            48: ['🌫', 'Donlu sis'],
+        51: ['🌦', 'Hafif çisenti'],  53: ['🌦', 'Çisenti'],     55: ['🌦', 'Yoğun çisenti'],
+        61: ['🌧', 'Hafif yağmur'],   63: ['🌧', 'Yağmur'],       65: ['🌧', 'Şiddetli yağmur'],
+        71: ['🌨', 'Hafif kar'],      73: ['🌨', 'Kar'],          75: ['🌨', 'Yoğun kar'],
+        80: ['🌦', 'Hafif sağanak'],  81: ['🌦', 'Sağanak'],      82: ['⛈', 'Şiddetli sağanak'],
+        95: ['⛈', 'Gök gürültülü'],   96: ['⛈', 'Dolu ile fırtına'], 99: ['⛈', 'Şiddetli fırtına']
+      };
+      var entry = map[code] || ['🌡', '—'];
+      var label = entry[0] + ' ' + Math.round(c.temperature_2m) + '°C / ' + entry[1];
+      targets.forEach(function (n) { n.textContent = label; });
+    }).catch(function () {
+      targets.forEach(function (n) { n.style.display = 'none'; });
+    });
+  }
+
+  function runHeaderUpdates() { updateToday(); updateWeather(); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runHeaderUpdates);
+  } else {
+    runHeaderUpdates();
+  }
 })();
