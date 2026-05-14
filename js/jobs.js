@@ -342,7 +342,7 @@ export function renderJobDetail(job) {
 
       <div class="px-6 md:px-8 pb-6 md:pb-8">
         <h2 class="font-display font-bold text-lg text-sea-800 mb-3">İlan Detayı</h2>
-        <div class="prose prose-sm max-w-none text-sea-700 leading-relaxed">${descriptionHtml}</div>
+        <div class="prose prose-sm max-w-none text-sea-700 leading-relaxed">${_sanitizeRichText(descriptionHtml)}</div>
 
         ${reqs ? `<h2 class="font-display font-bold text-lg text-sea-800 mt-6 mb-3">Aranan Nitelikler</h2>
         <ul class="space-y-2">${reqs}</ul>` : ''}
@@ -395,6 +395,17 @@ function _slugify(s) {
 function _esc(s) {
   if (s == null) return '';
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// Defense-in-depth: ilan açıklamasında sadece <p> ve <br> tag'lerine izin ver, gerisini soy.
+// Form tarafı zaten escape ediyor ama anon API üzerinden injection olasılığına karşı.
+function _sanitizeRichText(html) {
+  if (html == null) return '';
+  return String(html)
+    .replace(/<\s*\/?\s*(?!p\b|br\b)[a-z][^>]*>/gi, '')
+    .replace(/\son\w+\s*=\s*"[^"]*"/gi, '')
+    .replace(/\son\w+\s*=\s*'[^']*'/gi, '')
+    .replace(/\son\w+\s*=\s*[^\s>]+/gi, '');
 }
 
 function _formatSalary(min, max, cur) {
