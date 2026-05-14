@@ -121,9 +121,14 @@ export async function logout() {
   }
 }
 
-/** Mevcut kullanıcıyı döner (null = giriş yok) — sync, son session'dan */
+// Auth state cache — safeOnAuthStateChanged tarafından güncelleniyor
+let _cachedUser = null;
+supabase.auth.getSession().then(({ data }) => { _cachedUser = data?.session?.user ?? null; }).catch(() => {});
+supabase.auth.onAuthStateChange((_event, session) => { _cachedUser = session?.user ?? null; });
+
+/** Mevcut kullanıcıyı döner (null = giriş yok) — sync, cache'den */
 export function currentUser() {
-  return supabase.auth.getUser ? null : null; // async fallback — safeOnAuthStateChanged tercih edilmeli
+  return _cachedUser;
 }
 
 /**
@@ -190,8 +195,12 @@ export async function deleteUser() {
 
 // Backward-compat re-exports (profile.js kullanır)
 export { supabase as db };
-export const onAuthStateChanged = safeOnAuthStateChanged;
-export const auth = { get currentUser() { return null; } };
+// Firebase-compat shim: onAuthStateChanged(authMock, callback) → Supabase tek-arg signature'a köprüle
+export const onAuthStateChanged = (...args) => {
+  const cb = args.length > 1 ? args[1] : args[0];
+  return safeOnAuthStateChanged(cb);
+};
+export const auth = { get currentUser() { return _cachedUser; } };
 
 // ---------------------------------------------------------------------------
 // Hata mesajları — Supabase error string'lerine güncellendi

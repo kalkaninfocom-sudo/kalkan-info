@@ -58,10 +58,8 @@ async function _bootstrap() {
     return;
   }
 
-  // Admin claim kontrolü — app_metadata.role veya raw_app_meta_data.role = 'admin'
-  const isAdmin =
-    user.app_metadata?.role === 'admin' ||
-    user.user_metadata?.role === 'admin';
+  // Admin claim kontrolü — SADECE app_metadata (user_metadata kullanıcı tarafından değiştirilebilir)
+  const isAdmin = user.app_metadata?.role === 'admin';
 
   if (!isAdmin) {
     showAuthError('Bu panele erişim yetkiniz yok. Lütfen yönetici hesabı kullanın.');

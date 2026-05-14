@@ -49,8 +49,8 @@ export default async function handler(req, res) {
   // GET — webhook verification
   if (req.method === 'GET') {
     if (STUB_MODE) {
-      console.log('[whatsapp] STUB: GET verify, env vars eksik');
-      return res.status(200).send(req.query['hub.challenge'] || 'stub');
+      console.warn('[whatsapp] STUB: env vars eksik, servis devre dışı');
+      return res.status(503).json({ error: 'Service unavailable' });
     }
 
     const mode      = req.query['hub.mode'];
@@ -107,8 +107,8 @@ export default async function handler(req, res) {
           }
 
           await supabase.from('audit_log').insert({
-            event_type: 'whatsapp_message_received',
-            payload: {
+            action: 'whatsapp_message_received',
+            metadata: {
               message_id:   msg.id,
               sender:       normalised,
               type:         msg.type,

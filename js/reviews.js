@@ -177,7 +177,7 @@ export async function loadReviews(targetType, targetId, { limit: lim = 10, after
   try {
     let q = supabase
       .from('reviews')
-      .select('id, target_kind, target_id, author_id, rating, text, photos, status, helpful, reply, created_at, author:users!reviews_author_id_fkey(display_name, photo_url)')
+      .select('id, target_kind, target_id, author_id, rating, text, photos, status, helpful, reply, created_at, author:users(display_name, photo_url)')
       .eq('target_kind', kind)
       .eq('target_id', targetId)
       .eq('status', 'visible')

@@ -213,12 +213,11 @@ export default async function handler(req, res) {
     const { error: queueError } = await supabase.from('mail_queue').insert({
       to_email:    email,
       subject:     tpl.subject,
-      html_body:   tpl.html(name),
-      text_body:   tpl.text(name),
-      status:      'pending',
+      body_html:   tpl.html(name),
+      body_text:   tpl.text(name),
+      status:      'queued',
       template:    'welcome',
-      lang,
-      metadata:    { displayName: name, userId: user.id },
+      metadata:    { displayName: name, userId: user.id, lang },
     });
 
     if (queueError) {
