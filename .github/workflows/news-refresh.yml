@@ -1,0 +1,42 @@
+name: News refresh (RSS aggregator)
+
+on:
+  schedule:
+    # Every 6 hours at minute 7 (avoid the top-of-hour rush)
+    - cron: '7 */6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run RSS aggregator
+        run: node scripts/news-aggregator.mjs
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          if git diff --quiet -- data/haberler.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git add data/haberler.json
+          git commit -m "chore(news): RSS refresh $(date -u +'%Y-%m-%dT%H:%MZ')"
+          git push

@@ -1,20 +1,448 @@
 {
   "_meta": {
     "title": "Haberler",
-    "subtitle": "Kalkan ve bölgeden güncel duyurular, etkinlikler, kültür haberleri",
-    "updated": "2026-04-29"
+    "subtitle": "Kalkan ve Antalya bölgesinden güncel haberler — canlı RSS akışı",
+    "updated": "2026-05-13T22:35:57.826Z",
+    "sources": [
+      {
+        "name": "Antalya Körfez",
+        "home": "https://www.antalyakorfez.com"
+      },
+      {
+        "name": "Kalkan Times",
+        "home": "https://www.kalkantimes.com"
+      },
+      {
+        "name": "Anadolu Ajansı",
+        "home": "https://www.aa.com.tr"
+      }
+    ],
+    "generated_by": "scripts/news-aggregator.mjs"
   },
-  "categories": ["Etkinlik", "Belediye", "Restoran", "Plaj", "Kültür", "Hava"],
+  "categories": [
+    "Gündem",
+    "Hava",
+    "Belediye",
+    "Plaj",
+    "Asayiş",
+    "Etkinlik",
+    "Kültür",
+    "Turizm"
+  ],
   "items": [
-    {"id":"sezon-acilis-2026","title":"Kalkan 2026 Sezonu Resmi Açılışı","category":"Etkinlik","date":"2026-05-01","image":"https://images.unsplash.com/photo-1534531409860-9c8e2fe40b97?auto=format&fit=crop&w=1200&q=80","summary":"Kalkan Belediyesi resmi sezon açılışını 1 Mayıs'ta yat limanında düzenliyor. Konser, havai fişek, esnaf indirimleri.","content":"Belediye Başkanı'nın açılış konuşması saat 19:00'da. Akşam canlı müzik ve yerel sanatçılarla 22:00'a kadar sürecek konser. Tüm restoranlar %15 indirimli menü uygulayacak.","tags":["Sezon","Etkinlik","Müzik"],"featured":true},
-    {"id":"patara-mavi-bayrak","title":"Patara Plajı Mavi Bayrak'ı 2026'da Yeniledi","category":"Plaj","date":"2026-04-25","image":"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80","summary":"Patara Plajı bu yıl da Mavi Bayrak sertifikasını korudu. Su kalitesi ve çevre standartları kontrolünden geçti.","content":"Türkiye Çevre Eğitim Vakfı'nın yıllık denetimi sonucu Patara Plajı 2026 sezonunda da Mavi Bayrak sertifikasını korudu. Kaputaş, Kalamar ve İncirli plajları da listede yer aldı.","tags":["Mavi Bayrak","Patara","Çevre"],"featured":true},
-    {"id":"yeni-restoran-2026","title":"Yat Limanına Yeni Açılan Restoran: Mavi Roka","category":"Restoran","date":"2026-04-22","image":"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80","summary":"İstanbul'dan gelen şef Selim Aslan, yat limanında modern Türk mutfağı konseptli yeni restoranını açtı.","content":"Mavi Roka, Lizo'nun eski yerinde 22 Nisan'da kapılarını açtı. Şef Selim Aslan'ın 'Akdeniz çocukluğu' temasıyla hazırladığı menü 12 mevsim yemeğinden oluşuyor.","tags":["Yeni açılış","Fine dining","Yat Limanı"],"featured":true},
-    {"id":"patara-2026-kazi","title":"Patara Antik Kenti 2026 Kazı Sezonu Başladı","category":"Kültür","date":"2026-04-18","image":"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80","summary":"Akdeniz Üniversitesi öncülüğündeki Patara kazıları yeni sezonda Likya yazıtları üzerine yoğunlaşacak.","content":"Prof. Dr. Havva İşkan Işık başkanlığında 80 kişilik ekip kazıya başladı. Bu sezon önceliği bouleuterion'un restorasyonu ve yeni yazıtların okunması.","tags":["Antik kent","Patara","Arkeoloji"],"featured":false},
-    {"id":"kalkan-yoga-festivali","title":"Kalkan Yoga & Refah Festivali","category":"Etkinlik","date":"2026-05-15","image":"https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=80","summary":"15-17 Mayıs arası 3 günlük yoga festivali. Uluslararası eğitmenler, plaj seansları, atölyeler.","content":"Kalamar koyunda kurulacak festival alanında 3 gün boyunca her saat farklı eğitmenle yoga seansları. Erken bilet ₺1.250, kapıda ₺1.800. Konaklama ayrı.","tags":["Yoga","Festival","Mayıs"],"featured":true},
-    {"id":"kalkan-su-kesintisi","title":"Kalkan Üzümlü Mevkii 30 Nisan Su Kesintisi","category":"Belediye","date":"2026-04-28","image":"https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80","summary":"30 Nisan 09:00-15:00 arası altyapı bakımı için Üzümlü Mevkii'nde su kesintisi olacak.","content":"Kalkan Belediyesi duyurusu: 30 Nisan Çarşamba günü 09:00 ile 15:00 saatleri arası Üzümlü Mevkii ve Kalamar bölgesinde planlı altyapı bakımı için su kesintisi yapılacak.","tags":["Su kesintisi","Belediye","Bakım"],"featured":false},
-    {"id":"kanyon-yenileme","title":"Saklıkent Kanyon Giriş Yenileniyor","category":"Kültür","date":"2026-04-15","image":"https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=1200&q=80","summary":"Saklıkent kanyon girişi ve yürüyüş yolları yenileniyor. 1 Haziran'a kadar bazı bölümler kapalı.","content":"Milli Park müdürlüğünün açıklamasına göre Saklıkent kanyon giriş yapısı ve ilk 200 m yürüyüş yolu yenileniyor. Bu süreçte günlük ziyaretçi sayısı 2.000 ile sınırlı.","tags":["Saklıkent","Kanyon","Yenileme"],"featured":false},
-    {"id":"hava-uyari","title":"Hafta Sonu Yağışlı: Şemsiye Şart","category":"Hava","date":"2026-04-29","image":"https://images.unsplash.com/photo-1501691223387-dd0500403074?auto=format&fit=crop&w=1200&q=80","summary":"Meteoroloji 1-3 Mayıs için Antalya batı kıyısında yağmur uyarısı verdi.","content":"Meteoroloji Genel Müdürlüğü'nün açıklamasına göre 1 Mayıs gecesi başlayacak yağışlı sistem 3 Mayıs öğleye kadar etkili olacak. Tekne turları iptal/erteleme yapabilir.","tags":["Hava","Uyarı","Mayıs"],"featured":false},
-    {"id":"yeni-pazar","title":"Kalkan Cumartesi Pazarı 2026 Sezonu","category":"Etkinlik","date":"2026-04-20","image":"https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=80","summary":"Cumartesi pazarı 1 Mayıs'tan itibaren her cumartesi 08:00-14:00 arası yat limanında.","content":"Yerel üretici pazarı sezon boyunca her cumartesi sabahı kuruluyor. Zeytinyağı, sabun, taze ürün, el sanatları, organik bal.","tags":["Pazar","Yerel ürün","Cumartesi"],"featured":true},
-    {"id":"likya-yolu-yenileme","title":"Likya Yolu Patara-Kalkan Etabı Yenilendi","category":"Kültür","date":"2026-04-10","image":"https://images.unsplash.com/photo-1501761095094-94d36f57edbb?auto=format&fit=crop&w=1200&q=80","summary":"Likya Yolu'nun Patara-Kalkan arası 28 km'lik etabı yeniden işaretlendi.","content":"Antalya İl Kültür Turizm Müdürlüğü, Likya Yolu'nun Patara-Kalkan etabını yeniden işaretledi. Yeni dijital harita uygulaması (LikyaTrek) Mayıs'ta çıkıyor.","tags":["Likya Yolu","Yürüyüş","Patara"],"featured":false}
+    {
+      "id": "asli-ye-ceza-mahkemesi-nden-i-lanen-tebli-gat-2026-05-13",
+      "title": "ASLİYE CEZA MAHKEMESİNDEN İLANEN TEBLİGAT",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2024/12/tebligat-posta.jpg",
+      "summary": "ASLİYE CEZA MAHKEMESİNDEN İLANEN TEBLİGAT",
+      "content": "T.C. ANTALYA 12. ASLİYE CEZA MAHKEMESİ Sayı : 2025/976 Ceza Dava Dosyası 11.05.2026 Konu : İlanen Tebligat İLAN METNİ Sanık ERKAN İN'in Hakaret suçundan 1 ay 20 gün hapis cezası ile cezalandırılmasına ve tüm aramalara rağmen bulanamayan sanık hakkındaki hükmün sanığa ilanen tebliğine, ilan tarihinden itibaren 15 gün içinde Mahkememize verilecek dilekçe veya tutanak altına alınmak üzere zabıt katibine yapılacak beyan ile istinaf başvurusunda bulunabileceği hususu İLANEN TEBLİĞ olunur.",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/asliye-ceza-mahkemesinden-ilanen-tebligat-2",
+      "featured": true
+    },
+    {
+      "id": "almati-dan-gazipasa-ya-ilk-ucus-2026-05-13",
+      "title": "Almatı’dan Gazipaşa’ya ilk uçuş!",
+      "category": "Hava",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/gazipasa-alanya-havalimani-gazipasa-1.jpg",
+      "summary": "Kazakistan’ın Almatı şehri ile Gazipaşa-Alanya Havalimanı (GZP) arasındaki doğrudan uçuşlar, geleneksel su takı seremonisi eşliğinde büyük bir coşkuyla başlatıldı.",
+      "content": "Kazakistan merkezli FlyArystan havayolu şirketi, Almatı şehrinden Gazipaşa-Alanya Havalimanı bünyesine ilk doğrudan seferini gerçekleştirdi. Bölge turizmi için stratejik bir adım olan bu operasyon kapsamında, sezon sonuna kadar toplam 96 karşılıklı uçuş yapılması planlanıyor. İlk seferle Gazipaşa topraklarına ayak basan 152 Kazak yolcu, çiçeklerle ve geleneksel karşılama törenleriyle ağırlandı. SU TAKI SEREMONİSİYLE TARİHİ KARŞILAMA Kazakistan’ın Almatı şehrinden havalanan FS7111 sefer sayılı Airbus A320 tipi uçak, saat 15.00 sularında Gazipaşa-Alanya Havalimanı pistine teker koydu. Bölge turizmi açısından büyük bir önem arz eden bu uçuş için havalimanı apronunda özel bir karşılama töreni icra edildi. Uçak, geleneksel bir havacılık ritüeli olan su takı seremonisi ile karşılanırken, içerisi",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/almatidan-gazipasaya-ilk-ucus",
+      "featured": true
+    },
+    {
+      "id": "bocek-ten-cezaevinden-mesaj-chp-den-istifa-etmeyi-dusunmuyorum-2026-05-13",
+      "title": "Böcek’ten cezaevinden mesaj: “CHP’den istifa etmeyi düşünmüyorum”",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/bocek-infaz-kurumlari.jpg",
+      "summary": "“İtirafçı” olduğu ve CHP’den istifa ettiği iddialarıyla gündeme gelen Muhittin Böcek’in, cezaevinde görüştüğü CHP’li yöneticiye “CHP’den istifa etmeyi düşünmüyorum” dediği öğrenildi. Böcek’in posterinin il binasından kaldırılmasına kırıldığı belirtildi.",
+      "content": "Antalya Büyükşehir Belediyesi’ne yönelik “yolsuzluk” iddiaları kapsamında 5 Temmuz 2025’ten bu yana tutuklu bulunan Antalya Büyükşehir Belediye Başkanı Muhittin Böcek hakkında son günlerde ortaya atılan “itirafçı oldu” ve “CHP’den istifa etti” yönündeki iddialar netlik kazandı. Cezaevinde CHP’li bir yöneticiyle görüşen Böcek’in, parti üyeliğinden ayrılmayı düşünmediğini söylediği öğrenildi. İDDİALAR TÜRKİYE GÜNDEMİNE OTURDU Muhittin Böcek’in “itirafçı” olduğu ve CHP’den istifa ettiği yönündeki haberler, 10 Mayıs akşamından bu yana Türkiye gündeminin üst sıralarında yer aldı. Gelini Zuhal Böcek’in 30 Nisan’da gözaltına alınarak İstanbul’a götürülmesi, aynı gün oğlu Gökhan Böcek’in “itirafçı” olmak için cezaevi yönetimine dilekçe vermesi ve 8 Mayıs Cuma günü Antalya 6. Ağır Ceza Mahkemesi’ni",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/bocekten-cezaevinden-mesaj-chpden-istifa-etmeyi-dusunmuyorum",
+      "featured": true
+    },
+    {
+      "id": "19-mayis-coskusu-kas-sokaklarina-tasiyor-2026-05-13",
+      "title": "19 Mayıs coşkusu Kaş sokaklarına taşıyor!",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/19-mayis-coskusu.jpg",
+      "summary": "Kaş Belediyesi, 19 Mayıs Atatürk’ü Anma, Gençlik ve Spor Bayramı dolayısıyla ilçede düzenlenecek olan fener alayı ve Selin konseriyle bayram heyecanını zirveye taşıyacak.",
+      "content": "Kaş Belediyesi tarafından yapılan resmi açıklamaya göre, 19 Mayıs Atatürk’ü Anma, Gençlik ve Spor Bayramı Kaş ilçesinde büyük bir törenle kutlanacak. Gazi Mustafa Kemal Atatürk’ün \"Bütün ümidim gençliktedir\" vizyonuyla hazırlanan program kapsamında, akşam saatlerinde fener alayı gerçekleştirilecek. Kutlamalar, Cumhuriyet Meydanı bünyesinde düzenlenecek olan DJ performansı ve Selin konseri ile devam edecek. FENER ALAYI İLE AYDINLANACAK BİR GECE Kaş Belediyesi'nin resmi sosyal medya hesabından yapılan açıklamada 19 Mayıs coşkusunun hep birlikte yaşanacağı vurgulandı. Programın başlangıç aşamasında saat 20.45 itibarıyla fener alayı düzenlenecek. Migros Kavşağı noktasından başlayacak olan yürüyüş, vatandaşların katılımıyla Cumhuriyet Meydanı mevkisinde sona erecek. CUMHURİYET MEYDANI’NDA DJ VE",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/19-mayis-coskusu-kas-sokaklarina-tasiyor",
+      "featured": true
+    },
+    {
+      "id": "i-mamoglu-ndan-ozel-ve-yavas-a-cezaevinden-kritik-mesaj-2026-05-13",
+      "title": "İmamoğlu’ndan Özel ve Yavaş’a cezaevinden kritik mesaj!",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/yavas-imamoglu-ozel.jpg",
+      "summary": "Tutuklanarak İBB Başkanlığı’ndan uzaklaştırılan CHP’nin cumhurbaşkanı adayı Ekrem İmamoğlu'nun Silivri Cezaevi’nden CHP Genel Başkanı Özgür Özel ve Ankara Büyükşehir Belediye Başkanı Mansur Yavaş’a gönderdiği birlik mesajı siyaset gündemine bomba gibi düştü. İşte ayrıntılar...",
+      "content": "Tutuklanarak İBB Başkanlığı’ndan uzaklaştırılan CHP’nin cumhurbaşkanı adayı Ekrem İmamoğlu, partisinin lider kadrosuna önemli bir mektup ile seslendi. Cumhuriyet Halk Partisi (CHP) Genel Başkanı Özgür Özel ve Ankara Büyükşehir Belediye (ABB) Başkanı Mansur Yavaş’a hitaben gönderilen mesajda, Türkiye’nin geleceği için dayanışma ve omuz omuza mücadele vurgusu yapıldı. Belediye Başkanı Ekrem İmamoğlu, hukukun üstünlüğü ve demokrasi temelinde birleşme çağrısında bulundu. SİLİVRİ’DEN ANKARA’YA BİRLİKTELİK ÇAĞRISI Silivri Cezaevi’nde tutukluluğu süren Ekrem İmamoğlu; Özgür Özel’e ve Mansur Yavaş’a mesaj gönderdi. Siyasi gündemin merkezine oturan bu gelişmede Belediye Başkanı Ekrem İmamoğlu, zorlu süreçlere rağmen ülkenin yarınlarına olan inancın sarsılmaması gerektiğini ifade etti. TÜRKİYE’NİN G",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/imamoglundan-ozel-ve-yavasa-cezaevinden-kritik-mesaj",
+      "featured": false
+    },
+    {
+      "id": "antalya-balikci-barinagi-icin-beklenen-mahkeme-karari-cikti-2026-05-13",
+      "title": "Antalya Balıkçı Barınağı için beklenen mahkeme kararı çıktı",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/avukat-volkan-yavuzlar-2.jpg",
+      "summary": "Antalya 2. Asliye Ticaret Mahkemesi, Tarım ve Orman Bakanlığı tarafından kooperatif yönetiminin görevden alınmasına yönelik işlemi iptal ederek balıkçı barınağındaki idari yapının yeniden değişmesinin yolunu açtı.",
+      "content": "Antalya ilinde 2024 senesinde gerçekleştirilen operasyon neticesinde Tarım ve Orman Bakanlığı kararı ile kayyıma devredilen Balıkçı Barınağı Kooperatifi ile ilgili açılan davada yargı süreci tamamlandı. Antalya 2. Asliye Ticaret Mahkemesi, kooperatif yönetimine dair uygulanan görevden alma işleminin iptal edilmesine hükmetti. Bu kararla birlikte, barınağın kayyım idaresindeki işleyişinin sona ermesi bekleniyor. Daha önce Ticaret Sicil Gazetesi içerisinde yayımlanan karar doğrultusunda Antalya İl Tarım ve Orman Müdürlüğü personellerinden Mühendis Oğuz Keleş, Mühendis Erkan Biçer ve Mühendis Hüseyin Rahmi Emral, Antalya Balıkçı Barınağı bünyesine kayyım olarak görevlendirilmişti. GÖREVDEN ALMA İŞLEMLERİ HUKUKA AYKIRI BULUNDU Antalya Balıkçı Barınağı içerisindeki hukuki duruma dair bilgilendi",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalya-balikci-barinagi-icin-beklenen-mahkeme-karari-cikti",
+      "featured": false
+    },
+    {
+      "id": "hedef-gosterildiklerini-savunan-chp-li-kadin-milletvekillerinden-sert-aciklama-2026-05-13",
+      "title": "Hedef gösterildiklerini savunan CHP’li kadın milletvekillerinden sert açıklama!",
+      "category": "Hava",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2024/08/chp-binasi.jpg",
+      "summary": "Cumhuriyet Halk Partili (CHP) kadın milletvekilleri, son dönemde kadın siyasetçilerin sistematik saldırılara maruz kaldığını savundu. Kadın siyasetçilerin iftiralarla siyaset dışına çıkarılmaya çalışıldığı belirtilen ortak açıklamada, \"Başaramayacaksınız\" denildi.",
+      "content": "Cumhuriyet Halk Partisi (CHP) grubuna mensup kadın milletvekilleri, kadınların siyasetteki varlığını ve onurunu hedef alan iftira kampanyalarına karşı ortak bir bildiri paylaştı. Açıklamada, kadın siyasetçiler üzerinden yürütülen linç girişimlerinin demokratik siyasete darbe vurduğu vurgulanırken, sorumlular hakkında gerekli suç duyurularının yapıldığı ve hukuki süreçlerin başlatıldığı duyuruldu. DEMOKRATİK SİYASETE YÖNELİK ORGANİZE GİRİŞİM CHP kadın milletvekilleri, yaşanan süreci şu sert ifadelerle tanımladı: \"Son günlerde kadınların siyasetteki varlığını hedef alan, ahlak ve vicdan sınırlarını aşan saldırılar; sadece belirli kişilere değil, siyasetin onuruna, kadınların kamusal yaşam mücadelesine ve demokratik siyasete yönelmiş organize bir itibarsızlaştırma girişimidir. Bizler, kadın m",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/hedef-gosterildiklerini-savunan-chpli-kadin-milletvekillerinden-sert-aciklama",
+      "featured": false
+    },
+    {
+      "id": "antalya-da-ikinci-el-satis-yapanlara-denetim-2-isletme-muhurlendi-2026-05-13",
+      "title": "Antalya’da ikinci el satış yapanlara denetim! 2 işletme mühürlendi",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/antalyada-ikinci-el-satis-yapanlara-denetim-2-isletme-muhurlendi-1.jpg",
+      "summary": "Antalya Emniyet Müdürlüğü koordinesinde ikinci el eşya alım satımı yapan iş yerlerine yönelik eş zamanlı denetim gerçekleştirildi. Ruhsatsız faaliyet gösterdiği belirlenen 2 işletme mühürlendi.",
+      "content": "Antalya’da hırsızlık olaylarından elde edilen suç eşyalarının ikinci el piyasasında satılmasının önüne geçmek amacıyla geniş kapsamlı denetim yapıldı. Antalya Emniyet Müdürlüğü Asayiş Şube Müdürlüğü koordinesinde gerçekleştirilen eş zamanlı uygulamada, ikinci el eşya alım satımı yapan iş yerleri mercek altına alındı. Denetimlerde yüzlerce kişi ve araç sorgulanırken, ruhsatsız faaliyet gösterdiği tespit edilen iş yerlerine işlem yapıldı. 55 İŞ YERİ DENETLENDİ Antalya Emniyet Müdürlüğü tarafından yapılan açıklamaya göre uygulama, il genelinde huzur ve güven ortamının sağlanması, hırsızlık olaylarının önlenmesi, şüphelilerin tespit edilmesi ve suç unsurlarının ele geçirilmesi amacıyla gerçekleştirildi. Denetimlerde toplam: 55 iş yeri denetlendi, 246 kişi sorgulandı, 37 araç kontrol edildi. 2 ",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalyada-ikinci-el-satis-yapanlara-denetim-2-isletme-muhurlendi",
+      "featured": false
+    },
+    {
+      "id": "antalya-isparta-yolunda-feci-kaza-2-olu-2026-05-13",
+      "title": "Antalya-Isparta yolunda feci kaza: 2 ölü",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/isparta-trafik-kazasi-1.jpg",
+      "summary": "Antalya-Isparta yolunda mermer blokların yüklü olduğu TIR ile kafa kafaya çarpışan otomobil sürücüsü ve eşi feci şekilde hayatını kaybetti. Ölüm yolu olarak bilinen karayolu, sık sık kazalarla gündeme geliyor.",
+      "content": "Antalya-Isparta yolunda direksiyon hakimiyetini kaybederek karşı yönden gelen mermer blokların yüklü olduğu TIR ile çarpışan otomobilde bulunan karı-koca hayatını kaybetti, TIR sürücüsü ise yaralandı. TIR İLE KAFA KAFAYA ÇARPIŞTI Kaza, saat 13.30 sıralarında Aksu ilçesi Kayadibi Mahallesi Antalya-Isparta yolu üzerinde meydana geldi. Edinilen bilgiye göre, Antalya'dan Isparta yönüne seyir halindeki Ali Çapraz'ın kullandığı 53 AHL 239 plakalı otomobil henüz belirlenemeyen bir nedenle sürücüsünün direksiyon hakimiyetini kaybetmesi sonucu, önce karşı yönden gelen TIR'ın dorsesine çarptı. Çarpmanın etkisiyle kontrolden çıkan otomobil savrularak yine karşı yönden gelen Bekir Ş.'nin kullandığı 07 CHK 136 plakalı mermer blokların yüklü bulunduğu TIR ile kafa kafaya çarpıştı. Kazayı görenlerin ihba",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalya-isparta-yolunda-feci-kaza-2-olu",
+      "featured": false
+    },
+    {
+      "id": "cop17-de-i-pek-yolu-kervani-tanitildi-2026-05-13",
+      "title": "COP17'de İpek Yolu Kervanı tanıtıldı",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/kervan-toplantisi.jpg",
+      "summary": "Antalya'da Birleşmiş Milletler Çölleşmeyle Mücadele Sözleşmesi'nin (UNCCD) COP17 toplantısında 'İpek Yolu Kervanı' programı tanıtılarak mera ve çayır ekosistemlerinin korunması dikkat çekildi.",
+      "content": "Birleşmiş Milletler Çölleşmeyle Mücadele Sözleşmesi'nin (UNCCD) COP17 süreci kapsamında düzenlenen 'İpek Yolu Kervanı', mera ve çayır ekosistemlerinin korunmasına dikkati çekmek amacıyla Antalya'da tanıtıldı. Çevre, Şehircilik ve İklim Değişikliği Bakan Yardımcısı Hasan Suver, \"Sağlıklı arazi, sağlıklı gıdanın temelidir\" dedi. İPEK YOLU KERVANI PROGRAMI TANITILDI UNCCD'nin 17’nci Taraflar Konferansı (COP17) kapsamında bu yıl mera ve çayır ekosistemlerinin korunmasına dikkati çekmek amacıyla düzenlenen ‘İpek Yolu Kervanı' programının Antalya ayağı yapıldı. Çevre, Şehircilik ve İklim Değişikliği Bakanlığı koordinasyonunda yürütülen çalışma kapsamında Türkiye'den başlayan kervan yolculuğu, COP17’nin düzenleneceği Moğolistan’ın başkenti Ulanbator’da sona erecek. 2026 yılının ‘Uluslararası Mera",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/cop17de-ipek-yolu-kervani-tanitildi",
+      "featured": false
+    },
+    {
+      "id": "gokhan-olmez-vatandas-ideolojiden-once-gecimi-konusuyor-2026-05-13",
+      "title": "Gökhan Ölmez: “Vatandaş ideolojiden önce geçimi konuşuyor”",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2024/03/gokhan-olmez-chp-1.jpg",
+      "summary": "CHP Kepez İlçe Başkanı Gökhan Ölmez, katıldığı televizyon programında Kepez’in temel sorunlarından ekonomik krize, gençlerin siyasete bakışından yerel yönetim anlayışına kadar birçok konuda dikkat çeken açıklamalarda bulundu. Ölmez, “Vatandaş artık ideolojiden önce geçimi konuşuy",
+      "content": "Cumhuriyet Halk Partisi (CHP) Kepez İlçe Başkanı Gökhan Ölmez, katıldığı televizyon programında hem Kepez’in yerel sorunlarına hem de Türkiye gündemine ilişkin kapsamlı değerlendirmelerde bulundu. Program boyunca ekonomik kriz, gençlerin siyasete yaklaşımı, CHP’nin saha çalışmaları ve Kepez Belediyesi’nin hizmet anlayışı hakkında konuşan Ölmez, vatandaşın en büyük gündeminin geçim sıkıntısı olduğunu söyledi. “SİYASETİ MAKAM İÇİN DEĞİL, MEMLEKET İÇİN YAPIYORUZ” Siyasete giriş sürecini anlatan Ölmez, genç yaşlardan itibaren toplumsal sorunlara duyarsız kalamadığını belirterek “Ben siyaseti makam için değil, memlekete faydalı olmak için tercih ettim. Cumhuriyet Halk Partisi’nin Cumhuriyet değerlerine, demokrasiye ve sosyal adalete olan bağlılığı beni bu mücadeleye daha da yakınlaştırdı” dedi.",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/gokhan-olmez-vatandas-ideolojiden-once-gecimi-konusuyor",
+      "featured": false
+    },
+    {
+      "id": "chp-den-zuhal-bocek-aciklamasi-yargiya-guven-yerlerde-2026-05-13",
+      "title": "CHP’den Zuhal Böcek açıklaması: “Yargıya güven yerlerde”",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2025/08/gokhan-bocek-rusvet-almakla-esi-zuhal-bocek-ise-rusvet-paralarini-aklamakla-suclaniyor.webp",
+      "summary": "Antalya Büyükşehir Belediyesi soruşturmasında tutuklanan Zuhal Böcek’in etkin pişmanlık ifadesinin, Adalet Bakanlığı’na ait WhatsApp grubunda paylaşıldığı ve bazı bölümlere sonradan müdahale edildiği iddiası siyasette yeni tartışma başlattı.",
+      "content": "Antalya Cumhuriyet Başsavcılığı’nın 5 Temmuz’da Antalya Büyükşehir Belediyesi’ne yönelik başlattığı “rüşvet” ve “yolsuzluk” soruşturması kapsamında tutuklanan Antalya Büyükşehir Belediye Başkanı Muhittin Böcek ile oğlu Gökhan Böcek’in ardından, Gökhan Böcek’in eşi Zuhal Böcek’in de etkin pişmanlık hükümlerinden yararlanarak ifade verdiği öğrenildi. Ancak Zuhal Böcek’e ait olduğu öne sürülen ifade belgelerinin Adalet Bakanlığı Basın Bilgilendirme WhatsApp grubunda paylaşılması yeni bir tartışmayı beraberinde getirdi. ZUHAL BÖCEK’İN İFADESİ GÜNDEM OLDU Dijital verileri silme ve delil karartma iddiaları kapsamında tutuklanarak Marmara Ceza İnfaz Kurumları’na gönderilen Zuhal Böcek’in etkin pişmanlıktan yararlanarak yeni ifade verdiği belirtildi. Sürecin ardından CHP tarafından sosyal medya üz",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/chpden-zuhal-bocek-aciklamasi-yargiya-guven-yerlerde",
+      "featured": false
+    },
+    {
+      "id": "dugun-hazirligi-yapiyordu-genc-hakem-denizde-hayatini-kaybetti-2026-05-13",
+      "title": "Düğün hazırlığı yapıyordu… Genç hakem denizde hayatını kaybetti",
+      "category": "Plaj",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/dugun-hazirligi-yapiyordu-genc-hakem-denizde-hayatini-kaybetti-2.jpg",
+      "summary": "Bartın’ın Amasra ilçesinde zıpkınla dalış yaparken vurgun yiyerek yaşamını yitiren 30 yaşındaki klasman yardımcı hakem Mustafa Onur Özgenç, memleketi Mersin’de gözyaşlarıyla toprağa verildi. Genç hakemin bayram sonrası düğün yapmaya hazırlandığı öğrenildi.",
+      "content": "Bartın'ın Amasra ilçesinde dün kayalık bölgede denizde zıpkınla dalış yapan 30 yaşındaki Mustafa Onur Özgenç, vurgun yedi. Özgenç'in bir süre sonra denizden çıkamadığını fark eden arkadaşları Sahil Güvenlik Komutanlığı ekiplerine haber verdi. Olay yerine gelen ekipler, genci denizden çıkardı ancak yapılan tüm müdahalelere rağmen Özgenç kurtarılamadı. MERSİN’DE TOPRAĞA VERİLDİ Klasman yardımcı hakem olduğu öğrenilen Özgenç'in sağlık sektöründe çalıştığı öğrenilirken cenazesi memleketi Mersin'in Erdemli ilçesine getirildi. Öğle namazının ardından Türbe Mezarlığı'nda kılınan cenaze namazı sonrasında genç hakemin naaşı gözyaşları arasında dualarla toprağa verildi. Özgenç'in bayram sonrasında düğün yapmayı planlandığı ancak üzücü hadisenin meydana geldiği belirtildi. TFF BAŞSAĞLIĞI MESAJI YAYIN",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/dugun-hazirligi-yapiyordu-genc-hakem-denizde-hayatini-kaybetti",
+      "featured": false
+    },
+    {
+      "id": "antalya-da-not-skandali-okul-birincisini-mudur-yardimcisi-mi-belirliyor-2026-05-13",
+      "title": "Antalya’da not skandalı: Okul birincisini müdür yardımcısı mı belirliyor?",
+      "category": "Asayiş",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2024/09/kadir-ozturk-egitim-sen-antalya-sube-baskani.jpg",
+      "summary": "Eğitim Sen Antalya Şubesi, Muratpaşa’daki köklü okullardan İstiklal Ortaokulu’nda müdür yardımcısının öğrencilerin notlarıyla oynayarak istediği öğrenciyi okul birincisi yaptığı iddiasını gündeme taşıdı. Sendika, olayın savcılığa taşındığını ve velilerin hukuki süreç başlattığını",
+      "content": "Antalya’da eğitim camiasını sarsan bir iddia gündeme geldi. Eğitim Sen Antalya Şube Başkanı Kadir Öztürk, İstiklal Ortaokulu’nda görev yapan bir müdür yardımcısının öğrencilerin notlarını değiştirerek okul dereceleriyle oynadığını öne sürdü. Açıklamada, bazı öğrencilerin hakkının yendiği belirtilirken olayın savcılığa taşındığı ifade edildi. “ÖĞRENCİLERİN NOTLARIYLA OYNANDI” İDDİASI Eğitim Sen Antalya Şubesi tarafından yapılan yazılı açıklamada, okul müdür yardımcısı A.Ü.’nün öğrencilerin notlarını değiştirerek kendi istediği öğrenciyi okul birincisi yaptığı ileri sürüldü. Açıklamada, “Okul Müdür Yardımcısı A.Ü. öğrencilerinin notları ile oynayarak kendi istediği birini okul birincisi yapmıştır. Dramatik yan bir öğretmenin öğrencileri arasında tercih yapması, trajik ve aynı zamanda suç ola",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalyada-not-skandali-okul-birincisini-mudur-yardimcisi-mi-belirliyor",
+      "featured": false
+    },
+    {
+      "id": "dunyanin-en-iyi-yemeklerinde-antalya-urunu-yok-2026-05-13",
+      "title": "Dünyanın en iyi yemeklerinde Antalya ürünü yok!",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/04/antalya-cografi-isaretli-urunler-1.png",
+      "summary": "Dünyanın en prestijli gastronomi platformlarından biri olan TasteAtlas, \"Dünyanın En İyi 100 Türk Yemeği\" listesini yayımladı. Geleneksel et yemekleri ve şerbetli tatlıların domine ettiği listede Antalya’nın ürünlerinin yer almaması dikkat çekti.",
+      "content": "Türk mutfağının küresel ölçekteki elçisi sayılan TasteAtlas, 2026 yılı değerlendirmelerini paylaştı. Anadolu’nun binlerce yıllık lezzet mirasını profesyonel bir süzgeçten geçiren platformun ilk 10 sıralaması, hem tanıdık klasiklere yer verdi hem de gastronomi çevrelerini şaşırtan bir \"dip dalgasına\" sahne oldu. ANTALYA TESCİL İŞLEMLERİNİ HIZLANDIRDI Turizmde olduğu kadar tarım ve gastronomide de zengin bir mirasa sahip olan Antalya, coğrafi işaret tescili konusunda son yıllarda önemli bir ivme yakaladı. Yapılan açıklamaya göre kentteki ürünler yalnızca ulusal düzeyde değil, aynı zamanda Avrupa Birliği nezdinde de tescil edilerek uluslararası koruma altına alınmak isteniyor. Ancak listede Antalya’nın piyazı, kabak tatlısı gibi yıldız ürünleri yer almadı. İşte damaklarda iz bırakan o liste: ",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/dunyanin-en-iyi-yemeklerinde-antalya-urunu-yok",
+      "featured": false
+    },
+    {
+      "id": "65-binlik-telefona-67-bin-tl-vergi-chp-nin-vergi-sitesi-gundem-oldu-2026-05-13",
+      "title": "65 binlik telefona 67 bin TL vergi! CHP’nin “vergi sitesi” gündem oldu",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/65-binlik-telefona-67-bin-tl-vergi-chpnin-vergi-sitesi-gundem-oldu.jpg",
+      "summary": "CHP Genel Başkanı Özgür Özel’in duyurduğu ve kısa sürede gündem olan internet sitesinde cep telefonu ve otomobiller üzerindeki vergi yükü dikkat çekici örneklerle anlatıldı. Sitede 65 bin liralık bir telefonun vergilerle birlikte 133 bin liraya çıktığı belirtilirken, “Telefonu ür",
+      "content": "CHP Genel Başkanı Özgür Özel, vatandaşın ödediği dolaylı vergileri örnekleriyle anlatan yeni bir internet sistemiyle tüm dünyada paylaşıldı. “AK Parti'nin kara düzenindeki vergi adaletsizlikleri” unvanıyla sağlanan sitede cep telefonu ve sıfır otomobil fiyatları üzerinden yapılan programlamalara dikkat edildi. Hazırlanan içeriklerde, ucuz fiyatlardan daha fazla vergi yükünün oluştuğu savunulurken, yüksek vergilerin vatandaşlık üzerindeki etkisi farklı ekonomik karşılaştırmalarla anlatıldı. “BU SAYFA VERGİ ADALETSİZLİĞİNİN KAYIT DEFTERİ” İnternete giriş bölümünde, “AK Parti ve kara düzeni, vatandaştan yük almaya değil vatandaşa yüklenmeye devam ediyor” ifadeleri kaydedildi. Sitede ayrıca şu ifadeler yer aldı: \"Ak Parti'nin kara düzeni vergi adaletsizliklerini her hafta bu sitede bulabilirsi",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/65-binlik-telefona-67-bin-tl-vergi-chpnin-vergi-sitesi-gundem-oldu",
+      "featured": false
+    },
+    {
+      "id": "antalya-da-antfest-heyecani-basladi-2026-05-13",
+      "title": "Antalya'da “Antfest” heyecanı başladı",
+      "category": "Etkinlik",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/hulusi-sahin-antfest-2.jpg",
+      "summary": "Antalya’da toplumun her kesimini bir araya getirmeyi hedefleyen Antfest (Engelli, Aile-Toplum, Gençlik ve Spor Festivali), Konyaaltı Sahil Yaşam Parkı'nda düzenlenen görkemli bir kortej yürüyüşü ile başladı.",
+      "content": "Antalya’da engelli bireyler, aileler, gençler ve spor camiasını aynı çatı altında buluşturmayı amaçlayan “Antfest (Engelli, Aile-Toplum, Gençlik ve Spor Festivali)”, Konyaaltı Sahil Yaşam Parkı’nda düzenlenen görkemli kortej yürüyüşüyle başladı. Yoğun katılımla gerçekleştirilen festivalin açılışında birlik, beraberlik ve toplumsal dayanışma vurgusu öne çıktı. KORTEJ YÜRÜYÜŞÜYLE BAŞLADI Aile ve Sosyal Hizmetler Antalya İl Müdürlüğü koordinesinde organize edilen festivalin açılış programına Antalya Valisi Hulusi Şahin başta olmak üzere çok sayıda protokol üyesi, kamu kurum temsilcisi, sivil toplum kuruluşları, gönüllüler ve vatandaşlar katıldı. Festival kapsamında düzenlenen kortej yürüyüşü, renkli görüntülere sahne olurken, toplumun her kesimini kapsayan sosyal farkındalık mesajları dikkat ",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalyada-antfest-heyecani-basladi",
+      "featured": false
+    },
+    {
+      "id": "hasan-subasi-nin-hedefinde-bekir-kumbul-var-500-metre-arayla-iki-tane-ataturk-pa-2026-05-13",
+      "title": "Hasan Subaşı’nın hedefinde Bekir Kumbul var: “500 metre arayla iki tane Atatürk parkı olur mu?”",
+      "category": "Belediye",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/hasan-subasi-konsiyad-konusmasi-1.jpg",
+      "summary": "Antalya’nın ilk Büyükşehir Belediye Başkanı Hasan Subaşı, kendi adını taşıyan parkın isminin değiştirilmesine üzüldüğünü söyledi. Subaşı, “İsim değişikliği Bekir Kumbul döneminde meclis gündemine getirilmeden yapılmıştır. Konyaaltı Caddesi’ndeki parkın ismi de Atatürk. 500 metre ",
+      "content": "Konyaaltı Sanayici ve İş İnsanları Derneği’nin (KONYSİAD) mayıs ayı olağan toplantısı yapıldı. Toplantının konuğu olan Antalya’nın ilk Büyükşehir Belediye Başkanı ve son İl Belediye Başkanı Hasan Subaşı, görev yaptığı dönemde yaşanan sorunları, belediyecilik anlayışını, Antalya’nın gelişim sürecini ve geleceğe yönelik görüşlerini anlattı. Toplantının açılış konuşmasını yapan KONYSİAD Yönetim Kurulu Üyesi Deniz Kavazoğlu, Antalya’nın son 40 yılda çok hızlı büyüdüğünü belirterek, bu büyümenin beraberinde ciddi sorunlar getirdiğini söyledi. “50 MİLYONUN ÜZERİNE ÇIKTI” Antalya'nın artık küçük bir Akdeniz şehri değil dünya çapında tanınan bir yer olduğunu ifade eden Kavazoğlu, “1980 yılında Antalya’nın nüfusu yaklaşık 748 bin civarındaydı. Bugün ise 2 milyon 800 bine ulaştı. O dönem nüfusun öne",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/hasan-subasinin-hedefinde-bekir-kumbul-var-500-metre-arayla-iki-tane-ataturk-parki-olur-mu",
+      "featured": false
+    },
+    {
+      "id": "emekli-bayram-ikramiyesi-ne-zaman-yatacak-i-ste-tam-liste-2026-05-13",
+      "title": "Emekli bayram ikramiyesi ne zaman yatacak? İşte tam liste",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/01/emekli-2.jpg",
+      "summary": "Çalışma ve Sosyal Güvenlik Bakanı Vedat Işıkhan, Kurban Bayramı öncesi emekli ikramiyesinin yatacağı tarihleri duyurdu. İşte 17 milyon emeklinin beklediği ödeme takvimi…",
+      "content": "Kurban Bayramı öncesi 17 milyon emeklinin gözü bayram ikramiyesinde. Çalışma ve Sosyal Güvenlik Bakanlığı tarafından yapılan planlamaya göre, emeklilere yönelik bayram ikramiyesi ödemeleri mayıs ayının üçüncü haftasında hesaplara aktarılacak. Ayrıca maaş günü bayram dönemine denk gelen emekliler için ise ödemeler öne çekildi. SSK EMEKLİLERİ İKRAMİYESİNİ NE ZAMAN ALACAK? SSK kapsamında aylık alan emeklilerin ödeme günleri maaş tarihlerine göre belirlendi. Maaş günü 17-22 Mayıs arasında olanların ödemeleri kendi günlerinde hesaplara yatırılacak. Maaş günü 23 ve 24 Mayıs olanların ödemeleri 21 Mayıs tarihinde yapılacak. Maaş günü 25 ve 26 Mayıs olanların ödemeleri ise 22 Mayıs tarihinde gerçekleştirilecek. BAĞ-KUR VE MEMUR EMEKLİLERİNE ERKEN ÖDEME Bağ-Kur emeklilerinden maaş günü 25 ve 26 May",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/emekli-bayram-ikramiyesi-ne-zaman-yatacak-iste-tam-liste",
+      "featured": false
+    },
+    {
+      "id": "veli-agbaba-dan-gokhan-bocek-cevabi-zavallinin-teki-2026-05-13",
+      "title": "Veli Ağbaba’dan Gökhan Böcek cevabı: “Zavallının teki”",
+      "category": "Gündem",
+      "date": "2026-05-13",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/05/veli-agbaba-tbmm-2.jpg",
+      "summary": "CHP Milletvekili Veli Ağbaba, Gökhan Böcek'in kendisine 1 milyon euro para verdiği iddialarına ateş püskürdü. Ağbaba, “Ben bu insanı ömrümde bir sefer cezaevinde gördüm. Bende telefonu varsa namussuzum. İftira atmak için beni bulmuşlar. Zavallının teki” dedi.",
+      "content": "CHP Malatya Milletvekili Veli Ağbaba Türkiye Büyük Millet Meclis’i (TBMM) kürsüsünden “adaylık parası” iddialarına yanıt verdi. Ağbaba yaptığı açıklamada, adaylık için herhangi bir para almadığını ve tutuklu Antalya Büyükşehir Belediyesi Başkanı Muhittin Böcek’in oğlu Gökhan Böcek ile hiçbir tanışıklığı olmadığını ifade etti. İDDİALARA YANIT VERDİ Antalya Büyükşehir Belediyesi Başkanı Muhittin Böcek’in oğlu Gökhan Böcek’ten 1 milyon euro almak için CHP’nin Ankara’daki Genel Merkezi’ne 6’ncı katta kendisi ile buluşmadığını ifade eden Ağbaba, “Cuma günü Malatya'dayım. Bir cenazedeyim. Diyorlar ki, ‘Seninle ilgili bir şey var.’ ‘Ne var?’ Ulan bir baktım benimle ilgili birisi itirafta bulmuş. Neymiş? 1 milyon euro almışım, Getirmiş bana… Bana getirmemiş de Genel Merkezi 6’ncı katına… 6’ncı kat",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/veli-agbabadan-gokhan-bocek-cevabi-zavallinin-teki",
+      "featured": false
+    },
+    {
+      "id": "kas-gida-i-htisas-organize-sanayi-bolgesi-mutesebbis-heyet-toplantisi-antalya-va-2026-05-02",
+      "title": "Kaş Gıda İhtisas Organize Sanayi Bölgesi Müteşebbis Heyet Toplantısı, Antalya Valisi Hulusi Şahin başkanlığında gerçekleştirildi.",
+      "category": "Belediye",
+      "date": "2026-05-02",
+      "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80",
+      "summary": "Kaş Gıda İhtisas Organize Sanayi Bölgesi Müteşebbis Heyet Toplantısı, Antalya Valisi Hulusi Şahin başkanlığında gerçekleştirildi.",
+      "content": "Kaş Gıda İhtisas Organize Sanayi Bölgesi Müteşebbis Heyet Toplantısı, Antalya Valisi Hulusi Şahin başkanlığında gerçekleştirildi.",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Kalkan Times",
+      "sourceUrl": "https://www.kalkantimes.com/haber/kaş-gıda-ihtisas-organize-sanayi-bölgesi-müteşebbis-heyet-toplantısı-antalya-valisi-hulusi-şahin-başkanlığında-gerçekleştirildi-128",
+      "featured": false
+    },
+    {
+      "id": "kutso-yonetim-kurulu-baskani-fahri-ozen-kas-ilcemizde-faaliyet-gosteren-uyelere--2026-05-02",
+      "title": "KUTSO Yönetim Kurulu Başkanı Fahri Özen, Kaş ilçemizde faaliyet gösteren üyelere yönelik bir dizi ziyaret gerçekleştirdi.",
+      "category": "Belediye",
+      "date": "2026-05-02",
+      "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80",
+      "summary": "KUTSO Yönetim Kurulu Başkanı Fahri Özen, Kaş ilçemizde faaliyet gösteren üyelere yönelik bir dizi ziyaret gerçekleştirdi.",
+      "content": "KUTSO Yönetim Kurulu Başkanı Fahri Özen, Kaş ilçemizde faaliyet gösteren üyelere yönelik bir dizi ziyaret gerçekleştirdi.",
+      "tags": [],
+      "source": "Kalkan Times",
+      "sourceUrl": "https://www.kalkantimes.com/haber/kutso-yönetim-kurulu-başkanı-fahri-özen-kaş-ilçemizde-faaliyet-gösteren-üyelere-yönelik-bir-dizi-ziyaret-gerçekleştirdi-1279",
+      "featured": false
+    },
+    {
+      "id": "kas-ulku-ocaklarindateskilat-bulusmasi-gerceklesti-2026-05-02",
+      "title": "Kaş Ülkü OcaklarındaTeşkilat Buluşması Gerçekleşti",
+      "category": "Gündem",
+      "date": "2026-05-02",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80",
+      "summary": "Kaş Ülkü OcaklarındaTeşkilat Buluşması Gerçekleşti",
+      "content": "Kaş Ülkü OcaklarındaTeşkilat Buluşması Gerçekleşti",
+      "tags": [],
+      "source": "Kalkan Times",
+      "sourceUrl": "https://www.kalkantimes.com/haber/kaş-ülkü-ocaklarındateşkilat-buluşması-gerçekleşti-1278",
+      "featured": false
+    },
+    {
+      "id": "vali-sahin-den-kas-ta-anlamli-bulusma-barak-kilimine-guclu-destek-2026-05-02",
+      "title": "Vali Şahin’den Kaş’ta Anlamlı Buluşma: Barak Kilimine Güçlü Destek",
+      "category": "Gündem",
+      "date": "2026-05-02",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80",
+      "summary": "Vali Şahin’den Kaş’ta Anlamlı Buluşma: Barak Kilimine Güçlü Destek",
+      "content": "Vali Şahin’den Kaş’ta Anlamlı Buluşma: Barak Kilimine Güçlü Destek",
+      "tags": [],
+      "source": "Kalkan Times",
+      "sourceUrl": "https://www.kalkantimes.com/haber/vali-şahin-den-kaş-ta-anlamlı-buluşma-barak-kilimine-güçlü-destek-1277",
+      "featured": false
+    },
+    {
+      "id": "havva-i-skan-dan-beledi-yelere-sert-elesti-ri-yerel-destek-sifir-noktasinda-2026-05-02",
+      "title": "HAVVA İŞKAN’DAN BELEDİYELERE SERT ELEŞTİRİ: 'YEREL DESTEK SIFIR NOKTASINDA'",
+      "category": "Gündem",
+      "date": "2026-05-02",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80",
+      "summary": "HAVVA İŞKAN’DAN BELEDİYELERE SERT ELEŞTİRİ: 'YEREL DESTEK SIFIR NOKTASINDA'",
+      "content": "HAVVA İŞKAN’DAN BELEDİYELERE SERT ELEŞTİRİ: 'YEREL DESTEK SIFIR NOKTASINDA'",
+      "tags": [],
+      "source": "Kalkan Times",
+      "sourceUrl": "https://www.kalkantimes.com/haber/havva-işkan-dan-belediyelere-sert-eleştiri-yerel-destek-sifir-noktasinda-1276",
+      "featured": false
+    },
+    {
+      "id": "turkiye-nin-en-buyuk-lale-tarlasinda-renkli-goruntuler-2026-04-27",
+      "title": "Türkiye'nin en büyük lale tarlasında renkli görüntüler",
+      "category": "Hava",
+      "date": "2026-04-27",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/04/turkiyenin-en-buyuk-lale-tarlasina-9-gunde-400-bin-ziyaretci-1.jpg",
+      "summary": "Karaman’da 50 dekarlık alana kurulan lale tarlası, kapılarını açtığı 9 günde yaklaşık 400 bin kişiyi ağırladı.",
+      "content": "Karaman'ın Kazımkarabekir ilçesine bağlı Kızılkuyu köyünde 50 dekarlık alanda kurulan ve Türkiye'nin en büyük lale üretim alanı olma özelliğini taşıyan lale tarlasında ziyaret süreci sona erdi. Muhabir: Ayşem Sicim",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/foto-galeri/turkiyenin-en-buyuk-lale-tarlasinda-renkli-goruntuler",
+      "featured": false
+    },
+    {
+      "id": "tarihin-en-aci-okul-saldirilari-carsamba-gunu-turkiye-de-yasananlar-listeye-ekle-2026-04-17",
+      "title": "Tarihin en acı okul saldırıları… Çarşamba günü Türkiye’de yaşananlar listeye eklendi",
+      "category": "Kültür",
+      "date": "2026-04-17",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/04/tarihin-en-aci-okul-saldirilari-dun-turkiyede-yasananlar-listeye-eklendi.jpeg",
+      "summary": "Dünyayı sarsan okul saldırıları listesine bu kez Türkiye de girdi. Kahramanmaraş’taki katliam, “okullar ne kadar güvenli sorusunu yeniden gündeme taşıdı.",
+      "content": "Şanlıurfa ve Kahramanmaraş’ta yaşanan kanlı olayların ardından, tarihe geçen en acı okul saldırıları yeniden gündeme geldi. En çok can kaybına neden olan saldırılar listesine, Kahramanmaraş’taki trajedi de eklendi. Muhabir: Ayşem Sicim",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/foto-galeri/tarihin-en-aci-okul-saldirilari-dun-turkiyede-yasananlar-listeye-eklendi",
+      "featured": false
+    },
+    {
+      "id": "antalya-nin-sakli-cennetleri-2026-04-03",
+      "title": "Antalya’nın saklı cennetleri",
+      "category": "Turizm",
+      "date": "2026-04-03",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/04/antalyanin-sakli-cennetleri.jpg",
+      "summary": "Turkuaz sular, bakir doğa ve kalabalıktan uzak rotalar… Antalya’nın en güzel koyları, 2026 yazında tatil planı yapanlar için adeta kaçış noktası sunuyor.",
+      "content": "Antalya yalnızca plajlarıyla değil saklı kalmış koylarıyla da doğa tutkunlarının gözdesi olmaya devam ediyor. Masmavi denizi, huzurlu atmosferi ve el değmemiş güzellikleriyle öne çıkan bu koylar hem günübirlik kaçamaklar hem de unutulmaz tatiller için eşsiz rotalar sunuyor. İşte Antalya’da mutlaka görülmesi gereken o büyüleyici koylar… Muhabir: Ayşem Sicim",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/foto-galeri/antalyanin-sakli-cennetleri",
+      "featured": false
+    },
+    {
+      "id": "noel-baba-dan-deniz-baykal-a-antalya-nin-unluleri-2026-03-27",
+      "title": "Noel Baba'dan Deniz Baykal'a: Antalya’nın ünlüleri!",
+      "category": "Plaj",
+      "date": "2026-03-27",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/03/vildan-ozkan-2026-03-27t093749956.jpg",
+      "summary": "Bir çok medeniyete ev sahipliği yapmış Antalya, görkemli tarihinin yanı sıra bu coğrafyada doğup büyümüş ünlü isimlerle de adından söz ettiriyor. Hristiyan alemi için önemli bir karakter olan Noel Baba'dan bir dönem Türk siyasetine damga vurmuş Deniz Baykal'a kadar Antalya'da doğ",
+      "content": "Dünyanın en çok ziyaret edilen destinasyonlar arasında yer alan Antalya, hem tarihi ve doğal güzellikleriyle öne çıkıyor hem de yetiştirdiği yetenekleriyle biliniyor. İşte Antalyalı ülkede damgasını vurmuş ünlü isimler… Muhabir: Vildan Özkan",
+      "tags": [
+        "Antalya"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/foto-galeri/noel-babadan-deniz-baykala-antalyanin-unluleri",
+      "featured": false
+    },
+    {
+      "id": "ramazan-bayrami-nda-asirlik-gelenekler-mezarlik-ziyaret-ediliyor-buyuklerin-eli--2026-03-19",
+      "title": "Ramazan Bayramı’nda asırlık gelenekler: Mezarlık ziyaret ediliyor, büyüklerin eli öpülüyor, bahşişler alınıyor",
+      "category": "Gündem",
+      "date": "2026-03-19",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/03/ramazan-bayraminda-asirlik-gelenekler.jpg",
+      "summary": "Arife günü mezarlık ziyaretinden bayramlaşmaya, şeker ikramından harçlığa kadar uzanan gelenekler, Ramazan Bayramı’nda toplumun birlik ve beraberliğini güçlendirmeye devam ediyor.",
+      "content": "Ramazan Bayramı sadece bir dini bayram olmasının ötesinde kuşaktan kuşağa aktarılan köklü gelenekleriyle dikkat çekiyor. Türkiye’nin dört bir yanında sürdürülen bu ritüeller, bayramın manevi atmosferini pekiştirirken, aile ve toplum bağlarını da güçlendiriyor. Muhabir: Ayşem Sicim",
+      "tags": [],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/foto-galeri/ramazan-bayraminda-asirlik-gelenekler",
+      "featured": false
+    }
   ]
 }

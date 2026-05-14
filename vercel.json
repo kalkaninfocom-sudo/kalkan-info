@@ -1,5 +1,5 @@
 {
-  "buildCommand": null,
+  "buildCommand": "node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json'",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -35,6 +35,12 @@
       "source": "/sw.js",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache" }
+      ]
+    },
+    {
+      "source": "/data/haberler.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300, stale-while-revalidate=600" }
       ]
     }
   ]
