@@ -742,9 +742,19 @@ tailwind.config = {
         </a>`).join('');
     }
 
+    // --- Provider counts (hizmet-saglayicilari.json'dan say) ---
+    const providerCounts = {};
+    try {
+      const provRes = await fetch(`data/hizmet-saglayicilari.json?t=${Date.now()}`);
+      const provData = await provRes.json();
+      Object.entries(provData.services || {}).forEach(([key, svc]) => {
+        providerCounts[key] = (svc.providers || []).length;
+      });
+    } catch(e) { console.error('[Hizmetler] sağlayıcı sayıları okunamadı:', e); }
+
     // --- Kategori dropdown ---
     const catFilter = document.getElementById('cat-filter');
-    const allItems = data.items || [];
+    const allItems = (data.items || []).map(it => ({ ...it, providerCount: providerCounts[it.id] || 0 }));
     if (catFilter && data.categories) {
       data.categories.forEach(c => {
         const opt = document.createElement('option');

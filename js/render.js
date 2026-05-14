@@ -204,6 +204,10 @@ const KalkanData = (() => {
 
   // Hizmet card
   function hizmetCard(h) {
+    const providerCount = Number(h.providerCount || 0);
+    const providerBadge = providerCount > 0
+      ? `<span class="inline-flex items-center gap-1.5 bg-sea-50 text-sea-700 text-[11px] font-bold px-2.5 py-1 rounded-full border border-sea-100"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 19c0-2 1.5-3.5 4-3.5s3 1.5 3 3.5"/></svg>${providerCount} sağlayıcı</span>`
+      : `<span class="inline-flex items-center gap-1.5 bg-sun-400/10 text-sun-600 text-[11px] font-bold px-2.5 py-1 rounded-full border border-sun-400/30">Yakında sağlayıcı</span>`;
     return `
       <article class="card service-card" data-service="${escape(h.id||'')}" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08),0 0 0 0 transparent';">
         ${h.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1">${safeImage(h.image, h.name)}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div><div class="pm-hint" style="position:absolute;bottom:0;left:0;right:0;padding:6px 12px;color:#f4b53d;font-size:0.63rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:4px;">→ Sağlayıcıları Gör</div></div>` : ''}
@@ -216,8 +220,8 @@ const KalkanData = (() => {
         </div>
         <p class="text-sm text-ink-700/80 mt-3">${escape(h.summary||'')}</p>
         ${(h.details||[]).length ? `<ul class="text-xs text-ink-700/70 mt-3 space-y-1">${(h.details||[]).map(d => `<li class="flex items-start gap-1.5"><span class="text-sea-600">•</span>${escape(d)}</li>`).join('')}</ul>` : ''}
-        <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8">
-          ${h.phone && h.phone!=='—' ? `<a href="tel:${escape(h.phone.replace(/\\s/g,''))}" class="text-sea-600 text-xs font-bold hover:underline" onclick="event.stopPropagation();">${escape(h.phone)}</a>` : `<span class="text-xs text-ink-700/50">${escape(h.hours||'')}</span>`}
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
+          ${providerBadge}
           ${h.hours ? `<span class="text-[11px] text-ink-700/60">${escape(h.hours)}</span>` : ''}
         </div>
       </article>

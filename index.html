@@ -811,11 +811,20 @@ tailwind.config = {
     turlarList.innerHTML = list.map(KalkanData.turCard).join('');
   }
 
-  // Hizmetler (featured 8)
+  // Hizmetler (featured 8) — provider count'ları sağlayıcı JSON'dan ekle
   const hizmetlerList = document.getElementById('hizmetler-list');
   if (hizmetlerList) {
-    const featured = (hizmetler.items || []).filter(h => h.featured).slice(0,8);
-    const list = featured.length ? featured : (hizmetler.items || []).slice(0,8);
+    const providerCounts = {};
+    try {
+      const provRes = await fetch(`data/hizmet-saglayicilari.json?t=${Date.now()}`);
+      const provData = await provRes.json();
+      Object.entries(provData.services || {}).forEach(([key, svc]) => {
+        providerCounts[key] = (svc.providers || []).length;
+      });
+    } catch(e) { /* graceful: badge "Yakında sağlayıcı" olarak görünür */ }
+    const enriched = (hizmetler.items || []).map(it => ({ ...it, providerCount: providerCounts[it.id] || 0 }));
+    const featured = enriched.filter(h => h.featured).slice(0,8);
+    const list = featured.length ? featured : enriched.slice(0,8);
     hizmetlerList.innerHTML = list.map(KalkanData.hizmetCard).join('');
   }
 })();
