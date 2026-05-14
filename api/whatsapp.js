@@ -9,6 +9,10 @@
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 
+for (const k of Object.keys(process.env)) {
+  if (typeof process.env[k] === 'string') process.env[k] = process.env[k].trim();
+}
+
 const STUB_MODE =
   !process.env.META_VERIFY_TOKEN ||
   !process.env.META_APP_SECRET ||

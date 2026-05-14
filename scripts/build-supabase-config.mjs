@@ -14,8 +14,8 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outPath = resolve(__dirname, '..', 'js', 'supabase-config.js');
 
-const url = process.env.SUPABASE_URL;
-const anon = process.env.SUPABASE_ANON_KEY;
+const url = process.env.SUPABASE_URL?.trim();
+const anon = process.env.SUPABASE_ANON_KEY?.trim();
 
 if (!url || !anon) {
   console.error('[build-supabase-config] SUPABASE_URL or SUPABASE_ANON_KEY missing in env — skipping write');

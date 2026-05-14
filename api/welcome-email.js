@@ -10,6 +10,10 @@
 
 import { createClient } from '@supabase/supabase-js';
 
+for (const k of Object.keys(process.env)) {
+  if (typeof process.env[k] === 'string') process.env[k] = process.env[k].trim();
+}
+
 const BASE_URL    = 'https://kalkaninfo.com';
 const PROFILE_URL = `${BASE_URL}/profil.html`;
 const KVKK_URL    = `${BASE_URL}/kvkk.html`;
