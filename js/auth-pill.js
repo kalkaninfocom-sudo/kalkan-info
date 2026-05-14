@@ -55,8 +55,8 @@
       #ki-auth-menu a.admin { color:rgba(255,255,255,0.7);font-size:13px; }
       #ki-auth-divider { height:1px;background:rgba(255,255,255,0.12);margin:4px 8px; }
       @media (max-width:768px) {
-        #ki-auth-details { top:200px !important; right:10px !important; }
-        #ki-auth-details > summary { padding:10px 14px;font-size:14px; }
+        /* Mobilde gizle — bottom-nav.js zaten Giriş/Profil sunuyor */
+        #ki-auth-details { display:none !important; }
       }
     `;
     document.head.appendChild(style);

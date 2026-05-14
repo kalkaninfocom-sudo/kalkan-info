@@ -1,6 +1,25 @@
 (function () {
   'use strict';
 
+  // ────────────────────────────────────────────────────────────────────────
+  // Global a11y + motion guards (her sayfaya tek seferlik enjekte).
+  // - :focus-visible için altın halka (WCAG 2.1 AA)
+  // - prefers-reduced-motion: marquee + animate-pulse + tile-icon dur
+  // ────────────────────────────────────────────────────────────────────────
+  (function injectA11yCSS() {
+    if (document.getElementById('ki-a11y-styles')) return;
+    var style = document.createElement('style');
+    style.id = 'ki-a11y-styles';
+    style.textContent =
+      ':focus-visible{outline:2px solid #f4b53d;outline-offset:2px;border-radius:4px;}' +
+      'button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none;}' +
+      '@media (prefers-reduced-motion: reduce){' +
+        '*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}' +
+        '.marquee,#lf-marquee{animation:none!important;transform:none!important;}' +
+      '}';
+    (document.head || document.documentElement).appendChild(style);
+  })();
+
   function mountDrawer() {
     // Idempotent: zaten varsa atla
     if (document.getElementById('site-drawer')) return;
