@@ -1,4 +1,5 @@
 {
+  "installCommand": "npm install",
   "buildCommand": "node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json'",
   "outputDirectory": ".",
   "functions": {
