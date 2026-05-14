@@ -1,6 +1,9 @@
 {
   "buildCommand": "node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json'",
   "outputDirectory": ".",
+  "functions": {
+    "api/*.js": { "maxDuration": 10 }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
