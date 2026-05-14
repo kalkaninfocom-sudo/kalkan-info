@@ -312,7 +312,7 @@ tailwind.config = {
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold">Bugün</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Nöbetçi Eczane</div>
-        <div class="text-xs text-sea-700/70 mt-1">Doğa Eczanesi · Şehitler Cd.</div>
+        <div id="ecz-tile-summary" class="text-xs text-sea-700/70 mt-1">—</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-coral-500 bg-sea-50/40 hover:bg-coral-500/5 p-4 transition" href="#acil">
         <div class="tile-icon w-10 h-10 rounded-md bg-coral-500 text-white grid place-items-center mb-3">
@@ -479,7 +479,7 @@ tailwind.config = {
           <div class="font-display font-bold text-sm">Catering</div>
           <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Özel günler</div>
         </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Patara+Antik+Kenti+Kas+Antalya" target="_blank" rel="noopener" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
+        <a href="antik-kentler.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🏛️</div>
           <div class="font-display font-bold text-sm">Antik Kentler</div>
           <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Patara · Xanthos</div>
@@ -563,7 +563,7 @@ tailwind.config = {
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      <a href="https://www.google.com/maps/search/?api=1&query=Patara+Antik+Kenti+Antalya" target="_blank" rel="noopener" class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
+      <a href="antik-kentler.html" class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-56 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=800&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Xanthos Letoon antik kentleri panoraması" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
@@ -776,6 +776,11 @@ tailwind.config = {
       }
       const eczMapEl = document.getElementById('ecz-map');
       if (eczMapEl && ecz.mapUrl) eczMapEl.href = ecz.mapUrl;
+      const eczTileEl = document.getElementById('ecz-tile-summary');
+      if (eczTileEl && !yarin) {
+        const firstAddrPart = (ecz.address || '').split(',')[1]?.trim() || (ecz.address || '').split(',')[0]?.trim() || '';
+        eczTileEl.textContent = ecz.name ? (ecz.name + (firstAddrPart ? ' · ' + firstAddrPart : '')) : '—';
+      }
     }
 
     doldurEczane(aktifVeri, false);

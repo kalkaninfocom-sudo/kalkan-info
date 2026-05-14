@@ -156,10 +156,15 @@ tailwind.config = {
 <!-- ============== STICKY NAV ============== -->
 <nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
-    <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3" style="transition:background .18s ease;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
-    </button>
+    <div class="flex items-center -ml-3">
+      <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+      </button>
+      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+      </a>
+    </div>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
