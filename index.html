@@ -533,21 +533,77 @@ tailwind.config = {
     <div class="rounded-xl border-2 border-dashed border-sea-200 bg-sea-50/40 p-6 md:p-8">
       <div class="text-xs uppercase tracking-widest text-sea-600 font-bold">Topluluk</div>
       <h3 class="font-display text-2xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h3>
-      <p class="text-sea-700/80 mt-2 text-sm">Kaybettiğin ya da bulduğun eşyayı bildir; topluluk birbirine yardım etsin.</p>
+      <p class="text-sea-700/80 mt-2 text-sm">Kaybettiğin ya da bulduğun eşyayı bildir; topluluk birbirine yardım etsin. İlanın detayını ve görselini ekle, sana özel silme kodu verilir.</p>
       <div class="mt-5 flex flex-wrap gap-2">
-        <a href="https://wa.me/905306650794?text=Kayıp+eşya+bildirmek+istiyorum" target="_blank" rel="noopener" class="bg-coral-500 hover:bg-coral-600 text-white px-4 py-2 rounded text-sm font-semibold">Kayıp Eşya Bildir</a>
-        <a href="https://wa.me/905306650794?text=Bulduğum+eşyayı+bildirmek+istiyorum" target="_blank" rel="noopener" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded text-sm font-semibold">Bulduğum Eşyayı Yükle</a>
+        <button data-action="lf-new" data-lf-type="kayip"   class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded text-sm font-semibold">🔍 Kayıp Eşya Bildir</button>
+        <button data-action="lf-new" data-lf-type="bulundu" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded text-sm font-semibold">✓ Bulduğum Eşyayı Yükle</button>
+        <a href="hizmetler.html#kayip" class="text-sea-600 hover:text-sea-800 underline text-sm self-center ml-1">Tüm ilanları gör →</a>
       </div>
     </div>
     <div id="isletme-ekle" class="rounded-xl bg-gradient-to-br from-sun-500 to-coral-500 text-white p-6 md:p-8 shadow-deep relative overflow-hidden">
       <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-white/10 blur-3xl"></div>
       <div class="text-xs uppercase tracking-widest opacity-90 font-bold">İşletmeler için</div>
-      <h3 class="font-display text-2xl font-extrabold mt-1">Kalkan Info’da yer al</h3>
+      <h3 class="font-display text-2xl font-extrabold mt-1">Kalkan Info'da yer al</h3>
       <p class="opacity-90 mt-2 text-sm">Villa, restoran, tur, hizmet — tek bir doğru yerde gör. Öne çıkan listeler, sezonluk paketler.</p>
       <a href="mailto:info@kalkan.info?subject=Kalkan+Info+Listeleme+Başvurusu" class="inline-block mt-5 bg-white text-sea-800 hover:bg-sea-50 px-4 py-2 rounded text-sm font-bold">Başvuru Formu</a>
     </div>
   </div>
+
+  <!-- Kayan ilan şeridi -->
+  <div id="lf-marquee-wrap" class="hidden border-t border-b border-sea-100 bg-sea-50/30 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
+      <span class="text-[11px] font-bold uppercase tracking-widest text-sea-600 whitespace-nowrap">📢 Son İlanlar</span>
+      <div class="flex-1 overflow-hidden relative">
+        <div id="lf-marquee" class="flex gap-3 whitespace-nowrap" style="animation:lf-scroll 45s linear infinite;will-change:transform;"></div>
+      </div>
+    </div>
+  </div>
 </section>
+<style>
+@keyframes lf-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+#lf-marquee:hover { animation-play-state: paused; }
+.lf-pill { display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #cfdfee;border-radius:9999px;padding:6px 14px 6px 6px;text-decoration:none;color:#0a2e4c;font-size:13px;transition:border-color .15s,box-shadow .15s;flex-shrink:0; }
+.lf-pill:hover { border-color:#1a5e93;box-shadow:0 2px 8px rgba(26,94,147,0.2); }
+.lf-pill .lf-thumb { width:32px;height:32px;border-radius:9999px;background:#eaf2f9;display:grid;place-items:center;font-size:16px;overflow:hidden;flex-shrink:0; }
+.lf-pill .lf-thumb img { width:100%;height:100%;object-fit:cover; }
+.lf-pill .lf-tag { font-size:10px;font-weight:700;letter-spacing:0.05em;padding:2px 6px;border-radius:9999px; }
+.lf-pill .lf-tag.lost { background:#fee2e2;color:#b91c1c; }
+.lf-pill .lf-tag.found { background:#dcfce7;color:#15803d; }
+.lf-pill .lf-name { font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis; }
+.lf-pill .lf-meta { font-size:11px;color:#5d97c4; }
+</style>
+<script src="js/lost-found.js" defer></script>
+<script>
+(function () {
+  function _esc(s) { return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+  const ICONS = { anahtar:'🔑', telefon:'📱', cuzdan:'👛', canta:'🎒', kiyafet:'👕', ayakkabi:'👟', aksesuar:'⌚', gozluk:'👓', belge:'📄', hayvan:'🐾', cocuk:'🧸', plaj:'🩴', diger:'📦' };
+  function pill(it) {
+    const isLost = it.type === 'kayip';
+    const cover = (Array.isArray(it.images) && it.images[0]) || '';
+    return `<a href="hizmetler.html#kayip" class="lf-pill" title="${_esc(it.itemName||'')}">
+      <span class="lf-thumb">${cover ? `<img src="${_esc(cover)}" alt="">` : (ICONS[it.category] || '📦')}</span>
+      <span class="lf-tag ${isLost?'lost':'found'}">${isLost?'Kayıp':'Bulundu'}</span>
+      <span class="lf-name">${_esc(it.itemName||'—')}</span>
+      ${it.location ? `<span class="lf-meta">📍 ${_esc(it.location)}</span>` : ''}
+    </a>`;
+  }
+  function render() {
+    let data;
+    try { data = JSON.parse(localStorage.getItem('kalkan_lost_found_v1') || '{"items":[]}'); }
+    catch { data = { items: [] }; }
+    const items = (data.items || []).slice().sort((a,b) => (b.createdAt||'').localeCompare(a.createdAt||'')).slice(0, 12);
+    const wrap = document.getElementById('lf-marquee-wrap');
+    const track = document.getElementById('lf-marquee');
+    if (!wrap || !track) return;
+    if (!items.length) { wrap.classList.add('hidden'); return; }
+    wrap.classList.remove('hidden');
+    track.innerHTML = items.map(pill).join('') + items.map(pill).join('');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);
+  else render();
+  window.addEventListener('storage', e => { if (e.key === 'kalkan_lost_found_v1') render(); });
+})();
+</script>
 
 <!-- ============== KALKAN REHBERİ ============== -->
 <section class="section-alt">

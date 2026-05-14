@@ -250,19 +250,39 @@ tailwind.config = {
 
 <!-- ============== KAYIP & BULUNAN ============== -->
 <section id="kayip" class="max-w-7xl mx-auto px-4 mt-10 mb-16">
-  <div class="mb-4">
-    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-      <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Topluluk
+  <div class="mb-5 flex items-end justify-between flex-wrap gap-3">
+    <div>
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+        <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Topluluk
+      </div>
+      <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h2>
+      <p class="text-sm text-sea-700/70 mt-1">Bir şey kaybettin ya da buldun mu? İlan ver — komşular birbirine kavuştursun.</p>
     </div>
-    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h2>
+    <div class="flex gap-2">
+      <button data-action="lf-new" data-lf-type="kayip"   class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition shadow">🔍 Kayıp Bildir</button>
+      <button data-action="lf-new" data-lf-type="bulundu" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition shadow">✓ Bulduğumu Bildir</button>
+    </div>
   </div>
-  <div class="rounded-xl border border-sea-100 bg-white p-6" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
-    <div id="kayip-list" class="text-sm text-sea-700/70 mb-4">Yükleniyor…</div>
-    <a href="admin.html" class="inline-flex items-center gap-2 bg-sea-700 hover:bg-sea-800 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition">
-      + Yeni Bildirim
-    </a>
+
+  <!-- Kayıp ilanları -->
+  <div class="mb-6">
+    <h3 class="text-sm font-bold text-rose-600 mb-2 uppercase tracking-wide">🔍 Kayıp İlanları (<span id="lf-count-lost">0</span>)</h3>
+    <div id="lf-list-lost" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <!-- Bulunan ilanları -->
+  <div>
+    <h3 class="text-sm font-bold text-emerald-600 mb-2 uppercase tracking-wide">✓ Bulunan İlanları (<span id="lf-count-found">0</span>)</h3>
+    <div id="lf-list-found" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <div id="lf-empty" class="hidden text-center py-12 text-sea-500 border border-dashed border-sea-200 rounded-xl mt-4">
+    <div class="text-5xl mb-2">📭</div>
+    <p class="font-medium">Henüz ilan yok.</p>
+    <p class="text-sm mt-1">İlk ilanı sen ver — yukarıdan başlayabilirsin.</p>
   </div>
 </section>
+<script src="js/lost-found.js" defer></script>
 
 <!-- eski hizmet kartları kaldırıldı, dinamik bölümler yukarıda -->
 <section style="display:none">
@@ -781,21 +801,7 @@ tailwind.config = {
     const searchInput = document.getElementById('search-input');
     if (searchInput) searchInput.addEventListener('input', renderItems);
 
-    // --- Kayıp & Bulunan ---
-    const kayipList = document.getElementById('kayip-list');
-    if (kayipList) {
-      const items = (data.kayipEsya && data.kayipEsya.items) || [];
-      if (items.length === 0) {
-        kayipList.textContent = 'Henüz kayıp/bulunan kayıt yok.';
-      } else {
-        kayipList.innerHTML = `<ul class="space-y-2">${items.map(i => `
-          <li class="flex items-start gap-3 p-3 rounded-lg bg-sea-50 border border-sea-100">
-            <span class="text-xl">${KalkanData.escape(i.icon||'📦')}</span>
-            <div><div class="font-semibold text-sea-800">${KalkanData.escape(i.title||i.name||'')}</div>
-            <div class="text-xs text-sea-700/70 mt-0.5">${KalkanData.escape(i.date||'')} · ${KalkanData.escape(i.location||'')}</div></div>
-          </li>`).join('')}</ul>`;
-      }
-    }
+    // Kayıp & Bulunan — js/lost-found.js modülü tarafından yönetiliyor
   })();
 </script>
 <script src="js/pwa.js?v=2" defer></script>

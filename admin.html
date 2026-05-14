@@ -57,6 +57,21 @@ tr:hover td { background:#fafbfd; }
 .modal { background:white; border-radius:14px; max-width:760px; width:100%; box-shadow:0 24px 60px -12px rgba(7,22,38,0.5); }
 .toast { position:fixed; bottom:1.5rem; right:1.5rem; padding:0.75rem 1rem; border-radius:10px; color:white; font-weight:600; font-size:0.875rem; box-shadow:0 8px 24px -4px rgba(7,22,38,0.4); z-index:80; animation:slideIn 200ms ease; }
 @keyframes slideIn { from { transform:translateY(20px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+/* Mobile sidebar: <md ekranda gizli, hamburger ile açılır */
+#mobile-menu-btn { display:none; }
+#sidebar-backdrop { display:none; position:fixed; inset:0; background:rgba(7,22,38,0.5); z-index:40; }
+@media (max-width: 767px) {
+  #mobile-menu-btn { display:inline-flex; }
+  #sidebar { position:fixed; top:0; left:0; height:100vh; transform:translateX(-100%); transition:transform 200ms ease; z-index:50; }
+  #sidebar.open { transform:translateX(0); }
+  #sidebar.open ~ #sidebar-backdrop { display:block; }
+  body.sidebar-open #sidebar-backdrop { display:block; }
+  main { width:100% !important; }
+  #page-body { padding:1rem !important; }
+  .modal { max-width:100% !important; margin:0.5rem; }
+  table { font-size:0.75rem; }
+  th, td { padding:0.4rem 0.4rem !important; }
+}
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a2e4c">
@@ -82,8 +97,9 @@ tr:hover td { background:#fafbfd; }
     </div>
     <div class="text-sm text-ink-700/80 mb-4">Yönetim paneline erişmek için şifrenizi girin.</div>
     <input id="login-pwd" type="password" placeholder="Şifre" class="mb-3" />
-    <button id="login-btn" class="btn btn-primary w-full justify-center">Giriş yap</button>
+    <button id="login-btn" class="btn btn-primary w-full justify-center">Giriş Yap</button>
     <div id="login-err" class="text-bad-500 text-xs mt-3 text-center hidden">Şifre hatalı.</div>
+    <div id="login-hint" class="text-[11px] text-ink-700/60 mt-3 text-center"></div>
     <div class="text-[11px] text-ink-700/50 mt-6 text-center">© 2026 Kalkan Info</div>
   </div>
 </div>
@@ -92,7 +108,7 @@ tr:hover td { background:#fafbfd; }
 <div id="app-shell" class="hidden flex min-h-screen">
 
   <!-- SIDEBAR -->
-  <aside class="w-64 text-white flex-shrink-0 flex flex-col" style="background:linear-gradient(180deg,#0a1626 0%,#11304d 100%);">
+  <aside id="sidebar" class="w-64 text-white flex-shrink-0 flex flex-col" style="background:linear-gradient(180deg,#0a1626 0%,#11304d 100%);">
     <div class="px-5 py-5 border-b border-white/10">
       <div class="font-display text-lg font-extrabold tracking-wide">KALKAN <span class="text-sun-500">INFO</span></div>
       <div class="text-[11px] text-white/50 mt-0.5">Admin Panel · v1.0</div>
@@ -100,6 +116,7 @@ tr:hover td { background:#fafbfd; }
     <nav class="flex-1 py-4 overflow-y-auto" id="nav">
       <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2">Genel</div>
       <a class="sidebar-link active flex items-center gap-3 px-5 py-2.5 text-sm" data-page="dashboard"><span>🏠</span>Anasayfa</a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="onaylar"><span>✅</span><span class="flex-1">Kullanıcı Başvuruları</span><span id="pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
       <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="config"><span>⚙️</span>Site Ayarları</a>
 
       <div class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">İçerik</div>
@@ -128,19 +145,25 @@ tr:hover td { background:#fafbfd; }
 
   <!-- MAIN -->
   <main class="flex-1 flex flex-col min-w-0">
-    <header class="bg-white border-b border-ink-700/8 px-6 py-4 flex items-center justify-between sticky top-0 z-30">
-      <div>
-        <div id="page-title" class="text-lg font-bold text-ink-900">Anasayfa</div>
-        <div id="page-subtitle" class="text-xs text-ink-700/60">Admin paneline hoş geldin.</div>
+    <header class="bg-white border-b border-ink-700/8 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-30 gap-2">
+      <div class="flex items-center gap-3 min-w-0">
+        <button id="mobile-menu-btn" class="btn btn-ghost text-lg" aria-label="Menü">☰</button>
+        <div class="min-w-0">
+          <div id="page-title" class="text-lg font-bold text-ink-900 truncate">Anasayfa</div>
+          <div id="page-subtitle" class="text-xs text-ink-700/60 truncate">Admin paneline hoş geldin.</div>
+        </div>
       </div>
-      <div class="flex items-center gap-2">
-        <button id="preview-btn" class="btn btn-ghost"><span>🔗</span>Siteyi Önizle</button>
-        <button id="save-btn" class="btn btn-success"><span>💾</span>Tüm Değişiklikleri İndir</button>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button id="preview-btn" class="btn btn-ghost"><span>🔗</span><span class="hidden sm:inline">Siteyi Önizle</span></button>
+        <button id="save-btn" class="btn btn-success"><span>💾</span><span class="hidden sm:inline">Tüm Değişiklikleri İndir</span></button>
       </div>
     </header>
     <div id="page-body" class="flex-1 p-6 overflow-y-auto"></div>
   </main>
 </div>
+
+<!-- MOBILE SIDEBAR BACKDROP -->
+<div id="sidebar-backdrop"></div>
 
 <!-- MODAL -->
 <div id="modal" class="modal-bg hidden">
