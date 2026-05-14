@@ -47,5 +47,14 @@ data/.omc/
 **/firebase-adminsdk-*.json
 *-key.json
 js/supabase-config.js
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets.json
+credentials.json
+*.bak
+coverage/
 
 .vercel

@@ -202,9 +202,11 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Geçersiz token' });
   }
 
+  const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const lang        = (preferredLang || 'tr').toLowerCase();
   const tpl         = TEMPLATES[lang] || TEMPLATES['tr'];
-  const name        = displayName || email.split('@')[0];
+  const rawName     = displayName || email.split('@')[0];
+  const name        = escapeHtml(rawName).slice(0, 80);
   const fromAddress = process.env.EMAIL_FROM || 'Kalkan Info <noreply@kalkaninfo.com>';
 
   // RESEND_API_KEY yoksa mail_queue'ya ekle

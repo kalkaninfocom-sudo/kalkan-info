@@ -69,7 +69,7 @@ export default async function handler(req, res) {
   }
 
   if (STUB_MODE) {
-    console.log('[whatsapp] STUB: POST received, env vars eksik — body:', JSON.stringify(req.body));
+    console.log('[whatsapp] STUB: POST received, env vars eksik');
     return res.status(200).end();
   }
 
@@ -106,13 +106,17 @@ export default async function handler(req, res) {
             continue;
           }
 
+          // KVKK: mesaj içeriği ve tam telefon numarası audit_log'a yazılmaz.
+          // Sadece event referansı + maskelenmiş gönderici saklanır.
+          const senderMasked = normalised.length >= 6
+            ? normalised.slice(0, 4) + '****' + normalised.slice(-2)
+            : '****';
           await supabase.from('audit_log').insert({
             action: 'whatsapp_message_received',
             metadata: {
               message_id:   msg.id,
-              sender:       normalised,
+              sender_mask:  senderMasked,
               type:         msg.type,
-              text:         msg.text?.body || null,
               timestamp:    msg.timestamp,
               entry_id:     entry.id,
             },
