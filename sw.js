@@ -3,7 +3,7 @@
    Versiyon güncellendiğinde eski cache temizlenir.
 */
 
-const CACHE_VERSION = 'kalkan-info-v1.1.0';
+const CACHE_VERSION = 'kalkan-info-v1.2.0-supabase';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;

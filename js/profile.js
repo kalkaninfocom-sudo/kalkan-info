@@ -1,26 +1,14 @@
 /**
  * Kalkan Info — Profil Sayfası Logic
- * Firestore + Firebase Auth ile profil yönetimi
+ * Supabase Postgres + Auth ile profil yönetimi
  */
 
 import {
   safeOnAuthStateChanged,
-  auth,
-  db,
-  deleteUser,
+  isSupabaseConfigured,
   isFirebaseConfigured,
 } from './auth.js';
-
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  deleteDoc,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { supabase } from './supabase-client.js';
 
 // ---------------------------------------------------------------------------
 // Auth guard — giriş yoksa login.html'e yönlendir
@@ -29,8 +17,7 @@ let _currentUser = null;
 
 safeOnAuthStateChanged(async (user) => {
   if (!user) {
-    // Faz 1: Firebase config yoksa profil sayfası login'e yönlendirmez, boş gösterir
-    if (isFirebaseConfigured) {
+    if (isSupabaseConfigured) {
       window.location.href = 'login.html';
     }
     return;
@@ -44,22 +31,33 @@ safeOnAuthStateChanged(async (user) => {
 // ---------------------------------------------------------------------------
 async function _loadProfile(user) {
   try {
-    const snap = await getDoc(doc(db, 'users', user.uid));
-    const data = snap.exists() ? snap.data() : {};
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    if (error && error.code !== 'PGRST116') {
+      console.error('[profile] Profil yükleme hatası:', error.message);
+    }
+
+    const profile = data ?? {};
 
     // Avatar
     const avatarEl = document.getElementById('profile-avatar');
     if (avatarEl) {
-      if (user.photoURL) {
-        avatarEl.src = user.photoURL;
+      const photoUrl = profile.photo_url || user.user_metadata?.avatar_url;
+      if (photoUrl) {
+        avatarEl.src = photoUrl;
       } else {
-        avatarEl.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || user.email)}&background=1a5e93&color=fff&size=128`;
+        const displayName = profile.display_name || user.email || '';
+        avatarEl.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=1a5e93&color=fff&size=128`;
       }
     }
 
     // Ad
     const nameEl = document.getElementById('profile-name');
-    if (nameEl) nameEl.textContent = data.displayName || user.displayName || '—';
+    if (nameEl) nameEl.textContent = profile.display_name || user.user_metadata?.full_name || '—';
 
     // E-posta (read-only)
     const emailEl = document.getElementById('profile-email');
@@ -68,30 +66,29 @@ async function _loadProfile(user) {
     // Dil dropdown
     const langEl = document.getElementById('profile-lang');
     if (langEl) {
-      langEl.value = data.preferredLang || localStorage.getItem('ki_lang') || 'tr';
+      langEl.value = profile.preferred_lang || localStorage.getItem('ki_lang') || 'tr';
     }
 
     // Marketing toggle
     const mktEl = document.getElementById('profile-marketing');
     if (mktEl) {
-      mktEl.checked = data.marketingOptIn || false;
+      mktEl.checked = profile.marketing_opt_in || false;
     }
 
     // KVKK tarih
     const kvkkEl = document.getElementById('profile-kvkk-date');
-    if (kvkkEl && data.kvkkConsent?.timestamp) {
-      kvkkEl.textContent = new Date(data.kvkkConsent.timestamp).toLocaleDateString('tr-TR');
+    if (kvkkEl && profile.kvkk_consent?.timestamp) {
+      kvkkEl.textContent = new Date(profile.kvkk_consent.timestamp).toLocaleDateString('tr-TR');
     }
 
     // Üyelik tarihi
     const joinEl = document.getElementById('profile-joined');
-    if (joinEl && data.createdAt) {
-      const ts = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
-      joinEl.textContent = ts.toLocaleDateString('tr-TR');
+    if (joinEl && profile.created_at) {
+      joinEl.textContent = new Date(profile.created_at).toLocaleDateString('tr-TR');
     }
 
   } catch (err) {
-    console.error('[profile] Profil yükleme hatası:', err);
+    console.error('[profile] Profil yükleme genel hatası:', err);
   }
 }
 
@@ -104,11 +101,14 @@ if (langSelect) {
     if (!_currentUser) return;
     const lang = langSelect.value;
     localStorage.setItem('ki_lang', lang);
-    try {
-      await updateDoc(doc(db, 'users', _currentUser.uid), { preferredLang: lang });
+    const { error } = await supabase
+      .from('users')
+      .update({ preferred_lang: lang })
+      .eq('id', _currentUser.id);
+    if (error) {
+      console.error('[profile] Dil güncelleme hatası:', error.message);
+    } else {
       _showToast('Dil tercihiniz kaydedildi.');
-    } catch (err) {
-      console.error('[profile] Dil güncelleme hatası:', err);
     }
   });
 }
@@ -120,13 +120,14 @@ const mktToggle = document.getElementById('profile-marketing');
 if (mktToggle) {
   mktToggle.addEventListener('change', async () => {
     if (!_currentUser) return;
-    try {
-      await updateDoc(doc(db, 'users', _currentUser.uid), {
-        marketingOptIn: mktToggle.checked,
-      });
+    const { error } = await supabase
+      .from('users')
+      .update({ marketing_opt_in: mktToggle.checked })
+      .eq('id', _currentUser.id);
+    if (error) {
+      console.error('[profile] Marketing toggle hatası:', error.message);
+    } else {
       _showToast(mktToggle.checked ? 'Pazarlama bildirimleri açıldı.' : 'Pazarlama bildirimleri kapatıldı.');
-    } catch (err) {
-      console.error('[profile] Marketing toggle hatası:', err);
     }
   });
 }
@@ -134,9 +135,9 @@ if (mktToggle) {
 // ---------------------------------------------------------------------------
 // Hesabımı Sil (KVKK Madde 7)
 // ---------------------------------------------------------------------------
-const deleteBtn = document.getElementById('btn-delete-account');
-const deleteModal = document.getElementById('modal-delete');
-const deleteCancelBtn = document.getElementById('btn-delete-cancel');
+const deleteBtn        = document.getElementById('btn-delete-account');
+const deleteModal      = document.getElementById('modal-delete');
+const deleteCancelBtn  = document.getElementById('btn-delete-cancel');
 const deleteConfirmBtn = document.getElementById('btn-delete-confirm');
 
 if (deleteBtn) {
@@ -155,20 +156,21 @@ if (deleteConfirmBtn) {
     deleteConfirmBtn.disabled = true;
     deleteConfirmBtn.textContent = 'Siliniyor...';
     try {
-      // Firestore dokümanını sil
-      await deleteDoc(doc(db, 'users', _currentUser.uid));
-      // Firebase Auth kullanıcısını sil
-      await deleteUser(_currentUser);
+      // public.users satırını soft-delete: deleted_at doldur
+      const { error: softErr } = await supabase
+        .from('users')
+        .update({ deleted_at: new Date().toISOString() })
+        .eq('id', _currentUser.id);
+      if (softErr) throw softErr;
+
+      // TODO: auth.users hard-delete için Edge Function çağır:
+      // await supabase.functions.invoke('delete-account')
+
+      await supabase.auth.signOut();
       window.location.href = 'index.html';
     } catch (err) {
       console.error('[profile] Hesap silme hatası:', err);
-      // Firebase "requires-recent-login" hatası
-      if (err.code === 'auth/requires-recent-login') {
-        alert('Güvenlik nedeniyle bu işlem için yeniden giriş yapmanız gerekiyor. Çıkış yapılıyor...');
-        window.location.href = 'login.html';
-      } else {
-        alert('Hesap silinirken bir hata oluştu. Lütfen info@kalkaninfo.com adresine yazın.');
-      }
+      alert('Hesap silinirken bir hata oluştu. Lütfen info@kalkaninfo.com adresine yazın.');
       deleteConfirmBtn.disabled = false;
       deleteConfirmBtn.textContent = 'Hesabımı Sil';
     }
@@ -186,33 +188,32 @@ if (downloadBtn) {
     downloadBtn.textContent = 'Hazırlanıyor...';
     try {
       // Kullanıcı profili
-      const userSnap = await getDoc(doc(db, 'users', _currentUser.uid));
-      const userData = userSnap.exists() ? userSnap.data() : {};
+      const { data: userData } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', _currentUser.id)
+        .single();
 
-      // Kullanıcının yorumları
-      const reviewsQ = query(
-        collection(db, 'reviews'),
-        where('authorUid', '==', _currentUser.uid)
-      );
-      const reviewsSnap = await getDocs(reviewsQ);
-      const reviews = reviewsSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      // Kullanıcının yorumları (reviews tablosu author_id ile)
+      const { data: reviews } = await supabase
+        .from('reviews')
+        .select('*')
+        .eq('author_id', _currentUser.id);
 
       const exportData = {
-        exportDate: new Date().toISOString(),
+        exportDate:    new Date().toISOString(),
         exportVersion: '1.0',
         user: {
-          uid: _currentUser.uid,
+          id:    _currentUser.id,
           email: _currentUser.email,
-          ...userData,
+          ...(userData ?? {}),
         },
-        reviews,
+        reviews: reviews ?? [],
       };
 
-      const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-        type: 'application/json',
-      });
-      const url = URL.createObjectURL(blob);
-      const a   = document.createElement('a');
+      const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
       a.href     = url;
       a.download = `kalkaninfo-verilerim-${Date.now()}.json`;
       a.click();

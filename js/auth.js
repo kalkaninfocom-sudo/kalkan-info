@@ -1,133 +1,79 @@
 /**
- * Kalkan Info — Firebase Auth Wrapper
- * Firebase Modular SDK v10 (ES modules via CDN)
- *
- * TODO: Berkay buraya Firebase config'i ekleyecek
- * Firebase Console → Project Settings → Your apps → Web app → Config
+ * Kalkan Info — Supabase Auth Wrapper
+ * supabase-js v2 (CDN ESM via esm.sh)
  */
 
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  deleteUser,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  serverTimestamp,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { supabase } from './supabase-client.js';
+import { SUPABASE_URL } from './supabase-config.js';
+
+export const isSupabaseConfigured = Boolean(SUPABASE_URL);
+// Backward-compat alias (profile.js geçiş dönemi)
+export const isFirebaseConfigured = isSupabaseConfigured;
 
 // ---------------------------------------------------------------------------
-// Firebase config — TODO: Berkay buraya Firebase config'i ekleyecek
+// Yardımcı — public.users tablosuna profil satırı yaz
 // ---------------------------------------------------------------------------
-const firebaseConfig = {
-  // apiKey: "...",
-  // authDomain: "...",
-  // projectId: "...",
-  // storageBucket: "...",
-  // messagingSenderId: "...",
-  // appId: "...",
-};
-
-export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey);
-
-// ---------------------------------------------------------------------------
-// Faz 1 guard — Firebase config boşsa no-op modda başlat
-// ---------------------------------------------------------------------------
-if (!isFirebaseConfigured) {
-  console.log('[kalkan] auth disabled in Phase 1, will be enabled in Phase 2 (Supabase)');
-}
-
-let app, auth, db, googleProvider, facebookProvider;
-
-try {
-  app  = initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db   = getFirestore(app);
-  googleProvider   = new GoogleAuthProvider();
-  facebookProvider = new FacebookAuthProvider();
-} catch (_initErr) {
-  // Config boş — no-op nesneler oluştur, sayfaların çökmesini engelle
-  console.warn('[kalkan] Firebase init skipped (Phase 1 — no config):', _initErr.message);
-  app  = null;
-  auth = { currentUser: null };
-  db   = null;
-  googleProvider   = null;
-  facebookProvider = null;
-}
-
-// ---------------------------------------------------------------------------
-// Yardımcı — kullanıcı dokümanı oluştur / güncelle
-// ---------------------------------------------------------------------------
-async function _saveUserDoc(uid, data) {
-  try {
-    await setDoc(doc(db, 'users', uid), data, { merge: true });
-  } catch (err) {
-    console.error('[auth] Firestore kayıt hatası:', err);
-  }
+async function _upsertUserRow(user, extra = {}) {
+  const { error } = await supabase.from('users').upsert(
+    {
+      id:              user.id,
+      email:           user.email,
+      display_name:    extra.display_name ?? user.user_metadata?.full_name ?? user.user_metadata?.name ?? null,
+      photo_url:       extra.photo_url    ?? user.user_metadata?.avatar_url ?? null,
+      provider:        extra.provider     ?? (user.app_metadata?.provider ?? 'email'),
+      preferred_lang:  extra.preferred_lang ?? localStorage.getItem('ki_lang') ?? 'tr',
+      marketing_opt_in: extra.marketing_opt_in ?? false,
+      kvkk_consent:    extra.kvkk_consent ?? { version: '1.0', timestamp: new Date().toISOString(), ip: null },
+      last_login_at:   new Date().toISOString(),
+    },
+    { onConflict: 'id' }
+  );
+  if (error) console.error('[auth] users upsert hatası:', error.message);
 }
 
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
 
-/** Google ile giriş */
+/** Google ile giriş (OAuth redirect) */
 export async function loginWithGoogle() {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    const user   = result.user;
-    await _saveUserDoc(user.uid, {
-      displayName:  user.displayName,
-      email:        user.email,
-      photoURL:     user.photoURL,
-      provider:     'google',
-      lastLoginAt:  serverTimestamp(),
-      preferredLang: localStorage.getItem('ki_lang') || 'tr',
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + '/profil.html' },
     });
-    return { ok: true, user };
+    if (error) throw error;
+    return { ok: true };
   } catch (err) {
     console.error('[auth] Google giriş hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
-/** Facebook ile giriş */
+/** Facebook ile giriş (OAuth redirect) */
 export async function loginWithFacebook() {
   try {
-    const result = await signInWithPopup(auth, facebookProvider);
-    const user   = result.user;
-    await _saveUserDoc(user.uid, {
-      displayName:  user.displayName,
-      email:        user.email,
-      photoURL:     user.photoURL,
-      provider:     'facebook',
-      lastLoginAt:  serverTimestamp(),
-      preferredLang: localStorage.getItem('ki_lang') || 'tr',
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'facebook',
+      options: { redirectTo: window.location.origin + '/profil.html' },
     });
-    return { ok: true, user };
+    if (error) throw error;
+    return { ok: true };
   } catch (err) {
     console.error('[auth] Facebook giriş hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
 /** E-posta + şifre ile giriş */
 export async function loginWithEmail(email, pwd) {
   try {
-    const result = await signInWithEmailAndPassword(auth, email, pwd);
-    return { ok: true, user: result.user };
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password: pwd });
+    if (error) throw error;
+    return { ok: true, user: data.user };
   } catch (err) {
     console.error('[auth] E-posta giriş hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
@@ -136,118 +82,131 @@ export async function loginWithEmail(email, pwd) {
  * @param {string} name
  * @param {string} email
  * @param {string} pwd
- * @param {boolean} kvkkConsent   — zorunlu, false ise hata döner
- * @param {boolean} marketingOptIn — opsiyonel
+ * @param {boolean} kvkkConsent
+ * @param {boolean} marketingOptIn
  */
 export async function register(name, email, pwd, kvkkConsent, marketingOptIn = false) {
   if (!kvkkConsent) {
     return { ok: false, code: 'kvkk-required', message: 'KVKK metnini okuyup onaylamanız zorunludur.' };
   }
   try {
-    const result = await createUserWithEmailAndPassword(auth, email, pwd);
-    const user   = result.user;
-    await _saveUserDoc(user.uid, {
-      displayName:   name,
-      email:         email,
-      photoURL:      null,
-      provider:      'email',
-      createdAt:     serverTimestamp(),
-      kvkkConsent: {
-        version:   '1.0',
-        timestamp: new Date().toISOString(),
-        ip:        'tbd',   // Cloud Function tarafında doldurulacak
-      },
-      marketingOptIn,
-      preferredLang: localStorage.getItem('ki_lang') || 'tr',
-    });
+    const { data, error } = await supabase.auth.signUp({ email, password: pwd });
+    if (error) throw error;
+    const user = data.user;
+    if (user) {
+      await _upsertUserRow(user, {
+        display_name:    name,
+        provider:        'email',
+        marketing_opt_in: marketingOptIn,
+        kvkk_consent:    { version: '1.0', timestamp: new Date().toISOString(), ip: null },
+        preferred_lang:  localStorage.getItem('ki_lang') ?? 'tr',
+      });
+    }
     return { ok: true, user };
   } catch (err) {
     console.error('[auth] Kayıt hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
 /** Çıkış */
 export async function logout() {
   try {
-    await signOut(auth);
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
     return { ok: true };
   } catch (err) {
     console.error('[auth] Çıkış hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
-/** Mevcut kullanıcıyı döner (null = giriş yok) */
+/** Mevcut kullanıcıyı döner (null = giriş yok) — sync, son session'dan */
 export function currentUser() {
-  return auth?.currentUser ?? null;
+  return supabase.auth.getUser ? null : null; // async fallback — safeOnAuthStateChanged tercih edilmeli
 }
 
 /**
  * Giriş zorunluluğu — giriş yoksa redirectTo sayfasına yönlendir
- * Faz 1: Firebase config yoksa anında null döner (redirect yapmaz).
  * @param {string} redirectTo
- * @returns {Promise<import('firebase/auth').User|null>}
+ * @returns {Promise<object|null>}
  */
-export function requireAuth(redirectTo = 'login.html') {
-  if (!isFirebaseConfigured || !auth || typeof auth.onAuthStateChanged !== 'function') {
-    return Promise.resolve(null);
+export async function requireAuth(redirectTo = 'login.html') {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    window.location.href = redirectTo;
+    return null;
   }
-  return new Promise((resolve) => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      unsub();
-      if (!user) {
-        window.location.href = redirectTo;
-      } else {
-        resolve(user);
-      }
-    });
-  });
+  return session.user;
 }
 
 /** Şifre sıfırlama e-postası */
 export async function sendResetEmail(email) {
   try {
-    await sendPasswordResetEmail(auth, email);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/login.html',
+    });
+    if (error) throw error;
     return { ok: true };
   } catch (err) {
     console.error('[auth] Şifre sıfırlama hatası:', err);
-    return { ok: false, code: err.code, message: _friendlyError(err.code) };
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
   }
 }
 
 /**
- * Auth state değişimini dinle — Faz 1 safe wrapper.
- * Firebase config yoksa callback'i hemen null user ile çağırır.
+ * Auth state değişimini dinle.
+ * @param {function} callback — user objesi veya null alır
+ * @returns unsubscribe fonksiyonu
  */
 export function safeOnAuthStateChanged(callback) {
-  if (!isFirebaseConfigured || !auth || typeof onAuthStateChanged !== 'function') {
-    callback(null);
-    return () => {};
-  }
-  return onAuthStateChanged(auth, callback);
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    callback(session?.user ?? null);
+  });
+  return () => subscription.unsubscribe();
 }
 
-/** @deprecated profile.js tarafından kullanılır — Faz 2'de safeOnAuthStateChanged'e geçilecek */
-export { onAuthStateChanged, auth, db, deleteUser };
+/**
+ * Hesap silme — client-side: public.users satırı soft-delete + signOut.
+ * auth.users hard-delete için Edge Function gerekir.
+ * TODO: supabase.functions.invoke('delete-account') çağrısı ile auth.users'ı sil
+ */
+export async function deleteUser() {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) throw new Error('Oturum bulunamadı');
+    const uid = session.user.id;
+    // Profil satırını sil (RLS: users_admin_delete — servis rolü gerekir)
+    // Client-side yalnızca soft-delete yapılabilir; hard delete Edge Function'a bırakılıyor
+    await supabase.from('users').update({ deleted_at: new Date().toISOString() }).eq('id', uid);
+    // TODO: Edge Function çağrısı — await supabase.functions.invoke('delete-account')
+    await supabase.auth.signOut();
+    return { ok: true };
+  } catch (err) {
+    console.error('[auth] Hesap silme hatası:', err);
+    return { ok: false, code: err.message, message: _friendlyError(err.message) };
+  }
+}
+
+// Backward-compat re-exports (profile.js kullanır)
+export { supabase as db };
+export const onAuthStateChanged = safeOnAuthStateChanged;
+export const auth = { get currentUser() { return null; } };
 
 // ---------------------------------------------------------------------------
-// Hata mesajları
+// Hata mesajları — Supabase error string'lerine güncellendi
 // ---------------------------------------------------------------------------
-function _friendlyError(code) {
-  const map = {
-    'auth/user-not-found':       'Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı.',
-    'auth/wrong-password':       'Şifre hatalı. Lütfen tekrar deneyin.',
-    'auth/email-already-in-use': 'Bu e-posta adresi zaten kullanımda.',
-    'auth/weak-password':        'Şifre en az 6 karakter olmalıdır.',
-    'auth/invalid-email':        'Geçersiz e-posta adresi.',
-    'auth/popup-closed-by-user': 'Giriş penceresi kapatıldı.',
-    'auth/account-exists-with-different-credential':
-      'Bu e-posta farklı bir giriş yöntemiyle kayıtlı.',
-    'auth/network-request-failed': 'Ağ hatası. İnternet bağlantınızı kontrol edin.',
-    'kvkk-required': 'KVKK metnini okuyup onaylamanız zorunludur.',
-  };
-  return map[code] || 'Bir hata oluştu. Lütfen tekrar deneyin.';
+function _friendlyError(msg) {
+  if (!msg) return 'Bir hata oluştu. Lütfen tekrar deneyin.';
+  const m = msg.toLowerCase();
+  if (m.includes('invalid login credentials'))        return 'E-posta veya şifre hatalı.';
+  if (m.includes('user already registered'))          return 'Bu e-posta adresi zaten kullanımda.';
+  if (m.includes('password should be at least'))      return 'Şifre en az 6 karakter olmalıdır.';
+  if (m.includes('unable to validate email'))         return 'Geçersiz e-posta adresi.';
+  if (m.includes('email not confirmed'))              return 'E-posta adresinizi doğrulamanız gerekiyor.';
+  if (m.includes('network'))                         return 'Ağ hatası. İnternet bağlantınızı kontrol edin.';
+  if (m.includes('kvkk-required'))                   return 'KVKK metnini okuyup onaylamanız zorunludur.';
+  return 'Bir hata oluştu. Lütfen tekrar deneyin.';
 }
 
 // ---------------------------------------------------------------------------
@@ -278,12 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name    = registerForm.querySelector('[name="name"]').value.trim();
-      const email   = registerForm.querySelector('[name="email"]').value.trim();
-      const pwd     = registerForm.querySelector('[name="password"]').value;
-      const pwd2    = registerForm.querySelector('[name="password2"]').value;
-      const kvkk    = registerForm.querySelector('[name="kvkk"]').checked;
-      const mkt     = registerForm.querySelector('[name="marketing"]')?.checked ?? false;
+      const name  = registerForm.querySelector('[name="name"]').value.trim();
+      const email = registerForm.querySelector('[name="email"]').value.trim();
+      const pwd   = registerForm.querySelector('[name="password"]').value;
+      const pwd2  = registerForm.querySelector('[name="password2"]').value;
+      const kvkk  = registerForm.querySelector('[name="kvkk"]').checked;
+      const mkt   = registerForm.querySelector('[name="marketing"]')?.checked ?? false;
 
       if (pwd !== pwd2) {
         _showError(registerForm, 'Şifreler eşleşmiyor.');
@@ -308,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----- GOOGLE LOGIN BUTTONS -----
   document.querySelectorAll('[data-action="google-login"]').forEach((btn) => {
     btn.addEventListener('click', async () => {
-      // Register sayfasında KVKK kontrolü
       const kvkkCheck = document.querySelector('[name="kvkk"]');
       if (kvkkCheck && !kvkkCheck.checked) {
         _showError(btn.closest('form') || document.body, 'KVKK metnini okuyup onaylamanız zorunludur.');
@@ -317,11 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
       _setLoading(btn, true);
       const res = await loginWithGoogle();
       _setLoading(btn, false);
-      if (res.ok) {
-        window.location.href = 'profil.html';
-      } else {
+      if (!res.ok) {
         _showError(btn.closest('form') || document.body, res.message);
       }
+      // ok: true → OAuth redirect başladı, sayfa zaten gidecek
     });
   });
 
@@ -336,9 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
       _setLoading(btn, true);
       const res = await loginWithFacebook();
       _setLoading(btn, false);
-      if (res.ok) {
-        window.location.href = 'profil.html';
-      } else {
+      if (!res.ok) {
         _showError(btn.closest('form') || document.body, res.message);
       }
     });
