@@ -40,7 +40,7 @@ const KalkanData = (() => {
     return `<div class="w-full h-full grid place-items-center text-3xl" style="background:linear-gradient(135deg,#0a2e4c 0%,#134c79 60%,#1a5e93 100%);color:#f4b53d;" aria-label="${escape(alt)}">📷</div>`;
   }
   function safeImage(url, alt='') {
-    if (!url || typeof url !== 'string' || !/^https?:\/\//i.test(url)) return imagePlaceholder(alt);
+    if (!url || typeof url !== 'string' || !/^(https?:\/\/|\/)/i.test(url)) return imagePlaceholder(alt);
     const ph = imagePlaceholder(alt).replace(/"/g, '&quot;');
     return `<img src="${escape(url)}" alt="${escape(alt)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.outerHTML='${ph}'" />`;
   }
