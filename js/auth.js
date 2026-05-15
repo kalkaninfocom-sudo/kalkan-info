@@ -160,6 +160,10 @@ export async function sendResetEmail(email) {
  * @returns unsubscribe fonksiyonu
  */
 export function safeOnAuthStateChanged(callback) {
+  if (typeof callback !== 'function') {
+    console.warn('[auth] safeOnAuthStateChanged: callback is not a function, skipping subscription');
+    return () => {};
+  }
   const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
     callback(session?.user ?? null);
   });

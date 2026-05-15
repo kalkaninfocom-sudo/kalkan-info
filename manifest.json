@@ -2,8 +2,8 @@
   "name": "Kalkan Info — Yerel Bilgi Rehberi",
   "short_name": "Kalkan Info",
   "description": "Kalkan, Kaş ve Patara için yerel bilgi, plaj, restoran, villa, tur, hizmet ve nöbetçi eczane rehberi.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#dce6ef",
@@ -28,13 +28,13 @@
       "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
   ],
   "shortcuts": [

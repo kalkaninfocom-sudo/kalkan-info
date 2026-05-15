@@ -1,4 +1,7 @@
-tailwind.config = {
+// Tailwind config — CDN script'inden ÖNCE yüklenir.
+// window.tailwind objesi henüz yok; oluştur, CDN script onu okuyacak.
+window.tailwind = window.tailwind || {};
+window.tailwind.config = {
   theme: {
     extend: {
       colors: {

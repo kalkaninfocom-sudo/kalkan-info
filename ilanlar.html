@@ -30,6 +30,7 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
 <link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="theme-color" content="#0a2e4c">
 <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -490,5 +491,6 @@ if (params.get('ilan')) {
 // Update today's date
 document.getElementById('today-date').textContent = new Date().toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' });
 </script>
+<script src="js/pwa.js" defer></script>
 </body>
 </html>

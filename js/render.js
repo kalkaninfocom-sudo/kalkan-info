@@ -110,7 +110,7 @@ const KalkanData = (() => {
       </button>
     ` : '';
     return `
-      <article class="card villa-card group" data-images="${images.length}" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);">
+      <article class="card villa-card group" data-images="${images.length}" data-villa-id="${escape(v.id||'')}" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);cursor:pointer;">
         <div class="relative aspect-[16/10] overflow-hidden villa-gallery">
           ${slides}
           ${arrows}
