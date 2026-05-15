@@ -3,7 +3,7 @@
    Versiyon güncellendiğinde eski cache temizlenir.
 */
 
-const CACHE_VERSION = 'kalkan-info-v1.3.0-faz25';
+const CACHE_VERSION = 'kalkan-info-v1.5.0-tw-css';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
@@ -29,38 +29,19 @@ const STATIC_ASSETS = [
   './terms.html',
   './admin.html',
   './manifest.json',
+  './dist/tw.css',
   './js/render.js',
   './js/pwa.js',
-  './js/i18n.js',
-  './js/lang-switcher.js',
   './js/auth.js',
   './js/auth-pill.js',
-  './js/profile.js',
-  './js/onboarding.js',
-  './js/slug.js',
-  './js/reviews.js',
-  './js/map.js',
-  './js/weather.js',
-  './js/directions.js',
-  './js/activities.js',
-  './js/vacation-planner.js',
-  './admin/admin.js',
-  './data/plajlar.json',
-  './data/villalar.json',
-  './data/turlar.json',
-  './data/restoranlar.json',
-  './data/hizmetler.json',
-  './data/haberler.json',
-  './data/antik-kentler.json',
-  './data/aktiviteler.json',
-  './data/config.json',
-  './lang/en.json',
-  './lang/tr.json',
-  './lang/ru.json',
-  './lang/ja.json',
-  './lang/ar.json',
+  './js/site-drawer.js',
+  './js/header-search.js',
+  './js/bottom-nav.js',
+  './js/newsletter.js',
+  './js/villa-modal.js',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './icons/apple-touch-icon.png'
 ];
 
 // Install — pre-cache statik varlıklar
