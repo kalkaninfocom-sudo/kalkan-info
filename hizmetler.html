@@ -25,7 +25,7 @@ tailwind.config = {
           800: '#0a2e4c',
           900: '#072136',
         },
-        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        sun: { 50:'#fff8eb', 100:'#fdedc6', 200:'#fcd98a', 300:'#f8c25a', 400:'#f4b53d', 500:'#e89812', 600:'#c97c08', 700:'#a35f06', 800:'#7a4805', 900:'#4e2f04' },
         coral:{ 500: '#e74c3c', 600: '#c0392b' },
       },
       fontFamily: {
@@ -86,6 +86,8 @@ tailwind.config = {
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://kalkaninfo.com/hizmetler.html">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/hizmetler.html">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/hizmetler.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -94,7 +96,7 @@ tailwind.config = {
 <meta property="og:title" content="Kalkan Hizmetler — Nöbetçi Eczane, Taksi, Acil | Kalkan Info">
 <meta property="og:description" content="Kalkan'da bugün nöbetçi eczane, acil numaralar, taksi durakları, transfer, market, kuru temizleme, tesisat, catering, çocuk bakımı — tüm yerel servisler.">
 <meta property="og:url" content="https://kalkaninfo.com/hizmetler.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -102,7 +104,7 @@ tailwind.config = {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kalkan Hizmetler — Nöbetçi Eczane, Taksi, Acil | Kalkan Info">
 <meta name="twitter:description" content="Kalkan'da bugün nöbetçi eczane, acil numaralar, taksi durakları, transfer, market, kuru temizleme, tesisat, catering, çocuk bakımı — tüm yerel servisler.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
 
 <!-- Geo -->
 <meta name="geo.region" content="TR-07">
@@ -234,7 +236,7 @@ tailwind.config = {
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
         <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Yerel Hizmetler
       </div>
-      <h2 id="items-heading" class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Tüm Hizmetler</h2>
+      <h2 id="items-heading" class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Tüm Hizmetler</h2>
     </div>
     <div class="flex flex-wrap items-center gap-3">
       <select id="cat-filter" class="text-xs border border-sea-200 rounded-md px-3 py-2 text-sea-700 bg-white focus:outline-none focus:border-sea-400">
@@ -256,12 +258,12 @@ tailwind.config = {
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
         <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Topluluk
       </div>
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h2>
       <p class="text-sm text-sea-700/70 mt-1">Bir şey kaybettin ya da buldun mu? İlan ver — komşular birbirine kavuştursun.</p>
     </div>
     <div class="flex gap-2">
       <button data-action="lf-new" data-lf-type="kayip"   class="inline-flex items-center gap-2 bg-rose-500 hover:bg-rose-600 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition shadow">🔍 Kayıp Bildir</button>
-      <button data-action="lf-new" data-lf-type="bulundu" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition shadow">✓ Bulduğumu Bildir</button>
+      <button data-action="lf-new" data-lf-type="bulundu" class="inline-flex items-center gap-2 bg-sun-600 hover:bg-sun-700 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition shadow">✓ Bulduğumu Bildir</button>
     </div>
   </div>
 
@@ -273,7 +275,7 @@ tailwind.config = {
 
   <!-- Bulunan ilanları -->
   <div>
-    <h3 class="text-sm font-bold text-emerald-600 mb-2 uppercase tracking-wide">✓ Bulunan İlanları (<span id="lf-count-found">0</span>)</h3>
+    <h3 class="text-sm font-bold text-sun-600 mb-2 uppercase tracking-wide">✓ Bulunan İlanları (<span id="lf-count-found">0</span>)</h3>
     <div id="lf-list-found" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 
@@ -364,7 +366,7 @@ tailwind.config = {
           <li class="flex items-start gap-2 text-sm text-sea-700"><span class="text-sun-500 mt-0.5">▸</span> Periyodik kontrol ve sezon hazırlığı</li>
         </ul>
         <div class="mt-4 pt-4 border-t border-sea-100 flex items-center justify-between">
-          <span class="text-xs text-sea-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span> Şu an müsait</span>
+          <span class="text-xs text-sea-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-sun-500 inline-block animate-pulse"></span> Şu an müsait</span>
           <a href="https://wa.me/905306650794?text=Tesisat+Hizmetleri+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-xs font-bold px-4 py-2 rounded-lg transition">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
             Concierge'e Sor
@@ -383,7 +385,7 @@ tailwind.config = {
         <div class="absolute top-3 right-3 bg-white/90 text-sea-700 text-[11px] font-bold px-2 py-0.5 rounded">₺</div>
       </div>
       <div class="p-5">
-        <div class="text-[11px] uppercase tracking-wider text-emerald-600 font-bold mb-1">Ev & Villa</div>
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Ev & Villa</div>
         <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Bahçe Hizmetleri</h3>
         <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Peyzaj tasarımı, sulama sistemi kurulumu ve düzenli ot biçme. Sezonluk bakım paketleri mevcuttur.</p>
         <ul class="mt-3 space-y-1.5">
@@ -576,10 +578,10 @@ tailwind.config = {
         <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
         <div class="absolute inset-0" style="background:linear-gradient(140deg,rgba(16,185,129,0.2) 0%,transparent 55%);mix-blend-mode:multiply;"></div>
         <div class="absolute top-3 left-3 text-2xl bg-white/15 backdrop-blur-sm rounded-lg w-10 h-10 grid place-items-center">👶</div>
-        <div class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2 py-0.5 rounded">Sertifikalı</div>
+        <div class="absolute top-3 right-3 bg-sun-600 text-white text-[11px] font-bold px-2 py-0.5 rounded">Sertifikalı</div>
       </div>
       <div class="p-5">
-        <div class="text-[11px] uppercase tracking-wider text-emerald-600 font-bold mb-1">Bakım</div>
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-bold mb-1">Bakım</div>
         <h3 class="font-display font-extrabold text-sea-800 text-lg leading-tight">Çocuk Bakım Hizmetleri</h3>
         <p class="text-sm text-sea-700/70 mt-2 leading-relaxed">Sertifikalı bakıcı eşliğinde gündüz ve akşam çocuk bakım hizmeti. Tatil ailelerine özel esneklik.</p>
         <ul class="mt-3 space-y-1.5">
@@ -633,7 +635,7 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
     <div>
       <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-2">İşletmeler için</div>
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold">Hizmetinizi Kalkan Info'da listeleyin</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold">Hizmetinizi Kalkan Info'da listeleyin</h2>
       <p class="text-white/70 mt-2 max-w-lg">Yerel hizmetinizi binlerce ziyaretçiye duyurun. Öne çıkan listeleme, sezonluk görünürlük.</p>
     </div>
     <a href="mailto:info@kalkan.info?subject=Hizmet+Listeleme+Ba%C5%9Fvurusu" class="shrink-0 bg-sun-500 hover:bg-sun-600 text-white font-display font-bold px-6 py-3 rounded-xl transition" style="box-shadow:0 4px 20px -4px rgba(232,152,18,0.5);">Başvuru Yap</a>
@@ -642,6 +644,16 @@ tailwind.config = {
 
 <!-- ============== FOOTER ============== -->
 <footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+      </div>
+      <div data-newsletter-mount></div>
+    </div>
+  </div>
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
     <div class="col-span-2 lg:col-span-2">
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
@@ -652,7 +664,7 @@ tailwind.config = {
         <a href="https://instagram.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg>
         </a>
-        <a href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-emerald-600 transition">
+        <a href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
         </a>
         <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
@@ -706,7 +718,7 @@ tailwind.config = {
 </footer>
 
 <!-- ============== Floating Concierge ============== -->
-<a href="https://wa.me/905306650794?text=Hizmet+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+<a href="https://wa.me/905306650794?text=Hizmet+hakk%C4%B1nda+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
@@ -806,5 +818,6 @@ tailwind.config = {
   })();
 </script>
 <script src="js/pwa.js?v=2" defer></script>
+<script src="js/newsletter.js" defer></script>
 </body>
 </html>

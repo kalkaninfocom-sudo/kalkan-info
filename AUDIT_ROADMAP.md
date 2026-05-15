@@ -8,35 +8,35 @@
 
 ---
 
-## 🔥 Tier 0 — Acil (bu oturumda)
+## 🔥 Tier 0 — Acil (commit `4a5f6d7` ile kapandı, 2026-05-15)
 
-| # | Bulgu | Kaynak | Karar |
+| # | Durum | Bulgu | Karar |
 |---|---|---|---|
-| T0.1 | `js/render.js:36` ve `lost-found.js:31` escape() XSS açık iddiası | CTO | ❌ DISMISSED — node testi: çalışıyor (`{...}[c]` syntax doğru) |
-| T0.2 | CSP header yok → XSS özgürce çalışır | CTO | ⬜ TODO — `vercel.json` headers'a CSP ekle |
-| T0.3 | `:focus-visible` yok (WCAG AA fail) | CDO | ⬜ TODO — global CSS rule |
-| T0.4 | `prefers-reduced-motion` yok | CDO | ⬜ TODO — global CSS guard |
-| T0.5 | Hiç analitik yok (GA4/Plausible/Pixel) | CMO | ⬜ TODO — Plausible kur (cookieless, GDPR safe) |
-| T0.6 | Canonical `/index.html` → `/` olmalı | CMO | ⬜ TODO — sed batch |
-| T0.7 | Sitemap login/register içeriyor, robots disallow ediyor (çelişki) | CMO | ⬜ TODO — sitemap.xml'den çıkar |
-| T0.8 | "Claude AI destekli" yalan etiketi tatil-asistani'nde | CPO | ⬜ TODO — etiket kaldırılacak veya gerçek API'ye bağlanacak |
-| T0.9 | GİRİŞ YAP floating pill (`z-index:99999`) bottom-nav ile çakışıyor | CDO | ⬜ TODO — kaldır |
-| T0.10 | Bottom-nav emoji ikonlar (🏠🔍💬🔐) → SVG | CDO | 🟡 OPSİYONEL — sonra |
+| T0.1 | ❌ DISMISSED | `js/render.js:36` ve `lost-found.js:31` escape() XSS iddiası | node testi: çalışıyor (`{...}[c]` syntax doğru) |
+| T0.2 | ✅ DONE | CSP header yok | `vercel.json` headers'a CSP eklendi |
+| T0.3 | ✅ DONE | `:focus-visible` yok | global CSS rule |
+| T0.4 | ✅ DONE | `prefers-reduced-motion` yok | global CSS guard |
+| T0.5 | ✅ DONE | Analitik yok | Plausible cookieless |
+| T0.6 | ✅ DONE | Canonical `/index.html` | `/` formatına alındı |
+| T0.7 | ✅ DONE | Sitemap login/register çelişki | sitemap.xml'den çıkarıldı |
+| T0.8 | ✅ DONE (T1.9'da pekiştirildi) | "Claude AI destekli" yalan etiketi | etiket kaldırıldı |
+| T0.9 | ✅ DONE | GİRİŞ YAP floating pill çakışması | kaldırıldı |
+| T0.10 | 🟡 OPSİYONEL | Bottom-nav emoji → SVG | sonra |
 
 ## 🔧 Tier 1 — Yüksek etki (bu hafta)
 
-| # | Bulgu | Kaynak | Aksiyon |
+| # | Durum | Bulgu | Kapanış |
 |---|---|---|---|
-| T1.1 | `Restaurant` / `LocalBusiness` JSON-LD yok → rich snippet kaybı | CMO | restoranlar.html'e schema ekle |
-| T1.2 | `hreflang` tag yok (5 dil olduğu iddia ediliyor) | CMO | TR-only olarak doğru etiketle |
-| T1.3 | OG image tüm sayfalarda generic Unsplash → marka belirsiz | CMO | Kendi logo+marka kompozit oluştur |
-| T1.4 | Email capture yok → tüm trafik WhatsApp'a, retargeting imkansız | CMO | Newsletter modal + footer form |
-| T1.5 | `emerald-600` palette leak (25+ yer) | CDO | Brand token olarak ekle veya azalt |
-| T1.6 | Heading scale eksik (h1=48 → h2=24 arası boş) | CDO | Tailwind `text-xl` kademe ekle |
-| T1.7 | Double hamburger menu (hero + sticky) — hero'nun JS'i yok | CDO | Hero'daki menüyü `site-drawer.js`'e bağla veya kaldır |
-| T1.8 | Hizmetler placeholder telefonlar (`+90 532 000 00 00`) | CPO | data'da null bırak, kartta gizle |
-| T1.9 | Vacation Assistant fake AI badge | CPO | Etiketi kaldır veya gerçek Edge Function'a bağla |
-| T1.10 | i18n claim vs gerçek (sadece TR tam) | CMO | `data-i18n` attribute'larını eksik sayfalara ekle veya iddia kaldır |
+| T1.1 | ✅ DONE | Restaurant/LocalBusiness JSON-LD yok | restoranlar.html'e 25 Restaurant ItemList JSON-LD eklendi |
+| T1.2 | ✅ DONE | hreflang tag yok (5 dil iddia) | 18 sayfaya hreflang TR + x-default eklendi (admin/profil noindex) |
+| T1.3 | ✅ DONE | OG image generic Unsplash | `assets/og-default.png` marka kompoziti üretildi (sharp), 18 sayfada og:image + twitter:image güncellendi |
+| T1.4 | ✅ DONE | Email capture yok | Supabase tablo + Edge Function + api/newsletter-confirm + footer band (10 sayfa). Berkay deploy edecek: `supabase db push` + `supabase functions deploy newsletter-subscribe` |
+| T1.5 | ✅ DONE | emerald-600 palette leak | 53 occurrence → sun-* paletine remap (HTML×39, JS×14). Tailwind sun palette tam (50–900) |
+| T1.6 | ✅ DONE | Heading scale boş (h1=48 → h2=24) | 16 sayfa h2 `text-2xl md:text-3xl` → `text-3xl md:text-4xl` |
+| T1.7 | ❌ DISMISSED | Double hamburger menu | `site-drawer.js:23–150` zaten idempotent + ID/text fallback ile hero menüyü bağlıyor. False positive |
+| T1.8 | ✅ DONE | Placeholder telefonlar | data/hizmetler.json 13 placeholder → null; `hizmetCard` zaten phone göstermiyor → null güvenli |
+| T1.9 | ✅ DONE | Vacation Assistant fake AI badge | tatil-asistani.html:798 "Claude planı düşünüyor..." → "Tatil planınız hazırlanıyor..." |
+| T1.10 | ✅ DONE | i18n claim vs reality | TR-only commit: 4 sayfadan `data-i18n` temizlendi, js/i18n.js + js/lang-switcher.js + lang/*.json silindi, "5 dilde" iddiası ilanlar.html'den kaldırıldı |
 
 ## 🛠️ Tier 2 — Mimari / borç (önümüzdeki ay)
 

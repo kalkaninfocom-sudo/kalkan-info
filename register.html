@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title data-i18n="auth.register.pageTitle">Hesap Oluştur — Kalkan Info</title>
+<title>Hesap Oluştur — Kalkan Info</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -18,7 +18,7 @@ tailwind.config = {
           300: '#5d97c4', 400: '#2f74a8', 500: '#1a5e93',
           600: '#134c79', 700: '#0d3a5f', 800: '#0a2e4c', 900: '#072136',
         },
-        sun:   { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        sun: { 50:'#fff8eb', 100:'#fdedc6', 200:'#fcd98a', 300:'#f8c25a', 400:'#f4b53d', 500:'#e89812', 600:'#c97c08', 700:'#a35f06', 800:'#7a4805', 900:'#4e2f04' },
         coral: { 500: '#e74c3c', 600: '#c0392b' },
       },
       fontFamily: {
@@ -78,6 +78,8 @@ tailwind.config = {
 <meta name="description" content="Kalkan Info'ya ücretsiz üye olun. Hizmet sağlayıcı kaydı, yorum yazma, tatil asistanı için.">
 <meta name="author" content="Kalkan Info">
 <link rel="canonical" href="https://kalkaninfo.com/register.html">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/register.html">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/register.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -86,7 +88,7 @@ tailwind.config = {
 <meta property="og:title" content="Üye Ol — Kalkan Info">
 <meta property="og:description" content="Kalkan Info'ya ücretsiz üye olun. Hizmet sağlayıcı kaydı, yorum yazma, tatil asistanı için.">
 <meta property="og:url" content="https://kalkaninfo.com/register.html">
-<meta property="og:image" content="https://kalkaninfo.com/icons/icon-512.png">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
@@ -103,7 +105,7 @@ tailwind.config = {
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
     <div class="flex items-center gap-4 text-sm">
-      <a href="login.html" class="text-white/70 hover:text-white transition" data-i18n="auth.nav.login">Giriş Yap</a>
+      <a href="login.html" class="text-white/70 hover:text-white transition">Giriş Yap</a>
     </div>
   </div>
 </nav>
@@ -119,47 +121,47 @@ tailwind.config = {
         <a href="index.html" class="inline-flex items-center gap-2 font-display font-extrabold text-2xl text-sea-800 mb-2">
           <span class="text-sun-500">◆</span> Kalkan Info
         </a>
-        <h1 class="font-display font-bold text-xl text-sea-800 mt-1" data-i18n="auth.register.heading">Ücretsiz Hesap Oluşturun</h1>
-        <p class="text-sea-600 text-sm mt-1" data-i18n="auth.register.subheading">Kalkan rehberinize katılın</p>
+        <h1 class="font-display font-bold text-xl text-sea-800 mt-1">Ücretsiz Hesap Oluşturun</h1>
+        <p class="text-sea-600 text-sm mt-1">Kalkan rehberinize katılın</p>
       </div>
 
       <!-- Sosyal kayıt — KVKK zorunlu -->
       <div class="space-y-3 mb-6">
         <button class="btn-social btn-google" data-action="google-login" type="button">
           <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          <span data-i18n="auth.social.google">Google ile Devam Et</span>
+          <span>Google ile Devam Et</span>
         </button>
         <button class="btn-social btn-facebook" data-action="facebook-login" type="button">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-          <span data-i18n="auth.social.facebook">Facebook ile Devam Et</span>
+          <span>Facebook ile Devam Et</span>
         </button>
       </div>
 
       <!-- KVKK sosyal için de geçerli uyarısı -->
-      <p class="text-xs text-sea-600/80 bg-sea-50 border border-sea-100 rounded-lg px-3 py-2 mb-5" data-i18n="auth.register.socialKvkkNote">
+      <p class="text-xs text-sea-600/80 bg-sea-50 border border-sea-100 rounded-lg px-3 py-2 mb-5">
         Sosyal hesapla devam etmek için aşağıdaki KVKK onayı zorunludur.
       </p>
 
-      <div class="divider mb-6"><span data-i18n="auth.or">veya e-posta ile</span></div>
+      <div class="divider mb-6"><span>veya e-posta ile</span></div>
 
       <!-- Kayıt formu -->
       <form data-action="register-form" action="javascript:void(0)" method="post" novalidate>
         <div class="space-y-4">
 
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="name" data-i18n="auth.field.name">Ad Soyad</label>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="name">Ad Soyad</label>
             <input class="input-field" type="text" id="name" name="name" autocomplete="name"
               placeholder="Adınız Soyadınız" required />
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="email" data-i18n="auth.field.email">E-posta</label>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="email">E-posta</label>
             <input class="input-field" type="email" id="email" name="email" autocomplete="email"
               placeholder="ornek@email.com" required />
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="password" data-i18n="auth.field.password">Şifre</label>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="password">Şifre</label>
             <input class="input-field" type="password" id="password" name="password"
               autocomplete="new-password" placeholder="En az 6 karakter" required
               oninput="updateStrength(this.value)" />
@@ -173,7 +175,7 @@ tailwind.config = {
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="password2" data-i18n="auth.field.password2">Şifre Tekrar</label>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="password2">Şifre Tekrar</label>
             <input class="input-field" type="password" id="password2" name="password2"
               autocomplete="new-password" placeholder="Şifrenizi tekrar girin" required />
           </div>
@@ -183,8 +185,8 @@ tailwind.config = {
             <label class="checkbox-label">
               <input type="checkbox" name="kvkk" id="kvkk" required />
               <span>
-                <a href="kvkk.html" target="_blank" class="text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2" data-i18n="auth.register.kvkkLink">KVKK Aydınlatma Metni</a>'ni
-                <span data-i18n="auth.register.kvkkSuffix">okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span>
+                <a href="kvkk.html" target="_blank" class="text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2">KVKK Aydınlatma Metni</a>'ni
+                <span>okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span>
                 <span class="text-coral-500 font-bold ml-0.5">*</span>
               </span>
             </label>
@@ -192,7 +194,7 @@ tailwind.config = {
             <!-- Pazarlama — opsiyonel -->
             <label class="checkbox-label">
               <input type="checkbox" name="marketing" id="marketing" />
-              <span data-i18n="auth.register.marketing">Kalkan Info'dan kampanya, yeni içerik ve duyuru e-postaları almak istiyorum. (İsteğe bağlı)</span>
+              <span>Kalkan Info'dan kampanya, yeni içerik ve duyuru e-postaları almak istiyorum. (İsteğe bağlı)</span>
             </label>
           </div>
         </div>
@@ -200,22 +202,22 @@ tailwind.config = {
         <!-- Hata alanı -->
         <p class="auth-error" id="register-error" style="display:none;"></p>
 
-        <button type="submit" class="btn-primary mt-6" data-i18n="auth.register.submit">Hesap Oluştur</button>
+        <button type="submit" class="btn-primary mt-6">Hesap Oluştur</button>
       </form>
 
       <!-- Alt link -->
       <p class="text-center text-sm text-sea-600 mt-8 pt-6 border-t border-sea-100">
-        <span data-i18n="auth.register.hasAccount">Zaten hesabınız var mı?</span>
-        <a href="login.html" class="text-sea-500 font-semibold hover:text-sea-700 ml-1 transition" data-i18n="auth.register.loginLink">Giriş yapın</a>
+        <span>Zaten hesabınız var mı?</span>
+        <a href="login.html" class="text-sea-500 font-semibold hover:text-sea-700 ml-1 transition">Giriş yapın</a>
       </p>
     </div>
 
     <p class="text-center text-xs text-sea-600/70 mt-6">
-      <span data-i18n="auth.legal.prefix">Devam ederek</span>
-      <a href="terms.html" class="underline hover:text-sea-700" data-i18n="auth.legal.terms">Kullanım Şartları</a>'nı
-      <span data-i18n="auth.legal.and">ve</span>
-      <a href="privacy.html" class="underline hover:text-sea-700" data-i18n="auth.legal.privacy">Gizlilik Politikası</a>'nı
-      <span data-i18n="auth.legal.suffix">kabul etmiş olursunuz.</span>
+      <span>Devam ederek</span>
+      <a href="terms.html" class="underline hover:text-sea-700">Kullanım Şartları</a>'nı
+      <span>ve</span>
+      <a href="privacy.html" class="underline hover:text-sea-700">Gizlilik Politikası</a>'nı
+      <span>kabul etmiş olursunuz.</span>
     </p>
   </div>
 </main>
@@ -223,13 +225,13 @@ tailwind.config = {
 <!-- FOOTER -->
 <footer class="text-center py-6 text-xs text-sea-600/60 border-t border-sea-200/40">
   <div class="flex items-center justify-center gap-4 flex-wrap">
-    <a href="kvkk.html" class="hover:text-sea-600 transition" data-i18n="footer.kvkk">KVKK</a>
+    <a href="kvkk.html" class="hover:text-sea-600 transition">KVKK</a>
     <span class="text-sea-300">·</span>
-    <a href="privacy.html" class="hover:text-sea-600 transition" data-i18n="footer.privacy">Gizlilik</a>
+    <a href="privacy.html" class="hover:text-sea-600 transition">Gizlilik</a>
     <span class="text-sea-300">·</span>
-    <a href="terms.html" class="hover:text-sea-600 transition" data-i18n="footer.terms">Kullanım Şartları</a>
+    <a href="terms.html" class="hover:text-sea-600 transition">Kullanım Şartları</a>
     <span class="text-sea-300">·</span>
-    <a href="index.html" class="hover:text-sea-600 transition" data-i18n="footer.home">Ana Sayfa</a>
+    <a href="index.html" class="hover:text-sea-600 transition">Ana Sayfa</a>
   </div>
   <p class="mt-2">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
 </footer>

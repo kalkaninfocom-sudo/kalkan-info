@@ -25,7 +25,7 @@ tailwind.config = {
           800: '#0a2e4c',
           900: '#072136',
         },
-        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        sun: { 50:'#fff8eb', 100:'#fdedc6', 200:'#fcd98a', 300:'#f8c25a', 400:'#f4b53d', 500:'#e89812', 600:'#c97c08', 700:'#a35f06', 800:'#7a4805', 900:'#4e2f04' },
         coral:{ 500: '#e74c3c', 600: '#c0392b' },
       },
       fontFamily: {
@@ -93,6 +93,8 @@ tailwind.config = {
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://kalkaninfo.com/">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -101,7 +103,7 @@ tailwind.config = {
 <meta property="og:title" content="Kalkan Info — Yerel Bilgi, Seçili Tavsiyeler, Kurumsal Hizmet">
 <meta property="og:description" content="Kalkan, Kaş ve Patara için yerel hizmet rehberi. Plajlar, villalar, restoranlar, turlar, transfer, nöbetçi eczane ve daha fazlası tek adreste.">
 <meta property="og:url" content="https://kalkaninfo.com/index.html">
-<meta property="og:image" content="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -109,7 +111,7 @@ tailwind.config = {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kalkan Info — Yerel Bilgi, Seçili Tavsiyeler, Kurumsal Hizmet">
 <meta name="twitter:description" content="Kalkan, Kaş ve Patara için yerel hizmet rehberi. Plajlar, villalar, restoranlar, turlar, transfer, nöbetçi eczane ve daha fazlası tek adreste.">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
 
 <!-- Geo -->
 <meta name="geo.region" content="TR-07">
@@ -122,8 +124,6 @@ tailwind.config = {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com","inLanguage":"tr-TR","potentialAction":{"@type":"SearchAction","target":"https://kalkaninfo.com/index.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TravelAgency","name":"Kalkan Info","url":"https://kalkaninfo.com","image":"https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80","description":"Kalkan, Kaş ve Patara için yerel hizmet rehberi. Plajlar, villalar, restoranlar, turlar, transfer, nöbetçi eczane ve daha fazlası tek adreste.","address":{"@type":"PostalAddress","streetAddress":"Atatürk Cad.","addressLocality":"Kalkan","addressRegion":"Antalya","postalCode":"07580","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":36.2655,"longitude":29.4138},"areaServed":["Kalkan","Kaş","Patara","Antalya"]}</script>
 <!-- /SEO -->
-<script type="module" src="js/i18n.js"></script>
-<script type="module" src="js/lang-switcher.js"></script>
 <script type="module" src="js/map.js"></script>
 <script src="js/site-drawer.js" defer></script>
 <script src="js/header-search.js" defer></script>
@@ -205,7 +205,6 @@ tailwind.config = {
         Concierge
       </a>
       <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="hizmet-ekle.html">İşletme Ekle</a>
-      <div id="lang-switcher-mount" class="flex items-center pl-2 ml-3"></div>
     </div>
   </div>
   <!-- info ribbon -->
@@ -269,10 +268,10 @@ tailwind.config = {
         <div class="text-xs text-sea-700/70 mt-1">Kalkan · Kaş · Patara · Kınık</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sea-700 bg-sea-50/40 hover:bg-sea-700/5 p-4 transition" href="#concierge">
-        <div class="tile-icon w-10 h-10 rounded-md bg-emerald-600 text-white grid place-items-center mb-3">
+        <div class="tile-icon w-10 h-10 rounded-md bg-sun-600 text-white grid place-items-center mb-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003C6.58 2.003 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45h.01c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01a9.86 9.86 0 0 0-7.02-2.81Z"/></svg>
         </div>
-        <div class="text-[11px] uppercase tracking-wider text-emerald-700 font-semibold">WhatsApp</div>
+        <div class="text-[11px] uppercase tracking-wider text-sun-700 font-semibold">WhatsApp</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Concierge</div>
         <div class="text-xs text-sea-700/70 mt-1">Anında yardım, 7/24</div>
       </a>
@@ -332,7 +331,7 @@ tailwind.config = {
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Bölge Hizmeti
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Taksi Durakları</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Taksi Durakları</h2>
       </div>
       <a href="#" aria-disabled="true" title="Yakında" class="hidden md:inline text-sm text-sea-600 hover:text-sea-800 underline-grow opacity-60 cursor-not-allowed">Tüm duraklar →</a>
     </div>
@@ -348,7 +347,7 @@ tailwind.config = {
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-coral-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-coral-500 animate-pulse"></span> Güncel
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Haberler & Duyurular</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Haberler & Duyurular</h2>
       </div>
       <div class="flex gap-2">
         <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -367,7 +366,7 @@ tailwind.config = {
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Bu Hafta
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Turlar & Etkinlikler</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Turlar & Etkinlikler</h2>
       </div>
       <a href="#" aria-disabled="true" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed">Tüm takvim →</a>
     </div>
@@ -382,7 +381,7 @@ tailwind.config = {
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
         <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Kategoriler
       </div>
-      <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Aradığını Bul</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Aradığını Bul</h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
         <a id="villalar" href="villalar.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🏡</div>
@@ -447,7 +446,7 @@ tailwind.config = {
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Diğer Hizmetler
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Hayatı Kolaylaştıranlar</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Hayatı Kolaylaştıranlar</h2>
       </div>
       <a href="#" aria-disabled="true" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed">Tüm hizmetler →</a>
     </div>
@@ -464,7 +463,7 @@ tailwind.config = {
       <p class="text-sea-700/80 mt-2 text-sm">Kaybettiğin ya da bulduğun eşyayı bildir; topluluk birbirine yardım etsin. İlanın detayını ve görselini ekle, sana özel silme kodu verilir.</p>
       <div class="mt-5 flex flex-wrap gap-2">
         <button data-action="lf-new" data-lf-type="kayip"   class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded text-sm font-semibold">🔍 Kayıp Eşya Bildir</button>
-        <button data-action="lf-new" data-lf-type="bulundu" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded text-sm font-semibold">✓ Bulduğum Eşyayı Yükle</button>
+        <button data-action="lf-new" data-lf-type="bulundu" class="bg-sun-600 hover:bg-sun-700 text-white px-4 py-2 rounded text-sm font-semibold">✓ Bulduğum Eşyayı Yükle</button>
         <a href="hizmetler.html#kayip" class="text-sea-600 hover:text-sea-800 underline text-sm self-center ml-1">Tüm ilanları gör →</a>
       </div>
     </div>
@@ -541,7 +540,7 @@ tailwind.config = {
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Kalkan Rehberi
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Bölgeyi Tanı</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Bölgeyi Tanı</h2>
       </div>
       <div class="flex gap-2">
         <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -610,6 +609,16 @@ tailwind.config = {
 
 <!-- ============== FOOTER ============== -->
 <footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+      </div>
+      <div data-newsletter-mount></div>
+    </div>
+  </div>
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
     <div class="col-span-2 lg:col-span-2">
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
@@ -620,7 +629,7 @@ tailwind.config = {
         <a href="https://instagram.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.94c-3.15 0-3.5.01-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04C2.69 9.5 2.68 9.85 2.68 13s.01 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04a3.4 3.4 0 0 0-.83-1.27 3.4 3.4 0 0 0-1.27-.83c-.39-.15-.97-.33-2.04-.38C15.5 4.11 15.15 4.1 12 4.1Zm0 3.3a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 7.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5.85-7.74a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"/></svg>
         </a>
-        <a href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-emerald-600 transition">
+        <a href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
         </a>
         <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
@@ -675,7 +684,7 @@ tailwind.config = {
 </footer>
 
 <!-- ============== Floating Concierge ============== -->
-<a id="concierge" href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+<a id="concierge" href="https://wa.me/905306650794?text=Merhaba+Kalkan+Info" target="_blank" rel="noopener" class="fixed bottom-5 right-5 z-50 group bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
@@ -850,5 +859,6 @@ tailwind.config = {
   })();
 </script>
 
+<script src="js/newsletter.js" defer></script>
 </body>
 </html>

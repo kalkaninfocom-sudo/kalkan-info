@@ -75,7 +75,7 @@
     const isLost = it.type === 'kayip';
     const tag = isLost
       ? '<span class="text-[10px] font-bold uppercase tracking-wide bg-rose-100 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-full">🔍 Kayıp</span>'
-      : '<span class="text-[10px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full">✓ Bulundu</span>';
+      : '<span class="text-[10px] font-bold uppercase tracking-wide bg-sun-100 text-sun-700 border border-sun-200 px-2 py-0.5 rounded-full">✓ Bulundu</span>';
     const cover = (Array.isArray(it.images) && it.images[0]) || '';
     const tel = (it.phone || '').replace(/\s/g, '');
     return `
@@ -94,7 +94,7 @@
           <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-sea-100">
             <div class="flex gap-2">
               ${it.phone ? `<a href="tel:${_esc(tel)}" class="text-xs bg-sea-50 hover:bg-sea-100 text-sea-700 px-2.5 py-1 rounded font-semibold">📞 Ara</a>` : ''}
-              ${it.whatsapp ? `<a href="https://wa.me/${_esc(it.whatsapp.replace(/\D/g,''))}" target="_blank" rel="noopener" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded font-semibold">💬 WhatsApp</a>` : ''}
+              ${it.whatsapp ? `<a href="https://wa.me/${_esc(it.whatsapp.replace(/\D/g,''))}" target="_blank" rel="noopener" class="text-xs bg-sun-50 hover:bg-sun-100 text-sun-700 px-2.5 py-1 rounded font-semibold">💬 WhatsApp</a>` : ''}
             </div>
             <button data-lf-action="delete" data-id="${_esc(it.id)}" class="text-[11px] text-sea-500 hover:text-rose-500 transition" title="Sahibi misin? Kodunla sil.">🗑 Sil</button>
           </div>

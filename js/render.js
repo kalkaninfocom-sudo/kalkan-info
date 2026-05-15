@@ -49,7 +49,7 @@ const KalkanData = (() => {
   function tagPill(label, kind='default') {
     const cls = {
       sun: 'bg-sun-400/16 text-[#9a6b00]',
-      ok:  'bg-emerald-100 text-emerald-700',
+      ok:  'bg-sun-100 text-sun-700',
       sea: 'bg-sea-600/10 text-sea-600',
       mute:'bg-ink-700/10 text-ink-700/70'
     }[kind] || 'bg-sea-600/10 text-sea-600';
@@ -57,7 +57,7 @@ const KalkanData = (() => {
   }
 
   function featuredBadge() {
-    return `<span class="inline-flex items-center gap-1 absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow">★ Öne Çıkan</span>`;
+    return `<span class="inline-flex items-center gap-1 absolute top-3 right-3 bg-sun-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow">★ Öne Çıkan</span>`;
   }
 
   // ============== Card templates ==============

@@ -25,7 +25,7 @@ tailwind.config = {
           800: '#0a2e4c',
           900: '#072136',
         },
-        sun:  { 400: '#f4b53d', 500: '#e89812', 600: '#c97c08' },
+        sun: { 50:'#fff8eb', 100:'#fdedc6', 200:'#fcd98a', 300:'#f8c25a', 400:'#f4b53d', 500:'#e89812', 600:'#c97c08', 700:'#a35f06', 800:'#7a4805', 900:'#4e2f04' },
         coral:{ 500: '#e74c3c', 600: '#c0392b' },
       },
       fontFamily: {
@@ -110,6 +110,22 @@ tailwind.config = {
 <meta name="theme-color" content="#0a2e4c">
 <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
 <meta name="description" content="Hayalinizdeki Kalkan tatilini birlikte tasarlayalım. Uçak, transfer, villa, evde aşçı ve aktiviteleri tek formla planlayın.">
+<link rel="canonical" href="https://kalkaninfo.com/tatil-asistani">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/tatil-asistani">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/tatil-asistani">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Tatil Asistanı — Kalkan Info">
+<meta property="og:description" content="Hayalinizdeki Kalkan tatilini birlikte tasarlayalım. Uçak, transfer, villa, evde aşçı ve aktiviteleri tek formla planlayın.">
+<meta property="og:url" content="https://kalkaninfo.com/tatil-asistani">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tatil Asistanı — Kalkan Info">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
 <script src="js/auth-pill.js" defer></script>
 <script src="js/site-drawer.js" defer></script>
 <script src="js/header-search.js" defer></script>
@@ -795,7 +811,7 @@ tailwind.config = {
     <div class="flex justify-center mb-6">
       <div class="spinner"></div>
     </div>
-    <h2 class="font-display font-bold text-2xl text-sea-800 mb-3">Claude planı düşünüyor...</h2>
+    <h2 class="font-display font-bold text-2xl text-sea-800 mb-3">Tatil planınız hazırlanıyor...</h2>
     <p class="text-sea-400 mb-2">Uçuşlar, transfer, konaklama ve aktiviteler hesaplanıyor.</p>
     <p class="text-sm text-sea-300">~30 saniye sürebilir</p>
     <div class="mt-8 flex flex-wrap justify-center gap-2 text-xs text-sea-400">
@@ -882,6 +898,16 @@ tailwind.config = {
 
 <!-- ============== FOOTER ============== -->
 <footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white mt-16">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white">Kalkan&apos;dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+      </div>
+      <div data-newsletter-mount></div>
+    </div>
+  </div>
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
     <div class="col-span-2 lg:col-span-2">
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
@@ -1057,5 +1083,6 @@ function prevStep() {
 // Init
 renderProgress();
 </script>
+<script src="js/newsletter.js" defer></script>
 </body>
 </html>

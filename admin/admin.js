@@ -1079,7 +1079,7 @@ function _lfRow(p) {
   const isLost = p.type === 'kayip';
   const tag = isLost
     ? '<span class="text-[10px] font-bold uppercase tracking-wide bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full">🔍 Kayıp</span>'
-    : '<span class="text-[10px] font-bold uppercase tracking-wide bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">✓ Bulundu</span>';
+    : '<span class="text-[10px] font-bold uppercase tracking-wide bg-sun-100 text-sun-700 px-2 py-0.5 rounded-full">✓ Bulundu</span>';
   const cover = (Array.isArray(p.images) && p.images[0]) || '';
   return `
     <article class="card p-4 flex gap-4" data-lf-id="${escapeHtml(p.id||'')}" data-lf-type="${escapeHtml(p.type||'kayip')}">
@@ -1521,7 +1521,7 @@ const SUBMISSION_TYPE_LABELS = {
 };
 const STATUS_LABELS = {
   pending:  { txt:'Onay Bekliyor', cls:'bg-amber-100 text-amber-700 border border-amber-200' },
-  approved: { txt:'Yayında',       cls:'bg-emerald-100 text-emerald-700 border border-emerald-200' },
+  approved: { txt:'Yayında',       cls:'bg-sun-100 text-sun-700 border border-sun-200' },
   rejected: { txt:'Reddedildi',    cls:'bg-rose-100 text-rose-700 border border-rose-200' },
 };
 

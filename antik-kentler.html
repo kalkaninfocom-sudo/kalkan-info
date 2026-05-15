@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Antik Kentler — Patara, Xanthos, Tlos | Kalkan Info</title>
 <meta name="description" content="Kalkan çevresindeki 10 antik kent rehberi. Patara, Xanthos, Letoon, Tlos, Pinara, Simena ve diğerleri. Tarihçe, fotoğraflar, ziyaret bilgisi ve interaktif harita.">
+<link rel="canonical" href="https://kalkaninfo.com/antik-kentler">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/antik-kentler">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/antik-kentler">
 <meta name="keywords" content="Patara, Xanthos, Tlos, Letoon, Pinara, Simena, Likya, Antalya antik kentler, Kalkan tarih, UNESCO">
 
 <link rel="manifest" href="manifest.json">
@@ -19,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Antik Kentler — Patara, Xanthos, Tlos | Kalkan Info">
 <meta property="og:description" content="Kalkan çevresindeki 10 antik kent — interaktif harita ve detaylı rehber.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1602080858428-57174f9431cf?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +40,7 @@ tailwind.config = {
     extend: {
       colors: {
         sea: { 50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',800:'#0a2e4c',900:'#072136' },
-        sun: { 400:'#f4b53d', 500:'#e89812', 600:'#c97c08' },
+        sun: { 50:'#fff8eb', 100:'#fdedc6', 200:'#fcd98a', 300:'#f8c25a', 400:'#f4b53d', 500:'#e89812', 600:'#c97c08', 700:'#a35f06', 800:'#7a4805', 900:'#4e2f04' },
         coral: { 500:'#e74c3c', 600:'#c0392b' },
         ink: { 700:'#11304d', 800:'#0c2034', 900:'#0a1626' }
       },
@@ -162,7 +165,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
   <div class="mt-4 flex flex-wrap justify-center gap-6 text-sm text-sea-700">
     <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> UNESCO Mirası</span>
     <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sea-500 border-2 border-white inline-block"></span> Likya / Roma Kenti</span>
-    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 border-2 border-white inline-block"></span> Denizden Erişim</span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> Denizden Erişim</span>
     <span class="inline-flex items-center gap-1.5"><span class="inline-block w-6 border-t-2 border-dashed border-coral-500"></span> Likya Yolu Rotası</span>
     <span class="inline-flex items-center gap-1.5"><span class="text-sun-500 font-bold">★</span> Öne çıkan = büyük marker</span>
   </div>
@@ -176,7 +179,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
           <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Detaylar
         </div>
-        <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1 text-sea-800">Tüm Antik Kentler</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Tüm Antik Kentler</h2>
       </div>
       <input id="search-input" type="search" placeholder="Antik kent ara..." class="border border-sea-200 rounded-md px-4 py-2 text-sm bg-white shadow w-64 focus:outline-none focus:border-sea-500">
     </div>
@@ -322,6 +325,16 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 
 <!-- FOOTER -->
 <footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+      </div>
+      <div data-newsletter-mount></div>
+    </div>
+  </div>
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
     <div class="col-span-2">
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
@@ -493,7 +506,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
         stagesContainer.innerHTML = '<div class="col-span-full text-center py-8 text-sea-700/50 text-sm">Etap verisi bulunamadı.</div>';
       } else {
         const difficultyColor = {
-          'Kolay': 'bg-emerald-50 text-emerald-700',
+          'Kolay': 'bg-sun-50 text-sun-700',
           'Kolay-Orta': 'bg-sky-50 text-sky-700',
           'Orta': 'bg-blue-50 text-blue-700',
           'Orta-Zor': 'bg-orange-50 text-orange-700',
@@ -561,7 +574,7 @@ function renderCards(items) {
     <article class="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-deep transition cursor-pointer" onclick="openDetail('${item.id}')">
       <div class="relative aspect-[16/10] overflow-hidden">
         <img src="${item.image}" alt="${KalkanData.escape(item.name)}" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy">
-        ${item.featured ? '<span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">★ Öne Çıkan</span>' : ''}
+        ${item.featured ? '<span class="absolute top-3 right-3 bg-sun-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">★ Öne Çıkan</span>' : ''}
         <span class="absolute top-3 left-3 ${item.category==='UNESCO Mirası'?'bg-sea-600':'bg-ink-900/85'} text-white text-[10px] font-bold px-2 py-1 rounded-full">${KalkanData.escape(item.category)}</span>
       </div>
       <div class="p-5">
@@ -664,5 +677,6 @@ function closeDetail() {
 window.openDetail = openDetail;
 window.closeDetail = closeDetail;
 </script>
+<script src="js/newsletter.js" defer></script>
 </body>
 </html>
