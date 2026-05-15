@@ -3,7 +3,7 @@
  * Supabase port — Faz 2.5
  *
  * Bağımlılıklar:
- *   js/auth.js             — requireAuth, currentUser, isSupabaseConfigured
+ *   js/auth.js             — requireAuth, isSupabaseConfigured
  *   js/supabase-client.js  — supabase client (DB + Storage)
  *   js/slug.js             — uniqueSlug
  */

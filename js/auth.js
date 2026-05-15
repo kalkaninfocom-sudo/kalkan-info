@@ -126,11 +126,6 @@ let _cachedUser = null;
 supabase.auth.getSession().then(({ data }) => { _cachedUser = data?.session?.user ?? null; }).catch(() => {});
 supabase.auth.onAuthStateChange((_event, session) => { _cachedUser = session?.user ?? null; });
 
-/** Mevcut kullanıcıyı döner (null = giriş yok) — sync, cache'den */
-export function currentUser() {
-  return _cachedUser;
-}
-
 /**
  * Giriş zorunluluğu — giriş yoksa redirectTo sayfasına yönlendir
  * @param {string} redirectTo
@@ -200,7 +195,6 @@ export const onAuthStateChanged = (...args) => {
   const cb = args.length > 1 ? args[1] : args[0];
   return safeOnAuthStateChanged(cb);
 };
-export const auth = { get currentUser() { return _cachedUser; } };
 
 // ---------------------------------------------------------------------------
 // Hata mesajları — Supabase error string'lerine güncellendi

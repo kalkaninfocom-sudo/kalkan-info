@@ -6,6 +6,11 @@ import { writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+// Trim all env vars (same pattern as api/welcome-email.js)
+for (const k of Object.keys(process.env)) {
+  if (typeof process.env[k] === 'string') process.env[k] = process.env[k].trim();
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const OUT = join(ROOT, 'data', 'haberler.json');
@@ -156,6 +161,7 @@ function parseRss(xml, source) {
   return items;
 }
 
+// Returns { items, failed } — never throws
 async function fetchSource(src) {
   try {
     const res = await fetch(src.url, {
@@ -168,15 +174,15 @@ async function fetchSource(src) {
     });
     if (!res.ok) {
       console.error(`[${src.name}] HTTP ${res.status}`);
-      return [];
+      return { items: [], failed: true, reason: `HTTP ${res.status}` };
     }
     const xml = await res.text();
     const items = parseRss(xml, src);
     console.log(`[${src.name}] parsed ${items.length} items`);
-    return items;
+    return { items, failed: false };
   } catch (err) {
     console.error(`[${src.name}] fetch error:`, err.message);
-    return [];
+    return { items: [], failed: true, reason: err.message };
   }
 }
 
@@ -206,8 +212,75 @@ function normalize(item) {
   };
 }
 
+async function sendAlertEmail({ failedSources, successCount, latestDate, allFailed, staleData }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('[alert] RESEND_API_KEY missing, skipping');
+    return;
+  }
+
+  const commitSha = process.env.VERCEL_GIT_COMMIT_SHA || 'unknown';
+  const failedList = failedSources.map(s => `  - ${s.name}: ${s.reason}`).join('\n');
+
+  let alertReason = '';
+  if (allFailed) {
+    alertReason = 'ALL sources failed — haberler.json was NOT updated.';
+  } else if (staleData) {
+    alertReason = `Latest article date is ${latestDate} (older than 7 days).`;
+  }
+
+  const bodyText = [
+    `[Kalkan Info] News Aggregator Alert`,
+    ``,
+    `Reason: ${alertReason}`,
+    ``,
+    `Sources succeeded: ${successCount} / ${SOURCES.length}`,
+    `Failed sources:`,
+    failedList || '  (none)',
+    ``,
+    `Latest article date: ${latestDate || 'N/A'}`,
+    `Build commit: ${commitSha}`,
+    `Timestamp: ${new Date().toISOString()}`,
+  ].join('\n');
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from: 'Kalkan Info <noreply@kalkaninfo.com>',
+        to: ['kalkaninfo.com@gmail.com'],
+        subject: '[Kalkan Info] News aggregator alert',
+        text: bodyText,
+      }),
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      console.error('[alert] Resend API error:', response.status, errBody);
+    } else {
+      const result = await response.json();
+      console.log('[alert] Alert email sent, id:', result.id);
+    }
+  } catch (err) {
+    console.error('[alert] Failed to send alert email:', err.message);
+  }
+}
+
 async function main() {
-  const all = (await Promise.all(SOURCES.map(fetchSource))).flat();
+  const results = await Promise.all(SOURCES.map(fetchSource));
+
+  // Build summary metrics
+  const failedSources = SOURCES
+    .map((src, i) => results[i].failed ? { name: src.name, reason: results[i].reason } : null)
+    .filter(Boolean);
+  const successCount = SOURCES.length - failedSources.length;
+  const allFailed = successCount === 0;
+
+  const all = results.flatMap(r => r.items);
 
   const filtered = all.filter(it => {
     const src = SOURCES.find(s => s.name === it._source);
@@ -236,29 +309,57 @@ async function main() {
   // Collect categories
   const cats = Array.from(new Set(top.map(it => it.category)));
 
-  const out = {
-    _meta: {
-      title: 'Haberler',
-      subtitle: 'Kalkan ve Antalya bölgesinden güncel haberler — canlı RSS akışı',
-      updated: new Date().toISOString(),
-      sources: SOURCES.map(s => ({ name: s.name, home: s.sourceHome })),
-      generated_by: 'scripts/news-aggregator.mjs',
-    },
-    categories: cats.length ? cats : ['Gündem'],
-    items: top,
-  };
+  // Determine latest article date
+  const latestDate = top.length > 0 ? top[0].date : null;
+  const staleData = latestDate
+    ? (Date.now() - new Date(latestDate).getTime()) > 7 * 24 * 60 * 60 * 1000
+    : false;
 
-  await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
-  console.log(`\n✓ Wrote ${top.length} items to ${OUT}`);
-  console.log(`  Sources: ${SOURCES.map(s => s.name).join(', ')}`);
-  console.log(`  Categories: ${cats.join(', ')}`);
-  if (top.length === 0) {
-    console.error('\n⚠ No items aggregated — keeping previous data may be safer.');
-    process.exit(2);
+  // --- Result summary (always printed for Vercel logs) ---
+  console.log('\n[news-aggregator] === BUILD SUMMARY ===');
+  console.log(`  Sources OK   : ${successCount} / ${SOURCES.length}`);
+  console.log(`  Sources FAIL : ${failedSources.length}${failedSources.length ? ' (' + failedSources.map(s => s.name).join(', ') + ')' : ''}`);
+  console.log(`  Items written: ${top.length}`);
+  console.log(`  Latest date  : ${latestDate || 'N/A'}`);
+  console.log(`  Stale (>7d)  : ${staleData}`);
+  if (failedSources.length) {
+    for (const f of failedSources) {
+      console.log(`  [FAIL] ${f.name}: ${f.reason}`);
+    }
   }
+  console.log('[news-aggregator] ========================\n');
+
+  // Only write file if we got some items
+  if (top.length > 0) {
+    const out = {
+      _meta: {
+        title: 'Haberler',
+        subtitle: 'Kalkan ve Antalya bölgesinden güncel haberler — canlı RSS akışı',
+        updated: new Date().toISOString(),
+        sources: SOURCES.map(s => ({ name: s.name, home: s.sourceHome })),
+        generated_by: 'scripts/news-aggregator.mjs',
+      },
+      categories: cats.length ? cats : ['Gündem'],
+      items: top,
+    };
+
+    await writeFile(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
+    console.log(`[news-aggregator] Wrote ${top.length} items to ${OUT}`);
+  } else {
+    console.error('[news-aggregator] No items aggregated — keeping previous haberler.json.');
+  }
+
+  // Send alert if all sources failed OR data is stale
+  if (allFailed || staleData) {
+    await sendAlertEmail({ failedSources, successCount, latestDate, allFailed, staleData });
+  }
+
+  // Always exit 0 — build must not be blocked
+  process.exit(0);
 }
 
 main().catch(err => {
-  console.error('Fatal:', err);
-  process.exit(1);
+  console.error('[news-aggregator] Fatal:', err);
+  // Still exit 0 to avoid breaking the build
+  process.exit(0);
 });
