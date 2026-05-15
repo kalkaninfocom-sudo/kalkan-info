@@ -36,9 +36,13 @@ const KalkanData = (() => {
     return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   }
 
+  function imagePlaceholder(alt='') {
+    return `<div class="w-full h-full grid place-items-center text-3xl" style="background:linear-gradient(135deg,#0a2e4c 0%,#134c79 60%,#1a5e93 100%);color:#f4b53d;" aria-label="${escape(alt)}">📷</div>`;
+  }
   function safeImage(url, alt='') {
-    if (!url) return `<div class="w-full h-full bg-ink-700/10 grid place-items-center text-ink-700/40">📷</div>`;
-    return `<img src="${escape(url)}" alt="${escape(alt)}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;w-full h-full bg-ink-700/10 grid place-items-center text-ink-700/40&quot;>📷</div>'" />`;
+    if (!url || typeof url !== 'string' || !/^https?:\/\//i.test(url)) return imagePlaceholder(alt);
+    const ph = imagePlaceholder(alt).replace(/"/g, '&quot;');
+    return `<img src="${escape(url)}" alt="${escape(alt)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.outerHTML='${ph}'" />`;
   }
 
   function ratingStars(r) {
