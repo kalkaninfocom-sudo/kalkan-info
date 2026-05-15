@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "img:download": "node scripts/download-unsplash.mjs",
+    "img:replace": "node scripts/replace-unsplash.mjs",
+    "img:all": "npm run img:download && npm run img:replace"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
   },

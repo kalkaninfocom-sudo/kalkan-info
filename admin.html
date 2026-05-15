@@ -70,22 +70,12 @@ tr:hover td { background:#fafbfd; }
 </head>
 <body class="text-ink-800">
 
-<!-- ============== LOGIN ============== -->
-<div id="login-screen" class="fixed inset-0 z-40 grid place-items-center" style="background:linear-gradient(135deg,#0a1626 0%,#11304d 60%,#1a5e93 100%);">
-  <div class="card w-full max-w-md p-8">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="w-12 h-12 rounded-xl grid place-items-center font-display text-white text-xl font-extrabold" style="background:linear-gradient(135deg,#1a5e93,#11304d);">K</div>
-      <div>
-        <div class="font-display text-xl font-extrabold tracking-wide">KALKAN <span class="text-sun-500">INFO</span></div>
-        <div class="text-xs text-ink-700/70">Admin Panel</div>
-      </div>
-    </div>
-    <div class="text-sm text-ink-700/80 mb-4">Yönetim paneline erişmek için şifrenizi girin.</div>
-    <input id="login-pwd" type="password" placeholder="Şifre" class="mb-3" />
-    <button id="login-btn" class="btn btn-primary w-full justify-center">Giriş Yap</button>
-    <div id="login-err" class="text-bad-500 text-xs mt-3 text-center hidden">Şifre hatalı.</div>
-    <div id="login-hint" class="text-[11px] text-ink-700/60 mt-3 text-center"></div>
-    <div class="text-[11px] text-ink-700/50 mt-6 text-center">© 2026 Kalkan Info</div>
+<!-- ============== AUTH GUARD (Supabase Auth + admin claim) ============== -->
+<div id="auth-guard" class="fixed inset-0 z-50 grid place-items-center" style="background:linear-gradient(135deg,#0a1626 0%,#11304d 60%,#1a5e93 100%);">
+  <div class="text-center text-white">
+    <div style="border:3px solid rgba(255,255,255,0.2);border-top-color:#f4b53d;border-radius:50%;width:36px;height:36px;animation:authSpin .7s linear infinite;margin:0 auto 1rem;"></div>
+    <p class="text-sm opacity-80">Yetki kontrol ediliyor…</p>
+    <style>@keyframes authSpin{to{transform:rotate(360deg);}}</style>
   </div>
 </div>
 
@@ -159,7 +149,22 @@ tr:hover td { background:#fafbfd; }
 <!-- TOAST -->
 <div id="toast" class="hidden"></div>
 
-<script src="admin/admin.js"></script>
+<script type="module">
+  import { requireAdmin, adminSignOut } from './js/admin-auth.js';
+  // Gate the panel: redirect to /login.html if not signed in, render "forbidden"
+  // screen if signed in but not admin. requireAdmin() handles both flows.
+  const user = await requireAdmin();
+  if (user) {
+    document.getElementById('auth-guard').style.display = 'none';
+    window.__ADMIN_USER__   = user;
+    window.__ADMIN_SIGNOUT__ = adminSignOut;
+    // Load the legacy admin.js panel script after auth is confirmed
+    const s = document.createElement('script');
+    s.src = 'admin/admin.js';
+    s.defer = true;
+    document.body.appendChild(s);
+  }
+</script>
 <script src="js/pwa.js?v=2" defer></script>
 </body>
 </html>
