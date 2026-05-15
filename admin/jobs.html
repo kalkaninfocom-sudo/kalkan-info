@@ -152,27 +152,22 @@ tr:hover td { background:#fafbfd; }
 </div>
 
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+import { supabase } from '../js/supabase-client.js';
+import { requireAdmin } from '../js/admin-auth.js';
 
 // ---------------------------------------------------------------------------
 // Config
 // ---------------------------------------------------------------------------
-const SUPABASE_URL      = 'https://dgichfealzdpfhdgryym.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_26HXaUgGqxZUOuxbcPhiDQ_s3MvKVpr';
-const SESSION_KEY       = 'kalkan_info_session';
-const API_BASE          = '/api/job-decision';
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const API_BASE = '/api/job-decision';
 
 // ---------------------------------------------------------------------------
-// Auth guard — sessionStorage pattern (T2.5 ile uyumlu, değiştirilmiyor)
+// Auth guard — Supabase Auth + app_metadata.role='admin' (T2.5)
 // ---------------------------------------------------------------------------
-function checkAuth() {
-  if (sessionStorage.getItem(SESSION_KEY) !== 'ok') {
-    window.location.href = '../admin.html';
-  } else {
-    document.getElementById('auth-guard').style.display = 'none';
-  }
+let currentAdmin = null;
+async function checkAuth() {
+  currentAdmin = await requireAdmin();
+  if (!currentAdmin) return; // redirect zaten yapıldı
+  document.getElementById('auth-guard').style.display = 'none';
 }
 
 // ---------------------------------------------------------------------------
@@ -461,10 +456,12 @@ document.querySelectorAll('.tab-btn').forEach(b => {
 $('refresh-btn').addEventListener('click', () => loadTab(currentTab));
 
 // ---------------------------------------------------------------------------
-// Init
+// Init — auth ÖNCE doğrulanır, sonra ilanlar yüklenir
 // ---------------------------------------------------------------------------
-checkAuth();
-loadTab('pending');
+(async () => {
+  await checkAuth();
+  if (currentAdmin) loadTab('pending');
+})();
 </script>
 </body>
 </html>

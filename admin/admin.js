@@ -6,12 +6,10 @@
 
 const DATA_FILES = ['plajlar','villalar','turlar','restoranlar','hizmetler','haberler','config'];
 const LS_KEY = 'kalkan_info_admin_v1';
-const SESSION_KEY = 'kalkan_info_session';
-// SECURITY: Hardcoded password REMOVED 2026-04-30.
-// Admin authentication MUST be migrated to Firebase Auth + custom claim `admin: true`.
-// Until migration: admin/ klasörü firebase.json hosting ignore listesinde — public erişim yok.
-// `firebase serve` ile sadece lokalden test edilir.
-const PASSWORD = null; // intentionally disabled
+// SECURITY 2026-05-15 (T2.5): Auth tamamen Supabase Auth + app_metadata.role='admin' claim'ine taşındı.
+// admin.html sayfa yüklenmeden önce js/admin-auth.js → requireAdmin() çağırıyor; bu script
+// SADECE auth doğrulandıktan sonra DOM'a inject ediliyor.
+// Eski sessionStorage('kalkan_info_session') / hardcoded password pattern'i KALDIRILDI.
 
 // ========== State ==========
 const state = {
@@ -23,8 +21,7 @@ const state = {
 // ========== Bootstrap ==========
 async function bootstrap() {
   await loadAllData();
-  bindLogin();
-  if (sessionStorage.getItem(SESSION_KEY) === 'ok') showApp();
+  showApp();
 }
 
 async function loadAllData() {
@@ -72,40 +69,8 @@ function saveLocal() {
   localStorage.setItem(LS_KEY, JSON.stringify(state.data));
 }
 
-// ========== Login ==========
-const IS_LOCAL = ['localhost','127.0.0.1'].includes(location.hostname);
-function bindLogin() {
-  const pwdInput = document.getElementById('login-pwd');
-  const btn = document.getElementById('login-btn');
-  const err = document.getElementById('login-err');
-  const hint = document.getElementById('login-hint');
-  const configHash = state.data.config?.admin?.passwordHash || '';
-  // Lokal dev: şifre tanımlı değilse "dev" ile gir
-  const devUnlocked = IS_LOCAL && !PASSWORD && !configHash;
-  if (hint) {
-    if (devUnlocked) hint.textContent = 'Lokal geliştirme modu — şifre: dev';
-    else if (!PASSWORD && !configHash) hint.textContent = 'Admin panel kapalı: Firebase Auth migration bekleniyor.';
-  }
-  const handle = () => {
-    const v = pwdInput.value;
-    const ok = (PASSWORD && v === PASSWORD)
-            || (configHash && v === configHash)
-            || (devUnlocked && v === 'dev');
-    if (ok) {
-      sessionStorage.setItem(SESSION_KEY, 'ok');
-      showApp();
-    } else {
-      err.classList.remove('hidden');
-      pwdInput.focus(); pwdInput.select();
-    }
-  };
-  btn.addEventListener('click', handle);
-  pwdInput.addEventListener('keydown', e => { if (e.key==='Enter') handle(); });
-  pwdInput.focus();
-}
-
+// ========== App ==========
 function showApp() {
-  document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app-shell').classList.remove('hidden');
   document.getElementById('app-shell').style.display = 'flex';
   bindNav();
@@ -119,8 +84,12 @@ function bindNav() {
     a.addEventListener('click', e => { e.preventDefault(); navigate(a.dataset.page); });
   });
   document.getElementById('logout-btn').addEventListener('click', () => {
-    sessionStorage.removeItem(SESSION_KEY);
-    location.reload();
+    // Auth admin.html üzerinden requireAdmin()/adminSignOut() ile yönetiliyor
+    if (typeof window.__ADMIN_SIGNOUT__ === 'function') {
+      window.__ADMIN_SIGNOUT__();
+    } else {
+      location.href = '/login.html';
+    }
   });
 }
 

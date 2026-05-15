@@ -148,6 +148,13 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Geçersiz token' });
   }
 
+  // Admin yetkilendirme — sadece app_metadata.role='admin' olanlar onay/red yapabilir
+  // (user_metadata güvenli değil; kullanıcı kendisi set edebilir)
+  if (user.app_metadata?.role !== 'admin') {
+    console.warn('[job-decision] Admin değil, erişim reddedildi:', user.email);
+    return res.status(403).json({ error: 'Bu işlem için admin yetkisi gerekli' });
+  }
+
   // İlanı çek
   const { data: job, error: fetchError } = await supabase
     .from('jobs')
