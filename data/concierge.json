@@ -6,13 +6,15 @@
   "agents": [
     {
       "id": "berkay",
-      "name": "Berkay Elmastas",
+      "name": "Berkay Elmastaş",
       "role": "Türkçe destek",
       "languages": ["TR"],
       "languageFlags": ["🇹🇷"],
       "whatsapp": "+90 530 665 07 94",
       "whatsappRaw": "905306650794",
-      "avatar": "icons/avatar-berkay.svg",
+      "avatar": "icons/profile-berkay.jpg",
+      "avatarFallback": "icons/avatar-berkay.svg",
+      "linkedin": "https://www.linkedin.com/in/berkay-elmastaş/",
       "available": true,
       "defaultMessage": "Merhaba Berkay, Kalkan Info üzerinden ulaştım. Bilgi almak istiyorum."
     },
@@ -24,7 +26,9 @@
       "languageFlags": ["🇬🇧", "🇩🇪"],
       "whatsapp": "+90 541 235 96 75",
       "whatsappRaw": "905412359675",
-      "avatar": "icons/avatar-sezin.svg",
+      "avatar": "icons/profile-sezin.jpg",
+      "avatarFallback": "icons/avatar-sezin.svg",
+      "linkedin": "https://www.linkedin.com/in/sezincetiner/",
       "available": true,
       "defaultMessage": "Hi Sezin, I reached out via Kalkan Info. I would like some help."
     }
