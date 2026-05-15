@@ -65,7 +65,7 @@ for (const [cls, count] of top10) {
 // ── 3. Run tailwindcss CLI ────────────────────────────────────────────────────
 const input  = join(ROOT, 'scripts', 'tw-input.css');
 const output = join(ROOT, 'dist', 'tw.css');
-const config = join(ROOT, 'tailwind.config.mjs');
+const config = join(ROOT, 'tailwind.config.js');
 
 const cmd = `npx tailwindcss -c "${config}" -i "${input}" -o "${output}" --minify`;
 console.log(`[tailwind] Running: ${cmd}`);

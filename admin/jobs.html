@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>İş İlanları Moderasyonu — Kalkan Info Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sea:  { 50:'#eaf2f9',100:'#cfdfee',200:'#9cc0dd',300:'#5d97c4',400:'#2f74a8',500:'#1a5e93',600:'#134c79',700:'#0d3a5f',800:'#0a2e4c',900:'#072136' },
+        sun:  { 400:'#f4b53d', 500:'#e89812', 600:'#c97c08' },
+        ink:  { 700:'#2f4460', 800:'#11304d', 900:'#07162a' },
+      },
+      fontFamily: {
+        display: ['Orbitron','system-ui','sans-serif'],
+        body:    ['Inter','system-ui','sans-serif'],
+      },
+    },
+  },
+};
+</script>
+<style>
+html,body { font-family:'Inter',system-ui,sans-serif; background:#dce6ef; color:#0a2e4c; }
+.card { background:#fff; border-radius:12px; box-shadow:0 1px 3px rgba(7,33,54,0.08),0 6px 20px -6px rgba(7,33,54,0.12); }
+.btn { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.9rem; border-radius:8px; font-weight:600; font-size:0.8125rem; transition:transform 80ms ease,box-shadow 120ms ease,background 120ms ease; cursor:pointer; border:none; }
+.btn:hover { transform:translateY(-1px); }
+.btn:active { transform:translateY(0); }
+.btn-approve { background:#10b981; color:#fff; box-shadow:0 3px 10px -2px rgba(16,185,129,0.45); }
+.btn-approve:hover { background:#059669; }
+.btn-reject  { background:#ef4444; color:#fff; box-shadow:0 3px 10px -2px rgba(239,68,68,0.40); }
+.btn-reject:hover  { background:#dc2626; }
+.btn-inspect { background:#f0f3f7; color:#11304d; border:1px solid #d8dde5; }
+.btn-inspect:hover { background:#e4e9f0; }
+.btn-primary { background:#1a5e93; color:#fff; box-shadow:0 3px 10px -2px rgba(26,94,147,0.45); }
+.btn-primary:hover { background:#134c79; }
+.badge { display:inline-flex; align-items:center; padding:2px 10px; border-radius:9999px; font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+.badge-pending  { background:#fef3c7; color:#92400e; }
+.badge-active   { background:#d1fae5; color:#065f46; }
+.badge-closed   { background:#fee2e2; color:#991b1b; }
+table { width:100%; border-collapse:collapse; font-size:0.875rem; }
+th { text-align:left; padding:0.6rem 0.75rem; background:#f0f3f7; color:#11304d; font-weight:600; border-bottom:1px solid #d8dde5; }
+td { padding:0.55rem 0.75rem; border-bottom:1px solid #eef1f5; vertical-align:middle; }
+tr:hover td { background:#fafbfd; }
+.modal-bg { position:fixed; inset:0; background:rgba(7,22,38,0.55); backdrop-filter:blur(4px); z-index:50; display:flex; align-items:flex-start; justify-content:center; padding:2rem 1rem; overflow-y:auto; }
+.modal { background:#fff; border-radius:14px; max-width:600px; width:100%; box-shadow:0 24px 60px -12px rgba(7,22,38,0.5); }
+.toast { position:fixed; bottom:1.5rem; right:1.5rem; padding:0.7rem 1rem; border-radius:10px; color:#fff; font-weight:600; font-size:0.875rem; box-shadow:0 8px 24px -4px rgba(7,22,38,0.4); z-index:80; animation:slideIn 200ms ease; }
+@keyframes slideIn { from { transform:translateY(16px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+.spinner { border:3px solid #cfdfee; border-top-color:#1a5e93; border-radius:50%; width:28px; height:28px; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- Auth guard -->
+<div id="auth-guard" class="fixed inset-0 z-50 flex items-center justify-center" style="background:#07162a;">
+  <div class="text-center">
+    <div class="spinner mx-auto mb-4"></div>
+    <p class="text-sea-200 text-sm">Yetki kontrol ediliyor…</p>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="sticky top-0 z-30" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="../admin.html" class="text-sea-300 hover:text-white transition-colors text-sm">&larr; Admin</a>
+      <span class="text-sea-600">|</span>
+      <span class="font-bold text-white text-lg">İş İlanları Moderasyonu</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="pending-count-badge" class="badge badge-pending hidden">
+        <span id="pending-num">0</span> bekliyor
+      </span>
+      <button id="refresh-btn" class="btn btn-inspect text-xs" title="Yenile">↻ Yenile</button>
+    </div>
+  </div>
+</header>
+
+<!-- Tab bar -->
+<div class="sticky top-[52px] z-20 bg-white border-b border-sea-100">
+  <div class="max-w-6xl mx-auto px-4 flex gap-1">
+    <button class="tab-btn px-4 py-3 text-sm font-600 border-b-2 transition-colors" data-tab="pending">Bekleyenler</button>
+    <button class="tab-btn px-4 py-3 text-sm font-600 border-b-2 transition-colors" data-tab="active">Yayında</button>
+    <button class="tab-btn px-4 py-3 text-sm font-600 border-b-2 transition-colors" data-tab="closed">Reddedilen</button>
+  </div>
+</div>
+
+<!-- Main -->
+<main class="max-w-6xl mx-auto px-4 py-6">
+
+  <!-- Loading -->
+  <div id="loading-state" class="flex flex-col items-center justify-center py-20 gap-3">
+    <div class="spinner"></div>
+    <p class="text-sea-400 text-sm">İlanlar yükleniyor…</p>
+  </div>
+
+  <!-- Empty -->
+  <div id="empty-state" class="hidden card p-12 text-center">
+    <div class="text-5xl mb-4">✅</div>
+    <div class="text-lg font-bold text-sea-800 mb-2">Onay bekleyen ilan yok</div>
+    <div class="text-sm text-sea-400">Tüm ilanlar incelendi.</div>
+  </div>
+
+  <!-- Table -->
+  <div id="table-wrap" class="hidden card overflow-hidden">
+    <table>
+      <thead>
+        <tr>
+          <th>Başlık</th>
+          <th>İşveren</th>
+          <th class="hidden sm:table-cell">Kategori</th>
+          <th class="hidden md:table-cell">İletişim</th>
+          <th class="hidden lg:table-cell">Tarih</th>
+          <th>Durum</th>
+          <th class="text-right">İşlemler</th>
+        </tr>
+      </thead>
+      <tbody id="jobs-tbody"></tbody>
+    </table>
+  </div>
+
+</main>
+
+<!-- Inspect Modal -->
+<div id="inspect-modal" class="modal-bg hidden">
+  <div class="modal p-6">
+    <div class="flex items-start justify-between mb-4">
+      <h2 id="modal-title" class="text-lg font-bold text-sea-900"></h2>
+      <button id="modal-close" class="text-sea-400 hover:text-sea-800 text-xl leading-none">&times;</button>
+    </div>
+    <div id="modal-body" class="text-sm text-sea-700 space-y-2"></div>
+    <div id="modal-footer" class="flex gap-2 mt-6 flex-wrap"></div>
+  </div>
+</div>
+
+<!-- Reject Reason Modal -->
+<div id="reject-modal" class="modal-bg hidden">
+  <div class="modal p-6 max-w-md">
+    <h2 class="text-base font-bold text-sea-900 mb-3">Red gerekçesi (opsiyonel)</h2>
+    <textarea id="reject-reason" rows="3"
+      class="w-full border border-sea-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sea-400 resize-none"
+      placeholder="Örn. İletişim bilgisi eksik, içerik uygunsuz…"></textarea>
+    <div class="flex gap-2 mt-4 justify-end">
+      <button id="reject-cancel-btn" class="btn btn-inspect">İptal</button>
+      <button id="reject-confirm-btn" class="btn btn-reject">Reddet &amp; Gönder</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// ---------------------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------------------
+const SUPABASE_URL      = 'https://dgichfealzdpfhdgryym.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_26HXaUgGqxZUOuxbcPhiDQ_s3MvKVpr';
+const SESSION_KEY       = 'kalkan_info_session';
+const API_BASE          = '/api/job-decision';
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ---------------------------------------------------------------------------
+// Auth guard — sessionStorage pattern (T2.5 ile uyumlu, değiştirilmiyor)
+// ---------------------------------------------------------------------------
+function checkAuth() {
+  if (sessionStorage.getItem(SESSION_KEY) !== 'ok') {
+    window.location.href = '../admin.html';
+  } else {
+    document.getElementById('auth-guard').style.display = 'none';
+  }
+}
+
+// ---------------------------------------------------------------------------
+// State
+// ---------------------------------------------------------------------------
+let currentTab   = 'pending';
+let jobs         = [];
+let pendingJobId = null;   // reject flow için
+
+const CAT_LABELS = {
+  restoran:'Restoran', villa:'Villa', otel:'Otel',
+  tur:'Tur', hizmet:'Hizmet', ofis:'Ofis', diger:'Diğer',
+};
+const TYPE_LABELS = {
+  full:'Tam zamanlı', part:'Yarı zamanlı',
+  seasonal:'Sezonluk', freelance:'Serbest',
+};
+
+// ---------------------------------------------------------------------------
+// DOM helpers
+// ---------------------------------------------------------------------------
+const $  = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = (d) => d ? new Date(d).toLocaleDateString('tr-TR', {day:'2-digit',month:'short',year:'numeric'}) : '—';
+
+function showToast(msg, ok = true) {
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.style.background = ok ? '#10b981' : '#ef4444';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// ---------------------------------------------------------------------------
+// Data fetch
+// ---------------------------------------------------------------------------
+async function fetchJobs(status) {
+  const { data, error } = await supabase
+    .from('jobs')
+    .select('id,slug,title,category,type,employer_name,contact_email,location,description_html,requirements,experience,salary_min,salary_max,currency,status,created_at,published_at,expires_at')
+    .eq('status', status)
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data || [];
+}
+
+// ---------------------------------------------------------------------------
+// Render
+// ---------------------------------------------------------------------------
+function badgeHtml(status) {
+  const map = { pending:'badge-pending', active:'badge-active', closed:'badge-closed' };
+  const lbl = { pending:'Bekliyor', active:'Yayında', closed:'Reddedildi' };
+  return `<span class="badge ${map[status] || ''}">${lbl[status] || status}</span>`;
+}
+
+function renderRow(job) {
+  const isPending = job.status === 'pending';
+  return `
+  <tr data-id="${esc(job.id)}">
+    <td class="font-semibold text-sea-900 max-w-[180px] truncate" title="${esc(job.title)}">${esc(job.title)}</td>
+    <td class="text-sea-700">${esc(job.employer_name)}</td>
+    <td class="hidden sm:table-cell text-sea-600 text-xs">${esc(CAT_LABELS[job.category] || job.category)}</td>
+    <td class="hidden md:table-cell text-sea-600 text-xs truncate max-w-[140px]">${esc(job.contact_email)}</td>
+    <td class="hidden lg:table-cell text-sea-500 text-xs">${fmt(job.created_at)}</td>
+    <td>${badgeHtml(job.status)}</td>
+    <td class="text-right">
+      <div class="flex items-center justify-end gap-1.5 flex-wrap">
+        <button class="btn btn-inspect btn-inspect-row" data-id="${esc(job.id)}">İncele</button>
+        ${isPending ? `
+        <button class="btn btn-approve btn-approve-row" data-id="${esc(job.id)}">Onayla</button>
+        <button class="btn btn-reject btn-reject-row"  data-id="${esc(job.id)}">Reddet</button>` : ''}
+      </div>
+    </td>
+  </tr>`;
+}
+
+function render() {
+  const tbody = $('jobs-tbody');
+  const wrap  = $('table-wrap');
+  const empty = $('empty-state');
+
+  if (!jobs.length) {
+    wrap.classList.add('hidden');
+    empty.classList.remove('hidden');
+    // Update empty text per tab
+    const msgs = { pending:'Onay bekleyen ilan yok', active:'Yayında ilan yok', closed:'Reddedilen ilan yok' };
+    empty.querySelector('.text-lg').textContent = msgs[currentTab] || 'İlan yok';
+    empty.querySelector('.text-sm').textContent = currentTab === 'pending' ? 'Tüm ilanlar incelendi.' : '';
+    return;
+  }
+
+  empty.classList.add('hidden');
+  wrap.classList.remove('hidden');
+  tbody.innerHTML = jobs.map(renderRow).join('');
+
+  // Pending badge
+  if (currentTab === 'pending') {
+    $('pending-count-badge').classList.remove('hidden');
+    $('pending-num').textContent = jobs.length;
+  }
+}
+
+async function loadTab(tab) {
+  currentTab = tab;
+  jobs = [];
+
+  // Tab active style
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    const active = b.dataset.tab === tab;
+    b.style.color       = active ? '#1a5e93' : '#64748b';
+    b.style.borderColor = active ? '#1a5e93' : 'transparent';
+    b.style.fontWeight  = active ? '700' : '500';
+  });
+
+  $('loading-state').classList.remove('hidden');
+  $('table-wrap').classList.add('hidden');
+  $('empty-state').classList.add('hidden');
+  $('pending-count-badge').classList.add('hidden');
+
+  try {
+    jobs = await fetchJobs(tab);
+  } catch (e) {
+    console.error(e);
+    showToast('Yükleme hatası: ' + e.message, false);
+  }
+
+  $('loading-state').classList.add('hidden');
+  render();
+}
+
+// ---------------------------------------------------------------------------
+// Inspect modal
+// ---------------------------------------------------------------------------
+function openInspect(jobId) {
+  const job = jobs.find(j => j.id === jobId);
+  if (!job) return;
+
+  $('modal-title').textContent = job.title;
+  $('modal-body').innerHTML = `
+    <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+      <div><span class="font-semibold">İşveren:</span> ${esc(job.employer_name)}</div>
+      <div><span class="font-semibold">Durum:</span> ${badgeHtml(job.status)}</div>
+      <div><span class="font-semibold">Kategori:</span> ${esc(CAT_LABELS[job.category] || job.category)}</div>
+      <div><span class="font-semibold">Tip:</span> ${esc(TYPE_LABELS[job.type] || job.type)}</div>
+      <div><span class="font-semibold">Konum:</span> ${esc(job.location)}</div>
+      <div><span class="font-semibold">İletişim:</span> ${esc(job.contact_email)}</div>
+      ${job.salary_min ? `<div><span class="font-semibold">Maaş:</span> ${job.salary_min}${job.salary_max ? '–'+job.salary_max : '+'} ${job.currency}</div>` : ''}
+      ${job.experience ? `<div><span class="font-semibold">Deneyim:</span> ${esc(job.experience)}</div>` : ''}
+      <div><span class="font-semibold">Oluşturulma:</span> ${fmt(job.created_at)}</div>
+      ${job.expires_at ? `<div><span class="font-semibold">Son başvuru:</span> ${fmt(job.expires_at)}</div>` : ''}
+    </div>
+    ${job.requirements?.length ? `<div class="mt-3"><span class="font-semibold">Gereksinimler:</span><ul class="list-disc list-inside mt-1 space-y-0.5">${job.requirements.map(r=>`<li>${esc(r)}</li>`).join('')}</ul></div>` : ''}
+    ${job.description_html ? `<div class="mt-3 border border-sea-100 rounded-lg p-3 bg-sea-50 max-h-48 overflow-y-auto text-xs leading-relaxed">${job.description_html}</div>` : ''}
+  `;
+
+  const footer = $('modal-footer');
+  if (job.status === 'pending') {
+    footer.innerHTML = `
+      <button class="btn btn-approve" id="modal-approve-btn">Onayla</button>
+      <button class="btn btn-reject" id="modal-reject-btn">Reddet</button>
+      <button class="btn btn-inspect" id="modal-close-btn2">Kapat</button>
+    `;
+    $('modal-approve-btn').onclick = () => { closeInspect(); approve(jobId); };
+    $('modal-reject-btn').onclick  = () => { closeInspect(); openRejectModal(jobId); };
+    $('modal-close-btn2').onclick  = closeInspect;
+  } else {
+    footer.innerHTML = `<button class="btn btn-inspect" id="modal-close-btn2">Kapat</button>`;
+    $('modal-close-btn2').onclick = closeInspect;
+  }
+
+  $('inspect-modal').classList.remove('hidden');
+}
+
+function closeInspect() {
+  $('inspect-modal').classList.add('hidden');
+}
+
+// ---------------------------------------------------------------------------
+// Approve / Reject
+// ---------------------------------------------------------------------------
+async function callDecision(jobId, action, reason) {
+  // Get session JWT from supabase (anon key session — for service-role endpoint, we send anon token;
+  // endpoint must be configured to accept admin-user JWT. In stub mode (no env) it returns {stub:true})
+  const { data: { session } } = await supabase.auth.getSession();
+  const jwt = session?.access_token || 'local-admin';
+
+  const res = await fetch(API_BASE, {
+    method:  'POST',
+    headers: {
+      'Content-Type':  'application/json',
+      'Authorization': `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({ job_id: jobId, action, reason: reason || undefined }),
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || `HTTP ${res.status}`);
+  }
+
+  return res.json();
+}
+
+async function approve(jobId) {
+  const btn = document.querySelector(`[data-id="${jobId}"].btn-approve-row`);
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  try {
+    await callDecision(jobId, 'approve');
+    showToast('İlan onaylandı ve email gönderildi.');
+    jobs = jobs.filter(j => j.id !== jobId);
+    render();
+  } catch (e) {
+    showToast('Hata: ' + e.message, false);
+    if (btn) { btn.disabled = false; btn.textContent = 'Onayla'; }
+  }
+}
+
+function openRejectModal(jobId) {
+  pendingJobId = jobId;
+  $('reject-reason').value = '';
+  $('reject-modal').classList.remove('hidden');
+  $('reject-reason').focus();
+}
+
+function closeRejectModal() {
+  $('reject-modal').classList.add('hidden');
+  pendingJobId = null;
+}
+
+async function confirmReject() {
+  if (!pendingJobId) return;
+  const reason = $('reject-reason').value.trim();
+  const jobId  = pendingJobId;
+  closeRejectModal();
+
+  const btn = document.querySelector(`[data-id="${jobId}"].btn-reject-row`);
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  try {
+    await callDecision(jobId, 'reject', reason);
+    showToast('İlan reddedildi ve email gönderildi.');
+    jobs = jobs.filter(j => j.id !== jobId);
+    render();
+  } catch (e) {
+    showToast('Hata: ' + e.message, false);
+    if (btn) { btn.disabled = false; btn.textContent = 'Reddet'; }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Event delegation
+// ---------------------------------------------------------------------------
+$('jobs-tbody').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-id]');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  if (btn.classList.contains('btn-approve-row')) approve(id);
+  else if (btn.classList.contains('btn-reject-row')) openRejectModal(id);
+  else if (btn.classList.contains('btn-inspect-row')) openInspect(id);
+});
+
+$('inspect-modal').addEventListener('click', (e) => {
+  if (e.target === $('inspect-modal')) closeInspect();
+});
+$('modal-close').onclick = closeInspect;
+
+$('reject-modal').addEventListener('click', (e) => {
+  if (e.target === $('reject-modal')) closeRejectModal();
+});
+$('reject-cancel-btn').onclick  = closeRejectModal;
+$('reject-confirm-btn').onclick = confirmReject;
+
+// Esc key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeInspect(); closeRejectModal(); }
+});
+
+// Tab clicks
+document.querySelectorAll('.tab-btn').forEach(b => {
+  b.addEventListener('click', () => loadTab(b.dataset.tab));
+});
+
+$('refresh-btn').addEventListener('click', () => loadTab(currentTab));
+
+// ---------------------------------------------------------------------------
+// Init
+// ---------------------------------------------------------------------------
+checkAuth();
+loadTab('pending');
+</script>
+</body>
+</html>
