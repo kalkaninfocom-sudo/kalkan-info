@@ -354,7 +354,7 @@
 <style>
   .villa-card:hover .villa-arrow { opacity:1!important; }
   .villa-arrow:hover { background:rgba(7,33,54,0.85)!important; }
-  .villa-card { cursor:default; }
+  .villa-card { cursor:pointer; }
   .villa-gallery { touch-action:pan-y; }
 </style>
 
@@ -407,5 +407,17 @@
 })();
 </script>
 <script src="js/newsletter.js" defer></script>
+
+<script type="module">
+import { initVillaModal } from './js/villa-modal.js';
+
+(async () => {
+  const data = await KalkanData.load('villalar');
+  // villa ID → villa nesne haritası
+  const villaMap = {};
+  (data.items || []).forEach(v => { villaMap[v.id] = v; });
+  initVillaModal(villaMap);
+})();
+</script>
 </body>
 </html>
