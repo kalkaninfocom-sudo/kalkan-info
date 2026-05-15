@@ -1,33 +1,18 @@
 /* Kalkan Info — Service Worker (PWA)
    Cache-first stratejisi statik varlıklar için, network-first stratejisi data/*.json için.
+   v1.6.0: HTML pre-cache kaldırıldı (Vercel cleanUrls 308 → redirected Response cache.put crash'ini önler).
    Versiyon güncellendiğinde eski cache temizlenir.
 */
 
-const CACHE_VERSION = 'kalkan-info-v1.5.0-tw-css';
+const CACHE_VERSION = 'kalkan-info-v1.6.0-redirect-fix';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
+// HTML'ler pre-cache'te DEĞİL — cleanUrls ile 308 redirect olduğu için install fail eder.
+// HTML'ler runtime'da, redirect-safe şekilde cache'lenir (fetch handler'da).
 const STATIC_ASSETS = [
   './',
-  './index.html',
-  './plajlar.html',
-  './villalar.html',
-  './turlar.html',
-  './restoranlar.html',
-  './hizmetler.html',
-  './haberler.html',
-  './antik-kentler.html',
-  './aktiviteler.html',
-  './tatil-asistani.html',
-  './hizmet-ekle.html',
-  './login.html',
-  './register.html',
-  './profil.html',
-  './kvkk.html',
-  './privacy.html',
-  './terms.html',
-  './admin.html',
   './manifest.json',
   './dist/tw.css',
   './js/render.js',
@@ -44,11 +29,40 @@ const STATIC_ASSETS = [
   './icons/apple-touch-icon.png'
 ];
 
-// Install — pre-cache statik varlıklar
+// Redirected Response'ları cache'lenemez (cache.put TypeError atar).
+// Body'yi clone'layıp yeni (redirected: false) Response paketleyerek güvenli kaydet.
+async function safeCachePut(cacheName, req, res) {
+  if (!res || !res.ok) return;
+  if (res.type === 'opaque' || res.type === 'opaqueredirect') return;
+  try {
+    if (res.redirected) {
+      const body = await res.clone().blob();
+      const clean = new Response(body, {
+        status: res.status,
+        statusText: res.statusText,
+        headers: res.headers
+      });
+      const cache = await caches.open(cacheName);
+      await cache.put(req, clean);
+    } else {
+      const cache = await caches.open(cacheName);
+      await cache.put(req, res.clone());
+    }
+  } catch (e) {
+    // iOS PWA bazen quota / type hatasi atar — sessizce geç.
+    console.warn('[SW] cache.put skipped:', req.url, e?.message);
+  }
+}
+
+// Install — pre-cache statik varlıklar (her biri tek tek, biri fail etse digerleri eklensin)
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
-      .then(cache => cache.addAll(STATIC_ASSETS).catch(err => console.warn('[SW] Install partial:', err)))
+      .then(cache => Promise.all(
+        STATIC_ASSETS.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] precache skipped:', url, err?.message))
+        )
+      ))
       .then(() => self.skipWaiting())
   );
 });
@@ -66,8 +80,9 @@ self.addEventListener('activate', event => {
 
 // Fetch — strateji:
 //   - data/*.json → network-first, fallback to cache
-//   - HTML/JS/CSS/img → cache-first, fallback to network
-//   - Cross-origin (Unsplash, fonts) → runtime cache (network-first)
+//   - HTML navigation → network-first (taze içerik), fallback to cache (offline)
+//   - JS/CSS/img → cache-first, fallback to network
+//   - Cross-origin (Unsplash, fonts) → network-first, runtime cache
 self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
@@ -80,8 +95,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       fetch(req)
         .then(res => {
-          const copy = res.clone();
-          caches.open(DATA_CACHE).then(c => c.put(req, copy));
+          safeCachePut(DATA_CACHE, req, res);
           return res;
         })
         .catch(() => caches.match(req))
@@ -89,27 +103,43 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // 2) Same-origin static — cache-first
-  if (sameOrigin) {
+  // 2) HTML navigation (sayfa istekleri) — network-first
+  //    iOS PWA'da cache-first + redirected Response = beyaz ekran. network-first taze içerik garanti eder.
+  if (sameOrigin && (req.mode === 'navigate' || req.destination === 'document')) {
     event.respondWith(
-      caches.match(req).then(cached => cached || fetch(req).then(res => {
-        if (res.ok) {
-          const copy = res.clone();
-          caches.open(STATIC_CACHE).then(c => c.put(req, copy));
-        }
-        return res;
-      }).catch(() => caches.match('./index.html')))
+      fetch(req, { redirect: 'follow' })
+        .then(res => {
+          safeCachePut(STATIC_CACHE, req, res);
+          // Redirected response'u clone'layıp düz Response döndür (iOS PWA fix)
+          if (res.redirected) {
+            return res.clone().blob().then(body => new Response(body, {
+              status: res.status,
+              statusText: res.statusText,
+              headers: res.headers
+            }));
+          }
+          return res;
+        })
+        .catch(() => caches.match(req).then(c => c || caches.match('./')))
     );
     return;
   }
 
-  // 3) Cross-origin (CDN, Unsplash, fonts) — network-first, runtime cache
+  // 3) Same-origin static (JS/CSS/img) — cache-first
+  if (sameOrigin) {
+    event.respondWith(
+      caches.match(req).then(cached => cached || fetch(req).then(res => {
+        safeCachePut(STATIC_CACHE, req, res);
+        return res;
+      }).catch(() => caches.match('./')))
+    );
+    return;
+  }
+
+  // 4) Cross-origin (CDN, fonts) — network-first, runtime cache
   event.respondWith(
     fetch(req).then(res => {
-      if (res.ok) {
-        const copy = res.clone();
-        caches.open(RUNTIME_CACHE).then(c => c.put(req, copy));
-      }
+      safeCachePut(RUNTIME_CACHE, req, res);
       return res;
     }).catch(() => caches.match(req))
   );
