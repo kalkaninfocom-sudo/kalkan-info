@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "title": "Concierge Ekibi",
+    "subtitle": "Kalkan Info concierge — kişiye özel rehberlik, villa rezervasyon, transfer, tatil planlama"
+  },
+  "agents": [
+    {
+      "id": "berkay",
+      "name": "Berkay Elmastas",
+      "role": "Türkçe destek",
+      "languages": ["TR"],
+      "languageFlags": ["🇹🇷"],
+      "whatsapp": "+90 530 665 07 94",
+      "whatsappRaw": "905306650794",
+      "avatar": "icons/avatar-berkay.svg",
+      "available": true,
+      "defaultMessage": "Merhaba Berkay, Kalkan Info üzerinden ulaştım. Bilgi almak istiyorum."
+    },
+    {
+      "id": "sezin",
+      "name": "Sezin Çetiner",
+      "role": "English & Deutsch support",
+      "languages": ["EN", "DE"],
+      "languageFlags": ["🇬🇧", "🇩🇪"],
+      "whatsapp": "+90 541 235 96 75",
+      "whatsappRaw": "905412359675",
+      "avatar": "icons/avatar-sezin.svg",
+      "available": true,
+      "defaultMessage": "Hi Sezin, I reached out via Kalkan Info. I would like some help."
+    }
+  ]
+}
