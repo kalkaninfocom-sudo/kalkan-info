@@ -146,10 +146,10 @@
             <span class="ki-bn-icon">🔍</span>
             <span class="ki-bn-label">Ara</span>
           </button>
-          <a class="ki-bn-item cta" href="${WHATSAPP}" target="_blank" rel="noopener" data-key="concierge">
+          <button class="ki-bn-item cta" type="button" data-key="concierge" data-concierge-trigger aria-label="Concierge ekibine ulaş">
             <span class="ki-bn-icon">💬</span>
             <span class="ki-bn-label">Concierge</span>
-          </a>
+          </button>
           <button class="ki-bn-item" type="button" data-key="auth" id="ki-bn-auth">
             <span class="ki-bn-icon">🔐</span>
             <span class="ki-bn-label">Giriş</span>
@@ -178,6 +178,18 @@
         window.openSiteDrawer();
       } else {
         document.getElementById('menu-btn')?.click();
+      }
+    });
+
+    // Concierge butonu — concierge-modal.js'in 2 profilli modal'ını aç
+    const conciergeBtn = document.querySelector('#ki-bn-inner [data-key="concierge"]');
+    conciergeBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof window.openConcierge === 'function') {
+        window.openConcierge();
+      } else {
+        // Fallback: direkt WhatsApp
+        window.open(WHATSAPP, '_blank', 'noopener');
       }
     });
 

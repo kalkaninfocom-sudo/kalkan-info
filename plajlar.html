@@ -89,6 +89,7 @@
 <!-- /SEO -->
 <script src="js/auth-pill.js" defer></script>
 <script src="js/site-drawer.js?v=20260516b" defer></script>
+<script src="js/i18n.js?v=20260516a" defer></script>
 <script src="js/header-search.js" defer></script>
 <script src="js/bottom-nav.js?v=20260516b" defer></script>
 <script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
@@ -160,8 +161,8 @@
       </a>
       <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle">İşletme Ekle</a>
       <span class="px-2 text-white/40">·</span>
-      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" aria-disabled="true" title="Türkçe (aktif)">TR</a>
-      <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" aria-disabled="true" title="English — yakında">EN</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 cursor-pointer" href="#" data-lang-toggle="tr" onclick="event.preventDefault();setLang(&apos;tr&apos;);" title="Türkçe">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 cursor-pointer" href="#" data-lang-toggle="en" onclick="event.preventDefault();setLang(&apos;en&apos;);" title="English">EN</a>
     </div>
   </div>
   <div class="ribbon-bg grain text-[12px]">

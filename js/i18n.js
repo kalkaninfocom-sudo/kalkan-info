@@ -78,7 +78,16 @@
   // Global short aliases for inline onclick
   window.setLang = (l) => window.KalkanI18n.set(l);
 
+  function injectStyles() {
+    if (document.getElementById('ki-i18n-styles')) return;
+    const s = document.createElement('style');
+    s.id = 'ki-i18n-styles';
+    s.textContent = '[data-lang-toggle]{transition:color .15s ease,background .15s ease;}[data-lang-toggle].lang-active{color:#f4b53d!important;font-weight:800;}';
+    document.head.appendChild(s);
+  }
+
   function init() {
+    injectStyles();
     apply(detectLang());
     // Geç gelen kart/list render'lar için de uygula
     const mo = new MutationObserver(muts => {
