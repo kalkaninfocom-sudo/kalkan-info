@@ -20,7 +20,175 @@
 
   function $ (id) { return document.getElementById(id); }
 
+  const PROFILE_KEY = 'kalkan_candidate_v1';
+  function loadProfile() {
+    try { return JSON.parse(localStorage.getItem(PROFILE_KEY) || 'null'); } catch (e) { return null; }
+  }
+  function saveProfile(p) {
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
+  }
+  function clearProfile() {
+    localStorage.removeItem(PROFILE_KEY);
+  }
+
+  function profileSummaryForWA(p) {
+    if (!p) return '';
+    const lines = ['', '— Aday Profilim —', `Ad: ${p.name}`];
+    if (p.phone) lines.push(`Telefon: ${p.phone}`);
+    if (p.email) lines.push(`E-posta: ${p.email}`);
+    if (p.position) lines.push(`Pozisyon: ${p.position}`);
+    if (p.experience) lines.push(`Tecrübe: ${p.experience}`);
+    if (p.languages) lines.push(`Diller: ${p.languages}`);
+    if (p.skills) lines.push(`Yetenekler: ${p.skills}`);
+    if (p.linkedin) lines.push(`LinkedIn: ${p.linkedin}`);
+    if (p.bio) lines.push(`Hakkımda: ${p.bio}`);
+    return lines.join('\n');
+  }
+
+  function buildProfileModal() {
+    if (document.getElementById('candidate-modal')) return;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+<div id="candidate-modal" class="hidden fixed inset-0 z-[70] p-4 overflow-y-auto" style="background:rgba(7,33,54,0.55);backdrop-filter:blur(2px);" role="dialog" aria-modal="true">
+  <div class="max-w-lg mx-auto my-6 bg-white rounded-2xl shadow-xl p-6 md:p-8">
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <div class="text-[10px] font-bold uppercase tracking-wider text-sun-500">Aday Profili</div>
+        <h2 class="font-display font-extrabold text-xl text-sea-800 mt-1">Profilini Oluştur</h2>
+        <p class="text-xs text-sea-700/70 mt-1">Bilgilerin sadece bu tarayıcıda saklanır. Başvuru yaparken WhatsApp mesajına otomatik eklenir.</p>
+      </div>
+      <button id="cm-close" aria-label="Kapat" class="w-9 h-9 grid place-items-center rounded-full hover:bg-sea-50 flex-shrink-0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <form id="cm-form" class="space-y-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Ad Soyad *</label>
+          <input name="name" required class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Pozisyon (aradığın)</label>
+          <input name="position" placeholder="Örn: Garson, Resepsiyonist…" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Telefon</label>
+          <input name="phone" type="tel" placeholder="+90 5xx xxx xx xx" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">E-posta</label>
+          <input name="email" type="email" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Tecrübe</label>
+          <input name="experience" placeholder="Örn: 3 yıl restoran" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+        </div>
+        <div>
+          <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Diller</label>
+          <input name="languages" placeholder="TR, EN, DE…" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+        </div>
+      </div>
+      <div>
+        <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Yetenekler</label>
+        <input name="skills" placeholder="Örn: müşteri iletişimi, kasa, mutfak, ehliyet B…" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+      </div>
+      <div>
+        <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">LinkedIn (opsiyonel)</label>
+        <input name="linkedin" type="url" placeholder="https://linkedin.com/in/…" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none" />
+      </div>
+      <div>
+        <label class="block text-[10px] font-display font-bold text-sea-700 uppercase tracking-wide mb-1">Kısa Biyo</label>
+        <textarea name="bio" rows="3" placeholder="Neden bu pozisyonlar? Hangi günler müsaitsin?" class="w-full px-3 py-2 border border-sea-200 rounded-lg text-sm focus:border-sea-500 outline-none"></textarea>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2 pt-2">
+        <button type="submit" class="flex-1 bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold py-2.5 rounded-xl shadow-sm hover:from-sun-500 hover:to-sun-600 transition">Profili Kaydet</button>
+        <button type="button" id="cm-clear" class="text-sea-600 hover:text-coral-500 text-sm font-semibold underline-grow">Profili Sil</button>
+      </div>
+      <p class="text-[10px] text-sea-500 text-center">Bilgilerin yalnızca senin tarayıcında saklanır — sunucuya gönderilmez. KVKK'ya tam uyumlu.</p>
+    </form>
+  </div>
+</div>
+    `;
+    document.body.appendChild(wrap.firstElementChild);
+
+    const modal = document.getElementById('candidate-modal');
+    const form = document.getElementById('cm-form');
+    const close = () => { modal.classList.add('hidden'); document.body.style.overflow = ''; };
+
+    document.getElementById('cm-close').addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    document.getElementById('cm-clear').addEventListener('click', () => {
+      if (!confirm('Profilini silmek istediğinden emin misin?')) return;
+      clearProfile();
+      form.reset();
+      updateProfilePill();
+      close();
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const profile = {};
+      ['name','position','phone','email','experience','languages','skills','linkedin','bio'].forEach(k => {
+        const v = (fd.get(k) || '').toString().trim();
+        if (v) profile[k] = v;
+      });
+      if (!profile.name) return;
+      saveProfile(profile);
+      updateProfilePill();
+      close();
+    });
+  }
+
+  function openProfileModal() {
+    buildProfileModal();
+    const modal = document.getElementById('candidate-modal');
+    const form = document.getElementById('cm-form');
+    const p = loadProfile() || {};
+    ['name','position','phone','email','experience','languages','skills','linkedin','bio'].forEach(k => {
+      const el = form.querySelector(`[name="${k}"]`);
+      if (el) el.value = p[k] || '';
+    });
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateProfilePill() {
+    const pill = document.getElementById('candidate-pill');
+    if (!pill) return;
+    const p = loadProfile();
+    if (p && p.name) {
+      pill.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>${esc(p.name)} · Profil aktif</span>`;
+      pill.classList.add('bg-emerald-50','text-emerald-700','border-emerald-200');
+      pill.classList.remove('bg-sun-50','text-sun-700','border-sun-200');
+    } else {
+      pill.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg><span>Aday Profili Oluştur</span>`;
+      pill.classList.add('bg-sun-50','text-sun-700','border-sun-200');
+      pill.classList.remove('bg-emerald-50','text-emerald-700','border-emerald-200');
+    }
+  }
+
   function init() {
+    // Pill'i hero altına dinamik enjekte et
+    const filterBar = document.getElementById('filter-language')?.closest('section');
+    if (filterBar && !document.getElementById('candidate-pill')) {
+      const bar = document.createElement('div');
+      bar.className = 'max-w-7xl mx-auto px-4 -mt-2 mb-4 flex items-center gap-2 text-xs';
+      bar.innerHTML = `
+        <button id="candidate-pill" type="button" class="inline-flex items-center gap-2 border font-bold px-3 py-1.5 rounded-full transition bg-sun-50 text-sun-700 border-sun-200 hover:bg-sun-100">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          <span>Aday Profili Oluştur</span>
+        </button>
+        <span class="text-sea-700/70">Profilini girersen başvurularda otomatik gönderilir.</span>`;
+      filterBar.parentElement.insertBefore(bar, filterBar.nextSibling);
+      document.getElementById('candidate-pill').addEventListener('click', openProfileModal);
+      updateProfilePill();
+    }
+
     const grid = $('jobs-grid');
     const empty = $('empty-state');
     const countEl = $('result-count');
@@ -72,8 +240,8 @@
           '<p class="text-sm text-sea-700/80 line-clamp-2">', esc(j.description), '</p>',
           '<div class="flex flex-wrap items-center gap-1.5">', langs, '</div>',
           '<div class="flex items-center justify-between pt-3 border-t border-sea-50">',
-            '<span class="text-sm font-bold text-sea-800">', esc(j.salary), '</span>',
-            '<span class="text-[11px] text-sea-500">', fmtDate(j.published), '</span>',
+            '<span class="text-[11px] font-semibold text-sea-700">📅 ', fmtDate(j.published), '</span>',
+            '<span class="text-[11px] text-sun-600 font-bold">Detay →</span>',
           '</div>',
         '</article>'
       ].join('');
@@ -84,15 +252,16 @@
       const reqs = (j.requirements || []).map(r =>
         '<li class="flex gap-2 items-start"><span class="text-sun-500 mt-0.5 flex-shrink-0">✓</span><span>' + esc(r) + '</span></li>'
       ).join('');
+      const profileText = profileSummaryForWA(loadProfile());
+      const baseMsg = 'Merhaba! Kalkan Info üzerinden "' + j.title + '" ilanına başvurmak istiyorum.';
       const wa = 'https://wa.me/' + (j.contact_phone || '').replace(/[^0-9]/g, '')
-        + '?text=' + encodeURIComponent('Merhaba! Kalkan Info üzerinden "' + j.title + '" ilanına başvurmak istiyorum.');
+        + '?text=' + encodeURIComponent(baseMsg + profileText);
       return [
         '<div class="bg-white rounded-2xl p-6 md:p-8">',
           '<div class="text-[11px] font-bold uppercase tracking-wider text-sun-500">', esc(CATEGORIES[j.category] || j.category), ' · ', esc(TYPES[j.type] || j.type), '</div>',
           '<h2 class="font-display font-extrabold text-sea-800 text-2xl md:text-3xl mt-2">', esc(j.title), '</h2>',
           '<div class="text-sea-700/70 text-sm mt-1">', esc(j.employer), ' · 📍 ', esc(j.location), '</div>',
-          '<div class="grid sm:grid-cols-2 gap-3 mt-5">',
-            '<div class="bg-sea-50 rounded-lg p-3"><div class="text-[10px] font-bold text-sea-600 uppercase">Maaş</div><div class="font-bold text-sea-800 mt-0.5">', esc(j.salary), '</div></div>',
+          '<div class="grid sm:grid-cols-3 gap-3 mt-5">',
             '<div class="bg-sea-50 rounded-lg p-3"><div class="text-[10px] font-bold text-sea-600 uppercase">Tecrübe</div><div class="font-bold text-sea-800 mt-0.5">', esc(j.experience), '</div></div>',
             '<div class="bg-sea-50 rounded-lg p-3"><div class="text-[10px] font-bold text-sea-600 uppercase">Diller</div><div class="font-bold text-sea-800 mt-0.5">', langs, '</div></div>',
             '<div class="bg-sea-50 rounded-lg p-3"><div class="text-[10px] font-bold text-sea-600 uppercase">Son Başvuru</div><div class="font-bold text-sea-800 mt-0.5">', fmtDate(j.expires), '</div></div>',
