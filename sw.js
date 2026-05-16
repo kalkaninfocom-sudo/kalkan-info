@@ -4,7 +4,7 @@
    Versiyon güncellendiğinde eski cache temizlenir.
 */
 
-const CACHE_VERSION = 'kalkan-info-v1.6.0-redirect-fix';
+const CACHE_VERSION = 'kalkan-info-v1.7.0-20260516';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
