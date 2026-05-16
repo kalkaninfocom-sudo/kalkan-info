@@ -34,8 +34,8 @@
         font-family: 'Inter', system-ui, sans-serif;
       }
       #ki-bn-inner {
-        max-width: 640px; margin: 0 auto;
-        display: grid; grid-template-columns: repeat(4, 1fr);
+        max-width: 720px; margin: 0 auto;
+        display: grid; grid-template-columns: repeat(5, 1fr);
         height: 64px;
       }
       .ki-bn-item {
@@ -138,6 +138,10 @@
             <span class="ki-bn-icon">🏠</span>
             <span class="ki-bn-label">Anasayfa</span>
           </a>
+          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Hizmetler menüsü">
+            <span class="ki-bn-icon">☰</span>
+            <span class="ki-bn-label">Hizmetler</span>
+          </button>
           <button class="ki-bn-item" type="button" data-action="open-search" data-key="search">
             <span class="ki-bn-icon">🔍</span>
             <span class="ki-bn-label">Ara</span>
@@ -166,6 +170,16 @@
     if (path === '' || path === 'index.html') {
       document.querySelector('#ki-bn-inner [data-key="home"]')?.classList.add('active');
     }
+
+    // Menu butonu — sağ drawer'ı (site-drawer) tetikle
+    const menuBtn = document.getElementById('ki-bn-menu-btn');
+    menuBtn?.addEventListener('click', () => {
+      if (typeof window.openSiteDrawer === 'function') {
+        window.openSiteDrawer();
+      } else {
+        document.getElementById('menu-btn')?.click();
+      }
+    });
 
     // Search butonu — header-search.js varsa onu çağır, yoksa #search-input'a focus
     const searchBtn = document.querySelector('#ki-bn-inner [data-key="search"]');

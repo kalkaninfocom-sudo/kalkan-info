@@ -24,8 +24,8 @@
     // Idempotent: zaten varsa atla
     if (document.getElementById('site-drawer')) return;
 
-    // MENÜ butonunu bul: önce id ile, sonra text ile
-    var btn = document.getElementById('menu-btn');
+    // MENÜ butonunu bul: önce id ile, sonra text ile, son olarak alt navdan
+    var btn = document.getElementById('menu-btn') || document.getElementById('ki-bn-menu-btn');
     if (!btn) {
       var allLinks = document.querySelectorAll('a, button');
       for (var i = 0; i < allLinks.length; i++) {
@@ -36,14 +36,14 @@
       }
     }
 
-    // MENÜ butonu yoksa drawer mount etme (graceful skip)
-    if (!btn) return;
+    // Hiç bulamasak bile drawer mount et — bottom-nav sonradan ekleyebilir
+    if (!btn) btn = document.createElement('button'); // sahte trigger
 
     // Drawer HTML'i oluştur
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '<div id="site-drawer" class="fixed inset-0 z-[80]" style="display:none;" aria-hidden="true">' +
       '<div id="site-drawer-backdrop" class="absolute inset-0" style="background:rgba(7,33,54,0.55);backdrop-filter:blur(2px);opacity:0;transition:opacity .22s ease;"></div>' +
-      '<aside id="site-drawer-panel" role="dialog" aria-label="Site Haritası" class="absolute left-0 top-0 h-full w-[320px] max-w-[88vw] text-white overflow-y-auto" style="background:linear-gradient(180deg,#0a2e4c 0%,#072136 100%);box-shadow:8px 0 32px -8px rgba(0,0,0,0.5);transform:translateX(-100%);transition:transform .26s cubic-bezier(.4,0,.2,1);">' +
+      '<aside id="site-drawer-panel" role="dialog" aria-label="Site Haritası" class="absolute right-0 top-0 h-full w-[320px] max-w-[88vw] text-white overflow-y-auto" style="background:linear-gradient(180deg,#0a2e4c 0%,#072136 100%);box-shadow:-8px 0 32px -8px rgba(0,0,0,0.5);transform:translateX(100%);transition:transform .26s cubic-bezier(.4,0,.2,1);">' +
         '<div class="flex items-center justify-between px-5 py-4 border-b border-white/10">' +
           '<div class="flex items-center gap-2 font-display font-extrabold tracking-tight">' +
             '<span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>' +
@@ -135,7 +135,7 @@
 
     function closeDrawer() {
       backdrop.style.opacity = '0';
-      panel.style.transform  = 'translateX(-100%)';
+      panel.style.transform  = 'translateX(100%)';
       btn.setAttribute('aria-expanded', 'false');
       drawer.setAttribute('aria-hidden', 'true');
       setTimeout(function () { drawer.style.display = 'none'; }, 260);
@@ -148,6 +148,10 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeDrawer();
     });
+
+    // Global trigger — bottom-nav vb. dış kaynaklar için
+    window.openSiteDrawer = openDrawer;
+    window.closeSiteDrawer = closeDrawer;
   }
 
   if (document.readyState === 'loading') {
