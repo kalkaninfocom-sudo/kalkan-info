@@ -133,7 +133,6 @@
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="ilanlar.html">İş İlanları</a>
       <span class="ml-auto"></span>
       <a class="px-4 py-3 text-sun-400 font-bold flex items-center gap-2" href="ilan-ver.html">+ İlan Ver</a>
       <a class="px-4 py-3 hover:bg-sea-700" href="profil.html">Profilim</a>
@@ -357,23 +356,30 @@ function getFilters() {
 }
 
 async function load() {
-  const jobs = await listJobs(getFilters());
-  _allJobs = jobs;
-  if (!jobs.length) {
+  try {
+    const jobs = await listJobs(getFilters());
+    _allJobs = jobs;
+    if (!jobs.length) {
+      grid.classList.add('hidden');
+      empty.classList.remove('hidden');
+      countEl.textContent = '0 sonuç';
+      return;
+    }
+    grid.classList.remove('hidden');
+    empty.classList.add('hidden');
+    grid.innerHTML = jobs.map(j => renderJobCard(j)).join('');
+    countEl.textContent = `${jobs.length} ilan listeleniyor`;
+
+    // Card click → modal
+    grid.querySelectorAll('[data-job-id]').forEach(card => {
+      card.addEventListener('click', () => openJobModal(card.dataset.jobId));
+    });
+  } catch (err) {
+    console.error('[ilanlar] load hatası:', err);
     grid.classList.add('hidden');
     empty.classList.remove('hidden');
-    countEl.textContent = '0 sonuç';
-    return;
+    if (countEl) countEl.textContent = 'İlanlar şu an yüklenemedi.';
   }
-  grid.classList.remove('hidden');
-  empty.classList.add('hidden');
-  grid.innerHTML = jobs.map(j => renderJobCard(j)).join('');
-  countEl.textContent = `${jobs.length} ilan listeleniyor`;
-
-  // Card click → modal
-  grid.querySelectorAll('[data-job-id]').forEach(card => {
-    card.addEventListener('click', () => openJobModal(card.dataset.jobId));
-  });
 }
 
 async function openJobModal(jobId) {

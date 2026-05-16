@@ -18,7 +18,7 @@
 
   let cityData = null;
   try {
-    cityData = await fetch('data/antik-kentler.json').then(r => r.json());
+    cityData = await fetch('/data/antik-kentler.json').then(r => r.json());
   } catch(e) {
     console.warn('antik-kentler.json yüklenemedi', e);
   }
@@ -91,9 +91,18 @@
 
   let stagesData = null;
   try {
-    stagesData = await fetch('data/likya-yolu.json').then(r => r.json());
+    const res = await fetch('/data/likya-yolu.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    stagesData = await res.json();
   } catch(e) {
     console.warn('likya-yolu.json yüklenemedi', e);
+  }
+
+  if (!stagesData || !stagesData.stages) {
+    const sc = document.getElementById('lycian-stages');
+    if (sc) sc.innerHTML = '<div class="col-span-full text-center py-8 text-sea-700/50 text-sm">Etap verisi yüklenemedi.</div>';
+    const tb = document.getElementById('all-stages-tbody');
+    if (tb) tb.innerHTML = '<tr><td colspan="6" class="px-4 py-6 text-center text-sea-700/50">Veri yüklenemedi.</td></tr>';
   }
 
   if (stagesData && stagesData.stages) {

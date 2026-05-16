@@ -18,7 +18,7 @@ const KalkanData = (() => {
     } catch(e) { /* ignore */ }
     // 2) data/*.json
     try {
-      const res = await fetch(`data/${name}.json?t=${Date.now()}`);
+      const res = await fetch(`/data/${name}.json?t=${Date.now()}`);
       return await res.json();
     } catch(e) {
       console.error(`[KalkanData] ${name} yüklenemedi:`, e);
@@ -68,6 +68,10 @@ const KalkanData = (() => {
   // Plaj card
   function plajCard(p) {
     const tags = (p.tags||[]).slice(0,3).map(t => tagPill(t,'sea')).join('');
+    const dest = (p.lat && p.lng)
+      ? `${p.lat},${p.lng}`
+      : encodeURIComponent(`${p.name||''} Kalkan Antalya`);
+    const mapsHref = `https://www.google.com/maps/dir/?api=1&destination=${dest}`;
     return `
       <article class="card group" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);transition:transform 200ms ease, box-shadow 200ms ease;">
         <div class="relative aspect-[16/10] overflow-hidden">
@@ -84,7 +88,13 @@ const KalkanData = (() => {
           <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${escape(p.name)}</h3>
           <div class="text-xs text-ink-700/60 mt-1">${escape(p.distance||'')}${p.drive?` · ${escape(p.drive)}`:''}</div>
           <p class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(p.summary||'')}</p>
-          <div class="flex flex-wrap gap-1 mt-3">${tags}</div>
+          <div class="flex items-end justify-between gap-2 mt-3">
+            <div class="flex flex-wrap gap-1">${tags}</div>
+            <a href="${mapsHref}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="flex-shrink-0 inline-flex items-center gap-1.5 bg-sea-50 hover:bg-sea-100 text-sea-800 text-[11px] font-bold px-2.5 py-1.5 rounded-md transition" title="Google Haritalar'da yol tarifi" aria-label="${escape(p.name||'')} için yol tarifi al">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Yol Tarifi
+            </a>
+          </div>
         </div>
       </article>
     `;

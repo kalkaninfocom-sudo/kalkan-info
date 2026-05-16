@@ -162,7 +162,7 @@
   async function load() {
     GRID.innerHTML = '<div class="col-span-full text-center py-16 text-sea-400">Haberler yükleniyor…</div>';
     try {
-      const res = await fetch('data/haberler.json?t=' + Date.now(), { cache: 'no-cache' });
+      const res = await fetch('/data/haberler.json?t=' + Date.now(), { cache: 'no-cache' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       state.items = Array.isArray(data.items) ? data.items : [];
