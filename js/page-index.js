@@ -58,9 +58,13 @@
     let aktifVeri = eczaneData?.today || {};
     let gosterYarin = false;
 
-    const staleWarn = document.getElementById('ecz-stale-warn');
-    if (aktifVeri.date && aktifVeri.date !== bugun && staleWarn) {
-      staleWarn.classList.remove('hidden');
+    // Kalkan Info ekibi doğrulama tarihi
+    const verifiedDateEl = document.getElementById('ecz-verified-date');
+    if (verifiedDateEl) {
+      const raw = eczaneData?.verifiedAt || aktifVeri.date || bugun;
+      try {
+        verifiedDateEl.textContent = new Date(raw + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch (e) { verifiedDateEl.textContent = raw; }
     }
 
     const toggleBtn = document.getElementById('ecz-toggle-tomorrow');

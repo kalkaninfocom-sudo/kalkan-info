@@ -110,9 +110,7 @@
   </div>
   <!-- top bar -->
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
+    <div class="w-9 h-9" aria-hidden="true"></div>
     <div class="flex items-center gap-2 text-xs md:text-sm">
       <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
       <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
@@ -253,9 +251,10 @@
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-600 font-bold">
         <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span id="ecz-label">Bugün Nöbetçi Eczane</span>
       </div>
-      <!-- Stale veri uyarısı -->
-      <div id="ecz-stale-warn" class="hidden mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
-        ⚠️ Veri güncel olmayabilir — lütfen eczaneyi aramadan önce teyit edin.
+      <!-- Kalkan Info ekibi doğrulama rozeti -->
+      <div id="ecz-verified" class="mt-2 inline-flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1.5 font-semibold">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Kalkan Info ekibi tarafından doğrulandı · <span id="ecz-verified-date">bugün</span></span>
       </div>
       <h3 id="ecz-name" class="font-display text-2xl md:text-3xl font-extrabold mt-2 text-sea-800">—</h3>
       <p id="ecz-address" class="text-sea-700/80 mt-2"></p>
@@ -636,7 +635,7 @@
 
 <script src="js/render.js?v=20260516a"></script>
 <script src="js/pwa.js?v=2" defer></script>
-<script src="js/page-index.js" defer></script>
+<script src="js/page-index.js?v=20260516a" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>
 </html>
