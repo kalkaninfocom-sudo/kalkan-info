@@ -82,29 +82,29 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 <!-- HERO -->
 <header class="relative overflow-hidden" style="background:#072136;">
   <div class="absolute inset-0 z-0">
-    <img src="/assets/img/37cacbd7429e.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan restoranları" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/eebb046d0d4b.webp'" />
+    <img loading="lazy" decoding="async" src="/assets/img/37cacbd7429e.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan restoranları" data-en-alt="Kalkan restaurants" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/eebb046d0d4b.webp'" />
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü" data-en-aria="Menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <div class="flex items-center gap-2 text-xs md:text-sm">
-      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today">Bugün</span>
       <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
       <span class="hidden md:inline opacity-40 mx-1">·</span>
       <span data-weather class="hidden md:inline opacity-80">—</span>
     </div>
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-14 md:pt-20 pb-14 md:pb-18 text-white">
     <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
-      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Yeme · İçme · Lezzet
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Dining · Drinks · Flavour">Yeme · İçme · Lezzet</span>
     </div>
-    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Restoranlar</h1>
-    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed">Kalkan'ın en iyi 25 restoranı — fine dining, balık, ev yemeği, dünya mutfağı.</p>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Restaurants">Restoranlar</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en="Kalkan's top 25 restaurants — fine dining, seafood, home cooking, world cuisine.">Kalkan'ın en iyi 25 restoranı — fine dining, balık, ev yemeği, dünya mutfağı.</p>
   </div>
 </header>
 
@@ -114,41 +114,41 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     <div class="flex items-center -ml-3">
       <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
+      <a href="index.html" aria-label="Ana Sayfa" data-en-aria="Home" title="Ana Sayfa" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
       </a>
     </div>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
-    <button class="w-10 h-10 grid place-items-center" aria-label="Ara">
+    <button class="w-10 h-10 grid place-items-center" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
   <div style="background:#072136;">
     <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="restoranlar.html">Restoranlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html" data-en="News">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html" data-en="Villas">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="restoranlar.html" data-en="Restaurants">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html" data-en="Beaches">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html" data-en="Tours">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html" data-en="Ancient Sites">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html" data-en="Services">Hizmetler</a>
       <span class="ml-auto"></span>
       <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger target="_blank" rel="noopener">Concierge</a>
     </div>
   </div>
   <div class="ribbon-bg grain text-[12px]">
     <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
-      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded" data-en="NOTICE">DUYURU</span>
       <div class="flex-1 overflow-hidden">
         <div class="marquee whitespace-nowrap">
-          <span class="mr-10">🍽️ Yat Limanına yeni açılan restoran: Mavi Roka</span>
-          <span class="mr-10">🥘 Belgin's Kitchen mantısı meşhur — rezervasyon önerilir</span>
-          <span class="mr-10">🍷 Aubergine sezon menüsü hazır</span>
-          <span class="mr-10">🍽️ Yat Limanına yeni açılan restoran: Mavi Roka</span>
+          <span class="mr-10" data-en="🍽️ New restaurant at the Marina: Mavi Roka">🍽️ Yat Limanına yeni açılan restoran: Mavi Roka</span>
+          <span class="mr-10" data-en="🥘 Belgin's Kitchen mantı is legendary — reservation recommended">🥘 Belgin's Kitchen mantısı meşhur — rezervasyon önerilir</span>
+          <span class="mr-10" data-en="🍷 Aubergine seasonal menu is ready">🍷 Aubergine sezon menüsü hazır</span>
+          <span class="mr-10" data-en="🍽️ New restaurant at the Marina: Mavi Roka">🍽️ Yat Limanına yeni açılan restoran: Mavi Roka</span>
         </div>
       </div>
     </div>
@@ -161,10 +161,10 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     <div class="bg-white rounded-xl p-4 flex flex-wrap gap-3 items-center" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
       <div class="flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
-        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700">Filtrele</span>
+        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700" data-en="Filter">Filtrele</span>
       </div>
       <div class="h-4 w-px bg-sea-100 hidden md:block"></div>
-      <input id="search-input" type="search" placeholder="Restoran ara..." class="filter-btn border border-sea-200 rounded-md px-4 py-2 text-sm text-sea-800 bg-sea-50 focus:outline-none focus:border-sea-500 flex-1 min-w-[200px]" />
+      <input id="search-input" type="search" placeholder="Restoran ara..." data-en-placeholder="Search restaurants..." class="filter-btn border border-sea-200 rounded-md px-4 py-2 text-sm text-sea-800 bg-sea-50 focus:outline-none focus:border-sea-500 flex-1 min-w-[200px]" />
       <select id="category-filter" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500"></select>
       <span id="result-count" class="ml-auto text-xs text-sea-600 font-semibold hidden md:block"></span>
     </div>
@@ -177,9 +177,9 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Restoranlar
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Restaurants">Restoranlar</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Kalkan'ın En İyi Restoranları</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Kalkan's Best Restaurants">Kalkan'ın En İyi Restoranları</h2>
       </div>
     </div>
     <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
@@ -191,9 +191,9 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
   <div class="border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
       <div>
-        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
-        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
-        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay updated from Kalkan">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals and events — twice a month, concise.">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
       </div>
       <div data-newsletter-mount></div>
     </div>
@@ -203,36 +203,36 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
         <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
       </a>
-      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quietly powerful — local knowledge, curated recommendations, professional service.">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore">Keşfet</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
-        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
-        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
-        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
+        <li><a class="hover:text-sun-400" href="villalar.html" data-en="Villas">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html" data-en="Restaurants">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html" data-en="Beaches">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html" data-en="Tours">Turlar</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Destek</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Support">Destek</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
-        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+        <li><a class="hover:text-sun-400" href="hizmetler.html" data-en="Services">Hizmetler</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html" data-en="News">Haberler</a></li>
         <li><a class="hover:text-sun-400" href="#" data-concierge-trigger target="_blank">Concierge</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Contact">İletişim</div>
       <p class="text-white/70 text-xs leading-relaxed">Atatürk Cad. No:1<br>Kalkan / Kaş / Antalya<br><a href="mailto:info@kalkaninfo.com" class="hover:text-sun-400">info@kalkaninfo.com</a></p>
     </div>
   </div>
   <div class="border-t border-white/10 max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
-    <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+    <div data-en="© 2026 Kalkan Info — All rights reserved.">© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
     <div class="flex items-center gap-3 mt-3 md:mt-0">
-      <a class="hover:text-sun-400" href="privacy.html">Gizlilik</a>
+      <a class="hover:text-sun-400" href="privacy.html" data-en="Privacy">Gizlilik</a>
       <a class="hover:text-sun-400" href="kvkk.html">KVKK</a>
-      <a class="hover:text-sun-400" href="mailto:info@kalkaninfo.com">İletişim</a>
+      <a class="hover:text-sun-400" href="mailto:info@kalkaninfo.com" data-en="Contact">İletişim</a>
     </div>
   </div>
 </footer>
@@ -243,7 +243,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 </a>
 
 <script src="js/render.js?v=20260516c"></script>
-<script src="js/pwa.js?v=2" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 <script src="js/page-restoranlar.js" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>

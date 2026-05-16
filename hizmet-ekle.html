@@ -199,7 +199,7 @@ try {
     if (user && user.photoURL) {
       const avatarEl = document.getElementById('nav-avatar');
       if (avatarEl) {
-        avatarEl.innerHTML = `<img src="${user.photoURL}" class="w-full h-full object-cover" alt="Profil" />`;
+        avatarEl.innerHTML = `<img loading="lazy" decoding="async" src="${user.photoURL}" class="w-full h-full object-cover" alt="Profil" />`;
       }
     }
   });
@@ -222,6 +222,6 @@ if (overlay) {
 .shadow-deep { box-shadow: 0 8px 32px -8px rgba(13,58,95,0.35); }
 </style>
 
-<script src="js/pwa.js" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 </body>
 </html>

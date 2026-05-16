@@ -48,6 +48,16 @@ window.__kalkan_install_mounted = true;
         })
         .catch(err => console.warn('[PWA] SW register failed:', err));
     });
+
+    // SW yeni cache version'a geçince otomatik reload (1 kez)
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'SW_UPDATED' && !reloaded) {
+        reloaded = true;
+        console.log('[PWA] SW updated to', e.data.version, '— reloading');
+        setTimeout(() => location.reload(), 300);
+      }
+    });
   }
 
   // ── Android / Chrome — beforeinstallprompt ────────────────────────────────

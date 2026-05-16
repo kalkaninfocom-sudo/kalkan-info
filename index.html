@@ -97,15 +97,14 @@
 <script src="js/header-search.js" defer></script>
 <script src="js/bottom-nav.js?v=20260516b" defer></script>
 <script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
-<script src="js/concierge-modal.js?v=20260516b" defer></script>
-</head>
+<script src="js/concierge-modal.js?v=20260516b" defer></script></head>
 <body class="bg-[#dce6ef]">
 
 <!-- ============== HERO HEADER ============== -->
 <header class="relative overflow-hidden" style="background:#072136;">
   <!-- layered background -->
   <div class="absolute inset-0 z-0">
-    <img src="/assets/img/da72f67377f7.webp" fetchpriority="high" class="w-full h-full object-cover opacity-40" alt="Kaputaş Plajı turkuaz koy" style="filter:saturate(1.6) contrast(1.1);" />
+    <img loading="lazy" decoding="async" src="/assets/img/da72f67377f7.webp" fetchpriority="high" class="w-full h-full object-cover opacity-40" data-en-alt="Kaputaş Bay turquoise cove" alt="Kaputaş Plajı turkuaz koy" style="filter:saturate(1.6) contrast(1.1);" />
     <!-- radial depth layers -->
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
@@ -113,12 +112,12 @@
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
     <div class="w-9 h-9" aria-hidden="true"></div>
     <div class="flex items-center gap-2 text-xs md:text-sm">
-      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today">Bugün</span>
       <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
       <span class="hidden md:inline opacity-40 mx-1">·</span>
       <span data-weather class="hidden md:inline opacity-80">—</span>
     </div>
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" data-en-aria="Search" aria-label="Ara">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
@@ -128,7 +127,7 @@
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
     </div>
     <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Kalkan Info</h1>
-    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en="Quietly powerful — local knowledge, curated recommendations, concierge service." style="font-weight:400;">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
   </div>
 </header>
 
@@ -140,53 +139,53 @@
 <nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
     <div class="flex items-center -ml-3">
-      <button id="menu-btn" type="button" aria-label="Site Haritası" aria-expanded="false" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/10" style="transition:background .18s ease;">
+      <button id="menu-btn" type="button" data-en-aria="Site Map" aria-label="Site Haritası" aria-expanded="false" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/10" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 ml-1" style="transition:background .18s ease;">
+      <a href="index.html" data-en-aria="Home" aria-label="Ana Sayfa" data-en-title="Home" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 ml-1" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
       </a>
     </div>
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
-    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" data-en-aria="Search" aria-label="Ara">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
   <!-- ana nav -->
   <div style="background:#072136;">
     <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="News" href="haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Villas" href="villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Restaurants" href="restoranlar.html">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Beaches" href="plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Tours" href="turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Ancient Sites" href="antik-kentler.html">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" data-en="Services" href="hizmetler.html">Hizmetler</a>
       <span class="ml-auto"></span>
       <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
         Concierge
       </a>
-      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="hizmet-ekle.html">İşletme Ekle</a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" data-en="Add Business" href="hizmet-ekle.html">İşletme Ekle</a>
     </div>
   </div>
   <!-- info ribbon -->
   <div class="ribbon-bg grain text-[12px]">
     <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
-      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded" data-en="NOTICE">DUYURU</span>
       <div class="flex-1 overflow-hidden">
         <div class="marquee whitespace-nowrap">
-          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
-          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
-          <span class="mr-10">🍷 Kalkan’da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
-          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge’e yazın</span>
-          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
-          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
-          <span class="mr-10">🍷 Kalkan’da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
-          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge’e yazın</span>
+          <span class="mr-10" data-en="⛵ Boat tour season is open — daily departures at 09:30 / 14:00">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10" data-en="🏖️ Patara beach is open for the 2026 season">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10" data-en="🍷 This week in Kalkan: Moonlight concert (Saturday 21:00)">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10" data-en="🚌 Contact Concierge for airport transfer bookings">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
+          <span class="mr-10" data-en="⛵ Boat tour season is open — daily departures at 09:30 / 14:00">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10" data-en="🏖️ Patara beach is open for the 2026 season">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10" data-en="🍷 This week in Kalkan: Moonlight concert (Saturday 21:00)">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10" data-en="🚌 Contact Concierge for airport transfer bookings">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
         </div>
       </div>
     </div>
@@ -198,15 +197,15 @@
   <div class="max-w-7xl mx-auto px-4 py-8 md:py-10">
     <div class="bg-white rounded-xl p-5 md:p-6 grid grid-cols-12 gap-4 md:gap-6 items-stretch" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
       <div class="col-span-12 md:col-span-2 flex md:flex-col items-center md:items-start justify-center md:justify-center bg-gradient-to-br from-sea-700 to-sea-900 rounded-lg p-4 text-white">
-        <div class="font-display font-extrabold text-2xl md:text-3xl tracking-tight">HIZLI<br/>ERİŞİM</div>
-        <div class="hidden md:block text-xs opacity-70 mt-2">En çok kullanılanlar</div>
+        <div class="font-display font-extrabold text-2xl md:text-3xl tracking-tight" data-en="QUICK ACCESS">HIZLI<br/>ERİŞİM</div>
+        <div class="hidden md:block text-xs opacity-70 mt-2" data-en="Most used">En çok kullanılanlar</div>
       </div>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sun-500 bg-sea-50/40 hover:bg-sun-500/5 p-4 transition" href="#nobetci">
         <div class="tile-icon w-10 h-10 rounded-md bg-sea-700 text-white grid place-items-center mb-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M9 5h6M5 22h14M7 22V11h10v11"/></svg>
         </div>
-        <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold">Bugün</div>
-        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Nöbetçi Eczane</div>
+        <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold" data-en="Today">Bugün</div>
+        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="On-Duty Pharmacy">Nöbetçi Eczane</div>
         <div id="ecz-tile-summary" class="text-xs text-sea-700/70 mt-1">—</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-coral-500 bg-sea-50/40 hover:bg-coral-500/5 p-4 transition" href="#acil">
@@ -214,23 +213,23 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92V21a1 1 0 0 1-1.11 1A19 19 0 0 1 2 4.11 1 1 0 0 1 3 3h4.09a1 1 0 0 1 1 .75l1.13 4.51a1 1 0 0 1-.27 1L7.21 11a16 16 0 0 0 6 6l1.74-1.74a1 1 0 0 1 1-.27l4.51 1.13a1 1 0 0 1 .75 1Z"/></svg>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-coral-600 font-semibold">7/24</div>
-        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Acil Numaralar</div>
-        <div class="text-xs text-sea-700/70 mt-1">Polis · Ambulans · Jandarma</div>
+        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Emergency Numbers">Acil Numaralar</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Police · Ambulance · Gendarmerie">Polis · Ambulans · Jandarma</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sun-500 bg-sea-50/40 hover:bg-sun-500/5 p-4 transition" href="#kayip">
         <div class="tile-icon w-10 h-10 rounded-md bg-sun-500 text-white grid place-items-center mb-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         </div>
-        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-semibold">Topluluk</div>
-        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Kayıp & Bulunan</div>
-        <div class="text-xs text-sea-700/70 mt-1">Eşyanı bildir, sahibine kavuştur</div>
+        <div class="text-[11px] uppercase tracking-wider text-sun-600 font-semibold" data-en="Community">Topluluk</div>
+        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Lost & Found">Kayıp & Bulunan</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Report an item, reunite with its owner">Eşyanı bildir, sahibine kavuştur</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sea-500 bg-sea-50/40 hover:bg-sea-500/5 p-4 transition" href="#taksi">
         <div class="tile-icon w-10 h-10 rounded-md bg-sea-500 text-white grid place-items-center mb-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2M17 17v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2M5 17l1.5-7.5A2 2 0 0 1 8.46 8h7.08a2 2 0 0 1 1.96 1.5L19 17M3 17h18"/></svg>
         </div>
-        <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold">4 Durak</div>
-        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Taksi Hizmeti</div>
+        <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold" data-en="4 Stops">4 Durak</div>
+        <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Taxi Service">Taksi Hizmeti</div>
         <div class="text-xs text-sea-700/70 mt-1">Kalkan · Kaş · Patara · Kınık</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sea-700 bg-sea-50/40 hover:bg-sea-700/5 p-4 transition" href="#concierge">
@@ -239,7 +238,7 @@
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sun-700 font-semibold">WhatsApp</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Concierge</div>
-        <div class="text-xs text-sea-700/70 mt-1">Anında yardım, 7/24</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Instant help, 24/7">Anında yardım, 7/24</div>
       </a>
     </div>
   </div>
@@ -250,12 +249,12 @@
   <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div id="ecz-card" class="lg:col-span-2 rounded-xl bg-gradient-to-br from-sea-50 to-white border border-sea-100 p-6 md:p-8">
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-600 font-bold">
-        <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span id="ecz-label">Bugün Nöbetçi Eczane</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span id="ecz-label" data-en="On-Duty Pharmacy Today">Bugün Nöbetçi Eczane</span>
       </div>
       <!-- Kalkan Info ekibi doğrulama rozeti -->
       <div id="ecz-verified" class="mt-2 inline-flex items-center gap-2 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1.5 font-semibold">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <span>Kalkan Info ekibi tarafından doğrulandı · <span id="ecz-verified-date">bugün</span></span>
+        <span data-en="Verified by the Kalkan Info team · "><span data-en-html="">Kalkan Info ekibi tarafından doğrulandı · <span id="ecz-verified-date">bugün</span></span></span>
       </div>
       <h3 id="ecz-name" class="font-display text-2xl md:text-3xl font-extrabold mt-2 text-sea-800">—</h3>
       <p id="ecz-address" class="text-sea-700/80 mt-2"></p>
@@ -263,28 +262,28 @@
       <div class="flex flex-wrap gap-2 mt-4">
         <a id="ecz-map" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-sea-700 hover:bg-sea-800 text-white px-4 py-2 rounded-md text-sm font-semibold transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          Haritada Gör
+          <span data-en="View on Map">Haritada Gör</span>
         </a>
         <a id="ecz-phone" href="#" class="inline-flex items-center gap-2 bg-white hover:bg-sea-50 border border-sea-200 text-sea-700 px-4 py-2 rounded-md text-sm font-semibold transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9V21a1 1 0 0 1-1.1 1 19 19 0 0 1-19-19A1 1 0 0 1 3 2h4.1a1 1 0 0 1 1 .8l1.1 4.5a1 1 0 0 1-.3 1L7.2 11a16 16 0 0 0 6 6l1.7-1.7a1 1 0 0 1 1-.3l4.5 1.1a1 1 0 0 1 .8 1Z"/></svg>
-          Eczaneyi Ara
+          <span data-en="Call Pharmacy">Eczaneyi Ara</span>
         </a>
         <!-- Yarın toggle — yalnızca tomorrow verisi varsa gösterilir -->
         <button id="ecz-toggle-tomorrow" class="hidden inline-flex items-center gap-2 bg-white hover:bg-sea-50 border border-sea-200 text-sea-700 px-4 py-2 rounded-md text-sm font-semibold transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>
-          Yarın da Göster
+          <span data-en="Show Tomorrow's Too">Yarın da Göster</span>
         </button>
       </div>
     </div>
     <div id="acil" class="rounded-xl bg-coral-500 text-white p-6 md:p-8 shadow-deep">
-      <div class="text-xs uppercase tracking-widest opacity-80 font-bold">Acil Numaralar</div>
-      <h3 class="font-display text-2xl font-extrabold mt-1">7/24 Yardım</h3>
+      <div class="text-xs uppercase tracking-widest opacity-80 font-bold" data-en="Emergency Numbers">Acil Numaralar</div>
+      <h3 class="font-display text-2xl font-extrabold mt-1" data-en="24/7 Assistance">7/24 Yardım</h3>
       <ul id="acil-list" class="mt-4 space-y-2 text-sm">
-        <li class="flex justify-between"><span>Polis İmdat</span><a href="tel:155" class="font-bold">155</a></li>
-        <li class="flex justify-between"><span>Ambulans</span><a href="tel:112" class="font-bold">112</a></li>
-        <li class="flex justify-between"><span>Jandarma</span><a href="tel:156" class="font-bold">156</a></li>
-        <li class="flex justify-between"><span>İtfaiye</span><a href="tel:110" class="font-bold">110</a></li>
-        <li class="flex justify-between"><span>Sahil Güvenlik</span><a href="tel:158" class="font-bold">158</a></li>
+        <li class="flex justify-between"><span data-en="Police">Polis İmdat</span><a href="tel:155" class="font-bold">155</a></li>
+        <li class="flex justify-between"><span data-en="Ambulance">Ambulans</span><a href="tel:112" class="font-bold">112</a></li>
+        <li class="flex justify-between"><span data-en="Gendarmerie">Jandarma</span><a href="tel:156" class="font-bold">156</a></li>
+        <li class="flex justify-between"><span data-en="Fire Brigade">İtfaiye</span><a href="tel:110" class="font-bold">110</a></li>
+        <li class="flex justify-between"><span data-en="Coast Guard">Sahil Güvenlik</span><a href="tel:158" class="font-bold">158</a></li>
       </ul>
     </div>
   </div>
@@ -296,11 +295,11 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Bölge Hizmeti
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Regional Service">Bölge Hizmeti</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Taksi Durakları</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Taxi Stands">Taksi Durakları</h2>
       </div>
-      <a href="#" aria-disabled="true" title="Yakında" class="hidden md:inline text-sm text-sea-600 hover:text-sea-800 underline-grow opacity-60 cursor-not-allowed">Tüm duraklar →</a>
+      <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="hidden md:inline text-sm text-sea-600 hover:text-sea-800 underline-grow opacity-60 cursor-not-allowed" data-en="All stands →">Tüm duraklar →</a>
     </div>
     <div id="taksi-list" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
   </div>
@@ -315,47 +314,47 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span>Instagram'da @kalkan.info</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Etiketlenenler</h2>
-        <p class="text-sm text-sea-700/70 mt-1">Bölgeye gelen misafirlerin paylaşımları — sen de tatilinde <strong>@kalkan.info</strong> etiketle, burada yer al.</p>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Tagged Posts">Etiketlenenler</h2>
+        <p class="text-sm text-sea-700/70 mt-1" data-en="Shared by guests visiting the area — tag @kalkan.info on your holiday to be featured here.">Bölgeye gelen misafirlerin paylaşımları — sen de tatilinde <strong>@kalkan.info</strong> etiketle, burada yer al.</p>
       </div>
       <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-white transition" style="background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
-        Bizi Takip Et
+        <span data-en="Follow Us">Bizi Takip Et</span>
       </a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/19c73f523505.webp" alt="Kaputaş plajı" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/19c73f523505.webp" data-en-alt="Kaputaş beach" alt="Kaputaş plajı" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@gezgindefteri · Kaputaş</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
       </a>
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/d018efe8f905.webp" alt="Patara antik kent" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/d018efe8f905.webp" data-en-alt="Patara ancient city" alt="Patara antik kent" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@likyalitatil · Patara</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
       </a>
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/kalimera-hero.jpg" alt="Kalimera Kitchen catering" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/kalimera-hero.jpg" data-en-alt="Kalimera Kitchen catering" alt="Kalimera Kitchen catering" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@villakeyfi · Kalimera Catering</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
       </a>
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/ea86fdceb479.webp" alt="Villa havuzu" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/ea86fdceb479.webp" data-en-alt="Villa pool" alt="Villa havuzu" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@kalkanvilla · Villa keyfi</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
       </a>
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/vip-vito.webp" alt="VIP transfer" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/vip-vito.webp" data-en-alt="VIP transfer" alt="VIP transfer" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@dalamantransfer · VIP transfer</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
       </a>
       <a href="https://instagram.com/explore/tags/kalkaninfo/" target="_blank" rel="noopener" class="group relative aspect-square overflow-hidden rounded-xl block" style="box-shadow:0 1px 3px rgba(7,33,54,0.08);">
-        <img src="/assets/img/b7549bd5771f.webp" alt="Kalkan gün batımı" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
+        <img src="/assets/img/b7549bd5771f.webp" data-en-alt="Kalkan sunset" alt="Kalkan gün batımı" class="w-full h-full object-cover group-hover:scale-[1.06]" style="transition:transform .5s ease;" loading="lazy" />
         <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent"></div>
         <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-semibold opacity-0 group-hover:opacity-100 transition">@gunbatimi.kalkan · Sunset</div>
         <div class="absolute top-2 right-2 w-7 h-7 rounded-full grid place-items-center text-white" style="background:rgba(0,0,0,0.55);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg></div>
@@ -364,7 +363,7 @@
     <div class="mt-4 text-center">
       <span class="inline-flex items-center gap-2 text-[11px] text-sea-600 bg-sea-50 border border-sea-100 rounded-full px-3 py-1.5 font-semibold">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Gerçek Instagram beslemesi yakında — Meta API entegrasyonu sonrası
+        <span data-en="Live Instagram feed coming soon — after Meta API integration">Gerçek Instagram beslemesi yakında — Meta API entegrasyonu sonrası</span>
       </span>
     </div>
   </div>
@@ -376,9 +375,9 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-coral-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-coral-500 animate-pulse"></span> Güncel
+          <span class="w-1.5 h-1.5 rounded-full bg-coral-500 animate-pulse"></span> <span data-en="Latest">Güncel</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Haberler & Duyurular</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="News &amp; Announcements">Haberler & Duyurular</h2>
       </div>
       <div class="flex gap-2">
         <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -395,11 +394,11 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Bu Hafta
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="This Week">Bu Hafta</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Turlar & Etkinlikler</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Tours &amp; Events">Turlar & Etkinlikler</h2>
       </div>
-      <a href="#" aria-disabled="true" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed">Tüm takvim →</a>
+      <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed" data-en="Full calendar →">Tüm takvim →</a>
     </div>
     <div id="turlar-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
   </div>
@@ -410,60 +409,60 @@
   <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
     <div class="lg:col-span-2">
       <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-        <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Kategoriler
+        <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Categories">Kategoriler</span>
       </div>
-      <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Aradığını Bul</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Find What You Need">Aradığını Bul</h2>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
         <a id="villalar" href="villalar.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🏡</div>
-          <div class="font-display font-bold text-sm">Villalar</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Seçili konaklama</div>
+          <div class="font-display font-bold text-sm" data-en="Villas">Villalar</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Handpicked stays">Seçili konaklama</div>
         </a>
         <a id="restoranlar" href="restoranlar.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🍽️</div>
-          <div class="font-display font-bold text-sm">Restoranlar</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Yerel favoriler</div>
+          <div class="font-display font-bold text-sm" data-en="Restaurants">Restoranlar</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Local favourites">Yerel favoriler</div>
         </a>
         <a id="plajlar" href="plajlar.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🏖️</div>
-          <div class="font-display font-bold text-sm">Plajlar</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Ücretli & ücretsiz</div>
+          <div class="font-display font-bold text-sm" data-en="Beaches">Plajlar</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Paid &amp; free">Ücretli & ücretsiz</div>
         </a>
         <a href="turlar.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">⛵</div>
-          <div class="font-display font-bold text-sm">Tekne Turu</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Kristal sular</div>
+          <div class="font-display font-bold text-sm" data-en="Boat Tour">Tekne Turu</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Crystal waters">Kristal sular</div>
         </a>
         <a href="hizmetler.html#catering" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🧁</div>
           <div class="font-display font-bold text-sm">Catering</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Özel günler</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Special occasions">Özel günler</div>
         </a>
         <a href="antik-kentler.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🏛️</div>
-          <div class="font-display font-bold text-sm">Antik Kentler</div>
+          <div class="font-display font-bold text-sm" data-en="Ancient Sites">Antik Kentler</div>
           <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Patara · Xanthos</div>
         </a>
         <a href="hizmetler.html#transfer" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">✈️</div>
           <div class="font-display font-bold text-sm">Transfer</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Havalimanı</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Airport">Havalimanı</div>
         </a>
         <a href="hizmetler.html" class="group bg-sea-50/60 hover:bg-sun-500 hover:text-white border border-sea-100 rounded-xl p-5 text-center transition">
           <div class="text-3xl mb-2">🛠️</div>
-          <div class="font-display font-bold text-sm">Hizmetler</div>
-          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80">Tüm ihtiyaçlar</div>
+          <div class="font-display font-bold text-sm" data-en="Services">Hizmetler</div>
+          <div class="text-[11px] opacity-70 mt-0.5 group-hover:text-white/80" data-en="Everything you need">Tüm ihtiyaçlar</div>
         </a>
       </div>
     </div>
     <aside class="bg-gradient-to-br from-sea-700 to-sea-900 text-white rounded-xl p-6 md:p-8 shadow-deep relative overflow-hidden">
       <div class="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-sun-500/20 blur-3xl"></div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold">Hakkımızda</div>
-      <h3 class="font-display text-xl md:text-2xl font-extrabold mt-2">Kalkan’da yaşıyoruz, Kalkan’ı tanıyoruz.</h3>
-      <p class="text-white/85 mt-3 text-sm leading-relaxed">Sezonun her anında — sabah balıkçı kahvaltısından gece denizine kadar — sana doğru kişiyi, doğru yeri, doğru fiyatı söyleriz. Reklam değil, tavsiye.</p>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold" data-en="About Us">Hakkımızda</div>
+      <h3 class="font-display text-xl md:text-2xl font-extrabold mt-2" data-en="We live in Kalkan. We know Kalkan.">Kalkan'da yaşıyoruz, Kalkan'ı tanıyoruz.</h3>
+      <p class="text-white/85 mt-3 text-sm leading-relaxed" data-en="Every moment of the season — from an early fisherman's breakfast to a late-night swim — we point you to the right person, the right place, the right price. Not advertising. Recommendations.">Sezonun her anında — sabah balıkçı kahvaltısından gece denizine kadar — sana doğru kişiyi, doğru yeri, doğru fiyatı söyleriz. Reklam değil, tavsiye.</p>
       <div class="mt-5 flex items-center gap-2">
-        <a href="#concierge" class="bg-sun-500 hover:bg-sun-600 text-white text-sm font-bold px-4 py-2 rounded">Concierge'e Yaz</a>
-        <a href="#isletme-ekle" class="border border-white/30 hover:bg-white/10 text-sm font-semibold px-4 py-2 rounded">İşletme Ekle</a>
+        <a href="#concierge" class="bg-sun-500 hover:bg-sun-600 text-white text-sm font-bold px-4 py-2 rounded" data-en="Message Concierge">Concierge'e Yaz</a>
+        <a href="#isletme-ekle" class="border border-white/30 hover:bg-white/10 text-sm font-semibold px-4 py-2 rounded" data-en="Add Your Business">İşletme Ekle</a>
       </div>
     </aside>
   </div>
@@ -475,11 +474,11 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Diğer Hizmetler
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="More Services">Diğer Hizmetler</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Hayatı Kolaylaştıranlar</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Making Life Easier">Hayatı Kolaylaştıranlar</h2>
       </div>
-      <a href="#" aria-disabled="true" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed">Tüm hizmetler →</a>
+      <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline opacity-60 cursor-not-allowed" data-en="All services →">Tüm hizmetler →</a>
     </div>
     <div id="hizmetler-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
   </div>
@@ -489,28 +488,28 @@
 <section id="kayip" class="bg-white">
   <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
     <div class="rounded-xl border-2 border-dashed border-sea-200 bg-sea-50/40 p-6 md:p-8">
-      <div class="text-xs uppercase tracking-widest text-sea-600 font-bold">Topluluk</div>
-      <h3 class="font-display text-2xl font-extrabold mt-1 text-sea-800">Kayıp & Bulunan Eşya</h3>
-      <p class="text-sea-700/80 mt-2 text-sm">Kaybettiğin ya da bulduğun eşyayı bildir; topluluk birbirine yardım etsin. İlanın detayını ve görselini ekle, sana özel silme kodu verilir.</p>
+      <div class="text-xs uppercase tracking-widest text-sea-600 font-bold" data-en="Community">Topluluk</div>
+      <h3 class="font-display text-2xl font-extrabold mt-1 text-sea-800" data-en="Lost &amp; Found Items">Kayıp & Bulunan Eşya</h3>
+      <p class="text-sea-700/80 mt-2 text-sm" data-en="Report something you lost or found — let the community help each other. Add details and a photo; you'll receive a private deletion code.">Kaybettiğin ya da bulduğun eşyayı bildir; topluluk birbirine yardım etsin. İlanın detayını ve görselini ekle, sana özel silme kodu verilir.</p>
       <div class="mt-5 flex flex-wrap gap-2">
-        <button data-action="lf-new" data-lf-type="kayip"   class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded text-sm font-semibold">🔍 Kayıp Eşya Bildir</button>
-        <button data-action="lf-new" data-lf-type="bulundu" class="bg-sun-600 hover:bg-sun-700 text-white px-4 py-2 rounded text-sm font-semibold">✓ Bulduğum Eşyayı Yükle</button>
-        <a href="hizmetler.html#kayip" class="text-sea-600 hover:text-sea-800 underline text-sm self-center ml-1">Tüm ilanları gör →</a>
+        <button data-action="lf-new" data-lf-type="kayip"   class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded text-sm font-semibold" data-en="🔍 Report Lost Item">🔍 Kayıp Eşya Bildir</button>
+        <button data-action="lf-new" data-lf-type="bulundu" class="bg-sun-600 hover:bg-sun-700 text-white px-4 py-2 rounded text-sm font-semibold" data-en="✓ Upload Found Item">✓ Bulduğum Eşyayı Yükle</button>
+        <a href="hizmetler.html#kayip" class="text-sea-600 hover:text-sea-800 underline text-sm self-center ml-1" data-en="View all listings →">Tüm ilanları gör →</a>
       </div>
     </div>
     <div id="isletme-ekle" class="rounded-xl bg-gradient-to-br from-sun-500 to-coral-500 text-white p-6 md:p-8 shadow-deep relative overflow-hidden">
       <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-white/10 blur-3xl"></div>
-      <div class="text-xs uppercase tracking-widest opacity-90 font-bold">İşletmeler için</div>
-      <h3 class="font-display text-2xl font-extrabold mt-1">Kalkan Info'da yer al</h3>
-      <p class="opacity-90 mt-2 text-sm">Villa, restoran, tur, hizmet — tek bir doğru yerde gör. Öne çıkan listeler, sezonluk paketler.</p>
-      <a href="mailto:info@kalkan.info?subject=Kalkan+Info+Listeleme+Başvurusu" class="inline-block mt-5 bg-white text-sea-800 hover:bg-sea-50 px-4 py-2 rounded text-sm font-bold">Başvuru Formu</a>
+      <div class="text-xs uppercase tracking-widest opacity-90 font-bold" data-en="For Businesses">İşletmeler için</div>
+      <h3 class="font-display text-2xl font-extrabold mt-1" data-en="Get listed on Kalkan Info">Kalkan Info'da yer al</h3>
+      <p class="opacity-90 mt-2 text-sm" data-en="Villa, restaurant, tour, service — seen in one trusted place. Featured listings and seasonal packages.">Villa, restoran, tur, hizmet — tek bir doğru yerde gör. Öne çıkan listeler, sezonluk paketler.</p>
+      <a href="mailto:info@kalkan.info?subject=Kalkan+Info+Listeleme+Başvurusu" class="inline-block mt-5 bg-white text-sea-800 hover:bg-sea-50 px-4 py-2 rounded text-sm font-bold" data-en="Apply Now">Başvuru Formu</a>
     </div>
   </div>
 
   <!-- Kayan ilan şeridi -->
   <div id="lf-marquee-wrap" class="hidden border-t border-b border-sea-100 bg-sea-50/30 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3">
-      <span class="text-[11px] font-bold uppercase tracking-widest text-sea-600 whitespace-nowrap">📢 Son İlanlar</span>
+      <span class="text-[11px] font-bold uppercase tracking-widest text-sea-600 whitespace-nowrap" data-en="📢 Latest Listings">📢 Son İlanlar</span>
       <div class="flex-1 overflow-hidden relative">
         <div id="lf-marquee" class="flex gap-3 whitespace-nowrap" style="animation:lf-scroll 45s linear infinite;will-change:transform;"></div>
       </div>
@@ -538,9 +537,9 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Kalkan Rehberi
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Kalkan Guide">Kalkan Rehberi</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Bölgeyi Tanı</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Discover the Region">Bölgeyi Tanı</h2>
       </div>
       <div class="flex gap-2">
         <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -550,44 +549,44 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       <a href="antik-kentler.html" class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-56 overflow-hidden">
-          <img src="/assets/img/aaf065e7d73f.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Xanthos Letoon antik kentleri panoraması" />
+          <img src="/assets/img/aaf065e7d73f.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" data-en-alt="Panorama of Patara, Xanthos and Letoon ancient sites" alt="Patara Xanthos Letoon antik kentleri panoraması" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute bottom-4 left-4 text-white">
-            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold">Tarihi Yerler</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold" data-en="Historic Sites">Tarihi Yerler</div>
             <div class="font-display text-xl font-extrabold leading-tight" style="text-shadow:0 2px 12px rgba(7,33,54,0.5);">Patara · Xanthos · Letoon</div>
           </div>
         </div>
         <div class="p-4">
-          <p class="text-sm text-sea-700/80">Likya yolunun en güzel antik kentlerine 30 dakika.</p>
+          <p class="text-sm text-sea-700/80" data-en="The most stunning Lycian Way ancient sites, just 30 minutes away.">Likya yolunun en güzel antik kentlerine 30 dakika.</p>
         </div>
       </a>
       <a href="https://www.google.com/maps/search/?api=1&query=Kaputas+Beach+Kas+Antalya" target="_blank" rel="noopener" class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-56 overflow-hidden">
-          <img src="/assets/img/46a5b6ddaf27.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Kaputaş Patara İncebel plaj manzaraları" />
+          <img src="/assets/img/46a5b6ddaf27.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" data-en-alt="Kaputaş, Patara and İncebel beach views" alt="Kaputaş Patara İncebel plaj manzaraları" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(26,94,147,0.35) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute bottom-4 left-4 text-white">
-            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold">Doğa & Plajlar</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold" data-en="Nature &amp; Beaches">Doğa & Plajlar</div>
             <div class="font-display text-xl font-extrabold leading-tight" style="text-shadow:0 2px 12px rgba(7,33,54,0.5);">Kaputaş · Patara · İncebel</div>
           </div>
         </div>
         <div class="p-4">
-          <p class="text-sm text-sea-700/80">Mavi Bayraklı plajlar, gizli koylar, gün batımı noktaları.</p>
+          <p class="text-sm text-sea-700/80" data-en="Blue Flag beaches, hidden coves, and perfect sunset spots.">Mavi Bayraklı plajlar, gizli koylar, gün batımı noktaları.</p>
         </div>
       </a>
       <a href="https://wa.me/905306650794?text=Kalkan+yerel+lezzet+rotası+hakkında+bilgi+almak+istiyorum" target="_blank" rel="noopener" class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-56 overflow-hidden">
-          <img src="/assets/img/485d8cabdf27.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Kalkan yerel lezzet rotası geleneksel mutfak" />
+          <img src="/assets/img/485d8cabdf27.webp" loading="lazy" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" data-en-alt="Kalkan local food trail, traditional cuisine" alt="Kalkan yerel lezzet rotası geleneksel mutfak" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(232,152,18,0.2) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute bottom-4 left-4 text-white">
-            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold">Kültür & Yemek</div>
-            <div class="font-display text-xl font-extrabold leading-tight" style="text-shadow:0 2px 12px rgba(7,33,54,0.5);">Yerel Lezzet Rotası</div>
+            <div class="text-[10px] uppercase tracking-[0.14em] opacity-75 font-bold" data-en="Culture &amp; Food">Kültür & Yemek</div>
+            <div class="font-display text-xl font-extrabold leading-tight" style="text-shadow:0 2px 12px rgba(7,33,54,0.5);" data-en="Local Food Trail">Yerel Lezzet Rotası</div>
           </div>
         </div>
         <div class="p-4">
-          <p class="text-sm text-sea-700/80">Köy kahvaltısı, balıkçı sofrası, ev şarapları, panayırlar.</p>
+          <p class="text-sm text-sea-700/80" data-en="Village breakfasts, fishermen's tables, house wines, and local markets.">Köy kahvaltısı, balıkçı sofrası, ev şarapları, panayırlar.</p>
         </div>
       </a>
     </div>
@@ -597,13 +596,13 @@
 <!-- ============== KATEGORİLER PİLL STRIP ============== -->
 <section class="bg-white border-t border-sea-100">
   <div class="max-w-7xl mx-auto px-4 py-5 flex flex-wrap items-center gap-2">
-    <span class="text-xs uppercase tracking-widest text-sea-500 font-bold mr-2">Kategoriler</span>
-    <a href="villalar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">🏡 Villalar</a>
-    <a href="restoranlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">🍽️ Restoranlar</a>
-    <a href="plajlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">🏖️ Plajlar</a>
-    <a href="turlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">⛵ Turlar</a>
-    <a href="hizmetler.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">🛠️ Hizmetler</a>
-    <a href="haberler.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition">📰 Haberler</a>
+    <span class="text-xs uppercase tracking-widest text-sea-500 font-bold mr-2" data-en="Categories">Kategoriler</span>
+    <a href="villalar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="🏡 Villas">🏡 Villalar</a>
+    <a href="restoranlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="🍽️ Restaurants">🍽️ Restoranlar</a>
+    <a href="plajlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="🏖️ Beaches">🏖️ Plajlar</a>
+    <a href="turlar.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="⛵ Tours">⛵ Turlar</a>
+    <a href="hizmetler.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="🛠️ Services">🛠️ Hizmetler</a>
+    <a href="haberler.html" class="inline-flex items-center gap-1 bg-sea-50 hover:bg-sun-500 hover:text-white border border-sea-200 text-sea-700 text-xs font-semibold px-3 py-1.5 rounded-full transition" data-en="📰 News">📰 Haberler</a>
   </div>
 </section>
 
@@ -612,9 +611,9 @@
   <div class="border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
       <div>
-        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
-        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
-        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay in the loop from Kalkan">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals, and events — twice a month, straight to the point.">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
       </div>
       <div data-newsletter-mount></div>
     </div>
@@ -624,59 +623,59 @@
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
         <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
       </a>
-      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quietly powerful — local knowledge, curated recommendations, concierge service. Your one-stop guide to Kalkan, Kaş, Patara and beyond.">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
       <div class="flex items-center gap-3 mt-5">
-        <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
+        <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" data-en-aria="Instagram" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.94c-3.15 0-3.5.01-4.74.07-1.07.05-1.65.23-2.04.38-.51.2-.88.44-1.27.83-.39.39-.63.76-.83 1.27-.15.39-.33.97-.38 2.04C2.69 9.5 2.68 9.85 2.68 13s.01 3.5.07 4.74c.05 1.07.23 1.65.38 2.04.2.51.44.88.83 1.27.39.39.76.63 1.27.83.39.15.97.33 2.04.38 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.07-.05 1.65-.23 2.04-.38.51-.2.88-.44 1.27-.83.39-.39.63-.76.83-1.27.15-.39.33-.97.38-2.04.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.07-.23-1.65-.38-2.04a3.4 3.4 0 0 0-.83-1.27 3.4 3.4 0 0 0-1.27-.83c-.39-.15-.97-.33-2.04-.38C15.5 4.11 15.15 4.1 12 4.1Zm0 3.3a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2Zm0 7.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5.85-7.74a1.08 1.08 0 1 1-2.16 0 1.08 1.08 0 0 1 2.16 0Z"/></svg>
         </a>
-        <a href="#" data-concierge-trigger target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
+        <a href="#" data-concierge-trigger target="_blank" rel="noopener" data-en-aria="WhatsApp" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
         </a>
-        <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
+        <a href="https://facebook.com/kalkaninfo" target="_blank" rel="noopener" data-en-aria="Facebook" aria-label="Facebook" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sea-500 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.46 1.46-3.82 3.7-3.82 1.07 0 2.2.2 2.2.2v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.9h-2.29v6.98A10 10 0 0 0 22 12Z"/></svg>
         </a>
       </div>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore">Keşfet</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
-        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
-        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
-        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
-        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+        <li><a class="hover:text-sun-400" href="villalar.html" data-en="Villas">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html" data-en="Restaurants">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html" data-en="Beaches">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html" data-en="Tours">Turlar</a></li>
+        <li><a class="hover:text-sun-400" href="hizmetler.html" data-en="Services">Hizmetler</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Yerel</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Local">Yerel</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="#nobetci">Nöbetçi Eczane</a></li>
-        <li><a class="hover:text-sun-400" href="#acil">Acil Numaralar</a></li>
-        <li><a class="hover:text-sun-400" href="#taksi">Taksi Durakları</a></li>
-        <li><a class="hover:text-sun-400" href="#kayip">Kayıp & Bulunan</a></li>
-        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+        <li><a class="hover:text-sun-400" href="#nobetci" data-en="On-Duty Pharmacy">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="#acil" data-en="Emergency Numbers">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="#taksi" data-en="Taxi Stands">Taksi Durakları</a></li>
+        <li><a class="hover:text-sun-400" href="#kayip" data-en="Lost &amp; Found">Kayıp & Bulunan</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html" data-en="News">Haberler</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Contact">İletişim</div>
       <ul class="space-y-2 text-white/80">
         <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
-        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger target="_blank" rel="noopener">Concierge WhatsApp</a></li>
-        <li><a class="hover:text-sun-400" href="#isletme-ekle">İşletme Ekle</a></li>
-        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info?subject=Reklam+Talebi">Reklam Ver</a></li>
-        <li><a class="hover:text-sun-400" href="#kvkk">Gizlilik & KVKK</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger target="_blank" rel="noopener" data-en="Concierge WhatsApp">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="#isletme-ekle" data-en="Add Business">İşletme Ekle</a></li>
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info?subject=Reklam+Talebi" data-en="Advertise">Reklam Ver</a></li>
+        <li><a class="hover:text-sun-400" href="#kvkk" data-en="Privacy &amp; GDPR">Gizlilik & KVKK</a></li>
       </ul>
     </div>
   </div>
   <div class="border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
-      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div data-en="© 2026 Kalkan Info — All rights reserved.">© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
       <div class="flex items-center gap-3">
-        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">App Store</a>
+        <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">App Store</a>
         <span class="opacity-30">·</span>
-        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">Google Play</a>
+        <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">Google Play</a>
         <span class="opacity-30">·</span>
-        <a href="#" aria-disabled="true" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">PWA</a>
+        <a href="#" aria-disabled="true" data-en-title="Coming soon" title="Yakında" class="hover:text-white opacity-60 cursor-not-allowed">PWA</a>
       </div>
     </div>
   </div>
@@ -692,14 +691,14 @@
 <section id="kvkk" class="bg-white border-t border-sea-100">
   <div class="max-w-7xl mx-auto px-4 py-8 text-center">
     <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold mb-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Gizlilik & KVKK
+      <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Privacy &amp; GDPR">Gizlilik & KVKK</span>
     </div>
-    <p class="text-sea-700/70 text-sm max-w-xl mx-auto">Kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır. Detaylı politika yakında yayımlanacaktır. Sorularınız için <a href="mailto:info@kalkan.info" class="text-sea-600 underline hover:text-sun-600">info@kalkan.info</a> adresine yazabilirsiniz.</p>
+    <p class="text-sea-700/70 text-sm max-w-xl mx-auto" data-en="Your personal data is protected under the KVKK Personal Data Protection Law. A detailed policy will be published shortly. For enquiries, write to us at info@kalkan.info.">Kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır. Detaylı politika yakında yayımlanacaktır. Sorularınız için <a href="mailto:info@kalkan.info" class="text-sea-600 underline hover:text-sun-600">info@kalkan.info</a> adresine yazabilirsiniz.</p>
   </div>
 </section>
 
 <script src="js/render.js?v=20260516c"></script>
-<script src="js/pwa.js?v=2" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 <script src="js/page-index.js?v=20260516a" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>

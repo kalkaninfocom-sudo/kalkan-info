@@ -65,6 +65,7 @@
 <meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
 <script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
 <script src="js/concierge-modal.js?v=20260516b" defer></script>
+<script src="js/i18n.js?v=20260516b" defer></script>
 </head>
 <body class="bg-[#dce6ef] min-h-screen">
 
@@ -73,7 +74,7 @@
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
     <a href="ilanlar.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3 transition">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      <span class="font-display font-semibold tracking-wide text-sm hidden sm:inline">İlanlara Dön</span>
+      <span class="font-display font-semibold tracking-wide text-sm hidden sm:inline" data-en="Back to Listings">İlanlara Dön</span>
     </a>
     <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
@@ -89,12 +90,12 @@
   <div class="absolute inset-0 opacity-15" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#e89812 0%,transparent 70%);"></div>
   <div class="relative max-w-4xl mx-auto px-4 py-10 md:py-14 text-white">
     <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold mb-4">
-      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> İşveren Paneli
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Employer Panel">İşveren Paneli</span>
     </div>
-    <h1 class="font-display text-3xl md:text-4xl font-extrabold leading-tight">İlan Ver</h1>
-    <p class="mt-2 text-white/70 text-sm md:text-base max-w-xl leading-relaxed">
+    <h1 class="font-display text-3xl md:text-4xl font-extrabold leading-tight" data-en="Post a Job">İlan Ver</h1>
+    <p class="mt-2 text-white/70 text-sm md:text-base max-w-xl leading-relaxed" data-en="Looking for a team for your restaurant, villa, boat or service? You're in the right place. Live within 24–48 hours after admin approval.">
       Restoran, villa, tekne veya hizmetin için ekip arıyorsan doğru yerdesin.
-      Admin onayından sonra 24-48 saat içinde yayında. <strong class="text-sun-400">Ücretsiz.</strong>
+      Admin onayından sonra 24-48 saat içinde yayında. <strong class="text-sun-400" data-en="Free.">Ücretsiz.</strong>
     </p>
   </div>
 </header>
@@ -110,9 +111,9 @@
       <div class="step-dot" data-step="3">3</div>
     </div>
     <div class="grid grid-cols-3 gap-2 mt-2 text-[11px] uppercase tracking-wider font-display font-semibold text-sea-500">
-      <div class="text-left">Pozisyon</div>
-      <div class="text-center">Detay & Şartlar</div>
-      <div class="text-right">İletişim & Önizleme</div>
+      <div class="text-left" data-en="Position">Pozisyon</div>
+      <div class="text-center" data-en="Details & Requirements">Detay & Şartlar</div>
+      <div class="text-right" data-en="Contact & Preview">İletişim & Önizleme</div>
     </div>
   </div>
 </div>
@@ -125,9 +126,9 @@
     <div class="flex items-start gap-3">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e89812" stroke-width="2" class="flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <div>
-        <p class="font-display font-bold text-sea-800 text-sm">İlan vermek için giriş yapmalısın</p>
-        <p class="text-sea-600 text-xs mt-1">İlanını yönetmek, başvuruları takip etmek ve düzenlemek için profil gerekli.</p>
-        <a href="login.html?next=ilan-ver.html" class="inline-block mt-2 bg-sea-800 text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-sea-700">GİRİŞ YAP</a>
+        <p class="font-display font-bold text-sea-800 text-sm" data-en="You must be logged in to post a job">İlan vermek için giriş yapmalısın</p>
+        <p class="text-sea-600 text-xs mt-1" data-en="A profile is required to manage listings, track applications and make edits.">İlanını yönetmek, başvuruları takip etmek ve düzenlemek için profil gerekli.</p>
+        <a href="login.html?next=ilan-ver.html" class="inline-block mt-2 bg-sea-800 text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-sea-700" data-en="LOG IN">GİRİŞ YAP</a>
       </div>
     </div>
   </div>
@@ -136,77 +137,77 @@
 
     <!-- ============ STEP 1: POSITION ============ -->
     <fieldset id="step-1" class="step-fieldset space-y-5">
-      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">Pozisyon Bilgileri</h2>
-      <p class="text-sea-600 text-sm mb-4">İlanın başlığı ve genel bilgileri.</p>
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Position Details">Pozisyon Bilgileri</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="The title and general information for your listing.">İlanın başlığı ve genel bilgileri.</p>
 
       <div>
-        <label class="ob-label" for="title">Pozisyon Başlığı *</label>
-        <input id="title" name="title" required maxlength="100" class="ob-input" placeholder="Örn. Restoran Garson — Sezonluk" />
-        <div class="ob-help">Net ve aranabilir olsun. Pozisyon + tip (sezonluk, tam zamanlı vs.).</div>
+        <label class="ob-label" for="title" data-en="Position Title *">Pozisyon Başlığı *</label>
+        <input id="title" name="title" required maxlength="100" class="ob-input" placeholder="Örn. Restoran Garson — Sezonluk" data-en-placeholder="e.g. Restaurant Waiter — Seasonal" />
+        <div class="ob-help" data-en="Keep it clear and searchable. Position + type (seasonal, full-time, etc.).">Net ve aranabilir olsun. Pozisyon + tip (sezonluk, tam zamanlı vs.).</div>
       </div>
 
       <div>
-        <label class="ob-label">Kategori *</label>
+        <label class="ob-label" data-en="Category *">Kategori *</label>
         <select id="category" name="category" required class="ob-select">
-          <option value="">Seçiniz...</option>
+          <option value="" data-en="Select...">Seçiniz...</option>
           <option value="restoran">Restoran & Cafe</option>
-          <option value="villa">Villa & Konaklama</option>
-          <option value="otel">Otel & Pansiyon</option>
-          <option value="tur">Tekne & Tur</option>
-          <option value="hizmet">Hizmet & Bakım</option>
-          <option value="ofis">Ofis & Yönetim</option>
-          <option value="diger">Diğer</option>
+          <option value="villa" data-en="Villa & Accommodation">Villa & Konaklama</option>
+          <option value="otel" data-en="Hotel & Guesthouse">Otel & Pansiyon</option>
+          <option value="tur" data-en="Boat & Tours">Tekne & Tur</option>
+          <option value="hizmet" data-en="Services & Maintenance">Hizmet & Bakım</option>
+          <option value="ofis" data-en="Office & Management">Ofis & Yönetim</option>
+          <option value="diger" data-en="Other">Diğer</option>
         </select>
       </div>
 
       <div>
-        <label class="ob-label">İstihdam Tipi *</label>
+        <label class="ob-label" data-en="Employment Type *">İstihdam Tipi *</label>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
           <label class="type-card">
             <input type="radio" name="type" value="full" class="hidden type-radio" />
             <div class="type-icon mb-1.5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             </div>
-            <div class="font-display font-bold text-xs text-sea-800">Tam Zamanlı</div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Full-time">Tam Zamanlı</div>
           </label>
           <label class="type-card">
             <input type="radio" name="type" value="part" class="hidden type-radio" />
             <div class="type-icon mb-1.5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
-            <div class="font-display font-bold text-xs text-sea-800">Yarı Zamanlı</div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Part-time">Yarı Zamanlı</div>
           </label>
           <label class="type-card">
             <input type="radio" name="type" value="seasonal" class="hidden type-radio" />
             <div class="type-icon mb-1.5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
             </div>
-            <div class="font-display font-bold text-xs text-sea-800">Sezonluk</div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Seasonal">Sezonluk</div>
           </label>
           <label class="type-card">
             <input type="radio" name="type" value="freelance" class="hidden type-radio" />
             <div class="type-icon mb-1.5">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <div class="font-display font-bold text-xs text-sea-800">Serbest</div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Freelance">Serbest</div>
           </label>
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <label class="ob-label" for="location">Lokasyon *</label>
-          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan Merkez" />
+          <label class="ob-label" for="location" data-en="Location *">Lokasyon *</label>
+          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan Merkez" data-en-placeholder="e.g. Kalkan Centre" />
         </div>
         <div>
-          <label class="ob-label" for="employerName">İşveren / Şirket Adı *</label>
-          <input id="employerName" name="employerName" required maxlength="80" class="ob-input" placeholder="Örn. Aubergine Restaurant" />
+          <label class="ob-label" for="employerName" data-en="Employer / Company Name *">İşveren / Şirket Adı *</label>
+          <input id="employerName" name="employerName" required maxlength="80" class="ob-input" placeholder="Örn. Aubergine Restaurant" data-en-placeholder="e.g. Aubergine Restaurant" />
         </div>
       </div>
 
       <div class="flex justify-end">
         <button type="button" data-next="2" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
-          Devam Et
+          <span data-en="Continue">Devam Et</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -214,62 +215,62 @@
 
     <!-- ============ STEP 2: DETAILS ============ -->
     <fieldset id="step-2" class="step-fieldset hidden space-y-5">
-      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">Detay & Şartlar</h2>
-      <p class="text-sea-600 text-sm mb-4">Pozisyonun açıklaması, gereksinim ve maaş aralığı.</p>
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Details & Requirements">Detay & Şartlar</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="Position description, requirements and salary range.">Pozisyonun açıklaması, gereksinim ve maaş aralığı.</p>
 
       <div>
-        <label class="ob-label" for="description">Pozisyon Açıklaması *</label>
-        <textarea id="description" name="description" required rows="6" maxlength="2500" class="ob-textarea" placeholder="Pozisyonun ne yaptığı, çalışma saatleri, lokasyon detayları..."></textarea>
-        <div class="ob-help">2500 karaktere kadar. Düz metin, paragraflar otomatik biçimlendirilir.</div>
+        <label class="ob-label" for="description" data-en="Position Description *">Pozisyon Açıklaması *</label>
+        <textarea id="description" name="description" required rows="6" maxlength="2500" class="ob-textarea" placeholder="Pozisyonun ne yaptığı, çalışma saatleri, lokasyon detayları..." data-en-placeholder="What the role involves, working hours, location details..."></textarea>
+        <div class="ob-help" data-en="Up to 2500 characters. Plain text, paragraphs are formatted automatically.">2500 karaktere kadar. Düz metin, paragraflar otomatik biçimlendirilir.</div>
       </div>
 
       <div>
-        <label class="ob-label" for="requirements">Aranan Nitelikler</label>
-        <textarea id="requirements" name="requirements" rows="4" maxlength="1000" class="ob-textarea" placeholder="Her satıra bir gereksinim:&#10;Min. 1 yıl restoran deneyimi&#10;İngilizce iletişim&#10;Pazartesi-Pazar dönemli vardiya"></textarea>
-        <div class="ob-help">Her satıra bir madde. Boş bırakılırsa "Gereksinim belirtilmedi" görünür.</div>
+        <label class="ob-label" for="requirements" data-en="Requirements">Aranan Nitelikler</label>
+        <textarea id="requirements" name="requirements" rows="4" maxlength="1000" class="ob-textarea" placeholder="Her satıra bir gereksinim:&#10;Min. 1 yıl restoran deneyimi&#10;İngilizce iletişim&#10;Pazartesi-Pazar dönemli vardiya" data-en-placeholder="One requirement per line:&#10;Min. 1 year restaurant experience&#10;English communication&#10;Monday–Sunday rotating shifts"></textarea>
+        <div class="ob-help" data-en="One item per line. Leave blank to show 'No requirements specified'.">Her satıra bir madde. Boş bırakılırsa "Gereksinim belirtilmedi" görünür.</div>
       </div>
 
       <div>
-        <label class="ob-label">Aranan Diller</label>
+        <label class="ob-label" data-en="Languages Required">Aranan Diller</label>
         <div class="flex flex-wrap gap-2" id="lang-chips">
-          <span class="lang-chip" data-lang="en">İngilizce</span>
-          <span class="lang-chip" data-lang="de">Almanca</span>
-          <span class="lang-chip" data-lang="ru">Rusça</span>
-          <span class="lang-chip" data-lang="ar">Arapça</span>
-          <span class="lang-chip" data-lang="fr">Fransızca</span>
+          <span class="lang-chip" data-lang="en" data-en="English">İngilizce</span>
+          <span class="lang-chip" data-lang="de" data-en="German">Almanca</span>
+          <span class="lang-chip" data-lang="ru" data-en="Russian">Rusça</span>
+          <span class="lang-chip" data-lang="ar" data-en="Arabic">Arapça</span>
+          <span class="lang-chip" data-lang="fr" data-en="French">Fransızca</span>
         </div>
-        <div class="ob-help">Birden fazla dil seçebilirsin. Türkçe varsayılan kabul edilir.</div>
+        <div class="ob-help" data-en="You can select multiple languages. Turkish is assumed by default.">Birden fazla dil seçebilirsin. Türkçe varsayılan kabul edilir.</div>
       </div>
 
       <div class="grid md:grid-cols-3 gap-4">
         <div>
-          <label class="ob-label" for="experience">Deneyim</label>
-          <input id="experience" name="experience" maxlength="40" class="ob-input" placeholder="Örn. 1 yıl+, Yeni mezun" />
+          <label class="ob-label" for="experience" data-en="Experience">Deneyim</label>
+          <input id="experience" name="experience" maxlength="40" class="ob-input" placeholder="Örn. 1 yıl+, Yeni mezun" data-en-placeholder="e.g. 1 year+, Recent graduate" />
         </div>
         <div>
-          <label class="ob-label" for="salaryMin">Maaş — Min</label>
+          <label class="ob-label" for="salaryMin" data-en="Salary — Min">Maaş — Min</label>
           <input id="salaryMin" name="salaryMin" type="number" min="0" class="ob-input" placeholder="25000" />
         </div>
         <div>
-          <label class="ob-label" for="salaryMax">Maaş — Max</label>
+          <label class="ob-label" for="salaryMax" data-en="Salary — Max">Maaş — Max</label>
           <input id="salaryMax" name="salaryMax" type="number" min="0" class="ob-input" placeholder="35000" />
         </div>
       </div>
 
       <div>
-        <label class="ob-label" for="currency">Para Birimi</label>
+        <label class="ob-label" for="currency" data-en="Currency">Para Birimi</label>
         <select id="currency" name="currency" class="ob-select max-w-[200px]">
-          <option value="TRY">₺ Türk Lirası</option>
+          <option value="TRY" data-en="₺ Turkish Lira">₺ Türk Lirası</option>
           <option value="USD">$ USD</option>
           <option value="EUR">€ EUR</option>
         </select>
-        <div class="ob-help">Aylık brüt belirt. Boş bırakırsan "Görüşülecek" görünür.</div>
+        <div class="ob-help" data-en="Specify gross monthly. Leave blank to show 'To be discussed'.">Aylık brüt belirt. Boş bırakırsan "Görüşülecek" görünür.</div>
       </div>
 
       <div class="flex justify-between gap-3">
-        <button type="button" data-prev="1" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition">Geri</button>
+        <button type="button" data-prev="1" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition" data-en="Back">Geri</button>
         <button type="button" data-next="3" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
-          Devam Et
+          <span data-en="Continue">Devam Et</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
@@ -277,32 +278,32 @@
 
     <!-- ============ STEP 3: CONTACT & PREVIEW ============ -->
     <fieldset id="step-3" class="step-fieldset hidden space-y-5">
-      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1">İletişim & Önizleme</h2>
-      <p class="text-sea-600 text-sm mb-4">Başvurular nereye gelsin? Son adımda ilanını gözden geçir.</p>
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Contact & Preview">İletişim & Önizleme</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="Where should applications be sent? Review your listing in the final step.">Başvurular nereye gelsin? Son adımda ilanını gözden geçir.</p>
 
       <div class="grid md:grid-cols-2 gap-4">
         <div>
-          <label class="ob-label" for="contactEmail">İletişim E-posta *</label>
-          <input id="contactEmail" name="contactEmail" required type="email" class="ob-input" placeholder="info@isletmen.com" />
+          <label class="ob-label" for="contactEmail" data-en="Contact Email *">İletişim E-posta *</label>
+          <input id="contactEmail" name="contactEmail" required type="email" class="ob-input" placeholder="info@isletmen.com" data-en-placeholder="info@yourbusiness.com" />
         </div>
         <div>
-          <label class="ob-label" for="contactPhone">Telefon (opsiyonel)</label>
+          <label class="ob-label" for="contactPhone" data-en="Phone (optional)">Telefon (opsiyonel)</label>
           <input id="contactPhone" name="contactPhone" type="tel" class="ob-input" placeholder="+90 5XX XXX XX XX" pattern="^\+?9?0?[\s\-]?\(?5[0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" title="Geçerli bir Türk cep numarası girin (örn: 5XX XXX XX XX veya +90 5XX...)" inputmode="tel" autocomplete="tel" />
         </div>
       </div>
 
       <div>
-        <label class="ob-label" for="expiresAt">Başvuru Kapanış Tarihi (opsiyonel)</label>
+        <label class="ob-label" for="expiresAt" data-en="Application Deadline (optional)">Başvuru Kapanış Tarihi (opsiyonel)</label>
         <input id="expiresAt" name="expiresAt" type="date" class="ob-input max-w-[260px]" />
       </div>
 
       <!-- Preview -->
       <div class="bg-sea-50 border border-sea-200 rounded-xl p-5 mt-6">
-        <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-2">İLAN ÖNİZLEME</div>
+        <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-2" data-en="LISTING PREVIEW">İLAN ÖNİZLEME</div>
         <div id="preview"></div>
       </div>
 
-      <div class="bg-sun-400/10 border border-sun-400/40 rounded-lg p-3 text-xs text-sea-800 leading-relaxed">
+      <div class="bg-sun-400/10 border border-sun-400/40 rounded-lg p-3 text-xs text-sea-800 leading-relaxed" data-en="Publication process: Your listing is sent for admin review. Listings that do not contain spam, GDPR violations or discriminatory content go live within 24–48 hours. You will be notified by email once approved.">
         <strong class="text-sea-900">Yayın akışı:</strong> İlanın admin onayına gönderilir. Spam, KVKK ihlali veya
         ayrımcı içerik içermeyen ilanlar 24-48 saat içinde yayına alınır. Onaylandığında e-posta ile bilgilendirilirsin.
       </div>
@@ -312,17 +313,17 @@
         <div class="flex items-start gap-3">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
           <div>
-            <div class="font-display font-bold text-sea-900">İlanın gönderildi!</div>
-            <div class="text-xs mt-1">Admin incelemesi 24-48 saat içinde tamamlanır. Onaylandığında e-posta ile bilgilendirileceksin.</div>
+            <div class="font-display font-bold text-sea-900" data-en="Your listing has been submitted!">İlanın gönderildi!</div>
+            <div class="text-xs mt-1" data-en="Admin review will be completed within 24–48 hours. You will be notified by email once approved.">Admin incelemesi 24-48 saat içinde tamamlanır. Onaylandığında e-posta ile bilgilendirileceksin.</div>
           </div>
         </div>
       </div>
 
       <div class="flex justify-between gap-3 pt-2">
-        <button type="button" data-prev="2" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition">Geri</button>
+        <button type="button" data-prev="2" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition" data-en="Back">Geri</button>
         <button type="submit" class="bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold px-6 py-3 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition flex items-center gap-2">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          İLANI GÖNDER
+          <span data-en="SUBMIT LISTING">İLANI GÖNDER</span>
         </button>
       </div>
     </fieldset>
@@ -337,11 +338,11 @@
         <span class="text-sun-500">◆</span> KALKAN INFO
       </div>
       <div class="flex gap-4">
-        <a href="ilanlar.html" class="hover:text-white transition">Tüm İlanlar</a>
-        <a href="kvkk.html" class="hover:text-white transition">KVKK</a>
-        <a href="privacy.html" class="hover:text-white transition">Gizlilik</a>
+        <a href="ilanlar.html" class="hover:text-white transition" data-en="All Listings">Tüm İlanlar</a>
+        <a href="kvkk.html" class="hover:text-white transition" data-en="GDPR">KVKK</a>
+        <a href="privacy.html" class="hover:text-white transition" data-en="Privacy">Gizlilik</a>
       </div>
-      <div>© 2026 Kalkan Info</div>
+      <div data-en="© 2026 Kalkan Info">© 2026 Kalkan Info</div>
     </div>
   </div>
 </footer>
@@ -519,6 +520,6 @@ form.addEventListener('submit', async (e) => {
 // init
 goToStep(1);
 </script>
-<script src="js/pwa.js" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 </body>
 </html>

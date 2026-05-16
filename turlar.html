@@ -101,20 +101,20 @@
 <!-- ============== HERO HEADER ============== -->
 <header class="relative overflow-hidden" style="background:#072136;">
   <div class="absolute inset-0 z-0">
-    <img src="/assets/img/1939e5065d83.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan turları" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/6eab92f0cb09.webp'" />
+    <img loading="lazy" decoding="async" src="/assets/img/1939e5065d83.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan turları" data-en-alt="Kalkan tours" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/6eab92f0cb09.webp'" />
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü" data-en-aria="Menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <div class="flex items-center gap-2 text-xs md:text-sm">
-      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today">Bugün</span>
       <span id="today-date" class="opacity-95 font-semibold tracking-wide">—</span>
       <span class="hidden md:inline opacity-40 mx-1">·</span>
       <span data-weather class="hidden md:inline opacity-80">—</span>
     </div>
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
@@ -122,8 +122,8 @@
     <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
     </div>
-    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Turlar</h1>
-    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;">Tekne turlarından antik kentlere, maceradan meditasyona — bölgenin en iyi 10 turu.</p>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Tours">Turlar</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" style="font-weight:400;" data-en="From boat tours to ancient cities, from adventure to meditation — the region's top 10 tours.">Tekne turlarından antik kentlere, maceradan meditasyona — bölgenin en iyi 10 turu.</p>
   </div>
 </header>
 
@@ -133,34 +133,34 @@
     <div class="flex items-center -ml-3">
       <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
+      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
       </a>
     </div>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
-    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
   <div style="background:#072136;">
     <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="turlar.html">Turlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html" data-en="News">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html" data-en="Villas">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html" data-en="Restaurants">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html" data-en="Beaches">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="turlar.html" data-en="Tours">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html" data-en="Ancient Cities">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html" data-en="Services">Hizmetler</a>
       <span class="ml-auto"></span>
       <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
         Concierge
       </a>
-      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle">İşletme Ekle</a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle" data-en="Add Business">İşletme Ekle</a>
       <span class="px-2 text-white/40">·</span>
       <a class="px-3 py-3 text-xs hover:bg-sea-700 cursor-pointer" href="#" data-lang-toggle="tr" onclick="event.preventDefault();setLang(&apos;tr&apos;);" title="Türkçe">TR</a>
       <a class="px-3 py-3 text-xs hover:bg-sea-700 cursor-pointer" href="#" data-lang-toggle="en" onclick="event.preventDefault();setLang(&apos;en&apos;);" title="English">EN</a>
@@ -168,17 +168,17 @@
   </div>
   <div class="ribbon-bg grain text-[12px]">
     <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
-      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded" data-en="NOTICE">DUYURU</span>
       <div class="flex-1 overflow-hidden">
         <div class="marquee whitespace-nowrap">
-          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
-          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
-          <span class="mr-10">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
-          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
-          <span class="mr-10">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
-          <span class="mr-10">🏖️ Patara plajı 2026 sezonu için açık</span>
-          <span class="mr-10">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
-          <span class="mr-10">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
+          <span class="mr-10" data-en="⛵ Boat tour season open — daily departures 09:30 / 14:00">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10" data-en="🏖️ Patara beach open for the 2026 season">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10" data-en="🍷 This week in Kalkan: Moonlight concert (Saturday 21:00)">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10" data-en="🚌 Contact Concierge for airport transfer reservations">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
+          <span class="mr-10" data-en="⛵ Boat tour season open — daily departures 09:30 / 14:00">⛵ Tekne turu sezonu açıldı — günlük 09:30 / 14:00 hareket</span>
+          <span class="mr-10" data-en="🏖️ Patara beach open for the 2026 season">🏖️ Patara plajı 2026 sezonu için açık</span>
+          <span class="mr-10" data-en="🍷 This week in Kalkan: Moonlight concert (Saturday 21:00)">🍷 Kalkan'da bu hafta: Mehtap konseri (Cumartesi 21:00)</span>
+          <span class="mr-10" data-en="🚌 Contact Concierge for airport transfer reservations">🚌 Havalimanı transfer rezervasyonu için Concierge'e yazın</span>
         </div>
       </div>
     </div>
@@ -191,13 +191,13 @@
     <div class="bg-white rounded-xl p-4 flex flex-wrap gap-3 items-center" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
       <div class="flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
-        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700">Filtrele</span>
+        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700" data-en="Filter">Filtrele</span>
       </div>
       <div class="h-4 w-px bg-sea-100 hidden md:block"></div>
       <!-- Region -->
       <div class="relative">
         <select class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500" style="font-family:'Inter',system-ui,sans-serif;">
-          <option value="">Tüm Bölgeler</option>
+          <option value="" data-en="All Regions">Tüm Bölgeler</option>
           <option value="kalkan">Kalkan</option>
           <option value="kas">Kaş</option>
           <option value="patara">Patara</option>
@@ -208,24 +208,24 @@
       <!-- Type -->
       <div class="relative">
         <select class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500" style="font-family:'Inter',system-ui,sans-serif;">
-          <option value="">Tüm Tipler</option>
-          <option value="tekne">Tekne Turu</option>
-          <option value="kultur">Kültür Turu</option>
-          <option value="macera">Macera</option>
+          <option value="" data-en="All Types">Tüm Tipler</option>
+          <option value="tekne" data-en="Boat Tour">Tekne Turu</option>
+          <option value="kultur" data-en="Cultural Tour">Kültür Turu</option>
+          <option value="macera" data-en="Adventure">Macera</option>
           <option value="wellness">Wellness</option>
-          <option value="yuruyus">Yürüyüş</option>
+          <option value="yuruyus" data-en="Hiking">Yürüyüş</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <!-- Sort -->
       <div class="relative">
         <select class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500" style="font-family:'Inter',system-ui,sans-serif;">
-          <option value="">Sırala</option>
-          <option value="popular">Popülerlik</option>
+          <option value="" data-en="Sort">Sırala</option>
+          <option value="popular" data-en="Popularity">Popülerlik</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <span class="ml-auto text-xs text-sea-600 font-semibold hidden md:block">10 sonuç</span>
+      <span class="ml-auto text-xs text-sea-600 font-semibold hidden md:block" data-en="10 results">10 sonuç</span>
     </div>
   </div>
 </section>
@@ -236,9 +236,9 @@
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Turlar
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Tours">Turlar</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Bölgenin En İyi 10 Turu</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="The Region's Top 10 Tours">Bölgenin En İyi 10 Turu</h2>
       </div>
     </div>
 
@@ -246,7 +246,7 @@
       <!-- DYNAMIC -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/4fec24c9524d.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="6 Koy Mavi Tur" onerror="this.src='/assets/img/b80ee0c71b6d.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/4fec24c9524d.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="6 Koy Mavi Tur" onerror="this.src='/assets/img/b80ee0c71b6d.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -274,7 +274,7 @@
       <!-- 2. Kekova Batık Şehir -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/bd7f7459a691.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Kekova Batık Şehir" onerror="this.src='/assets/img/cdd181da2d64.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/bd7f7459a691.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Kekova Batık Şehir" onerror="this.src='/assets/img/cdd181da2d64.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -302,7 +302,7 @@
       <!-- 3. Patara Antik Kent + Sahil -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/86e28ab1d195.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Antik Kent" onerror="this.src='/assets/img/f5400b24c57d.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/86e28ab1d195.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Antik Kent" onerror="this.src='/assets/img/f5400b24c57d.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -330,7 +330,7 @@
       <!-- 4. Saklıkent Kanyonu -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/a07aefee1b15.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Saklıkent Kanyonu" onerror="this.src='/assets/img/465343d1534d.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/a07aefee1b15.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Saklıkent Kanyonu" onerror="this.src='/assets/img/465343d1534d.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -358,7 +358,7 @@
       <!-- 5. Likya Yolu Yürüyüşü -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/d018efe8f905.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Likya Yolu Yürüyüşü" onerror="this.src='/assets/img/7e1ef491da04.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/d018efe8f905.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Likya Yolu Yürüyüşü" onerror="this.src='/assets/img/7e1ef491da04.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -385,7 +385,7 @@
       <!-- 6. Xanthos & Letoon -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/1d9328d7695a.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Xanthos Letoon" onerror="this.src='/assets/img/521345a0995b.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/1d9328d7695a.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Xanthos Letoon" onerror="this.src='/assets/img/521345a0995b.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -413,7 +413,7 @@
       <!-- 7. Demre-Myra-Kekova Üçlü -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/aaf065e7d73f.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Demre Myra Kekova" onerror="this.src='/assets/img/adfee4b3392d.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/aaf065e7d73f.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Demre Myra Kekova" onerror="this.src='/assets/img/adfee4b3392d.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(7,33,54,0.4) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -441,7 +441,7 @@
       <!-- 8. Yat Charter -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/c81f592fdd67.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Yat Charter" onerror="this.src='/assets/img/d069a93792bb.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/c81f592fdd67.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Yat Charter" onerror="this.src='/assets/img/d069a93792bb.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(232,152,18,0.3) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -468,7 +468,7 @@
       <!-- 9. Patara Gün Batımı -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/b7549bd5771f.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Gün Batımı" onerror="this.src='/assets/img/6723df1d08d6.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/b7549bd5771f.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Patara Gün Batımı" onerror="this.src='/assets/img/6723df1d08d6.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(232,152,18,0.25) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -495,7 +495,7 @@
       <!-- 10. Sahilde Yoga -->
       <article class="group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.16);">
         <div class="relative h-52 overflow-hidden">
-          <img src="/assets/img/19c73f523505.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Sahilde Yoga" onerror="this.src='/assets/img/5d9aabf1f34d.webp'" />
+          <img loading="lazy" decoding="async" src="/assets/img/19c73f523505.webp" class="w-full h-full object-cover group-hover:scale-[1.05]" style="transition:transform .45s cubic-bezier(.25,.46,.45,.94);" alt="Sahilde Yoga" onerror="this.src='/assets/img/5d9aabf1f34d.webp'" />
           <div class="absolute inset-0 bg-gradient-to-t from-sea-900/80 via-sea-900/20 to-transparent"></div>
           <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(26,94,147,0.3) 0%,transparent 50%);mix-blend-mode:multiply;"></div>
           <div class="absolute top-3 left-3">
@@ -597,7 +597,7 @@
 
 <script src="js/render.js?v=20260516c"></script>
 <script src="js/page-turlar.js" defer></script>
-<script src="js/pwa.js?v=2" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
    Versiyon güncellendiğinde eski cache temizlenir.
 */
 
-const CACHE_VERSION = 'kalkan-info-v1.7.1-20260516';
+const CACHE_VERSION = 'kalkan-info-v1.7.2-20260516';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
@@ -67,14 +67,20 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate — eski cache'leri temizle
+// Activate — eski cache'leri temizle + tüm açık client'ları reload et
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys.filter(k => !k.startsWith(CACHE_VERSION)).map(k => caches.delete(k))
       )
-    ).then(() => self.clients.claim())
+    ).then(() => self.clients.claim()).then(async () => {
+      // Yeni SW devraldıktan sonra açık client'lara mesaj gönder — pwa.js reload tetikler
+      const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+      for (const client of clients) {
+        try { client.postMessage({ type: 'SW_UPDATED', version: CACHE_VERSION }); } catch (e) { /* noop */ }
+      }
+    })
   );
 });
 
