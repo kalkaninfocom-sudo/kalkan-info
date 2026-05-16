@@ -83,11 +83,11 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
-    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Geri" data-en-aria="Back">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
     </a>
     <div class="flex items-center gap-2 text-xs md:text-sm">
-      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today">Bugün</span>
       <span id="today-date" class="opacity-95 font-semibold tracking-wide">—</span>
       <span class="hidden md:inline opacity-40 mx-1">·</span>
       <span data-weather class="hidden md:inline opacity-80">—</span>
@@ -221,22 +221,6 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CARDS GRID — Öne Çıkan 12 Kent (filtreli) -->
-<section class="bg-[#dce6ef]">
-  <div class="max-w-7xl mx-auto px-4 py-12">
-    <div class="flex items-end justify-between mb-6 flex-wrap gap-3">
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> Detaylar
-        </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800">Öne Çıkan Antik Kentler</h2>
-      </div>
-      <input id="search-input" type="search" placeholder="Antik kent ara..." class="border border-sea-200 rounded-md px-4 py-2 text-sm bg-white shadow w-64 focus:outline-none focus:border-sea-500">
-    </div>
-    <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </div>
 </section>
 
