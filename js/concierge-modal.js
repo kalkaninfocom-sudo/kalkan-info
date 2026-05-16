@@ -8,7 +8,7 @@
   if (window.__kalkan_concierge_mounted) return;
   window.__kalkan_concierge_mounted = true;
 
-  const DATA_URL = 'data/concierge.json';
+  const DATA_URL = '/data/concierge.json';
   let agents = null;
   let backdrop = null;
 
