@@ -1,3 +1,6 @@
+/* page-antik-kentler.js — Antik Kentler sayfası render + harita + tüm kentler */
+
+// ── Harita ────────────────────────────────────────────────────────────────────
 (async function loadLikyaMap() {
   const likyaMapEl = document.getElementById('likya-map');
   if (!likyaMapEl) return;
@@ -166,12 +169,283 @@
   }
 })();
 
+// ── Kart render + filtre + arama + detay modal ────────────────────────────────
+
 let allItems = [], currentFilter = '';
+
+function esc(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+}
+
+function categoryBadgeStyle(cat) {
+  if (cat === 'UNESCO Mirası') return 'background:#e89812;color:#0a2e4c;';
+  if (cat === 'Denizden')      return 'background:#10b981;color:#fff;';
+  return 'background:#1a5e93;color:#fff;';
+}
+
+function antikCard(city) {
+  const tags = (city.tags || []).slice(0, 3).map(t =>
+    `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sea-600/10 text-sea-600">${esc(t)}</span>`
+  ).join('');
+
+  const featuredRibbon = city.featured
+    ? `<span class="absolute top-3 right-3 bg-sun-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow z-10">★ Öne Çıkan</span>`
+    : '';
+
+  const imgSrc = city.image || '';
+  const imgHtml = imgSrc
+    ? `<img src="${esc(imgSrc)}" alt="${esc(city.name)}" class="w-full h-full object-cover" loading="lazy" decoding="async" onerror="this.style.display='none'">`
+    : `<div class="w-full h-full grid place-items-center text-4xl" style="background:linear-gradient(135deg,#0a2e4c 0%,#1a5e93 100%);color:#f4b53d;">🏛️</div>`;
+
+  const entryFee = city.entryFee
+    ? `<span class="text-[11px] text-sea-700/70">🎫 ${esc(city.entryFee)}</span>`
+    : '';
+  const hours = city.hours
+    ? `<span class="text-[11px] text-sea-700/70">🕐 ${esc(city.hours)}</span>`
+    : '';
+
+  return `
+    <article class="bg-white rounded-2xl overflow-hidden border border-sea-100 shadow-sm hover:shadow-[0_4px_24px_-4px_rgba(13,58,95,0.22)] transition-shadow cursor-pointer group" onclick="openDetail('${esc(city.id)}')">
+      <div class="relative aspect-[16/10] overflow-hidden">
+        ${imgHtml}
+        ${featuredRibbon}
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute bottom-3 left-3">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full" style="${categoryBadgeStyle(city.category)}">${esc(city.category)}</span>
+        </div>
+        ${city.rating ? `<div class="absolute bottom-3 right-3"><span class="bg-white/95 text-sun-500 text-xs font-bold px-2 py-0.5 rounded-full">★ ${Number(city.rating).toFixed(1)}</span></div>` : ''}
+      </div>
+      <div class="p-4">
+        <h3 class="font-display font-extrabold text-sea-800 text-base leading-tight group-hover:text-sun-600 transition-colors">${esc(city.name)}</h3>
+        <div class="text-xs text-sea-700/60 mt-1">${esc(city.distance || '')}${city.drive ? ` · ${esc(city.drive)}` : ''}</div>
+        <p class="text-sm text-sea-700/80 mt-2 line-clamp-2">${esc(city.summary || '')}</p>
+        <div class="flex flex-wrap gap-1 mt-3">${tags}</div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          ${entryFee}
+          ${hours}
+        </div>
+        <button onclick="event.stopPropagation();openDetail('${esc(city.id)}')" class="mt-3 w-full text-center text-xs font-bold text-sea-600 border border-sea-200 hover:bg-sea-50 py-1.5 rounded-lg transition">Detayı Gör →</button>
+      </div>
+    </article>
+  `;
+}
+
+function renderCards(items) {
+  const grid = document.getElementById('card-grid');
+  if (!grid) return;
+  if (!items || items.length === 0) {
+    grid.innerHTML = '<div class="col-span-full text-center py-12 text-sea-700/50">Eşleşen kent bulunamadı.</div>';
+    return;
+  }
+  grid.innerHTML = items.map(antikCard).join('');
+}
+
+function renderAllKents(items) {
+  const grid = document.getElementById('all-kents-grid');
+  if (!grid) return;
+  grid.innerHTML = items.map(antikCard).join('');
+}
+
+function renderGuideTable(items) {
+  const tbody = document.getElementById('guide-tbody');
+  if (!tbody) return;
+
+  // Zorluk/ulaşım sınıflandırması — JSON'daki drive alanına göre
+  function accessLevel(city) {
+    const d = (city.drive || '').toLowerCase();
+    if (d.includes('tekne') || d.includes('yürüyüş'))  return { label: 'Zor', cls: 'background:#fee2e2;color:#b91c1c' };
+    if (d.includes('1 saat') || d.includes('tırmanış')) return { label: 'Orta', cls: 'background:#dbeafe;color:#1d4ed8' };
+    return { label: 'Kolay', cls: 'background:#dcfce7;color:#15803d' };
+  }
+
+  function duration(city) {
+    return city.duration || '—';
+  }
+
+  function bestFor(city) {
+    const tags = (city.tags || []).join(' ').toLowerCase();
+    const cat  = (city.category || '').toLowerCase();
+    if (cat.includes('deniz') || tags.includes('tekne')) return 'Tekne turu sevenler';
+    if (tags.includes('yürüyüş') || tags.includes('dağ')) return 'Doğa yürüyüşçüleri';
+    if (cat.includes('unesco'))                           return 'Tarih meraklıları';
+    if (tags.includes('tenha') || tags.includes('otantik')) return 'Keşif arayanlar';
+    return 'Genel ziyaretçi';
+  }
+
+  const sorted = [...items].sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+  tbody.innerHTML = sorted.map(city => {
+    const acc = accessLevel(city);
+    return `
+      <tr class="border-b border-sea-50 hover:bg-sea-50/40 transition-colors">
+        <td class="px-4 py-3">
+          <button onclick="openDetail('${esc(city.id)}')" class="font-display font-bold text-sea-800 text-sm hover:text-sun-600 transition-colors text-left">${esc(city.name)}</button>
+        </td>
+        <td class="px-4 py-3 text-sm text-sea-700">${esc(city.distance || '—')}</td>
+        <td class="px-4 py-3 text-sm text-sea-700">${esc(duration(city))}</td>
+        <td class="px-4 py-3"><span style="font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;${acc.cls}">${acc.label}</span></td>
+        <td class="px-4 py-3 text-xs text-sea-700/80">${esc(bestFor(city))}</td>
+        <td class="px-4 py-3 text-xs text-sea-700/70">${esc(city.entryFee || 'Ücretsiz')}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function bindFilters() {
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active', 'bg-[#0a2e4c]', 'text-white', 'border-[#0a2e4c]'));
+      btn.classList.add('active', 'bg-[#0a2e4c]', 'text-white', 'border-[#0a2e4c]');
+      currentFilter = btn.dataset.filter;
+      const filtered = currentFilter
+        ? allItems.filter(i => i.category === currentFilter)
+        : allItems;
+      const q = document.getElementById('search-input')?.value?.trim() || '';
+      const final = q ? filtered.filter(i => JSON.stringify(i).toLowerCase().includes(q.toLowerCase())) : filtered;
+      renderCards(final);
+      if (window.filterLikyaMap) window.filterLikyaMap(currentFilter);
+    });
+  });
+}
+
+function bindSearch() {
+  const inp = document.getElementById('search-input');
+  if (!inp) return;
+  inp.addEventListener('input', () => {
+    const q = inp.value.trim().toLowerCase();
+    const base = currentFilter ? allItems.filter(i => i.category === currentFilter) : allItems;
+    const filtered = q ? base.filter(i => JSON.stringify(i).toLowerCase().includes(q)) : base;
+    renderCards(filtered);
+  });
+}
+
+// ── Detay Modal ───────────────────────────────────────────────────────────────
+
+window.openDetail = function(id) {
+  const city = allItems.find(c => c.id === id);
+  if (!city) return;
+  const modal = document.getElementById('detail-modal');
+  const content = document.getElementById('detail-content');
+  if (!modal || !content) return;
+
+  const galleryImgs = (city.gallery || [city.image]).filter(Boolean);
+  const galleryHtml = galleryImgs.length > 0
+    ? `<div class="relative aspect-[16/8] overflow-hidden bg-sea-900">
+        <img src="${esc(galleryImgs[0])}" alt="${esc(city.name)}" class="w-full h-full object-cover" onerror="this.style.opacity='0'">
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/70 to-transparent"></div>
+        <div class="absolute bottom-5 left-6 text-white">
+          <div class="text-xs uppercase tracking-widest opacity-70 font-semibold">${esc(city.category)}</div>
+          <div class="font-display font-extrabold text-3xl mt-1">${esc(city.name)}</div>
+          ${city.rating ? `<div class="text-sun-400 font-bold mt-1">★ ${Number(city.rating).toFixed(1)}</div>` : ''}
+        </div>
+        <button onclick="closeDetail()" class="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full bg-white/20 backdrop-blur text-white hover:bg-white/35 transition" aria-label="Kapat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>`
+    : `<div class="flex items-center justify-between p-5 border-b border-sea-100">
+        <h2 class="font-display font-extrabold text-sea-800 text-2xl">${esc(city.name)}</h2>
+        <button onclick="closeDetail()" class="w-9 h-9 grid place-items-center rounded-full border border-sea-100 hover:bg-sea-50 transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>`;
+
+  const highlights = (city.highlights || []).map(h =>
+    `<li class="flex gap-2 items-start text-sm text-sea-700"><span class="text-sun-500 font-bold mt-0.5">•</span><span>${esc(h)}</span></li>`
+  ).join('');
+
+  const tags = (city.tags || []).map(t =>
+    `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-sea-600/10 text-sea-600">${esc(t)}</span>`
+  ).join('');
+
+  content.innerHTML = `
+    ${galleryHtml}
+    <div class="p-6 md:p-8">
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-sea-50 rounded-xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-sea-500 font-bold mb-1">Mesafe</div>
+          <div class="font-display font-extrabold text-sea-800 text-sm">${esc(city.distance || '—')}</div>
+          <div class="text-xs text-sea-700/60 mt-0.5">${esc(city.drive || '')}</div>
+        </div>
+        <div class="bg-sea-50 rounded-xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-sea-500 font-bold mb-1">Giriş</div>
+          <div class="font-display font-extrabold text-sea-800 text-sm">${esc(city.entryFee || 'Ücretsiz')}</div>
+          <div class="text-xs text-sea-700/60 mt-0.5">${esc(city.hours || '')}</div>
+        </div>
+        <div class="bg-sea-50 rounded-xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-sea-500 font-bold mb-1">Ziyaret Süresi</div>
+          <div class="font-display font-extrabold text-sea-800 text-sm">${esc(city.duration || '—')}</div>
+        </div>
+      </div>
+
+      ${city.summary ? `<p class="text-sea-700 leading-relaxed mb-6">${esc(city.summary)}</p>` : ''}
+
+      ${city.history ? `
+        <div class="mb-6">
+          <h3 class="font-display font-extrabold text-sea-800 text-lg mb-2">Tarihçe</h3>
+          <p class="text-sea-700/80 text-sm leading-relaxed">${esc(city.history)}</p>
+        </div>
+      ` : ''}
+
+      ${highlights ? `
+        <div class="mb-6">
+          <h3 class="font-display font-extrabold text-sea-800 text-lg mb-3">Öne Çıkan Noktalar</h3>
+          <ul class="space-y-2">${highlights}</ul>
+        </div>
+      ` : ''}
+
+      ${city.tips ? `
+        <div class="bg-sun-400/8 border border-sun-400/30 rounded-xl p-4 mb-6">
+          <div class="text-xs uppercase tracking-widest text-sun-600 font-bold mb-1">Ziyaretçi Tüyoları</div>
+          <p class="text-sm text-sea-700 leading-relaxed">${esc(city.tips)}</p>
+        </div>
+      ` : ''}
+
+      ${city.transport ? `
+        <div class="mb-6">
+          <h3 class="font-display font-extrabold text-sea-800 text-sm mb-1">Ulaşım</h3>
+          <p class="text-sm text-sea-700/80">${esc(city.transport)}</p>
+        </div>
+      ` : ''}
+
+      ${tags ? `<div class="flex flex-wrap gap-1.5 mb-6">${tags}</div>` : ''}
+
+      <div class="flex gap-3">
+        ${city.lat && city.lng ? `
+          <a href="https://www.google.com/maps/dir/?api=1&destination=${city.lat},${city.lng}" target="_blank" rel="noopener"
+             class="flex-1 flex items-center justify-center gap-2 bg-sea-800 text-white text-sm font-bold py-2.5 rounded-xl hover:bg-sea-700 transition">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Yol Tarifi
+          </a>
+        ` : ''}
+        <button onclick="closeDetail()" class="flex-1 border border-sea-200 text-sea-700 text-sm font-bold py-2.5 rounded-xl hover:bg-sea-50 transition">
+          Kapat
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeDetail = function() {
+  const modal = document.getElementById('detail-modal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') window.closeDetail();
+});
+
+// ── Ana init ──────────────────────────────────────────────────────────────────
 
 (async () => {
   const data = await KalkanData.load('antik-kentler');
   allItems = data.items || [];
   renderCards(allItems);
+  renderAllKents(allItems);
+  renderGuideTable(allItems);
   bindFilters();
   bindSearch();
 })();
