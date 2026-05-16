@@ -58,7 +58,7 @@
       <article class="news-card group rounded-xl overflow-hidden bg-white border border-sea-100 card-hover transition" data-cat="${escapeHtml(item.category)}" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.13);">
         <a href="${href}"${externalAttr} class="block">
           <div class="relative overflow-hidden">
-            <img src="${safeImage}" loading="lazy" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="${escapeHtml(item.title)}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80'" />
+            <img src="${safeImage}" loading="lazy" class="w-full h-44 object-cover group-hover:scale-[1.04]" style="transition:transform .4s cubic-bezier(.25,.46,.45,.94);" alt="${escapeHtml(item.title)}" onerror="this.onerror=null;this.src='/assets/img/b7549bd5771f.webp'" />
             <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
             <div class="absolute inset-0" style="background:${tinted};mix-blend-mode:multiply;"></div>
             <span class="absolute top-3 left-3 text-white text-[11px] font-bold uppercase px-2 py-1 rounded" style="letter-spacing:0.06em;background:${style.bg};">${style.emoji} ${escapeHtml(item.category)}</span>
