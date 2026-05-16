@@ -131,6 +131,7 @@ const KalkanData = (() => {
           ${dots}
           ${v.featured ? featuredBadge() : ''}
           <div class="absolute top-3 left-3 z-[3]"><span class="bg-ink-900/85 text-white text-[10px] font-bold px-2 py-1 rounded-full">${escape(v.category||'')}</span></div>
+          ${v.instagram ? `<a href="${escape(v.instagram)}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="absolute bottom-3 right-3 z-[3] w-9 h-9 rounded-full grid place-items-center text-white transition hover:scale-110" style="background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);box-shadow:0 2px 8px rgba(0,0,0,0.3);" title="Instagram'da gör" aria-label="${escape(v.name||'villa')} Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>` : ''}
         </div>
         <div class="p-4">
           <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${escape(v.name)}</h3>
