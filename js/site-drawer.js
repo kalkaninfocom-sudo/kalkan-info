@@ -85,6 +85,13 @@
             '</ul>' +
           '</div>' +
           '<div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">İş & Kariyer</div>' +
+            '<ul class="space-y-1.5">' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="ilanlar.html">💼 İş İlanları</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="ilan-ver.html">📝 İlan Ver</a></li>' +
+            '</ul>' +
+          '</div>' +
+          '<div>' +
             '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Hesap</div>' +
             '<ul class="space-y-1.5">' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="login.html">🔑 Giriş Yap</a></li>' +
