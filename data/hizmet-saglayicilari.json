@@ -6,7 +6,6 @@
     "note": "Sağlayıcılar hizmet-ekle.html üzerinden başvurup admin onayından sonra eklenir. Aşağıdaki örnekler gerçek isim+iletişim için Berkay tarafından doldurulacaktır."
   },
   "services": {
-
     "catering": {
       "title": "Catering Hizmetleri",
       "icon": "🍽️",
@@ -15,14 +14,20 @@
           "id": "catering-kalimera-kitchen",
           "name": "Kalimera Kitchen",
           "type": "İşletme",
-          "rating": 5.0,
+          "rating": 5,
           "reviewCount": 18,
-          "image": "https://kalimerakitchen.com/brand_assets/turkish-spread.jpeg",
-          "logo": "https://kalimerakitchen.com/brand_assets/kalimera-logo.jpeg",
+          "image": "/assets/img/kalimera-logo.jpeg",
+          "logo": "/assets/img/kalimera-logo.jpeg",
           "website": "https://kalimerakitchen.com",
           "instagram": "https://instagram.com/kalimerakitchen",
           "summary": "Kalkan villalarında özel şef hizmeti — taze Akdeniz mutfağı, BBQ akşamları, kahvaltı ve geleneksel Türk gecesi menüleri. Tekne charter dahil çoklu servis.",
-          "specialties": ["Akdeniz mutfağı", "Villa şefi", "Türk Gecesi BBQ", "Tekne catering", "Özel menü tasarımı"],
+          "specialties": [
+            "Akdeniz mutfağı",
+            "Villa şefi",
+            "Türk Gecesi BBQ",
+            "Tekne catering",
+            "Özel menü tasarımı"
+          ],
           "experience": "Profesyonel mutfak ekibi",
           "phone": "+90 539 743 07 81",
           "whatsapp": "+90 539 743 07 81",
@@ -30,74 +35,9 @@
           "location": "Kalkan / Antalya",
           "verified": true,
           "featured": true
-        },
-        {
-          "id": "catering-arzu",
-          "name": "Arzu Mutfağı",
-          "type": "İşletme",
-          "rating": 4.8,
-          "reviewCount": 47,
-          "image": "/assets/img/2e696a5b4ac8.webp",
-          "summary": "Düğün, nişan, doğum günü için 50–300 kişilik açık büfe ve özel menü tasarımı. 12 yıl tecrübe.",
-          "specialties": ["Açık büfe", "Özel diyet menü", "Düğün servisi"],
-          "experience": "12 yıl",
-          "phone": "+90 532 XXX XX XX",
-          "whatsapp": "+90 530 665 07 94",
-          "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
-        },
-        {
-          "id": "catering-volkan",
-          "name": "Şef Volkan Catering",
-          "type": "Kişisel",
-          "rating": 4.9,
-          "reviewCount": 63,
-          "image": "/assets/img/69a05dd6f28d.webp",
-          "summary": "Villa partileri için özel şef hizmeti, menü kişiselleştirme, taze Akdeniz mutfağı. Min. 10 kişi.",
-          "specialties": ["Akdeniz mutfağı", "Glüten-free", "Villa partisi"],
-          "experience": "8 yıl",
-          "phone": "+90 533 XXX XX XX",
-          "whatsapp": "+90 530 665 07 94",
-          "location": "Kalkan Kalıntı Mah.",
-          "verified": true,
-          "featured": false
-        },
-        {
-          "id": "catering-akdeniz",
-          "name": "Akdeniz Catering & Organizasyon",
-          "type": "İşletme",
-          "rating": 4.6,
-          "reviewCount": 29,
-          "image": "/assets/img/781caca56e7a.webp",
-          "summary": "Kurumsal etkinlikler ve villa partileri. Kurulum, servis personeli ve temizlik dahil komple paket.",
-          "specialties": ["Kurumsal", "Komple paket", "Ekipman kiralama"],
-          "experience": "6 yıl",
-          "phone": "+90 542 XXX XX XX",
-          "whatsapp": "+90 530 665 07 94",
-          "location": "Kaş / Kalkan",
-          "verified": true,
-          "featured": false
-        },
-        {
-          "id": "catering-elif",
-          "name": "Elif Hanım Ev Yemekleri",
-          "type": "Kişisel",
-          "rating": 4.7,
-          "reviewCount": 18,
-          "image": "/assets/img/6db7c65350b7.webp",
-          "summary": "Ev yapımı Türk mutfağı, yöresel lezzetler. Küçük aile organizasyonları ve özel günler için ideal.",
-          "specialties": ["Türk mutfağı", "Ev yemekleri", "Küçük gruplar"],
-          "experience": "15 yıl",
-          "phone": "+90 505 XXX XX XX",
-          "whatsapp": "+90 530 665 07 94",
-          "location": "Kalkan Eski Mahalle",
-          "verified": false,
-          "featured": false
         }
       ]
     },
-
     "barmen": {
       "title": "Özel Barmen",
       "icon": "🍹",
@@ -110,7 +50,11 @@
           "reviewCount": 54,
           "image": "/assets/img/1006f40f16a5.webp",
           "summary": "Uluslararası sertifikalı barmen. Mobil bar kurulumu, özel kokteyl menüsü, alkollü/alkolsüz seçenekler.",
-          "specialties": ["Craft kokteyl", "Mobil bar", "Mocktail"],
+          "specialties": [
+            "Craft kokteyl",
+            "Mobil bar",
+            "Mocktail"
+          ],
           "experience": "10 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -126,7 +70,11 @@
           "reviewCount": 31,
           "image": "/assets/img/68f317163560.webp",
           "summary": "2 kişilik barmen ekibi. Villa etkinlikleri, düğün ve bekarlığa veda gecesi için eksiksiz mobil bar.",
-          "specialties": ["Villa etkinliği", "2 kişilik ekip", "Malzeme dahil"],
+          "specialties": [
+            "Villa etkinliği",
+            "2 kişilik ekip",
+            "Malzeme dahil"
+          ],
           "experience": "7 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -142,7 +90,11 @@
           "reviewCount": 22,
           "image": "/assets/img/7b023b3bcc56.webp",
           "summary": "Yerel sahil ve marina barlarında 8 yıl tecrübe. Tropikal ve Akdeniz temalı özel içki listeleri.",
-          "specialties": ["Tropikal", "Sahil temalı", "Şarap servisi"],
+          "specialties": [
+            "Tropikal",
+            "Sahil temalı",
+            "Şarap servisi"
+          ],
           "experience": "8 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -152,7 +104,6 @@
         }
       ]
     },
-
     "tesisat": {
       "title": "Tesisat Hizmetleri",
       "icon": "🔧",
@@ -165,7 +116,11 @@
           "reviewCount": 89,
           "image": "/assets/img/ebe28a7d1114.webp",
           "summary": "Su arızası, patlak boru, kaçak tespiti. Aynı gün müdahale garantisi. 15 yıl Kalkan tecrübesi.",
-          "specialties": ["Su tesisatı", "Acil müdahale", "Kaçak tespiti"],
+          "specialties": [
+            "Su tesisatı",
+            "Acil müdahale",
+            "Kaçak tespiti"
+          ],
           "experience": "15 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -181,7 +136,11 @@
           "reviewCount": 61,
           "image": "/assets/img/ff2a946bf212.webp",
           "summary": "Elektrik pano, sigorta, topraklama ve aydınlatma kurulumu. Su + elektrik kombine paket hizmet.",
-          "specialties": ["Elektrik tesisatı", "Pano kurulumu", "Su+elektrik"],
+          "specialties": [
+            "Elektrik tesisatı",
+            "Pano kurulumu",
+            "Su+elektrik"
+          ],
           "experience": "12 yıl",
           "phone": "+90 533 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -197,7 +156,11 @@
           "reviewCount": 43,
           "image": "/assets/img/037f734fcbbe.webp",
           "summary": "Su, elektrik, klima, ısıtma sistemleri. Sezonluk bakım sözleşmesi, villa yöneticileri için tercih.",
-          "specialties": ["Klima bakım", "Sezonluk sözleşme", "Villa yönetimi"],
+          "specialties": [
+            "Klima bakım",
+            "Sezonluk sözleşme",
+            "Villa yönetimi"
+          ],
           "experience": "10 yıl",
           "phone": "+90 242 844 XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -213,7 +176,11 @@
           "reviewCount": 19,
           "image": "/assets/img/b7bb8ce5d4bf.webp",
           "summary": "Bölgenin en uygun fiyatlı tesisatçısı. Basit arızalar, musluk değişimi, sifon onarımı.",
-          "specialties": ["Uygun fiyat", "Küçük onarım", "Hızlı müdahale"],
+          "specialties": [
+            "Uygun fiyat",
+            "Küçük onarım",
+            "Hızlı müdahale"
+          ],
           "experience": "9 yıl",
           "phone": "+90 543 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -223,7 +190,6 @@
         }
       ]
     },
-
     "bahce": {
       "title": "Bahçe Hizmetleri",
       "icon": "🌿",
@@ -236,7 +202,11 @@
           "reviewCount": 38,
           "image": "/assets/img/2b18858cd955.webp",
           "summary": "Peyzaj tasarımı, otomatik sulama kurulumu ve haftalık bakım. Villa bahçeleri için sezonluk paketler.",
-          "specialties": ["Peyzaj tasarımı", "Sulama sistemi", "Sezonluk bakım"],
+          "specialties": [
+            "Peyzaj tasarımı",
+            "Sulama sistemi",
+            "Sezonluk bakım"
+          ],
           "experience": "11 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -252,7 +222,11 @@
           "reviewCount": 45,
           "image": "/assets/img/60e1a995fd06.webp",
           "summary": "Ağaç budama, çim biçme, dikim hizmetleri. Bölgeye özgü akdeniz bitkilerinde uzman.",
-          "specialties": ["Ağaç budama", "Dikim", "Akdeniz bitkileri"],
+          "specialties": [
+            "Ağaç budama",
+            "Dikim",
+            "Akdeniz bitkileri"
+          ],
           "experience": "20 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -268,7 +242,11 @@
           "reviewCount": 27,
           "image": "/assets/img/ebe28a7d1114.webp",
           "summary": "Akıllı sulama sistemleri kurulumu ve yönetimi. Mobil uygulama ile uzaktan kontrol seçeneği.",
-          "specialties": ["Akıllı sulama", "Uzaktan kontrol", "Sistem kurulum"],
+          "specialties": [
+            "Akıllı sulama",
+            "Uzaktan kontrol",
+            "Sistem kurulum"
+          ],
           "experience": "7 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -278,7 +256,6 @@
         }
       ]
     },
-
     "havuz": {
       "title": "Havuz Bakım & Onarım",
       "icon": "🏊",
@@ -291,7 +268,11 @@
           "reviewCount": 72,
           "image": "/assets/img/952dc490ffdf.webp",
           "summary": "Haftalık kimyasal denge ve temizlik, sezon açılışı hazırlığı, pompa ve filtre onarımı. 60+ villa müşteri.",
-          "specialties": ["Haftalık bakım", "Kimyasal denge", "Sezon açılışı"],
+          "specialties": [
+            "Haftalık bakım",
+            "Kimyasal denge",
+            "Sezon açılışı"
+          ],
           "experience": "13 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -307,7 +288,11 @@
           "reviewCount": 34,
           "image": "/assets/img/c44f562ff4af.webp",
           "summary": "Pompa, filtre, aydınlatma ve ısıtma sistemi onarımı. Yedek parça temininde hız ve uygun fiyat.",
-          "specialties": ["Pompa onarımı", "Isıtma sistemi", "Yedek parça"],
+          "specialties": [
+            "Pompa onarımı",
+            "Isıtma sistemi",
+            "Yedek parça"
+          ],
           "experience": "9 yıl",
           "phone": "+90 536 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -323,7 +308,11 @@
           "reviewCount": 28,
           "image": "/assets/img/9ee05577e18c.webp",
           "summary": "Havuz inşası, yenileme ve bakım paketleri. Fayans yenileme ve sızdırmazlık uygulaması da dahil.",
-          "specialties": ["Havuz inşası", "Fayans yenileme", "Sızdırmazlık"],
+          "specialties": [
+            "Havuz inşası",
+            "Fayans yenileme",
+            "Sızdırmazlık"
+          ],
           "experience": "8 yıl",
           "phone": "+90 542 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -339,7 +328,11 @@
           "reviewCount": 16,
           "image": "/assets/img/3d71322dea26.webp",
           "summary": "Uygun fiyatlı haftalık bakım paketi. Küçük villalar ve apart daireler için ideal.",
-          "specialties": ["Uygun fiyat", "Küçük villalar", "Haftalık kontrol"],
+          "specialties": [
+            "Uygun fiyat",
+            "Küçük villalar",
+            "Haftalık kontrol"
+          ],
           "experience": "5 yıl",
           "phone": "+90 545 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -349,7 +342,6 @@
         }
       ]
     },
-
     "transfer-havalimani": {
       "title": "Havalimanı Transferi",
       "icon": "✈️",
@@ -362,7 +354,11 @@
           "reviewCount": 143,
           "image": "/assets/img/4c5a64a5ca12.webp",
           "summary": "Antalya ve Dalaman'dan özel VIP araç ve minibüs transferi. Uçuş takibi, ücretsiz bekleme dahil.",
-          "specialties": ["VIP sedan", "Minibüs 8+1", "Uçuş takibi"],
+          "specialties": [
+            "VIP sedan",
+            "Minibüs 8+1",
+            "Uçuş takibi"
+          ],
           "experience": "14 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -378,7 +374,11 @@
           "reviewCount": 88,
           "image": "/assets/img/9309cf4d9e6d.webp",
           "summary": "7/24 ekonomi ve konfor sınıfı transfer. Sabit fiyat garantisi, online rezervasyon.",
-          "specialties": ["Ekonomi", "Sabit fiyat", "Online rezervasyon"],
+          "specialties": [
+            "Ekonomi",
+            "Sabit fiyat",
+            "Online rezervasyon"
+          ],
           "experience": "10 yıl",
           "phone": "+90 533 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -394,7 +394,11 @@
           "reviewCount": 51,
           "image": "/assets/img/b7549bd5771f.webp",
           "summary": "Konforlu Mercedes E-Serisi ile özel şoförlü transfer. Aynı gün rezervasyon mümkün.",
-          "specialties": ["Mercedes E-Serisi", "Özel şoför", "Aynı gün"],
+          "specialties": [
+            "Mercedes E-Serisi",
+            "Özel şoför",
+            "Aynı gün"
+          ],
           "experience": "8 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -410,7 +414,11 @@
           "reviewCount": 37,
           "image": "/assets/img/a7612dfe73ff.webp",
           "summary": "Büyük gruplar için 16-50 kişilik otobüs transferi. Düğün kafilesi ve tur grubu özel fiyatı.",
-          "specialties": ["Grup transferi", "Otobüs 16-50 kişi", "Düğün kafilesi"],
+          "specialties": [
+            "Grup transferi",
+            "Otobüs 16-50 kişi",
+            "Düğün kafilesi"
+          ],
           "experience": "6 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -420,7 +428,6 @@
         }
       ]
     },
-
     "temizlik": {
       "title": "Temizlik Hizmetleri",
       "icon": "🧹",
@@ -433,7 +440,11 @@
           "reviewCount": 94,
           "image": "/assets/img/cc487d114753.webp",
           "summary": "Villa çıkış temizliği, kiracı değişimi ve derin temizlik. Ekolojik ürün kullanımı seçeneği.",
-          "specialties": ["Çıkış temizliği", "Derin temizlik", "Ekolojik ürün"],
+          "specialties": [
+            "Çıkış temizliği",
+            "Derin temizlik",
+            "Ekolojik ürün"
+          ],
           "experience": "9 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -449,7 +460,11 @@
           "reviewCount": 67,
           "image": "/assets/img/18608315840f.webp",
           "summary": "Bölgede 20 yıldır villa temizlikçisi. Ev sahibi güveniyle çalışır, referansları mükemmel.",
-          "specialties": ["Güvenilir", "20 yıl tecrübe", "Referanslı"],
+          "specialties": [
+            "Güvenilir",
+            "20 yıl tecrübe",
+            "Referanslı"
+          ],
           "experience": "20 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -465,7 +480,11 @@
           "reviewCount": 41,
           "image": "/assets/img/f00e77d9d043.webp",
           "summary": "Ofis, apart ve villa için kurumsal temizlik. Ekip ile çalışır, büyük projeler uzmanlığı.",
-          "specialties": ["Ekip çalışması", "Ofis temizliği", "Kısa süre"],
+          "specialties": [
+            "Ekip çalışması",
+            "Ofis temizliği",
+            "Kısa süre"
+          ],
           "experience": "7 yıl",
           "phone": "+90 542 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -475,7 +494,6 @@
         }
       ]
     },
-
     "nakliyat": {
       "title": "Nakliyat Hizmetleri",
       "icon": "🚛",
@@ -488,7 +506,11 @@
           "reviewCount": 52,
           "image": "/assets/img/c093e1b3a0ed.webp",
           "summary": "Şehir içi ve şehirlerarası eşya taşıma. Asansörlü araç, sigortalı taşıma ve paketleme.",
-          "specialties": ["Asansörlü araç", "Sigortalı", "Paketleme"],
+          "specialties": [
+            "Asansörlü araç",
+            "Sigortalı",
+            "Paketleme"
+          ],
           "experience": "11 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -504,7 +526,11 @@
           "reviewCount": 29,
           "image": "/assets/img/b7549bd5771f.webp",
           "summary": "Küçük ve orta çaplı taşınmalar için uygun fiyatlı seçenek. Kamyonet ile şehir içi nakliye.",
-          "specialties": ["Küçük taşıma", "Uygun fiyat", "Kamyonet"],
+          "specialties": [
+            "Küçük taşıma",
+            "Uygun fiyat",
+            "Kamyonet"
+          ],
           "experience": "7 yıl",
           "phone": "+90 545 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -520,7 +546,11 @@
           "reviewCount": 34,
           "image": "/assets/img/3d202fcae860.webp",
           "summary": "Antalya, İstanbul, İzmir güzergahı şehirlerarası nakliyat. Antika ve değerli eşya özel taşıma.",
-          "specialties": ["Şehirlerarası", "Antika taşıma", "GPS takip"],
+          "specialties": [
+            "Şehirlerarası",
+            "Antika taşıma",
+            "GPS takip"
+          ],
           "experience": "12 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -530,7 +560,6 @@
         }
       ]
     },
-
     "boya": {
       "title": "Boya & Badana Ustası",
       "icon": "🎨",
@@ -543,7 +572,11 @@
           "reviewCount": 56,
           "image": "/assets/img/18f4f924f55d.webp",
           "summary": "İç ve dış cephe boyama, badana ve alçı sıva. Villa dış cephesinde 15 yıl uygulama.",
-          "specialties": ["Dış cephe", "İç boyama", "Alçı sıva"],
+          "specialties": [
+            "Dış cephe",
+            "İç boyama",
+            "Alçı sıva"
+          ],
           "experience": "15 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -559,7 +592,11 @@
           "reviewCount": 31,
           "image": "/assets/img/cbf4df8bed1b.webp",
           "summary": "Dekoratif boya, kabartma desen ve özel efekt uygulamaları. Modern villa ve otel projeleri.",
-          "specialties": ["Dekoratif boya", "Özel efekt", "Otel projeleri"],
+          "specialties": [
+            "Dekoratif boya",
+            "Özel efekt",
+            "Otel projeleri"
+          ],
           "experience": "8 yıl",
           "phone": "+90 542 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -575,7 +612,11 @@
           "reviewCount": 24,
           "image": "/assets/img/1d0bb6fa0e4e.webp",
           "summary": "Hızlı ve temiz badana hizmeti. Küçük iç mekan işleri ve küçük villa daireleri için idealdir.",
-          "specialties": ["Hızlı teslim", "Küçük işler", "Uygun fiyat"],
+          "specialties": [
+            "Hızlı teslim",
+            "Küçük işler",
+            "Uygun fiyat"
+          ],
           "experience": "10 yıl",
           "phone": "+90 546 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -585,7 +626,6 @@
         }
       ]
     },
-
     "tasduvar": {
       "title": "Taş Duvar Ustası",
       "icon": "🪨",
@@ -598,7 +638,11 @@
           "reviewCount": 48,
           "image": "/assets/img/d2cd73117ec3.webp",
           "summary": "Likya geleneğiyle doğal kireç taşı ve bazalt duvar inşası. Özgün bahçe sınır yapıları.",
-          "specialties": ["Likya taş işçiliği", "Doğal kireçtaşı", "Bahçe duvarı"],
+          "specialties": [
+            "Likya taş işçiliği",
+            "Doğal kireçtaşı",
+            "Bahçe duvarı"
+          ],
           "experience": "22 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -614,7 +658,11 @@
           "reviewCount": 33,
           "image": "/assets/img/cbf4df8bed1b.webp",
           "summary": "Taş kaplama, teras döşeme ve şömine inşası. Kalkan villalarının en çok tercih ettiği ustası.",
-          "specialties": ["Taş kaplama", "Teras döşeme", "Şömine"],
+          "specialties": [
+            "Taş kaplama",
+            "Teras döşeme",
+            "Şömine"
+          ],
           "experience": "17 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -630,7 +678,11 @@
           "reviewCount": 21,
           "image": "/assets/img/ebe28a7d1114.webp",
           "summary": "Büyük ölçekli taş duvar ve teraslama projeleri. Mühendislik hesaplı iskân uyumlu yapılar.",
-          "specialties": ["Büyük projeler", "Teraslama", "İskân uyumlu"],
+          "specialties": [
+            "Büyük projeler",
+            "Teraslama",
+            "İskân uyumlu"
+          ],
           "experience": "9 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -640,7 +692,6 @@
         }
       ]
     },
-
     "cocukbakim": {
       "title": "Çocuk Bakım Hizmetleri",
       "icon": "👶",
@@ -653,7 +704,11 @@
           "reviewCount": 41,
           "image": "/assets/img/8ac1e4fac41d.webp",
           "summary": "Sertifikalı çocuk gelişimi uzmanı. 0–12 yaş bakım, İngilizce iletişim. Tatil aileleri için günlük paket.",
-          "specialties": ["0-12 yaş", "İngilizce", "Günlük paket"],
+          "specialties": [
+            "0-12 yaş",
+            "İngilizce",
+            "Günlük paket"
+          ],
           "experience": "14 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -669,7 +724,11 @@
           "reviewCount": 29,
           "image": "/assets/img/6e983dcddf39.webp",
           "summary": "Referanslı ve özgeçmişi onaylı bakıcı havuzu. Kısa veya uzun dönem rezervasyon, anlık uygun.",
-          "specialties": ["Referanslı havuz", "Kısa dönem", "Anlık rezervasyon"],
+          "specialties": [
+            "Referanslı havuz",
+            "Kısa dönem",
+            "Anlık rezervasyon"
+          ],
           "experience": "5 yıl",
           "phone": "+90 542 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -685,7 +744,11 @@
           "reviewCount": 18,
           "image": "/assets/img/fb8b151fdc0e.webp",
           "summary": "Bakım + eğlence bir arada. Plaj aktiviteleri, boyama, müzik ve hikaye saatleri. 3–10 yaş.",
-          "specialties": ["Aktivite rehberi", "3-10 yaş", "Plaj aktivitesi"],
+          "specialties": [
+            "Aktivite rehberi",
+            "3-10 yaş",
+            "Plaj aktivitesi"
+          ],
           "experience": "6 yıl",
           "phone": "+90 536 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -695,7 +758,6 @@
         }
       ]
     },
-
     "evcilbakim": {
       "title": "Evcil Hayvan Bakımı",
       "icon": "🐾",
@@ -708,7 +770,11 @@
           "reviewCount": 58,
           "image": "/assets/img/01f3c83b6c2a.webp",
           "summary": "Köpek ve kedi otelciliği, günlük gezdirme ve beslenme takibi. Tatildeyken içiniz rahat olsun.",
-          "specialties": ["Pet otelcilik", "Köpek & kedi", "Günlük bakım"],
+          "specialties": [
+            "Pet otelcilik",
+            "Köpek & kedi",
+            "Günlük bakım"
+          ],
           "experience": "8 yıl",
           "phone": "+90 532 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -724,7 +790,11 @@
           "reviewCount": 36,
           "image": "/assets/img/13ed31678b11.webp",
           "summary": "Evde bakım seçeneği — hayvanınız kendi ortamında kalır. Günlük rapor ve fotoğraf paylaşımı.",
-          "specialties": ["Evde bakım", "Günlük rapor", "Fotoğraf takibi"],
+          "specialties": [
+            "Evde bakım",
+            "Günlük rapor",
+            "Fotoğraf takibi"
+          ],
           "experience": "5 yıl",
           "phone": "+90 535 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -740,7 +810,11 @@
           "reviewCount": 22,
           "image": "/assets/img/5345b6760ca3.webp",
           "summary": "Veteriner ulaşım koordinasyonu ve acil durum yönlendirmesi. Kaş veterinerine transfer ve tercümanlık.",
-          "specialties": ["Vet transferi", "Acil yönlendirme", "Tercümanlık"],
+          "specialties": [
+            "Vet transferi",
+            "Acil yönlendirme",
+            "Tercümanlık"
+          ],
           "experience": "4 yıl",
           "phone": "+90 541 XXX XX XX",
           "whatsapp": "+90 530 665 07 94",
@@ -750,6 +824,5 @@
         }
       ]
     }
-
   }
 }
