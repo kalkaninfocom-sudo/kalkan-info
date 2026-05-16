@@ -527,6 +527,22 @@
         if (!c.dataset.service) c.dataset.service = sid;
       }
     });
+
+    // Hash auto-open: hizmetler.html#catering vb. derin link gelirse modal'ı aç
+    const VALID_SERVICE_IDS = new Set(Object.values(TITLE_TO_SERVICE));
+    async function maybeOpenFromHash() {
+      const raw = (location.hash || '').replace(/^#/, '').toLowerCase().trim();
+      if (!raw) return;
+      const serviceId = TITLE_TO_SERVICE[raw] || raw;
+      if (!VALID_SERVICE_IDS.has(serviceId)) return; // unknown hash → ignore
+      // Modal API hazır olana kadar küçük gecikme — items-grid render olabilsin
+      setTimeout(() => openModal(serviceId), 400);
+    }
+    maybeOpenFromHash();
+    window.addEventListener('hashchange', maybeOpenFromHash);
+
+    // Programatik erişim için global hook
+    window.openProvidersModal = openModal;
   }
 
   // ── Init ──────────────────────────────────────────────────────────────────
