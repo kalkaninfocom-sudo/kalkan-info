@@ -82,12 +82,39 @@
     if (document.getElementById('ki-i18n-styles')) return;
     const s = document.createElement('style');
     s.id = 'ki-i18n-styles';
-    s.textContent = '[data-lang-toggle]{transition:color .15s ease,background .15s ease;}[data-lang-toggle].lang-active{color:#f4b53d!important;font-weight:800;}';
+    s.textContent = `
+      [data-lang-toggle]{transition:color .15s ease,background .15s ease;}
+      [data-lang-toggle].lang-active{color:#f4b53d!important;font-weight:800;}
+      #ki-lang-switcher{position:fixed;top:14px;right:14px;z-index:9995;display:flex;align-items:center;gap:0;background:rgba(7,33,54,0.78);backdrop-filter:blur(10px);border:1px solid rgba(244,181,61,0.3);border-radius:9999px;padding:4px;box-shadow:0 4px 16px rgba(0,0,0,0.25);font-family:'Inter',system-ui,sans-serif;}
+      #ki-lang-switcher button{background:transparent;border:0;color:rgba(255,255,255,0.7);font-size:11px;font-weight:700;letter-spacing:0.04em;padding:5px 10px;border-radius:9999px;cursor:pointer;transition:all .18s ease;min-width:32px;}
+      #ki-lang-switcher button.lang-active{background:#f4b53d;color:#0a2e4c!important;font-weight:800!important;box-shadow:0 1px 4px rgba(244,181,61,0.4);}
+      #ki-lang-switcher button:not(.lang-active):hover{color:#fff;background:rgba(255,255,255,0.08);}
+      #ki-lang-switcher button:disabled{opacity:0.45;cursor:not-allowed;}
+      @media (max-width:640px){#ki-lang-switcher{top:10px;right:10px;padding:3px;}#ki-lang-switcher button{padding:4px 8px;font-size:10px;min-width:28px;}}
+    `;
     document.head.appendChild(s);
+  }
+
+  function injectSwitcher() {
+    if (document.getElementById('ki-lang-switcher')) return;
+    const cur = detectLang();
+    const el = document.createElement('div');
+    el.id = 'ki-lang-switcher';
+    el.setAttribute('role', 'group');
+    el.setAttribute('aria-label', 'Dil seçimi / Language');
+    el.innerHTML = `
+      <button type="button" data-lang-toggle="en" onclick="event.preventDefault();setLang('en');" title="English" aria-label="English">EN</button>
+      <button type="button" data-lang-toggle="tr" onclick="event.preventDefault();setLang('tr');" title="Türkçe" aria-label="Türkçe">TR</button>
+      <button type="button" disabled title="Deutsch — yakında" aria-label="Deutsch (yakında)">DE</button>
+      <button type="button" disabled title="Русский — yakında" aria-label="Русский (yakında)">RU</button>
+      <button type="button" disabled title="Français — yakında" aria-label="Français (yakında)">FR</button>
+    `;
+    document.body.appendChild(el);
   }
 
   function init() {
     injectStyles();
+    injectSwitcher();
     apply(detectLang());
     // Geç gelen kart/list render'lar için de uygula
     const mo = new MutationObserver(muts => {
