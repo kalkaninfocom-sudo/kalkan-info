@@ -216,7 +216,7 @@
         </select>
       </div>
       <div class="ml-auto">
-        <span class="text-xs text-sea-600 font-semibold bg-sea-50 border border-sea-200 rounded-full px-3 py-1.5">12 villa listelendi</span>
+        <span id="villa-count" class="text-xs text-sea-600 font-semibold bg-sea-50 border border-sea-200 rounded-full px-3 py-1.5">Yükleniyor…</span>
       </div>
     </div>
   </div>
@@ -331,7 +331,7 @@
   const fmt = new Intl.DateTimeFormat('tr-TR',{day:'numeric',month:'long',year:'numeric'});
   const el = document.getElementById('today-date'); if(el) el.textContent = fmt.format(new Date());
 </script>
-<script src="js/render.js?v=20260516b" defer></script>
+<script src="js/render.js?v=20260516c" defer></script>
 <script src="js/pwa.js?v=2" defer></script>
 <script>
 (async () => {
@@ -345,6 +345,8 @@
   function render() {
     const items = KalkanData.filterItems(data.items, { q: searchEl?.value || '', category: catEl?.value || '' });
     grid.innerHTML = items.map(KalkanData.villaCard).join('') || '<div class="col-span-full text-center py-12 text-sea-700/60">Sonuç bulunamadı.</div>';
+    const countEl = document.getElementById('villa-count');
+    if (countEl) countEl.textContent = items.length + ' villa listelendi';
   }
   searchEl?.addEventListener('input', render);
   catEl?.addEventListener('change', render);
