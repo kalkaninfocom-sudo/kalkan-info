@@ -135,25 +135,25 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 <section class="max-w-7xl mx-auto px-4 py-12">
   <div class="text-center mb-6">
     <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> İnteraktif Harita
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Interactive Map">İnteraktif Harita</span>
     </div>
-    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-sea-800">Likya Medeniyeti Haritası</h2>
-    <p class="text-sea-700/70 mt-2 max-w-2xl mx-auto">17 antik kent + 540 km Likya Yolu. Tıklayarak detayları gör.</p>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-sea-800" data-en="Map of Lycian Civilisation">Likya Medeniyeti Haritası</h2>
+    <p class="text-sea-700/70 mt-2 max-w-2xl mx-auto" data-en="17 ancient cities + 540 km Lycian Way. Click to view details.">17 antik kent + 540 km Likya Yolu. Tıklayarak detayları gör.</p>
   </div>
   <!-- Filter tabs (uygulanan filtre hem haritayı hem aşağıdaki kart listesini etkiler) -->
   <div class="flex flex-wrap justify-center gap-2 mb-5">
-    <button class="tab-btn active px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="">Hepsi</button>
+    <button class="tab-btn active px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="" data-en="All">Hepsi</button>
     <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="UNESCO Mirası">UNESCO</button>
     <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="Likya">Likya</button>
-    <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="Denizden">Denizden</button>
+    <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="Denizden" data-en="By Sea">Denizden</button>
   </div>
   <div id="likya-map" style="height:600px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px -8px rgba(13,58,95,0.35);"></div>
   <div class="mt-4 flex flex-wrap justify-center gap-6 text-sm text-sea-700">
-    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> UNESCO Mirası</span>
-    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sea-500 border-2 border-white inline-block"></span> Likya / Roma Kenti</span>
-    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> Denizden Erişim</span>
-    <span class="inline-flex items-center gap-1.5"><span class="inline-block w-6 border-t-2 border-dashed border-coral-500"></span> Likya Yolu Rotası</span>
-    <span class="inline-flex items-center gap-1.5"><span class="text-sun-500 font-bold">★</span> Öne çıkan = büyük marker</span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> <span data-en="UNESCO Heritage">UNESCO Mirası</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sea-500 border-2 border-white inline-block"></span> <span data-en="Lycian / Roman City">Likya / Roma Kenti</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> <span data-en="Accessible by Sea">Denizden Erişim</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="inline-block w-6 border-t-2 border-dashed border-coral-500"></span> <span data-en="Lycian Way Route">Likya Yolu Rotası</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="text-sun-500 font-bold">★</span> <span data-en="Featured = large marker">Öne çıkan = büyük marker</span></span>
   </div>
 </section>
 
@@ -164,16 +164,16 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <!-- Metin -->
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-3">
-          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> Likya Medeniyeti
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Lycian Civilisation">Likya Medeniyeti</span>
         </div>
-        <h2 class="font-display text-3xl md:text-5xl font-extrabold text-sea-800 leading-tight">Bölgeyi Tanıyın</h2>
-        <p class="text-sea-700 text-base md:text-lg mt-5 leading-relaxed">
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold text-sea-800 leading-tight" data-en="Discover the Region">Bölgeyi Tanıyın</h2>
+        <p class="text-sea-700 text-base md:text-lg mt-5 leading-relaxed" data-en="The Lycian civilisation flourished along the coasts of present-day Antalya and Muğla from 2000 BC to AD 1200. The Lycian League, one of the first civilisations in the world to establish a democratic system of government, is considered the forerunner of modern federalism. The League's major cities — Xanthos, Patara, Tlos, Pinara, Myra and Olympos — held three votes each, while smaller cities held one.">
           Likya medeniyeti, M.Ö. 2000'lerden M.S. 1200'e kadar bugünkü Antalya ve Muğla kıyılarında yaşadı. Dünyada yönetim sistemini demokratik temellere oturtan ilk uygarlıklardan biri olan Likya Birliği, modern federalizmin öncüsü sayılıyor. Birliğin büyük kentleri — Xanthos, Patara, Tlos, Pinara, Myra ve Olympos — üç oy hakkıyla, küçük kentler ise bir oy hakkıyla temsil ediliyordu.
         </p>
-        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed">
+        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed" data-en="The Lycians developed their own unique alphabet and language, and left their mark on art history with house-shaped tomb architecture carved into rock faces. Their passion for freedom was so strong that when Xanthos was besieged by the Persians, its people set fire to the city twice rather than surrender. This distinctive spirit is still felt in the world's first democratic assembly building at Patara and in inscriptions that have survived to this day.">
           Likyalılar kendine özgü bir alfabe ve dil geliştirdi, kayalara oyulan ev biçimli mezar mimarisiyle sanat tarihine damgasını vurdu. Özgürlük tutkuları o denli güçlüydü ki Persler tarafından kuşatılan Xanthos halkı, teslim olmak yerine şehri iki kez ateşe verdi. Bu özgün ruh, Patara'daki dünyanın ilk demokratik meclis binasında ve günümüze ulaşan yazıtlarda hâlâ hissedilir.
         </p>
-        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed">
+        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed" data-en="The Xanthos-Letoon double site has been on the UNESCO World Heritage List since 1988. Patara and Myra continue their candidacy on the UNESCO tentative list. The 540 km Lycian Way is the legendary hiking trail that connects the traces of this civilisation.">
           Xanthos-Letoon çift alanı 1988'den beri UNESCO Dünya Mirası Listesi'nde. Patara ve Myra ise UNESCO geçici listesindeki adaylığını sürdürüyor. 540 km uzunluğundaki Likya Yolu, bu uygarlığın izlerini birbirine bağlayan efsanevi yürüyüş güzergahıdır.
         </p>
         <!-- 6 büyük kent vurgusu -->
@@ -186,36 +186,37 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
           <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Olympos</span>
           <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sea-600/10 text-sea-600 border border-sea-200 flex items-center gap-1">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
-            UNESCO Mirası
+            <span data-en="UNESCO Heritage">UNESCO Mirası</span>
           </span>
         </div>
         <!-- İstatistik kutuları -->
         <div class="grid grid-cols-3 gap-3 mt-6">
           <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
             <div class="font-display font-extrabold text-2xl text-sun-500">3200+</div>
-            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5">Yıllık Tarih</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="Years of History">Yıllık Tarih</div>
           </div>
           <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
             <div class="font-display font-extrabold text-2xl text-sun-500">16</div>
-            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5">Antik Kent</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="Ancient Cities">Antik Kent</div>
           </div>
           <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
             <div class="font-display font-extrabold text-2xl text-sun-500">2</div>
-            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5">UNESCO Alanı</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="UNESCO Sites">UNESCO Alanı</div>
           </div>
         </div>
       </div>
       <!-- Görsel -->
       <div class="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_-8px_rgba(13,58,95,0.4)]" style="aspect-ratio:3/4;">
         <img loading="lazy" decoding="async" src="/assets/img/d018efe8f905.webp"
+             data-en-alt="Patara Ancient City — Lycian Civilisation"
              alt="Patara Antik Kenti — Likya Medeniyeti"
              class="w-full h-full object-cover"
              onerror="this.src='/assets/img/0a51fdbbfe75.webp'">
         <div class="absolute inset-0 bg-gradient-to-t from-sea-900/75 via-transparent to-transparent"></div>
         <div class="absolute bottom-6 left-6 right-6 text-white">
-          <div class="text-xs uppercase tracking-widest opacity-70 font-semibold mb-1">Patara Antik Kenti</div>
-          <div class="font-display font-extrabold text-xl leading-tight">Dünyanın ilk demokratik meclis binası</div>
-          <div class="mt-2 inline-flex items-center gap-1 bg-sun-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+          <div class="text-xs uppercase tracking-widest opacity-70 font-semibold mb-1" data-en="Patara Ancient City">Patara Antik Kenti</div>
+          <div class="font-display font-extrabold text-xl leading-tight" data-en="The world's first democratic assembly building">Dünyanın ilk demokratik meclis binası</div>
+          <div class="mt-2 inline-flex items-center gap-1 bg-sun-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" data-en="★ UNESCO World Heritage">
             ★ UNESCO Dünya Mirası
           </div>
         </div>

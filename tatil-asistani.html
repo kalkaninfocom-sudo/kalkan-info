@@ -109,7 +109,7 @@
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
     <a href="index.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      <span class="font-display font-semibold tracking-[0.08em] text-sm">GERİ</span>
+      <span class="font-display font-semibold tracking-[0.08em] text-sm" data-en="BACK">GERİ</span>
     </a>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
@@ -181,7 +181,7 @@
 
       <!-- ADIM 1 — Tarih, Grup, Bütçe -->
       <div class="step-panel px-6 py-7" id="step-1">
-        <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Tarih, Grup & Bütçe</h2>
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Date, Group & Budget">Tarih, Grup & Bütçe</h2>
         <div class="grid md:grid-cols-2 gap-5">
           <div>
             <label class="form-label" for="date-start">Giriş tarihi</label>
@@ -246,7 +246,7 @@
 
       <!-- ADIM 2 — Uçuş -->
       <div class="step-panel px-6 py-7 hidden" id="step-2">
-        <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Kalkış & Uçuş Tercihi</h2>
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Departure & Flight Preference">Kalkış & Uçuş Tercihi</h2>
         <div>
           <label class="form-label" for="departure-airport">Kalkış havalimanı</label>
           <input class="form-input" type="text" id="departure-airport" name="departureAirport" placeholder="Şehir veya havalimanı adı yazın..." list="airport-suggestions" autocomplete="off" />
@@ -569,7 +569,7 @@
 
       <!-- ADIM 3 — Konaklama -->
       <div class="step-panel px-6 py-7 hidden" id="step-3">
-        <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Konaklama Tercihi</h2>
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Accommodation Preference">Konaklama Tercihi</h2>
 
         <div>
           <label class="form-label">Konaklama türü</label>
@@ -645,7 +645,7 @@
 
       <!-- ADIM 4 — Yemek -->
       <div class="step-panel px-6 py-7 hidden" id="step-4">
-        <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Yemek & Mutfak Tercihi</h2>
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Food & Cuisine Preference">Yemek & Mutfak Tercihi</h2>
 
         <div>
           <label class="form-label">Yemek seçenekleri <span class="text-sea-300 font-normal">(birden fazla seçilebilir)</span></label>
@@ -706,7 +706,7 @@
 
       <!-- ADIM 5 — Aktiviteler -->
       <div class="step-panel px-6 py-7 hidden" id="step-5">
-        <h2 class="font-display font-bold text-xl text-sea-800 mb-5">Aktiviteler & Özel İstekler</h2>
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Activities & Special Requests">Aktiviteler & Özel İstekler</h2>
 
         <div>
           <label class="form-label">Aktivite tercihleri <span class="text-sea-300 font-normal">(birden fazla seçilebilir)</span></label>
@@ -781,7 +781,7 @@
     <div class="flex justify-center mb-6">
       <div class="spinner"></div>
     </div>
-    <h2 class="font-display font-bold text-2xl text-sea-800 mb-3">Tatil planınız hazırlanıyor...</h2>
+    <h2 class="font-display font-bold text-2xl text-sea-800 mb-3" data-en="Your vacation plan is being prepared...">Tatil planınız hazırlanıyor...</h2>
     <p class="text-sea-400 mb-2">Uçuşlar, transfer, konaklama ve aktiviteler hesaplanıyor.</p>
     <p class="text-sm text-sea-300">~30 saniye sürebilir</p>
     <div class="mt-8 flex flex-wrap justify-center gap-2 text-xs text-sea-400">
@@ -854,7 +854,7 @@
   <!-- ===== ERROR STATE ===== -->
   <div id="error-container" class="hidden card-base rounded-2xl px-8 py-12 text-center">
     <div class="text-5xl mb-4">😔</div>
-    <h2 class="font-display font-bold text-xl text-sea-800 mb-3">Bir hata oluştu</h2>
+    <h2 class="font-display font-bold text-xl text-sea-800 mb-3" data-en="An error occurred">Bir hata oluştu</h2>
     <p class="text-sea-400 mb-6" id="error-message">Plan oluşturulurken sorun yaşandı.</p>
     <button onclick="retryPlan()" class="btn-primary">
       Tekrar Dene

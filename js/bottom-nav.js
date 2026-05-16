@@ -136,23 +136,23 @@
         <div id="ki-bn-inner">
           <a class="ki-bn-item" href="index.html" data-key="home">
             <span class="ki-bn-icon">🏠</span>
-            <span class="ki-bn-label">Anasayfa</span>
+            <span class="ki-bn-label" data-en="Home">Anasayfa</span>
           </a>
-          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Hizmetler menüsü">
+          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Hizmetler menüsü" data-en-aria="Services menu">
             <span class="ki-bn-icon">☰</span>
-            <span class="ki-bn-label">Hizmetler</span>
+            <span class="ki-bn-label" data-en="Services">Hizmetler</span>
           </button>
           <button class="ki-bn-item" type="button" data-action="open-search" data-key="search">
             <span class="ki-bn-icon">🔍</span>
-            <span class="ki-bn-label">Ara</span>
+            <span class="ki-bn-label" data-en="Search">Ara</span>
           </button>
-          <button class="ki-bn-item cta" type="button" data-key="concierge" data-concierge-trigger aria-label="Concierge ekibine ulaş">
+          <button class="ki-bn-item cta" type="button" data-key="concierge" data-concierge-trigger aria-label="Concierge ekibine ulaş" data-en-aria="Contact concierge team">
             <span class="ki-bn-icon">💬</span>
-            <span class="ki-bn-label">Concierge</span>
+            <span class="ki-bn-label" data-en="Concierge">Concierge</span>
           </button>
           <button class="ki-bn-item" type="button" data-key="auth" id="ki-bn-auth">
             <span class="ki-bn-icon">🔐</span>
-            <span class="ki-bn-label">Giriş</span>
+            <span class="ki-bn-label" data-en="Sign In">Giriş</span>
           </button>
         </div>
       </div>

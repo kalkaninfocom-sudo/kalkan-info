@@ -1,0 +1,292 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778952909394,
+  "projectRoot": "C:\\Users\\socie\\kalkan-info",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {
+      "img:download": "node scripts/download-unsplash.mjs",
+      "img:replace": "node scripts/replace-unsplash.mjs",
+      "img:all": "npm run img:download && npm run img:replace"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "assets",
+      "docs",
+      "scripts"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "admin": {
+      "path": "admin",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1778952909352,
+      "keyFiles": [
+        "admin.js",
+        "jobs.html",
+        "news-moderation.html",
+        "news-moderation.js"
+      ]
+    },
+    "api": {
+      "path": "api",
+      "purpose": "API routes",
+      "fileCount": 5,
+      "lastAccessed": 1778952909353,
+      "keyFiles": [
+        "job-decision.js",
+        "newsletter-confirm.js",
+        "README.md",
+        "welcome-email.js",
+        "whatsapp.js"
+      ]
+    },
+    "assets": {
+      "path": "assets",
+      "purpose": "Static assets",
+      "fileCount": 1,
+      "lastAccessed": 1778952909362,
+      "keyFiles": [
+        "og-default.png"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 14,
+      "lastAccessed": 1778952909362,
+      "keyFiles": [
+        "aktiviteler.json",
+        "antik-kentler.json",
+        "concierge.json",
+        "config.json",
+        "eczane.json"
+      ]
+    },
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 1,
+      "lastAccessed": 1778952909363,
+      "keyFiles": [
+        "tw.css"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 6,
+      "lastAccessed": 1778952909363,
+      "keyFiles": [
+        "ARCHITECTURE.md",
+        "AUTOMATION_PIPELINE.md",
+        "INSTAGRAM_AUTOMATION.md",
+        "ONBOARDING_FLOW.md",
+        "REVIEWS_INTEGRATION.md"
+      ]
+    },
+    "functions": {
+      "path": "functions",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1778952909364,
+      "keyFiles": [
+        "index.js",
+        "instagramHarvester.js",
+        "package.json",
+        "publishToSocial.js",
+        "scheduledNobetciEczaneSync.js"
+      ]
+    },
+    "icons": {
+      "path": "icons",
+      "purpose": null,
+      "fileCount": 17,
+      "lastAccessed": 1778952909364,
+      "keyFiles": [
+        "apple-touch-icon.png",
+        "avatar-berkay.svg",
+        "avatar-sezin.svg",
+        "favicon-32.png",
+        "favicon.svg"
+      ]
+    },
+    "investor-deck": {
+      "path": "investor-deck",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1778952909365,
+      "keyFiles": [
+        "export-pdf.mjs",
+        "index.html",
+        "kalkan-info-pre-seed-deck.pdf",
+        "README.md"
+      ]
+    },
+    "js": {
+      "path": "js",
+      "purpose": null,
+      "fileCount": 37,
+      "lastAccessed": 1778952909366,
+      "keyFiles": [
+        "activities.js",
+        "admin-auth.js",
+        "auth-pill.js",
+        "auth.js",
+        "bottom-nav.js"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 10,
+      "lastAccessed": 1778952909366,
+      "keyFiles": [
+        "build-supabase-config.mjs",
+        "build-tailwind.mjs",
+        "download-all-images.mjs",
+        "download-unsplash.mjs",
+        "generate-og.mjs"
+      ]
+    },
+    "supabase": {
+      "path": "supabase",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778952909366,
+      "keyFiles": [
+        "config.toml"
+      ]
+    },
+    "temporary screenshots": {
+      "path": "temporary screenshots",
+      "purpose": null,
+      "fileCount": 13,
+      "lastAccessed": 1778952909367,
+      "keyFiles": [
+        "screenshot-1-kalkan-localhost-live.png",
+        "screenshot-10-deck-preview.png",
+        "screenshot-11-haberler-canli.png",
+        "screenshot-12-canli-prod.png",
+        "screenshot-13-villa-modal-test.png"
+      ]
+    },
+    "functions\\lib": {
+      "path": "functions\\lib",
+      "purpose": "Library code",
+      "fileCount": 2,
+      "lastAccessed": 1778952909369,
+      "keyFiles": [
+        "claude.js",
+        "social.js"
+      ]
+    },
+    "functions\\src": {
+      "path": "functions\\src",
+      "purpose": "Source code",
+      "fileCount": 1,
+      "lastAccessed": 1778952909369,
+      "keyFiles": [
+        "sendWelcomeEmail.js"
+      ]
+    },
+    "supabase\\migrations": {
+      "path": "supabase\\migrations",
+      "purpose": "Database migrations",
+      "fileCount": 5,
+      "lastAccessed": 1778952909371,
+      "keyFiles": [
+        "20260513200000_initial_schema.sql",
+        "20260515040000_newsletter.sql",
+        "20260515110000_lost_found.sql"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "antik-kentler.html",
+      "accessCount": 21,
+      "lastAccessed": 1778953263831,
+      "type": "file"
+    },
+    {
+      "path": "turlar.html",
+      "accessCount": 7,
+      "lastAccessed": 1778953134872,
+      "type": "file"
+    },
+    {
+      "path": "tatil-asistani.html",
+      "accessCount": 4,
+      "lastAccessed": 1778953258447,
+      "type": "file"
+    },
+    {
+      "path": "haberler.html",
+      "accessCount": 3,
+      "lastAccessed": 1778953251872,
+      "type": "file"
+    },
+    {
+      "path": "aktiviteler.html",
+      "accessCount": 3,
+      "lastAccessed": 1778953253034,
+      "type": "file"
+    },
+    {
+      "path": "hizmetler.html",
+      "accessCount": 2,
+      "lastAccessed": 1778953255276,
+      "type": "file"
+    },
+    {
+      "path": "js\\page-antik-kentler.js",
+      "accessCount": 1,
+      "lastAccessed": 1778953075186,
+      "type": "file"
+    },
+    {
+      "path": "sw.js",
+      "accessCount": 1,
+      "lastAccessed": 1778953182189,
+      "type": "file"
+    },
+    {
+      "path": "js\\bottom-nav.js",
+      "accessCount": 1,
+      "lastAccessed": 1778961110938,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
