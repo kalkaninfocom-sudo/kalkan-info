@@ -4,7 +4,6 @@
     "subtitle": "Kalkan'da ihtiyaç duyacağınız tüm yerel servisler tek listede",
     "updated": "2026-04-29"
   },
-
   "nobetciEczane": {
     "title": "Bugün Nöbetçi Eczane",
     "subtitle": "Kalkan bölgesinde bugün hizmet veren eczane.",
@@ -14,73 +13,604 @@
     "mapUrl": "https://maps.google.com/?q=Doğa+Eczanesi+Kalkan",
     "date": "2026-04-29"
   },
-
   "kayipEsya": {
     "title": "Kayıp & Bulunan Eşya",
     "subtitle": "Kaybettiğiniz veya bulduğunuz eşyaları bildirin, topluluğa yardımcı olun.",
     "items": []
   },
-
   "acilNumaralar": {
     "title": "Acil Numaralar",
     "subtitle": "Polis, ambulans, jandarma ve diğer önemli acil durum numaraları.",
     "items": [
-      {"name":"Polis İmdat","number":"155","icon":"🚓"},
-      {"name":"Ambulans","number":"112","icon":"🚑"},
-      {"name":"Jandarma","number":"156","icon":"🪖"},
-      {"name":"İtfaiye","number":"110","icon":"🚒"},
-      {"name":"Sahil Güvenlik","number":"158","icon":"⚓"},
-      {"name":"Kaş Devlet Hastanesi","number":"+90 242 836 17 95","icon":"🏥"},
-      {"name":"Kalkan Sağlık Merkezi","number":"+90 242 844 30 40","icon":"🩺"},
-      {"name":"Kalkan Belediyesi","number":"+90 242 844 30 30","icon":"🏛️"},
-      {"name":"Orman Yangın","number":"177","icon":"🌲"},
-      {"name":"AFAD","number":"122","icon":"⚠️"}
+      {
+        "name": "Polis İmdat",
+        "number": "155",
+        "icon": "🚓"
+      },
+      {
+        "name": "Ambulans",
+        "number": "112",
+        "icon": "🚑"
+      },
+      {
+        "name": "Jandarma",
+        "number": "156",
+        "icon": "🪖"
+      },
+      {
+        "name": "İtfaiye",
+        "number": "110",
+        "icon": "🚒"
+      },
+      {
+        "name": "Sahil Güvenlik",
+        "number": "158",
+        "icon": "⚓"
+      },
+      {
+        "name": "Kaş Devlet Hastanesi",
+        "number": "+90 242 836 17 95",
+        "icon": "🏥"
+      },
+      {
+        "name": "Kalkan Sağlık Merkezi",
+        "number": "+90 242 844 30 40",
+        "icon": "🩺"
+      },
+      {
+        "name": "Kalkan Belediyesi",
+        "number": "+90 242 844 30 30",
+        "icon": "🏛️"
+      },
+      {
+        "name": "Orman Yangın",
+        "number": "177",
+        "icon": "🌲"
+      },
+      {
+        "name": "AFAD",
+        "number": "122",
+        "icon": "⚠️"
+      }
     ]
   },
-
   "taksiler": {
     "title": "Taksi Hizmeti",
     "subtitle": "Kalkan, Kaş ve Patara bölgelerindeki taksi durakları.",
     "items": [
-      {"name":"Kalkan Merkez Taksi","location":"Kalkan","phone":"+90 242 844 30 30","phoneRaw":"02428443030"},
-      {"name":"Kaş Merkez Taksi","location":"Kaş","phone":"+90 242 836 10 40","phoneRaw":"02428361040"},
-      {"name":"Patara Taksi","location":"Patara","phone":"+90 532 123 45 67","phoneRaw":"05321234567"},
-      {"name":"Kınık Taksi","location":"Kınık","phone":"+90 542 123 45 68","phoneRaw":"05421234568"}
+      {
+        "name": "Kalkan Merkez Taksi",
+        "location": "Kalkan",
+        "phone": "+90 242 844 30 30",
+        "phoneRaw": "02428443030"
+      },
+      {
+        "name": "Kaş Merkez Taksi",
+        "location": "Kaş",
+        "phone": "+90 242 836 10 40",
+        "phoneRaw": "02428361040"
+      },
+      {
+        "name": "Patara Taksi",
+        "location": "Patara",
+        "phone": "+90 532 123 45 67",
+        "phoneRaw": "05321234567"
+      },
+      {
+        "name": "Kınık Taksi",
+        "location": "Kınık",
+        "phone": "+90 542 123 45 68",
+        "phoneRaw": "05421234568"
+      }
     ]
   },
-
-  "categories": ["Sağlık", "Ulaşım", "Alışveriş", "Bakım", "Kiralama", "Resmi", "Diğer"],
-
+  "categories": [
+    "Sağlık",
+    "Ulaşım",
+    "Alışveriş",
+    "Bakım",
+    "Kiralama",
+    "Resmi",
+    "Diğer"
+  ],
   "items": [
-    {"id":"catering","name":"Catering","category":"Diğer","icon":"🍽️","image":"/assets/img/25c303f5ada6.webp","summary":"Özel günleriniz için lezzetli menüler.","details":["Açık büfe","Düğün/nişan","Özel menü tasarımı","Servis personeli"],"phone":null,"hours":"Randevulu","featured":true},
-    {"id":"transfer-havalimani","name":"Havalimanı Transferi","category":"Ulaşım","icon":"🚐","image":"/assets/img/293e186b0fee.webp","summary":"Dalaman ve Antalya havalimanlarından özel transfer hizmeti.","details":["Dalaman: 1.5 saat","Antalya: 3 saat","Sedan: ₺2.500","VIP minibüs: ₺4.500"],"phone":null,"whatsapp":null,"hours":"7/24","featured":true},
-    {"id":"market-buyuk","name":"Migros Kalkan","category":"Alışveriş","icon":"🛒","image":"/assets/img/f7ecb47d6f87.webp","summary":"Kalkan'ın en büyük marketi.","details":["Tam ürün yelpazesi","Şarküteri","Manav","Otopark"],"phone":"+90 242 844 28 80","hours":"08:00–24:00","featured":true},
-    {"id":"eczane-merkez","name":"Merkez Eczane","category":"Sağlık","icon":"💊","image":"/assets/img/d6bf954b1509.webp","summary":"Kalkan ana cadde eczane.","details":["Atatürk Cad. No:14","Reçete + serbest satış","Nöbetçi listesi cumartesi/pazar"],"phone":"+90 242 844 31 12","hours":"08:30–22:00","featured":true},
-    {"id":"araba-kiralama","name":"Araç Kiralama","category":"Kiralama","icon":"🚗","image":"/assets/img/d470d9f69b4f.webp","summary":"Kalkan'da yerel ve uluslararası araç kiralama firmaları.","details":["Ekonomi: 1.500₺/gün","Komfort: 2.500₺/gün","Otelden teslim"],"phone":"+90 242 844 36 00","hours":"08:00–20:00","featured":true},
-    {"id":"su-bayi","name":"Su Bayii","category":"Alışveriş","icon":"💧","image":"/assets/img/81cc57d942b9.webp","summary":"19 lt damacana ve pet şişe su evinize teslim.","details":["19 lt damacana","Pet şişe (0.5–5 lt)","Aynı gün teslim","Aboneliklik kampanya"],"phone":"+90 242 844 35 60","hours":"08:00–20:00","featured":true},
-    {"id":"bisiklet-kiralama","name":"Bisiklet & Scooter Kiralama","category":"Kiralama","icon":"🚲","image":"/assets/img/6ca64e8092a3.webp","summary":"Günlük/haftalık bisiklet ve scooter kiralama.","details":["Bisiklet: 250₺/gün","Scooter: 600₺/gün","Kasko opsiyonel"],"phone":null,"hours":"08:00–20:00","featured":false},
-    {"id":"tup-bayi","name":"Tüp Bayii","category":"Alışveriş","icon":"🔥","image":"/assets/img/81213733cd68.webp","summary":"LPG mutfak tüpü, sanayi tüpü — eve teslim.","details":["12 kg ev tüpü","2 kg piknik tüpü","Sanayi tüpü","Aynı gün teslim"],"phone":"+90 242 844 33 90","hours":"08:00–19:00","featured":true},
-    {"id":"temizlik","name":"Temizlik Hizmetleri","category":"Diğer","icon":"🧹","image":"/assets/img/1749230d19f6.webp","summary":"Profesyonel ev, villa ve ofis temizliği.","details":["Genel temizlik","Detaylı temizlik","Çıkış temizliği","Cam temizliği"],"phone":null,"hours":"08:00–20:00","featured":true},
-    {"id":"havuz","name":"Havuz Bakım ve Onarım","category":"Diğer","icon":"🏊","image":"/assets/img/56b910615415.webp","summary":"Haftalık bakım, kimyasal dengeleme ve onarım.","details":["Haftalık bakım","Kimyasal","Pompa onarım","Filtre temizliği"],"phone":null,"hours":"08:00–18:00","featured":true},
-    {"id":"tesisat","name":"Tesisat Hizmetleri","category":"Diğer","icon":"🔧","image":"/assets/img/81624afac00a.webp","summary":"7/24 su, elektrik ve klima tesisatı hizmetleri.","details":["Su tesisatı","Elektrik tesisatı","Klima bakım","Acil müdahale"],"phone":null,"hours":"7/24","featured":true},
-    {"id":"balikci","name":"Balıkçı","category":"Alışveriş","icon":"🐟","image":"/assets/img/16ed3a3f5c21.webp","summary":"Günlük taze deniz ürünleri ve mevsim balıkları.","details":["Mevsim balıkları","Karides, kalamar","Temizleme dahil","Eve teslim"],"phone":"+90 242 844 31 88","hours":"07:30–20:00","featured":true},
-    {"id":"kasap","name":"Kasap","category":"Alışveriş","icon":"🥩","image":"/assets/img/c3035d46ef96.webp","summary":"Taze kırmızı et, tavuk ve şarküteri ürünleri.","details":["Dana, kuzu, tavuk","Sucuk, pastırma","Köfte hazır","Eve sipariş"],"phone":"+90 242 844 30 21","hours":"08:00–20:00","featured":true},
-    {"id":"bahce","name":"Bahçe Hizmetleri","category":"Diğer","icon":"🌿","image":"/assets/img/4ce646a7e4e0.webp","summary":"Profesyonel bahçe bakımı ve peyzaj hizmetleri.","details":["Çim biçme","Sulama sistemi","Peyzaj tasarım","Ağaç budama"],"phone":null,"hours":"08:00–18:00","featured":false},
-    {"id":"market-bakkal","name":"Yerel Bakkallar","category":"Alışveriş","icon":"🥖","image":"/assets/img/ceb3b4071ee6.webp","summary":"Eski Kalkan içi mahalle bakkalları.","details":["Hızlı alışveriş","Yerel ürün","Taze ekmek"],"phone":"—","hours":"07:00–23:00","featured":false},
-    {"id":"cocukbakim","name":"Çocuk Bakım Hizmetleri","category":"Diğer","icon":"👶","image":"/assets/img/a55a2328eb75.webp","summary":"Güvenilir ve tecrübeli çocuk bakıcıları.","details":["Saatlik bakım","Günlük bakım","Akşam bakım","İngilizce konuşan"],"phone":null,"hours":"Randevulu","featured":true},
-    {"id":"hastane-kas","name":"Kaş Devlet Hastanesi","category":"Sağlık","icon":"🏥","image":"/assets/img/6b3975959ee4.webp","summary":"Bölgenin en yakın tam donanımlı hastanesi.","details":["Kaş — 25 km / 30 dk","Acil servis 7/24","Polikinikler 08:00–17:00"],"phone":"+90 242 836 17 95","hours":"Acil 7/24","featured":true},
-    {"id":"saglik-merkez","name":"Kalkan Aile Sağlık Merkezi","category":"Sağlık","icon":"🩺","image":"/assets/img/35b21f59d45a.webp","summary":"Birinci basamak sağlık hizmeti.","details":["Aşı, reçete, basit tedaviler","Yabancı turist için TC sağlık ödemeli"],"phone":"+90 242 844 30 40","hours":"08:00–17:00","featured":false},
-    {"id":"atm","name":"ATM & Bankamatik","category":"Resmi","icon":"💳","image":"/assets/img/0aeffd92682c.webp","summary":"Kalkan içi ATM noktaları.","details":["Ziraat — Atatürk Cad.","İş Bankası — Yat Limanı","Garanti — Cumhuriyet Cad.","HalkBank — Merkez"],"phone":"—","hours":"7/24","featured":false},
-    {"id":"kuafor-bayan","name":"Bayan Kuaförleri","category":"Bakım","icon":"💇","image":"/assets/img/ae684ea25aaf.webp","summary":"Saç, makyaj ve manikür hizmetleri.","details":["Saç kesim 400–800₺","Manikür 250₺","Randevulu"],"phone":"+90 242 844 28 11","hours":"10:00–20:00","featured":false},
-    {"id":"kuafor-erkek","name":"Erkek Kuaförleri","category":"Bakım","icon":"💈","image":"/assets/img/64465cecdecb.webp","summary":"Eski Kalkan içinde 4 erkek kuaförü.","details":["Saç kesim 200–400₺","Sakal 100–200₺","Randevusuz"],"phone":"—","hours":"09:00–22:00","featured":false},
-    {"id":"kuru-temizleme","name":"Kalkan Kuru Temizleme","category":"Bakım","icon":"👔","image":"/assets/img/f25ce786dbef.webp","summary":"Kıyafet kuru temizleme ve yıkama.","details":["1 gün servis","Otelden alım"],"phone":"+90 242 844 33 25","hours":"09:00–19:00","featured":false},
-    {"id":"tekel","name":"Tekel Bayii","category":"Alışveriş","icon":"🍷","image":"/assets/img/ebbfee822f39.webp","summary":"İçki, sigara, atıştırmalık ve gece açık market.","details":["İçki çeşitleri","Yerel şaraplar","Sigara, çakmak","Geç saat açık"],"phone":"+90 242 844 32 47","hours":"08:00–02:00","featured":false},
-    {"id":"boya","name":"Boya & Badana Ustası","category":"Diğer","icon":"🖌️","image":"/assets/img/c106751407ba.webp","summary":"İç ve dış cephe boya işleri.","details":["İç cephe","Dış cephe","Dekoratif boya","Kabartma boya"],"phone":null,"hours":"08:00–18:00","featured":false},
-    {"id":"nakliyat","name":"Nakliyat Hizmetleri","category":"Diğer","icon":"📦","image":"/assets/img/ab6293be3b66.webp","summary":"Eşya taşıma ve evden eve nakliyat hizmetleri.","details":["Şehir içi","Şehirler arası","Paketleme","Sigorta"],"phone":null,"hours":"08:00–20:00","featured":false},
-    {"id":"postane","name":"PTT Postanesi","category":"Resmi","icon":"📮","image":"/assets/img/c28dfa8eb17e.webp","summary":"Kalkan PTT şubesi.","details":["Kargo, posta, fatura ödeme","Döviz","SMS bilgilendirme"],"phone":"+90 242 844 30 70","hours":"08:30–17:30 (Hafta içi)","featured":false},
-    {"id":"barmen","name":"Özel Barmen","category":"Diğer","icon":"🍹","image":"/assets/img/38ab690a3e90.webp","summary":"Kokteyller ve özel sunumlar.","details":["Mobil bar","Cocktail menüsü","Düğün/etkinlik","Profesyonel barmen"],"phone":null,"hours":"Randevulu","featured":false},
-    {"id":"evcilbakim","name":"Evcil Hayvan Bakımı","category":"Diğer","icon":"🐾","image":"/assets/img/88ef465330a8.webp","summary":"Siz tatildeyken patili dostlarınız emin ellerde.","details":["Pansiyon","Günlük yürüyüş","Veteriner desteği","Eğitim"],"phone":null,"hours":"Randevulu","featured":false},
-    {"id":"tasduvar","name":"Taş Duvar Ustası","category":"Diğer","icon":"🧱","image":"/assets/img/38aa3283e987.webp","summary":"Doğal taş duvar ve bahçe peyzaj işleri.","details":["Doğal taş duvar","Bahçe peyzaj","Şömine","Taş kaplama"],"phone":null,"hours":"08:00–18:00","featured":false},
-    {"id":"belediye","name":"Kalkan Belediyesi","category":"Resmi","icon":"🏛️","image":"/assets/img/5bd3575d2fe1.webp","summary":"Belediye hizmet binası.","details":["Su/çöp aboneliği","Etkinlik takvimi","Şikayet hattı"],"phone":"+90 242 844 30 30","hours":"08:30–17:00","featured":false}
+    {
+      "id": "catering",
+      "name": "Catering",
+      "category": "Diğer",
+      "icon": "🍽️",
+      "image": "/assets/img/25c303f5ada6.webp",
+      "summary": "Özel günleriniz için lezzetli menüler.",
+      "details": [
+        "Açık büfe",
+        "Düğün/nişan",
+        "Özel menü tasarımı",
+        "Servis personeli"
+      ],
+      "phone": null,
+      "hours": "Randevulu",
+      "featured": true
+    },
+    {
+      "id": "barmen",
+      "name": "Özel Barmen",
+      "category": "Diğer",
+      "icon": "🍹",
+      "image": "/assets/img/38ab690a3e90.webp",
+      "summary": "Kokteyller ve özel sunumlar.",
+      "details": [
+        "Mobil bar",
+        "Cocktail menüsü",
+        "Düğün/etkinlik",
+        "Profesyonel barmen"
+      ],
+      "phone": null,
+      "hours": "Randevulu",
+      "featured": false
+    },
+    {
+      "id": "transfer-havalimani",
+      "name": "Havalimanı Transferi",
+      "category": "Ulaşım",
+      "icon": "🚐",
+      "image": "/assets/img/293e186b0fee.webp",
+      "summary": "Dalaman ve Antalya havalimanlarından özel transfer hizmeti.",
+      "details": [
+        "Dalaman: 1.5 saat",
+        "Antalya: 3 saat",
+        "Sedan: ₺2.500",
+        "VIP minibüs: ₺4.500"
+      ],
+      "phone": null,
+      "whatsapp": null,
+      "hours": "7/24",
+      "featured": true
+    },
+    {
+      "id": "araba-kiralama",
+      "name": "Araç Kiralama",
+      "category": "Kiralama",
+      "icon": "🚗",
+      "image": "/assets/img/d470d9f69b4f.webp",
+      "summary": "Kalkan'da yerel ve uluslararası araç kiralama firmaları.",
+      "details": [
+        "Ekonomi: 1.500₺/gün",
+        "Komfort: 2.500₺/gün",
+        "Otelden teslim"
+      ],
+      "phone": "+90 242 844 36 00",
+      "hours": "08:00–20:00",
+      "featured": true
+    },
+    {
+      "id": "su-bayi",
+      "name": "Su Bayii",
+      "category": "Alışveriş",
+      "icon": "💧",
+      "image": "/assets/img/81cc57d942b9.webp",
+      "summary": "19 lt damacana ve pet şişe su evinize teslim.",
+      "details": [
+        "19 lt damacana",
+        "Pet şişe (0.5–5 lt)",
+        "Aynı gün teslim",
+        "Aboneliklik kampanya"
+      ],
+      "phone": "+90 242 844 35 60",
+      "hours": "08:00–20:00",
+      "featured": true
+    },
+    {
+      "id": "tup-bayi",
+      "name": "Tüp Bayii",
+      "category": "Alışveriş",
+      "icon": "🔥",
+      "image": "/assets/img/81213733cd68.webp",
+      "summary": "LPG mutfak tüpü, sanayi tüpü — eve teslim.",
+      "details": [
+        "12 kg ev tüpü",
+        "2 kg piknik tüpü",
+        "Sanayi tüpü",
+        "Aynı gün teslim"
+      ],
+      "phone": "+90 242 844 33 90",
+      "hours": "08:00–19:00",
+      "featured": true
+    },
+    {
+      "id": "bisiklet-kiralama",
+      "name": "Bisiklet & Scooter Kiralama",
+      "category": "Kiralama",
+      "icon": "🚲",
+      "image": "/assets/img/6ca64e8092a3.webp",
+      "summary": "Günlük/haftalık bisiklet ve scooter kiralama.",
+      "details": [
+        "Bisiklet: 250₺/gün",
+        "Scooter: 600₺/gün",
+        "Kasko opsiyonel"
+      ],
+      "phone": null,
+      "hours": "08:00–20:00",
+      "featured": false
+    },
+    {
+      "id": "market-bakkal",
+      "name": "Yerel Bakkallar",
+      "category": "Alışveriş",
+      "icon": "🥖",
+      "image": "/assets/img/ceb3b4071ee6.webp",
+      "summary": "Eski Kalkan içi mahalle bakkalları.",
+      "details": [
+        "Hızlı alışveriş",
+        "Yerel ürün",
+        "Taze ekmek"
+      ],
+      "phone": "—",
+      "hours": "07:00–23:00",
+      "featured": false
+    },
+    {
+      "id": "market-buyuk",
+      "name": "Migros Kalkan",
+      "category": "Alışveriş",
+      "icon": "🛒",
+      "image": "/assets/img/f7ecb47d6f87.webp",
+      "summary": "Kalkan'ın en büyük marketi.",
+      "details": [
+        "Tam ürün yelpazesi",
+        "Şarküteri",
+        "Manav",
+        "Otopark"
+      ],
+      "phone": "+90 242 844 28 80",
+      "hours": "08:00–24:00",
+      "featured": true
+    },
+    {
+      "id": "eczane-merkez",
+      "name": "Merkez Eczane",
+      "category": "Sağlık",
+      "icon": "💊",
+      "image": "/assets/img/d6bf954b1509.webp",
+      "summary": "Kalkan ana cadde eczane.",
+      "details": [
+        "Atatürk Cad. No:14",
+        "Reçete + serbest satış",
+        "Nöbetçi listesi cumartesi/pazar"
+      ],
+      "phone": "+90 242 844 31 12",
+      "hours": "08:30–22:00",
+      "featured": true
+    },
+    {
+      "id": "temizlik",
+      "name": "Temizlik Hizmetleri",
+      "category": "Diğer",
+      "icon": "🧹",
+      "image": "/assets/img/1749230d19f6.webp",
+      "summary": "Profesyonel ev, villa ve ofis temizliği.",
+      "details": [
+        "Genel temizlik",
+        "Detaylı temizlik",
+        "Çıkış temizliği",
+        "Cam temizliği"
+      ],
+      "phone": null,
+      "hours": "08:00–20:00",
+      "featured": true
+    },
+    {
+      "id": "havuz",
+      "name": "Havuz Bakım ve Onarım",
+      "category": "Diğer",
+      "icon": "🏊",
+      "image": "/assets/img/56b910615415.webp",
+      "summary": "Haftalık bakım, kimyasal dengeleme ve onarım.",
+      "details": [
+        "Haftalık bakım",
+        "Kimyasal",
+        "Pompa onarım",
+        "Filtre temizliği"
+      ],
+      "phone": null,
+      "hours": "08:00–18:00",
+      "featured": true
+    },
+    {
+      "id": "tesisat",
+      "name": "Tesisat Hizmetleri",
+      "category": "Diğer",
+      "icon": "🔧",
+      "image": "/assets/img/81624afac00a.webp",
+      "summary": "7/24 su, elektrik ve klima tesisatı hizmetleri.",
+      "details": [
+        "Su tesisatı",
+        "Elektrik tesisatı",
+        "Klima bakım",
+        "Acil müdahale"
+      ],
+      "phone": null,
+      "hours": "7/24",
+      "featured": true
+    },
+    {
+      "id": "balikci",
+      "name": "Balıkçı",
+      "category": "Alışveriş",
+      "icon": "🐟",
+      "image": "/assets/img/16ed3a3f5c21.webp",
+      "summary": "Günlük taze deniz ürünleri ve mevsim balıkları.",
+      "details": [
+        "Mevsim balıkları",
+        "Karides, kalamar",
+        "Temizleme dahil",
+        "Eve teslim"
+      ],
+      "phone": "+90 242 844 31 88",
+      "hours": "07:30–20:00",
+      "featured": true
+    },
+    {
+      "id": "kasap",
+      "name": "Kasap",
+      "category": "Alışveriş",
+      "icon": "🥩",
+      "image": "/assets/img/c3035d46ef96.webp",
+      "summary": "Taze kırmızı et, tavuk ve şarküteri ürünleri.",
+      "details": [
+        "Dana, kuzu, tavuk",
+        "Sucuk, pastırma",
+        "Köfte hazır",
+        "Eve sipariş"
+      ],
+      "phone": "+90 242 844 30 21",
+      "hours": "08:00–20:00",
+      "featured": true
+    },
+    {
+      "id": "bahce",
+      "name": "Bahçe Hizmetleri",
+      "category": "Diğer",
+      "icon": "🌿",
+      "image": "/assets/img/4ce646a7e4e0.webp",
+      "summary": "Profesyonel bahçe bakımı ve peyzaj hizmetleri.",
+      "details": [
+        "Çim biçme",
+        "Sulama sistemi",
+        "Peyzaj tasarım",
+        "Ağaç budama"
+      ],
+      "phone": null,
+      "hours": "08:00–18:00",
+      "featured": false
+    },
+    {
+      "id": "cocukbakim",
+      "name": "Çocuk Bakım Hizmetleri",
+      "category": "Diğer",
+      "icon": "👶",
+      "image": "/assets/img/a55a2328eb75.webp",
+      "summary": "Güvenilir ve tecrübeli çocuk bakıcıları.",
+      "details": [
+        "Saatlik bakım",
+        "Günlük bakım",
+        "Akşam bakım",
+        "İngilizce konuşan"
+      ],
+      "phone": null,
+      "hours": "Randevulu",
+      "featured": true
+    },
+    {
+      "id": "hastane-kas",
+      "name": "Kaş Devlet Hastanesi",
+      "category": "Sağlık",
+      "icon": "🏥",
+      "image": "/assets/img/6b3975959ee4.webp",
+      "summary": "Bölgenin en yakın tam donanımlı hastanesi.",
+      "details": [
+        "Kaş — 25 km / 30 dk",
+        "Acil servis 7/24",
+        "Polikinikler 08:00–17:00"
+      ],
+      "phone": "+90 242 836 17 95",
+      "hours": "Acil 7/24",
+      "featured": true
+    },
+    {
+      "id": "saglik-merkez",
+      "name": "Kalkan Aile Sağlık Merkezi",
+      "category": "Sağlık",
+      "icon": "🩺",
+      "image": "/assets/img/35b21f59d45a.webp",
+      "summary": "Birinci basamak sağlık hizmeti.",
+      "details": [
+        "Aşı, reçete, basit tedaviler",
+        "Yabancı turist için TC sağlık ödemeli"
+      ],
+      "phone": "+90 242 844 30 40",
+      "hours": "08:00–17:00",
+      "featured": false
+    },
+    {
+      "id": "atm",
+      "name": "ATM & Bankamatik",
+      "category": "Resmi",
+      "icon": "💳",
+      "image": "/assets/img/0aeffd92682c.webp",
+      "summary": "Kalkan içi ATM noktaları.",
+      "details": [
+        "Ziraat — Atatürk Cad.",
+        "İş Bankası — Yat Limanı",
+        "Garanti — Cumhuriyet Cad.",
+        "HalkBank — Merkez"
+      ],
+      "phone": "—",
+      "hours": "7/24",
+      "featured": false
+    },
+    {
+      "id": "kuafor-bayan",
+      "name": "Bayan Kuaförleri",
+      "category": "Bakım",
+      "icon": "💇",
+      "image": "/assets/img/ae684ea25aaf.webp",
+      "summary": "Saç, makyaj ve manikür hizmetleri.",
+      "details": [
+        "Saç kesim 400–800₺",
+        "Manikür 250₺",
+        "Randevulu"
+      ],
+      "phone": "+90 242 844 28 11",
+      "hours": "10:00–20:00",
+      "featured": false
+    },
+    {
+      "id": "kuafor-erkek",
+      "name": "Erkek Kuaförleri",
+      "category": "Bakım",
+      "icon": "💈",
+      "image": "/assets/img/64465cecdecb.webp",
+      "summary": "Eski Kalkan içinde 4 erkek kuaförü.",
+      "details": [
+        "Saç kesim 200–400₺",
+        "Sakal 100–200₺",
+        "Randevusuz"
+      ],
+      "phone": "—",
+      "hours": "09:00–22:00",
+      "featured": false
+    },
+    {
+      "id": "kuru-temizleme",
+      "name": "Kalkan Kuru Temizleme",
+      "category": "Bakım",
+      "icon": "👔",
+      "image": "/assets/img/f25ce786dbef.webp",
+      "summary": "Kıyafet kuru temizleme ve yıkama.",
+      "details": [
+        "1 gün servis",
+        "Otelden alım"
+      ],
+      "phone": "+90 242 844 33 25",
+      "hours": "09:00–19:00",
+      "featured": false
+    },
+    {
+      "id": "tekel",
+      "name": "Tekel Bayii",
+      "category": "Alışveriş",
+      "icon": "🍷",
+      "image": "/assets/img/ebbfee822f39.webp",
+      "summary": "İçki, sigara, atıştırmalık ve gece açık market.",
+      "details": [
+        "İçki çeşitleri",
+        "Yerel şaraplar",
+        "Sigara, çakmak",
+        "Geç saat açık"
+      ],
+      "phone": "+90 242 844 32 47",
+      "hours": "08:00–02:00",
+      "featured": false
+    },
+    {
+      "id": "boya",
+      "name": "Boya & Badana Ustası",
+      "category": "Diğer",
+      "icon": "🖌️",
+      "image": "/assets/img/c106751407ba.webp",
+      "summary": "İç ve dış cephe boya işleri.",
+      "details": [
+        "İç cephe",
+        "Dış cephe",
+        "Dekoratif boya",
+        "Kabartma boya"
+      ],
+      "phone": null,
+      "hours": "08:00–18:00",
+      "featured": false
+    },
+    {
+      "id": "nakliyat",
+      "name": "Nakliyat Hizmetleri",
+      "category": "Diğer",
+      "icon": "📦",
+      "image": "/assets/img/ab6293be3b66.webp",
+      "summary": "Eşya taşıma ve evden eve nakliyat hizmetleri.",
+      "details": [
+        "Şehir içi",
+        "Şehirler arası",
+        "Paketleme",
+        "Sigorta"
+      ],
+      "phone": null,
+      "hours": "08:00–20:00",
+      "featured": false
+    },
+    {
+      "id": "postane",
+      "name": "PTT Postanesi",
+      "category": "Resmi",
+      "icon": "📮",
+      "image": "/assets/img/c28dfa8eb17e.webp",
+      "summary": "Kalkan PTT şubesi.",
+      "details": [
+        "Kargo, posta, fatura ödeme",
+        "Döviz",
+        "SMS bilgilendirme"
+      ],
+      "phone": "+90 242 844 30 70",
+      "hours": "08:30–17:30 (Hafta içi)",
+      "featured": false
+    },
+    {
+      "id": "evcilbakim",
+      "name": "Evcil Hayvan Bakımı",
+      "category": "Diğer",
+      "icon": "🐾",
+      "image": "/assets/img/88ef465330a8.webp",
+      "summary": "Siz tatildeyken patili dostlarınız emin ellerde.",
+      "details": [
+        "Pansiyon",
+        "Günlük yürüyüş",
+        "Veteriner desteği",
+        "Eğitim"
+      ],
+      "phone": null,
+      "hours": "Randevulu",
+      "featured": false
+    },
+    {
+      "id": "tasduvar",
+      "name": "Taş Duvar Ustası",
+      "category": "Diğer",
+      "icon": "🧱",
+      "image": "/assets/img/38aa3283e987.webp",
+      "summary": "Doğal taş duvar ve bahçe peyzaj işleri.",
+      "details": [
+        "Doğal taş duvar",
+        "Bahçe peyzaj",
+        "Şömine",
+        "Taş kaplama"
+      ],
+      "phone": null,
+      "hours": "08:00–18:00",
+      "featured": false
+    },
+    {
+      "id": "belediye",
+      "name": "Kalkan Belediyesi",
+      "category": "Resmi",
+      "icon": "🏛️",
+      "image": "/assets/img/5bd3575d2fe1.webp",
+      "summary": "Belediye hizmet binası.",
+      "details": [
+        "Su/çöp aboneliği",
+        "Etkinlik takvimi",
+        "Şikayet hattı"
+      ],
+      "phone": "+90 242 844 30 30",
+      "hours": "08:30–17:00",
+      "featured": false
+    }
   ]
 }
