@@ -9,7 +9,9 @@
  *   META_APP_SECRET        — Meta App Secret (gizli)
  *   IG_BUSINESS_ID         — Instagram Business hesabımızın ID'si (Graph API'den)
  *   IG_LONG_LIVED_TOKEN    — Long-lived access token (60 gün geçerli)
- *   IG_HASHTAG             — Aranacak hashtag (default: kalkaninfo)
+ *   IG_HASHTAGS            — Virgülle ayrılmış hashtag listesi (#'siz)
+ *                             default: kalkaninfo,kalkanvilla,kalkantatil,visitkalkan,kalkankaputas
+ *   IG_HASHTAG             — (Eski; tek hashtag, geriye uyumluluk)
  *   IG_CRON_SECRET         — Cron tetikleyici için paylaşılan secret
  *
  * Flow:
@@ -85,7 +87,9 @@ export default async function handler(req, res) {
 
   const businessId = process.env.IG_BUSINESS_ID;
   const token = process.env.IG_LONG_LIVED_TOKEN;
-  const hashtag = process.env.IG_HASHTAG || 'kalkaninfo';
+  const hashtagsRaw = process.env.IG_HASHTAGS || process.env.IG_HASHTAG
+    || 'kalkaninfo,kalkanvilla,kalkantatil,visitkalkan,kalkankaputas';
+  const hashtags = hashtagsRaw.split(',').map(h => h.trim().replace(/^#/, '')).filter(Boolean);
 
   if (!businessId || !token) {
     return res.status(503).json({
@@ -96,24 +100,31 @@ export default async function handler(req, res) {
   }
 
   try {
-    const hashtagId = await getHashtagId(hashtag, businessId, token);
-    const [recent, top] = await Promise.all([
-      fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(e => ({ data: [], error: e.message })),
-      fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(e => ({ data: [], error: e.message }))
-    ]);
-
-    // recent öncelikli, top ile birleştir (duplicate dropout)
     const merged = new Map();
-    for (const it of (recent.data || [])) merged.set(it.id, it);
-    for (const it of (top.data || [])) if (!merged.has(it.id)) merged.set(it.id, it);
+    const stats = [];
+
+    for (const hashtag of hashtags) {
+      try {
+        const hashtagId = await getHashtagId(hashtag, businessId, token);
+        const [recent, top] = await Promise.all([
+          fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(() => ({ data: [] })),
+          fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(() => ({ data: [] }))
+        ]);
+        for (const it of (recent.data || [])) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: hashtag });
+        for (const it of (top.data || [])) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: hashtag });
+        stats.push({ hashtag, hashtagId, count: (recent.data?.length || 0) + (top.data?.length || 0) });
+      } catch (e) {
+        stats.push({ hashtag, error: e.message });
+      }
+    }
 
     const posts = filterAndNormalize([...merged.values()]);
 
     const payload = {
-      hashtag,
-      hashtagId,
+      hashtags,
       generatedAt: new Date().toISOString(),
       count: posts.length,
+      stats,
       posts
     };
 
