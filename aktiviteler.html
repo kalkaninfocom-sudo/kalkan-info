@@ -92,20 +92,20 @@
 <header class="relative overflow-hidden" style="background:#072136;">
   <div class="absolute inset-0 z-0">
     <img loading="lazy" decoding="async" src="/assets/img/19c73f523505.webp"
-      class="w-full h-full object-cover opacity-45" alt="Kalkan çevresi aktiviteler"
+      class="w-full h-full object-cover opacity-45" alt="Kalkan çevresi aktiviteler" data-en-alt="Activities around Kalkan"
       style="filter:saturate(1.5) contrast(1.1);"
       onerror="this.src='/assets/img/d9990fcc5354.webp'" />
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü" data-en-aria="Menu">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <div class="flex items-center gap-2 text-xs md:text-sm">
-      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today">Bugün</span>
       <span class="opacity-95 font-semibold tracking-wide" id="today-date">30 Nisan 2026</span>
     </div>
-    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
@@ -114,34 +114,34 @@
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
     </div>
     <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Things to Do">Yapılacak Şeyler</h1>
-    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed">
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en-html="From beaches to ancient cities, from adventure to wellness — the region's best <span id='activity-count' class='font-bold text-sun-400'>25</span>+ activities.">
       Plajdan antik kentlere, maceradan wellness'a — bölgenin en iyi
       <span id="activity-count" class="font-bold text-sun-400">25</span>+ aktivitesi.
     </p>
     <!-- Season quick filter buttons -->
     <div class="mt-8 flex flex-wrap gap-3">
       <button data-season-btn="" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌐 All">
         🌐 Tümü
       </button>
       <button data-season-btn="summer" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="☀ Summer">
         ☀ Yaz
       </button>
       <button data-season-btn="spring" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌸 Spring">
         🌸 İlkbahar
       </button>
       <button data-season-btn="autumn" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🍂 Autumn">
         🍂 Sonbahar
       </button>
       <button data-season-btn="winter" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="❄ Winter">
         ❄ Kış
       </button>
       <button data-season-btn="year-round" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition"
-        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);">
+        style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌊 Year-Round">
         🌊 Yıl Boyu
       </button>
     </div>
@@ -154,53 +154,53 @@
     <div class="flex items-center -ml-3">
       <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
+      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
       </a>
     </div>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
-    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara">
+    <button class="w-10 h-10 grid place-items-center" style="transition:background .18s ease;" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background=''" aria-label="Ara" data-en-aria="Search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </button>
   </div>
   <div style="background:#072136;">
     <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html">Haberler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html">Villalar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html">Restoranlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html">Plajlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html">Turlar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html">Antik Kentler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="aktiviteler.html">Aktiviteler</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html">Hizmetler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html" data-en="News">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html" data-en="Villas">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="restoranlar.html" data-en="Restaurants">Restoranlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html" data-en="Beaches">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html" data-en="Tours">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html" data-en="Ancient Sites">Antik Kentler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="aktiviteler.html" data-en="Activities">Aktiviteler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html" data-en="Services">Hizmetler</a>
       <span class="ml-auto"></span>
       <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"/></svg>
         Concierge
       </a>
-      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle">İşletme Ekle</a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="index.html#isletme-ekle" data-en="Add Business">İşletme Ekle</a>
       <span class="px-2 text-white/40">·</span>
-      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" title="Türkçe (aktif)">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" title="Türkçe (aktif)" data-en-title="Turkish (active)">TR</a>
       <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" title="English">EN</a>
     </div>
   </div>
   <div class="ribbon-bg grain text-[12px]">
     <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
-      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded" data-en="NOTICE">DUYURU</span>
       <div class="flex-1 overflow-hidden">
         <div class="marquee whitespace-nowrap">
-          <span class="mr-10">🌊 Caretta caretta yuvalama sezonu başlıyor — Patara plajı gece turları Mayıs'ta</span>
-          <span class="mr-10">⛵ Kekova tekne turları — Güvenli rezervasyon için Concierge'e yazın</span>
-          <span class="mr-10">🌸 Likya Yolu ilkbahar sezonu açık — Kalkan–Kaş etabı ideal koşullarda</span>
-          <span class="mr-10">🏖️ Kaputaş plajı her gün 08:00–20:00 açık</span>
-          <span class="mr-10">🌊 Caretta caretta yuvalama sezonu başlıyor — Patara plajı gece turları Mayıs'ta</span>
-          <span class="mr-10">⛵ Kekova tekne turları — Güvenli rezervasyon için Concierge'e yazın</span>
-          <span class="mr-10">🌸 Likya Yolu ilkbahar sezonu açık — Kalkan–Kaş etabı ideal koşullarda</span>
-          <span class="mr-10">🏖️ Kaputaş plajı her gün 08:00–20:00 açık</span>
+          <span class="mr-10" data-en="🌊 Caretta caretta nesting season begins — Patara beach night tours in May">🌊 Caretta caretta yuvalama sezonu başlıyor — Patara plajı gece turları Mayıs'ta</span>
+          <span class="mr-10" data-en="⛵ Kekova boat tours — Contact Concierge for safe booking">⛵ Kekova tekne turları — Güvenli rezervasyon için Concierge'e yazın</span>
+          <span class="mr-10" data-en="🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions">🌸 Likya Yolu ilkbahar sezonu açık — Kalkan–Kaş etabı ideal koşullarda</span>
+          <span class="mr-10" data-en="🏖️ Kaputaş beach open daily 08:00–20:00">🏖️ Kaputaş plajı her gün 08:00–20:00 açık</span>
+          <span class="mr-10" data-en="🌊 Caretta caretta nesting season begins — Patara beach night tours in May">🌊 Caretta caretta yuvalama sezonu başlıyor — Patara plajı gece turları Mayıs'ta</span>
+          <span class="mr-10" data-en="⛵ Kekova boat tours — Contact Concierge for safe booking">⛵ Kekova tekne turları — Güvenli rezervasyon için Concierge'e yazın</span>
+          <span class="mr-10" data-en="🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions">🌸 Likya Yolu ilkbahar sezonu açık — Kalkan–Kaş etabı ideal koşullarda</span>
+          <span class="mr-10" data-en="🏖️ Kaputaş beach open daily 08:00–20:00">🏖️ Kaputaş plajı her gün 08:00–20:00 açık</span>
         </div>
       </div>
     </div>
@@ -213,19 +213,19 @@
     <div class="bg-white rounded-xl p-4 flex flex-wrap gap-3 items-center" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
       <div class="flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
-        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700">Filtrele</span>
+        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700" data-en="Filter">Filtrele</span>
       </div>
       <div class="h-4 w-px bg-sea-100 hidden md:block"></div>
 
       <!-- Season -->
       <div class="relative">
         <select id="filter-season" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
-          <option value="">Tüm Mevsimler</option>
-          <option value="summer">☀ Yaz</option>
-          <option value="spring">🌸 İlkbahar</option>
-          <option value="autumn">🍂 Sonbahar</option>
-          <option value="winter">❄ Kış</option>
-          <option value="year-round">🌊 Yıl Boyu</option>
+          <option value="" data-en="All Seasons">Tüm Mevsimler</option>
+          <option value="summer" data-en="☀ Summer">☀ Yaz</option>
+          <option value="spring" data-en="🌸 Spring">🌸 İlkbahar</option>
+          <option value="autumn" data-en="🍂 Autumn">🍂 Sonbahar</option>
+          <option value="winter" data-en="❄ Winter">❄ Kış</option>
+          <option value="year-round" data-en="🌊 Year-Round">🌊 Yıl Boyu</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -233,7 +233,7 @@
       <!-- Category/Tag -->
       <div class="relative">
         <select id="filter-tag" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
-          <option value="">Tüm Kategoriler</option>
+          <option value="" data-en="All Categories">Tüm Kategoriler</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -241,10 +241,10 @@
       <!-- Difficulty -->
       <div class="relative">
         <select id="filter-difficulty" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
-          <option value="">Tüm Zorluklar</option>
-          <option value="kolay">Kolay</option>
-          <option value="orta">Orta</option>
-          <option value="zor">Zor</option>
+          <option value="" data-en="All Difficulties">Tüm Zorluklar</option>
+          <option value="kolay" data-en="Easy">Kolay</option>
+          <option value="orta" data-en="Moderate">Orta</option>
+          <option value="zor" data-en="Hard">Zor</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -252,11 +252,11 @@
       <!-- Price -->
       <div class="relative">
         <select id="filter-price" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
-          <option value="">Tüm Fiyatlar</option>
-          <option value="ücretsiz">Ücretsiz</option>
-          <option value="$">$ — Uygun</option>
-          <option value="$$">$$ — Orta</option>
-          <option value="$$$">$$$ — Premium</option>
+          <option value="" data-en="All Prices">Tüm Fiyatlar</option>
+          <option value="ücretsiz" data-en="Free">Ücretsiz</option>
+          <option value="$" data-en="$ — Budget">$ — Uygun</option>
+          <option value="$$" data-en="$$ — Mid-range">$$ — Orta</option>
+          <option value="$$$" data-en="$$$ — Premium">$$$ — Premium</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -264,17 +264,18 @@
       <!-- Booking -->
       <div class="relative">
         <select id="filter-booking" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
-          <option value="">Rezervasyon</option>
-          <option value="false">Rezervasyonsuz</option>
-          <option value="true">Rezervasyon Gerekli</option>
+          <option value="" data-en="Booking">Rezervasyon</option>
+          <option value="false" data-en="No Booking Required">Rezervasyonsuz</option>
+          <option value="true" data-en="Booking Required">Rezervasyon Gerekli</option>
         </select>
         <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
 
       <div class="ml-auto flex items-center gap-2">
-        <button id="btn-clear-filters" class="text-xs text-sea-400 hover:text-sea-700 font-semibold transition px-3 py-2">Temizle</button>
+        <button id="btn-clear-filters" class="text-xs text-sea-400 hover:text-sea-700 font-semibold transition px-3 py-2" data-en="Clear">Temizle</button>
         <button id="btn-calendar-toggle"
-          class="flex items-center gap-2 bg-sea-800 hover:bg-sea-700 text-white text-xs font-display font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition">
+          class="flex items-center gap-2 bg-sea-800 hover:bg-sea-700 text-white text-xs font-display font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition"
+          data-en="📅 Calendar">
           📅 Takvim
         </button>
       </div>
@@ -292,14 +293,15 @@
       <div class="col-span-full flex justify-center py-16">
         <div class="flex flex-col items-center gap-3 text-sea-400">
           <svg class="animate-spin" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-          <span class="text-sm font-semibold">Yükleniyor…</span>
+          <span class="text-sm font-semibold" data-en="Loading…">Yükleniyor…</span>
         </div>
       </div>
     </div>
     <div id="activity-empty" class="hidden col-span-full text-center py-16">
-      <p class="text-sea-500 font-semibold text-lg">Bu kriterlere uygun aktivite bulunamadı.</p>
+      <p class="text-sea-500 font-semibold text-lg" data-en="No activities found matching these criteria.">Bu kriterlere uygun aktivite bulunamadı.</p>
       <button id="btn-clear-filters-empty" onclick="document.getElementById('btn-clear-filters').click()"
-        class="mt-4 px-5 py-2 bg-sea-800 text-white rounded-lg text-sm font-semibold hover:bg-sea-700 transition">
+        class="mt-4 px-5 py-2 bg-sea-800 text-white rounded-lg text-sm font-semibold hover:bg-sea-700 transition"
+        data-en="Clear Filters">
         Filtreleri Temizle
       </button>
     </div>
@@ -313,7 +315,7 @@
 </main>
 
 <!-- ============== ACTIVITY MODAL ============== -->
-<div id="activity-modal" class="hidden" role="dialog" aria-modal="true" aria-label="Aktivite Detayı">
+<div id="activity-modal" class="hidden" role="dialog" aria-modal="true" aria-label="Aktivite Detayı" data-en-aria="Activity Detail">
   <div id="activity-modal-content">
     <!-- JS renders content here -->
   </div>
@@ -324,9 +326,9 @@
   <div class="border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
       <div>
-        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
-        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
-        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay updated from Kalkan">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals and events — twice a month, brief.">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
       </div>
       <div data-newsletter-mount></div>
     </div>
@@ -336,51 +338,51 @@
       <a href="index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
         <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
       </a>
-      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quiet but powerful — local knowledge, curated recommendations, professional service. The go-to source for Kalkan, Kaş, Patara and surroundings.">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
       <div class="flex items-center gap-3 mt-5">
-        <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
+        <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" aria-label="Instagram" data-en-aria="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"/></svg>
         </a>
-        <a href="#" data-concierge-trigger target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
+        <a href="#" data-concierge-trigger target="_blank" rel="noopener" aria-label="WhatsApp" data-en-aria="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
         </a>
       </div>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore">Keşfet</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="villalar.html">Villalar</a></li>
-        <li><a class="hover:text-sun-400" href="restoranlar.html">Restoranlar</a></li>
-        <li><a class="hover:text-sun-400" href="plajlar.html">Plajlar</a></li>
-        <li><a class="hover:text-sun-400" href="turlar.html">Turlar</a></li>
-        <li><a class="hover:text-sun-400 text-sun-400" href="aktiviteler.html">Aktiviteler</a></li>
-        <li><a class="hover:text-sun-400" href="hizmetler.html">Hizmetler</a></li>
+        <li><a class="hover:text-sun-400" href="villalar.html" data-en="Villas">Villalar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html" data-en="Restaurants">Restoranlar</a></li>
+        <li><a class="hover:text-sun-400" href="plajlar.html" data-en="Beaches">Plajlar</a></li>
+        <li><a class="hover:text-sun-400" href="turlar.html" data-en="Tours">Turlar</a></li>
+        <li><a class="hover:text-sun-400 text-sun-400" href="aktiviteler.html" data-en="Activities">Aktiviteler</a></li>
+        <li><a class="hover:text-sun-400" href="hizmetler.html" data-en="Services">Hizmetler</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Yerel</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Local">Yerel</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400" href="index.html#nobetci">Nöbetçi Eczane</a></li>
-        <li><a class="hover:text-sun-400" href="index.html#acil">Acil Numaralar</a></li>
-        <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#nobetci" data-en="On-Duty Pharmacy">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#acil" data-en="Emergency Numbers">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="haberler.html" data-en="News">Haberler</a></li>
       </ul>
     </div>
     <div>
-      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Contact">İletişim</div>
       <ul class="space-y-2 text-white/80">
         <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
-        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger target="_blank" rel="noopener">Concierge WhatsApp</a></li>
-        <li><a class="hover:text-sun-400" href="index.html#isletme-ekle">İşletme Ekle</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger target="_blank" rel="noopener" data-en="Concierge WhatsApp">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="index.html#isletme-ekle" data-en="Add Business">İşletme Ekle</a></li>
       </ul>
     </div>
   </div>
   <div class="border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
-      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div data-en="© 2026 Kalkan Info — All rights reserved.">© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
       <div class="flex items-center gap-3">
-        <span aria-disabled="true" title="Yakında" class="opacity-60 cursor-not-allowed" style="pointer-events:none;">App Store</span>
+        <span aria-disabled="true" title="Yakında" data-en-title="Coming soon" class="opacity-60 cursor-not-allowed" style="pointer-events:none;">App Store</span>
         <span class="opacity-30">·</span>
-        <span aria-disabled="true" title="Yakında" class="opacity-60 cursor-not-allowed" style="pointer-events:none;">Google Play</span>
+        <span aria-disabled="true" title="Yakında" data-en-title="Coming soon" class="opacity-60 cursor-not-allowed" style="pointer-events:none;">Google Play</span>
       </div>
     </div>
   </div>
@@ -392,6 +394,7 @@
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
+
 
 <script type="module" src="js/activities.js"></script>
 <script src="js/pwa.js?v=20260516c" defer></script>
