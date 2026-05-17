@@ -5,6 +5,12 @@
   "functions": {
     "api/*.js": { "maxDuration": 10 }
   },
+  "crons": [
+    {
+      "path": "/api/instagram-hashtag",
+      "schedule": "0 * * * *"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
