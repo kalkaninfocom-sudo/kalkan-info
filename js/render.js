@@ -222,6 +222,31 @@ const KalkanData = (() => {
 
   // Hizmet card
   function hizmetCard(h) {
+    // Direkt WhatsApp linkli kart (tek kişi/işletme — provider-modal yok)
+    if (h.whatsappRaw) {
+      const msg = encodeURIComponent(h.whatsappText || `Merhaba! Kalkan Info üzerinden ${h.name||'hizmet'} için ulaşıyorum.`);
+      const waHref = `https://wa.me/${escape(h.whatsappRaw)}?text=${msg}`;
+      const instructorLine = h.instructor ? `<div class="text-xs text-sea-700 font-bold mt-1">👤 ${escape(h.instructor)}</div>` : '';
+      return `
+        <a href="${waHref}" target="_blank" rel="noopener" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;text-decoration:none;color:inherit;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08),0 0 0 0 transparent';">
+          ${h.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1">${safeImage(h.image, h.name)}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div><div style="position:absolute;bottom:0;left:0;right:0;padding:6px 12px;color:#25D366;font-size:0.7rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px;background:linear-gradient(0deg,rgba(7,33,54,0.85),transparent);"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>WhatsApp ile İletişim</div></div>` : ''}
+          <div class="flex items-start gap-3">
+            <div class="text-3xl">${escape(h.icon||'🛠️')}</div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${escape(h.name)}</h3>
+              <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${escape(h.category||'')}</div>
+              ${instructorLine}
+            </div>
+          </div>
+          <p class="text-sm text-ink-700/80 mt-3">${escape(h.summary||'')}</p>
+          ${(h.details||[]).length ? `<ul class="text-xs text-ink-700/70 mt-3 space-y-1">${(h.details||[]).map(d => `<li class="flex items-start gap-1.5"><span class="text-sea-600">•</span>${escape(d)}</li>`).join('')}</ul>` : ''}
+          <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
+            <span class="inline-flex items-center gap-1.5 bg-[#25D366]/10 text-[#1da851] text-[11px] font-bold px-2.5 py-1 rounded-full border border-[#25D366]/25"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>Direkt İletişim</span>
+            ${h.hours ? `<span class="text-[11px] text-ink-700/60">${escape(h.hours)}</span>` : ''}
+          </div>
+        </a>
+      `;
+    }
     const providerCount = Number(h.providerCount || 0);
     const providerBadge = providerCount > 0
       ? `<span class="inline-flex items-center gap-1.5 bg-sea-50 text-sea-700 text-[11px] font-bold px-2.5 py-1 rounded-full border border-sea-100"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 19c0-2 1.5-3.5 4-3.5s3 1.5 3 3.5"/></svg>${providerCount} sağlayıcı</span>`

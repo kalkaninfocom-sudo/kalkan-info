@@ -823,6 +823,38 @@
           "featured": false
         }
       ]
+    },
+    "tenis-kursu": {
+      "title": "Tenis Kursu",
+      "icon": "🎾",
+      "providers": [
+        {
+          "id": "tenis-faruk-bulut",
+          "name": "Faruk Bulut",
+          "role": "Tenis Eğitmeni",
+          "type": "Şahıs",
+          "rating": 5,
+          "reviewCount": 0,
+          "image": "/assets/img/tenis-kursu.webp",
+          "whatsapp": "+90 543 904 24 54",
+          "whatsappRaw": "905439042454",
+          "phone": "+90 543 904 24 54",
+          "summary": "Tüm seviyelere özel ders ve grup kursu — yetişkin ve çocuk programları. Modern toprak/sert kort ile profesyonel eğitmen eşliğinde tenis dersi.",
+          "services": [
+            "Bireysel Ders",
+            "Grup Kursu",
+            "Çocuk Programı",
+            "Yetişkin Programı",
+            "Tüm Seviyeler"
+          ],
+          "languages": [
+            "TR"
+          ],
+          "area": "Kalkan",
+          "available": true,
+          "defaultMessage": "Merhaba Faruk Hoca! Kalkan Info üzerinden ulaşıyorum, tenis dersi almak istiyorum. Müsait olduğunuz programlar ve kurs detayları hakkında bilgi alabilir miyim?"
+        }
+      ]
     }
   }
 }
