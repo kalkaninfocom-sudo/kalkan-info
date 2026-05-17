@@ -58,13 +58,24 @@
     let aktifVeri = eczaneData?.today || {};
     let gosterYarin = false;
 
-    // Kalkan Info ekibi doğrulama tarihi
+    // Kalkan Info ekibi doğrulama tarihi + stale data uyarısı
     const verifiedDateEl = document.getElementById('ecz-verified-date');
+    const verifiedBadge = document.getElementById('ecz-verified');
+    const dataDate = aktifVeri.date || '';
+    const isStale = dataDate && dataDate !== bugun;
+
     if (verifiedDateEl) {
-      const raw = eczaneData?.verifiedAt || aktifVeri.date || bugun;
+      const raw = dataDate || bugun;
       try {
         verifiedDateEl.textContent = new Date(raw + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
       } catch (e) { verifiedDateEl.textContent = raw; }
+    }
+
+    // Veri bugüne ait DEĞİLSE: yeşil rozeti sarı uyarıya çevir
+    if (verifiedBadge && isStale) {
+      verifiedBadge.classList.remove('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+      verifiedBadge.classList.add('text-amber-700', 'bg-amber-50', 'border-amber-200');
+      verifiedBadge.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Veri ' + (verifiedDateEl?.textContent || raw) + ' tarihinden — aramadan önce teyit edin</span>';
     }
 
     const toggleBtn = document.getElementById('ecz-toggle-tomorrow');

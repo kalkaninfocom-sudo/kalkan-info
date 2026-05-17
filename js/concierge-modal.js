@@ -95,8 +95,11 @@
     const list = sheet.querySelector('#kalkan-concierge-list');
     agentsList.forEach(a => list.appendChild(buildAgentCard(a)));
 
-    sheet.querySelector('#kalkan-concierge-close').addEventListener('click', close);
-    backdrop.addEventListener('click', e => { if (e.target === backdrop) close(); });
+    const closeBtn = sheet.querySelector('#kalkan-concierge-close');
+    closeBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); close(); });
+    // Sheet üzerine tıklayınca bubble'ı kes (modal kapanmasın)
+    sheet.addEventListener('click', (e) => e.stopPropagation());
+    backdrop.addEventListener('click', () => close());
     document.addEventListener('keydown', escClose);
 
     document.body.appendChild(backdrop);
