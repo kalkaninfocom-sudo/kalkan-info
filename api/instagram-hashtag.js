@@ -107,21 +107,20 @@ export default async function handler(req, res) {
 
   try {
     const merged = new Map();
-    const stats = [];
-
-    for (const hashtag of hashtags) {
+    // Tüm hashtag'leri PARALEL çek (timeout'tan kaçınmak için)
+    const results = await Promise.all(hashtags.map(async (hashtag) => {
       try {
         const hashtagId = await getHashtagId(hashtag, businessId, token);
-        const [recent, top] = await Promise.all([
-          fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(() => ({ data: [] })),
-          fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(() => ({ data: [] }))
-        ]);
-        for (const it of (recent.data || [])) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: hashtag });
-        for (const it of (top.data || [])) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: hashtag });
-        stats.push({ hashtag, hashtagId, count: (recent.data?.length || 0) + (top.data?.length || 0) });
+        const recent = await fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(() => ({ data: [] }));
+        return { hashtag, hashtagId, recent: recent.data || [], count: (recent.data || []).length };
       } catch (e) {
-        stats.push({ hashtag, error: e.message });
+        return { hashtag, error: e.message, recent: [], count: 0 };
       }
+    }));
+
+    const stats = results.map(r => ({ hashtag: r.hashtag, hashtagId: r.hashtagId, count: r.count, error: r.error }));
+    for (const r of results) {
+      for (const it of r.recent) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: r.hashtag });
     }
 
     const posts = filterAndNormalize([...merged.values()]);

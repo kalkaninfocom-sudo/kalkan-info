@@ -3,7 +3,8 @@
   "buildCommand": "node scripts/build-supabase-config.mjs && node scripts/build-tailwind.mjs && (node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json')",
   "outputDirectory": ".",
   "functions": {
-    "api/*.js": { "maxDuration": 10 }
+    "api/*.js": { "maxDuration": 10 },
+    "api/instagram-hashtag.js": { "maxDuration": 60 }
   },
   "crons": [
     {
