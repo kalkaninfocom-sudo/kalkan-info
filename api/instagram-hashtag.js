@@ -111,24 +111,16 @@ export default async function handler(req, res) {
 
   try {
     const merged = new Map();
-    // Tüm hashtag'leri PARALEL çek (timeout'tan kaçınmak için)
-    // Hem recent_media hem top_media çek (recent bazen boş döner — top daha geniş)
+    // Sadece recent_media (top_media çift istek + timeout riski)
     const results = await Promise.all(hashtags.map(async (hashtag) => {
       try {
         const hashtagId = await getHashtagId(hashtag, businessId, token);
-        const [recent, top] = await Promise.all([
-          fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(e => ({ data: [], err: e.message })),
-          fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(e => ({ data: [], err: e.message }))
-        ]);
-        const combined = [...(recent.data || []), ...(top.data || [])];
+        const recent = await fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(e => ({ data: [], err: e.message }));
         return {
           hashtag, hashtagId,
-          recent: combined,
-          count: combined.length,
-          recentErr: recent.err,
-          topErr: top.err,
-          recentCount: (recent.data || []).length,
-          topCount: (top.data || []).length
+          recent: recent.data || [],
+          count: (recent.data || []).length,
+          recentErr: recent.err
         };
       } catch (e) {
         return { hashtag, error: e.message, recent: [], count: 0 };
