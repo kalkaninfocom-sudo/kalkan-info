@@ -55,13 +55,22 @@ async function _loadProfile(user) {
       }
     }
 
-    // Ad
+    // Ad — hem sidebar display hem form input
+    const displayName = profile.display_name
+      || user.user_metadata?.full_name
+      || user.user_metadata?.name
+      || user.email?.split('@')[0]
+      || '—';
     const nameEl = document.getElementById('profile-name');
-    if (nameEl) nameEl.textContent = profile.display_name || user.user_metadata?.full_name || '—';
+    if (nameEl) nameEl.textContent = displayName;
+    const nameInput = document.getElementById('profile-name-input');
+    if (nameInput) nameInput.value = displayName === '—' ? '' : displayName;
 
-    // E-posta (read-only)
+    // E-posta — disabled input + sidebar display
     const emailEl = document.getElementById('profile-email');
     if (emailEl) emailEl.value = user.email || '';
+    const emailDisplay = document.getElementById('profile-email-display');
+    if (emailDisplay) emailDisplay.textContent = user.email || '';
 
     // Dil dropdown
     const langEl = document.getElementById('profile-lang');
