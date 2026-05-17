@@ -54,6 +54,7 @@
 <script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
 <script src="js/concierge-modal.js?v=20260517b" defer></script>
     <script src="js/cookie-banner.js" defer></script>
+<script src="js/i18n.js?v=20260517a" defer></script>
 </head>
 <body class="bg-[#dce6ef] min-h-screen flex flex-col">
 
@@ -64,7 +65,7 @@
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
     <div class="flex items-center gap-4 text-sm">
-      <a href="login.html" class="text-white/70 hover:text-white transition">Giriş Yap</a>
+      <a href="login.html" class="text-white/70 hover:text-white transition" data-en="Sign In">Giriş Yap</a>
     </div>
   </div>
 </nav>
@@ -73,134 +74,240 @@
 <main class="flex-1 max-w-3xl mx-auto w-full px-4 py-10 md:py-14">
   <div class="bg-white rounded-2xl p-8 md:p-12" style="box-shadow:0 2px 8px rgba(7,33,54,0.08),0 24px 64px -16px rgba(7,33,54,0.18);">
 
+    <!-- EN-only legal notice — shown only when i18n switches to EN -->
+    <div id="kvkk-en-notice" class="bg-amber-50 border border-amber-300 text-amber-900 rounded-lg px-4 py-3 my-4 text-sm" style="display:none;">
+      <strong>Notice:</strong> This is an English translation provided for informational purposes only. The legally binding version of this Privacy Notice is the Turkish original, prepared under Personal Data Protection Law (KVKK) No. 6698.
+    </div>
+    <script>
+      (function(){
+        function showNotice(){
+          var lang = (localStorage.getItem('lang') || 'en');
+          document.getElementById('kvkk-en-notice').style.display = (lang === 'en') ? 'block' : 'none';
+        }
+        document.addEventListener('DOMContentLoaded', showNotice);
+        // Re-check when i18n switches language
+        document.addEventListener('click', function(e){
+          if(e.target && e.target.dataset && e.target.dataset.langToggle){ setTimeout(showNotice, 50); }
+        });
+      })();
+    </script>
+
     <div class="mb-8">
-      <p class="text-xs uppercase tracking-[0.12em] font-bold text-sea-400 mb-2">Yasal Bilgilendirme</p>
-      <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-900">Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Aydınlatma Metni</h1>
-      <p class="text-sm text-sea-500 mt-2">Sürüm: 1.0 &nbsp;·&nbsp; Yürürlük tarihi: 30 Nisan 2026 &nbsp;·&nbsp; Son güncelleme: 30 Nisan 2026</p>
+      <p class="text-xs uppercase tracking-[0.12em] font-bold text-sea-400 mb-2" data-en="Legal Notice">Yasal Bilgilendirme</p>
+      <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-900" data-en="Privacy Notice under the Personal Data Protection Law (KVKK)">Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Aydınlatma Metni</h1>
+      <p class="text-sm text-sea-500 mt-2" data-en="Version: 1.0 · Effective date: 30 April 2026 · Last updated: 30 April 2026">Sürüm: 1.0 &nbsp;·&nbsp; Yürürlük tarihi: 30 Nisan 2026 &nbsp;·&nbsp; Son güncelleme: 30 Nisan 2026</p>
     </div>
 
     <div class="prose">
 
       <div class="info-box">
-        <p class="font-semibold text-sea-800 mb-1">Önemli Not</p>
-        <p class="text-sm text-sea-700 mb-0">Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ çerçevesinde hazırlanmıştır.</p>
+        <p class="font-semibold text-sea-800 mb-1" data-en="Important Note">Önemli Not</p>
+        <p class="text-sm text-sea-700 mb-0" data-en="This notice has been prepared within the framework of Article 10 of Personal Data Protection Law No. 6698 (&quot;KVKK&quot;) and the Communiqué on Procedures and Principles for Fulfilling the Obligation to Inform.">Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ çerçevesinde hazırlanmıştır.</p>
       </div>
 
       <!-- 1 -->
-      <h2>1. Veri Sorumlusunun Kimliği</h2>
-      <p>Kişisel verileriniz, aşağıda bilgileri yer alan veri sorumlusu tarafından işlenmektedir:</p>
+      <h2 data-en="1. Identity of the Data Controller">1. Veri Sorumlusunun Kimliği</h2>
+      <p data-en="Your personal data is processed by the data controller whose details are set out below:">Kişisel verileriniz, aşağıda bilgileri yer alan veri sorumlusu tarafından işlenmektedir:</p>
       <table>
-        <tr><th>Ünvan</th><td>Kalkan Info (Berkay Elmastaş)</td></tr>
-        <tr><th>Adres</th><td>Atatürk Cad. No:1, Kalkan / Kaş / Antalya, 07580</td></tr>
-        <tr><th>E-posta</th><td><a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a></td></tr>
-        <tr><th>Web Sitesi</th><td><a href="https://kalkaninfo.com">kalkaninfo.com</a></td></tr>
-        <tr><th>Sunucu Konumu</th><td>Avrupa Birliği (Google Cloud — europe-west3, Frankfurt)</td></tr>
+        <tr><th data-en="Name / Title">Ünvan</th><td>Kalkan Info (Berkay Elmastaş)</td></tr>
+        <tr><th data-en="Address">Adres</th><td>Atatürk Cad. No:1, Kalkan / Kaş / Antalya, 07580</td></tr>
+        <tr><th data-en="E-mail">E-posta</th><td><a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a></td></tr>
+        <tr><th data-en="Website">Web Sitesi</th><td><a href="https://kalkaninfo.com">kalkaninfo.com</a></td></tr>
+        <tr><th data-en="Server Location">Sunucu Konumu</th><td data-en="European Union (Google Cloud — europe-west3, Frankfurt)">Avrupa Birliği (Google Cloud — europe-west3, Frankfurt)</td></tr>
       </table>
 
       <!-- 2 -->
-      <h2>2. İşlenen Kişisel Veriler</h2>
-      <p>Platforma kayıt olduğunuzda veya hizmetlerimizden yararlandığınızda aşağıdaki kişisel veriler işlenmektedir:</p>
+      <h2 data-en="2. Personal Data Processed">2. İşlenen Kişisel Veriler</h2>
+      <p data-en="When you register on the platform or use our services, the following personal data is processed:">Platforma kayıt olduğunuzda veya hizmetlerimizden yararlandığınızda aşağıdaki kişisel veriler işlenmektedir:</p>
       <table>
-        <tr><th>Veri Kategorisi</th><th>Veriler</th><th>Kaynak</th></tr>
-        <tr><td>Kimlik Bilgileri</td><td>Ad, soyad</td><td>Üye kaydı, sosyal giriş</td></tr>
-        <tr><td>İletişim Bilgileri</td><td>E-posta adresi</td><td>Üye kaydı, sosyal giriş</td></tr>
-        <tr><td>Görsel Bilgiler</td><td>Profil fotoğrafı (opsiyonel, yalnızca sosyal hesaptan aktarılır)</td><td>Google / Facebook OAuth</td></tr>
-        <tr><td>İşlem Güvenliği</td><td>Şifreli oturum bilgileri, IP adresi (KVKK onayı kaydı için), giriş tarihi</td><td>Sistem otomatik</td></tr>
-        <tr><td>Kullanım Verileri</td><td>Yorum içerikleri, işletme profil bilgileri, tercih edilen dil</td><td>Kullanıcı girişi</td></tr>
-        <tr><td>Onay Bilgileri</td><td>KVKK onay tarihi ve sürümü, pazarlama tercihi</td><td>Üye kaydı</td></tr>
-        <tr><td>Teknik Veriler</td><td>Çerez verileri, tarayıcı türü, cihaz tipi, sayfa görüntüleme istatistikleri</td><td>Sistem otomatik</td></tr>
+        <tr>
+          <th data-en="Data Category">Veri Kategorisi</th>
+          <th data-en="Data Items">Veriler</th>
+          <th data-en="Source">Kaynak</th>
+        </tr>
+        <tr>
+          <td data-en="Identity Information">Kimlik Bilgileri</td>
+          <td data-en="First name, last name">Ad, soyad</td>
+          <td data-en="Member registration, social login">Üye kaydı, sosyal giriş</td>
+        </tr>
+        <tr>
+          <td data-en="Contact Information">İletişim Bilgileri</td>
+          <td data-en="E-mail address">E-posta adresi</td>
+          <td data-en="Member registration, social login">Üye kaydı, sosyal giriş</td>
+        </tr>
+        <tr>
+          <td data-en="Visual Information">Görsel Bilgiler</td>
+          <td data-en="Profile photo (optional, transferred from social account only)">Profil fotoğrafı (opsiyonel, yalnızca sosyal hesaptan aktarılır)</td>
+          <td>Google / Facebook OAuth</td>
+        </tr>
+        <tr>
+          <td data-en="Transaction Security">İşlem Güvenliği</td>
+          <td data-en="Encrypted session data, IP address (for KVKK consent record), login date">Şifreli oturum bilgileri, IP adresi (KVKK onayı kaydı için), giriş tarihi</td>
+          <td data-en="System automatic">Sistem otomatik</td>
+        </tr>
+        <tr>
+          <td data-en="Usage Data">Kullanım Verileri</td>
+          <td data-en="Review contents, business profile information, preferred language">Yorum içerikleri, işletme profil bilgileri, tercih edilen dil</td>
+          <td data-en="User input">Kullanıcı girişi</td>
+        </tr>
+        <tr>
+          <td data-en="Consent Records">Onay Bilgileri</td>
+          <td data-en="KVKK consent date and version, marketing preference">KVKK onay tarihi ve sürümü, pazarlama tercihi</td>
+          <td data-en="Member registration">Üye kaydı</td>
+        </tr>
+        <tr>
+          <td data-en="Technical Data">Teknik Veriler</td>
+          <td data-en="Cookie data, browser type, device type, page view statistics">Çerez verileri, tarayıcı türü, cihaz tipi, sayfa görüntüleme istatistikleri</td>
+          <td data-en="System automatic">Sistem otomatik</td>
+        </tr>
       </table>
 
       <!-- 3 -->
-      <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
+      <h2 data-en="3. Purposes of Personal Data Processing">3. Kişisel Verilerin İşlenme Amaçları</h2>
       <ul>
-        <li>Üyelik hesabı oluşturulması, doğrulanması ve yönetilmesi</li>
-        <li>Platforma güvenli giriş yapılmasının sağlanması</li>
-        <li>Kullanıcı profilinin oluşturulması ve güncellenmesi</li>
-        <li>Yorum, değerlendirme ve işletme profili hizmetlerinin sunulması</li>
-        <li>KVKK kapsamındaki yükümlülüklerin yerine getirilmesi ve yasal belgelerin saklanması</li>
-        <li>Hoş geldiniz e-postası ve sistem bildirimleri gönderilmesi</li>
-        <li>Onay verilmesi halinde: kampanya, yenilik ve içerik duyurularının iletilmesi</li>
-        <li>Platformun güvenliğinin ve bütünlüğünün korunması</li>
-        <li>İstatistiksel analiz ve hizmet kalitesinin iyileştirilmesi (anonim/toplu verilerle)</li>
+        <li data-en="Creation, verification and management of membership accounts">Üyelik hesabı oluşturulması, doğrulanması ve yönetilmesi</li>
+        <li data-en="Ensuring secure access to the platform">Platforma güvenli giriş yapılmasının sağlanması</li>
+        <li data-en="Creation and update of user profiles">Kullanıcı profilinin oluşturulması ve güncellenmesi</li>
+        <li data-en="Provision of review, rating and business profile services">Yorum, değerlendirme ve işletme profili hizmetlerinin sunulması</li>
+        <li data-en="Fulfilment of obligations under KVKK and retention of legal records">KVKK kapsamındaki yükümlülüklerin yerine getirilmesi ve yasal belgelerin saklanması</li>
+        <li data-en="Sending welcome e-mails and system notifications">Hoş geldiniz e-postası ve sistem bildirimleri gönderilmesi</li>
+        <li data-en="Where consent is given: delivery of campaign, update and content announcements">Onay verilmesi halinde: kampanya, yenilik ve içerik duyurularının iletilmesi</li>
+        <li data-en="Protection of the security and integrity of the platform">Platformun güvenliğinin ve bütünlüğünün korunması</li>
+        <li data-en="Statistical analysis and improvement of service quality (using anonymous/aggregate data)">İstatistiksel analiz ve hizmet kalitesinin iyileştirilmesi (anonim/toplu verilerle)</li>
       </ul>
 
       <!-- 4 -->
-      <h2>4. Hukuki Sebepler</h2>
+      <h2 data-en="4. Legal Bases">4. Hukuki Sebepler</h2>
       <table>
-        <tr><th>Amaç</th><th>KVKK Hukuki Dayanağı</th></tr>
-        <tr><td>Üyelik ve kimlik doğrulama</td><td>Md. 5/2(c) — Sözleşmenin kurulması ve ifası</td></tr>
-        <tr><td>KVKK kayıtlarının tutulması</td><td>Md. 5/2(ç) — Hukuki yükümlülük</td></tr>
-        <tr><td>Güvenlik logları</td><td>Md. 5/2(ç) — Hukuki yükümlülük / Md. 5/2(f) — Meşru menfaat</td></tr>
-        <tr><td>Pazarlama bildirimleri</td><td>Md. 5/1 — Açık rıza (opsiyonel onay kutusu)</td></tr>
-        <tr><td>Analitik / istatistik</td><td>Md. 5/2(f) — Meşru menfaat (anonim veri)</td></tr>
+        <tr>
+          <th data-en="Purpose">Amaç</th>
+          <th data-en="KVKK Legal Basis">KVKK Hukuki Dayanağı</th>
+        </tr>
+        <tr>
+          <td data-en="Membership and identity verification">Üyelik ve kimlik doğrulama</td>
+          <td data-en="Art. 5/2(c) — Establishment and performance of a contract">Md. 5/2(c) — Sözleşmenin kurulması ve ifası</td>
+        </tr>
+        <tr>
+          <td data-en="Retention of KVKK records">KVKK kayıtlarının tutulması</td>
+          <td data-en="Art. 5/2(ç) — Legal obligation">Md. 5/2(ç) — Hukuki yükümlülük</td>
+        </tr>
+        <tr>
+          <td data-en="Security logs">Güvenlik logları</td>
+          <td data-en="Art. 5/2(ç) — Legal obligation / Art. 5/2(f) — Legitimate interest">Md. 5/2(ç) — Hukuki yükümlülük / Md. 5/2(f) — Meşru menfaat</td>
+        </tr>
+        <tr>
+          <td data-en="Marketing notifications">Pazarlama bildirimleri</td>
+          <td data-en="Art. 5/1 — Explicit consent (optional tick-box)">Md. 5/1 — Açık rıza (opsiyonel onay kutusu)</td>
+        </tr>
+        <tr>
+          <td data-en="Analytics / statistics">Analitik / istatistik</td>
+          <td data-en="Art. 5/2(f) — Legitimate interest (anonymous data)">Md. 5/2(f) — Meşru menfaat (anonim veri)</td>
+        </tr>
       </table>
 
       <!-- 5 -->
-      <h2>5. Kişisel Verilerin Aktarımı</h2>
-      <p>Kişisel verileriniz, aşağıdaki alıcılara ve amaçlarla aktarılabilir:</p>
+      <h2 data-en="5. Transfer of Personal Data">5. Kişisel Verilerin Aktarımı</h2>
+      <p data-en="Your personal data may be transferred to the following recipients and for the following purposes:">Kişisel verileriniz, aşağıdaki alıcılara ve amaçlarla aktarılabilir:</p>
       <table>
-        <tr><th>Alıcı</th><th>Amaç</th><th>Konum</th></tr>
-        <tr><td>Google Firebase / Firestore</td><td>Veri tabanı ve kimlik doğrulama altyapısı</td><td>AB (Frankfurt, europe-west3)</td></tr>
-        <tr><td>Google Analytics</td><td>Anonim kullanım istatistikleri</td><td>AB / ABD (SCCs kapsamında)</td></tr>
-        <tr><td>E-posta altyapı sağlayıcısı (SendGrid/Mailgun)</td><td>Sistem ve pazarlama e-postaları</td><td>AB / ABD (SCCs kapsamında)</td></tr>
-        <tr><td>Meta (Facebook/Instagram)</td><td>Sosyal giriş (OAuth) — yalnızca kimlik doğrulama</td><td>ABD (SCCs kapsamında)</td></tr>
+        <tr>
+          <th data-en="Recipient">Alıcı</th>
+          <th data-en="Purpose">Amaç</th>
+          <th data-en="Location">Konum</th>
+        </tr>
+        <tr>
+          <td>Google Firebase / Firestore</td>
+          <td data-en="Database and authentication infrastructure">Veri tabanı ve kimlik doğrulama altyapısı</td>
+          <td data-en="EU (Frankfurt, europe-west3)">AB (Frankfurt, europe-west3)</td>
+        </tr>
+        <tr>
+          <td>Google Analytics</td>
+          <td data-en="Anonymous usage statistics">Anonim kullanım istatistikleri</td>
+          <td data-en="EU / USA (under SCCs)">AB / ABD (SCCs kapsamında)</td>
+        </tr>
+        <tr>
+          <td data-en="E-mail infrastructure provider (SendGrid/Mailgun)">E-posta altyapı sağlayıcısı (SendGrid/Mailgun)</td>
+          <td data-en="System and marketing e-mails">Sistem ve pazarlama e-postaları</td>
+          <td data-en="EU / USA (under SCCs)">AB / ABD (SCCs kapsamında)</td>
+        </tr>
+        <tr>
+          <td>Meta (Facebook/Instagram)</td>
+          <td data-en="Social login (OAuth) — authentication only">Sosyal giriş (OAuth) — yalnızca kimlik doğrulama</td>
+          <td data-en="USA (under SCCs)">ABD (SCCs kapsamında)</td>
+        </tr>
       </table>
-      <p>Yurt dışı aktarımlar, KVKK'nın 9. maddesi ve Kişisel Verileri Koruma Kurulu kararları çerçevesinde, Standart Sözleşme Hükümleri (SCCs) veya yeterlilik kararı olan ülkelere yapılmaktadır.</p>
+      <p data-en="International transfers are made in accordance with Article 9 of KVKK and the decisions of the Personal Data Protection Board, under Standard Contractual Clauses (SCCs) or to countries with an adequacy decision.">Yurt dışı aktarımlar, KVKK'nın 9. maddesi ve Kişisel Verileri Koruma Kurulu kararları çerçevesinde, Standart Sözleşme Hükümleri (SCCs) veya yeterlilik kararı olan ülkelere yapılmaktadır.</p>
 
       <!-- 6 -->
-      <h2>6. Saklama Süreleri</h2>
+      <h2 data-en="6. Retention Periods">6. Saklama Süreleri</h2>
       <table>
-        <tr><th>Veri Türü</th><th>Saklama Süresi</th></tr>
-        <tr><td>Hesap ve profil bilgileri</td><td>Hesap aktif olduğu sürece + silme talebinden 30 gün</td></tr>
-        <tr><td>KVKK onay kayıtları</td><td>Hesap silinmesinden itibaren 3 yıl (hukuki yükümlülük)</td></tr>
-        <tr><td>İşlem ve güvenlik logları</td><td>2 yıl</td></tr>
-        <tr><td>Pazarlama e-posta kayıtları</td><td>Abonelik iptalinden itibaren 3 yıl</td></tr>
-        <tr><td>Yorum ve içerikler</td><td>Hesap silinmesinde anonimleştirilir veya silinir</td></tr>
+        <tr>
+          <th data-en="Data Type">Veri Türü</th>
+          <th data-en="Retention Period">Saklama Süresi</th>
+        </tr>
+        <tr>
+          <td data-en="Account and profile information">Hesap ve profil bilgileri</td>
+          <td data-en="For as long as the account is active + 30 days from deletion request">Hesap aktif olduğu sürece + silme talebinden 30 gün</td>
+        </tr>
+        <tr>
+          <td data-en="KVKK consent records">KVKK onay kayıtları</td>
+          <td data-en="3 years from account deletion (legal obligation)">Hesap silinmesinden itibaren 3 yıl (hukuki yükümlülük)</td>
+        </tr>
+        <tr>
+          <td data-en="Transaction and security logs">İşlem ve güvenlik logları</td>
+          <td data-en="2 years">2 yıl</td>
+        </tr>
+        <tr>
+          <td data-en="Marketing e-mail records">Pazarlama e-posta kayıtları</td>
+          <td data-en="3 years from unsubscription">Abonelik iptalinden itibaren 3 yıl</td>
+        </tr>
+        <tr>
+          <td data-en="Reviews and content">Yorum ve içerikler</td>
+          <td data-en="Anonymised or deleted upon account deletion">Hesap silinmesinde anonimleştirilir veya silinir</td>
+        </tr>
       </table>
 
       <!-- 7 -->
-      <h2>7. İlgili Kişi Hakları (KVKK Madde 11)</h2>
-      <p>KVKK'nın 11. maddesi kapsamında aşağıdaki haklara sahipsiniz:</p>
+      <h2 data-en="7. Rights of Data Subjects (KVKK Article 11)">7. İlgili Kişi Hakları (KVKK Madde 11)</h2>
+      <p data-en="Under Article 11 of KVKK you have the following rights:">KVKK'nın 11. maddesi kapsamında aşağıdaki haklara sahipsiniz:</p>
       <ul>
-        <li><strong>Bilgi edinme hakkı:</strong> Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
-        <li><strong>Bilgi talep hakkı:</strong> İşleniyorsa buna ilişkin bilgi talep etme</li>
-        <li><strong>Amaç öğrenme hakkı:</strong> İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme</li>
-        <li><strong>Aktarım bilgisi hakkı:</strong> Yurt içinde veya yurt dışında aktarılan üçüncü kişileri öğrenme</li>
-        <li><strong>Düzeltme hakkı:</strong> Eksik veya yanlış verilerin düzeltilmesini isteme</li>
-        <li><strong>Silme / yok etme hakkı:</strong> KVKK Madde 7 kapsamında koşulların varlığı halinde silinmesini veya yok edilmesini isteme</li>
-        <li><strong>Bildirim hakkı:</strong> Düzeltme ve silme işlemlerinin aktarılan üçüncü kişilere bildirilmesini isteme</li>
-        <li><strong>İtiraz hakkı:</strong> Otomatik sistemlerle analiz sonucunda aleyhinize çıkan sonuca itiraz etme</li>
-        <li><strong>Tazminat hakkı:</strong> Kanuna aykırı işleme nedeniyle uğradığınız zararın giderilmesini talep etme</li>
+        <li><strong data-en="Right to be informed:">Bilgi edinme hakkı:</strong> <span data-en="To learn whether your personal data is being processed">Kişisel verilerinizin işlenip işlenmediğini öğrenme</span></li>
+        <li><strong data-en="Right to request information:">Bilgi talep hakkı:</strong> <span data-en="If processed, to request information in relation thereto">İşleniyorsa buna ilişkin bilgi talep etme</span></li>
+        <li><strong data-en="Right to learn purpose:">Amaç öğrenme hakkı:</strong> <span data-en="To learn the purpose of processing and whether it is used in accordance with that purpose">İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme</span></li>
+        <li><strong data-en="Right to know recipients:">Aktarım bilgisi hakkı:</strong> <span data-en="To know the third parties to whom data is transferred domestically or abroad">Yurt içinde veya yurt dışında aktarılan üçüncü kişileri öğrenme</span></li>
+        <li><strong data-en="Right to rectification:">Düzeltme hakkı:</strong> <span data-en="To request correction of incomplete or inaccurate data">Eksik veya yanlış verilerin düzeltilmesini isteme</span></li>
+        <li><strong data-en="Right to erasure / destruction:">Silme / yok etme hakkı:</strong> <span data-en="To request erasure or destruction where the conditions under KVKK Article 7 are met">KVKK Madde 7 kapsamında koşulların varlığı halinde silinmesini veya yok edilmesini isteme</span></li>
+        <li><strong data-en="Right to notification:">Bildirim hakkı:</strong> <span data-en="To request that rectification and erasure be notified to third parties to whom data was transferred">Düzeltme ve silme işlemlerinin aktarılan üçüncü kişilere bildirilmesini isteme</span></li>
+        <li><strong data-en="Right to object:">İtiraz hakkı:</strong> <span data-en="To object to a result that is to your detriment arising from analysis exclusively by automated systems">Otomatik sistemlerle analiz sonucunda aleyhinize çıkan sonuca itiraz etme</span></li>
+        <li><strong data-en="Right to compensation:">Tazminat hakkı:</strong> <span data-en="To claim compensation for damage suffered due to unlawful processing">Kanuna aykırı işleme nedeniyle uğradığınız zararın giderilmesini talep etme</span></li>
       </ul>
 
       <div class="info-box mt-2">
-        <p class="font-semibold text-sea-800 mb-1">Profil Sayfasından Anlık İşlemler</p>
-        <p class="text-sm text-sea-700 mb-0"><a href="profil.html">Profilim → Ayarlar</a> sayfasından "Verilerimi İndir" butonu ile verilerinizi JSON olarak indirebilir; "Hesabımı Sil" butonu ile tüm kişisel verilerinizin silinmesini talep edebilirsiniz.</p>
+        <p class="font-semibold text-sea-800 mb-1" data-en="Instant Operations via Profile Page">Profil Sayfasından Anlık İşlemler</p>
+        <p class="text-sm text-sea-700 mb-0"><a href="profil.html" data-en="My Profile → Settings">Profilim → Ayarlar</a> <span data-en="page: use the &quot;Download My Data&quot; button to download your data as JSON; use the &quot;Delete My Account&quot; button to request deletion of all your personal data.">sayfasından "Verilerimi İndir" butonu ile verilerinizi JSON olarak indirebilir; "Hesabımı Sil" butonu ile tüm kişisel verilerinizin silinmesini talep edebilirsiniz.</span></p>
       </div>
 
       <!-- 8 -->
-      <h2>8. Başvuru Kanalı</h2>
-      <p>Haklarınızı kullanmak için aşağıdaki kanalları kullanabilirsiniz:</p>
+      <h2 data-en="8. How to Exercise Your Rights">8. Başvuru Kanalı</h2>
+      <p data-en="You may use the following channels to exercise your rights:">Haklarınızı kullanmak için aşağıdaki kanalları kullanabilirsiniz:</p>
       <ul>
-        <li><strong>E-posta:</strong> <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a> (konu: "KVKK Başvurusu")</li>
-        <li><strong>Posta:</strong> Atatürk Cad. No:1, Kalkan / Kaş / Antalya, 07580 (ıslak imzalı dilekçe)</li>
-        <li><strong>Platform:</strong> <a href="profil.html">Profil sayfasındaki</a> "Hesabımı Sil" ve "Verilerimi İndir" butonları</li>
+        <li><strong data-en="E-mail:">E-posta:</strong> <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a> <span data-en='(subject: "KVKK Application")'>(konu: "KVKK Başvurusu")</span></li>
+        <li><strong data-en="Post:">Posta:</strong> <span data-en="Atatürk Cad. No:1, Kalkan / Kaş / Antalya, 07580 (wet-signed petition)">Atatürk Cad. No:1, Kalkan / Kaş / Antalya, 07580 (ıslak imzalı dilekçe)</span></li>
+        <li><strong data-en="Platform:">Platform:</strong> <a href="profil.html" data-en="Profile page">"Delete My Account" and "Download My Data" buttons on the Profile page</a></li>
       </ul>
-      <p>Başvurularınız, kimliğiniz doğrulandıktan sonra en geç <strong>30 gün</strong> içinde sonuçlandırılır. Başvurunun ücrete tabi olması halinde Kişisel Verileri Koruma Kurulu tarafından belirlenen tarife uygulanır.</p>
-      <p>Başvurunuzun reddedilmesi, verilen yanıtın yetersiz bulunması veya süresinde yanıt verilmemesi halinde Kişisel Verileri Koruma Kurulu'na (<a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">kvkk.gov.tr</a>) şikâyette bulunabilirsiniz.</p>
+      <p><span data-en="Your applications will be concluded within a maximum of">Başvurularınız, kimliğiniz doğrulandıktan sonra en geç </span><strong data-en="30 days">30 gün</strong> <span data-en="after identity verification. Where the application is subject to a fee, the tariff set by the Personal Data Protection Board shall apply.">içinde sonuçlandırılır. Başvurunun ücrete tabi olması halinde Kişisel Verileri Koruma Kurulu tarafından belirlenen tarife uygulanır.</span></p>
+      <p><span data-en="Should your application be rejected, the response be found insufficient, or no response be provided within the statutory period, you may lodge a complaint with the Personal Data Protection Board (">Başvurunuzun reddedilmesi, verilen yanıtın yetersiz bulunması veya süresinde yanıt verilmemesi halinde Kişisel Verileri Koruma Kurulu'na (</span><a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">kvkk.gov.tr</a><span data-en=").">).</span> <span data-en="şikâyette bulunabilirsiniz." style="display:none;"><!-- TR suffix handled by data-en above --></span></p>
 
       <!-- 9 -->
-      <h2>9. Çerezler</h2>
-      <p>Platform, oturum yönetimi ve analitik amaçlı çerezler kullanmaktadır. Ayrıntılar için <a href="privacy.html">Gizlilik Politikası</a>'na bakınız.</p>
+      <h2 data-en="9. Cookies">9. Çerezler</h2>
+      <p><span data-en="The platform uses cookies for session management and analytics purposes. For details please refer to the ">Platform, oturum yönetimi ve analitik amaçlı çerezler kullanmaktadır. Ayrıntılar için </span><a href="privacy.html" data-en="Privacy Policy">Gizlilik Politikası</a><span data-en=".">.</span> <span data-en="'na bakınız." style="display:none;"></span></p>
 
       <!-- 10 -->
-      <h2>10. Güncellemeler</h2>
-      <p>Bu aydınlatma metni, yasal değişiklikler veya hizmet güncellemeleri doğrultusunda revize edilebilir. Değişiklikler bu sayfada yayımlanır; önemli değişiklikler kayıtlı kullanıcılara e-posta yoluyla bildirilir.</p>
+      <h2 data-en="10. Updates">10. Güncellemeler</h2>
+      <p data-en="This privacy notice may be revised in line with legislative changes or service updates. Changes will be published on this page; material changes will be notified to registered users by e-mail.">Bu aydınlatma metni, yasal değişiklikler veya hizmet güncellemeleri doğrultusunda revize edilebilir. Değişiklikler bu sayfada yayımlanır; önemli değişiklikler kayıtlı kullanıcılara e-posta yoluyla bildirilir.</p>
 
       <div class="mt-8 pt-6 border-t border-sea-100 text-sm text-sea-500">
-        <p>Bu metin 30 Nisan 2026 tarihinde yürürlüğe girmiştir. Hukuki uyum için bir avukata danışmanız tavsiye edilir.</p>
-        <p class="mt-1">İletişim: <a href="mailto:info@kalkaninfo.com" class="text-sea-500">info@kalkaninfo.com</a></p>
+        <p data-en="This notice entered into force on 30 April 2026. You are advised to consult a lawyer for legal compliance.">Bu metin 30 Nisan 2026 tarihinde yürürlüğe girmiştir. Hukuki uyum için bir avukata danışmanız tavsiye edilir.</p>
+        <p class="mt-1"><span data-en="Contact:">İletişim:</span> <a href="mailto:info@kalkaninfo.com" class="text-sea-500">info@kalkaninfo.com</a></p>
       </div>
 
     </div><!-- /prose -->
@@ -210,15 +317,15 @@
 <!-- FOOTER -->
 <footer class="text-center py-6 text-xs text-sea-600/60 border-t border-sea-200/40">
   <div class="flex items-center justify-center gap-4 flex-wrap">
-    <a href="kvkk.html" class="hover:text-sea-600 transition font-semibold text-sea-500">KVKK</a>
+    <a href="kvkk.html" class="hover:text-sea-600 transition font-semibold text-sea-500" data-en="KVKK Privacy Notice">KVKK</a>
     <span class="text-sea-300">·</span>
-    <a href="privacy.html" class="hover:text-sea-600 transition">Gizlilik</a>
+    <a href="privacy.html" class="hover:text-sea-600 transition" data-en="Privacy">Gizlilik</a>
     <span class="text-sea-300">·</span>
-    <a href="terms.html" class="hover:text-sea-600 transition">Kullanım Şartları</a>
+    <a href="terms.html" class="hover:text-sea-600 transition" data-en="Terms of Use">Kullanım Şartları</a>
     <span class="text-sea-300">·</span>
-    <a href="index.html" class="hover:text-sea-600 transition">Ana Sayfa</a>
+    <a href="index.html" class="hover:text-sea-600 transition" data-en="Home">Ana Sayfa</a>
   </div>
-  <p class="mt-2">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
+  <p class="mt-2" data-en="© 2026 Kalkan Info. All rights reserved.">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
 </footer>
 
 <script src="js/pwa.js?v=20260516c" defer></script>

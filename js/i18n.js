@@ -54,6 +54,11 @@
       el.setAttribute('aria-label', (lang === 'en') ? el.dataset.enAria : el.dataset.trAria);
     });
 
+    // EN-only elements: visible in EN, hidden in TR
+    document.querySelectorAll('[data-en-only]').forEach(el => {
+      el.style.display = (lang === 'en') ? '' : 'none';
+    });
+
     // Toggle pill state
     document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
       const target = btn.dataset.langToggle;
@@ -136,8 +141,8 @@
       for (const m of muts) {
         for (const node of m.addedNodes) {
           if (node.nodeType === 1 && (
-            node.matches?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria]') ||
-            node.querySelector?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria]')
+            node.matches?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria],[data-en-only]') ||
+            node.querySelector?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria],[data-en-only]')
           )) {
             apply(detectLang());
             return;

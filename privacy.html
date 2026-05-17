@@ -66,7 +66,7 @@
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
     <div class="flex items-center gap-4 text-sm">
-      <a href="login.html" class="text-white/70 hover:text-white transition">Giriş Yap</a>
+      <a href="login.html" class="text-white/70 hover:text-white transition" data-en="Sign In">Giriş Yap</a>
     </div>
   </div>
 </nav>
@@ -76,126 +76,151 @@
   <div class="bg-white rounded-2xl p-8 md:p-12" style="box-shadow:0 2px 8px rgba(7,33,54,0.08),0 24px 64px -16px rgba(7,33,54,0.18);">
 
     <div class="mb-8">
-      <p class="text-xs uppercase tracking-[0.12em] font-bold text-sea-400 mb-2">Yasal Bilgilendirme</p>
-      <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-900">Gizlilik Politikası</h1>
-      <p class="text-sm text-sea-500 mt-2">Yürürlük tarihi: 30 Nisan 2026 &nbsp;·&nbsp; Sürüm 1.0</p>
+      <p class="text-xs uppercase tracking-[0.12em] font-bold text-sea-400 mb-2" data-en="Legal Information">Yasal Bilgilendirme</p>
+      <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-900" data-en="Privacy Policy">Gizlilik Politikası</h1>
+      <p class="text-sm text-sea-500 mt-2" data-en="Effective date: 30 April 2026 &nbsp;·&nbsp; Version 1.0">Yürürlük tarihi: 30 Nisan 2026 &nbsp;·&nbsp; Sürüm 1.0</p>
+      <!-- EN-only legal disclaimer — shown only when EN is active via data-en swap -->
+      <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded px-3 py-2 my-2"
+         data-en="English translation provided for informational purposes only. The legally binding version is in Turkish."
+         data-en-only
+         style="display:none">Türkçe versiyon bağlayıcıdır.</p>
     </div>
 
     <div class="prose">
 
-      <p>Kalkan Info olarak ziyaretçilerimizin ve üyelerimizin gizliliğine önem veriyoruz. Bu politika; <strong>kalkaninfo.com</strong> adresinde hangi verilerin toplandığını, nasıl kullanıldığını ve haklarınızı açıklar. KVKK kapsamındaki detaylı aydınlatma için <a href="kvkk.html">KVKK Aydınlatma Metni</a>'ne bakınız.</p>
+      <p data-en="At Kalkan Info we value the privacy of our visitors and members. This policy explains what data is collected on kalkaninfo.com, how it is used, and your rights. For the detailed disclosure under the KVKK Personal Data Protection Law, please see the KVKK Disclosure Text.">Kalkan Info olarak ziyaretçilerimizin ve üyelerimizin gizliliğine önem veriyoruz. Bu politika; <strong>kalkaninfo.com</strong> adresinde hangi verilerin toplandığını, nasıl kullanıldığını ve haklarınızı açıklar. KVKK kapsamındaki detaylı aydınlatma için <a href="kvkk.html">KVKK Aydınlatma Metni</a>'ne bakınız.</p>
 
       <!-- 1 -->
-      <h2>1. Topladığımız Bilgiler</h2>
+      <h2 data-en="1. Information We Collect">1. Topladığımız Bilgiler</h2>
 
-      <h3>1.1 Üye Kaydı ile Toplanan Bilgiler</h3>
+      <h3 data-en="1.1 Information Collected via Member Registration">1.1 Üye Kaydı ile Toplanan Bilgiler</h3>
       <ul>
-        <li>Ad, soyad, e-posta adresi</li>
-        <li>Sosyal hesap profil fotoğrafı (Google / Facebook ile giriş tercih edilirse)</li>
-        <li>Dil tercihi, pazarlama onayı</li>
+        <li data-en="First name, last name, e-mail address">Ad, soyad, e-posta adresi</li>
+        <li data-en="Social account profile photo (if Google / Facebook login is preferred)">Sosyal hesap profil fotoğrafı (Google / Facebook ile giriş tercih edilirse)</li>
+        <li data-en="Language preference, marketing consent">Dil tercihi, pazarlama onayı</li>
       </ul>
 
-      <h3>1.2 Otomatik Toplanan Teknik Veriler</h3>
+      <h3 data-en="1.2 Automatically Collected Technical Data">1.2 Otomatik Toplanan Teknik Veriler</h3>
       <ul>
-        <li>IP adresi (güvenlik logu ve KVKK onay kaydı için)</li>
-        <li>Tarayıcı türü ve sürümü, işletim sistemi</li>
-        <li>Ziyaret edilen sayfalar, tıklama ve gezinme verileri</li>
-        <li>Sayfa yüklenme süreleri</li>
+        <li data-en="IP address (for security log and KVKK consent record)">IP adresi (güvenlik logu ve KVKK onay kaydı için)</li>
+        <li data-en="Browser type and version, operating system">Tarayıcı türü ve sürümü, işletim sistemi</li>
+        <li data-en="Pages visited, click and navigation data">Ziyaret edilen sayfalar, tıklama ve gezinme verileri</li>
+        <li data-en="Page load times">Sayfa yüklenme süreleri</li>
       </ul>
 
-      <h3>1.3 Kullanıcı Tarafından Girilen İçerik</h3>
+      <h3 data-en="1.3 Content Entered by the User">1.3 Kullanıcı Tarafından Girilen İçerik</h3>
       <ul>
-        <li>Yorum ve değerlendirmeler</li>
-        <li>İşletme profil bilgileri (Faz 2+)</li>
-        <li>Tatil planlama tercihleri (Faz 6+)</li>
+        <li data-en="Comments and reviews">Yorum ve değerlendirmeler</li>
+        <li data-en="Business profile information (Phase 2+)">İşletme profil bilgileri (Faz 2+)</li>
+        <li data-en="Holiday planning preferences (Phase 6+)">Tatil planlama tercihleri (Faz 6+)</li>
       </ul>
 
       <!-- 2 -->
-      <h2>2. Çerezler (Cookies)</h2>
+      <h2 data-en="2. Cookies">2. Çerezler (Cookies)</h2>
 
-      <p>Kalkan Info aşağıdaki çerez kategorilerini kullanmaktadır:</p>
+      <p data-en="Kalkan Info uses the following cookie categories:">Kalkan Info aşağıdaki çerez kategorilerini kullanmaktadır:</p>
 
       <table>
         <tr>
-          <th>Çerez Adı / Kategorisi</th>
-          <th>Tür</th>
-          <th>Amaç</th>
-          <th>Süre</th>
+          <th data-en="Cookie Name / Category">Çerez Adı / Kategorisi</th>
+          <th data-en="Type">Tür</th>
+          <th data-en="Purpose">Amaç</th>
+          <th data-en="Duration">Süre</th>
         </tr>
         <tr>
           <td><code>__session</code> (Firebase Auth)</td>
-          <td><span class="cookie-badge badge-required">Zorunlu</span></td>
-          <td>Oturum yönetimi ve kimlik doğrulama</td>
-          <td>Oturum süresi</td>
+          <td><span class="cookie-badge badge-required" data-en="Required">Zorunlu</span></td>
+          <td data-en="Session management and authentication">Oturum yönetimi ve kimlik doğrulama</td>
+          <td data-en="Session duration">Oturum süresi</td>
         </tr>
         <tr>
           <td><code>ki_lang</code></td>
-          <td><span class="cookie-badge badge-required">İşlevsel</span></td>
-          <td>Dil tercihinin hatırlanması</td>
-          <td>1 yıl</td>
+          <td><span class="cookie-badge badge-required" data-en="Functional">İşlevsel</span></td>
+          <td data-en="Remembering language preference">Dil tercihinin hatırlanması</td>
+          <td data-en="1 year">1 yıl</td>
         </tr>
         <tr>
           <td>Google Analytics (_ga, _gid)</td>
-          <td><span class="cookie-badge badge-optional">Analitik</span></td>
-          <td>Anonim ziyaretçi istatistikleri; sayfa görüntülemeleri, hemen çıkma oranı</td>
-          <td>2 yıl / 24 saat</td>
+          <td><span class="cookie-badge badge-optional" data-en="Analytics">Analitik</span></td>
+          <td data-en="Anonymous visitor statistics; page views, bounce rate">Anonim ziyaretçi istatistikleri; sayfa görüntülemeleri, hemen çıkma oranı</td>
+          <td data-en="2 years / 24 hours">2 yıl / 24 saat</td>
         </tr>
         <tr>
           <td>Facebook Pixel (fbp, fbc)</td>
-          <td><span class="cookie-badge badge-optional">Pazarlama</span></td>
-          <td>Sosyal medya reklam optimizasyonu (yalnızca onay verilirse etkinleşir)</td>
-          <td>90 gün</td>
+          <td><span class="cookie-badge badge-optional" data-en="Marketing">Pazarlama</span></td>
+          <td data-en="Social media advertising optimisation (activated only with consent)">Sosyal medya reklam optimizasyonu (yalnızca onay verilirse etkinleşir)</td>
+          <td data-en="90 days">90 gün</td>
         </tr>
       </table>
 
-      <h3>2.1 Çerez Yönetimi</h3>
-      <p>Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz. Zorunlu çerezlerin kapatılması platforma erişimi engelleyebilir. Analitik ve pazarlama çerezleri için tarayıcı üzerinden veya platform çerez tercih panelinden (yakında eklenecek) izninizi geri alabilirsiniz.</p>
+      <h3 data-en="2.1 Cookie Management">2.1 Çerez Yönetimi</h3>
+      <p data-en="You can disable cookies from your browser settings. Disabling required cookies may prevent access to the platform. You can withdraw your consent for analytics and marketing cookies via your browser or the platform cookie preference panel (coming soon).">Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz. Zorunlu çerezlerin kapatılması platforma erişimi engelleyebilir. Analitik ve pazarlama çerezleri için tarayıcı üzerinden veya platform çerez tercih panelinden (yakında eklenecek) izninizi geri alabilirsiniz.</p>
 
       <!-- 3 -->
-      <h2>3. Verilerin Kullanım Amacı</h2>
+      <h2 data-en="3. Purposes of Data Use">3. Verilerin Kullanım Amacı</h2>
       <ul>
-        <li>Hizmetlerin sağlanması ve üyelik yönetimi</li>
-        <li>Güvenlik ve dolandırıcılık önleme</li>
-        <li>Platform performansının izlenmesi ve iyileştirilmesi</li>
-        <li>Açık rıza alınmış ise: pazarlama e-postaları ve bildirimler</li>
-        <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+        <li data-en="Provision of services and membership management">Hizmetlerin sağlanması ve üyelik yönetimi</li>
+        <li data-en="Security and fraud prevention">Güvenlik ve dolandırıcılık önleme</li>
+        <li data-en="Monitoring and improving platform performance">Platform performansının izlenmesi ve iyileştirilmesi</li>
+        <li data-en="If explicit consent has been obtained: marketing e-mails and notifications">Açık rıza alınmış ise: pazarlama e-postaları ve bildirimler</li>
+        <li data-en="Fulfilment of legal obligations">Yasal yükümlülüklerin yerine getirilmesi</li>
       </ul>
 
       <!-- 4 -->
-      <h2>4. Veri Güvenliği</h2>
+      <h2 data-en="4. Data Security">4. Veri Güvenliği</h2>
       <ul>
-        <li>Tüm veriler HTTPS üzerinden aktarılır (TLS 1.2+).</li>
-        <li>Şifreler Firebase Authentication tarafından güvenli hash algoritmaları ile saklanır; düz metin şifre tutulmaz.</li>
-        <li>Firestore güvenlik kuralları ile kullanıcılar yalnızca kendi verilerine erişebilir.</li>
-        <li>Veritabanı ve depolama altyapısı AB bölgesinde (europe-west3) çalışmaktadır.</li>
-        <li>Düzenli güvenlik incelemeleri yapılmaktadır.</li>
+        <li data-en="All data is transmitted over HTTPS (TLS 1.2+).">Tüm veriler HTTPS üzerinden aktarılır (TLS 1.2+).</li>
+        <li data-en="Passwords are stored by Firebase Authentication using secure hashing algorithms; no plaintext passwords are stored.">Şifreler Firebase Authentication tarafından güvenli hash algoritmaları ile saklanır; düz metin şifre tutulmaz.</li>
+        <li data-en="Firestore security rules ensure that users can only access their own data.">Firestore güvenlik kuralları ile kullanıcılar yalnızca kendi verilerine erişebilir.</li>
+        <li data-en="The database and storage infrastructure operates in the EU region (europe-west3).">Veritabanı ve depolama altyapısı AB bölgesinde (europe-west3) çalışmaktadır.</li>
+        <li data-en="Regular security reviews are conducted.">Düzenli güvenlik incelemeleri yapılmaktadır.</li>
       </ul>
 
       <!-- 5 -->
-      <h2>5. Üçüncü Taraf Hizmetler</h2>
+      <h2 data-en="5. Third-Party Services">5. Üçüncü Taraf Hizmetler</h2>
       <table>
-        <tr><th>Hizmet</th><th>Amaç</th><th>Gizlilik Politikası</th></tr>
-        <tr><td>Google Firebase</td><td>Auth, Firestore, Hosting</td><td><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com</a></td></tr>
-        <tr><td>Google Analytics</td><td>Anonim istatistik</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a></td></tr>
-        <tr><td>Meta (Facebook/Instagram)</td><td>Sosyal giriş</td><td><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy</a></td></tr>
-        <tr><td>Google Fonts</td><td>Yazı tipi sunumu</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a></td></tr>
+        <tr>
+          <th data-en="Service">Hizmet</th>
+          <th data-en="Purpose">Amaç</th>
+          <th data-en="Privacy Policy">Gizlilik Politikası</th>
+        </tr>
+        <tr>
+          <td>Google Firebase</td>
+          <td data-en="Auth, Firestore, Hosting">Auth, Firestore, Hosting</td>
+          <td><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com</a></td>
+        </tr>
+        <tr>
+          <td>Google Analytics</td>
+          <td data-en="Anonymous statistics">Anonim istatistik</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a></td>
+        </tr>
+        <tr>
+          <td>Meta (Facebook/Instagram)</td>
+          <td data-en="Social login">Sosyal giriş</td>
+          <td><a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">facebook.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Google Fonts</td>
+          <td data-en="Font delivery">Yazı tipi sunumu</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com</a></td>
+        </tr>
       </table>
 
       <!-- 6 -->
-      <h2>6. Çocukların Gizliliği</h2>
-      <p>Kalkan Info hizmetleri 18 yaş altı kullanıcılara yönelik değildir. 18 yaşından küçük kişilerin kayıt olmaması gerekir. Ebeveynler çocuklarının kişisel bilgilerinin paylaşıldığını fark ederlerse <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a> adresine yazarak silme talebinde bulunabilirler.</p>
+      <h2 data-en="6. Children's Privacy">6. Çocukların Gizliliği</h2>
+      <p data-en="Kalkan Info services are not intended for users under 18 years of age. Persons under 18 should not register. If parents notice that their child's personal information has been shared, they may submit a deletion request by writing to info@kalkaninfo.com.">Kalkan Info hizmetleri 18 yaş altı kullanıcılara yönelik değildir. 18 yaşından küçük kişilerin kayıt olmaması gerekir. Ebeveynler çocuklarının kişisel bilgilerinin paylaşıldığını fark ederlerse <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a> adresine yazarak silme talebinde bulunabilirler.</p>
 
       <!-- 7 -->
-      <h2>7. Haklarınız</h2>
-      <p>KVKK kapsamındaki haklarınız için <a href="kvkk.html">KVKK Aydınlatma Metni Madde 7</a>'ye bakınız. Başvuru kanalı: <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a></p>
+      <h2 data-en="7. Your Rights">7. Haklarınız</h2>
+      <p data-en="For your rights under the KVKK Personal Data Protection Law, please refer to Article 7 of the KVKK Disclosure Text. Contact channel: info@kalkaninfo.com">KVKK kapsamındaki haklarınız için <a href="kvkk.html">KVKK Aydınlatma Metni Madde 7</a>'ye bakınız. Başvuru kanalı: <a href="mailto:info@kalkaninfo.com">info@kalkaninfo.com</a></p>
 
       <!-- 8 -->
-      <h2>8. Politika Güncellemeleri</h2>
-      <p>Bu politika değiştirildiğinde bu sayfada yayımlanır ve güncelleme tarihi revize edilir. Önemli değişiklikler kayıtlı kullanıcılara e-posta ile bildirilir.</p>
+      <h2 data-en="8. Policy Updates">8. Politika Güncellemeleri</h2>
+      <p data-en="When this policy is amended it will be published on this page and the update date will be revised. Significant changes will be notified to registered users by e-mail.">Bu politika değiştirildiğinde bu sayfada yayımlanır ve güncelleme tarihi revize edilir. Önemli değişiklikler kayıtlı kullanıcılara e-posta ile bildirilir.</p>
 
       <div class="mt-8 pt-6 border-t border-sea-100 text-sm text-sea-500">
-        <p>Sorularınız için: <a href="mailto:info@kalkaninfo.com" class="text-sea-500">info@kalkaninfo.com</a></p>
-        <p class="mt-1">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
+        <p data-en="For your questions: info@kalkaninfo.com">Sorularınız için: <a href="mailto:info@kalkaninfo.com" class="text-sea-500">info@kalkaninfo.com</a></p>
+        <p class="mt-1" data-en="© 2026 Kalkan Info. All rights reserved.">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
       </div>
 
     </div><!-- /prose -->
@@ -205,17 +230,18 @@
 <!-- FOOTER -->
 <footer class="text-center py-6 text-xs text-sea-600/60 border-t border-sea-200/40">
   <div class="flex items-center justify-center gap-4 flex-wrap">
-    <a href="kvkk.html" class="hover:text-sea-600 transition">KVKK</a>
+    <a href="kvkk.html" class="hover:text-sea-600 transition" data-en="KVKK">KVKK</a>
     <span class="text-sea-300">·</span>
-    <a href="privacy.html" class="hover:text-sea-600 transition font-semibold text-sea-500">Gizlilik</a>
+    <a href="privacy.html" class="hover:text-sea-600 transition font-semibold text-sea-500" data-en="Privacy">Gizlilik</a>
     <span class="text-sea-300">·</span>
-    <a href="terms.html" class="hover:text-sea-600 transition">Kullanım Şartları</a>
+    <a href="terms.html" class="hover:text-sea-600 transition" data-en="Terms of Service">Kullanım Şartları</a>
     <span class="text-sea-300">·</span>
-    <a href="index.html" class="hover:text-sea-600 transition">Ana Sayfa</a>
+    <a href="index.html" class="hover:text-sea-600 transition" data-en="Home">Ana Sayfa</a>
   </div>
-  <p class="mt-2">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
+  <p class="mt-2" data-en="© 2026 Kalkan Info. All rights reserved.">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
 </footer>
 
+<script src="js/i18n.js" defer></script>
 <script src="js/pwa.js?v=20260516c" defer></script>
 </body>
 </html>

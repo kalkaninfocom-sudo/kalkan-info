@@ -22,16 +22,35 @@
 </head>
 <body class="bg-[#dce6ef]">
 
-<header class="bg-sea-900 text-white py-6">
+<header class="bg-sea-900 text-white py-6" data-en-aria="Site header" aria-label="Site başlığı">
   <div class="max-w-3xl mx-auto px-4">
-    <a href="/" class="font-display font-extrabold text-xl flex items-center gap-2">
+    <a href="/" class="font-display font-extrabold text-xl flex items-center gap-2" data-en-aria="Kalkan Info — Home" aria-label="Kalkan Info — Ana Sayfa">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
   </div>
 </header>
 
-<main class="max-w-3xl mx-auto px-4 py-10 md:py-14">
+<main class="max-w-3xl mx-auto px-4 py-10 md:py-14" data-en-aria="Data deletion request page" aria-label="Veri silme talebi sayfası">
   <div class="bg-white rounded-2xl shadow-deep p-8 md:p-10">
+
+    <!-- EN-only legal notice -->
+    <div id="del-en-notice" class="bg-amber-50 border border-amber-300 text-amber-900 rounded-lg px-4 py-3 mb-6 text-sm" style="display:none;">
+      <strong>Notice:</strong> This page is an English translation provided for informational purposes only. The legally binding version is the Turkish original, prepared under Personal Data Protection Law (KVKK) No. 6698.
+    </div>
+    <script>
+      (function(){
+        function showNotice(){
+          var lang = (localStorage.getItem('lang') || 'en');
+          var el = document.getElementById('del-en-notice');
+          if(el) el.style.display = (lang === 'en') ? 'block' : 'none';
+        }
+        document.addEventListener('DOMContentLoaded', showNotice);
+        document.addEventListener('click', function(e){
+          if(e.target && e.target.dataset && e.target.dataset.langToggle){ setTimeout(showNotice, 50); }
+        });
+      })();
+    </script>
+
     <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-coral-600 font-bold mb-3">
       <span class="w-1.5 h-1.5 rounded-full bg-coral-500"></span>
       <span data-en="Data Privacy">Veri Gizliliği</span>
@@ -52,7 +71,10 @@
         <p class="text-sm text-sea-700/80 mt-2 leading-relaxed" data-en="Send an email from your registered address to the address below. We will process the deletion within 7 days at the latest.">
           Kayıtlı e-posta adresinizden aşağıdaki adrese e-posta gönderin. Silme işlemini en geç 7 gün içinde tamamlarız.
         </p>
-        <a href="mailto:info@kalkan.info?subject=Verilerin%20Silinmesi%20Talebi&amp;body=Merhaba,%0A%0AKalkan%20Info%20hesab%C4%B1ma%20ait%20t%C3%BCm%20ki%C5%9Fisel%20verilerin%20silinmesini%20talep%20ediyorum.%0A%0AKay%C4%B1tl%C4%B1%20e-posta%20adresim:%20%5BBuraya%20e-posta%5D%0A" class="inline-flex items-center gap-2 mt-4 bg-sea-800 hover:bg-sea-900 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition">
+        <a href="mailto:info@kalkan.info?subject=Verilerin%20Silinmesi%20Talebi&amp;body=Merhaba,%0A%0AKalkan%20Info%20hesab%C4%B1ma%20ait%20t%C3%BCm%20ki%C5%9Fisel%20verilerin%20silinmesini%20talep%20ediyorum.%0A%0AKay%C4%B1tl%C4%B1%20e-posta%20adresim:%20%5BBuraya%20e-posta%5D%0A"
+           class="inline-flex items-center gap-2 mt-4 bg-sea-800 hover:bg-sea-900 text-white text-sm font-bold px-4 py-2.5 rounded-lg transition"
+           data-en-aria="Send deletion request by email" aria-label="E-posta ile silme talebi gönder"
+           data-en-title="Send data deletion request by email" title="E-posta ile veri silme talebi gönder">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           <span data-en="Email info@kalkan.info">info@kalkan.info'ya yaz</span>
         </a>
@@ -68,7 +90,11 @@
         <p class="text-sm text-sea-700/80 mt-2 leading-relaxed" data-en="WhatsApp Concierge team, identify yourself with your registered phone/email, and we will process your request within 3 business days.">
           WhatsApp Concierge ekibimize yazın, kayıtlı telefon/e-posta ile kimliğinizi doğrulayın — 3 iş günü içinde işlem tamamlanır.
         </p>
-        <a href="https://wa.me/905306650794?text=Merhaba%2C%20Kalkan%20Info%20hesab%C4%B1ma%20ait%20verilerin%20silinmesini%20talep%20ediyorum." target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-4 bg-[#25D366] hover:bg-[#1da851] text-white text-sm font-bold px-4 py-2.5 rounded-lg transition">
+        <a href="https://wa.me/905306650794?text=Merhaba%2C%20Kalkan%20Info%20hesab%C4%B1ma%20ait%20verilerin%20silinmesini%20talep%20ediyorum."
+           target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 mt-4 bg-[#25D366] hover:bg-[#1da851] text-white text-sm font-bold px-4 py-2.5 rounded-lg transition"
+           data-en-aria="Open WhatsApp to send deletion request" aria-label="Silme talebi için WhatsApp'ı aç"
+           data-en-title="Open WhatsApp to send data deletion request" title="Veri silme talebi için WhatsApp'ı aç">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
           <span data-en="Open WhatsApp">WhatsApp'ı Aç</span>
         </a>
@@ -94,14 +120,18 @@
 
     <div class="mt-10 pt-6 border-t border-sea-100 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
       <div class="text-xs text-sea-600">
-        <span data-en="Data Controller: Kalkan Info">Veri Sorumlusu: Kalkan Info</span> · <a href="/kvkk" class="underline hover:text-sea-800" data-en="GDPR Disclosure">KVKK Aydınlatma Metni</a> · <a href="/privacy" class="underline hover:text-sea-800" data-en="Privacy Policy">Gizlilik Politikası</a>
+        <span data-en="Data Controller: Kalkan Info">Veri Sorumlusu: Kalkan Info</span>
+        <span> · </span>
+        <a href="/kvkk" class="underline hover:text-sea-800" data-en="KVKK Privacy Notice">KVKK Aydınlatma Metni</a>
+        <span> · </span>
+        <a href="/privacy" class="underline hover:text-sea-800" data-en="Privacy Policy">Gizlilik Politikası</a>
       </div>
       <div class="text-xs text-sea-500" data-en="Last updated: May 17, 2026">Son güncelleme: 17 Mayıs 2026</div>
     </div>
   </div>
 </main>
 
-<footer class="bg-sea-900 text-white/60 text-center py-6 text-xs mt-12">
+<footer class="bg-sea-900 text-white/60 text-center py-6 text-xs mt-12" data-en-aria="Site footer" aria-label="Site alt bilgisi">
   <div data-en="© 2026 Kalkan Info — All rights reserved.">© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
 </footer>
 

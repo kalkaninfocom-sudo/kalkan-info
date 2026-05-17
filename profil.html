@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a2e4c">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<title>Profilim — Kalkan Info</title>
+<title data-en="My Profile — Kalkan Info">Profilim — Kalkan Info</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -90,9 +90,9 @@
     <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
-    <button data-action="logout" class="text-sm text-white/70 hover:text-white transition flex items-center gap-1.5">
+    <button data-action="logout" aria-label="Çıkış Yap" data-en-aria="Sign Out" class="text-sm text-white/70 hover:text-white transition flex items-center gap-1.5">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-      Çıkış Yap
+      <span data-en="Sign Out">Çıkış Yap</span>
     </button>
   </div>
 </nav>
@@ -110,33 +110,34 @@
           <img loading="lazy" decoding="async" id="profile-avatar"
             src="https://ui-avatars.com/api/?name=K&background=1a5e93&color=fff&size=128"
             alt="Profil fotoğrafı"
+            data-en-alt="Profile photo"
             class="w-20 h-20 rounded-full mx-auto object-cover ring-2 ring-sea-200" />
-          <p class="font-display font-bold text-sea-800 mt-3 text-base" id="profile-name">Yükleniyor...</p>
+          <p class="font-display font-bold text-sea-800 mt-3 text-base" id="profile-name" data-en="Loading...">Yükleniyor...</p>
           <p class="text-xs text-sea-500 mt-0.5" id="profile-email-display"></p>
         </div>
 
         <!-- Sidebar linkleri -->
         <nav class="space-y-1">
-          <button class="sidebar-link active w-full text-left" data-section="profil">
+          <button class="sidebar-link active w-full text-left" data-section="profil" aria-label="Profilim" data-en-aria="My Profile">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            <span>Profilim</span>
+            <span data-en="My Profile">Profilim</span>
           </button>
-          <button class="sidebar-link w-full text-left" data-section="isletmeler">
+          <button class="sidebar-link w-full text-left" data-section="isletmeler" aria-label="İşletmelerim" data-en-aria="My Businesses">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
-            <span>İşletmelerim</span>
+            <span data-en="My Businesses">İşletmelerim</span>
           </button>
-          <button class="sidebar-link w-full text-left" data-section="yorumlar">
+          <button class="sidebar-link w-full text-left" data-section="yorumlar" aria-label="Yorumlarım" data-en-aria="My Reviews">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>Yorumlarım</span>
+            <span data-en="My Reviews">Yorumlarım</span>
           </button>
-          <button class="sidebar-link w-full text-left" data-section="ayarlar">
+          <button class="sidebar-link w-full text-left" data-section="ayarlar" aria-label="Ayarlar" data-en-aria="Settings">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-            <span>Ayarlar</span>
+            <span data-en="Settings">Ayarlar</span>
           </button>
           <hr class="border-sea-100 my-2" />
-          <button data-action="logout" class="sidebar-link w-full text-left text-coral-600 hover:bg-coral-500/8">
+          <button data-action="logout" aria-label="Çıkış Yap" data-en-aria="Sign Out" class="sidebar-link w-full text-left text-coral-600 hover:bg-coral-500/8">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
-            <span>Çıkış Yap</span>
+            <span data-en="Sign Out">Çıkış Yap</span>
           </button>
         </nav>
       </div>
@@ -147,53 +148,53 @@
 
       <!-- ---- PROFIL BÖLÜMÜ ---- -->
       <section id="section-profil" class="bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
-        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100">Profil Bilgilerim</h2>
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="My Profile Information">Profil Bilgilerim</h2>
 
         <div class="space-y-5 max-w-md">
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5">Ad Soyad</label>
-            <input class="input-field" type="text" id="profile-name-input" placeholder="Ad Soyad" />
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-en="Full Name">Ad Soyad</label>
+            <input class="input-field" type="text" id="profile-name-input" placeholder="Ad Soyad" data-en-placeholder="Full Name" aria-label="Ad Soyad" data-en-aria="Full Name" />
           </div>
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5">E-posta</label>
-            <input class="input-field" type="email" id="profile-email" disabled />
-            <p class="text-xs text-sea-500 mt-1">E-posta adresi değiştirilemez.</p>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-en="Email">E-posta</label>
+            <input class="input-field" type="email" id="profile-email" disabled aria-label="E-posta" data-en-aria="Email" />
+            <p class="text-xs text-sea-500 mt-1" data-en="Email address cannot be changed.">E-posta adresi değiştirilemez.</p>
           </div>
           <div>
-            <label class="block text-sm font-semibold text-sea-700 mb-1.5">Tercih Edilen Dil</label>
-            <select class="input-field" id="profile-lang">
-              <option value="tr">Türkçe</option>
-              <option value="en">English</option>
-              <option value="ru">Русский</option>
-              <option value="ja">日本語</option>
-              <option value="ar">العربية</option>
+            <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-en="Preferred Language">Tercih Edilen Dil</label>
+            <select class="input-field" id="profile-lang" aria-label="Tercih Edilen Dil" data-en-aria="Preferred Language">
+              <option value="tr" data-en="Turkish">Türkçe</option>
+              <option value="en" data-en="English">English</option>
+              <option value="ru" data-en="Russian">Русский</option>
+              <option value="ja" data-en="Japanese">日本語</option>
+              <option value="ar" data-en="Arabic">العربية</option>
             </select>
           </div>
 
           <!-- Marketing toggle -->
           <div class="flex items-center justify-between py-3 border-t border-sea-100">
             <div>
-              <p class="font-semibold text-sm text-sea-800">Pazarlama Bildirimleri</p>
-              <p class="text-xs text-sea-500 mt-0.5">Kampanya ve yenilik duyurularını e-posta ile al.</p>
+              <p class="font-semibold text-sm text-sea-800" data-en="Marketing Notifications">Pazarlama Bildirimleri</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-en="Receive campaign and update announcements by email.">Kampanya ve yenilik duyurularını e-posta ile al.</p>
             </div>
-            <label class="toggle ml-4">
-              <input type="checkbox" id="profile-marketing" />
+            <label class="toggle ml-4" aria-label="Pazarlama Bildirimleri" data-en-aria="Marketing Notifications">
+              <input type="checkbox" id="profile-marketing" aria-label="Pazarlama bildirimlerini aç veya kapat" data-en-aria="Toggle marketing notifications" />
               <span class="toggle-slider"></span>
             </label>
           </div>
 
           <!-- KVKK bilgi -->
           <div class="bg-sea-50 border border-sea-100 rounded-lg px-4 py-3 text-sm text-sea-700">
-            <p class="font-semibold mb-1">KVKK Onayı</p>
+            <p class="font-semibold mb-1" data-en="KVKK Consent">KVKK Onayı</p>
             <p>
-              <span>Onay tarihi:</span>
+              <span data-en="Consent date:">Onay tarihi:</span>
               <span id="profile-kvkk-date" class="font-medium ml-1">—</span>
             </p>
-            <a href="kvkk.html" class="text-sea-500 underline text-xs mt-1 inline-block">Aydınlatma metnini görüntüle</a>
+            <a href="kvkk.html" class="text-sea-500 underline text-xs mt-1 inline-block" data-en="View clarification text">Aydınlatma metnini görüntüle</a>
           </div>
 
           <div class="text-xs text-sea-500">
-            <span>Üyelik tarihi:</span>
+            <span data-en="Member since:">Üyelik tarihi:</span>
             <span id="profile-joined" class="font-medium ml-1">—</span>
           </div>
         </div>
@@ -201,49 +202,49 @@
 
       <!-- ---- İŞLETMELER ---- -->
       <section id="section-isletmeler" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
-        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100">İşletmelerim</h2>
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="My Businesses">İşletmelerim</h2>
         <div class="text-center py-12 text-sea-500">
           <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
-          <p class="font-medium">Henüz işletme eklemediniz.</p>
-          <p class="text-sm mt-1">Faz 2'de bu bölüm aktif olacak.</p>
+          <p class="font-medium" data-en="You haven't added any businesses yet.">Henüz işletme eklemediniz.</p>
+          <p class="text-sm mt-1" data-en="This section will be active in Phase 2.">Faz 2'de bu bölüm aktif olacak.</p>
         </div>
       </section>
 
       <!-- ---- YORUMLAR ---- -->
       <section id="section-yorumlar" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
-        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100">Yorumlarım</h2>
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="My Reviews">Yorumlarım</h2>
         <div class="text-center py-12 text-sea-500">
           <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <p class="font-medium">Henüz yorum yazmadınız.</p>
+          <p class="font-medium" data-en="You haven't written any reviews yet.">Henüz yorum yazmadınız.</p>
         </div>
       </section>
 
       <!-- ---- AYARLAR ---- -->
       <section id="section-ayarlar" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
-        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100">Hesap Ayarları</h2>
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="Account Settings">Hesap Ayarları</h2>
 
         <div class="space-y-4">
           <!-- Veri indirme -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-sea-100 rounded-xl">
             <div>
-              <p class="font-semibold text-sm text-sea-800">Verilerimi İndir</p>
-              <p class="text-xs text-sea-500 mt-0.5">KVKK kapsamında tüm kişisel verilerinizi JSON olarak indirin.</p>
+              <p class="font-semibold text-sm text-sea-800" data-en="Download My Data">Verilerimi İndir</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-en="Download all your personal data as JSON under KVKK.">KVKK kapsamında tüm kişisel verilerinizi JSON olarak indirin.</p>
             </div>
-            <button id="btn-download-data" class="btn-secondary whitespace-nowrap">
+            <button id="btn-download-data" class="btn-secondary whitespace-nowrap" aria-label="Verilerimi İndir" data-en-aria="Download My Data">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              <span>Verilerimi İndir</span>
+              <span data-en="Download My Data">Verilerimi İndir</span>
             </button>
           </div>
 
           <!-- Hesap silme -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 border border-coral-500/30 rounded-xl bg-coral-500/5">
             <div>
-              <p class="font-semibold text-sm text-coral-600">Hesabımı Sil</p>
-              <p class="text-xs text-sea-500 mt-0.5">Tüm verileriniz kalıcı olarak silinir. Bu işlem geri alınamaz (KVKK Madde 7).</p>
+              <p class="font-semibold text-sm text-coral-600" data-en="Delete My Account">Hesabımı Sil</p>
+              <p class="text-xs text-sea-500 mt-0.5" data-en="All your data will be permanently deleted. This action cannot be undone (KVKK Article 7).">Tüm verileriniz kalıcı olarak silinir. Bu işlem geri alınamaz (KVKK Madde 7).</p>
             </div>
-            <button id="btn-delete-account" class="btn-danger whitespace-nowrap">
+            <button id="btn-delete-account" class="btn-danger whitespace-nowrap" aria-label="Hesabımı Sil" data-en-aria="Delete My Account">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-              <span>Hesabımı Sil</span>
+              <span data-en="Delete My Account">Hesabımı Sil</span>
             </button>
           </div>
         </div>
@@ -256,15 +257,15 @@
 <!-- FOOTER -->
 <footer class="text-center py-6 text-xs text-sea-600/60 border-t border-sea-200/40 mt-4">
   <div class="flex items-center justify-center gap-4 flex-wrap">
-    <a href="kvkk.html" class="hover:text-sea-600 transition">KVKK</a>
+    <a href="kvkk.html" class="hover:text-sea-600 transition" data-en="Privacy Policy">KVKK</a>
     <span class="text-sea-300">·</span>
-    <a href="privacy.html" class="hover:text-sea-600 transition">Gizlilik</a>
+    <a href="privacy.html" class="hover:text-sea-600 transition" data-en="Privacy">Gizlilik</a>
     <span class="text-sea-300">·</span>
-    <a href="terms.html" class="hover:text-sea-600 transition">Kullanım Şartları</a>
+    <a href="terms.html" class="hover:text-sea-600 transition" data-en="Terms of Use">Kullanım Şartları</a>
     <span class="text-sea-300">·</span>
-    <a href="index.html" class="hover:text-sea-600 transition">Ana Sayfa</a>
+    <a href="index.html" class="hover:text-sea-600 transition" data-en="Home">Ana Sayfa</a>
   </div>
-  <p class="mt-2">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
+  <p class="mt-2" data-en="© 2026 Kalkan Info. All rights reserved.">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
 </footer>
 
 <!-- ===== MODAL: Hesap Silme ===== -->
@@ -274,12 +275,16 @@
       <div class="w-14 h-14 bg-coral-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
       </div>
-      <h3 class="font-display font-bold text-lg text-sea-800">Hesabınızı silmek istediğinize emin misiniz?</h3>
-      <p class="text-sm text-sea-600 mt-2">Profiliniz, yorumlarınız ve tüm kişisel verileriniz kalıcı olarak silinecektir. Bu işlem geri alınamaz.</p>
+      <h3 class="font-display font-bold text-lg text-sea-800" data-en="Are you sure you want to delete your account?">Hesabınızı silmek istediğinize emin misiniz?</h3>
+      <p class="text-sm text-sea-600 mt-2" data-en="Your profile, reviews, and all personal data will be permanently deleted. This action cannot be undone.">Profiliniz, yorumlarınız ve tüm kişisel verileriniz kalıcı olarak silinecektir. Bu işlem geri alınamaz.</p>
     </div>
     <div class="flex gap-3">
-      <button id="btn-delete-cancel" class="btn-secondary flex-1 justify-center">Vazgeç</button>
-      <button id="btn-delete-confirm" class="flex-1 justify-center btn-danger" style="background:#e74c3c;color:#fff;border-color:#e74c3c;">Evet, Hesabımı Sil</button>
+      <button id="btn-delete-cancel" class="btn-secondary flex-1 justify-center" aria-label="Vazgeç" data-en-aria="Cancel">
+        <span data-en="Cancel">Vazgeç</span>
+      </button>
+      <button id="btn-delete-confirm" class="flex-1 justify-center btn-danger" style="background:#e74c3c;color:#fff;border-color:#e74c3c;" aria-label="Evet, Hesabımı Sil" data-en-aria="Yes, Delete My Account">
+        <span data-en="Yes, Delete My Account">Evet, Hesabımı Sil</span>
+      </button>
     </div>
   </div>
 </div>
