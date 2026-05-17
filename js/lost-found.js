@@ -28,6 +28,19 @@
   const _esc   = s => String(s ?? '').replace(/[&<>"']/g, c =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
+  // ---- Captcha helper --------------------------------------------------------
+
+  /** Generate a simple math captcha: returns { q: '3+5', label: '3 + 5 = ?' } */
+  function _genCaptcha() {
+    const ops = ['+', '-', '*'];
+    const op  = ops[Math.floor(Math.random() * ops.length)];
+    let a, b;
+    if (op === '+') { a = Math.floor(Math.random() * 15) + 1; b = Math.floor(Math.random() * 15) + 1; }
+    else if (op === '-') { a = Math.floor(Math.random() * 15) + 5; b = Math.floor(Math.random() * a) + 1; }
+    else { a = Math.floor(Math.random() * 9) + 1; b = Math.floor(Math.random() * 9) + 1; }
+    return { q: `${a}${op}${b}`, label: `${a} ${op} ${b} = ?` };
+  }
+
   // ---- API helpers -----------------------------------------------------------
 
   function _apiBase() {
@@ -210,6 +223,20 @@
                 style="border:1.5px solid #9cc0dd;border-radius:8px;padding:8px 12px;font-size:13px;outline:none;" />
             </div>
           </div>
+          <!-- Honeypot: hidden from humans, bots fill these -->
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">
+            <input id="lf-website"  type="text" name="website"  tabindex="-1" autocomplete="off" />
+            <input id="lf-homepage" type="text" name="homepage" tabindex="-1" autocomplete="off" />
+          </div>
+          <!-- Math captcha -->
+          <div style="border-top:1px solid #cfdfee;padding-top:14px;">
+            <label style="display:block;font-size:12px;font-weight:700;color:#0d3a5f;margin-bottom:4px;">
+              Güvenlik sorusu * — <span id="lf-captcha-label"></span>
+            </label>
+            <input id="lf-captcha-a" type="number" inputmode="numeric"
+              placeholder="Cevabınızı girin"
+              style="width:120px;border:1.5px solid #9cc0dd;border-radius:8px;padding:8px 12px;font-size:14px;outline:none;" />
+          </div>
           <div id="lf-err" style="display:none;color:#c0392b;font-size:13px;font-weight:600;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:8px 12px;"></div>
         </div>
         <div style="padding:14px 22px;border-top:1px solid #cfdfee;display:flex;justify-content:flex-end;gap:8px;">
@@ -220,6 +247,10 @@
         </div>
       </div>`;
     document.body.appendChild(overlay);
+
+    // Generate captcha
+    const captcha = _genCaptcha();
+    overlay.querySelector('#lf-captcha-label').textContent = captcha.label;
 
     const close = () => overlay.remove();
     overlay.querySelector('#lf-close').onclick  = close;
@@ -262,6 +293,10 @@
       if (!location)    return showErr('Yer bilgisini girin.');
       if (!phone && !contactName) return showErr('En az bir iletişim bilgisi girin (ad veya telefon).');
 
+      // Captcha client-side pre-check
+      const captchaA = overlay.querySelector('#lf-captcha-a').value.trim();
+      if (!captchaA) return showErr('Güvenlik sorusunu cevaplayın.');
+
       const saveBtn = overlay.querySelector('#lf-save');
       saveBtn.disabled    = true;
       saveBtn.textContent = 'Yayınlanıyor…';
@@ -274,13 +309,27 @@
         phone:        phone  || undefined,
         contact_name: contactName || undefined,
         photo_url:    photoDataUrl || undefined,
+        // Anti-spam fields
+        captcha_q:  captcha.q,
+        captcha_a:  captchaA,
+        // Honeypot values (should always be empty for real users)
+        website:    overlay.querySelector('#lf-website').value  || undefined,
+        homepage:   overlay.querySelector('#lf-homepage').value || undefined,
       });
 
       if (!result.ok) {
         saveBtn.disabled    = false;
         saveBtn.textContent = isLost ? 'Kayıp İlanını Yayınla' : 'Bulduğum İlanı Yayınla';
         if (result.error === 'rate_limited') {
-          return showErr('Saatte en fazla 3 ilan ekleyebilirsiniz. Lütfen bekleyin.');
+          return showErr('Saatte en fazla 3, günde en fazla 10 ilan ekleyebilirsiniz. Lütfen bekleyin.');
+        }
+        if (result.error === 'captcha_failed') {
+          // Regenerate captcha on failure
+          const newCaptcha = _genCaptcha();
+          captcha.q = newCaptcha.q; captcha.label = newCaptcha.label;
+          overlay.querySelector('#lf-captcha-label').textContent = captcha.label;
+          overlay.querySelector('#lf-captcha-a').value = '';
+          return showErr('Güvenlik sorusu hatalı. Lütfen tekrar deneyin.');
         }
         return showErr('Bir hata oluştu, lütfen tekrar deneyin.');
       }

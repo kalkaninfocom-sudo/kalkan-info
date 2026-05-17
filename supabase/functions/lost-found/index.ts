@@ -3,7 +3,7 @@
  * Kalkan Info — Kayıp & Bulunan Edge Function (Deno)
  *
  * GET  /functions/v1/lost-found/list?type=kayip|bulundu   — son 50 aktif ilan
- * POST /functions/v1/lost-found/create                    — yeni ilan (rate limit: 3/saat/IP)
+ * POST /functions/v1/lost-found/create                    — yeni ilan (rate limit: 3/saat + 10/gün/IP, honeypot, captcha)
  * POST /functions/v1/lost-found/delete                    — {id, delete_code} ile status='removed'
  */
 
@@ -45,6 +45,30 @@ async function sha256Hex(s: string): Promise<string> {
 
 function supa() {
   return createClient(SUPABASE_URL, SERVICE_ROLE, { auth: { persistSession: false } });
+}
+
+// ---- anti-spam helpers ------------------------------------------------------
+
+/** Honeypot + math captcha guard for create endpoint */
+async function ipHash(req: Request): Promise<string> {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  return sha256Hex(ip);
+}
+
+/**
+ * Math captcha verifier.
+ * q format: "3+5", "12-7", "4*3" — only digits and +, -, * operators.
+ * a: the user's numeric answer as string.
+ */
+function verifyMathCaptcha(q: string, a: string): boolean {
+  if (!q || !a) return false;
+  try {
+    // safe: only digits, spaces, and +, -, * allowed
+    if (!/^[\d+\-*\s]+$/.test(q)) return false;
+    // deno-lint-ignore no-new-func
+    const expected = new Function(`"use strict"; return (${q})`)();
+    return Number(a) === Number(expected);
+  } catch { return false; }
 }
 
 // ---- PII masking helpers ---------------------------------------------------
@@ -99,10 +123,21 @@ async function handleList(url: URL, _req: Request, cors: Record<string, string>)
   return json({ ok: true, items }, 200, cors);
 }
 
-/** POST /create — body: { type, title, description?, location?, phone?, contact_name?, photo_url? } */
+/** POST /create — body: { type, title, description?, location?, phone?, contact_name?, photo_url?, captcha_q, captcha_a } */
 async function handleCreate(req: Request, cors: Record<string, string>) {
   let body: Record<string, unknown>;
   try { body = await req.json(); } catch { return json({ error: 'invalid_json' }, 400, cors); }
+
+  // --- Honeypot: bots fill decoy fields, humans leave them empty ---
+  if (body.website || body.homepage) {
+    console.log('honeypot triggered', { ip_hash: await ipHash(req) });
+    return json({ ok: true, items: [] }, 200, cors); // silent reject
+  }
+
+  // --- Math captcha ---
+  if (!verifyMathCaptcha(String(body.captcha_q ?? ''), String(body.captcha_a ?? ''))) {
+    return json({ error: 'captcha_failed' }, 400, cors);
+  }
 
   const type        = body.type as string;
   const title       = String(body.title ?? '').trim().slice(0, 200);
@@ -117,19 +152,31 @@ async function handleCreate(req: Request, cors: Record<string, string>) {
   }
   if (!title) return json({ error: 'title_required' }, 400, cors);
 
-  // IP rate limit: 3 ilan / saat
-  const ip     = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-  const ipHash = await sha256Hex(ip);
-  const since  = new Date(Date.now() - 60 * 60_000).toISOString();
+  // --- IP rate limit: 3/saat + 10/gün ---
+  const ip        = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  const ipHashVal = await sha256Hex(ip);
+  const sinceHour = new Date(Date.now() - 60 * 60_000).toISOString();
+  const sinceDay  = new Date(Date.now() - 24 * 60 * 60_000).toISOString();
 
   const db = supa();
-  const { count: recent } = await db
+
+  const { count: recentHour } = await db
     .from('lost_found_items')
     .select('*', { count: 'exact', head: true })
-    .eq('ip_hash', ipHash)
-    .gte('created_at', since);
+    .eq('ip_hash', ipHashVal)
+    .gte('created_at', sinceHour);
 
-  if ((recent ?? 0) >= 3) return json({ error: 'rate_limited' }, 429, cors);
+  if ((recentHour ?? 0) >= 3) return json({ error: 'rate_limited' }, 429, cors);
+
+  const { count: recentDay } = await db
+    .from('lost_found_items')
+    .select('*', { count: 'exact', head: true })
+    .eq('ip_hash', ipHashVal)
+    .gte('created_at', sinceDay);
+
+  if ((recentDay ?? 0) >= 10) return json({ error: 'rate_limited' }, 429, cors);
+
+  const ipHash = ipHashVal; // alias for insert below
 
   const { data: inserted, error } = await db
     .from('lost_found_items')

@@ -104,6 +104,44 @@ const CATALOG_TOURS = [
 ];
 
 // ---------------------------------------------------------------------------
+// Prompt injection sanitization
+// ---------------------------------------------------------------------------
+function sanitizeSpecialRequests(input: unknown): string {
+  if (typeof input !== 'string') return '';
+  let s = input.trim();
+
+  // 1. Length cap (Claude API token + prompt injection mitigation)
+  const origLen = s.length;
+  if (s.length > 500) s = s.slice(0, 500) + '... [truncated]';
+  const keptLen = s.length;
+
+  // 2. Strip prompt injection markers (case-insensitive)
+  const blockedPatterns = [
+    /<\s*system\s*>/gi,
+    /<\s*\/\s*system\s*>/gi,
+    /<\s*\|.*?\|\s*>/g,              // ChatML-style markers
+    /\[INST\]/gi, /\[\/INST\]/gi,    // Llama-style
+    /\bassistant\s*:\s*\n/gi,        // role injection
+    /\bsystem\s*:\s*\n/gi,
+    /\bhuman\s*:\s*\n/gi,
+    /\bignore\s+(previous|above|all)\s+(instructions|prompts?)/gi,
+    /\bforget\s+(everything|all|previous)/gi,
+    /\bdisregard\s+(previous|above|all)/gi,
+  ];
+  for (const re of blockedPatterns) s = s.replace(re, '[blocked]');
+
+  // 3. Normalize whitespace (no excessive newlines for token bloat)
+  s = s.replace(/\n{3,}/g, '\n\n');
+
+  // 4. Log metric only — no PII (KVKK)
+  if (origLen > 0) {
+    console.log(`[vacation-planner] specialRequests sanitized (orig ${origLen} chars, kept ${keptLen} chars)`);
+  }
+
+  return s;
+}
+
+// ---------------------------------------------------------------------------
 // Input validation
 // ---------------------------------------------------------------------------
 function validateInput(data: Record<string, unknown>) {
@@ -202,6 +240,8 @@ function buildUserPrompt(f: Record<string, unknown>, meta: { nights: number; tot
   const currency = (f.currency as string) || 'TRY';
   const symbol   = ({ TRY: '₺', EUR: '€', USD: '$' } as Record<string, string>)[currency] || currency;
 
+  const safeSpecialRequests = sanitizeSpecialRequests(f.specialRequests);
+
   return `TATIL BİLGİLERİ:
 - Tarihler: ${f.dateStart} → ${f.dateEnd} (${meta.nights} gece)
 - Grup: ${f.adults} yetişkin, ${f.children || 0} çocuk (toplam ${meta.totalPeople} kişi)
@@ -215,7 +255,7 @@ function buildUserPrompt(f: Record<string, unknown>, meta: { nights: number; tot
 - Yemek: ${((f.food as string[]) || []).join(', ') || 'belirtilmedi'}
 ${f.cuisine && (f.cuisine as string[]).length ? `- Mutfak tercihi: ${(f.cuisine as string[]).join(', ')}` : ''}
 - Aktiviteler: ${((f.activities as string[]) || []).join(', ') || 'genel'}
-${f.specialRequests ? `- Özel istekler: ${f.specialRequests}` : ''}
+${safeSpecialRequests ? `- Özel istekler: ${safeSpecialRequests}` : ''}
 
 ${catalog}
 

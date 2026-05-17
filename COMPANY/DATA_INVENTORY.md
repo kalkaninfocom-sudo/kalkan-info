@@ -72,7 +72,7 @@
 | Olay | Tetikleyici | Süre | Sorumlu |
 |---|---|---|---|
 | Kullanıcı "hesabımı sil" | `profil.html` butonu | T+30 gün soft, sonra hard | KVKKGuardian cron |
-| audit_log retention | Otomatik | 2 yıl | KVKKGuardian cron |
+| audit_log retention | Otomatik (pg_cron `audit_log_purge_daily`, 03:00 UTC) | 90 gün | pg_cron / Edge Function fallback |
 | support_conversations | Otomatik | 90 gün | KVKKGuardian cron |
 | Vergi belgesi (bookings) | Yasal | 10 yıl | Manuel (mali müşavir) |
 | Pazarlama izni iptali | "Aboneliği iptal" link | Hemen | Webhook |
