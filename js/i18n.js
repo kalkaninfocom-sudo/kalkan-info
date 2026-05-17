@@ -97,14 +97,13 @@
 
   function injectSwitcher() {
     if (document.getElementById('ki-lang-switcher')) return;
-    const cur = detectLang();
     const el = document.createElement('div');
     el.id = 'ki-lang-switcher';
     el.setAttribute('role', 'group');
     el.setAttribute('aria-label', 'Dil seçimi / Language');
     el.innerHTML = `
-      <button type="button" data-lang-toggle="en" onclick="event.preventDefault();setLang('en');" title="English" aria-label="English">EN</button>
-      <button type="button" data-lang-toggle="tr" onclick="event.preventDefault();setLang('tr');" title="Türkçe" aria-label="Türkçe">TR</button>
+      <button type="button" data-lang-toggle="en" title="English" aria-label="English">EN</button>
+      <button type="button" data-lang-toggle="tr" title="Türkçe" aria-label="Türkçe">TR</button>
       <button type="button" disabled title="Deutsch — yakında" aria-label="Deutsch (yakında)">DE</button>
       <button type="button" disabled title="Русский — yakında" aria-label="Русский (yakında)">RU</button>
       <button type="button" disabled title="Français — yakında" aria-label="Français (yakında)">FR</button>
@@ -112,9 +111,25 @@
     document.body.appendChild(el);
   }
 
+  function bindToggleHandlers() {
+    // CSP nedeniyle inline onclick yok — addEventListener ile bağla
+    document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
+      if (btn._i18nBound) return;
+      btn._i18nBound = true;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = btn.dataset.langToggle;
+        if (target === 'en' || target === 'tr') {
+          window.KalkanI18n.set(target);
+        }
+      });
+    });
+  }
+
   function init() {
     injectStyles();
     injectSwitcher();
+    bindToggleHandlers();
     apply(detectLang());
     // Geç gelen kart/list render'lar için de uygula
     const mo = new MutationObserver(muts => {
