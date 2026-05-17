@@ -110,6 +110,7 @@
     "Alışveriş",
     "Bakım",
     "Kiralama",
+    "Aktivite & Spor",
     "Resmi",
     "Diğer"
   ],
@@ -230,6 +231,25 @@
       ],
       "phone": null,
       "hours": "08:00–20:00",
+      "featured": false
+    },
+    {
+      "id": "tenis-kursu",
+      "name": "Tenis Kursu",
+      "category": "Aktivite & Spor",
+      "icon": "🎾",
+      "image": "/assets/img/tenis-kursu.webp",
+      "summary": "Tüm seviyelere özel ders ve grup kursu — yetişkin ve çocuk programları. Modern toprak/sert kort ile profesyonel eğitmen eşliğinde.",
+      "details": [
+        "Bireysel ders veya grup kursu",
+        "Yetişkin & çocuk programları",
+        "Tüm seviyeler (başlangıç → ileri)",
+        "Ekipman temini opsiyonel",
+        "Eğitmen bilgisi yakında"
+      ],
+      "phone": null,
+      "whatsapp": null,
+      "hours": "Sezonluk · Mayıs–Ekim",
       "featured": false
     },
     {
