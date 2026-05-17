@@ -60,40 +60,16 @@ function maskName(name: string | null): string | null {
   return name.split(' ').map((w: string) => w[0] + '*'.repeat(Math.max(0, w.length - 1))).join(' ');
 }
 
-/**
- * JWT'den user_id çek (--no-verify-jwt ile deploy edilmiş olsa bile).
- * Hata durumunda null döner.
- */
-function getUserIdFromJwt(req: Request): string | null {
-  const auth = req.headers.get('Authorization') ?? req.headers.get('authorization');
-  if (!auth || !auth.startsWith('Bearer ')) return null;
-  const token = auth.slice(7);
-  try {
-    // JWT payload base64url decode — Deno'da atob mevcut
-    const parts = token.split('.');
-    if (parts.length !== 3) return null;
-    // base64url → base64 dönüşümü
-    const padded = parts[1].replace(/-/g, '+').replace(/_/g, '/').padEnd(
-      parts[1].length + (4 - (parts[1].length % 4)) % 4, '='
-    );
-    const payload = JSON.parse(atob(padded));
-    return payload.sub ?? null;
-  } catch {
-    return null;
-  }
-}
-
 // ---- route handlers ---------------------------------------------------------
 
 /** GET /list?type=kayip|bulundu */
-async function handleList(url: URL, req: Request, cors: Record<string, string>) {
-  const type   = url.searchParams.get('type');
-  const callerId = getUserIdFromJwt(req);
-  const db     = supa();
+async function handleList(url: URL, _req: Request, cors: Record<string, string>) {
+  const type = url.searchParams.get('type');
+  const db   = supa();
 
   let query = db
     .from('lost_found_items')
-    .select('id, type, title, description, location, phone, contact_name, photo_url, created_at, user_id')
+    .select('id, type, title, description, location, phone, contact_name, photo_url, created_at')
     .eq('status', 'active')
     .order('created_at', { ascending: false })
     .limit(50);
@@ -105,23 +81,20 @@ async function handleList(url: URL, req: Request, cors: Record<string, string>) 
   const { data, error } = await query;
   if (error) return json({ error: 'db_error', detail: error.message }, 500, cors);
 
-  // PII maskeleme: yalnızca ilan sahibi kendi phone+contact_name değerlerini tam görür.
-  // Diğer herkese (anonim veya başka kullanıcı) maskelenmiş veri döner.
-  const items = (data ?? []).map((item: Record<string, unknown>) => {
-    const isOwner = callerId !== null && callerId === item.user_id;
-    return {
-      id:           item.id,
-      type:         item.type,
-      title:        item.title,
-      description:  item.description,
-      location:     item.location,
-      photo_url:    item.photo_url,
-      created_at:   item.created_at,
-      phone:        isOwner ? item.phone : maskPhone(item.phone as string | null),
-      contact_name: isOwner ? item.contact_name : maskName(item.contact_name as string | null),
-      contact_hint: isOwner ? undefined : 'İlan sahibine ulaşmak için lütfen iletişim formunu kullanın.',
-    };
-  });
+  // PII maskeleme: lost_found tablosu anonim (user_id yok, delete_code ile silme).
+  // Her listeleme çağrısında phone + contact_name maskelenir.
+  const items = (data ?? []).map((item: Record<string, unknown>) => ({
+    id:           item.id,
+    type:         item.type,
+    title:        item.title,
+    description:  item.description,
+    location:     item.location,
+    photo_url:    item.photo_url,
+    created_at:   item.created_at,
+    phone:        maskPhone(item.phone as string | null),
+    contact_name: maskName(item.contact_name as string | null),
+    contact_hint: 'İlan sahibine ulaşmak için iletişim formunu kullanın.',
+  }));
 
   return json({ ok: true, items }, 200, cors);
 }
