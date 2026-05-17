@@ -80,18 +80,12 @@ export default async function handler(req, res) {
   // CORS — sadece kendi sayfamızdan tetiklenebilir + Vercel cron
   res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=600');
 
-  // Cron auth — bot çağrılarından koru (manuel test için ?secret=...)
+  // Cron auth — bot çağrılarından koru. Header-only (query string secret URL/log leak riski)
   const cronHeader = req.headers['x-vercel-cron'];
-  let querySecret = '';
-  try {
-    const parsed = new URL(req.url, 'http://x');
-    querySecret = parsed.searchParams.get('secret') || '';
-  } catch (e) { /* noop */ }
-  const headerSecret = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
-  const providedSecret = (headerSecret || querySecret || '').trim();
+  const headerSecret = (req.headers.authorization || '').replace(/^Bearer\s+/i, '').trim();
   const expectedSecret = (process.env.IG_CRON_SECRET || '').trim();
-  if (!cronHeader && expectedSecret && providedSecret !== expectedSecret) {
-    return res.status(401).json({ error: 'Unauthorized', hint: 'pass ?secret=... or Authorization: Bearer <secret>' });
+  if (!cronHeader && expectedSecret && headerSecret !== expectedSecret) {
+    return res.status(401).json({ error: 'Unauthorized', hint: 'Authorization: Bearer <secret>' });
   }
 
   const businessId = process.env.IG_BUSINESS_ID;
