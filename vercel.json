@@ -8,7 +8,7 @@
   "crons": [
     {
       "path": "/api/instagram-hashtag",
-      "schedule": "0 * * * *"
+      "schedule": "0 9 * * *"
     }
   ],
   "cleanUrls": true,
