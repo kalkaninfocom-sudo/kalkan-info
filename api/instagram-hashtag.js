@@ -79,10 +79,16 @@ export default async function handler(req, res) {
 
   // Cron auth — bot çağrılarından koru (manuel test için ?secret=...)
   const cronHeader = req.headers['x-vercel-cron'];
-  const providedSecret = req.headers.authorization?.replace(/^Bearer\s+/i, '') || req.query?.secret;
-  const expectedSecret = process.env.IG_CRON_SECRET;
+  let querySecret = '';
+  try {
+    const parsed = new URL(req.url, 'http://x');
+    querySecret = parsed.searchParams.get('secret') || '';
+  } catch (e) { /* noop */ }
+  const headerSecret = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
+  const providedSecret = (headerSecret || querySecret || '').trim();
+  const expectedSecret = (process.env.IG_CRON_SECRET || '').trim();
   if (!cronHeader && expectedSecret && providedSecret !== expectedSecret) {
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Unauthorized', hint: 'pass ?secret=... or Authorization: Bearer <secret>' });
   }
 
   const businessId = process.env.IG_BUSINESS_ID;
