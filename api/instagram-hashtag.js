@@ -45,11 +45,12 @@ async function fetchHashtagMedia(hashtagId, businessId, token, edge = 'recent_me
   const fields = 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count';
   const url = `${GRAPH_BASE}/${hashtagId}/${edge}?user_id=${businessId}&fields=${fields}&limit=12&access_token=${token}`;
   const res = await fetch(url);
+  const text = await res.text();
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`${edge} failed: HTTP ${res.status} — ${err}`);
+    throw new Error(`${edge} failed: HTTP ${res.status} — ${text}`);
   }
-  return res.json();
+  try { return JSON.parse(text); }
+  catch (e) { throw new Error(`${edge} JSON parse fail — ${text.slice(0,200)}`); }
 }
 
 function filterAndNormalize(items) {
@@ -115,17 +116,34 @@ export default async function handler(req, res) {
       try {
         const hashtagId = await getHashtagId(hashtag, businessId, token);
         const [recent, top] = await Promise.all([
-          fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(() => ({ data: [] })),
-          fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(() => ({ data: [] }))
+          fetchHashtagMedia(hashtagId, businessId, token, 'recent_media').catch(e => ({ data: [], err: e.message })),
+          fetchHashtagMedia(hashtagId, businessId, token, 'top_media').catch(e => ({ data: [], err: e.message }))
         ]);
         const combined = [...(recent.data || []), ...(top.data || [])];
-        return { hashtag, hashtagId, recent: combined, count: combined.length };
+        return {
+          hashtag, hashtagId,
+          recent: combined,
+          count: combined.length,
+          recentErr: recent.err,
+          topErr: top.err,
+          recentCount: (recent.data || []).length,
+          topCount: (top.data || []).length
+        };
       } catch (e) {
         return { hashtag, error: e.message, recent: [], count: 0 };
       }
     }));
 
-    const stats = results.map(r => ({ hashtag: r.hashtag, hashtagId: r.hashtagId, count: r.count, error: r.error }));
+    const stats = results.map(r => ({
+      hashtag: r.hashtag,
+      hashtagId: r.hashtagId,
+      count: r.count,
+      recentCount: r.recentCount,
+      topCount: r.topCount,
+      recentErr: r.recentErr,
+      topErr: r.topErr,
+      error: r.error
+    }));
     for (const r of results) {
       for (const it of r.recent) if (!merged.has(it.id)) merged.set(it.id, { ...it, _tag: r.hashtag });
     }
