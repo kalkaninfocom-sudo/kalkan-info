@@ -95,8 +95,8 @@ export default async function handler(req, res) {
   const token = process.env.IG_LONG_LIVED_TOKEN;
   const hashtagsRaw = process.env.IG_HASHTAGS || process.env.IG_HASHTAG
     || 'kalkan,kalkantatil';
-  // Hobby plan maxDuration 10s — en fazla 2 hashtag (her biri ~3sn Graph API)
-  const hashtags = hashtagsRaw.split(',').map(h => h.trim().replace(/^#/, '')).filter(Boolean).slice(0, 2);
+  // Hobby plan maxDuration 10s — sadece 1 hashtag (her biri 3-5sn Graph API)
+  const hashtags = hashtagsRaw.split(',').map(h => h.trim().replace(/^#/, '')).filter(Boolean).slice(0, 1);
 
   if (!businessId || !token) {
     return res.status(503).json({
