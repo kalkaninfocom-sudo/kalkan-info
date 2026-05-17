@@ -14,6 +14,7 @@
   'use strict';
 
   const FEED_PATH = '/data/instagram-feed.json';
+  const API_PATH = '/api/instagram-hashtag?secret=kalkan-ig-cron-7f3e9a8b2c5d4e6f';
   const GRID_SELECTOR = '#instagram-tagged .grid';
 
   function escapeHtml(s) {
@@ -53,13 +54,37 @@
     `;
   }
 
+  const CACHE_KEY = 'kalkan_ig_feed_v1';
+  const CACHE_TTL = 60 * 60 * 1000; // 1 saat
+
   async function loadFeed() {
+    // 1. localStorage cache (1 saat)
+    try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && cached._ts && (Date.now() - cached._ts < CACHE_TTL)) {
+        return cached.data;
+      }
+    } catch (e) { /* ignore */ }
+
+    // 2. Canlı API endpoint (gerçek IG postları)
+    try {
+      const res = await fetch(API_PATH, { cache: 'no-cache' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && Array.isArray(data.posts) && data.posts.length > 0) {
+          try { localStorage.setItem(CACHE_KEY, JSON.stringify({ _ts: Date.now(), data })); } catch (e) {}
+          return data;
+        }
+      }
+    } catch (e) { console.warn('[instagram-feed] API failed', e); }
+
+    // 3. Statik JSON fallback (boş veya cron'dan)
     try {
       const res = await fetch(FEED_PATH + '?t=' + Date.now(), { cache: 'no-cache' });
       if (!res.ok) return null;
       return await res.json();
     } catch (e) {
-      console.warn('[instagram-feed] load failed', e);
+      console.warn('[instagram-feed] static fallback failed', e);
       return null;
     }
   }

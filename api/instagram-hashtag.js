@@ -60,17 +60,17 @@ function filterAndNormalize(items) {
   return items
     .filter(it => {
       const t = new Date(it.timestamp || 0).getTime();
-      return t >= cutoff && (it.media_type === 'IMAGE' || it.media_type === 'CAROUSEL_ALBUM' || it.media_type === 'VIDEO');
+      // VIDEO skip — thumbnail_url Hashtag endpoint'te yok, img tag'i video URL kabul etmez
+      // IMAGE ve CAROUSEL_ALBUM (carousel ilk öğesi de IMG): yeterli
+      return t >= cutoff && (it.media_type === 'IMAGE' || it.media_type === 'CAROUSEL_ALBUM');
     })
     .map(it => ({
       id: it.id,
       caption: (it.caption || '').slice(0, 280),
       type: it.media_type,
-      image: it.media_type === 'VIDEO' ? (it.thumbnail_url || it.media_url) : it.media_url,
+      image: it.media_url,
       permalink: it.permalink,
-      timestamp: it.timestamp,
-      likes: it.like_count || 0,
-      comments: it.comments_count || 0
+      timestamp: it.timestamp
     }))
     .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     .slice(0, MAX_POSTS);
