@@ -31,6 +31,8 @@
   .step-dot.done{background:#1a5e93;color:#fff;}
   .step-line{flex:1;height:2px;background:#cfdfee;}
   .step-line.done{background:#1a5e93;}
+  .checkbox-label{display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;font-size:0.875rem;color:#134c79;line-height:1.5;}
+  .checkbox-label input[type="checkbox"]{width:1.0625rem;height:1.0625rem;margin-top:0.1875rem;flex-shrink:0;accent-color:#1a5e93;cursor:pointer;}
 
   /* Lang chip */
   .lang-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1.5px solid #9cc0dd;border-radius:9999px;font-weight:600;font-size:0.8125rem;color:#0d3a5f;background:#fff;cursor:pointer;transition:all .18s;user-select:none;}
@@ -66,6 +68,7 @@
 <script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
 <script src="js/concierge-modal.js?v=20260517b" defer></script>
 <script src="js/i18n.js?v=20260517a" defer></script>
+    <script src="js/cookie-banner.js" defer></script>
 </head>
 <body class="bg-[#dce6ef] min-h-screen">
 
@@ -308,6 +311,22 @@
         ayrımcı içerik içermeyen ilanlar 24-48 saat içinde yayına alınır. Onaylandığında e-posta ile bilgilendirilirsin.
       </div>
 
+      <!-- KVKK onay — zorunlu -->
+      <div class="pt-2 space-y-3">
+        <label class="checkbox-label">
+          <input type="checkbox" name="kvkk" id="kvkk" required />
+          <span>
+            <a href="kvkk.html" target="_blank" class="text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2" data-en-html="<a href=&quot;kvkk.html&quot; target=&quot;_blank&quot; class=&quot;text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2&quot;>KVKK Notice</a> read and I consent to processing of my personal data.">KVKK Aydınlatma Metni</a>'ni
+            <span>okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span>
+            <span class="text-coral-500 font-bold ml-0.5">*</span>
+          </span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="marketing" id="marketing" />
+          <span data-en="I would like to receive job suggestions and announcement emails from Kalkan Info. (Optional)">Kalkan Info'dan iş ilanı önerileri ve duyuru e-postaları almak istiyorum. (İsteğe bağlı)</span>
+        </label>
+      </div>
+
       <div id="submit-error" class="hidden text-coral-500 text-sm font-semibold"></div>
       <div id="submit-success" class="hidden bg-sea-50 border border-sea-200 text-sea-800 rounded-lg p-4 text-sm">
         <div class="flex items-start gap-3">
@@ -493,7 +512,18 @@ form.addEventListener('submit', async (e) => {
   }
   if (!validateStep(1) || !validateStep(2)) return;
 
+  const kvkkBox = document.getElementById('kvkk');
+  if (!kvkkBox.checked) {
+    submitErr.textContent = 'Devam etmek için KVKK Aydınlatma Metni\'ni kabul etmelisiniz.';
+    submitErr.classList.remove('hidden');
+    kvkkBox.closest('label').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   const data = buildJobObject();
+  const marketingBox = document.getElementById('marketing');
+  if (marketingBox.checked) data.marketing_opt_in = true;
+
   if (!data.contactEmail) {
     submitErr.textContent = 'İletişim e-postası zorunlu.';
     submitErr.classList.remove('hidden');

@@ -122,6 +122,7 @@
 - T1.7 — Double hamburger menu (false positive, idempotent)
 - CTO P0 #1 — XSS escape bozuk (yanlış)
 - CFO TAM analizi — LOA projesi ile karıştırılmış
+- **B4 (yeniden incelendi 2026-05-17)** — register.html'de marketing checkbox MEVCUT (sat. 178-181, `name="marketing"`). `js/auth.js:252` doğru mapping yapıyor: `name="marketing"` → DB `marketing_opt_in`. profile.html'de kullanıcı sonradan toggle edebiliyor. **Audit yanlış değerlendirmişti.**
 
 ## Verdict
 

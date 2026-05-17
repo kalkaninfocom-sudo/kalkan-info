@@ -47,16 +47,53 @@ function supa() {
   return createClient(SUPABASE_URL, SERVICE_ROLE, { auth: { persistSession: false } });
 }
 
+// ---- PII masking helpers ---------------------------------------------------
+
+function maskPhone(phone: string | null): string | null {
+  if (!phone) return null;
+  if (phone.length < 6) return '***';
+  return phone.slice(0, 3) + '*'.repeat(phone.length - 5) + phone.slice(-2);
+}
+
+function maskName(name: string | null): string | null {
+  if (!name) return null;
+  return name.split(' ').map((w: string) => w[0] + '*'.repeat(Math.max(0, w.length - 1))).join(' ');
+}
+
+/**
+ * JWT'den user_id çek (--no-verify-jwt ile deploy edilmiş olsa bile).
+ * Hata durumunda null döner.
+ */
+function getUserIdFromJwt(req: Request): string | null {
+  const auth = req.headers.get('Authorization') ?? req.headers.get('authorization');
+  if (!auth || !auth.startsWith('Bearer ')) return null;
+  const token = auth.slice(7);
+  try {
+    // JWT payload base64url decode — Deno'da atob mevcut
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    // base64url → base64 dönüşümü
+    const padded = parts[1].replace(/-/g, '+').replace(/_/g, '/').padEnd(
+      parts[1].length + (4 - (parts[1].length % 4)) % 4, '='
+    );
+    const payload = JSON.parse(atob(padded));
+    return payload.sub ?? null;
+  } catch {
+    return null;
+  }
+}
+
 // ---- route handlers ---------------------------------------------------------
 
 /** GET /list?type=kayip|bulundu */
-async function handleList(url: URL, cors: Record<string, string>) {
-  const type = url.searchParams.get('type');
-  const db   = supa();
+async function handleList(url: URL, req: Request, cors: Record<string, string>) {
+  const type   = url.searchParams.get('type');
+  const callerId = getUserIdFromJwt(req);
+  const db     = supa();
 
   let query = db
     .from('lost_found_items')
-    .select('id, type, title, description, location, phone, contact_name, photo_url, created_at')
+    .select('id, type, title, description, location, phone, contact_name, photo_url, created_at, user_id')
     .eq('status', 'active')
     .order('created_at', { ascending: false })
     .limit(50);
@@ -67,7 +104,26 @@ async function handleList(url: URL, cors: Record<string, string>) {
 
   const { data, error } = await query;
   if (error) return json({ error: 'db_error', detail: error.message }, 500, cors);
-  return json({ ok: true, items: data ?? [] }, 200, cors);
+
+  // PII maskeleme: yalnızca ilan sahibi kendi phone+contact_name değerlerini tam görür.
+  // Diğer herkese (anonim veya başka kullanıcı) maskelenmiş veri döner.
+  const items = (data ?? []).map((item: Record<string, unknown>) => {
+    const isOwner = callerId !== null && callerId === item.user_id;
+    return {
+      id:           item.id,
+      type:         item.type,
+      title:        item.title,
+      description:  item.description,
+      location:     item.location,
+      photo_url:    item.photo_url,
+      created_at:   item.created_at,
+      phone:        isOwner ? item.phone : maskPhone(item.phone as string | null),
+      contact_name: isOwner ? item.contact_name : maskName(item.contact_name as string | null),
+      contact_hint: isOwner ? undefined : 'İlan sahibine ulaşmak için lütfen iletişim formunu kullanın.',
+    };
+  });
+
+  return json({ ok: true, items }, 200, cors);
 }
 
 /** POST /create — body: { type, title, description?, location?, phone?, contact_name?, photo_url? } */
@@ -175,7 +231,7 @@ Deno.serve(async (req) => {
   const segments = url.pathname.replace(/\/$/, '').split('/');
   const action   = segments[segments.length - 1]; // 'list' | 'create' | 'delete'
 
-  if (req.method === 'GET'  && action === 'list')   return handleList(url, cors);
+  if (req.method === 'GET'  && action === 'list')   return handleList(url, req, cors);
   if (req.method === 'POST' && action === 'create') return handleCreate(req, cors);
   if (req.method === 'POST' && action === 'delete') return handleDelete(req, cors);
 

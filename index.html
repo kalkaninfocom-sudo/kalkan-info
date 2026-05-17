@@ -94,9 +94,32 @@
 <script type="module" src="js/map.js"></script>
 <script src="js/site-drawer.js?v=20260516b" defer></script>
 <script src="js/i18n.js?v=20260517a" defer></script>
+    <script src="js/cookie-banner.js" defer></script>
 <script src="js/header-search.js" defer></script>
 <script src="js/bottom-nav.js?v=20260516b" defer></script>
-<script defer data-domain="kalkaninfo.com" src="https://plausible.io/js/script.js"></script>
+<script>
+  // Plausible analytics — yalnızca analytics onayı varsa yükle (KVKK)
+  (function(){
+    function loadPlausible(){
+      if(document.getElementById('ki-plausible')) return;
+      var s=document.createElement('script');
+      s.id='ki-plausible';
+      s.defer=true;
+      s.setAttribute('data-domain','kalkaninfo.com');
+      s.src='https://plausible.io/js/script.js';
+      document.head.appendChild(s);
+    }
+    function checkAndLoad(){
+      if(window.KalkanConsent && window.KalkanConsent.has('analytics')) loadPlausible();
+    }
+    // cookie-banner.js defer ile yükleniyor; DOMContentLoaded sonrası kontrol et
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded', function(){setTimeout(checkAndLoad,50);});
+    } else {
+      setTimeout(checkAndLoad,50);
+    }
+  })();
+</script>
 <script src="js/concierge-modal.js?v=20260517b" defer></script>
 <script src="js/instagram-feed.js?v=20260517b" defer></script></head>
 <body class="bg-[#dce6ef]">

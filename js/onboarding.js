@@ -92,6 +92,7 @@ const state = {
     galleryFiles: [],
     galleryUrls: [],
     kvkk: false,
+    marketing_opt_in: false,
     menuItems: [],
   },
   errors: {},
@@ -560,15 +561,25 @@ function _renderSingleForm($root) {
         <h2>Onay</h2>
       </div>
       <div class="ob-section-body">
-        <label class="ob-kvkk-label">
-          <input type="checkbox" id="ob-kvkk" name="kvkk" class="ob-checkbox"
-            ${state.data.kvkk ? 'checked' : ''} required />
-          <span>
-            <a href="kvkk.html" target="_blank" class="ob-kvkk-link">KVKK Aydınlatma Metni</a>'ni ve
-            <a href="terms.html" target="_blank" class="ob-kvkk-link">Kullanım Şartları</a>'nı okudum, kabul ediyorum.
-            <span class="ob-req">*</span>
-          </span>
-        </label>
+        <div class="space-y-3">
+          <label class="ob-kvkk-label">
+            <input type="checkbox" id="ob-kvkk" name="kvkk" class="ob-checkbox"
+              ${state.data.kvkk ? 'checked' : ''} required />
+            <span
+              data-en-html='<a href="kvkk.html" target="_blank" class="ob-kvkk-link">KVKK Notice</a> and <a href="terms.html" target="_blank" class="ob-kvkk-link">Terms of Use</a> read and consent to processing of my personal data.'>
+              <a href="kvkk.html" target="_blank" class="ob-kvkk-link">KVKK Aydınlatma Metni</a>'ni ve
+              <a href="terms.html" target="_blank" class="ob-kvkk-link">Kullanım Şartları</a>'nı okudum, kabul ediyorum.
+              <span class="ob-req">*</span>
+            </span>
+          </label>
+          <label class="ob-kvkk-label">
+            <input type="checkbox" id="ob-marketing" name="marketing" class="ob-checkbox"
+              ${state.data.marketing_opt_in ? 'checked' : ''} />
+            <span data-en="I would like to receive campaign emails from Kalkan Info. (Optional)">
+              Kalkan Info'dan kampanya, yeni içerik ve duyuru e-postaları almak istiyorum. (İsteğe bağlı)
+            </span>
+          </label>
+        </div>
         <p class="ob-field-err hidden" id="err-kvkk"></p>
       </div>
     </section>
@@ -805,7 +816,8 @@ function _syncSingleFormToState() {
   state.data.district    = get('ob-district')?.value || '';
   state.data.hoursOpen   = get('ob-hours-open')?.value || '';
   state.data.hoursClose  = get('ob-hours-close')?.value || '';
-  state.data.kvkk        = get('ob-kvkk')?.checked || false;
+  state.data.kvkk           = get('ob-kvkk')?.checked || false;
+  state.data.marketing_opt_in = get('ob-marketing')?.checked || false;
 }
 
 // ---------------------------------------------------------------------------
@@ -1029,12 +1041,13 @@ async function _save() {
       cover_image:      coverUrl || null,
       gallery:          galleryUrls,
       data: {
-        instagram:    state.data.instagram || null,
-        founded_year: state.data.foundedYear || null,
-        hours:        { open: state.data.hoursOpen, close: state.data.hoursClose },
-        languages:    state.data.languages,
-        specialties:  state.data.specialties,
-        menu:         state.data.menuItems.filter(m => m.name),
+        instagram:       state.data.instagram || null,
+        founded_year:    state.data.foundedYear || null,
+        hours:           { open: state.data.hoursOpen, close: state.data.hoursClose },
+        languages:       state.data.languages,
+        specialties:     state.data.specialties,
+        menu:            state.data.menuItems.filter(m => m.name),
+        marketing_opt_in: state.data.marketing_opt_in || false,
       },
     };
 
