@@ -42,7 +42,8 @@ async function getHashtagId(hashtag, businessId, token) {
 
 async function fetchHashtagMedia(hashtagId, businessId, token, edge = 'recent_media') {
   // limit=12 — Hobby plan 10s timeout için optimize (gereken sadece 6 post)
-  const fields = 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count';
+  // Hashtag endpoint'inde like_count/comments_count desteklenmiyor (Graph API kısıtı)
+  const fields = 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp';
   const url = `${GRAPH_BASE}/${hashtagId}/${edge}?user_id=${businessId}&fields=${fields}&limit=12&access_token=${token}`;
   const res = await fetch(url);
   const text = await res.text();
