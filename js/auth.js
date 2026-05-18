@@ -232,7 +232,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await loginWithEmail(email, pwd);
       _setLoading(btn, false);
       if (res.ok) {
-        window.location.href = 'profil.html';
+        // Smart redirect: ?next= varsa oraya, admin role varsa /admin, yoksa /profil
+        const params = new URLSearchParams(location.search);
+        const next = params.get('next');
+        if (next && /^\/[a-zA-Z0-9_\-\/.]*$/.test(next)) {
+          window.location.href = next;
+        } else if (res.user?.app_metadata?.role === 'admin') {
+          window.location.href = '/admin.html';
+        } else {
+          window.location.href = 'profil.html';
+        }
       } else {
         _showError(loginForm, res.message);
       }
