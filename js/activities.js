@@ -97,7 +97,7 @@ function priceLabel(pr) {
 }
 
 function cardHTML(a) {
-  const img = (a.images && a.images[0]) ? a.images[0] : 'https://placehold.co/400x240?text=Aktivite';
+  const img = (a.images && a.images[0]) ? a.images[0] : '/assets/img/da72f67377f7.webp';
   const title = t(a, 'titleML') || a.title;
   const desc = t(a, 'descriptionML');
   const tags = (a.tags || []).slice(0, 3).map(tag =>
@@ -117,7 +117,7 @@ function cardHTML(a) {
       <div class="relative overflow-hidden aspect-[4/3] photo-treatment">
         <img src="${img}" alt="${title}" loading="lazy"
           class="w-full h-full object-cover"
-          onerror="this.src='https://placehold.co/400x300?text=${encodeURIComponent(title)}'">
+          onerror="this.src='/assets/img/da72f67377f7.webp'">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
         <div class="absolute top-3 left-3">
           <span class="text-[11px] font-bold text-white bg-sea-800/80 backdrop-blur px-2.5 py-1 rounded-full">${seasonLabel(a.season)}</span>
@@ -168,7 +168,7 @@ function openActivityModal(id) {
 
   const title = t(a, 'titleML') || a.title;
   const desc = t(a, 'descriptionML');
-  const img = (a.images && a.images[0]) ? a.images[0] : 'https://placehold.co/800x400?text=Aktivite';
+  const img = (a.images && a.images[0]) ? a.images[0] : '/assets/img/da72f67377f7.webp';
   const tags = (a.tags || []).map(tag =>
     `<span class="inline-block bg-sea-50 text-sea-700 text-xs font-semibold px-3 py-1 rounded-full border border-sea-100">${esc(tag)}</span>`
   ).join('');
@@ -197,7 +197,7 @@ function openActivityModal(id) {
   modalContent.innerHTML = `
     <div class="relative">
       <img src="${img}" alt="${title}" class="w-full h-56 md:h-72 object-cover rounded-t-2xl"
-        onerror="this.src='https://placehold.co/800x400?text=${encodeURIComponent(title)}'">
+        onerror="this.src='/assets/img/da72f67377f7.webp'">
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent rounded-t-2xl"></div>
       <button onclick="closeActivityModal()" class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full bg-black/40 text-white hover:bg-black/60 transition" aria-label="Kapat">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>

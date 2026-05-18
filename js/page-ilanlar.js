@@ -2,14 +2,9 @@
 (function () {
   'use strict';
 
-  const DEMO_JOBS = [
-    { id:'j1', title:'Restoran Garson — Sezonluk', category:'restoran', type:'seasonal', location:'Kalkan Merkez', languages:['tr','en'], experience:'1 yıl+', salary:'25.000 – 35.000 ₺', employer:'Aubergine Kalkan', published:'2026-04-28', expires:'2026-06-30', description:'Mayıs–Ekim sezonu boyunca, denize sıfır restoranımızda akşam vardiyası garsonu arıyoruz. İngilizce zorunlu, Almanca artı.', requirements:['Min. 1 yıl restoran deneyimi','İngilizce iletişim','Pazartesi–Pazar dönemli vardiya'], contact_phone:'+905306650794' },
-    { id:'j2', title:'Villa Concierge / Misafir Karşılama', category:'villa', type:'full', location:'Kalkan', languages:['tr','en','ru'], experience:'2 yıl+', salary:'35.000 – 50.000 ₺', employer:'Kalkan Premium Villas', published:'2026-04-25', expires:'2026-07-15', description:'Lüks villa portföyümüzde misafir check-in/check-out, transfer koordinasyonu, günlük destek. Ehliyet zorunlu.', requirements:['Ehliyet B sınıfı','Akıcı İngilizce','Rusça veya Almanca tercih','Esnek çalışma saatleri'], contact_phone:'+905306650794' },
-    { id:'j3', title:'Tekne Kaptanı — Günlük Tur', category:'tur', type:'seasonal', location:'Kalkan Marina', languages:['tr','en'], experience:'5 yıl+', salary:'50.000 – 75.000 ₺', employer:'Likya Tekne Turları', published:'2026-04-20', expires:'2026-05-31', description:'Günlük 12 kişilik tekne turlarımız için ehliyetli kaptan. Kaş–Kalkan–Kaputaş rotası.', requirements:['Amatör Denizci Belgesi (ADB) min.','Kalkan–Kaş bölge bilgisi','Misafirle iletişim becerisi'], contact_phone:'+905306650794' },
-    { id:'j4', title:'Ev Aşçısı / Catering', category:'hizmet', type:'freelance', location:'Kalkan Civarı', languages:['tr'], experience:'3 yıl+', salary:'1.500 – 3.500 ₺/gün', employer:'Bireysel İşveren', published:'2026-04-22', expires:'2026-08-15', description:'Villa misafirlerine günlük ev yemeği. Esnek saatler, günlük ücret.', requirements:['Türk + Akdeniz mutfağı','Hijyen sertifikası','Kendi ulaşımı'], contact_phone:'+905306650794' },
-    { id:'j5', title:'Resepsiyonist — Otel', category:'otel', type:'seasonal', location:'Kalkan', languages:['tr','en','de'], experience:'1 yıl+', salary:'28.000 – 38.000 ₺', employer:'Patara Boutique Hotel', published:'2026-04-30', expires:'2026-07-31', description:'30 odalı butik otelde 8/16 vardiyalı resepsiyon. Sezonluk, konaklama dahil.', requirements:['İngilizce akıcı','Otel programı tecrübesi (Elektra/Sednabit) tercih','Almanca artı'], contact_phone:'+905306650794' },
-    { id:'j6', title:'Havuz Bakım Teknisyeni', category:'hizmet', type:'full', location:'Kalkan + civar köyler', languages:['tr'], experience:'2 yıl+', salary:'30.000 – 42.000 ₺', employer:'Aqua Kalkan Servis', published:'2026-04-26', expires:'2026-09-30', description:'Villa havuzlarının haftalık bakımı, kimyasal dengeleme, motor onarımı. Servis aracı tahsis edilir.', requirements:['Havuz kimyası bilgisi','Ehliyet B','Sezon 6 ay'], contact_phone:'+905306650794' }
-  ];
+  // Demo veriler kaldırıldı — gerçek ilanlar Supabase'e bağlandığında doldurulur.
+  // Şu anda kullanıcı empty state ("Henüz ilan yok") görür.
+  const DEMO_JOBS = [];
 
   const CATEGORIES = { restoran:'Restoran & Cafe', villa:'Villa & Konaklama', otel:'Otel & Pansiyon', tur:'Tekne & Tur', hizmet:'Hizmet & Bakım', ofis:'Ofis & Yönetim', diger:'Diğer' };
   const TYPES = { full:'Tam zamanlı', part:'Yarı zamanlı', seasonal:'Sezonluk', freelance:'Serbest' };

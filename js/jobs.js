@@ -12,82 +12,10 @@ import { supabase } from './supabase-client.js';
 import { isSupabaseConfigured } from './auth.js';
 
 // ----------------------------------------------------------------------------
-// Demo veri (Supabase yoksa)
+// Supabase yapılandırılmamışsa fallback boş liste — kullanıcı empty state görür.
+// Önceki demo veriler kaldırıldı (production'da fake iletişim göstermemek için).
 // ----------------------------------------------------------------------------
-const DEMO_JOBS = [
-  {
-    id: 'demo-1',
-    title: 'Restoran Garson — Sezonluk',
-    slug: 'restoran-garson-sezonluk',
-    category: 'restoran',
-    type: 'seasonal',
-    location: 'Kalkan Merkez',
-    languages: ['tr', 'en'],
-    experience: '1 yıl+',
-    salary_min: 25000, salary_max: 35000, currency: 'TRY',
-    description_html: '<p>Mayıs-Ekim sezonu boyunca, denize sıfır restoranımızda <strong>akşam vardiyası garsonu</strong> arıyoruz. İngilizce zorunlu, Almanca artı.</p>',
-    requirements: ['Min. 1 yıl restoran deneyimi', 'İngilizce iletişim', 'Pazartesi-Pazar dönemli vardiya'],
-    contact_email: 'demo@kalkaninfo.com',
-    published_at: new Date('2026-04-28').toISOString(),
-    expires_at: new Date('2026-06-30').toISOString(),
-    employer_name: 'Aubergine Kalkan',
-    status: 'active',
-  },
-  {
-    id: 'demo-2',
-    title: 'Villa Concierge / Misafir Karşılama',
-    slug: 'villa-concierge',
-    category: 'villa',
-    type: 'full',
-    location: 'Kalkan',
-    languages: ['tr', 'en', 'ru'],
-    experience: '2 yıl+',
-    salary_min: 35000, salary_max: 50000, currency: 'TRY',
-    description_html: '<p>Lüks villa portföyümüzde misafir check-in/check-out, transfer koordinasyonu, günlük destek. Ehliyet zorunlu.</p>',
-    requirements: ['Ehliyet B sınıfı', 'Akıcı İngilizce', 'Rusça veya Almanca tercih', 'Esnek çalışma saatleri'],
-    contact_email: 'demo@kalkaninfo.com',
-    published_at: new Date('2026-04-25').toISOString(),
-    expires_at: new Date('2026-07-15').toISOString(),
-    employer_name: 'Kalkan Premium Villas',
-    status: 'active',
-  },
-  {
-    id: 'demo-3',
-    title: 'Tekne Kaptanı — Günlük Tur',
-    slug: 'tekne-kaptani',
-    category: 'tur',
-    type: 'seasonal',
-    location: 'Kalkan Marina',
-    languages: ['tr', 'en'],
-    experience: '5 yıl+',
-    salary_min: 50000, salary_max: 75000, currency: 'TRY',
-    description_html: '<p>Günlük 12 kişilik tekne turlarımız için ehliyetli kaptan. Kaş-Kalkan-Kaputaş rotası.</p>',
-    requirements: ['Amatör Denizci Belgesi (ADB) min.', 'Kalkan-Kaş bölge bilgisi', 'Misafirle iletişim becerisi'],
-    contact_email: 'demo@kalkaninfo.com',
-    published_at: new Date('2026-04-20').toISOString(),
-    expires_at: new Date('2026-05-31').toISOString(),
-    employer_name: 'Likya Tekne Turları',
-    status: 'active',
-  },
-  {
-    id: 'demo-4',
-    title: 'Ev Aşçısı / Catering',
-    slug: 'ev-ascisi',
-    category: 'hizmet',
-    type: 'freelance',
-    location: 'Kalkan Civarı',
-    languages: ['tr'],
-    experience: '3 yıl+',
-    salary_min: 1500, salary_max: 3500, currency: 'TRY',
-    description_html: '<p>Villa misafirlerine günlük ev yemeği. Esnek saatler, günlük ücret.</p>',
-    requirements: ['Türk + Akdeniz mutfağı', 'Hijyen sertifikası', 'Kendi ulaşımı'],
-    contact_email: 'demo@kalkaninfo.com',
-    published_at: new Date('2026-04-22').toISOString(),
-    expires_at: new Date('2026-08-15').toISOString(),
-    employer_name: 'Bireysel İşveren',
-    status: 'active',
-  },
-];
+const DEMO_JOBS = [];
 
 const CATEGORIES = {
   restoran: 'Restoran & Cafe',
