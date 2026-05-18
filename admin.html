@@ -75,7 +75,7 @@ tr:hover td { background:#fafbfd; }
 <div id="auth-guard" class="fixed inset-0 z-50 grid place-items-center" style="background:linear-gradient(135deg,#0a1626 0%,#11304d 60%,#1a5e93 100%);">
   <div class="text-center text-white">
     <div style="border:3px solid rgba(255,255,255,0.2);border-top-color:#f4b53d;border-radius:50%;width:36px;height:36px;animation:authSpin .7s linear infinite;margin:0 auto 1rem;"></div>
-    <p data-en="Checking authorization…" class="text-sm opacity-80">Yetki kontrol ediliyor…</p>
+    <p data-en="Checking authorization…" class="text-sm opacity-80" data-de="Berechtigung wird überprüft…" data-ru="Проверка авторизации…" data-fr="Vérification de l'autorisation…">Yetki kontrol ediliyor…</p>
     <style>@keyframes authSpin{to{transform:rotate(360deg);}}</style>
   </div>
 </div>
@@ -87,36 +87,36 @@ tr:hover td { background:#fafbfd; }
   <aside id="sidebar" class="w-64 text-white flex-shrink-0 flex flex-col" style="background:linear-gradient(180deg,#0a1626 0%,#11304d 100%);">
     <div class="px-5 py-5 border-b border-white/10">
       <div class="font-display text-lg font-extrabold tracking-wide">KALKAN <span class="text-sun-500">INFO</span></div>
-      <div data-en="Admin Panel · v1.0" class="text-[11px] text-white/50 mt-0.5">Admin Panel · v1.0</div>
+      <div data-en="Admin Panel · v1.0" class="text-[11px] text-white/50 mt-0.5" data-de="Admin-Panel · v1.0" data-ru="Панель администратора · v1.0" data-fr="Panneau d'administration · v1.0">Admin Panel · v1.0</div>
     </div>
     <nav class="flex-1 py-4 overflow-y-auto" id="nav">
-      <div data-en="General" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2">Genel</div>
-      <a class="sidebar-link active flex items-center gap-3 px-5 py-2.5 text-sm" data-page="dashboard"><span>🏠</span><span data-en="Home">Anasayfa</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="onaylar"><span>✅</span><span data-en="User Applications" class="flex-1">Kullanıcı Başvuruları</span><span id="pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="config"><span>⚙️</span><span data-en="Site Settings">Site Ayarları</span></a>
+      <div data-en="General" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2" data-de="Allgemein" data-ru="Основное" data-fr="Général">Genel</div>
+      <a class="sidebar-link active flex items-center gap-3 px-5 py-2.5 text-sm" data-page="dashboard"><span>🏠</span><span data-en="Home" data-de="Startseite" data-ru="Главная" data-fr="Accueil">Anasayfa</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="onaylar"><span>✅</span><span data-en="User Applications" class="flex-1" data-de="Benutzeranwendungen" data-ru="Заявки пользователей" data-fr="Demandes d'utilisateurs">Kullanıcı Başvuruları</span><span id="pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="config"><span>⚙️</span><span data-en="Site Settings" data-de="Seiteneinstellungen" data-ru="Параметры сайта" data-fr="Paramètres du site">Site Ayarları</span></a>
 
-      <div data-en="Content" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">İçerik</div>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="plajlar"><span>🏖️</span><span data-en="Beaches">Plajlar</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="villalar"><span>🏡</span><span data-en="Villas">Villalar</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="turlar"><span>⛵</span><span data-en="Tours">Turlar</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="restoranlar"><span>🍽️</span><span data-en="Restaurants">Restoranlar</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="haberler"><span>📰</span><span data-en="News">Haberler</span></a>
+      <div data-en="Content" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4" data-de="Inhalt" data-ru="Контент" data-fr="Contenu">İçerik</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="plajlar"><span>🏖️</span><span data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Plajlar</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="villalar"><span>🏡</span><span data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villalar</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="turlar"><span>⛵</span><span data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Turlar</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="restoranlar"><span>🍽️</span><span data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restoranlar</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="haberler"><span>📰</span><span data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Haberler</span></a>
 
-      <div data-en="Services" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">Hizmetler</div>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="hizmetler"><span>🛠️</span><span data-en="Service List">Hizmet Listesi</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="eczane"><span>💊</span><span data-en="On-Call Pharmacy">Nöbetçi Eczane</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="acil"><span>🚨</span><span data-en="Emergency Numbers">Acil Numaralar</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="taksi"><span>🚕</span><span data-en="Taxi Stands">Taksi Durakları</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="kayip"><span>🔍</span><span data-en="Lost & Found">Kayıp & Bulunan</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" href="admin/jobs.html"><span>💼</span><span data-en="Job Listings" class="flex-1">İş İlanları</span><span id="jobs-pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
+      <div data-en="Services" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Hizmetler</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="hizmetler"><span>🛠️</span><span data-en="Service List" data-de="Dienstleistungsliste" data-ru="Список услуг" data-fr="Liste des services">Hizmet Listesi</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="eczane"><span>💊</span><span data-en="On-Call Pharmacy" data-de="Apotheke mit Notfalldienst" data-ru="Дежурная аптека" data-fr="Pharmacie de garde">Nöbetçi Eczane</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="acil"><span>🚨</span><span data-en="Emergency Numbers" data-de="Notrufnummern" data-ru="Номера экстренных служб" data-fr="Numéros d'urgence">Acil Numaralar</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="taksi"><span>🚕</span><span data-en="Taxi Stands" data-de="Taxistände" data-ru="Стоянки такси" data-fr="Stations de taxi">Taksi Durakları</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="kayip"><span>🔍</span><span data-en="Lost & Found" data-de="Fundbüro" data-ru="Бюро находок" data-fr="Objets trouvés">Kayıp & Bulunan</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" href="admin/jobs.html"><span>💼</span><span data-en="Job Listings" class="flex-1" data-de="Stellenangebote" data-ru="Объявления о работе" data-fr="Offres d'emploi">İş İlanları</span><span id="jobs-pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
 
-      <div data-en="System" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4">Sistem</div>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="export"><span>📤</span><span data-en="Backup / Download">Yedekle / İndir</span></a>
-      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="import"><span>📥</span><span data-en="Restore">Geri Yükle</span></a>
+      <div data-en="System" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4" data-de="System" data-ru="Система" data-fr="Système">Sistem</div>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="export"><span>📤</span><span data-en="Backup / Download" data-de="Sicherung / Download" data-ru="Резервная копия / Загрузка" data-fr="Sauvegarde / Téléchargement">Yedekle / İndir</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="import"><span>📥</span><span data-en="Restore" data-de="Wiederherstellen" data-ru="Восстановление" data-fr="Restauration">Geri Yükle</span></a>
     </nav>
     <div class="px-5 py-4 border-t border-white/10 flex items-center justify-between">
       <div class="text-[11px] text-white/60">Berkay</div>
-      <button id="logout-btn" data-en="Sign Out" class="text-[11px] text-white/70 hover:text-sun-500">Çıkış</button>
+      <button id="logout-btn" data-en="Sign Out" class="text-[11px] text-white/70 hover:text-sun-500" data-de="Abmelden" data-ru="Выход" data-fr="Déconnexion">Çıkış</button>
     </div>
   </aside>
 
@@ -124,15 +124,15 @@ tr:hover td { background:#fafbfd; }
   <main class="flex-1 flex flex-col min-w-0">
     <header class="bg-white border-b border-ink-700/8 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-30 gap-2">
       <div class="flex items-center gap-3 min-w-0">
-        <button id="mobile-menu-btn" class="btn btn-ghost text-lg" aria-label="Menü" data-en-aria="Menu">☰</button>
+        <button id="mobile-menu-btn" class="btn btn-ghost text-lg" aria-label="Menü" data-en-aria="Menu" data-de-aria="Menü" data-ru-aria="Меню" data-fr-aria="Menu">☰</button>
         <div class="min-w-0">
-          <div id="page-title" data-en="Home" class="text-lg font-bold text-ink-900 truncate">Anasayfa</div>
-          <div id="page-subtitle" data-en="Welcome to the admin panel." class="text-xs text-ink-700/60 truncate">Admin paneline hoş geldin.</div>
+          <div id="page-title" data-en="Home" class="text-lg font-bold text-ink-900 truncate" data-de="Startseite" data-ru="Главная" data-fr="Accueil">Anasayfa</div>
+          <div id="page-subtitle" data-en="Welcome to the admin panel." class="text-xs text-ink-700/60 truncate" data-de="Willkommen im Admin-Panel." data-ru="Добро пожаловать в панель администратора." data-fr="Bienvenue sur le panneau d'administration.">Admin paneline hoş geldin.</div>
         </div>
       </div>
       <div class="flex items-center gap-2 flex-shrink-0">
-        <button id="preview-btn" class="btn btn-ghost"><span>🔗</span><span data-en="Preview Site" class="hidden sm:inline">Siteyi Önizle</span></button>
-        <button id="save-btn" class="btn btn-success"><span>💾</span><span data-en="Download All Changes" class="hidden sm:inline">Tüm Değişiklikleri İndir</span></button>
+        <button id="preview-btn" class="btn btn-ghost"><span>🔗</span><span data-en="Preview Site" class="hidden sm:inline" data-de="Website-Vorschau" data-ru="Предпросмотр сайта" data-fr="Aperçu du site">Siteyi Önizle</span></button>
+        <button id="save-btn" class="btn btn-success"><span>💾</span><span data-en="Download All Changes" class="hidden sm:inline" data-de="Alle Änderungen herunterladen" data-ru="Загрузить все изменения" data-fr="Télécharger tous les changements">Tüm Değişiklikleri İndir</span></button>
       </div>
     </header>
     <div id="page-body" class="flex-1 p-6 overflow-y-auto"></div>
