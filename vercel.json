@@ -20,7 +20,7 @@
     },
     {
       "path": "/api/social-publish-queue",
-      "schedule": "0 * * * *"
+      "schedule": "0 10 * * *"
     }
   ],
   "cleanUrls": true,

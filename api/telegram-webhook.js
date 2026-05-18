@@ -8,6 +8,7 @@
 //   ✅ Webhook URL: https://www.kalkaninfo.com/api/telegram-webhook
 
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
+import { publishCarousel, publishSingleImage } from '../lib/instagram-publish.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -36,6 +37,52 @@ async function updateStatus(postId, patch) {
   }
   const [updated] = await res.json();
   return updated;
+}
+
+async function publishNow(post) {
+  const IG_USER_ID = process.env.IG_BUSINESS_ID;
+  const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN;
+  if (!IG_USER_ID || !IG_TOKEN) {
+    console.warn('[publishNow] IG env eksik');
+    return;
+  }
+  const assets = post.local_assets || [];
+  if (!assets.length) {
+    console.warn('[publishNow] local_assets yok, atlandı');
+    await updateStatus(post.id, { status: 'failed', engagement_metrics: { error: 'no_assets' } });
+    return;
+  }
+  const captionFull = (post.caption || '') +
+    (Array.isArray(post.hashtags) && post.hashtags.length ? '\n\n' + post.hashtags.join(' ') : '');
+  const caption = captionFull.slice(0, 2200);
+
+  try {
+    let mediaId;
+    if (assets.length >= 2) {
+      mediaId = await publishCarousel(IG_USER_ID, IG_TOKEN, assets, caption);
+    } else {
+      mediaId = await publishSingleImage(IG_USER_ID, IG_TOKEN, assets[0], caption);
+    }
+    await updateStatus(post.id, {
+      status: 'published',
+      published_at: new Date().toISOString(),
+      ig_media_id: mediaId,
+    });
+    if (process.env.TELEGRAM_ADMIN_CHAT_ID) {
+      await sendMessage(process.env.TELEGRAM_ADMIN_CHAT_ID,
+        `✅ *Yayınlandı*\n\n${escapeMd(post.content_pack_id)} · IG Media ID: \`${escapeMd(String(mediaId))}\``);
+    }
+  } catch (e) {
+    console.error('[publishNow] fail', e);
+    await updateStatus(post.id, {
+      status: 'failed',
+      engagement_metrics: { error: String(e.message || e) },
+    });
+    if (process.env.TELEGRAM_ADMIN_CHAT_ID) {
+      await sendMessage(process.env.TELEGRAM_ADMIN_CHAT_ID,
+        `❌ *Yayın Başarısız*\n\n${escapeMd(post.content_pack_id)}\n\n_${escapeMd(String(e.message || e).slice(0, 250))}_`);
+    }
+  }
 }
 
 export default async function handler(req, res) {
@@ -94,15 +141,22 @@ export default async function handler(req, res) {
         const now = new Date();
         let patch = {};
         if (action === 'now') {
-          patch = { status: 'approved', scheduled_at: new Date(now.getTime() + 60_000).toISOString() };
+          patch = { status: 'approved', scheduled_at: now.toISOString() };
         } else if (action === 'scheduled') {
-          patch = { status: 'approved' }; // scheduled_at zaten set
+          patch = { status: 'approved' };
         } else if (action === 'edit') {
-          patch = { status: 'draft' }; // Berkay admin panelden düzenleyecek
+          patch = { status: 'draft' };
         } else if (action === 'reject') {
           patch = { status: 'rejected', reject_reason: 'admin_telegram_reject' };
         }
         post = await updateStatus(postId, patch);
+
+        // "Yayınla Şimdi" — Hobby plan cron günde 1 olduğu için
+        // beklemeden anında IG'ye gönder
+        if (action === 'now' && post) {
+          // Async — webhook 200 dönsün, publish arka planda
+          publishNow(post).catch(e => console.error('[publishNow]', e));
+        }
       }
 
       const toastMap = {
