@@ -20,15 +20,52 @@ const state = {
 
 // ========== Bootstrap ==========
 async function bootstrap() {
-  await loadAllData();
-  showApp();
+  try {
+    await loadAllData();
+    showApp();
+  } catch (err) {
+    console.error('[admin] bootstrap failed', err);
+    _renderBootstrapError(err);
+  }
+}
+
+function _renderBootstrapError(err) {
+  const guard = document.getElementById('auth-guard');
+  if (!guard) return;
+  guard.innerHTML = `
+    <div style="max-width:480px;text-align:center;color:white;padding:2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;">
+      <div style="font-size:42px;margin-bottom:0.5rem;">⚠️</div>
+      <h1 style="font-size:20px;font-weight:700;margin:0 0 0.5rem;">Panel yüklenemedi</h1>
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.7);margin:0 0 1.25rem;font-family:monospace;word-break:break-word;">${String(err && err.message || err).slice(0, 300)}</p>
+      <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+        <button id="ki-admin-clear-cache" style="padding:0.625rem 1.25rem;background:#f4b53d;color:#11304d;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;">Cache Temizle &amp; Yeniden Dene</button>
+        <a href="/login.html" style="display:inline-block;padding:0.625rem 1.25rem;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Tekrar Giriş Yap</a>
+      </div>
+    </div>`;
+  document.getElementById('ki-admin-clear-cache')?.addEventListener('click', () => {
+    try { localStorage.removeItem(LS_KEY); } catch {}
+    try { localStorage.removeItem('kalkan_info_admin_verify_v1'); } catch {}
+    location.reload();
+  });
 }
 
 async function loadAllData() {
   // Önce localStorage, yoksa data/ JSON dosyalarından
   const cached = localStorage.getItem(LS_KEY);
   if (cached) {
-    try { state.data = JSON.parse(cached); state.loaded = true; normalizeAllGalleries(); return; } catch(e){}
+    try {
+      const parsed = JSON.parse(cached);
+      if (parsed && typeof parsed === 'object') {
+        state.data = parsed;
+        state.loaded = true;
+        normalizeAllGalleries();
+        return;
+      }
+      throw new Error('cache invalid shape');
+    } catch (e) {
+      console.warn('[admin] localStorage cache bozuk, temizleniyor', e);
+      try { localStorage.removeItem(LS_KEY); } catch {}
+    }
   }
   for (const file of DATA_FILES) {
     try {
@@ -66,7 +103,11 @@ function normalizeAllGalleries() {
 }
 
 function saveLocal() {
-  localStorage.setItem(LS_KEY, JSON.stringify(state.data));
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(state.data));
+  } catch (e) {
+    console.warn('[admin] localStorage quota — cache yazılamadı', e);
+  }
 }
 
 // ========== App ==========

@@ -150,19 +150,43 @@ tr:hover td { background:#fafbfd; }
 <div id="toast" class="hidden"></div>
 
 <script type="module">
-  import { requireAdmin, adminSignOut } from './js/admin-auth.js';
   // Gate the panel: redirect to /login.html if not signed in, render "forbidden"
   // screen if signed in but not admin. requireAdmin() handles both flows.
-  const user = await requireAdmin();
-  if (user) {
-    document.getElementById('auth-guard').style.display = 'none';
-    window.__ADMIN_USER__   = user;
-    window.__ADMIN_SIGNOUT__ = adminSignOut;
-    // Load the legacy admin.js panel script after auth is confirmed
-    const s = document.createElement('script');
-    s.src = 'admin/admin.js';
-    s.defer = true;
-    document.body.appendChild(s);
+  // Wrap in try/catch so network/Supabase errors show a readable message instead
+  // of leaving the spinner running forever.
+  try {
+    const { requireAdmin, adminSignOut } = await import('./js/admin-auth.js');
+    const user = await requireAdmin();
+    if (user) {
+      document.getElementById('auth-guard').style.display = 'none';
+      window.__ADMIN_USER__   = user;
+      window.__ADMIN_SIGNOUT__ = adminSignOut;
+      // Load the legacy admin.js panel script after auth is confirmed
+      const s = document.createElement('script');
+      s.src = 'admin/admin.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+  } catch (err) {
+    // requireAdmin throws "not admin" after rendering forbidden screen — let it pass silently.
+    if (String(err && err.message || '') === 'not admin') {
+      // forbidden screen already rendered by requireAdmin()
+    } else {
+      console.error('[admin gate] failed', err);
+      const guard = document.getElementById('auth-guard');
+      if (guard) {
+        guard.innerHTML = `
+          <div style="max-width:480px;text-align:center;color:white;padding:2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;">
+            <div style="font-size:42px;margin-bottom:0.5rem;">⚠️</div>
+            <h1 style="font-size:20px;font-weight:700;margin:0 0 0.5rem;">Yetki kontrolü başarısız</h1>
+            <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.7);margin:0 0 1.25rem;font-family:monospace;word-break:break-word;">${String(err && err.message || err).slice(0, 300)}</p>
+            <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+              <a href="/login.html" style="display:inline-block;padding:0.625rem 1.25rem;background:#f4b53d;color:#11304d;text-decoration:none;border-radius:8px;font-weight:700;font-size:14px;">Tekrar Giriş Yap</a>
+              <a href="/" style="display:inline-block;padding:0.625rem 1.25rem;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;">Anasayfa</a>
+            </div>
+          </div>`;
+      }
+    }
   }
 </script>
 <script src="js/pwa.js?v=20260516c" defer></script>
