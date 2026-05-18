@@ -104,11 +104,21 @@
       if (eczPhoneEl) {
         if (ecz.phone) {
           eczPhoneEl.href = 'tel:' + (ecz.phoneRaw || ecz.phone.replace(/\s/g,''));
+          eczPhoneEl.classList.remove('hidden');
           eczPhoneEl.querySelector('svg') ? (eczPhoneEl.childNodes[eczPhoneEl.childNodes.length-1].textContent = ' ' + ecz.phone) : (eczPhoneEl.textContent = ecz.phone);
+        } else {
+          eczPhoneEl.classList.add('hidden');
         }
       }
       const eczMapEl = document.getElementById('ecz-map');
-      if (eczMapEl && ecz.mapUrl) eczMapEl.href = ecz.mapUrl;
+      if (eczMapEl) {
+        if (ecz.mapUrl) {
+          eczMapEl.href = ecz.mapUrl;
+          eczMapEl.classList.remove('hidden');
+        } else {
+          eczMapEl.classList.add('hidden');
+        }
+      }
       const eczTileEl = document.getElementById('ecz-tile-summary');
       if (eczTileEl && !yarin) {
         const firstAddrPart = (ecz.address || '').split(',')[1]?.trim() || (ecz.address || '').split(',')[0]?.trim() || '';

@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outPath = resolve(__dirname, '..', 'js', 'supabase-config.js');
+const winPath = resolve(__dirname, '..', 'js', 'supabase-window.js');
 
 const url = process.env.SUPABASE_URL?.trim();
 const anon = process.env.SUPABASE_ANON_KEY?.trim();
@@ -26,7 +27,20 @@ const body = `// AUTO-GENERATED at build time — do not edit by hand in product
 // Local dev: replace with your own values; this file is .gitignored.
 export const SUPABASE_URL = ${JSON.stringify(url)};
 export const SUPABASE_ANON_KEY = ${JSON.stringify(anon)};
+
+// Legacy non-module scripts (newsletter.js, lost-found.js) read these from window
+if (typeof window !== 'undefined') {
+  window.SUPABASE_URL = SUPABASE_URL;
+  window.SUPABASE_ANON_KEY = SUPABASE_ANON_KEY;
+}
+`;
+
+const winBody = `// AUTO-GENERATED at build time — classic script (no ESM).
+// Legacy IIFE scripts (newsletter.js, lost-found.js) read from these globals before init.
+window.SUPABASE_URL = ${JSON.stringify(url)};
+window.SUPABASE_ANON_KEY = ${JSON.stringify(anon)};
 `;
 
 writeFileSync(outPath, body, 'utf8');
-console.log(`[build-supabase-config] wrote ${outPath}`);
+writeFileSync(winPath, winBody, 'utf8');
+console.log(`[build-supabase-config] wrote ${outPath} + ${winPath}`);

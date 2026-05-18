@@ -316,7 +316,8 @@
     _banner.querySelector('#ki-cb-accept-all').addEventListener('click', acceptAll);
     _banner.querySelector('#ki-cb-functional').addEventListener('click', acceptFunctionalOnly);
     _banner.querySelector('#ki-cb-manage').addEventListener('click', openModal);
-    _banner.querySelector('#ki-cookie-close').addEventListener('click', acceptFunctionalOnly);
+    // KVKK: X butonu rıza vermez — sadece banner'ı gizler, sonraki ziyarette tekrar gösterilir
+    _banner.querySelector('#ki-cookie-close').addEventListener('click', hideBanner);
   }
 
   // ── Init ──────────────────────────────────────────────────────────────────
