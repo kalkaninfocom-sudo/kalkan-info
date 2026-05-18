@@ -1,8 +1,9 @@
 {
   "_meta": {
     "title": "Hizmet Sağlayıcıları",
-    "subtitle": "Kalkan'da onaylı yerel hizmet veren ustalar/firmalar",
-    "updated": "2026-05-18"
+    "subtitle": "Kalkan'da yerel hizmet sağlayıcılar — telefonu olmayan sağlayıcılar için Kalkan Info concierge'i WhatsApp'ta yönlendirir",
+    "updated": "2026-05-18",
+    "conciergeNote": "Telefon bilgisi henüz onaylanmamış sağlayıcılarda WhatsApp +90 530 665 07 94 (Kalkan Info concierge) üzerinden ulaşım sağlanır."
   },
   "services": {
     "catering": {
@@ -34,6 +35,50 @@
           "location": "Kalkan / Antalya",
           "verified": true,
           "featured": true
+        },
+        {
+          "id": "catering-grapevine",
+          "name": "Grapevine Catering",
+          "type": "İşletme",
+          "rating": 4.8,
+          "reviewCount": 0,
+          "image": "/assets/img/kalimera-logo.jpeg",
+          "summary": "Kalkan villa catering ve özel etkinlik şefi — taze yerel malzemelerle Akdeniz ve uluslararası menüler.",
+          "specialties": [
+            "Villa catering",
+            "Özel etkinlik",
+            "Akdeniz mutfağı"
+          ],
+          "experience": "5 yıl+",
+          "phone": "+90 539 664 07 71",
+          "phoneRaw": "905396640771",
+          "whatsapp": "+90 539 664 07 71",
+          "whatsappRaw": "905396640771",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": false
+        },
+        {
+          "id": "catering-korsan",
+          "name": "Korsan Catering",
+          "type": "İşletme",
+          "rating": 4.7,
+          "reviewCount": 0,
+          "image": "/assets/img/kalimera-logo.jpeg",
+          "summary": "Tamer Şef ile premium villa catering hizmeti, özel menü tasarımı.",
+          "specialties": [
+            "Premium villa catering",
+            "Özel menü",
+            "Şef hizmeti"
+          ],
+          "experience": "8 yıl+",
+          "phone": "+90 530 384 93 46",
+          "phoneRaw": "905303849346",
+          "whatsapp": "+90 530 384 93 46",
+          "whatsappRaw": "905303849346",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": false
         }
       ]
     },
@@ -55,11 +100,15 @@
             "Mocktail"
           ],
           "experience": "10 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Can Kokteyls (Özel Barmen) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "barmen-deniz",
@@ -75,11 +124,15 @@
             "Malzeme dahil"
           ],
           "experience": "7 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Deniz Bar & Events (Özel Barmen) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "barmen-murat",
@@ -95,11 +148,15 @@
             "Şarap servisi"
           ],
           "experience": "8 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Liman",
           "verified": false,
-          "featured": false
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Murat Usta — Barmen (Özel Barmen) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -121,11 +178,15 @@
             "Kaçak tespiti"
           ],
           "experience": "15 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Ali Tesisat — 7/24 (Tesisat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "tesisat-mehmet",
@@ -141,11 +202,15 @@
             "Su+elektrik"
           ],
           "experience": "12 yıl",
-          "phone": "+90 533 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Kaş",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Mehmet Elektrik & Tesisat (Tesisat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "tesisat-kalkan-teknik",
@@ -161,11 +226,15 @@
             "Villa yönetimi"
           ],
           "experience": "10 yıl",
-          "phone": "+90 242 844 XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Sanayi",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kalkan Teknik Servis (Tesisat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "tesisat-hasan",
@@ -181,11 +250,15 @@
             "Hızlı müdahale"
           ],
           "experience": "9 yıl",
-          "phone": "+90 543 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Çukurbağ",
           "verified": false,
-          "featured": false
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Hasan Usta Tesisatçı (Tesisat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -207,11 +280,15 @@
             "Sezonluk bakım"
           ],
           "experience": "11 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Yeşil Kalkan Peyzaj (Bahçe Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "bahce-ibrahim",
@@ -227,11 +304,15 @@
             "Akdeniz bitkileri"
           ],
           "experience": "20 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Kalamar",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! İbrahim Bahçıvan (Bahçe Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "bahce-akdeniz-peyzaj",
@@ -247,11 +328,15 @@
             "Sistem kurulum"
           ],
           "experience": "7 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Akdeniz Peyzaj & Sulama (Bahçe Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -273,11 +358,15 @@
             "Sezon açılışı"
           ],
           "experience": "13 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Mavi Dalga Havuz Sistemleri (Havuz Bakım & Onarım) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "havuz-serhat",
@@ -293,11 +382,15 @@
             "Yedek parça"
           ],
           "experience": "9 yıl",
-          "phone": "+90 536 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Yalıboyu",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Serhat Havuz Teknisyeni (Havuz Bakım & Onarım) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "havuz-aqua-kalkan",
@@ -313,11 +406,15 @@
             "Sızdırmazlık"
           ],
           "experience": "8 yıl",
-          "phone": "+90 542 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Bezirgan",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! AquaKalkan (Havuz Bakım & Onarım) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "havuz-kemal",
@@ -333,11 +430,39 @@
             "Haftalık kontrol"
           ],
           "experience": "5 yıl",
-          "phone": "+90 545 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Çukurbağ",
           "verified": false,
-          "featured": false
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kemal Havuz Bakım (Havuz Bakım & Onarım) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
+        },
+        {
+          "id": "havuz-vega-maintenance",
+          "name": "Kalkan Vega Maintenance",
+          "type": "İşletme",
+          "rating": 4.8,
+          "reviewCount": 0,
+          "image": "/assets/img/952dc490ffdf.webp",
+          "summary": "Çok hizmetli villa bakım firması — havuz, temizlik, bahçe, tesisat ve elektrik. Sezonluk kontrat seçenekleri.",
+          "specialties": [
+            "Havuz bakım",
+            "Multi-service",
+            "Tesisat",
+            "Bahçe"
+          ],
+          "experience": "10 yıl+",
+          "website": "https://kalkanmaintenance.com",
+          "phone": "+90 542 273 00 68",
+          "phoneRaw": "905422730068",
+          "whatsapp": "+90 542 273 00 68",
+          "whatsappRaw": "905422730068",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": true
         }
       ]
     },
@@ -359,11 +484,15 @@
             "Uçuş takibi"
           ],
           "experience": "14 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Dalaman / Antalya",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kalkan VIP Transfer (Havalimanı Transferi) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "transfer-akdeniz",
@@ -379,11 +508,15 @@
             "Online rezervasyon"
           ],
           "experience": "10 yıl",
-          "phone": "+90 533 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Kaş",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Akdeniz Transfer (Havalimanı Transferi) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "transfer-mustafa",
@@ -399,11 +532,15 @@
             "Aynı gün"
           ],
           "experience": "8 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Mustafa Şoför — Özel Transfer (Havalimanı Transferi) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "transfer-group",
@@ -419,9 +556,58 @@
             "Düğün kafilesi"
           ],
           "experience": "6 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan",
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kalkan Group Transfer (Havalimanı Transferi) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
+        },
+        {
+          "id": "transfer-shuttle-kalkan",
+          "name": "Shuttle Kalkan",
+          "type": "İşletme",
+          "rating": 4.8,
+          "reviewCount": 0,
+          "image": "/assets/img/4c5a64a5ca12.webp",
+          "summary": "Dalaman ve Antalya havalimanından özel ve paylaşımlı transfer. Online rezervasyon.",
+          "specialties": [
+            "Dalaman transfer",
+            "Antalya transfer",
+            "Online rezervasyon"
+          ],
+          "experience": "10 yıl+",
+          "website": "https://shuttlekalkan.com",
+          "phone": "+90 532 284 11 50",
+          "phoneRaw": "905322841150",
+          "whatsapp": "+90 532 284 11 50",
+          "whatsappRaw": "905322841150",
+          "location": "Kalkan / Dalaman / Antalya",
+          "verified": true,
+          "featured": true
+        },
+        {
+          "id": "transfer-akdeniz-gercek",
+          "name": "Akdeniz Transfer (akdeniztransfer.com)",
+          "type": "İşletme",
+          "rating": 4.6,
+          "reviewCount": 0,
+          "image": "/assets/img/9309cf4d9e6d.webp",
+          "summary": "Antalya havalimanı — Kalkan ekonomi ve VIP transfer hizmeti. Sabit fiyat.",
+          "specialties": [
+            "Antalya transfer",
+            "Sabit fiyat"
+          ],
+          "experience": "8 yıl+",
+          "website": "https://akdeniztransfer.com",
+          "phone": "+90 532 242 94 70",
+          "phoneRaw": "905322429470",
+          "whatsapp": "+90 532 242 94 70",
+          "whatsappRaw": "905322429470",
+          "location": "Antalya / Kalkan",
           "verified": true,
           "featured": false
         }
@@ -445,11 +631,15 @@
             "Ekolojik ürün"
           ],
           "experience": "9 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Parlak Villa Temizlik (Temizlik Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "temizlik-fatma",
@@ -465,11 +655,15 @@
             "Referanslı"
           ],
           "experience": "20 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Eski Mahalle",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Fatma Hanım Temizlik (Temizlik Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "temizlik-aktemiz",
@@ -485,11 +679,15 @@
             "Kısa süre"
           ],
           "experience": "7 yıl",
-          "phone": "+90 542 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! AkTemiz Profesyonel Temizlik (Temizlik Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -511,11 +709,15 @@
             "Paketleme"
           ],
           "experience": "11 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Kaş",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kalkan Taşımacılık (Nakliyat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "nakliyat-hizli",
@@ -531,11 +733,15 @@
             "Kamyonet"
           ],
           "experience": "7 yıl",
-          "phone": "+90 545 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
           "verified": false,
-          "featured": false
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Hızlı Nakliyat Ercan (Nakliyat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "nakliyat-likya",
@@ -551,11 +757,15 @@
             "GPS takip"
           ],
           "experience": "12 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan / Antalya",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Likya Lojistik (Nakliyat Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -577,11 +787,15 @@
             "Alçı sıva"
           ],
           "experience": "15 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Mehmet Usta — Boya Badana (Boya & Badana Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "boya-dekor-kalkan",
@@ -597,11 +811,15 @@
             "Otel projeleri"
           ],
           "experience": "8 yıl",
-          "phone": "+90 542 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Kalamar",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Dekor Kalkan Boyacılık (Boya & Badana Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "boya-osman",
@@ -617,11 +835,15 @@
             "Uygun fiyat"
           ],
           "experience": "10 yıl",
-          "phone": "+90 546 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Çukurbağ",
           "verified": false,
-          "featured": false
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Osman Badanacı (Boya & Badana Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -643,11 +865,15 @@
             "Bahçe duvarı"
           ],
           "experience": "22 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Bezirgan",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Hasan Usta — Doğal Taş (Taş Duvar Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "tasduvar-ahmet-tas",
@@ -663,11 +889,15 @@
             "Şömine"
           ],
           "experience": "17 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Kınık",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Ahmet Taş Kaplama (Taş Duvar Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "tasduvar-peyzaj-tas",
@@ -683,11 +913,15 @@
             "İskân uyumlu"
           ],
           "experience": "9 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kaş / Kalkan",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Taş & Peyzaj Projeleri (Taş Duvar Ustası) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -709,11 +943,15 @@
             "Günlük paket"
           ],
           "experience": "14 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Ayşe Hanım — Bebek & Çocuk Bakıcısı (Çocuk Bakım Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "cocukbakim-nanny-kalkan",
@@ -729,11 +967,15 @@
             "Anlık rezervasyon"
           ],
           "experience": "5 yıl",
-          "phone": "+90 542 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Kaş",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Kalkan Nanny Agency (Çocuk Bakım Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "cocukbakim-zeynep",
@@ -749,11 +991,15 @@
             "Plaj aktivitesi"
           ],
           "experience": "6 yıl",
-          "phone": "+90 536 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Yalıboyu",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Zeynep — Çocuk Aktivite Rehberi (Çocuk Bakım Hizmetleri) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },
@@ -775,11 +1021,15 @@
             "Günlük bakım"
           ],
           "experience": "8 yıl",
-          "phone": "+90 532 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Merkez",
-          "verified": true,
-          "featured": true
+          "verified": false,
+          "featured": true,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Patili Yuva — Pet Hotel (Evcil Hayvan Bakımı) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "evcilbakim-leyla",
@@ -795,11 +1045,15 @@
             "Fotoğraf takibi"
           ],
           "experience": "5 yıl",
-          "phone": "+90 535 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan Kalamar",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Leyla — Pet Sitter (Evcil Hayvan Bakımı) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         },
         {
           "id": "evcilbakim-vetkoord",
@@ -815,11 +1069,15 @@
             "Tercümanlık"
           ],
           "experience": "4 yıl",
-          "phone": "+90 541 XXX XX XX",
+          "phone": null,
           "whatsapp": "+90 530 665 07 94",
           "location": "Kalkan / Kaş",
-          "verified": true,
-          "featured": false
+          "verified": false,
+          "featured": false,
+          "phoneRaw": null,
+          "contactVia": "concierge",
+          "whatsappRaw": "905306650794",
+          "defaultMessage": "Merhaba Kalkan Info! Vet Koordinasyon Merkezi (Evcil Hayvan Bakımı) için bilgi/rezervasyon istiyorum. Lütfen yönlendirir misiniz?"
         }
       ]
     },

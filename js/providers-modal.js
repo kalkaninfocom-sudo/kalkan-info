@@ -198,7 +198,12 @@
           font-size:0.65rem;font-weight:700;
           padding:2px 7px;border-radius:20px;
         ">✓ Onaylı</span>`
-      : '';
+      : `<span title="İletişim bilgileri Kalkan Info concierge üzerinden teyit edilir" style="
+          display:inline-flex;align-items:center;gap:3px;
+          background:#fef3c7;color:#92400e;
+          font-size:0.65rem;font-weight:700;
+          padding:2px 7px;border-radius:20px;
+        ">⏳ Concierge</span>`;
 
     const featuredRibbon = p.featured
       ? `<div style="
@@ -302,6 +307,7 @@
 
         <!-- CTA -->
         <div style="padding:12px 14px 14px;margin-top:auto;">
+          ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0 0 8px;line-height:1.4;">ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.</p>` : ''}
           <a href="${waLink}" target="_blank" rel="noopener" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#16a34a;color:#fff;
@@ -315,7 +321,7 @@
           onmouseover="this.style.background='#15803d';this.style.boxShadow='0 6px 18px -4px rgba(22,163,74,0.55)';"
           onmouseout="this.style.background='#16a34a';this.style.boxShadow='0 4px 14px -4px rgba(22,163,74,0.4)';">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
-            Concierge'e Sor
+            ${p.verified ? 'WhatsApp ile İletişim' : "Concierge'e Sor"}
           </a>
         </div>
 
