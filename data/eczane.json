@@ -1,27 +1,51 @@
 {
   "_meta": {
     "title": "Bugün Nöbetçi Eczane",
-    "lastUpdated": "2026-05-14T06:00:00+03:00",
-    "note": "Antalya Eczacı Odası API mevcut değil — admin.html üzerinden manuel güncellenir.",
-    "updated": "2026-05-16"
+    "lastUpdated": "2026-05-18T07:17:40.830Z",
+    "source": "https://www.antalyaeo.org.tr/tr/nobetci-eczaneler",
+    "note": "Antalya Eczacı Odası sayfasından otomatik çekilir (her gün 06:00 TR).",
+    "updated": "2026-05-18"
   },
   "today": {
-    "date": "2026-05-14",
+    "date": "2026-05-18",
     "name": "Doğa Eczanesi",
-    "address": "Kalkan, Şehitler Cd. No:35/C, 07580 Kaş/Antalya",
-    "phone": "+90 242 844 31 12",
-    "phoneRaw": "02428443112",
-    "mapUrl": "https://maps.google.com/?q=Doğa+Eczanesi+Kalkan",
-    "hours": "09:00 (kapanış sonrası 24 saat nöbetçi)"
+    "address": "MENTESE MH. SEHITLER CD. NO:35 KALKAN",
+    "phone": "+90 242 844 11 38",
+    "phoneRaw": "02428441138",
+    "mapUrl": "https://maps.google.com/maps?q=36.2666521677,29.4135029171",
+    "hours": "09:00 (kapanış sonrası 24 saat nöbetçi)",
+    "isKalkan": true
   },
-  "tomorrow": {
-    "date": "2026-05-15",
-    "name": "Yıldız Eczanesi",
-    "address": "Kalkan Merkez",
-    "phone": "+90 242 844 30 50",
-    "phoneRaw": "02428443050",
-    "mapUrl": "https://maps.google.com/?q=Yıldız+Eczanesi+Kalkan"
-  },
-  "verifiedAt": "2026-05-16",
-  "verifiedBy": "Kalkan Info Ekibi"
+  "tomorrow": {},
+  "allKasToday": [
+    {
+      "name": "Doğa Eczanesi",
+      "address": "MENTESE MH. SEHITLER CD. NO:35 KALKAN",
+      "phone": "+90 242 844 11 38",
+      "phoneRaw": "02428441138",
+      "mapUrl": "https://maps.google.com/maps?q=36.2666521677,29.4135029171",
+      "lat": 36.2666521677,
+      "lng": 29.4135029171
+    },
+    {
+      "name": "Orkide Eczanesi",
+      "address": "ANDİFLİ MAH.ÇUKURBAĞLILAR MAH.ÇUKURBAĞLILAR SOK.NO:32/C KAŞ",
+      "phone": "+90 242 836 10 40",
+      "phoneRaw": "02428361040",
+      "mapUrl": "https://maps.google.com/maps?q=36.200986060992065,29.640396034592413",
+      "lat": 36.200986060992065,
+      "lng": 29.640396034592413
+    },
+    {
+      "name": "Ova Eczanesi",
+      "address": "OVA MAH.KAŞ",
+      "phone": "+90 242 841 83 89",
+      "phoneRaw": "02428418389",
+      "mapUrl": "https://maps.google.com/maps?q=36.306457189630535,29.329155504968874",
+      "lat": 36.306457189630535,
+      "lng": 29.329155504968874
+    }
+  ],
+  "verifiedAt": "2026-05-18",
+  "verifiedBy": "Antalya Eczacı Odası (otomatik)"
 }

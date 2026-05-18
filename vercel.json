@@ -1,6 +1,6 @@
 {
   "installCommand": "npm install",
-  "buildCommand": "node scripts/build-supabase-config.mjs && node scripts/build-tailwind.mjs && (node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json')",
+  "buildCommand": "node scripts/build-supabase-config.mjs && node scripts/build-tailwind.mjs && (node scripts/news-aggregator.mjs || echo 'news aggregator failed; keeping previous haberler.json') && (node scripts/fetch-eczane.mjs || echo 'eczane fetch failed; keeping previous eczane.json')",
   "outputDirectory": ".",
   "functions": {
     "api/*.js": { "maxDuration": 10 }
@@ -9,6 +9,10 @@
     {
       "path": "/api/instagram-hashtag",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron-rebuild",
+      "schedule": "0 3 * * *"
     }
   ],
   "cleanUrls": true,
