@@ -49,6 +49,10 @@ async function loadActivities() {
   }
 }
 
+// ── XSS helper ───────────────────────────────────────────────────────────────
+
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
 // ── Filters ──────────────────────────────────────────────────────────────────
 
 function applyFilters({ season, tag, difficulty, priceRange, bookingRequired } = {}) {
@@ -97,7 +101,7 @@ function cardHTML(a) {
   const title = t(a, 'titleML') || a.title;
   const desc = t(a, 'descriptionML');
   const tags = (a.tags || []).slice(0, 3).map(tag =>
-    `<span class="inline-block bg-sea-50 text-sea-600 text-[10px] font-semibold px-2 py-0.5 rounded">${tag}</span>`
+    `<span class="inline-block bg-sea-50 text-sea-600 text-[10px] font-semibold px-2 py-0.5 rounded">${esc(tag)}</span>`
   ).join('');
 
   const bookingBadge = a.bookingRequired
@@ -123,8 +127,8 @@ function cardHTML(a) {
         </div>
       </div>
       <div class="p-4 flex flex-col flex-1">
-        <h3 class="font-display font-bold text-sea-800 text-base leading-tight mb-1">${title}</h3>
-        <p class="text-sm text-sea-600/80 leading-relaxed line-clamp-2 flex-1">${desc}</p>
+        <h3 class="font-display font-bold text-sea-800 text-base leading-tight mb-1">${esc(title)}</h3>
+        <p class="text-sm text-sea-600/80 leading-relaxed line-clamp-2 flex-1">${esc(desc)}</p>
         <div class="mt-3 flex flex-wrap gap-1">${tags}</div>
         <div class="mt-3 flex items-center justify-between pt-3 border-t border-sea-100">
           <div class="flex items-center gap-3 text-xs text-sea-500">
@@ -166,7 +170,7 @@ function openActivityModal(id) {
   const desc = t(a, 'descriptionML');
   const img = (a.images && a.images[0]) ? a.images[0] : 'https://placehold.co/800x400?text=Aktivite';
   const tags = (a.tags || []).map(tag =>
-    `<span class="inline-block bg-sea-50 text-sea-700 text-xs font-semibold px-3 py-1 rounded-full border border-sea-100">${tag}</span>`
+    `<span class="inline-block bg-sea-50 text-sea-700 text-xs font-semibold px-3 py-1 rounded-full border border-sea-100">${esc(tag)}</span>`
   ).join('');
 
   const mapBtn = (a.location?.lat && a.location?.lng)
@@ -203,25 +207,25 @@ function openActivityModal(id) {
       </div>
     </div>
     <div class="p-5 md:p-6">
-      <h2 class="font-display font-extrabold text-sea-800 text-xl md:text-2xl leading-tight">${title}</h2>
-      ${a.location?.address ? `<p class="text-xs text-sea-400 mt-1">📍 ${a.location.address}</p>` : ''}
-      <p class="mt-4 text-sea-700 leading-relaxed text-sm md:text-base">${desc}</p>
+      <h2 class="font-display font-extrabold text-sea-800 text-xl md:text-2xl leading-tight">${esc(title)}</h2>
+      ${a.location?.address ? `<p class="text-xs text-sea-400 mt-1">📍 ${esc(a.location.address)}</p>` : ''}
+      <p class="mt-4 text-sea-700 leading-relaxed text-sm md:text-base">${esc(desc)}</p>
       <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
         <div class="bg-sea-50 rounded-lg p-3">
           <div class="text-xs text-sea-400 font-semibold uppercase tracking-wide mb-1">Süre</div>
-          <div class="font-bold text-sea-800">⏱ ${a.duration || '—'}</div>
+          <div class="font-bold text-sea-800">⏱ ${esc(a.duration || '—')}</div>
         </div>
         <div class="bg-sea-50 rounded-lg p-3">
           <div class="text-xs text-sea-400 font-semibold uppercase tracking-wide mb-1">Fiyat</div>
-          <div class="font-bold text-sea-800">💰 ${priceLabel(a.priceRange)}</div>
+          <div class="font-bold text-sea-800">💰 ${esc(priceLabel(a.priceRange))}</div>
         </div>
         <div class="bg-sea-50 rounded-lg p-3">
           <div class="text-xs text-sea-400 font-semibold uppercase tracking-wide mb-1">Zorluk</div>
-          <div class="font-bold text-sea-800">${a.difficulty || '—'}</div>
+          <div class="font-bold text-sea-800">${esc(a.difficulty || '—')}</div>
         </div>
         <div class="bg-sea-50 rounded-lg p-3">
           <div class="text-xs text-sea-400 font-semibold uppercase tracking-wide mb-1">Yaş</div>
-          <div class="font-bold text-sea-800">${a.ageRange || 'Tüm yaşlar'}</div>
+          <div class="font-bold text-sea-800">${esc(a.ageRange || 'Tüm yaşlar')}</div>
         </div>
       </div>
       <div class="mt-4 flex flex-wrap gap-2">${tags}</div>
@@ -280,9 +284,9 @@ function mountCalendarView() {
   for (let m = 0; m < 12; m++) {
     const acts = activitiesForMonth(m);
     const dots = acts.slice(0, 5).map(a =>
-      `<div class="flex items-center gap-1.5 cursor-pointer hover:text-sea-800 transition" onclick="openActivityModal('${a.id}')">
+      `<div class="flex items-center gap-1.5 cursor-pointer hover:text-sea-800 transition" onclick="openActivityModal('${esc(a.id)}')">
         <span class="w-1.5 h-1.5 rounded-full bg-sea-400 flex-shrink-0"></span>
-        <span class="truncate text-xs">${t(a,'titleML') || a.title}</span>
+        <span class="truncate text-xs">${esc(t(a,'titleML') || a.title)}</span>
       </div>`
     ).join('');
     const more = acts.length > 5 ? `<div class="text-[10px] text-sea-400 mt-1">+${acts.length - 5} daha</div>` : '';

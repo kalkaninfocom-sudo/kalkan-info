@@ -264,6 +264,7 @@
       if (!file || !/^image\//.test(file.type)) return;
       try {
         photoDataUrl = await _fileToDataUrl(file);
+        if (!photoDataUrl || !/^data:image\//i.test(photoDataUrl)) { photoDataUrl = null; return; }
         overlay.querySelector('#lf-thumb').innerHTML = `
           <div style="position:relative;width:64px;height:64px;border-radius:6px;overflow:hidden;border:1px solid #cfdfee;">
             <img src="${photoDataUrl}" style="width:100%;height:100%;object-fit:cover;" />

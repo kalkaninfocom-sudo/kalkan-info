@@ -31,6 +31,8 @@
 
 // Main data loader
 (async () => {
+  function _esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
   const [hizmetler, haberler, turlar] = await Promise.all([
     KalkanData.load('hizmetler'),
     KalkanData.load('haberler'),
@@ -75,7 +77,7 @@
     if (verifiedBadge && isStale) {
       verifiedBadge.classList.remove('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
       verifiedBadge.classList.add('text-amber-700', 'bg-amber-50', 'border-amber-200');
-      verifiedBadge.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Veri ' + (verifiedDateEl?.textContent || raw) + ' tarihinden — aramadan önce teyit edin</span>';
+      verifiedBadge.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Veri ' + _esc(verifiedDateEl?.textContent || dataDate || bugun) + ' tarihinden — aramadan önce teyit edin</span>';
     }
 
     const toggleBtn = document.getElementById('ecz-toggle-tomorrow');
@@ -121,10 +123,10 @@
   const taksiList = document.getElementById('taksi-list');
   if (taksiList) {
     taksiList.innerHTML = (hizmetler.taksiler?.items || []).slice(0,4).map(t => `
-      <a href="tel:${(t.phoneRaw||'').replace(/\s/g,'')}" class="bg-white rounded-xl p-4 hover:shadow-lg transition block">
-        <div class="text-xs uppercase tracking-widest text-sea-600 font-bold">${t.location||''}</div>
-        <div class="font-display font-bold text-sea-800 mt-1">${t.name||''}</div>
-        <div class="font-mono text-sm text-sea-700 mt-2">${t.phone||''}</div>
+      <a href="tel:${_esc((t.phoneRaw||'').replace(/\s/g,''))}" class="bg-white rounded-xl p-4 hover:shadow-lg transition block">
+        <div class="text-xs uppercase tracking-widest text-sea-600 font-bold">${_esc(t.location||'')}</div>
+        <div class="font-display font-bold text-sea-800 mt-1">${_esc(t.name||'')}</div>
+        <div class="font-mono text-sm text-sea-700 mt-2">${_esc(t.phone||'')}</div>
       </a>`).join('');
   }
 

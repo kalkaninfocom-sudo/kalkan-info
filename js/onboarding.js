@@ -1159,6 +1159,13 @@ function _esc(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+function _safeUrl(url) {
+  if (typeof url !== 'string') return '';
+  const u = url.trim();
+  if (/^javascript:/i.test(u) || /^data:(?!image\/)/i.test(u)) return '';
+  return u;
+}
+
 // ---------------------------------------------------------------------------
 // Single form CSS injection
 // ---------------------------------------------------------------------------
@@ -1472,7 +1479,7 @@ function _legacyStep4() {
     <div id="ob-cover-zone"
       class="border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition ${state.errors.cover ? 'border-red-400 bg-red-50' : 'border-sea-200 bg-sea-50/40 hover:border-sea-400 hover:bg-sea-50'}">
       ${state.data.coverUrl
-        ? `<img src="${state.data.coverUrl}" class="w-full h-36 object-cover rounded-lg mb-2" /><p class="text-xs text-sea-500">Değiştirmek için tıklayın</p>`
+        ? `<img src="${_esc(_safeUrl(state.data.coverUrl))}" class="w-full h-36 object-cover rounded-lg mb-2" /><p class="text-xs text-sea-500">Değiştirmek için tıklayın</p>`
         : `<svg class="mx-auto mb-2 text-sea-400" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
           <p class="text-sm font-semibold text-sea-700">Kapak fotosu yükle</p><p class="text-xs text-sea-400 mt-1">veya sürükleyip bırakın</p>`}
     </div>
@@ -1486,7 +1493,7 @@ function _legacyStep4() {
         ? `<div class="grid grid-cols-4 gap-2 mb-2">
             ${state.data.galleryUrls.map((u, i) => `
               <div class="relative group">
-                <img src="${u}" class="w-full h-16 object-cover rounded" />
+                <img src="${_esc(_safeUrl(u))}" class="w-full h-16 object-cover rounded" />
                 <button type="button" data-action="lw-remove-gallery" data-index="${i}"
                   class="absolute top-0.5 right-0.5 w-5 h-5 rounded-full bg-red-500 text-white text-xs grid place-items-center opacity-0 group-hover:opacity-100 transition">×</button>
               </div>`).join('')}
@@ -1549,14 +1556,14 @@ function _legacyBuildPreviewCard() {
   const typeInfo = TYPE_LABELS[d.type] || {};
   return `
 <div class="relative">
-  ${d.coverUrl ? `<img src="${d.coverUrl}" class="w-full h-36 object-cover" />` : `<div class="w-full h-36 bg-gradient-to-br from-sea-200 to-sea-300 flex items-center justify-center text-4xl">${typeInfo.icon || '📍'}</div>`}
+  ${d.coverUrl ? `<img src="${_esc(_safeUrl(d.coverUrl))}" class="w-full h-36 object-cover" />` : `<div class="w-full h-36 bg-gradient-to-br from-sea-200 to-sea-300 flex items-center justify-center text-4xl">${typeInfo.icon || '📍'}</div>`}
   ${d.type ? `<span class="absolute top-2 left-2 bg-sea-700/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">${typeInfo.label || ''}</span>` : ''}
 </div>
 <div class="p-4">
-  <h3 class="font-display font-bold text-sea-800 text-sm leading-tight">${d.name || 'İşletme Adı'}</h3>
-  ${d.summary ? `<p class="text-sea-600 text-xs mt-1 line-clamp-2">${d.summary}</p>` : ''}
-  ${d.priceRange ? `<span class="inline-block mt-2 text-xs font-mono font-semibold text-sun-600">${d.priceRange}</span>` : ''}
-  ${d.address ? `<p class="text-sea-500 text-[11px] mt-1">📍 ${d.address}</p>` : ''}
+  <h3 class="font-display font-bold text-sea-800 text-sm leading-tight">${_esc(d.name || 'İşletme Adı')}</h3>
+  ${d.summary ? `<p class="text-sea-600 text-xs mt-1 line-clamp-2">${_esc(d.summary)}</p>` : ''}
+  ${d.priceRange ? `<span class="inline-block mt-2 text-xs font-mono font-semibold text-sun-600">${_esc(d.priceRange)}</span>` : ''}
+  ${d.address ? `<p class="text-sea-500 text-[11px] mt-1">📍 ${_esc(d.address)}</p>` : ''}
 </div>`;
 }
 
