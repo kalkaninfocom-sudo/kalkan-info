@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "title": "Antik Kentler — Reels Content Packs",
+    "subtitle": "Kalkan civarı 10 antik kent için İngilizce reels script + caption + hashtag + müzik + footage önerileri",
+    "created": "2026-05-18",
+    "usage": "Her item için: reels render (CapCut/ffmpeg) + IG publish (auto veya manuel). Drone footage queryleri Pexels Videos/YouTube'dan indirilir.",
+    "render_guide": {
+      "format": "9:16 portrait, 1080x1920",
+      "duration_target": "20-30 seconds",
+      "voiceover_lang": "English (UK accent preferred — ElevenLabs voice: George/Charlotte)",
+      "subtitle": "Auto-generate from voiceover_en (CapCut auto-captions)",
+      "branding": "Logo bottom-right 80x80 with 80% opacity, last 2 seconds full-screen CTA",
+      "music": "Royalty-free (Epidemic Sound / Mubert) — match music_mood field",
+      "cta_overlay": "Visit kalkaninfo.com (last 3 seconds)"
+    }
+  },
+  "items": [
+    {
+      "id": "patara",
+      "name": "Patara",
+      "voiceover_en": "Welcome to Patara. The birthplace of Saint Nicholas. Capital of the Lycian League. Home to the world's first democratic parliament — over two thousand years old. Walk the same marble streets where Apollo was worshipped. Stand inside a 5,000-seat theatre facing the Mediterranean. Then step onto an 18-kilometre untouched beach. One ticket. Two ancient wonders. Patara is unforgettable.",
+      "voiceover_tr": "Patara'ya hoş geldiniz. Aziz Nikolas'ın doğduğu yer. Likya Birliği'nin başkenti. Dünyanın ilk demokratik meclisi burada — iki bin yıldan eski. Apollo'ya tapılan mermer caddelerde yürüyün. Akdeniz'e bakan beş bin kişilik tiyatroya girin. Ardından 18 kilometrelik el değmemiş kumsala adım atın. Tek bilet. İki antik mucize. Patara unutulmaz.",
+      "duration_s": 28,
+      "caption_en": "🏛️ Patara — Where democracy was born. Birthplace of Saint Nicholas. UNESCO World Heritage. 15 minutes from Kalkan. One ticket gets you the ruins AND Turkey's longest untouched beach. \n\nSave this for your Kalkan trip. 📌\n\n📍 kalkaninfo.com → Antik Kentler",
+      "caption_tr": "🏛️ Patara — Demokrasinin doğduğu yer. Aziz Nikolas'ın memleketi. UNESCO Dünya Mirası. Kalkan'a 15 dakika. Tek bilet hem antik kent hem Türkiye'nin en uzun el değmemiş kumsalı. \n\nKalkan tatiliniz için kaydedin. 📌\n\n📍 kalkaninfo.com → Antik Kentler",
+      "hashtags": ["#kalkan", "#patara", "#lycia", "#unescoworldheritage", "#turkeytravel", "#ancientcities", "#mediterranean", "#santaclaus", "#turkishriviera", "#likya", "#antalyatravel", "#hiddengems", "#ancientruins", "#archaeology", "#wanderlust"],
+      "music_mood": "epic-cinematic-rise",
+      "footage_queries": [
+        {"platform": "pexels", "query": "patara beach drone aerial"},
+        {"platform": "pexels", "query": "ancient roman theater drone"},
+        {"platform": "youtube", "query": "patara antik kenti drone 4k"},
+        {"platform": "youtube", "query": "patara beach turkey aerial"}
+      ],
+      "local_assets": ["/assets/img/d018efe8f905.webp", "/assets/img/488f36a95000.webp", "/assets/img/a1f93ffd6095.webp"],
+      "best_post_times_tr": ["19:00", "20:30"],
+      "best_post_times_uk": ["17:00 GMT (= 20:00 TR)"],
+      "target_audience": ["UK history travelers", "DE culture tourists", "TR domestic premium travelers"]
+    },
+    {
+      "id": "xanthos",
+      "name": "Xanthos",
+      "voiceover_en": "Xanthos. Once the greatest city of Lycia. Twice in history, when invaders came, its people chose death over surrender — burning their own city to the ground. Today, on this hill above the Eşen river, the silence is sacred. The Harpy Tomb still watches. The Roman theatre still breathes. UNESCO World Heritage. Thirty minutes from Kalkan. A monument to defiance.",
+      "voiceover_tr": "Xanthos. Bir zamanlar Likya'nın en büyük şehri. Tarih boyunca iki kez, düşman geldiğinde halkı teslim olmaktansa ölmeyi seçti — kendi şehirlerini ateşe verdiler. Bugün Eşen Çayı'na bakan bu tepede sessizlik kutsal. Harpya Anıtı hâlâ bekliyor. Roma tiyatrosu hâlâ nefes alıyor. UNESCO Dünya Mirası. Kalkan'a 30 dakika. Direnişin anıtı.",
+      "duration_s": 26,
+      "caption_en": "⚔️ Xanthos chose death over surrender. Twice. \n\nThe greatest city of ancient Lycia, where citizens burned their own walls rather than yield to invaders. UNESCO World Heritage. 30 minutes from Kalkan. \n\nStand where defiance became legend.\n\n📍 kalkaninfo.com",
+      "caption_tr": "⚔️ Xanthos teslim olmaktansa ölmeyi seçti. İki kez. \n\nAntik Likya'nın en büyük şehri, halkın işgalciye boyun eğmektense surlarını yaktığı yer. UNESCO Dünya Mirası. Kalkan'a 30 dakika. \n\nDirenişin efsane olduğu yerde durun.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#xanthos", "#kalkan", "#lycia", "#unescoworldheritage", "#ancientcities", "#turkeytravel", "#lycianwaytravel", "#harpyatomb", "#archaeologytravel", "#likya", "#hiddenturkey", "#mediterranean", "#cultureshock", "#historicaltravel", "#xanthosrivertours"],
+      "music_mood": "dramatic-orchestral",
+      "footage_queries": [
+        {"platform": "pexels", "query": "xanthos ancient city drone"},
+        {"platform": "pexels", "query": "lycian ruins aerial"},
+        {"platform": "youtube", "query": "xanthos antik kenti drone"},
+        {"platform": "youtube", "query": "lycian tombs xanthos aerial"}
+      ],
+      "local_assets": ["/assets/img/0a51fdbbfe75.webp", "/assets/img/6eafb57f8e80.webp", "/assets/img/e7eb18ac2284.webp"],
+      "best_post_times_tr": ["20:00", "12:30"],
+      "best_post_times_uk": ["18:00 GMT"],
+      "target_audience": ["UK ancient history buffs", "DE archaeology fans", "TR culture travelers"]
+    },
+    {
+      "id": "letoon",
+      "name": "Letoon",
+      "voiceover_en": "Letoon. Three temples. One sacred lake. The mythological birthplace of the children of Zeus and Leto — Apollo and Artemis. For a thousand years, this was the religious heart of all Lycia. Today, water still pools where pilgrims once prayed. UNESCO World Heritage. Just eight kilometres from Xanthos. The most peaceful ruins in southwestern Turkey.",
+      "voiceover_tr": "Letoon. Üç tapınak. Bir kutsal göl. Zeus ve Leto'nun çocukları Apollo ve Artemis'in mitolojik doğum yeri. Bin yıl boyunca tüm Likya'nın dini kalbi burasıydı. Bugün hacıların dua ettiği yerde hâlâ su birikiyor. UNESCO Dünya Mirası. Xanthos'a sadece sekiz kilometre. Güneybatı Türkiye'nin en huzurlu harabeleri.",
+      "duration_s": 24,
+      "caption_en": "🌊 Letoon — Where Apollo and Artemis were born (according to myth).\n\nThree temples, a sacred lake, and 1,000 years as Lycia's religious centre. UNESCO. 30 minutes from Kalkan.\n\nPair it with Xanthos for a perfect half-day.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🌊 Letoon — Mitolojiye göre Apollo ve Artemis'in doğduğu yer.\n\nÜç tapınak, kutsal bir göl ve Likya'nın 1000 yıllık dini merkezi. UNESCO. Kalkan'a 30 dakika.\n\nXanthos ile birleştirin, mükemmel yarım gün.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#letoon", "#kalkan", "#apolloleto", "#unescoworldheritage", "#lycia", "#ancienttemples", "#turkeytravel", "#mythology", "#sacredsites", "#likya", "#kashtravel", "#mediterraneanruins", "#turkishhistory", "#hiddenturkey", "#likyamedeniyeti"],
+      "music_mood": "mystical-ambient",
+      "footage_queries": [
+        {"platform": "pexels", "query": "letoon temple drone"},
+        {"platform": "pexels", "query": "ancient temple reflection water"},
+        {"platform": "youtube", "query": "letoon antik kent drone"},
+        {"platform": "youtube", "query": "apollo temple turkey aerial"}
+      ],
+      "local_assets": ["/assets/img/fead0388ecb7.webp"],
+      "best_post_times_tr": ["13:00", "21:00"],
+      "best_post_times_uk": ["12:00 GMT"],
+      "target_audience": ["DE mythology enthusiasts", "UK Greek history fans", "TR family travelers"]
+    },
+    {
+      "id": "tlos",
+      "name": "Tlos",
+      "voiceover_en": "Tlos. Carved into a mountain cliff. Home of Bellerophon — the warrior who tamed Pegasus. His rock-cut tomb still bears the chariot relief, two thousand years old. Above the cliff, an Ottoman fortress watches over Saklıkent canyon. Below, a Roman theatre, baths, and stadium. One of Anatolia's oldest cities. An hour from Kalkan. Unforgettable.",
+      "voiceover_tr": "Tlos. Bir dağ kayalığına oyulmuş. Pegasus'u evcilleştiren savaşçı Bellerofon'un yurdu. Kayaya oyulmuş mezarı hâlâ savaş arabası kabartmasını taşıyor, iki bin yaşında. Uçurumun üstünde bir Osmanlı kalesi Saklıkent kanyonunu izliyor. Aşağıda Roma tiyatrosu, hamamlar, stadyum. Anadolu'nun en eski şehirlerinden. Kalkan'a bir saat. Unutulmaz.",
+      "duration_s": 27,
+      "caption_en": "🐎 Tlos — Home of Bellerophon, the warrior who tamed Pegasus.\n\nHis 2,000-year-old rock tomb still shows the chariot. Above: an Ottoman fortress. Below: Roman theatre + baths + stadium.\n\n1 hour from Kalkan. Pair with Saklıkent canyon.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🐎 Tlos — Pegasus'u evcilleştiren savaşçı Bellerofon'un yurdu.\n\n2.000 yıllık kaya mezarında savaş arabası hâlâ duruyor. Üstte: Osmanlı kalesi. Altta: Roma tiyatrosu + hamamlar + stadyum.\n\nKalkan'a 1 saat. Saklıkent kanyonuyla birleştirin.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#tlos", "#kalkan", "#bellerophon", "#pegasus", "#lycia", "#ancientcities", "#rockcuttombs", "#turkeytravel", "#saklikent", "#mediterraneanhistory", "#likya", "#cliffcity", "#hiddenturkey", "#mountainfortress", "#mythologytravel"],
+      "music_mood": "epic-mythological",
+      "footage_queries": [
+        {"platform": "pexels", "query": "tlos cliff tombs drone"},
+        {"platform": "pexels", "query": "rock cut tomb mountain aerial"},
+        {"platform": "youtube", "query": "tlos antik kenti drone 4k"},
+        {"platform": "youtube", "query": "bellerophon tomb tlos aerial"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["19:30", "21:00"],
+      "best_post_times_uk": ["17:30 GMT"],
+      "target_audience": ["UK mythology travelers", "DE adventure tourists", "TR weekend explorers"]
+    },
+    {
+      "id": "pinara",
+      "name": "Pinara",
+      "voiceover_en": "Pinara. The honeycomb city. Hundreds of tombs cut into a vertical cliff face — a wall of the dead, impossible to forget. Founded when overcrowding forced citizens of nearby Xanthos to move. Now silent, surrounded by pine forest, almost unvisited. Twenty minutes off the main road. A traveler's secret. Forty-five minutes from Kalkan.",
+      "voiceover_tr": "Pinara. Petekli şehir. Dikey bir kaya yüzüne oyulmuş yüzlerce mezar — unutulması imkansız bir ölüler duvarı. Yakındaki Xanthos'ta nüfus baskısı arttığında halkı taşındığında kuruldu. Şimdi sessiz, çam ormanlarıyla çevrili, neredeyse ziyaretçisiz. Ana yoldan yirmi dakika. Bir gezgin sırrı. Kalkan'a kırk beş dakika.",
+      "duration_s": 25,
+      "caption_en": "🍯 Pinara — The honeycomb city. Hundreds of tombs cut into a vertical cliff.\n\nFounded by overflow from Xanthos. Today almost untouched, hidden in pine forest. \n\nA traveler's secret 45 mins from Kalkan.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🍯 Pinara — Petekli şehir. Dikey kayaya oyulmuş yüzlerce mezar.\n\nXanthos'tan taşan halk tarafından kuruldu. Bugün neredeyse el değmemiş, çam ormanında saklı.\n\nKalkan'a 45 dk uzaklıkta bir gezgin sırrı.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#pinara", "#kalkan", "#lycia", "#honeycombtombs", "#ancientcities", "#hiddenturkey", "#turkeytravel", "#likya", "#offthebeatentrack", "#mediterranean", "#archaeologytravel", "#xanthosregion", "#secretturkey", "#turkishriviera", "#wanderlust"],
+      "music_mood": "haunting-atmospheric",
+      "footage_queries": [
+        {"platform": "pexels", "query": "rock tombs cliff drone"},
+        {"platform": "pexels", "query": "ancient necropolis aerial"},
+        {"platform": "youtube", "query": "pinara antik kent drone"},
+        {"platform": "youtube", "query": "honeycomb tombs lycia"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["22:00", "13:30"],
+      "best_post_times_uk": ["20:00 GMT"],
+      "target_audience": ["UK off-beat travelers", "DE archaeology fans", "TR adventure tourists"]
+    },
+    {
+      "id": "simena",
+      "name": "Simena (Kaleköy)",
+      "voiceover_en": "Simena. A sunken city. Half the village rests above the waves — Ottoman fortress, Lycian sarcophagi rising from the turquoise sea. The other half lies beneath you, swallowed by an earthquake two thousand years ago. Houses, stairways, harbours — all visible through glass-bottomed boats. There are no roads here. Only the sea brings you in. The Lycian Riviera at its most magical.",
+      "voiceover_tr": "Simena. Batık bir şehir. Köyün yarısı dalgaların üstünde — Osmanlı kalesi, turkuaz denizden yükselen Likya lahitleri. Diğer yarısı ayaklarınızın altında, iki bin yıl önce bir depremin yuttuğu. Evler, merdivenler, limanlar — hepsi cam tabanlı teknelerden görünür. Burada yol yok. Sizi yalnız deniz getirir. Likya Rivierası'nın en büyülü hali.",
+      "duration_s": 28,
+      "caption_en": "🌊 Simena — A village that rests both above AND beneath the sea.\n\nLycian sarcophagi rise from turquoise water. Ottoman castle above. Sunken city below, lost to an earthquake 2,000 years ago.\n\nNo roads. Boat only. Half-day from Kalkan.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🌊 Simena — Hem denizin üstünde hem altında uzanan köy.\n\nLikya lahitleri turkuaz sudan yükseliyor. Üstte Osmanlı kalesi. Altta 2.000 yıl önce depremde batık şehir.\n\nYol yok. Sadece tekne. Kalkan'dan yarım gün.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#simena", "#kalekoy", "#sunkencity", "#kekova", "#kalkan", "#kas", "#lycia", "#turquoisecoast", "#turkeytravel", "#boatlife", "#mediterranean", "#likya", "#turkishriviera", "#hiddenturkey", "#islandlife"],
+      "music_mood": "calm-cinematic-ocean",
+      "footage_queries": [
+        {"platform": "pexels", "query": "kekova sunken city drone"},
+        {"platform": "pexels", "query": "kalekoy castle turquoise sea"},
+        {"platform": "youtube", "query": "kekova simena drone 4k"},
+        {"platform": "youtube", "query": "sunken lycian city aerial"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["19:00", "20:00"],
+      "best_post_times_uk": ["17:00 GMT"],
+      "target_audience": ["UK luxury boat tourists", "DE diving enthusiasts", "TR sailing community"]
+    },
+    {
+      "id": "antiphellos",
+      "name": "Antiphellos (Kaş)",
+      "voiceover_en": "Antiphellos. The ancient port of Phellos — today, the heart of Kaş town. Walk modern cobblestone streets and stumble upon a 4th century BC Lycian sarcophagus, right next to a café. A Greek theatre with sea views still hosts summer festivals. The city never died. It just kept being lived in. Twenty-five minutes from Kalkan.",
+      "voiceover_tr": "Antiphellos. Phellos'un antik limanı — bugün Kaş'ın kalbi. Modern arnavut kaldırımlarında yürüyün ve M.Ö. 4. yüzyıl Likya lahitine rastlayın, kafenin yanı başında. Deniz manzaralı bir Yunan tiyatrosu hâlâ yaz festivallerine ev sahipliği yapar. Bu şehir hiç ölmedi. Sadece yaşanmaya devam etti. Kalkan'a yirmi beş dakika.",
+      "duration_s": 24,
+      "caption_en": "🏛️ Antiphellos — Where ancient meets espresso.\n\nWalk Kaş streets and find a 2,400-year-old Lycian tomb between two cafés. The Greek theatre still hosts summer festivals. The city never died.\n\n25 mins from Kalkan.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🏛️ Antiphellos — Antik çağ ile espresso buluşuyor.\n\nKaş sokaklarında yürüyün, iki kafe arasında 2.400 yıllık Likya lahiti bulun. Yunan tiyatrosu hâlâ yaz festivallerine ev sahipliği yapar. Bu şehir hiç ölmedi.\n\nKalkan'a 25 dk.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#antiphellos", "#kas", "#kalkan", "#lycia", "#hiddenturkey", "#turkeytravel", "#turkishriviera", "#streetlife", "#ancientcities", "#mediterraneanlife", "#cafelife", "#likya", "#kastown", "#summerfestival", "#urbanarchaeology"],
+      "music_mood": "uplifting-warm-acoustic",
+      "footage_queries": [
+        {"platform": "pexels", "query": "kas town turkey aerial"},
+        {"platform": "pexels", "query": "lycian tomb street cafe"},
+        {"platform": "youtube", "query": "kas antiphellos drone"},
+        {"platform": "youtube", "query": "kas turkey street walking"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["12:00", "18:30"],
+      "best_post_times_uk": ["10:00 GMT"],
+      "target_audience": ["UK city break travelers", "DE café culture fans", "TR weekend tourists"]
+    },
+    {
+      "id": "phellos",
+      "name": "Phellos",
+      "voiceover_en": "Phellos. The mountain city. To reach it, you climb. The Lycian Way trail leads through pine and oak to ruins that almost no tourist sees. A bull sarcophagus carved in stone. A city wall. A view across the Mediterranean, all the way to Kastellorizo. Two hours of hiking. Total solitude. The reward few travelers ever claim.",
+      "voiceover_tr": "Phellos. Dağ şehri. Ulaşmak için tırmanmanız gerek. Likya Yolu çamlar ve meşeler arasından neredeyse hiç turistin görmediği harabelere uzanır. Taşa oyulmuş bir boğa lahiti. Bir şehir suru. Kastellorizo'ya kadar uzanan Akdeniz manzarası. İki saat yürüyüş. Tam yalnızlık. Çok az gezginin elde ettiği ödül.",
+      "duration_s": 25,
+      "caption_en": "⛰️ Phellos — A city you must hike to.\n\nThe Lycian Way trail leads through pine forest to ruins almost no tourist sees. Carved bull sarcophagus. City walls. Mediterranean views to Kastellorizo island.\n\n2-hour hike from Kaş. Pure solitude.\n\n📍 kalkaninfo.com",
+      "caption_tr": "⛰️ Phellos — Yürüyerek ulaşılan bir şehir.\n\nLikya Yolu çam ormanından neredeyse hiç turistin görmediği harabelere uzanır. Oyulmuş boğa lahiti. Şehir surları. Kastellorizo adasına kadar Akdeniz manzarası.\n\nKaş'tan 2 saatlik yürüyüş. Saf yalnızlık.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#phellos", "#lycianway", "#hiking", "#kas", "#kalkan", "#lycia", "#turkeytravel", "#trekking", "#hiddenturkey", "#mountaincity", "#ancientcities", "#solo travel", "#hikingturkey", "#mediterranean", "#wanderlust"],
+      "music_mood": "ambient-nature-folk",
+      "footage_queries": [
+        {"platform": "pexels", "query": "lycian way hiking trail"},
+        {"platform": "pexels", "query": "mountain ancient ruins forest"},
+        {"platform": "youtube", "query": "lycian way phellos hike"},
+        {"platform": "youtube", "query": "mountain ancient city turkey"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["08:00", "18:00"],
+      "best_post_times_uk": ["06:00 GMT (morning inspiration)"],
+      "target_audience": ["UK hiking enthusiasts", "DE trekkers", "TR adventure seekers"]
+    },
+    {
+      "id": "myra",
+      "name": "Myra",
+      "voiceover_en": "Myra. The home of Saint Nicholas — the real one. The 4th century bishop whose generosity became the legend of Santa Claus. His church still stands, half-restored, half-haunted. Above the city, Lycian rock tombs carved like temple facades climb the cliff face. Below, a Roman theatre that once seated twelve thousand. One of Turkey's most extraordinary archaeological sites.",
+      "voiceover_tr": "Myra. Aziz Nikolas'ın memleketi — gerçek olanı. Cömertliği Noel Baba efsanesine dönüşen dördüncü yüzyıl piskoposu. Kilisesi hâlâ ayakta, yarı restore, yarı esrarengiz. Şehrin üstünde, tapınak cephesi gibi oyulmuş Likya kaya mezarları uçuruma tırmanır. Aşağıda, bir zamanlar on iki bin kişiyi ağırlayan Roma tiyatrosu. Türkiye'nin en olağanüstü arkeolojik alanlarından.",
+      "duration_s": 28,
+      "caption_en": "🎅 Myra — The real home of Saint Nicholas.\n\nThe 4th century bishop whose generosity became Santa Claus. His basilica still stands. Lycian rock tombs climb the cliff. 12,000-seat Roman theatre below.\n\n90 mins from Kalkan. Worth every minute.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🎅 Myra — Noel Baba'nın gerçek memleketi.\n\nCömertliği Santa Claus'a dönüşen 4. yy piskoposu. Bazilikası hâlâ ayakta. Likya kaya mezarları uçuruma tırmanır. Altta 12.000 kişilik Roma tiyatrosu.\n\nKalkan'a 90 dk. Her dakikası değer.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#myra", "#santaclaus", "#saintnicholas", "#kalkan", "#demre", "#lycia", "#rockcuttombs", "#unesco", "#turkeytravel", "#ancientcities", "#likya", "#noelbaba", "#christmasorigin", "#hiddenturkey", "#mediterranean"],
+      "music_mood": "epic-religious-cinematic",
+      "footage_queries": [
+        {"platform": "pexels", "query": "myra rock tombs drone"},
+        {"platform": "pexels", "query": "ancient roman theater turkey"},
+        {"platform": "youtube", "query": "myra antik kent demre drone"},
+        {"platform": "youtube", "query": "saint nicholas church myra"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["19:00", "13:00"],
+      "best_post_times_uk": ["17:00 GMT — and December 5-25 daily"],
+      "target_audience": ["UK Christmas-curious", "DE Christian history fans", "TR family travelers"]
+    },
+    {
+      "id": "andriake",
+      "name": "Andriake",
+      "voiceover_en": "Andriake. Once the harbour of Myra. Today, home to the Lycian Civilizations Museum — built around a 1,900-year-old Roman granary that fed the Mediterranean's grain trade. Inside: artefacts from every Lycian city. Outside: salt flats, flamingos, and a quiet beach. Most tourists never come here. They should.",
+      "voiceover_tr": "Andriake. Bir zamanlar Myra'nın limanı. Bugün, Likya Medeniyetleri Müzesi'ne ev sahipliği — Akdeniz tahıl ticaretini besleyen 1.900 yıllık bir Roma tahıl ambarı etrafında inşa edilmiş. İçeride: her Likya şehrinden eserler. Dışarıda: tuz düzlükleri, flamingolar ve sessiz bir kumsal. Çoğu turist buraya hiç gelmez. Gelmeli.",
+      "duration_s": 24,
+      "caption_en": "🌾 Andriake — Myra's ancient harbour, now a stunning museum.\n\nBuilt around a 1,900-year-old Roman granary that fed the Mediterranean. Inside: every Lycian city's artefacts. Outside: flamingos, salt flats, quiet beach.\n\nMost tourists miss this. Don't.\n\n📍 kalkaninfo.com",
+      "caption_tr": "🌾 Andriake — Myra'nın antik limanı, şimdi muhteşem bir müze.\n\nAkdeniz'i besleyen 1.900 yıllık Roma tahıl ambarı etrafında inşa edilmiş. İçeride: her Likya şehrinden eserler. Dışarıda: flamingolar, tuz düzlükleri, sessiz kumsal.\n\nÇoğu turist atlar. Sen atlama.\n\n📍 kalkaninfo.com",
+      "hashtags": ["#andriake", "#myra", "#kalkan", "#demre", "#lycia", "#lycianmuseum", "#romangranary", "#turkeytravel", "#ancientharbour", "#flamingos", "#museumtravel", "#hiddenturkey", "#likya", "#archaeologymuseum", "#mediterraneanhistory"],
+      "music_mood": "warm-discovery-piano",
+      "footage_queries": [
+        {"platform": "pexels", "query": "andriake granary drone"},
+        {"platform": "pexels", "query": "flamingos salt flats turkey"},
+        {"platform": "youtube", "query": "andriake likya muzesi drone"},
+        {"platform": "youtube", "query": "roman granary museum turkey"}
+      ],
+      "local_assets": [],
+      "best_post_times_tr": ["13:30", "20:30"],
+      "best_post_times_uk": ["11:30 GMT"],
+      "target_audience": ["UK museum lovers", "DE history+nature combos", "TR weekend explorers"]
+    }
+  ]
+}
