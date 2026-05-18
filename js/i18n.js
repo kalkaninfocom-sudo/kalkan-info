@@ -2,8 +2,8 @@
   'use strict';
 
   const STORAGE_KEY = 'lang';
-  const DEFAULT_LANG = 'en'; // Berkay default EN istiyor
-  const SUPPORTED = ['en', 'tr'];
+  const DEFAULT_LANG = 'en';
+  const SUPPORTED = ['en', 'tr', 'de', 'ru', 'fr'];
 
   function detectLang() {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -11,50 +11,75 @@
     return DEFAULT_LANG;
   }
 
+  // attr type → dataset key mapping
+  // For lang 'en': use data-en / data-en-html / etc.
+  // For lang 'tr': use data-tr (captured at runtime) or original
+  // For lang 'de'/'ru'/'fr': use data-de / data-ru / data-fr, fallback → en → tr
+  // Compose camelCase dataset key: ('en','html') → 'enHtml', ('de','') → 'de'
+  function dsKey(l, t) {
+    if (!t) return l;
+    return l + t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
+  // Get translated value for element, with fallback chain: target → en → tr
+  function getLangAttr(el, type, lang) {
+    if (lang === 'en') return el.dataset[dsKey('en', type)] || null;
+    if (lang === 'tr') return el.dataset[dsKey('tr', type)] || null;
+    // de/ru/fr: try target lang, then en, then tr
+    return el.dataset[dsKey(lang, type)]
+      || el.dataset[dsKey('en', type)]
+      || el.dataset[dsKey('tr', type)]
+      || null;
+  }
+
   function apply(lang) {
     document.documentElement.lang = lang;
 
-    // Text content: data-en="English text"
+    // Text content: data-en="English text" + data-de/ru/fr
     document.querySelectorAll('[data-en]').forEach(el => {
       if (!el.dataset.tr) {
-        // Orijinal Türkçe metni sakla — innerHTML değil, sadece textContent
-        // (child element içeren node'ları bozmayalım: data-en sadece pure-text node'larda kullanılmalı)
-        el.dataset.tr = el.textContent;
+        el.dataset.tr = el.textContent.trim();
       }
-      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.tr;
+      const val = getLangAttr(el, '', lang);
+      if (val !== null) el.textContent = val;
     });
 
-    // HTML content (rich): data-en-html="<b>English</b>"
+    // HTML content: data-en-html
     document.querySelectorAll('[data-en-html]').forEach(el => {
       if (!el.dataset.trHtml) el.dataset.trHtml = el.innerHTML;
-      el.innerHTML = (lang === 'en') ? el.dataset.enHtml : el.dataset.trHtml;
+      const val = getLangAttr(el, 'html', lang);
+      if (val !== null) el.innerHTML = val;
     });
 
-    // Placeholder: data-en-placeholder="Search..."
+    // Placeholder: data-en-placeholder
     document.querySelectorAll('[data-en-placeholder]').forEach(el => {
       if (!el.dataset.trPlaceholder) el.dataset.trPlaceholder = el.getAttribute('placeholder') || '';
-      el.setAttribute('placeholder', (lang === 'en') ? el.dataset.enPlaceholder : el.dataset.trPlaceholder);
+      const val = getLangAttr(el, 'placeholder', lang);
+      if (val !== null) el.setAttribute('placeholder', val);
     });
 
-    // Title attribute: data-en-title="..."
+    // Title attribute: data-en-title
     document.querySelectorAll('[data-en-title]').forEach(el => {
       if (!el.dataset.trTitle) el.dataset.trTitle = el.getAttribute('title') || '';
-      el.setAttribute('title', (lang === 'en') ? el.dataset.enTitle : el.dataset.trTitle);
+      const val = getLangAttr(el, 'title', lang);
+      if (val !== null) el.setAttribute('title', val);
     });
 
-    // Alt attribute: data-en-alt="..."
+    // Alt attribute: data-en-alt
     document.querySelectorAll('[data-en-alt]').forEach(el => {
       if (!el.dataset.trAlt) el.dataset.trAlt = el.getAttribute('alt') || '';
-      el.setAttribute('alt', (lang === 'en') ? el.dataset.enAlt : el.dataset.trAlt);
+      const val = getLangAttr(el, 'alt', lang);
+      if (val !== null) el.setAttribute('alt', val);
     });
 
-    // Aria-label: data-en-aria="..."
+    // Aria-label: data-en-aria
     document.querySelectorAll('[data-en-aria]').forEach(el => {
       if (!el.dataset.trAria) el.dataset.trAria = el.getAttribute('aria-label') || '';
-      el.setAttribute('aria-label', (lang === 'en') ? el.dataset.enAria : el.dataset.trAria);
+      const val = getLangAttr(el, 'aria', lang);
+      if (val !== null) el.setAttribute('aria-label', val);
     });
 
-    // EN-only elements: visible in EN, hidden in TR
+    // EN-only elements: visible in EN, hidden in others
     document.querySelectorAll('[data-en-only]').forEach(el => {
       el.style.display = (lang === 'en') ? '' : 'none';
     });
@@ -109,22 +134,21 @@
     el.innerHTML = `
       <button type="button" data-lang-toggle="en" title="English" aria-label="English">EN</button>
       <button type="button" data-lang-toggle="tr" title="Türkçe" aria-label="Türkçe">TR</button>
-      <button type="button" disabled title="Deutsch — yakında" aria-label="Deutsch (yakında)">DE</button>
-      <button type="button" disabled title="Русский — yakında" aria-label="Русский (yakında)">RU</button>
-      <button type="button" disabled title="Français — yakında" aria-label="Français (yakında)">FR</button>
+      <button type="button" data-lang-toggle="de" title="Deutsch" aria-label="Deutsch">DE</button>
+      <button type="button" data-lang-toggle="ru" title="Русский" aria-label="Русский">RU</button>
+      <button type="button" data-lang-toggle="fr" title="Français" aria-label="Français">FR</button>
     `;
     document.body.appendChild(el);
   }
 
   function bindToggleHandlers() {
-    // CSP nedeniyle inline onclick yok — addEventListener ile bağla
     document.querySelectorAll('[data-lang-toggle]').forEach(btn => {
       if (btn._i18nBound) return;
       btn._i18nBound = true;
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const target = btn.dataset.langToggle;
-        if (target === 'en' || target === 'tr') {
+        if (SUPPORTED.includes(target)) {
           window.KalkanI18n.set(target);
         }
       });
