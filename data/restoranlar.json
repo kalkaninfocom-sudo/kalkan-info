@@ -63,7 +63,8 @@
       ],
       "hours": "18:00–24:00",
       "reservation": true,
-      "featured": true
+      "featured": true,
+      "instagram": "https://www.instagram.com/auberginerestaurantkalkan/"
     },
     {
       "id": "korsan-kalamar",
@@ -88,7 +89,8 @@
       ],
       "hours": "12:00–24:00",
       "reservation": true,
-      "featured": true
+      "featured": true,
+      "instagram": "https://www.instagram.com/korsankalkan/"
     },
     {
       "id": "mussakka",
@@ -114,7 +116,9 @@
       ],
       "hours": "11:00–23:00",
       "reservation": true,
-      "featured": false
+      "featured": false,
+      "instagram": "https://www.instagram.com/mussakkarestaurant/",
+      "website": "https://www.instagram.com/mussakkarestaurant/"
     },
     {
       "id": "trio",
@@ -139,7 +143,8 @@
       ],
       "hours": "12:00–24:00",
       "reservation": false,
-      "featured": false
+      "featured": false,
+      "instagram": "https://www.instagram.com/triokalkan/"
     },
     {
       "id": "ala-kalkan",
@@ -189,7 +194,8 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/thefountainbar/"
     },
     {
       "id": "gusto-kalkan",
@@ -216,7 +222,8 @@
       "hours": "Sabah – Gece",
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/kalkangusto/"
     },
     {
       "id": "salt-pepper",
@@ -272,7 +279,9 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/kleocafebar/",
+      "website": "https://www.instagram.com/kleocafebar/"
     },
     {
       "id": "panorama-kalkan",
@@ -325,7 +334,9 @@
       "hours": "Breakfast / Lunch / Dinner",
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/aure_restaurant/",
+      "website": "https://www.instagram.com/aure_restaurant/"
     },
     {
       "id": "seaport-kalkan",
@@ -381,7 +392,9 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/",
+      "website": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/"
     },
     {
       "id": "rallzees-pub",
@@ -433,7 +446,9 @@
       "hours": null,
       "reservation": false,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/atakebab/",
+      "website": "https://www.instagram.com/atakebab/"
     },
     {
       "id": "marina-restaurant",
@@ -488,7 +503,9 @@
       "reservation": true,
       "featured": false,
       "source": "kartvizit",
-      "relatedTo": "mussakka"
+      "relatedTo": "mussakka",
+      "instagram": "https://www.instagram.com/the_mezzanine_bar/",
+      "website": "https://www.instagram.com/the_mezzanine_bar/"
     },
     {
       "id": "sherlock-holmes",
@@ -634,7 +651,8 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "instagram": "https://www.instagram.com/kalamaki_restaurant_kalkan/"
     }
   ]
 }
