@@ -306,8 +306,33 @@
         </div>
 
         <!-- CTA -->
-        <div style="padding:12px 14px 14px;margin-top:auto;">
-          ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0 0 8px;line-height:1.4;">ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.</p>` : ''}
+        <div style="padding:12px 14px 14px;margin-top:auto;display:flex;flex-direction:column;gap:6px;">
+          ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0;line-height:1.4;">ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.</p>` : ''}
+          ${p.verified && p.phoneRaw ? `<a href="tel:${esc(p.phoneRaw)}" style="
+            display:flex;align-items:center;justify-content:center;gap:7px;
+            background:#0a2e4c;color:#fff;
+            font-family:'Montserrat',system-ui,sans-serif;
+            font-weight:700;font-size:0.75rem;
+            padding:9px 14px;border-radius:10px;
+            text-decoration:none;
+            box-shadow:0 4px 14px -4px rgba(10,46,76,0.4);
+            transition:background 0.18s ease;
+          " onmouseover="this.style.background='#0d3a5f';" onmouseout="this.style.background='#0a2e4c';">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+            ${esc(p.phone || p.phoneRaw)}
+          </a>` : ''}
+          ${p.verified && p.mapsUrl ? `<a href="${esc(p.mapsUrl)}" target="_blank" rel="noopener" style="
+            display:flex;align-items:center;justify-content:center;gap:7px;
+            background:#fff;color:#0a2e4c;border:1.5px solid #cce0ee;
+            font-family:'Montserrat',system-ui,sans-serif;
+            font-weight:700;font-size:0.72rem;
+            padding:8px 14px;border-radius:10px;
+            text-decoration:none;
+            transition:background 0.18s ease;
+          " onmouseover="this.style.background='#f0f7ff';" onmouseout="this.style.background='#fff';">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Yol Tarifi
+          </a>` : ''}
           <a href="${waLink}" target="_blank" rel="noopener" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#16a34a;color:#fff;
@@ -321,7 +346,7 @@
           onmouseover="this.style.background='#15803d';this.style.boxShadow='0 6px 18px -4px rgba(22,163,74,0.55)';"
           onmouseout="this.style.background='#16a34a';this.style.boxShadow='0 4px 14px -4px rgba(22,163,74,0.4)';">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
-            ${p.verified ? 'WhatsApp ile İletişim' : "Concierge'e Sor"}
+            ${p.verified ? 'WhatsApp' : "Concierge'e Sor"}
           </a>
         </div>
 
