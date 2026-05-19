@@ -90,6 +90,11 @@
       btn.classList.toggle('lang-active', target === lang);
       btn.setAttribute('aria-pressed', String(target === lang));
     });
+
+    // Bildirim: dinamik JSON-render kart kodları bunu dinleyip yeniden render eder.
+    try {
+      document.dispatchEvent(new CustomEvent('kalkanlangchange', { detail: { lang } }));
+    } catch (e) { /* ignore */ }
   }
 
   window.KalkanI18n = {

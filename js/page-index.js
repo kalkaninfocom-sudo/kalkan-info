@@ -40,6 +40,16 @@
     KalkanData.load('restoranlar')
   ]);
 
+  // Cache provider counts once; needed for hizmet cards on every re-render.
+  const providerCounts = {};
+  try {
+    const provRes = await fetch(`data/hizmet-saglayicilari.json?t=${Date.now()}`);
+    const provData = await provRes.json();
+    Object.entries(provData.services || {}).forEach(([key, svc]) => {
+      providerCounts[key] = (svc.providers || []).length;
+    });
+  } catch(e) { /* graceful */ }
+
   // Eczane
   (async () => {
     let eczaneData = null;
@@ -141,44 +151,39 @@
       </a>`).join('');
   }
 
-  // Haberler (4)
-  const haberlerList = document.getElementById('haberler-list');
-  if (haberlerList) {
-    haberlerList.innerHTML = (haberler.items || []).slice(0,4).map(KalkanData.haberCard).join('');
+  // Dinamik JSON kartlarını dilden bağımsız olarak yeniden render eden tek fonksiyon.
+  // i18n.js dil değişince 'kalkanlangchange' yayınlar — burada yakalayıp tekrar çağırıyoruz.
+  function renderDynamicCards() {
+    const haberlerList = document.getElementById('haberler-list');
+    if (haberlerList) {
+      haberlerList.innerHTML = (haberler.items || []).slice(0,4).map(KalkanData.haberCard).join('');
+    }
+
+    const turlarList = document.getElementById('turlar-list');
+    if (turlarList) {
+      const featured = (turlar.items || []).filter(t => t.featured).slice(0,4);
+      const list = featured.length ? featured : (turlar.items || []).slice(0,4);
+      turlarList.innerHTML = list.map(KalkanData.turCard).join('');
+    }
+
+    const restoranlarList = document.getElementById('restoranlar-list');
+    if (restoranlarList) {
+      const featured = (restoranlar.items || []).filter(r => r.featured).slice(0,4);
+      const list = featured.length ? featured : (restoranlar.items || []).slice(0,4);
+      restoranlarList.innerHTML = list.map(KalkanData.restoranCard).join('');
+    }
+
+    const hizmetlerList = document.getElementById('hizmetler-list');
+    if (hizmetlerList) {
+      const enriched = (hizmetler.items || []).map(it => ({ ...it, providerCount: providerCounts[it.id] || 0 }));
+      const featured = enriched.filter(h => h.featured).slice(0,8);
+      const list = featured.length ? featured : enriched.slice(0,8);
+      hizmetlerList.innerHTML = list.map(KalkanData.hizmetCard).join('');
+    }
   }
 
-  // Turlar (featured 4)
-  const turlarList = document.getElementById('turlar-list');
-  if (turlarList) {
-    const featured = (turlar.items || []).filter(t => t.featured).slice(0,4);
-    const list = featured.length ? featured : (turlar.items || []).slice(0,4);
-    turlarList.innerHTML = list.map(KalkanData.turCard).join('');
-  }
-
-  // Restoranlar (featured 4)
-  const restoranlarList = document.getElementById('restoranlar-list');
-  if (restoranlarList) {
-    const featured = (restoranlar.items || []).filter(r => r.featured).slice(0,4);
-    const list = featured.length ? featured : (restoranlar.items || []).slice(0,4);
-    restoranlarList.innerHTML = list.map(KalkanData.restoranCard).join('');
-  }
-
-  // Hizmetler (featured 8)
-  const hizmetlerList = document.getElementById('hizmetler-list');
-  if (hizmetlerList) {
-    const providerCounts = {};
-    try {
-      const provRes = await fetch(`data/hizmet-saglayicilari.json?t=${Date.now()}`);
-      const provData = await provRes.json();
-      Object.entries(provData.services || {}).forEach(([key, svc]) => {
-        providerCounts[key] = (svc.providers || []).length;
-      });
-    } catch(e) { /* graceful */ }
-    const enriched = (hizmetler.items || []).map(it => ({ ...it, providerCount: providerCounts[it.id] || 0 }));
-    const featured = enriched.filter(h => h.featured).slice(0,8);
-    const list = featured.length ? featured : enriched.slice(0,8);
-    hizmetlerList.innerHTML = list.map(KalkanData.hizmetCard).join('');
-  }
+  renderDynamicCards();
+  document.addEventListener('kalkanlangchange', renderDynamicCards);
 })();
 
 // Today date + scroll-spy
