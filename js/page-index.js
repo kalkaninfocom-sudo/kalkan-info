@@ -33,10 +33,11 @@
 (async () => {
   function _esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
 
-  const [hizmetler, haberler, turlar] = await Promise.all([
+  const [hizmetler, haberler, turlar, restoranlar] = await Promise.all([
     KalkanData.load('hizmetler'),
     KalkanData.load('haberler'),
-    KalkanData.load('turlar')
+    KalkanData.load('turlar'),
+    KalkanData.load('restoranlar')
   ]);
 
   // Eczane
@@ -152,6 +153,14 @@
     const featured = (turlar.items || []).filter(t => t.featured).slice(0,4);
     const list = featured.length ? featured : (turlar.items || []).slice(0,4);
     turlarList.innerHTML = list.map(KalkanData.turCard).join('');
+  }
+
+  // Restoranlar (featured 4)
+  const restoranlarList = document.getElementById('restoranlar-list');
+  if (restoranlarList) {
+    const featured = (restoranlar.items || []).filter(r => r.featured).slice(0,4);
+    const list = featured.length ? featured : (restoranlar.items || []).slice(0,4);
+    restoranlarList.innerHTML = list.map(KalkanData.restoranCard).join('');
   }
 
   // Hizmetler (featured 8)
