@@ -1293,6 +1293,35 @@
           "contactVia": "direct"
         }
       ]
+    },
+    "postane": {
+      "title": "PTT (Postane)",
+      "icon": "📮",
+      "providers": [
+        {
+          "id": "ptt-kalkan",
+          "name": "PTT Kalkan Şubesi",
+          "type": "Kamu",
+          "rating": 4.3,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan merkezindeki PTT şubesi — posta, kargo, ödeme, EFT/havale, TC kimlik işlemleri.",
+          "specialties": [
+            "Posta/Kargo",
+            "Fatura ödeme",
+            "EFT/Havale",
+            "Resmi işlemler"
+          ],
+          "phone": null,
+          "phoneRaw": null,
+          "location": "Kalkan, Süleyman Yılmaz Cd., 07580 Kaş/Antalya",
+          "mapsUrl": "https://maps.app.goo.gl/buG5KZhtogP8sJA18",
+          "verified": true,
+          "featured": true,
+          "contactVia": "maps",
+          "contactNote": "Konum için Google Maps yol tarifi alın"
+        }
+      ]
     }
   }
 }
