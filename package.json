@@ -9,6 +9,7 @@
     "img:all": "npm run img:download && npm run img:replace"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.97.1",
     "@supabase/supabase-js": "^2.45.0"
   },
   "devDependencies": {
