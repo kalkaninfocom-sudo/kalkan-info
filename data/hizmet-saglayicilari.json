@@ -1322,6 +1322,36 @@
           "contactNote": "Konum için Google Maps yol tarifi alın"
         }
       ]
+    },
+    "araba-kiralama": {
+      "title": "Araç Kiralama",
+      "icon": "🚗",
+      "providers": [
+        {
+          "id": "rentacar-adda-tours",
+          "name": "Adda Tours Travel Agency & Rent A Car / Villa",
+          "type": "İşletme",
+          "rating": 4.6,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan merkezde tur, araç kiralama ve villa rezervasyonu. Çok yönlü acente — günlük/haftalık araç + tur paketleri.",
+          "specialties": [
+            "Araç kiralama",
+            "Tur acentesi",
+            "Villa rezervasyon",
+            "Transfer"
+          ],
+          "phone": "+90 242 844 36 10",
+          "phoneRaw": "02428443610",
+          "whatsapp": "+90 242 844 36 10",
+          "whatsappRaw": "902428443610",
+          "location": "Kalkan, Mustafa Kocakaya Cd. No:1, 07960 Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Adda+Tours+Kalkan+Mustafa+Kocakaya",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
     }
   }
 }
