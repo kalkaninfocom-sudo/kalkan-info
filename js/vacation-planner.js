@@ -307,6 +307,9 @@ function renderResult(data, formData, { stub, requestId } = {}) {
     rationaleEl.parentElement.appendChild(banner);
   }
 
+  // WhatsApp share intent + Web Share API — vacation_plan_wa
+  injectSharePlanCard(data, formData);
+
   // Local draft uyarısı + Concierge yönlendirmesi
   if (data.isLocalDraft && data.conciergeUrl) {
     const banner = document.createElement('div');
@@ -340,6 +343,118 @@ function renderResult(data, formData, { stub, requestId } = {}) {
     }
     if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('vacation_planner');
   } catch (e) {}
+}
+
+// ---------------------------------------------------------------------------
+// WhatsApp share intent — vacation plan
+// Mobile-first: Web Share API (native sheet) fallback → wa.me/?text=
+// ---------------------------------------------------------------------------
+const SHARE_LABELS = {
+  tr: { title: 'Planı paylaş', wa: 'WhatsApp\'tan paylaş', native: 'Cihazdan paylaş', intro: 'Kalkan tatil planımı paylaşıyorum' },
+  en: { title: 'Share plan', wa: 'Share on WhatsApp',      native: 'Share via device', intro: 'Sharing my Kalkan vacation plan' },
+  de: { title: 'Plan teilen', wa: 'Auf WhatsApp teilen',   native: 'Über Gerät teilen', intro: 'Ich teile meinen Kalkan-Urlaubsplan' },
+  ru: { title: 'Поделиться планом', wa: 'Поделиться в WhatsApp', native: 'Через устройство', intro: 'Делюсь моим планом отпуска в Калкане' },
+  fr: { title: 'Partager le plan', wa: 'Partager via WhatsApp',  native: 'Partager via l\'appareil', intro: 'Je partage mon plan de vacances à Kalkan' }
+};
+
+function shareLang() {
+  try {
+    if (window.KalkanI18n && typeof window.KalkanI18n.get === 'function') {
+      const l = window.KalkanI18n.get();
+      if (SHARE_LABELS[l]) return l;
+    }
+  } catch (e) {}
+  try {
+    const stored = localStorage.getItem('lang');
+    if (stored && SHARE_LABELS[stored]) return stored;
+  } catch (e) {}
+  return 'tr';
+}
+
+function buildShareText(data, formData) {
+  const lang = shareLang();
+  const label = SHARE_LABELS[lang];
+  const nights = Math.max(1, Math.round((new Date(formData.dateEnd) - new Date(formData.dateStart)) / 86400000));
+  const totalGuests = (formData.adults || 0) + (formData.children || 0);
+  const total = data.totalPrice || data.total_price;
+  const totalLine = total ? `\n${currencySymbol(formData.currency)} ${Number(total).toLocaleString('tr-TR')}` : '';
+  const days = data.days || data.timeline || [];
+  const acts = days
+    .flatMap(d => (d.items || [])
+      .filter(i => i.type === 'activity' || i.type === 'beach')
+      .map(i => `• ${i.title}`))
+    .slice(0, 4)
+    .join('\n');
+  const actBlock = acts ? `\n\n${acts}` : '';
+  return `🌅 ${label.intro}:\n${nights} ${lang === 'tr' ? 'gece' : lang === 'en' ? 'nights' : lang === 'de' ? 'Nächte' : lang === 'ru' ? 'ночей' : 'nuits'} · ${totalGuests} ${lang === 'tr' ? 'kişi' : lang === 'en' ? 'guests' : lang === 'de' ? 'Gäste' : lang === 'ru' ? 'гостей' : 'invités'}${totalLine}${actBlock}\n\n→ https://kalkaninfo.com/tatil-asistani.html?utm_source=share&utm_medium=wa&utm_campaign=vacation_plan`;
+}
+
+function injectSharePlanCard(data, formData) {
+  const rationaleEl = document.getElementById('result-rationale');
+  if (!rationaleEl) return;
+  // Avoid double-mount on regenerate
+  const existing = document.getElementById('ki-share-plan-card');
+  if (existing) existing.remove();
+
+  const lang = shareLang();
+  const label = SHARE_LABELS[lang];
+  const text = buildShareText(data, formData);
+  const waUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+  const supportsShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
+
+  const card = document.createElement('div');
+  card.id = 'ki-share-plan-card';
+  card.style.cssText = 'margin-top:14px;padding:14px 18px;background:linear-gradient(135deg,#e8f4ff 0%,#fff8ed 100%);border:1.5px solid rgba(244,181,61,0.45);border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;';
+  card.innerHTML = `
+    <div style="flex:1;min-width:200px;">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:700;color:#0a2e4c;font-size:14px;">📤 ${escapeText(label.title)}</div>
+      <div style="font-size:12px;color:#5d97c4;margin-top:2px;">${escapeText(label.intro)} →</div>
+    </div>
+    <a id="ki-share-wa" href="${waUrl}" target="_blank" rel="noopener"
+       style="background:#25D366;color:white;padding:10px 16px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+      ${escapeText(label.wa)}
+    </a>
+    ${supportsShare ? `<button id="ki-share-native" type="button"
+       style="background:#fff;color:#0a2e4c;border:1.5px solid #cce0ee;padding:10px 14px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      ${escapeText(label.native)}
+    </button>` : ''}
+  `;
+
+  rationaleEl.parentElement.appendChild(card);
+
+  const waBtn = card.querySelector('#ki-share-wa');
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      try {
+        if (window.plausibleEvent) window.plausibleEvent('share', { dest: 'vacation_plan_wa', method: 'wa_link' });
+      } catch (e) {}
+    });
+  }
+  const nativeBtn = card.querySelector('#ki-share-native');
+  if (nativeBtn && supportsShare) {
+    nativeBtn.addEventListener('click', async () => {
+      try {
+        await navigator.share({
+          title: 'Kalkan Info — Tatil Planı',
+          text: text,
+          url: 'https://kalkaninfo.com/tatil-asistani.html?utm_source=share&utm_medium=native&utm_campaign=vacation_plan'
+        });
+        try {
+          if (window.plausibleEvent) window.plausibleEvent('share', { dest: 'vacation_plan_wa', method: 'web_share' });
+        } catch (e) {}
+      } catch (err) {
+        // user cancelled or unsupported — silent
+      }
+    });
+  }
+}
+
+function escapeText(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
 }
 
 // Bütçeyi 0-50k / 50k-100k / 100k-250k / 250k+ TRY benzeri band'a düşür (PII koruması + segmentasyon)

@@ -234,9 +234,39 @@
   },
   "hotPaths": [
     {
+      "path": "",
+      "accessCount": 76,
+      "lastAccessed": 1779224292312,
+      "type": "directory"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 43,
+      "lastAccessed": 1779224301617,
+      "type": "directory"
+    },
+    {
       "path": "antik-kentler.html",
-      "accessCount": 21,
-      "lastAccessed": 1778953263831,
+      "accessCount": 32,
+      "lastAccessed": 1779224217834,
+      "type": "file"
+    },
+    {
+      "path": "js\\render.js",
+      "accessCount": 31,
+      "lastAccessed": 1779224187215,
+      "type": "file"
+    },
+    {
+      "path": "js\\i18n.js",
+      "accessCount": 18,
+      "lastAccessed": 1779224278735,
+      "type": "file"
+    },
+    {
+      "path": "js\\concierge-modal.js",
+      "accessCount": 17,
+      "lastAccessed": 1779224320549,
       "type": "file"
     },
     {
@@ -246,51 +276,93 @@
       "type": "file"
     },
     {
-      "path": "turlar.html",
-      "accessCount": 7,
-      "lastAccessed": 1778953134872,
+      "path": "data\\restoranlar.json",
+      "accessCount": 16,
+      "lastAccessed": 1779221930951,
       "type": "file"
     },
     {
-      "path": "vercel.json",
-      "accessCount": 5,
-      "lastAccessed": 1779020266450,
+      "path": "js\\page-antik-kentler.js",
+      "accessCount": 10,
+      "lastAccessed": 1779224188359,
       "type": "file"
     },
     {
       "path": "tatil-asistani.html",
-      "accessCount": 4,
-      "lastAccessed": 1778953258447,
+      "accessCount": 10,
+      "lastAccessed": 1779224211320,
       "type": "file"
     },
     {
-      "path": "haberler.html",
-      "accessCount": 3,
-      "lastAccessed": 1778953251872,
+      "path": "vercel.json",
+      "accessCount": 10,
+      "lastAccessed": 1779224350424,
+      "type": "file"
+    },
+    {
+      "path": "js\\page-index.js",
+      "accessCount": 9,
+      "lastAccessed": 1779217416580,
+      "type": "file"
+    },
+    {
+      "path": "turlar.html",
+      "accessCount": 9,
+      "lastAccessed": 1779224216681,
+      "type": "file"
+    },
+    {
+      "path": "js",
+      "accessCount": 8,
+      "lastAccessed": 1779223026295,
+      "type": "directory"
+    },
+    {
+      "path": "data\\hizmetler.json",
+      "accessCount": 7,
+      "lastAccessed": 1779219825313,
+      "type": "directory"
+    },
+    {
+      "path": "profil.html",
+      "accessCount": 7,
+      "lastAccessed": 1779224219683,
+      "type": "file"
+    },
+    {
+      "path": "hizmet-ekle.html",
+      "accessCount": 6,
+      "lastAccessed": 1779224300587,
+      "type": "file"
+    },
+    {
+      "path": "data\\plajlar.json",
+      "accessCount": 5,
+      "lastAccessed": 1779217022129,
       "type": "file"
     },
     {
       "path": "aktiviteler.html",
-      "accessCount": 3,
-      "lastAccessed": 1778953253034,
+      "accessCount": 5,
+      "lastAccessed": 1779224130898,
+      "type": "file"
+    },
+    {
+      "path": "js\\bottom-nav.js",
+      "accessCount": 5,
+      "lastAccessed": 1779224187459,
       "type": "file"
     },
     {
       "path": "js\\instagram-feed.js",
-      "accessCount": 3,
-      "lastAccessed": 1779021530215,
+      "accessCount": 4,
+      "lastAccessed": 1779221951784,
       "type": "file"
     },
     {
-      "path": "js\\concierge-modal.js",
-      "accessCount": 3,
-      "lastAccessed": 1779022374588,
-      "type": "file"
-    },
-    {
-      "path": "profil.html",
-      "accessCount": 3,
-      "lastAccessed": 1779042940471,
+      "path": "haberler.html",
+      "accessCount": 4,
+      "lastAccessed": 1779224129372,
       "type": "file"
     },
     {
@@ -300,21 +372,21 @@
       "type": "file"
     },
     {
+      "path": "admin.html",
+      "accessCount": 3,
+      "lastAccessed": 1779222767556,
+      "type": "file"
+    },
+    {
+      "path": "ilan-ver.html",
+      "accessCount": 3,
+      "lastAccessed": 1779222788184,
+      "type": "file"
+    },
+    {
       "path": "hizmetler.html",
-      "accessCount": 2,
-      "lastAccessed": 1778953255276,
-      "type": "file"
-    },
-    {
-      "path": "js\\i18n.js",
-      "accessCount": 2,
-      "lastAccessed": 1779007940693,
-      "type": "file"
-    },
-    {
-      "path": "js\\render.js",
-      "accessCount": 2,
-      "lastAccessed": 1779008433782,
+      "accessCount": 3,
+      "lastAccessed": 1779224124692,
       "type": "file"
     },
     {
@@ -330,21 +402,15 @@
       "type": "file"
     },
     {
-      "path": "js\\page-antik-kentler.js",
-      "accessCount": 1,
-      "lastAccessed": 1778953075186,
-      "type": "file"
-    },
-    {
       "path": "sw.js",
-      "accessCount": 1,
-      "lastAccessed": 1778953182189,
+      "accessCount": 2,
+      "lastAccessed": 1779219718667,
       "type": "file"
     },
     {
-      "path": "js\\bottom-nav.js",
-      "accessCount": 1,
-      "lastAccessed": 1778961110938,
+      "path": "data-deletion.html",
+      "accessCount": 2,
+      "lastAccessed": 1779222790683,
       "type": "file"
     },
     {
@@ -360,21 +426,9 @@
       "type": "file"
     },
     {
-      "path": "data-deletion.html",
-      "accessCount": 1,
-      "lastAccessed": 1779009886902,
-      "type": "file"
-    },
-    {
       "path": "docs\\META_SETUP.md",
       "accessCount": 1,
       "lastAccessed": 1779018182162,
-      "type": "file"
-    },
-    {
-      "path": "admin.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022221710,
       "type": "file"
     },
     {
@@ -384,27 +438,9 @@
       "type": "file"
     },
     {
-      "path": "hizmet-ekle.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022229811,
-      "type": "file"
-    },
-    {
-      "path": "ilan-ver.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022235808,
-      "type": "file"
-    },
-    {
       "path": "ilanlar.html",
       "accessCount": 1,
       "lastAccessed": 1779022235978,
-      "type": "file"
-    },
-    {
-      "path": "js\\page-index.js",
-      "accessCount": 1,
-      "lastAccessed": 1779022355357,
       "type": "file"
     },
     {
@@ -417,6 +453,84 @@
       "path": "scripts\\inspect-user.mjs",
       "accessCount": 1,
       "lastAccessed": 1779043825120,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\19c73f523505.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210482516,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\d20a5ad4db52.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210482646,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\0b7fbfd9ef03.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210484217,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\6de20d34b560.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210484265,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\6e0cce00d688.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210485146,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\410e0c55cd3c.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210485901,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\71f422b57114.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210486767,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\9886970e8637.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210486972,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\d6b3d0390f4e.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210487832,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\341589c526a5.webp",
+      "accessCount": 1,
+      "lastAccessed": 1779210488000,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\patara-wm.jpg",
+      "accessCount": 1,
+      "lastAccessed": 1779212748163,
+      "type": "file"
+    },
+    {
+      "path": "assets\\img\\kaputas-wm.jpg",
+      "accessCount": 1,
+      "lastAccessed": 1779212749455,
+      "type": "file"
+    },
+    {
+      "path": "scripts\\_fetch-beach-images.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1779213812615,
       "type": "file"
     }
   ],

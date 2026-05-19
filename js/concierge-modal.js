@@ -11,11 +11,158 @@
   const DATA_URL = '/data/concierge.json';
   let agents = null;
   let backdrop = null;
+  let lastContext = null; // { context, item }
 
   function escapeHTML(s) {
     return String(s ?? '').replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     })[c]);
+  }
+
+  // -----------------------------------------------------------------
+  // Page-aware concierge message templates (5-lang × 6 categories)
+  // -----------------------------------------------------------------
+  const MSG_TEMPLATES = {
+    restoran: {
+      tr: 'Merhaba! {item} için bu akşam masa müsaitliği sorabilir misiniz?',
+      en: 'Hi! Could you check tonight\'s table availability at {item}?',
+      de: 'Hallo! Könnten Sie die Tischverfügbarkeit für heute Abend bei {item} prüfen?',
+      ru: 'Здравствуйте! Можете проверить наличие столика на сегодня вечером в {item}?',
+      fr: 'Bonjour ! Pourriez-vous vérifier la disponibilité d\'une table ce soir à {item} ?'
+    },
+    villa: {
+      tr: 'Merhaba! {item} villasının uygun tarihler için müsait olup olmadığını öğrenebilir miyim?',
+      en: 'Hi! Could you let me know if {item} villa is available for my dates?',
+      de: 'Hallo! Können Sie mir mitteilen, ob die Villa {item} für meine Daten verfügbar ist?',
+      ru: 'Здравствуйте! Могли бы вы сообщить, доступна ли вилла {item} на нужные мне даты?',
+      fr: 'Bonjour ! Pouvez-vous me dire si la villa {item} est disponible pour mes dates ?'
+    },
+    plaj: {
+      tr: 'Merhaba! {item} için bilgi/şezlong rezervasyonu istiyorum.',
+      en: 'Hi! I\'d like information / a sunbed reservation for {item}.',
+      de: 'Hallo! Ich hätte gerne Informationen / eine Liegestuhl-Reservierung für {item}.',
+      ru: 'Здравствуйте! Хочу узнать информацию / забронировать шезлонг на {item}.',
+      fr: 'Bonjour ! Je souhaite des informations / une réservation de transat pour {item}.'
+    },
+    antik: {
+      tr: 'Merhaba! {item} için günlük tur veya rehber organize edebilir misiniz?',
+      en: 'Hi! Could you arrange a day tour or guide for {item}?',
+      de: 'Hallo! Können Sie eine Tagestour oder einen Reiseführer für {item} organisieren?',
+      ru: 'Здравствуйте! Можете организовать однодневный тур или гида для {item}?',
+      fr: 'Bonjour ! Pourriez-vous organiser une excursion ou un guide pour {item} ?'
+    },
+    tur: {
+      tr: 'Merhaba! {item} turuna katılım ve fiyat sorabilir miyim?',
+      en: 'Hi! Could you share details and price for the {item} tour?',
+      de: 'Hallo! Können Sie mir Details und Preis für die Tour {item} mitteilen?',
+      ru: 'Здравствуйте! Расскажите, пожалуйста, о туре {item} — детали и цена.',
+      fr: 'Bonjour ! Pouvez-vous me donner les détails et le prix du tour {item} ?'
+    },
+    genel: {
+      tr: 'Merhaba Kalkan Info! Konaklama / restoran / aktivite önerisi için yardımınızı rica ediyorum.',
+      en: 'Hi Kalkan Info! I\'d love your help with accommodation / restaurant / activity recommendations.',
+      de: 'Hallo Kalkan Info! Ich hätte gerne Ihre Empfehlungen für Unterkunft / Restaurant / Aktivitäten.',
+      ru: 'Здравствуйте, Kalkan Info! Помогите, пожалуйста, с рекомендациями по жилью / ресторанам / активностям.',
+      fr: 'Bonjour Kalkan Info ! J\'aimerais votre aide pour des recommandations d\'hébergement / restaurant / activité.'
+    }
+  };
+
+  // Replace generic version (no item name) — drops "{item}" placeholders.
+  function genericFallback(context, lang) {
+    const generic = {
+      restoran: {
+        tr: 'Merhaba! Restoran önerisi ve masa müsaitliği için yardımınızı rica ediyorum.',
+        en: 'Hi! I\'d love a restaurant recommendation and table availability help.',
+        de: 'Hallo! Ich hätte gerne eine Restaurantempfehlung und Hilfe bei der Tischverfügbarkeit.',
+        ru: 'Здравствуйте! Прошу помощи с рекомендацией ресторана и наличием столика.',
+        fr: 'Bonjour ! J\'aimerais une recommandation de restaurant et de l\'aide pour la disponibilité.'
+      },
+      villa: {
+        tr: 'Merhaba! Tarihlerime uygun villa önerisi rica ediyorum.',
+        en: 'Hi! Could you suggest a villa that matches my dates?',
+        de: 'Hallo! Können Sie eine Villa für meine Daten empfehlen?',
+        ru: 'Здравствуйте! Подскажите, пожалуйста, виллу на нужные мне даты.',
+        fr: 'Bonjour ! Pouvez-vous me suggérer une villa pour mes dates ?'
+      },
+      plaj: {
+        tr: 'Merhaba! Plaj önerisi ve şezlong rezervasyonu hakkında bilgi rica ediyorum.',
+        en: 'Hi! I\'d like beach recommendations and sunbed reservation info.',
+        de: 'Hallo! Ich hätte gerne Strandempfehlungen und Infos zur Liegestuhl-Reservierung.',
+        ru: 'Здравствуйте! Прошу подсказать пляж и информацию о бронировании шезлонгов.',
+        fr: 'Bonjour ! J\'aimerais des recommandations de plages et infos sur les transats.'
+      },
+      antik: {
+        tr: 'Merhaba! Antik kentler için günlük tur / rehber organize edebilir misiniz?',
+        en: 'Hi! Could you arrange a day tour / guide for the ancient cities?',
+        de: 'Hallo! Können Sie eine Tagestour / einen Reiseführer für die antiken Städte organisieren?',
+        ru: 'Здравствуйте! Можете организовать однодневный тур / гида по античным городам?',
+        fr: 'Bonjour ! Pouvez-vous organiser une excursion / un guide pour les cités antiques ?'
+      },
+      tur: {
+        tr: 'Merhaba! Bu hafta hangi tur tarihte var? Bilgi ve fiyat rica ediyorum.',
+        en: 'Hi! Which tours run this week — could you share details and price?',
+        de: 'Hallo! Welche Touren laufen diese Woche — Details und Preis bitte?',
+        ru: 'Здравствуйте! Какие туры есть на этой неделе — детали и цена?',
+        fr: 'Bonjour ! Quels tours sont prévus cette semaine — détails et prix svp ?'
+      },
+      genel: MSG_TEMPLATES.genel[lang] ? null : null // handled by MSG_TEMPLATES.genel
+    };
+    const row = generic[context];
+    if (!row) return MSG_TEMPLATES.genel[lang] || MSG_TEMPLATES.genel.tr;
+    return row[lang] || row.tr || MSG_TEMPLATES.genel.tr;
+  }
+
+  function currentLang() {
+    try {
+      if (window.KalkanI18n && typeof window.KalkanI18n.get === 'function') {
+        const l = window.KalkanI18n.get();
+        if (l) return l;
+      }
+    } catch (e) {}
+    try {
+      const stored = localStorage.getItem('lang');
+      if (stored) return stored;
+    } catch (e) {}
+    return document.documentElement.lang || 'tr';
+  }
+
+  // Read context from trigger element or page-level <body data-concierge-context>
+  function readContext(triggerEl) {
+    let context = null, item = null;
+    if (triggerEl && triggerEl.closest) {
+      const ctxEl = triggerEl.closest('[data-concierge-context]');
+      if (ctxEl) {
+        context = ctxEl.getAttribute('data-concierge-context');
+        item = ctxEl.getAttribute('data-concierge-item') || null;
+      }
+    }
+    if (!context) {
+      const pageCtx = document.body && document.body.getAttribute('data-concierge-context');
+      if (pageCtx) context = pageCtx;
+    }
+    if (!context) {
+      // Infer from path
+      const path = (location.pathname || '').toLowerCase();
+      if (/restoran/.test(path)) context = 'restoran';
+      else if (/villa/.test(path)) context = 'villa';
+      else if (/plaj/.test(path)) context = 'plaj';
+      else if (/antik-kentler/.test(path)) context = 'antik';
+      else if (/turlar/.test(path)) context = 'tur';
+      else context = 'genel';
+    }
+    return { context, item };
+  }
+
+  function buildMessage(context, item) {
+    const lang = currentLang();
+    const supported = ['tr', 'en', 'de', 'ru', 'fr'];
+    const useLang = supported.includes(lang) ? lang : 'tr';
+    if (!MSG_TEMPLATES[context]) context = 'genel';
+    if (item && MSG_TEMPLATES[context][useLang]) {
+      const tpl = MSG_TEMPLATES[context][useLang] || MSG_TEMPLATES[context].tr;
+      return tpl.replace('{item}', item);
+    }
+    return genericFallback(context, useLang);
   }
 
   async function loadAgents() {
@@ -113,7 +260,11 @@
   function buildAgentCard(a) {
     const card = document.createElement('a');
     const available = a.available !== false && !!a.whatsappRaw;
-    const msg = encodeURIComponent(a.defaultMessage || 'Merhaba!');
+    // Page-aware pre-fill: derives from current page/trigger context.
+    // Falls back to agent.defaultMessage if context build returns empty.
+    const ctx = lastContext || { context: 'genel', item: null };
+    const dynamicText = buildMessage(ctx.context, ctx.item) || a.defaultMessage || 'Merhaba!';
+    const msg = encodeURIComponent(dynamicText);
     const href = available
       ? `https://wa.me/${a.whatsappRaw}?text=${msg}`
       : '#';
@@ -206,21 +357,32 @@
 
   async function open(opts) {
     if (backdrop) return;
+    // Capture context from trigger or opts (programmatic openers can pass {context,item})
+    const trigger = (opts && opts.trigger) || null;
+    if (opts && (opts.context || opts.item)) {
+      lastContext = { context: opts.context || 'genel', item: opts.item || null };
+    } else {
+      lastContext = readContext(trigger);
+    }
     fireEv('concierge_open', {
       source: (opts && opts.source) || 'unknown',
-      page: location.pathname
+      page: location.pathname,
+      context: lastContext.context || 'genel',
+      has_item: lastContext.item ? '1' : '0'
     });
     const list = await loadAgents();
     if (!list.length) {
-      // Fallback — default Berkay WA aç
+      // Fallback — context-aware default Berkay WA
+      const fallbackMsg = encodeURIComponent(buildMessage(lastContext.context, lastContext.item));
       fireEv('wa_click', {
         provider_id: 'default',
         page_url: location.pathname,
         agent: 'Berkay',
-        source: 'concierge_fallback'
+        source: 'concierge_fallback',
+        context: lastContext.context || 'genel'
       });
       try { if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('concierge'); } catch (e) {}
-      window.open('https://wa.me/905306650794?text=Merhaba+Kalkan+Info', '_blank', 'noopener');
+      window.open(`https://wa.me/905306650794?text=${fallbackMsg}`, '_blank', 'noopener');
       return;
     }
     build(list);
@@ -235,7 +397,7 @@
         e.preventDefault();
         const src = el.getAttribute('data-concierge-source')
           || (el.id === 'concierge' ? 'floating_button' : 'inline_link');
-        open({ source: src });
+        open({ source: src, trigger: el });
       });
     });
   }
