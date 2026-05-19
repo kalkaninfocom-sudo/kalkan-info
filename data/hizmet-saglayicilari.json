@@ -1112,6 +1112,128 @@
           "defaultMessage": "Merhaba Faruk Hoca! Kalkan Info üzerinden ulaşıyorum, tenis dersi almak istiyorum. Müsait olduğunuz programlar ve kurs detayları hakkında bilgi alabilir miyim?"
         }
       ]
+    },
+    "kuafor-bayan": {
+      "title": "Bayan Kuaförleri",
+      "icon": "💇",
+      "providers": [
+        {
+          "id": "kuafor-chic",
+          "name": "Chic Hairdresser — İpek Yuvalıoğlu",
+          "type": "İşletme",
+          "rating": 4.8,
+          "reviewCount": 0,
+          "image": "/assets/img/chic-hairdresser-card.jpg",
+          "gallery": [
+            "/assets/img/chic-hairdresser-card.jpg",
+            "/assets/img/chic-hairdresser-services.jpg"
+          ],
+          "summary": "Kalkan merkezde tam donanımlı bayan kuaförü. Saç bakımı, manikür, pedikür, kalıcı makyaj, microblading ve daha fazlası.",
+          "specialties": [
+            "Saç Kesim",
+            "Keratin Care",
+            "Microblading",
+            "Manikür/Pedikür",
+            "Hair Extension",
+            "Tırnak"
+          ],
+          "experience": "—",
+          "phone": "+90 507 428 21 86",
+          "phoneRaw": "05074282186",
+          "whatsapp": "+90 507 428 21 86",
+          "whatsappRaw": "905074282186",
+          "location": "Kalkan Mah. Hasan Altan Cad. 2 Nolu Sokak, Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chic+Hairdresser+Kalkan+Hasan+Altan",
+          "instagram": "https://www.instagram.com/chic._hairdresser/",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
+    },
+    "su-bayi": {
+      "title": "Su Bayisi",
+      "icon": "💧",
+      "providers": [
+        {
+          "id": "su-kalkan-ipragaz",
+          "name": "Kalkan İpragaz & Pınar Su Bayisi (Ateş Ticaret)",
+          "type": "İşletme",
+          "rating": 4.7,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan bölgesi Pınar Su damacana servisi. Eve/villaya teslimat.",
+          "specialties": [
+            "Pınar Su",
+            "19L damacana",
+            "Eve teslimat"
+          ],
+          "phone": "+90 544 836 13 21",
+          "phoneRaw": "05448361321",
+          "whatsapp": "+90 544 836 13 21",
+          "whatsappRaw": "905448361321",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
+    },
+    "tup-bayi": {
+      "title": "Tüp Bayisi",
+      "icon": "🔥",
+      "providers": [
+        {
+          "id": "tup-kalkan-ipragaz",
+          "name": "Kalkan İpragaz Tüp Bayisi (Ateş Ticaret)",
+          "type": "İşletme",
+          "rating": 4.7,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan İpragaz tüp bayisi. Eve/villaya teslimat.",
+          "specialties": [
+            "İpragaz tüp",
+            "Mutfak tüpü",
+            "Eve teslimat"
+          ],
+          "phone": "+90 544 836 13 21",
+          "phoneRaw": "05448361321",
+          "whatsapp": "+90 544 836 13 21",
+          "whatsappRaw": "905448361321",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
+    },
+    "balikci": {
+      "title": "Balıkçı",
+      "icon": "🐟",
+      "providers": [
+        {
+          "id": "balikci-kalkan",
+          "name": "Kalkan Balıkçılık",
+          "type": "İşletme",
+          "rating": 4.6,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan merkezde günlük taze balık satışı. Mevsim balıkları ve deniz ürünleri.",
+          "specialties": [
+            "Mevsim balıkları",
+            "Levrek",
+            "Çipura",
+            "Kalamar"
+          ],
+          "phone": "+90 242 844 38 50",
+          "phoneRaw": "02428443850",
+          "location": "Kalkan, Şehitler Cd., 07580 Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kalkan+Balikcilik+Sehitler+Caddesi",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
     }
   }
 }
