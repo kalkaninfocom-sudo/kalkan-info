@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Restoran & Bar",
-    "subtitle": "Kalkan'in en iyi restoran, kafe ve barlari — Harbor Lights + 4 klasik + 18 kartvizit + Ziizipizza",
+    "subtitle": "Kalkan'in en iyi restoran, kafe, bar ve gece kulupleri — 24 mekan + 3 gece kulubu",
     "updated": "2026-05-19"
   },
   "categories": [
@@ -9,7 +9,8 @@
     "Türk Mutfağı",
     "Deniz Ürünleri",
     "Dünya Mutfağı",
-    "Pub & Lounge"
+    "Pub & Lounge",
+    "Gece Kulübü"
   ],
   "items": [
     {
@@ -680,6 +681,81 @@
       "reservation": true,
       "featured": false,
       "source": "instagram"
+    },
+    {
+      "id": "club-chocolate-kalkan",
+      "name": "Chocolate Club Kalkan",
+      "category": "Gece Kulübü",
+      "cuisine": "Bar & Gece Eğlencesi",
+      "priceRange": "₺₺₺",
+      "rating": 4.6,
+      "location": "Kalkan Merkez",
+      "phone": null,
+      "website": "https://www.instagram.com/clubchocolatekalkan/",
+      "instagram": "https://www.instagram.com/clubchocolatekalkan/",
+      "image": "/assets/img/club-chocolate-hero.webp",
+      "gallery": [
+        "/assets/img/club-chocolate-hero.webp"
+      ],
+      "summary": "Kalkan'ın efsane gece kulüplerinden — canlı DJ performansları, premium kokteyl seçenekleri ve enerjik atmosfer.",
+      "specialties": [
+        "Premium Kokteyl",
+        "DJ Performans",
+        "Dans Pisti"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": true
+    },
+    {
+      "id": "club-mojito",
+      "name": "Club Mojito",
+      "category": "Gece Kulübü",
+      "cuisine": "Bar & Cocktail",
+      "priceRange": "₺₺",
+      "rating": 4.4,
+      "location": "Kalkan Merkez",
+      "phone": null,
+      "website": "https://www.instagram.com/clubmojito/",
+      "instagram": "https://www.instagram.com/clubmojito/",
+      "image": "/assets/img/club-mojito-hero.webp",
+      "gallery": [
+        "/assets/img/club-mojito-hero.webp"
+      ],
+      "summary": "Kalkan'ın renkli kokteyl barı — taze meyveli mojitolar, samimi atmosfer ve sahil esintisi.",
+      "specialties": [
+        "Mojito",
+        "Tropikal Kokteyl",
+        "Canlı Müzik"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": true
+    },
+    {
+      "id": "noema-community",
+      "name": "Noema Community",
+      "category": "Gece Kulübü",
+      "cuisine": "Lounge & Music Club",
+      "priceRange": "₺₺₺",
+      "rating": 4.7,
+      "location": "Kalkan Merkez",
+      "phone": null,
+      "website": "https://www.instagram.com/noemacommunity/",
+      "instagram": "https://www.instagram.com/noemacommunity/",
+      "image": "/assets/img/noema-hero.webp",
+      "gallery": [
+        "/assets/img/noema-hero.webp"
+      ],
+      "summary": "Modern lounge konsepti — house ve electronic müzik seçkisi, tasarım iç mekan, premium içecek menüsü.",
+      "specialties": [
+        "House Music",
+        "Lounge",
+        "Premium Bar"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": true
     }
   ]
 }
