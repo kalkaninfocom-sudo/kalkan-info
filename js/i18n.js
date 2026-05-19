@@ -5,7 +5,24 @@
   const DEFAULT_LANG = 'en';
   const SUPPORTED = ['en', 'tr', 'de', 'ru', 'fr'];
 
+  // ?lang=xx query param desteği (hreflang SEO için)
+  // TODO: Multilang URL prefix (`/en/villalar.html`) için statik build script gerek — Aşama 3'te.
+  function detectQueryLang() {
+    try {
+      const params = new URLSearchParams(location.search);
+      const q = params.get('lang');
+      if (q && SUPPORTED.includes(q)) return q;
+    } catch (e) {}
+    return null;
+  }
+
   function detectLang() {
+    // Öncelik: query param > localStorage > default
+    const fromQuery = detectQueryLang();
+    if (fromQuery) {
+      try { localStorage.setItem(STORAGE_KEY, fromQuery); } catch (e) {}
+      return fromQuery;
+    }
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED.includes(stored)) return stored;
     return DEFAULT_LANG;
