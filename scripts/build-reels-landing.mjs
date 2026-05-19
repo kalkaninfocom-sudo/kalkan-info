@@ -22,7 +22,7 @@ const ROOT = resolve(__dirname, '..');
 const DATA = resolve(ROOT, 'content/reels.json');
 const OUT_DIR = resolve(ROOT, 'p');
 
-const WHATSAPP_NUMBER = '905XXXXXXXXX'; // placeholder; replace with real Kalkan Info concierge number
+const WHATSAPP_NUMBER = "905306650794"; // placeholder; replace with real Kalkan Info concierge number
 const SITE = 'https://kalkaninfo.com';
 
 function escapeHtml(s = '') {
