@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Restoran & Bar",
-    "subtitle": "Kalkan'in en iyi restoran, kafe ve barlari — kartvizitle dogrulanmis 19 mekan",
+    "subtitle": "Kalkan'in en iyi restoran, kafe ve barlari — Harbor Lights + 4 klasik + 18 kartvizit isletmesi",
     "updated": "2026-05-19"
   },
   "categories": [
@@ -39,6 +39,107 @@
       "reservation": null,
       "featured": true,
       "source": "instagram"
+    },
+    {
+      "id": "aubergine",
+      "name": "Aubergine",
+      "category": "Fine Dining",
+      "cuisine": "Akdeniz / Türk",
+      "priceRange": "₺₺₺₺",
+      "rating": 4.8,
+      "location": "Yat Limanı",
+      "phone": "+90 242 844 33 32",
+      "website": "https://www.kalkanaubergine.com/",
+      "image": "/assets/img/25c303f5ada6.webp",
+      "gallery": [
+        "/assets/img/25c303f5ada6.webp",
+        "/assets/img/d6c633bdfb7d.webp"
+      ],
+      "summary": "Yat limanı manzaralı şık fine dining. Kalkan'ın tartışmasız en bilinen restoranı.",
+      "specialties": [
+        "Levrek",
+        "Kuzu tandır",
+        "Tatlı tabağı"
+      ],
+      "hours": "18:00–24:00",
+      "reservation": true,
+      "featured": true
+    },
+    {
+      "id": "korsan-kalamar",
+      "name": "Korsan Kalamar",
+      "category": "Deniz Ürünleri",
+      "cuisine": "Balık / Meze",
+      "priceRange": "₺₺₺",
+      "rating": 4.7,
+      "location": "Kalamar Koyu",
+      "phone": "+90 242 844 31 76",
+      "website": "https://www.korsankalkan.com/en/",
+      "image": "/assets/img/2d20bbede4e6.webp",
+      "gallery": [
+        "/assets/img/2d20bbede4e6.webp",
+        "/assets/img/d1f910b8f029.webp"
+      ],
+      "summary": "Kalamar koyunda gün batımı ve taze balık. Kalkan klasiklerinden.",
+      "specialties": [
+        "Mevsim balıkları",
+        "Kalamar",
+        "Soğuk meze"
+      ],
+      "hours": "12:00–24:00",
+      "reservation": true,
+      "featured": true
+    },
+    {
+      "id": "mussakka",
+      "name": "Mussakka",
+      "category": "Türk Mutfağı",
+      "cuisine": "Türk Ev Yemeği",
+      "priceRange": "₺₺",
+      "rating": 4.6,
+      "location": "Mustafa Kocakaya Cd. No:9, Kalkan",
+      "phone": "+90 242 844 15 76",
+      "mobile": "+90 537 493 22 90",
+      "email": "musakkarestaurantkalkan@gmail.com",
+      "image": "/assets/img/1438941126bd.webp",
+      "gallery": [
+        "/assets/img/1438941126bd.webp",
+        "/assets/img/159888b05492.webp"
+      ],
+      "summary": "Geleneksel Türk ev yemekleri. Otantik tatlar arayanlar için. The Mezzanine Bar üst katında yer alır.",
+      "specialties": [
+        "Mussakka",
+        "İmam bayıldı",
+        "Mantı"
+      ],
+      "hours": "11:00–23:00",
+      "reservation": true,
+      "featured": false
+    },
+    {
+      "id": "trio",
+      "name": "Trio",
+      "category": "Dünya Mutfağı",
+      "cuisine": "İtalyan / Türk",
+      "priceRange": "₺₺₺",
+      "rating": 4.5,
+      "location": "Hasan Altan Cad.",
+      "phone": "+90 242 844 32 16",
+      "website": "http://www.triokalkan.com/",
+      "image": "/assets/img/55e5c693e0d2.webp",
+      "gallery": [
+        "/assets/img/55e5c693e0d2.webp",
+        "/assets/img/d6c633bdfb7d.webp"
+      ],
+      "summary": "Pizza, pasta ve Türk klasiklerini birlikte sunan rahat yer.",
+      "specialties": [
+        "Ev yapımı pasta",
+        "Pizza",
+        "Levrek"
+      ],
+      "hours": "12:00–24:00",
+      "reservation": false,
+      "featured": false
     },
     {
       "id": "ala-kalkan",
