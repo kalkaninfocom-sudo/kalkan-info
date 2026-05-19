@@ -1,5 +1,11 @@
 /* page-antik-kentler.js — Antik Kentler sayfası render + harita + tüm kentler */
 
+// 10 öncelikli kent — alt-sayfası /antik-kentler/<slug>.html üzerinden açılır
+const SUBPAGE_SLUGS = new Set([
+  'patara', 'xanthos', 'letoon', 'tlos', 'pinara',
+  'simena', 'antiphellos', 'myra', 'andriake', 'aperlae'
+]);
+
 // ── Harita ────────────────────────────────────────────────────────────────────
 (async function loadLikyaMap() {
   const likyaMapEl = document.getElementById('likya-map');
@@ -51,7 +57,9 @@
           <div style="font-size:11px;color:#1a5e93;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">${city.category}</div>
           <div style="font-size:12px;color:#11304d;line-height:1.5;margin-bottom:8px;">${shortSummary}${hasMore ? '...' : ''}</div>
           <div style="font-size:11px;color:#666;margin-bottom:8px;">📍 ${city.distance || ''} &nbsp;·&nbsp; ⏱ ${city.duration || ''}</div>
-          <button onclick="openDetail('${city.id}')" style="display:inline-block;padding:6px 14px;background:#e89812;color:#0a2e4c;border:none;border-radius:6px;font-weight:800;font-size:12px;cursor:pointer;font-family:'Montserrat',sans-serif;">Detayları Gör →</button>
+          ${SUBPAGE_SLUGS.has(city.id)
+            ? `<a href="antik-kentler/${city.id}.html" style="display:inline-block;padding:6px 14px;background:#e89812;color:#0a2e4c;border-radius:6px;font-weight:800;font-size:12px;text-decoration:none;font-family:'Montserrat',sans-serif;">Tam Sayfa →</a>`
+            : `<button onclick="openDetail('${city.id}')" style="display:inline-block;padding:6px 14px;background:#e89812;color:#0a2e4c;border:none;border-radius:6px;font-weight:800;font-size:12px;cursor:pointer;font-family:'Montserrat',sans-serif;">Detayları Gör →</button>`}
         </div>
       `, { maxWidth: 260 });
 
@@ -224,7 +232,9 @@ function antikCard(city) {
           ${entryFee}
           ${hours}
         </div>
-        <button onclick="event.stopPropagation();openDetail('${esc(city.id)}')" class="mt-3 w-full text-center text-xs font-bold text-sea-600 border border-sea-200 hover:bg-sea-50 py-1.5 rounded-lg transition">Detayı Gör →</button>
+        ${SUBPAGE_SLUGS.has(city.id)
+          ? `<a href="antik-kentler/${esc(city.id)}.html" onclick="event.stopPropagation()" class="mt-3 w-full block text-center text-xs font-bold text-white bg-sea-800 hover:bg-sea-700 py-2 rounded-lg transition">Tam Sayfa Detay →</a>`
+          : `<button onclick="event.stopPropagation();openDetail('${esc(city.id)}')" class="mt-3 w-full text-center text-xs font-bold text-sea-600 border border-sea-200 hover:bg-sea-50 py-1.5 rounded-lg transition">Detayı Gör →</button>`}
       </div>
     </article>
   `;
@@ -408,6 +418,12 @@ window.openDetail = function(id) {
       ` : ''}
 
       ${tags ? `<div class="flex flex-wrap gap-1.5 mb-6">${tags}</div>` : ''}
+
+      ${SUBPAGE_SLUGS.has(city.id) ? `
+        <a href="antik-kentler/${esc(city.id)}.html" class="block w-full text-center bg-sun-500 hover:bg-sun-400 text-sea-900 font-display font-extrabold text-sm uppercase tracking-wider rounded-xl py-3 mb-3 transition">
+          Tam Sayfa Rehberi Aç →
+        </a>
+      ` : ''}
 
       <div class="flex gap-3">
         ${city.lat && city.lng ? `
