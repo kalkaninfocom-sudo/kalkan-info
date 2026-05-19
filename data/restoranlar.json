@@ -14,6 +14,33 @@
   ],
   "items": [
     {
+      "id": "ziizi-pizza",
+      "name": "Ziizipizza",
+      "category": "Dünya Mutfağı",
+      "cuisine": "İtalyan / Pizza & Pasta",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": null,
+      "website": "https://www.instagram.com/ziizipizza/",
+      "instagram": "https://www.instagram.com/ziizipizza/",
+      "image": "/assets/img/ziizi-pizza.jpg",
+      "gallery": [
+        "/assets/img/ziizi-pizza.jpg"
+      ],
+      "summary": "El açma hamur, taze sos ve fırın klasiği pizza & pasta. Güncel menü ve fotoğraflar için Instagram sayfasını ziyaret edin.",
+      "specialties": [
+        "Pizza",
+        "Pasta",
+        "El Açma Hamur"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": true,
+      "source": "instagram"
+    },
+    {
       "id": "harbor-lights",
       "name": "Harbor Lights Artisan Cafe",
       "category": "Cafe & Bar",
@@ -656,33 +683,6 @@
       "instagram": "https://www.instagram.com/kalamaki_restaurant_kalkan/"
     },
     {
-      "id": "ziizi-pizza",
-      "name": "Ziizipizza",
-      "category": "Dünya Mutfağı",
-      "cuisine": "İtalyan / Pizza & Pasta",
-      "priceRange": "₺₺",
-      "rating": null,
-      "reviewCount": 0,
-      "location": "Kalkan",
-      "phone": null,
-      "website": "https://www.instagram.com/ziizipizza/",
-      "instagram": "https://www.instagram.com/ziizipizza/",
-      "image": "/assets/img/ziizi-pizza.jpg",
-      "gallery": [
-        "/assets/img/ziizi-pizza.jpg"
-      ],
-      "summary": "El açma hamur, taze sos ve fırın klasiği pizza & pasta. Güncel menü ve fotoğraflar için Instagram sayfasını ziyaret edin.",
-      "specialties": [
-        "Pizza",
-        "Pasta",
-        "El Açma Hamur"
-      ],
-      "hours": null,
-      "reservation": true,
-      "featured": true,
-      "source": "instagram"
-    },
-    {
       "id": "club-chocolate-kalkan",
       "name": "Chocolate Club Kalkan",
       "category": "Gece Kulübü",
@@ -743,9 +743,9 @@
       "phone": null,
       "website": "https://www.instagram.com/noemacommunity/",
       "instagram": "https://www.instagram.com/noemacommunity/",
-      "image": "/assets/img/noema-hero.webp",
+      "image": "/assets/img/noema.jpg",
       "gallery": [
-        "/assets/img/noema-hero.webp"
+        "/assets/img/noema.jpg"
       ],
       "summary": "Modern lounge konsepti — house ve electronic müzik seçkisi, tasarım iç mekan, premium içecek menüsü.",
       "specialties": [
