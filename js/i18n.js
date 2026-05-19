@@ -105,8 +105,11 @@
       apply(lang);
     },
     toggle: function () {
-      this.set(detectLang() === 'en' ? 'tr' : 'en');
+      const cur = detectLang();
+      const idx = SUPPORTED.indexOf(cur);
+      this.set(SUPPORTED[(idx + 1) % SUPPORTED.length]);
     },
+    list: () => SUPPORTED.slice(),
     apply: apply
   };
 
@@ -125,7 +128,13 @@
       #ki-lang-switcher button.lang-active{background:#f4b53d;color:#0a2e4c!important;font-weight:800!important;box-shadow:0 1px 4px rgba(244,181,61,0.4);}
       #ki-lang-switcher button:not(.lang-active):hover{color:#fff;background:rgba(255,255,255,0.08);}
       #ki-lang-switcher button:disabled{opacity:0.45;cursor:not-allowed;}
-      @media (max-width:640px){#ki-lang-switcher{top:10px;right:10px;padding:3px;}#ki-lang-switcher button{padding:4px 8px;font-size:10px;min-width:28px;}}
+      /* Mobile: pin to top-left to avoid hamburger collision */
+      @media (max-width:640px){#ki-lang-switcher{top:8px;left:8px;right:auto;padding:3px;}#ki-lang-switcher button{padding:4px 7px;font-size:10px;min-width:26px;}}
+      /* Drawer-mounted language chips */
+      .ki-drawer-lang{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+      .ki-drawer-lang button{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);font-size:11px;font-weight:700;letter-spacing:0.04em;padding:8px 4px;border-radius:8px;cursor:pointer;transition:all .15s ease;font-family:'Inter',system-ui,sans-serif;}
+      .ki-drawer-lang button:hover{background:rgba(244,181,61,0.15);border-color:rgba(244,181,61,0.4);color:#fff;}
+      .ki-drawer-lang button.lang-active{background:#f4b53d;color:#0a2e4c!important;border-color:#f4b53d;box-shadow:0 1px 4px rgba(244,181,61,0.4);}
     `;
     document.head.appendChild(s);
   }
@@ -167,17 +176,23 @@
     apply(detectLang());
     // Geç gelen kart/list render'lar için de uygula
     const mo = new MutationObserver(muts => {
+      let needsApply = false;
+      let needsBind = false;
       for (const m of muts) {
         for (const node of m.addedNodes) {
-          if (node.nodeType === 1 && (
+          if (node.nodeType !== 1) continue;
+          if (
             node.matches?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria],[data-en-only]') ||
             node.querySelector?.('[data-en],[data-en-html],[data-en-placeholder],[data-en-title],[data-en-alt],[data-en-aria],[data-en-only]')
-          )) {
-            apply(detectLang());
-            return;
-          }
+          ) needsApply = true;
+          if (
+            node.matches?.('[data-lang-toggle]') ||
+            node.querySelector?.('[data-lang-toggle]')
+          ) needsBind = true;
         }
       }
+      if (needsBind) bindToggleHandlers();
+      if (needsApply) apply(detectLang());
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }

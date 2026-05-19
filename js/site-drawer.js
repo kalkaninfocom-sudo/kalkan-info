@@ -54,6 +54,16 @@
         '</div>' +
         '<nav class="px-5 py-5 space-y-6 text-sm">' +
           '<div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Language" data-de="Sprache" data-ru="Язык" data-fr="Langue">Dil / Language</div>' +
+            '<div class="ki-drawer-lang">' +
+              '<button type="button" data-lang-toggle="tr" title="Türkçe" aria-label="Türkçe">TR</button>' +
+              '<button type="button" data-lang-toggle="en" title="English" aria-label="English">EN</button>' +
+              '<button type="button" data-lang-toggle="de" title="Deutsch" aria-label="Deutsch">DE</button>' +
+              '<button type="button" data-lang-toggle="ru" title="Русский" aria-label="Русский">RU</button>' +
+              '<button type="button" data-lang-toggle="fr" title="Français" aria-label="Français">FR</button>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
             '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Keşfet</div>' +
             '<ul class="space-y-1.5">' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="index.html">🏠 Ana Sayfa</a></li>' +
