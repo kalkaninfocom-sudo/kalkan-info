@@ -2,7 +2,21 @@
   "_meta": {
     "title": "Restoran & Bar",
     "subtitle": "Kalkan'in en iyi restoran, kafe, bar ve gece kulupleri — 24 mekan + 3 gece kulubu",
-    "updated": "2026-05-19"
+    "updated": "2026-05-19",
+    "titleI18n": {
+      "tr": "Restoran & Bar",
+      "en": "Restaurant & Bar",
+      "de": "Restaurant & Bar",
+      "ru": "Ресторан & Бар",
+      "fr": "Restaurant & Bar"
+    },
+    "subtitleI18n": {
+      "tr": "Kalkan'in en iyi restoran, kafe, bar ve gece kulupleri — 24 mekan + 3 gece kulubu",
+      "en": "Kalkan's best restaurants, cafes, bars and nightclubs — 24 venues + 3 nightclubs",
+      "de": "Die besten Restaurants, Cafés, Bars und Nachtclubs in Kalkan — 24 Lokale + 3 Nachtclubs",
+      "ru": "Лучшие рестораны, кафе, бары и ночные клубы Калкана — 24 заведения + 3 ночных клуба",
+      "fr": "Les meilleurs restaurants, cafés, bars et discothèques de Kalkan — 24 établissements + 3 discothèques"
+    }
   },
   "categories": [
     "Fine Dining",
@@ -38,7 +52,48 @@
       "hours": null,
       "reservation": true,
       "featured": true,
-      "source": "instagram"
+      "source": "instagram",
+      "nameI18n": {
+        "tr": "Ziizipizza",
+        "en": "Ziizipizza",
+        "de": "Ziizipizza",
+        "ru": "Ziizipizza",
+        "fr": "Ziizipizza"
+      },
+      "summaryI18n": {
+        "tr": "El açma hamur, taze sos ve fırın klasiği pizza & pasta. Güncel menü ve fotoğraflar için Instagram sayfasını ziyaret edin.",
+        "en": "Handmade dough, fresh sauce and classic oven-baked pizza & pasta. Visit our Instagram page for current menu and photos.",
+        "de": "Handgemachter Teig, frische Sauce und klassische Pizza & Pasta aus dem Ofen. Aktuelle Speisekarte und Fotos finden Sie auf Instagram.",
+        "ru": "Домашнее тесто, свежий соус и классическая пицца & паста из печи. Посетите страницу Instagram для актуального меню и фото.",
+        "fr": "Pâte faite à la main, sauce fraîche et pizza & pâtes cuites au four. Consultez notre page Instagram pour le menu actuel et les photos."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Pizza",
+          "Pasta",
+          "El Açma Hamur"
+        ],
+        "en": [
+          "Pizza",
+          "Pasta",
+          "Handmade Dough"
+        ],
+        "de": [
+          "Pizza",
+          "Pasta",
+          "Handgemachter Teig"
+        ],
+        "ru": [
+          "Pizza",
+          "Pasta",
+          "Домашнее тесто"
+        ],
+        "fr": [
+          "Pizza",
+          "Pâtes",
+          "Pâte Faite à la Main"
+        ]
+      }
     },
     {
       "id": "harbor-lights",
@@ -66,7 +121,48 @@
       "hours": "Yaz: Akşam",
       "reservation": null,
       "featured": true,
-      "source": "instagram"
+      "source": "instagram",
+      "nameI18n": {
+        "tr": "Harbor Lights Artisan Cafe",
+        "en": "Harbor Lights Artisan Cafe",
+        "de": "Harbor Lights Artisan Cafe",
+        "ru": "Harbor Lights Artisan Cafe",
+        "fr": "Harbor Lights Artisan Cafe"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan iskelesinde artisan cafe & cocktail bar. Specialty coffee, craft kokteyl ve yat limanı manzarası. Detaylı menü, fotoğraf ve güncel etkinlikler için Instagram sayfasını ziyaret edin.",
+        "en": "Artisan cafe & cocktail bar at Kalkan harbor. Specialty coffee, craft cocktails and yacht marina views. Visit our Instagram page for full menu, photos and current events.",
+        "de": "Artisan Cafe & Cocktail Bar am Kalkan-Steg. Specialty Coffee, Craft-Cocktails und Yachthafen-Ausblick. Detaillierte Speisekarte, Fotos und aktuelle Events auf Instagram.",
+        "ru": "Ремесленное кафе & cocktail bar на причале Калкана. Specialty coffee, craft коктейли и вид на яхтенную марину. Посетите Instagram для подробного меню, фото и актуальных событий.",
+        "fr": "Café artisan & cocktail bar au port de Kalkan. Café de spécialité, cocktails craft et vue sur la marina. Consultez notre page Instagram pour le menu détaillé, les photos et les événements actuels."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Cocktail",
+          "Specialty Coffee",
+          "Artisan Menü"
+        ],
+        "en": [
+          "Cocktail",
+          "Specialty Coffee",
+          "Artisan Menu"
+        ],
+        "de": [
+          "Cocktail",
+          "Specialty Coffee",
+          "Artisan Menü"
+        ],
+        "ru": [
+          "Cocktail",
+          "Specialty Coffee",
+          "Artisan меню"
+        ],
+        "fr": [
+          "Cocktail",
+          "Specialty Coffee",
+          "Menu Artisan"
+        ]
+      }
     },
     {
       "id": "aubergine",
@@ -92,7 +188,48 @@
       "hours": "18:00–24:00",
       "reservation": true,
       "featured": true,
-      "instagram": "https://www.instagram.com/auberginerestaurantkalkan/"
+      "instagram": "https://www.instagram.com/auberginerestaurantkalkan/",
+      "nameI18n": {
+        "tr": "Aubergine",
+        "en": "Aubergine",
+        "de": "Aubergine",
+        "ru": "Aubergine",
+        "fr": "Aubergine"
+      },
+      "summaryI18n": {
+        "tr": "Yat limanı manzaralı şık fine dining. Kalkan'ın tartışmasız en bilinen restoranı.",
+        "en": "Upscale fine dining with yacht marina views. Kalkan's most renowned restaurant.",
+        "de": "Elegantes Fine Dining mit Yachthafen-Ausblick. Unbestritten das bekannteste Restaurant in Kalkan.",
+        "ru": "Элегантный fine dining с видом на яхтенную марину. Безусловно самый известный ресторан Калкана.",
+        "fr": "Restaurant de fine dining élégant avec vue sur la marina. Le restaurant le plus renommé de Kalkan, sans conteste."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Levrek",
+          "Kuzu tandır",
+          "Tatlı tabağı"
+        ],
+        "en": [
+          "Sea Bass",
+          "Lamb Tandır",
+          "Dessert Plate"
+        ],
+        "de": [
+          "Wolfsbarsch",
+          "Lamm Tandır",
+          "Dessertteller"
+        ],
+        "ru": [
+          "Лаврак",
+          "Ягненок танури",
+          "Десертная тарелка"
+        ],
+        "fr": [
+          "Bar commun",
+          "Agneau tandoori",
+          "Assiette de desserts"
+        ]
+      }
     },
     {
       "id": "korsan-kalamar",
@@ -118,7 +255,48 @@
       "hours": "12:00–24:00",
       "reservation": true,
       "featured": true,
-      "instagram": "https://www.instagram.com/korsankalkan/"
+      "instagram": "https://www.instagram.com/korsankalkan/",
+      "nameI18n": {
+        "tr": "Korsan Kalamar",
+        "en": "Korsan Kalamar",
+        "de": "Korsan Kalamar",
+        "ru": "Korsan Kalamar",
+        "fr": "Korsan Kalamar"
+      },
+      "summaryI18n": {
+        "tr": "Kalamar koyunda gün batımı ve taze balık. Kalkan klasiklerinden.",
+        "en": "Sunset at Squid Bay with fresh fish. A Kalkan classic.",
+        "de": "Sonnenuntergang in der Kalamar-Bucht und frischer Fisch. Ein Klassiker in Kalkan.",
+        "ru": "Закат над бухтой кальмаров и свежая рыба. Классика Калкана.",
+        "fr": "Coucher de soleil à la baie du calamar et poisson frais. Un classique de Kalkan."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Mevsim balıkları",
+          "Kalamar",
+          "Soğuk meze"
+        ],
+        "en": [
+          "Seasonal Fish",
+          "Squid",
+          "Cold Meze"
+        ],
+        "de": [
+          "Saisonale Fische",
+          "Tintenfisch",
+          "Kalte Vorspeisen"
+        ],
+        "ru": [
+          "Сезонная рыба",
+          "Кальмар",
+          "Холодные закуски"
+        ],
+        "fr": [
+          "Poissons de saison",
+          "Calamar",
+          "Froids mezzés"
+        ]
+      }
     },
     {
       "id": "mussakka",
@@ -146,7 +324,48 @@
       "reservation": true,
       "featured": false,
       "instagram": "https://www.instagram.com/mussakkarestaurant/",
-      "website": "https://www.instagram.com/mussakkarestaurant/"
+      "website": "https://www.instagram.com/mussakkarestaurant/",
+      "nameI18n": {
+        "tr": "Mussakka",
+        "en": "Mussakka",
+        "de": "Mussakka",
+        "ru": "Mussakka",
+        "fr": "Mussakka"
+      },
+      "summaryI18n": {
+        "tr": "Geleneksel Türk ev yemekleri. Otantik tatlar arayanlar için. The Mezzanine Bar üst katında yer alır.",
+        "en": "Traditional Turkish home cooking. For those seeking authentic flavors. Located upstairs in The Mezzanine Bar.",
+        "de": "Traditionelle türkische Hausmannskost. Für Liebhaber authentischer Geschmäcker. Befindet sich im Obergeschoss der Mezzanine Bar.",
+        "ru": "Традиционные турецкие домашние блюда. Для ищущих аутентичный вкус. Расположен на верхнем этаже The Mezzanine Bar.",
+        "fr": "Cuisine turque traditionnelle. Pour ceux qui recherchent des saveurs authentiques. Situé à l'étage du Mezzanine Bar."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Mussakka",
+          "İmam bayıldı",
+          "Mantı"
+        ],
+        "en": [
+          "Mussakka",
+          "Imam Bayıldı",
+          "Mantı"
+        ],
+        "de": [
+          "Mussakka",
+          "İmam bayıldı",
+          "Mantı"
+        ],
+        "ru": [
+          "Mussakka",
+          "Имам баялды",
+          "Манты"
+        ],
+        "fr": [
+          "Mussakka",
+          "Imam bayıldı",
+          "Mantı"
+        ]
+      }
     },
     {
       "id": "trio",
@@ -172,7 +391,48 @@
       "hours": "12:00–24:00",
       "reservation": false,
       "featured": false,
-      "instagram": "https://www.instagram.com/triokalkan/"
+      "instagram": "https://www.instagram.com/triokalkan/",
+      "nameI18n": {
+        "tr": "Trio",
+        "en": "Trio",
+        "de": "Trio",
+        "ru": "Trio",
+        "fr": "Trio"
+      },
+      "summaryI18n": {
+        "tr": "Pizza, pasta ve Türk klasiklerini birlikte sunan rahat yer.",
+        "en": "Casual venue serving pizza, pasta and Turkish classics together.",
+        "de": "Gemütlicher Ort mit Pizza, Pasta und türkischen Klassikern.",
+        "ru": "Уютное место, предлагающее пиццу, пасту и турецкую классику.",
+        "fr": "Endroit convivial proposant pizzas, pâtes et classiques turcs ensemble."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Ev yapımı pasta",
+          "Pizza",
+          "Levrek"
+        ],
+        "en": [
+          "Homemade Pasta",
+          "Pizza",
+          "Sea Bass"
+        ],
+        "de": [
+          "Hausgemachte Pasta",
+          "Pizza",
+          "Wolfsbarsch"
+        ],
+        "ru": [
+          "Паста домашнего приготовления",
+          "Pizza",
+          "Лаврак"
+        ],
+        "fr": [
+          "Pâtes faites maison",
+          "Pizza",
+          "Bar commun"
+        ]
+      }
     },
     {
       "id": "ala-kalkan",
@@ -199,7 +459,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Ala Restaurant",
+        "en": "Ala Restaurant",
+        "de": "Ala Restaurant",
+        "ru": "Ala Restaurant",
+        "fr": "Ala Restaurant"
+      },
+      "summaryI18n": {
+        "tr": "Akdeniz mutfağı odaklı şirin Kalkan restoranı. Taze balık, meze ve ızgara çeşitleri sunar. Güncel menü ve foto için Instagram sayfasını ziyaret edin.",
+        "en": "Charming Kalkan restaurant focused on Mediterranean cuisine. Offers fresh fish, meze and grilled specialties. Visit our Instagram page for current menu and photos.",
+        "de": "Charmantes Kalkan Restaurant mit mediterraner Küche. Frischer Fisch, Vorspeisen und Grillspezialitäten. Aktuelle Speisekarte und Fotos auf Instagram.",
+        "ru": "Уютный ресторан Калкана с акцентом на средиземноморскую кухню. Подает свежую рыбу, закуски и различные гриль-блюда. Посетите Instagram для актуального меню и фото.",
+        "fr": "Charmant restaurant de Kalkan axé sur la cuisine méditerranéenne. Propose du poisson frais, des mezzés et des grillades variées. Consultez notre page Instagram pour le menu actuel et les photos."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Taze Balık",
+          "Meze",
+          "Izgara Çeşitleri"
+        ],
+        "en": [
+          "Fresh Fish",
+          "Meze",
+          "Grilled Specialties"
+        ],
+        "de": [
+          "Frischer Fisch",
+          "Vorspeisen",
+          "Grillspezialitäten"
+        ],
+        "ru": [
+          "Свежая рыба",
+          "Закуски",
+          "Гриль ассортимент"
+        ],
+        "fr": [
+          "Poisson Frais",
+          "Mezzés",
+          "Variétés de Grillades"
+        ]
+      }
     },
     {
       "id": "the-fountain",
@@ -223,7 +524,21 @@
       "reservation": true,
       "featured": false,
       "source": "kartvizit",
-      "instagram": "https://www.instagram.com/thefountainbar/"
+      "instagram": "https://www.instagram.com/thefountainbar/",
+      "nameI18n": {
+        "tr": "The Fountain",
+        "en": "The Fountain",
+        "de": "The Fountain",
+        "ru": "The Fountain",
+        "fr": "The Fountain"
+      },
+      "summaryI18n": {
+        "tr": "Klasik atmosferli Kalkan restoranı. Detaylı menü ve rezervasyon için iletişim numaralarını arayın.",
+        "en": "Kalkan restaurant with classic atmosphere. Call for full menu details and reservations.",
+        "de": "Klassisches Kalkan Restaurant mit charaktervoller Atmosphäre. Für detaillierte Speisekarte und Reservierung bitte anrufen.",
+        "ru": "Ресторан Калкана с классической атмосферой. Для подробного меню и бронирования звоните по указанным номерам.",
+        "fr": "Restaurant de Kalkan à l'atmosphère classique. Pour le menu détaillé et les réservations, appelez nos numéros de contact."
+      }
     },
     {
       "id": "gusto-kalkan",
@@ -251,7 +566,48 @@
       "reservation": true,
       "featured": false,
       "source": "kartvizit",
-      "instagram": "https://www.instagram.com/kalkangusto/"
+      "instagram": "https://www.instagram.com/kalkangusto/",
+      "nameI18n": {
+        "tr": "Gusto",
+        "en": "Gusto",
+        "de": "Gusto",
+        "ru": "Gusto",
+        "fr": "Gusto"
+      },
+      "summaryI18n": {
+        "tr": "Liman kenarı çok yönlü mekan — kahvaltıdan akşam yemeği ve kokteyle kadar tüm gün açık.",
+        "en": "Waterfront venue with diverse offerings — open all day from breakfast to dinner and cocktails.",
+        "de": "Hafenfront-Lokal mit vielfältigem Angebot — den ganzen Tag geöffnet, von Frühstück bis Abendessen und Cocktails.",
+        "ru": "Прибрежный универсальный ресторан — открыт весь день от завтрака до ужина и коктейлей.",
+        "fr": "Établissement polyvalent en bord de port — ouvert toute la journée du petit-déjeuner au dîner et cocktails."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Kahvaltı",
+          "Cocktail",
+          "Dinner Menu"
+        ],
+        "en": [
+          "Breakfast",
+          "Cocktail",
+          "Dinner Menu"
+        ],
+        "de": [
+          "Frühstück",
+          "Cocktail",
+          "Dinner Menu"
+        ],
+        "ru": [
+          "Завтрак",
+          "Cocktail",
+          "Dinner Menu"
+        ],
+        "fr": [
+          "Petit-déjeuner",
+          "Cocktail",
+          "Dinner Menu"
+        ]
+      }
     },
     {
       "id": "salt-pepper",
@@ -281,7 +637,48 @@
       "reservation": true,
       "featured": false,
       "source": "kartvizit",
-      "established": 2007
+      "established": 2007,
+      "nameI18n": {
+        "tr": "Salt & Pepper",
+        "en": "Salt & Pepper",
+        "de": "Salt & Pepper",
+        "ru": "Salt & Pepper",
+        "fr": "Salt & Pepper"
+      },
+      "summaryI18n": {
+        "tr": "2007'den beri Kalkan'da sushi ve dünya mutfağı. Sushi delivery ve rezervasyon hattı aktif.",
+        "en": "Sushi and world cuisine in Kalkan since 2007. Sushi delivery and reservations available.",
+        "de": "Seit 2007 Sushi und Weltküche in Kalkan. Sushi-Lieferung und Reservierungshotline aktiv.",
+        "ru": "Суши и мировая кухня в Калкане с 2007 года. Доставка суши и линия бронирования активны.",
+        "fr": "Sushi et cuisine du monde à Kalkan depuis 2007. Service de livraison sushi et ligne de réservation active."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Sushi",
+          "Sushi Delivery",
+          "Asya Mutfağı"
+        ],
+        "en": [
+          "Sushi",
+          "Sushi Delivery",
+          "Asian Cuisine"
+        ],
+        "de": [
+          "Sushi",
+          "Sushi Delivery",
+          "Asiatische Küche"
+        ],
+        "ru": [
+          "Sushi",
+          "Sushi Delivery",
+          "Азиатская кухня"
+        ],
+        "fr": [
+          "Sushi",
+          "Sushi Delivery",
+          "Cuisine asiatique"
+        ]
+      }
     },
     {
       "id": "kleo-cafe-bar",
@@ -309,7 +706,48 @@
       "featured": false,
       "source": "kartvizit",
       "instagram": "https://www.instagram.com/kleocafebar/",
-      "website": "https://www.instagram.com/kleocafebar/"
+      "website": "https://www.instagram.com/kleocafebar/",
+      "nameI18n": {
+        "tr": "Kleo Cafe Bar",
+        "en": "Kleo Cafe Bar",
+        "de": "Kleo Cafe Bar",
+        "ru": "Kleo Cafe Bar",
+        "fr": "Kleo Cafe Bar"
+      },
+      "summaryI18n": {
+        "tr": "Eski Kalkan İskele Sokak'ta cafe, bar ve restoran konsepti.",
+        "en": "Cafe, bar and restaurant concept on Eski Kalkan İskele Sokak.",
+        "de": "Cafe-, Bar- und Restaurant-Konzept in der Eski Kalkan İskele Sokak.",
+        "ru": "Концепция кафе, бара и ресторана на улице Старая Калкан Искеле.",
+        "fr": "Concept cafe, bar et restaurant sur l'Eski Kalkan İskele Sokak."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Cafe",
+          "Bar",
+          "Restaurant"
+        ],
+        "en": [
+          "Cafe",
+          "Bar",
+          "Restaurant"
+        ],
+        "de": [
+          "Cafe",
+          "Bar",
+          "Restaurant"
+        ],
+        "ru": [
+          "Cafe",
+          "Bar",
+          "Ресторан"
+        ],
+        "fr": [
+          "Cafe",
+          "Bar",
+          "Restaurant"
+        ]
+      }
     },
     {
       "id": "panorama-kalkan",
@@ -337,7 +775,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Panorama Restaurant Cafe Bar",
+        "en": "Panorama Restaurant Cafe Bar",
+        "de": "Panorama Restaurant Cafe Bar",
+        "ru": "Panorama Restaurant Cafe Bar",
+        "fr": "Panorama Restaurant Cafe Bar"
+      },
+      "summaryI18n": {
+        "tr": "Restaurant, cafe ve bar üçlüsünü tek çatı altında sunan Hasan Altan Caddesi mekanı.",
+        "en": "Venue on Hasan Altan Caddesi offering restaurant, cafe and bar under one roof.",
+        "de": "Lokal an der Hasan Altan Caddesi, das Restaurant, Cafe und Bar unter einem Dach vereint.",
+        "ru": "Заведение на улице Хасан Алтан, объединяющее ресторан, кафе и бар под одной крышей.",
+        "fr": "Établissement sur l'avenue Hasan Altan proposant restaurant, cafe et bar sous un même toit."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Restaurant",
+          "Cafe",
+          "Bar"
+        ],
+        "en": [
+          "Restaurant",
+          "Cafe",
+          "Bar"
+        ],
+        "de": [
+          "Restaurant",
+          "Cafe",
+          "Bar"
+        ],
+        "ru": [
+          "Ресторан",
+          "Cafe",
+          "Bar"
+        ],
+        "fr": [
+          "Restaurant",
+          "Cafe",
+          "Bar"
+        ]
+      }
     },
     {
       "id": "aura-sushi",
@@ -364,7 +843,48 @@
       "featured": false,
       "source": "kartvizit",
       "instagram": "https://www.instagram.com/aure_restaurant/",
-      "website": "https://www.instagram.com/aure_restaurant/"
+      "website": "https://www.instagram.com/aure_restaurant/",
+      "nameI18n": {
+        "tr": "Aure — Alacarte & Sushi",
+        "en": "Aure — Alacarte & Sushi",
+        "de": "Aure — Alacarte & Sushi",
+        "ru": "Aure — Alacarte & Sushi",
+        "fr": "Aure — Alacarte & Sushi"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan iskelede alacarte ve sushi servisi. Kahvaltıdan akşam yemeğine kadar açık.",
+        "en": "Alacarte and sushi service at Kalkan pier. Open from breakfast to dinner.",
+        "de": "Alacarte- und Sushi-Service am Kalkan-Hafen. Täglich von Frühstück bis Abendessen geöffnet.",
+        "ru": "Сервис алакарте и суши на причале Калкана. Открыто от завтрака до ужина.",
+        "fr": "Service alacarte et sushi à l'iskelé de Kalkan. Ouvert du petit-déjeuner au dîner."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Sushi",
+          "Alacarte",
+          "Breakfast"
+        ],
+        "en": [
+          "Sushi",
+          "Alacarte",
+          "Breakfast"
+        ],
+        "de": [
+          "Sushi",
+          "Alacarte",
+          "Breakfast"
+        ],
+        "ru": [
+          "Sushi",
+          "Alacarte",
+          "Breakfast"
+        ],
+        "fr": [
+          "Sushi",
+          "Alacarte",
+          "Breakfast"
+        ]
+      }
     },
     {
       "id": "seaport-kalkan",
@@ -394,7 +914,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Seaport Restaurant",
+        "en": "Seaport Restaurant",
+        "de": "Seaport Restaurant",
+        "ru": "Seaport Restaurant",
+        "fr": "Seaport Restaurant"
+      },
+      "summaryI18n": {
+        "tr": "Liman manzaralı deniz ürünleri restoranı. Taze balık ve meze çeşitleri.",
+        "en": "Seafood restaurant with harbor views. Fresh fish and meze selection.",
+        "de": "Meeresfrüchte-Restaurant mit Hafenblick. Frischer Fisch und Meze-Sorten.",
+        "ru": "Ресторан морепродуктов с видом на гавань. Свежая рыба и ассортимент мезе.",
+        "fr": "Restaurant de fruits de mer avec vue sur le port. Poisson frais et variété de mezzés."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Taze Balık",
+          "Meze",
+          "Deniz Ürünleri"
+        ],
+        "en": [
+          "Fresh Fish",
+          "Meze",
+          "Seafood"
+        ],
+        "de": [
+          "Frischer Fisch",
+          "Meze",
+          "Meeresfrüchte"
+        ],
+        "ru": [
+          "Свежая рыба",
+          "Мезе",
+          "Морепродукты"
+        ],
+        "fr": [
+          "Poisson frais",
+          "Mezzé",
+          "Fruits de mer"
+        ]
+      }
     },
     {
       "id": "blue-marlin",
@@ -422,7 +983,48 @@
       "featured": false,
       "source": "kartvizit",
       "instagram": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/",
-      "website": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/"
+      "website": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/",
+      "nameI18n": {
+        "tr": "Blue Marlin Fish & Meze",
+        "en": "Blue Marlin Fish & Meze",
+        "de": "Blue Marlin Fish & Meze",
+        "ru": "Blue Marlin Fish & Meze",
+        "fr": "Blue Marlin Fish & Meze"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan Marina'da Pirat Hotel altında balık & meze. Take Away servisi de mevcut.",
+        "en": "Fish & meze at Kalkan Marina beneath Pirat Hotel. Take away service available.",
+        "de": "Fisch & Meze unter dem Pirat Hotel in der Kalkan Marina. Take-Away-Service verfügbar.",
+        "ru": "Рыба и мезе в Марине Калкана под отелем Pirat. Доступна служба Take Away.",
+        "fr": "Poisson & mezzé à Kalkan Marina sous le Pirat Hotel. Service à emporter disponible."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Balık",
+          "Meze",
+          "Take Away"
+        ],
+        "en": [
+          "Fish",
+          "Meze",
+          "Take Away"
+        ],
+        "de": [
+          "Fisch",
+          "Meze",
+          "Take Away"
+        ],
+        "ru": [
+          "Рыба",
+          "Мезе",
+          "Take Away"
+        ],
+        "fr": [
+          "Poisson",
+          "Mezzé",
+          "Take Away"
+        ]
+      }
     },
     {
       "id": "rallzees-pub",
@@ -448,7 +1050,48 @@
       "hours": null,
       "reservation": false,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Rallzees Pub",
+        "en": "Rallzees Pub",
+        "de": "Rallzees Pub",
+        "ru": "Rallzees Pub",
+        "fr": "Rallzees Pub"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan Yalıboyu Mahallesi'nde geleneksel pub atmosferi. Bira, kokteyl ve canlı atmosfer.",
+        "en": "Traditional pub atmosphere in Kalkan Yalıboyu Mahallesi. Beer, cocktails and lively ambiance.",
+        "de": "Traditionelle Pub-Atmosphäre im Kalkan Yalıboyu Mahallesi. Bier, Cocktails und lebhafte Atmosphäre.",
+        "ru": "Паб с традиционной атмосферой в районе Ялыбойю Калкана. Пиво, коктейли и живая атмосфера.",
+        "fr": "Atmosphère de pub traditionnel dans le quartier Yalıboyu de Kalkan. Bière, cocktails et ambiance conviviale."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Pub",
+          "Bira",
+          "Kokteyl"
+        ],
+        "en": [
+          "Pub",
+          "Beer",
+          "Cocktail"
+        ],
+        "de": [
+          "Pub",
+          "Bier",
+          "Cocktail"
+        ],
+        "ru": [
+          "Pub",
+          "Пиво",
+          "Коктейли"
+        ],
+        "fr": [
+          "Pub",
+          "Bière",
+          "Cocktail"
+        ]
+      }
     },
     {
       "id": "ata-kebab",
@@ -476,7 +1119,48 @@
       "featured": false,
       "source": "kartvizit",
       "instagram": "https://www.instagram.com/atakebab/",
-      "website": "https://www.instagram.com/atakebab/"
+      "website": "https://www.instagram.com/atakebab/",
+      "nameI18n": {
+        "tr": "Ata Kebab House",
+        "en": "Ata Kebab House",
+        "de": "Ata Kebab House",
+        "ru": "Ata Kebab House",
+        "fr": "Ata Kebab House"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan'da kebap ve ızgara çeşitleri. Sipariş hattı ile paket servis aktif.",
+        "en": "Kebab and grilled specialties in Kalkan. Package delivery active with order line.",
+        "de": "Kebab- und Grillsorten in Kalkan. Lieferservice aktiv mit Bestellhotline.",
+        "ru": "Кебаб и различные гриль-блюда в Калкане. Доставка по заказу активна.",
+        "fr": "Variétés de kebab et grillades à Kalkan. Service de livraison actif avec commande en ligne."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Kebap",
+          "Izgara",
+          "Paket Servis"
+        ],
+        "en": [
+          "Kebab",
+          "Grilled",
+          "Package Delivery"
+        ],
+        "de": [
+          "Kebab",
+          "Grill",
+          "Lieferservice"
+        ],
+        "ru": [
+          "Kebap",
+          "Grill",
+          "Доставка"
+        ],
+        "fr": [
+          "Kebab",
+          "Grillades",
+          "Service de Livraison"
+        ]
+      }
     },
     {
       "id": "marina-restaurant",
@@ -503,7 +1187,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Marina Restaurant",
+        "en": "Marina Restaurant",
+        "de": "Marina Restaurant",
+        "ru": "Marina Restaurant",
+        "fr": "Marina Restaurant"
+      },
+      "summaryI18n": {
+        "tr": "Yat Limanı içinde balık ve Akdeniz mutfağı.",
+        "en": "Fish and Mediterranean cuisine inside the Marina.",
+        "de": "Fisch und mediterranes Essen im Yachthafen.",
+        "ru": "Рыба и средиземноморская кухня в марине яхт-порта.",
+        "fr": "Poisson et cuisine méditerranéenne dans la marina."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Balık",
+          "Akdeniz Mutfağı",
+          "Meze"
+        ],
+        "en": [
+          "Fish",
+          "Mediterranean Cuisine",
+          "Meze"
+        ],
+        "de": [
+          "Fisch",
+          "Mediterrane Küche",
+          "Meze"
+        ],
+        "ru": [
+          "Рыба",
+          "Средиземноморская Кухня",
+          "Meze"
+        ],
+        "fr": [
+          "Poisson",
+          "Cuisine Méditerranéenne",
+          "Meze"
+        ]
+      }
     },
     {
       "id": "mezzanine-bar",
@@ -533,7 +1258,48 @@
       "source": "kartvizit",
       "relatedTo": "mussakka",
       "instagram": "https://www.instagram.com/the_mezzanine_bar/",
-      "website": "https://www.instagram.com/the_mezzanine_bar/"
+      "website": "https://www.instagram.com/the_mezzanine_bar/",
+      "nameI18n": {
+        "tr": "The Mezzanine Bar",
+        "en": "The Mezzanine Bar",
+        "de": "The Mezzanine Bar",
+        "ru": "The Mezzanine Bar",
+        "fr": "The Mezzanine Bar"
+      },
+      "summaryI18n": {
+        "tr": "Mussakka Restaurant ile aynı binada, üst kat kokteyl barı. Aynı işletme — yemek sonrası kokteyl içmek için ideal.",
+        "en": "Located in the same building as Mussakka Restaurant, upstairs cocktail bar. Same management — ideal for cocktails after dinner.",
+        "de": "Im gleichen Gebäude wie Mussakka Restaurant, oberes Geschoss Cocktail Bar. Gleicher Betreiber — ideal für Cocktails nach dem Essen.",
+        "ru": "Верхний этаж, коктейльный бар в одном здании с Mussakka Restaurant. Одно управление — идеально для коктейля после ужина.",
+        "fr": "Au même étage que Mussakka Restaurant, bar à cocktails à l'étage supérieur. Même établissement — idéal pour un cocktail après le dîner."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Cocktail",
+          "Mezzanine",
+          "Bar"
+        ],
+        "en": [
+          "Cocktail",
+          "Mezzanine",
+          "Bar"
+        ],
+        "de": [
+          "Cocktail",
+          "Mezzanine",
+          "Bar"
+        ],
+        "ru": [
+          "Cocktail",
+          "Mezzanine",
+          "Bar"
+        ],
+        "fr": [
+          "Cocktail",
+          "Mezzanine",
+          "Bar"
+        ]
+      }
     },
     {
       "id": "sherlock-holmes",
@@ -561,7 +1327,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Sherlock Holmes Restaurant Bar Lounge",
+        "en": "Sherlock Holmes Restaurant Bar Lounge",
+        "de": "Sherlock Holmes Restaurant Bar Lounge",
+        "ru": "Sherlock Holmes Restaurant Bar Lounge",
+        "fr": "Sherlock Holmes Restaurant Bar Lounge"
+      },
+      "summaryI18n": {
+        "tr": "Sherlock Holmes temalı restaurant, bar ve lounge. Doğum günü, yıldönümü ve özel kutlamalar için ideal — 221/B Baker Street Kalkan Liman.",
+        "en": "Sherlock Holmes themed restaurant, bar and lounge. Ideal for birthdays, anniversaries and special celebrations — 221/B Baker Street Kalkan Marina.",
+        "de": "Sherlock Holmes Themen-Restaurant, Bar und Lounge. Ideal für Geburtstage, Jahrestage und spezielle Feiern — 221/B Baker Street Kalkan Marina.",
+        "ru": "Ресторан, бар и lounge в стиле Sherlock Holmes. Идеально для дней рождения, юбилеев и праздничных мероприятий — 221/B Baker Street, Калкан Лимани.",
+        "fr": "Restaurant, bar et lounge à thème Sherlock Holmes. Idéal pour anniversaires, fêtes et célébrations spéciales — 221/B Baker Street Kalkan Marina."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Doğum Günü Kutlama",
+          "Cocktail Bar",
+          "Lounge"
+        ],
+        "en": [
+          "Birthday Celebration",
+          "Cocktail Bar",
+          "Lounge"
+        ],
+        "de": [
+          "Geburtstagsfeier",
+          "Cocktail Bar",
+          "Lounge"
+        ],
+        "ru": [
+          "День Рождения",
+          "Cocktail Bar",
+          "Lounge"
+        ],
+        "fr": [
+          "Célébration d'Anniversaire",
+          "Cocktail Bar",
+          "Lounge"
+        ]
+      }
     },
     {
       "id": "mey-terrace",
@@ -589,7 +1396,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Mey Terrace Restaurant & Cocktail Bar",
+        "en": "Mey Terrace Restaurant & Cocktail Bar",
+        "de": "Mey Terrace Restaurant & Cocktail Bar",
+        "ru": "Mey Terrace Restaurant & Cocktail Bar",
+        "fr": "Mey Terrace Restaurant & Cocktail Bar"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan'ın eski tarihi sokaklarında teras restoran ve kokteyl bar.",
+        "en": "Terrace restaurant and cocktail bar in Kalkan's historic old streets.",
+        "de": "Terrassen-Restaurant und Cocktail Bar in Kalkans alter historischer Altstadt.",
+        "ru": "Терраса-ресторан и коктейльный бар на исторических улицах старого города Калкана.",
+        "fr": "Restaurant en terrasse et bar à cocktails dans les vieilles rues historiques de Kalkan."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Cocktail",
+          "Old Town Terrace",
+          "Fine Dining"
+        ],
+        "en": [
+          "Cocktail",
+          "Old Town Terrace",
+          "Fine Dining"
+        ],
+        "de": [
+          "Cocktail",
+          "Old Town Terrace",
+          "Fine Dining"
+        ],
+        "ru": [
+          "Cocktail",
+          "Old Town Terrace",
+          "Fine Dining"
+        ],
+        "fr": [
+          "Cocktail",
+          "Old Town Terrace",
+          "Fine Dining"
+        ]
+      }
     },
     {
       "id": "salonika-1881",
@@ -620,7 +1468,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Salonika 1881",
+        "en": "Salonika 1881",
+        "de": "Salonika 1881",
+        "ru": "Salonika 1881",
+        "fr": "Salonika 1881"
+      },
+      "summaryI18n": {
+        "tr": "Bade meclisi konseptli butik şarap & meze evi. Sakin atmosfer, geniş şarap seçkisi.",
+        "en": "Boutique wine and meze house with Bade Majlis concept. Relaxed atmosphere, extensive wine selection.",
+        "de": "Butik Wein- und Meze-Haus im Bade-Meclisi-Konzept. Entspannte Atmosphäre, große Weinauswahl.",
+        "ru": "Бутик винотека и мезе-бар в концепции бане-меджлиса. Спокойная атмосфера, широкий выбор вин.",
+        "fr": "Maison de vin et meze de charme au concept de salon ottoman. Ambiance tranquille, large sélection de vins."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Şarap",
+          "Bade Meclisi",
+          "Meze"
+        ],
+        "en": [
+          "Wine",
+          "Bade Majlis",
+          "Meze"
+        ],
+        "de": [
+          "Wein",
+          "Bade Meclisi",
+          "Meze"
+        ],
+        "ru": [
+          "Вино",
+          "Бане Меджлис",
+          "Meze"
+        ],
+        "fr": [
+          "Vin",
+          "Salon Ottoman",
+          "Meze"
+        ]
+      }
     },
     {
       "id": "shade-lounge",
@@ -650,7 +1539,48 @@
       "hours": null,
       "reservation": true,
       "featured": false,
-      "source": "kartvizit"
+      "source": "kartvizit",
+      "nameI18n": {
+        "tr": "Shade Lounge Cocktail",
+        "en": "Shade Lounge Cocktail",
+        "de": "Shade Lounge Cocktail",
+        "ru": "Shade Lounge Cocktail",
+        "fr": "Shade Lounge Cocktail"
+      },
+      "summaryI18n": {
+        "tr": "Kokteyl odaklı modern lounge konsepti. Imza kokteyller ve sakin atmosfer.",
+        "en": "Modern lounge concept focused on cocktails. Signature cocktails and relaxed atmosphere.",
+        "de": "Modernes Lounge-Konzept mit Cocktail-Fokus. Signature Cocktails und entspannte Atmosphäre.",
+        "ru": "Современный lounge с фокусом на коктейли. Фирменные коктейли и спокойная атмосфера.",
+        "fr": "Concept de lounge moderne axé sur les cocktails. Cocktails signature et ambiance tranquille."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Imza Kokteyl",
+          "Lounge",
+          "Bar"
+        ],
+        "en": [
+          "Signature Cocktail",
+          "Lounge",
+          "Bar"
+        ],
+        "de": [
+          "Signature Cocktail",
+          "Lounge",
+          "Bar"
+        ],
+        "ru": [
+          "Авторский Коктейль",
+          "Lounge",
+          "Bar"
+        ],
+        "fr": [
+          "Cocktail Signature",
+          "Lounge",
+          "Bar"
+        ]
+      }
     },
     {
       "id": "kalamaki",
@@ -680,7 +1610,48 @@
       "reservation": true,
       "featured": false,
       "source": "kartvizit",
-      "instagram": "https://www.instagram.com/kalamaki_restaurant_kalkan/"
+      "instagram": "https://www.instagram.com/kalamaki_restaurant_kalkan/",
+      "nameI18n": {
+        "tr": "Kalamaki Restaurant Cocktail & Bar",
+        "en": "Kalamaki Restaurant Cocktail & Bar",
+        "de": "Kalamaki Restaurant Cocktail & Bar",
+        "ru": "Kalamaki Restaurant Cocktail & Bar",
+        "fr": "Kalamaki Restaurant Cocktail & Bar"
+      },
+      "summaryI18n": {
+        "tr": "Hasan Altan Caddesi üzerinde restaurant, cocktail ve bar. Akdeniz mutfağı odaklı menü.",
+        "en": "Restaurant, cocktail and bar on Hasan Altan Street. Mediterranean cuisine focused menu.",
+        "de": "Restaurant, Cocktail und Bar an der Hasan Altan Caddesi. Menü mit Fokus auf mediterrane Küche.",
+        "ru": "Ресторан, коктейль и бар на улице Hasan Altan. Меню средиземноморской кухни.",
+        "fr": "Restaurant, cocktails et bar sur la Caddesi Hasan Altan. Menu axé sur la cuisine méditerranéenne."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Akdeniz Mutfağı",
+          "Cocktail",
+          "Bar"
+        ],
+        "en": [
+          "Mediterranean Cuisine",
+          "Cocktail",
+          "Bar"
+        ],
+        "de": [
+          "Mediterrane Küche",
+          "Cocktail",
+          "Bar"
+        ],
+        "ru": [
+          "Средиземноморская Кухня",
+          "Cocktail",
+          "Bar"
+        ],
+        "fr": [
+          "Cuisine Méditerranéenne",
+          "Cocktail",
+          "Bar"
+        ]
+      }
     },
     {
       "id": "club-chocolate-kalkan",
@@ -705,7 +1676,48 @@
       ],
       "hours": null,
       "reservation": false,
-      "featured": true
+      "featured": true,
+      "nameI18n": {
+        "tr": "Chocolate Club Kalkan",
+        "en": "Chocolate Club Kalkan",
+        "de": "Chocolate Club Kalkan",
+        "ru": "Chocolate Club Kalkan",
+        "fr": "Chocolate Club Kalkan"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan'ın efsane gece kulüplerinden — canlı DJ performansları, premium kokteyl seçenekleri ve enerjik atmosfer.",
+        "en": "One of Kalkan's legendary nightclubs — live DJ performances, premium cocktail selection and energetic atmosphere.",
+        "de": "Eine der legendären Nachtclubs von Kalkan — Live-DJ-Auftritte, Premium-Cocktails und energiegeladene Atmosphäre.",
+        "ru": "Легендарные ночные клубы Калкана — живые DJ-выступления, премиум-коктейли и энергичная атмосфера.",
+        "fr": "L'un des clubs de nuit légendaires de Kalkan — performances DJ en direct, sélection de cocktails premium et ambiance énergique."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Premium Kokteyl",
+          "DJ Performans",
+          "Dans Pisti"
+        ],
+        "en": [
+          "Premium Cocktail",
+          "DJ Performance",
+          "Dance Floor"
+        ],
+        "de": [
+          "Premium Cocktail",
+          "DJ Performance",
+          "Tanzfläche"
+        ],
+        "ru": [
+          "Premium Cocktail",
+          "DJ Performance",
+          "Dance Floor"
+        ],
+        "fr": [
+          "Cocktail Premium",
+          "Performance DJ",
+          "Piste de Danse"
+        ]
+      }
     },
     {
       "id": "club-mojito",
@@ -730,7 +1742,48 @@
       ],
       "hours": null,
       "reservation": false,
-      "featured": true
+      "featured": true,
+      "nameI18n": {
+        "tr": "Club Mojito",
+        "en": "Club Mojito",
+        "de": "Club Mojito",
+        "ru": "Club Mojito",
+        "fr": "Club Mojito"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan'ın renkli kokteyl barı — taze meyveli mojitolar, samimi atmosfer ve sahil esintisi.",
+        "en": "Kalkan's vibrant cocktail bar — fresh fruit mojitos, intimate atmosphere and seaside breeze.",
+        "de": "Kalkan's farbenfrohe Cocktailbar — frische Mojitos mit Früchten, gemütliche Atmosphäre und Meeresluft.",
+        "ru": "Красочный коктейльный бар Калкана — свежие фруктовые мохито, уютная атмосфера и морской бриз.",
+        "fr": "Bar à cocktails coloré de Kalkan — mojitos aux fruits frais, ambiance conviviale et brise marine."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Mojito",
+          "Tropikal Kokteyl",
+          "Canlı Müzik"
+        ],
+        "en": [
+          "Mojito",
+          "Tropical Cocktail",
+          "Live Music"
+        ],
+        "de": [
+          "Mojito",
+          "Tropical Cocktail",
+          "Live Music"
+        ],
+        "ru": [
+          "Mojito",
+          "Tropical Cocktail",
+          "Live Music"
+        ],
+        "fr": [
+          "Mojito",
+          "Cocktail Tropical",
+          "Musique Live"
+        ]
+      }
     },
     {
       "id": "noema-community",
@@ -755,7 +1808,48 @@
       ],
       "hours": null,
       "reservation": false,
-      "featured": true
+      "featured": true,
+      "nameI18n": {
+        "tr": "Noema Community",
+        "en": "Noema Community",
+        "de": "Noema Community",
+        "ru": "Noema Community",
+        "fr": "Noema Community"
+      },
+      "summaryI18n": {
+        "tr": "Modern lounge konsepti — house ve electronic müzik seçkisi, tasarım iç mekan, premium içecek menüsü.",
+        "en": "Modern lounge concept — house and electronic music selection, designer interior, premium beverage menu.",
+        "de": "Modernes Lounge-Konzept — House- und Electronic-Musik, Design-Interieur, Premium-Getränkekarte.",
+        "ru": "Современная lounge-концепция — подборка house и electronic музыки, дизайнерский интерьер, премиум-меню напитков.",
+        "fr": "Concept lounge moderne — sélection de musique house et électronique, intérieur design, menu de boissons premium."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "House Music",
+          "Lounge",
+          "Premium Bar"
+        ],
+        "en": [
+          "House Music",
+          "Lounge",
+          "Premium Bar"
+        ],
+        "de": [
+          "House Music",
+          "Lounge",
+          "Premium Bar"
+        ],
+        "ru": [
+          "House Music",
+          "Lounge",
+          "Premium Bar"
+        ],
+        "fr": [
+          "House Music",
+          "Lounge",
+          "Premium Bar"
+        ]
+      }
     }
   ]
 }
