@@ -1352,6 +1352,37 @@
           "contactVia": "direct"
         }
       ]
+    },
+    "kasap": {
+      "title": "Kasap",
+      "icon": "🥩",
+      "providers": [
+        {
+          "id": "kasap-haciogli",
+          "name": "Hacıoğlu Kasap",
+          "type": "İşletme",
+          "rating": 4.7,
+          "reviewCount": 0,
+          "image": "/assets/img/haciogli-kasap.jpg",
+          "summary": "Kalkan merkezde geleneksel kasap. Taze kırmızı et, kuzu, dana, tavuk ve şarküteri ürünleri.",
+          "specialties": [
+            "Kırmızı et",
+            "Kuzu",
+            "Dana",
+            "Tavuk",
+            "Şarküteri"
+          ],
+          "phone": "+90 242 844 35 72",
+          "phoneRaw": "02428443572",
+          "mobile": "+90 532 465 95 53",
+          "mobileRaw": "05324659553",
+          "location": "Kalkan, Şehitler Cd., 07580 Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Haciogli+Kasap+Kalkan+Sehitler",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
     }
   }
 }
