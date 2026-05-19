@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Plajlar",
-    "subtitle": "Kalkan ve Kas cevresindeki ucretsiz halk plajlari + ucretli beach club + 13 plaj",
+    "subtitle": "Kalkan ve Kas cevresindeki ucretsiz halk plajlari + ucretli beach club + 14 plaj",
     "updated": "2026-05-19"
   },
   "items": [
@@ -265,41 +265,6 @@
       "instagram": "https://www.instagram.com/yalibeachclubkalkan/"
     },
     {
-      "id": "likya-beach",
-      "name": "Likya Beach Club",
-      "category": "Beach club",
-      "region": "Kalkan",
-      "tags": [
-        "Ücretli",
-        "Kademeli iskele",
-        "Restoran"
-      ],
-      "image": "/assets/img/likya-beach-real.jpg",
-      "gallery": [
-        "/assets/img/likya-beach-real.jpg"
-      ],
-      "rating": 4.5,
-      "distance": "Kalkan Körfezi",
-      "drive": "5 dk araba",
-      "summary": "Sahil boyunca kademeli platformlar uzanan, körfez manzaralı beach club. Konuk olmayanlara da açık.",
-      "highlights": [
-        "Kademeli platform",
-        "Körfez manzarası",
-        "Restoran/bar"
-      ],
-      "facilities": [
-        "WC",
-        "Duş",
-        "Restoran",
-        "Bar",
-        "Şezlong/şemsiye"
-      ],
-      "tips": "2025'te şezlong + şemsiye günlüğü ~400₺. 2026 fiyatları henüz açıklanmadı.",
-      "best": "Mayıs–Ekim",
-      "paid": true,
-      "featured": false
-    },
-    {
       "id": "lures-beach",
       "name": "Lures Hotel Beach Club",
       "category": "Beach club",
@@ -466,6 +431,74 @@
       ],
       "tips": "Tekne gidiş-dönüş 350₺/kişi (Bilal'in Yeri). Minimum harcama 1000–1800₺ değişiyor.",
       "best": "Mayıs–Ekim",
+      "paid": true,
+      "featured": false
+    },
+    {
+      "id": "kalamar-beach-club",
+      "name": "Kalamar Beach Club",
+      "category": "Beach club",
+      "region": "Kalkan",
+      "tags": [
+        "Ücretli",
+        "Kalamar Koyu",
+        "Iskele"
+      ],
+      "image": "https://placehold.co/800x600/0a2e4c/ffffff?text=Kalamar+Beach+Club",
+      "gallery": [],
+      "rating": 4.6,
+      "distance": "3 km — batıda (Kalamar Koyu)",
+      "drive": "7 dk araba",
+      "summary": "Kalamar Koyunda iskeleli ucretli beach club. Akdeniz manzarali platform, restoran ve bar.",
+      "highlights": [
+        "Iskele",
+        "Restoran",
+        "Bar",
+        "Berrak su"
+      ],
+      "facilities": [
+        "WC",
+        "Dus",
+        "Restoran",
+        "Bar",
+        "Sezlong/semsiye"
+      ],
+      "tips": "Hafta sonu rezervasyon onerilir. Sezlong/semsiye veya minimum harcama uygulanir.",
+      "best": "Mayis-Ekim",
+      "paid": true,
+      "featured": false,
+      "instagram": "https://www.instagram.com/kalamarbeachclub/"
+    },
+    {
+      "id": "kulube-beach",
+      "name": "Kulube Beach",
+      "category": "Beach club",
+      "region": "Kalkan",
+      "tags": [
+        "Ücretli",
+        "Kalamar tarafi",
+        "Iskele"
+      ],
+      "image": "https://placehold.co/800x600/0a2e4c/ffffff?text=Kulube+Beach",
+      "gallery": [],
+      "rating": 4.5,
+      "distance": "3 km — batıda (Kalamar yakini)",
+      "drive": "7 dk araba",
+      "summary": "Kalkan Kalamar tarafinda ucretli beach club. Sessiz koy, iskele ve restoran servisi.",
+      "highlights": [
+        "Iskele",
+        "Sessiz koy",
+        "Restoran"
+      ],
+      "facilities": [
+        "WC",
+        "Dus",
+        "Restoran",
+        "Bar",
+        "Sezlong"
+      ],
+      "tips": "Rezervasyon onerilir. Sezlong/semsiye veya minimum harcama.",
+      "best": "Mayis-Ekim",
       "paid": true,
       "featured": false
     }
