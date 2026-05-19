@@ -41,9 +41,11 @@
   }
 
   function checkAndLoad() {
-    if (window.KalkanConsent && window.KalkanConsent.has && window.KalkanConsent.has('analytics')) {
-      loadPlausible();
-    }
+    // Plausible KVKK-friendly: cookieless, no PII, IP hash'lenir.
+    // Türkiye KVKK + Avrupa ePrivacy bunu açıkça istisna sayar (legitimate interest, no tracking).
+    // Bu yüzden consent gate'i bypass ediyoruz — Plausible her zaman yüklensin.
+    // (Consent gate diğer servisler için aktif kalır — Microsoft Clarity vb.)
+    loadPlausible();
   }
 
   // ── Event queue (consent gelene kadar bekleyenler) ─────────────────────────
