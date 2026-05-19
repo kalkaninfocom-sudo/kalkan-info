@@ -110,6 +110,12 @@
             '</ul>' +
           '</div>' +
           '<div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Kurumsal</div>' +
+            '<ul class="space-y-1.5">' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="hakkimizda.html">ℹ️ Hakkımızda</a></li>' +
+            '</ul>' +
+          '</div>' +
+          '<div>' +
             '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Yasal & Yönetim</div>' +
             '<ul class="space-y-1.5">' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="kvkk.html">📋 KVKK Aydınlatma</a></li>' +
