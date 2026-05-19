@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Plajlar",
-    "subtitle": "Kalkan ve Kas cevresindeki ucretsiz halk plajlari + ucretli beach club + 14 plaj",
+    "subtitle": "Kalkan ve Kas cevresindeki ucretsiz halk plajlari + ucretli beach club + 15 plaj",
     "updated": "2026-05-19"
   },
   "items": [
@@ -444,8 +444,10 @@
         "Kalamar Koyu",
         "Iskele"
       ],
-      "image": "https://placehold.co/800x600/0a2e4c/ffffff?text=Kalamar+Beach+Club",
-      "gallery": [],
+      "image": "/assets/img/kalamar-beach-club-real.jpg",
+      "gallery": [
+        "/assets/img/kalamar-beach-club-real.jpg"
+      ],
       "rating": 4.6,
       "distance": "3 km — batıda (Kalamar Koyu)",
       "drive": "7 dk araba",
@@ -500,6 +502,39 @@
       "tips": "Rezervasyon onerilir. Sezlong/semsiye veya minimum harcama.",
       "best": "Mayis-Ekim",
       "paid": true,
+      "featured": false
+    },
+    {
+      "id": "tas-ocak",
+      "name": "Taş Ocak Plajı",
+      "category": "Gizli koy",
+      "region": "Kalkan",
+      "tags": [
+        "Ücretsiz",
+        "Kayalik",
+        "Snorkel"
+      ],
+      "image": "/assets/img/tas-ocak-real.jpg",
+      "gallery": [
+        "/assets/img/tas-ocak-real.jpg"
+      ],
+      "rating": 4.5,
+      "distance": "Kalkan cevresi",
+      "drive": "Araba + kisa yuruyus",
+      "summary": "Kayaliklarin arasinda ahsap basamakli gizli koy. Turkuaz berrak suda snorkel + dalis icin ideal.",
+      "highlights": [
+        "Ahsap basamak",
+        "Kayalik",
+        "Snorkel",
+        "Berrak su"
+      ],
+      "facilities": [
+        "Dogal",
+        "Otopark sinirli"
+      ],
+      "tips": "Kayalik plaj — plaj ayakkabisi sart. Yaninizda su getirin.",
+      "best": "Haziran-Eylul",
+      "paid": false,
       "featured": false
     }
   ]
