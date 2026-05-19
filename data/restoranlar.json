@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Restoran & Bar",
-    "subtitle": "Kalkan'in en iyi restoran, kafe ve barlari — Harbor Lights + 4 klasik + 18 kartvizit isletmesi",
+    "subtitle": "Kalkan'in en iyi restoran, kafe ve barlari — Harbor Lights + 4 klasik + 18 kartvizit + Ziizipizza",
     "updated": "2026-05-19"
   },
   "categories": [
@@ -489,9 +489,9 @@
       "phone": "+90 242 844 15 76",
       "mobile": "+90 537 493 22 90",
       "email": "musakkarestaurantkalkan@gmail.com",
-      "image": "/assets/img/1438941126bd.webp",
+      "image": "/assets/img/mezzanine-bar.jpg",
       "gallery": [
-        "/assets/img/1438941126bd.webp"
+        "/assets/img/mezzanine-bar.jpg"
       ],
       "summary": "Mussakka Restaurant ile aynı binada, üst kat kokteyl barı. Aynı işletme — yemek sonrası kokteyl içmek için ideal.",
       "specialties": [
@@ -653,6 +653,33 @@
       "featured": false,
       "source": "kartvizit",
       "instagram": "https://www.instagram.com/kalamaki_restaurant_kalkan/"
+    },
+    {
+      "id": "ziizi-pizza",
+      "name": "Ziizipizza",
+      "category": "Dünya Mutfağı",
+      "cuisine": "İtalyan / Pizza & Pasta",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": null,
+      "website": "https://www.instagram.com/ziizipizza/",
+      "instagram": "https://www.instagram.com/ziizipizza/",
+      "image": "/assets/img/ziizi-pizza.jpg",
+      "gallery": [
+        "/assets/img/ziizi-pizza.jpg"
+      ],
+      "summary": "El açma hamur, taze sos ve fırın klasiği pizza & pasta. Güncel menü ve fotoğraflar için Instagram sayfasını ziyaret edin.",
+      "specialties": [
+        "Pizza",
+        "Pasta",
+        "El Açma Hamur"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "instagram"
     }
   ]
 }
