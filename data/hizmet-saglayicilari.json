@@ -1263,6 +1263,36 @@
           "contactNote": "Telefon yok — Google Maps üzerinden ulaşın"
         }
       ]
+    },
+    "kuafor-erkek": {
+      "title": "Erkek Kuaförleri",
+      "icon": "💈",
+      "providers": [
+        {
+          "id": "kuafor-the-barber-kalkan",
+          "name": "The Barber Kalkan",
+          "type": "İşletme",
+          "rating": 4.8,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan merkezde erkek kuaför hizmetleri — sac kesim, sakal, tras, çocuk kesim.",
+          "specialties": [
+            "Saç kesim",
+            "Sakal tıraş",
+            "Çocuk kesim",
+            "Boyama"
+          ],
+          "phone": "+90 538 947 63 83",
+          "phoneRaw": "05389476383",
+          "whatsapp": "+90 538 947 63 83",
+          "whatsappRaw": "905389476383",
+          "location": "Kalkan, Mustafa Kocakaya Cd. 18/3, 07580 Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Barber+Kalkan+Mustafa+Kocakaya",
+          "verified": true,
+          "featured": true,
+          "contactVia": "direct"
+        }
+      ]
     }
   }
 }
