@@ -1234,6 +1234,35 @@
           "contactVia": "direct"
         }
       ]
+    },
+    "saglik-merkez": {
+      "title": "Aile Sağlığı Merkezi",
+      "icon": "🏥",
+      "providers": [
+        {
+          "id": "asm-medine-tigrak",
+          "name": "Kalkan Medine Tığrak Aile Sağlığı Merkezi",
+          "type": "Kamu",
+          "rating": 4.5,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Kalkan merkez aile sağlığı merkezi. Resmi devlet kuruluşu — randevulu poliklinik, aşı, ilkyardım, çocuk takibi.",
+          "specialties": [
+            "Poliklinik",
+            "Aşı",
+            "Çocuk takibi",
+            "Reçete"
+          ],
+          "phone": null,
+          "phoneRaw": null,
+          "location": "Kalkan, Cumhuriyet Cd. No:9, 07580 Kaş/Antalya",
+          "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Medine+Tigrak+Aile+Saglik+Merkezi+Kalkan+Cumhuriyet",
+          "verified": true,
+          "featured": true,
+          "contactVia": "maps",
+          "contactNote": "Telefon yok — Google Maps üzerinden ulaşın"
+        }
+      ]
     }
   }
 }
