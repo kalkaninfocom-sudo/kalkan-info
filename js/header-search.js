@@ -9,7 +9,7 @@
 
   const COLLECTIONS = [
     { key: 'villalar',    label: 'Villalar',    page: 'villalar.html',     icon: '🏖️' },
-    { key: 'restoranlar', label: 'Restoranlar', page: 'restoranlar.html',  icon: '🍽️' },
+    { key: 'restoranlar', label: 'Restoran & Bar', page: 'restoranlar.html',  icon: '🍽️' },
     { key: 'plajlar',     label: 'Plajlar',     page: 'plajlar.html',      icon: '🌊' },
     { key: 'turlar',      label: 'Turlar',      page: 'turlar.html',       icon: '🚤' },
     { key: 'hizmetler',   label: 'Hizmetler',   page: 'hizmetler.html',    icon: '🛠️' },
