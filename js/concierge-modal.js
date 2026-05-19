@@ -234,8 +234,47 @@
           display:flex;align-items:center;justify-content:center;transition:background 0.15s;
         ">×</button>
       </div>
-      <p style="margin:6px 0 18px;font-size:13px;line-height:1.55;color:rgba(220,230,239,0.7);">Direkt WhatsApp üzerinden kişiye özel cevap alırsın. Tatil planlama, villa, restoran, transfer veya yerel rehberlik için seç.</p>
+      <p style="margin:6px 0 14px;font-size:13px;line-height:1.55;color:rgba(220,230,239,0.7);">İnsan concierge (Berkay) ile WhatsApp veya AI ile anında sohbet et.</p>
+      <div id="kalkan-concierge-tabs" style="display:flex;gap:8px;margin-bottom:14px;padding:4px;background:rgba(0,0,0,0.20);border-radius:12px;">
+        <button id="kalkan-tab-wa" type="button" data-tab="wa" style="
+          flex:1;padding:9px 8px;background:rgba(244,181,61,0.18);color:#fff;
+          border:1px solid rgba(244,181,61,0.45);border-radius:9px;cursor:pointer;
+          font-family:inherit;font-size:12px;font-weight:700;letter-spacing:0.01em;
+          display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.15s;
+        ">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+          <span>WhatsApp <span style="font-weight:400;opacity:0.75;font-size:10px;">· 5-30 dk</span></span>
+        </button>
+        <button id="kalkan-tab-ai" type="button" data-tab="ai" style="
+          flex:1;padding:9px 8px;background:transparent;color:rgba(220,230,239,0.7);
+          border:1px solid transparent;border-radius:9px;cursor:pointer;
+          font-family:inherit;font-size:12px;font-weight:700;letter-spacing:0.01em;
+          display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.15s;
+        ">
+          <span style="font-size:14px;">✨</span>
+          <span>AI Concierge <span style="font-weight:400;opacity:0.75;font-size:10px;">· anında</span></span>
+        </button>
+      </div>
       <div id="kalkan-concierge-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+      <div id="kalkan-ai-pane" style="display:none;flex-direction:column;gap:10px;">
+        <p style="margin:0;padding:10px 12px;background:rgba(244,181,61,0.10);border:1px solid rgba(244,181,61,0.25);border-radius:10px;font-size:11px;line-height:1.5;color:rgba(220,230,239,0.85);">
+          ⚠ AI olduğum için fiyat ve rezervasyon kesin değil. Net cevap için WhatsApp'a geç.
+        </p>
+        <button id="kalkan-ai-launch" type="button" style="
+          display:flex;align-items:center;justify-content:center;gap:10px;
+          padding:14px 16px;background:linear-gradient(135deg,#f4b53d,#e89812);color:#0a2e4c;
+          border:none;border-radius:14px;cursor:pointer;
+          font-family:Montserrat,system-ui,sans-serif;font-weight:800;font-size:14px;
+          transition:transform 0.12s,box-shadow 0.15s;
+          box-shadow:0 4px 16px -4px rgba(244,181,61,0.45);
+        ">
+          <span style="font-size:18px;">✨</span>
+          <span>AI ile Sohbet Et</span>
+        </button>
+        <p style="margin:0;font-size:11px;line-height:1.55;color:rgba(220,230,239,0.6);text-align:center;">
+          Claude Haiku 4.5 destekli · 5 dil · KVKK uyumlu
+        </p>
+      </div>
       <p style="margin:18px 0 0;font-size:11px;color:rgba(220,230,239,0.45);text-align:center;">
         Yanıt süresi genellikle 5-30 dk · Pazartesi-Pazar 09:00–22:00
       </p>
@@ -248,6 +287,39 @@
 
     const closeBtn = sheet.querySelector('#kalkan-concierge-close');
     closeBtn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); close(); });
+
+    // Tab toggle (WhatsApp <-> AI)
+    const tabWa = sheet.querySelector('#kalkan-tab-wa');
+    const tabAi = sheet.querySelector('#kalkan-tab-ai');
+    const paneWa = sheet.querySelector('#kalkan-concierge-list');
+    const paneAi = sheet.querySelector('#kalkan-ai-pane');
+    function setTab(which) {
+      const isAi = which === 'ai';
+      paneWa.style.display = isAi ? 'none' : 'flex';
+      paneAi.style.display = isAi ? 'flex' : 'none';
+      // Active tab styling
+      tabWa.style.background = isAi ? 'transparent' : 'rgba(244,181,61,0.18)';
+      tabWa.style.color = isAi ? 'rgba(220,230,239,0.7)' : '#fff';
+      tabWa.style.borderColor = isAi ? 'transparent' : 'rgba(244,181,61,0.45)';
+      tabAi.style.background = isAi ? 'rgba(244,181,61,0.18)' : 'transparent';
+      tabAi.style.color = isAi ? '#fff' : 'rgba(220,230,239,0.7)';
+      tabAi.style.borderColor = isAi ? 'rgba(244,181,61,0.45)' : 'transparent';
+    }
+    tabWa.addEventListener('click', (e) => { e.stopPropagation(); setTab('wa'); });
+    tabAi.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setTab('ai');
+      fireEv('ai_concierge_tab', { page: location.pathname, context: lastContext?.context || 'genel' });
+    });
+
+    // AI launch button — lazy-loads concierge-ai-modal.js then opens it.
+    const aiLaunch = sheet.querySelector('#kalkan-ai-launch');
+    aiLaunch.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      launchAiModal();
+    });
+
     // Sheet üzerine tıklayınca bubble'ı kes (modal kapanmasın)
     sheet.addEventListener('click', (e) => e.stopPropagation());
     backdrop.addEventListener('click', () => close());
@@ -255,6 +327,46 @@
 
     document.body.appendChild(backdrop);
     document.body.style.overflow = 'hidden';
+  }
+
+  // Lazy-load js/concierge-ai-modal.js and open it.
+  function launchAiModal() {
+    const openAi = () => {
+      if (typeof window.openConciergeAI === 'function') {
+        const ctx = lastContext || { context: 'genel', item: null };
+        close(); // close the picker, AI modal will mount on top
+        setTimeout(() => {
+          window.openConciergeAI({
+            context: ctx.context,
+            item: ctx.item,
+            source: 'concierge_picker',
+          });
+        }, 200);
+        return true;
+      }
+      return false;
+    };
+    if (openAi()) return;
+    // Inject script lazily (idempotent — check first).
+    if (document.querySelector('script[data-kalkan-ai-modal]')) {
+      // Already injected, wait for load.
+      let tries = 0;
+      const iv = setInterval(() => {
+        tries += 1;
+        if (openAi() || tries > 40) clearInterval(iv);
+      }, 50);
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'js/concierge-ai-modal.js?v=20260519';
+    s.defer = true;
+    s.setAttribute('data-kalkan-ai-modal', '1');
+    s.onload = () => { openAi(); };
+    s.onerror = () => {
+      console.warn('[concierge] AI modal load failed — falling back to WA');
+      window.open('https://wa.me/905306650794', '_blank', 'noopener');
+    };
+    document.head.appendChild(s);
   }
 
   function buildAgentCard(a) {
