@@ -114,6 +114,18 @@
         return setStatus(status, msg, 'err');
       }
 
+      // Plausible event — başarılı abone (email PII gönderilmez)
+      try {
+        if (window.plausibleEvent) {
+          window.plausibleEvent('newsletter_subscribe', {
+            locale: (document.documentElement.lang || 'tr').slice(0, 2),
+            source_page: location.pathname,
+            status: data?.status || 'pending'
+          });
+        }
+        if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('newsletter');
+      } catch (e) {}
+
       if (data?.status === 'already_confirmed') {
         setStatus(status, 'Zaten abonesiniz. Teşekkürler.', 'ok');
       } else {

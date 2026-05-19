@@ -31,6 +31,10 @@
     return agents;
   }
 
+  function fireEv(name, props) {
+    try { if (window.plausibleEvent) window.plausibleEvent(name, props || {}); } catch (e) {}
+  }
+
   function build(agentsList) {
     backdrop = document.createElement('div');
     backdrop.id = 'kalkan-concierge-modal';
@@ -118,6 +122,16 @@
     if (available) {
       card.target = '_blank';
       card.rel = 'noopener noreferrer';
+      card.addEventListener('click', () => {
+        fireEv('concierge_select', { provider: a.id || a.name, agent: a.name });
+        fireEv('wa_click', {
+          provider_id: a.id || a.name || 'unknown',
+          page_url: location.pathname,
+          agent: a.name || '',
+          source: 'concierge_modal'
+        });
+        try { if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('concierge'); } catch (e) {}
+      });
     } else {
       card.addEventListener('click', e => { e.preventDefault(); });
     }
@@ -176,6 +190,7 @@
 
   function close() {
     if (!backdrop) return;
+    fireEv('concierge_close', { page: location.pathname });
     backdrop.style.animation = 'kalkan-concierge-fade 0.18s ease reverse';
     setTimeout(() => {
       if (backdrop && backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
@@ -189,11 +204,22 @@
     if (e.key === 'Escape') close();
   }
 
-  async function open() {
+  async function open(opts) {
     if (backdrop) return;
+    fireEv('concierge_open', {
+      source: (opts && opts.source) || 'unknown',
+      page: location.pathname
+    });
     const list = await loadAgents();
     if (!list.length) {
       // Fallback — default Berkay WA aç
+      fireEv('wa_click', {
+        provider_id: 'default',
+        page_url: location.pathname,
+        agent: 'Berkay',
+        source: 'concierge_fallback'
+      });
+      try { if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('concierge'); } catch (e) {}
       window.open('https://wa.me/905306650794?text=Merhaba+Kalkan+Info', '_blank', 'noopener');
       return;
     }
@@ -207,7 +233,9 @@
       el.__kalkanBound = true;
       el.addEventListener('click', e => {
         e.preventDefault();
-        open();
+        const src = el.getAttribute('data-concierge-source')
+          || (el.id === 'concierge' ? 'floating_button' : 'inline_link');
+        open({ source: src });
       });
     });
   }

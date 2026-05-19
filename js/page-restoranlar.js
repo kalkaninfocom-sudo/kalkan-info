@@ -59,7 +59,29 @@
       || '<div class="col-span-full text-center py-12 text-sea-700/60" data-en="No results." data-de="Keine Ergebnisse." data-ru="Нет результатов." data-fr="Aucun résultat.">Sonuç bulunamadı.</div>';
     applyCounter(items.length);
   }
-  searchEl.addEventListener('input', render);
-  catEl.addEventListener('change', render);
+  // Search & filter — debounce + plausible
+  let searchDebounce = 0;
+  searchEl.addEventListener('input', () => {
+    render();
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      const q = (searchEl.value || '').trim();
+      if (q.length >= 2 && window.plausibleEvent) {
+        window.plausibleEvent('search', {
+          page: 'restoranlar',
+          query_len: String(q.length)
+        });
+      }
+    }, 600);
+  });
+  catEl.addEventListener('change', () => {
+    render();
+    if (window.plausibleEvent && catEl.value) {
+      window.plausibleEvent('category_filter', {
+        page: 'restoranlar',
+        category: catEl.value
+      });
+    }
+  });
   render();
 })();

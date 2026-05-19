@@ -324,6 +324,34 @@ function renderResult(data, formData, { stub, requestId } = {}) {
   }
 
   window._currentPlan = { data, formData };
+
+  // Plausible — plan oluştu (PII yok, sadece agg metrik)
+  try {
+    if (window.plausibleEvent) {
+      window.plausibleEvent('vacation_planner_complete', {
+        nights: String(nights),
+        adults: String(formData.adults || 0),
+        children: String(formData.children || 0),
+        currency: formData.currency || 'TRY',
+        budget_band: budgetBand(formData.budget, formData.currency),
+        stub: stub ? '1' : '0',
+        local_draft: data.isLocalDraft ? '1' : '0'
+      });
+    }
+    if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('vacation_planner');
+  } catch (e) {}
+}
+
+// Bütçeyi 0-50k / 50k-100k / 100k-250k / 250k+ TRY benzeri band'a düşür (PII koruması + segmentasyon)
+function budgetBand(budget, currency) {
+  var b = Number(budget) || 0;
+  // EUR/USD ~ TRY * 0.03 yaklaşımı — basit normalize
+  var norm = currency === 'EUR' ? b * 35 : currency === 'USD' ? b * 32 : b;
+  if (norm < 25000) return '0-25k';
+  if (norm < 75000) return '25-75k';
+  if (norm < 150000) return '75-150k';
+  if (norm < 300000) return '150-300k';
+  return '300k+';
 }
 
 // ---------------------------------------------------------------------------

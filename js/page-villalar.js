@@ -10,8 +10,23 @@
     const items = KalkanData.filterItems(data.items, { q: searchEl?.value || '', category: catEl?.value || '' });
     grid.innerHTML = items.map(KalkanData.villaCard).join('') || '<div class="col-span-full text-center py-12 text-sea-700/60">Sonuç bulunamadı.</div>';
   }
-  searchEl?.addEventListener('input', render);
-  catEl?.addEventListener('change', render);
+  let searchDebounce = 0;
+  searchEl?.addEventListener('input', () => {
+    render();
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      const q = (searchEl.value || '').trim();
+      if (q.length >= 2 && window.plausibleEvent) {
+        window.plausibleEvent('search', { page: 'villalar', query_len: String(q.length) });
+      }
+    }, 600);
+  });
+  catEl?.addEventListener('change', () => {
+    render();
+    if (window.plausibleEvent && catEl.value) {
+      window.plausibleEvent('category_filter', { page: 'villalar', category: catEl.value });
+    }
+  });
   render();
 })();
 

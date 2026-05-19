@@ -16,6 +16,10 @@
 
   // ── Util ─────────────────────────────────────────────────────────────────
 
+  function fireEv(name, props) {
+    try { if (window.plausibleEvent) window.plausibleEvent(name, props || {}); } catch (e) {}
+  }
+
   function esc(s) {
     return String(s || '').replace(/[&<>"']/g, c =>
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
@@ -308,7 +312,7 @@
         <!-- CTA -->
         <div style="padding:12px 14px 14px;margin-top:auto;display:flex;flex-direction:column;gap:6px;">
           ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0;line-height:1.4;">ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.</p>` : ''}
-          ${p.verified && p.phoneRaw ? `<a href="tel:${esc(p.phoneRaw)}" style="
+          ${p.verified && p.phoneRaw ? `<a href="tel:${esc(p.phoneRaw)}" data-pm-action="phone" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#0a2e4c;color:#fff;
             font-family:'Montserrat',system-ui,sans-serif;
@@ -321,7 +325,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
             ${esc(p.phone || p.phoneRaw)}
           </a>` : ''}
-          ${p.verified && p.mapsUrl ? `<a href="${esc(p.mapsUrl)}" target="_blank" rel="noopener" style="
+          ${p.verified && p.mapsUrl ? `<a href="${esc(p.mapsUrl)}" target="_blank" rel="noopener" data-pm-action="maps" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#fff;color:#0a2e4c;border:1.5px solid #cce0ee;
             font-family:'Montserrat',system-ui,sans-serif;
@@ -333,7 +337,7 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             Yol Tarifi
           </a>` : ''}
-          <a href="${waLink}" target="_blank" rel="noopener" style="
+          <a href="${waLink}" target="_blank" rel="noopener" data-pm-action="wa" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" data-verified="${p.verified ? '1' : '0'}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#16a34a;color:#fff;
             font-family:'Montserrat',system-ui,sans-serif;
@@ -382,6 +386,7 @@
   // ── Open modal ────────────────────────────────────────────────────────────
 
   async function openModal(serviceId) {
+    fireEv('providers_modal_open', { service: serviceId, page: location.pathname });
     const data = await loadData();
     const serviceData = data.services && data.services[serviceId];
 
@@ -491,6 +496,39 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modalEl && modalEl.style.pointerEvents !== 'none') {
         closeModal();
+      }
+    });
+
+    // Provider card link tracking (delegated to grid)
+    document.getElementById('pm-grid').addEventListener('click', e => {
+      const link = e.target.closest('[data-pm-action]');
+      if (!link) return;
+      const action = link.dataset.pmAction;
+      const providerId = link.dataset.providerId || 'unknown';
+      const serviceTitle = link.dataset.serviceTitle || '';
+      if (action === 'phone') {
+        fireEv('phone_click', {
+          provider_id: providerId,
+          service: serviceTitle,
+          page_url: location.pathname,
+          source: 'providers_modal'
+        });
+      } else if (action === 'maps') {
+        fireEv('maps_click', {
+          provider_id: providerId,
+          service: serviceTitle,
+          page_url: location.pathname,
+          source: 'providers_modal'
+        });
+      } else if (action === 'wa') {
+        fireEv('wa_click', {
+          provider_id: providerId,
+          service: serviceTitle,
+          page_url: location.pathname,
+          agent: 'concierge',
+          source: link.dataset.verified === '1' ? 'provider_verified' : 'provider_concierge'
+        });
+        try { if (window.kalkanQualifiedLead) window.kalkanQualifiedLead('concierge'); } catch (e) {}
       }
     });
 

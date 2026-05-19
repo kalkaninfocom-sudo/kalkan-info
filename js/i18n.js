@@ -101,8 +101,20 @@
     get: () => detectLang(),
     set: function (lang) {
       if (!SUPPORTED.includes(lang)) return;
+      var from = detectLang();
       localStorage.setItem(STORAGE_KEY, lang);
       apply(lang);
+      if (from !== lang) {
+        try {
+          if (window.plausibleEvent) {
+            window.plausibleEvent('lang_switch', {
+              from: from,
+              to: lang,
+              page: location.pathname
+            });
+          }
+        } catch (e) {}
+      }
     },
     toggle: function () {
       const cur = detectLang();
