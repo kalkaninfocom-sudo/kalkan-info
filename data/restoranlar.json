@@ -1,8 +1,8 @@
 {
   "_meta": {
-    "title": "Restoranlar",
-    "subtitle": "Kalkan'ın en iyi 25 restoranı — fine dining, balık, ev yemeği, dünya mutfağı",
-    "updated": "2026-04-30"
+    "title": "Restoran & Bar",
+    "subtitle": "Kalkan'ın en iyi restoran, kafe ve barları — fine dining, balık, meze, sushi, kebap, kokteyl bar, pub & lounge",
+    "updated": "2026-05-19"
   },
   "categories": [
     "Fine Dining",
@@ -11,6 +11,7 @@
     "Dünya Mutfağı",
     "Kahvaltı & Brunch",
     "Kafe",
+    "Pub & Lounge",
     "Gece Kulübü"
   ],
   "items": [
@@ -99,21 +100,23 @@
       "cuisine": "Türk Ev Yemeği",
       "priceRange": "₺₺",
       "rating": 4.6,
-      "location": "Eski Kalkan",
-      "phone": "+90 242 844 22 11",
+      "location": "Mustafa Kocakaya Cd. No:9, Kalkan",
+      "phone": "+90 242 844 15 76",
+      "mobile": "+90 537 493 22 90",
+      "email": "musakkarestaurantkalkan@gmail.com",
       "image": "/assets/img/1438941126bd.webp",
       "gallery": [
         "/assets/img/1438941126bd.webp",
         "/assets/img/159888b05492.webp"
       ],
-      "summary": "Geleneksel Türk ev yemekleri. Otantik tatlar arayanlar için.",
+      "summary": "Geleneksel Türk ev yemekleri. Otantik tatlar arayanlar için. The Mezzanine Bar üst katında yer alır.",
       "specialties": [
         "Mussakka",
         "İmam bayıldı",
         "Mantı"
       ],
       "hours": "11:00–23:00",
-      "reservation": false,
+      "reservation": true,
       "featured": false
     },
     {
@@ -716,6 +719,501 @@
         "Premium Bar"
       ],
       "featured": true
+    },
+    {
+      "id": "ala-kalkan",
+      "name": "Ala Restaurant",
+      "category": "Türk Mutfağı",
+      "cuisine": "Akdeniz / Türk",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Merkez",
+      "phone": "+90 531 335 30 90",
+      "website": "https://www.instagram.com/ala_kalkan/",
+      "instagram": "https://www.instagram.com/ala_kalkan/",
+      "image": "/assets/img/ala-restaurant.jpg",
+      "gallery": [
+        "/assets/img/ala-restaurant.jpg"
+      ],
+      "summary": "Akdeniz mutfağı odaklı şirin Kalkan restoranı. Taze balık, meze ve ızgara çeşitleri sunar. Güncel menü ve foto için Instagram sayfasını ziyaret edin.",
+      "specialties": [
+        "Taze Balık",
+        "Meze",
+        "Izgara Çeşitleri"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "the-fountain",
+      "name": "The Fountain",
+      "category": "Fine Dining",
+      "cuisine": "Akdeniz / Dünya",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": "+90 536 920 50 10",
+      "mobile": "+90 533 477 42 92",
+      "website": "https://www.thefountain.com",
+      "image": "/assets/img/the-fountain.jpg",
+      "gallery": [
+        "/assets/img/the-fountain.jpg"
+      ],
+      "summary": "Klasik atmosferli Kalkan restoranı. Detaylı menü ve rezervasyon için iletişim numaralarını arayın.",
+      "specialties": [],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "gusto-kalkan",
+      "name": "Gusto",
+      "category": "Dünya Mutfağı",
+      "cuisine": "Breakfast / Lunch / Dinner & Cocktail",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Yat Limanı yanı",
+      "phone": "+90 532 476 10 66",
+      "website": "https://www.gustokalkan.com",
+      "email": "gustotkalkan@gmail.com",
+      "image": "/assets/img/gusto.jpg",
+      "gallery": [
+        "/assets/img/gusto.jpg"
+      ],
+      "summary": "Liman kenarı çok yönlü mekan — kahvaltıdan akşam yemeği ve kokteyle kadar tüm gün açık.",
+      "specialties": [
+        "Kahvaltı",
+        "Cocktail",
+        "Dinner Menu"
+      ],
+      "hours": "Sabah – Gece",
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "salt-pepper",
+      "name": "Salt & Pepper",
+      "category": "Dünya Mutfağı",
+      "cuisine": "Sushi / Dünya",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": "+90 542 151 34 35",
+      "website": "https://www.instagram.com/saltandpepper_kalkan/",
+      "instagram": "https://www.instagram.com/saltandpepper_kalkan/",
+      "facebook": "https://www.facebook.com/saltandpepperkalkan",
+      "email": "info@saltandpepper-kalkan.com",
+      "image": "/assets/img/salt-pepper.jpg",
+      "gallery": [
+        "/assets/img/salt-pepper.jpg"
+      ],
+      "summary": "2007'den beri Kalkan'da sushi ve dünya mutfağı. Sushi delivery ve rezervasyon hattı aktif.",
+      "specialties": [
+        "Sushi",
+        "Sushi Delivery",
+        "Asya Mutfağı"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit",
+      "established": 2007
+    },
+    {
+      "id": "kleo-cafe-bar",
+      "name": "Kleo Cafe Bar",
+      "category": "Pub & Lounge",
+      "cuisine": "Cafe / Bar / Restaurant",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mah. İskele Sk. No:6",
+      "phone": "+90 242 844 33 30",
+      "email": "duralikaska@hotmail.com",
+      "image": "/assets/img/kleo-cafe-bar.jpg",
+      "gallery": [
+        "/assets/img/kleo-cafe-bar.jpg"
+      ],
+      "summary": "Eski Kalkan İskele Sokak'ta cafe, bar ve restoran konsepti.",
+      "specialties": [
+        "Cafe",
+        "Bar",
+        "Restaurant"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "panorama-kalkan",
+      "name": "Panorama Restaurant Cafe Bar",
+      "category": "Türk Mutfağı",
+      "cuisine": "Restaurant / Cafe / Bar",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mah. Hasan Altan Cad. No:31",
+      "phone": "+90 533 466 81 05",
+      "contact": "Murat Bal",
+      "website": "https://www.instagram.com/panorama_restaurant_kalkan/",
+      "instagram": "https://www.instagram.com/panorama_restaurant_kalkan/",
+      "image": "/assets/img/panorama-kalkan.jpg",
+      "gallery": [
+        "/assets/img/panorama-kalkan.jpg"
+      ],
+      "summary": "Restaurant, cafe ve bar üçlüsünü tek çatı altında sunan Hasan Altan Caddesi mekanı.",
+      "specialties": [
+        "Restaurant",
+        "Cafe",
+        "Bar"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "aura-sushi",
+      "name": "Aura — Alacarte & Sushi",
+      "category": "Dünya Mutfağı",
+      "cuisine": "Alacarte / Sushi",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mah. İskele Sok. No:41",
+      "phone": "+90 501 227 04 07",
+      "image": "/assets/img/aura-restaurant.jpg",
+      "gallery": [
+        "/assets/img/aura-restaurant.jpg"
+      ],
+      "summary": "Kalkan iskelede alacarte ve sushi servisi. Kahvaltıdan akşam yemeğine kadar açık.",
+      "specialties": [
+        "Sushi",
+        "Alacarte",
+        "Breakfast"
+      ],
+      "hours": "Breakfast / Lunch / Dinner",
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "seaport-kalkan",
+      "name": "Seaport Restaurant",
+      "category": "Deniz Ürünleri",
+      "cuisine": "Balık / Deniz Ürünleri",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mh. İskele Sk. No:43",
+      "phone": "+90 543 183 27 76",
+      "mobile": "+90 242 844 15 05",
+      "website": "https://www.instagram.com/seaportkalkan/",
+      "instagram": "https://www.instagram.com/seaportkalkan/",
+      "facebook": "https://www.facebook.com/SeaportKalkan",
+      "email": "kalkanseaportrestaurant@gmail.com",
+      "image": "/assets/img/seaport-kalkan.jpg",
+      "gallery": [
+        "/assets/img/seaport-kalkan.jpg"
+      ],
+      "summary": "Liman manzaralı deniz ürünleri restoranı. Taze balık ve meze çeşitleri.",
+      "specialties": [
+        "Taze Balık",
+        "Meze",
+        "Deniz Ürünleri"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "blue-marlin",
+      "name": "Blue Marlin Fish & Meze",
+      "category": "Deniz Ürünleri",
+      "cuisine": "Balık / Meze / Take Away",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Under Hotel Pirat, Kalkan Marina",
+      "phone": "+90 242 844 27 83",
+      "mobile": "+90 535 302 64 10",
+      "image": "/assets/img/blue-marlin.jpg",
+      "gallery": [
+        "/assets/img/blue-marlin.jpg"
+      ],
+      "summary": "Kalkan Marina'da Pirat Hotel altında balık & meze. Take Away servisi de mevcut.",
+      "specialties": [
+        "Balık",
+        "Meze",
+        "Take Away"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "rallzees-pub",
+      "name": "Rallzees Pub",
+      "category": "Pub & Lounge",
+      "cuisine": "Pub / Bar",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Yalıboyu Mah.",
+      "phone": "+90 530 909 25 47",
+      "website": "https://rallzeespub.com",
+      "image": "/assets/img/rallzees-pub.jpg",
+      "gallery": [
+        "/assets/img/rallzees-pub.jpg"
+      ],
+      "summary": "Kalkan Yalıboyu Mahallesi'nde geleneksel pub atmosferi. Bira, kokteyl ve canlı atmosfer.",
+      "specialties": [
+        "Pub",
+        "Bira",
+        "Kokteyl"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "ata-kebab",
+      "name": "Ata Kebab House",
+      "category": "Türk Mutfağı",
+      "cuisine": "Kebap / Izgara",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": "+90 242 844 16 00",
+      "mobile": "+90 530 396 83 33",
+      "image": "/assets/img/ata-kebab.jpg",
+      "gallery": [
+        "/assets/img/ata-kebab.jpg"
+      ],
+      "summary": "Kalkan'da kebap ve ızgara çeşitleri. Sipariş hattı ile paket servis aktif.",
+      "specialties": [
+        "Kebap",
+        "Izgara",
+        "Paket Servis"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "marina-restaurant",
+      "name": "Marina Restaurant",
+      "category": "Deniz Ürünleri",
+      "cuisine": "Balık / Akdeniz",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mah. Yat Limanı",
+      "phone": "+90 536 487 21 63",
+      "contact": "Serkan Seçkin Yılmaz",
+      "email": "serkkann@yahoo.com",
+      "image": "/assets/img/marina-restaurant.jpg",
+      "gallery": [
+        "/assets/img/marina-restaurant.jpg"
+      ],
+      "summary": "Yat Limanı içinde balık ve Akdeniz mutfağı.",
+      "specialties": [
+        "Balık",
+        "Akdeniz Mutfağı",
+        "Meze"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "mezzanine-bar",
+      "name": "The Mezzanine Bar",
+      "category": "Pub & Lounge",
+      "cuisine": "Cocktail Bar",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Mustafa Kocakaya Cd. No:9 (Mussakka üstü)",
+      "phone": "+90 242 844 15 76",
+      "mobile": "+90 537 493 22 90",
+      "email": "musakkarestaurantkalkan@gmail.com",
+      "image": "/assets/img/1438941126bd.webp",
+      "gallery": [
+        "/assets/img/1438941126bd.webp"
+      ],
+      "summary": "Mussakka Restaurant ile aynı binada, üst kat kokteyl barı. Aynı işletme — yemek sonrası kokteyl içmek için ideal.",
+      "specialties": [
+        "Cocktail",
+        "Mezzanine",
+        "Bar"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit",
+      "relatedTo": "mussakka"
+    },
+    {
+      "id": "sherlock-holmes",
+      "name": "Sherlock Holmes Restaurant Bar Lounge",
+      "category": "Pub & Lounge",
+      "cuisine": "Restaurant / Bar / Lounge",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "221/B Baker Street, Harbour Kalkan",
+      "phone": "+90 537 966 79 72",
+      "website": "https://www.instagram.com/sherlockholmeskalkan/",
+      "instagram": "https://www.instagram.com/sherlockholmeskalkan/",
+      "facebook": "https://www.facebook.com/sherlockholmeskalkan",
+      "image": "/assets/img/sherlock-holmes.jpg",
+      "gallery": [
+        "/assets/img/sherlock-holmes.jpg"
+      ],
+      "summary": "Sherlock Holmes temalı restaurant, bar ve lounge. Doğum günü, yıldönümü ve özel kutlamalar için ideal — 221/B Baker Street Kalkan Liman.",
+      "specialties": [
+        "Doğum Günü Kutlama",
+        "Cocktail Bar",
+        "Lounge"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "mey-terrace",
+      "name": "Mey Terrace Restaurant & Cocktail Bar",
+      "category": "Fine Dining",
+      "cuisine": "Restaurant / Cocktail Bar",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Old Town",
+      "phone": "+90 535 667 98 90",
+      "mobile": "+90 242 844 16 40",
+      "website": "https://www.meyterrace.com",
+      "instagram": "https://www.instagram.com/meyterracekalkan/",
+      "image": "/assets/img/mey-terrace.jpg",
+      "gallery": [
+        "/assets/img/mey-terrace.jpg"
+      ],
+      "summary": "Kalkan'ın eski tarihi sokaklarında teras restoran ve kokteyl bar.",
+      "specialties": [
+        "Cocktail",
+        "Old Town Terrace",
+        "Fine Dining"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "salonika-1881",
+      "name": "Salonika 1881",
+      "category": "Pub & Lounge",
+      "cuisine": "Wine Bar / Bade Meclisi",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Süleyman Yılmaz Cad. & 6. Sokak (Post Office yanı)",
+      "phone": "+90 242 844 24 22",
+      "mobile": "+90 555 380 26 24",
+      "website": "https://www.salonika.co",
+      "instagram": "https://www.instagram.com/salonika1881/",
+      "facebook": "https://www.facebook.com/salonika1881",
+      "email": "info@salonika.co",
+      "image": "/assets/img/salonika-1881.jpg",
+      "gallery": [
+        "/assets/img/salonika-1881.jpg",
+        "/assets/img/salonika-outside.jpg"
+      ],
+      "summary": "Bade meclisi konseptli butik şarap & meze evi. Sakin atmosfer, geniş şarap seçkisi.",
+      "specialties": [
+        "Şarap",
+        "Bade Meclisi",
+        "Meze"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "shade-lounge",
+      "name": "Shade Lounge Cocktail",
+      "category": "Pub & Lounge",
+      "cuisine": "Cocktail Lounge",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan",
+      "phone": "+90 537 963 36 35",
+      "contact": "Haşim Alahabalı",
+      "website": "https://www.instagram.com/shade_lounge_cocktail/",
+      "instagram": "https://www.instagram.com/shade_lounge_cocktail/",
+      "facebook": "https://www.facebook.com/shade.lounge",
+      "email": "shadeloungekalkan@outlook.com",
+      "image": "/assets/img/shade-lounge.jpg",
+      "gallery": [
+        "/assets/img/shade-lounge.jpg"
+      ],
+      "summary": "Kokteyl odaklı modern lounge konsepti. Imza kokteyller ve sakin atmosfer.",
+      "specialties": [
+        "Imza Kokteyl",
+        "Lounge",
+        "Bar"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
+    },
+    {
+      "id": "kalamaki",
+      "name": "Kalamaki Restaurant Cocktail & Bar",
+      "category": "Fine Dining",
+      "cuisine": "Akdeniz / Cocktail Bar",
+      "priceRange": "₺₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mah. Hasan Altan Cad. No:47/A",
+      "phone": "+90 242 844 15 55",
+      "mobile": "+90 542 844 15 56",
+      "website": "https://www.kalamakirestaurant.com",
+      "image": "/assets/img/kalamaki.jpg",
+      "gallery": [
+        "/assets/img/kalamaki.jpg",
+        "/assets/img/kalamaki-overview.jpg",
+        "/assets/img/kalamaki-cocktail.jpg"
+      ],
+      "summary": "Hasan Altan Caddesi üzerinde restaurant, cocktail ve bar. Akdeniz mutfağı odaklı menü.",
+      "specialties": [
+        "Akdeniz Mutfağı",
+        "Cocktail",
+        "Bar"
+      ],
+      "hours": null,
+      "reservation": true,
+      "featured": false,
+      "source": "kartvizit"
     }
   ]
 }

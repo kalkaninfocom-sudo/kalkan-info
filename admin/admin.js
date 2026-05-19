@@ -163,7 +163,7 @@ function navigate(page) {
     plajlar:'Plajlar',
     villalar:'Villalar',
     turlar:'Turlar',
-    restoranlar:'Restoranlar',
+    restoranlar:'Restoran & Bar',
     haberler:'Haberler',
     hizmetler:'Hizmet Listesi',
     eczane:'Bugün Nöbetçi Eczane',

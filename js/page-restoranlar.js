@@ -11,7 +11,7 @@
   function render() {
     const items = KalkanData.filterItems(data.items, { q: searchEl.value, category: catEl.value });
     grid.innerHTML = items.map(KalkanData.restoranCard).join('') || '<div class="col-span-full text-center py-12 text-sea-700/60">Sonuç bulunamadı.</div>';
-    counter.textContent = `${items.length} restoran`;
+    counter.textContent = `${items.length} mekan`;
   }
   searchEl.addEventListener('input', render);
   catEl.addEventListener('change', render);
