@@ -27,6 +27,9 @@
   }
 
   // ── Project ID çözümlemesi ─────────────────────────────────────────────────
+  // Default: 'wtqo7vdaoe' — Berkay'ın Microsoft Clarity hesabındaki kalkaninfo.com projesi.
+  // Override için: window.KALKAN_CLARITY_PROJECT_ID veya <script data-clarity-id="..."> veya <meta>.
+  var DEFAULT_PROJECT_ID = 'wtqo7vdaoe';
   function resolveProjectId() {
     if (typeof window.KALKAN_CLARITY_PROJECT_ID === 'string' && window.KALKAN_CLARITY_PROJECT_ID) {
       return window.KALKAN_CLARITY_PROJECT_ID.trim();
@@ -41,7 +44,7 @@
       var c = meta.getAttribute('content');
       if (c && c.trim()) return c.trim();
     }
-    return null;
+    return DEFAULT_PROJECT_ID;
   }
 
   // ── Geçerli ID kontrolü (placeholder olmasın) ──────────────────────────────
