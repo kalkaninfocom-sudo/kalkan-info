@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="dist/tw.css">
+<title data-en="Kalkan Transfer — Airport & Local Packages | Kalkan Info" data-de="Kalkan Transfer — Flughafen & lokale Pakete | Kalkan Info" data-ru="Калкан трансфер — аэропорт и местные пакеты | Kalkan Info" data-fr="Transfert Kalkan — Aéroport & forfaits locaux | Kalkan Info">Kalkan Transfer — Havalimanı & Yerel Paketler | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+  .hero-overlay{background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.30) 40%,rgba(7,33,54,0.92) 100%);}
+  .pkg-card{background:#fff;border:1px solid #cfdfee;border-radius:14px;padding:20px;transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;}
+  .pkg-card:hover{border-color:#e89812;transform:translateY(-3px);box-shadow:0 16px 40px -12px rgba(7,33,54,0.22);}
+  .pkg-tier{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;padding:3px 9px;border-radius:9999px;background:#0a2e4c;color:#f4b53d;margin-bottom:8px;}
+  .pkg-tier.vip{background:linear-gradient(135deg,#e89812 0%,#c97b09 100%);color:#fff;}
+  .pkg-price{font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;color:#0a2e4c;letter-spacing:-0.02em;line-height:1.1;}
+  .pkg-price small{font-size:13px;color:#5d97c4;font-weight:600;display:block;margin-top:2px;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+
+<meta name="description" content="Kalkan havalimanı ve yerel transfer paketleri — AYT/DLM Sedan ₺2.500-5.000, VIP Mercedes ₺7.500. Kalkan içi taksi, Patara/Saklıkent/Kaş tur transferleri. WhatsApp ile anında rezervasyon." data-en="Kalkan airport and local transfer packages — AYT/DLM Sedan ₺2,500-5,000, VIP Mercedes ₺7,500. Kalkan local taxi, Patara/Saklıkent/Kaş tour transfers. Instant booking on WhatsApp." data-de="Kalkan-Flughafen und lokale Transferpakete — AYT/DLM Sedan ₺2.500-5.000, VIP Mercedes ₺7.500. Sofortbuchung per WhatsApp." data-ru="Аэропорт Калкан и местные трансферы — AYT/DLM Sedan ₺2 500-5 000, VIP Mercedes ₺7 500. Мгновенное бронирование в WhatsApp." data-fr="Aéroport Kalkan et forfaits transfert locaux — AYT/DLM Sedan ₺2 500-5 000, VIP Mercedes ₺7 500. Réservation instantanée WhatsApp.">
+<meta name="keywords" content="Kalkan transfer, AYT Kalkan transfer, Dalaman Kalkan transfer, VIP Mercedes Kalkan, Kalkan taksi, Patara transfer">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/transfer.html">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/transfer.html">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/transfer.html?lang=en">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/transfer.html?lang=de">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/transfer.html?lang=ru">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/transfer.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/transfer.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:title" content="Kalkan Transfer — Havalimanı & Yerel Paketler">
+<meta property="og:description" content="AYT/DLM havalimanı transferi, Kalkan içi taksi, antik kent tur transferleri — şeffaf fiyat.">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og/kalkan-info-og.png">
+<meta property="og:url" content="https://kalkaninfo.com/transfer.html">
+
+<script src="js/auth-pill.js" defer></script>
+<script src="js/site-drawer.js?v=20260516b" defer></script>
+<script src="js/supabase-window.js"></script>
+<script src="js/i18n.js?v=20260518c" defer></script>
+<script src="js/cookie-banner.js" defer></script>
+<script src="js/bottom-nav.js?v=20260516b" defer></script>
+<script src="js/analytics.js" defer></script>
+<script src="js/clarity-loader.js" defer></script>
+<script src="js/utm-tracker.js" defer></script>
+<script src="js/concierge-modal.js?v=20260517b" defer></script>
+<script src="js/concierge-ai-modal.js?v=20260520a" defer></script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com/"},{"@type":"ListItem","position":2,"name":"Transfer","item":"https://kalkaninfo.com/transfer.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://kalkaninfo.com/transfer.html#service","name":"Kalkan Info Transfer","description":"Antalya, Dalaman havalimanı ve Kalkan içi transfer hizmetleri. Sedan, Vito, VIP Mercedes araçlar.","areaServed":{"@type":"Place","name":"Kalkan, Kaş, Antalya"},"priceRange":"₺₺-₺₺₺","telephone":"+905306650794","address":{"@type":"PostalAddress","addressLocality":"Kalkan","addressRegion":"Antalya","addressCountry":"TR"}}</script>
+</head>
+<body class="bg-[#dce6ef]" data-concierge-context="transfer">
+
+<!-- HERO -->
+<header class="relative overflow-hidden" style="background:#072136;min-height:380px;">
+  <div class="absolute inset-0 z-0 hero-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Anasayfa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="index.html" class="font-display font-extrabold text-xl tracking-tight">◆ KALKAN <span class="text-sun-400" style="color:#f4b53d;">INFO</span></a>
+    <div class="w-9"></div>
+  </div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center text-white pt-16 pb-12">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur text-xs uppercase tracking-widest font-bold mb-4">
+      <span class="w-1.5 h-1.5 rounded-full" style="background:#f4b53d;"></span>
+      <span data-en="Transfer" data-de="Transfer" data-ru="Трансфер" data-fr="Transfert">Transfer</span>
+    </div>
+    <h1 class="font-display font-extrabold text-3xl md:text-5xl mb-3" data-en="Get to Kalkan effortlessly" data-de="Stressfrei nach Kalkan" data-ru="Доберитесь до Калкана без забот" data-fr="Rejoindre Kalkan sans effort">Kalkan'a sorunsuz ulaşın</h1>
+    <p class="text-white/85 text-base md:text-lg max-w-xl mx-auto" data-en="Airport transfers, local taxis and ancient-city tour packages — transparent prices, instant WhatsApp booking." data-de="Flughafentransfers, lokale Taxis und Antikstadt-Touren — transparente Preise, sofortige WhatsApp-Buchung." data-ru="Трансферы из аэропорта, местные такси и туры к античным городам — прозрачные цены." data-fr="Transferts aéroport, taxis locaux et excursions vers les cités antiques — prix transparents.">Havalimanı transferi, yerel taksi ve antik kent tur paketleri — şeffaf fiyat, anında WhatsApp rezervasyonu.</p>
+  </div>
+</header>
+
+<!-- AYT TRANSFER -->
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold" style="color:#1a5e93;"><span class="w-1.5 h-1.5 rounded-full" style="background:#1a5e93;"></span><span data-en="Antalya AYT → Kalkan" data-de="Antalya AYT → Kalkan" data-ru="Анталия AYT → Калкан" data-fr="Antalya AYT → Kalkan">Antalya AYT → Kalkan</span></div>
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1" data-en="Antalya Airport Transfer" data-de="Antalya-Flughafen Transfer" data-ru="Трансфер из Анталии" data-fr="Transfert depuis Antalya">Antalya Havalimanı Transferi</h2>
+    <p class="text-sm mt-1" style="color:#5d97c4;" data-en="~3.5 hours · 230 km · scenic coast road" data-de="~3,5 Std · 230 km · Küstenstraße" data-ru="~3,5 ч · 230 км · побережье" data-fr="~3h30 · 230 km · route côtière">~3,5 saat · 230 km · sahil yolu</p>
+  </div>
+  <div class="grid md:grid-cols-3 gap-4">
+    <article class="pkg-card">
+      <span class="pkg-tier">Sedan</span>
+      <h3 class="font-display text-lg font-bold mt-2" data-en="Comfort sedan · up to 3 pax" data-de="Komfort-Limousine · bis 3 Pers." data-ru="Седан комфорт · до 3 чел." data-fr="Berline confort · jusqu'à 3 pers.">Konfor sedan · 3 kişiye kadar</h3>
+      <div class="pkg-price mt-3">₺3.500<small data-en="one way · luggage included" data-de="einfach · Gepäck inkl." data-ru="в одну сторону · багаж" data-fr="aller simple · bagages inclus">tek yön · bagaj dahil</small></div>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20AYT%E2%86%92Kalkan%20Sedan%20transfer%20fiyat%2Frezervasyon%20istiyorum." target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-md font-bold text-sm transition" data-en="Book on WhatsApp" data-de="Per WhatsApp buchen" data-ru="Забронировать в WhatsApp" data-fr="Réserver via WhatsApp">WhatsApp ile Rezerve Et</a>
+    </article>
+    <article class="pkg-card" style="border-color:#e89812;">
+      <span class="pkg-tier">Vito</span>
+      <h3 class="font-display text-lg font-bold mt-2" data-en="Mercedes Vito · up to 7 pax" data-de="Mercedes Vito · bis 7 Pers." data-ru="Mercedes Vito · до 7 чел." data-fr="Mercedes Vito · jusqu'à 7 pers.">Mercedes Vito · 7 kişiye kadar</h3>
+      <div class="pkg-price mt-3">₺5.000<small data-en="one way · large luggage" data-de="einfach · großes Gepäck" data-ru="в одну сторону · большой багаж" data-fr="aller simple · gros bagages">tek yön · büyük bagaj</small></div>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20AYT%E2%86%92Kalkan%20Vito%20transfer%20fiyat%2Frezervasyon%20istiyorum." target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-md font-bold text-sm transition" data-en="Book on WhatsApp" data-de="Per WhatsApp buchen" data-ru="Забронировать" data-fr="Réserver">WhatsApp ile Rezerve Et</a>
+    </article>
+    <article class="pkg-card" style="border-color:#e89812;">
+      <span class="pkg-tier vip">VIP Mercedes</span>
+      <h3 class="font-display text-lg font-bold mt-2" data-en="VIP Mercedes S-Class · 1-3 pax" data-de="VIP Mercedes S-Klasse · 1-3 Pers." data-ru="VIP Mercedes S-Class · 1-3 чел." data-fr="VIP Mercedes Classe S · 1-3 pers.">VIP Mercedes S-Class · 1-3 kişi</h3>
+      <div class="pkg-price mt-3">₺7.500<small data-en="one way · meet & greet, water, WiFi" data-de="einfach · Empfang, Wasser, WiFi" data-ru="в одну сторону · встреча, вода, Wi-Fi" data-fr="aller simple · accueil, eau, WiFi">tek yön · karşılama, su, WiFi</small></div>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20AYT%E2%86%92Kalkan%20VIP%20Mercedes%20transfer%20rezervasyon%20istiyorum." target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-md font-bold text-sm transition" data-en="Book on WhatsApp" data-de="Per WhatsApp buchen" data-ru="Забронировать" data-fr="Réserver">WhatsApp ile Rezerve Et</a>
+    </article>
+  </div>
+</section>
+
+<!-- DLM TRANSFER -->
+<section class="max-w-7xl mx-auto px-4 py-10" style="background:#eef4f9;">
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold" style="color:#1a5e93;"><span class="w-1.5 h-1.5 rounded-full" style="background:#1a5e93;"></span><span>Dalaman DLM → Kalkan</span></div>
+    <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1" data-en="Dalaman Airport Transfer" data-de="Dalaman-Flughafen Transfer" data-ru="Трансфер из Даламана" data-fr="Transfert depuis Dalaman">Dalaman Havalimanı Transferi</h2>
+    <p class="text-sm mt-1" style="color:#5d97c4;" data-en="~1.5 hours · 105 km · fastest route" data-de="~1,5 Std · 105 km · schnellste Strecke" data-ru="~1,5 ч · 105 км · быстро" data-fr="~1h30 · 105 km · route la plus rapide">~1,5 saat · 105 km · en hızlı rota</p>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <article class="pkg-card">
+      <span class="pkg-tier">Sedan</span>
+      <h3 class="font-display text-lg font-bold mt-2" data-en="Comfort sedan · up to 3 pax" data-de="Komfort-Limousine · bis 3 Pers." data-ru="Седан комфорт · до 3 чел." data-fr="Berline · jusqu'à 3 pers.">Konfor sedan · 3 kişiye kadar</h3>
+      <div class="pkg-price mt-3">₺2.500<small data-en="one way" data-de="einfach" data-ru="в одну сторону" data-fr="aller simple">tek yön</small></div>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20DLM%E2%86%92Kalkan%20Sedan%20transfer%20rezervasyon%20istiyorum." target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-md font-bold text-sm transition">WhatsApp ile Rezerve Et</a>
+    </article>
+    <article class="pkg-card" style="border-color:#e89812;">
+      <span class="pkg-tier">Vito</span>
+      <h3 class="font-display text-lg font-bold mt-2" data-en="Mercedes Vito · up to 7 pax" data-de="Mercedes Vito · bis 7 Pers." data-ru="Mercedes Vito · до 7 чел." data-fr="Mercedes Vito · jusqu'à 7 pers.">Mercedes Vito · 7 kişiye kadar</h3>
+      <div class="pkg-price mt-3">₺3.500<small data-en="one way · large luggage" data-de="einfach · großes Gepäck" data-ru="в одну сторону" data-fr="aller simple">tek yön · büyük bagaj</small></div>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20DLM%E2%86%92Kalkan%20Vito%20transfer%20rezervasyon%20istiyorum." target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-4 rounded-md font-bold text-sm transition">WhatsApp ile Rezerve Et</a>
+    </article>
+  </div>
+</section>
+
+<!-- KALKAN İÇİ + TUR -->
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="font-display text-xl md:text-2xl font-extrabold mb-3" data-en="Local Kalkan Taxi" data-de="Lokale Kalkan-Taxis" data-ru="Местное такси Калкан" data-fr="Taxi local Kalkan">Kalkan İçi Taksi</h2>
+      <p class="text-sm leading-relaxed" style="color:#1f3b56;" data-en="Marina, beach, restaurant — ₺250-500 per ride. Direct call to 4 verified taxi stands, or via Concierge." data-de="Marina, Strand, Restaurant — ₺250-500 pro Fahrt. Direkter Anruf bei 4 Taxiständen oder via Concierge." data-ru="Марина, пляж, ресторан — ₺250-500 за поездку. Прямой звонок 4 проверенным стоянкам или через консьерж." data-fr="Marina, plage, restaurant — ₺250-500 par course. Appel direct à 4 stations vérifiées ou via Concierge.">Marina, plaj, restoran — yolculuk başına ₺250-500. 4 doğrulanmış taksi durağına direkt çağrı veya Concierge üzerinden.</p>
+      <a href="hizmetler.html" class="inline-flex items-center gap-2 mt-3 text-sm font-bold" style="color:#1a5e93;" data-en="See taxi stand numbers →" data-de="Taxi-Nummern anzeigen →" data-ru="Посмотреть номера такси →" data-fr="Voir les numéros taxi →">Taksi numaralarını gör →</a>
+    </div>
+    <div>
+      <h2 class="font-display text-xl md:text-2xl font-extrabold mb-3" data-en="Tour Transfers" data-de="Tour-Transfers" data-ru="Тур-трансферы" data-fr="Transferts excursions">Tur Transferleri</h2>
+      <p class="text-sm leading-relaxed" style="color:#1f3b56;" data-en="Round-trip packages to Patara, Saklıkent, Kaş, Kekova — Sedan ₺1.500-3.500 per direction. Waiting time included." data-de="Hin-/Rückfahrten nach Patara, Saklıkent, Kaş, Kekova — Sedan ₺1.500-3.500 pro Strecke. Wartezeit inklusive." data-ru="Туда-обратно в Патару, Саклыкент, Каш, Кекову — Sedan ₺1500-3500 в одну сторону. Время ожидания включено." data-fr="Aller-retour Patara, Saklıkent, Kaş, Kekova — Berline ₺1500-3500/sens. Temps d'attente inclus.">Patara, Saklıkent, Kaş, Kekova için gidiş-dönüş paketleri — yön başı Sedan ₺1.500-3.500. Bekleme süresi dahil.</p>
+      <a href="https://wa.me/905306650794?text=Merhaba%20Kalkan%20Info%2C%20tur%20transferi%20fiyatları%20için%20bilgi%20istiyorum." target="_blank" rel="noopener" class="inline-flex items-center gap-2 mt-3 text-sm font-bold" style="color:#1a5e93;" data-en="Get tour transfer quote →" data-de="Angebot anfordern →" data-ru="Получить расчёт →" data-fr="Demander un devis →">Tur transfer fiyatı al →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (minimal) -->
+<footer class="text-white py-10" style="background:linear-gradient(180deg,#0a2e4c 0%,#072136 100%);">
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm" style="color:rgba(255,255,255,0.65);">
+    © 2026 Kalkan Info · <a href="index.html" class="hover:underline" style="color:#f4b53d;">Anasayfa</a> · <a href="hizmetler.html" class="hover:underline" style="color:#f4b53d;">Hizmetler</a> · <a href="turlar.html" class="hover:underline" style="color:#f4b53d;">Turlar</a> · <a href="kvkk.html" class="hover:underline">KVKK</a>
+  </div>
+</footer>
+
+</body>
+</html>

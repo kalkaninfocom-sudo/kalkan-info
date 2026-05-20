@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="dist/tw.css">
+<title data-en="Kalkan Events Calendar | Kalkan Info" data-de="Kalkan Veranstaltungskalender | Kalkan Info" data-ru="Календарь событий Калкана | Kalkan Info" data-fr="Calendrier des événements Kalkan | Kalkan Info">Kalkan Etkinlik Takvimi | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .nav-active{color:#f4b53d!important;}
+  .hero-overlay{background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.30) 40%,rgba(7,33,54,0.92) 100%);}
+  .ev-card{background:#fff;border:1px solid #cfdfee;border-radius:14px;overflow:hidden;transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;display:flex;flex-direction:column;}
+  .ev-card:hover{border-color:#e89812;transform:translateY(-3px);box-shadow:0 16px 40px -12px rgba(7,33,54,0.22);}
+  .ev-img{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0a2e4c 0%,#1a5e93 100%);position:relative;overflow:hidden;}
+  .ev-img img{width:100%;height:100%;object-fit:cover;}
+  .ev-date{position:absolute;top:12px;left:12px;background:#fff;color:#0a2e4c;padding:6px 10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.04em;text-align:center;line-height:1.1;box-shadow:0 4px 12px -4px rgba(7,33,54,0.3);}
+  .ev-date small{display:block;font-size:9px;color:#5d97c4;letter-spacing:0.12em;text-transform:uppercase;}
+  .ev-cat{display:inline-block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border-radius:9999px;background:#eef4f9;color:#1a5e93;margin-bottom:8px;}
+  .ev-body{padding:16px;flex:1;display:flex;flex-direction:column;}
+  .ev-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:#0a2e4c;letter-spacing:-0.01em;line-height:1.25;margin-bottom:6px;}
+  .ev-desc{font-size:13px;color:#1f3b56;line-height:1.55;flex:1;}
+  .ev-meta{display:flex;gap:10px;align-items:center;font-size:11px;color:#5d97c4;margin-top:10px;}
+  .empty{text-align:center;padding:60px 20px;color:#5d97c4;font-size:14px;}
+  .filter-chip{padding:6px 14px;border-radius:9999px;background:#fff;border:1px solid #cfdfee;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.06em;color:#0a2e4c;cursor:pointer;transition:background .18s ease,border-color .18s ease,color .18s ease;}
+  .filter-chip:hover{border-color:#1a5e93;}
+  .filter-chip.is-active{background:#0a2e4c;color:#f4b53d;border-color:#0a2e4c;}
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+
+<meta name="description" content="Kalkan, Kaş ve çevresinde yaklaşan etkinlikler — festival, konser, pazar, spor, kültür. Tarih sırasıyla, 5 dilde." data-en="Upcoming events in Kalkan, Kaş and around — festivals, concerts, markets, sports, culture. Sorted by date, in five languages." data-de="Bevorstehende Veranstaltungen in Kalkan und Umgebung — Festivals, Konzerte, Märkte, Sport, Kultur." data-ru="Предстоящие события в Калкане и окрестностях — фестивали, концерты, рынки, спорт, культура." data-fr="Événements à venir à Kalkan et alentours — festivals, concerts, marchés, sports, culture.">
+<meta name="keywords" content="Kalkan etkinlik takvimi, Kaş festival, Kalkan konser, Antalya turizm etkinlik">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/events.html">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/events.html">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/events.html?lang=en">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/events.html?lang=de">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/events.html?lang=ru">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/events.html?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/events.html">
+
+<script src="js/auth-pill.js" defer></script>
+<script src="js/site-drawer.js?v=20260516b" defer></script>
+<script src="js/supabase-window.js"></script>
+<script src="js/i18n.js?v=20260518c" defer></script>
+<script src="js/cookie-banner.js" defer></script>
+<script src="js/bottom-nav.js?v=20260516b" defer></script>
+<script src="js/analytics.js" defer></script>
+<script src="js/clarity-loader.js" defer></script>
+<script src="js/concierge-modal.js?v=20260517b" defer></script>
+<script src="js/concierge-ai-modal.js?v=20260520a" defer></script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com/"},{"@type":"ListItem","position":2,"name":"Etkinlikler","item":"https://kalkaninfo.com/events.html"}]}</script>
+</head>
+<body class="bg-[#dce6ef]" data-concierge-context="events">
+
+<header class="relative overflow-hidden" style="background:#072136;min-height:320px;">
+  <div class="absolute inset-0 z-0 hero-overlay"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Anasayfa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+    <a href="index.html" class="font-display font-extrabold text-xl tracking-tight">◆ KALKAN <span style="color:#f4b53d;">INFO</span></a>
+    <div class="w-9"></div>
+  </div>
+  <div class="relative z-10 max-w-3xl mx-auto px-4 text-center text-white pt-12 pb-10">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur text-xs uppercase tracking-widest font-bold mb-4">
+      <span class="w-1.5 h-1.5 rounded-full" style="background:#f4b53d;"></span>
+      <span data-en="Events Calendar" data-de="Veranstaltungen" data-ru="Календарь" data-fr="Calendrier">Etkinlik Takvimi</span>
+    </div>
+    <h1 class="font-display font-extrabold text-3xl md:text-5xl mb-3" data-en="What's happening in Kalkan" data-de="Was in Kalkan los ist" data-ru="Что происходит в Калкане" data-fr="Ce qui se passe à Kalkan">Kalkan'da neler oluyor</h1>
+    <p class="text-white/85 text-base md:text-lg" data-en="Festivals, concerts, markets, sports — curated by Kalkan Info." data-de="Festivals, Konzerte, Märkte, Sport — kuratiert von Kalkan Info." data-ru="Фестивали, концерты, рынки, спорт — Kalkan Info рекомендует." data-fr="Festivals, concerts, marchés, sports — curé par Kalkan Info.">Festival, konser, pazar, spor — Kalkan Info seçkisi.</p>
+  </div>
+</header>
+
+<!-- FILTERS -->
+<section class="max-w-7xl mx-auto px-4 py-6">
+  <div id="event-filters" class="flex flex-wrap gap-2">
+    <button class="filter-chip is-active" data-cat="all" data-en="All" data-de="Alle" data-ru="Все" data-fr="Tous">Tümü</button>
+    <button class="filter-chip" data-cat="festival" data-en="Festival" data-de="Festival" data-ru="Фестиваль" data-fr="Festival">Festival</button>
+    <button class="filter-chip" data-cat="concert" data-en="Concert" data-de="Konzert" data-ru="Концерт" data-fr="Concert">Konser</button>
+    <button class="filter-chip" data-cat="market" data-en="Market" data-de="Markt" data-ru="Рынок" data-fr="Marché">Pazar</button>
+    <button class="filter-chip" data-cat="sport" data-en="Sport" data-de="Sport" data-ru="Спорт" data-fr="Sport">Spor</button>
+    <button class="filter-chip" data-cat="culture" data-en="Culture" data-de="Kultur" data-ru="Культура" data-fr="Culture">Kültür</button>
+    <button class="filter-chip" data-cat="food" data-en="Food" data-de="Essen" data-ru="Еда" data-fr="Gastronomie">Yemek</button>
+  </div>
+</section>
+
+<!-- LIST -->
+<section class="max-w-7xl mx-auto px-4 pb-14">
+  <div id="event-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="empty col-span-full" data-en="Loading events…" data-de="Events werden geladen…" data-ru="Загрузка событий…" data-fr="Chargement des événements…">Etkinlikler yükleniyor…</div>
+  </div>
+</section>
+
+<footer class="text-white py-10" style="background:linear-gradient(180deg,#0a2e4c 0%,#072136 100%);">
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm" style="color:rgba(255,255,255,0.65);">
+    © 2026 Kalkan Info · <a href="index.html" class="hover:underline" style="color:#f4b53d;">Anasayfa</a>
+  </div>
+</footer>
+
+<script>
+(async () => {
+  const grid = document.getElementById('event-grid');
+  const filters = document.getElementById('event-filters');
+  const lang = (localStorage.getItem('lang') || document.documentElement.lang || 'tr').slice(0,2);
+  const CAT_LABEL = { festival:'Festival', concert:'Konser', market:'Pazar', sport:'Spor', culture:'Kültür', food:'Yemek', other:'Diğer' };
+  const empty = { tr:'Yaklaşan etkinlik yok — yakında!', en:'No upcoming events — soon!', de:'Keine kommenden Veranstaltungen.', ru:'Пока нет событий.', fr:'Aucun événement à venir.' };
+
+  function escape(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  function eventCard(e) {
+    const d = new Date(e.start_at);
+    const day = d.toLocaleDateString('tr-TR',{day:'numeric'});
+    const mon = d.toLocaleDateString('tr-TR',{month:'short'});
+    const t = (e.title && (e.title[lang] || e.title.tr)) || '—';
+    const desc = (e.description && (e.description[lang] || e.description.tr)) || '';
+    const cat = CAT_LABEL[e.category] || e.category || '';
+    return `
+      <article class="ev-card" data-cat="${escape(e.category||'other')}">
+        <div class="ev-img">
+          ${e.image ? `<img src="${escape(e.image)}" alt="${escape(t)}" loading="lazy" />` : ''}
+          <div class="ev-date">${escape(day)}<small>${escape(mon)}</small></div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-cat">${escape(cat)}</span>
+          <div class="ev-title">${escape(t)}</div>
+          <div class="ev-desc">${escape(desc)}</div>
+          <div class="ev-meta">${e.location?`<span>📍 ${escape(e.location)}</span>`:''}${e.is_free?`<span style="color:#15803d;">●&nbsp;Ücretsiz</span>`:''}</div>
+          ${e.ticket_url?`<a href="${escape(e.ticket_url)}" target="_blank" rel="noopener" class="mt-3 inline-flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-md font-bold text-xs transition">Bilet / Bilgi →</a>`:''}
+        </div>
+      </article>`;
+  }
+
+  let allEvents = [];
+  try {
+    const sb = window.SUPABASE_CLIENT;
+    if (sb) {
+      const { data, error } = await sb
+        .from('events')
+        .select('id,slug,title,description,start_at,end_at,location,image,category,ticket_url,is_free')
+        .eq('status','published')
+        .gte('start_at', new Date().toISOString())
+        .order('start_at', { ascending: true })
+        .limit(50);
+      if (!error && data) allEvents = data;
+    }
+  } catch (e) { console.warn('[events]', e.message); }
+
+  function render(cat) {
+    const filtered = cat === 'all' ? allEvents : allEvents.filter(e => e.category === cat);
+    if (!filtered.length) {
+      grid.innerHTML = `<div class="empty col-span-full">${empty[lang]||empty.tr}</div>`;
+      return;
+    }
+    grid.innerHTML = filtered.map(eventCard).join('');
+  }
+
+  render('all');
+
+  filters.addEventListener('click', e => {
+    const btn = e.target.closest('[data-cat]');
+    if (!btn) return;
+    filters.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('is-active', b === btn));
+    render(btn.dataset.cat);
+    if (window.plausible) window.plausible('event_filter', { props: { cat: btn.dataset.cat } });
+  });
+})();
+</script>
+</body>
+</html>
