@@ -18,6 +18,10 @@ build/
 /ru/
 /fr/
 
+# Asset JPG fallback (WebP zaten üretilmiş; JPG'ler diskte yedek olarak duruyor, repo'ya commit edilmez)
+assets/img/*.jpg
+assets/img/*.jpeg
+
 # Firebase
 .firebase/
 .firebaserc.local
