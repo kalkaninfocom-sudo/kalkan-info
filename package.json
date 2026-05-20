@@ -8,7 +8,14 @@
     "img:replace": "node scripts/replace-unsplash.mjs",
     "img:all": "npm run img:download && npm run img:replace",
     "build:i18n": "node scripts/build-multilang.mjs",
-    "vercel-build": "node scripts/build-multilang.mjs"
+    "vercel-build": "node scripts/build-multilang.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.97.1",
