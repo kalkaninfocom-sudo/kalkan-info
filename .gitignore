@@ -12,6 +12,12 @@ package-lock.json.tmp
 dist/
 build/
 
+# Multilang statik build (Vercel build sırasında scripts/build-multilang.mjs üretir)
+/en/
+/de/
+/ru/
+/fr/
+
 # Firebase
 .firebase/
 .firebaserc.local
