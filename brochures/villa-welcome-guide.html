@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Kalkan Info — Villa Hoşgeldiniz Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy-darker: #072136;
+    --navy-base: #0a2e4c;
+    --navy-mid: #0c3858;
+    --navy-accent: #1a5e93;
+    --navy-ribbon: #0d3a5f;
+    --gold: #e89812;
+    --gold-light: #f4b53d;
+    --surface: #dce6ef;
+    --surface-alt: #eef4f9;
+    --border: #cfdfee;
+    --text: #0a2e4c;
+    --muted: #5d97c4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--navy-base);
+  }
+
+  .eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  /* ========= COVER PAGE ========= */
+  .cover {
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(232,152,18,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(26,94,147,0.4) 0%, transparent 60%),
+      linear-gradient(160deg, var(--navy-darker) 0%, var(--navy-base) 55%, var(--navy-mid) 100%);
+    color: #fff;
+    padding: 28mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, transparent 0 119mm, rgba(244,181,61,0.08) 119mm 120mm),
+      repeating-linear-gradient(0deg, transparent 0 30mm, rgba(255,255,255,0.03) 30mm 31mm);
+    pointer-events: none;
+  }
+
+  .cover-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 2;
+  }
+  .cover-logo-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(160deg, var(--gold) 0%, var(--gold-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    color: var(--navy-darker);
+    box-shadow: 0 8px 24px -8px rgba(232,152,18,0.6);
+  }
+  .cover-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .cover-logo-text small {
+    display: block;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    font-size: 9px;
+    color: var(--gold-light);
+    margin-top: 4px;
+  }
+
+  .cover-center { z-index: 2; }
+  .cover-eyebrow {
+    color: var(--gold-light);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 22px;
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid rgba(244,181,61,0.4);
+    border-radius: 9999px;
+  }
+  .cover h1 {
+    font-size: 64px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.02;
+    margin-bottom: 18px;
+  }
+  .cover h1 span {
+    display: block;
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .cover-sub {
+    font-size: 15px;
+    color: #cfdfee;
+    max-width: 130mm;
+    line-height: 1.7;
+  }
+
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    gap: 24px;
+  }
+  .cover-villa-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(244,181,61,0.25);
+    border-radius: 14px;
+    padding: 18px 22px;
+    flex: 1;
+  }
+  .cover-villa-card .label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .cover-villa-card .villa-line {
+    border-bottom: 1px dashed rgba(255,255,255,0.3);
+    height: 18px;
+    margin-top: 6px;
+  }
+  .cover-url {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    text-align: right;
+  }
+  .cover-url small {
+    display: block;
+    color: #cfdfee;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ========= GENERIC PAGE ========= */
+  .content-page {
+    padding: 18mm 16mm 16mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+    margin-bottom: 14mm;
+  }
+  .page-header .mini-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--navy-base);
+    text-transform: uppercase;
+  }
+  .page-header .mini-logo span { color: var(--gold); }
+  .page-header .page-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .page-title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .page-subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 22px;
+    max-width: 150mm;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+  /* Cards */
+  .card {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    position: relative;
+  }
+  .card .card-tag {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    background: var(--navy-base);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 9999px;
+  }
+  .card .card-tag.gold { background: var(--gold); color: var(--navy-darker); }
+  .card h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .card .meta {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .meta::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .card p {
+    font-size: 11.5px;
+    color: #355a7a;
+    line-height: 1.55;
+  }
+  .card .tip {
+    margin-top: 8px;
+    font-size: 10.5px;
+    color: var(--navy-accent);
+    border-left: 2px solid var(--gold);
+    padding-left: 8px;
+    font-style: italic;
+  }
+
+  /* Hoş geldiniz page */
+  .welcome-block {
+    background: linear-gradient(160deg, var(--navy-darker), var(--navy-base));
+    color: #fff;
+    border-radius: 16px;
+    padding: 26px 28px;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .welcome-block::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(232,152,18,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .welcome-block .eyebrow { color: var(--gold-light); }
+  .welcome-block .eyebrow::before { background: var(--gold-light); }
+  .welcome-block h2 { color: #fff; font-size: 28px; margin: 10px 0 12px; }
+  .welcome-block p { color: #cfdfee; font-size: 12.5px; line-height: 1.7; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .info-row {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .info-row .label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .info-row .fill-line {
+    border-bottom: 1.5px dashed var(--muted);
+    height: 22px;
+    margin-bottom: 4px;
+  }
+  .info-row .hint {
+    font-size: 9.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .emergency-block {
+    margin-top: 14px;
+    background: #fff;
+    border: 2px solid var(--navy-base);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .emergency-block .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .emergency-block h3 {
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  .emergency-block .icon-em {
+    background: var(--navy-base);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .em-item {
+    text-align: center;
+    padding: 8px 6px;
+    background: var(--surface);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .em-item .num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--navy-base);
+    line-height: 1;
+  }
+  .em-item .lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* Tips strip */
+  .tips-strip {
+    margin-top: 14px;
+    background: var(--surface);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+    border-radius: 0 10px 10px 0;
+  }
+  .tips-strip h4 {
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: var(--navy-base);
+  }
+  .tips-strip ul {
+    list-style: none;
+    font-size: 11px;
+    color: #355a7a;
+    line-height: 1.6;
+  }
+  .tips-strip li::before {
+    content: '→ ';
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* List card variant */
+  .list-card {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .list-card h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .list-card h3::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .list-card .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 11.5px;
+  }
+  .list-card .item:last-child { border-bottom: 0; }
+  .list-card .item .name { font-weight: 600; color: var(--navy-base); }
+  .list-card .item .detail {
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Footer band */
+  .footer-band {
+    margin-top: auto;
+    padding-top: 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+  .footer-band .pageno {
+    color: var(--gold);
+  }
+
+  /* ========= BACK COVER ========= */
+  .back-cover {
+    background: linear-gradient(160deg, var(--navy-base) 0%, var(--navy-darker) 100%);
+    color: #fff;
+    padding: 28mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .back-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 80%, rgba(232,152,18,0.25) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .back-cover h2 {
+    color: #fff;
+    font-size: 36px;
+    font-weight: 800;
+    margin: 12px 0 14px;
+    z-index: 2;
+    position: relative;
+  }
+  .back-cover h2 span { color: var(--gold-light); }
+  .back-cover .lead {
+    color: #cfdfee;
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 150mm;
+    margin-bottom: 24px;
+    z-index: 2;
+    position: relative;
+  }
+  .qr-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    z-index: 2;
+    position: relative;
+  }
+  .qr-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(244,181,61,0.25);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .qr-box {
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 10px;
+    flex-shrink: 0;
+    background-image:
+      linear-gradient(45deg, transparent 48%, var(--navy-darker) 48% 52%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, var(--navy-darker) 48% 52%, transparent 52%),
+      repeating-linear-gradient(0deg, var(--navy-darker) 0 4px, transparent 4px 8px),
+      repeating-linear-gradient(90deg, var(--navy-darker) 0 4px, transparent 4px 8px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-blend-mode: multiply;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--navy-darker);
+    text-align: center;
+    line-height: 1.1;
+    overflow: hidden;
+    position: relative;
+  }
+  .qr-box span {
+    background: #fff;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  .qr-card h4 {
+    color: var(--gold-light);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 6px;
+  }
+  .qr-card p { color: #cfdfee; font-size: 11px; line-height: 1.55; }
+  .qr-card .url {
+    margin-top: 6px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .back-footer {
+    z-index: 2;
+    position: relative;
+    border-top: 1px solid rgba(244,181,61,0.25);
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 10px;
+    color: #9ec1dd;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .back-footer .brand {
+    color: var(--gold-light);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+  }
+
+  /* compact restaurants */
+  .resto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .resto-grid .card { padding: 11px 13px; }
+  .resto-grid .card h3 { font-size: 13.5px; }
+  .resto-grid .card p { font-size: 11px; }
+
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div class="cover-logo">
+    <div class="cover-logo-mark">K</div>
+    <div class="cover-logo-text">
+      Kalkan Info
+      <small>The Mediterranean Concierge</small>
+    </div>
+  </div>
+
+  <div class="cover-center">
+    <span class="cover-eyebrow">Villa Hoşgeldiniz Rehberi · 2026</span>
+    <h1>
+      Kalkan'a<br />
+      Hoş Geldiniz<span>El rehberiniz cebinizde.</span>
+    </h1>
+    <p class="cover-sub">
+      Likya'nın turkuaz koyları, antik medeniyetlerin sessiz mirası ve Akdeniz mutfağının
+      en zarif hâli — hepsi tek bir broşürde. Bu rehber, villanızdan çıkıp Kalkan'ı keşfederken
+      ihtiyacınız olan her şeyi bir araya getirir.
+    </p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-villa-card">
+      <div class="label">Bu Rehber Şu Villaya Aittir</div>
+      <div class="villa-line"></div>
+      <div class="villa-line"></div>
+    </div>
+    <div class="cover-url">
+      kalkaninfo.com
+      <small>7/24 AI Concierge</small>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — Hoş geldiniz, WiFi, Acil ============ -->
+<section class="page content-page">
+  <header class="page-header">
+    <div class="mini-logo">KALKAN <span>·</span> INFO</div>
+    <div class="page-tag">01 · Hoşgeldiniz</div>
+  </header>
+
+  <div class="welcome-block">
+    <span class="eyebrow">Ev sahibinizden</span>
+    <h2>Akdeniz'in en zarif köşesindesiniz.</h2>
+    <p>
+      Kalkan, Likya antik dünyasının kıyıya açılan yüzüdür. Sabah uyandığınızda gördüğünüz
+      körfez, üç bin yıl önce Likyalıların ticaret yaptığı sudur. Villanızın etrafındaki
+      her plaj, her restoran ve her antik kent bu rehberde — keyifli, sakin ve yerel bir
+      tatil dileriz. <strong style="color: var(--gold-light);">Soru olursa kalkaninfo.com'daki AI
+      Concierge 7/24 yanıt verir.</strong>
+    </p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-row">
+      <div class="label">Wi-Fi Adı (SSID)</div>
+      <div class="fill-line"></div>
+      <span class="hint">Villa yönetiminden öğreniniz</span>
+    </div>
+    <div class="info-row">
+      <div class="label">Wi-Fi Şifresi</div>
+      <div class="fill-line"></div>
+      <span class="hint">Büyük/küçük harf hassastır</span>
+    </div>
+    <div class="info-row">
+      <div class="label">Villa Sahibi / Yönetici</div>
+      <div class="fill-line"></div>
+      <span class="hint">Acil durum kontak kişisi</span>
+    </div>
+    <div class="info-row">
+      <div class="label">Telefon</div>
+      <div class="fill-line"></div>
+      <span class="hint">WhatsApp tercih ediniz</span>
+    </div>
+  </div>
+
+  <div class="emergency-block">
+    <div class="title-row">
+      <h3>Acil Numaralar</h3>
+      <span class="icon-em">!</span>
+    </div>
+    <div class="emergency-grid">
+      <div class="em-item"><div class="num">112</div><div class="lbl">Tek Acil Çağrı</div></div>
+      <div class="em-item"><div class="num">110</div><div class="lbl">İtfaiye</div></div>
+      <div class="em-item"><div class="num">155</div><div class="lbl">Polis</div></div>
+      <div class="em-item"><div class="num">156</div><div class="lbl">Jandarma</div></div>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <h4>İlk gün için pratik notlar</h4>
+    <ul>
+      <li>Musluk suyu içilmez — büfe / market soğutmalı 5 L su 50–80 ₺.</li>
+      <li>Türkiye'de prizler Avrupa tipi (Type F, 220 V). Adaptör gerekebilir.</li>
+      <li>Plaja giderken yanınıza terlik + şapka + 50+ SPF güneş kremi alın.</li>
+      <li>Eczaneler 09:00–19:30 açık. Nöbetçi eczane: <strong>kalkaninfo.com/eczane</strong></li>
+      <li>Vadi rüzgârları akşam 18:00 sonrası serinletir — hafif bir kazak işe yarar.</li>
+    </ul>
+  </div>
+
+  <footer class="footer-band">
+    <span>Kalkan Info · Villa Welcome Guide</span>
+    <span class="pageno">02</span>
+  </footer>
+</section>
+
+<!-- ============ PAGE 3 — Plajlar ============ -->
+<section class="page content-page">
+  <header class="page-header">
+    <div class="mini-logo">KALKAN <span>·</span> INFO</div>
+    <div class="page-tag">02 · Plajlar</div>
+  </header>
+
+  <span class="eyebrow">Deniz</span>
+  <h1 class="page-title">Plaj Rotaları</h1>
+  <p class="page-subtitle">
+    Kalkan'ın turkuaz koyları, 18 km uzanan Patara kumsalı ve şehir merkezindeki şık beach club'lar —
+    yarım gün veya tüm gün için tek bakışta seçenekler.
+  </p>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="card-tag gold">İkonik</span>
+      <h3>Kaputaş Plajı</h3>
+      <div class="meta">7 km · 10 dk araba · Ücretsiz</div>
+      <p>D400 yolunun altındaki dünyaca ünlü turkuaz koy. 187 basamakla iniliyor. Beyaz çakıl + cam berraklığında su.</p>
+      <div class="tip">Sabah 09:00 öncesi veya 17:00 sonrası gidin — öğlen kalabalık olur.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag gold">UNESCO</span>
+      <h3>Patara Plajı</h3>
+      <div class="meta">20 km · 25 dk · Ücretsiz · 18 km kum</div>
+      <p>Türkiye'nin en uzun kumsalı. Caretta caretta yuvalama bölgesi. Antik kent biletiyle giriş dahil.</p>
+      <div class="tip">20:00 sonrası kumsala giriş yasak (kaplumbağa koruması). Gün batımı muhteşemdir.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Merkez</span>
+      <h3>İncirli Plajı (Yat Limanı)</h3>
+      <div class="meta">Kalkan merkez · Yürüyerek</div>
+      <p>Limanın yanı başındaki küçük halk plajı. Akşam yemeği için ideal konum, 5 dk içinde 20+ restoran.</p>
+      <div class="tip">Bütçe dostu, çocuklu aileler için sığ giriş.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Beach Club</span>
+      <h3>Kalamar Koyu</h3>
+      <div class="meta">3 km · 7 dk · Ücretli</div>
+      <p>Lüks beach club zinciri, gün batımı manzarası ve berrak su. Akşam yemeğinde de tercih edilir.</p>
+      <div class="tip">Hafta sonu rezervasyon şart. Minimum harcama 500–1500 ₺ arası.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Gizli</span>
+      <h3>Akçagerme Plajı</h3>
+      <div class="meta">12 km · 20 dk · Ücretsiz</div>
+      <p>Patara yolu üzerinde sakin gizli koy. Az turist, doğal şemsiyeler, kano kiralama imkânı.</p>
+      <div class="tip">Yanınızda su + atıştırmalık alın — büfe küçüktür.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Şehirde</span>
+      <h3>Indigo &amp; Yali Beach</h3>
+      <div class="meta">0.5–1.5 km · Yürüyerek / 5 dk</div>
+      <p>Kalkan limanının iki tarafındaki şık platform beach club'lar. Cam berraklığında suya bakan iskeleler.</p>
+      <div class="tip">Rezervasyon önerilir. Şezlong + F&amp;B paketleri günlük değişir.</div>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <h4>Plaj çıkışı pratiği</h4>
+    <ul>
+      <li>Kalkan plajlarında kayalık çoktur — neopren <strong>aqua-shoes</strong> rahatlık verir.</li>
+      <li>Tekne turu (Kekova / Mavi Mağara) günü, plajı atlamayın — turlar zaten denize iniyor.</li>
+      <li>Şezlong fiyatlarını <strong>kalkaninfo.com/plajlar</strong> üzerinden güncel görebilirsiniz.</li>
+    </ul>
+  </div>
+
+  <footer class="footer-band">
+    <span>Kalkan Info · Villa Welcome Guide</span>
+    <span class="pageno">03</span>
+  </footer>
+</section>
+
+<!-- ============ PAGE 4 — Restoranlar ============ -->
+<section class="page content-page">
+  <header class="page-header">
+    <div class="mini-logo">KALKAN <span>·</span> INFO</div>
+    <div class="page-tag">03 · Mutfak</div>
+  </header>
+
+  <span class="eyebrow">Restoran &amp; Bar</span>
+  <h1 class="page-title">Akşam Yemeği Listesi</h1>
+  <p class="page-subtitle">
+    Eski Kalkan'ın daracık sokaklarındaki taş duvarlı restoranlar, terastan körfeze bakan
+    fine dining seçenekleri ve denize sıfır kafeler — her bütçeye bir adres.
+  </p>
+
+  <div class="resto-grid">
+    <div class="card">
+      <span class="card-tag gold">Fine Dining</span>
+      <h3>Aubergine</h3>
+      <div class="meta">Akdeniz · Liman</div>
+      <p>Kalkan'ın klasiklerinden. Limana bakan terası, taze deniz ürünleri ve geniş şarap listesi.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag gold">Manzara</span>
+      <h3>Korsan Meze &amp; Fish</h3>
+      <div class="meta">Deniz Ürünleri · Eski Kalkan</div>
+      <p>Likya ezgisinde meze tabakları, ızgara balık. Çatı katı terası gün batımında özellikle tercih edilir.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Türk</span>
+      <h3>Mussa Restaurant</h3>
+      <div class="meta">Türk Mutfağı · Bahçe</div>
+      <p>Klasik Türk lezzetleri, kuzu tandır, ev yapımı börekler. Aile dostu, sakin bahçe.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Bistro</span>
+      <h3>Harbor Lights Artisan Cafe</h3>
+      <div class="meta">Dünya · Limanda</div>
+      <p>Sabah kahvaltısı, brunch ve hafif akşam yemeği. Specialty kahve + ev yapımı tatlılar.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Pizza</span>
+      <h3>Ziizipizza</h3>
+      <div class="meta">İtalyan · Pizza &amp; Pasta</div>
+      <p>El açma hamur, taze sos ve fırın klasiği. Çocuklu aileler için en pratik tercih.</p>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Pub</span>
+      <h3>Moonlight Bar &amp; Bistro</h3>
+      <div class="meta">Cocktail · Müzik</div>
+      <p>Akşamın geç saatlerinde canlı müzik, imza kokteyller ve hafif mutfak.</p>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <h4>Akşam rezervasyon notları</h4>
+    <ul>
+      <li>Haziran–Eylül arasında <strong>her akşam rezervasyon şart</strong>. WhatsApp en hızlı kanal.</li>
+      <li>Eski Kalkan'ın merdivenli sokakları rampalıdır — düz topuk önerilir.</li>
+      <li>Çoğu mekân 22:00'den önce kapanır; 23:00 sonrası için <strong>liman barları</strong>.</li>
+      <li>Tüm aktif restoran ve barlar: <strong>kalkaninfo.com/restoranlar</strong> (24 mekân + 3 gece kulübü).</li>
+    </ul>
+  </div>
+
+  <div class="list-card" style="margin-top: 14px;">
+    <h3>Gece Kulübü &amp; Geç Saat</h3>
+    <div class="item"><span class="name">Moonlight Club</span><span class="detail">23:00–04:00 · Liman</span></div>
+    <div class="item"><span class="name">Yacht Club Kalkan</span><span class="detail">22:00–03:00 · Limanda</span></div>
+    <div class="item"><span class="name">Buddha Bar Kalkan</span><span class="detail">22:00–03:00 · Üst Kalkan</span></div>
+  </div>
+
+  <footer class="footer-band">
+    <span>Kalkan Info · Villa Welcome Guide</span>
+    <span class="pageno">04</span>
+  </footer>
+</section>
+
+<!-- ============ PAGE 5 — Antik kentler + aktiviteler ============ -->
+<section class="page content-page">
+  <header class="page-header">
+    <div class="mini-logo">KALKAN <span>·</span> INFO</div>
+    <div class="page-tag">04 · Likya</div>
+  </header>
+
+  <span class="eyebrow">Antik Kentler &amp; Geziler</span>
+  <h1 class="page-title">3000 Yıllık Komşular</h1>
+  <p class="page-subtitle">
+    Kalkan, dünyanın en yoğun antik miras koridorlarından birinin tam ortasında. Yarım saatlik
+    araba mesafesinde 4 UNESCO sahası, dünyanın ilk demokratik meclisi ve Aziz Nikolas'ın memleketi.
+  </p>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="card-tag gold">UNESCO</span>
+      <h3>Patara Antik Kenti</h3>
+      <div class="meta">15 km · 20 dk · Bilet: 600 ₺</div>
+      <p>Likya Birliği'nin başkenti. Apollo'nun doğum yeri, Aziz Nikolas'ın memleketi. Bouleuterion — <strong>dünyanın ilk demokratik meclisi</strong>.</p>
+      <div class="tip">Aynı biletle 18 km'lik Patara plajına da giriliyor. Bouleuterion akustiğini test edin.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag gold">UNESCO</span>
+      <h3>Xanthos &amp; Letoon</h3>
+      <div class="meta">30 km · 40 dk · Bilet: 250 ₺</div>
+      <p>Likya'nın asıl başkenti. Harpya Anıtı, 2.200 kişilik Roma tiyatrosu. 8 km ötede Letoon kutsal alanı.</p>
+      <div class="tip">Aynı gün ziyaret edilebilir. Sabahın erken saatleri ideal — gölge azdır.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Tekne Turu</span>
+      <h3>Kekova Batık Şehir</h3>
+      <div class="meta">Tekne · 1 gün · ~$</div>
+      <p>Su altında Likya kalıntıları, Simena kalesi, Üçağız köyü. Tekne turu Kaş limanından kalkar.</p>
+      <div class="tip">Cam tabanlı tekne tercih edin. Maske + şnorkel yanınızda olsun.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Yürüyüş</span>
+      <h3>Likya Yolu</h3>
+      <div class="meta">540 km · Etap etap</div>
+      <p>Türkiye'nin en eski uzun mesafe yürüyüş rotası. Kalkan'dan Patara'ya bir etap günübirlik yapılabilir.</p>
+      <div class="tip">Sıcak aylarda 07:00–11:00 arası yürüyün. Bol su + güneş şapkası.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Yarım Gün</span>
+      <h3>Saklıkent Kanyonu</h3>
+      <div class="meta">35 km · 45 dk · Bilet: ~150 ₺</div>
+      <p>Türkiye'nin en derin kanyonu. Su içinde yürüyüş, kanyon içi balık restoranları. Yazın doğal serinlik.</p>
+      <div class="tip">Aqua-shoes şart. Plastik terlik kayar. Sabah erken kalabalıksız.</div>
+    </div>
+
+    <div class="card">
+      <span class="card-tag">Komşu Kasaba</span>
+      <h3>Kaş Merkezi</h3>
+      <div class="meta">28 km · 30 dk</div>
+      <p>Daha bohem, dalış merkezi. Antiphellos antik tiyatrosu, Likya lahdi şehir merkezinde. Akşam alışveriş + yemek için.</p>
+      <div class="tip">Cumartesi pazarı yerel ürünler için iyi. D400 manzaralı bir sürüş.</div>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <h4>Antik kent ziyareti pratiği</h4>
+    <ul>
+      <li>Müzekart sahipleri tüm bu sahalara <strong>ücretsiz</strong> girebilir (Türk vatandaşı).</li>
+      <li>Yaz ortası 12:00–15:00 arasında gölge yok — sabah 09:00 veya akşam 16:00 sonrası planlayın.</li>
+      <li>17 antik kentin tam haritası: <strong>kalkaninfo.com/antik-kentler</strong></li>
+    </ul>
+  </div>
+
+  <footer class="footer-band">
+    <span>Kalkan Info · Villa Welcome Guide</span>
+    <span class="pageno">05</span>
+  </footer>
+</section>
+
+<!-- ============ PAGE 6 — Pratik bilgiler ============ -->
+<section class="page content-page">
+  <header class="page-header">
+    <div class="mini-logo">KALKAN <span>·</span> INFO</div>
+    <div class="page-tag">05 · Pratik</div>
+  </header>
+
+  <span class="eyebrow">Günlük İhtiyaçlar</span>
+  <h1 class="page-title">Pratik Bilgiler</h1>
+  <p class="page-subtitle">
+    Eczane, market, taksi, transfer, ATM ve diğer günlük ihtiyaç noktaları — villa kapısından
+    çıktıktan sonra ilk soracaklarınız.
+  </p>
+
+  <div class="grid-2">
+    <div class="list-card">
+      <h3>Eczane &amp; Sağlık</h3>
+      <div class="item"><span class="name">Nöbetçi Eczane</span><span class="detail">kalkaninfo.com/eczane</span></div>
+      <div class="item"><span class="name">Kalkan Sağlık Ocağı</span><span class="detail">Merkez</span></div>
+      <div class="item"><span class="name">Kaş Devlet Hastanesi</span><span class="detail">28 km · 30 dk</span></div>
+      <div class="item"><span class="name">Acil 112</span><span class="detail">Tek çağrı</span></div>
+    </div>
+
+    <div class="list-card">
+      <h3>Market &amp; Yiyecek</h3>
+      <div class="item"><span class="name">Migros / A101</span><span class="detail">Merkez · Yürüyerek</span></div>
+      <div class="item"><span class="name">Pazar (Salı)</span><span class="detail">Kalkan açık pazarı</span></div>
+      <div class="item"><span class="name">Fırın &amp; Pastane</span><span class="detail">Sabah 07:00 itibaren</span></div>
+      <div class="item"><span class="name">Şarap Dükkânı</span><span class="detail">Yerel bağ üreticileri</span></div>
+    </div>
+
+    <div class="list-card">
+      <h3>Ulaşım &amp; Transfer</h3>
+      <div class="item"><span class="name">Yerel Taksi</span><span class="detail">Liman durağı</span></div>
+      <div class="item"><span class="name">Dalaman Havalimanı</span><span class="detail">120 km · 1 sa 45 dk</span></div>
+      <div class="item"><span class="name">Antalya Havalimanı</span><span class="detail">220 km · 3 sa</span></div>
+      <div class="item"><span class="name">VIP Transfer Rezerv.</span><span class="detail">kalkaninfo.com/hizmetler</span></div>
+    </div>
+
+    <div class="list-card">
+      <h3>Banka &amp; ATM</h3>
+      <div class="item"><span class="name">Ziraat / Garanti / İş</span><span class="detail">Merkez</span></div>
+      <div class="item"><span class="name">PTT (kargo + döviz)</span><span class="detail">Merkez</span></div>
+      <div class="item"><span class="name">Döviz Bürosu</span><span class="detail">EUR / GBP / USD</span></div>
+      <div class="item"><span class="name">Kart Kabul</span><span class="detail">Çoğu mekânda var</span></div>
+    </div>
+
+    <div class="list-card">
+      <h3>Kiralık &amp; Hizmet</h3>
+      <div class="item"><span class="name">Araç Kiralama</span><span class="detail">Liman çevresi</span></div>
+      <div class="item"><span class="name">Scooter / Motor</span><span class="detail">Günlük</span></div>
+      <div class="item"><span class="name">Tekne Kiralama</span><span class="detail">Özel turlar</span></div>
+      <div class="item"><span class="name">Hizmet Arayışı</span><span class="detail">kalkaninfo.com/hizmetler</span></div>
+    </div>
+
+    <div class="list-card">
+      <h3>Wellness &amp; Spor</h3>
+      <div class="item"><span class="name">Hamam &amp; SPA</span><span class="detail">Geleneksel + modern</span></div>
+      <div class="item"><span class="name">Yoga Stüdyo</span><span class="detail">Sabah dersleri</span></div>
+      <div class="item"><span class="name">Dalış Merkezi (Kaş)</span><span class="detail">Tüplü + serbest</span></div>
+      <div class="item"><span class="name">Tenis Kortu</span><span class="detail">Üst Kalkan</span></div>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <h4>Para &amp; haberleşme</h4>
+    <ul>
+      <li>Çoğu mekân <strong>kart kabul ediyor</strong>. Pazar / küçük büfeler için 200–500 ₺ nakit yararlı.</li>
+      <li>Yabancı kart ile ATM'den TL çekiminde komisyon olabilir — Türk bankası ATM'i tercih edin.</li>
+      <li>Vodafone / Türk Telekom kapsaması iyi. Roaming yerine <strong>eSIM</strong> daha ekonomik.</li>
+      <li>Su gerektiren her şey: <strong>kalkaninfo.com/aktiviteler</strong> üzerinden rezerve edebilirsiniz.</li>
+    </ul>
+  </div>
+
+  <footer class="footer-band">
+    <span>Kalkan Info · Villa Welcome Guide</span>
+    <span class="pageno">06</span>
+  </footer>
+</section>
+
+<!-- ============ BACK COVER ============ -->
+<section class="page back-cover">
+  <div class="cover-logo">
+    <div class="cover-logo-mark">K</div>
+    <div class="cover-logo-text">
+      Kalkan Info
+      <small>Concierge in Your Pocket</small>
+    </div>
+  </div>
+
+  <div>
+    <span class="cover-eyebrow" style="border-color: rgba(244,181,61,0.4); color: var(--gold-light);">7/24 Yanınızda</span>
+    <h2>Aklınızda <span>her şey kalır.</span></h2>
+    <p class="lead">
+      Bu broşür bir başlangıç. Plajdan dönerken hangi restoranın boş masası var, yarın hava nasıl,
+      Patara'ya en hızlı ulaşım nedir — hepsini <strong style="color:#fff;">kalkaninfo.com</strong> üzerindeki
+      AI Concierge anında yanıtlar. Türkçe, İngilizce, Almanca, Rusça ve Fransızca.
+    </p>
+  </div>
+
+  <div class="qr-row">
+    <div class="qr-card">
+      <div class="qr-box"><span>kalkaninfo.com</span></div>
+      <div>
+        <h4>Web</h4>
+        <p>Plajlar, restoranlar, antik kentler, haberler, hizmetler.</p>
+        <div class="url">kalkaninfo.com</div>
+      </div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-box"><span>@kalkaninfo</span></div>
+      <div>
+        <h4>Instagram</h4>
+        <p>Günlük reels, gizli koylar, mevsim ipuçları ve etkinlikler.</p>
+        <div class="url">@kalkan.info</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-footer">
+    <span class="brand">Kalkan Info · 2026</span>
+    <span>Designed in Kalkan · Printed for guests</span>
+  </div>
+</section>
+
+</body>
+</html>
