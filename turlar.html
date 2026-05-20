@@ -98,7 +98,7 @@
 <!-- /SEO -->
 <script src="js/auth-pill.js" defer></script>
 <script src="js/site-drawer.js?v=20260516b" defer></script>
-<script src="js/supabase-window.js"></script>
+<script src="js/supabase-window.js" defer></script>
 <script src="js/i18n.js?v=20260519a" defer></script>
     <script src="js/cookie-banner.js" defer></script>
 <script src="js/header-search.js" defer></script>
@@ -245,6 +245,28 @@
 </section>
 
 <!-- ============== TOUR GRID ============== -->
+<!-- ============== TEKNE OPERATÖRLERİ ============== -->
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto px-4 py-14">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span>
+          <span data-en="Boat Operators" data-de="Bootsbetreiber" data-ru="Лодочные операторы" data-fr="Opérateurs de bateaux">Tekne Operatörleri</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Kalkan Boat Tour Operators" data-de="Kalkan Bootstour-Anbieter" data-ru="Операторы лодочных туров в Калкане" data-fr="Opérateurs de croisières à Kalkan">Kalkan Tekne Turu Operatörleri</h2>
+        <p class="mt-2 text-sea-700/80 text-sm md:text-base max-w-2xl" data-en="Direct contact with verified captains and operators. Phone, Instagram or WhatsApp via concierge." data-de="Direkter Kontakt zu verifizierten Kapitänen und Anbietern. Telefon, Instagram oder WhatsApp über Concierge." data-ru="Прямая связь с проверенными капитанами и операторами. Телефон, Instagram или WhatsApp через консьерж." data-fr="Contact direct avec capitaines et opérateurs vérifiés. Téléphone, Instagram ou WhatsApp via concierge.">Doğrulanmış kaptan ve operatörlerle doğrudan iletişim. Telefon, Instagram veya concierge üzerinden WhatsApp.</p>
+      </div>
+    </div>
+
+    <div id="tekne-operators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- DYNAMIC -->
+      <div class="col-span-full text-center py-12 text-sea-700/60" data-en="Loading operators…" data-de="Operatoren werden geladen…" data-ru="Загрузка операторов…" data-fr="Chargement des opérateurs…">Operatörler yükleniyor…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BÖLGENİN EN İYİ 10 TURU ============== -->
 <section class="bg-[#dce6ef]">
   <div class="max-w-7xl mx-auto px-4 py-10">
     <div class="flex items-end justify-between mb-6">
@@ -537,27 +559,6 @@
   </div>
 </section>
 
-<!-- ============== TEKNE OPERATÖRLERİ ============== -->
-<section class="bg-white">
-  <div class="max-w-7xl mx-auto px-4 py-14">
-    <div class="flex items-end justify-between mb-6">
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span>
-          <span data-en="Boat Operators" data-de="Bootsbetreiber" data-ru="Лодочные операторы" data-fr="Opérateurs de bateaux">Tekne Operatörleri</span>
-        </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Kalkan Boat Tour Operators" data-de="Kalkan Bootstour-Anbieter" data-ru="Операторы лодочных туров в Калкане" data-fr="Opérateurs de croisières à Kalkan">Kalkan Tekne Turu Operatörleri</h2>
-        <p class="mt-2 text-sea-700/80 text-sm md:text-base max-w-2xl" data-en="Direct contact with verified captains and operators. Phone, Instagram or WhatsApp via concierge." data-de="Direkter Kontakt zu verifizierten Kapitänen und Anbietern. Telefon, Instagram oder WhatsApp über Concierge." data-ru="Прямая связь с проверенными капитанами и операторами. Телефон, Instagram или WhatsApp через консьерж." data-fr="Contact direct avec capitaines et opérateurs vérifiés. Téléphone, Instagram ou WhatsApp via concierge.">Doğrulanmış kaptan ve operatörlerle doğrudan iletişim. Telefon, Instagram veya concierge üzerinden WhatsApp.</p>
-      </div>
-    </div>
-
-    <div id="tekne-operators-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- DYNAMIC -->
-      <div class="col-span-full text-center py-12 text-sea-700/60" data-en="Loading operators…" data-de="Operatoren werden geladen…" data-ru="Загрузка операторов…" data-fr="Chargement des opérateurs…">Operatörler yükleniyor…</div>
-    </div>
-  </div>
-</section>
-
 <!-- ============== FOOTER ============== -->
 <footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
   <div class="border-b border-white/10">
@@ -630,7 +631,7 @@
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
 
-<script src="js/render.js?v=20260517a"></script>
+<script src="js/render.js?v=20260517a" defer></script>
 <script src="js/page-turlar.js" defer></script>
 <script src="js/pwa.js?v=20260516c" defer></script>
 <script src="js/newsletter.js" defer></script>
