@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "purpose": "Sesli rehber TTS metinleri — ElevenLabs multilingual_v2 ile 5 dilde MP3 üretilir",
+    "voice_id": "nPczCjzI2devNBz1zQrb",
+    "voice_name": "Brian (American narrator, multilingual)",
+    "model": "eleven_multilingual_v2",
+    "voice_settings": {
+      "stability": 0.55,
+      "similarity_boost": 0.75,
+      "style": 0.30,
+      "use_speaker_boost": true
+    },
+    "target_duration_sec": [25, 45],
+    "languages": ["tr", "en", "de", "ru", "fr"]
+  },
+  "scripts": {
+    "patara": {
+      "tr": "Hoş geldiniz Patara'ya. UNESCO Dünya Mirası — Likya Birliği'nin başkenti, Aziz Nikolas'ın doğum yeri, Apollo'nun memleketi. Mermer sokaklarda yürüyün; iki bin yıllık Bouleuterion'da fısıltıyı duyun. Beş bin kişilik tiyatrodan Akdeniz'i seyredin. Sonra on sekiz kilometrelik el değmemiş plaja adım atın. Tek bilet, iki antik harika. Patara, unutulmaz.",
+      "en": "Welcome to Patara. UNESCO World Heritage — capital of the Lycian League, birthplace of Saint Nicholas, hometown of Apollo. Walk the marble streets; hear the whisper in the two-thousand-year-old Bouleuterion. Watch the Mediterranean from a five-thousand-seat theatre. Then step onto eighteen kilometres of untouched beach. One ticket, two ancient wonders. Patara is unforgettable.",
+      "de": "Willkommen in Patara. UNESCO-Welterbe — Hauptstadt des Lykischen Bundes, Geburtsort des Heiligen Nikolaus, Heimat des Apollon. Geht über die Marmorstraßen; hört das Flüstern im zweitausend Jahre alten Bouleuterion. Schaut von einem Theater mit fünftausend Plätzen aufs Mittelmeer. Dann betretet achtzehn Kilometer unberührten Strand. Ein Ticket, zwei antike Wunder. Patara ist unvergesslich.",
+      "ru": "Добро пожаловать в Патару. Всемирное наследие ЮНЕСКО — столица Ликийского союза, родина Святого Николая, дом Аполлона. Пройдите по мраморным улицам; услышьте шёпот в двухтысячелетнем Булевтерии. С театра на пять тысяч мест смотрите на Средиземное море. Затем ступите на восемнадцать километров нетронутого пляжа. Один билет, два античных чуда. Патара незабываема.",
+      "fr": "Bienvenue à Patara. Patrimoine mondial de l'UNESCO — capitale de la Ligue lycienne, lieu de naissance de Saint Nicolas, terre natale d'Apollon. Parcourez les rues de marbre ; écoutez le murmure dans le Bouleutérion vieux de deux mille ans. Depuis un théâtre de cinq mille places, contemplez la Méditerranée. Puis foulez dix-huit kilomètres de plage intacte. Un billet, deux merveilles antiques. Patara est inoubliable."
+    }
+  }
+}
