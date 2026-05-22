@@ -9,8 +9,9 @@ const steps = [
   { name: 'sentry-config',   cmd: 'node', args: ['scripts/build-sentry-config.mjs'],   required: false },
   { name: 'tailwind',        cmd: 'node', args: ['scripts/build-tailwind.mjs'],        required: true },
   { name: 'build-multilang', cmd: 'node', args: ['scripts/build-multilang.mjs'],       required: true },
-  { name: 'news-aggregator', cmd: 'node', args: ['scripts/news-aggregator.mjs'],       required: false },
-  { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
+  { name: 'news-aggregator',        cmd: 'node', args: ['scripts/news-aggregator.mjs'],              required: false },
+  { name: 'fetch-eczane',           cmd: 'node', args: ['scripts/fetch-eczane.mjs'],                 required: false },
+  { name: 'inject-aggregate-rating',cmd: 'node', args: ['scripts/inject-aggregate-rating.mjs'],      required: false },
 ];
 
 let hardFail = false;

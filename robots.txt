@@ -3,8 +3,10 @@ Allow: /
 Disallow: /admin.html
 Disallow: /admin/
 Disallow: /profil.html
+Disallow: /profil
 Disallow: /login.html
 Disallow: /register.html
+Disallow: /b2b-dashboard.html
 Disallow: /generate-icons.mjs
 Disallow: /inject-pwa.mjs
 Disallow: /inject-seo.mjs
@@ -15,12 +17,20 @@ Allow: /
 Disallow: /admin.html
 Disallow: /admin/
 Disallow: /profil.html
+Disallow: /profil
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /b2b-dashboard.html
 
 User-agent: Bingbot
 Allow: /
 Disallow: /admin.html
 Disallow: /admin/
 Disallow: /profil.html
+Disallow: /profil
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /b2b-dashboard.html
 
 # Sitemap
 Sitemap: https://kalkaninfo.com/sitemap.xml
