@@ -25,6 +25,12 @@
   ],
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "query", "key": "lang", "value": "de" }], "destination": "/de/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "query", "key": "lang", "value": "ru" }], "destination": "/ru/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "query", "key": "lang", "value": "fr" }], "destination": "/fr/:path*", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

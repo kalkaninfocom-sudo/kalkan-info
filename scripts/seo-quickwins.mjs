@@ -58,14 +58,15 @@ const OG_LOCALE_BLOCK = [
 
 function buildHreflangBlock(relPath) {
   // relPath like "villalar.html" or "antik-kentler/patara.html"
-  const baseUrl = `${SITE}/${relPath}`;
+  // TR is default (no prefix). EN/DE/RU/FR use subdirectory pattern.
+  const trUrl = relPath === 'index.html' ? `${SITE}/` : `${SITE}/${relPath}`;
   return [
-    `<link rel="alternate" hreflang="tr" href="${baseUrl}">`,
-    `<link rel="alternate" hreflang="en" href="${baseUrl}?lang=en">`,
-    `<link rel="alternate" hreflang="de" href="${baseUrl}?lang=de">`,
-    `<link rel="alternate" hreflang="ru" href="${baseUrl}?lang=ru">`,
-    `<link rel="alternate" hreflang="fr" href="${baseUrl}?lang=fr">`,
-    `<link rel="alternate" hreflang="x-default" href="${baseUrl}">`,
+    `<link rel="alternate" hreflang="tr" href="${trUrl}">`,
+    `<link rel="alternate" hreflang="en" href="${SITE}/en/${relPath}">`,
+    `<link rel="alternate" hreflang="de" href="${SITE}/de/${relPath}">`,
+    `<link rel="alternate" hreflang="ru" href="${SITE}/ru/${relPath}">`,
+    `<link rel="alternate" hreflang="fr" href="${SITE}/fr/${relPath}">`,
+    `<link rel="alternate" hreflang="x-default" href="${trUrl}">`,
   ].join('\n');
 }
 
@@ -108,14 +109,16 @@ function pickHrefForPath(relPath) {
 }
 
 function buildHreflangBlockExact(relPath) {
-  const base = pickHrefForPath(relPath);
+  const trBase = pickHrefForPath(relPath);
+  // For subdir pattern: index.html -> /en/, /de/, etc. ; subpages -> /en/<relPath>
+  const subdirPath = relPath === 'index.html' ? '' : relPath;
   return [
-    `<link rel="alternate" hreflang="tr" href="${base}">`,
-    `<link rel="alternate" hreflang="en" href="${base}${base.includes('?') ? '&' : '?'}lang=en">`,
-    `<link rel="alternate" hreflang="de" href="${base}${base.includes('?') ? '&' : '?'}lang=de">`,
-    `<link rel="alternate" hreflang="ru" href="${base}${base.includes('?') ? '&' : '?'}lang=ru">`,
-    `<link rel="alternate" hreflang="fr" href="${base}${base.includes('?') ? '&' : '?'}lang=fr">`,
-    `<link rel="alternate" hreflang="x-default" href="${base}">`,
+    `<link rel="alternate" hreflang="tr" href="${trBase}">`,
+    `<link rel="alternate" hreflang="en" href="${SITE}/en/${subdirPath}">`,
+    `<link rel="alternate" hreflang="de" href="${SITE}/de/${subdirPath}">`,
+    `<link rel="alternate" hreflang="ru" href="${SITE}/ru/${subdirPath}">`,
+    `<link rel="alternate" hreflang="fr" href="${SITE}/fr/${subdirPath}">`,
+    `<link rel="alternate" hreflang="x-default" href="${trBase}">`,
   ].join('\n');
 }
 
@@ -154,8 +157,9 @@ async function processPage(relPath) {
 
   // 2. hreflang replacement — remove existing hreflang lines, insert canonical block
   const hreflangBlock = buildHreflangBlockExact(relPath);
+  const subdirPath = relPath === 'index.html' ? '' : relPath;
   const expectedTr = `hreflang="tr" href="${pickHrefForPath(relPath)}"`;
-  const expectedEn = `hreflang="en" href="${pickHrefForPath(relPath)}${pickHrefForPath(relPath).includes('?') ? '&' : '?'}lang=en"`;
+  const expectedEn = `hreflang="en" href="${SITE}/en/${subdirPath}"`;
   const alreadyCorrect = html.includes(expectedTr) && html.includes(expectedEn);
   if (/hreflang=/i.test(html)) {
     if (!alreadyCorrect) {
