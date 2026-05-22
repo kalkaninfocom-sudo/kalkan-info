@@ -103,7 +103,7 @@
     s.id = 'ki-cookie-styles';
     s.textContent = [
       '#ki-cookie-banner{',
-        'position:fixed;bottom:0;left:0;right:0;z-index:9990;',
+        'position:fixed;bottom:0;left:0;right:0;z-index:9993;',
         'background:rgba(5,18,35,0.97);',
         'border-top:1px solid rgba(74,158,245,0.25);',
         'backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);',
@@ -136,7 +136,7 @@
       '.ki-cb-kvkk:hover{color:#4A9EF5;}',
       // Modal (detail panel)
       '#ki-cookie-modal{',
-        'display:none;position:fixed;bottom:0;left:0;right:0;z-index:9991;',
+        'display:none;position:fixed;bottom:0;left:0;right:0;z-index:9994;',
         'background:rgba(5,18,35,0.98);',
         'border-top:1px solid rgba(74,158,245,0.3);',
         'backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);',
