@@ -121,6 +121,9 @@
       }
       #ki-bn-menu .ki-bn-menu-user .name { font-weight: 700; color: #0a2e4c; font-size: 13px; }
       #ki-bn-menu .ki-bn-menu-user .email { font-size: 11px; color: #5d97c4; margin-top: 2px; }
+      @media(max-width: 360px) {
+        .ki-bn-label { display: none !important; }
+      }
     `;
     const style = document.createElement('style');
     style.id = 'ki-bottomnav-styles';
@@ -138,9 +141,9 @@
             <span class="ki-bn-icon">🏠</span>
             <span class="ki-bn-label" data-en="Home">Anasayfa</span>
           </a>
-          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Hizmetler menüsü" data-en-aria="Services menu">
+          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Site menüsü" data-en-aria="Site menu">
             <span class="ki-bn-icon">☰</span>
-            <span class="ki-bn-label" data-en="Services">Hizmetler</span>
+            <span class="ki-bn-label" data-en="Menu" data-de="Menü" data-ru="Меню" data-fr="Menu">Menü</span>
           </button>
           <button class="ki-bn-item" type="button" data-action="open-search" data-key="search">
             <span class="ki-bn-icon">🔍</span>
