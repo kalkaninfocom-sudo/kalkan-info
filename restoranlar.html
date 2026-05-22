@@ -1,20 +1,18 @@
-<!doctype html>
-<html lang="tr" style="scroll-behavior:smooth;">
-<head>
-<meta charset="utf-8" />
+<!DOCTYPE html><html lang="tr" style="scroll-behavior:smooth;"><head>
+<meta charset="utf-8">
 <meta name="google" content="notranslate">
 <script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
 (function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
 </script>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="dist/tw.css">
-<title>Kalkan Restoran & Bar — En İyi Mekanlar | Kalkan Info</title>
+<title>Kalkan Restoran &amp; Bar — En İyi Mekanlar | Kalkan Info</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a2e4c">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
 h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
@@ -35,7 +33,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 </style>
 <!-- SEO -->
-<meta name="description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, Türk ev yemeği, dünya mutfağı, sushi, pub & lounge, kokteyl bar — konum, telefon, Instagram ve rezervasyon bilgileri.">
+<meta name="description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, Türk ev yemeği, dünya mutfağı, sushi, pub &amp; lounge, kokteyl bar — konum, telefon, Instagram ve rezervasyon bilgileri.">
 <meta name="keywords" content="Kalkan restoran, Kalkan bar, Kalkan pub, Kalkan cocktail bar, en iyi restoran Kalkan, Aubergine, Korsan Kalamar, Sherlock Holmes Kalkan, Mey Terrace, Salonika, Kalkan balık restoranı, Türk mutfağı Kalkan, Kalkan sushi">
 <meta name="author" content="Kalkan Info">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -56,8 +54,8 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:locale:alternate" content="ru_RU">
 <meta property="og:locale:alternate" content="fr_FR">
-<meta property="og:title" content="Kalkan Restoran & Bar — En İyi Mekanlar | Kalkan Info">
-<meta property="og:description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, Türk ev yemeği, sushi, pub & lounge — konum, telefon, Instagram ve rezervasyon.">
+<meta property="og:title" content="Kalkan Restoran &amp; Bar — En İyi Mekanlar | Kalkan Info">
+<meta property="og:description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, Türk ev yemeği, sushi, pub &amp; lounge — konum, telefon, Instagram ve rezervasyon.">
 <meta property="og:url" content="https://kalkaninfo.com/restoranlar.html">
 <meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -65,8 +63,8 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kalkan Restoran & Bar — En İyi Mekanlar | Kalkan Info">
-<meta name="twitter:description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, sushi, pub & lounge, kokteyl bar.">
+<meta name="twitter:title" content="Kalkan Restoran &amp; Bar — En İyi Mekanlar | Kalkan Info">
+<meta name="twitter:description" content="Kalkan'ın en iyi restoran, kafe ve barları. Fine dining, balık, sushi, pub &amp; lounge, kokteyl bar.">
 <meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
 
 <!-- Geo -->
@@ -81,48 +79,565 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Kalkan Restoran & Bar","item":"https://kalkaninfo.com/restoranlar.html"}]}</script>
 <!-- ItemList JSON-LD removed 2026-05-19: aggregateRating uydurmaydi (24 restoran, aritmetik dizi). Gercek Google Places API ile yeniden eklenecek. -->
 <!-- /SEO -->
-<script src="js/auth-pill.js" defer></script>
-<script src="js/site-drawer.js?v=20260516b" defer></script>
+<script src="js/auth-pill.js" defer=""></script>
+<script src="js/site-drawer.js?v=20260516b" defer=""></script>
 <script src="js/supabase-window.js"></script>
-<script src="js/i18n.js?v=20260519a" defer></script>
-    <script src="js/cookie-banner.js" defer></script>
-<script src="js/header-search.js" defer></script>
-<script src="js/bottom-nav.js?v=20260516b" defer></script>
-<script src="js/analytics.js" defer></script>
-<script src="js/utm-tracker.js" defer></script>
-<script src="js/engagement-tracker.js" defer></script>
-<script src="js/concierge-modal.js?v=20260517b" defer></script>
+<script src="js/i18n.js?v=20260519a" defer=""></script>
+    <script src="js/cookie-banner.js" defer=""></script>
+<script src="js/header-search.js" defer=""></script>
+<script src="js/bottom-nav.js?v=20260516b" defer=""></script>
+<script src="js/analytics.js" defer=""></script>
+<script src="js/utm-tracker.js" defer=""></script>
+<script src="js/engagement-tracker.js" defer=""></script>
+<script src="js/concierge-modal.js?v=20260517b" defer=""></script>
 <link rel="preload" as="image" href="/assets/img/37cacbd7429e.webp" fetchpriority="high">
   <script src="./js/sentry-config.js"></script>
-  <script src="./js/sentry-init.js" defer></script>
+  <script src="./js/sentry-init.js" defer=""></script>
+
+<script type="application/ld+json" data-schema="restaurant-list">{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Kalkan Restaurants & Bars",
+  "numberOfItems": 27,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Ziizipizza",
+        "image": "https://kalkaninfo.com/assets/img/ziizi-pizza.webp",
+        "url": "https://www.instagram.com/ziizipizza/",
+        "servesCuisine": "İtalyan / Pizza & Pasta",
+        "priceRange": "₺₺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Harbor Lights Artisan Cafe",
+        "image": "https://kalkaninfo.com/assets/img/harbor-lights-hero.webp",
+        "url": "https://www.instagram.com/harborlightskalkan/",
+        "servesCuisine": "Cafe / Kokteyl",
+        "priceRange": "₺₺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "İskele Sk. No:27, Yat Limanı",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Aubergine",
+        "image": "https://kalkaninfo.com/assets/img/25c303f5ada6.webp",
+        "url": "https://www.kalkanaubergine.com/",
+        "servesCuisine": "Akdeniz / Türk",
+        "priceRange": "₺₺₺₺",
+        "telephone": "+90 242 844 33 32",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Yat Limanı",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Korsan Kalamar",
+        "image": "https://kalkaninfo.com/assets/img/2d20bbede4e6.webp",
+        "url": "https://www.korsankalkan.com/en/",
+        "servesCuisine": "Balık / Meze",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 31 76",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalamar Koyu",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Mussakka",
+        "image": "https://kalkaninfo.com/assets/img/1438941126bd.webp",
+        "url": "https://www.instagram.com/mussakkarestaurant/",
+        "servesCuisine": "Türk Ev Yemeği",
+        "priceRange": "₺₺",
+        "telephone": "+90 242 844 15 76",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mustafa Kocakaya Cd. No:9, Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Trio",
+        "image": "https://kalkaninfo.com/assets/img/55e5c693e0d2.webp",
+        "url": "http://www.triokalkan.com/",
+        "servesCuisine": "İtalyan / Türk",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 32 16",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hasan Altan Cad.",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Ala Restaurant",
+        "image": "https://kalkaninfo.com/assets/img/ala-restaurant.webp",
+        "url": "https://www.instagram.com/ala_kalkan/",
+        "servesCuisine": "Akdeniz / Türk",
+        "priceRange": "₺₺",
+        "telephone": "+90 531 335 30 90",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Merkez",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Restaurant",
+        "name": "The Fountain",
+        "image": "https://kalkaninfo.com/assets/img/the-fountain.webp",
+        "url": "https://www.thefountain.com",
+        "servesCuisine": "Akdeniz / Dünya",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 536 920 50 10",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Gusto",
+        "image": "https://kalkaninfo.com/assets/img/gusto.webp",
+        "url": "https://www.gustokalkan.com",
+        "servesCuisine": "Breakfast / Lunch / Dinner & Cocktail",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 532 476 10 66",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Yat Limanı yanı",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Salt & Pepper",
+        "image": "https://kalkaninfo.com/assets/img/salt-pepper.webp",
+        "url": "https://www.instagram.com/saltandpepper_kalkan/",
+        "servesCuisine": "Sushi / Dünya",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 542 151 34 35",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Kleo Cafe Bar",
+        "image": "https://kalkaninfo.com/assets/img/kleo-cafe-bar.webp",
+        "url": "https://www.instagram.com/kleocafebar/",
+        "servesCuisine": "Cafe / Bar / Restaurant",
+        "priceRange": "₺₺",
+        "telephone": "+90 242 844 33 30",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mah. İskele Sk. No:6",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Panorama Restaurant Cafe Bar",
+        "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.webp",
+        "url": "https://www.instagram.com/panorama_restaurant_kalkan/",
+        "servesCuisine": "Restaurant / Cafe / Bar",
+        "priceRange": "₺₺",
+        "telephone": "+90 533 466 81 05",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mah. Hasan Altan Cad. No:31",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Aure — Alacarte & Sushi",
+        "image": "https://kalkaninfo.com/assets/img/aura-restaurant.webp",
+        "url": "https://www.instagram.com/aure_restaurant/",
+        "servesCuisine": "Alacarte / Sushi",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 501 227 04 07",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mah. İskele Sok. No:41",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Seaport Restaurant",
+        "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.webp",
+        "url": "https://www.instagram.com/seaportkalkan/",
+        "servesCuisine": "Balık / Deniz Ürünleri",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 543 183 27 76",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mh. İskele Sk. No:43",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Blue Marlin Fish & Meze",
+        "image": "https://kalkaninfo.com/assets/img/blue-marlin.webp",
+        "url": "https://www.instagram.com/blue_marlin_fish_meze_kalkan/",
+        "servesCuisine": "Balık / Meze / Take Away",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 27 83",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Under Hotel Pirat, Kalkan Marina",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Rallzees Pub",
+        "image": "https://kalkaninfo.com/assets/img/rallzees-pub.webp",
+        "url": "https://rallzeespub.com",
+        "servesCuisine": "Pub / Bar",
+        "priceRange": "₺₺",
+        "telephone": "+90 530 909 25 47",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Yalıboyu Mah.",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Ata Kebab House",
+        "image": "https://kalkaninfo.com/assets/img/ata-kebab.webp",
+        "url": "https://www.instagram.com/atakebab/",
+        "servesCuisine": "Kebap / Izgara",
+        "priceRange": "₺₺",
+        "telephone": "+90 242 844 16 00",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Marina Restaurant",
+        "image": "https://kalkaninfo.com/assets/img/marina-restaurant.webp",
+        "url": "https://kalkaninfo.com/restoranlar.html",
+        "servesCuisine": "Balık / Akdeniz",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 536 487 21 63",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mah. Yat Limanı",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "Restaurant",
+        "name": "The Mezzanine Bar",
+        "image": "https://kalkaninfo.com/assets/img/mezzanine-bar.webp",
+        "url": "https://www.instagram.com/the_mezzanine_bar/",
+        "servesCuisine": "Cocktail Bar",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 15 76",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Mustafa Kocakaya Cd. No:9 (Mussakka üstü)",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Sherlock Holmes Restaurant Bar Lounge",
+        "image": "https://kalkaninfo.com/assets/img/sherlock-holmes.webp",
+        "url": "https://www.instagram.com/sherlockholmeskalkan/",
+        "servesCuisine": "Restaurant / Bar / Lounge",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 537 966 79 72",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "221/B Baker Street, Harbour Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Mey Terrace Restaurant & Cocktail Bar",
+        "image": "https://kalkaninfo.com/assets/img/mey-terrace.webp",
+        "url": "https://www.meyterrace.com",
+        "servesCuisine": "Restaurant / Cocktail Bar",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 535 667 98 90",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Old Town",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Salonika 1881",
+        "image": "https://kalkaninfo.com/assets/img/salonika-1881.webp",
+        "url": "https://www.salonika.co",
+        "servesCuisine": "Wine Bar / Bade Meclisi",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 24 22",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Süleyman Yılmaz Cad. & 6. Sokak (Post Office yanı)",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Shade Lounge Cocktail",
+        "image": "https://kalkaninfo.com/assets/img/shade-lounge.webp",
+        "url": "https://www.instagram.com/shade_lounge_cocktail/",
+        "servesCuisine": "Cocktail Lounge",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 537 963 36 35",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Kalamaki Restaurant Cocktail & Bar",
+        "image": "https://kalkaninfo.com/assets/img/kalamaki.webp",
+        "url": "https://www.kalamakirestaurant.com",
+        "servesCuisine": "Akdeniz / Cocktail Bar",
+        "priceRange": "₺₺₺",
+        "telephone": "+90 242 844 15 55",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Mah. Hasan Altan Cad. No:47/A",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Chocolate Club Kalkan",
+        "image": "https://kalkaninfo.com/assets/img/club-chocolate.webp",
+        "url": "https://www.instagram.com/clubchocolatekalkan/",
+        "servesCuisine": "Bar & Gece Eğlencesi",
+        "priceRange": "₺₺₺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Merkez",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Club Mojito",
+        "image": "https://kalkaninfo.com/assets/img/club-mojito.webp",
+        "url": "https://www.instagram.com/clubmojito/",
+        "servesCuisine": "Bar & Cocktail",
+        "priceRange": "₺₺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Merkez",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "item": {
+        "@type": "Restaurant",
+        "name": "Noema Community",
+        "image": "https://kalkaninfo.com/assets/img/noema.webp",
+        "url": "https://www.instagram.com/noemacommunity/",
+        "servesCuisine": "Lounge & Music Club",
+        "priceRange": "₺₺₺",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kalkan Merkez",
+          "addressRegion": "Antalya",
+          "addressCountry": "TR"
+        }
+      }
+    }
+  ]
+}</script>
 </head>
 <body class="bg-[#dce6ef]" data-concierge-context="restoran">
 
 <!-- HERO -->
 <header class="relative overflow-hidden" style="background:#072136;">
   <div class="absolute inset-0 z-0">
-    <img width="1200" height="800" loading="eager" decoding="async" src="/assets/img/37cacbd7429e.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan restoranları" data-en-alt="Kalkan restaurants" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/eebb046d0d4b.webp'" / data-de-alt="Restaurants in Kalkan" data-ru-alt="Рестораны Kalkan" data-fr-alt="Restaurants de Kalkan" fetchpriority="high">
+    <img width="1200" height="800" loading="eager" decoding="async" src="/assets/img/37cacbd7429e.webp" class="w-full h-full object-cover opacity-50" alt="Kalkan restoranları" data-en-alt="Kalkan restaurants" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/eebb046d0d4b.webp'" data-de-alt="Restaurants in Kalkan" data-ru-alt="Рестораны Kalkan" data-fr-alt="Restaurants de Kalkan" fetchpriority="high">
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
     <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü" data-en-aria="Menu" data-de-aria="Menü" data-ru-aria="Меню" data-fr-aria="Menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
     </button>
     <div class="flex items-center gap-2 text-xs md:text-sm">
       <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today" data-de="Heute" data-ru="Сегодня" data-fr="Aujourd'hui">Bugün</span>
       <span class="opacity-95 font-semibold tracking-wide" id="today-date">29 Nisan 2026</span>
       <span class="hidden md:inline opacity-40 mx-1">·</span>
-      <span data-weather class="hidden md:inline opacity-80">—</span>
+      <span data-weather="" class="hidden md:inline opacity-80">—</span>
     </div>
     <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
     </button>
   </div>
   <div class="relative z-10 max-w-7xl mx-auto px-4 pt-14 md:pt-20 pb-14 md:pb-18 text-white">
     <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Dining · Drinks · Flavour" data-de="Gastronomie · Getränke · Geschmack" data-ru="Ресторан · Напитки · Вкус" data-fr="Gastronomie · Boissons · Saveurs">Yeme · İçme · Lezzet</span>
     </div>
-    <h1 data-meta="title" class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Restaurant &amp; Bar" data-de="Restaurant &amp; Bar" data-ru="Ресторан &amp; Бар" data-fr="Restaurant &amp; Bar">Restoran & Bar</h1>
+    <h1 data-meta="title" class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Restaurant &amp; Bar" data-de="Restaurant &amp; Bar" data-ru="Ресторан &amp; Бар" data-fr="Restaurant &amp; Bar">Restoran &amp; Bar</h1>
     <p data-meta="subtitle" class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en="Kalkan's best restaurants, cafes, bars and nightclubs — 24 venues + 3 nightclubs" data-de="Die besten Restaurants, Cafés, Bars und Nachtclubs in Kalkan — 24 Lokale + 3 Nachtclubs" data-ru="Лучшие рестораны, кафе, бары и ночные клубы Калкана — 24 заведения + 3 ночных клуба" data-fr="Les meilleurs restaurants, cafés, bars et discothèques de Kalkan — 24 établissements + 3 discothèques">Kalkan'ın en iyi restoran, kafe, bar ve gece kulüpleri — 24 mekan + 3 gece kulübü</p>
   </div>
 </header>
@@ -132,31 +647,31 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
     <div class="flex items-center -ml-3">
       <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
         <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU" data-de="MENÜ" data-ru="МЕНЮ" data-fr="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" data-en-aria="Home" title="Ana Sayfa" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil">>>>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+      <a href="index.html" aria-label="Ana Sayfa" data-en-aria="Home" title="Ana Sayfa" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil">&gt;&gt;&gt;
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg>
       </a>
     </div>
     <a href="index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
       <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
     </a>
     <button class="w-10 h-10 grid place-items-center" aria-label="Ara" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
     </button>
   </div>
   <div style="background:#072136;">
     <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Haberler</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villalar</a>
-      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="restoranlar.html" data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran & Bar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="restoranlar.html" data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran &amp; Bar</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Plajlar</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Turlar</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="antik-kentler.html" data-en="Ancient Sites" data-de="Antike Stätten" data-ru="Древние памятники" data-fr="Sites Antiques">Antik Kentler</a>
       <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="hizmetler.html" data-en="Services" data-de="Services" data-ru="Услуги" data-fr="Services">Hizmetler</a>
       <span class="ml-auto"></span>
-      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger>Concierge</a>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger="">Concierge</a>
     </div>
   </div>
   <div class="ribbon-bg grain text-[12px]">
@@ -179,11 +694,11 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
   <div class="max-w-7xl mx-auto px-4 py-5">
     <div class="bg-white rounded-xl p-4 flex flex-wrap gap-3 items-center" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
       <div class="flex items-center gap-2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"></path></svg>
         <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700" data-en="Filter" data-de="Filter" data-ru="Фильтр" data-fr="Filtrer">Filtrele</span>
       </div>
       <div class="h-4 w-px bg-sea-100 hidden md:block"></div>
-      <input id="search-input" type="search" placeholder="Restoran veya bar ara..." data-en-placeholder="Search restaurants & bars..." class="filter-btn border border-sea-200 rounded-md px-4 py-2 text-sm text-sea-800 bg-sea-50 focus:outline-none focus:border-sea-500 flex-1 min-w-[200px]" / data-de-placeholder="Restaurants & Bars suchen..." data-ru-placeholder="Поиск ресторанов и баров..." data-fr-placeholder="Rechercher restaurants & bars...">
+      <input id="search-input" type="search" placeholder="Restoran veya bar ara..." data-en-placeholder="Search restaurants &amp; bars..." class="filter-btn border border-sea-200 rounded-md px-4 py-2 text-sm text-sea-800 bg-sea-50 focus:outline-none focus:border-sea-500 flex-1 min-w-[200px]" data-de-placeholder="Restaurants &amp; Bars suchen..." data-ru-placeholder="Поиск ресторанов и баров..." data-fr-placeholder="Rechercher restaurants &amp; bars...">
       <select id="category-filter" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500"></select>
       <span id="result-count" class="ml-auto text-xs text-sea-600 font-semibold hidden md:block"></span>
     </div>
@@ -196,9 +711,9 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     <div class="flex items-end justify-between mb-6">
       <div>
         <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold">
-          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran & Bar</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran &amp; Bar</span>
         </div>
-        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Kalkan's Best Restaurants &amp; Bars" data-de="Die besten Restaurants & Bars in Kalkan" data-ru="Лучшие рестораны и бары Kalkan" data-fr="Les Meilleurs Restaurants & Bars de Kalkan">Kalkan'ın En İyi Restoran & Barları</h2>
+        <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Kalkan's Best Restaurants &amp; Bars" data-de="Die besten Restaurants &amp; Bars in Kalkan" data-ru="Лучшие рестораны и бары Kalkan" data-fr="Les Meilleurs Restaurants &amp; Bars de Kalkan">Kalkan'ın En İyi Restoran &amp; Barları</h2>
       </div>
     </div>
     <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
@@ -214,7 +729,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
         <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay updated from Kalkan" data-de="Bleiben Sie informiert aus Kalkan" data-ru="Будьте в курсе событий Kalkan" data-fr="Restez informé depuis Kalkan">Kalkan'dan haber alın</h3>
         <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals and events — twice a month, concise." data-de="Neue Guides, saisonale Angebote und Events — zweimal monatlich, prägnant." data-ru="Новые гайды, сезонные предложения и события — два раза в месяц, лаконично." data-fr="Nouveaux guides, offres saisonnières et événements — deux fois par mois, concis.">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
       </div>
-      <div data-newsletter-mount></div>
+      <div data-newsletter-mount=""></div>
     </div>
   </div>
   <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
@@ -228,7 +743,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore" data-de="Erkunden" data-ru="Исследовать" data-fr="Explorer">Keşfet</div>
       <ul class="space-y-2 text-white/80">
         <li><a class="hover:text-sun-400" href="villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villalar</a></li>
-        <li><a class="hover:text-sun-400" href="restoranlar.html" data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran & Bar</a></li>
+        <li><a class="hover:text-sun-400" href="restoranlar.html" data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restoran &amp; Bar</a></li>
         <li><a class="hover:text-sun-400" href="plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Plajlar</a></li>
         <li><a class="hover:text-sun-400" href="turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Turlar</a></li>
       </ul>
@@ -238,7 +753,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <ul class="space-y-2 text-white/80">
         <li><a class="hover:text-sun-400" href="hizmetler.html" data-en="Services" data-de="Services" data-ru="Услуги" data-fr="Services">Hizmetler</a></li>
         <li><a class="hover:text-sun-400" href="haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Haberler</a></li>
-        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger>Concierge</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger="">Concierge</a></li>
       </ul>
     </div>
     <div>
@@ -257,14 +772,15 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
   </div>
 </footer>
 
-<a href="#" data-concierge-trigger class="fixed bottom-5 right-5 z-50 bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-lg flex items-center gap-2 pl-4 pr-5 py-3 transition">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+<a href="#" data-concierge-trigger="" class="fixed bottom-5 right-5 z-50 bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-lg flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"></path></svg>
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
 
 <script src="js/render.js?v=20260517a"></script>
-<script src="js/pwa.js?v=20260522d" defer></script>
-<script src="js/page-restoranlar.js" defer></script>
-<script src="js/newsletter.js" defer></script>
-</body>
-</html>
+<script src="js/pwa.js?v=20260522d" defer=""></script>
+<script src="js/page-restoranlar.js" defer=""></script>
+<script src="js/newsletter.js" defer=""></script>
+
+
+</body></html>
