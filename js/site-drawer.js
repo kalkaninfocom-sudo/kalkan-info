@@ -69,6 +69,8 @@
               '<li><a class="block py-1.5 hover:text-sun-400" href="index.html">🏠 Ana Sayfa</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="haberler.html">📰 Haberler</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="aktiviteler.html">🎯 Bölgesel Aktiviteler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="events.html">🗓️ Etkinlikler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="rehber/">📖 Rehber</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
@@ -77,6 +79,7 @@
               '<li><a class="block py-1.5 hover:text-sun-400" href="villalar.html">🏡 Villalar</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="restoranlar.html">🍽️ Restoran & Bar</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="hizmetler.html">🛠️ Hizmetler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="transfer.html">🚐 Transfer</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
@@ -92,6 +95,7 @@
             '<ul class="space-y-1.5">' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="tatil-asistani.html">🧭 Tatil Asistanı</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="hizmet-ekle.html">➕ İşletme Ekle</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="pricing.html">💎 Fiyatlandırma</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
