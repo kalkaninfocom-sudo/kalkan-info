@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="google" content="notranslate">
-<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V3 — unregister SW + clear caches immediately */
-(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}}catch(_){}})();
+<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
+(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
 </script>
+
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="dist/tw.css">
 <title data-en="Pricing — Kalkan Info | Business Packages" data-de="Preise — Kalkan Info | Geschäftspakete" data-ru="Цены — Kalkan Info | Бизнес-пакеты" data-fr="Tarifs — Kalkan Info | Forfaits Entreprise">Fiyatlandırma — Kalkan Info | İşletme Paketleri</title>

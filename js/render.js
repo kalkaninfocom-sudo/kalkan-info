@@ -58,15 +58,10 @@ const KalkanData = (() => {
   }
 
   async function load(name) {
-    // 1) localStorage (admin tarafından düzenlenmişse)
-    try {
-      const cached = localStorage.getItem(LS_KEY);
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (parsed[name]) return parsed[name];
-      }
-    } catch(e) { /* ignore */ }
-    // 2) data/*.json
+    // localStorage admin cache devre dışı — tek source of truth artık git
+    // (data/*.json). Eski admin snapshot kullanıcıların tarayıcısında 90KB+
+    // şişiyor ve yeni içeriği gölgeliyordu. Eski key bu sayfa yüklendiğinde
+    // alttaki inline SW-killer tarafından siliniyor.
     try {
       const res = await fetch(`/data/${name}.json?t=${Date.now()}`);
       return await res.json();

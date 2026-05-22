@@ -14,9 +14,9 @@ const SKIP_DIRS = new Set([
   'js', 'api', 'functions', 'COMPANY', 'brochures', 'tests',
 ]);
 
-const MARKER = 'KALKAN_SW_KILLER_V3';
-const KILLER = `<script id="kalkan-sw-killer">/* ${MARKER} — unregister SW + clear caches immediately */
-(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}}catch(_){}})();
+const MARKER = 'KALKAN_SW_KILLER_V4';
+const KILLER = `<script id="kalkan-sw-killer">/* ${MARKER} — unregister SW + clear caches + drop stale admin snapshot */
+(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
 </script>`;
 
 function collect(dir, acc = []) {
@@ -30,13 +30,18 @@ function collect(dir, acc = []) {
   return acc;
 }
 
+// Strip ANY prior <script id="kalkan-sw-killer">…</script> so we can swap to V4.
+const PRIOR_BLOCK = /<script id=["']kalkan-sw-killer["'][\s\S]*?<\/script>\n?/i;
+
 let patched = 0, skipped = 0, missing = 0;
 for (const file of collect(ROOT)) {
-  const src = readFileSync(file, 'utf8');
+  let src = readFileSync(file, 'utf8');
   if (src.includes(MARKER)) { skipped++; continue; }
 
-  // Inject right after <meta name="google" content="notranslate"> (idempotent
-  // chain — we just committed that tag), or fallback to <meta charset>, or <head>.
+  // Drop older killer block if present (V3 → V4 swap).
+  src = src.replace(PRIOR_BLOCK, '');
+
+  // Inject after notranslate meta (preferred chain), else charset, else <head>.
   let out = src.replace(
     /(<meta\s+name=["']google["'][^>]*notranslate[^>]*>)/i,
     `$1\n${KILLER}`
