@@ -71,3 +71,6 @@ coverage/
 
 .vercel
 .env*.local
+
+# Playwright trace dumps
+test-results/
