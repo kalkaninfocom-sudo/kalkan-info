@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0",
+  "currency": "TRY",
+  "tiers": [
+    {
+      "id": "basic",
+      "name": "Temel",
+      "nameI18n": { "tr": "Temel", "en": "Basic", "de": "Basis", "ru": "Базовый", "fr": "Basique" },
+      "monthlyPrice": 0,
+      "annualPrice": 0,
+      "features": [
+        "Liste girişi",
+        "3 fotoğraf",
+        "Manuel onay (7 gün)",
+        "Standart sıralama"
+      ],
+      "active": true
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "nameI18n": { "tr": "Premium", "en": "Premium", "de": "Premium", "ru": "Премиум", "fr": "Premium" },
+      "monthlyPrice": 2500,
+      "annualPrice": 27500,
+      "features": [
+        "Featured badge",
+        "10 fotoğraf + galeri",
+        "AI Concierge önceliği",
+        "Instant onay",
+        "Performans dashboard",
+        "Sosyal medya tagging"
+      ],
+      "active": true,
+      "popular": true
+    },
+    {
+      "id": "featured",
+      "name": "Öne Çıkan",
+      "nameI18n": { "tr": "Öne Çıkan", "en": "Featured", "de": "Ausgewählt", "ru": "Избранный", "fr": "Vedette" },
+      "monthlyPrice": 7500,
+      "annualPrice": 82500,
+      "features": [
+        "Hero spot rotation",
+        "Sınırsız fotoğraf + video",
+        "Blog post (aylık 1)",
+        "Brochure PDF",
+        "Dedicated account manager",
+        "Aylık performans raporu"
+      ],
+      "active": true
+    }
+  ],
+  "notes": {
+    "vat": "Fiyatlara KDV dahil değildir",
+    "billing": "Aylık veya yıllık (yıllık %8 indirim)",
+    "cancellation": "Aylık iptal hakkı, kalan süre iadesi yapılmaz"
+  }
+}
