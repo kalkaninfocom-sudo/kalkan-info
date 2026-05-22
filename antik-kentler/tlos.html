@@ -57,7 +57,9 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .nav-active{color:#f4b53d!important;}
 .nav-active::after{transform:scaleX(1)!important;}
 .hero-overlay{background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.30) 40%,rgba(7,33,54,0.92) 100%);}
-.fact-card{background:white;border:1px solid #e3edf6;border-radius:14px;padding:18px;box-shadow:0 4px 14px -8px rgba(13,58,95,0.18);}
+/* card-base + variant — see docs/DESIGN_SYSTEM.md */
+.card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+.card-base--fact{border:1px solid #e3edf6;border-radius:14px;padding:18px;}
 </style>
 
 <script src="../js/auth-pill.js" defer=""></script>
@@ -151,21 +153,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- QUICK FACTS -->
 <section class="max-w-7xl mx-auto px-4 -mt-8 md:-mt-12 relative z-10">
   <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-    <div class="fact-card">
+    <div class="card-base card-base--fact">
       <div class="text-[10px] uppercase tracking-widest text-sea-700/60 font-bold" data-en="Distance from Kalkan">Kalkan'dan</div>
       <div class="font-display font-extrabold text-sea-800 text-lg md:text-xl mt-1">65 km — kuzeydoğu</div>
       <div class="text-xs text-sea-700/85 mt-0.5" data-en="1 saat 15 dk araba">1 saat 15 dk araba</div>
     </div>
-    <div class="fact-card">
+    <div class="card-base card-base--fact">
       <div class="text-[10px] uppercase tracking-widest text-sea-700/60 font-bold" data-en="Entry Fee">Giriş Ücreti</div>
       <div class="font-display font-extrabold text-sea-800 text-lg md:text-xl mt-1" data-en="200 ₺ / kişi">200 ₺ / kişi</div>
       <div class="text-xs text-sea-700/85 mt-0.5" data-en="2026 prices">2026 fiyatı</div>
     </div>
-    <div class="fact-card">
+    <div class="card-base card-base--fact">
       <div class="text-[10px] uppercase tracking-widest text-sea-700/60 font-bold" data-en="Hours">Açık Saatler</div>
       <div class="font-display font-extrabold text-sea-800 text-base md:text-lg mt-1">08:30 – 18:00</div>
     </div>
-    <div class="fact-card">
+    <div class="card-base card-base--fact">
       <div class="text-[10px] uppercase tracking-widest text-sea-700/60 font-bold" data-en="Visit Duration">Ziyaret Süresi</div>
       <div class="font-display font-extrabold text-sea-800 text-lg md:text-xl mt-1">1.5-2 saat</div>
     </div>
