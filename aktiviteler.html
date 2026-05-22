@@ -43,6 +43,7 @@
   .price-badge{font-family:'Montserrat',system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;}
   .filter-btn{transition:background .18s ease, color .18s ease, border-color .18s ease;}
   .filter-btn:hover{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+  [data-season-btn].is-active{background:#0d3a5f!important;color:#fff!important;border:2px solid #0d3a5f!important;}
   .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   /* Modal */
   #activity-modal{position:fixed;inset:0;z-index:9000;background:rgba(7,33,54,0.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;}
@@ -415,5 +416,18 @@
 <script type="module" src="js/activities.js"></script>
 <script src="js/pwa.js?v=20260522d" defer></script>
 <script src="js/newsletter.js" defer></script>
+<script>
+(function(){
+  var btns = document.querySelectorAll('[data-season-btn]');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+    });
+  });
+  // Mark first button active by default
+  if(btns.length) btns[0].classList.add('is-active');
+})();
+</script>
 </body>
 </html>
