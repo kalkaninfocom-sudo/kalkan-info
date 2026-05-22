@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1778952909394,
+  "lastScanned": 1779463277147,
   "projectRoot": "C:\\Users\\socie\\kalkan-info",
   "techStack": {
     "languages": [
@@ -13,36 +13,67 @@
         ]
       }
     ],
-    "frameworks": [],
-    "packageManager": "npm",
+    "frameworks": [
+      {
+        "name": "@playwright/test",
+        "version": "1.60.0",
+        "category": "testing"
+      },
+      {
+        "name": "playwright",
+        "version": "1.60.0",
+        "category": "testing"
+      },
+      {
+        "name": "vitest",
+        "version": "4.1.7",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "pnpm",
     "runtime": null
   },
   "build": {
     "buildCommand": null,
-    "testCommand": null,
-    "lintCommand": null,
+    "testCommand": "pnpm test",
+    "lintCommand": "pnpm lint",
     "devCommand": null,
     "scripts": {
       "img:download": "node scripts/download-unsplash.mjs",
       "img:replace": "node scripts/replace-unsplash.mjs",
-      "img:all": "npm run img:download && npm run img:replace"
+      "img:all": "npm run img:download && npm run img:replace",
+      "build:i18n": "node scripts/build-multilang.mjs",
+      "vercel-build": "node scripts/build-multilang.mjs",
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix",
+      "format": "prettier --write .",
+      "format:check": "prettier --check .",
+      "test": "vitest run",
+      "test:watch": "vitest",
+      "test:e2e": "playwright test"
     }
   },
   "conventions": {
-    "namingStyle": null,
+    "namingStyle": "camelCase",
     "importStyle": null,
     "testPattern": null,
     "fileOrganization": null
   },
   "structure": {
-    "isMonorepo": false,
+    "isMonorepo": true,
     "workspaces": [],
     "mainDirectories": [
       "assets",
       "docs",
-      "scripts"
+      "lib",
+      "scripts",
+      "tests",
+      "__tests__"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
@@ -50,7 +81,7 @@
       "path": "admin",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1778952909352,
+      "lastAccessed": 1779463277045,
       "keyFiles": [
         "admin.js",
         "jobs.html",
@@ -58,46 +89,110 @@
         "news-moderation.js"
       ]
     },
+    "antik-kentler": {
+      "path": "antik-kentler",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1779463277048,
+      "keyFiles": [
+        "andriake.html",
+        "antiphellos.html",
+        "aperlae.html",
+        "letoon.html",
+        "myra.html"
+      ]
+    },
     "api": {
       "path": "api",
       "purpose": "API routes",
-      "fileCount": 5,
-      "lastAccessed": 1778952909353,
+      "fileCount": 13,
+      "lastAccessed": 1779463277061,
       "keyFiles": [
-        "job-decision.js",
-        "newsletter-confirm.js",
-        "README.md",
-        "welcome-email.js",
-        "whatsapp.js"
+        "concierge-ai.js",
+        "cron-rebuild.js",
+        "cron-refresh-ig-token.js",
+        "cron-weekly-plan.js",
+        "instagram-hashtag.js"
       ]
     },
     "assets": {
       "path": "assets",
       "purpose": "Static assets",
       "fileCount": 1,
-      "lastAccessed": 1778952909362,
+      "lastAccessed": 1779463277063,
       "keyFiles": [
         "og-default.png"
+      ]
+    },
+    "brochures": {
+      "path": "brochures",
+      "purpose": null,
+      "fileCount": 18,
+      "lastAccessed": 1779463277064,
+      "keyFiles": [
+        "berkay-todo-20260520.html",
+        "generate-batch.mjs",
+        "generate-onepager.mjs",
+        "generate-pdf.mjs",
+        "preview-1.png"
+      ]
+    },
+    "COMPANY": {
+      "path": "COMPANY",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1779463277065,
+      "keyFiles": [
+        "APP_SUBMISSION.md",
+        "AUDIT_FINDINGS.md",
+        "CHARTER.md",
+        "DATA_INVENTORY.md",
+        "INCIDENT_RESPONSE.md"
+      ]
+    },
+    "content": {
+      "path": "content",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1779463277067,
+      "keyFiles": [
+        "antik-reels.json",
+        "patara-drone-clips.json",
+        "README.md",
+        "reels.json"
       ]
     },
     "data": {
       "path": "data",
       "purpose": "Data files",
-      "fileCount": 14,
-      "lastAccessed": 1778952909362,
+      "fileCount": 18,
+      "lastAccessed": 1779463277068,
       "keyFiles": [
+        "ai-system-prompt.md",
         "aktiviteler.json",
         "antik-kentler.json",
-        "concierge.json",
-        "config.json",
-        "eczane.json"
+        "audio-manifest.json",
+        "concierge.json"
+      ]
+    },
+    "de": {
+      "path": "de",
+      "purpose": null,
+      "fileCount": 22,
+      "lastAccessed": 1779463277069,
+      "keyFiles": [
+        "404.html",
+        "aktiviteler.html",
+        "antik-kentler.html",
+        "data-deletion.html",
+        "events.html"
       ]
     },
     "dist": {
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 1,
-      "lastAccessed": 1778952909363,
+      "lastAccessed": 1779463277071,
       "keyFiles": [
         "tw.css"
       ]
@@ -105,21 +200,47 @@
     "docs": {
       "path": "docs",
       "purpose": "Documentation",
-      "fileCount": 6,
-      "lastAccessed": 1778952909363,
+      "fileCount": 12,
+      "lastAccessed": 1779463277072,
       "keyFiles": [
+        "AI_CONCIERGE.md",
         "ARCHITECTURE.md",
         "AUTOMATION_PIPELINE.md",
-        "INSTAGRAM_AUTOMATION.md",
-        "ONBOARDING_FLOW.md",
-        "REVIEWS_INTEGRATION.md"
+        "CSP_AUDIT_20260520.md",
+        "INSTAGRAM_AUTOMATION.md"
+      ]
+    },
+    "en": {
+      "path": "en",
+      "purpose": null,
+      "fileCount": 22,
+      "lastAccessed": 1779463277073,
+      "keyFiles": [
+        "404.html",
+        "aktiviteler.html",
+        "antik-kentler.html",
+        "data-deletion.html",
+        "events.html"
+      ]
+    },
+    "fr": {
+      "path": "fr",
+      "purpose": null,
+      "fileCount": 22,
+      "lastAccessed": 1779463277074,
+      "keyFiles": [
+        "404.html",
+        "aktiviteler.html",
+        "antik-kentler.html",
+        "data-deletion.html",
+        "events.html"
       ]
     },
     "functions": {
       "path": "functions",
       "purpose": null,
       "fileCount": 8,
-      "lastAccessed": 1778952909364,
+      "lastAccessed": 1779463277075,
       "keyFiles": [
         "index.js",
         "instagramHarvester.js",
@@ -131,8 +252,8 @@
     "icons": {
       "path": "icons",
       "purpose": null,
-      "fileCount": 17,
-      "lastAccessed": 1778952909364,
+      "fileCount": 18,
+      "lastAccessed": 1779463277076,
       "keyFiles": [
         "apple-touch-icon.png",
         "avatar-berkay.svg",
@@ -145,7 +266,7 @@
       "path": "investor-deck",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1778952909365,
+      "lastAccessed": 1779463277077,
       "keyFiles": [
         "export-pdf.mjs",
         "index.html",
@@ -156,34 +277,104 @@
     "js": {
       "path": "js",
       "purpose": null,
-      "fileCount": 37,
-      "lastAccessed": 1778952909366,
+      "fileCount": 50,
+      "lastAccessed": 1779463277078,
       "keyFiles": [
         "activities.js",
         "admin-auth.js",
-        "auth-pill.js",
-        "auth.js",
-        "bottom-nav.js"
+        "analytics.js",
+        "audio-guide.js",
+        "auth-gate.js"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 4,
+      "lastAccessed": 1779463277079,
+      "keyFiles": [
+        "facebook-publish.js",
+        "instagram-publish.js",
+        "storage.js",
+        "telegram.js"
+      ]
+    },
+    "mobile": {
+      "path": "mobile",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1779463277079,
+      "keyFiles": [
+        "README.md"
+      ]
+    },
+    "p": {
+      "path": "p",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1779463277080,
+      "keyFiles": [
+        "patara-carousel.html",
+        "patara-cinematic.html",
+        "patara-drone.html",
+        "patara-hybrid.html",
+        "patara-voiceover.html"
+      ]
+    },
+    "rehber": {
+      "path": "rehber",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1779463277081,
+      "keyFiles": [
+        "antik-kentleri-1-gunde-gezme.html",
+        "index.html",
+        "kalkan-tekne-turu-rehberi.html",
+        "kas-kalkan-fark.html",
+        "likya-yolu-trekking-rehberi.html"
+      ]
+    },
+    "remotion": {
+      "path": "remotion",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1779463277082,
+      "keyFiles": [
+        "remotion.config.ts",
+        "tsconfig.json"
+      ]
+    },
+    "ru": {
+      "path": "ru",
+      "purpose": null,
+      "fileCount": 22,
+      "lastAccessed": 1779463277083,
+      "keyFiles": [
+        "404.html",
+        "aktiviteler.html",
+        "antik-kentler.html",
+        "data-deletion.html",
+        "events.html"
       ]
     },
     "scripts": {
       "path": "scripts",
       "purpose": "Build/utility scripts",
-      "fileCount": 10,
-      "lastAccessed": 1778952909366,
+      "fileCount": 61,
+      "lastAccessed": 1779463277085,
       "keyFiles": [
-        "build-supabase-config.mjs",
-        "build-tailwind.mjs",
-        "download-all-images.mjs",
-        "download-unsplash.mjs",
-        "generate-og.mjs"
+        "add-image-dimensions.mjs",
+        "build-all.mjs",
+        "build-antik-pages.mjs",
+        "build-carousel-assets.mjs",
+        "build-multilang.mjs"
       ]
     },
     "supabase": {
       "path": "supabase",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1778952909366,
+      "lastAccessed": 1779463277085,
       "keyFiles": [
         "config.toml"
       ]
@@ -191,8 +382,8 @@
     "temporary screenshots": {
       "path": "temporary screenshots",
       "purpose": null,
-      "fileCount": 13,
-      "lastAccessed": 1778952909367,
+      "fileCount": 18,
+      "lastAccessed": 1779463277087,
       "keyFiles": [
         "screenshot-1-kalkan-localhost-live.png",
         "screenshot-10-deck-preview.png",
@@ -201,11 +392,27 @@
         "screenshot-13-villa-modal-test.png"
       ]
     },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 0,
+      "lastAccessed": 1779463277088,
+      "keyFiles": []
+    },
+    "__tests__": {
+      "path": "__tests__",
+      "purpose": "Test files",
+      "fileCount": 1,
+      "lastAccessed": 1779463277088,
+      "keyFiles": [
+        "data-integrity.test.js"
+      ]
+    },
     "functions\\lib": {
       "path": "functions\\lib",
       "purpose": "Library code",
       "fileCount": 2,
-      "lastAccessed": 1778952909369,
+      "lastAccessed": 1779463277095,
       "keyFiles": [
         "claude.js",
         "social.js"
@@ -215,16 +422,27 @@
       "path": "functions\\src",
       "purpose": "Source code",
       "fileCount": 1,
-      "lastAccessed": 1778952909369,
+      "lastAccessed": 1779463277095,
       "keyFiles": [
         "sendWelcomeEmail.js"
+      ]
+    },
+    "remotion\\src": {
+      "path": "remotion\\src",
+      "purpose": "Source code",
+      "fileCount": 5,
+      "lastAccessed": 1779463277099,
+      "keyFiles": [
+        "AntikKent.tsx",
+        "AntikKentVideo.tsx",
+        "index.tsx"
       ]
     },
     "supabase\\migrations": {
       "path": "supabase\\migrations",
       "purpose": "Database migrations",
-      "fileCount": 5,
-      "lastAccessed": 1778952909371,
+      "fileCount": 12,
+      "lastAccessed": 1779463277100,
       "keyFiles": [
         "20260513200000_initial_schema.sql",
         "20260515040000_newsletter.sql",
@@ -235,20 +453,20 @@
   "hotPaths": [
     {
       "path": "",
-      "accessCount": 103,
-      "lastAccessed": 1779287188738,
+      "accessCount": 153,
+      "lastAccessed": 1779467602063,
       "type": "directory"
     },
     {
       "path": "index.html",
-      "accessCount": 55,
-      "lastAccessed": 1779270972566,
+      "accessCount": 75,
+      "lastAccessed": 1779467860654,
       "type": "directory"
     },
     {
       "path": "js\\render.js",
-      "accessCount": 34,
-      "lastAccessed": 1779458797635,
+      "accessCount": 36,
+      "lastAccessed": 1779464591836,
       "type": "file"
     },
     {
@@ -258,9 +476,15 @@
       "type": "file"
     },
     {
+      "path": "vercel.json",
+      "accessCount": 27,
+      "lastAccessed": 1779467995991,
+      "type": "file"
+    },
+    {
       "path": "js\\concierge-modal.js",
-      "accessCount": 22,
-      "lastAccessed": 1779226138160,
+      "accessCount": 25,
+      "lastAccessed": 1779467682640,
       "type": "file"
     },
     {
@@ -276,9 +500,9 @@
       "type": "file"
     },
     {
-      "path": "vercel.json",
-      "accessCount": 20,
-      "lastAccessed": 1779457671249,
+      "path": "data\\restoranlar.json",
+      "accessCount": 17,
+      "lastAccessed": 1779463944732,
       "type": "file"
     },
     {
@@ -288,16 +512,28 @@
       "type": "file"
     },
     {
-      "path": "data\\restoranlar.json",
+      "path": "js",
       "accessCount": 16,
-      "lastAccessed": 1779221930951,
+      "lastAccessed": 1779464209735,
+      "type": "directory"
+    },
+    {
+      "path": "aktiviteler.html",
+      "accessCount": 12,
+      "lastAccessed": 1779464945843,
       "type": "file"
     },
     {
-      "path": "js",
+      "path": "js\\bottom-nav.js",
+      "accessCount": 12,
+      "lastAccessed": 1779467041246,
+      "type": "file"
+    },
+    {
+      "path": "tatil-asistani.html",
       "accessCount": 11,
-      "lastAccessed": 1779454932067,
-      "type": "directory"
+      "lastAccessed": 1779467054755,
+      "type": "file"
     },
     {
       "path": "js\\page-antik-kentler.js",
@@ -306,15 +542,15 @@
       "type": "file"
     },
     {
-      "path": "tatil-asistani.html",
+      "path": "js\\page-index.js",
       "accessCount": 10,
-      "lastAccessed": 1779224211320,
+      "lastAccessed": 1779463424640,
       "type": "file"
     },
     {
-      "path": "js\\page-index.js",
+      "path": "ilan-ver.html",
       "accessCount": 9,
-      "lastAccessed": 1779217416580,
+      "lastAccessed": 1779467044231,
       "type": "file"
     },
     {
@@ -331,8 +567,20 @@
     },
     {
       "path": "hizmet-ekle.html",
+      "accessCount": 7,
+      "lastAccessed": 1779467054563,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 7,
+      "lastAccessed": 1779467374671,
+      "type": "file"
+    },
+    {
+      "path": "sw.js",
       "accessCount": 6,
-      "lastAccessed": 1779224300587,
+      "lastAccessed": 1779463424891,
       "type": "file"
     },
     {
@@ -342,27 +590,21 @@
       "type": "file"
     },
     {
-      "path": "aktiviteler.html",
-      "accessCount": 5,
-      "lastAccessed": 1779224130898,
-      "type": "file"
-    },
-    {
-      "path": "js\\bottom-nav.js",
-      "accessCount": 5,
-      "lastAccessed": 1779224187459,
-      "type": "file"
-    },
-    {
       "path": "js\\profile.js",
       "accessCount": 5,
       "lastAccessed": 1779450833169,
       "type": "file"
     },
     {
-      "path": "sw.js",
+      "path": "admin.html",
       "accessCount": 5,
-      "lastAccessed": 1779457669200,
+      "lastAccessed": 1779467859522,
+      "type": "file"
+    },
+    {
+      "path": "hizmetler.html",
+      "accessCount": 5,
+      "lastAccessed": 1779467862362,
       "type": "file"
     },
     {
@@ -375,30 +617,6 @@
       "path": "haberler.html",
       "accessCount": 4,
       "lastAccessed": 1779224129372,
-      "type": "file"
-    },
-    {
-      "path": "admin.html",
-      "accessCount": 3,
-      "lastAccessed": 1779222767556,
-      "type": "file"
-    },
-    {
-      "path": "ilan-ver.html",
-      "accessCount": 3,
-      "lastAccessed": 1779222788184,
-      "type": "file"
-    },
-    {
-      "path": "hizmetler.html",
-      "accessCount": 3,
-      "lastAccessed": 1779224124692,
-      "type": "file"
-    },
-    {
-      "path": ".env.example",
-      "accessCount": 3,
-      "lastAccessed": 1779286966592,
       "type": "file"
     },
     {
