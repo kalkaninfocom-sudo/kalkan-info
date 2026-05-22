@@ -39,8 +39,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .tier-card{position:relative;background:#fff;border:1px solid #cfdfee;border-radius:18px;padding:32px 28px;transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease;display:flex;flex-direction:column;}
   .tier-card:hover{border-color:#1a5e93;transform:translateY(-3px);box-shadow:0 16px 40px -12px rgba(7,33,54,0.22);}
+  .tier-card:focus-within{border-color:#e89812;box-shadow:0 16px 40px -12px rgba(7,33,54,0.22),0 0 0 4px rgba(232,152,18,0.18);}
   .tier-card.tier-premium{border-color:#e89812;transform:scale(1.04);box-shadow:0 20px 60px -20px rgba(232,152,18,0.35);background:linear-gradient(180deg,#fff 0%,#fdf6ec 100%);}
   .tier-card.tier-premium:hover{transform:scale(1.04) translateY(-3px);box-shadow:0 24px 64px -16px rgba(232,152,18,0.45);}
+  .tier-card.tier-premium:focus-within{box-shadow:0 24px 64px -16px rgba(232,152,18,0.45),0 0 0 4px rgba(232,152,18,0.28);}
   .tier-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#e89812 0%,#c97b09 100%);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:6px 14px;border-radius:9999px;box-shadow:0 6px 16px -4px rgba(232,152,18,0.55);white-space:nowrap;}
   .tier-price{font-family:'Montserrat',sans-serif;font-weight:800;font-size:42px;line-height:1;color:#0a2e4c;letter-spacing:-0.03em;}
   .tier-period{font-size:13px;color:#5d97c4;font-weight:600;}
