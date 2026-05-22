@@ -9,7 +9,7 @@ import * as cheerio from 'cheerio';
 
 const ROOT = resolve(import.meta.dirname || '.', '..');
 const LANGS = ['en', 'de', 'ru', 'fr'];
-const EXCLUDE = new Set(['admin.html', 'login.html', 'register.html', 'profil.html', 'b2b-dashboard.html']);
+const EXCLUDE = new Set(['admin.html', 'login.html', 'register.html', 'profil.html']);
 
 const TITLE_FALLBACK = {
   en: 'Kalkan Info — The Kalkan & Lycia Guide',

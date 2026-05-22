@@ -470,6 +470,9 @@
         if (turnCount === 3) {
           fireEv('ai_conversation_complete', { lang, context: ctx.context });
         }
+        if (turnCount >= 3) {
+          injectBookingCTA();
+        }
       }
     } catch (err) {
       console.warn('[concierge-ai] fetch failed', err);
@@ -481,6 +484,101 @@
       sendBtn.disabled = false;
       inputEl.focus();
     }
+  }
+
+  const BOOKING_CTA = {
+    tr: {
+      villa: 'Bu villaları rezerve etmek için:',
+      tur: 'Bu turu rezerve edin:',
+      genel: 'Tatil paketini onaylamak için:',
+      btn: 'WhatsApp ile İletişim',
+    },
+    en: {
+      villa: 'To book these villas:',
+      tur: 'To book this tour:',
+      genel: 'To confirm your holiday package:',
+      btn: 'Contact via WhatsApp',
+    },
+    de: {
+      villa: 'Um diese Villen zu buchen:',
+      tur: 'Um diese Tour zu buchen:',
+      genel: 'Um Ihr Urlaubspaket zu bestätigen:',
+      btn: 'Per WhatsApp kontaktieren',
+    },
+    ru: {
+      villa: 'Для бронирования вилл:',
+      tur: 'Для бронирования тура:',
+      genel: 'Для подтверждения пакета:',
+      btn: 'Связаться через WhatsApp',
+    },
+    fr: {
+      villa: 'Pour réserver ces villas :',
+      tur: 'Pour réserver ce tour :',
+      genel: 'Pour confirmer votre séjour :',
+      btn: 'Contacter par WhatsApp',
+    },
+  };
+
+  function injectBookingCTA() {
+    if (!bodyEl) return;
+    // Only inject once per session
+    if (bodyEl.querySelector('.kalkan-ai-booking-cta')) return;
+
+    const s = STR[lang] || STR.tr;
+    const bc = BOOKING_CTA[lang] || BOOKING_CTA.tr;
+
+    // Determine context label
+    const ctxKey = (ctx.context || 'genel').toLowerCase();
+    const isVilla = ctxKey.includes('villa');
+    const isTur = ctxKey.includes('tur') || ctxKey.includes('tour');
+    const label = isVilla ? bc.villa : (isTur ? bc.tur : bc.genel);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'kalkan-ai-booking-cta';
+    wrap.style.cssText = [
+      'align-self:flex-start',
+      'width:100%',
+      'margin-top:4px',
+      'padding:12px 14px',
+      'background:linear-gradient(135deg,rgba(244,181,61,0.15) 0%,rgba(232,152,18,0.10) 100%)',
+      'border:1px solid rgba(244,181,61,0.35)',
+      'border-radius:12px',
+      'display:flex',
+      'flex-direction:column',
+      'gap:8px',
+    ].join(';');
+
+    wrap.innerHTML = `
+      <p style="margin:0;font-size:12px;color:rgba(220,230,239,0.85);line-height:1.4;">${escapeHTML(label)}</p>
+      <a
+        href="${escapeHTML(s.waUrl)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="kalkan-ai-booking-cta-btn"
+        style="
+          display:inline-flex;align-items:center;justify-content:center;gap:8px;
+          padding:10px 16px;
+          background:linear-gradient(135deg,#f4b53d 0%,#e89812 100%);
+          color:#0a2e4c;border-radius:9px;text-decoration:none;
+          font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:13px;
+          box-shadow:0 4px 14px -4px rgba(244,181,61,0.55);
+          transition:opacity .15s;
+        "
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+        ${escapeHTML(bc.btn)}
+      </a>
+    `;
+
+    const ctaBtn = wrap.querySelector('.kalkan-ai-booking-cta-btn');
+    ctaBtn.addEventListener('click', () => {
+      fireEv('concierge_ai_booking_cta_clicked', { lang, context: ctx.context, turns: turnCount });
+    });
+
+    bodyEl.appendChild(wrap);
+    bodyEl.scrollTop = bodyEl.scrollHeight;
+
+    fireEv('concierge_ai_booking_cta_shown', { lang, context: ctx.context, turns: turnCount });
   }
 
   function close() {

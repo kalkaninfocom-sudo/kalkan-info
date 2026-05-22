@@ -49,6 +49,9 @@
   .tier-cta.cta-premium:hover{transform:translateY(-1px);box-shadow:0 12px 28px -6px rgba(232,152,18,0.7);}
   .tier-cta.cta-featured{background:linear-gradient(135deg,#0a2e4c 0%,#072136 100%);color:#fff;box-shadow:0 8px 22px -6px rgba(7,33,54,0.45);}
   .tier-cta.cta-featured:hover{transform:translateY(-1px);box-shadow:0 12px 28px -6px rgba(7,33,54,0.6);}
+  .tier-cta-secondary{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:11px 14px;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;text-align:center;background:#0d4a78;color:#fff;border:2px solid #1a6aaa;text-decoration:none;transition:background .18s ease,border-color .18s ease,transform .18s ease;}
+  .tier-cta-secondary:hover{background:#1a5e93;border-color:#2a80cc;transform:translateY(-1px);}
+  .tier-cta-secondary:focus-visible{outline:3px solid #f4b53d;outline-offset:3px;}
 
   .faq-item{border-bottom:1px solid #cfdfee;}
   .faq-item summary{cursor:pointer;list-style:none;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:#0a2e4c;}
@@ -224,6 +227,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
           <span data-en="Start free" data-de="Kostenlos starten" data-ru="Начать бесплатно" data-fr="Commencer gratuitement">Ücretsiz Başla</span>
         </a>
+        <a href="/ilan-ver.html?plan=basic" class="tier-cta-secondary mt-3" onclick="if(window.plausibleEvent)window.plausibleEvent('pricing_apply_click',{plan:'basic'})">
+          <span data-en="Apply Online" data-de="Online bewerben" data-ru="Подать заявку" data-fr="Postuler en ligne">Hemen Başvur</span>
+        </a>
       </div>
 
       <!-- PREMIUM -->
@@ -248,6 +254,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
           <span data-en="Apply for Premium" data-de="Premium beantragen" data-ru="Заявка на Premium" data-fr="Postuler Premium">Premium'a Başvur</span>
         </a>
+        <a href="/ilan-ver.html?plan=premium" class="tier-cta-secondary mt-3" onclick="if(window.plausibleEvent)window.plausibleEvent('pricing_apply_click',{plan:'premium'})">
+          <span data-en="Apply Online" data-de="Online bewerben" data-ru="Подать заявку" data-fr="Postuler en ligne">Hemen Başvur</span>
+        </a>
       </div>
 
       <!-- FEATURED -->
@@ -270,6 +279,9 @@
         <a href="https://wa.me/905306650794?text=Pricing%20-%20Featured%20paketi%20i%C3%A7in%20ba%C5%9Fvuruyorum" data-tier="featured" class="tier-cta cta-featured mt-7">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
           <span data-en="Talk to Berkay" data-de="Mit Berkay sprechen" data-ru="Связаться с Беркаем" data-fr="Parler à Berkay">Berkay ile Görüş</span>
+        </a>
+        <a href="/ilan-ver.html?plan=featured" class="tier-cta-secondary mt-3" onclick="if(window.plausibleEvent)window.plausibleEvent('pricing_apply_click',{plan:'featured'})">
+          <span data-en="Apply Online" data-de="Online bewerben" data-ru="Подать заявку" data-fr="Postuler en ligne">Hemen Başvur</span>
         </a>
       </div>
 
