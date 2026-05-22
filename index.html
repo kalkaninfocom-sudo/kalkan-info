@@ -56,6 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nav-active{color:#f4b53d!important;}
   .nav-active::after{transform:scaleX(1)!important;}
 </style>
+<style>#concierge-fab,#ki-concierge,.concierge-fab{visibility:hidden}body.concierge-ready #concierge-fab,body.concierge-ready #ki-concierge,body.concierge-ready .concierge-fab{visibility:visible}</style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a2e4c">
 <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
@@ -419,8 +420,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="News &amp; Announcements" data-de="Nachrichten & Ankündigungen" data-ru="Новости и объявления" data-fr="Actualités et Annonces">Haberler & Duyurular</h2>
       </div>
       <div class="flex gap-2">
-        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button aria-label="Önceki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button aria-label="Sonraki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
     <div id="haberler-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
@@ -597,8 +598,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Discover the Region" data-de="Entdecke die Region" data-ru="Откройте для себя регион" data-fr="Découvrez la Région">Bölgeyi Tanı</h2>
       </div>
       <div class="flex gap-2">
-        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button aria-label="Önceki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button aria-label="Sonraki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">

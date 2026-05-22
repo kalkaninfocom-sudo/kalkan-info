@@ -561,6 +561,7 @@
         open({ source: src, trigger: el });
       });
     });
+    document.body.classList.add('concierge-ready');
   }
 
   if (document.readyState === 'loading') {
