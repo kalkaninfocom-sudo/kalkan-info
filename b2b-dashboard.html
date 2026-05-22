@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="tr" style="scroll-behavior:smooth;">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
 <meta charset="utf-8" />
 <meta name="google" content="notranslate">
 <script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
@@ -15,11 +22,14 @@
 <style>
   html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#eef4f9;}
   h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
-  .stat-card{background:#fff;border:1px solid #cfdfee;border-radius:14px;padding:20px;box-shadow:0 1px 3px rgba(7,33,54,0.06),0 6px 18px -8px rgba(7,33,54,0.14);}
+  /* card-base + variants — see docs/DESIGN_SYSTEM.md §3 */
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-base--stat{border:1px solid #cfdfee;border-radius:14px;padding:20px;transition:box-shadow .22s ease,transform .22s ease;}
+  .card-base--stat:hover,.card-base--stat:focus-within{box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14),0 0 0 4px rgba(232,152,18,0.18);transform:translateY(-2px);}
+  .card-base--panel{border:1px solid #cfdfee;border-radius:14px;padding:22px 24px;}
   .stat-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5d97c4;font-weight:700;}
   .stat-value{font-family:'Montserrat',sans-serif;font-weight:800;font-size:32px;color:#0a2e4c;line-height:1;letter-spacing:-0.03em;margin-top:6px;}
   .stat-sub{font-size:12px;color:#5d97c4;margin-top:4px;}
-  .panel{background:#fff;border:1px solid #cfdfee;border-radius:14px;padding:22px 24px;box-shadow:0 1px 3px rgba(7,33,54,0.06),0 6px 18px -8px rgba(7,33,54,0.14);}
   .table-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #eef4f9;font-size:14px;}
   .table-row:last-child{border-bottom:0;}
   .table-row strong{color:#0a2e4c;font-weight:700;}
@@ -44,6 +54,10 @@
   <script src="./js/sentry-init.js" defer></script>
 </head>
 <body data-auth-role="partner">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <header class="bg-white border-b border-sea-100 sticky top-0 z-30" style="box-shadow:0 1px 3px rgba(7,33,54,0.07);">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -68,29 +82,29 @@
 
   <!-- SUMMARY -->
   <div id="summary-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-    <div class="stat-card"><div class="stat-label">Tekil Ziyaretçi</div><div class="stat-value" data-stat="visitors">—</div><div class="stat-sub">son dönem</div></div>
-    <div class="stat-card"><div class="stat-label">Sayfa Görüntüleme</div><div class="stat-value" data-stat="pageviews">—</div><div class="stat-sub">son dönem</div></div>
-    <div class="stat-card"><div class="stat-label">Bounce Rate</div><div class="stat-value" data-stat="bounce_rate">—</div><div class="stat-sub">%</div></div>
-    <div class="stat-card"><div class="stat-label">Ortalama Süre</div><div class="stat-value" data-stat="visit_duration">—</div><div class="stat-sub">sn</div></div>
+    <div class="card-base card-base--stat" tabindex="0"><div class="stat-label">Tekil Ziyaretçi</div><div class="stat-value" data-stat="visitors">—</div><div class="stat-sub">son dönem</div></div>
+    <div class="card-base card-base--stat" tabindex="0"><div class="stat-label">Sayfa Görüntüleme</div><div class="stat-value" data-stat="pageviews">—</div><div class="stat-sub">son dönem</div></div>
+    <div class="card-base card-base--stat" tabindex="0"><div class="stat-label">Bounce Rate</div><div class="stat-value" data-stat="bounce_rate">—</div><div class="stat-sub">%</div></div>
+    <div class="card-base card-base--stat" tabindex="0"><div class="stat-label">Ortalama Süre</div><div class="stat-value" data-stat="visit_duration">—</div><div class="stat-sub">sn</div></div>
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <section class="panel">
+    <section class="card-base card-base--panel">
       <h2 class="font-display font-extrabold text-lg mb-3">En Popüler Sayfalar</h2>
       <div id="top-pages"><div class="loading">Yükleniyor…</div></div>
     </section>
 
-    <section class="panel">
+    <section class="card-base card-base--panel">
       <h2 class="font-display font-extrabold text-lg mb-3">Conversion Hedefleri</h2>
       <div id="top-goals"><div class="loading">Yükleniyor…</div></div>
     </section>
 
-    <section class="panel">
+    <section class="card-base card-base--panel">
       <h2 class="font-display font-extrabold text-lg mb-3">Trafik Kaynakları</h2>
       <div id="top-sources"><div class="loading">Yükleniyor…</div></div>
     </section>
 
-    <section class="panel">
+    <section class="card-base card-base--panel">
       <h2 class="font-display font-extrabold text-lg mb-3">Funnel: Sayfa → Concierge → WhatsApp</h2>
       <canvas id="funnel-chart" height="200"></canvas>
       <p class="text-xs text-sea-500 mt-3">Concierge'i açan ziyaretçinin %'si ve WhatsApp tıklamasına dönüşüm — son dönem.</p>
