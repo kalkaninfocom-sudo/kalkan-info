@@ -74,6 +74,12 @@
       version: CONSENT_VERSION
     };
     localStorage.setItem(CONSENT_KEY, JSON.stringify(obj));
+    // 2026-05-22 audit-trust: Clarity ve consent-aware modüller için event dispatch
+    try {
+      window.dispatchEvent(new CustomEvent('ki-consent-changed', {
+        detail: { ts: Date.now(), current: obj }
+      }));
+    } catch (e) { /* noop */ }
     return obj;
   }
 
