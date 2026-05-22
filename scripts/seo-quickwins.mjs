@@ -47,6 +47,12 @@ const SEO_PAGES = [
   'antik-kentler/myra.html',
   'antik-kentler/andriake.html',
   'antik-kentler/aperlae.html',
+  'rehber/index.html',
+  'rehber/antik-kentleri-1-gunde-gezme.html',
+  'rehber/kalkan-tekne-turu-rehberi.html',
+  'rehber/kas-kalkan-fark.html',
+  'rehber/likya-yolu-trekking-rehberi.html',
+  'rehber/patara-plajina-nasil-gidilir.html',
 ];
 
 const OG_LOCALE_BLOCK = [
