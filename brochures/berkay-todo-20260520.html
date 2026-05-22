@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Kalkan Info — Berkay'ın Yapması Gerekenler (2026-05-20)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy-darker: #072136;
+    --navy-base: #0a2e4c;
+    --navy-mid: #0c3858;
+    --navy-accent: #1a5e93;
+    --gold: #e89812;
+    --gold-light: #f4b53d;
+    --surface: #dce6ef;
+    --surface-alt: #eef4f9;
+    --border: #cfdfee;
+    --text: #0a2e4c;
+    --muted: #5d97c4;
+    --green: #15803d;
+    --red: #991b1b;
+    --amber: #b45309;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fff;
+    line-height: 1.55;
+  }
+  @page { size: A4; margin: 0; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm 16mm 14mm;
+    position: relative;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(232,152,18,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(26,94,147,0.5) 0%, transparent 60%),
+      linear-gradient(160deg, var(--navy-darker) 0%, var(--navy-base) 55%, var(--navy-mid) 100%);
+    color: #fff;
+    margin: -16mm -16mm 8mm;
+    padding: 12mm 16mm 10mm;
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+  }
+  .logo-mark .dot {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(160deg, var(--gold) 0%, var(--gold-light) 100%);
+    display: grid; place-items: center;
+    color: var(--navy-darker);
+    font-size: 18px;
+    box-shadow: 0 6px 16px -6px rgba(232,152,18,0.6);
+  }
+  .url-corner {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+  }
+  .url-corner small {
+    display: block;
+    color: #cfdfee;
+    font-weight: 400;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .hero h1 span {
+    display: block;
+    color: var(--gold-light);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 4px;
+    letter-spacing: -0.01em;
+  }
+  .hero-meta {
+    font-size: 11px;
+    color: #cfdfee;
+    margin-top: 10px;
+    display: flex;
+    gap: 18px;
+  }
+
+  /* SUMMARY STAT */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 10px 0 14px;
+  }
+  .stat-card {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .stat-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--navy-base);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-top: 3px;
+  }
+  .stat-sub {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* SECTION */
+  section { margin-bottom: 14px; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1.5px solid var(--gold);
+  }
+  .section-title .ix {
+    width: 22px;
+    height: 22px;
+    background: var(--navy-base);
+    color: var(--gold-light);
+    border-radius: 6px;
+    display: inline-grid;
+    place-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+  .section-title h2 {
+    font-size: 15px;
+    color: var(--navy-base);
+    font-weight: 800;
+    flex: 1;
+  }
+  .section-title .pri {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 9999px;
+  }
+  .pri-critical { background: rgba(153,27,27,0.1); color: var(--red); }
+  .pri-high     { background: rgba(180,83,9,0.1); color: var(--amber); }
+  .pri-medium   { background: rgba(26,94,147,0.1); color: var(--navy-accent); }
+  .pri-info     { background: rgba(21,128,61,0.1); color: var(--green); }
+
+  /* TASK ITEM */
+  .task {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 12px;
+    margin-bottom: 6px;
+    font-size: 11.5px;
+  }
+  .task .chk {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--navy-accent);
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .task .num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 11px;
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+  .task-body { flex: 1; min-width: 0; }
+  .task-title {
+    font-weight: 700;
+    color: var(--navy-base);
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .task-desc {
+    color: var(--muted);
+    font-size: 10.5px;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+  .task-cmd {
+    font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 10px;
+    color: var(--navy-base);
+    margin-top: 4px;
+    display: inline-block;
+    word-break: break-all;
+  }
+  .task-meta {
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 8px;
+    font-size: 9px;
+    color: var(--muted);
+  }
+  .task-meta .pill {
+    background: var(--surface-alt);
+    border-radius: 9999px;
+    padding: 2px 7px;
+    font-weight: 600;
+  }
+
+  /* DONE SECTION */
+  .done-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .done-item {
+    background: rgba(21,128,61,0.05);
+    border-left: 3px solid var(--green);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    color: var(--navy-base);
+  }
+  .done-item strong { color: var(--green); font-weight: 700; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--muted);
+  }
+  .footer .brand { font-weight: 700; color: var(--navy-base); }
+
+  /* HEADLINE pull */
+  .pull {
+    background: linear-gradient(135deg, var(--navy-base) 0%, var(--navy-mid) 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 10px 0 14px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .pull strong { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — Cover + Summary + Done -->
+<div class="page">
+  <div class="hero">
+    <div class="hero-top">
+      <div class="logo-mark">
+        <span class="dot">◆</span>
+        <span>KALKAN INFO<br><small style="font-weight:400;letter-spacing:0.08em;font-size:8px;color:#cfdfee;">YEREL BİLGİ REHBERİ</small></span>
+      </div>
+      <div class="url-corner">
+        kalkaninfo.com
+        <small>SPRINT RAPORU</small>
+      </div>
+    </div>
+    <h1>
+      Yapılması Gerekenler
+      <span>Berkay — 20 Mayıs 2026 Otonom Sprint Sonrası</span>
+    </h1>
+    <div class="hero-meta">
+      <span>📅 20.05.2026</span>
+      <span>🔖 12 yeni commit canlıda</span>
+      <span>⏱️ Tahmini aktif iş: ~3 saat + bekleme süresi</span>
+    </div>
+  </div>
+
+  <div class="pull">
+    <strong>Bu PDF iki bölümden oluşur:</strong> (1) Bu oturumda canlıya alınan profesyonel sıçramanın özeti — neyi başardık. (2) Senin <strong>tek tek tıklayıp bitireceğin manuel iş listesi</strong>, öncelik sırasına göre. Acil olanları (KRİTİK rozeti) ilk gün, geri kalanları haftaya yay.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-label">Commit</div>
+      <div class="stat-value">12</div>
+      <div class="stat-sub">canlı, push edildi</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Yeni Sayfa</div>
+      <div class="stat-value">10</div>
+      <div class="stat-sub">transfer/events/rehber/b2b</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Yeni Widget</div>
+      <div class="stat-value">5</div>
+      <div class="stat-sub">map · weather · reviews · audio · auth</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Multilang</div>
+      <div class="stat-value">196</div>
+      <div class="stat-sub">49 HTML × 4 dil canlı</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">✓</span>
+      <h2>Kayda Değer Yapılanlar — Bu Oturum</h2>
+      <span class="pri pri-info">Canlı</span>
+    </div>
+    <div class="done-grid">
+      <div class="done-item"><strong>✓ Multilang 404 fix</strong><br>/en/turlar, /de/villalar, /ru/, /fr/ artık 200 OK. 16+ saatlik production fail kapandı.</div>
+      <div class="done-item"><strong>✓ Vercel ERROR zinciri kırıldı</strong><br>pnpm-lock.yaml güncellendi. 8 ardışık ERROR deploy düzeldi.</div>
+      <div class="done-item"><strong>✓ 15 tekne operatörü</strong><br>turlar.html'e Sea Bella, Falcon, Whisper, Kalamaki, Pina-X, Serenity, Levent, Lycia + 7 concierge.</div>
+      <div class="done-item"><strong>✓ Sesli rehber metni 10 kent × 5 dil</strong><br>Patara dahil 50 metin yazıldı. 9 sayfaya widget enjekte.</div>
+      <div class="done-item"><strong>✓ 3 Supabase migration</strong><br>partner_applications, reviews (universal + aggregate view), events.</div>
+      <div class="done-item"><strong>✓ 3 yeni widget JS</strong><br>map-embed (Leaflet), weather-widget (Open-Meteo), reviews-widget (Supabase CRUD).</div>
+      <div class="done-item"><strong>✓ B2B Dashboard prototip</strong><br>Chart.js funnel + Plausible KPI + period filter, auth-gate korumalı.</div>
+      <div class="done-item"><strong>✓ transfer.html (5 dil)</strong><br>AYT/DLM Sedan/Vito/VIP fiyat tablosu, LocalBusiness JSON-LD.</div>
+      <div class="done-item"><strong>✓ events.html</strong><br>Supabase events tablosundan dinamik etkinlik takvimi, kategori filtre.</div>
+      <div class="done-item"><strong>✓ rehber/ blog (6 sayfa)</strong><br>index + 5 makale (Tekne, Patara, Antik 1gün, Kaş-Kalkan, Likya Yolu) Article schema.</div>
+      <div class="done-item"><strong>✓ js/auth-gate.js</strong><br>admin / profil / b2b-dashboard sayfaları Supabase oturum + rol koruması.</div>
+      <div class="done-item"><strong>✓ ESLint + Prettier + .editorconfig</strong><br>Konfigler hazır, package.json scriptleri tanımlı.</div>
+      <div class="done-item"><strong>✓ GitHub Actions CI</strong><br>lint + multilang build smoke + JSON integrity + pnpm audit.</div>
+      <div class="done-item"><strong>✓ Vitest test framework</strong><br>vitest.config.js + data-integrity.test.js (15 tekne, 10 kent metin kontrolü).</div>
+      <div class="done-item"><strong>✓ js/sentry-init.js</strong><br>Lazy CDN load, beforeSend filter — DSN bekleniyor.</div>
+      <div class="done-item"><strong>✓ CSP Audit Raporu</strong><br>docs/CSP_AUDIT_20260520.md — 137 innerHTML envanteri, XSS risk önceliklendirme.</div>
+      <div class="done-item"><strong>✓ 404 sayfası artık 5 dilde</strong><br>multilang build EXCLUDE'dan çıkarıldı, dil çevirileri aktif.</div>
+      <div class="done-item"><strong>✓ Repo temizliği</strong><br>47 ghost JPG git'ten kaldırıldı (~14MB), .gitignore'a alındı.</div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="brand">◆ KALKAN INFO</div>
+    <div>Sprint Raporu · Sayfa 1 / 3</div>
+  </div>
+</div>
+
+<!-- PAGE 2 — Acil + Kritik Manuel İşler -->
+<div class="page">
+
+  <section>
+    <div class="section-title">
+      <span class="ix">1</span>
+      <h2>Acil — Bu Oturuma Başlar Başlamaz Yap</h2>
+      <span class="pri pri-critical">Kritik</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">1</span>
+      <div class="task-body">
+        <div class="task-title">Secret Rotate — 4 sızdırılmış anahtar
+          <span class="task-meta"><span class="pill">~30 dk</span></span>
+        </div>
+        <div class="task-desc">
+          Git history'de görünen secret'ları revoke + yenisini oluştur. Eski'leri Vercel env'den de güncelle.
+          <br>• <b>Twilio</b>: Console > API Keys > <b>Disable</b> SK87ff... → yeni key + Vercel env <code>TWILIO_API_KEY</code>.
+          <br>• <b>Resend</b>: Dashboard > API Keys > <b>Revoke</b> → yeni Production key.
+          <br>• <b>Supabase PAT</b> (cli-deploy-kalkan): Dashboard > Personal Access Tokens > <b>Revoke</b> → yeni proje-scoped token, <code>supabase login</code>.
+          <br>• <b>Admin parola</b> <code>kalkan2026</code>: Supabase Auth > Users > admin > Reset → 24 karakter random, 1Password.
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">2</span>
+      <div class="task-body">
+        <div class="task-title">Supabase migrasyon push
+          <span class="task-meta"><span class="pill">~3 dk</span></span>
+        </div>
+        <div class="task-desc">3 yeni migration commit edildi ama Supabase'e push edilmedi (otonom değil).</div>
+        <div class="task-cmd">cd kalkan-info && supabase db push</div>
+        <div class="task-desc">Üretecek tablolar: <b>partner_applications</b>, <b>reviews</b> + <b>reviews_aggregate</b> view, <b>events</b>. RLS politikaları otomatik.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">3</span>
+      <div class="task-body">
+        <div class="task-title">devDependencies yükle (test + lint çalışsın)
+          <span class="task-meta"><span class="pill">~2 dk</span></span>
+        </div>
+        <div class="task-desc">Faz 4 config'leri hazır ama devDeps yüklü değil. Bu komut sonrası <code>pnpm test</code> ve <code>pnpm lint</code> çalışır.</div>
+        <div class="task-cmd">pnpm i -D vitest @vitest/ui playwright @playwright/test eslint @eslint/js globals prettier eslint-config-prettier</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">2</span>
+      <h2>API Key'ler — Vercel Env'e Ekle</h2>
+      <span class="pri pri-high">Yüksek</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">4</span>
+      <div class="task-body">
+        <div class="task-title">Anthropic API key
+          <span class="task-meta"><span class="pill">~2 dk</span></span>
+        </div>
+        <div class="task-desc">console.anthropic.com/settings/keys → "Production" key. Vercel > Settings > Environment Variables > <code>ANTHROPIC_API_KEY</code> (Production + Preview). Redeploy trigger.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">5</span>
+      <div class="task-body">
+        <div class="task-title">ElevenLabs API key + plan kararı
+          <span class="task-meta"><span class="pill">~5 dk + plan kararı</span></span>
+        </div>
+        <div class="task-desc">
+          elevenlabs.io/app/settings/api-keys → yeni key. <code>.env.local</code> ve Vercel env'e <code>ELEVENLABS_API_KEY</code>.
+          <br><b>Plan seçimi:</b> Starter $5/ay (TR+EN için yeterli, 20 MP3) veya Creator $22/ay (5 dil, 50 MP3).
+          <br>Sonra üretim komutu:
+        </div>
+        <div class="task-cmd">ELEVENLABS_API_KEY=sk_... node scripts/build-voiceover.mjs</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">6</span>
+      <div class="task-body">
+        <div class="task-title">Sentry DSN
+          <span class="task-meta"><span class="pill">~3 dk</span></span>
+        </div>
+        <div class="task-desc">sentry.io free signup → "kalkan-info-web" (JS) + "kalkan-info-api" (Node) projeleri. DSN'leri Vercel env'e: <code>SENTRY_DSN_CLIENT</code>, <code>SENTRY_DSN_SERVER</code>. Sonra <code>js/sentry-init.js</code> otomatik aktifleşir.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">7</span>
+      <div class="task-body">
+        <div class="task-title">Plausible API key (varsa)
+          <span class="task-meta"><span class="pill">~2 dk</span></span>
+        </div>
+        <div class="task-desc">Plausible Settings > API Keys (Business plan $19/ay gerekiyor olabilir). Vercel env'e <code>PLAUSIBLE_API_KEY</code> + <code>PLAUSIBLE_SITE_ID=kalkaninfo.com</code>. Sonra <code>/b2b-dashboard.html</code> KPI'lar yüklenir.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">3</span>
+      <h2>Dış Sistemler — Tek Tıkla Bitir</h2>
+      <span class="pri pri-medium">Orta</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">8</span>
+      <div class="task-body">
+        <div class="task-title">Plausible Goals 11 event ekle
+          <span class="task-meta"><span class="pill">~3 dk</span></span>
+        </div>
+        <div class="task-desc">Dashboard > kalkaninfo.com > Goals > +Add Goal (Custom Event):<br>
+          <code>whatsapp_click</code>, <code>concierge_open</code>, <code>concierge_send</code>, <code>villa_book_intent</code>, <code>tour_book_intent</code>, <code>restaurant_view</code>, <code>audio_guide_play</code>, <code>audio_guide_complete</code>, <code>language_switch</code>, <code>newsletter_subscribe</code>, <code>partner_apply</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">9</span>
+      <div class="task-body">
+        <div class="task-title">Instagram bio link güncelle
+          <span class="task-meta"><span class="pill">~1 dk</span></span>
+        </div>
+        <div class="task-desc">@kalkaninfo bio > Link:</div>
+        <div class="task-cmd">https://kalkaninfo.com/?utm_source=ig&utm_medium=bio&utm_campaign=brand</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">10</span>
+      <div class="task-body">
+        <div class="task-title">Resend domain DNS doğrula
+          <span class="task-meta"><span class="pill">~5 dk + 24h</span></span>
+        </div>
+        <div class="task-desc">Resend Dashboard > Domains > Add <code>kalkaninfo.com</code>. Vercel DNS'e Resend'in verdiği 3 record (TXT, MX, DKIM) ekle. 24 saat sonra "Verify" butonuna bas.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="brand">◆ KALKAN INFO</div>
+    <div>Yapılması Gerekenler · Sayfa 2 / 3</div>
+  </div>
+</div>
+
+<!-- PAGE 3 — Stratejik Kararlar -->
+<div class="page">
+
+  <section>
+    <div class="section-title">
+      <span class="ix">4</span>
+      <h2>Stratejik / Beklemeli</h2>
+      <span class="pri pri-medium">Orta</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">11</span>
+      <div class="task-body">
+        <div class="task-title">Meta WhatsApp Business onboarding
+          <span class="task-meta"><span class="pill">~1 saat + 1-3 gün bekleme</span></span>
+        </div>
+        <div class="task-desc">business.facebook.com > WhatsApp Business Platform. Test number'la başla, prod için Meta verification. Hazır templates: <code>tour_booking_confirm</code>, <code>villa_inquiry_response</code>, <code>welcome</code>.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">12</span>
+      <div class="task-body">
+        <div class="task-title">iyzico merchant başvuru
+          <span class="task-meta"><span class="pill">~1 saat + 3-7 gün bekleme</span></span>
+        </div>
+        <div class="task-desc">merchant.iyzipay.com > Application. Vergi levhası, IBAN, ticari sicil (solo founder → şahıs şirketi). Onay sonrası API key + secret Vercel env'e (<code>IYZICO_API_KEY</code>, <code>IYZICO_SECRET_KEY</code>). Sonra pricing.html dummy form production'a alınır.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">13</span>
+      <div class="task-body">
+        <div class="task-title">Villa kataloğu 3 → 17
+          <span class="task-meta"><span class="pill">veri toplama</span></span>
+        </div>
+        <div class="task-desc"><code>data/villalar.json</code>'a en az 10 villa ekle (foto, capacity, bedroom, fiyat, description). Sonra brochure PDF batch:</div>
+        <div class="task-cmd">node brochures/generate-batch.mjs</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">14</span>
+      <div class="task-body">
+        <div class="task-title">5 rehber makalesinin içeriğini genişlet
+          <span class="task-meta"><span class="pill">~1 saat / makale</span></span>
+        </div>
+        <div class="task-desc">Şu an stub formatında hazır (SEO + multilang + Article schema), her birine 800-1500 kelime özgün içerik ekle. Dosyalar: <code>rehber/kalkan-tekne-turu-rehberi.html</code>, <code>patara-plajina-nasil-gidilir.html</code>, <code>antik-kentleri-1-gunde-gezme.html</code>, <code>kas-kalkan-fark.html</code>, <code>likya-yolu-trekking-rehberi.html</code>.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">5</span>
+      <h2>Hukuki / Avukat</h2>
+      <span class="pri pri-high">Yüksek</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">15</span>
+      <div class="task-body">
+        <div class="task-title">KVKK VERBİS kaydı
+          <span class="task-meta"><span class="pill">1-3 hafta</span></span>
+        </div>
+        <div class="task-desc">verbis.kvkk.gov.tr → veri sorumlusu kaydı. Solo founder cirosu 25M altı muafiyet kontrolü yap.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">16</span>
+      <div class="task-body">
+        <div class="task-title">Mesafeli Satış Sözleşmesi
+          <span class="task-meta"><span class="pill">avukat ile</span></span>
+        </div>
+        <div class="task-desc">Avukatla draft (ödeme almaya başlayınca zorunlu). <code>terms.html</code>'in ek bölümü olarak yayımla.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">17</span>
+      <div class="task-body">
+        <div class="task-title">Çerez politikası KVKK uyumu
+          <span class="task-meta"><span class="pill">~1 saat</span></span>
+        </div>
+        <div class="task-desc">Mevcut <code>cookie-banner.js</code> consent gate çalışıyor mu doğrula. Plausible cookieless (consent gerek değil), Clarity consent arkasında (zaten gate'li). Ekstra third-party varsa ekle.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">6</span>
+      <h2>Plan Kararları — Aylık Maliyet</h2>
+      <span class="pri pri-info">Strateji</span>
+    </div>
+
+    <div class="task">
+      <span class="chk"></span>
+      <span class="num">18</span>
+      <div class="task-body">
+        <div class="task-title">Aylık recurring maliyet onayı
+          <span class="task-meta"><span class="pill">~$50/ay toplam</span></span>
+        </div>
+        <div class="task-desc">
+          <b>ElevenLabs Starter</b> $5/ay (TR+EN) veya <b>Creator</b> $22/ay (5 dil tam).<br>
+          <b>Plausible Business</b> $19/ay (B2B dashboard Stats API kullanımı yoğunsa).<br>
+          <b>Sentry Free</b> 5K event/ay (Y1 yeterli) — sonra Team $26/ay.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <span class="ix">★</span>
+      <h2>Sonraki Sprint İçin Not</h2>
+      <span class="pri pri-info">Plan</span>
+    </div>
+    <div class="task" style="border-color: var(--gold); background: rgba(232,152,18,0.04);">
+      <span class="num">→</span>
+      <div class="task-body">
+        <div class="task-title">Plan dosyası referansı</div>
+        <div class="task-desc">Detaylı yürütme planı: <code>~/.claude/plans/wobbly-bouncing-horizon.md</code><br>
+        Bu oturum özeti: <code>~/.claude/projects/.../memory/project_kalkan_info_session_20260520_autonomous.md</code><br>
+        CSP audit: <code>kalkan-info/docs/CSP_AUDIT_20260520.md</code></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="brand">◆ KALKAN INFO</div>
+    <div>Yapılması Gerekenler · Sayfa 3 / 3 · Hazırlayan: Otonom Sprint Sonucu 20.05.2026</div>
+  </div>
+</div>
+
+</body>
+</html>
