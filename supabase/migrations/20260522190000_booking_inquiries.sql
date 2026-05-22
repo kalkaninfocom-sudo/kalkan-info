@@ -31,7 +31,7 @@ CREATE INDEX IF NOT EXISTS idx_booking_email
 
 ALTER TABLE public.booking_inquiries ENABLE ROW LEVEL SECURITY;
 
--- Anon insert (validated)
+-- Anon insert (validated) — status/partner_id/user_id anon tarafından override edilemez
 CREATE POLICY "booking_anon_insert" ON public.booking_inquiries
   FOR INSERT TO anon
   WITH CHECK (
@@ -40,6 +40,11 @@ CREATE POLICY "booking_anon_insert" ON public.booking_inquiries
     AND length(guest_name) BETWEEN 1 AND 80
     AND length(coalesce(message, '')) <= 2000
     AND coalesce(party_size, 1) <= 50
+    AND length(coalesce(guest_phone, '')) <= 30
+    AND length(coalesce(utm_campaign, '')) <= 120
+    AND status = 'new'
+    AND partner_id IS NULL
+    AND user_id IS NULL
   );
 
 -- Auth user kendi inquiry'lerini görür

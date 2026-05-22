@@ -122,6 +122,6 @@ export default async function handler(req, res) {
     return res.status(200).json(result);
   } catch (e) {
     console.error('[plausible-stats]', e.message);
-    return res.status(502).json({ error: e.message || 'upstream error' });
+    return res.status(502).json({ error: 'analytics_upstream_error' });
   }
 }
