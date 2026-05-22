@@ -1,4 +1,4 @@
-// data/*.json bütünlük testleri
+// data/*.json bütünlük testleri — genişletilmiş versiyon
 // Run: pnpm test
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
@@ -59,5 +59,75 @@ describe('voiceover-scripts.json', () => {
         expect(langs[lang].length, `${slug}.${lang} length`).toBeGreaterThan(50);
       }
     }
+  });
+});
+
+describe('villalar.json structure', () => {
+  const j = JSON.parse(readFileSync(join(DATA_DIR, 'villalar.json'), 'utf-8'));
+  const items = j.items || [];
+
+  it('has at least 3 villas', () => {
+    expect(items.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('every villa has required fields: id, name, capacity, bedrooms', () => {
+    for (const v of items) {
+      expect(v.id, `villa.id`).toBeTypeOf('string');
+      expect(v.name, `${v.id}.name`).toBeTypeOf('string');
+      expect(v.capacity, `${v.id}.capacity`).toBeTruthy();
+      expect(v.bedrooms, `${v.id}.bedrooms`).toBeDefined();
+    }
+  });
+
+  it('every villa has a summary string', () => {
+    for (const v of items) {
+      expect(v.summary, `${v.id}.summary`).toBeTypeOf('string');
+      expect(v.summary.length, `${v.id}.summary length`).toBeGreaterThan(0);
+    }
+  });
+});
+
+describe('restoranlar.json structure', () => {
+  const j = JSON.parse(readFileSync(join(DATA_DIR, 'restoranlar.json'), 'utf-8'));
+  const items = j.items || [];
+
+  it('has at least 1 restoran', () => {
+    expect(items.length).toBeGreaterThan(0);
+  });
+
+  it('every restoran has nameI18n with all 5 languages', () => {
+    for (const r of items) {
+      const langs = r.nameI18n || {};
+      for (const lang of ['tr', 'en', 'de', 'ru', 'fr']) {
+        expect(langs[lang], `${r.id || r.name}.nameI18n.${lang}`).toBeTypeOf('string');
+      }
+    }
+  });
+});
+
+describe('turlar.json structure', () => {
+  const j = JSON.parse(readFileSync(join(DATA_DIR, 'turlar.json'), 'utf-8'));
+  it('is a non-empty object', () => {
+    expect(j).toBeTypeOf('object');
+    const items = j.items || j.tours || [];
+    expect(items.length ?? Object.keys(j).length).toBeGreaterThan(0);
+  });
+});
+
+describe('plajlar.json structure', () => {
+  const j = JSON.parse(readFileSync(join(DATA_DIR, 'plajlar.json'), 'utf-8'));
+  it('is a non-empty object', () => {
+    expect(j).toBeTypeOf('object');
+    const items = j.items || j.beaches || [];
+    expect(items.length ?? Object.keys(j).length).toBeGreaterThan(0);
+  });
+});
+
+describe('antik-kentler.json structure', () => {
+  const j = JSON.parse(readFileSync(join(DATA_DIR, 'antik-kentler.json'), 'utf-8'));
+  it('is a non-empty object', () => {
+    expect(j).toBeTypeOf('object');
+    const items = j.items || j.sites || [];
+    expect(items.length ?? Object.keys(j).length).toBeGreaterThan(0);
   });
 });
