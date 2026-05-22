@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Kalkan Info — design tokens layered on top of Tailwind.
+ * Authored by MORPHEUS. Source of truth: docs/DESIGN_SYSTEM.md
+ *
+ * Card consolidation: one base + three modifiers.
+ * All shadows are sea-tinted; no neutral grey defaults.
+ */
+
+@layer components {
+  /* ---------- CARDS (canonical, replaces villa-card/stat-card/fact-card/panel) ---------- */
+  .card-base {
+    background: #fff;
+    box-shadow:
+      0 1px 3px rgba(7, 33, 54, 0.07),
+      0 6px 20px -6px rgba(7, 33, 54, 0.14);
+  }
+
+  .card-base--villa {
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .card-base--stat {
+    border: 1px solid #cfdfee;
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .card-base--fact {
+    border: 1px solid #e3edf6;
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .card-hover {
+    transition:
+      box-shadow 0.22s ease,
+      transform 0.22s ease,
+      border-color 0.22s ease;
+  }
+  .card-hover:hover {
+    box-shadow:
+      0 4px 8px rgba(7, 33, 54, 0.09),
+      0 16px 40px -8px rgba(7, 33, 54, 0.24);
+    transform: translateY(-3px);
+  }
+
+  /* Stat-card explicit focus / hover treatment using shadow-glow token */
+  .card-base--stat:hover,
+  .card-base--stat:focus-within {
+    box-shadow:
+      0 1px 3px rgba(7, 33, 54, 0.07),
+      0 6px 20px -6px rgba(7, 33, 54, 0.14),
+      0 0 0 4px rgba(232, 152, 18, 0.18);
+  }
+
+  /* ---------- CTA GRADIENT (primary) ---------- */
+  .cta-gradient {
+    background: linear-gradient(135deg, #e89812 0%, #a35f06 100%); /* sun-500 → sun-700 */
+    color: #fff;
+    box-shadow: 0 8px 22px -6px rgba(232, 152, 18, 0.55);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+  .cta-gradient:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px -6px rgba(232, 152, 18, 0.7);
+  }
+  .cta-gradient:focus-visible {
+    outline: 3px solid #f4b53d;
+    outline-offset: 3px;
+  }
+
+  /* ---------- HERO OVERLAY (canonical) ---------- */
+  .hero-overlay {
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26, 94, 147, 0.45) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(7, 33, 54, 0.55) 0%, rgba(7, 33, 54, 0.3) 40%, rgba(7, 33, 54, 0.92) 100%);
+  }
+}
+
+@layer utilities {
+  /* Brand display font helper — already defined in tailwind.config, kept for legacy class */
+  .font-display {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
