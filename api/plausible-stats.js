@@ -1,5 +1,5 @@
 // B2B Dashboard backend — Plausible Stats API proxy
-// Vercel env: PLAUSIBLE_API_KEY, PLAUSIBLE_SITE_ID
+// Vercel env: PLAUSIBLE_API_KEY, PLAUSIBLE_SITE_ID, SUPABASE_URL, SUPABASE_ANON_KEY
 // CORS: aynı origin (kalkaninfo.com'dan çağrı)
 // Cache: 5 dk in-memory (function lifecycle boyunca)
 
@@ -9,7 +9,37 @@ const CACHE_TTL_MS = 5 * 60 * 1000;
 function setCors(res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://kalkaninfo.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+// 2026-05-22: Partner-specific Plausible filter desteği
+function buildFilters(req) {
+  const partnerId = req.query?.partner_id || req.query?.providerId;
+  if (!partnerId) return null;
+  // Plausible v2 filter format
+  return [['is', 'event:props:provider_id', [String(partnerId)]]];
+}
+
+async function authPartner(req) {
+  // Vercel: Authorization: Bearer <jwt> veya cookie
+  const auth = req.headers?.authorization || '';
+  if (!auth.startsWith('Bearer ')) return { ok: false, code: 'no_token' };
+  const token = auth.slice(7);
+  // Basit Supabase user fetch — fail-soft
+  try {
+    const resp = await fetch(`${process.env.SUPABASE_URL}/auth/v1/user`, {
+      headers: { Authorization: `Bearer ${token}`, apikey: process.env.SUPABASE_ANON_KEY },
+    });
+    if (!resp.ok) return { ok: false, code: 'invalid_token' };
+    const user = await resp.json();
+    const role = user?.app_metadata?.role;
+    const queryPartnerId = req.query?.partner_id || req.query?.providerId;
+    if (role === 'admin') return { ok: true, role, partnerId: queryPartnerId };
+    if (role === 'partner' && user.id === queryPartnerId) return { ok: true, role, partnerId: user.id };
+    return { ok: false, code: 'forbidden' };
+  } catch {
+    return { ok: false, code: 'auth_error' };
+  }
 }
 
 async function plausibleQuery({ apiKey, siteId, metrics, dimensions, dateRange, filters, limit }) {
@@ -48,7 +78,19 @@ export default async function handler(req, res) {
   }
 
   const period = (req.query.period || '30d').toString().slice(0, 10);
-  const cacheKey = `stats:${period}`;
+
+  // 2026-05-22: Partner-specific filter + JWT auth
+  const partnerFilter = buildFilters(req);
+  let partnerId = null;
+  if (partnerFilter) {
+    const authResult = await authPartner(req);
+    if (!authResult.ok) {
+      return res.status(401).json({ error: 'unauthorized', code: authResult.code });
+    }
+    partnerId = authResult.partnerId;
+  }
+
+  const cacheKey = `stats:${period}:${partnerId || 'global'}`;
   const cached = CACHE.get(cacheKey);
   if (cached && Date.now() - cached.t < CACHE_TTL_MS) {
     res.setHeader('X-Cache', 'HIT');
@@ -56,15 +98,17 @@ export default async function handler(req, res) {
   }
 
   try {
+    const filters = partnerFilter || [];
     const [summary, topPages, topGoals, topSources] = await Promise.all([
-      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'pageviews', 'bounce_rate', 'visit_duration'], dateRange: period }),
-      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'pageviews'], dimensions: ['event:page'], dateRange: period, limit: 10 }),
-      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'events'], dimensions: ['event:goal'], dateRange: period, limit: 15 }),
-      plausibleQuery({ apiKey, siteId, metrics: ['visitors'], dimensions: ['visit:source'], dateRange: period, limit: 10 }),
+      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'pageviews', 'bounce_rate', 'visit_duration'], dateRange: period, filters }),
+      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'pageviews'], dimensions: ['event:page'], dateRange: period, filters, limit: 10 }),
+      plausibleQuery({ apiKey, siteId, metrics: ['visitors', 'events'], dimensions: ['event:goal'], dateRange: period, filters, limit: 15 }),
+      plausibleQuery({ apiKey, siteId, metrics: ['visitors'], dimensions: ['visit:source'], dateRange: period, filters, limit: 10 }),
     ]);
 
     const result = {
       period,
+      partner_id: partnerId,
       generated_at: new Date().toISOString(),
       summary: summary.results?.[0] || null,
       top_pages: topPages.results || [],
