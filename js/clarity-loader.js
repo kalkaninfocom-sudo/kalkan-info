@@ -13,6 +13,11 @@
 (function () {
   'use strict';
 
+  // 2026-05-22 — Clarity SDK 0.8.64 was throwing "Cannot read properties of
+  // undefined (reading 'apply')" on production, breaking click event chain.
+  // Disabled until root cause is identified. Re-enable by removing this block.
+  return;
+
   // ── Dev flag ──────────────────────────────────────────────────────────────
   function isDevHost() {
     var h = location.hostname || '';
