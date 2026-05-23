@@ -9,6 +9,7 @@ functions/
 # Araçlar / geliştirme
 *.mjs
 !scripts/**
+!vendor/**
 .omc/
 .github/
 .git/
