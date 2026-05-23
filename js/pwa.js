@@ -31,23 +31,17 @@ window.__kalkan_install_mounted = true;
     return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
   }
 
-  // ── Service Worker ────────────────────────────────────────────────────────
+  // ── Service Worker — KAYIT DEVRE DIŞI 2026-05-23 ─────────────────────────
+  // Eski sw.js kill-switch içinde clients.navigate() vardı, sayfa render'da
+  // sonsuz reload döngüsü oluşuyordu. Şimdi: register YAPMA, mevcut SW'leri
+  // unregister et + cache'leri sil.
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(reg => {
-          reg.addEventListener('updatefound', () => {
-            const sw = reg.installing;
-            if (!sw) return;
-            sw.addEventListener('statechange', () => {
-              if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-                showUpdateToast();
-              }
-            });
-          });
-        })
-        .catch(err => console.warn('[PWA] SW register failed:', err));
-    });
+    navigator.serviceWorker.getRegistrations()
+      .then(regs => regs.forEach(reg => reg.unregister().catch(() => {})))
+      .catch(() => {});
+    if (window.caches) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
+    }
 
     // SW yeni cache version'a geçince otomatik reload (1 kez)
     let reloaded = false;
