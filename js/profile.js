@@ -203,10 +203,11 @@ if (downloadBtn) {
         .eq('id', _currentUser.id)
         .single();
 
+      // Kullanıcının yorumları (reviews tablosu author_id ile)
       const { data: reviews } = await supabase
         .from('reviews')
         .select('*')
-        .eq('user_id', _currentUser.id);
+        .eq('author_id', _currentUser.id);
 
       const exportData = {
         exportDate:    new Date().toISOString(),

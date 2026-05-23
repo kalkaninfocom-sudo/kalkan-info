@@ -5,9 +5,6 @@ module.exports = {
     './js/**/*.js',
     './admin/**/*.html',
     './admin/**/*.js',
-    './antik-kentler/**/*.html',
-    './rehber/**/*.html',
-    './assets/css/**/*.css',
   ],
   theme: {
     extend: {

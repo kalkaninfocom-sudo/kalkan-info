@@ -121,9 +121,6 @@
       }
       #ki-bn-menu .ki-bn-menu-user .name { font-weight: 700; color: #0a2e4c; font-size: 13px; }
       #ki-bn-menu .ki-bn-menu-user .email { font-size: 11px; color: #5d97c4; margin-top: 2px; }
-      @media(max-width: 360px) {
-        .ki-bn-label { display: none !important; }
-      }
     `;
     const style = document.createElement('style');
     style.id = 'ki-bottomnav-styles';
@@ -141,9 +138,9 @@
             <span class="ki-bn-icon">🏠</span>
             <span class="ki-bn-label" data-en="Home">Anasayfa</span>
           </a>
-          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Site menüsü" data-en-aria="Site menu">
+          <button class="ki-bn-item" type="button" data-key="menu" id="ki-bn-menu-btn" aria-label="Hizmetler menüsü" data-en-aria="Services menu">
             <span class="ki-bn-icon">☰</span>
-            <span class="ki-bn-label" data-en="Menu" data-de="Menü" data-ru="Меню" data-fr="Menu">Menü</span>
+            <span class="ki-bn-label" data-en="Services">Hizmetler</span>
           </button>
           <button class="ki-bn-item" type="button" data-action="open-search" data-key="search">
             <span class="ki-bn-icon">🔍</span>
@@ -219,10 +216,8 @@
       if (!menuEl.contains(e.target) && !authBtn.contains(e.target)) menuEl.classList.remove('show');
     });
 
-    // Auth state'i dinle — idle callback ile, sayfa render'ı bloke etmesin.
-    // (önceki: DCL'de hemen import('./auth.js') çağrılıyordu; bu Supabase JS
-    //  zincirini CDN'den çekip ana sayfayı 8+ sn askıda tutuyordu)
-    const _loadAuth = async () => {
+    // Auth state'i dinle (eğer auth.js var ise)
+    (async () => {
       try {
         const mod = await import('./auth.js');
         if (mod?.onAuthStateChanged && mod.auth) {
@@ -233,8 +228,7 @@
           });
         }
       } catch(_) { /* auth.js yoksa default */ }
-    };
-    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1500)))(_loadAuth, { timeout: 5000 });
+    })();
 
     // PWA install — js/pwa.js beforeinstallprompt'u yakalıyor; biz onu beğeniriz
     // Mevcut pwa.js'in showInstallButton'ı eski elementi yapıyor — onu CSS'le gizledik.

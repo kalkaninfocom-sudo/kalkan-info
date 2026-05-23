@@ -1,24 +1,13 @@
 <!doctype html>
 <html lang="tr" style="scroll-behavior:smooth;">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
-<!-- End Google Tag Manager -->
 <meta charset="utf-8" />
-<meta name="google" content="notranslate">
-<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
-(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
-</script>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="dist/tw.css">
 <title>Kalkan'da İş İlanları — Kalkan Info</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Inter:wght@400;600&subset=latin&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
   h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
@@ -52,10 +41,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://kalkaninfo.com/ilanlar">
 <link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/ilanlar.html">
-<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/ilanlar.html">
-<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/ilanlar.html">
-<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/ilanlar.html">
-<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/ilanlar.html">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/ilanlar.html?lang=en">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/ilanlar.html?lang=de">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ilanlar.html?lang=ru">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/ilanlar.html?lang=fr">
 <link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/ilanlar.html">
 
 <!-- Open Graph -->
@@ -87,17 +76,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="js/header-search.js" defer></script>
 <script src="js/bottom-nav.js?v=20260516b" defer></script>
 <script src="js/analytics.js" defer></script>
+<script src="js/clarity-loader.js" defer></script>
 <script src="js/utm-tracker.js" defer></script>
 <script src="js/engagement-tracker.js" defer></script>
 <script src="js/concierge-modal.js?v=20260517b" defer></script>
-  <script src="./js/sentry-config.js"></script>
-  <script src="./js/sentry-init.js" defer></script>
+<script src="js/concierge-ai-modal.js?v=20260520a" defer></script>
 </head>
 <body class="bg-[#dce6ef] min-h-screen" data-concierge-context="ilan">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <!-- ============== HERO HEADER ============== -->
 <header class="relative overflow-hidden" style="background:#072136;">
@@ -351,6 +336,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== SCRIPTS ============== -->
 <script src="js/page-ilanlar.js?v=20260516b" defer></script>
-<script src="js/pwa.js?v=20260522d" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 </body>
 </html>

@@ -1,26 +1,14 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="tr" style="scroll-behavior:smooth;">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
-<!-- End Google Tag Manager -->
 <meta charset="utf-8" />
-<meta name="google" content="notranslate">
-<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
-(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
-</script>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="dist/tw.css">
 <title>Kalkan Info — Yerel Bilgi, Seçili Tavsiyeler, Kurumsal Hizmet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Inter:wght@400;600&subset=latin&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  #concierge{display:none}
   html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
   h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
   .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
@@ -56,7 +44,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .nav-active{color:#f4b53d!important;}
   .nav-active::after{transform:scaleX(1)!important;}
 </style>
-<style>#concierge-fab,#ki-concierge,.concierge-fab{visibility:hidden}body.concierge-ready #concierge-fab,body.concierge-ready #ki-concierge,body.concierge-ready .concierge-fab{visibility:visible}</style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0a2e4c">
 <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
@@ -74,10 +61,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="googlebot" content="index, follow">
 <link rel="canonical" href="https://kalkaninfo.com/">
 <link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/">
-<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/">
-<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/">
-<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/">
-<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/?lang=en">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/?lang=de">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/?lang=ru">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/?lang=fr">
 <link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/">
 
 <!-- Open Graph -->
@@ -121,24 +108,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="js/header-search.js" defer></script>
 <script src="js/bottom-nav.js?v=20260516b" defer></script>
 <script src="js/analytics.js" defer></script>
+<script src="js/clarity-loader.js" defer></script>
 <script src="js/utm-tracker.js" defer></script>
 <script src="js/engagement-tracker.js" defer></script>
 <script src="js/concierge-modal.js?v=20260517b" defer></script>
+<script src="js/concierge-ai-modal.js?v=20260520a" defer></script>
 <script src="js/instagram-feed.js?v=20260517b" defer></script><link rel="preload" as="image" href="/assets/img/da72f67377f7.webp" fetchpriority="high">
-  <script src="./js/sentry-config.js"></script>
-  <script src="./js/sentry-init.js" defer></script>
 </head>
-<body class="bg-[#dce6ef]" data-concierge-context="anasayfa">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<body class="bg-[#dce6ef]">
 
 <!-- ============== HERO HEADER ============== -->
 <header class="relative overflow-hidden" style="background:#072136;">
   <!-- layered background -->
   <div class="absolute inset-0 z-0">
-    <img width="1200" height="800" loading="eager" decoding="async" src="/assets/img/da72f67377f7.webp" fetchpriority="high" class="w-full h-full object-cover opacity-50" data-en-alt="Kaputaş Bay turquoise cove" alt="Kaputaş Plajı turkuaz koy" style="filter:saturate(1.6) contrast(1.1);" / data-de-alt="Kaputaş Bucht türkisfarbene Bucht" data-ru-alt="Залив Kaputaş — бирюзовая бухта" data-fr-alt="Baie de Kaputaş crique turquoise">
+    <img width="1200" height="800" loading="eager" decoding="async" src="/assets/img/da72f67377f7.webp" fetchpriority="high" class="w-full h-full object-cover opacity-40" data-en-alt="Kaputaş Bay turquoise cove" alt="Kaputaş Plajı turkuaz koy" style="filter:saturate(1.6) contrast(1.1);" / data-de-alt="Kaputaş Bucht türkisfarbene Bucht" data-ru-alt="Залив Kaputaş — бирюзовая бухта" data-fr-alt="Baie de Kaputaş crique turquoise">
     <!-- radial depth layers -->
     <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
   </div>
@@ -252,7 +235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold" data-en="Today" data-de="Heute" data-ru="Сегодня" data-fr="Aujourd'hui">Bugün</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="On-Duty Pharmacy" data-de="Diensthabende Apotheke" data-ru="Дежурная аптека" data-fr="Pharmacie de Garde">Nöbetçi Eczane</div>
-        <div id="ecz-tile-summary" class="text-xs text-sea-700/85 mt-1">—</div>
+        <div id="ecz-tile-summary" class="text-xs text-sea-700/70 mt-1">—</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-coral-500 bg-sea-50/40 hover:bg-coral-500/5 p-4 transition" href="#acil">
         <div class="tile-icon w-10 h-10 rounded-md bg-coral-500 text-white grid place-items-center mb-3">
@@ -260,7 +243,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-coral-600 font-semibold">7/24</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Emergency Numbers" data-de="Notfallnummern" data-ru="Номера экстренных служб" data-fr="Numéros d'Urgence">Acil Numaralar</div>
-        <div class="text-xs text-sea-700/85 mt-1" data-en="Police · Ambulance · Gendarmerie" data-de="Polizei · Krankenwagen · Gendarmerie" data-ru="Полиция · Скорая помощь · Жандармерия" data-fr="Police · Ambulance · Gendarmerie">Polis · Ambulans · Jandarma</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Police · Ambulance · Gendarmerie" data-de="Polizei · Krankenwagen · Gendarmerie" data-ru="Полиция · Скорая помощь · Жандармерия" data-fr="Police · Ambulance · Gendarmerie">Polis · Ambulans · Jandarma</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sun-500 bg-sea-50/40 hover:bg-sun-500/5 p-4 transition" href="#kayip">
         <div class="tile-icon w-10 h-10 rounded-md bg-sun-500 text-white grid place-items-center mb-3">
@@ -268,7 +251,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sun-600 font-semibold" data-en="Community" data-de="Gemeinschaft" data-ru="Сообщество" data-fr="Communauté">Topluluk</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Lost & Found" data-de="Fundsachen" data-ru="Потеряно и найдено" data-fr="Objets Trouvés">Kayıp & Bulunan</div>
-        <div class="text-xs text-sea-700/85 mt-1" data-en="Report an item, reunite with its owner" data-de="Melden Sie einen Gegenstand, um ihn dem Besitzer zurückzugeben" data-ru="Сообщите о предмете, воссоедините с владельцем" data-fr="Signalez un objet, retrouvez son propriétaire">Eşyanı bildir, sahibine kavuştur</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Report an item, reunite with its owner" data-de="Melden Sie einen Gegenstand, um ihn dem Besitzer zurückzugeben" data-ru="Сообщите о предмете, воссоедините с владельцем" data-fr="Signalez un objet, retrouvez son propriétaire">Eşyanı bildir, sahibine kavuştur</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sea-500 bg-sea-50/40 hover:bg-sea-500/5 p-4 transition" href="#taksi">
         <div class="tile-icon w-10 h-10 rounded-md bg-sea-500 text-white grid place-items-center mb-3">
@@ -276,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sea-600 font-semibold" data-en="4 Stops" data-de="4 Stationen" data-ru="4 остановки" data-fr="4 Stations">4 Durak</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5" data-en="Taxi Service" data-de="Taxidienst" data-ru="Служба такси" data-fr="Service de Taxi">Taksi Hizmeti</div>
-        <div class="text-xs text-sea-700/85 mt-1">Kalkan · Kaş · Patara · Kınık</div>
+        <div class="text-xs text-sea-700/70 mt-1">Kalkan · Kaş · Patara · Kınık</div>
       </a>
       <a class="group col-span-6 md:col-span-2 rounded-lg border border-sea-100 hover:border-sea-700 bg-sea-50/40 hover:bg-sea-700/5 p-4 transition" href="#" data-concierge-trigger>
         <div class="tile-icon w-10 h-10 rounded-md bg-sun-600 text-white grid place-items-center mb-3">
@@ -284,7 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="text-[11px] uppercase tracking-wider text-sun-700 font-semibold">WhatsApp</div>
         <div class="font-display font-bold text-sea-800 leading-tight mt-0.5">Concierge</div>
-        <div class="text-xs text-sea-700/85 mt-1" data-en="Instant help, 24/7" data-de="Sofortige Hilfe, 24/7" data-ru="Помощь в любой момент, 24/7" data-fr="Aide instantanée, 24/7">Anında yardım, 7/24</div>
+        <div class="text-xs text-sea-700/70 mt-1" data-en="Instant help, 24/7" data-de="Sofortige Hilfe, 24/7" data-ru="Помощь в любой момент, 24/7" data-fr="Aide instantanée, 24/7">Anında yardım, 7/24</div>
       </a>
     </div>
   </div>
@@ -361,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span>Instagram'da @kalkan.info</span>
         </div>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Tagged Posts" data-de="Getaggte Beiträge" data-ru="Помеченные посты" data-fr="Publications Marquées">Etiketlenenler</h2>
-        <p class="text-sm text-sea-700/85 mt-1" data-en="Shared by guests visiting the area — tag @kalkan.info on your holiday to be featured here." data-de="Von Gästen geteilt, die das Gebiet besuchen — taggen Sie @kalkan.info in Ihrem Urlaub, um hier präsentiert zu werden." data-ru="Поделились гости, посещающие регион — отметьте @kalkan.info во время вашего отпуска, чтобы появиться здесь." data-fr="Partagées par des visiteurs de la région — taguez @kalkan.info pendant vos vacances pour être présenté ici.">Bölgeye gelen misafirlerin paylaşımları — sen de tatilinde <strong>@kalkan.info</strong> etiketle, burada yer al.</p>
+        <p class="text-sm text-sea-700/70 mt-1" data-en="Shared by guests visiting the area — tag @kalkan.info on your holiday to be featured here." data-de="Von Gästen geteilt, die das Gebiet besuchen — taggen Sie @kalkan.info in Ihrem Urlaub, um hier präsentiert zu werden." data-ru="Поделились гости, посещающие регион — отметьте @kalkan.info во время вашего отпуска, чтобы появиться здесь." data-fr="Partagées par des visiteurs de la région — taguez @kalkan.info pendant vos vacances pour être présenté ici.">Bölgeye gelen misafirlerin paylaşımları — sen de tatilinde <strong>@kalkan.info</strong> etiketle, burada yer al.</p>
       </div>
       <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-white transition" style="background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
@@ -420,8 +403,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="News &amp; Announcements" data-de="Nachrichten & Ankündigungen" data-ru="Новости и объявления" data-fr="Actualités et Annonces">Haberler & Duyurular</h2>
       </div>
       <div class="flex gap-2">
-        <button aria-label="Önceki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button aria-label="Sonraki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-sea-50 grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
     <div id="haberler-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
@@ -598,8 +581,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Discover the Region" data-de="Entdecke die Region" data-ru="Откройте для себя регион" data-fr="Découvrez la Région">Bölgeyi Tanı</h2>
       </div>
       <div class="flex gap-2">
-        <button aria-label="Önceki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-        <button aria-label="Sonraki" lang="tr" class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="w-9 h-9 rounded-md border border-sea-200 hover:bg-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -750,12 +733,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sea-600 font-bold mb-2">
       <span class="w-1.5 h-1.5 rounded-full bg-sea-500"></span> <span data-en="Privacy &amp; GDPR" data-de="Datenschutz & DSGVO" data-ru="Конфиденциальность и GDPR" data-fr="Confidentialité & RGPD">Gizlilik & KVKK</span>
     </div>
-    <p class="text-sea-700/85 text-sm max-w-xl mx-auto" data-en='Your personal data is protected under the KVKK Personal Data Protection Law. See the <a href="kvkk.html" class="text-sea-600 underline hover:text-sun-600">detailed KVKK policy</a>. For enquiries, write to us at info@kalkan.info.'>Kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır. <a href="kvkk.html" class="text-sea-600 underline hover:text-sun-600">Detaylı KVKK politikası</a>. Sorularınız için <a href="mailto:info@kalkan.info" class="text-sea-600 underline hover:text-sun-600">info@kalkan.info</a> adresine yazabilirsiniz.</p>
+    <p class="text-sea-700/70 text-sm max-w-xl mx-auto" data-en='Your personal data is protected under the KVKK Personal Data Protection Law. See the <a href="kvkk.html" class="text-sea-600 underline hover:text-sun-600">detailed KVKK policy</a>. For enquiries, write to us at info@kalkan.info.'>Kişisel verileriniz 6698 sayılı KVKK kapsamında korunmaktadır. <a href="kvkk.html" class="text-sea-600 underline hover:text-sun-600">Detaylı KVKK politikası</a>. Sorularınız için <a href="mailto:info@kalkan.info" class="text-sea-600 underline hover:text-sun-600">info@kalkan.info</a> adresine yazabilirsiniz.</p>
   </div>
 </section>
 
 <script src="js/render.js?v=20260517a"></script>
-<script src="js/pwa.js?v=20260522d" defer></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
 <script src="js/page-index.js?v=20260517b" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>

@@ -7,10 +7,8 @@
     "img:download": "node scripts/download-unsplash.mjs",
     "img:replace": "node scripts/replace-unsplash.mjs",
     "img:all": "npm run img:download && npm run img:replace",
-    "build:tailwind": "tailwindcss -i ./assets/css/site.css -o ./dist/tw.css --minify",
     "build:i18n": "node scripts/build-multilang.mjs",
-    "build": "npm run build:tailwind && npm run build:i18n",
-    "vercel-build": "npm run build:tailwind && node scripts/build-multilang.mjs",
+    "vercel-build": "node scripts/build-multilang.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
@@ -24,22 +22,13 @@
     "@supabase/supabase-js": "^2.45.0"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@google/design.md": "^0.1.1",
-    "@playwright/test": "^1.60.0",
     "@remotion/bundler": "^4.0.462",
     "@remotion/cli": "^4.0.462",
     "@remotion/renderer": "^4.0.462",
-    "@vitest/ui": "^4.1.7",
     "cheerio": "^1.2.0",
-    "eslint": "^10.4.0",
-    "eslint-config": "^0.3.0",
-    "globals": "^17.6.0",
-    "playwright": "^1.60.0",
-    "prettier": "^3.8.3",
     "remotion": "^4.0.462",
     "sharp": "^0.34.5",
-    "tailwindcss": "^3.4.0",
-    "vitest": "^4.1.7"
+    "tailwindcss": "^3.4.0"
   }
 }

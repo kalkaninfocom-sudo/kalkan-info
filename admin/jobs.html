@@ -1,23 +1,10 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
-<!-- End Google Tag Manager -->
 <meta charset="utf-8" />
-<meta name="google" content="notranslate">
-<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V4 — unregister SW + clear caches + drop stale admin snapshot */
-(function(){try{if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}}catch(_){}})();
-</script>
-
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="noindex, nofollow">
 <title>İş İlanları Moderasyonu — Kalkan Info Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Orbitron:wght@600;800&subset=latin&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -66,14 +53,8 @@ tr:hover td { background:#fafbfd; }
 @keyframes spin { to { transform:rotate(360deg); } }
 </style>
 <script src="../js/auth-gate.js" defer></script>
-  <script src="../js/sentry-config.js"></script>
-  <script src="../js/sentry-init.js" defer></script>
 </head>
 <body class="min-h-screen" data-auth-role="admin">
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <!-- Auth guard -->
 <div id="auth-guard" class="fixed inset-0 z-50 flex items-center justify-center" style="background:#07162a;">

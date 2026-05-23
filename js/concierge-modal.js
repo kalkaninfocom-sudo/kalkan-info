@@ -64,55 +64,6 @@
       de: 'Hallo Kalkan Info! Ich hätte gerne Ihre Empfehlungen für Unterkunft / Restaurant / Aktivitäten.',
       ru: 'Здравствуйте, Kalkan Info! Помогите, пожалуйста, с рекомендациями по жилью / ресторанам / активностям.',
       fr: 'Bonjour Kalkan Info ! J\'aimerais votre aide pour des recommandations d\'hébergement / restaurant / activité.'
-    },
-    anasayfa: {
-      tr: 'Merhaba Kalkan Info! Kalkan tatili planlıyorum — nereden başlayacağımı bilmiyorum, yönlendirir misiniz?',
-      en: 'Hi Kalkan Info! Planning a Kalkan trip — I don\'t know where to start, could you guide me?',
-      de: 'Hallo Kalkan Info! Ich plane einen Kalkan-Urlaub — wo soll ich anfangen?',
-      ru: 'Здравствуйте, Kalkan Info! Планирую отдых в Калкане — с чего лучше начать?',
-      fr: 'Bonjour Kalkan Info ! Je prépare un voyage à Kalkan — par où commencer ?'
-    },
-    pricing: {
-      tr: 'Merhaba! Kalkan Info iş ortaklığı paketleri hakkında bilgi almak istiyorum (işletme tanıtımı).',
-      en: 'Hi! I\'d like info about Kalkan Info partner packages for my business.',
-      de: 'Hallo! Ich möchte Infos zu den Kalkan Info Partner-Paketen für mein Unternehmen.',
-      ru: 'Здравствуйте! Хочу узнать о партнёрских пакетах Kalkan Info для моего бизнеса.',
-      fr: 'Bonjour ! Je souhaite des informations sur les forfaits partenaires Kalkan Info pour mon entreprise.'
-    },
-    planlama: {
-      tr: 'Merhaba! Kalkan tatili planlıyorum — tarih/grup büyüklüğü/bütçe paylaşacağım, kişisel öneri rica ederim.',
-      en: 'Hi! I\'m planning a Kalkan holiday — I\'ll share dates/group size/budget, would love a personalised plan.',
-      de: 'Hallo! Ich plane einen Kalkan-Urlaub — Daten/Gruppengröße/Budget folgen, ich hätte gerne einen persönlichen Vorschlag.',
-      ru: 'Здравствуйте! Планирую отдых в Калкане — пришлю даты/состав/бюджет, нужен индивидуальный план.',
-      fr: 'Bonjour ! Je prépare des vacances à Kalkan — je partagerai dates/groupe/budget, j\'aimerais un plan personnalisé.'
-    },
-    transfer: {
-      tr: 'Merhaba! AYT veya DLM\'den Kalkan\'a transfer fiyatı ve müsaitlik sorabilir miyim?',
-      en: 'Hi! Could you check transfer price and availability from AYT or DLM to Kalkan?',
-      de: 'Hallo! Können Sie Preis und Verfügbarkeit für einen Transfer von AYT oder DLM nach Kalkan prüfen?',
-      ru: 'Здравствуйте! Подскажите цену и наличие трансфера из AYT или DLM в Калкан.',
-      fr: 'Bonjour ! Pourriez-vous vérifier le prix et la disponibilité d\'un transfert depuis AYT ou DLM vers Kalkan ?'
-    },
-    hizmet: {
-      tr: 'Merhaba! Kalkan\'da bir hizmete (eczane, taksi, kasap vb.) ihtiyacım var, yönlendirir misiniz?',
-      en: 'Hi! I need a local service in Kalkan (pharmacy, taxi, butcher, etc.) — could you point me to the right one?',
-      de: 'Hallo! Ich brauche einen lokalen Service in Kalkan (Apotheke, Taxi, Metzger usw.) — können Sie weiterhelfen?',
-      ru: 'Здравствуйте! Нужна местная услуга в Калкане (аптека, такси, мясник и т.п.) — поможете?',
-      fr: 'Bonjour ! J\'ai besoin d\'un service local à Kalkan (pharmacie, taxi, boucher, etc.) — pourriez-vous m\'aider ?'
-    },
-    events: {
-      tr: 'Merhaba! Bu hafta/ay Kalkan\'da hangi etkinlikler/konserler var? Bilgi rica ediyorum.',
-      en: 'Hi! What events/concerts are happening in Kalkan this week/month?',
-      de: 'Hallo! Welche Events/Konzerte finden diese Woche/diesen Monat in Kalkan statt?',
-      ru: 'Здравствуйте! Какие события/концерты будут в Калкане на этой неделе/месяце?',
-      fr: 'Bonjour ! Quels événements/concerts ont lieu à Kalkan cette semaine/ce mois-ci ?'
-    },
-    rehber: {
-      tr: 'Merhaba! Kalkan rehber yazılarındaki bir konu için pratik öneri rica edebilir miyim?',
-      en: 'Hi! Could I get practical advice on a topic from your Kalkan guides?',
-      de: 'Hallo! Kann ich praktische Tipps zu einem Thema aus Ihren Kalkan-Guides bekommen?',
-      ru: 'Здравствуйте! Можно получить практический совет по теме из ваших гидов по Калкану?',
-      fr: 'Bonjour ! Pourrais-je obtenir des conseils pratiques sur un sujet de vos guides Kalkan ?'
     }
   };
 
@@ -561,7 +512,6 @@
         open({ source: src, trigger: el });
       });
     });
-    document.body.classList.add('concierge-ready');
   }
 
   if (document.readyState === 'loading') {

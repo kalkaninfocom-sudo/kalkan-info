@@ -58,7 +58,6 @@ data/.omc/
 *-key.json
 js/supabase-config.js
 js/supabase-window.js
-js/sentry-config.js
 *.pem
 *.key
 *.crt
@@ -71,12 +70,3 @@ coverage/
 
 .vercel
 .env*.local
-
-# Playwright trace dumps
-test-results/
-
-# Diagnostic HTML artifacts (one-shot snapshots, not for deploy)
-.diag-*.html
-
-# Berkay sabah notu (lokal, deploy edilmez)
-MORNING_NOTE.md
