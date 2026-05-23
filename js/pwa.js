@@ -32,20 +32,30 @@ window.__kalkan_install_mounted = true;
   }
 
   // ── Service Worker ────────────────────────────────────────────────────────
-  // 2026-05-22 — Service Worker DEVRE DIŞI (acil müdahale)
-  // Berkay'ın tarayıcılarında SW eski sürümü cache'lediği için sayfa kilitleniyordu.
-  // pwa.js artık SW kayıt ETMEZ; eski kayıtları temizler. Yeniden açıldığında
-  // PWA install banner çalışmaya devam eder ama service worker katmanı kalkar
-  // (offline cache off). Root cause analiz sonrası yeniden açılabilir.
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.getRegistrations()
-        .then(regs => regs.forEach(reg => reg.unregister().catch(() => {})))
-        .catch(() => {});
-      if (window.caches && caches.keys) {
-        caches.keys()
-          .then(keys => Promise.all(keys.map(k => caches.delete(k))))
-          .catch(() => {});
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => {
+          reg.addEventListener('updatefound', () => {
+            const sw = reg.installing;
+            if (!sw) return;
+            sw.addEventListener('statechange', () => {
+              if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+                showUpdateToast();
+              }
+            });
+          });
+        })
+        .catch(err => console.warn('[PWA] SW register failed:', err));
+    });
+
+    // SW yeni cache version'a geçince otomatik reload (1 kez)
+    let reloaded = false;
+    navigator.serviceWorker.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'SW_UPDATED' && !reloaded) {
+        reloaded = true;
+        console.log('[PWA] SW updated to', e.data.version, '— reloading');
+        setTimeout(() => location.reload(), 300);
       }
     });
   }

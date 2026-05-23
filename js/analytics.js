@@ -17,35 +17,35 @@
   }
   var DEV = isDevHost();
 
-  // ── Plausible script loader (yeni Auto-collect bundle) ─────────────────────
-  // Berkay'ın Plausible dashboard'undan aldığı site-spesifik bundle URL'i.
-  // Eski script.manual.js'in yerini alır; pageview otomatik gönderir, plausible.init() ile başlatılır.
+  // ── Plausible script loader ────────────────────────────────────────────────
   function loadPlausible() {
     if (document.getElementById('ki-plausible')) return;
-
-    // window.plausible queue stub — script yüklenirken çağrılan event'ler kaybolmasın
-    window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
-    window.plausible.init = window.plausible.init || function (i) { window.plausible.o = i || {}; };
-
     var s = document.createElement('script');
     s.id = 'ki-plausible';
-    s.async = true;
-    s.src = 'https://plausible.io/js/pa-WDst05-xZaCn0apL8me2-.js';
+    s.defer = true;
+    s.setAttribute('data-domain', 'kalkaninfo.com');
+    // script.manual.js — Plausible'ın küçük varyantı; window.plausible() çağrılarını queue'lar
+    s.src = 'https://plausible.io/js/script.manual.js';
     s.onload = function () {
-      try { window.plausible.init(); } catch (e) {}
-      // Yeni bundle pageview'i otomatik gönderir — manuel çağrıya gerek yok.
-      // Sadece consent öncesi queue'lanan custom event'leri boşalt.
+      // Sayfa açılışta pageview gönder
+      try { if (typeof window.plausible === 'function') window.plausible('pageview'); } catch (e) {}
+      // Bekleyen event'leri boşalt
       flushQueue();
     };
     document.head.appendChild(s);
+
+    // Eğer plausible yüklenirken hata olursa stub kalsın (no-op)
+    if (typeof window.plausible !== 'function') {
+      window.plausible = window.plausible || function () {
+        (window.plausible.q = window.plausible.q || []).push(arguments);
+      };
+    }
   }
 
   function checkAndLoad() {
-    // Plausible KVKK-friendly: cookieless, no PII, IP hash'lenir.
-    // Türkiye KVKK + Avrupa ePrivacy bunu açıkça istisna sayar (legitimate interest, no tracking).
-    // Bu yüzden consent gate'i bypass ediyoruz — Plausible her zaman yüklensin.
-    // (Consent gate diğer servisler için aktif kalır — Microsoft Clarity vb.)
-    loadPlausible();
+    if (window.KalkanConsent && window.KalkanConsent.has && window.KalkanConsent.has('analytics')) {
+      loadPlausible();
+    }
   }
 
   // ── Event queue (consent gelene kadar bekleyenler) ─────────────────────────

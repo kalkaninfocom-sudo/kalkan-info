@@ -7,7 +7,6 @@ import { spawnSync } from 'node:child_process';
 const steps = [
   { name: 'supabase-config', cmd: 'node', args: ['scripts/build-supabase-config.mjs'], required: true },
   { name: 'tailwind',        cmd: 'node', args: ['scripts/build-tailwind.mjs'],        required: true },
-  { name: 'build-multilang', cmd: 'node', args: ['scripts/build-multilang.mjs'],       required: true },
   { name: 'news-aggregator', cmd: 'node', args: ['scripts/news-aggregator.mjs'],       required: false },
   { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
 ];

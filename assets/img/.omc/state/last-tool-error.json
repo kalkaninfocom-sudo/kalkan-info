@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"node -e \\\"\\nconst fs = require('fs');\\nconst path = './data/plajlar.json';\\nconst d = JSON.parse(fs.readFileSync(path, 'utf8'));\\n\\n// Akyarlar sil\\nconst before = d.items.length;\\nd.items...",
-  "error": "Exit code 1\nnode:fs:439\r\n    return binding.readFileUtf8(path, stringToFlags(options.flag));\r\n                   ^\r\n\r\nError: ENOENT: no such file or directory, open 'C:\\Users\\socie\\kalkan-info\\assets\\img\\data\\plajlar.json'\r\n    at Object.readFileSync (node:fs:439:20)\r\n    at [eval]:4:25\r\n    at runScriptInThisContext (node:internal/vm:219:10)\r\n    at node:internal/process/execution:451:12\r\n    at [eval]-wrapper:6:24\r\n    at runScriptInContext (node:internal/process/execution:449:60)\r\n    at eval...",
-  "timestamp": "2026-05-19T18:28:40.320Z",
-  "retry_count": 1
-}

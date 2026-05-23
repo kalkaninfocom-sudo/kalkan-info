@@ -216,10 +216,8 @@
       if (!menuEl.contains(e.target) && !authBtn.contains(e.target)) menuEl.classList.remove('show');
     });
 
-    // Auth state'i dinle — idle callback ile, sayfa render'ı bloke etmesin.
-    // (önceki: DCL'de hemen import('./auth.js') çağrılıyordu; bu Supabase JS
-    //  zincirini CDN'den çekip ana sayfayı 8+ sn askıda tutuyordu)
-    const _loadAuth = async () => {
+    // Auth state'i dinle (eğer auth.js var ise)
+    (async () => {
       try {
         const mod = await import('./auth.js');
         if (mod?.onAuthStateChanged && mod.auth) {
@@ -230,8 +228,7 @@
           });
         }
       } catch(_) { /* auth.js yoksa default */ }
-    };
-    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1500)))(_loadAuth, { timeout: 5000 });
+    })();
 
     // PWA install — js/pwa.js beforeinstallprompt'u yakalıyor; biz onu beğeniriz
     // Mevcut pwa.js'in showInstallButton'ı eski elementi yapıyor — onu CSS'le gizledik.
