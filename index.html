@@ -10,8 +10,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="utf-8" />
 <meta name="google" content="notranslate">
-<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V5 — unregister SW + clear caches + one-shot soft reload if under stale SW controller */
-(function(){try{var hasCtrl='serviceWorker' in navigator && navigator.serviceWorker.controller;var reloaded=false;try{reloaded=sessionStorage.getItem('kalkan_sw_v5')==='1'}catch(_){}if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}if(hasCtrl&&!reloaded){try{sessionStorage.setItem('kalkan_sw_v5','1')}catch(_){}setTimeout(function(){location.reload()},50)}}catch(_){}})();
+<script id="kalkan-sw-killer">/* KALKAN_SW_KILLER_V6 — aggressive: unregister SW + clear caches + force URL-randomized reload if under stale SW or via legacy lockmark */
+(function(){try{var hasCtrl='serviceWorker' in navigator && navigator.serviceWorker.controller;var reloaded=false;try{reloaded=sessionStorage.getItem('kalkan_sw_v6')==='1'}catch(_){}if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister()}catch(_){}})}).catch(function(){})}if(window.caches&&caches.keys){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).catch(function(){})}try{localStorage.removeItem('kalkan_info_admin_v1')}catch(_){}if(hasCtrl&&!reloaded){try{sessionStorage.setItem('kalkan_sw_v6','1')}catch(_){}setTimeout(function(){var u=new URL(location.href);u.searchParams.set('_cb',Date.now().toString(36));location.replace(u.toString())},80)}}catch(_){}})();
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="dist/tw.css">
@@ -754,9 +754,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<script src="js/render.js?v=20260517a"></script>
-<script src="js/pwa.js?v=20260522d" defer></script>
-<script src="js/page-index.js?v=20260517b" defer></script>
+<script src="js/render.js?v=20260523a"></script>
+<script src="js/pwa.js?v=20260523a" defer></script>
+<script src="js/page-index.js?v=20260523a" defer></script>
 <script src="js/newsletter.js" defer></script>
 </body>
 </html>
