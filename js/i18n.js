@@ -49,7 +49,7 @@
       || null;
   }
 
-  function apply(lang) {
+  function apply(lang, opts) {
     document.documentElement.lang = lang;
 
     // Text content: data-en="English text" + data-de/ru/fr
@@ -109,9 +109,14 @@
     });
 
     // Bildirim: dinamik JSON-render kart kodları bunu dinleyip yeniden render eder.
-    try {
-      document.dispatchEvent(new CustomEvent('kalkanlangchange', { detail: { lang } }));
-    } catch (e) { /* ignore */ }
+    // MutationObserver'dan çağrılırsa silent — yoksa observer→apply→event→render→
+    // observer infinite loop'a girer (page-index dispatch dinleyip innerHTML ile
+    // yeni [data-en] node'ları ekler, observer onları yakalar, apply yine dispatch eder).
+    if (!opts || !opts.silent) {
+      try {
+        document.dispatchEvent(new CustomEvent('kalkanlangchange', { detail: { lang } }));
+      } catch (e) { /* ignore */ }
+    }
   }
 
   window.KalkanI18n = {
@@ -221,7 +226,7 @@
         }
       }
       if (needsBind) bindToggleHandlers();
-      if (needsApply) apply(detectLang());
+      if (needsApply) apply(detectLang(), { silent: true });
     });
     mo.observe(document.body, { childList: true, subtree: true });
   }
