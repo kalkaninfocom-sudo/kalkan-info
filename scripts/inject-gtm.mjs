@@ -7,6 +7,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const GTM_ID = process.env.GTM_ID || 'GTM-PLWTGK2G';
 const MARKER = '<!-- Google Tag Manager -->';
+const GTM_EVENTS_MARKER = '<!-- GTM Events -->';
+const GTM_EVENTS_SNIPPET = `<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer></script>
+<!-- End GTM Events -->
+`;
 
 const HEAD_SNIPPET = `<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,22 +53,41 @@ function listHtml(dirRel) {
 }
 
 function injectInto(html) {
-  if (html.includes(MARKER)) {
+  const alreadyGtm = html.includes(MARKER);
+  const alreadyEvents = html.includes(GTM_EVENTS_MARKER);
+
+  if (alreadyGtm && alreadyEvents) {
     return { html, changed: false, reason: 'already injected' };
   }
+
   const headMatch = html.match(/<head[^>]*>/i);
   if (!headMatch) return { html, changed: false, reason: 'no <head>' };
   const bodyMatch = html.match(/<body[^>]*>/i);
   if (!bodyMatch) return { html, changed: false, reason: 'no <body>' };
 
-  const headEnd = headMatch.index + headMatch[0].length;
-  let next = html.slice(0, headEnd) + '\n' + HEAD_SNIPPET + html.slice(headEnd);
+  let next = html;
 
-  const bodyMatch2 = next.match(/<body[^>]*>/i);
-  const bodyEnd = bodyMatch2.index + bodyMatch2[0].length;
-  next = next.slice(0, bodyEnd) + '\n' + BODY_SNIPPET + next.slice(bodyEnd);
+  // Inject GTM head+body snippets if not present
+  if (!alreadyGtm) {
+    const headEnd = headMatch.index + headMatch[0].length;
+    next = next.slice(0, headEnd) + '\n' + HEAD_SNIPPET + next.slice(headEnd);
 
-  return { html: next, changed: true };
+    const bodyMatch2 = next.match(/<body[^>]*>/i);
+    const bodyEnd = bodyMatch2.index + bodyMatch2[0].length;
+    next = next.slice(0, bodyEnd) + '\n' + BODY_SNIPPET + next.slice(bodyEnd);
+  }
+
+  // Inject GTM Events script after End GTM comment in <head>
+  if (!alreadyEvents) {
+    const endGtmMarker = '<!-- End Google Tag Manager -->';
+    const endGtmIdx = next.indexOf(endGtmMarker);
+    if (endGtmIdx !== -1) {
+      const insertAt = endGtmIdx + endGtmMarker.length;
+      next = next.slice(0, insertAt) + '\n' + GTM_EVENTS_SNIPPET + next.slice(insertAt);
+    }
+  }
+
+  return { html: next, changed: next !== html };
 }
 
 const files = SCAN_DIRS.flatMap(listHtml).sort();
