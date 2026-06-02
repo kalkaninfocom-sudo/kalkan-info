@@ -310,6 +310,12 @@ for (const slug of targets) {
   const heroImage = baseImg;
   const heroImageFull = `https://kalkaninfo.com${baseImg}`;
 
+  // OG image — ozel restoran OG gorseli varsa kullan, yoksa hero fallback
+  const ogImagePath = `/assets/og/restoran/${r.id}.jpg`;
+  const ogImageFull = existsSync(join(root, ogImagePath.replace(/^\//, '')))
+    ? `https://kalkaninfo.com${ogImagePath}?v=2026-06-02`
+    : heroImageFull;
+
   // Maps query
   const mapsQuery = encodeURIComponent((r.location || r.name + ' Kalkan'));
 
@@ -338,6 +344,7 @@ for (const slug of targets) {
     ABOUT_IMAGE: aboutImage,
     HERO_IMAGE: heroImage,
     HERO_IMAGE_FULL: heroImageFull,
+    OG_IMAGE_FULL: ogImageFull,
     MAPS_QUERY: mapsQuery,
     MENU_TITLE: c.menuTitle || 'Menümüz',
     MENU_SUB: c.menuSub || '',
