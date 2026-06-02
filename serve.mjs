@@ -2,7 +2,7 @@ import { createServer } from 'http';
 import { readFile } from 'fs/promises';
 import { extname, join, resolve } from 'path';
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const ROOT = resolve('.');
 
 const MIME = {
