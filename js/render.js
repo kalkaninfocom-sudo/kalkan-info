@@ -129,7 +129,8 @@ const KalkanData = (() => {
       whatsappCta:    { tr:'WhatsApp ile İletişim', en:'Contact via WhatsApp', de:'Kontakt per WhatsApp', ru:'Связь через WhatsApp', fr:'Contact via WhatsApp' },
       instagramShow:  { tr:'Instagram\'da gör', en:'View on Instagram', de:'Auf Instagram ansehen', ru:'Смотреть в Instagram', fr:'Voir sur Instagram' },
       googleReviews:  { tr:'Google Yorumları', en:'Google Reviews', de:'Google Bewertungen', ru:'Отзывы Google', fr:'Avis Google' },
-      googleReviewsTitle: { tr:'Google Haritalar\'da yorumları gör', en:'See reviews on Google Maps', de:'Bewertungen auf Google Maps ansehen', ru:'Смотреть отзывы в Google Картах', fr:'Voir les avis sur Google Maps' }
+      googleReviewsTitle: { tr:'Google Haritalar\'da yorumları gör', en:'See reviews on Google Maps', de:'Bewertungen auf Google Maps ansehen', ru:'Смотреть отзывы в Google Картах', fr:'Voir les avis sur Google Maps' },
+      readMore:       { tr:'Habere Git', en:'Read more', de:'Weiterlesen', ru:'Читать далее', fr:'Lire la suite' }
     };
     const row = dict[key];
     if (!row) return '';
@@ -325,18 +326,27 @@ const KalkanData = (() => {
     const title = t(h, 'title');
     const summary = t(h, 'summary');
     const category = t(h, 'category');
+    const href = h.sourceUrl ? escape(h.sourceUrl) : 'haberler.html';
+    const externalAttr = h.sourceUrl ? ' target="_blank" rel="noopener"' : '';
     return `
-      <article class="card" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);">
-        <div class="relative aspect-[16/10] overflow-hidden">
-          ${safeImage(h.image, title)}
-          ${h.featured ? featuredBadge() : ''}
-          <div class="absolute top-3 left-3"><span class="bg-sea-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">${escape(category)}</span></div>
-        </div>
-        <div class="p-4">
-          <div class="text-[11px] text-ink-700/60 font-semibold uppercase tracking-wide">${escape(h.date||'')}</div>
-          <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight mt-1">${escape(title)}</h3>
-          <p class="text-sm text-ink-700/80 mt-2 line-clamp-3">${escape(summary)}</p>
-        </div>
+      <article class="card" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);transition:transform 0.2s ease,box-shadow 0.2s ease;">
+        <a href="${href}"${externalAttr} class="block" style="text-decoration:none;color:inherit;" onmouseover="this.parentElement.style.transform='translateY(-2px)';this.parentElement.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.18)';" onmouseout="this.parentElement.style.transform='';this.parentElement.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            ${safeImage(h.image, title)}
+            ${h.featured ? featuredBadge() : ''}
+            <div class="absolute top-3 left-3"><span class="bg-sea-600 text-white text-[10px] font-bold px-2 py-1 rounded-full">${escape(category)}</span></div>
+          </div>
+          <div class="p-4">
+            <div class="text-[11px] text-ink-700/60 font-semibold uppercase tracking-wide">${escape(h.date||'')}</div>
+            <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight mt-1">${escape(title)}</h3>
+            <p class="text-sm text-ink-700/80 mt-2 line-clamp-3">${escape(summary)}</p>
+            <div class="mt-3 pt-3 border-t border-ink-700/8">
+              <span class="text-xs font-semibold text-sea-600 inline-flex items-center gap-1">${escape(uiLabel('readMore'))}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
       </article>
     `;
   }
