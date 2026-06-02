@@ -27,3 +27,22 @@ Sitemap: https://kalkaninfo.com/sitemap.xml
 
 # Host
 Host: https://kalkaninfo.com
+
+# AI Crawlers — markamizin AI cevaplarinda gorunmesi icin izinli
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
