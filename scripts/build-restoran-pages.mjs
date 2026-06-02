@@ -119,6 +119,40 @@ function starsHtml(rating) {
   return star('currentColor').repeat(full) + (half ? star('url(#half)') : '') + star('none').repeat(empty);
 }
 
+// AggregateRating JSON-LD objesi (Schema.org)
+function aggregateRatingJson(cache) {
+  const place = cache?.place || {};
+  if (!place.rating && !place.reviews) return {};
+  return {
+    '@type': 'AggregateRating',
+    ratingValue: place.rating ?? undefined,
+    reviewCount: place.reviews ?? undefined,
+    bestRating: 5,
+    worstRating: 1
+  };
+}
+
+// Review array JSON-LD (en fazla 5 yorum)
+function reviewArrayJson(cache) {
+  const reviews = cache?.reviews || [];
+  if (!reviews.length) return [];
+  return reviews.slice(0, 5).map(rv => {
+    const obj = {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: rv.user || 'Anonim' },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: rv.rating || 5,
+        bestRating: 5
+      }
+    };
+    // date: "3 gün önce" gibi göreceli tarihleri atla, ISO tarih varsa ekle
+    if (rv.date && /\d{4}/.test(rv.date)) obj.datePublished = rv.date;
+    if (rv.snippet) obj.reviewBody = rv.snippet.slice(0, 500);
+    return obj;
+  });
+}
+
 // Cache'den restoran review verisini oku (yoksa null)
 async function loadReviewCache(slug) {
   const path = join(REVIEWS_DIR, `${slug}.json`);
@@ -316,6 +350,8 @@ for (const slug of targets) {
     SOCIAL_LINKS: socialLinks(r),
     REVIEWS_SECTION: reviewsSectionHtml,
     RESERVATIONS: r.reservation ? 'True' : 'True',
+    AGGREGATE_RATING_JSON: JSON.stringify(aggregateRatingJson(reviewCache)),
+    REVIEW_ARRAY_JSON: JSON.stringify(reviewArrayJson(reviewCache)),
     SAME_AS_JSON: JSON.stringify(sameAs),
     I18N_JSON: JSON.stringify(I18N_BASE),
     THEME_BG: t.bg,
