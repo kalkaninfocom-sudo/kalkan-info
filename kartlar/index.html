@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kalkan Info — WhatsApp Paket Kartları</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ font-family:'Inter',sans-serif; background:#dde3ea; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,h4{ font-family:'Montserrat',sans-serif; letter-spacing:-0.025em; line-height:1; }
+
+:root{
+  --ink:#072136;
+  --ink-2:#0a2e4c;
+  --gold:#f4b53d;
+  --gold-2:#e89812;
+  --gold-deep:#c97b09;
+  --green:#25D366;
+  --white:#ffffff;
+  --cream:#f5ede0;
+}
+
+/* 1080×1080 — WhatsApp Business katalog ürün görseli */
+.card{
+  width:1080px; height:1080px;
+  position:relative;
+  overflow:hidden;
+  page-break-after:always;
+}
+
+/* Marka rozet — üst köşede */
+.brand-pill{
+  position:absolute; top:50px; left:50px;
+  display:inline-flex; align-items:center; gap:14px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(244,181,61,0.3);
+  padding:14px 22px;
+  border-radius:99px;
+  backdrop-filter:blur(8px);
+  color:#fff;
+  z-index:5;
+}
+.brand-pill .d{ color:var(--gold); font-size:22px; line-height:1; }
+.brand-pill .t{ font-family:'Montserrat'; font-weight:800; font-size:16px; letter-spacing:0.18em; }
+
+/* Web URL — sağ üst */
+.web-pill{
+  position:absolute; top:50px; right:50px;
+  font-family:'Montserrat'; font-weight:700; font-size:18px;
+  letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--gold);
+  z-index:5;
+}
+
+/* İçerik */
+.content{
+  position:absolute; inset:0;
+  padding:160px 70px 110px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  z-index:3;
+}
+
+.tier-row{
+  display:flex; align-items:center; gap:18px;
+  font-size:18px; letter-spacing:0.24em; text-transform:uppercase;
+  font-weight:800;
+}
+.tier-row .ic{ font-size:42px; line-height:1; }
+
+.pkg-title{
+  font-size:120px; font-weight:900; letter-spacing:-0.04em;
+  margin:30px 0 18px;
+}
+
+.pkg-sub{
+  font-size:24px; font-weight:500;
+  max-width:780px; line-height:1.4;
+  opacity:0.78;
+}
+
+.features{
+  list-style:none; margin-top:50px;
+  display:grid; gap:16px;
+}
+.features li{
+  display:flex; align-items:flex-start; gap:16px;
+  font-size:24px; font-weight:600; line-height:1.35;
+}
+.features li::before{
+  content:''; display:block; width:10px; height:10px;
+  border-radius:999px; flex-shrink:0; margin-top:14px;
+  background:currentColor;
+}
+.features li strong{ font-weight:800; }
+
+/* Fiyat blok — alt */
+.price-block{
+  display:flex; justify-content:space-between; align-items:flex-end; gap:30px;
+}
+.price-left{ display:flex; flex-direction:column; }
+.price-label{
+  font-size:15px; letter-spacing:0.28em; text-transform:uppercase;
+  font-weight:700; opacity:0.6; margin-bottom:8px;
+}
+.price-amount{
+  font-size:96px; font-weight:900; letter-spacing:-0.03em;
+  line-height:1;
+}
+.price-amount .cur{ font-size:48px; font-weight:700; vertical-align:top; margin-right:8px; opacity:0.7; }
+.price-monthly{
+  font-size:20px; font-weight:700;
+  margin-top:14px; opacity:0.85;
+}
+.price-monthly small{ font-weight:600; opacity:0.7; }
+
+/* CTA — WhatsApp */
+.cta-wa{
+  display:inline-flex; align-items:center; gap:14px;
+  background:var(--green); color:#fff;
+  padding:22px 32px; border-radius:99px;
+  font-family:'Montserrat'; font-weight:800;
+  font-size:22px; letter-spacing:0.04em;
+  box-shadow:0 12px 30px -8px rgba(37,211,102,0.5);
+}
+.cta-wa svg{ width:32px; height:32px; }
+
+/* ========== TEMA: TEMEL ========== */
+.card.temel{
+  background:
+    radial-gradient(circle at 70% 30%, rgba(232,152,18,0.12) 0%, transparent 60%),
+    linear-gradient(140deg, var(--ink) 0%, var(--ink-2) 100%);
+  color:#fff;
+}
+.card.temel .tier-row{ color:var(--gold); }
+.card.temel .features{ color:rgba(255,255,255,0.92); }
+
+/* ========== TEMA: PREMIUM ========== */
+.card.premium{
+  background:
+    radial-gradient(circle at 30% 80%, rgba(232,152,18,0.18) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(244,181,61,0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #1a0f1e 0%, var(--ink) 60%, #2a1810 100%);
+  color:#fff;
+}
+.card.premium .tier-row{ color:var(--gold); }
+.card.premium .features{ color:rgba(255,255,255,0.94); }
+.card.premium .pkg-title{ color:var(--gold); }
+.card.premium .ribbon{
+  position:absolute; top:50px; left:50%; transform:translateX(-50%);
+  background:var(--gold-2); color:var(--ink);
+  font-family:'Montserrat'; font-weight:800;
+  font-size:14px; letter-spacing:0.24em; text-transform:uppercase;
+  padding:10px 22px;
+  border-radius:99px;
+  z-index:6;
+  box-shadow:0 8px 24px -8px rgba(232,152,18,0.55);
+}
+.card.premium .brand-pill, .card.premium .web-pill { top:120px; }
+.card.premium .content { padding-top:230px; }
+
+/* ========== TEMA: VIP ========== */
+.card.vip{
+  background:
+    radial-gradient(circle at 75% 75%, rgba(196,122,224,0.15) 0%, transparent 55%),
+    radial-gradient(circle at 25% 25%, rgba(244,181,61,0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0410 0%, #15082a 60%, #0a0418 100%);
+  color:#fff;
+}
+.card.vip .tier-row{ color:#e8c46c; }
+.card.vip .features{ color:rgba(255,255,255,0.94); }
+.card.vip .pkg-title{
+  background:linear-gradient(90deg, #f4b53d 0%, #c47ae0 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Decorative diagonal */
+.diag{
+  position:absolute; right:-100px; top:50%; transform:translateY(-50%) rotate(35deg);
+  width:600px; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(244,181,61,0.4), transparent);
+}
+
+/* Screen preview */
+@media screen {
+  body{ padding:30px; display:flex; flex-direction:column; align-items:center; gap:40px; }
+  .card{ box-shadow:0 20px 60px rgba(0,0,0,0.25); border-radius:12px; transform:scale(0.55); transform-origin:top center; margin-bottom:-480px; }
+  .label{
+    font-family:'Inter'; font-size:13px;
+    letter-spacing:0.2em; text-transform:uppercase;
+    font-weight:700; color:#0a2e4c; opacity:0.6;
+    margin-bottom:-20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="label">TEMEL — 1080×1080 (WhatsApp Business)</div>
+<div class="card temel" id="card-temel">
+  <div class="brand-pill"><span class="d">◆</span><span class="t">KALKAN INFO</span></div>
+  <div class="web-pill">kalkaninfo.com</div>
+  <div class="diag"></div>
+  <div class="content">
+    <div>
+      <div class="tier-row"><span class="ic">🥉</span><span>TEMEL PAKET</span></div>
+      <h1 class="pkg-title">Başlangıç</h1>
+      <p class="pkg-sub">Mini siteniz ve Google İşletme kurulumu — sezona hızlı giriş için.</p>
+      <ul class="features">
+        <li>5 dilde mini site (TR/EN/DE/RU/FR)</li>
+        <li>Menü PDF + galeri + harita</li>
+        <li>Google İşletme Profili kurulumu</li>
+        <li>Schema.org markup (AI'lara görünür)</li>
+        <li>Aylık 1 Google post</li>
+      </ul>
+    </div>
+
+    <div class="price-block">
+      <div class="price-left">
+        <div class="price-label">Tek Seferlik Kurulum</div>
+        <div class="price-amount"><span class="cur">₺</span>9.900</div>
+        <div class="price-monthly">+ <strong>₺990</strong> <small>aylık bakım</small></div>
+      </div>
+      <a class="cta-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        WhatsApp'tan Sor
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="label">PREMIUM — 1080×1080 (WhatsApp Business)</div>
+<div class="card premium" id="card-premium">
+  <div class="ribbon">★ En Çok Tercih Edilen</div>
+  <div class="brand-pill"><span class="d">◆</span><span class="t">KALKAN INFO</span></div>
+  <div class="web-pill">kalkaninfo.com</div>
+  <div class="diag"></div>
+  <div class="content">
+    <div>
+      <div class="tier-row"><span class="ic">🥈</span><span>PREMIUM PAKET</span></div>
+      <h1 class="pkg-title">Profesyonel</h1>
+      <p class="pkg-sub">Profesyonel foto + rezervasyon + aylık 4 post — orta/üst segment için.</p>
+      <ul class="features">
+        <li>Temel paketin tamamı +</li>
+        <li><strong>Profesyonel foto çekimi (10 görsel)</strong></li>
+        <li>Online rezervasyon formu</li>
+        <li>Aylık 4 Google post + yorum yanıtı</li>
+        <li>Menü mevsimlik güncelleme + analitik rapor</li>
+      </ul>
+    </div>
+
+    <div class="price-block">
+      <div class="price-left">
+        <div class="price-label">Tek Seferlik Kurulum</div>
+        <div class="price-amount"><span class="cur">₺</span>19.900</div>
+        <div class="price-monthly">+ <strong>₺2.490</strong> <small>aylık yönetim</small></div>
+      </div>
+      <a class="cta-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        WhatsApp'tan Sor
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="label">VIP — 1080×1080 (WhatsApp Business)</div>
+<div class="card vip" id="card-vip">
+  <div class="brand-pill"><span class="d">◆</span><span class="t">KALKAN INFO</span></div>
+  <div class="web-pill">kalkaninfo.com</div>
+  <div class="diag"></div>
+  <div class="content">
+    <div>
+      <div class="tier-row"><span class="ic">🥇</span><span>VIP PAKET</span></div>
+      <h1 class="pkg-title">Lüks Konsept</h1>
+      <p class="pkg-sub">Drone + Reels + 7/24 yönetim — konsept restoran & gece kulübü için.</p>
+      <ul class="features">
+        <li>Premium paketin tamamı +</li>
+        <li><strong>Drone çekim + 3 Reels / ay</strong></li>
+        <li>Online sipariş entegrasyonu</li>
+        <li>7/24 Google yönetimi + krizyönetimi</li>
+        <li>Kişisel <span style="color:#25D366;font-weight:700;">concierge</span> + telefon raporu</li>
+      </ul>
+    </div>
+
+    <div class="price-block">
+      <div class="price-left">
+        <div class="price-label">Tek Seferlik Kurulum</div>
+        <div class="price-amount"><span class="cur">₺</span>34.900</div>
+        <div class="price-monthly">+ <strong>₺4.990</strong> <small>aylık yönetim</small></div>
+      </div>
+      <a class="cta-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        WhatsApp'tan Sor
+      </a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

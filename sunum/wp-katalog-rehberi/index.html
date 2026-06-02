@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kalkan Info — WhatsApp Business Katalog Kurulum Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#072136;
+  --ink-2:#0a2e4c;
+  --gold:#f4b53d;
+  --gold-2:#e89812;
+  --gold-deep:#c97b09;
+  --green:#25D366;
+  --green-deep:#1da851;
+  --cream:#f5ede0;
+  --cream-2:#eef4f9;
+  --white:#ffffff;
+  --line:rgba(7,33,54,0.1);
+}
+
+@page { size: A4; margin: 0; }
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ font-family:'Inter',sans-serif; color:var(--ink); background:#f0f3f6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+h1,h2,h3,h4{ font-family:'Montserrat',sans-serif; letter-spacing:-0.02em; line-height:1.05; }
+
+.page{
+  width:210mm; height:297mm;
+  padding:18mm 16mm;
+  page-break-after:always;
+  background:var(--white);
+  position:relative;
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.page:last-child{ page-break-after:auto; }
+
+.brand-bar{ display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:6mm; margin-bottom:8mm; }
+.brand-logo{ display:flex; align-items:center; gap:8px; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.12em; color:var(--ink); }
+.brand-logo .d{ color:var(--gold-2); }
+.page-num{ font-size:10px; letter-spacing:0.16em; color:rgba(7,33,54,0.45); font-weight:700; text-transform:uppercase; }
+.page-content{ flex:1; display:flex; flex-direction:column; }
+
+.section-label{ display:inline-flex; align-items:center; gap:8px; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; font-weight:800; color:var(--green); margin-bottom:6mm; }
+.section-label::before{ content:''; display:block; width:22px; height:2px; background:var(--green); border-radius:2px; }
+.section-label.gold{ color:var(--gold-2); }
+.section-label.gold::before{ background:var(--gold-2); }
+
+h2.page-title{ font-size:30px; font-weight:900; color:var(--ink); margin-bottom:6mm; }
+h3.sub{ font-size:18px; font-weight:800; color:var(--ink); margin-bottom:3mm; }
+p{ font-size:11.5px; line-height:1.65; color:rgba(7,33,54,0.82); }
+.lead{ font-size:13px; line-height:1.6; color:rgba(7,33,54,0.85); }
+
+ul.checks{ list-style:none; margin-top:3mm; }
+ul.checks li{ font-size:11px; line-height:1.55; color:rgba(7,33,54,0.85); padding-left:18px; position:relative; margin-bottom:5px; }
+ul.checks li::before{ content:'✓'; position:absolute; left:0; top:0; color:var(--green); font-weight:900; font-size:13px; }
+
+/* KAPAK */
+.cover{ background:radial-gradient(ellipse 80% 60% at 70% 30%, rgba(37,211,102,0.22) 0%, transparent 70%), radial-gradient(ellipse 50% 80% at 10% 90%, rgba(244,181,61,0.18) 0%, transparent 60%), linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%); color:var(--white); padding:30mm 22mm; }
+.cover .brand-bar{ border-color:rgba(255,255,255,0.18); }
+.cover .brand-logo{ color:var(--white); font-size:16px; }
+.cover .page-num{ color:rgba(255,255,255,0.55); }
+.cover h1{ font-size:62px; font-weight:900; letter-spacing:-0.04em; line-height:0.95; color:var(--white); margin-top:auto; }
+.cover .pill{ display:inline-block; background:rgba(37,211,102,0.18); border:1px solid rgba(37,211,102,0.5); color:var(--green); font-size:10.5px; letter-spacing:0.18em; font-weight:800; text-transform:uppercase; padding:6px 14px; border-radius:9999px; margin-bottom:8mm; }
+.cover .subtitle{ font-size:16px; color:rgba(255,255,255,0.85); max-width:140mm; margin-top:8mm; line-height:1.6; font-weight:400; }
+.cover .footer-meta{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:auto; padding-top:14mm; border-top:1px solid rgba(255,255,255,0.16); font-size:11px; color:rgba(255,255,255,0.75); }
+.cover .footer-meta strong{ color:var(--green); font-weight:700; }
+
+/* ADIM kartı */
+.step-card{ background:var(--cream-2); border-left:4px solid var(--green); border-radius:0 6px 6px 0; padding:5mm 7mm; margin-bottom:5mm; }
+.step-card .num-row{ display:flex; align-items:baseline; gap:4mm; margin-bottom:3mm; }
+.step-card .num{ font-family:'Montserrat'; font-size:28px; font-weight:900; color:var(--green); line-height:1; }
+.step-card .title{ font-family:'Montserrat'; font-size:15px; font-weight:800; color:var(--ink); }
+.step-card p{ font-size:11px; line-height:1.55; }
+.step-card .tap{ display:inline-block; background:var(--ink); color:var(--white); font-size:10px; font-weight:700; padding:2px 8px; border-radius:3px; letter-spacing:0.04em; }
+
+/* PAKET kutuları — kopyala-yapıştır metinleri */
+.pkg-block{ background:var(--ink); color:var(--white); border-radius:8px; padding:5mm 6mm; margin-bottom:5mm; position:relative; }
+.pkg-block.premium{ background:linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%); border:1.5px solid var(--gold-2); }
+.pkg-block.vip{ background:linear-gradient(135deg, #0a0410 0%, #15082a 100%); }
+.pkg-tier{ display:inline-block; font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; font-weight:800; color:var(--gold); margin-bottom:3mm; }
+.pkg-name{ font-family:'Montserrat'; font-size:18px; font-weight:900; margin-bottom:3mm; }
+.pkg-row{ display:grid; grid-template-columns:80px 1fr; gap:4mm; font-size:10.5px; line-height:1.5; margin-bottom:2mm; }
+.pkg-row .label{ color:rgba(255,255,255,0.55); font-weight:700; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; padding-top:1mm; }
+.pkg-row .val{ color:#fff; font-weight:500; }
+.pkg-row .val.copy{ background:rgba(255,255,255,0.06); padding:2mm 3mm; border-radius:3px; font-family:'Inter'; line-height:1.5; }
+.pkg-block .star{ position:absolute; top:5mm; right:6mm; background:var(--gold-2); color:var(--ink); font-size:8.5px; padding:2px 8px; border-radius:9999px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; }
+
+/* Görsel referans satırı */
+.img-ref{ background:var(--cream); border:1px dashed var(--gold-deep); padding:3mm 4mm; border-radius:5px; font-size:10.5px; color:var(--ink); margin-bottom:3mm; display:flex; align-items:center; gap:3mm; }
+.img-ref strong{ color:var(--gold-deep); }
+.img-ref .ico{ font-size:18px; }
+
+/* Bilgi kutusu */
+.info-box{ background:rgba(37,211,102,0.08); border-left:3px solid var(--green); padding:4mm 5mm; border-radius:0 4px 4px 0; margin:5mm 0; }
+.info-box h4{ font-size:11.5px; color:var(--green-deep); font-weight:800; margin-bottom:2mm; }
+.info-box p{ font-size:10.5px; line-height:1.55; color:rgba(7,33,54,0.85); }
+
+.warning-box{ background:rgba(232,152,18,0.08); border-left:3px solid var(--gold-2); padding:4mm 5mm; border-radius:0 4px 4px 0; margin:5mm 0; }
+.warning-box h4{ font-size:11.5px; color:var(--gold-deep); font-weight:800; margin-bottom:2mm; }
+.warning-box p{ font-size:10.5px; line-height:1.55; color:rgba(7,33,54,0.85); }
+
+.divider{ border:0; height:1px; background:var(--line); margin:6mm 0; }
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
+
+/* SSS */
+.faq-grid{ display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.faq-card{ background:var(--cream-2); padding:4mm 5mm; border-radius:5px; }
+.faq-card h4{ font-size:11px; color:var(--ink); font-weight:800; margin-bottom:2mm; font-family:'Montserrat'; }
+.faq-card p{ font-size:10px; line-height:1.55; }
+
+/* İletişim */
+.contact-page{ background:radial-gradient(ellipse 80% 60% at 70% 30%, rgba(37,211,102,0.22) 0%, transparent 70%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:var(--white); }
+.contact-page .brand-bar{ border-color:rgba(255,255,255,0.18); }
+.contact-page .brand-logo{ color:var(--white); }
+.contact-page .page-num{ color:rgba(255,255,255,0.55); }
+.contact-page h2{ color:var(--white); font-size:36px; }
+.contact-page p{ color:rgba(255,255,255,0.85); }
+.contact-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:5mm; margin-top:8mm; }
+.contact-card{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:10px; padding:14px; }
+.contact-card .label{ font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; font-weight:800; color:var(--green); margin-bottom:6px; }
+.contact-card .value{ font-family:'Montserrat'; font-size:17px; font-weight:800; color:var(--white); }
+.cta-banner{ margin-top:auto; background:linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%); padding:18px 22px; border-radius:12px; text-align:center; }
+.cta-banner h3{ color:var(--white); font-size:20px; font-weight:900; }
+.cta-banner p{ color:rgba(255,255,255,0.95); font-size:12px; margin-top:5px; }
+
+@media screen {
+  body{ padding:24px; }
+  .page{ margin:0 auto 24px; box-shadow:0 8px 30px rgba(7,33,54,0.18); border-radius:6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- KAPAK -->
+<div class="page cover">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">Sezon 2026</div>
+  </div>
+  <div class="page-content" style="justify-content:flex-end;">
+    <span class="pill">WhatsApp Business Katalog</span>
+    <h1>RESTORAN PAKETLERİNİ WHATSAPP'TA SAT.</h1>
+    <p class="subtitle">3 paketinizi WhatsApp Business kataloğunda göstermek için adım adım kurulum — telefonunuzda 15 dakikada hazır.</p>
+  </div>
+  <div class="footer-meta">
+    <div>Hazırlayan: <strong>Kalkan Info</strong></div>
+    <div>kalkaninfo.com · berkayelmastas@gmail.com</div>
+  </div>
+</div>
+
+<!-- 2 — NEDEN KATALOG -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">02 · Neden Katalog?</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Avantajlar</span>
+    <h2 class="page-title">WhatsApp Business Kataloğu ne işe yarar?</h2>
+    <p class="lead">Restoran sahibine teklif götürdüğünüzde uzun mesaj atmak yerine <strong>tek bağlantı</strong> gönderirsiniz. Katalog açılır, 3 paketinizi yan yana görür, fiyatlar ve özellikler net. İletişim için tek tık.</p>
+
+    <div class="info-box">
+      <h4>💡 Önemli Bilgi</h4>
+      <p>Katalog özelliği <strong>ücretsiz</strong>dir. Meta Cloud API gerektirmez. WhatsApp Business mobil uygulaması yeterli. Maksimum 500 ürün, 30 görsel/ürün.</p>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub">Katalog ile ne kazanırsınız?</h3>
+    <ul class="checks">
+      <li><strong>Profesyonel görünüm</strong> — Restoran sahibine kişisel sohbet yerine yapılandırılmış teklif sunarsınız.</li>
+      <li><strong>Hızlı paylaşım</strong> — Tek bağlantı, tüm paketler bir arada (3 ayrı mesaj atmak yerine).</li>
+      <li><strong>Otomatik yenileme</strong> — Fiyat veya açıklamayı güncelleyince herkes en güncel halini görür.</li>
+      <li><strong>İşletme profili</strong> — Restoran sahipleri size ulaştığında WhatsApp Business rozetinizi görür (güven).</li>
+      <li><strong>Statü güncellemesi</strong> — Yeni paket veya kampanyayı 24 saatlik Status'ta paylaşırsınız.</li>
+      <li><strong>WhatsApp.me bağlantısı</strong> — Web sitenize, sunum PDF'ine direkt buton koyarsınız.</li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="warning-box">
+      <h4>⚠️ Ön Hazırlık</h4>
+      <p>Bu kurulumu yapmadan önce: (1) WhatsApp Business uygulamasını telefonunuza indirin, (2) Kalkan Info için ayrı bir telefon numarası kullanmanız önerilir (kişisel WhatsApp'la karışmasın), (3) 3 paket görselini (PNG) telefonunuza indirin — adresler 4. sayfada.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3 — UYGULAMAYI KURUN -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">03 · Kurulum</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Adım Adım</span>
+    <h2 class="page-title">WhatsApp Business uygulamasını kurun.</h2>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">1</div>
+        <div class="title">Uygulamayı indirin</div>
+      </div>
+      <p>iOS: App Store'da <span class="tap">WhatsApp Business</span> arayın. Android: Play Store'da <span class="tap">WhatsApp Business</span> indirin. Mevcut WhatsApp uygulamanız ile <strong>aynı telefonda</strong>, <strong>farklı numaralarla</strong> kullanabilirsiniz.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">2</div>
+        <div class="title">İşletme telefon numarasını doğrulayın</div>
+      </div>
+      <p>Açılışta numarayı girin → SMS kodu gelir → onaylayın. <strong>Mevcut kişisel WhatsApp numaranızla aynı olmasın.</strong> Önerimiz: Kalkan Info için ayrı bir GSM hattı.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">3</div>
+        <div class="title">İşletme profilini doldurun</div>
+      </div>
+      <p>Ayarlar → <span class="tap">İşletme aracları</span> → <span class="tap">İşletme profili</span>:</p>
+      <ul class="checks" style="margin-top:2mm;">
+        <li><strong>İşletme adı:</strong> Kalkan Info</li>
+        <li><strong>Kategori:</strong> Seyahat acentesi / Pazarlama hizmeti</li>
+        <li><strong>Açıklama:</strong> "Kalkan'da restoranınıza profesyonel mini-site, 5 dilde içerik ve Google İşletme yönetimi. Sezon 2026 paketleri."</li>
+        <li><strong>Adres:</strong> Kalkan, Antalya</li>
+        <li><strong>Çalışma saatleri:</strong> Pzt-Cmt 09:00-22:00</li>
+        <li><strong>E-posta:</strong> berkayelmastas@gmail.com</li>
+        <li><strong>Web sitesi:</strong> https://kalkaninfo.com</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">4</div>
+        <div class="title">Profil fotoğrafını ayarlayın</div>
+      </div>
+      <p>Profil fotosu olarak Kalkan Info logosunu kullanın. Logo dosyası: <strong>kalkaninfo.com/icons/icon-512.png</strong> (tarayıcıdan açıp telefonunuza indirin).</p>
+    </div>
+
+    <div class="info-box">
+      <h4>✅ Bu aşamada profil hazır</h4>
+      <p>Birisi size yazdığında otomatik karşılama, anında yanıt ve etiketler kullanabilirsiniz. Sıradaki adım: katalog.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 4 — KATALOG OLUŞTURMA + GÖRSEL İNDİRME -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">04 · Katalog Aç</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label gold">Paket Görsellerini İndirin</span>
+    <h2 class="page-title">3 paket görselini telefona indirin.</h2>
+    <p class="lead">Her paket için hazır 1080×1080 (kare) görsel hazırladık. WhatsApp Business katalog için ideal boyut.</p>
+
+    <div class="img-ref"><span class="ico">📥</span><div><strong>Temel Paket</strong> — https://kalkaninfo.com/kartlar/temel.png</div></div>
+    <div class="img-ref"><span class="ico">📥</span><div><strong>Premium Paket</strong> — https://kalkaninfo.com/kartlar/premium.png</div></div>
+    <div class="img-ref"><span class="ico">📥</span><div><strong>VIP Paket</strong> — https://kalkaninfo.com/kartlar/vip.png</div></div>
+
+    <p style="font-size:10.5px; margin-top:3mm;">Her bağlantıyı telefondan açın → uzun basıp <strong>"Fotoğrafı kaydet"</strong> ile galeriye indirin.</p>
+
+    <hr class="divider">
+
+    <span class="section-label">Adım 5-6</span>
+    <h3 class="sub">Kataloğa girin.</h3>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">5</div>
+        <div class="title">Katalog menüsünü açın</div>
+      </div>
+      <p>WhatsApp Business → Ayarlar → <span class="tap">İşletme aracları</span> → <span class="tap">Katalog</span>. İlk kez giriyorsanız <strong>"Katalog Oluştur"</strong> → onayla.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">6</div>
+        <div class="title">Ürün eklemeye başlayın</div>
+      </div>
+      <p>Katalog ekranı açıldığında <span class="tap">+ Ürün veya hizmet ekle</span> butonuna dokunun. Her paket için ayrı ayrı yapacağız. Bir sonraki sayfada metinleri kopyalayın.</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>📋 Hazır metinler bir sonraki sayfada</h4>
+      <p>Her paket için ad, açıklama ve fiyatları olduğu gibi kopyalayıp yapıştırın. Sıralama: Temel → Premium → VIP. WhatsApp katalogunda en üstte görünmesini istediğinizi <strong>en son</strong> eklersiniz.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5 — PAKET METİNLERİ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">05 · Paket Metinleri</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label gold">Kopyala-Yapıştır</span>
+    <h2 class="page-title">Her paket için bu metni kullanın.</h2>
+
+    <!-- TEMEL -->
+    <div class="pkg-block">
+      <div class="pkg-tier">🥉 Temel Paket</div>
+      <div class="pkg-name">Başlangıç</div>
+      <div class="pkg-row">
+        <div class="label">Görsel</div>
+        <div class="val">temel.png (yüklediğiniz)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Ürün adı</div>
+        <div class="val copy">Restoran Mini-Site — Temel Paket</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Fiyat</div>
+        <div class="val copy">9.900 TL (+ 990 TL aylık bakım)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Açıklama</div>
+        <div class="val copy">Kalkaninfo.com altında 5 dilli profesyonel mini-siteniz. Menü PDF, galeri, harita, WhatsApp ve Schema.org optimizasyonu (AI'larda da görünür). Google İşletme Profili kurulumu ve aylık 1 post dahil. Kurulum 7-10 gün.</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Web bağlantısı</div>
+        <div class="val copy">https://kalkaninfo.com/sunum/restoran-paketi/</div>
+      </div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="pkg-block premium">
+      <span class="star">★ En Çok Tercih</span>
+      <div class="pkg-tier">🥈 Premium Paket</div>
+      <div class="pkg-name">Profesyonel</div>
+      <div class="pkg-row">
+        <div class="label">Görsel</div>
+        <div class="val">premium.png (yüklediğiniz)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Ürün adı</div>
+        <div class="val copy">Restoran Mini-Site — Premium Paket</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Fiyat</div>
+        <div class="val copy">19.900 TL (+ 2.490 TL aylık yönetim)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Açıklama</div>
+        <div class="val copy">Temel paketin tamamı + profesyonel foto çekimi (10 görsel), online rezervasyon formu, aylık 4 Google post, yorumlara profesyonel yanıt ve aylık analitik raporu. Orta/üst segment restoranlar için.</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Web bağlantısı</div>
+        <div class="val copy">https://kalkaninfo.com/sunum/restoran-paketi/</div>
+      </div>
+    </div>
+
+    <!-- VIP -->
+    <div class="pkg-block vip">
+      <div class="pkg-tier">🥇 VIP Paket</div>
+      <div class="pkg-name">Lüks Konsept</div>
+      <div class="pkg-row">
+        <div class="label">Görsel</div>
+        <div class="val">vip.png (yüklediğiniz)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Ürün adı</div>
+        <div class="val copy">Restoran Mini-Site — VIP Paket</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Fiyat</div>
+        <div class="val copy">34.900 TL (+ 4.990 TL aylık yönetim)</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Açıklama</div>
+        <div class="val copy">Premium paketin tamamı + drone çekim, aylık 3 Reels, online sipariş entegrasyonu, 7/24 Google yönetimi ve kişisel concierge. Konsept restoran ve gece kulüpleri için.</div>
+      </div>
+      <div class="pkg-row">
+        <div class="label">Web bağlantısı</div>
+        <div class="val copy">https://kalkaninfo.com/sunum/restoran-paketi/</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 — ÜRÜN EKLEME DETAY + PAYLAŞMA -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">06 · Ekleme & Paylaşım</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Her paket için tekrar et</span>
+    <h2 class="page-title">Ürünü kataloğa nasıl eklersiniz?</h2>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">7</div>
+        <div class="title">Görsel ekleyin</div>
+      </div>
+      <p>Katalog → <span class="tap">+ Ürün ekle</span> → <strong>Görseller</strong> bölümünde + işaretine dokunun → galerinizden ilgili paket görselini (örn. temel.png) seçin.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">8</div>
+        <div class="title">Ad, fiyat, açıklama</div>
+      </div>
+      <p>5. sayfadaki kutulardan ilgili metinleri kopyalayın. <strong>Ürün adı, Fiyat, Açıklama, Web bağlantısı</strong> alanlarını sırayla doldurun.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">9</div>
+        <div class="title">Para birimini TL seçin</div>
+      </div>
+      <p>Fiyat alanında para birimini <strong>TRY / Türk Lirası</strong> olarak ayarlayın. Üst kısımdaki para birimi düğmesinden değiştirebilirsiniz.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">10</div>
+        <div class="title">Kaydet ve sıradakine geç</div>
+      </div>
+      <p><span class="tap">Kaydet</span> → ürün katalogda görünür. Adım 7-10'u Premium ve VIP için de tekrarlayın. Toplam 3 ürün eklenmiş olmalı.</p>
+    </div>
+
+    <hr class="divider">
+
+    <span class="section-label gold">Katalog Hazır — Şimdi Paylaşın</span>
+    <h3 class="sub">Restoran sahibine nasıl gönderirsiniz?</h3>
+
+    <div class="two-col">
+      <div class="step-card" style="border-color:var(--gold-2);">
+        <div class="num-row">
+          <div class="num" style="color:var(--gold-2);">A</div>
+          <div class="title">Sohbette katalogu paylaş</div>
+        </div>
+        <p>Restoran sahibine yazarken: ataç (📎) → <span class="tap">Katalog</span> → tüm katalogu veya sadece bir paketi seçip gönder.</p>
+      </div>
+
+      <div class="step-card" style="border-color:var(--gold-2);">
+        <div class="num-row">
+          <div class="num" style="color:var(--gold-2);">B</div>
+          <div class="title">Profilden otomatik görünür</div>
+        </div>
+        <p>Birisi size mesaj attığında profilinizde <strong>"Katalogu Görüntüle"</strong> butonu otomatik çıkar. Tıklayan tüm paketleri görür.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h4>🚀 Pro İpucu — wa.me bağlantısı</h4>
+      <p>Web sitenize veya sunum PDF'ine <strong>wa.me/905306650794</strong> bağlantısı koyun. Tıklayan kişi sizinle hemen WhatsApp'tan konuşmaya başlar ve katalogu görür. Daha güçlü dönüşüm için: <strong>wa.me/905306650794?text=Restoran%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- 7 — BROADCAST + STATUS + SSS -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">07 · Bonus Taktikler</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Müşteriye toplu ulaşma</span>
+    <h2 class="page-title">256 kişiye tek seferde teklif.</h2>
+    <p class="lead">WhatsApp Business'ın <strong>"Yayın listesi"</strong> (Broadcast) özelliği ile aynı mesajı 256 kişiye tek tek atmış gibi gönderebilirsiniz. Tepki olarak gelen mesajlar size <strong>kişisel sohbet</strong> olarak düşer.</p>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">11</div>
+        <div class="title">Yayın listesi oluşturun</div>
+      </div>
+      <p>Ana ekran → 3 nokta → <span class="tap">Yeni yayın</span> → restoran sahiplerinin numaralarını seçin → <span class="tap">Oluştur</span>.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="num-row">
+        <div class="num">12</div>
+        <div class="title">Şablon mesaj atın</div>
+      </div>
+      <p>"Merhaba, ben Berkay — Kalkan Info'dan. Sezon 2026 için restoranınıza özel hazırladığımız 3 paketimiz var. Detay için: kalkaninfo.com/sunum/restoran-paketi/ — sorunuz olursa direkt buradan yazabilirsiniz."</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>⚠️ Broadcast Kuralı</h4>
+      <p>Yayın listesindeki kişilerin sizi <strong>kişi listesine eklemiş olması</strong> gerekir, aksi takdirde mesaj görmezler. Bu yüzden katalog kurmadan önce restoran sahiplerini WhatsApp rehberinize ekleyin.</p>
+    </div>
+
+    <hr class="divider">
+
+    <span class="section-label">Sık Sorulan</span>
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h4>Katalog ücretli mi?</h4>
+        <p>Hayır, tamamen ücretsiz. WhatsApp Business mobil uygulaması yeterli.</p>
+      </div>
+      <div class="faq-card">
+        <h4>Kaç ürün ekleyebilirim?</h4>
+        <p>Maksimum 500 ürün, her birinde 30 görsele kadar. Şimdilik 3 paket yeterli.</p>
+      </div>
+      <div class="faq-card">
+        <h4>Fiyat değişirse ne yapacağım?</h4>
+        <p>Katalog → ilgili ürünü seçin → düzenle → kaydet. Anında günceller.</p>
+      </div>
+      <div class="faq-card">
+        <h4>WhatsApp Business + normal aynı telefonda?</h4>
+        <p>Evet, farklı numaralarla. iOS'ta 2 numara desteği var, Android'de dual-SIM gerekir.</p>
+      </div>
+      <div class="faq-card">
+        <h4>Otomatik karşılama nasıl?</h4>
+        <p>Ayarlar → İşletme araçları → Karşılama mesajı → açın ve metni yazın.</p>
+      </div>
+      <div class="faq-card">
+        <h4>Hızlı yanıt kısayolu?</h4>
+        <p>İşletme araçları → Hızlı yanıtlar → kısayol ekle (örn: /paketler). Sohbette /paketler yazınca hazır metin çıkar.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 — İLETİŞİM -->
+<div class="page contact-page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span style="color:var(--gold);">◆</span> KALKAN INFO</div>
+    <div class="page-num">08 · İletişim</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label" style="color:var(--green);">Kurulum desteği</span>
+    <h2 class="page-title">Takıldığınız adımda yazın.</h2>
+    <p class="lead" style="max-width:140mm;">Bu rehber tek başına yeterli ama bir yerde takılırsanız ekran görüntüsüyle yazın, 60 saniyede dönüş yaparım. Asıl iş: 3 paketinizi 15 dakikada kataloğa alıp restoran sahiplerine paylaşmaya başlamak.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="label">WhatsApp</div>
+        <div class="value">+90 530 665 07 94</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">E-posta</div>
+        <div class="value">berkayelmastas@gmail.com</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">Sunum & Görseller</div>
+        <div class="value">kalkaninfo.com/sunum/<br>restoran-paketi/</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">Paket Görselleri</div>
+        <div class="value">kalkaninfo.com/kartlar/<br>{temel,premium,vip}.png</div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h3>Sezon Önü %20 İndirim — Mart, Nisan, Mayıs</h3>
+      <p>İlk 3 demo restoran kurulumu ücretsiz. Demo kontenjanı sınırlı.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
