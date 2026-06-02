@@ -27,7 +27,7 @@ const MIME = {
 
 createServer(async (req, res) => {
   let path = req.url.split('?')[0];
-  if (path === '/') path = '/index.html';
+  if (path.endsWith('/')) path += 'index.html';
 
   const filePath = join(ROOT, path);
 

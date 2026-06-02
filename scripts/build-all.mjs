@@ -8,6 +8,7 @@ const steps = [
   { name: 'supabase-config', cmd: 'node', args: ['scripts/build-supabase-config.mjs'], required: true },
   { name: 'tailwind',        cmd: 'node', args: ['scripts/build-tailwind.mjs'],        required: true },
   { name: 'inject-gtm',      cmd: 'node', args: ['scripts/inject-gtm.mjs'],            required: false },
+  { name: 'restoran-pages',  cmd: 'node', args: ['scripts/build-restoran-pages.mjs'],  required: false },
   { name: 'news-aggregator', cmd: 'node', args: ['scripts/news-aggregator.mjs'],       required: false },
   { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
 ];
