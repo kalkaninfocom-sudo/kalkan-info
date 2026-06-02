@@ -16,7 +16,8 @@
       "de": "Die besten Restaurants, Cafés, Bars und Nachtclubs in Kalkan — 24 Lokale + 3 Nachtclubs",
       "ru": "Лучшие рестораны, кафе, бары и ночные клубы Калкана — 24 заведения + 3 ночных клуба",
       "fr": "Les meilleurs restaurants, cafés, bars et discothèques de Kalkan — 24 établissements + 3 discothèques"
-    }
+    },
+    "ratingPolicy": "Puanlar yalnizca dogrulanmis kaynaktan (orn. Google Places) gelir; aksi durumda gosterilmez."
   },
   "categories": [
     "Fine Dining",
@@ -101,7 +102,7 @@
       "category": "Cafe & Bar",
       "cuisine": "Cafe / Kokteyl",
       "priceRange": "₺₺",
-      "rating": 4.7,
+      "rating": null,
       "reviewCount": 0,
       "location": "İskele Sk. No:27, Yat Limanı",
       "phone": null,
@@ -170,7 +171,7 @@
       "category": "Fine Dining",
       "cuisine": "Akdeniz / Türk",
       "priceRange": "₺₺₺₺",
-      "rating": 4.8,
+      "rating": null,
       "location": "Yat Limanı",
       "phone": "+90 242 844 33 32",
       "website": "https://www.kalkanaubergine.com/",
@@ -229,7 +230,8 @@
           "Agneau tandoori",
           "Assiette de desserts"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "korsan-kalamar",
@@ -237,7 +239,7 @@
       "category": "Deniz Ürünleri",
       "cuisine": "Balık / Meze",
       "priceRange": "₺₺₺",
-      "rating": 4.7,
+      "rating": null,
       "location": "Kalamar Koyu",
       "phone": "+90 242 844 31 76",
       "website": "https://www.korsankalkan.com/en/",
@@ -296,7 +298,8 @@
           "Calamar",
           "Froids mezzés"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "mussakka",
@@ -304,7 +307,7 @@
       "category": "Türk Mutfağı",
       "cuisine": "Türk Ev Yemeği",
       "priceRange": "₺₺",
-      "rating": 4.6,
+      "rating": null,
       "location": "Mustafa Kocakaya Cd. No:9, Kalkan",
       "phone": "+90 242 844 15 76",
       "mobile": "+90 537 493 22 90",
@@ -365,7 +368,8 @@
           "Imam bayıldı",
           "Mantı"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "trio",
@@ -373,7 +377,7 @@
       "category": "Dünya Mutfağı",
       "cuisine": "İtalyan / Türk",
       "priceRange": "₺₺₺",
-      "rating": 4.5,
+      "rating": null,
       "location": "Hasan Altan Cad.",
       "phone": "+90 242 844 32 16",
       "website": "http://www.triokalkan.com/",
@@ -432,7 +436,8 @@
           "Pizza",
           "Bar commun"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "ala-kalkan",
@@ -1659,7 +1664,7 @@
       "category": "Gece Kulübü",
       "cuisine": "Bar & Gece Eğlencesi",
       "priceRange": "₺₺₺",
-      "rating": 4.6,
+      "rating": null,
       "location": "Kalkan Merkez",
       "phone": null,
       "website": "https://www.instagram.com/clubchocolatekalkan/",
@@ -1717,7 +1722,8 @@
           "Performance DJ",
           "Piste de Danse"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "club-mojito",
@@ -1725,7 +1731,7 @@
       "category": "Gece Kulübü",
       "cuisine": "Bar & Cocktail",
       "priceRange": "₺₺",
-      "rating": 4.4,
+      "rating": null,
       "location": "Kalkan Merkez",
       "phone": null,
       "website": "https://www.instagram.com/clubmojito/",
@@ -1783,7 +1789,8 @@
           "Cocktail Tropical",
           "Musique Live"
         ]
-      }
+      },
+      "reviewCount": 0
     },
     {
       "id": "noema-community",
@@ -1791,7 +1798,7 @@
       "category": "Gece Kulübü",
       "cuisine": "Lounge & Music Club",
       "priceRange": "₺₺₺",
-      "rating": 4.7,
+      "rating": null,
       "location": "Kalkan Merkez",
       "phone": null,
       "website": "https://www.instagram.com/noemacommunity/",
@@ -1849,7 +1856,8 @@
           "Lounge",
           "Premium Bar"
         ]
-      }
+      },
+      "reviewCount": 0
     }
   ]
 }
