@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kalkan Info — Restoran Dijital Varlık Paketi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============== KIMLIK ============== */
+:root{
+  --ink:#072136;
+  --ink-2:#0a2e4c;
+  --sea:#134c79;
+  --sea-2:#1a5e93;
+  --sun:#f4b53d;
+  --sun-2:#e89812;
+  --sun-3:#c97b09;
+  --cream:#dce6ef;
+  --cream-2:#eef4f9;
+  --white:#ffffff;
+  --coral:#ef4444;
+  --ok:#10b981;
+}
+
+@page { size: A4; margin: 0; }
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ font-family:'Inter',system-ui,sans-serif; color:var(--ink); background:#f0f3f6; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+h1,h2,h3,h4,.font-display{ font-family:'Montserrat',system-ui,sans-serif; letter-spacing:-0.02em; line-height:1.1; }
+
+.page{
+  width:210mm; height:297mm;
+  padding:18mm 16mm;
+  page-break-after:always;
+  background:var(--white);
+  position:relative;
+  overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.page:last-child{ page-break-after:auto; }
+
+/* Brand bar — sayfa üstü */
+.brand-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(7,33,54,0.1);
+  padding-bottom:6mm; margin-bottom:8mm;
+}
+.brand-logo{ display:flex; align-items:center; gap:8px; font-family:'Montserrat'; font-weight:800; font-size:13px; letter-spacing:0.12em; color:var(--ink); }
+.brand-logo .diamond{ color:var(--sun-2); }
+.page-num{ font-size:10px; letter-spacing:0.16em; color:rgba(7,33,54,0.45); font-weight:700; text-transform:uppercase; }
+
+.page-content{ flex:1; display:flex; flex-direction:column; }
+
+.section-label{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+  font-weight:800; color:var(--sun-2);
+  margin-bottom:6mm;
+}
+.section-label::before{ content:''; display:block; width:22px; height:2px; background:var(--sun-2); border-radius:2px; }
+
+h1.hero-title{ font-size:48px; font-weight:900; letter-spacing:-0.035em; color:var(--ink); line-height:0.95; }
+h2.page-title{ font-size:30px; font-weight:900; color:var(--ink); margin-bottom:6mm; }
+h3.sub{ font-size:18px; font-weight:800; color:var(--ink); }
+
+p{ font-size:11.5px; line-height:1.65; color:rgba(7,33,54,0.78); }
+.lead{ font-size:13px; line-height:1.6; color:rgba(7,33,54,0.85); }
+
+ul.checks{ list-style:none; }
+ul.checks li{
+  font-size:11px; line-height:1.55; color:rgba(7,33,54,0.85);
+  padding-left:18px; position:relative; margin-bottom:5px;
+}
+ul.checks li::before{
+  content:'✓'; position:absolute; left:0; top:0;
+  color:var(--ok); font-weight:900; font-size:13px;
+}
+
+/* ============== KAPAK ============== */
+.cover{
+  background:radial-gradient(ellipse 80% 60% at 60% 30%, rgba(26,94,147,0.55) 0%, transparent 70%),
+             radial-gradient(ellipse 50% 80% at 10% 90%, rgba(232,152,18,0.18) 0%, transparent 60%),
+             linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  color:var(--white);
+  padding:30mm 22mm;
+}
+.cover .brand-bar{ border-color:rgba(255,255,255,0.18); }
+.cover .brand-logo{ color:var(--white); font-size:16px; }
+.cover .page-num{ color:rgba(255,255,255,0.55); }
+.cover h1{ font-size:62px; font-weight:900; letter-spacing:-0.04em; line-height:0.95; color:var(--white); margin-top:auto; }
+.cover .pill{
+  display:inline-block;
+  background:rgba(244,181,61,0.15);
+  border:1px solid rgba(244,181,61,0.45);
+  color:var(--sun);
+  font-size:10.5px; letter-spacing:0.18em; font-weight:800; text-transform:uppercase;
+  padding:6px 14px; border-radius:9999px;
+  margin-bottom:8mm;
+}
+.cover .subtitle{ font-size:16px; color:rgba(255,255,255,0.85); max-width:140mm; margin-top:8mm; line-height:1.6; font-weight:400; }
+.cover .footer-meta{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-top:auto; padding-top:14mm;
+  border-top:1px solid rgba(255,255,255,0.16);
+  font-size:11px; color:rgba(255,255,255,0.75);
+}
+.cover .footer-meta strong{ color:var(--sun); font-weight:700; }
+
+/* ============== STAT BLOKLAR ============== */
+.stats-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:6mm; margin:8mm 0; }
+.stat-box{
+  background:var(--cream-2); border-radius:8px; padding:14px;
+  border-left:3px solid var(--sun-2);
+}
+.stat-box .num{ font-family:'Montserrat'; font-size:28px; font-weight:900; color:var(--ink); line-height:1; letter-spacing:-0.02em; }
+.stat-box .label{ font-size:9.5px; line-height:1.45; color:rgba(7,33,54,0.7); margin-top:6px; font-weight:600; }
+
+/* ============== PAKET KARTLARI ============== */
+.packages-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:5mm; margin-top:6mm; }
+.pkg{
+  border:1px solid rgba(7,33,54,0.12);
+  border-radius:10px;
+  padding:14px 12px;
+  background:var(--white);
+  position:relative;
+  display:flex; flex-direction:column;
+}
+.pkg.featured{
+  border-color:var(--sun-2); border-width:2px;
+  box-shadow:0 8px 24px -8px rgba(232,152,18,0.35);
+}
+.pkg .pkg-badge{
+  position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+  background:var(--sun-2); color:var(--white);
+  font-size:8.5px; letter-spacing:0.14em; font-weight:800; text-transform:uppercase;
+  padding:3px 10px; border-radius:9999px;
+}
+.pkg .pkg-tier{
+  font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; font-weight:800;
+  color:var(--sun-2); margin-bottom:6px;
+}
+.pkg .pkg-name{ font-family:'Montserrat'; font-size:18px; font-weight:900; color:var(--ink); margin-bottom:8px; }
+.pkg .pkg-price{
+  font-family:'Montserrat'; font-size:24px; font-weight:900; color:var(--ink); line-height:1;
+  letter-spacing:-0.02em;
+}
+.pkg .pkg-price small{ font-size:11px; font-weight:600; color:rgba(7,33,54,0.55); }
+.pkg .pkg-monthly{ font-size:11px; color:rgba(7,33,54,0.7); margin-top:3px; font-weight:600; }
+.pkg .pkg-divider{ border:0; height:1px; background:rgba(7,33,54,0.08); margin:10px 0; }
+.pkg ul.checks{ flex:1; }
+.pkg ul.checks li{ font-size:10px; line-height:1.5; margin-bottom:4px; }
+
+/* ============== TABLO ============== */
+.cmp-table{ width:100%; border-collapse:collapse; margin-top:6mm; font-size:10.5px; }
+.cmp-table th, .cmp-table td{
+  padding:9px 10px; text-align:center;
+  border-bottom:1px solid rgba(7,33,54,0.08);
+}
+.cmp-table th{
+  background:var(--ink); color:var(--white);
+  font-family:'Montserrat'; font-weight:700; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+}
+.cmp-table th.featured-th{ background:var(--sun-2); }
+.cmp-table td:first-child{ text-align:left; font-weight:600; color:var(--ink); font-size:10.5px; }
+.cmp-table tr:nth-child(even) td{ background:var(--cream-2); }
+.cmp-table .yes{ color:var(--ok); font-size:13px; font-weight:900; }
+.cmp-table .no{ color:rgba(7,33,54,0.25); font-size:12px; }
+.cmp-table .featured-col{ background:rgba(244,181,61,0.12); font-weight:700; }
+
+/* ============== ADIM / PROCESS ============== */
+.steps{ display:grid; grid-template-columns:repeat(2,1fr); gap:5mm; margin-top:6mm; }
+.step{ display:flex; gap:10px; padding:10px 12px; border-radius:8px; background:var(--cream-2); border-left:3px solid var(--sun-2); }
+.step .step-num{
+  font-family:'Montserrat'; font-size:22px; font-weight:900; color:var(--sun-2); line-height:1; min-width:30px;
+}
+.step .step-body h4{ font-family:'Montserrat'; font-size:12px; font-weight:800; color:var(--ink); margin-bottom:3px; }
+.step .step-body p{ font-size:10px; line-height:1.5; }
+
+/* ============== FAYDA BLOKLARI ============== */
+.benefits-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:5mm; margin-top:6mm; }
+.benefit{
+  padding:12px; border-radius:8px;
+  background:var(--white);
+  border:1px solid rgba(7,33,54,0.1);
+}
+.benefit .ico{
+  width:36px; height:36px; border-radius:8px;
+  background:linear-gradient(135deg, var(--sun-2) 0%, var(--sun-3) 100%);
+  color:var(--white); display:grid; place-items:center;
+  font-size:18px; margin-bottom:8px;
+}
+.benefit h4{ font-family:'Montserrat'; font-size:13px; font-weight:800; color:var(--ink); margin-bottom:4px; }
+.benefit p{ font-size:10px; line-height:1.5; }
+
+/* ============== AI SAYFASI ============== */
+.ai-callout{
+  background:linear-gradient(135deg, var(--ink) 0%, var(--ink-2) 100%);
+  color:var(--white);
+  padding:18px 22px;
+  border-radius:12px;
+  margin-bottom:8mm;
+  position:relative;
+  overflow:hidden;
+}
+.ai-callout::before{
+  content:'AI'; position:absolute; right:-20px; top:-30px;
+  font-family:'Montserrat'; font-size:140px; font-weight:900;
+  color:rgba(244,181,61,0.08); letter-spacing:-0.05em;
+}
+.ai-callout h3{ color:var(--sun); font-size:20px; margin-bottom:6px; position:relative; }
+.ai-callout p{ color:rgba(255,255,255,0.88); font-size:11.5px; line-height:1.6; position:relative; max-width:140mm; }
+
+.ai-bots{ display:grid; grid-template-columns:repeat(3,1fr); gap:4mm; margin-top:6mm; }
+.ai-bot{
+  background:var(--cream-2);
+  border-radius:8px;
+  padding:10px 12px;
+  border-left:3px solid var(--sea);
+}
+.ai-bot .bot-name{ font-family:'Montserrat'; font-size:12px; font-weight:800; color:var(--ink); }
+.ai-bot .bot-co{ font-size:9px; color:rgba(7,33,54,0.5); text-transform:uppercase; letter-spacing:0.1em; font-weight:700; margin-bottom:4px; }
+.ai-bot p{ font-size:9.5px; line-height:1.45; margin-top:4px; }
+
+/* ============== ÖRNEK MOCKUP ============== */
+.mockups{ display:grid; grid-template-columns:repeat(3,1fr); gap:5mm; margin-top:6mm; }
+.mockup{
+  background:var(--white); border:1px solid rgba(7,33,54,0.1);
+  border-radius:10px; overflow:hidden;
+  box-shadow:0 4px 14px -6px rgba(7,33,54,0.18);
+}
+.mockup .mk-hero{
+  height:42mm;
+  background:linear-gradient(135deg, var(--sea) 0%, var(--ink-2) 100%);
+  position:relative;
+  display:grid; place-items:center;
+  color:rgba(255,255,255,0.9);
+}
+.mockup .mk-hero::after{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 50% at 60% 40%, rgba(244,181,61,0.25), transparent 70%);
+}
+.mockup.fine .mk-hero{ background:linear-gradient(135deg, #6b2c39 0%, #2a1b22 100%); }
+.mockup.sea .mk-hero{ background:linear-gradient(135deg, #1a5e93 0%, #072136 100%); }
+.mockup.cafe .mk-hero{ background:linear-gradient(135deg, #a86f3a 0%, #4a3826 100%); }
+.mockup .mk-name{ font-family:'Montserrat'; font-size:13px; font-weight:900; color:var(--white); position:relative; z-index:1; text-shadow:0 2px 8px rgba(0,0,0,0.5); }
+.mockup .mk-body{ padding:10px 12px; }
+.mockup .mk-cat{ font-size:8.5px; letter-spacing:0.14em; color:var(--sun-2); font-weight:800; text-transform:uppercase; }
+.mockup .mk-url{ font-size:9px; color:rgba(7,33,54,0.55); margin-top:4px; font-family:'Inter'; font-weight:600; }
+
+/* ============== FİYAT VURGU ============== */
+.price-hero{
+  background:linear-gradient(135deg, var(--sun-2) 0%, var(--sun-3) 100%);
+  color:var(--white);
+  padding:20px 24px;
+  border-radius:14px;
+  margin-bottom:8mm;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+}
+.price-hero h3{ font-size:22px; color:var(--white); font-weight:900; }
+.price-hero p{ font-size:12px; color:rgba(255,255,255,0.92); max-width:100mm; line-height:1.55; margin-top:4px; }
+.price-hero .discount{
+  font-family:'Montserrat'; font-size:48px; font-weight:900;
+  color:var(--white); line-height:1;
+  text-shadow:0 4px 12px rgba(0,0,0,0.18);
+}
+.price-hero .discount small{ font-size:14px; opacity:0.85; }
+
+/* ============== SSS ============== */
+.faq{ display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:6mm; }
+.faq-item{ background:var(--cream-2); padding:12px 14px; border-radius:8px; }
+.faq-item h4{ font-family:'Montserrat'; font-size:11.5px; font-weight:800; color:var(--ink); margin-bottom:5px; }
+.faq-item p{ font-size:10px; line-height:1.55; }
+
+/* ============== İLETİŞİM ============== */
+.contact-page{
+  background:radial-gradient(ellipse 80% 60% at 60% 30%, rgba(26,94,147,0.55) 0%, transparent 70%),
+             radial-gradient(ellipse 50% 80% at 10% 90%, rgba(232,152,18,0.18) 0%, transparent 60%),
+             linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  color:var(--white);
+}
+.contact-page .brand-bar{ border-color:rgba(255,255,255,0.18); }
+.contact-page .brand-logo{ color:var(--white); }
+.contact-page .page-num{ color:rgba(255,255,255,0.55); }
+.contact-page h2{ color:var(--white); font-size:42px; }
+.contact-page p{ color:rgba(255,255,255,0.85); }
+.contact-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:5mm; margin-top:8mm; }
+.contact-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:10px;
+  padding:16px;
+  backdrop-filter:blur(6px);
+}
+.contact-card .label{ font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; font-weight:800; color:var(--sun); margin-bottom:6px; }
+.contact-card .value{ font-family:'Montserrat'; font-size:18px; font-weight:800; color:var(--white); }
+.cta-banner{
+  margin-top:auto;
+  background:linear-gradient(135deg, var(--sun-2) 0%, var(--sun-3) 100%);
+  padding:22px;
+  border-radius:14px;
+  text-align:center;
+}
+.cta-banner h3{ color:var(--white); font-size:22px; font-weight:900; }
+.cta-banner p{ color:rgba(255,255,255,0.95); font-size:12.5px; margin-top:6px; }
+
+/* ============== UTIL ============== */
+.muted{ color:rgba(7,33,54,0.6); }
+.gold{ color:var(--sun-2); }
+.bold{ font-weight:700; }
+.two-col{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+.divider{ border:0; height:1px; background:rgba(7,33,54,0.08); margin:8mm 0; }
+
+@media screen {
+  body{ padding:20px; }
+  .page{ margin:0 auto 20px; box-shadow:0 8px 30px rgba(7,33,54,0.18); border-radius:6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ SAYFA 1 — KAPAK ============ -->
+<div class="page cover">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">Sezon 2026</div>
+  </div>
+  <div class="page-content" style="justify-content:flex-end;">
+    <span class="pill">Restoran Paketi · B2B Sunum</span>
+    <h1>RESTORAN DİJİTAL VARLIK PAKETİ</h1>
+    <p class="subtitle">Profesyonel mini-site + Google İşletme yönetimi + Yapay Zeka çağında görünürlük — kalkaninfo.com'un gücüyle.</p>
+  </div>
+  <div class="footer-meta">
+    <div>Hazırlayan: <strong>Kalkan Info</strong></div>
+    <div>kalkaninfo.com · concierge@kalkaninfo.com</div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 2 — SORUN & FIRSAT ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">02 · Pazar Gerçeği</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Neden Şimdi?</span>
+    <h2 class="page-title">Misafir önce arar, sonra gelir.</h2>
+    <p class="lead">Kalkan'a gelen turistin %78'i geldiği ülkeden <strong>Google'da arama yaparak</strong> nereye gideceğine karar veriyor. Önce arama, sonra rezervasyon, sonra masa. Bu sırada görünmeyen restoran kaybediyor.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="num">%78</div>
+        <div class="label">Turist Google'da arayarak karar veriyor</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">5 dil</div>
+        <div class="label">TR · EN · DE · RU · FR — tüm misafirleri yakalar</div>
+      </div>
+      <div class="stat-box">
+        <div class="num">3-7sn</div>
+        <div class="label">Yavaş site = kaybedilen müşteri</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub" style="margin-bottom:6mm;">Restoranların bugün karşılaştığı 3 problem</h3>
+    <ul class="checks" style="font-size:12px;">
+      <li><strong>Kendi web siteniz yok ya da güncel değil.</strong> Misafir Instagram'a yönlendirilince menüyü ve saatleri bulamıyor.</li>
+      <li><strong>Google İşletme Profili (GBP) eksik veya optimize değil.</strong> Foto yok, menü yok, yorumlara yanıt yok — Google sizi geri sıralara atıyor.</li>
+      <li><strong>ChatGPT / Claude / Perplexity gibi yapay zeka araçları sizi tanımıyor.</strong> Çünkü AI'lar açık web içeriğini tarar; siz orada yoksanız tavsiye listesinde de yoksunuz.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ SAYFA 3 — ÇÖZÜM ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">03 · Çözümümüz</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Tek Pakette Çözüm</span>
+    <h2 class="page-title">Sizin için profesyonel bir dijital varlık kuruyoruz.</h2>
+    <p class="lead">Kendi alan adı, kendi sunucu, kendi tasarımcı, kendi SEO uzmanı tutmanıza gerek yok. Kalkaninfo.com'un altında <strong>size özel mini siteniz</strong>, profesyonel görseller, çoklu dil ve Google İşletme yönetiminizi tek pakette sunuyoruz.</p>
+
+    <div class="two-col" style="margin-top:8mm;">
+      <div>
+        <h3 class="sub" style="margin-bottom:5mm; color:var(--sun-2);">Örnek URL Yapısı</h3>
+        <div style="background:var(--ink); color:var(--white); padding:14px 16px; border-radius:10px; font-family:'Inter'; font-size:13px; font-weight:700;">
+          kalkaninfo.com/restoran/<span style="color:var(--sun);">restoran-adi</span>
+        </div>
+        <p style="margin-top:8px; font-size:10px;">SEO açısından en güçlü yapı: ana alan adı altında her restoran ayrı bir kalıcı sayfa olarak Google'a indekslenir.</p>
+      </div>
+      <div>
+        <h3 class="sub" style="margin-bottom:5mm; color:var(--sun-2);">Kalkaninfo'nun Avantajı</h3>
+        <ul class="checks">
+          <li>Yüksek alan otoritesi — bizim site Google'da güçlü, alt sayfanız da güçlü doğar.</li>
+          <li>5 dil hazır altyapı (TR/EN/DE/RU/FR).</li>
+          <li>Aylık binlerce ziyaretçi sizi de gezecek.</li>
+          <li>AI arama motorlarında ortak görünürlük.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub" style="margin-bottom:6mm;">Paketin İki Bacağı</h3>
+    <div class="two-col">
+      <div class="benefit">
+        <div class="ico">🌐</div>
+        <h4>Mini Site Kurulumu</h4>
+        <p>Hero görsel, hakkında, menü, galeri, açılış saatleri, harita, telefon, WhatsApp, rezervasyon formu, sosyal medya, Google yorumları widget'ı — 5 dil olarak.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">📍</div>
+        <h4>Google İşletme Yönetimi</h4>
+        <p>GBP claim/optimize, kategori doğrulama, foto yükleme, haftalık post, açılış saatleri güncelleme, yorumlara profesyonel yanıt, krizyönetimi.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 4 — PAKET ÖZET TABLO ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">04 · Paketler</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">3 Paket — Karşılaştırma</span>
+    <h2 class="page-title">Restoranınızın boyutuna uygun paketi seçin.</h2>
+
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;">Özellik</th>
+          <th>🥉 TEMEL</th>
+          <th class="featured-th">🥈 PREMIUM ⭐</th>
+          <th>🥇 VIP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Mini site (5 dil)</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">✓</td></tr>
+        <tr><td>kalkaninfo.com/restoran/[ad] URL</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Schema.org markup (Google rich results)</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Foto galeri</td><td>5 görsel</td><td class="featured-col"><strong>10 görsel</strong></td><td>20 görsel</td></tr>
+        <tr><td>Profesyonel foto çekimi</td><td class="no">—</td><td class="yes featured-col">✓</td><td class="yes">✓ + Drone</td></tr>
+        <tr><td>Online rezervasyon formu</td><td class="no">—</td><td class="yes featured-col">✓</td><td class="yes">✓ + Sipariş</td></tr>
+        <tr><td>Menü PDF / Görsel</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">✓ + Mevsimlik</td></tr>
+        <tr><td>GBP claim & optimize (1 sefer)</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Aylık GBP post</td><td>1</td><td class="featured-col"><strong>4</strong></td><td>8 + Reels</td></tr>
+        <tr><td>Yorumlara profesyonel yanıt</td><td>Rehber</td><td class="yes featured-col">✓</td><td class="yes">7/24</td></tr>
+        <tr><td>Aylık analitik raporu</td><td class="no">—</td><td class="yes featured-col">✓</td><td class="yes">+ Telefon görüşmesi</td></tr>
+        <tr><td>AI arama optimizasyonu</td><td class="yes">✓</td><td class="yes featured-col">✓</td><td class="yes">+ Özel içerik</td></tr>
+        <tr style="background:var(--ink); color:var(--white);">
+          <td style="color:var(--white); font-weight:800;">Tek seferlik kurulum</td>
+          <td style="font-family:'Montserrat'; font-weight:900; font-size:14px;">₺9.900</td>
+          <td class="featured-col" style="font-family:'Montserrat'; font-weight:900; font-size:14px; color:var(--ink);">₺19.900</td>
+          <td style="font-family:'Montserrat'; font-weight:900; font-size:14px;">₺34.900</td>
+        </tr>
+        <tr style="background:var(--ink-2); color:var(--white);">
+          <td style="color:var(--white); font-weight:800;">Aylık bakım & yönetim</td>
+          <td style="font-family:'Montserrat'; font-weight:900; font-size:14px;">₺990</td>
+          <td class="featured-col" style="font-family:'Montserrat'; font-weight:900; font-size:14px; color:var(--ink);">₺2.490</td>
+          <td style="font-family:'Montserrat'; font-weight:900; font-size:14px;">₺4.990</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="price-hero" style="margin-top:8mm; margin-bottom:0;">
+      <div>
+        <h3>Sezon Önü Kampanya</h3>
+        <p>Mart–Mayıs arasında peşin ödemede tüm paketlerde geçerli. Sezon başında yayında ol, ilk turistten ilk gelir.</p>
+      </div>
+      <div class="discount">%20<small> indirim</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 5 — TEMEL ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">05 · Paket Detayı</div>
+  </div>
+  <div class="page-content">
+    <div class="packages-grid">
+      <div class="pkg">
+        <div class="pkg-tier">🥉 Temel</div>
+        <div class="pkg-name">Başlangıç</div>
+        <div class="pkg-price">₺9.900 <small>kurulum</small></div>
+        <div class="pkg-monthly">+ ₺990 / ay bakım</div>
+        <hr class="pkg-divider">
+        <ul class="checks">
+          <li>5 dil mini-site (TR/EN/DE/RU/FR)</li>
+          <li>5 foto galeri (siz iletiyorsunuz)</li>
+          <li>Menü PDF embed</li>
+          <li>Harita + telefon + WhatsApp</li>
+          <li>Açılış saatleri</li>
+          <li>Schema.org Restaurant markup</li>
+          <li>GBP claim ve temel optimize</li>
+          <li>Aylık 1 GBP post</li>
+          <li>Yoruma yanıt için hazır şablonlar</li>
+          <li>AI bot izinleri (GPTBot, ClaudeBot, vs.)</li>
+        </ul>
+        <p style="font-size:9.5px; color:rgba(7,33,54,0.55); margin-top:8px;"><strong>Kim için:</strong> Cafe, küçük işletme, sezonluk açılan mekanlar.</p>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-badge">En çok tercih edilen</div>
+        <div class="pkg-tier">🥈 Premium</div>
+        <div class="pkg-name">Profesyonel</div>
+        <div class="pkg-price">₺19.900 <small>kurulum</small></div>
+        <div class="pkg-monthly">+ ₺2.490 / ay yönetim</div>
+        <hr class="pkg-divider">
+        <ul class="checks">
+          <li>Temel paketin tamamı +</li>
+          <li><strong>Profesyonel foto çekimi (10 görsel)</strong></li>
+          <li>Online rezervasyon formu</li>
+          <li>5 dil profesyonel insan çevirisi</li>
+          <li>Aylık 4 GBP post (haftalık)</li>
+          <li>Yorumlara profesyonel yanıt</li>
+          <li>Menü mevsimlik güncelleme</li>
+          <li>Aylık analitik raporu (PDF)</li>
+          <li>Google rich snippet rezervasyon butonu</li>
+          <li>3 sosyal medya görseli / ay</li>
+        </ul>
+        <p style="font-size:9.5px; color:rgba(7,33,54,0.55); margin-top:8px;"><strong>Kim için:</strong> Orta–üst segment restoran, fine dining, kalabalık menü.</p>
+      </div>
+      <div class="pkg">
+        <div class="pkg-tier">🥇 VIP</div>
+        <div class="pkg-name">Lüks Konsept</div>
+        <div class="pkg-price">₺34.900 <small>kurulum</small></div>
+        <div class="pkg-monthly">+ ₺4.990 / ay yönetim</div>
+        <hr class="pkg-divider">
+        <ul class="checks">
+          <li>Premium paketin tamamı +</li>
+          <li><strong>Drone çekim + 3 Reels / ay</strong></li>
+          <li>20 görsel + 360° tur opsiyonu</li>
+          <li>Online sipariş entegrasyonu</li>
+          <li>7/24 yorum krizyönetimi</li>
+          <li>Aylık 8 GBP post + Stories</li>
+          <li>Özel domain bağlama opsiyonu</li>
+          <li>Kişisel concierge yöneticisi</li>
+          <li>Telefon görüşmeli aylık rapor</li>
+          <li>AI içerik üretimi (haftalık)</li>
+        </ul>
+        <p style="font-size:9.5px; color:rgba(7,33,54,0.55); margin-top:8px;"><strong>Kim için:</strong> Konsept restoran, butik otel restoranı, gece kulübü.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="lead" style="text-align:center;">İlk 3 demo restoran <span class="gold bold">ÜCRETSİZ</span> kurulur — sadece sezon başı yayın için hızlı karar verin.</p>
+  </div>
+</div>
+
+<!-- ============ SAYFA 6 — SÜREÇ ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">06 · Süreç</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Adım Adım Nasıl İşliyor?</span>
+    <h2 class="page-title">İmzadan yayına 7–10 gün.</h2>
+    <p class="lead">Sürecin her adımında siz onaylıyorsunuz. Onay olmadan hiçbir şey yayında olmuyor.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Brief & Marka Toplantısı (1 saat)</h4>
+          <p>Hikayenizi, menünüzü, hedef misafiri ve farkınızı dinliyoruz. WhatsApp ya da yüz yüze.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Foto + İçerik Toplama (1–3 gün)</h4>
+          <p>Premium ve VIP'te biz çekiyoruz. Temel pakette mevcut görselleri kullanıyoruz.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Tasarım & Çeviri (5–7 gün)</h4>
+          <p>Mini site, 5 dil çeviri, menü dijitalleştirme. Taslak onayınızla kapanıyor.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Yayın & GBP Optimize (1–2 gün)</h4>
+          <p>kalkaninfo.com/restoran/[ad] yayına giriyor. Google İşletme Profilinizi optimize ediyoruz.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Aylık Yönetim Başlıyor</h4>
+          <p>Post planlaması, yoruma yanıt, menü/saat güncellemeleri. Siz mutfaktasınız, biz ekrandayız.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Aylık Rapor & Optimizasyon</h4>
+          <p>Premium ve VIP'te ziyaretçi sayısı, arama kelimeleri, dönüşüm raporu paylaşılıyor.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub" style="margin-bottom:5mm;">Sözleşme & İptal</h3>
+    <p style="font-size:11px;">Minimum 6 ay aylık taahhüt. Sonrasında ay sonu 30 gün ihbarla iptal edilebilir. İçeriklerinizin telif hakkı her zaman size ait; ayrılırsanız tüm fotoğraf ve metin teslim edilir.</p>
+  </div>
+</div>
+
+<!-- ============ SAYFA 7 — FAYDALAR ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">07 · Katkılar</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Ne Kazanırsınız?</span>
+    <h2 class="page-title">Sezon sonunda fark net görülecek.</h2>
+
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="ico">📈</div>
+        <h4>Google'da #1 Görünürlük</h4>
+        <p>Schema.org markup + bizim alan otoritesi sayesinde restoran adınızla arama yapıldığında ilk sırada çıkarsınız.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">🌍</div>
+        <h4>5 Dil = 5 Kat Misafir</h4>
+        <p>İngiliz, Alman, Rus, Fransız turist menünüzü ana dilinde görüyor. Karar süresi yarıya iniyor.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">💎</div>
+        <h4>Profesyonel İmaj</h4>
+        <p>Premium foto çekimi + tasarım = misafir daha gelmeden "buraya gidiyoruz" diyor.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">📲</div>
+        <h4>Rezervasyon & Sipariş</h4>
+        <p>Online form WhatsApp'ınıza düşüyor; misafir tek tıkla masa ayırtıyor. Telefonla uğraşmıyorsunuz.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">⭐</div>
+        <h4>Yorumlara Hızlı Yanıt</h4>
+        <p>Olumsuz bir yoruma 24 saat içinde profesyonel yanıt = sıralamanız korunur, marka itibarı zedelenmez.</p>
+      </div>
+      <div class="benefit">
+        <div class="ico">📊</div>
+        <h4>Aylık Şeffaf Rapor</h4>
+        <p>Kaç ziyaretçi, hangi şehirden, hangi dilde, hangi sayfayı izledi — sezonu sayısal görmek.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="lead">Geleneksel reklamla karşılaştırma: bir gazete ilanı ₺8.000+, 1 ay görünür, kimse ölçemiyor. Bizim Premium paketimiz aynı bütçeyle <strong>12 ay 7/24 görünür</strong> ve sayısal raporlanır.</p>
+  </div>
+</div>
+
+<!-- ============ SAYFA 8 — AI ÇAĞINDA REKLAM ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">08 · Yapay Zeka Çağı</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">⚡ En Kritik Sayfa</span>
+    <h2 class="page-title">Misafirin yeni arama motoru: ChatGPT.</h2>
+
+    <div class="ai-callout">
+      <h3>"Kalkan'da en iyi balık restoranı nerede?"</h3>
+      <p>Bu soru artık Google'dan önce <strong>ChatGPT, Claude, Perplexity ve Gemini</strong>'ye sorulmaya başladı. Yapay zeka, açık web içeriğini tarayarak öneri yapıyor. Eğer markanız orada düzgün biçimde mevcut değilse, AI sizi tavsiye listesine yazmıyor — bu yeni "görünmezlik" türü.</p>
+    </div>
+
+    <h3 class="sub" style="margin-bottom:5mm;">Hangi AI'lar tarama yapıyor?</h3>
+    <div class="ai-bots">
+      <div class="ai-bot">
+        <div class="bot-co">OpenAI</div>
+        <div class="bot-name">GPTBot</div>
+        <p>ChatGPT'nin web tarayıcısı. Aylık 800M+ kullanıcı.</p>
+      </div>
+      <div class="ai-bot">
+        <div class="bot-co">Anthropic</div>
+        <div class="bot-name">ClaudeBot</div>
+        <p>Claude'un web tarayıcısı. Hızla büyüyen pazar payı.</p>
+      </div>
+      <div class="ai-bot">
+        <div class="bot-co">Google</div>
+        <div class="bot-name">Google-Extended</div>
+        <p>Gemini & Google AI Overviews içeriği. Türkiye'de aktif.</p>
+      </div>
+      <div class="ai-bot">
+        <div class="bot-co">Perplexity</div>
+        <div class="bot-name">PerplexityBot</div>
+        <p>"Cevap motoru" — kaynak göstererek yanıt verir, sıralı atıf.</p>
+      </div>
+      <div class="ai-bot">
+        <div class="bot-co">Apple</div>
+        <div class="bot-name">Applebot</div>
+        <p>Apple Intelligence & Siri arama altyapısı.</p>
+      </div>
+      <div class="ai-bot">
+        <div class="bot-co">Common Crawl</div>
+        <div class="bot-name">CCBot</div>
+        <p>Tüm open-source AI modellerin eğitim verisi.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub" style="margin-bottom:5mm;">Pakette AI görünürlük için ne yapıyoruz?</h3>
+    <ul class="checks" style="font-size:11px;">
+      <li><strong>robots.txt</strong> dosyamızda yukarıdaki tüm AI bot'larına açık izin verdik — restoran sayfanız da bu izinden faydalanır.</li>
+      <li><strong>Schema.org Restaurant markup</strong> — AI'ların yapı taşı; menü, fiyat aralığı, açılış saatleri sindirilebilir formatta.</li>
+      <li><strong>Yapılandırılmış içerik</strong> — başlık hiyerarşisi, doğal dil paragraflar; AI özümseyip alıntılayabilir.</li>
+      <li><strong>İçerik tazeliği</strong> — aylık güncellemeler AI'lara "bu işletme aktif" sinyali verir.</li>
+      <li><strong>Multi-dil</strong> — yabancı turist ana dilinde sordukça AI sizi öneriyor.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ SAYFA 9 — ÖRNEK MOCKUPLAR ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">09 · Demo Örnekleri</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Ücretsiz Demo Restoranlar</span>
+    <h2 class="page-title">İlk 3 örneği biz kuracağız.</h2>
+    <p class="lead">Konsepti somut görmek için 3 farklı segmentten örnek mini site demo'su yayında. Restoranınızla benzer kategoriye bakın.</p>
+
+    <div class="mockups">
+      <div class="mockup fine">
+        <div class="mk-hero">
+          <div class="mk-name">AUBERGINE</div>
+        </div>
+        <div class="mk-body">
+          <div class="mk-cat">Fine Dining</div>
+          <h4 style="font-family:'Montserrat'; font-size:13px; color:var(--ink); margin-top:6px;">Aubergine</h4>
+          <p style="font-size:9.5px; margin-top:4px;">Akdeniz fine dining — premium menü, deniz manzaralı.</p>
+          <div class="mk-url">kalkaninfo.com/restoran/aubergine</div>
+        </div>
+      </div>
+      <div class="mockup sea">
+        <div class="mk-hero">
+          <div class="mk-name">KORSAN KALAMAR</div>
+        </div>
+        <div class="mk-body">
+          <div class="mk-cat">Deniz Ürünleri</div>
+          <h4 style="font-family:'Montserrat'; font-size:13px; color:var(--ink); margin-top:6px;">Korsan Kalamar</h4>
+          <p style="font-size:9.5px; margin-top:4px;">Kalkan klasiği — taze balık, meze, liman görünümü.</p>
+          <div class="mk-url">kalkaninfo.com/restoran/korsan-kalamar</div>
+        </div>
+      </div>
+      <div class="mockup cafe">
+        <div class="mk-hero">
+          <div class="mk-name">HARBOR LIGHTS</div>
+        </div>
+        <div class="mk-body">
+          <div class="mk-cat">Cafe & Bar</div>
+          <h4 style="font-family:'Montserrat'; font-size:13px; color:var(--ink); margin-top:6px;">Harbor Lights Artisan Cafe</h4>
+          <p style="font-size:9.5px; margin-top:4px;">Kahvaltıdan geç akşama — artisan kahve, brunch, cocktail.</p>
+          <div class="mk-url">kalkaninfo.com/restoran/harbor-lights</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub" style="margin-bottom:5mm;">Her demo sayfasında neler var?</h3>
+    <div class="two-col">
+      <ul class="checks">
+        <li>Hero foto + restoran adı + kategori</li>
+        <li>"Hakkında" — 5 dilde marka hikayesi</li>
+        <li>Galeri (lightbox) — premium fotoğraf</li>
+        <li>Menü PDF embed veya dijitalleştirilmiş menü</li>
+        <li>Açılış saatleri + haftalık tablo</li>
+      </ul>
+      <ul class="checks">
+        <li>Harita embed + yol tarifi</li>
+        <li>WhatsApp + telefon + sosyal medya butonları</li>
+        <li>Online rezervasyon formu</li>
+        <li>Google Yorumları widget'ı</li>
+        <li>Schema.org Restaurant JSON-LD</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 10 — SSS ============ -->
+<div class="page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond">◆</span> KALKAN INFO</div>
+    <div class="page-num">10 · Sık Sorulan Sorular</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label">Cevaplar</span>
+    <h2 class="page-title">Aklınızdaki ilk sorular.</h2>
+
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Site bana ait mı?</h4>
+        <p>İçeriğinizin (foto, metin, menü) telif hakkı her zaman sizde. Sayfa kalkaninfo.com alan adı altında çalışır; ileride kendi domaininize taşımak isterseniz VIP pakette destekliyoruz.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Sözleşmeyi iptal edebilir miyim?</h4>
+        <p>Minimum 6 ay aylık taahhüt sonrası 30 gün ihbarla iptal. Tüm içerikleriniz size teslim edilir. Anlaşmazlık olmaz.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Foto çekimi ekstra ücret mi?</h4>
+        <p>Temel pakette siz fotoğraf veriyorsunuz. Premium ve VIP paketlerde profesyonel çekim dahil — drone VIP'te.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Menü değişirse?</h4>
+        <p>Temel pakette yılda 2 büyük güncelleme. Premium'da mevsimlik (4×/yıl). VIP'te haftalık güncelleme dahil.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Google İşletme Profilim olmazsa?</h4>
+        <p>Sıfırdan kuruyoruz. Sahiplik doğrulama sürecini biz takip ediyoruz. Profil sizin adınıza kalır.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Olumsuz yorum gelirse?</h4>
+        <p>Premium ve VIP'te 24 saat içinde profesyonel yanıt yazıyoruz. Krizyönetim protokolümüz var — itibar zedelenmez.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Ne zaman görmeye başlarım?</h4>
+        <p>Yayın sonrası 4-6 hafta içinde Google indeksleme tamamlanır. Premium'da aylık raporla net görürsünüz.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Demo restoranlar gerçekten ücretsiz mi?</h4>
+        <p>İlk 3 restoran için tüm kurulum ücretsiz. Sezon başı yayında olmaları karşılığında. Aylık bakım ücreti normal.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SAYFA 11 — KAPANIŞ + İLETİŞİM ============ -->
+<div class="page contact-page">
+  <div class="brand-bar">
+    <div class="brand-logo"><span class="diamond" style="color:var(--sun);">◆</span> KALKAN INFO</div>
+    <div class="page-num">11 · İletişim</div>
+  </div>
+  <div class="page-content">
+    <span class="section-label" style="color:var(--sun);">Bir sonraki adım</span>
+    <h2 class="page-title">Sezon kapısında — bugün karar verin.</h2>
+    <p class="lead" style="max-width:140mm;">İlk 3 demo restoran ücretsiz. Bu paketi gördüğünüze göre fırsatın değerini de biliyorsunuz. WhatsApp'tan tek mesaj atın, 60 saniyede yanıt verelim.</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="label">WhatsApp Concierge</div>
+        <div class="value">+90 530 665 07 94</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">E-posta</div>
+        <div class="value">concierge@kalkaninfo.com</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">Web</div>
+        <div class="value">kalkaninfo.com</div>
+      </div>
+      <div class="contact-card">
+        <div class="label">Instagram</div>
+        <div class="value">@kalkan.info</div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h3>Sezon Önü %20 İndirim — Mart, Nisan, Mayıs</h3>
+      <p>Mayıs sonrası fiyatlar liste fiyatına döner. Demo kontenjanı 3 ile sınırlıdır.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
