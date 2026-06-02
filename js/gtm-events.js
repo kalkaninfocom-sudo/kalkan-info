@@ -7,9 +7,29 @@
 (function () {
   'use strict';
 
+  // dataLayer push + Meta Pixel mirror.
+  // GTM event adi -> { fbq method, fbq event name, optional params }
+  var FBQ_MAP = {
+    whatsapp_click:      ['track', 'Contact'],
+    tel_click:           ['track', 'Contact'],
+    reservation_submit:  ['track', 'Schedule'],
+    review_card_click:   ['track', 'ViewContent'],
+    review_section_view: ['trackCustom', 'ReviewSectionView'],
+    language_change:     ['trackCustom', 'LanguageChange']
+  };
+
   function dl(obj) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(obj);
+
+    if (typeof window.fbq === 'function' && obj.event && FBQ_MAP[obj.event]) {
+      var m = FBQ_MAP[obj.event];
+      var params = {};
+      if (obj.restaurant_slug) params.content_name = obj.restaurant_slug;
+      if (obj.page_path) params.page_path = obj.page_path;
+      if (obj.to_lang) params.lang = obj.to_lang;
+      window.fbq(m[0], m[1], params);
+    }
   }
 
   function getSlug() {

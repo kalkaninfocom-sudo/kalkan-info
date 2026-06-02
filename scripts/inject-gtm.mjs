@@ -6,11 +6,27 @@ import { dirname, join, relative } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const GTM_ID = process.env.GTM_ID || 'GTM-PLWTGK2G';
+const META_PIXEL_ID = process.env.META_PIXEL_ID || '872659329210680';
 const MARKER = '<!-- Google Tag Manager -->';
 const GTM_EVENTS_MARKER = '<!-- GTM Events -->';
+const META_PIXEL_MARKER = '<!-- Meta Pixel Code -->';
 const GTM_EVENTS_SNIPPET = `<!-- GTM Events -->
 <script src="/js/gtm-events.js" defer></script>
 <!-- End GTM Events -->
+`;
+const META_PIXEL_HEAD = `<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${META_PIXEL_ID}');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 `;
 
 const HEAD_SNIPPET = `<!-- Google Tag Manager -->
@@ -55,8 +71,9 @@ function listHtml(dirRel) {
 function injectInto(html) {
   const alreadyGtm = html.includes(MARKER);
   const alreadyEvents = html.includes(GTM_EVENTS_MARKER);
+  const alreadyPixel = html.includes(META_PIXEL_MARKER);
 
-  if (alreadyGtm && alreadyEvents) {
+  if (alreadyGtm && alreadyEvents && alreadyPixel) {
     return { html, changed: false, reason: 'already injected' };
   }
 
@@ -84,6 +101,16 @@ function injectInto(html) {
     if (endGtmIdx !== -1) {
       const insertAt = endGtmIdx + endGtmMarker.length;
       next = next.slice(0, insertAt) + '\n' + GTM_EVENTS_SNIPPET + next.slice(insertAt);
+    }
+  }
+
+  // Inject Meta Pixel after End GTM Events in <head>
+  if (!alreadyPixel) {
+    const endEventsMarker = '<!-- End GTM Events -->';
+    const endEventsIdx = next.indexOf(endEventsMarker);
+    if (endEventsIdx !== -1) {
+      const insertAt = endEventsIdx + endEventsMarker.length;
+      next = next.slice(0, insertAt) + '\n' + META_PIXEL_HEAD + next.slice(insertAt);
     }
   }
 
