@@ -21,10 +21,6 @@
     {
       "path": "/api/social-publish-queue",
       "schedule": "0 10 * * *"
-    },
-    {
-      "path": "/api/cron-expire-jobs",
-      "schedule": "30 3 * * *"
     }
   ],
   "rewrites": [
