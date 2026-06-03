@@ -174,6 +174,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 0-4 0v2"/></svg>
             <span data-en="My Businesses" data-de="Meine Unternehmen" data-ru="Мои бизнесы" data-fr="Mes Entreprises">İşletmelerim</span>
           </button>
+          <button class="sidebar-link w-full text-left" data-section="ilanlarim" aria-label="İlanlarım" data-en-aria="My Job Listings" data-de-aria="Meine Stellenanzeigen" data-ru-aria="Мои вакансии" data-fr-aria="Mes Annonces">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M10 4h4v3h-4z"/></svg>
+            <span data-en="My Job Listings" data-de="Meine Stellenanzeigen" data-ru="Мои вакансии" data-fr="Mes Annonces">İlanlarım</span>
+          </button>
+          <button class="sidebar-link w-full text-left" data-section="basvurularim" aria-label="Başvurularım" data-en-aria="My Applications" data-de-aria="Meine Bewerbungen" data-ru-aria="Мои заявки" data-fr-aria="Mes Candidatures">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span data-en="My Applications" data-de="Meine Bewerbungen" data-ru="Мои заявки" data-fr="Mes Candidatures">Başvurularım</span>
+          </button>
           <button class="sidebar-link w-full text-left" data-section="yorumlar" aria-label="Yorumlarım" data-en-aria="My Reviews" data-de-aria="Meine Bewertungen" data-ru-aria="Мои отзывы" data-fr-aria="Mes Avis">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span data-en="My Reviews" data-de="Meine Bewertungen" data-ru="Мои отзывы" data-fr="Mes Avis">Yorumlarım</span>
@@ -258,6 +266,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </section>
 
+      <!-- ---- İLANLARIM ---- -->
+      <section id="section-ilanlarim" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-sea-100">
+          <h2 class="font-display font-bold text-lg text-sea-800" data-en="My Job Listings" data-de="Meine Stellenanzeigen" data-ru="Мои вакансии" data-fr="Mes Annonces">İlanlarım</h2>
+          <a href="ilan-ver.html" class="btn-secondary inline-flex items-center gap-1.5 text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            <span data-en="New Listing" data-de="Neue Anzeige" data-ru="Новое объявление" data-fr="Nouvelle Annonce">Yeni İlan</span>
+          </a>
+        </div>
+        <div id="ilanlarim-list" class="space-y-3">
+          <div class="text-center py-10 text-sea-500" id="ilanlarim-loading">
+            <p class="text-sm" data-en="Loading..." data-de="Wird geladen..." data-ru="Загрузка..." data-fr="Chargement...">Yükleniyor...</p>
+          </div>
+        </div>
+        <template id="ilanlarim-empty">
+          <div class="text-center py-12 text-sea-500">
+            <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+            <p class="font-medium" data-en="You haven't posted any jobs yet." data-de="Sie haben noch keine Stellenanzeigen gepostet." data-ru="Вы еще не разместили ни одной вакансии." data-fr="Vous n'avez encore publié aucune annonce.">Henüz iş ilanı yayınlamadınız.</p>
+            <a href="ilan-ver.html" class="inline-block mt-3 text-sea-500 underline text-sm" data-en="Post your first listing" data-de="Erste Anzeige veröffentlichen" data-ru="Опубликовать первое объявление" data-fr="Publier votre première annonce">İlk ilanınızı yayınlayın</a>
+          </div>
+        </template>
+      </section>
+
+      <!-- ---- BAŞVURULARIM ---- -->
+      <section id="section-basvurularim" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
+        <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="My Applications" data-de="Meine Bewerbungen" data-ru="Мои заявки" data-fr="Mes Candidatures">Başvurularım</h2>
+        <div id="basvurularim-list" class="space-y-3">
+          <div class="text-center py-10 text-sea-500" id="basvurularim-loading">
+            <p class="text-sm" data-en="Loading..." data-de="Wird geladen..." data-ru="Загрузка..." data-fr="Chargement...">Yükleniyor...</p>
+          </div>
+        </div>
+        <template id="basvurularim-empty">
+          <div class="text-center py-12 text-sea-500">
+            <svg class="mx-auto mb-3 opacity-40" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <p class="font-medium" data-en="You haven't applied to any jobs yet." data-de="Sie haben sich noch nicht beworben." data-ru="Вы еще не подавали заявок." data-fr="Vous n'avez postulé à aucune offre.">Henüz başvuru yapmadınız.</p>
+            <a href="ilanlar.html" class="inline-block mt-3 text-sea-500 underline text-sm" data-en="Browse open listings" data-de="Offene Anzeigen ansehen" data-ru="Открытые вакансии" data-fr="Voir les annonces ouvertes">Açık ilanlara göz at</a>
+          </div>
+        </template>
+      </section>
+
       <!-- ---- YORUMLAR ---- -->
       <section id="section-yorumlar" class="hidden bg-white rounded-2xl p-6 md:p-8" style="box-shadow:0 1px 3px rgba(7,33,54,0.07),0 8px 24px -8px rgba(7,33,54,0.14);">
         <h2 class="font-display font-bold text-lg text-sea-800 mb-6 pb-4 border-b border-sea-100" data-en="My Reviews" data-de="Meine Bewertungen" data-ru="Мои отзывы" data-fr="Mes Avis">Yorumlarım</h2>
@@ -337,19 +385,138 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<script>
-// Sidebar navigation
+<script type="module">
+// Sidebar navigation + lazy section loaders (İlanlarım, Başvurularım)
+import { supabase } from './js/supabase-client.js';
+import { getMyJobs, getMyApplications } from './js/jobs.js';
+
+const CATEGORIES = { restoran:'Restoran & Cafe', villa:'Villa & Konaklama', otel:'Otel & Pansiyon', tur:'Tekne & Tur', hizmet:'Hizmet & Bakım', ofis:'Ofis & Yönetim', diger:'Diğer' };
+const TYPES = { full:'Tam zamanlı', part:'Yarı zamanlı', seasonal:'Sezonluk', freelance:'Serbest' };
+const STATUS_TR = { pending:'Onay bekliyor', active:'Yayında', closed:'Kapatıldı', expired:'Süresi doldu', draft:'Taslak' };
+const STATUS_COLOR = { pending:'bg-sun-50 text-sun-700 border-sun-200', active:'bg-emerald-50 text-emerald-700 border-emerald-200', closed:'bg-sea-50 text-sea-700 border-sea-200', expired:'bg-coral-50 text-coral-700 border-coral-200', draft:'bg-sea-50 text-sea-700 border-sea-200' };
+const APP_STATUS_TR = { pending:'İncelenmedi', reviewed:'İnceleniyor', accepted:'Kabul edildi', rejected:'Reddedildi' };
+
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const fmtDate = (iso) => { try { return new Date(iso).toLocaleDateString('tr-TR', { day:'numeric', month:'long', year:'numeric' }); } catch { return iso || ''; } };
+
+let _loaded = { ilanlarim:false, basvurularim:false };
+
+async function loadIlanlarim() {
+  if (_loaded.ilanlarim) return;
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+  const jobs = await getMyJobs(user.id);
+  const list = document.getElementById('ilanlarim-list');
+  if (!list) return;
+  if (!jobs.length) {
+    const tpl = document.getElementById('ilanlarim-empty');
+    list.innerHTML = '';
+    list.appendChild(tpl.content.cloneNode(true));
+    _loaded.ilanlarim = true; return;
+  }
+  list.innerHTML = jobs.map(j => {
+    const cat = CATEGORIES[j.category] || j.category;
+    const typeLabel = TYPES[j.type] || j.type;
+    const statusLabel = STATUS_TR[j.status] || j.status;
+    const statusColor = STATUS_COLOR[j.status] || 'bg-sea-50 text-sea-700 border-sea-200';
+    const slug = j.slug || '';
+    const isLive = j.status === 'active';
+    return `<article class="border border-sea-100 rounded-xl p-4 hover:border-sea-300 transition">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div class="min-w-0 flex-1">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-sun-500">${esc(cat)} · ${esc(typeLabel)}</div>
+          <h3 class="font-display font-bold text-sea-800 mt-0.5 leading-tight">${esc(j.title)}</h3>
+          <p class="text-xs text-sea-600 mt-1">📍 ${esc(j.location)} · 👁 ${j.view_count || 0} · 📨 ${j.application_count || 0}</p>
+        </div>
+        <span class="text-[10px] font-bold px-2 py-1 rounded-full border whitespace-nowrap ${statusColor}">${esc(statusLabel)}</span>
+      </div>
+      <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-sea-50 text-xs">
+        <span class="text-sea-500">${esc(fmtDate(j.created_at))}</span>
+        <div class="flex gap-3">
+          ${isLive ? `<a href="/ilan/${esc(slug)}" target="_blank" class="text-sea-600 font-semibold hover:text-sea-800">Sayfa →</a>` : ''}
+          ${j.status === 'pending' ? '<span class="text-sun-600 italic">Admin onayı bekliyor</span>' : ''}
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+  _loaded.ilanlarim = true;
+}
+
+async function loadBasvurularim() {
+  if (_loaded.basvurularim) return;
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+  const apps = await getMyApplications(user.id);
+  const list = document.getElementById('basvurularim-list');
+  if (!list) return;
+  if (!apps.length) {
+    const tpl = document.getElementById('basvurularim-empty');
+    list.innerHTML = '';
+    list.appendChild(tpl.content.cloneNode(true));
+    _loaded.basvurularim = true; return;
+  }
+
+  // İlan başlıklarını çek
+  const jobIds = [...new Set(apps.map(a => a.job_id))];
+  let jobsMap = {};
+  if (jobIds.length) {
+    const { data: jobs } = await supabase.from('jobs').select('id, slug, title, employer_name').in('id', jobIds);
+    (jobs || []).forEach(j => { jobsMap[j.id] = j; });
+  }
+
+  list.innerHTML = apps.map(a => {
+    const j = jobsMap[a.job_id] || {};
+    const statusLabel = APP_STATUS_TR[a.status] || a.status;
+    const statusColor = a.status === 'accepted' ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                      : a.status === 'rejected' ? 'bg-coral-50 text-coral-700 border-coral-200'
+                      : a.status === 'reviewed' ? 'bg-sea-50 text-sea-700 border-sea-200'
+                      : 'bg-sun-50 text-sun-700 border-sun-200';
+    return `<article class="border border-sea-100 rounded-xl p-4 hover:border-sea-300 transition">
+      <div class="flex items-start justify-between gap-3 mb-1">
+        <div class="min-w-0 flex-1">
+          <h3 class="font-display font-bold text-sea-800 leading-tight">${esc(j.title || 'İlan silinmiş')}</h3>
+          <p class="text-xs text-sea-600 mt-0.5">${esc(j.employer_name || '')}</p>
+        </div>
+        <span class="text-[10px] font-bold px-2 py-1 rounded-full border whitespace-nowrap ${statusColor}">${esc(statusLabel)}</span>
+      </div>
+      <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-sea-50 text-xs">
+        <span class="text-sea-500">${esc(fmtDate(a.created_at))}</span>
+        ${j.slug ? `<a href="/ilan/${esc(j.slug)}" target="_blank" class="text-sea-600 font-semibold hover:text-sea-800">İlanı Gör →</a>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+  _loaded.basvurularim = true;
+}
+
+function activateSection(section) {
+  document.querySelectorAll('section[id^="section-"]').forEach(s => s.classList.add('hidden'));
+  document.getElementById('section-' + section)?.classList.remove('hidden');
+  document.querySelectorAll('.sidebar-link[data-section]').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`.sidebar-link[data-section="${section}"]`);
+  if (btn) btn.classList.add('active');
+
+  // Lazy load
+  if (section === 'ilanlarim') loadIlanlarim();
+  else if (section === 'basvurularim') loadBasvurularim();
+}
+
 document.querySelectorAll('[data-section]').forEach(btn => {
   btn.addEventListener('click', () => {
     const section = btn.dataset.section;
-    // Tüm sectionları gizle
-    document.querySelectorAll('section[id^="section-"]').forEach(s => s.classList.add('hidden'));
-    document.getElementById('section-' + section)?.classList.remove('hidden');
-    // Active link
-    document.querySelectorAll('.sidebar-link[data-section]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    activateSection(section);
+    try { history.replaceState(null, '', '#' + section); } catch {}
   });
 });
+
+// URL hash → ilgili sekmeyi aç (ilan-ver.html success redirect'i için)
+function syncFromHash() {
+  const h = (location.hash || '').replace('#', '');
+  const valid = ['profil','isletmeler','ilanlarim','basvurularim','yorumlar','ayarlar'];
+  if (h && valid.includes(h)) activateSection(h);
+}
+window.addEventListener('hashchange', syncFromHash);
+// Auth ready olduğunda hash kontrol et
+setTimeout(syncFromHash, 600);
 </script>
 <script type="module" src="js/auth.js"></script>
 <script type="module" src="js/profile.js?v=20260517c"></script>

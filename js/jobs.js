@@ -118,6 +118,15 @@ export async function createJob(data, ownerUid) {
     if (error) throw error;
     return { ok: true, id: inserted.id, slug: inserted.slug };
   } catch (err) {
+    const msg = (err.message || '').toLowerCase();
+    if (msg.includes('row-level security') || msg.includes('policy')) {
+      const { data: { user } } = await supabase.auth.getUser();
+      const verified = user?.user_metadata?.email_verified ?? user?.email_confirmed_at;
+      if (!verified) {
+        return { ok: false, error: 'E-posta adresinizi doğrulamanız gerekiyor. Gelen kutunuzdaki doğrulama linkine tıklayın, sonra tekrar deneyin.' };
+      }
+      return { ok: false, error: 'İlan yayınlama yetkiniz yok. Lütfen tekrar giriş yapın.' };
+    }
     return { ok: false, error: err.message };
   }
 }
