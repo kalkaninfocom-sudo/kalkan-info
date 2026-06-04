@@ -2,7 +2,7 @@
   "_meta": {
     "title": "Villalar",
     "subtitle": "Kalkan Info portföyünden özel kiralık villalar — havuz, deniz manzarası, concierge dahil",
-    "updated": "2026-05-16"
+    "updated": "2026-06-04"
   },
   "categories": [
     "Premium",
@@ -18,6 +18,7 @@
       "bedrooms": 4,
       "bathrooms": 4,
       "pool": "Özel ısıtmalı havuz",
+      "pool_dimensions": "9.5m × 3.5m × 1.70m",
       "seaView": true,
       "image": "/assets/img/villa-poyraz.webp",
       "gallery": [
@@ -28,17 +29,66 @@
         "Deniz manzaralı",
         "Jakuzi",
         "Özel havuz",
-        "4 yatak odası"
+        "4 yatak odası",
+        "Bilardo masası"
       ],
       "summary": "Kalkan Kalamar'da deniz ve doğa manzaralı, jakuzili, özel havuzlu 4 yatak odalı 8 kişilik lüks kiralık villa. Aileler ve arkadaş grupları için ideal.",
+      "description_long": [
+        "Villa Poyraz, Kalkan'ın gözde Kalamar bölgesinde yer alan modern mimari ve sade dekoruyla öne çıkan bir lüks villadır. Geniş yaşam alanı ve özenli detaylar, ailelere ve arkadaş gruplarına ferah bir konaklama deneyimi sunar.",
+        "Üst kat seyir terası, oturma grubu, masa ve sandalyeleri ile gün batımı manzarası eşliğinde keyifli akşamlar için tasarlandı. Plaj, restoranlar ve marketler yürüme mesafesindedir.",
+        "Villanın en özel detayı, iki yatak odasındaki jakuzilerdir. King-size yataklı ana yatak odası, özel jakuzisi ve LCD TV'siyle premium bir suit deneyimi yaratır. Ayrıca bilardo masası, akşamları aile içi eğlenceyi villanın ruhu haline getirir."
+      ],
       "features": [
         "4 yatak odası · 8 kişi kapasitesi",
         "Özel ısıtmalı yüzme havuzu",
-        "Jakuzi",
-        "Panoramik deniz ve doğa manzarası",
-        "Tam donanımlı mutfak",
+        "2 odada jakuzi + açık hava jakuzisi",
+        "Bilardo masası",
+        "Üst kat seyir terası",
+        "Tam donanımlı Amerikan mutfak",
         "Klima · WiFi · Smart TV",
         "Concierge hizmeti (Kalkan Info)"
+      ],
+      "bedrooms_detail": [
+        { "number": 1, "beds": "Çift kişilik yatak", "jacuzzi": true, "balcony": true, "ensuite": true, "tv": false, "notes": "Gardırop, komodin, makyaj masası, klima, banyo+WC, balkon." },
+        { "number": 2, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": true, "ensuite": true, "tv": true, "notes": "LCD TV, gardırop, komodin, makyaj masası, klima, banyo+WC, balkon." },
+        { "number": 3, "beds": "2 tek kişilik konfor yatak", "jacuzzi": false, "balcony": true, "ensuite": true, "tv": false, "notes": "Makyaj masası, gardırop, komodin, klima, banyo+WC, balkon." },
+        { "number": 4, "beds": "King-size yatak", "jacuzzi": true, "balcony": true, "ensuite": true, "tv": true, "notes": "LCD TV, özel jakuzi, komodin, makyaj masası, gardırop, klima, banyo+WC, balkon." }
+      ],
+      "amenities": [
+        "Fırın", "TV", "Havlular/Çarşaflar", "Jakuzi", "Ütü", "Balkon",
+        "Amerikan Mutfak", "Ayrı Mutfak", "Klima", "Otopark", "Barbekü",
+        "Ses Yalıtımlı Odalar", "Açık Hava Mobilyaları", "Mikrodalga",
+        "Bilardo Masası", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
+        "Elektrikli Su Isıtıcısı", "Mutfak Gereçleri", "WiFi"
+      ],
+      "included_services": [
+        "Klima/Su/Gaz",
+        "24 Saat Yardım",
+        "Havuz Bakımı",
+        "Haftalık Temizlik"
+      ],
+      "distances": {
+        "airport": "125 km",
+        "market": "1 km",
+        "beach": "1 km",
+        "restaurant": "1 km",
+        "transit": "2 km",
+        "center": "2 km"
+      },
+      "deposit_tl": 20000,
+      "short_stay_fee_tl": 10000,
+      "pet_fee_tl": 15000,
+      "check_in": "16:00",
+      "check_out": "10:00",
+      "phone_concierge": "+905306650794",
+      "faqs": [
+        { "q": "Villa Poyraz'da kaç kişi konaklayabilir?", "a": "Villa 4 yatak odası ile maksimum 8 kişiye konfor sağlar. King-size yataklı ana yatak odası dahil, iki çift kişilik ve bir adet 2 tek kişilik yatak içeren yatak odası mevcuttur." },
+        { "q": "Jakuzili oda mevcut mu?", "a": "Evet. Villa Poyraz'da 1. ve 4. yatak odalarında özel jakuzi bulunur. Ayrıca havuz terasında açık hava jakuzisi de mevcuttur." },
+        { "q": "Bilardo masası gerçekten var mı?", "a": "Evet. Villa Poyraz'ın eğlence donanımı içinde tam boy bilardo masası yer alır — akşamları aile içi turnuvalar için ideal." },
+        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Konaklama sonunda villada herhangi bir hasar yoksa tam olarak iade edilir." },
+        { "q": "7 geceden az konaklama yapılabilir mi?", "a": "Evet, mümkün. Ancak 7 geceden kısa rezervasyonlarda 10.000 TL kısa konaklama farkı uygulanır." },
+        { "q": "Evcil hayvanımı getirebilir miyim?", "a": "Evet, küçük ve orta ırk olmak üzere maksimum 1 evcil hayvan kabul edilir. 15.000 TL evcil hayvan ücreti uygulanır." },
+        { "q": "Havalimanından nasıl ulaşabilirim?", "a": "En yakın havalimanı 125 km mesafedeki Dalaman'dır. Toplu taşıma mevcut olmadığından concierge ekibimiz ücretli transfer organize edebilir." }
       ],
       "referenceUrl": "https://kalkanvilla.org/tr/villa-poyraz/",
       "featured": true,
@@ -52,6 +102,7 @@
       "bedrooms": 4,
       "bathrooms": 4,
       "pool": "Özel havuz",
+      "pool_dimensions": "9.5m × 3.5m × 1.60m",
       "seaView": true,
       "image": "/assets/img/villa-ship-ahoy.webp",
       "gallery": [
@@ -62,19 +113,67 @@
       "location": "Kalamar, Kalkan",
       "tags": [
         "Deniz manzaralı",
-        "Jakuzi",
-        "Denize yakın",
-        "8 kişi"
+        "Salıncaklı bahçe",
+        "Üst kat jakuzi",
+        "Denize 1 km"
       ],
-      "summary": "Kalkan Kalamar bölgesinde denize yakın, deniz manzaralı lüks tatil villası. Geniş yaşam alanı, özel havuz ve modern dekor — 8 kişiye kadar konforlu konaklama.",
+      "summary": "Kalkan Kalamar bölgesinde denize yakın, deniz manzaralı lüks tatil villası. Salıncaklı geniş bahçe, üst kat jakuzili teras ve modern dekor — 8 kişiye kadar konforlu konaklama.",
+      "description_long": [
+        "Villa Ship Ahoy, Kalkan'ın gözde Kalamar mevkiinde, denize yalnızca 1 km, merkeze 2 dakika uzaklıkta konumlanır. Salıncaklı bahçesi, özel havuzu ve barbekü köşesiyle aileler ve arkadaş grupları için Akdeniz'in en sıcak buluşma noktalarından birini sunar.",
+        "Bahçede özel havuz, şezlonglar, güneş şemsiyeleri, oturma köşesi, salıncak, barbekü ve yemek masası bulunur. Çocuklar bahçede özgürce oynarken büyükler havuz başında dinlenebilir.",
+        "Üst kat terası; jakuzi, geniş manzara ve gün batımı keyfi için tasarlandı. Akşamları Akdeniz ufkunu izleyerek özel anlar yaşayabileceğiniz bir kaçış noktası."
+      ],
       "features": [
         "4 yatak odası · 8 kişi kapasitesi",
         "Özel yüzme havuzu",
-        "Jakuzi",
-        "Denize yakın konum",
-        "Geniş terasta yemek alanı",
-        "Klima · WiFi · TV",
+        "Üst kat terası jakuzi",
+        "Salıncaklı geniş bahçe",
+        "Barbekü ve yemek masası",
+        "Denize 1 km · Merkeze 2 dakika",
+        "Klima · WiFi · TV · PlayStation 3",
         "Concierge hizmeti (Kalkan Info)"
+      ],
+      "bedrooms_detail": [
+        { "number": 1, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." },
+        { "number": 2, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." },
+        { "number": 3, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." },
+        { "number": 4, "beds": "2 tek kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." }
+      ],
+      "amenities": [
+        "Fırın", "TV", "Havlular/Çarşaflar", "Ütü", "Balkon",
+        "Amerikan Mutfak", "Ayrı Mutfak", "Klima", "Özel Havuz", "Otopark",
+        "Barbekü", "Ses Yalıtımlı Odalar", "Şömine", "Açık Hava Mobilyaları",
+        "Mikrodalga", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
+        "Ekmek Kızartma", "PlayStation 3", "WiFi"
+      ],
+      "included_services": [
+        "Klima/Su/Gaz",
+        "24 Saat Yardım",
+        "Havuz Bakımı",
+        "Haftalık Temizlik"
+      ],
+      "distances": {
+        "airport": "125 km",
+        "market": "1 km",
+        "beach": "1 km",
+        "restaurant": "1 km",
+        "transit": "2 km",
+        "center": "2 km"
+      },
+      "deposit_tl": 20000,
+      "short_stay_fee_tl": 10000,
+      "pet_fee_tl": 15000,
+      "check_in": "16:00",
+      "check_out": "10:00",
+      "phone_concierge": "+905306650794",
+      "faqs": [
+        { "q": "Villa Ship Ahoy denize ne kadar uzakta?", "a": "Denize yalnızca 1 km, merkeze 2 dakika mesafededir — yürüyerek de erişilebilir." },
+        { "q": "Bahçede salıncak ve barbekü var mı?", "a": "Evet. Bahçede özel havuz, salıncak, oturma köşesi, barbekü, yemek masası, şezlonglar ve güneş şemsiyeleri bulunur." },
+        { "q": "Üst kat terasındaki jakuziyi her zaman kullanabilir miyim?", "a": "Evet. Üst kat terası; jakuzi, manzara ve gün batımı için 7/24 misafirlerin kullanımına açıktır." },
+        { "q": "Mutfak donanımı nasıl?", "a": "Tam donanımlı Amerikan mutfak: buzdolabı, bulaşık makinesi, ocak, fırın, mikrodalga, su ısıtıcısı, Türk kahve makinesi ve ada mutfak." },
+        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Çıkışta villanız tertemiz teslim edildiğinde tam olarak iade edilir." },
+        { "q": "7 geceden kısa konaklama olur mu?", "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır." },
+        { "q": "Evcil hayvan getirebilir miyim?", "a": "Maksimum 1 küçük/orta ırk evcil hayvan için 15.000 TL ücret uygulanır." }
       ],
       "referenceUrl": "https://www.villacim.com.tr/villa-ship-ahoy",
       "featured": true,
@@ -87,7 +186,8 @@
       "capacity": "8 kişi",
       "bedrooms": 4,
       "bathrooms": 4,
-      "pool": "Ultra lüks ısıtmalı havuz",
+      "pool": "Sonsuzluk havuzu + çocuk havuzu",
+      "pool_dimensions": "9.5m × 3.5m × 1.65m",
       "seaView": true,
       "image": "/assets/img/villa-seascape.webp",
       "gallery": [
@@ -95,20 +195,69 @@
       ],
       "location": "Kalamar, Kalkan",
       "tags": [
-        "Ultra Lüks",
-        "Deniz manzaralı",
-        "Isıtmalı havuz",
+        "Sonsuzluk havuzu",
+        "Denize 400 m",
+        "Çocuk havuzu",
         "Aile dostu"
       ],
-      "summary": "Kalamar'da ultra lüks, ısıtmalı havuzlu özel villa. Geniş bahçe, eşsiz deniz manzarası ve premium iç dekor ile unutulmaz bir tatil için tasarlandı.",
+      "summary": "Kalamar'da denize 400 metre mesafedeki sonsuzluk havuzlu, modern dekorlu lüks villa. Geniş teras, çocuk havuzu, jakuzili yatak odası — unutulmaz bir Akdeniz tatili için tasarlandı.",
+      "description_long": [
+        "Villa Seascape, Kalkan'ın gözde Kalamar mevkiinde denize yalnızca 400 metre uzaklıkta yer alan modern dekorlu özel bir villadır. Sonsuzluk havuzu, Akdeniz ufkuyla birleşen siluetiyle benzersiz bir tatil deneyimi yaratır.",
+        "Geniş terasta sonsuzluk havuzu, çocuk havuzu, şezlonglar, yemek masası, oturma alanı ve açık hava jakuzisi bulunur. Aileler için çocuk havuzu ayrıcalığı, ebeveynler için ise sonsuzluk havuzunun keyfi bir aradadır.",
+        "Kalkan merkez ve plaja yürüme mesafesinde olan villa, ferah ve modern mutfağıyla 12 kişilik yemek takımı dahil tüm donanımı sunar. Salon, deniz ve doğa manzaralı 8 kişilik yemek masası ile aile sofralarınızın merkezi olur."
+      ],
       "features": [
         "4 yatak odası · 8 kişi kapasitesi",
-        "Ultra lüks ısıtmalı havuz",
-        "Panoramik deniz manzarası",
-        "Geniş özel bahçe",
-        "Premium iç dekor",
+        "Sonsuzluk havuzu + çocuk havuzu",
+        "Açık hava jakuzisi + 2. odada jakuzi",
+        "Denize 400 metre",
+        "12 kişilik yemek takımı",
+        "Modern, ferah, ankastreli mutfak",
         "Klima · WiFi · Smart TV",
         "Concierge hizmeti (Kalkan Info)"
+      ],
+      "bedrooms_detail": [
+        { "number": 1, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." },
+        { "number": 2, "beds": "Çift kişilik yatak", "jacuzzi": true, "balcony": false, "ensuite": true, "tv": false, "notes": "Jakuzi, klima, banyo+WC." },
+        { "number": 3, "beds": "Çift kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." },
+        { "number": 4, "beds": "2 tek kişilik yatak", "jacuzzi": false, "balcony": false, "ensuite": true, "tv": false, "notes": "Klima, banyo+WC." }
+      ],
+      "amenities": [
+        "Fırın", "TV", "Havlular/Çarşaflar", "Jakuzi", "Ütü", "Balkon",
+        "Amerikan Mutfak", "Özel Otopark", "Özel Havuz", "Otopark",
+        "Barbekü", "Ses Yalıtımlı Odalar", "Açık Hava Mobilyaları",
+        "Mikrodalga", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
+        "Elektrikli Su Isıtıcısı", "Mutfak Gereçleri", "WiFi"
+      ],
+      "included_services": [
+        "Klima/Su/Gaz",
+        "24 Saat Yardım",
+        "Havuz Bakımı",
+        "Haftalık Temizlik"
+      ],
+      "distances": {
+        "airport": "125 km",
+        "market": "1 km",
+        "beach": "0.4 km",
+        "restaurant": "1 km",
+        "transit": "2 km",
+        "center": "2 km"
+      },
+      "deposit_tl": 20000,
+      "short_stay_fee_tl": 10000,
+      "pet_fee_tl": 15000,
+      "check_in": "16:00",
+      "check_out": "10:00",
+      "phone_concierge": "+905306650794",
+      "faqs": [
+        { "q": "Sonsuzluk havuzu ısıtılıyor mu?", "a": "Villa Seascape sonsuzluk havuzu modern tasarımı ile Akdeniz ufkuyla bütünleşir. Erken/geç sezon ısıtma talepleri için concierge ekibimize WhatsApp üzerinden ulaşabilirsiniz." },
+        { "q": "Çocuklar için ayrı havuz var mı?", "a": "Evet. Teras alanında ana sonsuzluk havuzunun yanı sıra çocuklar için ayrı, sığ bir çocuk havuzu bulunur — aileler için ideal." },
+        { "q": "Denize ne kadar uzakta?", "a": "Villa Seascape, denize yalnızca 400 metre mesafededir. Kalkan merkezi ve plaja yürüme mesafesindedir." },
+        { "q": "Kaç kişiye yemek takımı mevcut?", "a": "Mutfak 12 kişilik yemek takımı ile donatılmıştır. Salon ve teras 8 kişilik yemek masaları içerir." },
+        { "q": "Jakuzili oda hangisi?", "a": "2. yatak odasında özel jakuzi mevcuttur. Ayrıca teras alanında açık hava jakuzisi yer alır." },
+        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Konaklama sonunda hasar yoksa tam olarak iade edilir." },
+        { "q": "7 geceden kısa konaklama mümkün mü?", "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır." },
+        { "q": "Evcil hayvan kabul ediliyor mu?", "a": "Maksimum 1 küçük veya orta ırk evcil hayvan için 15.000 TL ücretle kabul edilmektedir." }
       ],
       "referenceUrl": "https://www.hepsivilla.com/villa-seascape/",
       "featured": true,

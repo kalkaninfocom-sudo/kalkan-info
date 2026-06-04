@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{NAME}} — Kalkan Kiralık Villa | kalkaninfo.com</title>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- SEO -->
+<meta name="description" content="{{SUMMARY}}">
+<meta name="keywords" content="{{NAME}}, Kalkan kiralık villa, {{LOCATION}} villa, havuzlu villa, deniz manzaralı villa, jakuzili villa, Kalkan Info">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/villa/{{SLUG}}/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{NAME}} — Kalkan Kiralık Villa">
+<meta property="og:description" content="{{SUMMARY}}">
+<meta property="og:url" content="https://kalkaninfo.com/villa/{{SLUG}}/">
+<meta property="og:image" content="{{OG_IMAGE_FULL}}">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="fr_FR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{NAME}} — Kalkan Kiralık Villa">
+<meta name="twitter:description" content="{{SUMMARY}}">
+<meta name="twitter:image" content="{{OG_IMAGE_FULL}}">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+
+<!-- Schema.org LodgingBusiness -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LodgingBusiness",
+  "name":"{{NAME}}",
+  "image":"{{HERO_IMAGE_FULL}}",
+  "url":"https://kalkaninfo.com/villa/{{SLUG}}/",
+  "telephone":"{{PHONE}}",
+  "priceRange":"₺₺₺",
+  "description":"{{SUMMARY}}",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"{{LOCATION}}",
+    "addressLocality":"Kalkan",
+    "addressRegion":"Antalya",
+    "postalCode":"07580",
+    "addressCountry":"TR"
+  },
+  "geo":{"@type":"GeoCoordinates","latitude":36.2655,"longitude":29.4138},
+  "numberOfRooms":{{BEDROOMS}},
+  "petsAllowed":true,
+  "checkinTime":"{{CHECK_IN}}",
+  "checkoutTime":"{{CHECK_OUT}}",
+  "amenityFeature":{{AMENITY_FEATURE_JSON}},
+  "starRating":{"@type":"Rating","ratingValue":"5"},
+  "sameAs":{{SAME_AS_JSON}}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Kalkan Info","item":"https://kalkaninfo.com"},
+    {"@type":"ListItem","position":2,"name":"Villalar","item":"https://kalkaninfo.com/villalar.html"},
+    {"@type":"ListItem","position":3,"name":"{{NAME}}","item":"https://kalkaninfo.com/villa/{{SLUG}}/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{{FAQ_JSON_LD}}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{
+  --theme-bg:{{THEME_BG}};
+  --theme-bg-2:{{THEME_BG_2}};
+  --theme-accent:{{THEME_ACCENT}};
+  --theme-accent-2:{{THEME_ACCENT_2}};
+  --theme-text:{{THEME_TEXT}};
+  --theme-muted:{{THEME_MUTED}};
+}
+*{ -webkit-font-smoothing:antialiased; }
+html{ scroll-behavior:smooth; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--theme-bg); color:var(--theme-text); }
+h1,h2,h3,h4,.font-display{ font-family:'Cormorant Garamond',serif; letter-spacing:-0.02em; line-height:1.05; font-weight:600; }
+
+.nav-glass{ background:rgba(10,24,40,0.65); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(201,169,110,0.12); }
+.nav-link{ position:relative; padding:6px 2px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:rgba(232,227,216,0.78); transition:color .2s; }
+.nav-link:hover{ color:var(--theme-accent); }
+.nav-link::after{ content:''; position:absolute; left:0; right:0; bottom:-3px; height:2px; background:var(--theme-accent); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; }
+.nav-link:hover::after{ transform:scaleX(1); }
+
+.hero-img{ filter:saturate(1.08) contrast(1.04); }
+.hero-overlay{ background:linear-gradient(180deg, rgba(10,24,40,0.15) 0%, rgba(10,24,40,0.55) 60%, var(--theme-bg) 100%); }
+
+.section-label{ display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; color:var(--theme-accent); }
+.section-label::before{ content:''; display:block; width:32px; height:1px; background:var(--theme-accent); }
+
+.btn-primary{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; background:var(--theme-accent); color:var(--theme-bg); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; border:1px solid var(--theme-accent); }
+.btn-primary:hover{ background:transparent; color:var(--theme-accent); }
+.btn-ghost{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; border:1px solid var(--theme-accent); color:var(--theme-accent); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; background:transparent; }
+.btn-ghost:hover{ background:var(--theme-accent); color:var(--theme-bg); }
+
+.gallery-item{ position:relative; overflow:hidden; cursor:pointer; }
+.gallery-item img{ transition:transform .6s ease; }
+.gallery-item:hover img{ transform:scale(1.06); }
+.gallery-item::after{ content:''; position:absolute; inset:0; background:linear-gradient(160deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35)); opacity:0; transition:opacity .3s; }
+.gallery-item:hover::after{ opacity:1; }
+
+.amenity-card{ background:rgba(255,255,255,0.025); border:1px solid rgba(201,169,110,0.12); padding:18px 16px; transition:border-color .2s, transform .2s; }
+.amenity-card:hover{ border-color:var(--theme-accent); transform:translateY(-2px); }
+.amenity-icon{ color:var(--theme-accent); margin-bottom:10px; }
+
+.room-card{ background:rgba(255,255,255,0.03); border:1px solid rgba(201,169,110,0.14); padding:24px; }
+.room-num{ display:inline-block; width:36px; height:36px; line-height:36px; text-align:center; border:1px solid var(--theme-accent); color:var(--theme-accent); font-family:'Cormorant Garamond',serif; font-weight:700; font-size:18px; margin-bottom:12px; }
+.feature-pill{ display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; padding:4px 10px; border:1px solid rgba(201,169,110,0.35); color:var(--theme-accent); margin-right:6px; margin-top:6px; }
+.feature-pill.on{ background:rgba(201,169,110,0.1); }
+
+.metric-card{ text-align:center; padding:20px 12px; border:1px solid rgba(201,169,110,0.12); background:rgba(255,255,255,0.02); }
+.metric-icon{ color:var(--theme-accent); margin-bottom:8px; }
+.metric-value{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:22px; color:var(--theme-text); }
+.metric-label{ font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--theme-muted); margin-top:4px; }
+
+.price-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:24px 0; border-bottom:1px solid rgba(201,169,110,0.12); }
+.price-row:last-child{ border-bottom:0; }
+.price-amt{ font-family:'Cormorant Garamond',serif; font-weight:700; font-size:28px; color:var(--theme-accent); white-space:nowrap; }
+
+.faq-item{ border-bottom:1px solid rgba(201,169,110,0.12); }
+.faq-q{ padding:22px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:20px; color:var(--theme-text); }
+.faq-q::after{ content:'+'; color:var(--theme-accent); font-size:24px; font-weight:300; transition:transform .25s; }
+.faq-item.open .faq-q::after{ transform:rotate(45deg); }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.faq-item.open .faq-a{ max-height:400px; }
+.faq-a-inner{ padding:0 0 22px; color:var(--theme-muted); line-height:1.7; font-size:15px; }
+
+.input{ width:100%; background:transparent; border:0; border-bottom:1px solid rgba(201,169,110,0.25); padding:14px 0; color:var(--theme-text); font-size:14px; transition:border-color .2s; }
+.input:focus{ outline:none; border-bottom-color:var(--theme-accent); }
+.input::placeholder{ color:var(--theme-muted); text-transform:uppercase; letter-spacing:0.12em; font-size:11px; }
+
+.lang-pill{ font-size:11px; letter-spacing:0.14em; font-weight:700; padding:4px 8px; color:rgba(232,227,216,0.55); cursor:pointer; }
+.lang-pill.active{ color:var(--theme-accent); }
+
+.wa-float{ position:fixed; bottom:20px; right:20px; z-index:60; width:56px; height:56px; border-radius:9999px; background:#25D366; color:#fff; display:grid; place-items:center; box-shadow:0 8px 24px -6px rgba(37,211,102,0.55); transition:transform .25s; }
+.wa-float:hover{ transform:scale(1.08); }
+
+.kif-footer{ background:rgba(0,0,0,0.4); border-top:1px solid rgba(201,169,110,0.1); }
+
+.tag-chip{ display:inline-flex; align-items:center; padding:6px 12px; border:1px solid var(--theme-accent); color:var(--theme-accent); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; }
+</style>
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ============ NAV ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="font-display text-xl font-extrabold tracking-tight" style="color:var(--theme-accent);">{{NAME}}</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="nav-link" data-i="about">Hakkımızda</a>
+      <a href="#amenities" class="nav-link" data-i="amenities">Olanaklar</a>
+      <a href="#rooms" class="nav-link" data-i="rooms">Yatak Odaları</a>
+      <a href="#gallery" class="nav-link" data-i="gallery">Galeri</a>
+      <a href="#pricing" class="nav-link" data-i="pricing">Fiyat</a>
+      <a href="#reserve" class="nav-link" data-i="reserve">Rezervasyon</a>
+    </div>
+    <div class="flex items-center gap-1">
+      <span class="lang-pill active" data-lang="tr">TR</span>
+      <span class="lang-pill" data-lang="en">EN</span>
+      <span class="lang-pill" data-lang="de">DE</span>
+      <span class="lang-pill" data-lang="ru">RU</span>
+      <span class="lang-pill" data-lang="fr">FR</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="relative h-screen min-h-[640px] flex items-center justify-center text-center overflow-hidden">
+  <img src="{{HERO_IMAGE}}" alt="{{NAME}}" class="absolute inset-0 w-full h-full object-cover hero-img" onerror="this.style.background='var(--theme-bg-2)';this.style.display='none';">
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="relative z-10 px-6 max-w-3xl">
+    <div class="section-label justify-center mb-6">{{CATEGORY}} · {{LOCATION}}</div>
+    <h1 class="font-display text-6xl md:text-8xl font-extrabold mb-6" style="color:var(--theme-text); text-shadow:0 4px 32px rgba(0,0,0,0.55);">{{NAME}}</h1>
+    <p class="text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-8" style="color:rgba(232,227,216,0.88);" data-i="hero_sub">{{TAGLINE}}</p>
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      {{HERO_TAGS}}
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="#reserve" class="btn-primary" data-i="cta_reserve">Rezervasyon Talebi</a>
+      <a href="#amenities" class="btn-ghost" data-i="cta_amenities">Olanakları Gör</a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-xs tracking-[0.3em]" style="color:rgba(232,227,216,0.55);">SCROLL</div>
+</header>
+
+<!-- ============ HAKKIMIZDA ============ -->
+<section id="about" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="section-label mb-6" data-i="about_label">Hakkımızda</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title">{{ABOUT_TITLE}}</h2>
+      {{ABOUT_PARAS}}
+      <div class="grid grid-cols-3 gap-4 mt-10">
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{BEDROOMS}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_bedrooms">Yatak Odası</div>
+        </div>
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{CAPACITY_NUMBER}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_guests">Kişi</div>
+        </div>
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{BATHROOMS}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_baths">Banyo</div>
+        </div>
+      </div>
+    </div>
+    <div class="aspect-[4/5] overflow-hidden">
+      <img src="{{ABOUT_IMAGE}}" alt="{{NAME}} ambiyans" class="w-full h-full object-cover hero-img">
+    </div>
+  </div>
+</section>
+
+<!-- ============ OLANAKLAR ============ -->
+<section id="amenities" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="amenities_label">Olanaklar</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="amenities_title">Villada Sunulan Donanım</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="amenities_sub">Konfor için gereken her şey hazır — mutfaktan teknolojiye, açık havadan iç mekâna.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {{AMENITIES_GRID}}
+    </div>
+    <div class="mt-14 pt-10 border-t" style="border-color:rgba(201,169,110,0.12);">
+      <div class="section-label mb-6 justify-center text-center" data-i="included_label">Dahil Hizmetler</div>
+      <div class="flex flex-wrap justify-center gap-2">
+        {{INCLUDED_PILLS}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YATAK ODALARI ============ -->
+<section id="rooms" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="rooms_label">Yatak Odaları</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="rooms_title">4 Yatak Odası · 8 Kişi</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="rooms_sub">Her oda kendi banyosu, klimasi ve kişisel detaylarıyla bağımsız bir suit gibi tasarlandı.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {{ROOMS_GRID}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ HAVUZ & BAHCE ============ -->
+<section id="pool" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div class="aspect-square overflow-hidden">
+      <img src="{{POOL_IMAGE}}" alt="{{NAME}} havuz" class="w-full h-full object-cover hero-img">
+    </div>
+    <div>
+      <div class="section-label mb-6" data-i="pool_label">Havuz & Bahçe</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="pool_title">{{POOL_TITLE}}</h2>
+      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="pool_desc">{{POOL_DESC}}</p>
+      <div class="grid grid-cols-2 gap-4 mt-8">
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="pool_dim_label">Havuz Ölçüleri</div>
+          <div class="font-display text-2xl font-bold">{{POOL_DIMENSIONS}}</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="pool_view_label">Manzara</div>
+          <div class="font-display text-2xl font-bold" data-i="pool_view_val">Deniz / Doğa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERI ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="section-label justify-center mb-6" data-i="gallery_label">Galeri</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="gallery_title">Villadan Kareler</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      {{GALLERY_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ MESAFELER ============ -->
+<section id="distances" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="distances_label">Mesafeler</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="distances_title">Çevredeki Önemli Noktalar</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      {{DISTANCES_GRID}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIYAT & DEPOZITO ============ -->
+<section id="pricing" class="py-24 md:py-32 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="pricing_label">Fiyat & Depozito</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="pricing_title">Rezervasyon Koşulları</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="pricing_sub">Dönem fiyatları için concierge ekibimize yazın — 60 saniye içinde size özel teklif alın.</p>
+    </div>
+    <div class="border" style="border-color:rgba(201,169,110,0.18);">
+      <div class="price-row px-6">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_deposit_title">Depozito (İade Edilebilir)</div>
+          <div class="text-sm" style="color:var(--theme-muted);" data-i="price_deposit_desc">Konaklama sonunda hasarsız teslimde tam iade. USD / EUR / GBP karşılığı kabul edilir.</div>
+        </div>
+        <div class="price-amt">{{DEPOSIT_TL}} TL</div>
+      </div>
+      <div class="price-row px-6">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_short_title">Kısa Konaklama (7 Geceden Az)</div>
+          <div class="text-sm" style="color:var(--theme-muted);" data-i="price_short_desc">7 geceden kısa rezervasyonlarda uygulanan ek hizmet bedelidir.</div>
+        </div>
+        <div class="price-amt">+{{SHORT_STAY_TL}} TL</div>
+      </div>
+      <div class="price-row px-6">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_pet_title">Evcil Hayvan Ücreti</div>
+          <div class="text-sm" style="color:var(--theme-muted);" data-i="price_pet_desc">Maksimum 1 küçük veya orta ırk evcil hayvan kabul edilir.</div>
+        </div>
+        <div class="price-amt">{{PET_FEE_TL}} TL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIRIS-CIKIS & ULASIM ============ -->
+<section id="logistics" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+    <div>
+      <div class="section-label mb-6" data-i="logistics_label">Giriş & Çıkış</div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-8" data-i="logistics_title">Saat & Kurallar</h2>
+      <div class="space-y-6">
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="check_in_label">Check-in</div>
+          <div class="font-display text-3xl font-bold">{{CHECK_IN}}</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="check_out_label">Check-out</div>
+          <div class="font-display text-3xl font-bold">{{CHECK_OUT}}</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="checkin_note_label">Önemli Not</div>
+          <div class="text-base" style="color:var(--theme-muted);" data-i="checkin_note_val">Erken giriş / geç çıkış talepleri için lütfen rezervasyon sırasında bildirin.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label mb-6" data-i="transport_label">Ulaşım</div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-8" data-i="transport_title">Havalimanı ve Transfer</h2>
+      <div class="space-y-6">
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="transport_airport_label">En Yakın Havalimanı</div>
+          <div class="font-display text-2xl font-bold" data-i="transport_airport_val">Dalaman (DLM) — 125 km</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="transport_transit_label">Toplu Taşıma</div>
+          <div class="text-base" style="color:var(--theme-muted);" data-i="transport_transit_val">Mevcut değil. Concierge ekibimiz ücretli özel transfer organize edebilir.</div>
+        </div>
+        <div>
+          <a href="https://wa.me/{{WA_RAW}}?text={{TRANSFER_MSG}}" target="_blank" rel="noopener" class="btn-ghost" data-i="transport_cta">Transfer Talebi (WhatsApp)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SSS ============ -->
+<section id="faq" class="py-24 md:py-32 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="faq_label">Sıkça Sorulan Sorular</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="faq_title">Aklınızdakileri Yanıtladık</h2>
+    </div>
+    <div>
+      {{FAQ_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ REZERVASYON ============ -->
+<section id="reserve" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="section-label justify-center mb-6" data-i="reserve_label">Rezervasyon Talebi</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="reserve_title">Tatilinizi Planlayın</h2>
+    <p class="max-w-xl mx-auto mb-12 text-base" style="color:var(--theme-muted);" data-i="reserve_sub">Doğrudan WhatsApp ile hızlı rezervasyon yapın veya formu doldurun — concierge ekibimiz 60 saniye içinde size döner.</p>
+    <form class="grid md:grid-cols-2 gap-6 text-left" onsubmit="event.preventDefault();sendReservation();">
+      <input class="input md:col-span-2" type="text" name="name" placeholder="Adınız Soyadınız" required>
+      <input class="input" type="tel" name="phone" placeholder="Telefon" required>
+      <input class="input" type="text" name="people" placeholder="Kişi sayısı" required>
+      <input class="input" type="date" name="checkin" required>
+      <input class="input" type="date" name="checkout" required>
+      <textarea class="input md:col-span-2" name="note" placeholder="Not (transfer, evcil hayvan, özel istek)"></textarea>
+      <div class="md:col-span-2 flex flex-wrap justify-center gap-3 mt-4">
+        <button type="submit" class="btn-primary" data-i="cta_reserve_send">Talebi Gönder</button>
+        <a href="https://wa.me/{{WA_RAW}}?text={{HELLO_MSG}}" target="_blank" rel="noopener" class="btn-ghost">WhatsApp ile Yaz</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ ILETISIM ============ -->
+<section id="contact" class="py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+    <div>
+      <div class="section-label mb-6" data-i="contact_label">İletişim</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-10" data-i="contact_title">Bize Ulaşın</h2>
+
+      <div class="space-y-8">
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_addr">Konum</div>
+          <div class="text-base">{{LOCATION}}, Kalkan / Antalya</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_phone">Concierge Telefon</div>
+          <a href="tel:{{PHONE_RAW}}" class="text-base hover:underline">{{PHONE}}</a>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_concierge">Concierge</div>
+          <div class="text-base">Kalkan Info · 7/24 yardım</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_social">Sosyal Medya</div>
+          <div class="flex gap-4 mt-2">
+            {{SOCIAL_LINKS}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="aspect-square md:aspect-auto md:h-full min-h-[400px]">
+      <iframe src="https://www.google.com/maps?q={{MAPS_QUERY}}&output=embed" class="w-full h-full" style="border:0;filter:grayscale(0.4) contrast(1.05);" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="kif-footer py-14 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+    <div style="color:var(--theme-muted);">© 2026 {{NAME}} · Tüm hakları saklıdır.</div>
+    <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="flex items-center gap-2 hover:opacity-80 transition" style="color:var(--theme-muted);">
+      <span style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;">Powered by</span>
+      <span class="font-display font-extrabold text-lg" style="color:var(--theme-accent);">◆ KALKAN INFO</span>
+    </a>
+  </div>
+</footer>
+
+<a href="https://wa.me/{{WA_RAW}}?text={{HELLO_MSG}}" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+</a>
+
+<script src="/js/gtm-events.js" defer></script>
+
+<script>
+// Basit i18n - 5 dil
+const I18N = {{I18N_JSON}};
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const key = el.dataset.i;
+    if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
+  });
+  document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active', p.dataset.lang===lang));
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click', ()=>setLang(p.dataset.lang)));
+try { const saved = localStorage.getItem('lang'); if (saved) setLang(saved); } catch(e){}
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// Rezervasyon -> WhatsApp deeplink
+function sendReservation(){
+  const f = document.querySelector('#reserve form');
+  const fd = new FormData(f);
+  const msg = encodeURIComponent(
+    'Merhaba {{NAME}}, rezervasyon talebim:\n'+
+    'Ad Soyad: ' + (fd.get('name')||'') + '\n'+
+    'Telefon: ' + (fd.get('phone')||'') + '\n'+
+    'Kisi sayisi: ' + (fd.get('people')||'') + '\n'+
+    'Giris: ' + (fd.get('checkin')||'') + '\n'+
+    'Cikis: ' + (fd.get('checkout')||'') + '\n'+
+    (fd.get('note') ? 'Not: ' + fd.get('note') : '')
+  );
+  window.open('https://wa.me/{{WA_RAW}}?text=' + msg, '_blank');
+}
+
+// Hero scroll fade nav background
+window.addEventListener('scroll', ()=>{
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? 'rgba(10,24,40,0.92)' : 'rgba(10,24,40,0.65)';
+});
+</script>
+
+</body>
+</html>
