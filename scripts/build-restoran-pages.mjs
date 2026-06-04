@@ -19,20 +19,20 @@ const args = process.argv.slice(2);
 const data = JSON.parse(await readFile(join(root, 'data', 'restoranlar.json'), 'utf8'));
 const template = await readFile(join(root, 'restoran', '_template', 'index.html'), 'utf8');
 const targets = args.length ? args : (data.items || []).map(it => it.id);
-
-// Tum restoranlarin galeri ve hero gorsellerinden pool
-const allRealImages = new Set();
-for (const it of (data.items || [])) {
-  if (it.image) allRealImages.add(it.image);
-  for (const g of (it.gallery || [])) if (g) allRealImages.add(g);
-}
-// Sadece assets/img'de gercekten mevcut olanlari tut
 const { existsSync } = await import('node:fs');
-const POOL = Array.from(allRealImages).filter(src => {
-  if (!src.startsWith('/assets/img/')) return false;
-  return existsSync(join(root, src.replace(/^\//, '')));
-});
-console.log(`Pool: ${POOL.length} gercek webp/jpg gorsel.`);
+
+// Pool fallback KALDIRILDI. Her restoran SADECE kendi fotograflarini gosterir.
+// Galeri kaynagi: (1) restoranlar.json'daki gercek gallery + image, sonra
+// (2) fetch-restoran-photos.mjs ile indirilen /assets/img/restoran/<slug>-{hero,1..8}.jpg.
+// 8'e ulasilamazsa kart sayisi azalir; havuzdan baska restoranin fotosu KULLANILMAZ.
+
+// Kanonik hero kullanan restoranlar — bunlarin hero gorseline dokunma.
+// Fetch indirir ama mevcut "kanonik" hero korunur.
+const REAL_HEROES = new Set(
+  Array.isArray(data?._meta?.realHeroes)
+    ? data._meta.realHeroes
+    : ['aubergine', 'korsan-kalamar', 'harbor-lights', 'ziizi-pizza']
+);
 
 // Kategoriye gore tema secimi
 function theme(category){
@@ -254,30 +254,54 @@ for (const slug of targets) {
   const c = CUSTOM[slug] || {};
   const t = theme(r.category);
 
-  // Galeri: gerçek galeri + havuzdan deterministik fallback (8 toplam)
-  const baseImg = r.image;
-  const realGallery = (r.gallery || []).filter(Boolean);
-  const used = new Set(realGallery);
-  const need = Math.max(0, 8 - realGallery.length);
-  // Slug'a göre deterministik seçim
-  const seed = r.id.split('').reduce((a,c)=>a*31+c.charCodeAt(0),7) & 0x7fffffff;
-  const candidates = POOL.filter(p => !used.has(p));
-  const picks = [];
-  for (let i = 0; i < need && candidates.length; i++) {
-    const idx = (seed + i * 37) % candidates.length;
-    picks.push(candidates.splice(idx, 1)[0]);
+  // Galeri: SADECE bu restoranin kendi fotograflari.
+  // Sirayla: (a) fetch-restoran-photos.mjs indirdigi /assets/img/restoran/<slug>-{1..8}.jpg,
+  // (b) restoranlar.json'daki gercek gallery,
+  // (c) yetersizse Instagram link karti, (d) hala yetersizse kart sayisi azalir.
+  const fetchedGallery = [];
+  for (let i = 1; i <= 8; i++) {
+    const rel = `/assets/img/restoran/${r.id}-${i}.jpg`;
+    if (existsSync(join(root, rel.replace(/^\//, '')))) fetchedGallery.push(rel);
   }
-  const gallerySources = [...realGallery, ...picks].slice(0, 8);
-  const galleryItems = gallerySources.map((src, i) => {
-    const isLocal = src.startsWith('/');
-    const fullSrc = isLocal ? src : src;
-    return `
-    <a href="${esc(fullSrc)}" target="_blank" class="gallery-item aspect-square block">
-      <img src="${esc(fullSrc)}" alt="${esc(r.name)} ${i+1}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>`;
-  }).join('');
-  // About image: gallery'nin 2. görseli yoksa hero görseli
-  const aboutImage = realGallery[1] || realGallery[0] || baseImg;
+  const jsonGallery = (r.gallery || []).filter(Boolean)
+    .filter(g => g.startsWith('/') ? existsSync(join(root, g.replace(/^\//, ''))) : true);
+
+  // Sirala: fetch'ten gelen restorana ozel + json'daki gercek galeri (dedup).
+  const seenG = new Set();
+  const ownGallery = [];
+  for (const src of [...fetchedGallery, ...jsonGallery]) {
+    if (!seenG.has(src)) { seenG.add(src); ownGallery.push(src); }
+    if (ownGallery.length >= 8) break;
+  }
+
+  // Fetch indirdigi hero (kanonik degilse hero olarak kullan)
+  const fetchedHeroRel = `/assets/img/restoran/${r.id}-hero.jpg`;
+  const fetchedHeroExists = existsSync(join(root, fetchedHeroRel.replace(/^\//, '')));
+  const baseImg = (!REAL_HEROES.has(r.id) && fetchedHeroExists) ? fetchedHeroRel : (r.image || (fetchedHeroExists ? fetchedHeroRel : ''));
+
+  const galleryCards = ownGallery.map((src, i) => `
+    <a href="${esc(src)}" target="_blank" class="gallery-item aspect-square block">
+      <img src="${esc(src)}" alt="${esc(r.name)} ${i+1}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
+    </a>`);
+
+  // Instagram fallback: galeri yetersizse SON kart olarak "Instagram'da daha fazla" linki
+  // (sadece galeri 0 veya az ise; >=6 ise gerek yok)
+  if (ownGallery.length < 6 && r.instagram) {
+    const igHandle = (r.instagram.match(/instagram\.com\/([^\/?#]+)/) || [])[1] || 'instagram';
+    galleryCards.push(`
+    <a href="${esc(r.instagram)}" target="_blank" rel="noopener" class="gallery-item aspect-square block grid place-items-center text-center p-4" style="background:var(--theme-bg-2);border:1px solid var(--theme-accent);">
+      <div>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--theme-accent);display:block;margin:0 auto 12px;"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <div class="text-xs tracking-[0.2em] uppercase font-bold mb-1" style="color:var(--theme-accent);">Instagram</div>
+        <div class="text-sm font-bold" style="color:var(--theme-text);">@${esc(igHandle)}</div>
+        <div class="text-xs mt-1" style="color:var(--theme-muted);">Daha fazla foto</div>
+      </div>
+    </a>`);
+  }
+
+  const galleryItems = galleryCards.join('');
+  // About image: galeride 2. gorsel varsa onu, yoksa ilk gorsel, son care hero
+  const aboutImage = ownGallery[1] || ownGallery[0] || baseImg;
 
   // Menü kategorileri
   const menu = c.menu || { 'Menü': ['Tam menü için yandaki PDF butonuna tıklayın.'] };
