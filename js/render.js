@@ -221,8 +221,14 @@ const KalkanData = (() => {
           <div class="text-xs text-ink-700/60 mt-1">${escape(location)} · ${escape(capacity)}</div>
           <p class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(summary)}</p>
           <div class="flex flex-wrap gap-1 mt-3">${tags}</div>
-          <div class="mt-4 pt-3 border-t border-ink-700/8">
-            <a href="https://wa.me/905306650794?text=${encodeURIComponent('Merhaba, ' + (name||'villa') + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white text-sm font-bold px-4 py-2.5 rounded-lg hover:bg-[#1da851] transition">
+          <div class="mt-4 pt-3 border-t border-ink-700/8 space-y-2">
+            ${['villa-poyraz','villa-ship-ahoy','villa-seascape'].includes(v.id) ? `
+            <a href="/villa/${escape(v.id)}/" onclick="event.stopPropagation();" class="flex items-center justify-center gap-2 w-full bg-ink-900 text-white text-sm font-bold px-4 py-2.5 rounded-lg hover:bg-ink-700 transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span data-en="View Detail Page" data-de="Detailseite ansehen" data-ru="Подробнее" data-fr="Voir la page détaillée">Detay Sayfası</span>
+            </a>
+            ` : ''}
+            <a href="https://wa.me/905306650794?text=${encodeURIComponent('Merhaba, ' + (name||'villa') + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white text-sm font-bold px-4 py-2.5 rounded-lg hover:bg-[#1da851] transition">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
               <span>${escape(uiLabel('concierge'))}</span>
             </a>
@@ -407,6 +413,59 @@ const KalkanData = (() => {
     `;
   }
 
+  // Otel card — kalkaninfo.com/otel/<slug>/ adresine link verir, WhatsApp concierge CTA
+  function otelCard(h) {
+    const name = t(h, 'name');
+    const summary = t(h, 'summary');
+    const category = t(h, 'category');
+    const location = t(h, 'location');
+    const starRating = h.starRating;
+    const nameAttrs = (() => {
+      const dict = h.nameI18n;
+      if (!dict) return '';
+      return ['en','de','ru','fr'].filter(l => dict[l]).map(l => `data-${l}="${escape(dict[l])}"`).join(' ');
+    })();
+    const summaryAttrs = (() => {
+      const dict = h.summaryI18n;
+      if (!dict) return '';
+      return ['en','de','ru','fr'].filter(l => dict[l]).map(l => `data-${l}="${escape(dict[l])}"`).join(' ');
+    })();
+    const starsBadge = starRating
+      ? `<span class="bg-white/95 text-ink-900 text-xs font-bold px-2 py-1 rounded-full">${'★'.repeat(starRating)}</span>`
+      : '';
+    const msg = encodeURIComponent(`Merhaba Kalkan Info, ${name||'otel'} için rezervasyon bilgisi istiyorum.`);
+    return `
+      <article class="card" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);">
+        <a href="otel/${escape(h.id)}/" class="block" style="text-decoration:none;color:inherit;">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            ${safeImage(h.image, name)}
+            ${h.featured ? featuredBadge() : ''}
+            <div class="absolute top-3 left-3"><span class="bg-ink-900/85 text-white text-[10px] font-bold px-2 py-1 rounded-full">${escape(category)}</span></div>
+            <div class="absolute bottom-3 right-3 flex items-center gap-2">
+              ${starsBadge}
+              ${h.priceRange ? `<span class="bg-white/95 text-ink-900 text-xs font-bold px-2 py-1 rounded-full">${escape(h.priceRange)}</span>` : ''}
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 ${nameAttrs} class="font-display font-extrabold text-ink-900 text-lg leading-tight">${escape(name)}</h3>
+            <div class="text-xs text-ink-700/60 mt-1">${escape(location)}</div>
+            <p ${summaryAttrs} class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(summary)}</p>
+          </div>
+        </a>
+        <div class="px-4 pb-4 pt-1 flex items-center justify-between gap-2 border-t border-ink-700/8 mt-1">
+          <a href="otel/${escape(h.id)}/" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1.5 rounded-md transition" style="background:#f1f3f4;color:#1a73e8;" onmouseover="this.style.background='#e8eaed';" onmouseout="this.style.background='#f1f3f4';">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span data-en="Detail Page" data-de="Detailseite" data-ru="Подробнее" data-fr="Page détaillée">Detay Sayfası</span>
+          </a>
+          <a href="https://wa.me/905306650794?text=${msg}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 bg-[#25D366]/10 text-[#1da851] text-[11px] font-bold px-2.5 py-1.5 rounded-md border border-[#25D366]/25 hover:bg-[#25D366] hover:text-white transition">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+            ${escape(uiLabel('concierge'))}
+          </a>
+        </div>
+      </article>
+    `;
+  }
+
   // ============== Filter helpers ==============
   function filterItems(items, { category, q, featured } = {}) {
     let out = [...(items||[])];
@@ -421,7 +480,7 @@ const KalkanData = (() => {
 
   return {
     load, loadAll,
-    plajCard, villaCard, turCard, restoranCard, haberCard, hizmetCard,
+    plajCard, villaCard, turCard, restoranCard, otelCard, haberCard, hizmetCard,
     filterItems, escape, safeImage, ratingStars, tagPill,
     // i18n helpers (so pages can rerender on lang change)
     getLang, t, tArray
