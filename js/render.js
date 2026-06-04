@@ -150,9 +150,13 @@ const KalkanData = (() => {
       ? `${p.lat},${p.lng}`
       : encodeURIComponent(`${name||''} Kalkan Antalya`);
     const mapsHref = `https://www.google.com/maps/dir/?api=1&destination=${dest}`;
+    const detailHref = p.id ? `/plaj/${p.id}/` : null;
+    const lng = getLang();
+    const detailLabel = lng === 'en' ? 'Details' : lng === 'de' ? 'Details' : lng === 'ru' ? 'Подробнее' : lng === 'fr' ? 'Détails' : 'Detay';
     return `
       <article class="card group" style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);transition:transform 200ms ease, box-shadow 200ms ease;">
         <div class="relative aspect-[16/10] overflow-hidden">
+          ${detailHref ? `<a href="${detailHref}" aria-label="${escape(name||'')} ${escape(detailLabel)}" class="absolute inset-0 z-[1]"></a>` : ''}
           ${safeImage(p.image, name)}
           ${p.featured ? featuredBadge() : ''}
           <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-ink-900/90 to-transparent">
@@ -163,12 +167,16 @@ const KalkanData = (() => {
           </div>
         </div>
         <div class="p-4">
-          <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${escape(name)}</h3>
+          <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${detailHref ? `<a href="${detailHref}" class="hover:text-sea-700 transition-colors">${escape(name)}</a>` : escape(name)}</h3>
           <div class="text-xs text-ink-700/60 mt-1">${escape(distance)}${drive?` · ${escape(drive)}`:''}</div>
           <p class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(summary)}</p>
-          <div class="flex items-end justify-between gap-2 mt-3">
-            <div class="flex flex-wrap gap-1">${tags}</div>
-            <a href="${mapsHref}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="flex-shrink-0 inline-flex items-center gap-1.5 bg-sea-50 hover:bg-sea-100 text-sea-800 text-[11px] font-bold px-2.5 py-1.5 rounded-md transition" title="${escape(uiLabel('yolTarifiTitle'))}" aria-label="${escape(name||'')} ${escape(uiLabel('yolTarifi'))}">
+          <div class="flex flex-wrap gap-1 mt-3">${tags}</div>
+          <div class="flex items-center gap-2 mt-3">
+            ${detailHref ? `<a href="${detailHref}" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-[11px] font-bold px-3 py-2 rounded-md transition" aria-label="${escape(name||'')} ${escape(detailLabel)}">
+              ${escape(detailLabel)}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>` : ''}
+            <a href="${mapsHref}" target="_blank" rel="noopener" onclick="event.stopPropagation();" class="flex-shrink-0 inline-flex items-center gap-1.5 bg-sea-50 hover:bg-sea-100 text-sea-800 text-[11px] font-bold px-2.5 py-2 rounded-md transition" title="${escape(uiLabel('yolTarifiTitle'))}" aria-label="${escape(name||'')} ${escape(uiLabel('yolTarifi'))}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               ${escape(uiLabel('yolTarifi'))}
             </a>
