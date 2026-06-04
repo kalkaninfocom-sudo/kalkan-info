@@ -159,6 +159,13 @@ const CUSTOM = {
     aboutP1: 'Kalkan Dream Hotel, modern butik konsepti benimsemiş bir konaklama adresi. Havuz, deniz manzaralı teras restoran ve düzenli plaj transferi ile rahat bir kıyı tatili sunuyor.',
     aboutP2: 'Şehir merkezine yakın ama sakin bir bölgede — modern dokular, ferah balkonlar, profesyonel servis. Çiftler ve aileler için ideal.',
     highlights: ['Modern Konsept','Plaj Transferi','Havuzlu Teras']
+  },
+  'kalkan-turk-evi-otel': {
+    tagline: 'Tarihi Taş Ev Konaklama — Eski Kalkan\'ın Kalbinde.',
+    aboutTitle: 'Geleneksel Türk Evi Sıcaklığı.',
+    aboutP1: 'Kalkan Türk Evi Otel, Eski Kalkan\'ın kıvrımlı taş sokaklarında, geleneksel Türk evi mimarisini koruyarak hizmet veren samimi bir butik pansiyondur. Taş duvarlar, ahşap detaylar ve sıcak Akdeniz dokusu birleşiyor.',
+    aboutP2: 'Sabah bahçede ev yapımı kahvaltı, akşam çatı terasında günbatımı — Kalkan\'ın otantik dokusunu en samimi biçimde yaşayın. Aile işletmesi sıcaklığı her detayda hissediliyor.',
+    highlights: ['Tarihi Taş Ev','Eski Kalkan','Aile İşletmesi']
   }
 };
 

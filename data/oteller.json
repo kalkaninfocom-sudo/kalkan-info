@@ -1,7 +1,7 @@
 {
   "_meta": {
     "title": "Oteller",
-    "subtitle": "Kalkan ve Kaş bölgesindeki en iyi 15 otel — boutique'ten lükse",
+    "subtitle": "Kalkan ve Kaş bölgesindeki en iyi 16 otel — boutique'ten lükse",
     "updated": "2026-06-04",
     "titleI18n": {
       "tr": "Oteller",
@@ -11,11 +11,11 @@
       "fr": "Hôtels"
     },
     "subtitleI18n": {
-      "tr": "Kalkan ve Kaş bölgesindeki en iyi 15 otel — boutique'ten lükse",
-      "en": "The best 15 hotels in Kalkan and Kaş — from boutique to luxury",
-      "de": "Die besten 15 Hotels in Kalkan und Kaş — von Boutique bis Luxus",
-      "ru": "Лучшие 15 отелей в Калкане и Каше — от бутик до люкс",
-      "fr": "Les 15 meilleurs hôtels de Kalkan et Kaş — du boutique au luxe"
+      "tr": "Kalkan ve Kaş bölgesindeki en iyi 16 otel — boutique'ten lükse",
+      "en": "The best 16 hotels in Kalkan and Kaş — from boutique to luxury",
+      "de": "Die besten 16 Hotels in Kalkan und Kaş — von Boutique bis Luxus",
+      "ru": "Лучшие 16 отелей в Калкане и Каше — от бутик до люкс",
+      "fr": "Les 16 meilleurs hôtels de Kalkan et Kaş — du boutique au luxe"
     },
     "ratingPolicy": "Puanlar yalnizca dogrulanmis kaynaktan (orn. Google Places) gelir; aksi durumda gosterilmez."
   },
@@ -1101,6 +1101,78 @@
         "de": "Modernes Boutique-Hotel in Kalkan — Pool, Terrassenrestaurant mit Meerblick, friedliche Atmosphäre.",
         "ru": "Современный бутик-отель в Калкане — бассейн, ресторан-терраса с видом на море, тихая атмосфера.",
         "fr": "Hôtel boutique moderne à Kalkan — piscine, restaurant terrasse vue mer, atmosphère paisible."
+      }
+    },
+    {
+      "id": "kalkan-turk-evi-otel",
+      "name": "Kalkan Türk Evi Otel",
+      "category": "Butik Pansiyon",
+      "starRating": 3,
+      "priceRange": "$$",
+      "rating": 5,
+      "reviewCount": 4,
+      "location": "Kalkan, Şehitler Cd. No:48, 07960 Kaş/Antalya",
+      "phone": "+90 242 844 31 29",
+      "website": "https://kalkanturkevi.com/",
+      "instagram": null,
+      "image": "/assets/img/oteller/kalkan-turk-evi-otel-hero.jpg",
+      "gallery": [
+        "/assets/img/oteller/kalkan-turk-evi-otel-1.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-2.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-3.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-4.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-5.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-6.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-7.jpg",
+        "/assets/img/oteller/kalkan-turk-evi-otel-8.jpg"
+      ],
+      "summary": "Eski Kalkan'ın taş sokaklarında tarihi Türk evi konaklama — geleneksel mimari, sıcak Akdeniz dokusu, samimi misafirperverlik.",
+      "amenities": [
+        "Tarihi taş ev",
+        "Teras",
+        "Kahvaltı dahil",
+        "WiFi",
+        "Klima",
+        "Aile dostu",
+        "Bahçe",
+        "Eski Kalkan konum"
+      ],
+      "roomTypes": [
+        {
+          "name": "Standart Oda",
+          "sleeps": 2,
+          "description": "Geleneksel Türk evi dokulu çift kişilik oda — taş duvar, ahşap detay."
+        },
+        {
+          "name": "Deniz Manzaralı Oda",
+          "sleeps": 2,
+          "description": "Eski Kalkan çatıları ve Akdeniz manzaralı oda."
+        },
+        {
+          "name": "Aile Odası",
+          "sleeps": 4,
+          "description": "Geniş aile odası — iki yatak alanı, ferah pencereler."
+        }
+      ],
+      "rating_source": "Google",
+      "featured": false,
+      "geo": {
+        "lat": 36.264675,
+        "lng": 29.4161468
+      },
+      "nameI18n": {
+        "tr": "Kalkan Türk Evi Otel",
+        "en": "Kalkan Türk Evi Hotel",
+        "de": "Kalkan Türk Evi Hotel",
+        "ru": "Калкан Тюрк Эви Отель",
+        "fr": "Kalkan Türk Evi Hôtel"
+      },
+      "summaryI18n": {
+        "tr": "Eski Kalkan'ın taş sokaklarında tarihi Türk evi konaklama — geleneksel mimari, sıcak Akdeniz dokusu, samimi misafirperverlik.",
+        "en": "Historic Turkish house stay on the stone alleys of old Kalkan — traditional architecture, warm Mediterranean texture, sincere hospitality.",
+        "de": "Historisches türkisches Hausgefühl in den Steingassen des alten Kalkan — traditionelle Architektur, warme mediterrane Textur, herzliche Gastfreundschaft.",
+        "ru": "Историческая турецкая дом-резиденция на каменных улочках старого Калкана — традиционная архитектура, тёплая средиземноморская фактура, искренний приём.",
+        "fr": "Maison turque historique dans les ruelles pavées du vieux Kalkan — architecture traditionnelle, texture méditerranéenne chaleureuse, accueil sincère."
       }
     }
   ]
