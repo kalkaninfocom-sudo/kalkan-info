@@ -26,7 +26,15 @@
     );
   }
 
-  function waUrl(name, serviceTitle) {
+  function waUrl(provider, serviceTitle) {
+    const name = (provider && provider.name) || '';
+    const raw = provider && provider.whatsappRaw;
+    if (raw) {
+      const direct = encodeURIComponent(
+        `Merhaba ${name}, Kalkan Info üzerinden "${serviceTitle}" hizmeti hakkında bilgi almak istiyorum.`
+      );
+      return `https://wa.me/${String(raw).replace(/[^0-9]/g, '')}?text=${direct}`;
+    }
     const msg = encodeURIComponent(
       `Merhaba! Kalkan Info üzerinden "${serviceTitle}" hizmeti için "${name}" sağlayıcısı hakkında bilgi almak istiyorum.`
     );
@@ -228,7 +236,7 @@
       ">${esc(s)}</span>`
     ).join('');
 
-    const waLink = waUrl(p.name, serviceTitle);
+    const waLink = waUrl(p, serviceTitle);
 
     return `
       <article style="

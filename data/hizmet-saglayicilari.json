@@ -65,6 +65,82 @@
           "location": "Kalkan",
           "verified": true,
           "featured": true
+        },
+        {
+          "id": "havuz-abdil-yesil",
+          "name": "Abdil Yeşil",
+          "type": "Yerel Usta",
+          "rating": 5,
+          "reviewCount": 0,
+          "summary": "Kalkan'da havuz bakımı, villa temizliği ve bahçe bakımı yapan yerel usta. Doğrudan iletişim, şeffaf fiyat.",
+          "specialties": [
+            "Havuz bakım",
+            "Villa temizlik",
+            "Bahçe bakım"
+          ],
+          "phone": "+90 535 494 14 85",
+          "phoneRaw": "905354941485",
+          "whatsapp": "+90 535 494 14 85",
+          "whatsappRaw": "905354941485",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": false
+        }
+      ]
+    },
+    "temizlik": {
+      "title": "Temizlik Hizmetleri",
+      "icon": "🧹",
+      "providers": [
+        {
+          "id": "temizlik-abdil-yesil",
+          "name": "Abdil Yeşil",
+          "type": "Yerel Usta",
+          "rating": 5,
+          "reviewCount": 0,
+          "summary": "Kalkan'da villa, ev ve ofis temizliği. Aynı zamanda havuz bakımı ve bahçe bakımı yapar.",
+          "specialties": [
+            "Villa temizlik",
+            "Çıkış temizliği",
+            "Haftalık temizlik",
+            "Havuz bakım",
+            "Bahçe bakım"
+          ],
+          "phone": "+90 535 494 14 85",
+          "phoneRaw": "905354941485",
+          "whatsapp": "+90 535 494 14 85",
+          "whatsappRaw": "905354941485",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": true
+        }
+      ]
+    },
+    "bahce": {
+      "title": "Bahçe Hizmetleri",
+      "icon": "🌿",
+      "providers": [
+        {
+          "id": "bahce-abdil-yesil",
+          "name": "Abdil Yeşil",
+          "type": "Yerel Usta",
+          "rating": 5,
+          "reviewCount": 0,
+          "summary": "Kalkan'da bahçe bakımı — sulama, ot biçme, peyzaj bakımı. Havuz ve villa temizliği de yapar.",
+          "specialties": [
+            "Bahçe bakım",
+            "Ot biçme",
+            "Sulama",
+            "Havuz bakım",
+            "Villa temizlik"
+          ],
+          "phone": "+90 535 494 14 85",
+          "phoneRaw": "905354941485",
+          "whatsapp": "+90 535 494 14 85",
+          "whatsappRaw": "905354941485",
+          "location": "Kalkan",
+          "verified": true,
+          "featured": true
         }
       ]
     },
