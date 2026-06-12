@@ -233,22 +233,119 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============ MENÜ ============ -->
 <section id="menu" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
-  <div class="max-w-6xl mx-auto text-center">
-    <div class="section-label justify-center mb-6" data-i="menu_label">Menü</div>
-    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="menu_title">Menümüz</h2>
-    <p class="max-w-2xl mx-auto mb-12 text-base" style="color:var(--theme-muted);" data-i="menu_sub"></p>
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="section-label justify-center mb-6" data-i="menu_label">Menü</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="menu_title">Menümüz</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="menu_sub">Günlük taze balık, geleneksel meze, kıyı ızgara mutfağı. Menü mevsime göre değişir.</p>
+    </div>
+
     <div class="flex flex-wrap justify-center gap-3 mb-12">
-      <div class="menu-tab active" data-cat="all">Tümü</div><div class="menu-tab" data-cat="menü">Menü</div>
+      <div class="menu-tab active" data-cat="all">Tümü</div>
+      <div class="menu-tab" data-cat="meze">Mezeler</div>
+      <div class="menu-tab" data-cat="izgara">Izgara &amp; Balık</div>
+      <div class="menu-tab" data-cat="icki">İçkiler</div>
+      <div class="menu-tab" data-cat="tatli">Tatlı</div>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-5xl mx-auto">
-      
-    <div class="menu-section p-6 border-l-2" data-cat="menü" style="border-color:var(--theme-accent);">
-      <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Menü</div>
-      <div class="font-display text-lg font-bold">Tam menü için yandaki PDF butonuna tıklayın.</div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-6xl mx-auto">
+
+      <!-- MEZELER -->
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
+        <div class="font-display text-xl font-bold mb-2">Beyaz Peynir &amp; Roka</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Ezine beyaz peyniri, taze roka, zeytinyağı.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
+        <div class="font-display text-xl font-bold mb-2">Acuka</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Cevizli, baharatlı kıyı mezesi · rakı eşliğinde klasik.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Deniz Mezesi</div>
+        <div class="font-display text-xl font-bold mb-2">Çiroz · Limon · Soğan</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Güneşte kurutulmuş uskumru, taze limon, kırmızı soğan.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
+        <div class="font-display text-xl font-bold mb-2">Humus</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Nohut, tahin, sızma zeytinyağı, kırmızı biber.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">El Yapımı</div>
+        <div class="font-display text-xl font-bold mb-2">Yaprak Sarma</div>
+        <div class="text-sm" style="color:var(--theme-muted);">El sarması asma yaprağı, baharat, pirinç.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Mevsim</div>
+        <div class="font-display text-xl font-bold mb-2">Mevsim Yeşillikleri</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Taze yeşillik tabağı · limon · zeytinyağı.</div>
+      </div>
+
+      <!-- IZGARA & BALIK -->
+      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
+        <div class="flex items-center gap-2 mb-2">
+          <div class="text-[10px] tracking-[0.2em] uppercase font-bold" style="color:#C68B5E;">İmza · Izgara</div>
+          <span class="text-[9px] tracking-wider uppercase font-bold px-1.5 py-0.5 rounded" style="background:#C68B5E;color:var(--theme-bg);">İMZA</span>
+        </div>
+        <div class="font-display text-xl font-bold mb-2">Karides Izgara</div>
+        <div class="text-sm" style="color:var(--theme-muted);">İri tiger karides, limon, zeytinyağı ve mevsim yeşilliği. Az pişmiş, çıtır kabuk.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Günün Balığı</div>
+        <div class="font-display text-xl font-bold mb-2">Izgara Levrek</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Bütün ızgarada, taze limon, közlenmiş sebze.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Izgara</div>
+        <div class="font-display text-xl font-bold mb-2">Izgara Ahtapot</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Yumuşak ahtapot, közlenmiş patates, biberiye.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Et · Sıcak Demir</div>
+        <div class="font-display text-xl font-bold mb-2">Kuzu Pirzola</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Dökme demirde, biberiye + tuzlu yağ, közlenmiş patlıcan.</div>
+      </div>
+
+      <!-- İÇKİLER -->
+      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Klasik</div>
+        <div class="font-display text-xl font-bold mb-2">Rakı</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Tekirdağ, Yeni Rakı seçenekleri · kadeh / şişe.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Şarap</div>
+        <div class="font-display text-xl font-bold mb-2">Beyaz · Roze · Kırmızı</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Yerli ve seçili yabancı şarap listesi · mevsim önerileri.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Craft Kokteyl</div>
+        <div class="font-display text-xl font-bold mb-2">Sunset Kokteyller</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Gin tonik, mojito, aperol, mevsim limited edition.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk &amp; Sıcak</div>
+        <div class="font-display text-xl font-bold mb-2">Bira · Türk Kahvesi · Çay</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Efes, Bomonti · Türk kahvesi · taze demleme çay.</div>
+      </div>
+
+      <!-- TATLI -->
+      <div class="menu-section p-6 border-l-2" data-cat="tatli" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Klasik Tatlı</div>
+        <div class="font-display text-xl font-bold mb-2">Künefe</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Sıcak künefe · Antep fıstığı · kaymak.</div>
+      </div>
+      <div class="menu-section p-6 border-l-2" data-cat="tatli" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Hafif</div>
+        <div class="font-display text-xl font-bold mb-2">Mevsim Meyvesi</div>
+        <div class="text-sm" style="color:var(--theme-muted);">Taze, seçili mevsim meyveleri tabağı.</div>
+      </div>
+
     </div>
-    </div>
-    <div class="mt-12">
-      <a href="https://wa.me/905352727640?text=Merhaba%2C%20tam%20men%C3%BCy%C3%BC%20g%C3%B6rmek%20istiyorum." target="_blank" rel="noopener" class="btn-ghost" data-i="menu_pdf">Tam Menüyü İndir (PDF)</a>
+
+    <div class="mt-12 text-center">
+      <p class="text-xs tracking-[0.18em] uppercase" style="color:var(--theme-muted);">Tam menü &amp; fiyat bilgisi için</p>
+      <a href="https://wa.me/905352727640?text=Merhaba%2C%20Kaptan%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-ghost mt-3">WhatsApp ile İletişim</a>
     </div>
   </div>
 </section>
