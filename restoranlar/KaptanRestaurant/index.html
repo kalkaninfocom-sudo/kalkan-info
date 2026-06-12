@@ -28,17 +28,17 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 <!-- End Meta Pixel Code -->
 
 <!-- SEO -->
-<meta name="description" content="Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları.">
-<meta name="keywords" content="Kaptan Restaurant, Kalkan Deniz Ürünleri, Balık / Meze / Izgara, Kalkan restoran, kalkaninfo">
+<meta name="description" content="Kalkan limanında balık, meze ve ızgara · pergola altı vichy örtüler · dalgakıran feneri ve karşıdaki ada manzarası · mavi saat · rakı sofrası. Her gün 12:00–24:00.">
+<meta name="keywords" content="Kaptan Restaurant, Kalkan balık restoran, Kalkan meyhane, Kalkan rakı balık, Kalkan harbor restaurant, Kalkan sunset restaurant, Kaş Antalya, kalkaninfo">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://kalkaninfo.com/restoranlar/KaptanRestaurant/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="restaurant">
-<meta property="og:title" content="Kaptan Restaurant — Kalkan">
-<meta property="og:description" content="Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları.">
+<meta property="og:title" content="Kaptan Restaurant — Kalkan Limanı'nda Bir Sofra">
+<meta property="og:description" content="Kalkan kıyı şeridinde balık + meze + ızgara · pergola altı mavi saat · dalgakıran feneri.">
 <meta property="og:url" content="https://kalkaninfo.com/restoranlar/KaptanRestaurant/">
-<meta property="og:image" content="https://kalkaninfo.com/assets/og/restoran/kaptan-restaurant.jpg?v=2026-06-02">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og/restoran/kaptan-restaurant.jpg?v=2026-06-12">
 <meta property="og:site_name" content="Kalkan Info">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:locale:alternate" content="en_US">
@@ -47,15 +47,15 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 <meta property="og:locale:alternate" content="fr_FR">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kaptan Restaurant — Kalkan">
-<meta name="twitter:description" content="Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları.">
-<meta name="twitter:image" content="https://kalkaninfo.com/assets/og/restoran/kaptan-restaurant.jpg?v=2026-06-02">
+<meta name="twitter:title" content="Kaptan Restaurant — Kalkan Limanı'nda Bir Sofra">
+<meta name="twitter:description" content="Kalkan kıyı şeridinde balık + meze + ızgara · pergola altı mavi saat · dalgakıran feneri.">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og/restoran/kaptan-restaurant.jpg?v=2026-06-12">
 
 <!-- Geo -->
 <meta name="geo.region" content="TR-07">
 <meta name="geo.placename" content="Kalkan, Antalya">
 
-<!-- Schema.org Restaurant — AI ve Google rich result için -->
+<!-- Schema.org Restaurant -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -75,6 +75,7 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
     "addressCountry":"TR"
   },
   "geo":{"@type":"GeoCoordinates","latitude":36.2655,"longitude":29.4138},
+  "openingHours":"Mo-Su 12:00-24:00",
   "acceptsReservations":"True",
   "menu":"https://kalkaninfo.com/restoranlar/KaptanRestaurant/#menu",
   "aggregateRating":{"@type":"AggregateRating","ratingValue":4.7,"reviewCount":187,"bestRating":5,"worstRating":1},
@@ -96,71 +97,459 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 :root{
-  --theme-bg:#062045;
-  --theme-bg-2:#0D2E8C;
-  --theme-accent:#C68B5E;
-  --theme-accent-2:#A66A3C;
-  --theme-text:#F7F7F3;
-  --theme-muted:#A6B5C2;
+  --c-deep:#062045;
+  --c-deep-2:#0D2E8C;
+  --c-deep-3:#08245A;
+  --c-akm:#1E88E5;
+  --c-akm-soft:#B9D6E6;
+  --c-krem:#F7F7F3;
+  --c-krem-2:#FCFCF8;
+  --c-krem-3:#E8DFC8;
+  --c-aht:#A66A3C;
+  --c-aht-soft:#C68B5E;
+  --c-akr:#B43A3A;
+  --c-tag:#8D9093;
+  --c-line:rgba(247,247,243,0.12);
+  --c-line-strong:rgba(247,247,243,0.26);
+  --ease-spring:cubic-bezier(0.22,1,0.36,1);
 }
 *{ -webkit-font-smoothing:antialiased; }
 html{ scroll-behavior:smooth; }
-body{ font-family:'Inter',system-ui,sans-serif; background:var(--theme-bg); color:var(--theme-text); }
-h1,h2,h3,h4,.font-display{ font-family:'Playfair+Display',serif; letter-spacing:-0.02em; line-height:1.05; }
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--c-deep);
+  color:var(--c-krem);
+  text-rendering:optimizeLegibility;
+}
+::selection{ background:var(--c-aht); color:var(--c-krem-2); }
+section[id]{ scroll-margin-top:96px; }
 
-/* Nav cam efekti */
-.nav-glass{ background:rgba(0,0,0,0.32); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.06); }
-.nav-link{ position:relative; padding:6px 2px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.78); transition:color .2s; }
-.nav-link:hover{ color:var(--theme-accent); }
-.nav-link::after{ content:''; position:absolute; left:0; right:0; bottom:-3px; height:2px; background:var(--theme-accent); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; }
+/* Typography */
+.h-display{
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:500;
+  letter-spacing:-0.012em;
+  line-height:1.04;
+}
+.h-display em{
+  font-style:italic;
+  color:var(--c-aht-soft);
+  font-weight:500;
+}
+.h-cinzel{
+  font-family:'Cinzel',Georgia,serif;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  font-weight:600;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:0.7rem;
+  font-family:'Cinzel',Georgia,serif;
+  font-size:0.72rem;
+  font-weight:600;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--c-aht-soft);
+}
+.eyebrow::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--c-aht-soft);
+  opacity:0.85;
+}
+.eyebrow-center{ justify-content:center; }
+.eyebrow-center::before{ display:none; }
+.eyebrow-center::after{
+  content:"";
+  width:28px;
+  height:1px;
+  background:var(--c-aht-soft);
+  opacity:0.85;
+  margin-left:0.7rem;
+}
+.brandmark{
+  font-family:'Caveat',cursive;
+  font-weight:700;
+  font-size:1.85rem;
+  color:var(--c-krem);
+  line-height:1;
+  letter-spacing:0.01em;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+  padding:0.95rem 1.6rem;
+  border-radius:999px;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:0.88rem;
+  letter-spacing:0.04em;
+  transition:transform 240ms var(--ease-spring), background-color 240ms var(--ease-spring), color 240ms var(--ease-spring), box-shadow 240ms var(--ease-spring), border-color 240ms var(--ease-spring);
+  will-change:transform;
+  cursor:pointer;
+  text-decoration:none;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn:active{ transform:translateY(0); }
+.btn:focus-visible{ outline:2px solid var(--c-aht); outline-offset:3px; }
+.btn-primary{
+  background:var(--c-aht);
+  color:var(--c-krem-2);
+  box-shadow:0 14px 30px -14px rgba(166,106,60,0.55), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+.btn-primary:hover{ background:#B97A48; box-shadow:0 18px 40px -14px rgba(166,106,60,0.7), inset 0 1px 0 rgba(255,255,255,0.22); }
+.btn-akm{ background:var(--c-akm); color:var(--c-krem-2); box-shadow:0 14px 30px -14px rgba(30,136,229,0.55); }
+.btn-akm:hover{ background:#3A99EE; }
+.btn-ghost{
+  background:transparent;
+  color:var(--c-krem);
+  border:1px solid var(--c-line-strong);
+}
+.btn-ghost:hover{ border-color:var(--c-krem); background:rgba(247,247,243,0.06); }
+
+/* Surfaces */
+.card{
+  background:linear-gradient(180deg,var(--c-deep-3) 0%,var(--c-deep-2) 130%);
+  border:1px solid var(--c-line);
+  border-radius:22px;
+}
+.card-soft{
+  background:rgba(247,247,243,0.04);
+  border:1px solid var(--c-line);
+  border-radius:18px;
+}
+.photo-shell{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  isolation:isolate;
+  background:var(--c-deep-2);
+  border:1px solid var(--c-line);
+}
+.photo-shell::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(6,32,69,0) 50%, rgba(6,32,69,0.45) 100%), radial-gradient(ellipse at 50% 0%, rgba(30,136,229,0.08), transparent 60%);
+  z-index:1;
+  pointer-events:none;
+}
+.photo-soft img{
+  filter:saturate(0.98) contrast(1.03);
+  transition:transform 700ms var(--ease-spring);
+  width:100%; height:100%; object-fit:cover;
+}
+.photo-soft:hover img{ transform:scale(1.035); }
+.divider{ height:1px; background:linear-gradient(90deg, transparent, var(--c-line-strong), transparent); }
+
+/* Grain texture */
+.grain{ position:relative; isolation:isolate; }
+.grain::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:radial-gradient(rgba(247,247,243,0.05) 1px, transparent 1px);
+  background-size:3px 3px;
+  mix-blend-mode:overlay;
+  z-index:1;
+}
+.warm-noise{
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(30,136,229,0.10), transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(166,106,60,0.12), transparent 55%);
+}
+.vichy-bg{
+  background-image:
+    linear-gradient(45deg, rgba(30,136,229,0.08) 25%, transparent 25%, transparent 75%, rgba(30,136,229,0.08) 75%, rgba(30,136,229,0.08)),
+    linear-gradient(45deg, rgba(30,136,229,0.08) 25%, transparent 25%, transparent 75%, rgba(30,136,229,0.08) 75%, rgba(30,136,229,0.08));
+  background-size:22px 22px;
+  background-position:0 0, 11px 11px;
+}
+
+/* Nav */
+.nav-glass{
+  background:rgba(6,32,69,0.55);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--c-line);
+}
+.nav-link{
+  position:relative;
+  padding:6px 2px;
+  font-family:'Cinzel',Georgia,serif;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:rgba(247,247,243,0.78);
+  transition:color .2s;
+  text-decoration:none;
+}
+.nav-link:hover{ color:var(--c-aht-soft); }
+.nav-link::after{
+  content:'';
+  position:absolute;
+  left:0; right:0; bottom:-3px;
+  height:1px;
+  background:var(--c-aht-soft);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .25s ease;
+}
 .nav-link:hover::after{ transform:scaleX(1); }
 
-/* Hero */
-.hero-img{ filter:saturate(1.1) contrast(1.05); }
-.hero-overlay{ background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 60%, var(--theme-bg) 100%); }
+/* Lang switcher */
+.lang-pill{
+  font-family:'Cinzel',Georgia,serif;
+  font-size:10px;
+  letter-spacing:0.18em;
+  font-weight:600;
+  padding:4px 8px;
+  border-radius:999px;
+  color:rgba(247,247,243,0.55);
+  cursor:pointer;
+  transition:color .2s, background-color .2s;
+}
+.lang-pill:hover{ color:var(--c-krem); }
+.lang-pill.active{ color:var(--c-deep); background:var(--c-aht-soft); }
 
-/* Bölüm başlığı */
-.section-label{ display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; color:var(--theme-accent); }
-.section-label::before{ content:''; display:block; width:32px; height:1px; background:var(--theme-accent); }
+/* Stars */
+.stars{ display:inline-flex; gap:2px; color:var(--c-aht-soft); }
 
-/* Buton */
-.btn-primary{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; background:var(--theme-accent); color:var(--theme-bg); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; border:1px solid var(--theme-accent); }
-.btn-primary:hover{ background:transparent; color:var(--theme-accent); }
-.btn-ghost{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; border:1px solid var(--theme-accent); color:var(--theme-accent); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; background:transparent; }
-.btn-ghost:hover{ background:var(--theme-accent); color:var(--theme-bg); }
-
-/* Galeri */
-.gallery-item{ position:relative; overflow:hidden; cursor:pointer; }
-.gallery-item img{ transition:transform .6s ease; }
-.gallery-item:hover img{ transform:scale(1.06); }
-.gallery-item::after{ content:''; position:absolute; inset:0; background:linear-gradient(160deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35)); opacity:0; transition:opacity .3s; }
-.gallery-item:hover::after{ opacity:1; }
-
-/* Menü sekme */
-.menu-tab{ padding:12px 22px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; border:1px solid rgba(255,255,255,0.18); color:var(--theme-muted); transition:all .2s; cursor:pointer; }
-.menu-tab.active{ background:var(--theme-accent); color:var(--theme-bg); border-color:var(--theme-accent); }
-.menu-tab:hover:not(.active){ border-color:var(--theme-accent); color:var(--theme-accent); }
+/* Menu tabs */
+.menu-tab{
+  padding:10px 22px;
+  border-radius:999px;
+  font-family:'Cinzel',Georgia,serif;
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-weight:600;
+  border:1px solid var(--c-line-strong);
+  color:var(--c-krem);
+  background:transparent;
+  cursor:pointer;
+  transition:all .25s var(--ease-spring);
+}
+.menu-tab:hover{ border-color:var(--c-aht-soft); color:var(--c-aht-soft); }
+.menu-tab.active{ background:var(--c-aht); color:var(--c-krem-2); border-color:var(--c-aht); }
 
 /* Form */
-.input{ width:100%; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,0.2); padding:14px 0; color:var(--theme-text); font-size:14px; transition:border-color .2s; }
-.input:focus{ outline:none; border-bottom-color:var(--theme-accent); }
-.input::placeholder{ color:var(--theme-muted); text-transform:uppercase; letter-spacing:0.12em; font-size:11px; }
+.input{
+  width:100%;
+  background:rgba(247,247,243,0.04);
+  border:1px solid var(--c-line);
+  border-radius:14px;
+  padding:14px 16px;
+  color:var(--c-krem);
+  font-size:14px;
+  font-family:'Inter',sans-serif;
+  transition:border-color .2s, background-color .2s;
+}
+.input:focus{ outline:none; border-color:var(--c-aht-soft); background:rgba(247,247,243,0.06); }
+.input::placeholder{ color:rgba(247,247,243,0.45); }
 
-/* Lang switcher */
-.lang-pill{ font-size:11px; letter-spacing:0.14em; font-weight:700; padding:4px 8px; color:rgba(255,255,255,0.55); cursor:pointer; }
-.lang-pill.active{ color:var(--theme-accent); }
+/* FAQ accordion */
+.faq-item{
+  border-bottom:1px solid var(--c-line);
+}
+.faq-q{
+  display:flex;
+  width:100%;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  padding:1.3rem 0;
+  text-align:left;
+  background:transparent;
+  border:0;
+  color:var(--c-krem);
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.05rem;
+  font-weight:500;
+  letter-spacing:-0.005em;
+  cursor:pointer;
+  transition:color .2s;
+}
+.faq-q:hover{ color:var(--c-aht-soft); }
+.faq-q .chev{ transition:transform .3s var(--ease-spring); flex-shrink:0; color:var(--c-aht-soft); }
+.faq-item.open .faq-q .chev{ transform:rotate(45deg); }
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s var(--ease-spring);
+  color:rgba(247,247,243,0.72);
+  font-size:0.95rem;
+  line-height:1.7;
+}
+.faq-item.open .faq-a{ max-height:600px; }
+.faq-a-inner{ padding:0 0 1.3rem; }
 
-/* Whatsapp float */
-.wa-float{ position:fixed; bottom:20px; right:20px; z-index:60; width:56px; height:56px; border-radius:9999px; background:#25D366; color:#fff; display:grid; place-items:center; box-shadow:0 8px 24px -6px rgba(37,211,102,0.55); transition:transform .25s; }
+/* Gallery */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:minmax(0,1fr);
+  gap:12px;
+}
+.gallery-grid .g-1{ grid-column:span 4; grid-row:span 2; aspect-ratio:16/10; }
+.gallery-grid .g-2{ grid-column:span 2; aspect-ratio:1/1; }
+.gallery-grid .g-3{ grid-column:span 2; aspect-ratio:1/1; }
+.gallery-grid .g-4{ grid-column:span 2; aspect-ratio:4/5; }
+.gallery-grid .g-5{ grid-column:span 2; aspect-ratio:4/5; }
+.gallery-grid .g-6{ grid-column:span 2; aspect-ratio:4/5; }
+@media (max-width:768px){
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); gap:8px; }
+  .gallery-grid .g-1,.gallery-grid .g-2,.gallery-grid .g-3,.gallery-grid .g-4,.gallery-grid .g-5,.gallery-grid .g-6{
+    grid-column:span 1; grid-row:span 1; aspect-ratio:1/1;
+  }
+}
+
+/* Signature plates grid */
+.sig-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:16px;
+}
+.sig-grid .s-1{ grid-column:span 3; grid-row:span 2; }
+.sig-grid .s-2,.sig-grid .s-3,.sig-grid .s-4,.sig-grid .s-5{ grid-column:span 3; }
+@media (min-width:1024px){
+  .sig-grid .s-1{ grid-column:span 3; grid-row:span 2; }
+  .sig-grid .s-2{ grid-column:span 3; }
+  .sig-grid .s-3{ grid-column:span 3; }
+  .sig-grid .s-4{ grid-column:span 3; }
+  .sig-grid .s-5{ grid-column:span 3; }
+}
+@media (max-width:768px){
+  .sig-grid{ grid-template-columns:1fr; }
+  .sig-grid .s-1,.sig-grid .s-2,.sig-grid .s-3,.sig-grid .s-4,.sig-grid .s-5{ grid-column:span 1; grid-row:span 1; }
+}
+.sig-card{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--c-deep-2);
+  border:1px solid var(--c-line);
+  min-height:280px;
+}
+.sig-card img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+  transition:transform 700ms var(--ease-spring);
+}
+.sig-card:hover img{ transform:scale(1.04); }
+.sig-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(6,32,69,0) 30%, rgba(6,32,69,0.85) 100%);
+  z-index:1;
+}
+.sig-card .sig-body{
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding:1.4rem 1.5rem 1.5rem;
+  z-index:2;
+}
+.sig-num{
+  font-family:'Cinzel',Georgia,serif;
+  font-size:0.7rem;
+  letter-spacing:0.32em;
+  color:var(--c-aht-soft);
+  margin-bottom:0.4rem;
+}
+
+/* Hero */
+.hero-overlay{
+  background:
+    linear-gradient(180deg, rgba(6,32,69,0.3) 0%, rgba(6,32,69,0.55) 60%, var(--c-deep) 100%);
+}
+
+/* WhatsApp float */
+.wa-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:60;
+  width:56px; height:56px;
+  border-radius:9999px;
+  background:#25D366;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  box-shadow:0 14px 30px -10px rgba(37,211,102,0.6);
+  transition:transform .25s var(--ease-spring);
+}
 .wa-float:hover{ transform:scale(1.08); }
+@media (max-width:768px){
+  .wa-float{ bottom:84px; }
+}
+
+/* Mobile CTA bar */
+.mobile-cta{
+  position:fixed;
+  bottom:14px; left:14px; right:14px;
+  z-index:55;
+  display:flex;
+  gap:8px;
+  padding:10px;
+  border-radius:999px;
+  background:rgba(6,32,69,0.88);
+  border:1px solid var(--c-line-strong);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.mobile-cta a{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:8px;
+  border-radius:999px;
+  font-family:'Cinzel',Georgia,serif;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--c-krem);
+  background:rgba(247,247,243,0.06);
+  text-decoration:none;
+}
+.mobile-cta a.primary{ background:var(--c-aht); color:var(--c-krem-2); }
+@media (min-width:768px){ .mobile-cta{ display:none; } }
+
+/* Reveal */
+@keyframes revealUp{
+  from{ opacity:0; transform:translate3d(0,18px,0); }
+  to{ opacity:1; transform:translate3d(0,0,0); }
+}
+.reveal-up{ animation:revealUp 900ms var(--ease-spring) both; animation-delay:80ms; }
 
 /* Footer */
-.kif-footer{ background:rgba(0,0,0,0.4); border-top:1px solid rgba(255,255,255,0.06); }
+.kif-footer{
+  background:linear-gradient(180deg, var(--c-deep) 0%, #04153D 100%);
+  border-top:1px solid var(--c-line);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms!important; animation-iteration-count:1!important; transition-duration:0.01ms!important; }
+}
 </style>
 </head>
 
@@ -169,19 +558,20 @@ h1,h2,h3,h4,.font-display{ font-family:'Playfair+Display',serif; letter-spacing:
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <!-- ============ NAV ============ -->
 <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="font-display text-xl font-extrabold tracking-tight text-white">Kaptan Restaurant</a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#about" class="nav-link" data-i="about">Hakkımızda</a>
-      <a href="#menu" class="nav-link" data-i="menu">Menü</a>
-      <a href="#gallery" class="nav-link" data-i="gallery">Galeri</a>
-      <a href="#reviews" class="nav-link" data-i="reviews">Yorumlar</a>
-      <a href="#reserve" class="nav-link" data-i="reserve">Rezervasyon</a>
-      <a href="#contact" class="nav-link" data-i="contact">İletişim</a>
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between gap-4">
+    <a href="#top" class="brandmark" aria-label="Kaptan Restaurant">Kaptan</a>
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#hikaye" class="nav-link" data-i="nav_hikaye">Hikâye</a>
+      <a href="#lezzetler" class="nav-link" data-i="nav_lezzetler">İmza Lezzetler</a>
+      <a href="#atmosfer" class="nav-link" data-i="nav_atmosfer">Atmosfer</a>
+      <a href="#galeri" class="nav-link" data-i="nav_galeri">Galeri</a>
+      <a href="#menu" class="nav-link" data-i="nav_menu">Menü</a>
+      <a href="#yorumlar" class="nav-link" data-i="nav_yorumlar">Yorumlar</a>
+      <a href="#rezervasyon" class="nav-link" data-i="nav_rezervasyon">Rezervasyon</a>
+      <a href="#konum" class="nav-link" data-i="nav_konum">Konum</a>
     </div>
     <div class="flex items-center gap-1">
       <span class="lang-pill active" data-lang="tr">TR</span>
@@ -194,306 +584,974 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- ============ HERO ============ -->
-<header id="top" class="relative h-screen min-h-[640px] flex items-center justify-center text-center text-white overflow-hidden">
-  <img src="/assets/img/restoran/kaptan-restaurant-hero.jpg" alt="Kaptan Restaurant" class="absolute inset-0 w-full h-full object-cover hero-img" onerror="this.style.background='var(--theme-bg-2)';this.style.display='none';">
+<header id="top" class="relative h-screen min-h-[680px] flex items-end overflow-hidden">
+  <img src="/assets/img/restoran/kaptan-restaurant-hero.jpg" alt="Kaptan Restaurant — Kalkan limanı, pergola altı mavi saat" class="absolute inset-0 w-full h-full object-cover" style="filter:saturate(1.08) contrast(1.04);" onerror="this.style.background='var(--c-deep-2)';this.style.display='none';">
   <div class="absolute inset-0 hero-overlay"></div>
-  <div class="relative z-10 px-6 max-w-3xl">
-    <div class="section-label justify-center mb-6">Fish · Meze · Grill · Kalkan</div>
-    <h1 class="font-display text-6xl md:text-8xl font-extrabold mb-6 text-white" style="text-shadow:0 4px 32px rgba(0,0,0,0.5);">Kaptan Restaurant</h1>
-    <p class="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed mb-10" data-i="hero_sub">Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları.</p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a href="#reserve" class="btn-primary" data-i="cta_reserve">Rezervasyon</a>
-      <a href="#menu" class="btn-ghost" data-i="cta_menu">Menüyü Gör</a>
+
+  <div class="relative z-10 w-full pb-24 md:pb-32 px-6 md:px-12 max-w-7xl mx-auto reveal-up">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-8" data-i="hero_kicker">MEZE · FISH · GRILL — KALKAN LİMANI</div>
+      <h1 class="h-display text-[2.7rem] sm:text-5xl md:text-6xl lg:text-7xl mb-8" style="text-shadow:0 4px 32px rgba(0,0,0,0.45);">
+        <span data-i="hero_titleA">Limanda demirleyen</span>
+        <em data-i="hero_titleEm">bir</em>
+        <span data-i="hero_titleB">sofra.</span>
+      </h1>
+      <p class="text-base md:text-lg max-w-xl leading-relaxed text-white/80 mb-10" data-i="hero_sub">Kalkan kıyısında, dalgakıran fenerinin ve karşıdaki adanın önünde. Taze balık, günün mezesi, mavi saat ve uzun bir akşam.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#rezervasyon" class="btn btn-primary" data-i="hero_cta1">Masa Ayır</a>
+        <a href="#menu" class="btn btn-ghost" data-i="hero_cta2">Mutfağı Gör</a>
+      </div>
     </div>
   </div>
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/60 text-xs tracking-[0.3em]">SCROLL</div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/55">
+    <div class="h-cinzel text-[10px]" data-i="hero_scroll">LIMANA İNİŞ</div>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 1v18M1 13l6 6 6-6"/></svg>
+  </div>
 </header>
 
-<!-- ============ HAKKIMIZDA ============ -->
-<section id="about" class="py-24 md:py-32 px-6">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<!-- ============ HIKAYE / STORY ============ -->
+<section id="hikaye" class="relative py-24 md:py-32 px-6 grain warm-noise">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
     <div>
-      <div class="section-label mb-6" data-i="about_label">Hakkımızda</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title">Kaptan Restaurant</h2>
-      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="about_p1">Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları.</p>
-      <p class="text-base leading-relaxed" style="color:var(--theme-muted);" data-i="about_p2"></p>
-      <div class="flex flex-wrap gap-3 mt-8">
-    <span class="inline-flex items-center px-3 py-1.5 text-xs tracking-wider uppercase font-semibold border" style="border-color:var(--theme-accent);color:var(--theme-accent);">Balık</span>
-  
-    <span class="inline-flex items-center px-3 py-1.5 text-xs tracking-wider uppercase font-semibold border" style="border-color:var(--theme-accent);color:var(--theme-accent);">Meze · Izgara</span>
-  
-    <span class="inline-flex items-center px-3 py-1.5 text-xs tracking-wider uppercase font-semibold border" style="border-color:var(--theme-accent);color:var(--theme-accent);">Meze</span>
-  </div>
+      <div class="eyebrow mb-6" data-i="story_eyebrow">Hikâyemiz</div>
+      <h2 class="h-display text-4xl md:text-5xl mb-8"><em data-i="story_title">Kalkan kıyısında, denizci ruhuyla bir sofra.</em></h2>
+      <p class="text-base md:text-lg leading-relaxed mb-5 text-white/80" data-i="story_p1">Kaptan, Kalkan kıyı şeridinde — dalgakıran feneri ve karşıdaki ada gözümüzün önünde. Mavi-beyaz vichy örtüler, pergola altında sarkık lambalar, denizin tuzu rüzgârda. Sofra denizden başlar; gün ne getirdiyse, akşam onu paylaşırız.</p>
+      <p class="text-base leading-relaxed text-white/72" data-i="story_p2">Mezelerimiz gün doğmadan hazırlanır, balıklarımız o sabah Kalkan kıyısının verdiğidir. Rakı buz tutar, şarap zamanında soğur. Burada kaptanın masası uzun olur — misafir değil, sofradaş ağırlarız.</p>
+
+      <div class="mt-10 grid grid-cols-3 gap-4 max-w-md">
+        <div>
+          <div class="h-cinzel text-[10px] mb-2 text-white/55" data-i="story_statOpen">Açılış</div>
+          <div class="h-display text-2xl">12:00</div>
+        </div>
+        <div>
+          <div class="h-cinzel text-[10px] mb-2 text-white/55" data-i="story_statClose">Son sipariş</div>
+          <div class="h-display text-2xl">24:00</div>
+        </div>
+        <div>
+          <div class="h-cinzel text-[10px] mb-2 text-white/55" data-i="story_statPlace">Liman · Kıyı</div>
+          <div class="h-display text-2xl">Kalkan</div>
+        </div>
+      </div>
     </div>
-    <div class="aspect-[4/5] overflow-hidden">
-      <img src="/assets/img/restoran/kaptan-restaurant-2.jpg" alt="Kaptan Restaurant ambiyans" class="w-full h-full object-cover hero-img">
+
+    <div class="relative">
+      <div class="photo-shell photo-soft aspect-[4/5] md:aspect-[3/4]">
+        <img src="/assets/img/restoran/kaptan-restaurant-3.jpg" alt="Kaptan Restaurant — pergola altı sofra" loading="lazy">
+      </div>
+      <div class="photo-shell photo-soft absolute -bottom-8 -left-8 w-2/5 aspect-square hidden md:block">
+        <img src="/assets/img/restoran/kaptan-restaurant-4.jpg" alt="Kaptan Restaurant — meze tabakları" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ MENÜ ============ -->
-<section id="menu" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <div class="section-label justify-center mb-6" data-i="menu_label">Menü</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="menu_title">Menümüz</h2>
-      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="menu_sub">Günlük taze balık, geleneksel meze, kıyı ızgara mutfağı. Menü mevsime göre değişir.</p>
+<!-- ============ IMZA LEZZETLER / SIGNATURE ============ -->
+<section id="lezzetler" class="relative py-24 md:py-32 px-6" style="background:linear-gradient(180deg, var(--c-deep) 0%, var(--c-deep-3) 100%);">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="eyebrow eyebrow-center mb-6" data-i="sig_eyebrow">İmza Lezzetler</div>
+      <h2 class="h-display text-4xl md:text-5xl mb-6"><em data-i="sig_title">Limandan tabağa.</em></h2>
+      <p class="max-w-2xl mx-auto text-base md:text-lg text-white/75 leading-relaxed" data-i="sig_intro">Her gün denizden, sezonun en güzeli. İşte sofranın değişmez beşi — kaptanın seçimi.</p>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-3 mb-12">
-      <div class="menu-tab active" data-cat="all">Tümü</div>
-      <div class="menu-tab" data-cat="meze">Mezeler</div>
-      <div class="menu-tab" data-cat="izgara">Izgara &amp; Balık</div>
-      <div class="menu-tab" data-cat="icki">İçkiler</div>
-      <div class="menu-tab" data-cat="tatli">Tatlı</div>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-6xl mx-auto">
-
-      <!-- MEZELER -->
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
-        <div class="font-display text-xl font-bold mb-2">Beyaz Peynir &amp; Roka</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Ezine beyaz peyniri, taze roka, zeytinyağı.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
-        <div class="font-display text-xl font-bold mb-2">Acuka</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Cevizli, baharatlı kıyı mezesi · rakı eşliğinde klasik.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Deniz Mezesi</div>
-        <div class="font-display text-xl font-bold mb-2">Çiroz · Limon · Soğan</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Güneşte kurutulmuş uskumru, taze limon, kırmızı soğan.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk Meze</div>
-        <div class="font-display text-xl font-bold mb-2">Humus</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Nohut, tahin, sızma zeytinyağı, kırmızı biber.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">El Yapımı</div>
-        <div class="font-display text-xl font-bold mb-2">Yaprak Sarma</div>
-        <div class="text-sm" style="color:var(--theme-muted);">El sarması asma yaprağı, baharat, pirinç.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="meze" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Mevsim</div>
-        <div class="font-display text-xl font-bold mb-2">Mevsim Yeşillikleri</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Taze yeşillik tabağı · limon · zeytinyağı.</div>
-      </div>
-
-      <!-- IZGARA & BALIK -->
-      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
-        <div class="flex items-center gap-2 mb-2">
-          <div class="text-[10px] tracking-[0.2em] uppercase font-bold" style="color:#C68B5E;">İmza · Izgara</div>
-          <span class="text-[9px] tracking-wider uppercase font-bold px-1.5 py-0.5 rounded" style="background:#C68B5E;color:var(--theme-bg);">İMZA</span>
+    <div class="sig-grid">
+      <article class="sig-card s-1" style="min-height:480px;">
+        <img src="/assets/img/restoran/kaptan-restaurant-5.jpg" alt="Karides Izgara" loading="lazy">
+        <div class="sig-body">
+          <div class="sig-num"><span data-i="sig_no">No.</span> 01</div>
+          <h3 class="h-display text-3xl md:text-4xl mb-3" data-i="sig_01_name">Karides Izgara</h3>
+          <p class="text-sm md:text-base text-white/80 max-w-md" data-i="sig_01_desc">Közde, limon ve zeytinyağıyla. Sofranın imzası, rakıyla ezeli yoldaş.</p>
         </div>
-        <div class="font-display text-xl font-bold mb-2">Karides Izgara</div>
-        <div class="text-sm" style="color:var(--theme-muted);">İri tiger karides, limon, zeytinyağı ve mevsim yeşilliği. Az pişmiş, çıtır kabuk.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Günün Balığı</div>
-        <div class="font-display text-xl font-bold mb-2">Izgara Levrek</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Bütün ızgarada, taze limon, közlenmiş sebze.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Izgara</div>
-        <div class="font-display text-xl font-bold mb-2">Izgara Ahtapot</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Yumuşak ahtapot, közlenmiş patates, biberiye.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="izgara" style="border-color:#C68B5E;background:rgba(198,139,94,0.05);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:#C68B5E;">Et · Sıcak Demir</div>
-        <div class="font-display text-xl font-bold mb-2">Kuzu Pirzola</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Dökme demirde, biberiye + tuzlu yağ, közlenmiş patlıcan.</div>
-      </div>
+      </article>
 
-      <!-- İÇKİLER -->
-      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Klasik</div>
-        <div class="font-display text-xl font-bold mb-2">Rakı</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Tekirdağ, Yeni Rakı seçenekleri · kadeh / şişe.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Şarap</div>
-        <div class="font-display text-xl font-bold mb-2">Beyaz · Roze · Kırmızı</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Yerli ve seçili yabancı şarap listesi · mevsim önerileri.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Craft Kokteyl</div>
-        <div class="font-display text-xl font-bold mb-2">Sunset Kokteyller</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Gin tonik, mojito, aperol, mevsim limited edition.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="icki" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Soğuk &amp; Sıcak</div>
-        <div class="font-display text-xl font-bold mb-2">Bira · Türk Kahvesi · Çay</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Efes, Bomonti · Türk kahvesi · taze demleme çay.</div>
-      </div>
+      <article class="sig-card s-2">
+        <img src="/assets/img/restoran/kaptan-restaurant-2.jpg" alt="Izgara Levrek" loading="lazy">
+        <div class="sig-body">
+          <div class="sig-num"><span data-i="sig_no_2">No.</span> 02</div>
+          <h3 class="h-display text-2xl mb-2" data-i="sig_02_name">Izgara Levrek</h3>
+          <p class="text-sm text-white/80" data-i="sig_02_desc">O gün Kalkan kıyısından; kemiğinden ayrılır, tabaktan kalkmaz.</p>
+        </div>
+      </article>
 
-      <!-- TATLI -->
-      <div class="menu-section p-6 border-l-2" data-cat="tatli" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Klasik Tatlı</div>
-        <div class="font-display text-xl font-bold mb-2">Künefe</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Sıcak künefe · Antep fıstığı · kaymak.</div>
-      </div>
-      <div class="menu-section p-6 border-l-2" data-cat="tatli" style="border-color:var(--theme-accent);background:rgba(255,255,255,0.02);">
-        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Hafif</div>
-        <div class="font-display text-xl font-bold mb-2">Mevsim Meyvesi</div>
-        <div class="text-sm" style="color:var(--theme-muted);">Taze, seçili mevsim meyveleri tabağı.</div>
-      </div>
+      <article class="sig-card s-3">
+        <img src="/assets/img/restoran/kaptan-restaurant-6.jpg" alt="Izgara Ahtapot" loading="lazy">
+        <div class="sig-body">
+          <div class="sig-num"><span data-i="sig_no_3">No.</span> 03</div>
+          <h3 class="h-display text-2xl mb-2" data-i="sig_03_name">Izgara Ahtapot</h3>
+          <p class="text-sm text-white/80" data-i="sig_03_desc">Önce közde, sonra zeytinyağında. Yumuşacık, denizin tadında.</p>
+        </div>
+      </article>
 
+      <article class="sig-card s-4">
+        <img src="/assets/img/restoran/kaptan-restaurant-4.jpg" alt="Kuzu Pirzola" loading="lazy">
+        <div class="sig-body">
+          <div class="sig-num"><span data-i="sig_no_4">No.</span> 04</div>
+          <h3 class="h-display text-2xl mb-2" data-i="sig_04_name">Kuzu Pirzola</h3>
+          <p class="text-sm text-white/80" data-i="sig_04_desc">Köz aroması, dinlenmiş et. Balığın yanına kaptanın seçimi.</p>
+        </div>
+      </article>
+
+      <article class="sig-card s-5">
+        <img src="/assets/img/restoran/kaptan-restaurant-3.jpg" alt="Acuka & Beyaz Peynir" loading="lazy">
+        <div class="sig-body">
+          <div class="sig-num"><span data-i="sig_no_5">No.</span> 05</div>
+          <h3 class="h-display text-2xl mb-2" data-i="sig_05_name">Acuka &amp; Beyaz Peynir</h3>
+          <p class="text-sm text-white/80" data-i="sig_05_desc">Acuka, roka, zeytinyağında beyaz peynir — rakının yanı.</p>
+        </div>
+      </article>
     </div>
+  </div>
+</section>
 
-    <div class="mt-12 text-center">
-      <p class="text-xs tracking-[0.18em] uppercase" style="color:var(--theme-muted);">Tam menü &amp; fiyat bilgisi için</p>
-      <a href="https://wa.me/905352727640?text=Merhaba%2C%20Kaptan%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn-ghost mt-3">WhatsApp ile İletişim</a>
+<!-- ============ ATMOSFER ============ -->
+<section id="atmosfer" class="relative min-h-[560px] flex items-center justify-center overflow-hidden">
+  <img src="/assets/img/restoran/kaptan-restaurant-1.jpg" alt="Kaptan Restaurant — mavi saat terası" class="absolute inset-0 w-full h-full object-cover" loading="lazy" style="filter:saturate(1.05) contrast(1.06);">
+  <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(6,32,69,0.55) 0%, rgba(6,32,69,0.7) 100%);"></div>
+
+  <div class="relative z-10 px-6 max-w-3xl text-center py-24">
+    <div class="eyebrow eyebrow-center mb-6" data-i="atm_eyebrow">Atmosfer</div>
+    <h2 class="h-display text-4xl md:text-6xl mb-8 text-white" style="text-shadow:0 4px 32px rgba(0,0,0,0.5);"><em data-i="atm_title">Mavi saat, pergola altı, fenerin ışığında bir akşam.</em></h2>
+    <p class="text-base md:text-lg leading-relaxed text-white/85 max-w-2xl mx-auto" data-i="atm_p">Akşamüstü güneş karşıdaki adanın ardına inerken pergolada vichy örtüler kıpırdar, lambalar mavi saati ısıtır. Dalgakıran feneri yanıp söner, masanın sesi denizden gelir. Burada saat, sofra dağılmadan ilerlemez — gece kaptanın isteğiyle uzar.</p>
+  </div>
+</section>
+
+<!-- ============ POSTER ============ -->
+<section class="py-24 md:py-32 px-6" style="background:var(--c-krem); color:var(--c-deep);">
+  <div class="max-w-5xl mx-auto text-center vichy-bg" style="padding:4rem 2rem; border-radius:32px; border:1px solid rgba(13,46,140,0.12);">
+    <div class="h-cinzel text-[11px] mb-6" style="color:var(--c-aht); letter-spacing:0.32em;" data-i="poster_band">Kaptan · Kalkan · Kaş</div>
+    <h2 class="h-display text-5xl md:text-7xl lg:text-8xl mb-8" style="color:var(--c-deep-2);">
+      <span data-i="poster_titleA">Bir Akşam</span> <em style="color:var(--c-aht);" data-i="poster_titleB">Kaptan'da.</em>
+    </h2>
+    <div class="h-display italic text-xl md:text-2xl" style="color:var(--c-deep);">
+      <div data-i="poster_line1">Dalgakıran feneri yanar,</div>
+      <div data-i="poster_line2">rakı buz tutar, sofra uzun olur.</div>
     </div>
   </div>
 </section>
 
 <!-- ============ GALERİ ============ -->
-<section id="gallery" class="py-24 md:py-32 px-6">
+<section id="galeri" class="py-24 md:py-32 px-6">
   <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-12">
-      <div class="section-label justify-center mb-6" data-i="gallery_label">Galeri</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="gallery_title">Mekândan Kareler</h2>
+    <div class="text-center mb-14">
+      <div class="eyebrow eyebrow-center mb-6" data-i="gal_eyebrow">Galeri</div>
+      <h2 class="h-display text-4xl md:text-5xl"><em data-i="gal_title">Limandan kareler.</em></h2>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-      
-    <a href="/assets/img/restoran/kaptan-restaurant-1.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-1.jpg" alt="Kaptan Restaurant 1" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-2.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-2.jpg" alt="Kaptan Restaurant 2" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-3.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-3.jpg" alt="Kaptan Restaurant 3" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-4.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-4.jpg" alt="Kaptan Restaurant 4" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-5.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-5.jpg" alt="Kaptan Restaurant 5" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-6.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-6.jpg" alt="Kaptan Restaurant 6" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
-    <a href="/assets/img/restoran/kaptan-restaurant-hero.jpg" target="_blank" class="gallery-item aspect-square block">
-      <img src="/assets/img/restoran/kaptan-restaurant-hero.jpg" alt="Kaptan Restaurant — Tabela" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='var(--theme-bg-2)';this.style.opacity='0.3';">
-    </a>
+
+    <div class="gallery-grid">
+      <a href="/assets/img/restoran/kaptan-restaurant-1.jpg" target="_blank" rel="noopener" class="g-1 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-1.jpg" data-i-alt="gal_alt_1" alt="Kaptan Kalkan terası mavi saatte, dolu masalar ve liman manzarası" loading="lazy">
+      </a>
+      <a href="/assets/img/restoran/kaptan-restaurant-2.jpg" target="_blank" rel="noopener" class="g-2 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-2.jpg" data-i-alt="gal_alt_2" alt="Kalkan'da meyhane sofrası: çeşitli meze tabakları" loading="lazy">
+      </a>
+      <a href="/assets/img/restoran/kaptan-restaurant-3.jpg" target="_blank" rel="noopener" class="g-3 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-3.jpg" data-i-alt="gal_alt_3" alt="Kalkan kıyısında sunset masası, sakin deniz manzarası" loading="lazy">
+      </a>
+      <a href="/assets/img/restoran/kaptan-restaurant-4.jpg" target="_blank" rel="noopener" class="g-4 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-4.jpg" data-i-alt="gal_alt_4" alt="Mavi saat masada balık ve meze tabakları" loading="lazy">
+      </a>
+      <a href="/assets/img/restoran/kaptan-restaurant-5.jpg" target="_blank" rel="noopener" class="g-5 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-5.jpg" data-i-alt="gal_alt_5" alt="Kaptan imza tabağı: limonlu, közde karides ızgara" loading="lazy">
+      </a>
+      <a href="/assets/img/restoran/kaptan-restaurant-6.jpg" target="_blank" rel="noopener" class="g-6 photo-shell photo-soft block">
+        <img src="/assets/img/restoran/kaptan-restaurant-6.jpg" data-i-alt="gal_alt_6" alt="Kalkan dikey sunset: dalgakıran feneri ve karşıdaki ada" loading="lazy">
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ============ YORUMLAR (Google) ============ -->
-<section id="reviews" class="py-24 md:py-32 px-6">
-  <div class="max-w-3xl mx-auto text-center">
-    <div class="section-label justify-center mb-6" data-i="reviews_label">Misafir Yorumları</div>
-    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="reviews_title">Google'da Bizi Anlatanlar</h2>
-    <div class="flex flex-col items-center my-12">
-      <div class="font-display text-7xl font-extrabold leading-none" style="color:var(--theme-accent);">4.7</div>
-      <div class="flex gap-1 mt-3" style="color:var(--theme-accent);">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
-      <div class="text-sm mt-3" style="color:var(--theme-muted);">Misafir yorumları yakında Google profilinden canlı olarak çekilecek.</div>
+<!-- ============ MENÜ ============ -->
+<section id="menu" class="py-24 md:py-32 px-6" style="background:linear-gradient(180deg, var(--c-deep) 0%, var(--c-deep-3) 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="eyebrow eyebrow-center mb-6" data-i="menu_eyebrow">Menü</div>
+      <h2 class="h-display text-4xl md:text-5xl mb-6">
+        <span data-i="menu_title">Sofranın</span> <em data-i="menu_titleEm">haritası.</em>
+      </h2>
+      <p class="max-w-2xl mx-auto text-base text-white/75 leading-relaxed" data-i="menu_body">Menümüz her gün limanın o sabah verdiğine göre güncellenir. Tüm balıklarımız o gün taze, mezelerimiz o sabah hazırdır.</p>
     </div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Kaptan+Restaurant+Kalkan" target="_blank" rel="noopener" class="btn-primary" data-i="reviews_all">Google'da Yorumları Gör</a>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-14">
+      <button class="menu-tab active" data-cat="all" data-i="menu_tab_all">Tümü</button>
+      <button class="menu-tab" data-cat="meze" data-i="menu_tab_meze">Mezeler</button>
+      <button class="menu-tab" data-cat="izgara" data-i="menu_tab_izgara">Izgara &amp; Balık</button>
+      <button class="menu-tab" data-cat="icki" data-i="menu_tab_icki">İçkiler</button>
+      <button class="menu-tab" data-cat="tatli" data-i="menu_tab_tatli">Kapanış</button>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- MEZELER -->
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Soğuk Meze</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-aht); color:var(--c-krem-2);" data-i="badge_imza">İmza</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_acuka">Acuka</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_acuka_d">Antep ezmesi, ceviz, nar ekşisi — rakının kadim yoldaşı.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Soğuk Meze</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_beyaz">Beyaz Peynir &amp; Roka</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_beyaz_d">Zeytinyağında beyaz peynir, taze roka, sızma zeytinyağı.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Deniz Mezesi</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_ciroz">Çiroz Salatası</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_ciroz_d">İnce dilim çiroz, soğan, maydanoz, limon.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Klasik</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:rgba(44,107,79,0.85); color:#fff;" data-i="badge_vejetaryen">Vejetaryen</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_humus">Humus</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_humus_d">Nohut, tahin, limon, zeytinyağı.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">El Yapımı</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:rgba(44,107,79,0.85); color:#fff;" data-i="badge_vejetaryen_2">Vejetaryen</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_yaprak">Yaprak Sarma</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_yaprak_d">Zeytinyağlı, çam fıstıklı, narenciye notalı.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="meze">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Köz</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_patlican">Patlıcan Salatası</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_patlican_d">Köz patlıcan, sarımsak, zeytinyağı.</p>
+      </article>
+
+      <!-- IZGARA & BALIK -->
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.18) 0%, var(--c-deep-2) 130%); border-color:rgba(166,106,60,0.35);">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">İmza · Izgara</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-aht); color:var(--c-krem-2);" data-i="badge_imza_2">İmza</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_karides">Karides Izgara</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_karides_d">Sofranın imzası: közde, limonlu zeytinyağıyla.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.12) 0%, var(--c-deep-2) 130%);">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Günün Balığı</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-aht); color:var(--c-krem-2);" data-i="badge_imza_3">İmza</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_levrek">Izgara Levrek</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_levrek_d">O günkü; kemiğinden ayrılır.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.12) 0%, var(--c-deep-2) 130%);">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Izgara</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_ahtapot">Izgara Ahtapot</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_ahtapot_d">Önce közde, sonra zeytinyağında. Yumuşak.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.12) 0%, var(--c-deep-2) 130%);">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Klasik</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_cupra">Izgara Çupra</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_cupra_d">Klasik, limonlu yağ ile.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.12) 0%, var(--c-deep-2) 130%);">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Et · Köz</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-aht); color:var(--c-krem-2);" data-i="badge_imza_4">İmza</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_pirzola">Kuzu Pirzola</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_pirzola_d">Köz aroması, dinlenmiş et — rakının yanına biçilmiş.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="izgara" style="background:linear-gradient(180deg, rgba(166,106,60,0.12) 0%, var(--c-deep-2) 130%);">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Mevsim</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-akm); color:var(--c-krem-2);" data-i="badge_mevsim">Mevsim</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_mevsim">Mevsim Balığı</h3>
+        <p class="text-sm text-white/75 leading-relaxed" data-i="m_mevsim_d">Pazara göre değişir — kaptana sorun.</p>
+      </article>
+
+      <!-- İÇKİLER -->
+      <article class="menu-section card p-6" data-cat="icki">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Klasik</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_raki">Rakı</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_raki_d">Yeni Rakı, Tekirdağ, Efe; tek, duble.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="icki">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Şarap</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-akm); color:var(--c-krem-2);" data-i="badge_mevsim_2">Mevsim</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_beyaz_sarap">Beyaz Şarap</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_beyaz_sarap_d">Mevsimin yerli seçkisi — kadeh veya şişe.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="icki">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Akdeniz</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_rose">Rose</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_rose_d">Akdeniz akşamı için soğuk rose.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="icki">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Klasik &amp; Butik</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_bira">Bira</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_bira_d">Klasik ve butik seçenekler.</p>
+      </article>
+
+      <!-- TATLI / KAPANIŞ -->
+      <article class="menu-section card p-6" data-cat="tatli">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Sıcak</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_kunefe">Künefe</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_kunefe_d">Sıcak servis, kaymakla.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="tatli">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="h-cinzel text-[10px]" style="color:var(--c-aht-soft);">Hafif</div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full font-bold" style="background:var(--c-akm); color:var(--c-krem-2);" data-i="badge_mevsim_3">Mevsim</span>
+        </div>
+        <h3 class="h-display text-xl mb-2" data-i="m_meyve">Mevsim Meyvesi</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_meyve_d">Sezona göre, soğuk.</p>
+      </article>
+      <article class="menu-section card p-6" data-cat="tatli">
+        <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);">Cezvede</div>
+        <h3 class="h-display text-xl mb-2" data-i="m_kahve">Türk Kahvesi</h3>
+        <p class="text-sm text-white/70 leading-relaxed" data-i="m_kahve_d">Cezvede, lokumla.</p>
+      </article>
+    </div>
+
+    <div class="mt-14 text-center">
+      <p class="text-sm text-white/60 mb-5" data-i="menu_pricesNote">Fiyatlar masada · Her gün 12:00 – 24:00</p>
+      <a href="https://wa.me/905352727640?text=Merhaba%2C%20Kaptan%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-ghost" data-i="menu_cta">Tam Menüyü Gör</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YORUMLAR ============ -->
+<section id="yorumlar" class="py-24 md:py-32 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="eyebrow eyebrow-center mb-6" data-i="rev_eyebrow">Yorumlar</div>
+    <h2 class="h-display text-4xl md:text-5xl mb-12">
+      <span data-i="rev_titleA">Misafirlerimizin</span> <em data-i="rev_titleEm">sözüyle</em><span data-i="rev_titleB">.</span>
+    </h2>
+
+    <div class="card p-10 md:p-14 mb-10" style="background:linear-gradient(180deg, var(--c-deep-3), var(--c-deep-2));">
+      <div class="h-display text-7xl md:text-8xl mb-3" style="color:var(--c-aht-soft);">4.7</div>
+      <div class="stars text-2xl mb-4" aria-label="4.7/5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="h-cinzel text-[11px] text-white/70 mb-3">187+ Google Değerlendirme</div>
+      <p class="text-sm text-white/65 max-w-md mx-auto" data-i="rev_intro">Misafir yorumları yakında Google profilinden canlı olarak çekilecek. Şimdilik tüm değerlendirmeleri Google üzerinden inceleyebilirsiniz.</p>
+    </div>
+
+    <a href="https://www.google.com/maps/search/?api=1&query=Kaptan+Restaurant+Kalkan" target="_blank" rel="noopener" class="btn btn-primary" data-i="rev_cta">Google'da Tümünü Gör</a>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-24 md:py-32 px-6" style="background:var(--c-deep-3);">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="eyebrow eyebrow-center mb-6" data-i="faq_eyebrow">Sıkça Sorulanlar</div>
+      <h2 class="h-display text-4xl md:text-5xl"><em data-i="faq_title">Liman'a gelmeden önce.</em></h2>
+    </div>
+
+    <div class="space-y-0">
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q1">Kalkan'da nereye gidilir akşam yemeği?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a1">Kalkan'da klasik akşam yemeği için kıyı şeridindeki balık + meze + ızgara üçlemesi tercih edilir. Kaptan, dalgakıran fenerinin ve karşıdaki adanın tam karşısında, pergola altında mavi-beyaz vichy örtüler ve mavi saatle bu deneyimi sunar. Her gün 12:00–24:00 arası açığız; WhatsApp'tan masa ayırabilirsiniz.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q2">Kalkan'da rakı balık nereye gidilir?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a2">Kalkan limanında rakı–balık keyfi için Kaptan, denizci ruhu ve geleneksel meze + ızgara + balık üçlüsüyle ilk durakların başında gelir. Karides Izgara, Izgara Levrek, Ahtapot ve Kuzu Pirzola imza tabaklarımız; rakı, beyaz şarap ve rose içki kartımızda hazır. Manzaralı masa için bir gün önceden bildirin.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q3">Kalkan'da en iyi balık restoran hangisi?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a3">Kalkan kıyı şeridi balık restoranlarıyla bilinir. Kaptan, taze günlük balık (levrek, çupra, ahtapot, kalamar, mevsim balığı), günlük hazır mezeler ve Kalkan limanı manzarasıyla öne çıkar. Tüm balık, o sabah temin edilir; menü pazara göre günlük güncellenir.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q4">Kalkan limanında manzaralı restoran?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a4">Kaptan, Kalkan limanı kıyı şeridindedir — pergola altı teras dalgakıran feneri ve karşıdaki adanın siluetine bakar. Sunset ve mavi saat için en güzel masalar manzaralı tarafımızdadır; rezervasyon yaparken "manzaralı masa" notunu eklemenizi öneririz.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q5">Kalkan sunset restaurant öneri?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a5">Kalkan'da gün batımı için kıyı şeridi mekanları tercih edilir. Kaptan, batı yönüne açık terasıyla sunset ve sonrasındaki mavi saatte özellikle güzeldir. Rezervasyon için 18:30–19:30 arasını öneririz; karides ızgara + beyaz şarap klasik kombinasyondur.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q6">Rezervasyon nasıl yapılır?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a6">WhatsApp'tan +90 535 272 76 40 numarasına mesaj atarak ya da aynı numarayı arayarak rezervasyon yapabilirsiniz. Sezonda akşam saatleri ve hafta sonu hızla dolar; manzaralı masa için 1 gün önceden bildirmenizi öneririz. Grup rezervasyonlarında menüyü önceden konuşmak için lütfen iletişime geçin.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q7">Balık taze mi, menü her gün değişiyor mu?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a7">Tüm balıklarımız o günkü Kalkan kıyısından alınır ve aynı akşam servise sunulur. Levrek, çupra, ahtapot, kalamar, karides sürekli; mevsim balıkları ve özel taze yakalanan türler kaptanın tablasında o akşam sunulur. Mezelerimiz sabah taze hazırlanır.</div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q"><span data-i="faq_q8">Çocuklu aileleri ağırlıyor musunuz?</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="faq-a"><div class="faq-a-inner" data-i="faq_a8">Evet, akşam erken saatlerde çocuklu aileleri ağırlıyoruz. Terasımız pergola altı, geniş ve güvenlidir. Geç saatler (22:00 sonrası) yetişkin sohbet ortamına döner; bunu rezervasyonda dikkate alabiliriz.</div></div>
+      </details>
+    </div>
   </div>
 </section>
 
 <!-- ============ REZERVASYON ============ -->
-<section id="reserve" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
-  <div class="max-w-3xl mx-auto text-center">
-    <div class="section-label justify-center mb-6" data-i="reserve_label">Rezervasyon</div>
-    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="reserve_title">Masanızı Ayırın</h2>
-    <p class="max-w-xl mx-auto mb-12 text-base" style="color:var(--theme-muted);" data-i="reserve_sub">Doğrudan WhatsApp ile hızlı rezervasyon yapın veya aşağıdaki formu doldurun — 60 saniye içinde döneriz.</p>
-    <form class="grid md:grid-cols-2 gap-6 text-left" onsubmit="event.preventDefault();sendReservation();">
-      <input class="input md:col-span-2" type="text" name="name" placeholder="Adınız Soyadınız" required>
+<section id="rezervasyon" class="py-24 md:py-32 px-6 relative overflow-hidden" style="background:linear-gradient(180deg, var(--c-deep-3) 0%, var(--c-deep-2) 100%);">
+  <div class="absolute inset-0 vichy-bg opacity-30 pointer-events-none"></div>
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-12">
+      <div class="eyebrow eyebrow-center mb-6" data-i="res_eyebrow">Rezervasyon</div>
+      <h2 class="h-display text-4xl md:text-5xl mb-6"><em data-i="res_title">Bu akşam masanız limanda olsun mu?</em></h2>
+      <p class="max-w-2xl mx-auto text-base text-white/80 leading-relaxed" data-i="res_p">Sezonda akşam saatleri ve hafta sonu hızla dolar. WhatsApp'tan kısa bir mesaj atın, manzaralı masayı size ayıralım. Grup rezervasyonu için lütfen bir gün önceden bildirin.</p>
+      <div class="mt-5 h-cinzel text-[11px]" style="color:var(--c-aht-soft);" data-i="res_hours">Her gün 12:00 – 24:00</div>
+    </div>
+
+    <form class="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto" onsubmit="event.preventDefault();sendReservation();">
+      <input class="input md:col-span-2" type="text" name="name" data-i-placeholder="form_name_ph" placeholder="Ad Soyad" required>
       <input class="input" type="tel" name="phone" placeholder="Telefon" required>
-      <input class="input" type="text" name="people" placeholder="Kişi sayısı" required>
+      <input class="input" type="number" min="1" max="50" name="people" data-i-placeholder="form_people_ph" placeholder="Kişi sayısı" required>
       <input class="input" type="date" name="date" required>
       <input class="input" type="time" name="time" required>
-      <textarea class="input md:col-span-2" name="note" placeholder="Not (özel istek, alerji, vs.)"></textarea>
+      <textarea class="input md:col-span-2" rows="3" name="note" data-i-placeholder="form_note_ph" placeholder="Manzaralı masa, doğum günü, alerji vs."></textarea>
       <div class="md:col-span-2 flex flex-wrap justify-center gap-3 mt-4">
-        <button type="submit" class="btn-primary" data-i="cta_reserve_send">Talebi Gönder</button>
-        <a href="https://wa.me/905352727640?text=Merhaba%20Kaptan%20Restaurant%2C%20rezervasyon%20yapmak%20istiyorum." target="_blank" rel="noopener" class="btn-ghost">WhatsApp ile Yaz</a>
+        <button type="submit" class="btn btn-primary" data-i="form_submit">Talebi Gönder</button>
+        <a href="https://wa.me/905352727640?text=Merhaba%20Kaptan%20Restaurant%2C%20rezervasyon%20yapmak%20istiyorum." target="_blank" rel="noopener" class="btn btn-ghost" data-i="form_wa">WhatsApp ile Yaz</a>
+        <a href="tel:+905352727640" class="btn btn-ghost" data-i="form_call">Telefonla Ara</a>
       </div>
     </form>
   </div>
 </section>
 
-<!-- ============ İLETİŞİM ============ -->
-<section id="contact" class="py-24 md:py-32 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+<!-- ============ KONUM / İLETİŞİM ============ -->
+<section id="konum" class="py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16">
     <div>
-      <div class="section-label mb-6" data-i="contact_label">İletişim</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-10" data-i="contact_title">Bize Ulaşın</h2>
+      <div class="eyebrow mb-6" data-i="loc_eyebrow">Konum</div>
+      <h2 class="h-display text-4xl md:text-5xl mb-8"><em data-i="loc_title">Kalkan kıyısında, dalgakıranın yanı başında.</em></h2>
+      <p class="text-base text-white/75 leading-relaxed mb-10" data-i="loc_access">Kalkan limanı kıyı şeridindeyiz; merkeze yürüme mesafesi. Akşam saatlerinde kıyı boyu otoparklar hızla dolar — mümkünse yürüyerek gelin, sahil zaten en güzeli.</p>
 
-      <div class="space-y-8">
+      <div class="space-y-7">
         <div>
-          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_addr">Adres</div>
-          <div class="text-base">Kalkan kıyı şeridi</div>
+          <div class="h-cinzel text-[11px] mb-2" style="color:var(--c-aht-soft);" data-i="loc_addr">Adres</div>
+          <div class="text-base">Kalkan kıyı şeridi, 07960 Kaş / Antalya</div>
         </div>
         <div>
-          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_phone">Telefon</div>
-          <a href="tel:+905352727640" class="text-base hover:underline">+90 535 272 76 40</a>
+          <div class="h-cinzel text-[11px] mb-2" style="color:var(--c-aht-soft);" data-i="loc_phone">Telefon</div>
+          <a href="tel:+905352727640" class="text-base hover:underline" style="color:var(--c-krem);">+90 535 272 76 40</a>
         </div>
         <div>
-          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_hours">Açılış Saatleri</div>
-          <div class="text-base">Bilgi için arayın</div>
+          <div class="h-cinzel text-[11px] mb-2" style="color:var(--c-aht-soft);" data-i="loc_hours">Saatler</div>
+          <div class="text-base" data-i="loc_hours_v">Her gün 12:00 – 24:00</div>
         </div>
         <div>
-          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_social">Sosyal Medya</div>
-          <div class="flex gap-4 mt-2">
-            <a href="https://www.instagram.com/kaptanrestaurantkalkan/" target="_blank" rel="noopener" aria-label="Instagram @kaptanrestaurantkalkan" style="color:var(--theme-accent);" title="Instagram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-            <a href="https://www.facebook.com/kaptanrestaurant/" target="_blank" rel="noopener" aria-label="Facebook Kaptan Restaurant" style="color:var(--theme-accent);" title="Facebook"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg></a>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kaptan%20Restaurant%20Kalkan" target="_blank" rel="noopener" aria-label="Google Yorumları" style="color:var(--theme-accent);" title="Google'da yorumları gör"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
+          <div class="h-cinzel text-[11px] mb-3" style="color:var(--c-aht-soft);" data-i="loc_social">Sosyal Medya</div>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/kaptanrestaurantkalkan/" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 rounded-full grid place-items-center transition" style="background:rgba(247,247,243,0.06); border:1px solid var(--c-line); color:var(--c-aht-soft);" onmouseover="this.style.background='var(--c-aht)';this.style.color='var(--c-krem-2)'" onmouseout="this.style.background='rgba(247,247,243,0.06)';this.style.color='var(--c-aht-soft)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.facebook.com/kaptanrestaurant/" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 rounded-full grid place-items-center transition" style="background:rgba(247,247,243,0.06); border:1px solid var(--c-line); color:var(--c-aht-soft);" onmouseover="this.style.background='var(--c-aht)';this.style.color='var(--c-krem-2)'" onmouseout="this.style.background='rgba(247,247,243,0.06)';this.style.color='var(--c-aht-soft)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+            </a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kaptan%20Restaurant%20Kalkan" target="_blank" rel="noopener" aria-label="Google Maps" class="w-11 h-11 rounded-full grid place-items-center transition" style="background:rgba(247,247,243,0.06); border:1px solid var(--c-line); color:var(--c-aht-soft);" onmouseover="this.style.background='var(--c-aht)';this.style.color='var(--c-krem-2)'" onmouseout="this.style.background='rgba(247,247,243,0.06)';this.style.color='var(--c-aht-soft)'">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </a>
           </div>
+        </div>
+        <div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kaptan%20Restaurant%20Kalkan" target="_blank" rel="noopener" class="btn btn-akm" data-i="loc_cta">Yol Tarifi Al</a>
         </div>
       </div>
     </div>
-    <div class="aspect-square md:aspect-auto md:h-full min-h-[400px]">
-      <iframe src="https://www.google.com/maps?q=Kalkan%20kıyı%20şeridi&output=embed" class="w-full h-full" style="border:0;filter:grayscale(0.4) contrast(1.05);" loading="lazy" allowfullscreen></iframe>
+
+    <div class="photo-shell aspect-square md:aspect-auto md:h-full min-h-[420px]">
+      <iframe src="https://www.google.com/maps?q=Kalkan%20kıyı%20şeridi&output=embed" class="w-full h-full" style="border:0; filter:grayscale(0.3) contrast(1.05);" loading="lazy" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
 <footer class="kif-footer py-14 px-6">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
-    <div style="color:var(--theme-muted);">© 2026 Kaptan Restaurant · Tüm hakları saklıdır.</div>
-    <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="flex items-center gap-2 hover:opacity-80 transition" style="color:var(--theme-muted);">
-      <span style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;">Powered by</span>
-      <span class="font-display font-extrabold text-lg" style="color:var(--theme-accent);">◆ KALKAN INFO</span>
-    </a>
+  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10 items-start">
+    <div>
+      <div class="brandmark mb-3">Kaptan</div>
+      <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);" data-i="footer_tagline">Meze – Fish – Grill · Limandaki Sofranız</div>
+      <p class="text-sm text-white/65 leading-relaxed">Kalkan kıyı şeridi, 07960 Kaş / Antalya</p>
+    </div>
+    <div>
+      <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);" data-i="footer_contact">İletişim</div>
+      <div class="space-y-1.5 text-sm text-white/75">
+        <a href="tel:+905352727640" class="block hover:text-white">+90 535 272 76 40</a>
+        <a href="https://wa.me/905352727640" target="_blank" rel="noopener" class="block hover:text-white">WhatsApp</a>
+        <a href="https://www.instagram.com/kaptanrestaurantkalkan/" target="_blank" rel="noopener" class="block hover:text-white">Instagram</a>
+      </div>
+    </div>
+    <div class="text-left md:text-right">
+      <div class="h-cinzel text-[10px] mb-3" style="color:var(--c-aht-soft);" data-i="footer_partner">Partner</div>
+      <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 hover:opacity-80 transition">
+        <span class="text-[10px] uppercase tracking-[0.22em] font-semibold text-white/65">Powered by</span>
+        <span class="h-display font-bold text-lg" style="color:var(--c-aht-soft);">◆ KALKAN INFO</span>
+      </a>
+      <div class="mt-3 text-xs text-white/45" data-i="footer_rights">© 2026 Kaptan Restaurant · Tüm hakları saklıdır.</div>
+    </div>
   </div>
 </footer>
 
-<a href="https://wa.me/905352727640?text=Merhaba%20Kaptan%20Restaurant%2C%20sizinle%20iletişime%20geçmek%20istiyorum." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+<!-- WhatsApp Float -->
+<a href="https://wa.me/905352727640?text=Merhaba%20Kaptan%20Restaurant%2C%20sizinle%20ileti%C5%9Fime%20ge%C3%A7mek%20istiyorum." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
 </a>
+
+<!-- Mobile CTA bar -->
+<div class="mobile-cta">
+  <a href="#rezervasyon" class="primary" data-i="m_cta_book">Masa Ayır</a>
+  <a href="tel:+905352727640" data-i="m_cta_phone">Ara</a>
+  <a href="https://www.google.com/maps/search/?api=1&query=Kaptan%20Restaurant%20Kalkan" target="_blank" rel="noopener" data-i="m_cta_dir">Yön</a>
+</div>
 
 <script src="/js/gtm-events.js" defer></script>
 
 <script>
-// Basit i18n - 5 dil
-const I18N = {"tr":{"about":"Hakkımızda","menu":"Menü","gallery":"Galeri","reserve":"Rezervasyon","contact":"İletişim","cta_reserve":"Rezervasyon","cta_menu":"Menüyü Gör","cta_reserve_send":"Talebi Gönder","about_label":"Hakkımızda","menu_label":"Menü","gallery_label":"Galeri","gallery_title":"Mekândan Kareler","reserve_label":"Rezervasyon","reserve_title":"Masanızı Ayırın","reserve_sub":"Doğrudan WhatsApp ile hızlı rezervasyon yapın veya formu doldurun — 60 saniye içinde döneriz.","contact_label":"İletişim","contact_title":"Bize Ulaşın","contact_addr":"Adres","contact_phone":"Telefon","contact_hours":"Açılış Saatleri","contact_social":"Sosyal Medya","menu_pdf":"Tam Menüyü İndir (PDF)","reviews":"Yorumlar","reviews_label":"Misafir Yorumları","reviews_title":"Google'da Bizi Anlatanlar","reviews_sub":"Aşağıdaki yorumlar Google Maps'ten alınmıştır. Tümünü Google'da görmek için butona tıklayın.","reviews_all":"Tüm Yorumları Gör (Google)","reviews_empty":"Yorumlar yakında eklenecek."},"en":{"about":"About","menu":"Menu","gallery":"Gallery","reserve":"Reservation","contact":"Contact","cta_reserve":"Reserve","cta_menu":"View Menu","cta_reserve_send":"Send Request","about_label":"About Us","menu_label":"Menu","gallery_label":"Gallery","gallery_title":"Moments","reserve_label":"Reservation","reserve_title":"Reserve Your Table","reserve_sub":"Reserve fast via WhatsApp or fill the form — we reply in 60 seconds.","contact_label":"Contact","contact_title":"Get In Touch","contact_addr":"Address","contact_phone":"Phone","contact_hours":"Opening Hours","contact_social":"Social Media","menu_pdf":"Download Full Menu (PDF)","reviews":"Reviews","reviews_label":"Guest Reviews","reviews_title":"What People Say on Google","reviews_sub":"The reviews below are sourced from Google Maps. Click to see all reviews on Google.","reviews_all":"See All Reviews (Google)","reviews_empty":"Reviews coming soon."},"de":{"about":"Über uns","menu":"Speisekarte","gallery":"Galerie","reserve":"Reservierung","contact":"Kontakt","cta_reserve":"Reservieren","cta_menu":"Speisekarte","cta_reserve_send":"Anfrage senden","about_label":"Über uns","menu_label":"Speisekarte","gallery_label":"Galerie","gallery_title":"Momente","reserve_label":"Reservierung","reserve_title":"Tisch reservieren","reserve_sub":"Schnelle Reservierung per WhatsApp oder Formular — Antwort in 60 Sekunden.","contact_label":"Kontakt","contact_title":"Kontaktiere uns","contact_addr":"Adresse","contact_phone":"Telefon","contact_hours":"Öffnungszeiten","contact_social":"Soziale Medien","menu_pdf":"Speisekarte als PDF","reviews":"Bewertungen","reviews_label":"Gästebewertungen","reviews_title":"Was Gäste auf Google sagen","reviews_sub":"Die Bewertungen stammen von Google Maps. Klicken Sie, um alle auf Google zu sehen.","reviews_all":"Alle Bewertungen (Google)","reviews_empty":"Bewertungen folgen in Kürze."},"ru":{"about":"О нас","menu":"Меню","gallery":"Галерея","reserve":"Бронирование","contact":"Контакты","cta_reserve":"Забронировать","cta_menu":"Меню","cta_reserve_send":"Отправить запрос","about_label":"О нас","menu_label":"Меню","gallery_label":"Галерея","gallery_title":"Моменты","reserve_label":"Бронирование","reserve_title":"Забронируйте столик","reserve_sub":"Быстрое бронирование в WhatsApp или заполните форму — ответ за 60 секунд.","contact_label":"Контакты","contact_title":"Свяжитесь с нами","contact_addr":"Адрес","contact_phone":"Телефон","contact_hours":"Часы работы","contact_social":"Социальные сети","menu_pdf":"Скачать меню (PDF)","reviews":"Отзывы","reviews_label":"Отзывы гостей","reviews_title":"Что говорят в Google","reviews_sub":"Отзывы ниже — из Google Карт. Нажмите, чтобы посмотреть все на Google.","reviews_all":"Все отзывы (Google)","reviews_empty":"Отзывы появятся скоро."},"fr":{"about":"À propos","menu":"Menu","gallery":"Galerie","reserve":"Réservation","contact":"Contact","cta_reserve":"Réserver","cta_menu":"Voir le Menu","cta_reserve_send":"Envoyer la demande","about_label":"À propos","menu_label":"Menu","gallery_label":"Galerie","gallery_title":"Instants","reserve_label":"Réservation","reserve_title":"Réservez votre table","reserve_sub":"Réservation rapide via WhatsApp ou remplissez le formulaire — réponse en 60 secondes.","contact_label":"Contact","contact_title":"Contactez-nous","contact_addr":"Adresse","contact_phone":"Téléphone","contact_hours":"Horaires","contact_social":"Réseaux sociaux","menu_pdf":"Télécharger le menu (PDF)","reviews":"Avis","reviews_label":"Avis des clients","reviews_title":"Ce que disent les clients sur Google","reviews_sub":"Les avis ci-dessous proviennent de Google Maps. Cliquez pour les voir tous.","reviews_all":"Voir tous les avis (Google)","reviews_empty":"Avis bientôt disponibles."}};
+/* ============ I18N ============ */
+const I18N = {
+  tr: {
+    nav_hikaye:"Hikâye", nav_lezzetler:"İmza Lezzetler", nav_atmosfer:"Atmosfer", nav_galeri:"Galeri", nav_menu:"Menü", nav_yorumlar:"Yorumlar", nav_rezervasyon:"Rezervasyon", nav_konum:"Konum",
+    hero_kicker:"MEZE · FISH · GRILL — KALKAN LİMANI", hero_titleA:"Limanda demirleyen", hero_titleEm:"bir", hero_titleB:"sofra.",
+    hero_sub:"Kalkan kıyısında, dalgakıran fenerinin ve karşıdaki adanın önünde. Taze balık, günün mezesi, mavi saat ve uzun bir akşam.",
+    hero_cta1:"Masa Ayır", hero_cta2:"Mutfağı Gör", hero_scroll:"LIMANA İNİŞ",
+    story_eyebrow:"Hikâyemiz", story_title:"Kalkan kıyısında, denizci ruhuyla bir sofra.",
+    story_p1:"Kaptan, Kalkan kıyı şeridinde — dalgakıran feneri ve karşıdaki ada gözümüzün önünde. Mavi-beyaz vichy örtüler, pergola altında sarkık lambalar, denizin tuzu rüzgârda. Sofra denizden başlar; gün ne getirdiyse, akşam onu paylaşırız.",
+    story_p2:"Mezelerimiz gün doğmadan hazırlanır, balıklarımız o sabah Kalkan kıyısının verdiğidir. Rakı buz tutar, şarap zamanında soğur. Burada kaptanın masası uzun olur — misafir değil, sofradaş ağırlarız.",
+    story_statOpen:"Açılış", story_statClose:"Son sipariş", story_statPlace:"Liman · Kıyı",
+    sig_eyebrow:"İmza Lezzetler", sig_title:"Limandan tabağa.",
+    sig_intro:"Her gün denizden, sezonun en güzeli. İşte sofranın değişmez beşi — kaptanın seçimi.",
+    sig_no:"No.", sig_no_2:"No.", sig_no_3:"No.", sig_no_4:"No.", sig_no_5:"No.",
+    sig_01_name:"Karides Izgara", sig_01_desc:"Közde, limon ve zeytinyağıyla. Sofranın imzası, rakıyla ezeli yoldaş.",
+    sig_02_name:"Izgara Levrek", sig_02_desc:"O gün Kalkan kıyısından; kemiğinden ayrılır, tabaktan kalkmaz.",
+    sig_03_name:"Izgara Ahtapot", sig_03_desc:"Önce közde, sonra zeytinyağında. Yumuşacık, denizin tadında.",
+    sig_04_name:"Kuzu Pirzola", sig_04_desc:"Köz aroması, dinlenmiş et. Balığın yanına kaptanın seçimi.",
+    sig_05_name:"Acuka & Beyaz Peynir", sig_05_desc:"Acuka, roka, zeytinyağında beyaz peynir — rakının yanı.",
+    atm_eyebrow:"Atmosfer", atm_title:"Mavi saat, pergola altı, fenerin ışığında bir akşam.",
+    atm_p:"Akşamüstü güneş karşıdaki adanın ardına inerken pergolada vichy örtüler kıpırdar, lambalar mavi saati ısıtır. Dalgakıran feneri yanıp söner, masanın sesi denizden gelir. Burada saat, sofra dağılmadan ilerlemez — gece kaptanın isteğiyle uzar.",
+    poster_band:"Kaptan · Kalkan · Kaş", poster_titleA:"Bir Akşam", poster_titleB:"Kaptan'da.",
+    poster_line1:"Dalgakıran feneri yanar,", poster_line2:"rakı buz tutar, sofra uzun olur.",
+    gal_eyebrow:"Galeri", gal_title:"Limandan kareler.",
+    gal_alt_1:"Kaptan Kalkan terası mavi saatte, dolu masalar ve liman manzarası",
+    gal_alt_2:"Kalkan'da meyhane sofrası: çeşitli meze tabakları",
+    gal_alt_3:"Kalkan kıyısında sunset masası, sakin deniz manzarası",
+    gal_alt_4:"Mavi saat masada balık ve meze tabakları",
+    gal_alt_5:"Kaptan imza tabağı: limonlu, közde karides ızgara",
+    gal_alt_6:"Kalkan dikey sunset: dalgakıran feneri ve karşıdaki ada",
+    menu_eyebrow:"Menü", menu_title:"Sofranın", menu_titleEm:"haritası.",
+    menu_body:"Menümüz her gün limanın o sabah verdiğine göre güncellenir. Tüm balıklarımız o gün taze, mezelerimiz o sabah hazırdır.",
+    menu_tab_all:"Tümü", menu_tab_meze:"Mezeler", menu_tab_izgara:"Izgara & Balık", menu_tab_icki:"İçkiler", menu_tab_tatli:"Kapanış",
+    menu_pricesNote:"Fiyatlar masada · Her gün 12:00 – 24:00", menu_cta:"Tam Menüyü Gör",
+    badge_imza:"İmza", badge_imza_2:"İmza", badge_imza_3:"İmza", badge_imza_4:"İmza",
+    badge_vejetaryen:"Vejetaryen", badge_vejetaryen_2:"Vejetaryen",
+    badge_mevsim:"Mevsim", badge_mevsim_2:"Mevsim", badge_mevsim_3:"Mevsim",
+    m_acuka:"Acuka", m_acuka_d:"Antep ezmesi, ceviz, nar ekşisi — rakının kadim yoldaşı.",
+    m_beyaz:"Beyaz Peynir & Roka", m_beyaz_d:"Zeytinyağında beyaz peynir, taze roka, sızma zeytinyağı.",
+    m_ciroz:"Çiroz Salatası", m_ciroz_d:"İnce dilim çiroz, soğan, maydanoz, limon.",
+    m_humus:"Humus", m_humus_d:"Nohut, tahin, limon, zeytinyağı.",
+    m_yaprak:"Yaprak Sarma", m_yaprak_d:"Zeytinyağlı, çam fıstıklı, narenciye notalı.",
+    m_patlican:"Patlıcan Salatası", m_patlican_d:"Köz patlıcan, sarımsak, zeytinyağı.",
+    m_karides:"Karides Izgara", m_karides_d:"Sofranın imzası: közde, limonlu zeytinyağıyla.",
+    m_levrek:"Izgara Levrek", m_levrek_d:"O günkü; kemiğinden ayrılır.",
+    m_ahtapot:"Izgara Ahtapot", m_ahtapot_d:"Önce közde, sonra zeytinyağında. Yumuşak.",
+    m_cupra:"Izgara Çupra", m_cupra_d:"Klasik, limonlu yağ ile.",
+    m_pirzola:"Kuzu Pirzola", m_pirzola_d:"Köz aroması, dinlenmiş et — rakının yanına biçilmiş.",
+    m_mevsim:"Mevsim Balığı", m_mevsim_d:"Pazara göre değişir — kaptana sorun.",
+    m_raki:"Rakı", m_raki_d:"Yeni Rakı, Tekirdağ, Efe; tek, duble.",
+    m_beyaz_sarap:"Beyaz Şarap", m_beyaz_sarap_d:"Mevsimin yerli seçkisi — kadeh veya şişe.",
+    m_rose:"Rose", m_rose_d:"Akdeniz akşamı için soğuk rose.",
+    m_bira:"Bira", m_bira_d:"Klasik ve butik seçenekler.",
+    m_kunefe:"Künefe", m_kunefe_d:"Sıcak servis, kaymakla.",
+    m_meyve:"Mevsim Meyvesi", m_meyve_d:"Sezona göre, soğuk.",
+    m_kahve:"Türk Kahvesi", m_kahve_d:"Cezvede, lokumla.",
+    rev_eyebrow:"Yorumlar", rev_titleA:"Misafirlerimizin", rev_titleEm:"sözüyle", rev_titleB:".",
+    rev_intro:"Misafir yorumları yakında Google profilinden canlı olarak çekilecek. Şimdilik tüm değerlendirmeleri Google üzerinden inceleyebilirsiniz.",
+    rev_cta:"Google'da Tümünü Gör",
+    faq_eyebrow:"Sıkça Sorulanlar", faq_title:"Liman'a gelmeden önce.",
+    faq_q1:"Kalkan'da nereye gidilir akşam yemeği?",
+    faq_a1:"Kalkan'da klasik akşam yemeği için kıyı şeridindeki balık + meze + ızgara üçlemesi tercih edilir. Kaptan, dalgakıran fenerinin ve karşıdaki adanın tam karşısında, pergola altında mavi-beyaz vichy örtüler ve mavi saatle bu deneyimi sunar. Her gün 12:00–24:00 arası açığız; WhatsApp'tan masa ayırabilirsiniz.",
+    faq_q2:"Kalkan'da rakı balık nereye gidilir?",
+    faq_a2:"Kalkan limanında rakı–balık keyfi için Kaptan, denizci ruhu ve geleneksel meze + ızgara + balık üçlüsüyle ilk durakların başında gelir. Karides Izgara, Izgara Levrek, Ahtapot ve Kuzu Pirzola imza tabaklarımız; rakı, beyaz şarap ve rose içki kartımızda hazır. Manzaralı masa için bir gün önceden bildirin.",
+    faq_q3:"Kalkan'da en iyi balık restoran hangisi?",
+    faq_a3:"Kalkan kıyı şeridi balık restoranlarıyla bilinir. Kaptan, taze günlük balık (levrek, çupra, ahtapot, kalamar, mevsim balığı), günlük hazır mezeler ve Kalkan limanı manzarasıyla öne çıkar. Tüm balık, o sabah temin edilir; menü pazara göre günlük güncellenir.",
+    faq_q4:"Kalkan limanında manzaralı restoran?",
+    faq_a4:"Kaptan, Kalkan limanı kıyı şeridindedir — pergola altı teras dalgakıran feneri ve karşıdaki adanın siluetine bakar. Sunset ve mavi saat için en güzel masalar manzaralı tarafımızdadır; rezervasyon yaparken \"manzaralı masa\" notunu eklemenizi öneririz.",
+    faq_q5:"Kalkan sunset restaurant öneri?",
+    faq_a5:"Kalkan'da gün batımı için kıyı şeridi mekanları tercih edilir. Kaptan, batı yönüne açık terasıyla sunset ve sonrasındaki mavi saatte özellikle güzeldir. Rezervasyon için 18:30–19:30 arasını öneririz; karides ızgara + beyaz şarap klasik kombinasyondur.",
+    faq_q6:"Rezervasyon nasıl yapılır?",
+    faq_a6:"WhatsApp'tan +90 535 272 76 40 numarasına mesaj atarak ya da aynı numarayı arayarak rezervasyon yapabilirsiniz. Sezonda akşam saatleri ve hafta sonu hızla dolar; manzaralı masa için 1 gün önceden bildirmenizi öneririz. Grup rezervasyonlarında menüyü önceden konuşmak için lütfen iletişime geçin.",
+    faq_q7:"Balık taze mi, menü her gün değişiyor mu?",
+    faq_a7:"Tüm balıklarımız o günkü Kalkan kıyısından alınır ve aynı akşam servise sunulur. Levrek, çupra, ahtapot, kalamar, karides sürekli; mevsim balıkları ve özel taze yakalanan türler kaptanın tablasında o akşam sunulur. Mezelerimiz sabah taze hazırlanır.",
+    faq_q8:"Çocuklu aileleri ağırlıyor musunuz?",
+    faq_a8:"Evet, akşam erken saatlerde çocuklu aileleri ağırlıyoruz. Terasımız pergola altı, geniş ve güvenlidir. Geç saatler (22:00 sonrası) yetişkin sohbet ortamına döner; bunu rezervasyonda dikkate alabiliriz.",
+    res_eyebrow:"Rezervasyon", res_title:"Bu akşam masanız limanda olsun mu?",
+    res_p:"Sezonda akşam saatleri ve hafta sonu hızla dolar. WhatsApp'tan kısa bir mesaj atın, manzaralı masayı size ayıralım. Grup rezervasyonu için lütfen bir gün önceden bildirin.",
+    res_hours:"Her gün 12:00 – 24:00",
+    form_name_ph:"Ad Soyad", form_people_ph:"Kişi sayısı", form_note_ph:"Manzaralı masa, doğum günü, alerji vs.",
+    form_submit:"Talebi Gönder", form_wa:"WhatsApp ile Yaz", form_call:"Telefonla Ara",
+    loc_eyebrow:"Konum", loc_title:"Kalkan kıyısında, dalgakıranın yanı başında.",
+    loc_access:"Kalkan limanı kıyı şeridindeyiz; merkeze yürüme mesafesi. Akşam saatlerinde kıyı boyu otoparklar hızla dolar — mümkünse yürüyerek gelin, sahil zaten en güzeli.",
+    loc_addr:"Adres", loc_phone:"Telefon", loc_hours:"Saatler", loc_hours_v:"Her gün 12:00 – 24:00", loc_social:"Sosyal Medya", loc_cta:"Yol Tarifi Al",
+    footer_tagline:"Meze – Fish – Grill · Limandaki Sofranız", footer_contact:"İletişim", footer_partner:"Partner",
+    footer_rights:"© 2026 Kaptan Restaurant · Tüm hakları saklıdır.",
+    m_cta_book:"Masa Ayır", m_cta_phone:"Ara", m_cta_dir:"Yön"
+  },
+  en: {
+    nav_hikaye:"Story", nav_lezzetler:"Signature", nav_atmosfer:"Atmosphere", nav_galeri:"Gallery", nav_menu:"Menu", nav_yorumlar:"Reviews", nav_rezervasyon:"Reservations", nav_konum:"Location",
+    hero_kicker:"MEZE · FISH · GRILL — KALKAN HARBOUR", hero_titleA:"A table moored", hero_titleEm:"at the", hero_titleB:"harbour.",
+    hero_sub:"On the Kalkan waterfront, facing the breakwater lighthouse and the island across the bay. Fresh fish, the day's mezze, blue hour, a long evening.",
+    hero_cta1:"Book a Table", hero_cta2:"See the Kitchen", hero_scroll:"DOWN TO THE HARBOUR",
+    story_eyebrow:"Our Story", story_title:"A sailor's table on the Kalkan shore.",
+    story_p1:"Kaptan sits on the Kalkan waterfront — the breakwater lighthouse and the island across the bay in plain view. Blue-and-white vichy linens, low pergola lanterns, the salt of the sea on the breeze. The table begins at sea; whatever the day brings, we share at night.",
+    story_p2:"Our mezze is prepared before sunrise; our fish is whatever Kalkan's coast offers that morning. The raki frosts, the wine chills in time. The captain's table runs long here — we don't host guests, we host companions.",
+    story_statOpen:"Opens", story_statClose:"Last order", story_statPlace:"Harbour · Shore",
+    sig_eyebrow:"Signature Plates", sig_title:"From harbour to plate.",
+    sig_intro:"Every day from the sea, the best the season offers. These five never leave the table — the captain's pick.",
+    sig_no:"No.", sig_no_2:"No.", sig_no_3:"No.", sig_no_4:"No.", sig_no_5:"No.",
+    sig_01_name:"Grilled Prawns", sig_01_desc:"Charcoal-grilled with lemon and olive oil. The signature of the table, an old friend to raki.",
+    sig_02_name:"Grilled Sea Bass", sig_02_desc:"From the Kalkan coast that same day; lifts cleanly off the bone.",
+    sig_03_name:"Grilled Octopus", sig_03_desc:"First over the coals, then bathed in olive oil. Tender, with the taste of the sea.",
+    sig_04_name:"Lamb Chops", sig_04_desc:"Smoke from the coals, meat rested to perfection. The captain's choice alongside the fish.",
+    sig_05_name:"Acuka & White Cheese", sig_05_desc:"Walnut-pepper paste, rocket, white cheese in olive oil — raki's natural companion.",
+    atm_eyebrow:"Atmosphere", atm_title:"Blue hour, under the pergola, in the lighthouse's glow.",
+    atm_p:"As the sun drops behind the island across the bay, the vichy linens shift in the pergola and the lanterns warm the blue hour. The breakwater lighthouse blinks, the sound of the table comes from the sea. Time here doesn't move until the table breaks — and the night runs long if the captain wills it.",
+    poster_band:"Kaptan · Kalkan · Kaş", poster_titleA:"An Evening", poster_titleB:"at Kaptan.",
+    poster_line1:"The lighthouse glows,", poster_line2:"the raki frosts, the table runs long.",
+    gal_eyebrow:"Gallery", gal_title:"Frames from the harbour.",
+    gal_alt_1:"Kaptan Kalkan terrace at blue hour", gal_alt_2:"Mezze spread on a Kalkan table",
+    gal_alt_3:"Sunset table on the Kalkan shore", gal_alt_4:"Fish and mezze plates at blue hour",
+    gal_alt_5:"Charcoal-grilled prawns with lemon", gal_alt_6:"Kalkan breakwater lighthouse and the offshore island",
+    menu_eyebrow:"Menu", menu_title:"A map of the", menu_titleEm:"table.",
+    menu_body:"Our menu changes daily with what the harbour brought that morning. All fish is caught that day; all mezze prepared the same morning.",
+    menu_tab_all:"All", menu_tab_meze:"Mezze", menu_tab_izgara:"Grill & Fish", menu_tab_icki:"Drinks", menu_tab_tatli:"Closing",
+    menu_pricesNote:"Prices on table · Daily 12:00 – 24:00", menu_cta:"See the Full Menu",
+    badge_imza:"Signature", badge_imza_2:"Signature", badge_imza_3:"Signature", badge_imza_4:"Signature",
+    badge_vejetaryen:"Vegetarian", badge_vejetaryen_2:"Vegetarian",
+    badge_mevsim:"Seasonal", badge_mevsim_2:"Seasonal", badge_mevsim_3:"Seasonal",
+    m_acuka:"Acuka", m_acuka_d:"Spicy Antep walnut and pepper paste with pomegranate molasses.",
+    m_beyaz:"White Cheese & Rocket", m_beyaz_d:"White cheese in olive oil, fresh rocket, extra-virgin finish.",
+    m_ciroz:"Cured Mackerel Salad", m_ciroz_d:"Thin slices of cured mackerel, onion, parsley, lemon.",
+    m_humus:"Hummus", m_humus_d:"Chickpea, tahini, lemon, olive oil.",
+    m_yaprak:"Stuffed Vine Leaves", m_yaprak_d:"Olive-oil dolma with pine nuts and citrus notes.",
+    m_patlican:"Smoked Aubergine Salad", m_patlican_d:"Charred aubergine, garlic, olive oil.",
+    m_karides:"Grilled Prawns", m_karides_d:"The signature of the table: charcoal-grilled with lemon and olive oil.",
+    m_levrek:"Grilled Sea Bass", m_levrek_d:"Caught that day; lifts cleanly off the bone.",
+    m_ahtapot:"Grilled Octopus", m_ahtapot_d:"Coals first, then olive oil. Tender throughout.",
+    m_cupra:"Grilled Sea Bream", m_cupra_d:"Classic, with lemon-oil dressing.",
+    m_pirzola:"Lamb Chops", m_pirzola_d:"Charcoal aroma, rested meat — built for the raki.",
+    m_mevsim:"Catch of the Day", m_mevsim_d:"Changes with the market — ask the captain.",
+    m_raki:"Rakı", m_raki_d:"Yeni Rakı, Tekirdağ, Efe; single or double pour.",
+    m_beyaz_sarap:"White Wine", m_beyaz_sarap_d:"A seasonal local selection — by the glass or bottle.",
+    m_rose:"Rosé", m_rose_d:"Cold rosé for the Mediterranean evening.",
+    m_bira:"Beer", m_bira_d:"Classic and craft options.",
+    m_kunefe:"Künefe", m_kunefe_d:"Served hot, with clotted cream.",
+    m_meyve:"Seasonal Fruit", m_meyve_d:"Whatever's in season, chilled.",
+    m_kahve:"Turkish Coffee", m_kahve_d:"From the cezve, with a piece of lokum.",
+    rev_eyebrow:"Reviews", rev_titleA:"In our", rev_titleEm:"guests'", rev_titleB:" words.",
+    rev_intro:"Guest reviews will soon stream live from our Google profile. For now, see all ratings on Google.",
+    rev_cta:"See All on Google",
+    faq_eyebrow:"Frequently Asked", faq_title:"Before you arrive at the harbour.",
+    faq_q1:"Where should we go for dinner in Kalkan?",
+    faq_a1:"The classic Kalkan dinner is the waterfront trio of fish, mezze and grill. Kaptan offers exactly that across from the breakwater lighthouse and the island, under a pergola with blue-and-white vichy linens, into the blue hour. Open daily 12:00–24:00; reserve a table via WhatsApp.",
+    faq_q2:"Where to enjoy raki and fish in Kalkan?",
+    faq_a2:"For the classic raki-and-fish ritual on the Kalkan harbour, Kaptan is a top stop — sailor-soul service, traditional mezze + grill + fish, and signature plates of grilled prawns, sea bass, octopus and lamb chops. Raki, white wine and rosé all on the list. Book a day ahead for a view-side table.",
+    faq_q3:"Which is the best seafood restaurant in Kalkan?",
+    faq_a3:"Kalkan's harbour is known for its seafood houses. Kaptan stands out with daily fresh fish, morning-prepared mezze and the Kalkan harbour view. All fish is sourced the same morning; the menu shifts daily with the market.",
+    faq_q4:"Any restaurant with a view on Kalkan harbour?",
+    faq_a4:"Kaptan sits on the Kalkan harbour waterfront — the pergola terrace looks out to the breakwater lighthouse and the silhouette of the island. The best tables for sunset and blue hour are on our view side; please add a note for \"view-side table\" when you book.",
+    faq_q5:"Recommendations for sunset dining in Kalkan?",
+    faq_a5:"Waterfront spots are the right call for sunset in Kalkan. With a west-facing terrace, Kaptan is especially lovely at sunset and into the blue hour that follows. We suggest booking between 18:30–19:30; grilled prawns with white wine is a classic pairing.",
+    faq_q6:"How do I make a reservation?",
+    faq_a6:"Reserve via WhatsApp or call at +90 535 272 76 40. Evening seatings and weekends fill quickly in season; we recommend booking a day ahead for a view-side table. For group bookings please reach out so we can talk through the menu in advance.",
+    faq_q7:"Is the fish fresh? Does the menu change each day?",
+    faq_a7:"All our fish is sourced the same day from the Kalkan coast and served that evening. Sea bass, sea bream, octopus, calamari and prawns are always on; seasonal and special catches arrive on the captain's tray that night. Mezze is prepared fresh every morning.",
+    faq_q8:"Do you welcome families with children?",
+    faq_a8:"Yes, we welcome families with children during the early evening. Our pergola terrace is wide and safe. Late hours (after 22:00) turn into a quieter adults' atmosphere — please mention this when you book.",
+    res_eyebrow:"Reservations", res_title:"Shall we hold your table at the harbour tonight?",
+    res_p:"Evening seatings and weekends fill quickly in season. Send us a quick WhatsApp message and we'll hold a view-side table for you. For group bookings, please reach out a day in advance.",
+    res_hours:"Daily 12:00 – 24:00",
+    form_name_ph:"Full Name", form_people_ph:"Party size", form_note_ph:"View-side table, birthday, allergies, etc.",
+    form_submit:"Send Request", form_wa:"Message on WhatsApp", form_call:"Call Us",
+    loc_eyebrow:"Location", loc_title:"On the Kalkan shore, next to the breakwater.",
+    loc_access:"We're on the Kalkan harbour waterfront, a short walk from the town centre. Coastal car parks fill quickly in the evening — come on foot if you can; the seafront is part of the experience.",
+    loc_addr:"Address", loc_phone:"Phone", loc_hours:"Hours", loc_hours_v:"Daily 12:00 – 24:00", loc_social:"Social", loc_cta:"Get Directions",
+    footer_tagline:"Meze – Fish – Grill · Your Table at the Harbour", footer_contact:"Contact", footer_partner:"Partner",
+    footer_rights:"© 2026 Kaptan Restaurant · All rights reserved.",
+    m_cta_book:"Book", m_cta_phone:"Call", m_cta_dir:"Map"
+  },
+  de: {
+    nav_hikaye:"Geschichte", nav_lezzetler:"Signature", nav_atmosfer:"Ambiente", nav_galeri:"Galerie", nav_menu:"Speisekarte", nav_yorumlar:"Bewertungen", nav_rezervasyon:"Reservierung", nav_konum:"Standort",
+    hero_kicker:"MEZE · FISCH · GRILL — HAFEN VON KALKAN", hero_titleA:"Ein Tisch", hero_titleEm:"im", hero_titleB:"Hafen.",
+    hero_sub:"An der Promenade von Kalkan, gegenüber dem Leuchtturm am Wellenbrecher und der Insel. Frischer Fisch, Meze des Tages, blaue Stunde, ein langer Abend.",
+    hero_cta1:"Tisch reservieren", hero_cta2:"Die Küche entdecken", hero_scroll:"ZUM HAFEN",
+    story_eyebrow:"Unsere Geschichte", story_title:"Ein Seemannstisch an der Küste von Kalkan.",
+    story_p1:"Kaptan liegt direkt an der Hafenpromenade von Kalkan — Leuchtturm und Insel stets im Blick. Blau-weiße Vichy-Tischdecken, niedrige Pergola-Laternen, Meersalz in der Brise. Der Tisch beginnt am Meer; was der Tag bringt, teilen wir am Abend.",
+    story_p2:"Unsere Meze wird vor Sonnenaufgang zubereitet, der Fisch kommt direkt von der Küste. Der Rakı vereist, der Wein kühlt rechtzeitig. Der Kapitänstisch wird lang — wir empfangen keine Gäste, sondern Tischgefährten.",
+    story_statOpen:"Öffnung", story_statClose:"Letzte Bestellung", story_statPlace:"Hafen · Küste",
+    sig_eyebrow:"Signature-Gerichte", sig_title:"Vom Hafen auf den Teller.",
+    sig_intro:"Jeden Tag aus dem Meer, das Beste der Saison. Diese fünf verlassen den Tisch nie — die Wahl des Kapitäns.",
+    sig_no:"Nr.", sig_no_2:"Nr.", sig_no_3:"Nr.", sig_no_4:"Nr.", sig_no_5:"Nr.",
+    sig_01_name:"Garnelen vom Grill", sig_01_desc:"Auf Glut, mit Zitrone und Olivenöl. Die Signatur des Tisches, alter Freund des Rakı.",
+    sig_02_name:"Wolfsbarsch vom Grill", sig_02_desc:"Vom selben Morgen an der Küste; löst sich sauber vom Knochen.",
+    sig_03_name:"Oktopus vom Grill", sig_03_desc:"Zuerst auf Glut, dann in Olivenöl. Zart, voller Meeresgeschmack.",
+    sig_04_name:"Lammkoteletts", sig_04_desc:"Holzkohlenaroma, perfekt ruhiges Fleisch. Die Wahl des Kapitäns.",
+    sig_05_name:"Acuka & Weißer Käse", sig_05_desc:"Nuss-Paprika-Paste, Rucola, weißer Käse in Olivenöl — Begleiter des Rakı.",
+    atm_eyebrow:"Ambiente", atm_title:"Blaue Stunde, unter der Pergola, im Schein des Leuchtturms.",
+    atm_p:"Wenn die Sonne hinter der Insel verschwindet, bewegen sich die Vichy-Tücher unter der Pergola, die Laternen wärmen die blaue Stunde. Der Leuchtturm blinkt, der Klang des Tisches kommt vom Meer.",
+    poster_band:"Kaptan · Kalkan · Kaş", poster_titleA:"Ein Abend", poster_titleB:"bei Kaptan.",
+    poster_line1:"Der Leuchtturm glüht,", poster_line2:"der Rakı vereist, der Tisch wird lang.",
+    gal_eyebrow:"Galerie", gal_title:"Bilder aus dem Hafen.",
+    gal_alt_1:"Kaptan Kalkan Terrasse in der blauen Stunde", gal_alt_2:"Meze-Tisch in Kalkan",
+    gal_alt_3:"Sonnenuntergangstisch an der Küste von Kalkan", gal_alt_4:"Fisch und Meze in der blauen Stunde",
+    gal_alt_5:"Garnelen vom Grill mit Zitrone", gal_alt_6:"Leuchtturm und Insel von Kalkan",
+    menu_eyebrow:"Speisekarte", menu_title:"Eine Karte des", menu_titleEm:"Tisches.",
+    menu_body:"Unsere Karte ändert sich täglich nach dem, was der Hafen bringt. Aller Fisch desselben Tages, alle Meze desselben Morgens.",
+    menu_tab_all:"Alle", menu_tab_meze:"Meze", menu_tab_izgara:"Grill & Fisch", menu_tab_icki:"Getränke", menu_tab_tatli:"Abschluss",
+    menu_pricesNote:"Preise am Tisch · Täglich 12:00 – 24:00", menu_cta:"Ganze Karte ansehen",
+    badge_imza:"Signature", badge_imza_2:"Signature", badge_imza_3:"Signature", badge_imza_4:"Signature",
+    badge_vejetaryen:"Vegetarisch", badge_vejetaryen_2:"Vegetarisch",
+    badge_mevsim:"Saisonal", badge_mevsim_2:"Saisonal", badge_mevsim_3:"Saisonal",
+    m_acuka:"Acuka", m_acuka_d:"Scharfe Antep-Walnuss-Paste mit Granatapfelmelasse.",
+    m_beyaz:"Weißer Käse & Rucola", m_beyaz_d:"Weißer Käse in Olivenöl, frischer Rucola, natives Olivenöl extra.",
+    m_ciroz:"Trockenmakrele-Salat", m_ciroz_d:"Dünne Scheiben Trockenmakrele, Zwiebel, Petersilie, Zitrone.",
+    m_humus:"Hummus", m_humus_d:"Kichererbsen, Tahini, Zitrone, Olivenöl.",
+    m_yaprak:"Gefüllte Weinblätter", m_yaprak_d:"Olivenöl-Dolma mit Pinienkernen und Zitrusnoten.",
+    m_patlican:"Auberginensalat", m_patlican_d:"Geröstete Aubergine, Knoblauch, Olivenöl.",
+    m_karides:"Garnelen vom Grill", m_karides_d:"Die Signatur des Tisches: auf Glut, mit Zitrone und Olivenöl.",
+    m_levrek:"Wolfsbarsch vom Grill", m_levrek_d:"Tagesfang; löst sich sauber vom Knochen.",
+    m_ahtapot:"Oktopus vom Grill", m_ahtapot_d:"Zuerst Glut, dann Olivenöl. Durchweg zart.",
+    m_cupra:"Goldbrasse vom Grill", m_cupra_d:"Klassisch, mit Zitronen-Öl-Dressing.",
+    m_pirzola:"Lammkoteletts", m_pirzola_d:"Holzkohlenaroma, ruhiges Fleisch — perfekt zum Rakı.",
+    m_mevsim:"Tagesfang", m_mevsim_d:"Wechselt mit dem Markt — fragen Sie den Kapitän.",
+    m_raki:"Rakı", m_raki_d:"Yeni Rakı, Tekirdağ, Efe; einfach oder doppelt.",
+    m_beyaz_sarap:"Weißwein", m_beyaz_sarap_d:"Saisonale lokale Auswahl — glasweise oder Flasche.",
+    m_rose:"Rosé", m_rose_d:"Kalter Rosé für den mediterranen Abend.",
+    m_bira:"Bier", m_bira_d:"Klassische und Craft-Optionen.",
+    m_kunefe:"Künefe", m_kunefe_d:"Heiß serviert, mit Sahne.",
+    m_meyve:"Saisonale Früchte", m_meyve_d:"Saisonal, gekühlt.",
+    m_kahve:"Türkischer Kaffee", m_kahve_d:"Aus der Cezve, mit Lokum.",
+    rev_eyebrow:"Bewertungen", rev_titleA:"Mit den Worten", rev_titleEm:"unserer", rev_titleB:" Gäste.",
+    rev_intro:"Gästebewertungen werden bald live von unserem Google-Profil eingebunden. Vorerst alle Bewertungen auf Google.",
+    rev_cta:"Alle auf Google ansehen",
+    faq_eyebrow:"Häufig gefragt", faq_title:"Bevor Sie zum Hafen kommen.",
+    faq_q1:"Wo essen in Kalkan zu Abend?",
+    faq_a1:"Das klassische Abendessen in Kalkan ist das Trio aus Fisch, Meze und Grill an der Promenade. Kaptan bietet genau das — gegenüber Leuchtturm und Insel, unter der Pergola mit blau-weißen Vichy-Tüchern. Täglich 12:00–24:00; Reservierung über WhatsApp.",
+    faq_q2:"Wo Rakı und Fisch in Kalkan?",
+    faq_a2:"Für das klassische Rakı-Fisch-Ritual am Hafen von Kalkan ist Kaptan eine Top-Adresse — Seemannsseele, traditionelle Meze + Grill + Fisch und Signature-Teller mit Garnelen, Wolfsbarsch, Oktopus und Lamm. Reservieren Sie einen Tag im Voraus für einen Tisch mit Aussicht.",
+    faq_q3:"Welches ist das beste Fischrestaurant in Kalkan?",
+    faq_a3:"Der Hafen von Kalkan ist bekannt für seine Fischhäuser. Kaptan überzeugt mit täglich frischem Fisch, morgens zubereiteter Meze und Blick auf den Hafen. Aller Fisch desselben Morgens; die Karte ändert sich täglich.",
+    faq_q4:"Restaurant mit Aussicht am Hafen von Kalkan?",
+    faq_a4:"Kaptan liegt an der Hafenpromenade von Kalkan — die Pergola-Terrasse blickt auf den Leuchtturm und die Insel. Die besten Tische für Sonnenuntergang und blaue Stunde liegen auf unserer Aussichtsseite; bitte \"Tisch mit Aussicht\" bei der Reservierung notieren.",
+    faq_q5:"Sonnenuntergangs-Restaurant in Kalkan?",
+    faq_a5:"Für den Sonnenuntergang in Kalkan sind die Promenadenlokale die richtige Wahl. Mit westlicher Terrasse ist Kaptan beim Sonnenuntergang und der folgenden blauen Stunde besonders schön. Wir empfehlen 18:30–19:30; Garnelen vom Grill mit Weißwein ist die klassische Kombination.",
+    faq_q6:"Wie reservieren?",
+    faq_a6:"Reservieren Sie über WhatsApp oder telefonisch unter +90 535 272 76 40. In der Saison sind Abende und Wochenenden schnell ausgebucht; wir empfehlen, einen Tag im Voraus zu reservieren. Für Gruppenreservierungen bitte vorher Kontakt aufnehmen.",
+    faq_q7:"Ist der Fisch frisch? Ändert sich die Karte täglich?",
+    faq_a7:"Aller Fisch wird am selben Tag von der Küste von Kalkan bezogen und am Abend serviert. Wolfsbarsch, Goldbrasse, Oktopus, Kalmar und Garnelen immer dabei; saisonale und besondere Fänge auf dem Tablett des Kapitäns. Meze wird jeden Morgen frisch zubereitet.",
+    faq_q8:"Sind Familien mit Kindern willkommen?",
+    faq_a8:"Ja, Familien mit Kindern sind am frühen Abend willkommen. Unsere Pergola-Terrasse ist weitläufig und sicher. Späte Stunden (nach 22:00) werden zu einer ruhigeren Erwachsenenatmosphäre — bitte bei der Reservierung erwähnen.",
+    res_eyebrow:"Reservierung", res_title:"Halten wir heute Abend Ihren Tisch am Hafen frei?",
+    res_p:"In der Saison sind Abende und Wochenenden schnell ausgebucht. Schreiben Sie uns kurz per WhatsApp, wir halten Ihnen einen Tisch mit Aussicht frei. Für Gruppen bitte einen Tag vorher.",
+    res_hours:"Täglich 12:00 – 24:00",
+    form_name_ph:"Vor- und Nachname", form_people_ph:"Personenzahl", form_note_ph:"Tisch mit Aussicht, Geburtstag, Allergien usw.",
+    form_submit:"Anfrage senden", form_wa:"Nachricht per WhatsApp", form_call:"Anrufen",
+    loc_eyebrow:"Standort", loc_title:"An der Küste von Kalkan, gleich neben dem Wellenbrecher.",
+    loc_access:"Wir liegen direkt an der Hafenpromenade von Kalkan — wenige Gehminuten vom Zentrum. Abends füllen sich die Küstenparkplätze schnell — kommen Sie wenn möglich zu Fuß.",
+    loc_addr:"Adresse", loc_phone:"Telefon", loc_hours:"Öffnungszeiten", loc_hours_v:"Täglich 12:00 – 24:00", loc_social:"Social", loc_cta:"Route anzeigen",
+    footer_tagline:"Meze – Fisch – Grill · Ihr Tisch am Hafen", footer_contact:"Kontakt", footer_partner:"Partner",
+    footer_rights:"© 2026 Kaptan Restaurant · Alle Rechte vorbehalten.",
+    m_cta_book:"Reservieren", m_cta_phone:"Anrufen", m_cta_dir:"Route"
+  },
+  ru: {
+    nav_hikaye:"История", nav_lezzetler:"Фирменное", nav_atmosfer:"Атмосфера", nav_galeri:"Галерея", nav_menu:"Меню", nav_yorumlar:"Отзывы", nav_rezervasyon:"Бронь", nav_konum:"Адрес",
+    hero_kicker:"МЕЗЕ · РЫБА · ГРИЛЬ — ГАВАНЬ КАЛКАНА", hero_titleA:"Стол, пришвартованный", hero_titleEm:"у", hero_titleB:"гавани.",
+    hero_sub:"На набережной Калкана, напротив маяка волнолома и острова через залив. Свежая рыба, мезе дня, синий час и долгий вечер.",
+    hero_cta1:"Забронировать столик", hero_cta2:"Заглянуть на кухню", hero_scroll:"СПУСК К ГАВАНИ",
+    story_eyebrow:"Наша история", story_title:"Стол с морской душой на берегу Калкана.",
+    story_p1:"Капитан стоит на набережной Калкана — маяк волнолома и остров через залив прямо перед глазами. Сине-белые клетчатые скатерти, низкие фонари под перголой, морская соль в ветре. Стол начинается с моря; что принёс день, тем и делимся вечером.",
+    story_p2:"Мезе мы готовим до рассвета, рыбу берём ту, что в то же утро принесло побережье Калкана. Ракы покрывается льдом, вино остывает вовремя. Капитанский стол здесь долгий — мы принимаем не гостей, а собеседников.",
+    story_statOpen:"Открытие", story_statClose:"Последний заказ", story_statPlace:"Гавань · Берег",
+    sig_eyebrow:"Фирменные блюда", sig_title:"От гавани к тарелке.",
+    sig_intro:"Каждый день — от моря, лучшее из сезона. Вот пятёрка, что не покидает стола, — выбор капитана.",
+    sig_no:"№", sig_no_2:"№", sig_no_3:"№", sig_no_4:"№", sig_no_5:"№",
+    sig_01_name:"Креветки на углях", sig_01_desc:"На углях, с лимоном и оливковым маслом. Подпись стола, давний спутник ракы.",
+    sig_02_name:"Сибас на углях", sig_02_desc:"Из улова того же утра у побережья Калкана; легко отделяется от кости.",
+    sig_03_name:"Осьминог на углях", sig_03_desc:"Сначала на углях, затем в оливковом масле. Нежный, со вкусом моря.",
+    sig_04_name:"Бараньи рёбрышки", sig_04_desc:"Аромат углей, отдохнувшее мясо. Выбор капитана к рыбе.",
+    sig_05_name:"Аджука и брынза", sig_05_desc:"Аджука, руккола, брынза в оливковом масле — спутник ракы.",
+    atm_eyebrow:"Атмосфера", atm_title:"Синий час под перголой, в свете маяка.",
+    atm_p:"К вечеру, когда солнце уходит за остров напротив, клетчатые скатерти на перголе чуть шевелятся, фонари согревают синий час. Маяк волнолома мигает, звук стола приходит от моря. Здесь время не идёт, пока стол не разойдётся, — и ночь становится долгой, если капитан того хочет.",
+    poster_band:"Капитан · Калкан · Каш", poster_titleA:"Один вечер", poster_titleB:"в Капитане.",
+    poster_line1:"Маяк волнолома горит,", poster_line2:"ракы покрывается льдом, стол становится долгим.",
+    gal_eyebrow:"Галерея", gal_title:"Кадры из гавани.",
+    gal_alt_1:"Терраса ресторана Капитан в синий час", gal_alt_2:"Стол с мезе в Калкане",
+    gal_alt_3:"Стол на закате на берегу Калкана", gal_alt_4:"Тарелки с рыбой и мезе в синий час",
+    gal_alt_5:"Креветки на углях с лимоном", gal_alt_6:"Маяк волнолома и остров напротив",
+    menu_eyebrow:"Меню", menu_title:"Карта", menu_titleEm:"стола.",
+    menu_body:"Наше меню обновляется каждый день — по тому, что принесла гавань утром. Вся рыба — того же дня, мезе — того же утра.",
+    menu_tab_all:"Всё", menu_tab_meze:"Мезе", menu_tab_izgara:"Гриль и рыба", menu_tab_icki:"Напитки", menu_tab_tatli:"Завершение",
+    menu_pricesNote:"Цены за столом · Ежедневно 12:00 – 24:00", menu_cta:"Смотреть полное меню",
+    badge_imza:"Фирменное", badge_imza_2:"Фирменное", badge_imza_3:"Фирменное", badge_imza_4:"Фирменное",
+    badge_vejetaryen:"Вегетарианское", badge_vejetaryen_2:"Вегетарианское",
+    badge_mevsim:"Сезонное", badge_mevsim_2:"Сезонное", badge_mevsim_3:"Сезонное",
+    m_acuka:"Аджука", m_acuka_d:"Острая антеп-паста, грецкий орех, гранатовый соус.",
+    m_beyaz:"Брынза и руккола", m_beyaz_d:"Брынза в оливковом масле, свежая руккола.",
+    m_ciroz:"Чироз (вяленая скумбрия)", m_ciroz_d:"Тонкие ломтики вяленой скумбрии, лук, петрушка, лимон.",
+    m_humus:"Хумус", m_humus_d:"Нут, тахини, лимон, оливковое масло.",
+    m_yaprak:"Долма в виноградных листьях", m_yaprak_d:"На оливковом масле, с кедровыми орехами.",
+    m_patlican:"Салат из печёного баклажана", m_patlican_d:"Баклажан на углях, чеснок, оливковое масло.",
+    m_karides:"Креветки на углях", m_karides_d:"Подпись стола: на углях, с лимоном и оливковым маслом.",
+    m_levrek:"Сибас на углях", m_levrek_d:"Сегодняшний улов; легко снимается с кости.",
+    m_ahtapot:"Осьминог на углях", m_ahtapot_d:"Сначала угли, потом оливковое масло. Нежный.",
+    m_cupra:"Дорада на углях", m_cupra_d:"Классика, с заправкой из лимона и масла.",
+    m_pirzola:"Бараньи рёбрышки", m_pirzola_d:"Аромат углей, отдохнувшее мясо — создано для ракы.",
+    m_mevsim:"Рыба сезона", m_mevsim_d:"Меняется по рынку — спросите капитана.",
+    m_raki:"Ракы", m_raki_d:"Yeni Rakı, Tekirdağ, Efe; одинарная или двойная порция.",
+    m_beyaz_sarap:"Белое вино", m_beyaz_sarap_d:"Сезонная подборка местных вин — бокал или бутылка.",
+    m_rose:"Розе", m_rose_d:"Холодное розе для средиземноморского вечера.",
+    m_bira:"Пиво", m_bira_d:"Классические и крафтовые варианты.",
+    m_kunefe:"Кюнефе", m_kunefe_d:"Подаётся горячим, со сливками каймак.",
+    m_meyve:"Сезонные фрукты", m_meyve_d:"По сезону, охлаждённые.",
+    m_kahve:"Турецкий кофе", m_kahve_d:"Из джезвы, с лукумом.",
+    rev_eyebrow:"Отзывы", rev_titleA:"Словами", rev_titleEm:"наших", rev_titleB:" гостей.",
+    rev_intro:"Отзывы гостей скоро будут подгружаться напрямую из Google. Пока что все оценки можно посмотреть на Google.",
+    rev_cta:"Все отзывы в Google",
+    faq_eyebrow:"Частые вопросы", faq_title:"Перед приходом на гавань.",
+    faq_q1:"Куда пойти поужинать в Калкане?",
+    faq_a1:"Классический ужин в Калкане — это набережная и трио: рыба, мезе, гриль. Капитан предлагает именно это, напротив маяка волнолома и острова, под перголой с сине-белыми клетчатыми скатертями, в синий час. Открыто ежедневно с 12:00 до 24:00; бронь — через WhatsApp.",
+    faq_q2:"Где попробовать ракы и рыбу в Калкане?",
+    faq_a2:"Для классики «ракы и рыба» на гавани Калкана Капитан — один из первых адресов. Морская душа сервиса, традиционное мезе + гриль + рыба, фирменные креветки на углях, сибас, осьминог и бараньи рёбрышки. Для столика с видом сообщайте за день.",
+    faq_q3:"Какой лучший рыбный ресторан в Калкане?",
+    faq_a3:"Гавань Калкана известна своими рыбными ресторанами. Капитан выделяется ежедневной свежей рыбой, утренним мезе и видом на гавань Калкана. Вся рыба — того же утра; меню меняется ежедневно по рынку.",
+    faq_q4:"Есть ли ресторан с видом на гавани Калкана?",
+    faq_a4:"Капитан расположен на набережной гавани Калкана — терраса под перголой смотрит на маяк волнолома и силуэт острова. Лучшие столики на закат и синий час — с видовой стороны; при бронировании укажите «столик с видом».",
+    faq_q5:"Где встретить закат в Калкане?",
+    faq_a5:"Для заката в Калкане выбирают места на набережной. С террасой на запад Капитан особенно хорош на закате и в синий час. Рекомендуем бронировать на 18:30–19:30; креветки на углях с белым вином — классическое сочетание.",
+    faq_q6:"Как забронировать столик?",
+    faq_a6:"Забронировать можно через WhatsApp или по телефону +90 535 272 76 40. В сезон вечерние смены и выходные заполняются быстро; для столика с видом рекомендуем сообщать за день. Для групповых броней свяжитесь заранее.",
+    faq_q7:"Рыба свежая? Меню меняется каждый день?",
+    faq_a7:"Вся рыба берётся в тот же день с побережья Калкана и подаётся вечером. Сибас, дорада, осьминог, кальмары и креветки — всегда в наличии; сезонные уловы появляются на капитанском подносе в тот же вечер. Мезе готовится свежим каждое утро.",
+    faq_q8:"Принимаете ли вы семьи с детьми?",
+    faq_a8:"Да, в ранние вечерние часы мы принимаем семьи с детьми. Наша терраса под перголой — широкая и безопасная. Поздние часы (после 22:00) превращаются в более тихую взрослую атмосферу — пожалуйста, упомяните это при бронировании.",
+    res_eyebrow:"Бронирование", res_title:"Подержим ваш столик у гавани сегодня вечером?",
+    res_p:"В сезон вечерние смены и выходные заполняются быстро. Напишите короткое сообщение в WhatsApp — мы подержим для вас столик с видом. Для групповой брони — за день.",
+    res_hours:"Ежедневно 12:00 – 24:00",
+    form_name_ph:"Имя и фамилия", form_people_ph:"Гостей", form_note_ph:"Столик с видом, день рождения, аллергии и т.д.",
+    form_submit:"Отправить запрос", form_wa:"Написать в WhatsApp", form_call:"Позвонить",
+    loc_eyebrow:"Адрес", loc_title:"На берегу Калкана, рядом с волноломом.",
+    loc_access:"Мы на набережной гавани Калкана, в нескольких минутах ходьбы от центра. Прибрежные парковки вечером заполняются быстро — если возможно, приходите пешком.",
+    loc_addr:"Адрес", loc_phone:"Телефон", loc_hours:"Часы", loc_hours_v:"Ежедневно 12:00 – 24:00", loc_social:"Соцсети", loc_cta:"Маршрут",
+    footer_tagline:"Мезе – Рыба – Гриль · Ваш стол у гавани", footer_contact:"Контакты", footer_partner:"Партнёр",
+    footer_rights:"© 2026 Ресторан Капитан · Все права защищены.",
+    m_cta_book:"Бронь", m_cta_phone:"Позвонить", m_cta_dir:"Маршрут"
+  },
+  fr: {
+    nav_hikaye:"Histoire", nav_lezzetler:"Signature", nav_atmosfer:"Ambiance", nav_galeri:"Galerie", nav_menu:"Menu", nav_yorumlar:"Avis", nav_rezervasyon:"Réservation", nav_konum:"Adresse",
+    hero_kicker:"MEZE · POISSON · GRIL — PORT DE KALKAN", hero_titleA:"Une table amarrée", hero_titleEm:"au", hero_titleB:"port.",
+    hero_sub:"Sur le front de mer de Kalkan, face au phare du brise-lames et à l'île. Poisson frais, mezze du jour, heure bleue, une longue soirée.",
+    hero_cta1:"Réserver une table", hero_cta2:"Voir la cuisine", hero_scroll:"VERS LE PORT",
+    story_eyebrow:"Notre histoire", story_title:"Une table d'esprit marin sur la côte de Kalkan.",
+    story_p1:"Kaptan se trouve sur le front de mer de Kalkan — le phare du brise-lames et l'île en pleine vue. Linges vichy bleu et blanc, lanternes basses sous la pergola, sel marin dans la brise. La table commence à la mer.",
+    story_p2:"Nos mezze sont préparés avant l'aube, notre poisson est celui que la côte de Kalkan offre ce matin. Le rakı givre, le vin se rafraîchit à temps. La table du capitaine est longue ici — nous accueillons des compagnons de table.",
+    story_statOpen:"Ouverture", story_statClose:"Dernière commande", story_statPlace:"Port · Rivage",
+    sig_eyebrow:"Plats Signature", sig_title:"Du port à l'assiette.",
+    sig_intro:"Chaque jour de la mer, le meilleur de la saison. Voici les cinq qui ne quittent jamais la table — le choix du capitaine.",
+    sig_no:"N°", sig_no_2:"N°", sig_no_3:"N°", sig_no_4:"N°", sig_no_5:"N°",
+    sig_01_name:"Crevettes grillées", sig_01_desc:"Aux braises, citron et huile d'olive. La signature de la table, vieille amie du rakı.",
+    sig_02_name:"Bar grillé", sig_02_desc:"De la côte de Kalkan du jour ; se détache nettement de l'arête.",
+    sig_03_name:"Poulpe grillé", sig_03_desc:"D'abord sur les braises, puis dans l'huile d'olive. Tendre, au goût de mer.",
+    sig_04_name:"Côtelettes d'agneau", sig_04_desc:"Arôme de braise, viande reposée. Le choix du capitaine.",
+    sig_05_name:"Acuka & Feta", sig_05_desc:"Pâte de noix-piment, roquette, feta à l'huile d'olive — compagnon du rakı.",
+    atm_eyebrow:"Ambiance", atm_title:"L'heure bleue, sous la pergola, dans la lueur du phare.",
+    atm_p:"Quand le soleil tombe derrière l'île, les linges vichy frémissent sous la pergola, les lanternes réchauffent l'heure bleue. Le phare clignote, le son de la table vient de la mer.",
+    poster_band:"Kaptan · Kalkan · Kaş", poster_titleA:"Une soirée", poster_titleB:"chez Kaptan.",
+    poster_line1:"Le phare brille,", poster_line2:"le rakı givre, la table se prolonge.",
+    gal_eyebrow:"Galerie", gal_title:"Images du port.",
+    gal_alt_1:"Terrasse de Kaptan Kalkan à l'heure bleue", gal_alt_2:"Table de mezze à Kalkan",
+    gal_alt_3:"Table au coucher du soleil sur la côte de Kalkan", gal_alt_4:"Poisson et mezze à l'heure bleue",
+    gal_alt_5:"Crevettes grillées au citron", gal_alt_6:"Phare du brise-lames et île en face",
+    menu_eyebrow:"Menu", menu_title:"Une carte de la", menu_titleEm:"table.",
+    menu_body:"Notre menu change chaque jour selon ce que le port apporte. Tout le poisson du jour ; tous les mezze préparés le matin même.",
+    menu_tab_all:"Tout", menu_tab_meze:"Mezze", menu_tab_izgara:"Gril & Poisson", menu_tab_icki:"Boissons", menu_tab_tatli:"Clôture",
+    menu_pricesNote:"Prix à table · Tous les jours 12:00 – 24:00", menu_cta:"Voir tout le menu",
+    badge_imza:"Signature", badge_imza_2:"Signature", badge_imza_3:"Signature", badge_imza_4:"Signature",
+    badge_vejetaryen:"Végétarien", badge_vejetaryen_2:"Végétarien",
+    badge_mevsim:"Saison", badge_mevsim_2:"Saison", badge_mevsim_3:"Saison",
+    m_acuka:"Acuka", m_acuka_d:"Pâte de noix et poivron épicée d'Antep, mélasse de grenade.",
+    m_beyaz:"Feta & Roquette", m_beyaz_d:"Feta à l'huile d'olive, roquette fraîche.",
+    m_ciroz:"Salade de maquereau séché", m_ciroz_d:"Fines tranches, oignon, persil, citron.",
+    m_humus:"Houmous", m_humus_d:"Pois chiches, tahini, citron, huile d'olive.",
+    m_yaprak:"Feuilles de vigne farcies", m_yaprak_d:"Dolma à l'huile d'olive, pignons, notes d'agrumes.",
+    m_patlican:"Salade d'aubergine fumée", m_patlican_d:"Aubergine braisée, ail, huile d'olive.",
+    m_karides:"Crevettes grillées", m_karides_d:"La signature de la table : aux braises, citron et huile d'olive.",
+    m_levrek:"Bar grillé", m_levrek_d:"Poisson du jour ; se détache nettement de l'arête.",
+    m_ahtapot:"Poulpe grillé", m_ahtapot_d:"D'abord les braises, puis l'huile d'olive. Tendre.",
+    m_cupra:"Daurade grillée", m_cupra_d:"Classique, sauce citron-huile.",
+    m_pirzola:"Côtelettes d'agneau", m_pirzola_d:"Arôme de braise, viande reposée — pour le rakı.",
+    m_mevsim:"Poisson du jour", m_mevsim_d:"Selon le marché — demandez au capitaine.",
+    m_raki:"Rakı", m_raki_d:"Yeni Rakı, Tekirdağ, Efe ; simple ou double.",
+    m_beyaz_sarap:"Vin blanc", m_beyaz_sarap_d:"Sélection locale de saison — au verre ou bouteille.",
+    m_rose:"Rosé", m_rose_d:"Rosé frais pour la soirée méditerranéenne.",
+    m_bira:"Bière", m_bira_d:"Options classiques et craft.",
+    m_kunefe:"Künefe", m_kunefe_d:"Servi chaud, avec crème caillée.",
+    m_meyve:"Fruits de saison", m_meyve_d:"Selon la saison, frais.",
+    m_kahve:"Café turc", m_kahve_d:"Au cezve, avec loukoum.",
+    rev_eyebrow:"Avis", rev_titleA:"Dans les mots", rev_titleEm:"de nos", rev_titleB:" hôtes.",
+    rev_intro:"Les avis clients seront bientôt synchronisés en direct depuis Google. Pour l'instant, tous les avis sur Google.",
+    rev_cta:"Voir tous les avis sur Google",
+    faq_eyebrow:"Questions fréquentes", faq_title:"Avant de venir au port.",
+    faq_q1:"Où dîner à Kalkan ?",
+    faq_a1:"Le dîner classique à Kalkan est le trio poisson + mezze + gril sur le front de mer. Kaptan propose exactement cela, face au phare et à l'île, sous la pergola avec linges vichy bleu et blanc. Ouvert tous les jours 12:00–24:00 ; réservation via WhatsApp.",
+    faq_q2:"Où déguster rakı et poisson à Kalkan ?",
+    faq_a2:"Pour le rituel classique rakı-poisson au port de Kalkan, Kaptan est une adresse de référence — esprit marin, mezze + gril + poisson traditionnels, plats signature de crevettes grillées, bar, poulpe et agneau. Réservez un jour à l'avance pour une table avec vue.",
+    faq_q3:"Quel est le meilleur restaurant de poisson à Kalkan ?",
+    faq_a3:"Le port de Kalkan est connu pour ses maisons de poisson. Kaptan se distingue par son poisson frais du jour, ses mezze préparés le matin et la vue sur le port. Tout le poisson du matin même ; le menu change quotidiennement.",
+    faq_q4:"Un restaurant avec vue au port de Kalkan ?",
+    faq_a4:"Kaptan se trouve sur le front de mer du port de Kalkan — la terrasse sous la pergola donne sur le phare et la silhouette de l'île. Les meilleures tables pour le coucher de soleil et l'heure bleue sont du côté vue ; indiquez « table avec vue » lors de la réservation.",
+    faq_q5:"Recommandation pour le coucher de soleil à Kalkan ?",
+    faq_a5:"Pour le coucher de soleil à Kalkan, les lieux du front de mer sont le bon choix. Avec sa terrasse orientée ouest, Kaptan est particulièrement beau au coucher du soleil et à l'heure bleue. Nous recommandons de réserver entre 18:30–19:30.",
+    faq_q6:"Comment réserver ?",
+    faq_a6:"Réservez via WhatsApp ou au +90 535 272 76 40. En saison, les soirées et week-ends se remplissent vite ; nous recommandons de réserver un jour à l'avance pour une table avec vue. Pour les groupes, contactez-nous à l'avance.",
+    faq_q7:"Le poisson est-il frais ? Le menu change-t-il chaque jour ?",
+    faq_a7:"Tout notre poisson est pêché le jour même sur la côte de Kalkan et servi le soir. Bar, daurade, poulpe, calamar et crevettes toujours en carte ; les prises saisonnières arrivent sur le plateau du capitaine. Mezze préparés frais chaque matin.",
+    faq_q8:"Accueillez-vous les familles avec enfants ?",
+    faq_a8:"Oui, en début de soirée nous accueillons les familles avec enfants. Notre terrasse sous pergola est spacieuse et sûre. Après 22h, l'ambiance devient plus calme et adulte — merci de le mentionner lors de la réservation.",
+    res_eyebrow:"Réservation", res_title:"On vous garde une table au port ce soir ?",
+    res_p:"En saison, les soirées et week-ends se remplissent vite. Envoyez-nous un message rapide par WhatsApp, nous gardons une table avec vue pour vous. Pour les groupes, prévenez un jour à l'avance.",
+    res_hours:"Tous les jours 12:00 – 24:00",
+    form_name_ph:"Nom et prénom", form_people_ph:"Nombre de personnes", form_note_ph:"Table avec vue, anniversaire, allergies, etc.",
+    form_submit:"Envoyer la demande", form_wa:"Message WhatsApp", form_call:"Appeler",
+    loc_eyebrow:"Adresse", loc_title:"Sur la côte de Kalkan, à côté du brise-lames.",
+    loc_access:"Nous sommes sur le front de mer du port de Kalkan, à quelques minutes à pied du centre. Les parkings côtiers se remplissent vite le soir — venez à pied si possible.",
+    loc_addr:"Adresse", loc_phone:"Téléphone", loc_hours:"Horaires", loc_hours_v:"Tous les jours 12:00 – 24:00", loc_social:"Social", loc_cta:"Itinéraire",
+    footer_tagline:"Meze – Poisson – Gril · Votre table au port", footer_contact:"Contact", footer_partner:"Partenaire",
+    footer_rights:"© 2026 Kaptan Restaurant · Tous droits réservés.",
+    m_cta_book:"Réserver", m_cta_phone:"Appeler", m_cta_dir:"Itinéraire"
+  }
+};
+
 function setLang(lang){
+  if (!I18N[lang]) lang = 'tr';
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i]').forEach(el=>{
     const key = el.dataset.i;
-    if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
+    if (I18N[lang][key]) el.textContent = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i-placeholder]').forEach(el=>{
+    const key = el.dataset.iPlaceholder;
+    if (I18N[lang][key]) el.placeholder = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i-alt]').forEach(el=>{
+    const key = el.dataset.iAlt;
+    if (I18N[lang][key]) el.alt = I18N[lang][key];
   });
   document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active', p.dataset.lang===lang));
   try { localStorage.setItem('lang', lang); } catch(e){}
 }
 document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click', ()=>setLang(p.dataset.lang)));
-try { const saved = localStorage.getItem('lang'); if (saved) setLang(saved); } catch(e){}
+try {
+  const saved = localStorage.getItem('lang');
+  if (saved && I18N[saved]) setLang(saved);
+} catch(e){}
 
-// Menu tabs
+/* ============ Menu tabs ============ */
 document.querySelectorAll('.menu-tab').forEach(t=>{
   t.addEventListener('click', ()=>{
     const cat = t.dataset.cat;
@@ -504,9 +1562,17 @@ document.querySelectorAll('.menu-tab').forEach(t=>{
   });
 });
 
-// Rezervasyon -> WhatsApp deeplink
+/* ============ FAQ — single open ============ */
+document.querySelectorAll('.faq-item').forEach(it=>{
+  const summary = it.querySelector('summary');
+  it.addEventListener('toggle', ()=>{
+    it.classList.toggle('open', it.open);
+  });
+});
+
+/* ============ Rezervasyon -> WhatsApp ============ */
 function sendReservation(){
-  const f = document.querySelector('#reserve form');
+  const f = document.querySelector('#rezervasyon form');
   const fd = new FormData(f);
   const msg = encodeURIComponent(
     'Merhaba Kaptan Restaurant, rezervasyon talebim:\n'+
@@ -519,11 +1585,15 @@ function sendReservation(){
   window.open('https://wa.me/905352727640?text=' + msg, '_blank');
 }
 
-// Hero scroll fade nav background
+/* ============ Nav scroll state ============ */
+const navEl = document.querySelector('nav');
 window.addEventListener('scroll', ()=>{
-  const nav = document.querySelector('nav');
-  nav.style.background = window.scrollY > 60 ? 'rgba(0,0,0,0.78)' : 'rgba(0,0,0,0.32)';
-});
+  if (window.scrollY > 60) {
+    navEl.style.background = 'rgba(6,32,69,0.85)';
+  } else {
+    navEl.style.background = 'rgba(6,32,69,0.55)';
+  }
+}, { passive:true });
 </script>
 
 </body>
