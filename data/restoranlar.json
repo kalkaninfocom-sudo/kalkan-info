@@ -29,6 +29,75 @@
   ],
   "items": [
     {
+      "id": "ehl-i-keyf-kas",
+      "name": "Ehl-i Keyf Meyhanesi · Kaş",
+      "category": "Türk Mutfağı",
+      "cuisine": "Geleneksel Meyhane · Rakı & Balık",
+      "priceRange": "₺₺₺",
+      "rating": 4.8,
+      "reviewCount": 412,
+      "location": "Hükümet Cad. No:3, Kaş Merkez",
+      "phone": "+90 536 729 22 18",
+      "website": "https://website-kalkaninfocom.vercel.app/tr",
+      "customSiteUrl": "https://website-kalkaninfocom.vercel.app/tr",
+      "instagram": "https://www.instagram.com/ehlikeyfmeyhanekas/",
+      "image": "/assets/img/ehlikeyf-meyhane-hero.jpg",
+      "gallery": [
+        "/assets/img/ehlikeyf-meyhane-hero.jpg"
+      ],
+      "summary": "Kaş merkezde geleneksel meyhane sıcaklığı: günlük mezeler, ızgara balık, rakı sofrası. Bahçede mavi saat, fenerlerin altında uzun sofralar. Web sitesi SocialKaş ajansı tarafından tasarlandı.",
+      "specialties": [
+        "Günlük Mezeler",
+        "Izgara Balık",
+        "Rakı Sofrası"
+      ],
+      "hours": "Her gün 12:00 – 02:00",
+      "reservation": true,
+      "featured": true,
+      "source": "client",
+      "nameI18n": {
+        "tr": "Ehl-i Keyf Meyhanesi · Kaş",
+        "en": "Ehl-i Keyf Meyhane · Kaş",
+        "de": "Ehl-i Keyf Meyhane · Kaş",
+        "ru": "Ehl-i Keyf Мейхане · Каш",
+        "fr": "Ehl-i Keyf Meyhane · Kaş"
+      },
+      "summaryI18n": {
+        "tr": "Kaş merkezde geleneksel meyhane sıcaklığı: günlük mezeler, ızgara balık, rakı sofrası. Bahçede mavi saat, fenerlerin altında uzun sofralar. Web sitesi SocialKaş ajansı tarafından tasarlandı.",
+        "en": "Authentic Turkish meyhane in central Kaş: daily mezze, grilled fish, rakı by the table. Blue hour in the garden, long tables under the lanterns. Website designed by SocialKaş agency.",
+        "de": "Authentische türkische Meyhane im Zentrum von Kaş: tägliche Mezze, gegrillter Fisch, Rakı am Tisch. Blaue Stunde im Garten, lange Tische unter den Laternen. Website von SocialKaş entworfen.",
+        "ru": "Аутентичная турецкая мейхане в центре Каша: мезе дня, рыба на гриле, ракы за столом. Синий час в саду, длинные столы под фонарями. Сайт разработан агентством SocialKaş.",
+        "fr": "Meyhane traditionnelle au centre de Kaş : mezze du jour, poisson grillé, rakı à table. L'heure bleue au jardin, longues tables sous les lanternes. Site web conçu par l'agence SocialKaş."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Günlük Mezeler",
+          "Izgara Balık",
+          "Rakı Sofrası"
+        ],
+        "en": [
+          "Daily Mezze",
+          "Grilled Fish",
+          "Rakı Table"
+        ],
+        "de": [
+          "Tägliche Mezze",
+          "Gegrillter Fisch",
+          "Rakı-Tafel"
+        ],
+        "ru": [
+          "Мезе дня",
+          "Рыба на гриле",
+          "Стол с ракы"
+        ],
+        "fr": [
+          "Mezze du jour",
+          "Poisson grillé",
+          "Table de rakı"
+        ]
+      }
+    },
+    {
       "id": "ziizi-pizza",
       "name": "Ziizipizza",
       "category": "Dünya Mutfağı",
@@ -1858,6 +1927,87 @@
         ]
       },
       "reviewCount": 0
+    },
+    {
+      "id": "kaptan-restaurant",
+      "name": "Kaptan Restaurant",
+      "category": "Deniz Ürünleri",
+      "cuisine": "Balık / Meze / Izgara",
+      "priceRange": "₺₺₺",
+      "rating": 4.7,
+      "reviewCount": 187,
+      "location": "Kalkan kıyı şeridi",
+      "phone": "+90 535 272 76 40",
+      "contact": "Kaptan Yönetim",
+      "email": "info@kaptankalkan.com",
+      "image": "/assets/img/restoran/kaptan-restaurant-hero.jpg",
+      "gallery": [
+        "/assets/img/restoran/kaptan-restaurant-hero.jpg",
+        "/assets/img/restoran/kaptan-restaurant-1.jpg",
+        "/assets/img/restoran/kaptan-restaurant-2.jpg",
+        "/assets/img/restoran/kaptan-restaurant-3.jpg",
+        "/assets/img/restoran/kaptan-restaurant-4.jpg",
+        "/assets/img/restoran/kaptan-restaurant-5.jpg",
+        "/assets/img/restoran/kaptan-restaurant-6.jpg"
+      ],
+      "summary": "Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları · mavi saat manzarası.",
+      "specialties": [
+        "Balık",
+        "Meze",
+        "Izgara",
+        "Karides"
+      ],
+      "hours": "Her gün 12:00 – 24:00",
+      "reservation": true,
+      "featured": true,
+      "source": "socialkas",
+      "instagram": "https://www.instagram.com/kaptankalkan_restaurant/",
+      "nameI18n": {
+        "tr": "Kaptan Restaurant",
+        "en": "Kaptan Restaurant",
+        "de": "Kaptan Restaurant",
+        "ru": "Ресторан Капитан",
+        "fr": "Kaptan Restaurant"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları · mavi saat manzarası.",
+        "en": "On the Kalkan waterfront — Mediterranean meze & fresh fish · craft cocktails · sunset tables.",
+        "de": "An der Kalkan-Promenade — mediterrane Meze, frischer Fisch, Cocktails und Sunset-Tische.",
+        "ru": "На набережной Калкана — средиземноморские мезе, свежая рыба, авторские коктейли, столики на закат.",
+        "fr": "Sur le front de mer de Kalkan — meze méditerranéens, poisson frais, cocktails, tables au coucher du soleil."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Balık",
+          "Meze",
+          "Izgara",
+          "Karides Izgara"
+        ],
+        "en": [
+          "Fish",
+          "Meze",
+          "Grill",
+          "Grilled Prawns"
+        ],
+        "de": [
+          "Fisch",
+          "Meze",
+          "Grill",
+          "Gegrillte Garnelen"
+        ],
+        "ru": [
+          "Рыба",
+          "Мезе",
+          "Гриль",
+          "Креветки на гриле"
+        ],
+        "fr": [
+          "Poisson",
+          "Meze",
+          "Grillades",
+          "Crevettes Grillées"
+        ]
+      }
     }
   ]
 }
