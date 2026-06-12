@@ -25,7 +25,9 @@
   ],
   "rewrites": [
     { "source": "/ilan/:slug", "destination": "/api/ilan-page?slug=:slug" },
-    { "source": "/sitemap-jobs.xml", "destination": "/api/jobs-sitemap" }
+    { "source": "/sitemap-jobs.xml", "destination": "/api/jobs-sitemap" },
+    { "source": "/restoranlar/ehl-ikeyf", "destination": "https://website-kalkaninfocom.vercel.app/restoranlar/ehl-ikeyf" },
+    { "source": "/restoranlar/ehl-ikeyf/:path*", "destination": "https://website-kalkaninfocom.vercel.app/restoranlar/ehl-ikeyf/:path*" }
   ],
   "cleanUrls": true,
   "trailingSlash": false,
