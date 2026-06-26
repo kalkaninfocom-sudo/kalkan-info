@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>kalkaninfo.com — Lansman Partisi Organizasyon Planı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;font-size:11pt;line-height:1.55;}
+  h1,h2,h3,h4,.display{font-family:'Montserrat',sans-serif;letter-spacing:-0.02em;color:#072136;}
+  .page{width:210mm;min-height:297mm;padding:18mm 16mm;background:#fff;margin:0 auto 8mm;box-shadow:0 4px 20px rgba(7,33,54,0.12);page-break-after:always;position:relative;overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  .ribbon{background:repeating-linear-gradient(90deg,#072136 0 14px,#0d3a5f 14px 28px);height:6px;margin-bottom:14px;border-radius:3px;}
+  .accent-bar{display:inline-block;width:36px;height:3px;background:#e89812;border-radius:2px;vertical-align:middle;margin-right:10px;}
+  .label{font-size:9pt;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:#1a5e93;}
+  h1.title{font-size:34pt;font-weight:900;line-height:1.05;margin:8px 0 6px;color:#0a2e4c;}
+  h2{font-size:18pt;font-weight:800;margin:18px 0 10px;color:#0a2e4c;border-bottom:2px solid #e89812;padding-bottom:6px;display:inline-block;}
+  h3{font-size:13pt;font-weight:700;margin:14px 0 6px;color:#0d3a5f;}
+  h4{font-size:11pt;font-weight:700;margin:10px 0 4px;color:#072136;}
+  p{margin:6px 0;}
+  ul,ol{margin:6px 0 6px 18px;}
+  li{margin:3px 0;}
+  strong{color:#072136;font-weight:700;}
+  .gold{color:#e89812;font-weight:700;}
+  .navy-card{background:#072136;color:#fff;border-radius:10px;padding:14px 16px;margin:10px 0;}
+  .navy-card h3,.navy-card h4{color:#f4b53d;}
+  .gold-card{background:linear-gradient(135deg,#e89812 0%,#f4b53d 100%);color:#072136;border-radius:10px;padding:14px 16px;margin:10px 0;}
+  .light-card{background:#eef4f9;border-left:4px solid #1a5e93;border-radius:6px;padding:12px 14px;margin:10px 0;}
+  .alt-card{background:#fff8e8;border-left:4px solid #e89812;border-radius:6px;padding:12px 14px;margin:10px 0;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .stat{background:#0a2e4c;color:#fff;border-radius:8px;padding:12px;text-align:center;}
+  .stat .v{font-family:'Montserrat',sans-serif;font-size:22pt;font-weight:800;color:#f4b53d;line-height:1.1;}
+  .stat .k{font-size:8.5pt;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;color:#dce6ef;}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:9.5pt;}
+  th{background:#0a2e4c;color:#fff;text-align:left;padding:8px 10px;font-family:'Montserrat',sans-serif;font-size:9pt;letter-spacing:0.05em;text-transform:uppercase;}
+  td{padding:7px 10px;border-bottom:1px solid #dce6ef;}
+  tr:nth-child(even) td{background:#f5f9fc;}
+  tr.total td{background:#e89812;color:#072136;font-weight:800;}
+  tr.subtotal td{background:#0d3a5f;color:#fff;font-weight:700;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+  .footer{position:absolute;bottom:8mm;left:16mm;right:16mm;display:flex;justify-content:space-between;font-size:8pt;color:#5d97c4;border-top:1px solid #dce6ef;padding-top:6px;}
+  .cover{background:linear-gradient(135deg,#072136 0%,#0a2e4c 60%,#0d3a5f 100%);color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:24mm 18mm;}
+  .cover h1{color:#fff;font-size:42pt;}
+  .cover .label{color:#f4b53d;}
+  .cover .grid-3{margin-top:auto;}
+  .cover .stat{background:rgba(255,255,255,0.08);border:1px solid rgba(244,181,61,0.3);}
+  .cover .stat .k{color:#dce6ef;}
+  .badge{display:inline-block;background:#e89812;color:#072136;font-weight:700;font-size:9pt;padding:3px 10px;border-radius:999px;letter-spacing:0.05em;}
+  .check::before{content:'✓ ';color:#15803d;font-weight:800;}
+  .warn::before{content:'! ';color:#b91c1c;font-weight:800;}
+  .arrow::before{content:'→ ';color:#e89812;font-weight:800;}
+  .timeline{position:relative;margin:10px 0 10px 18px;}
+  .timeline::before{content:'';position:absolute;left:-8px;top:6px;bottom:6px;width:2px;background:#e89812;}
+  .timeline-item{position:relative;padding:6px 0 6px 16px;}
+  .timeline-item::before{content:'';position:absolute;left:-13px;top:11px;width:10px;height:10px;background:#fff;border:2px solid #e89812;border-radius:50%;}
+  .timeline-item .when{font-weight:800;color:#1a5e93;font-size:10pt;}
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;margin:0;padding:16mm 14mm;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ KAPAK ============ -->
+<section class="page cover">
+  <div>
+    <div class="ribbon" style="background:repeating-linear-gradient(90deg,#e89812 0 14px,#f4b53d 14px 28px);"></div>
+    <div class="label">Resmi Lansman Etkinliği · Kalkan, Antalya · Temmuz 2026</div>
+    <h1>AEGEAN<br/>LAUNCH<br/>NIGHT</h1>
+    <p style="font-size:14pt;color:#f4b53d;font-family:'Montserrat',sans-serif;font-weight:600;margin-top:8px;">kalkaninfo.com · Resmi Tanıtım Partisi</p>
+    <p style="font-size:11pt;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;margin-top:6px;letter-spacing:0.05em;">"Para değil, marka."</p>
+    <p style="margin-top:14px;max-width:520px;color:#dce6ef;">All-inclusive premium paket: konaklama + VIP araç transfer + parti giriş + 1 şişe alkol dahil. 100 davetli, boutique mekan, sezon zirvesi. Kâr değil, reklam &amp; içerik odaklı.</p>
+  </div>
+  <div>
+    <div class="grid-3">
+      <div class="stat"><div class="v">100</div><div class="k">Davetli Kapasitesi</div></div>
+      <div class="stat"><div class="v">3</div><div class="k">Villa · 12 Oda</div></div>
+      <div class="stat"><div class="v">7+sa.</div><div class="k">Parti Süresi</div></div>
+    </div>
+    <p style="margin-top:18px;font-size:9pt;color:#dce6ef;">Hazırlayan: kalkaninfo.com organizasyon ekibi · Berkay Elmastaş · Sürüm 1.0 · 04 Haziran 2026</p>
+  </div>
+</section>
+
+<!-- ============ SAYFA 2: YÖNETİCİ ÖZETİ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>01 · Yönetici Özeti</div>
+  <h1 class="title">"Para değil, marka." Kâr odaklı değil, reklam odaklı.</h1>
+  <p style="font-size:11.5pt;color:#0d3a5f;margin-top:8px;">Berkay'ın net direktifi: <strong>Bu etkinlik finansal kazanç değil, kalkaninfo.com markasının doğru kitleye sunulması için kuruldu.</strong> Tüm misafirler all-inclusive paket alır: konaklama + VIP araç transfer (havalimanı → villa → mekan → dönüş) + parti giriş + 1 şişe alkol. Mekan ile şişe satış garanti anlaşması bu paket üzerinden kurulur. Hedef: <strong>break-even + maksimum içerik</strong>.</p>
+
+  <div class="grid-3" style="margin-top:14px;">
+    <div class="stat"><div class="v">₺645K</div><div class="k">Brüt Gelir Hedefi</div></div>
+    <div class="stat"><div class="v">₺560K</div><div class="k">Toplam Gider</div></div>
+    <div class="stat"><div class="v">+₺85K</div><div class="k">Sembolik Kâr (B)</div></div>
+  </div>
+
+  <h2>Karar Beklenen 7 Madde</h2>
+  <ol style="margin-left:22px;">
+    <li><strong>Tarih:</strong> 17 Temmuz 2026 Cuma (sezon zirvesi, hava kesin, ertesi gün cumartesi recovery).</li>
+    <li><strong>Konsept:</strong> "Aegean Sunset to Sunrise" — sunset villa pre-party + gece kulübü + after villa + brunch.</li>
+    <li><strong>DJ Kadrosu:</strong> Berkay'ın arkadaşlarından 4 DJ — ücretsiz performans, karşılığında Kalkan tatili + villa konaklama. Tarz: Afro / Organic / Melodic House.</li>
+    <li><strong>Bilet Modeli:</strong> Tek tip <strong>all-inclusive</strong> paket — tüm misafir konaklama (uygunsa) + VIP transfer + giriş + 1 şişe (oturmalı kategorilerde) alır.</li>
+    <li><strong>Villa Avantajı:</strong> 3 villa Berkay'ın mülkü — ₺90K gider değil, satıştan ek kâr. 24 yatak villa paketinde; halka satış konaklamasız.</li>
+    <li><strong>Sponsorluk:</strong> 1 ana sponsor hedef (₺120K) — opsiyonel ama küçük kâr için önemli. Zorunlu değil.</li>
+    <li><strong>Mekan Garanti:</strong> 30 şişe × ₺7.000 minimum tüketim garantisi — her oturmalı kategoriye 1 şişe yedirilerek karşılanır.</li>
+  </ol>
+
+  <h2>Neden Bu Etkinlik Yapılmalı</h2>
+  <div class="grid-2">
+    <div class="light-card">
+      <h4>Marka Açısından</h4>
+      <ul>
+        <li><strong>Lansman anı yaratır</strong> — basın, influencer, sosyete tek odakta.</li>
+        <li>kalkaninfo.com'u "yerel rehber" değil <strong>premium yaşam markası</strong> olarak konumlar.</li>
+        <li>30+ gün post-event içerik (reels, makaleler, partner alıntıları).</li>
+      </ul>
+    </div>
+    <div class="light-card">
+      <h4>Ticari Açıdan</h4>
+      <ul>
+        <li>100 kişi × premium iletişim verisi = <strong>CRM tabanı</strong>.</li>
+        <li>10+ partner işletme (villa, restoran, tekne) ile <strong>satış görüşmesi</strong> fırsatı.</li>
+        <li>Pozitif net kâr senaryosu (planlı sponsorlukla).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alt-card" style="margin-top:14px;">
+    <h4>Dürüst Risk Notu</h4>
+    <p>Berkay'ın direktifleri (DJ arkadaşları ücretsiz, villalar kendi mülkü, "para istemiyorum reklam istiyorum") plan ekonomisini büyük ölçüde lehe çevirdi: gider ₺560K, Senaryo B'de küçük tatlı kâr ₺85K. Buna ek olarak villa paket satışından gelen ek kâr (~₺200K marj) Berkay'ın gerçek kazancını ₺285K bandına taşır. Bu plan "para değil, marka" felsefesini koruyarak finansal olarak da sağlamdır.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 2 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 3: KONSEPT & VIBE ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>02 · Konsept &amp; Vibe</div>
+  <h1 class="title" style="font-size:28pt;">"Aegean Sunset to Sunrise"</h1>
+
+  <p>Mykonos / Tulum / Ibiza boutique parti DNA'sı, ama Kalkan'ın kayalık koy, beyaz villa, lacivert deniz dokusunda. Pop-EDM ışık şovu <em>değil</em>; mum, ateş kulesi, beyaz pamuk perde, tütsü, vinilik müzik kürasyonu.</p>
+
+  <h2>3 Faz Akış</h2>
+  <div class="grid-3">
+    <div class="navy-card">
+      <span class="badge">Faz 1</span>
+      <h4 style="margin-top:8px;">SUNSET WELCOME</h4>
+      <p style="font-size:9.5pt;color:#dce6ef;">19:00 — 21:00<br/>Villa havuz başında<br/>Akustik DJ seti<br/>Karşılama kokteyli<br/>Sadece villa misafirleri + VIP davetli (40 kişi)</p>
+    </div>
+    <div class="gold-card">
+      <span class="badge" style="background:#072136;color:#f4b53d;">Faz 2</span>
+      <h4 style="margin-top:8px;color:#072136;">MAIN PARTY</h4>
+      <p style="font-size:9.5pt;color:#072136;">21:30 — 02:30<br/>Anlaşmalı gece kulübü<br/>Headliner DJ + warm-up<br/>VIP masa servisi<br/>100 kişi tam kapasite<br/>Lansman konuşması 23:30</p>
+    </div>
+    <div class="navy-card">
+      <span class="badge">Faz 3</span>
+      <h4 style="margin-top:8px;">AFTER &amp; BRUNCH</h4>
+      <p style="font-size:9.5pt;color:#dce6ef;">02:30 — 04:00 after villa<br/>Ertesi sabah 11:00-14:00<br/>Villa havuz brunch<br/>Recovery DJ seti<br/>Network &amp; partner görüşmeleri</p>
+    </div>
+  </div>
+
+  <h2>Tasarım Dili</h2>
+  <div class="grid-2">
+    <div class="light-card">
+      <h4>Renkler</h4>
+      <p>Lacivert (#0a2e4c) + altın (#e89812) + bone beyaz + zeytin yeşili aksent. Tek bir neon yok.</p>
+    </div>
+    <div class="light-card">
+      <h4>Işık</h4>
+      <p>Sıcak tungsten, mum, ateş kulesi, gizli LED amber. Stroboskop hayır.</p>
+    </div>
+    <div class="light-card">
+      <h4>Davet &amp; Bilet</h4>
+      <p>Krem zarf + altın varak baskı + el yazısı isim. Dijital: kalkaninfo.com altın menü kartı tasarımı.</p>
+    </div>
+    <div class="light-card">
+      <h4>Dress Code</h4>
+      <p>Mediterranean Elegance — keten, beyaz, krem, altın aksesuar. Spor giyim yok.</p>
+    </div>
+  </div>
+
+  <h2>Hedef Konuk Mix'i</h2>
+  <table>
+    <tr><th>Kategori</th><th>Adet</th><th>Strateji</th></tr>
+    <tr><td>Influencer (50K+ takipçi)</td><td class="num">12</td><td>Ücretsiz villa paketi + içerik anlaşması</td></tr>
+    <tr><td>Yerel basın &amp; turizm gazetecileri</td><td class="num">8</td><td>Ücretsiz davet</td></tr>
+    <tr><td>Partner işletmeler (villa, restoran)</td><td class="num">20</td><td>Loca / Bistro indirimli paket</td></tr>
+    <tr><td>Premium müşteri (ödeyen)</td><td class="num">40</td><td>Tam fiyatlı bilet</td></tr>
+    <tr><td>Yatırımcı &amp; iş ağı</td><td class="num">10</td><td>Berkay'ın özel davet listesi</td></tr>
+    <tr><td>Sponsor markalardan davet</td><td class="num">10</td><td>Sponsorluk kontratına dahil</td></tr>
+    <tr class="total"><td>TOPLAM</td><td class="num">100</td><td>Konsept &amp; segmentasyon doğru</td></tr>
+  </table>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 3 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 4: TARİH, LOKASYON, KONAKLAMA ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>03 · Tarih, Lokasyon, Konaklama</div>
+  <h1 class="title" style="font-size:26pt;">17 Temmuz 2026 Cuma · Kalkan</h1>
+
+  <h2>Neden 17 Temmuz Cuma?</h2>
+  <ul>
+    <li><span class="check"></span>Temmuz ortası — Kalkan sezon zirvesi, hava güvenli (yağmur riski yok).</li>
+    <li><span class="check"></span>Cuma akşamı — cumartesi recovery, pazar partner görüşmeleri için boş gün.</li>
+    <li><span class="check"></span>Okul tatili pikinde — İstanbul/Ankara'dan uçak yoğunluğu, premium kitle Kalkan'da hazır.</li>
+    <li><span class="warn"></span>Alternatif: 24 Temmuz Cuma (yedek) veya 7 Ağustos (sezon tamı tamına ortası).</li>
+  </ul>
+
+  <h2>Konaklama Envanteri (Mevcut 3 Villa)</h2>
+  <table>
+    <tr><th>Oda Tipi</th><th>Adet</th><th>Yatak</th><th>Jakuzi</th><th>Kişi</th><th>Maliyet/Oda</th></tr>
+    <tr><td>Jakuzili double (büyük yatak)</td><td class="num">4</td><td>1 büyük</td><td>✓</td><td class="num">2</td><td class="num">₺7.500</td></tr>
+    <tr><td>Standart double (büyük yatak)</td><td class="num">5</td><td>1 büyük</td><td>—</td><td class="num">2</td><td class="num">₺7.500</td></tr>
+    <tr><td>Twin (2 ayrı yatak)</td><td class="num">3</td><td>2 ayrı</td><td>—</td><td class="num">2</td><td class="num">₺7.500</td></tr>
+    <tr class="subtotal"><td>TOPLAM</td><td class="num">12 oda</td><td>—</td><td>4 oda</td><td class="num">24 kişi</td><td class="num">₺90.000</td></tr>
+  </table>
+  <p style="font-size:9.5pt;color:#5d97c4;">Hesaplama: Villa başı ₺30.000 × 3 villa = ₺90.000 toplam gecelik maliyet. Oda başı maliyet bazı ₺7.500.</p>
+
+  <h2>Villa Paket Fiyatlandırma Stratejisi</h2>
+  <p>Oda başı ₺7.500 ham maliyet üzerine <strong>premium paket marj</strong>: kahvaltı, brunch, transfer, welcome kit, 2 VIP parti bileti, sunset pre-party erişimi.</p>
+
+  <table>
+    <tr><th>Paket</th><th>Oda Tipi</th><th>Dahiller</th><th>Fiyat / Oda</th><th>Adet</th><th>Gelir</th></tr>
+    <tr><td>Jacuzzi Suite</td><td>Jakuzili double</td><td>Tüm dahilller + jakuzi şampanya servisi</td><td class="num">₺28.000</td><td class="num">4</td><td class="num">₺112.000</td></tr>
+    <tr><td>Aegean Double</td><td>Standart double</td><td>Tüm dahilller</td><td class="num">₺19.000</td><td class="num">5</td><td class="num">₺95.000</td></tr>
+    <tr><td>Twin Friends</td><td>Twin</td><td>Tüm dahilller (arkadaş ikilisi)</td><td class="num">₺17.500</td><td class="num">3</td><td class="num">₺52.500</td></tr>
+    <tr class="total"><td colspan="4">VILLA PAKETİ TOPLAM (24 kişi)</td><td class="num">12</td><td class="num">₺259.500</td></tr>
+  </table>
+
+  <div class="alt-card">
+    <h4>Daha Fazla Villaya İhtiyaç Var mı?</h4>
+    <p><strong>Kısa cevap: Hayır, mevcut 3 villa yeterli.</strong> 100 kişilik etkinlikte 24 kişi (≈%24) konaklamalı paket alır; bu, premium parti standartlarında <strong>sağlıklı oran</strong>. 76 kişi otelinden / kendi villasından / Kalkan içinden konaklamasız bilet ile katılır.</p>
+    <p style="margin-top:6px;">Eğer pre-sale'de villa paketi 7 günde tükenirse → <strong>2 ek villa</strong> (sponsorlu veya barter) eklemek mantıklı. Erken karar verme; satış hızını bekle.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 4 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 5: DJ KADROSU ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>04 · DJ Kadrosu &amp; Müzik Akışı</div>
+  <h1 class="title" style="font-size:26pt;">DJ'ler Berkay'ın arkadaşları.</h1>
+  <p>Berkay'ın doğrudan direktifi: <strong>DJ'ler ücretsiz performans verecek, karşılığında Kalkan tatili + Berkay'ın villasında konaklama</strong>. Bu, ₺220K müzik bütçesini sıfıra indirir; gerçek nakit gider sadece DJ ulaşımı ve ağırlama (~₺25K).</p>
+
+  <h2>4 Slotluk Müzik Akışı</h2>
+  <table>
+    <tr><th>Slot</th><th>Saat</th><th>Lokasyon</th><th>Tarz</th></tr>
+    <tr><td><strong>Sunset</strong></td><td>19:00 — 21:00</td><td>Villa havuz başı</td><td>Organic / Melodic House (sunset selector)</td></tr>
+    <tr><td><strong>Warm-up</strong></td><td>21:30 — 23:00</td><td>Gece kulübü</td><td>Deep House / Afro House</td></tr>
+    <tr><td><strong>Headliner</strong></td><td>23:30 — 02:30</td><td>Gece kulübü</td><td>Afro House / Melodic Techno (ana set)</td></tr>
+    <tr><td><strong>After</strong></td><td>02:30 — 04:00</td><td>Villa terası</td><td>Organic Downtempo (recovery vibe)</td></tr>
+  </table>
+
+  <h2>DJ Seçim Kriterleri (Berkay için brief)</h2>
+  <div class="grid-2">
+    <div class="light-card">
+      <h4>Marka Uyumu</h4>
+      <p>Pop-EDM yıldızı (Mahmut Orhan / Burak Yeter tier) "ses" getirir ama kalkaninfo "boutique kitle" konumlamasına uymaz. Tercih: <strong>Afro House / Organic / Melodic House</strong> tarzında, Mykonos / Mediterraneo / Klabu sahnelerine alışkın isimler.</p>
+    </div>
+    <div class="light-card">
+      <h4>Sosyal Sermaye</h4>
+      <p>Her DJ minimum <strong>30K takipçili Instagram</strong> hesabı olsun; etkinliği kendi feed'inde paylaştığında kalkaninfo'ya organik erişim. 1 DJ kadın olursa PR avantajı yüksek.</p>
+    </div>
+    <div class="light-card">
+      <h4>Müzik Kalitesi</h4>
+      <p>Tarz tutarlı olsun: 4 slot da aynı estetikten beslensin (sunset → warm-up → peak → after recovery). Lineup'ta açı kayması olmasın.</p>
+    </div>
+    <div class="light-card">
+      <h4>DJ'lerin İstedikleri</h4>
+      <p>Ücretsiz performans karşılığında: <strong>Berkay villasında 2-3 gece konaklama</strong>, mekan içeride bar accommodation, transfer, içerik (foto/video) kullanım hakkı. Berkay arkadaşlık ağıyla anlaşmayı doğrudan yapacak.</p>
+    </div>
+  </div>
+
+  <h2>Tarz Profili Referansları</h2>
+  <p>Berkay arkadaşlarından kadroyu kurarken aşağıdaki tarz referansları hedef alınsın — kalkaninfo boutique marka uyumu için:</p>
+  <ul>
+    <li><span class="arrow"></span><strong>Afro House:</strong> Mahsun Aslan, DJ Esma — Klabu Beach / Mediterraneo regular tarzı</li>
+    <li><span class="arrow"></span><strong>Organic House:</strong> Yunus Cömert, Hakan Akkus — sunset selector tarzı</li>
+    <li><span class="arrow"></span><strong>Deep / Minimal:</strong> No.14 (Mahir Pamuk), Murat Salman tarzı</li>
+    <li><span class="arrow"></span>Uluslararası referans tarz: Ben Böhmer, Adriatique, Tinlicker, Innellea, Cassian</li>
+  </ul>
+
+  <h2>Müzik Telifi (MESAM/MSG)</h2>
+  <ul>
+    <li><span class="warn"></span>Gece kulübünün <strong>geçerli MESAM lisansı</strong> var mı, anlaşmaya yazıyla ekle.</li>
+    <li>Yoksa: günlük etkinlik tarifesi (~₺3-8K, kapasiteye göre).</li>
+    <li>Villa pre-party açık alan müziği için ayrıca MSG bildirimi gerekebilir.</li>
+  </ul>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 5 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 6: BİLET MODELİ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>05 · Bilet Modeli &amp; Mekan Yerleşimi</div>
+  <h1 class="title" style="font-size:24pt;">Mekan içi 5 katman + villa paketi + ayakta.</h1>
+
+  <h2>Mekan İç Envanteri</h2>
+  <table>
+    <tr><th>Alan</th><th>Adet</th><th>Kişi / Alan</th><th>Toplam Kişi</th><th>Konum</th></tr>
+    <tr><td><strong>Kral Suit</strong></td><td class="num">1</td><td class="num">8</td><td class="num">8</td><td>En üst, DJ booth'a en yakın</td></tr>
+    <tr><td><strong>VIP</strong></td><td class="num">3</td><td class="num">6</td><td class="num">18</td><td>Premium ön bölge</td></tr>
+    <tr><td><strong>Loca</strong></td><td class="num">6</td><td class="num">4</td><td class="num">24</td><td>Üst bölüm kanepe + sehpa</td></tr>
+    <tr><td><strong>Bistro</strong></td><td class="num">7</td><td class="num">3</td><td class="num">21</td><td>Yüksek tabure masa</td></tr>
+    <tr><td><strong>Masa</strong></td><td class="num">4</td><td class="num">3</td><td class="num">12</td><td>Standart oturma</td></tr>
+    <tr class="subtotal"><td>OTURMALI TOPLAM</td><td class="num">21 alan</td><td>—</td><td class="num">83 kişi</td><td>—</td></tr>
+    <tr><td>Ayakta / Dans Pisti</td><td>—</td><td>—</td><td class="num">17 kişi</td><td>Dans alanı</td></tr>
+    <tr class="total"><td colspan="3">MEKAN TAM KAPASİTE</td><td class="num">100 kişi</td><td>—</td></tr>
+  </table>
+
+  <h2>Tahsis Stratejisi — Villa &amp; Halka</h2>
+  <div class="alt-card">
+    <p><strong>Villa misafirleri (24 kişi) otomatik premium tahsis alır:</strong> 1 Kral Suit (8 kişi) + 3 VIP (18 kişi) = 26 kişilik en üst tier. Bu, villa paketinin değerini yukarı çeker ve "konaklayan = mekanın en iyi yerinde" garantisi verir.</p>
+    <p style="margin-top:6px;"><strong>Halka satılan kalan envanter:</strong> 6 Loca + 7 Bistro + 4 Masa + 19 ayakta = 76 kişi. Bu, etkinlik kapasitesini tam doldurur.</p>
+  </div>
+
+  <h2>All-Inclusive Paket — Tüm Biletlerde Standart Dahil</h2>
+  <div class="gold-card">
+    <h4 style="color:#072136;">Her Bilete Otomatik Dahil (kategori farkı sadece mekan pozisyonunda)</h4>
+    <ul style="margin-left:18px;color:#072136;">
+      <li><strong>VIP araç transfer</strong> — Dalaman Havalimanı ↔ villa ↔ mekan ↔ dönüş (2 gün, kişisel şoför)</li>
+      <li><strong>Mekan giriş</strong> — kalkaninfo bilekliği + öncelikli geçiş</li>
+      <li><strong>1 şişe alkol</strong> — kategoriye göre standart veya premium şişe (mekan ile garanti anlaşmanın temeli)</li>
+      <li><strong>Welcome kit</strong> — kalkaninfo markalı çanta, tişört, harita, plaj havlusu</li>
+    </ul>
+  </div>
+
+  <h2>Bilet Katalogu</h2>
+  <table>
+    <tr><th>Kategori</th><th>Mekan Pozisyonu</th><th>Konaklama</th><th>Birim Fiyat</th><th>Adet</th><th>Kişi</th></tr>
+    <tr><td><strong>Villa · Jacuzzi</strong></td><td>Kral Suit (paylaşımlı)</td><td>1 gece jakuzili oda + brunch</td><td class="num">₺30.000</td><td class="num">4 oda</td><td class="num">8</td></tr>
+    <tr><td><strong>Villa · Double</strong></td><td>VIP (paylaşımlı)</td><td>1 gece std oda + brunch</td><td class="num">₺21.000</td><td class="num">5 oda</td><td class="num">10</td></tr>
+    <tr><td><strong>Villa · Twin</strong></td><td>VIP (paylaşımlı)</td><td>1 gece twin oda + brunch</td><td class="num">₺18.000</td><td class="num">3 oda</td><td class="num">6</td></tr>
+    <tr><td><strong>Loca</strong></td><td>Loca (4 kişi)</td><td>—</td><td class="num">₺15.000</td><td class="num">6</td><td class="num">24</td></tr>
+    <tr><td><strong>Bistro</strong></td><td>Bistro (3 kişi)</td><td>—</td><td class="num">₺8.000</td><td class="num">7</td><td class="num">21</td></tr>
+    <tr><td><strong>Masa</strong></td><td>Standart masa (3 kişi)</td><td>—</td><td class="num">₺5.000</td><td class="num">4</td><td class="num">12</td></tr>
+    <tr><td><strong>Standart (ayakta)</strong></td><td>Dans alanı</td><td>—</td><td class="num">₺2.000</td><td class="num">19</td><td class="num">19</td></tr>
+    <tr class="total"><td colspan="5">TOPLAM (24 villa + 76 halka)</td><td class="num">100</td></tr>
+  </table>
+  <p style="font-size:9pt;color:#5d97c4;">Konaklamasız kategorilerde "1 şişe / grup" dahil (kişi başı değil); Berkay'ın mekanla garanti minimum tüketim hesabıyla uyumlu. Toplam minimum şişe garantisi: <strong>~30 şişe</strong>.</p>
+
+  <h2>Bilet Satış Kanalları</h2>
+  <ul>
+    <li><span class="arrow"></span><strong>kalkaninfo.com/lansman</strong> landing (iyzico ödeme + interaktif "masa seç" planı).</li>
+    <li><span class="arrow"></span>Instagram + Meta Ads ön kampanya · 12 mikro influencer affiliate.</li>
+    <li><span class="arrow"></span>WhatsApp özel davet: Berkay'ın yatırımcı / iş ağı listesi.</li>
+    <li><span class="arrow"></span>Erken kuş indirimi <strong>yok</strong>; "davetli liste" mekaniği premium algı için.</li>
+  </ul>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 6 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 7: GELİR ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>06 · Gelir Projeksiyonu (3 Senaryo)</div>
+  <h1 class="title" style="font-size:26pt;">Gerçekçi taban, hedef, tavan.</h1>
+
+  <p style="font-size:10pt;color:#5d97c4;">All-inclusive paket fiyatları kullanıldı: tüm bilet/villa fiyatlarına VIP transfer + giriş + 1 şişe alkol + welcome kit dahildir. Marj düşük tutuldu (reklam odaklı).</p>
+
+  <h2>Senaryo A — Konservatif (Sponsorluksuz, %70 doluluk)</h2>
+  <table>
+    <tr><th>Kalem</th><th>Birim</th><th>Adet</th><th>Tutar</th></tr>
+    <tr><td>Villa (jacuzzi)</td><td class="num">₺30.000</td><td class="num">3</td><td class="num">₺90.000</td></tr>
+    <tr><td>Villa (double)</td><td class="num">₺21.000</td><td class="num">3</td><td class="num">₺63.000</td></tr>
+    <tr><td>Villa (twin)</td><td class="num">₺18.000</td><td class="num">2</td><td class="num">₺36.000</td></tr>
+    <tr><td>Loca</td><td class="num">₺15.000</td><td class="num">4</td><td class="num">₺60.000</td></tr>
+    <tr><td>Bistro</td><td class="num">₺8.000</td><td class="num">5</td><td class="num">₺40.000</td></tr>
+    <tr><td>Masa</td><td class="num">₺5.000</td><td class="num">3</td><td class="num">₺15.000</td></tr>
+    <tr><td>Standart Bilet</td><td class="num">₺2.000</td><td class="num">13</td><td class="num">₺26.000</td></tr>
+    <tr><td>Sponsorluk</td><td class="num">—</td><td class="num">0</td><td class="num">₺0</td></tr>
+    <tr class="total"><td colspan="3">SENARYO A TOPLAM</td><td class="num">₺330.000</td></tr>
+  </table>
+
+  <h2>Senaryo B — Hedef (1 Sponsor, %100 doluluk) <span class="badge" style="vertical-align:middle;">FİNANSAL TABAN</span></h2>
+  <table>
+    <tr><th>Kalem</th><th>Birim</th><th>Adet</th><th>Tutar</th></tr>
+    <tr><td>Villa (jacuzzi)</td><td class="num">₺30.000</td><td class="num">4</td><td class="num">₺120.000</td></tr>
+    <tr><td>Villa (double)</td><td class="num">₺21.000</td><td class="num">5</td><td class="num">₺105.000</td></tr>
+    <tr><td>Villa (twin)</td><td class="num">₺18.000</td><td class="num">3</td><td class="num">₺54.000</td></tr>
+    <tr><td>Loca</td><td class="num">₺15.000</td><td class="num">6</td><td class="num">₺90.000</td></tr>
+    <tr><td>Bistro</td><td class="num">₺8.000</td><td class="num">7</td><td class="num">₺56.000</td></tr>
+    <tr><td>Masa</td><td class="num">₺5.000</td><td class="num">4</td><td class="num">₺20.000</td></tr>
+    <tr><td>Standart Bilet</td><td class="num">₺2.000</td><td class="num">19</td><td class="num">₺38.000</td></tr>
+    <tr><td>Ana Sponsor (alkol veya emlak)</td><td class="num">₺120.000</td><td class="num">1</td><td class="num">₺120.000</td></tr>
+    <tr><td>Foto/video paket satışı (misafire)</td><td class="num">₺350</td><td class="num">120</td><td class="num">₺42.000</td></tr>
+    <tr class="total"><td colspan="3">SENARYO B TOPLAM</td><td class="num">₺645.000</td></tr>
+  </table>
+
+  <h2>Senaryo C — Tavan (2 Sponsor, %100 + ekstra satışlar)</h2>
+  <table>
+    <tr><th>Kalem</th><th>Tutar</th></tr>
+    <tr><td>Tüm villa paketi tam (12 oda)</td><td class="num">₺279.000</td></tr>
+    <tr><td>6 Loca tam dolu</td><td class="num">₺90.000</td></tr>
+    <tr><td>7 Bistro tam dolu</td><td class="num">₺56.000</td></tr>
+    <tr><td>4 Masa tam dolu</td><td class="num">₺20.000</td></tr>
+    <tr><td>19 standart bilet (ayakta) tam</td><td class="num">₺38.000</td></tr>
+    <tr><td>Ana sponsor + 1 yan sponsor (₺120K + ₺60K)</td><td class="num">₺180.000</td></tr>
+    <tr><td>Foto/video ek satış + ekstra şişe servisi</td><td class="num">₺85.000</td></tr>
+    <tr class="total"><td>SENARYO C TOPLAM</td><td class="num">₺748.000</td></tr>
+  </table>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 7 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 8: GİDER ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>07 · Gider Kalemleri</div>
+  <h1 class="title" style="font-size:26pt;">Tam dökümlü bütçe.</h1>
+
+  <table>
+    <tr><th>Kategori</th><th>Açıklama</th><th>Tutar</th></tr>
+
+    <tr class="subtotal"><td colspan="3">KONAKLAMA &amp; MEKAN</td></tr>
+    <tr><td>3 Villa Kirası</td><td><strong>Berkay'ın kendi mülkü — gider değil</strong> (satış fiyatından villa paketi ek kâr)</td><td class="num">₺0</td></tr>
+    <tr><td>Villa Brunch (ertesi gün)</td><td>24 kişi × ₺500</td><td class="num">₺12.000</td></tr>
+    <tr><td>Gece Kulübü Kirası</td><td>Anlaşmalı (sıfır kira, minimum tüketim garantisi karşılığı)</td><td class="num">₺0</td></tr>
+    <tr><td><strong>Şişe Garantisi (Mekan Anlaşması)</strong></td><td>30 şişe minimum × ₺7.000 (mekan menü fiyatı — her gruba/masaya 1 şişe dahil)</td><td class="num">₺210.000</td></tr>
+    <tr><td>Sound &amp; Light Upgrade</td><td>Boutique vibe için ek ekipman (mum, ateş, sıcak LED)</td><td class="num">₺35.000</td></tr>
+    <tr><td>Dekorasyon &amp; Branding</td><td>Beyaz perde, çiçek, altın detay, kalkaninfo logo standları</td><td class="num">₺25.000</td></tr>
+
+    <tr class="subtotal"><td colspan="3">MÜZİK</td></tr>
+    <tr><td>DJ Fee (4 DJ)</td><td><strong>Berkay'ın yakın arkadaşları — ücretsiz performans</strong></td><td class="num">₺0</td></tr>
+    <tr><td>DJ Konaklama</td><td>Berkay'ın villalarında, ücretsiz</td><td class="num">₺0</td></tr>
+    <tr><td>DJ Ulaşım + Ağırlama</td><td>Uçak/transfer + yemek/içecek (4 DJ, 2 gün)</td><td class="num">₺25.000</td></tr>
+    <tr><td>MESAM / MSG Telifi</td><td>Etkinlik tarifesi</td><td class="num">₺8.000</td></tr>
+
+    <tr class="subtotal"><td colspan="3">OPERASYON</td></tr>
+    <tr><td>Catering Pre-Party</td><td>Villa sunset 40 kişi × ₺350</td><td class="num">₺14.000</td></tr>
+    <tr><td><strong>VIP Araç Filosu (kişiye özel transfer)</strong></td><td>8 araç × 2 gün — Dalaman ↔ villa ↔ mekan ↔ dönüş, tüm misafirler</td><td class="num">₺48.000</td></tr>
+    <tr><td>Güvenlik &amp; Ekip</td><td>4 güvenlik + 6 servis personel</td><td class="num">₺25.000</td></tr>
+    <tr><td>Welcome Kit (100 adet)</td><td>kalkaninfo merchandise, çanta, tişört, harita</td><td class="num">₺25.000</td></tr>
+    <tr><td>Sigorta &amp; Ruhsat</td><td>Etkinlik sorumluluk sigortası + valilik bildirimi</td><td class="num">₺8.000</td></tr>
+
+    <tr class="subtotal"><td colspan="3">PAZARLAMA &amp; İÇERİK</td></tr>
+    <tr><td>Fotoğrafçı (2 kişi)</td><td>Etkinlik + ertesi gün brunch</td><td class="num">₺20.000</td></tr>
+    <tr><td>Videograf (2 kişi)</td><td>Aftermovie + 6 reels</td><td class="num">₺30.000</td></tr>
+    <tr><td>Influencer Komisyon</td><td>10 micro influencer × ₺3.000 sabit + %15 satış</td><td class="num">₺30.000</td></tr>
+    <tr><td>Meta Ads (Instagram + Facebook)</td><td>15 gün ön kampanya</td><td class="num">₺18.000</td></tr>
+    <tr><td>Landing Sayfa &amp; Ödeme</td><td>kalkaninfo.com/lansman geliştirme</td><td class="num">₺0 <span style="font-size:8pt;color:#5d97c4;">(içeride)</span></td></tr>
+
+    <tr class="subtotal"><td colspan="3">YEDEK</td></tr>
+    <tr><td>Beklenmedik %5</td><td>Hava, ekipman, davetli kapasite aşımı (kalemler büyük ölçüde sabit fiyatlı)</td><td class="num">₺27.000</td></tr>
+
+    <tr class="total"><td colspan="2">TOPLAM GİDER</td><td class="num">₺560.000</td></tr>
+  </table>
+
+  <div class="alt-card" style="margin-top:10px;">
+    <h4>Berkay'ın Mülk &amp; Network Avantajı</h4>
+    <p>Toplam gider, sıfır olan iki kalem sayesinde optimize edildi: <strong>(1) Villa kirası ₺0</strong> — 3 villa Berkay'ın mülkü; villa paketinin satışından gelen tutar ek gelirdir (ayrı satılmasa kayıp olmazdı). <strong>(2) DJ fee ₺0</strong> — 4 DJ Berkay'ın yakın arkadaşları, performans karşılığında konaklama + ağırlama. Bu iki kalemde ₺310K tasarruf var.</p>
+    <p style="margin-top:6px;"><strong>Mekan anlaşması müzakeresi:</strong> Berkay satış garanti karşılığı şişe fiyatından %20-30 indirim çıkarırsa, ₺50-65K ek tasarruf — net kâr ₺160-180K bandına yükselir. Bu, kontrat müzakeresine eklenmeli.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 8 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 9: NET KAR ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>08 · Net Kâr / Zarar Analizi</div>
+  <h1 class="title" style="font-size:26pt;">Sayılar konuşuyor.</h1>
+
+  <table>
+    <tr><th>Senaryo</th><th>Gelir</th><th>Gider</th><th>Net Kâr</th><th>Marj</th></tr>
+    <tr><td><strong>A — Konservatif (Sponsorluksuz, %70)</strong></td><td class="num">₺338.000</td><td class="num">₺560.000</td><td class="num" style="color:#b91c1c;font-weight:800;">−₺222.000</td><td class="num" style="color:#b91c1c;">−%66</td></tr>
+    <tr><td><strong>B — Hedef (1 Sponsor, %100) <span class="badge">TABAN</span></strong></td><td class="num">₺645.000</td><td class="num">₺560.000</td><td class="num" style="color:#15803d;font-weight:800;">+₺85.000</td><td class="num" style="color:#15803d;">+%15</td></tr>
+    <tr><td><strong>C — Tavan (2 Sponsor + ekstra satış)</strong></td><td class="num">₺748.000</td><td class="num">₺560.000</td><td class="num" style="color:#15803d;font-weight:800;">+₺188.000</td><td class="num" style="color:#15803d;">+%34</td></tr>
+  </table>
+
+  <div class="alt-card">
+    <h4>Stratejik Pozisyon — "Para Değil, Marka"</h4>
+    <p>Senaryo B'de etkinlikten <strong>+₺85K nakit kâr</strong> bekleniyor — Berkay'ın "para istemiyorum" felsefesine uyumlu sembolik bir tutar. <strong>Asıl getiri parasal değil:</strong> 100 premium misafir, 12 influencer içerik, 8 basın, 1 aftermovie, 6 reels, CRM tabanı, sponsor markaları ile yan iş. Bu kalemler reklam karşılığı toplamda <strong>₺400-700K eş değer</strong>.</p>
+    <p style="margin-top:6px;"><strong>Ekstra not:</strong> Berkay'ın 3 villasının satışından gelen ₺279K paket geliri zaten <em>ek kâr</em>'dır (villalar gider değil, mülk). Yani gerçek "Berkay'a giden" kâr Senaryo B'de ₺85K + villa satış kârı (~₺200K marj) = <strong>₺285K civarı</strong>.</p>
+    <p style="margin-top:6px;"><strong>Pratik kural:</strong> T−30 günde pre-sale ₺220.000'e ulaşmadıysa kayıp önleme moduna geç: welcome kit küçült, ek video iptal, sound/light yedek azalt → ₺75-100K gider tasarrufu.</p>
+  </div>
+
+  <h2>Kâr Dışı Değer (Brand Equity)</h2>
+  <div class="grid-3">
+    <div class="navy-card">
+      <h4>İçerik</h4>
+      <p style="color:#dce6ef;font-size:10pt;">1 aftermovie + 6 reels + 200 foto. 30 günlük içerik takvimi. <strong>Reklam karşılığı ~₺120K</strong>.</p>
+    </div>
+    <div class="navy-card">
+      <h4>CRM &amp; İlişki</h4>
+      <p style="color:#dce6ef;font-size:10pt;">100 kişi premium iletişim verisi + 12 influencer + 8 basın temsilcisi. <strong>Uzun vadeli satış</strong>.</p>
+    </div>
+    <div class="navy-card">
+      <h4>Konumlama</h4>
+      <p style="color:#dce6ef;font-size:10pt;">kalkaninfo.com'u "yerel info sitesi"nden <strong>"Kalkan'ın markası"</strong>na dönüştürür.</p>
+    </div>
+  </div>
+
+  <h2>Sponsorluk Satış Önerileri</h2>
+  <ul>
+    <li><span class="arrow"></span><strong>Ana sponsor adayları</strong> (₺100-150K): Premium alkol (Casamigos, Diageo TR, Mey İçki), bölgesel emlak markası, yat kiralama firması, lüks taksi/transfer şirketi.</li>
+    <li><span class="arrow"></span><strong>Yan sponsor adayları</strong> (₺40-60K): Premium su/içecek, niş parfüm/butik, özel bankacılık, klinik/estetik markası, tasarımcı moda butiği.</li>
+    <li><span class="arrow"></span>Sponsor karşılığı: logo (davet/sosyal/banner), masa, VIP davetli kontenjanı (5-10), foto/video kullanım hakkı.</li>
+  </ul>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 9 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 10: AKSİYON TAKVİMİ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>09 · Aksiyon Takvimi</div>
+  <h1 class="title" style="font-size:26pt;">T−45 → T+7 günlük yol haritası.</h1>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="when">T−45 gün · 2 Haziran 2026 (geçti — bu hafta başlamalı)</div>
+      <p>Tarih kilidi · gece kulübü yazılı kontrat · DJ ajanslarına teklif maili · sponsor longlist (15+ marka) hazırlanması · konsept moodboard onayı.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−35 gün · 12 Haziran 2026</div>
+      <p>DJ kontratları + kapora ödemeleri · sponsor 1-2'lik kısa liste ile yüz yüze toplantı · landing sayfa wireframe.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−30 gün · 17 Haziran 2026 — <strong>BİLET SATIŞI AÇIK</strong></div>
+      <p>kalkaninfo.com/lansman canlı · ödeme entegrasyonu test edildi · Meta Ads kampanyası başladı · 3 reels yayında · 12 influencer brief gönderildi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−21 gün · 26 Haziran 2026</div>
+      <p>Ana sponsor sözleşmesi imzalı (yoksa <strong>kırmızı alarm</strong>: bütçeyi tıraşla). Davet zarfları posta veriliyor. Influencer içerikleri yayında.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−14 gün · 3 Temmuz 2026</div>
+      <p>Pre-sale satış durumu kontrol — hedef ₺300K. Welcome kit üretim başladı. Catering menü kilit. Güvenlik &amp; transfer kontratlar.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−7 gün · 10 Temmuz 2026</div>
+      <p>Final guest list (kapanış). Villa hazırlığı başladı. Foto/video ekibi brief'i. Sahne plan + DJ akış cetveli. Basın gelişme e-postası.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T−2 gün · 15 Temmuz 2026</div>
+      <p>Villa kurulum (dekor, branding). Sound check gece kulübünde. Misafir karşılama brifi.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T0 · <strong>17 Temmuz 2026 Cuma — PARTİ GÜNÜ</strong></div>
+      <p>13:00 Misafir check-in başlar · 19:00 Sunset villa pre-party · 21:30 Gece kulübü açılış · 23:30 Lansman konuşması (5 dk) · 00:30 Headliner setİ · 02:30 After villa.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T+1 gün · 18 Temmuz 2026 Cumartesi</div>
+      <p>11:00 Brunch villa havuz · 14:00 Partner işletme tek tek görüşmeleri (Berkay). Misafir check-out 16:00.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="when">T+3 → T+7 gün</div>
+      <p>Aftermovie yayında (T+3) · 6 reels takvim başladı (her gün 1) · basın bültenleri gitti · sponsor raporları teslim · CRM'e 100 kişi import · KPI raporu hazır.</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 10 / 11</span></div>
+</section>
+
+<!-- ============ SAYFA 11: RİSKLER + KAPANIŞ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>10 · Riskler, KPI'lar &amp; Kapanış</div>
+  <h1 class="title" style="font-size:26pt;">Risk yönetimi + başarı ölçüsü.</h1>
+
+  <h2>Riskler ve Önlemler</h2>
+  <table>
+    <tr><th>Risk</th><th>Olasılık</th><th>Etki</th><th>Önlem</th></tr>
+    <tr><td>Sponsor bulunamaz</td><td>Orta</td><td>Yüksek (zarar)</td><td>T−21 günde longlist 15+ marka, yedek bütçe tıraşı planı hazır</td></tr>
+    <tr><td>Pre-sale yavaş gider</td><td>Orta</td><td>Yüksek</td><td>T−14'de hedefin %50 altı → +20 mikro influencer hızlı devreye</td></tr>
+    <tr><td>Headliner DJ iptal</td><td>Düşük</td><td>Yüksek</td><td>Kontratta ceza maddesi + yedek 2 DJ (warm-up'tan terfi seçeneği)</td></tr>
+    <tr><td>Kötü hava (yağmur/fırtına)</td><td>Çok düşük (Temmuz)</td><td>Orta</td><td>Sunset pre-party için villa salon plan B + tente kiralama yedek</td></tr>
+    <tr><td>Gece kulübü iptal/anlaşma sorunu</td><td>Düşük</td><td>Çok yüksek</td><td>T−45'te yazılı kontrat + kapora + alternatif 2 mekan dosyada</td></tr>
+    <tr><td>İçki ruhsatı / valilik bildirimi</td><td>Düşük</td><td>Çok yüksek (iptal)</td><td>T−21'de tüm izinler tamamlanmış olmalı, avukat onayı</td></tr>
+    <tr><td>Kapasite aşımı / güvenlik</td><td>Düşük</td><td>Yüksek</td><td>QR bilet sistemi, kapıda yüz tanıma kontrol, 4 güvenlik personeli</td></tr>
+    <tr><td>Müzik telifi denetimi</td><td>Düşük</td><td>Orta (para cezası)</td><td>MESAM/MSG bildirimi T−14'e kadar tamamlanmış olmalı</td></tr>
+  </table>
+
+  <h2>Başarı KPI'ları</h2>
+  <div class="grid-2">
+    <div class="light-card">
+      <h4>Finansal</h4>
+      <ul>
+        <li>Net kâr ≥ ₺150K (Senaryo B)</li>
+        <li>Villa paketi doluluk ≥ %85</li>
+        <li>Sponsor geliri ≥ ₺200K</li>
+      </ul>
+    </div>
+    <div class="light-card">
+      <h4>Marka</h4>
+      <ul>
+        <li>Etkinlik #kalkaninfoLAUNCH hashtag 500+ post</li>
+        <li>Basında 5+ haber çıkışı</li>
+        <li>Aftermovie 100K+ erişim (30 gün)</li>
+      </ul>
+    </div>
+    <div class="light-card">
+      <h4>CRM</h4>
+      <ul>
+        <li>100 katılımcı veri tabanına işlendi</li>
+        <li>10+ partner ile B2B satış görüşmesi açıldı</li>
+        <li>30 günde 25+ konaklama lead'i</li>
+      </ul>
+    </div>
+    <div class="light-card">
+      <h4>Operasyonel</h4>
+      <ul>
+        <li>0 güvenlik/sağlık olayı</li>
+        <li>≤ 2 misafir şikayeti</li>
+        <li>Tüm ödemeler/teslimat T+7'de kapalı</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Karar &amp; Onay</h2>
+  <div class="navy-card">
+    <h4>Şimdi Karar Vermen Gereken 5 Madde</h4>
+    <ol style="margin-left:20px;color:#dce6ef;">
+      <li>17 Temmuz 2026 Cuma tarihi onaylanıyor mu? (Yedek 24 Temmuz.)</li>
+      <li>DJ kadrosu — Berkay arkadaşlarından 4 DJ'in adlarını ve slot dağılımını netleştirmeli (Sunset / Warm-up / Headliner / After).</li>
+      <li>Mekan ile şişe garanti anlaşması: <strong>30 şişe × ₺7.000 = ₺210.000</strong> ile yazılı kontrat. Berkay müzakerede %20-30 indirim çıkarabilir mi? (₺150K bandı ulaşılırsa kâr ₺145K'a çıkar.)</li>
+      <li>VIP araç filosu: 8 araç × 2 gün ₺48K bütçesi onaylı mı? (Tüm misafirler kişisel transferli.)</li>
+      <li>1 ana sponsor (₺120K) arama başlasın mı? Sponsorsuz da plan çalışır ama küçük zararlı.</li>
+    </ol>
+  </div>
+
+  <div class="alt-card">
+    <h4>"Para Değil, Marka" Felsefesi — Hatırlatma</h4>
+    <p>Bu plan etkinlikten <strong>+₺85K küçük kâr</strong> + villa satışından <strong>~₺200K marj</strong> verir (toplam Berkay kazancı ~₺285K). Ama esas getiri parasal değil — 100 premium misafir + 12 influencer + 8 basın + 30 günlük içerik takvimi + CRM tabanı + sponsor markaları ile kalıcı iş ilişkisi. Reklam karşılığı toplam değer <strong>₺400-700K</strong> tahmin edilir. kalkaninfo.com'un Kalkan'da markalaşmasının tek bir gecede mühürlenmesi.</p>
+  </div>
+
+  <p style="margin-top:18px;font-size:9pt;color:#5d97c4;text-align:center;">Bu doküman kalkaninfo.com lansman partisi v1.0 planıdır · 04 Haziran 2026 · Hazırlayan: Berkay Elmastaş · İletişim: kalkaninfo.com</p>
+
+  <div class="footer"><span>kalkaninfo.com · Lansman Partisi Planı</span><span>Sayfa 11 / 11</span></div>
+</section>
+
+</body>
+</html>

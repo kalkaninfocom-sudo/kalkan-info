@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<title>kalkaninfo.com — Berkay'ın Kişisel Şirket Planı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;font-size:10.5pt;line-height:1.55;}
+  h1,h2,h3,h4,.display{font-family:'Montserrat',sans-serif;letter-spacing:-0.02em;color:#072136;}
+  .page{width:210mm;min-height:297mm;padding:18mm 16mm;background:#fff;margin:0 auto 8mm;box-shadow:0 4px 20px rgba(7,33,54,0.12);page-break-after:always;position:relative;overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  .ribbon{background:repeating-linear-gradient(90deg,#072136 0 14px,#0d3a5f 14px 28px);height:6px;margin-bottom:14px;border-radius:3px;}
+  .accent-bar{display:inline-block;width:36px;height:3px;background:#e89812;border-radius:2px;vertical-align:middle;margin-right:10px;}
+  .label{font-size:9pt;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:#1a5e93;}
+  h1.title{font-size:30pt;font-weight:900;line-height:1.05;margin:8px 0 6px;color:#0a2e4c;}
+  h2{font-size:16pt;font-weight:800;margin:16px 0 8px;color:#0a2e4c;border-bottom:2px solid #e89812;padding-bottom:5px;display:inline-block;}
+  h3{font-size:12pt;font-weight:700;margin:12px 0 5px;color:#0d3a5f;}
+  h4{font-size:10.5pt;font-weight:700;margin:9px 0 4px;color:#072136;}
+  p{margin:5px 0;}
+  ul,ol{margin:5px 0 5px 18px;}
+  li{margin:2px 0;}
+  strong{color:#072136;font-weight:700;}
+  .gold{color:#e89812;font-weight:700;}
+  .navy-card{background:#072136;color:#fff;border-radius:10px;padding:13px 16px;margin:9px 0;}
+  .navy-card h3,.navy-card h4{color:#f4b53d;}
+  .gold-card{background:linear-gradient(135deg,#e89812 0%,#f4b53d 100%);color:#072136;border-radius:10px;padding:13px 16px;margin:9px 0;}
+  .light-card{background:#eef4f9;border-left:4px solid #1a5e93;border-radius:6px;padding:11px 14px;margin:9px 0;}
+  .alt-card{background:#fff8e8;border-left:4px solid #e89812;border-radius:6px;padding:11px 14px;margin:9px 0;}
+  .red-card{background:#fef2f2;border-left:4px solid #b91c1c;border-radius:6px;padding:11px 14px;margin:9px 0;}
+  .green-card{background:#f0fdf4;border-left:4px solid #15803d;border-radius:6px;padding:11px 14px;margin:9px 0;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;}
+  .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:9px;}
+  .stat{background:#0a2e4c;color:#fff;border-radius:8px;padding:11px;text-align:center;}
+  .stat .v{font-family:'Montserrat',sans-serif;font-size:20pt;font-weight:800;color:#f4b53d;line-height:1.1;}
+  .stat .k{font-size:8pt;letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;color:#dce6ef;}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:9pt;}
+  th{background:#0a2e4c;color:#fff;text-align:left;padding:7px 9px;font-family:'Montserrat',sans-serif;font-size:8.5pt;letter-spacing:0.05em;text-transform:uppercase;}
+  td{padding:6px 9px;border-bottom:1px solid #dce6ef;}
+  tr:nth-child(even) td{background:#f5f9fc;}
+  tr.total td{background:#e89812;color:#072136;font-weight:800;}
+  tr.subtotal td{background:#0d3a5f;color:#fff;font-weight:700;font-size:8.5pt;}
+  .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;}
+  .footer{position:absolute;bottom:8mm;left:16mm;right:16mm;display:flex;justify-content:space-between;font-size:8pt;color:#5d97c4;border-top:1px solid #dce6ef;padding-top:6px;}
+  .cover{background:linear-gradient(135deg,#072136 0%,#0a2e4c 60%,#0d3a5f 100%);color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:24mm 18mm;}
+  .cover h1{color:#fff;font-size:38pt;}
+  .cover .label{color:#f4b53d;}
+  .cover .stat{background:rgba(255,255,255,0.08);border:1px solid rgba(244,181,61,0.3);}
+  .cover .stat .k{color:#dce6ef;}
+  .badge{display:inline-block;background:#e89812;color:#072136;font-weight:700;font-size:8.5pt;padding:3px 9px;border-radius:999px;letter-spacing:0.05em;}
+  .check::before{content:'☐ ';color:#0d3a5f;font-weight:800;font-family:'Montserrat',sans-serif;}
+  .done::before{content:'☑ ';color:#15803d;font-weight:800;font-family:'Montserrat',sans-serif;}
+  .warn::before{content:'⚠ ';color:#b91c1c;font-weight:800;}
+  .arrow::before{content:'→ ';color:#e89812;font-weight:800;}
+  .checkbox-list li{list-style:none;padding-left:8px;margin:5px 0;}
+  .checkbox-list li::before{content:'☐';color:#0d3a5f;margin-right:8px;font-family:'Montserrat',sans-serif;font-weight:800;}
+  @media print{body{background:#fff;}.page{box-shadow:none;margin:0;padding:16mm 14mm;}}
+</style>
+</head>
+<body>
+
+<!-- ============ SAYFA 1: KAPAK ============ -->
+<section class="page cover">
+  <div>
+    <div class="ribbon" style="background:repeating-linear-gradient(90deg,#e89812 0 14px,#f4b53d 14px 28px);"></div>
+    <div class="label">Berkay Elmastaş · Kişisel İş Planı · 2026-2027</div>
+    <h1>KALKANINFO<br/>BENİM<br/>LİSTEM</h1>
+    <p style="font-size:13pt;color:#f4b53d;font-family:'Montserrat',sans-serif;font-weight:600;margin-top:8px;">Alacaklarım. Ödeyeceklerim. Yapacaklarım.</p>
+    <p style="font-size:11pt;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;margin-top:6px;letter-spacing:0.05em;">"Çalışan yok. Agent ordusu var."</p>
+    <p style="margin-top:14px;max-width:560px;color:#dce6ef;">Bu dosya yatırımcıya sunum değil — kendim için yol haritası. kalkaninfo.com'u tek başıma, AI agent'ları "çalışan" olarak kullanarak tam opsyonlu bir şirkete dönüştürmek için nelerin gerektiğinin dürüst dökümü. Her satır benim cebimden çıkacak veya benim takvimimde yapılacak.</p>
+  </div>
+  <div>
+    <div class="grid-4">
+      <div class="stat"><div class="v">₺156K</div><div class="k">Aylık (Orta)</div></div>
+      <div class="stat"><div class="v">₺1.87M</div><div class="k">Yıllık (Orta)</div></div>
+      <div class="stat"><div class="v">₺23.5K</div><div class="k">A.Ş. + Marka Kuruluş</div></div>
+      <div class="stat"><div class="v">0</div><div class="k">İnsan Çalışan</div></div>
+    </div>
+    <p style="margin-top:18px;font-size:9pt;color:#dce6ef;">Berkay Elmastaş — Solo Founder · Tarih: 4 Haziran 2026 · Sürüm 1.0 · Sadece kendim için.</p>
+  </div>
+</section>
+
+<!-- ============ SAYFA 2: NEREDE DURUYORUM ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>01 · Nerede Duruyorum, Nereye Gidiyorum</div>
+  <h1 class="title" style="font-size:24pt;">Yapı şu: Ben + Agent'lar. Kimse maaş almıyor.</h1>
+
+  <p style="margin-top:8px;color:#0d3a5f;">kalkaninfo.com canlı, çalışıyor, organik trafik alıyor. Mevcut altyapı: 22+ sayfa, 5 dil, 17 villa, 27 restoran, 10 antik kent rehberi, AI Concierge (Claude Haiku 7/24), Plausible analytics, Microsoft Clarity, Instagram otomasyon. Şu an tek başımayım, agent'larım var, şirket yok.</p>
+
+  <h2>Şu an eksiklerim</h2>
+  <ul>
+    <li><span class="warn"></span>Tüzel kişiliğim yok → fatura kesemiyorum, kurumsal sözleşme yapamıyorum, KDV iadesi alamıyorum.</li>
+    <li><span class="warn"></span>Marka tescilim yok → biri "kalkaninfo" diye marka tescil ettirip beni kapatabilir.</li>
+    <li><span class="warn"></span>KVKK/VERBİS kaydım yok → kullanıcı verisi topluyorum, yasal risk altındayım.</li>
+    <li><span class="warn"></span>WhatsApp Business API onayım yok → manuel mesajlaşıyorum, ölçeklenmiyor.</li>
+    <li><span class="warn"></span>Mali müşavirim sürekli değil → vergi/SGK takibi düzensiz.</li>
+    <li><span class="warn"></span>Sözleşmesiz freelance ödemeler → suistimal riski + vergi sıkıntısı.</li>
+  </ul>
+
+  <h2>12 ay sonra olmak istediğim yer</h2>
+  <div class="grid-3">
+    <div class="navy-card">
+      <h4>Yasal Zemin</h4>
+      <p style="color:#dce6ef;font-size:9.5pt;">A.Ş. kurulmuş, marka tescil edilmiş, KVKK uyumlu, mali müşavir aktif, e-fatura kesiyorum.</p>
+    </div>
+    <div class="gold-card">
+      <h4 style="color:#072136;">Agent Operasyon</h4>
+      <p style="color:#072136;font-size:9.5pt;">5 agent stack tam çalışıyor: içerik, WhatsApp, sesli rehber, sosyal medya, müşteri yanıt — hepsi 7/24 otonom.</p>
+    </div>
+    <div class="navy-card">
+      <h4>Ciro</h4>
+      <p style="color:#dce6ef;font-size:9.5pt;">Aylık ₺200K affiliate ciro + ₺50K B2B SaaS + sponsorlu içerik. Break-even.</p>
+    </div>
+  </div>
+
+  <h2>Çalışma Felsefem</h2>
+  <div class="alt-card">
+    <p><strong>İnsan istihdam etmeyeceğim.</strong> Müşteri hizmetleri, sosyal medya, içerik üretimi — hepsi AI agent + otomasyon ile yapılacak. Tek istihdam edeceğim "rol" mali müşavir ve hukuk danışmanı (dış hizmet, aylık ödeme, sözleşmeli). Ofis açmayacağım — home office + ihtiyaç oldukça paylaşımlı çalışma alanı. Ben şirketin <strong>tek insanıyım</strong>; geri kalan her şey yazılım.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 2 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 3: ŞİRKET KURMAK İÇİN YAPMAM GEREKENLER ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>02 · Şirket Kurmak İçin Yapacaklarım</div>
+  <h1 class="title" style="font-size:22pt;">A.Ş. kuracağım. Ödeyeceğim ₺17K + ₺62.5K bloke.</h1>
+
+  <p>LTD ŞTİ daha ucuz ama hisse devri hantal ve kurumsal imaj zayıf. İleride yatırımcıyla konuşabilmek için A.Ş. doğru tercih. Sermaye ₺250K (zorunlu min) — bunun %25'i (₺62.500) banka blokesi olarak yatırılacak, kuruluş sonra geri çekilip işletmede kullanacağım.</p>
+
+  <h2>A.Ş. Kuruluş Adımları (Sırasıyla)</h2>
+  <ol style="margin-left:22px;">
+    <li><strong>Esas sözleşme</strong> mali müşavir veya avukat tarafından hazırlanır. Faaliyet konusu geniş tanımlanmalı: <em>turizm, yazılım, e-ticaret, yapay zeka, içerik üretimi, danışmanlık, reklam</em>.</li>
+    <li><strong>MERSİS başvurusu</strong> (online, mersis.gtb.gov.tr) → potansiyel ticaret unvanı talebi. "Kalkan Info Bilişim ve Turizm A.Ş." gibi.</li>
+    <li><strong>Sermaye blokesi</strong> bankada — ₺250K'nın %25'i = ₺62.500. Kuruluş sonrası geri çekilebilir.</li>
+    <li><strong>İmza beyannamesi</strong> noterde tüm ortaklar (tek ortak ben) için.</li>
+    <li><strong>Ticaret sicili başvuru</strong> — Antalya Ticaret Odası (Kalkan/Kaş ilçe kaydı yok, il merkezine bağlı).</li>
+    <li><strong>Vergi dairesi açılışı + yoklama tutanağı</strong> — Antalya Kaş Vergi Dairesi.</li>
+    <li><strong>SGK işyeri tescili</strong> — çalışan olmasa bile zorunlu (kurucu ortak olarak ben BAĞ-KUR'lu olacağım).</li>
+    <li><strong>Defter tasdiki</strong> noterde — yevmiye, defter-i kebir, envanter, yönetim kurulu karar defteri.</li>
+    <li><strong>KEP adresi</strong> alınır (PTT KEP, ₺200-300/yıl).</li>
+    <li><strong>E-imza sertifikası</strong> (TÜRKKEP, Elektronik İmza Sağlayıcı) — kurucu ve yetkili için.</li>
+    <li><strong>Mali müşavir sözleşmesi</strong> — aylık ₺4-5K bağlamak şart.</li>
+  </ol>
+
+  <h2>Süre &amp; Maliyet Özet Tablo</h2>
+  <table>
+    <tr><th>Kalem</th><th>Maliyet</th><th>Süre</th></tr>
+    <tr><td>Esas sözleşme + danışmanlık</td><td class="num">₺4.500</td><td>2-3 gün</td></tr>
+    <tr><td>Noter onayları (imza, ortaklar)</td><td class="num">₺3.500</td><td>1 gün</td></tr>
+    <tr><td>Sermaye blokesi (₺62.500 — geri alınabilir)</td><td class="num">₺62.500*</td><td>1 gün</td></tr>
+    <tr><td>Ticaret sicili harçları</td><td class="num">₺3.000</td><td>3-5 gün</td></tr>
+    <tr><td>Vergi dairesi + yoklama</td><td class="num">₺1.000</td><td>1 hafta</td></tr>
+    <tr><td>Defter tasdiki</td><td class="num">₺1.500</td><td>1 gün</td></tr>
+    <tr><td>KEP + E-imza (3 yıl)</td><td class="num">₺2.500</td><td>3 gün</td></tr>
+    <tr><td>SGK işyeri açılış</td><td class="num">₺0</td><td>3 gün</td></tr>
+    <tr><td>MERSİS &amp; admin</td><td class="num">₺500</td><td>—</td></tr>
+    <tr><td>Marka tescili TPMK (1 sınıf turizm + 1 sınıf yazılım)</td><td class="num">₺7.000</td><td>6-12 ay</td></tr>
+    <tr class="total"><td>TOPLAM (sermaye HARİÇ)</td><td class="num">₺23.500</td><td>~3 hafta</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:#5d97c4;">* Sermaye blokesi gider değil — şirket adına yatırılır, kuruluş sonrası geri çekilip işletmede kullanılır. Pratikte 3 hafta kasamda eksik gibi düşüneceğim.</p>
+
+  <div class="green-card">
+    <h4>Toplam Süre: 3-4 hafta</h4>
+    <p>Mali müşavir bulunduğu günden vergi numarası alındığı güne kadar ortalama 3 hafta. Aralık-Ocak dönemi yoğunluğu hariç. Marka tescili süreci paralel devam eder (6-12 ay sonuçlanır), şirket kuruluşu beklemez.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 3 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 4: AYLIK ÖDEYECEKLERİM - PROFESYONEL HİZMET ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>03 · Aylık Ödeyeceklerim — Profesyonel Hizmet</div>
+  <h1 class="title" style="font-size:22pt;">İnsan kadrom yok. Sadece 2 dış hizmet.</h1>
+
+  <p>kalkaninfo bir <strong>agent şirketi</strong>. Müşteri hizmetleri yok, sosyal medya yöneticisi yok, içerik editörü yok — bunların hepsi otomasyon. Sadece <strong>iki insanla sözleşmeli ödeme</strong> ilişkim olacak: mali müşavir ve hukuk danışmanı. Onlar da kadrolu değil, dış hizmet alımı.</p>
+
+  <table>
+    <tr><th>Hizmet</th><th>İlişki Tipi</th><th>Ne Yapacak</th><th>Aylık Ödeme</th></tr>
+    <tr><td><strong>Mali Müşavir</strong></td><td>Sözleşmeli aylık</td><td>Bordro (kendim için BAĞ-KUR), defter, beyanname, vergi takip, e-fatura, e-defter</td><td class="num">₺4.500</td></tr>
+    <tr><td><strong>Hukuk Danışmanı</strong></td><td>Saatlik retainer</td><td>Sözleşme şablonları, KVKK güncelleme, ticari ihtilaf, marka takip</td><td class="num">₺2.500</td></tr>
+    <tr class="total"><td colspan="3">AYLIK İNSAN HİZMETİ TOPLAM</td><td class="num">₺7.000</td></tr>
+  </table>
+
+  <div class="alt-card">
+    <h4>Niye Müşteri Hizmetleri Çalışanı Yok</h4>
+    <p>Geleneksel turizm sitesi 1 tam zamanlı müşteri hizmetleri (₺28-35K/ay) gerektirir. Bizde <strong>WhatsApp Business API + Claude agent + n8n orkestrasyon</strong> bu işi 7/24 yapıyor. Eskalasyon durumunda kendim devreye giriyorum — ayda ortalama 2-3 saat manuel işlem yetiyor. Tasarruf: <strong>aylık ₺28-35K</strong>.</p>
+  </div>
+
+  <div class="alt-card">
+    <h4>Niye Sosyal Medya Yöneticisi Yok</h4>
+    <p>İçerik takvimi → Claude yazıyor. Görsel → Canva template + Seedance v2 video. Schedule → Buffer/Postiz. Paid ads → ben kendim haftada 1 saat optimize ediyorum. Toplam: <strong>aylık ₺12-18K tasarruf</strong> + agent ölçeklenebilir (5 hesabı yönetmek 50'yi yönetmekle aynı maliyet).</p>
+  </div>
+
+  <div class="alt-card">
+    <h4>Niye İçerik Editörü Yok</h4>
+    <p>Claude Sonnet kalitesi %85+ direkt yayınlanabilir seviye. Hassas içerik (hukuki, rehber metni) için kendim son okuma yapıyorum, haftada 1-2 saat. <strong>Aylık ₺8-12K tasarruf</strong>.</p>
+  </div>
+
+  <h2>Hatırlatma — Kendim için</h2>
+  <ul class="checkbox-list">
+    <li>Mali müşavirle ayda 1 toplantı yapacağım — vergi pozisyonu, nakit akışı, beklenmedik kalem var mı.</li>
+    <li>Hukuk danışmanını saatlik tutacağım, gereksiz toplantı yapmayacağım; sözleşme önce kendim okuyup gönderirim.</li>
+    <li>Agent'lar bir gün kesintiye girerse <strong>4 saatte manuel müdahale</strong> edebilmem için backup procedure hazırlayacağım.</li>
+  </ul>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 4 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 5: AYLIK ÖDEYECEKLERİM - TEKNOLOJİ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>04 · Aylık Ödeyeceklerim — Teknoloji &amp; AI Araçları</div>
+  <h1 class="title" style="font-size:22pt;">Almam gereken 22 araç. Hepsi şart.</h1>
+
+  <table>
+    <tr><th>Araç</th><th>Niye Lazım</th><th>Aylık Ödeme</th></tr>
+    <tr class="subtotal"><td colspan="3">ALTYAPI &amp; HOSTING</td></tr>
+    <tr><td>Vercel Pro</td><td>Frontend deploy + 12 function limit aşımı</td><td class="num">₺700</td></tr>
+    <tr><td>Supabase Pro</td><td>Postgres + Auth + Storage + Edge Functions + pgvector</td><td class="num">₺875</td></tr>
+    <tr><td>Cloudflare Pro</td><td>DNS + WAF + görsel optimizasyon</td><td class="num">₺700</td></tr>
+    <tr><td>VPS (n8n self-host)</td><td>Hetzner/Contabo, 4GB RAM, agent orkestrasyon</td><td class="num">₺500</td></tr>
+    <tr><td>Domain &amp; SSL amortize</td><td>kalkaninfo.com + .com.tr + alt domainler yıllığa</td><td class="num">₺200</td></tr>
+
+    <tr class="subtotal"><td colspan="3">AI AGENT'LARIM — ŞİRKETİN GERÇEK ÇALIŞANLARI</td></tr>
+    <tr><td><strong>Claude API (Sonnet + Haiku)</strong></td><td>İçerik yazımı, chatbot, çeviri, AI Concierge — beynin kendisi</td><td class="num">₺6.500</td></tr>
+    <tr><td><strong>ElevenLabs Creator</strong></td><td>Sesli rehber (10 antik kent × 5 dil), çağrı bekleme tonu, podcast</td><td class="num">₺1.500</td></tr>
+    <tr><td><strong>Seedance v2 / video AI</strong></td><td>Instagram reels, kısa video otomatik üretim</td><td class="num">₺2.500</td></tr>
+    <tr><td>OpenAI Whisper / TTS yedek</td><td>Transkripsiyon, alternatif ses motoru</td><td class="num">₺500</td></tr>
+
+    <tr class="subtotal"><td colspan="3">İLETİŞİM &amp; CRM</td></tr>
+    <tr><td><strong>WhatsApp Business API</strong></td><td>Meta/Twilio entegrasyon — rezervasyon agent'ı buradan çalışıyor</td><td class="num">₺2.000</td></tr>
+    <tr><td>Resend Email</td><td>Transactional + newsletter</td><td class="num">₺700</td></tr>
+    <tr><td>Google Workspace</td><td>3 mailbox: info@, satis@, destek@</td><td class="num">₺900</td></tr>
+
+    <tr class="subtotal"><td colspan="3">ANALİTİK &amp; İZLEME</td></tr>
+    <tr><td>Plausible Analytics</td><td>Cookieless, GDPR uyumlu trafik analizi</td><td class="num">₺315</td></tr>
+    <tr><td>Microsoft Clarity</td><td>Heatmap, session recording (ücretsiz)</td><td class="num">₺0</td></tr>
+    <tr><td>Sentry</td><td>Error tracking, performance monitoring</td><td class="num">₺900</td></tr>
+
+    <tr class="subtotal"><td colspan="3">İÇERİK &amp; SOSYAL MEDYA</td></tr>
+    <tr><td>Buffer / Postiz</td><td>Multi-platform schedule (IG, FB, TikTok, X)</td><td class="num">₺1.500</td></tr>
+    <tr><td>Canva Pro Team</td><td>3 kullanıcı, marka kit, otomasyon template</td><td class="num">₺1.500</td></tr>
+    <tr><td>Premium stok (Artlist, Pexels Pro)</td><td>Müzik telif, premium görsel rezerv</td><td class="num">₺900</td></tr>
+
+    <tr class="subtotal"><td colspan="3">ÖDEME &amp; FİNANS</td></tr>
+    <tr><td>iyzico komisyon (değişken)</td><td>İşlem başı %2.5-3 ortalama, hacme bağlı</td><td class="num">~₺2.500</td></tr>
+
+    <tr class="total"><td colspan="2">AYLIK TEKNOLOJİ TOPLAM</td><td class="num">~₺25.000</td></tr>
+  </table>
+
+  <div class="alt-card">
+    <h4>Hatırlatma — Yıllık Artış Riski</h4>
+    <p>SaaS aboneliklerinde yıllık <strong>%15-30 zam</strong> normaldir. Claude API kullanım bazlı, kullanıcı sayısı arttıkça doğrusal artar. 12. ayda toplam SaaS bütçem <strong>₺32-40K/ay</strong>'a çıkabilir — bunu kasada görmeden 6. ayda fark etmem lazım.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 5 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 6: AYLIK ÖDEYECEKLERİM - PAZARLAMA ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>05 · Aylık Ödeyeceklerim — Pazarlama &amp; İçerik</div>
+  <h1 class="title" style="font-size:22pt;">Reklam = oksijen. Bu, kesilecek son kalem.</h1>
+
+  <p>Organik tek başına yetmez. Meta + Google + mikro influencer üçlüsü kalkaninfo'nun büyüme motoru. İnsan kadrosu olmadığı için pazarlama bütçesinin tamamı <strong>doğrudan reklam ve dış üretim</strong>'e gider — ajans veya in-house personel yok.</p>
+
+  <table>
+    <tr><th>Kalem</th><th>Kim Yapıyor</th><th>Aylık Ödeme</th></tr>
+
+    <tr class="subtotal"><td colspan="3">DİJİTAL REKLAM (BERKAY KENDİSİ YÖNETİR)</td></tr>
+    <tr><td>Meta Ads (Instagram + Facebook)</td><td>Ben — haftada 2 saat optimizasyon</td><td class="num">₺20.000</td></tr>
+    <tr><td>Google Ads (Search + YouTube)</td><td>Ben — agent destekli keyword araştırma</td><td class="num">₺15.000</td></tr>
+    <tr><td>TikTok Ads (test bütçesi)</td><td>Ben — Seedance reels'leri sponsoring</td><td class="num">₺5.000</td></tr>
+
+    <tr class="subtotal"><td colspan="3">INFLUENCER &amp; PARTNER</td></tr>
+    <tr><td>Mikro influencer (3-5 hesap)</td><td>WhatsApp agent aracılığıyla brief, ödeme manuel</td><td class="num">₺18.000</td></tr>
+    <tr><td>Makro influencer (3 ayda 1)</td><td>Ben — direkt görüşme + sözleşme</td><td class="num">₺10.000</td></tr>
+    <tr><td>Affiliate komisyon yedeği</td><td>Otomatik, satışa bağlı</td><td class="num">₺3.000</td></tr>
+
+    <tr class="subtotal"><td colspan="3">ÜRETİM — AĞIRLIKLI AGENT, KISMI FREELANCE</td></tr>
+    <tr><td>Profesyonel fotoğraf çekimi (3 ayda 1)</td><td>Freelance fotoğrafçı, villa/mekan/antik kent — aylığa amortize</td><td class="num">₺4.000</td></tr>
+    <tr><td>Seedance video üretimi</td><td>Agent — aylık 30+ reels otomatik</td><td class="num">Teknoloji'de</td></tr>
+    <tr><td>Müzik telifi (Artlist Pro)</td><td>Teknoloji'de</td><td class="num">Teknoloji'de</td></tr>
+
+    <tr class="subtotal"><td colspan="3">PR &amp; KAMPANYA</td></tr>
+    <tr><td>Basın bülteni dağıtımı (proje bazlı)</td><td>Aylığa amortize</td><td class="num">₺3.000</td></tr>
+    <tr><td>Etkinlik &amp; lansman yedek bütçesi</td><td>Yılda 4 mini etkinlik amortize</td><td class="num">₺6.000</td></tr>
+
+    <tr class="total"><td colspan="2">AYLIK PAZARLAMA TOPLAM</td><td class="num">₺84.000</td></tr>
+  </table>
+
+  <div class="light-card">
+    <h4>ROAS Beklentim</h4>
+    <p>Meta Ads ortalama <strong>3x-5x</strong>: ₺40K reklam → ₺120-200K affiliate ciro hedefi. Google Ads daha düşük (yüksek niyetli + pahalı keyword), 2x-3x ROAS. İlk 6 ay test &amp; öğrenme; 7-12 ay scale. Optimizasyonu kendim yapacağım — Claude agent'ı kampanya raporu okuyup öneride bulunuyor.</p>
+  </div>
+
+  <div class="red-card">
+    <h4>Tasarruf Modu Sırası (Kötü ay olursa)</h4>
+    <ol style="margin-left:18px;">
+      <li>Makro influencer (₺10K) — sezonsa atla</li>
+      <li>TikTok test (₺5K) — performans yoksa kes</li>
+      <li>PR bülteni (₺3K) — sırada</li>
+      <li>Etkinlik yedek (₺6K) — sıkışırsa</li>
+      <li>Mikro influencer azalt (₺18K → ₺10K)</li>
+      <li><strong>Meta + Google asla kesilmez</strong> — onlar oksijen</li>
+    </ol>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 6 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 7: OPERASYONEL + GENEL ÖZET ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>06 · Aylık Ödeyeceklerim — Operasyonel + Genel Özet</div>
+  <h1 class="title" style="font-size:22pt;">Ofisim yok. Sigortam var. Vergim hazır.</h1>
+
+  <h2>Operasyonel &amp; Yasal</h2>
+  <table>
+    <tr><th>Kalem</th><th>Detay</th><th>Aylık Ödeme</th></tr>
+    <tr><td>BAĞ-KUR Primi (Kendim için)</td><td>Kurucu ortak olarak zorunlu, gelir basamağına göre</td><td class="num">₺6.000</td></tr>
+    <tr><td>Telefon + İnternet (fiber)</td><td>İş hatları + mobil paket</td><td class="num">₺1.500</td></tr>
+    <tr><td>Banka Hesap İşletim &amp; Komisyon</td><td>Ticari hesap, transfer ücretleri</td><td class="num">₺500</td></tr>
+    <tr><td>Sigorta — İşyeri Sorumluluk</td><td>3. şahıs zararı, ticari faaliyet</td><td class="num">₺1.500</td></tr>
+    <tr><td>Sigorta — Siber Güvenlik</td><td>Veri ihlali, fidye yazılım</td><td class="num">₺1.500</td></tr>
+    <tr><td>Genel Sarf / Kırtasiye</td><td>Yazıcı, kartuş, küçük donanım</td><td class="num">₺500</td></tr>
+    <tr><td>Seyahat (Antalya, İstanbul iş gezi)</td><td>Aylığa amortize — partner görüşmesi</td><td class="num">₺3.500</td></tr>
+    <tr><td>Yedek &amp; Beklenmedik</td><td>Vergi cezası, ekipman arıza</td><td class="num">₺5.000</td></tr>
+    <tr class="total"><td colspan="2">OPERASYONEL TOPLAM</td><td class="num">₺20.000</td></tr>
+  </table>
+
+  <h2>3 Senaryo — Aylık &amp; Yıllık</h2>
+  <table>
+    <tr><th>Kategori</th><th>Düşük</th><th>Orta (Hedef)</th><th>Yüksek (Büyüme)</th></tr>
+    <tr><td>Profesyonel Hizmet (müşavir + hukuk)</td><td class="num">₺7.000</td><td class="num">₺7.000</td><td class="num">₺10.000</td></tr>
+    <tr><td>Teknoloji &amp; AI Araçları</td><td class="num">₺17.000</td><td class="num">₺25.000</td><td class="num">₺40.000</td></tr>
+    <tr><td>Pazarlama &amp; İçerik</td><td class="num">₺40.000</td><td class="num">₺84.000</td><td class="num">₺140.000</td></tr>
+    <tr><td>Operasyonel &amp; Yasal (BAĞ-KUR dahil)</td><td class="num">₺16.000</td><td class="num">₺20.000</td><td class="num">₺28.000</td></tr>
+    <tr><td>Vergi Karşılıkları (KDV/Gelir yedek)</td><td class="num">₺8.000</td><td class="num">₺20.000</td><td class="num">₺38.000</td></tr>
+    <tr class="total"><td>AYLIK TOPLAM</td><td class="num">₺88.000</td><td class="num">₺156.000</td><td class="num">₺256.000</td></tr>
+    <tr class="subtotal"><td>YILLIK TOPLAM</td><td class="num">₺1.06M</td><td class="num">₺1.87M</td><td class="num">₺3.07M</td></tr>
+  </table>
+
+  <div class="navy-card">
+    <h4>Hedef Senaryom: ORTA — ₺156K/ay = ₺1.87M/yıl</h4>
+    <p style="color:#dce6ef;font-size:9.5pt;">Bu seviye: tüm AI agent stack tam çalışıyor + tam reklam saldırgan + yasal zemin tam + BAĞ-KUR primim ödenmiş. İlk 6 ay düşük senaryoda kalıp tasarruf, gelir ile beraber orta senaryoya yükselmek mantıklı.</p>
+  </div>
+
+  <div class="alt-card">
+    <h4>Karşılaştırma — İnsan Çalışan Modeli ile</h4>
+    <p>İnsan çalışan + ofis modeli (eski plan): <strong>₺245K/ay = ₺2.94M/yıl</strong>. Agent-only modelim (BAĞ-KUR dahil): <strong>₺156K/ay = ₺1.87M/yıl</strong>. <strong>Yıllık tasarrufum: ₺1.07M.</strong> Bu, doğrudan reklam ve büyümeye yatırılabilir veya kasaya nakit rezerv olarak kalır.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 7 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 8: AGENT STACK ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>07 · Agent Stack — Şirketin Gerçek Çalışanları</div>
+  <h1 class="title" style="font-size:22pt;">7 agent. Hepsi 7/24. Hiçbiri izin istemiyor.</h1>
+
+  <h2>5 Katmanlı Mimari</h2>
+  <table>
+    <tr><th>Kat</th><th>Sorumluluk</th><th>Servis</th></tr>
+    <tr><td><strong>1. Kavrama</strong></td><td>Müşteri sorusunu anlama, niyet sınıflandırma, dil tespit</td><td>Claude Haiku</td></tr>
+    <tr><td><strong>2. Bilgi</strong></td><td>Vektör arama, villa/restoran/etkinlik veri tabanı sorgu, RAG</td><td>Supabase + pgvector</td></tr>
+    <tr><td><strong>3. Üretim</strong></td><td>İçerik yazımı, çoklu dil çeviri, AI Concierge yanıtı</td><td>Claude Sonnet</td></tr>
+    <tr><td><strong>4. Medya</strong></td><td>Görsel/video/ses üretim — reels, sesli rehber, çağrı bekleme</td><td>Seedance v2 + ElevenLabs + DALL·E</td></tr>
+    <tr><td><strong>5. Eylem</strong></td><td>Sosyal medya post, WhatsApp yanıt, mail gönder, takvim, ödeme</td><td>n8n + Meta API + iyzico + Resend</td></tr>
+  </table>
+
+  <h2>7 Agent'ım — Kim Ne Yapıyor</h2>
+  <div class="grid-2">
+    <div class="navy-card">
+      <h4>① İçerik Agent (Claude Sonnet)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">Haftalık 3 yeni mekan + 2 villa içeriği yazıyor. 5 dilde çeviri. Editör onaylamadan canlıya çıkmıyor (ben kontrol).</p>
+    </div>
+    <div class="navy-card">
+      <h4>② WhatsApp Asistan (Claude + n8n)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">"Villa müsait mi?" sorularına 7/24 yanıt. Tarih/fiyat çekiyor, rezervasyon link gönderiyor. Eskalasyon → bana.</p>
+    </div>
+    <div class="navy-card">
+      <h4>③ Reels Agent (Seedance v2)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">Haftada 7 reels otomatik üretim. Görsel + müzik + caption. Schedule → Buffer. Ben sadece haftada 1x kalite review.</p>
+    </div>
+    <div class="navy-card">
+      <h4>④ Sesli Rehber (ElevenLabs)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">10 antik kent × 5 dil = 50 ses dosyası. Claude metni yazıyor, ElevenLabs okuyor. Sitede QR kod ile dinleme.</p>
+    </div>
+    <div class="navy-card">
+      <h4>⑤ Çağrı Bekleme (ElevenLabs)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">Telefon yoğunluğunda karşılama tonu + bekleme metni: "WhatsApp 0850... yazın, kalkaninfo.com'a girin."</p>
+    </div>
+    <div class="navy-card">
+      <h4>⑥ Sosyal Medya Schedule (Buffer + Claude)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">İçerik agent çıktısını Buffer'a atıyor, optimum saatte yayınlıyor. Yorumlara otomatik yanıt (Claude).</p>
+    </div>
+    <div class="navy-card">
+      <h4>⑦ SEO &amp; Analitik (Claude + Plausible)</h4>
+      <p style="color:#dce6ef;font-size:9pt;">Haftalık analitik raporu okuyor, düşük performanslı sayfalar için öneri sunuyor. Ben karar veriyorum.</p>
+    </div>
+    <div class="gold-card">
+      <h4 style="color:#072136;">İnsan Berkay</h4>
+      <p style="color:#072136;font-size:9pt;">Karar verici. Stratejik kontrolör. Agent çıktısına final onay. Reklam optimizasyon. Yatırımcı/partner görüşmeleri. Toplam haftalık: ~25-30 saat.</p>
+    </div>
+  </div>
+
+  <div class="alt-card">
+    <h4>Niye Bu Model Çalışır</h4>
+    <p>Geleneksel turizm sitesi 8 kişilik ekip × ₺25K = <strong>₺200K/ay personel</strong>. Bizde 7 agent + ben + ₺25K SaaS = <strong>₺32K/ay aynı işi yapıyoruz</strong>. Marj farkı yıllık <strong>₺2.0M tasarruf</strong> — bu, doğrudan reklama veya büyümeye gidiyor. Buna ek: agent <strong>ölçeklenebilir</strong> — 5 villa yönetmek 50 villa yönetmekle aynı maliyet.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 8 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 9: UNUTMAMAM GEREKEN GİDERLER ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>08 · Unutmamam Gereken Giderler</div>
+  <h1 class="title" style="font-size:22pt;">Tek başıma yapanın en çok yaktığı yer.</h1>
+
+  <p>Aşağıdaki kalemler "ana liste"de görünmez ama yılın ortasında nakit akışımı delip geçer. Hepsini hesaba katacağım.</p>
+
+  <h2>Yıllık Bir Seferlik / Periyodik</h2>
+  <table>
+    <tr><th>Kalem</th><th>Periyot</th><th>Maliyet</th><th>Niye Önemli</th></tr>
+    <tr><td>Marka Tescili (TPMK)</td><td>Tek sefer + 10 yıl yenileme</td><td class="num">₺7.000</td><td>Olmadan başkası kalkaninfo'yu tescil ettirip dava açabilir</td></tr>
+    <tr><td>KVKK / VERBİS Kayıt + Danışmanlık</td><td>Tek sefer + yıllık güncelleme</td><td class="num">₺8.000</td><td>Yasal zorunluluk, ceza ₺1.8M'e kadar çıkıyor</td></tr>
+    <tr><td>İSG Eğitimi (1+ çalışan)</td><td>Yıllık</td><td class="num">₺0</td><td>Agent şirketim, çalışanım yok — bu kalem benim için sıfır</td></tr>
+    <tr><td>Defter Tasdiki + Yıl Sonu Kapanış</td><td>Yıllık</td><td class="num">₺2.500</td><td>Mali müşavirden ayrı, noter işlemi</td></tr>
+    <tr><td>E-İmza Yenileme</td><td>3 yılda 1</td><td class="num">₺1.500 (amortize)</td><td>İhalelere, KEP'e, e-fatura'ya zorunlu</td></tr>
+    <tr><td>Domain Yenileme &amp; Alt Domain</td><td>Yıllık</td><td class="num">₺2.500</td><td>kalkaninfo.com + .com.tr + alt domainler</td></tr>
+    <tr><td>SSL Sertifika (premium EV opsiyonel)</td><td>Yıllık</td><td class="num">₺2.000</td><td>Cloudflare'in ücretsizi yetebilir, EV opsiyonel</td></tr>
+    <tr><td>Kıdem Tazminatı Karşılığı</td><td>Yıllık ayır</td><td class="num">₺0</td><td>Çalışanım yok — bu kalem benim için sıfır. Sadece BAĞ-KUR primim var</td></tr>
+    <tr><td>BAĞ-KUR Primi (Kendim için)</td><td>Aylık (yıllığa)</td><td class="num">₺72.000</td><td>Kurucu ortak olarak zorunlu, ortalama ₺6.000/ay</td></tr>
+    <tr><td>Kurum Vergi Beyannamesi Geç Ödeme Yedeği</td><td>Yıllık</td><td class="num">₺5.000</td><td>Likidite eksikliğinde ceza %5+/ay biner</td></tr>
+    <tr><td>İş Yeri Açma Ruhsatı (Belediye)</td><td>Yıllık</td><td class="num">₺3.000</td><td>Kaş Belediyesi'ne bağlı — home office için de gerekli</td></tr>
+    <tr class="total"><td colspan="2">YILLIK TEK SEFER TOPLAM</td><td class="num">₺103.500</td><td>Aylığa: ₺8.625</td></tr>
+  </table>
+  <p style="font-size:8.5pt;color:#5d97c4;">Agent şirket modelimde "İSG Eğitimi" ve "Kıdem Tazminatı Karşılığı" sıfırdır (çalışan yok). BAĞ-KUR primim önceki listede yoktu — sessiz bir kalemdi ama yıllık <strong>₺72K</strong> tutuyor. Bu kalemi mutlaka aylık nakit planımda görmem lazım.</p>
+
+  <h2>Sessiz Aylık Sızıntılar — Bunlar Beni Yer</h2>
+  <ul>
+    <li><span class="warn"></span><strong>SaaS yıllık zammı:</strong> Vercel, Supabase, Claude API yıllık %15-30 artar. 12. ayda SaaS bütçem ₺25K → ₺35K bandına çıkar — şimdiden yedek tutuyorum.</li>
+    <li><span class="warn"></span><strong>iyzico komisyonu:</strong> Cüzdan başına %2.5-3, taksit + chargeback %1-2 kayıp. Aylık ortalama ₺2-5K. Hacim arttıkça doğrusal.</li>
+    <li><span class="warn"></span><strong>WhatsApp mesaj başı ücret:</strong> Meta/Twilio konuşma başı $0.005-0.04. Aylık 5K görüşmede ~₺2-5K. Agent çok cevap verirse fatura şişer.</li>
+    <li><span class="warn"></span><strong>Influencer hediye/barter:</strong> "Ücretsiz" tatil = villa fırsat maliyeti ₺7.500/oda × 2 gece × 5 influencer = ₺75K/yıl. Villalar benim ama "satılabilecek geceler" kayıp.</li>
+    <li><span class="warn"></span><strong>İade ve iptaller:</strong> Rezervasyon iadesinde iyzico komisyonu iade edilmez. Aylık ₺1-3K nakit kaybı.</li>
+    <li><span class="warn"></span><strong>Vergi cezası:</strong> Yanlış KDV beyanı, geç ödeme, e-fatura tutarsızlığı. Aylık ₺1.000 rezerv tutacağım.</li>
+    <li><span class="warn"></span><strong>Para birimi riski:</strong> Claude/Vercel USD ödüyor; ₺ düşerse SaaS bütçesi otomatik şişer. Tüm SaaS gelirin %20'sini USD bazlı yedeklemek lazım.</li>
+    <li><span class="warn"></span><strong>Agent hatası → manuel temizlik:</strong> AI yanlış yanıt verirse müşteri kaybı + telafi + iade. Aylık ₺1-3K rezerv.</li>
+    <li><span class="warn"></span><strong>Sigorta artışı:</strong> Yıllık prim %20-40 artıyor son yıllarda. 2027'de ₺1.500 → ₺2.500.</li>
+    <li><span class="warn"></span><strong>BAĞ-KUR primi:</strong> Kendim için aylık BAĞ-KUR ödeyeceğim, ortalama ₺5.500-7.000/ay (gelir basamağına göre).</li>
+  </ul>
+
+  <div class="red-card">
+    <h4>NAKİT REZERV KURALIM (En Önemli)</h4>
+    <p><strong>3-6 aylık operasyonel masraf nakit rezervde tutacağım.</strong> Orta senaryoda bu <strong>₺450K-900K</strong> demek. Bu para harcanmaz, "ya gelir 3 ay azalırsa?" sigortası. İlk yıl bunu inşa edemezsem, 2. yıl daha zorlu geçecek.</p>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 9 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 10: 12 AYLIK AKSİYON PLANI ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>09 · 12 Aylık Aksiyon Planım — Ay Ay</div>
+  <h1 class="title" style="font-size:22pt;">Ay 1'den ay 12'ye, ne yapacağım.</h1>
+
+  <table>
+    <tr><th>Ay</th><th>Ana Aksiyon</th><th>Yapacağım Ödemeler</th></tr>
+    <tr><td><strong>Ay 1 (Haz-Tem)</strong></td><td>Mali müşavir bul, A.Ş. kuruluşu başlat, marka tescil dosyala, KEP+e-imza al</td><td>₺23K kuruluş + sermaye blokesi ₺62.5K</td></tr>
+    <tr><td><strong>Ay 2</strong></td><td>A.Ş. tamam, banka hesap aç, sermaye blokesini al, ilk SaaS aboneliklerini A.Ş. adına al</td><td>İlk aylık SaaS ₺25K + mali müşavir ₺4.5K</td></tr>
+    <tr><td><strong>Ay 3</strong></td><td>KVKK/VERBİS başvuru, hukuk danışmanı sözleşmesi, WhatsApp Business API başvuru</td><td>KVKK danışmanlık ₺8K + hukuk başlangıç ₺2.5K</td></tr>
+    <tr><td><strong>Ay 4</strong></td><td>İlk Meta + Google Ads kampanyası tam açık. Agent stack tam çalışıyor (7 agent test edilmiş)</td><td>İlk ₺40K reklam + sigortalar ₺3K</td></tr>
+    <tr><td><strong>Ay 5</strong></td><td>İlk 3 mikro influencer anlaşması. Sesli rehber 5 antik kent canlı</td><td>İnfluencer ₺18K</td></tr>
+    <tr><td><strong>Ay 6 — KONTROL NOKTASI</strong></td><td>Aylık gelir hedef ₺120K mı? Değilse plan revize</td><td>—</td></tr>
+    <tr><td><strong>Ay 7-8</strong></td><td>Sesli rehber tüm 10 antik kent tamam. TikTok ads test başlat</td><td>TikTok ₺5K eklendi</td></tr>
+    <tr><td><strong>Ay 9</strong></td><td>B2B SaaS soft launch — 10 villa operatörü pilot grup</td><td>İlk B2B geliri başladı</td></tr>
+    <tr><td><strong>Ay 10</strong></td><td>İlk büyük marka sponsorluğu görüşmesi (Garanti / Hilton / TGI)</td><td>—</td></tr>
+    <tr><td><strong>Ay 11</strong></td><td>Premium üye abonelik canlıya alınır</td><td>—</td></tr>
+    <tr><td><strong>Ay 12 — YILLIK KAPANIŞ</strong></td><td>Yıl sonu defter tasdiki + kurum vergi beyannamesi + plan 2. yıla revize</td><td>Defter ₺2.5K + ruhsat ₺3K</td></tr>
+  </table>
+
+  <h2>Aylık Rutinim</h2>
+  <ul class="checkbox-list">
+    <li><strong>Her Pazartesi sabah:</strong> Geçen hafta KPI raporu (Plausible + iyzico + agent log) → 30 dk</li>
+    <li><strong>Her Pazartesi:</strong> Hafta içeriği planı agent'a brief → 1 saat</li>
+    <li><strong>Her Çarşamba:</strong> Reklam kampanyası optimizasyonu (Meta + Google) → 2 saat</li>
+    <li><strong>Her Cuma:</strong> Agent çıktısı kalite kontrolü (rastgele 10 cevap, 5 reels) → 1.5 saat</li>
+    <li><strong>Her ay sonu:</strong> Mali müşavirle görüşme (KDV beyanı, nakit pozisyonu) → 1 saat</li>
+    <li><strong>Her 3 ayda 1:</strong> Profesyonel fotoğraf çekimi (yeni villalar/mekanlar) → 1 gün</li>
+    <li><strong>Her 6 ayda 1:</strong> Hukuk danışmanı ile sözleşme/uyum review → 2 saat</li>
+    <li><strong>Her yıl:</strong> Marka tescil + KVKK güncelleme + defter tasdiki → 1 hafta yoğun</li>
+  </ul>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 10 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 11: GELECEK POTANSYELİ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>10 · Gelecek Potansyelim</div>
+  <h1 class="title" style="font-size:22pt;">Kalkan'dan başlayıp Türkiye'ye yayılacak.</h1>
+
+  <h2>Gelir Hatlarım (5 kanal)</h2>
+  <table>
+    <tr><th>Kanal</th><th>Açıklama</th><th>Yıl 1 Hedef</th><th>Yıl 3 Hedef</th></tr>
+    <tr><td><strong>Affiliate Komisyon</strong></td><td>Villa, restoran, tekne turu rezervasyon — %10-15 komisyon</td><td class="num">₺1.20M</td><td class="num">₺4.50M</td></tr>
+    <tr><td><strong>B2B SaaS</strong></td><td>Villa sahipleri için panel + agent — aylık ₺500-2.500</td><td class="num">₺0.40M</td><td class="num">₺2.80M</td></tr>
+    <tr><td><strong>Premium Üye</strong></td><td>Reklamsız + öncelikli rezervasyon — yıllık ₺350</td><td class="num">₺0.15M</td><td class="num">₺1.20M</td></tr>
+    <tr><td><strong>Sponsor İçerik</strong></td><td>Hilton, Garanti gibi büyük marka sponsor</td><td class="num">₺0.30M</td><td class="num">₺1.50M</td></tr>
+    <tr><td><strong>Agent Lisanslama</strong></td><td>Bodrum/Çeşme/Fethiye'ye agent stack lisans</td><td class="num">₺0.20M</td><td class="num">₺3.50M</td></tr>
+    <tr class="total"><td colspan="2">YILLIK CİRO HEDEFİM</td><td class="num">₺2.25M</td><td class="num">₺13.50M</td></tr>
+  </table>
+
+  <h2>Coğrafi Genişleme</h2>
+  <ol style="margin-left:22px;">
+    <li><strong>Yıl 1-2:</strong> Kalkan, Kaş, Patara — derinleşme + içerik genişletme</li>
+    <li><strong>Yıl 2-3:</strong> Fethiye, Ölüdeniz, Göcek — agent stack 2. lokasyona</li>
+    <li><strong>Yıl 3-4:</strong> Bodrum, Çeşme — lisanslama modeli (B2B SaaS)</li>
+    <li><strong>Yıl 4-5:</strong> Kapadokya, Antalya merkez, Marmaris</li>
+    <li><strong>Yıl 5+:</strong> Yunan adaları (Crete, Santorini) Türkçe/EN hibrit pazar</li>
+  </ol>
+
+  <h2>Yıl 1 Break-Even Hesabım</h2>
+  <table>
+    <tr><th>Kalem</th><th>Tutar</th></tr>
+    <tr><td>Gelir Yıl 1 hedef</td><td class="num">₺2.25M</td></tr>
+    <tr><td>Gider Yıl 1 (Orta senaryo, BAĞ-KUR dahil)</td><td class="num">₺1.87M</td></tr>
+    <tr class="total"><td>Net Yıl 1 Kâr</td><td class="num">+₺380K</td></tr>
+  </table>
+  <p style="font-size:9.5pt;color:#5d97c4;">Bu, agent-only modelimin gücü. İnsan kadrosu olsaydı yıl 1 zarar −₺690K idi; agent'larımla başlamak hem ilk yıl kârlı hem ölçek anında otomatik geliyor.</p>
+
+  <h2>Niye Bu İş Çalışır</h2>
+  <div class="grid-3">
+    <div class="navy-card">
+      <h4>Yerel + Dijital</h4>
+      <p style="color:#dce6ef;font-size:9.5pt;">Kalkan'ı bilen tek dijital marka. Booking, Airbnb yerel rehbersiz. Yerel bilgi + AI hız.</p>
+    </div>
+    <div class="gold-card">
+      <h4 style="color:#072136;">AI-Native Maliyet</h4>
+      <p style="color:#072136;font-size:9.5pt;">Geleneksel rakip 8 kişiyle yaptığını ben 0 kişi + 7 agent ile yapıyorum. Marj 5x.</p>
+    </div>
+    <div class="navy-card">
+      <h4>Çoklu Gelir</h4>
+      <p style="color:#dce6ef;font-size:9.5pt;">5 farklı gelir kanalı — biri düşse diğerleri taşır. Tek noktaya bağımlı değilim.</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 11 / 12</span></div>
+</section>
+
+<!-- ============ SAYFA 12: KAPANIŞ ============ -->
+<section class="page">
+  <div class="ribbon"></div>
+  <div class="label"><span class="accent-bar"></span>11 · Kapanış &amp; İlk Hafta Aksiyonlarım</div>
+  <h1 class="title" style="font-size:24pt;">Tek başıma değilim. Agent ordumla beraberim.</h1>
+
+  <h2>Bu Hafta Yapacaklarım (T+0 → T+7)</h2>
+  <ul class="checkbox-list">
+    <li><strong>Mali müşavir araştırma</strong> — Antalya'da dijital ve turizm sektörü bilen 3 aday bul, randevu al</li>
+    <li><strong>Marka vekili</strong> — TPMK marka tescil için 2 vekille konuş, fiyat al</li>
+    <li><strong>Banka şubesi</strong> — Garanti veya Yapı Kredi ticari müşteri temsilcisi ile şirket hesabı pre-talk</li>
+    <li><strong>WhatsApp Business API</strong> — Meta resmi onay süreci için Twilio veya 360dialog ile araştırma başlat</li>
+    <li><strong>Hukuk danışmanı</strong> — KVKK + ticari hukuk uzmanı 2 aday görüş</li>
+    <li><strong>Sermaye için nakit hazırla</strong> — ₺62.500 sermaye blokesi + ₺23.000 kuruluş = ₺85.500 cebinden çıkacak</li>
+  </ul>
+
+  <h2>İlk Ay Yapacaklarım (T+7 → T+30)</h2>
+  <ul class="checkbox-list">
+    <li>Mali müşavirle sözleşme imzala, esas sözleşme hazırlanmaya başlasın</li>
+    <li>MERSİS başvurusu — ticaret unvanı talebi</li>
+    <li>Banka hesabı aç + sermaye blokesi yatır</li>
+    <li>Noterde imza beyannamesi + defter tasdiki</li>
+    <li>Ticaret sicil başvuru → A.Ş. resmi kurulmuş olur</li>
+    <li>Vergi dairesi açılışı + SGK işyeri tescili</li>
+    <li>KEP adresi + E-imza sertifikası</li>
+    <li>Marka tescil dosyası TPMK'ya verilmiş olsun</li>
+    <li>KVKK/VERBİS kayıt başvuru</li>
+    <li>WhatsApp Business API onayı için brief gönder</li>
+  </ul>
+
+  <h2>İlk Sözüm — Kendime</h2>
+  <div class="gold-card">
+    <p style="color:#072136;">Bu plan, başkasına satış için değil. Bu plan benim çünkü kalkaninfo.com'u büyütmek için <strong>her ay ne ödeyeceğimi, her ay ne yapacağımı, her ay neyi atlayacağımı</strong> net görmem gerek. Tek kurucu işin en büyük tehlikesi: nereye gideceğini değil, neyi unuttuğunu hatırlamamak. Bu doküman benim hafızam.</p>
+    <p style="margin-top:6px;color:#072136;"><strong>Hatırlatma: İnsan istihdam etmiyorum. Agent'larım çalışıyor. Ben karar veriyorum.</strong></p>
+  </div>
+
+  <div class="grid-3" style="margin-top:18px;">
+    <div class="stat"><div class="v">₺156K</div><div class="k">Aylık (Orta)</div></div>
+    <div class="stat"><div class="v">₺1.87M</div><div class="k">Yıllık (Orta)</div></div>
+    <div class="stat"><div class="v">₺380K</div><div class="k">Yıl 1 Net Kâr Beklentim</div></div>
+  </div>
+
+  <p style="margin-top:24px;text-align:center;font-family:'Montserrat',sans-serif;font-size:13pt;font-weight:700;color:#0a2e4c;">"Kalkan'ın markası, agent'ların hızıyla."</p>
+  <p style="text-align:center;font-size:9pt;color:#5d97c4;margin-top:8px;">Berkay Elmastaş · 4 Haziran 2026 · Sürüm 1.0 · Sadece kendim için</p>
+
+  <div class="footer"><span>kalkaninfo.com · Berkay'ın Kişisel Şirket Planı</span><span>Sayfa 12 / 12</span></div>
+</section>
+
+</body>
+</html>
