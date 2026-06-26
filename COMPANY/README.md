@@ -20,7 +20,7 @@
 
 ## Agent Dosyaları
 
-`../.claude/agents/` altında 18 agent persona:
+`../.claude/agents/` altında 19 agent persona:
 
 ### Operasyonel (4)
 - `audit-agent.md` — eksik tespit (Sonnet)
@@ -47,6 +47,10 @@
 - `trend-scout.md` (Haiku) — Google Trends + IG hashtag, günlük 2× cron
 - `content-director.md` (Sonnet) — "Bugün ne post atalım?", 3 ranked candidate, conf skoru
 - `brand-guard.md` (Haiku) — heuristic + LLM ton/marka/risk denetimi, hard block listesi
+
+### Büyüme & Sekreter (1 + WhatsApp founder mode — 2026-06-27 L1 sprint)
+- `growth-strategist.md` (Sonnet) — haftalık trafik büyütme planı, 6 kaldıraç, 3 aksiyon
+- WhatsApp founder mode: `BERKAY_WHATSAPP` env eşleşirse `lib/secretary.js` → anlık veri çekip Sonnet ile cevap
 
 ## Karar Akışı
 

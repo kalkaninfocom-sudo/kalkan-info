@@ -293,6 +293,30 @@ async function processMessage(supabase, allowlist, msg) {
     return;
   }
 
+  // ── FOUNDER MODE: Berkay'sa sekretere yönlendir
+  try {
+    const { isBerkay, buildBriefing, askSecretary } = await import('../lib/secretary.js');
+    if (isBerkay(normalised)) {
+      const briefing = await buildBriefing();
+      const { reply, cost, usage } = await askSecretary({ userMessage: userText, briefing });
+      const waId = await sendWhatsAppText(normalised, reply);
+      await saveTurn(supabase, {
+        phone_hash: phoneHash,
+        phone_mask: phoneMask,
+        wa_message_id: waId,
+        role: 'assistant',
+        content: reply,
+        model: 'claude-sonnet-4-6-secretary',
+        tokens_in: usage?.input_tokens ?? 0,
+        tokens_out: usage?.output_tokens ?? 0,
+      });
+      console.log('[whatsapp] Secretary reply', { cost: cost.toFixed(4), usage });
+      return;
+    }
+  } catch (e) {
+    console.warn('[whatsapp] Secretary fail, fallback to public assistant:', e.message);
+  }
+
   try {
     const history = await loadHistory(supabase, phoneHash);
     // En son kaydedilen user mesajını history'den çıkar (Claude'a ayrı veriyoruz)

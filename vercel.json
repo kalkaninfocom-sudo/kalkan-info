@@ -27,6 +27,10 @@
       "schedule": "0 3 * * *"
     },
     {
+      "path": "/api/cron-weekly-plan?mode=growth",
+      "schedule": "0 4 * * 1"
+    },
+    {
       "path": "/api/social-publish-queue",
       "schedule": "0 10 * * *"
     }

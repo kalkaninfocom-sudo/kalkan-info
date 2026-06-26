@@ -29,6 +29,15 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, mode, ...out });
     }
 
+    if (mode === 'growth') {
+      const { generateWeeklyPlan } = await import('../lib/growth-strategist.js');
+      const out = await runAgent('growth-strategist', { trigger: 'cron' }, async () => {
+        const r = await generateWeeklyPlan();
+        return { ...r, outputBrief: `${r.plan?.top_3_actions?.length || 0} aksiyon, ${r.plan?.warnings?.length || 0} uyarı`, cost: r.cost };
+      });
+      return res.status(200).json({ ok: true, mode, ...out });
+    }
+
     if (mode === 'director') {
       const { decideToday } = await import('../lib/content-director.js');
       const { guard } = await import('../lib/brand-guard.js');
