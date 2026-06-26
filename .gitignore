@@ -42,6 +42,11 @@ temporary screenshots/
 data/temporary screenshots/
 data/.omc/
 
+# Remotion render artifacts (büyük PNG/MP4 — git'e atma)
+remotion/public/screens/
+remotion/public/out/
+remotion/out/
+
 # Secrets — KESİNLİKLE COMMIT ETME
 **/serviceAccount*.json
 **/firebase-adminsdk-*.json
