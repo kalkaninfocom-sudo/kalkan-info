@@ -71,6 +71,35 @@
     });
   }
 
+  // Google Maps kaynaklı (yeni keşfedilen) mekan kartı — direkt detay sayfasına link
+  function googleMapsCard(it) {
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const rating = it.rating
+      ? `<span class="inline-flex items-center gap-1 bg-sun-50 text-sun-700 text-[11px] font-bold px-2 py-0.5 rounded-full border border-sun-200">⭐ ${it.rating}${it.reviewCount ? ` · ${it.reviewCount}` : ''}</span>`
+      : '';
+    const summary = it.summary || `Kalkan'da ${it.category || 'hizmet'}.`;
+    return `
+      <a href="/hizmet/${esc(it.id)}/" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
+        <div class="flex items-start gap-3">
+          <div class="text-3xl">🏪</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${esc(it.name)}</h3>
+            <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${esc(it.category || '')}</div>
+          </div>
+          ${rating}
+        </div>
+        <p class="text-sm text-ink-700/70 mt-3 line-clamp-2">${esc(summary)}</p>
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
+          <span class="inline-flex items-center gap-1.5 text-[10px] font-semibold text-sea-600/70 uppercase tracking-wide">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+            Google'da keşfedildi
+          </span>
+          ${it.hours ? `<span class="text-[10px] text-ink-700/50">${esc(typeof it.hours === 'string' ? it.hours.split(' · ')[0] : '')}</span>` : ''}
+        </div>
+      </a>
+    `;
+  }
+
   // --- Items render ---
   function renderItems() {
     const cat = catFilter ? catFilter.value : '';
@@ -79,7 +108,9 @@
     const grid = document.getElementById('items-grid');
     const heading = document.getElementById('items-heading');
     if (heading) heading.textContent = filtered.length + ' Hizmet';
-    if (grid) grid.innerHTML = filtered.map(it => KalkanData.hizmetCard(it)).join('');
+    if (grid) grid.innerHTML = filtered.map(it => {
+      return it.source === 'google_maps' ? googleMapsCard(it) : KalkanData.hizmetCard(it);
+    }).join('');
   }
 
   renderItems();
