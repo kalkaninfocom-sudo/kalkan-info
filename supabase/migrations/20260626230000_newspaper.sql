@@ -72,7 +72,7 @@ create table if not exists public.newspaper_ads (
   body            text,
   cta_label       text default 'Detay',
   cta_url         text not null,                 -- /q/<qr_slug> redirect'e dönüşür
-  qr_slug         text not null unique default encode(gen_random_bytes(6),'hex'),
+  qr_slug         text not null unique default encode(extensions.gen_random_bytes(6),'hex'),
   cover_url       text,
   price_per_day   numeric(10,2) default 0,
   currency        text default 'TRY',
