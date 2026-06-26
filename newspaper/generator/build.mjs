@@ -1,0 +1,144 @@
+#!/usr/bin/env node
+/**
+ * Kalkan Today — A4 günlük gazete PDF generator
+ *
+ * Kullanım:
+ *   node newspaper/generator/build.mjs morning            # bugün, demo veri
+ *   node newspaper/generator/build.mjs morning 2026-06-26 # belirli tarih
+ *
+ * Çıktı: newspaper/archive/<YYYY-MM-DD>/<type>.pdf + .html
+ */
+
+import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, '..');
+
+const [, , typeArg = 'morning', dateArg] = process.argv;
+const type = typeArg;
+const today = dateArg || new Date().toISOString().slice(0, 10);
+
+const DAY_TR = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+const MONTH_TR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+
+function formatDateLong(iso) {
+  const d = new Date(iso + 'T08:00:00');
+  return `${d.getDate()} ${MONTH_TR[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function dayOf(iso) {
+  return DAY_TR[new Date(iso + 'T08:00:00').getDay()];
+}
+
+function issueOf(iso) {
+  const start = new Date('2026-06-01T00:00:00');
+  const d = new Date(iso + 'T00:00:00');
+  return String(Math.max(1, Math.round((d - start) / 86400000) + 1)).padStart(3, '0');
+}
+
+// ─── Demo veri (Aşama 1'de Supabase/Claude Haiku ile değiştirilecek) ───
+function demoData(iso) {
+  return {
+    date: iso,
+    date_long: formatDateLong(iso),
+    day: dayOf(iso),
+    issue: issueOf(iso),
+    vol: '1',
+
+    weather_air: '28',
+    weather_sea: '24',
+    weather_uv: '9',
+    weather_wind: 'GB 12 km/h',
+    sunrise: '05:42',
+    sunset: '20:31',
+
+    lead_headline: 'Kalkan Sezonu Açıldı: Üç Yeni Plaj Kulübü Hizmete Girdi',
+    lead_deck: 'Kalamar koyundan Kaputaş\'a uzanan hatta yeni dönem başladı; belediye haziran sonu rekoru bekliyor.',
+    lead_byline: 'Kalkan Today Haber Merkezi · 26 Haziran 2026',
+    lead_body: `<p>Akdeniz\'in en sakin koylarından Kalkan, 2026 yaz sezonunu üç yeni plaj kulübünün açılışıyla karşıladı. Belediye yetkilileri, geçen yıla göre rezervasyonlarda yüzde 32\'lik artış kaydedildiğini belirtti.</p>
+<p>Yeni kulüplerden Kalamar Yacht Beach, sabah yedide kahvaltı servisiyle başlıyor; akşam DJ etkinlikleriyle uzanıyor. Bölge esnafı gece hayatının da bu yıl daha hareketli olacağına işaret ediyor.</p>`,
+    lead_image: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=1200&q=80',
+    lead_caption: 'Foto: Kalamar koyu, gün doğumu — Kalkan Today arşivi',
+
+    col1_title: 'Bugün 14 Etkinlik · Patara Antik Tiyatro\'da Akşam Konseri',
+    col1_byline: 'Etkinlik · 19:30 itibarıyla',
+    col1_body: 'Patara Antik Kenti\'nde bu akşam saat 21:00\'de açıkhava klasik müzik konseri var. Bilet kalkaninfo.com\'dan ücretsiz; kapasite 400 kişi ile sınırlı.',
+
+    col2_title: 'Şefin Önerisi · Kalkan\'da Akşam Yemeği İçin Üç Yeni Adres',
+    col2_byline: 'Restoran · Mekan editörü',
+    col2_body: 'Marina manzaralı Kaptan Restaurant menüsünü yeniledi: deniz mahsulü ön plana çıktı. Ehl-i Keyf ise bu hafta meze tabağında üç yeni tarife başladı.',
+
+    col3_title: 'Kaputaş\'ta Dalga Uyarısı · Plaj Trafiği Sabah 11\'de Açılıyor',
+    col3_byline: 'Plaj · Sahil Güvenlik bülteni',
+    col3_body: 'Lodos nedeniyle Kaputaş Plajı 09:00–11:00 arası dalga uyarısı altında. Antik kent rotasında Patara ve Letoon dün gün boyu 1.200\'ün üzerinde ziyaretçi ağırladı.',
+
+    ad_title: 'Kaptan Restaurant — Marina Manzaralı Akşam Yemeği',
+    ad_body: 'Bu akşam balık tabağında %15 indirim. Rezervasyon için QR kodu okutun ya da +90 242 844 35 35.',
+    ad_cta: 'Hemen Rezervasyon',
+    ad_qr_url: 'https://kalkaninfo.com/restoranlar/KaptanRestaurant/',
+
+    pharmacy_name: 'Merkez Eczanesi',
+    pharmacy_addr: 'Yalı Cad. No:8',
+    pharmacy_phone: '0242 844 31 22',
+
+    bus_next: '08:15 → Kaş',
+    bus_route: 'Kalkan Otogar · saat başı',
+
+    water_temp: '24',
+  };
+}
+
+function render(template, data) {
+  return template.replace(/\{\{(\w+)\}\}/g, (_, k) => (data[k] !== undefined ? String(data[k]) : ''));
+}
+
+async function ensureDir(p) {
+  await mkdir(p, { recursive: true });
+}
+
+async function main() {
+  const tplPath = join(ROOT, 'templates', `${type}.html`);
+  try {
+    await access(tplPath);
+  } catch {
+    console.error(`✗ Şablon yok: ${tplPath}`);
+    process.exit(1);
+  }
+  const tpl = await readFile(tplPath, 'utf8');
+  const data = demoData(today);
+  const html = render(tpl, data);
+
+  const outDir = join(ROOT, 'archive', today);
+  await ensureDir(outDir);
+
+  const htmlOut = join(outDir, `${type}.html`);
+  await writeFile(htmlOut, html, 'utf8');
+  console.log(`✓ HTML  → ${htmlOut}`);
+
+  // ─── Puppeteer ile PDF render ───
+  const puppeteer = await import('puppeteer').catch(() => null);
+  if (!puppeteer) {
+    console.log('ℹ Puppeteer yok — sadece HTML üretildi. PDF için: npm i -D puppeteer');
+    return;
+  }
+  const browser = await puppeteer.default.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setContent(html, { waitUntil: 'networkidle0' });
+  const pdfOut = join(outDir, `${type}.pdf`);
+  await page.pdf({
+    path: pdfOut,
+    format: 'A4',
+    printBackground: true,
+    margin: { top: 0, right: 0, bottom: 0, left: 0 },
+    preferCSSPageSize: true,
+  });
+  await browser.close();
+  console.log(`✓ PDF   → ${pdfOut}`);
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
