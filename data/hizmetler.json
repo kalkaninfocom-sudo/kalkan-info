@@ -2,7 +2,7 @@
   "_meta": {
     "title": "Hizmetler",
     "subtitle": "Kalkan'da ihtiyaç duyacağınız tüm yerel servisler tek listede",
-    "updated": "2026-04-29"
+    "updated": "2026-06-26"
   },
   "nobetciEczane": {
     "title": "Bugün Nöbetçi Eczane",
@@ -575,6 +575,481 @@
       "phone": null,
       "hours": "08:00–18:00",
       "featured": false
+    },
+    {
+      "id": "the-barber-kalkan",
+      "name": "The Barber Kalkan",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 155,
+      "location": "Kalkan, Mustafa Kocakaya Cd. 18/3, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 538 947 63 83",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.2636906,
+        "longitude": 29.4148528
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJA8KDupUtwBQRfWwyhSKimkI"
+    },
+    {
+      "id": "my-scissors",
+      "name": "MY SCISSORS",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.7,
+      "reviewCount": 179,
+      "location": "Kalkan, Cumhuriyet Cd. No:28, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 538 892 89 92",
+      "website": "",
+      "hours": "Kapanmak üzere · 00:00 · Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.265631299999995,
+        "longitude": 29.4102516
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJ0Td5O9YswBQRWf1xyDqstSI"
+    },
+    {
+      "id": "sweeney-todd-s",
+      "name": "Sweeney Todd's",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.5,
+      "reviewCount": 52,
+      "location": "Kalkan, Şehitler Cd. No:471, 07580 Kaş/Antalya, Türkiye",
+      "phone": "",
+      "website": "",
+      "hours": "",
+      "coordinates": {
+        "latitude": 36.2658121,
+        "longitude": 29.414467799999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJNTpmeyotwBQR0HaodBg87UA"
+    },
+    {
+      "id": "aras-berber",
+      "name": "Aras berber",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 5,
+      "reviewCount": 7,
+      "location": "aras barber shop, Kalkan, Cumhuriyet Cd., 07960 Kaş/Antalya, Türkiye",
+      "phone": "+90 534 857 86 86",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:30",
+      "coordinates": {
+        "latitude": 36.2651889,
+        "longitude": 29.4071264
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJDxVsgvItwBQRHDyfRKwFE3s"
+    },
+    {
+      "id": "lady-diana-barber-shop-i-lkan",
+      "name": "Lady Diana Barber Shop İlkan",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 3.7,
+      "reviewCount": 15,
+      "location": "Kalkan, 07580 Kaş/Antalya, Türkiye",
+      "phone": "",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 10:00",
+      "coordinates": {
+        "latitude": 36.262831399999996,
+        "longitude": 29.415033599999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJzfuL_ictwBQR1T1qc862vmw"
+    },
+    {
+      "id": "my-style-barber",
+      "name": "My style barber",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 3.7,
+      "reviewCount": 3,
+      "location": "Kalkan, Cumhuriyet Cd. No:45, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 532 685 99 42",
+      "website": "",
+      "hours": "",
+      "coordinates": {
+        "latitude": 36.2649866,
+        "longitude": 29.4077274
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJhXq4sPstwBQRLYmXh2zcVag"
+    },
+    {
+      "id": "safter-kuafor",
+      "name": "SAFTER KUAFÖR",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 32,
+      "location": "Kalkan, Mustafa Kocakaya Cd. NO:2, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 533 433 35 62",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:30",
+      "coordinates": {
+        "latitude": 36.264514,
+        "longitude": 29.4153803
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJ56pzLwItwBQR0L1KEoyBcck"
+    },
+    {
+      "id": "zeynep-kuafor",
+      "name": "Zeynep Kuaför",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 65,
+      "location": "İslamlar, Yayla Cd., 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 551 411 94 00",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.2784847,
+        "longitude": 29.4105682
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJsYRLoDEtwBQRezmhjQElhFc"
+    },
+    {
+      "id": "barber-shop",
+      "name": "Barber Shop",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 5,
+      "reviewCount": 2,
+      "location": "Kalkan, Süleyman Yılmaz Cd., 07580 Kaş/Antalya, Türkiye",
+      "phone": "",
+      "website": "",
+      "hours": "",
+      "coordinates": {
+        "latitude": 36.265308,
+        "longitude": 29.414922999999998
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJm2psfiotwBQRvEe6T58grww"
+    },
+    {
+      "id": "art-of-hair-kalkan",
+      "name": "Art of Hair Kalkan",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 5,
+      "reviewCount": 10,
+      "location": "Kalkan, Şehitler Cd. No:14, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 543 434 64 12",
+      "website": "",
+      "hours": "",
+      "coordinates": {
+        "latitude": 36.2694913,
+        "longitude": 29.411950899999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJ87p3f5otwBQR97bcJlhMdTU"
+    },
+    {
+      "id": "zen-hair-studio",
+      "name": "Zen Hair Studio",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.2,
+      "reviewCount": 47,
+      "location": "Kalkan, Şehitler Cd. No:21 Kat:3, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 533 292 13 28",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:00",
+      "coordinates": {
+        "latitude": 36.2678807,
+        "longitude": 29.412722199999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJkzOYsYItwBQRmyYKbdZWFro"
+    },
+    {
+      "id": "wella-kuafor",
+      "name": "WELLA KUAFÖR",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.6,
+      "reviewCount": 36,
+      "location": "Mustafa Kocakaya caddesi, nolu sokak 27 1, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 541 857 45 63",
+      "website": "",
+      "hours": "Kapanmak üzere · 00:00 · Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.2634165,
+        "longitude": 29.4154134
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJPQAjYjDTwRQRVeUS77WO6qU"
+    },
+    {
+      "id": "dejawu-hairtyle",
+      "name": "dejawu hairtyle",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": null,
+      "reviewCount": null,
+      "location": "Kalkan, Antalya Fethiye Yolu 1, 07580 Kaş/Antalya yakınında, Kalkan, 07960 Kaş/Antalya, Türkiye",
+      "phone": "+90 545 714 66 76",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:00",
+      "coordinates": {
+        "latitude": 36.273467,
+        "longitude": 29.411771199999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJR0y7NN0twBQRtc7046CvQf0"
+    },
+    {
+      "id": "the-cut-collective-barbershop",
+      "name": "The Cut Collective Barbershop",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 222,
+      "location": "20915 Ashburn Rd #125, Ashburn, VA 20147",
+      "phone": "(703) 723-3377",
+      "website": "http://www.thecutcollectivebarbershop.com/",
+      "hours": "Açık · Kapanış saati:  19:00",
+      "coordinates": {
+        "latitude": 39.0400929,
+        "longitude": -77.4871331
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJfRfXL3Y_tokRZhW_Nv3svls"
+    },
+    {
+      "id": "garabiyik-erkek-kuaforu",
+      "name": "GARABIYIK ERKEK KUAFÖRÜ",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 5,
+      "reviewCount": 1,
+      "location": "Yeşilköy, Atatürk Blv. No: 100/C, 07965 Kaş/Antalya, Türkiye",
+      "phone": "+90 543 590 10 68",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 10:00",
+      "coordinates": {
+        "latitude": 36.283543699999996,
+        "longitude": 29.372854099999998
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJ9XfkCgctwBQRk9n4MJi8mpQ"
+    },
+    {
+      "id": "allure-beautique-kalkan",
+      "name": "Allure Beautique Kalkan",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 40,
+      "location": "Kalkan, Kardelen Sk. No:38/A, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 534 892 57 43",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:30",
+      "coordinates": {
+        "latitude": 36.265975399999995,
+        "longitude": 29.407509299999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJA4bRrlMtwBQRCNDWi25R_hY"
+    },
+    {
+      "id": "best-barber-shop",
+      "name": "Best Barber Shop",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.7,
+      "reviewCount": 274,
+      "location": "20630 Ashburn Rd Ste#130, Ashburn, VA 20147",
+      "phone": "(703) 858-5141",
+      "website": "https://bestbarbershopashburn.netlify.app/",
+      "hours": "Açık · Kapanış saati:  19:00",
+      "coordinates": {
+        "latitude": 39.047028399999995,
+        "longitude": -77.4850341
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJgXtvkSM_tokRcpN5QhBVDVw"
+    },
+    {
+      "id": "kirik-makas-erkek-kuaforu",
+      "name": "Kırık Makas Erkek Kuaförü",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.9,
+      "reviewCount": 14,
+      "location": "Ova Mahallesi Belediye Caddesi Albezirganlar İş Hanı No:11, 07963 Kaş/Antalya, Türkiye",
+      "phone": "+90 531 677 92 33",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:30",
+      "coordinates": {
+        "latitude": 36.3075377,
+        "longitude": 29.3286345
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJcREUdOotwBQRHvRlZlm6-Lk"
+    },
+    {
+      "id": "show-barber-s-sac-tasarim-ve",
+      "name": "SHOW BARBER’S saç tasarım ve",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.9,
+      "reviewCount": 187,
+      "location": "Fevzi cakmak mahallesi 6152 sokak kapalı perşembe pazarı içi, 07210 Kepez/Antalya, Türkiye",
+      "phone": "+90 541 200 51 43",
+      "website": "",
+      "hours": "24 saat açık",
+      "coordinates": {
+        "latitude": 36.9496201,
+        "longitude": 30.7070771
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJix2yM1OPwxQRg9grzMX3YzU"
+    },
+    {
+      "id": "ercan-topcuoglu-berber-shop",
+      "name": "Ercan Topcuoğlu berber shop",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.7,
+      "reviewCount": 14,
+      "location": "Ova Belediyesi, Ova, Belediye Cd., 07974 Kaş/Antalya, Türkiye",
+      "phone": "+90 553 897 07 07",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:30",
+      "coordinates": {
+        "latitude": 36.3081181,
+        "longitude": 29.3266825
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJ4R85Lt4twBQRIqClXKrX30I"
+    },
+    {
+      "id": "the-fade-barbers",
+      "name": "THE FADE BARBERS",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 5,
+      "reviewCount": 154,
+      "location": "Uncalı caddesi, 1315. Sk. erenköy sitesi L blok no:4, 07070 Konyaaltı/Antalya, Türkiye",
+      "phone": "+90 542 260 66 07",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 08:00",
+      "coordinates": {
+        "latitude": 36.8971319,
+        "longitude": 30.630222
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJNXkPspyRwxQRuKlbTDeXZKc"
+    },
+    {
+      "id": "smile-i-smail-kuafor-kas-berber-sac-sakal-trasi-hair-cut-barber-kuafor",
+      "name": "Smile İsmail Kuaför | Kaş Berber | Saç Sakal Traşı | Hair Cut | Barber | Kuaför",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.4,
+      "reviewCount": 258,
+      "location": "Andifli, Cukurbağlılar Cd No:3, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 538 512 88 10",
+      "website": "https://www.facebook.com/Smile-The-Barber-511451389044078/",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.200901,
+        "longitude": 29.641248599999997
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJYYFsiPbbwRQRkhBX9OSrdVA"
+    },
+    {
+      "id": "nick-s-barbers",
+      "name": "Nick's Barbers",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.6,
+      "reviewCount": 253,
+      "location": "2055 River Rd, Norco, CA 92860",
+      "phone": "(951) 735-9677",
+      "website": "",
+      "hours": "Açık · Kapanış saati:  19:00",
+      "coordinates": {
+        "latitude": 33.9092646,
+        "longitude": -117.5821769
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJQdHxs7HJ3IAROfHiR73pcQo"
+    },
+    {
+      "id": "best-barber",
+      "name": "Best Barber",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.7,
+      "reviewCount": 81,
+      "location": "Ölüdeniz, Atatürk Cd. No:148/D, 48300 Fethiye/Muğla, Türkiye",
+      "phone": "",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:00",
+      "coordinates": {
+        "latitude": 36.571033299999996,
+        "longitude": 29.1416339
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJv1mEgSxHwBQR_VOiFg7lHSc"
+    },
+    {
+      "id": "bygokhan-barbers-clup",
+      "name": "Bygökhan barbers clup",
+      "category": "Berber & Kuaför",
+      "categoryKey": "barber",
+      "rating": 4.8,
+      "reviewCount": 47,
+      "location": "Özgürlük mah. Yahya kemalcad. Kayrak apt 43, D:c, 07025 Kepez/Antalya, Türkiye",
+      "phone": "+90 535 663 06 08",
+      "website": "",
+      "hours": "Kapalı ⋅ Açılış zamanı: Cmt 09:30",
+      "coordinates": {
+        "latitude": 36.9127151,
+        "longitude": 30.6860941
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJtXoDoMGPwxQRTVJWMbaOXW4"
     }
   ]
 }
