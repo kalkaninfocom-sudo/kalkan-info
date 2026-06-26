@@ -1,8 +1,10 @@
 # Kalkan Info — Günlük Gazete Projesi
 
-**Tarih:** 2026-06-06
+**Tarih:** 2026-06-06 (güncelleme 2026-06-26)
 **Sahibi:** Berkay
-**Durum:** Konsept aşaması, şablon bekleniyor
+**Durum:** **Aşama 0 ✅ tamamlandı** — A4 broadsheet şablonu + Puppeteer PDF generator + örnek edisyon canlı. Aşama 1 MVP bekliyor.
+
+> **Yeni:** `newspaper/` dizininde iskelet hazır, ilk PDF üretildi (`newspaper/archive/2026-06-26/morning.pdf`). Detay: [`newspaper/README.md`](../newspaper/README.md).
 
 ---
 
@@ -172,11 +174,14 @@ kalkan-info/
 
 ## 7. Aşamalı Yol Haritası
 
-### Aşama 0 — Şablon (Berkay atacak)
-- [ ] Berkay gazete şablonunu atar
-- [ ] Şablon HTML/CSS'e çevrilir (1 gün)
-- [ ] Puppeteer ile PDF render test edilir
-- [ ] 1 örnek edisyon üretilir, A4'e basılır, fiziken görülür
+### Aşama 0 — Şablon ✅ (2026-06-26)
+- [x] Varsayılan broadsheet şablonu hazırlandı (`newspaper/templates/morning.html`)
+- [x] Şablon HTML/CSS canlı: Playfair Display + Inter + IBM Plex Mono tipografi paleti
+- [x] Puppeteer ile A4 PDF render çalışıyor (`newspaper/generator/build.mjs`)
+- [x] 1 örnek edisyon üretildi (2026-06-26 sabah, 587KB PDF)
+- [x] Supabase migration eklendi (`20260626230000_newspaper.sql`) — uygulanmadı henüz
+- [ ] **Berkay:** Şablonu fiziken A4'e basıp test (printer)
+- [ ] **Berkay:** Kendi şablonunu (varsa) atması — değiştirmek için baz
 
 ### Aşama 1 — MVP (2 hafta)
 - [ ] Supabase tabloları kurulur (`newspaper_editions`, `ads`, `articles`, `qr_events`)
