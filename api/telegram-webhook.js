@@ -9,6 +9,7 @@
 
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
 import { publishCarousel, publishSingleImage } from '../lib/instagram-publish.js';
+import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -103,7 +104,40 @@ export default async function handler(req, res) {
 
       if (text === '/start' || text === '/id') {
         await sendMessage(chatId,
-          `Merhaba Berkay\\! ✅\n\nChat ID: \`${chatId}\`\n\nBu ID Vercel env \`TELEGRAM_ADMIN_CHAT_ID\` olarak eklendi\\. Onay flow aktif\\.\n\nKomutlar:\n/plan — bu haftaki planı göster\n/pending — onay bekleyenleri listele`);
+          `Merhaba Berkay\\! ✅\n\nChat ID: \`${chatId}\`\n\nBu ID Vercel env \`TELEGRAM_ADMIN_CHAT_ID\` olarak eklendi\\. Onay flow aktif\\.\n\nKomutlar:\n/plan — bu haftaki planı göster\n/pending — onay bekleyenleri listele\n/agents — agent organizma durumu`);
+      } else if (text === '/agents') {
+        try {
+          const rows = await fetchAgentStatus(200);
+          const summary = summarizeByAgent(rows);
+          if (!summary.length) {
+            await sendMessage(chatId, '🤖 *Agent Organizma*\n\n_Henüz çalışma logu yok\\. Migration uygulandı mı?_');
+          } else {
+            const totalCost = summary.reduce((s, a) => s + a.cost, 0);
+            const totalRuns = summary.reduce((s, a) => s + a.runs, 0);
+            const totalFails = summary.reduce((s, a) => s + a.failures, 0);
+            const dot = (s) => s === 'success' ? '🟢' : s === 'failed' ? '🔴' : s === 'running' ? '🟡' : '⚪';
+            const ago = (iso) => {
+              const m = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+              if (m < 1) return 'şimdi';
+              if (m < 60) return `${m}dk önce`;
+              if (m < 1440) return `${Math.floor(m/60)}sa önce`;
+              return `${Math.floor(m/1440)}g önce`;
+            };
+            const lines = summary.slice(0, 20).map(a =>
+              `${dot(a.last_status)} \`${escapeMd(a.agent.padEnd(20))}\` ${escapeMd(ago(a.last_at))} · ${a.runs}× · $${a.cost.toFixed(2)}`
+            );
+            const body = [
+              `🤖 *Agent Organizma* — son 200 run`,
+              ``,
+              `Toplam: ${totalRuns} çalışma · ${totalFails} hata · $${totalCost.toFixed(2)}`,
+              ``,
+              ...lines,
+            ].join('\n');
+            await sendMessage(chatId, body);
+          }
+        } catch (e) {
+          await sendMessage(chatId, `❌ Hata: ${escapeMd(String(e.message || e))}`);
+        }
       } else if (text === '/plan' || text === '/pending') {
         if (SUPA_URL && SUPA_KEY) {
           const r = await supa('/social_posts?status=eq.pending_approval&order=scheduled_at.asc&select=id,content_pack_id,scheduled_at&limit=10');

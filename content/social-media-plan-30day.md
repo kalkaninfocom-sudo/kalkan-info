@@ -18,6 +18,18 @@
 | **S4** | Konaklama (Otel + Villa) | 5 | 17% | Saves + profile visits (uzun karar dönemi) |
 | **S5** | Yemek, Gece & Pratik | 6 | 20% | Comments + DM (anlık ihtiyaç) |
 
+## Serialized Content (Recurring Series)
+
+Algoritma binge sinyali + marka sadakati için tekrar eden 3 seri. Her seri'nin sabit görsel/intro kimliği var → izleyici "yine o seri" der.
+
+| Seri | Frekans | Format | Sütun bağı | Hook formülü |
+|---|---|---|---|---|
+| **"Kalkan'da Bugün"** | Her gün story (3-5 frame) | Story serisi, hep aynı template | S2/S5 destek | hava + deniz suyu + önerilen aktivite |
+| **"Berkay'la Mekan Testi"** | Haftalık 1 reels | 30-45sn POV, ilk sahne masa + ses "bu hafta..." | S5 birincil | "hangi 3 yıldız hak ediyor?" |
+| **"Villa Sahibi Cevaplıyor"** | 2 haftada 1 reels | Q&A, ekran split (soru üst / cevap alt) | S4 birincil | misafir sorusu → sahip 30sn cevap |
+
+**Kural:** Seri başlığı caption'ın ilk satırı, görsel kimlik (renk + font + intro 2sn) her seri için sabit.
+
 ## Format dağılımı
 
 | Format | Sayı | Algoritma sinyali |

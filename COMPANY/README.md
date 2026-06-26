@@ -20,7 +20,7 @@
 
 ## Agent Dosyaları
 
-`../.claude/agents/` altında 13 agent persona:
+`../.claude/agents/` altında 15 agent persona:
 
 ### Operasyonel (4)
 - `audit-agent.md` — eksik tespit (Sonnet)
@@ -36,8 +36,12 @@
 - `menu-chef.md` (Haiku)
 - `dil-cevirmen.md` (Haiku)
 - `hava-plan.md` (Haiku)
-- `social-writer.md` (Haiku)
+- `social-writer.md` (Haiku) — caption + search SEO + serialized formats
 - `whatsapp-reception.md` (Haiku)
+
+### Pazarlama (2 — 2026-06-27 eklendi)
+- `ads-optimizer.md` (Sonnet) — Meta/TikTok/Google Ads, lean $300-500/ay
+- `social-analyst.md` (Haiku) — Plausible+IG+Clarity weekly digest
 
 ## Karar Akışı
 
