@@ -19,6 +19,14 @@
       "schedule": "0 6 * * 1"
     },
     {
+      "path": "/api/cron-weekly-plan?mode=trend",
+      "schedule": "0 2,14 * * *"
+    },
+    {
+      "path": "/api/cron-weekly-plan?mode=director",
+      "schedule": "0 3 * * *"
+    },
+    {
       "path": "/api/social-publish-queue",
       "schedule": "0 10 * * *"
     }

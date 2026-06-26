@@ -20,7 +20,7 @@
 
 ## Agent Dosyaları
 
-`../.claude/agents/` altında 15 agent persona:
+`../.claude/agents/` altında 18 agent persona:
 
 ### Operasyonel (4)
 - `audit-agent.md` — eksik tespit (Sonnet)
@@ -42,6 +42,11 @@
 ### Pazarlama (2 — 2026-06-27 eklendi)
 - `ads-optimizer.md` (Sonnet) — Meta/TikTok/Google Ads, lean $300-500/ay
 - `social-analyst.md` (Haiku) — Plausible+IG+Clarity weekly digest
+
+### Content Brain (3 — 2026-06-27 L1 sprint)
+- `trend-scout.md` (Haiku) — Google Trends + IG hashtag, günlük 2× cron
+- `content-director.md` (Sonnet) — "Bugün ne post atalım?", 3 ranked candidate, conf skoru
+- `brand-guard.md` (Haiku) — heuristic + LLM ton/marka/risk denetimi, hard block listesi
 
 ## Karar Akışı
 
