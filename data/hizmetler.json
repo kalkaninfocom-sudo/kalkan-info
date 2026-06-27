@@ -437,31 +437,51 @@
     },
     {
       "id": "kuafor-bayan",
-      "name": "Bayan Kuaförleri",
-      "category": "Bakım",
-      "icon": "💇",
+      "name": "Bayan Kuaför",
+      "category": "Bayan Kuaförü",
+      "icon": "💇‍♀️",
       "image": "/assets/img/ae684ea25aaf.webp",
-      "summary": "Saç, makyaj ve manikür hizmetleri.",
+      "summary": "Kalkan'da 7 bayan kuaförü — saç kesimi, boyama, makyaj ve manikür.",
       "details": [
-        "Randevulu"
+        "7 işletme",
+        "Randevulu",
+        "Saç kesimi · Boyama · Manikür"
       ],
-      "phone": "+90 242 844 28 11",
       "hours": "10:00–20:00",
-      "featured": false
+      "featured": false,
+      "listUrl": "hizmetler.html?cat=Bayan+Kuaförü"
     },
     {
       "id": "kuafor-erkek",
-      "name": "Erkek Kuaförleri",
-      "category": "Bakım",
+      "name": "Erkek Berber",
+      "category": "Erkek Kuaförü & Berber",
       "icon": "💈",
       "image": "/assets/img/64465cecdecb.webp",
-      "summary": "Eski Kalkan içinde 4 erkek kuaförü.",
+      "summary": "Kalkan'da 17 erkek berberi — saç kesimi, sakal traşı ve bakım.",
       "details": [
-        "Randevusuz"
+        "17 işletme",
+        "Randevusuz",
+        "Saç kesimi · Sakal · Traş"
       ],
-      "phone": "—",
       "hours": "09:00–22:00",
-      "featured": false
+      "featured": false,
+      "listUrl": "hizmetler.html?cat=Erkek+Kuaförü+%26+Berber"
+    },
+    {
+      "id": "kuafor-unisex",
+      "name": "Unisex Kuaför",
+      "category": "Saç & Güzellik (Unisex)",
+      "icon": "✂️",
+      "image": "/assets/img/ae684ea25aaf.webp",
+      "summary": "Kalkan'da unisex kuaför — kadın ve erkeğe saç bakımı ve güzellik.",
+      "details": [
+        "1 işletme",
+        "My Scissors — merkezi konum",
+        "Saç kesimi · Bakım"
+      ],
+      "hours": "10:00–19:00",
+      "featured": false,
+      "listUrl": "hizmetler.html?cat=Sa%C3%A7+%26+G%C3%BCzellik+%28Unisex%29"
     },
     {
       "id": "kuru-temizleme",

@@ -71,6 +71,31 @@
     });
   }
 
+  // Kategori listesi linki olan özet kart (berber/kuaför aggregate kartları için)
+  function listUrlCard(it) {
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const details = (it.details || []).map(d => `<li class="flex items-start gap-1.5 text-xs text-ink-700/70"><span class="text-sea-600">•</span>${esc(d)}</li>`).join('');
+    return `
+      <a href="${esc(it.listUrl)}" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
+        <div class="flex items-start gap-3">
+          <div class="text-3xl">${esc(it.icon || '✂️')}</div>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${esc(it.name)}</h3>
+            <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${esc(it.category || '')}</div>
+          </div>
+        </div>
+        <p class="text-sm text-ink-700/80 mt-3">${esc(it.summary || '')}</p>
+        ${details ? `<ul class="mt-3 space-y-1">${details}</ul>` : ''}
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-sea-700 uppercase tracking-wide">
+            Tümünü Gör →
+          </span>
+          ${it.hours ? `<span class="text-[11px] text-ink-700/50">${esc(it.hours)}</span>` : ''}
+        </div>
+      </a>
+    `;
+  }
+
   // Google Maps kaynaklı (yeni keşfedilen) mekan kartı — direkt detay sayfasına link
   function googleMapsCard(it) {
     const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -109,8 +134,15 @@
     const heading = document.getElementById('items-heading');
     if (heading) heading.textContent = filtered.length + ' Hizmet';
     if (grid) grid.innerHTML = filtered.map(it => {
+      if (it.listUrl) return listUrlCard(it);
       return it.source === 'google_maps' ? googleMapsCard(it) : KalkanData.hizmetCard(it);
     }).join('');
+  }
+
+  // URL ?cat= parametresiyle kategori filtresi ön seçimi (listUrlCard linklerinden gelir)
+  const urlCat = new URLSearchParams(location.search).get('cat');
+  if (urlCat && catFilter) {
+    catFilter.value = urlCat;
   }
 
   renderItems();
