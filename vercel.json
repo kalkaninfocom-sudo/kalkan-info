@@ -21,6 +21,9 @@
     { "source": "/restoranlar/ehl-ikeyf", "destination": "https://website-kalkaninfocom.vercel.app/restoranlar/ehl-ikeyf" },
     { "source": "/restoranlar/ehl-ikeyf/:path*", "destination": "https://website-kalkaninfocom.vercel.app/restoranlar/ehl-ikeyf/:path*" }
   ],
+  "redirects": [
+    { "source": "/restoran/street-munch", "destination": "/restoran/street-munch-premium", "permanent": true }
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
