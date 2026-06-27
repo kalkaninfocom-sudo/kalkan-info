@@ -128,10 +128,16 @@
   }
 
   // --- Items render ---
+  // Ana view'da bireysel kuaför/berber kayıtları aggregate kart altında toplanır.
+  // Sadece kategori filtresi veya arama yapıldığında bireysel kayıtlar görünür.
+  const KUAFOR_CATS = new Set(['Erkek Kuaförü & Berber', 'Bayan Kuaförü', 'Saç & Güzellik (Unisex)']);
   function renderItems() {
     const cat = catFilter ? catFilter.value : '';
     const q = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
-    const filtered = KalkanData.filterItems(allItems, { category: cat || undefined, q: q || undefined });
+    let filtered = KalkanData.filterItems(allItems, { category: cat || undefined, q: q || undefined });
+    if (!cat && !q) {
+      filtered = filtered.filter(it => !KUAFOR_CATS.has(it.category) || it.listUrl);
+    }
     const grid = document.getElementById('items-grid');
     const heading = document.getElementById('items-heading');
     if (heading) heading.textContent = filtered.length + ' Hizmet';
