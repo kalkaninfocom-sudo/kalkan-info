@@ -79,7 +79,7 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
   "menu":"https://kalkaninfo.com/restoran/salonika-1881/#menu",
   "aggregateRating":{"@type":"AggregateRating","ratingValue":4.3,"reviewCount":609,"bestRating":5,"worstRating":1},
   "review":[{"@type":"Review","author":{"@type":"Person","name":"Zeycan Hacıoğlu"},"reviewRating":{"@type":"Rating","ratingValue":5,"bestRating":5},"reviewBody":"Ürünler çok lezzetli, ortam çok tatlı, levrek ve çipura yedik, uzun zamandır Türkiye’de yediğim en lezzetli balıktı."},{"@type":"Review","author":{"@type":"Person","name":"prolas emek"},"reviewRating":{"@type":"Rating","ratingValue":2,"bestRating":5},"reviewBody":"Mezeler standart.\nfiyatlar bu servis kalitesine göre yuksek"},{"@type":"Review","author":{"@type":"Person","name":"eren kondak"},"reviewRating":{"@type":"Rating","ratingValue":1,"bestRating":5},"reviewBody":"Lezzet olarak hiç tat almadım mezeleri getirdikleri gibi duruyor yemiyorsun bile 2 bin liraya karışık et tabağı var ama gelen etlerin hepsi kokuyor en pahalı tabağını söyledim ama keşke hiç gelmeseydim etleri yemedim bile yoldan geçen köpeklere verdim."},{"@type":"Review","author":{"@type":"Person","name":"Emine Temel"},"reviewRating":{"@type":"Rating","ratingValue":3,"bestRating":5},"reviewBody":"Mezeler çok güzel servis de öyle ancak sonda tatlı istedik tatlı yok diyip meyve tabağı getirdiler ve meyve tabağına 2 bin TL yazmışlar. Zaten kuver de vardı. Yani kazıklamak için ekstra meyve tabağı getirip 2 bin yazmak fırsatçılık gibi geldi yakıştıramadık."},{"@type":"Review","author":{"@type":"Person","name":"Büşra Gizem Yılmaz"},"reviewRating":{"@type":"Rating","ratingValue":5,"bestRating":5},"reviewBody":"Mezeler oldukça lezzetli fiyatlar ortalama .Çalışanlar güler yüzlü biz aldığımiz hizmetten çok memnun kaldık ."}],
-  "sameAs":["https://www.instagram.com/salonika1881/","https://www.salonika.co","https://www.google.com/maps/search/?api=1&query=Salonika%201881%20Kalkan"]
+  "sameAs":["https://www.instagram.com/salonika1881/","http://www.salonika1881.com/","https://www.google.com/maps/search/?api=1&query=Salonika%201881%20Kalkan"]
 }
 </script>
 <script type="application/ld+json">
@@ -99,6 +99,11 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Motion layer CDN — GSAP + ScrollTrigger + Lottie -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js" defer></script>
+
 <style>
 :root{
   --theme-bg:#0a0d10;
@@ -111,7 +116,8 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 *{ -webkit-font-smoothing:antialiased; }
 html{ scroll-behavior:smooth; }
 body{ font-family:'Inter',system-ui,sans-serif; background:var(--theme-bg); color:var(--theme-text); }
-h1,h2,h3,h4,.font-display{ font-family:'Playfair+Display',serif; letter-spacing:-0.02em; line-height:1.05; }
+h1,h2,h3,h4,.font-display{ font-family:'Playfair+Display',serif; letter-spacing:-0.02em; line-height:1.05; font-feature-settings:"ss01" on,"kern" on; }
+h1{ letter-spacing:-0.03em; }
 
 /* Nav cam efekti */
 .nav-glass{ background:rgba(0,0,0,0.32); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.06); }
@@ -123,6 +129,20 @@ h1,h2,h3,h4,.font-display{ font-family:'Playfair+Display',serif; letter-spacing:
 /* Hero */
 .hero-img{ filter:saturate(1.1) contrast(1.05); }
 .hero-overlay{ background:linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 60%, var(--theme-bg) 100%); }
+header#top > img.hero-img{ will-change:transform; }
+
+/* Gallery image treatment — enhanced via JS on hover */
+.gallery-item img{ filter:saturate(1.05) contrast(1.05); }
+.gallery-item{ isolation:isolate; }
+
+/* Motion: initial hidden state for scroll-reveal targets — set by JS */
+/* (No layout shift: opacity:1 is the default; JS sets to 0 before animating) */
+
+/* Magnetic button transition base */
+.btn-primary, .btn-ghost{ transition:background .25s, color .25s, border-color .25s, transform .18s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Lottie widget */
+.lottie-hero-widget{ pointer-events:none; }
 
 /* Bölüm başlığı */
 .section-label{ display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; color:var(--theme-accent); }
@@ -450,6 +470,7 @@ fiyatlar bu servis kalitesine göre yuksek</p>
 </a>
 
 <script src="/js/gtm-events.js" defer></script>
+<script src="/js/restoran-motion.js" defer></script>
 
 <script>
 // Basit i18n - 5 dil

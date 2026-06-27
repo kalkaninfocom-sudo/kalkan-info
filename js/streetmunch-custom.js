@@ -219,21 +219,25 @@
       var hero = document.querySelector('.sm-hero');
       if (!hero || !wrap) return;
 
+      var _smTiltRaf = null;
       hero.addEventListener('mousemove', function (e) {
-        var rect = hero.getBoundingClientRect();
-        var nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
-        var ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
-        var rx = -ny * 10;
-        var ry =  nx * 10;
-
-        gsap.to(videoEl, {
-          rotateX: rx,
-          rotateY: ry,
-          transformPerspective: 1000,
-          transformOrigin: '50% 50%',
-          duration: 0.6,
-          ease: 'power2.out',
-          overwrite: 'auto'
+        if (_smTiltRaf) return;
+        _smTiltRaf = requestAnimationFrame(function () {
+          _smTiltRaf = null;
+          var rect = hero.getBoundingClientRect();
+          var nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
+          var ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
+          var rx = -ny * 10;
+          var ry =  nx * 10;
+          gsap.to(videoEl, {
+            rotateX: rx,
+            rotateY: ry,
+            transformPerspective: 1000,
+            transformOrigin: '50% 50%',
+            duration: 0.6,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
         });
       });
 

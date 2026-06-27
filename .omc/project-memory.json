@@ -234,21 +234,27 @@
   },
   "hotPaths": [
     {
+      "path": "restoran\\_template\\index.html",
+      "accessCount": 25,
+      "lastAccessed": 1782539933984,
+      "type": "file"
+    },
+    {
+      "path": "js\\render.js",
+      "accessCount": 25,
+      "lastAccessed": 1782546001993,
+      "type": "file"
+    },
+    {
       "path": "antik-kentler.html",
       "accessCount": 21,
       "lastAccessed": 1778953263831,
       "type": "file"
     },
     {
-      "path": "js\\render.js",
-      "accessCount": 19,
-      "lastAccessed": 1781291113118,
-      "type": "file"
-    },
-    {
-      "path": "restoran\\_template\\index.html",
-      "accessCount": 17,
-      "lastAccessed": 1780428905398,
+      "path": "vercel.json",
+      "accessCount": 18,
+      "lastAccessed": 1782543592488,
       "type": "file"
     },
     {
@@ -258,21 +264,51 @@
       "type": "file"
     },
     {
-      "path": "vercel.json",
-      "accessCount": 11,
-      "lastAccessed": 1781291515107,
-      "type": "file"
+      "path": "",
+      "accessCount": 16,
+      "lastAccessed": 1782542293910,
+      "type": "directory"
+    },
+    {
+      "path": "data\\restoranlar.json",
+      "accessCount": 14,
+      "lastAccessed": 1782539259003,
+      "type": "directory"
     },
     {
       "path": "turlar.html",
-      "accessCount": 7,
-      "lastAccessed": 1778953134872,
+      "accessCount": 12,
+      "lastAccessed": 1782542599819,
       "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 7,
+      "lastAccessed": 1782539275185,
+      "type": "directory"
     },
     {
       "path": "js\\providers-modal.js",
       "accessCount": 5,
       "lastAccessed": 1780658901800,
+      "type": "directory"
+    },
+    {
+      "path": "hizmetler.html",
+      "accessCount": 5,
+      "lastAccessed": 1782542314696,
+      "type": "file"
+    },
+    {
+      "path": "js\\page-index.js",
+      "accessCount": 5,
+      "lastAccessed": 1782546045888,
+      "type": "file"
+    },
+    {
+      "path": "js",
+      "accessCount": 5,
+      "lastAccessed": 1782553437596,
       "type": "directory"
     },
     {
@@ -330,12 +366,6 @@
       "type": "file"
     },
     {
-      "path": "index.html",
-      "accessCount": 3,
-      "lastAccessed": 1780417221674,
-      "type": "directory"
-    },
-    {
       "path": "scripts\\clean-fake-data.mjs",
       "accessCount": 3,
       "lastAccessed": 1780418209037,
@@ -351,18 +381,6 @@
       "path": ".env.local",
       "accessCount": 3,
       "lastAccessed": 1780428717745,
-      "type": "file"
-    },
-    {
-      "path": "data\\restoranlar.json",
-      "accessCount": 3,
-      "lastAccessed": 1781291247892,
-      "type": "directory"
-    },
-    {
-      "path": "hizmetler.html",
-      "accessCount": 2,
-      "lastAccessed": 1778953255276,
       "type": "file"
     },
     {
@@ -390,27 +408,15 @@
       "type": "file"
     },
     {
-      "path": "js\\page-index.js",
-      "accessCount": 2,
-      "lastAccessed": 1780419460826,
-      "type": "file"
-    },
-    {
-      "path": "",
-      "accessCount": 2,
-      "lastAccessed": 1780428707651,
-      "type": "directory"
-    },
-    {
       "path": "docs\\META_SETUP.md",
       "accessCount": 2,
       "lastAccessed": 1780428717967,
       "type": "file"
     },
     {
-      "path": "js",
+      "path": "data\\hizmet-saglayicilari.json.bak",
       "accessCount": 2,
-      "lastAccessed": 1781291071549,
+      "lastAccessed": 1782542194860,
       "type": "directory"
     },
     {
@@ -501,12 +507,6 @@
       "path": "restoranlar.html",
       "accessCount": 1,
       "lastAccessed": 1780417008384,
-      "type": "directory"
-    },
-    {
-      "path": "data\\hizmet-saglayicilari.json.bak",
-      "accessCount": 1,
-      "lastAccessed": 1780417159788,
       "type": "directory"
     },
     {

@@ -75,9 +75,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-
 <!-- GSAP + ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -1243,6 +1240,10 @@ h1, h2, h3, h4, .font-display {
   font-size: 11px;
 }
 
+/* ── Nav CTA button (replaces Tailwind hidden md:inline-flex) ───────────── */
+.sm-nav-cta-btn { display: none; }
+@media (min-width: 768px) { .sm-nav-cta-btn { display: inline-flex; } }
+
 /* ── Utility ────────────────────────────────────────────────────────────── */
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -1285,7 +1286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <a href="https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20sipari%C5%9F%20vermek%20istiyorum."
      target="_blank" rel="noopener"
-     class="btn-primary hidden md:inline-flex"
+     class="btn-primary sm-nav-cta-btn"
      aria-label="WhatsApp ile siparis ver">
     Siparis Ver
   </a>
@@ -1356,7 +1357,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <video
           id="smHeroVisualImg"
           class="sm-hero-visual-video"
-          autoplay loop muted playsinline preload="none"
+          autoplay loop muted playsinline preload="metadata"
           poster="/assets/img/streetmunch-burger-poster.jpg"
           aria-label="Lezzetli hamburger animasyonu"
           draggable="false"
@@ -1869,6 +1870,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/streetmunch-custom.js" defer></script>
 
 <script>
+// ── Mobil: video yüklemeyi engelle (bandwidth tasarrufu) ─────────────
+(function() {
+  if (window.innerWidth < 1024) {
+    var vid = document.getElementById('smHeroVisualImg');
+    if (vid) {
+      vid.removeAttribute('autoplay');
+      vid.setAttribute('preload', 'none');
+      vid.pause && vid.pause();
+    }
+  }
+})();
+
 // ── KVKK bar ───────────────────────────────────────────────────────────
 (function() {
   var bar = document.getElementById('kvkk-bar');
