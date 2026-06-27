@@ -7,40 +7,12 @@
   },
   "crons": [
     {
-      "path": "/api/instagram-hashtag",
-      "schedule": "0 9 * * *"
-    },
-    {
       "path": "/api/cron-rebuild",
       "schedule": "0 3 * * *"
     },
     {
       "path": "/api/cron-weekly-plan",
       "schedule": "0 6 * * 1"
-    },
-    {
-      "path": "/api/cron-weekly-plan?mode=trend",
-      "schedule": "0 2,14 * * *"
-    },
-    {
-      "path": "/api/cron-weekly-plan?mode=director",
-      "schedule": "0 3 * * *"
-    },
-    {
-      "path": "/api/cron-weekly-plan?mode=growth",
-      "schedule": "0 4 * * 1"
-    },
-    {
-      "path": "/api/cron-weekly-plan?mode=analyst",
-      "schedule": "0 8 * * 1"
-    },
-    {
-      "path": "/api/cron-weekly-plan?mode=ads",
-      "schedule": "0 10 * * 1"
-    },
-    {
-      "path": "/api/social-publish-queue",
-      "schedule": "0 10 * * *"
     }
   ],
   "rewrites": [
