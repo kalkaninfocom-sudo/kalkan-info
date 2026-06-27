@@ -1244,6 +1244,15 @@ h1, h2, h3, h4, .font-display {
   transition: background 0.2s, transform 0.15s;
 }
 .sm-menu-lightbox-cta:hover { background: var(--accent-2); transform: scale(1.03); }
+
+/* ── Language switcher ─────────────────────────────────────────────────── */
+.sm-nav-right { display:flex; align-items:center; gap:14px; }
+.sm-lang { display:flex; align-items:center; gap:1px; }
+.sm-lang-pill { font-family:'Space Grotesk', sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; padding:5px 7px; color:rgba(255,255,255,0.5); background:transparent; border:0; border-radius:6px; cursor:pointer; transition:color .2s ease, background .2s ease; }
+.sm-lang-pill:hover { color:#fff; }
+.sm-lang-pill.active { color:var(--accent); }
+.sm-lang-pill:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media (max-width:600px){ .sm-lang-pill{ padding:4px 4px; font-size:10px; letter-spacing:0; } .sm-nav-right{ gap:8px; } }
 </style>
 </head>
 
@@ -1269,18 +1278,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="sm-nav-wordmark">Street <span>Munch</span></span>
   </a>
   <div class="sm-nav-links" role="list">
-    <a href="#story"    class="sm-nav-link" role="listitem">Hikaye</a>
-    <a href="#menu"     class="sm-nav-link" role="listitem">Menu</a>
-    <a href="#delivery" class="sm-nav-link" role="listitem">Paket Servis</a>
-    <a href="#gallery"  class="sm-nav-link" role="listitem">Galeri</a>
-    <a href="#contact"  class="sm-nav-link" role="listitem">Iletisim</a>
+    <a href="#story"    class="sm-nav-link" role="listitem" data-i="nav_story">Hikaye</a>
+    <a href="#menu"     class="sm-nav-link" role="listitem" data-i="nav_menu">Menu</a>
+    <a href="#delivery" class="sm-nav-link" role="listitem" data-i="nav_delivery">Paket Servis</a>
+    <a href="#gallery"  class="sm-nav-link" role="listitem" data-i="nav_gallery">Galeri</a>
+    <a href="#contact"  class="sm-nav-link" role="listitem" data-i="nav_contact">Iletisim</a>
   </div>
-  <a href="https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20sipari%C5%9F%20vermek%20istiyorum."
-     target="_blank" rel="noopener"
-     class="btn-primary sm-nav-cta-btn"
-     aria-label="WhatsApp ile siparis ver">
-    Siparis Ver
-  </a>
+  <div class="sm-nav-right">
+    <div class="sm-lang" role="group" aria-label="Dil / Language">
+      <button type="button" class="sm-lang-pill active" data-lang="tr" aria-label="Turkce">TR</button>
+      <button type="button" class="sm-lang-pill" data-lang="en" aria-label="English">EN</button>
+      <button type="button" class="sm-lang-pill" data-lang="de" aria-label="Deutsch">DE</button>
+      <button type="button" class="sm-lang-pill" data-lang="ru" aria-label="Russian">RU</button>
+      <button type="button" class="sm-lang-pill" data-lang="fr" aria-label="Francais">FR</button>
+    </div>
+    <a href="https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20sipari%C5%9F%20vermek%20istiyorum."
+       target="_blank" rel="noopener"
+       class="btn-primary sm-nav-cta-btn"
+       aria-label="WhatsApp ile siparis ver">
+      <span data-i="cta_order">Siparis Ver</span>
+    </a>
+  </div>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
@@ -1311,13 +1329,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ── Single centered column ─────────────────────────────────────────── -->
   <div class="sm-hero-inner">
     <div class="sm-hero-content">
-      <div class="sm-hero-label" aria-hidden="true">Sokak Lezzeti &middot; Kalkan</div>
+      <div class="sm-hero-label" aria-hidden="true" data-i="hero_label">Sokak Lezzeti &middot; Kalkan</div>
 
       <h1 class="sm-hero-h1" aria-label="Street Munch">
         STREET<br><span class="accent-word">MUNCH</span>
       </h1>
 
-      <p class="sm-hero-tagline">
+      <p class="sm-hero-tagline" data-i="hero_tagline">
         Munch'a dustuysen, StreetMunch'ta bulusalim.<br>
         Caddenin basindayiz.
       </p>
@@ -1331,7 +1349,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           aria-label="WhatsApp ile siparis ver"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-          Siparis Ver
+          <span data-i="cta_order">Siparis Ver</span>
         </a>
         <a
           href="https://www.google.com/maps/search/?api=1&query=36.2686793,29.4122333"
@@ -1341,7 +1359,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           aria-label="Google Maps'te yol tarifi al"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Yol Tarifi
+          <span data-i="hero_directions">Yol Tarifi</span>
         </a>
       </div>
     </div>
@@ -1359,7 +1377,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <section class="sm-story sm-section" id="story" aria-label="Hikayemiz">
   <div class="sm-story-inner">
-    <div class="sm-section-label">Hikayemiz</div>
+    <div class="sm-section-label" data-i="story_label">Hikayemiz</div>
 
     <blockquote class="sm-story-quote" aria-label="Caddenin basindayiz mottosu">
       <span class="sm-story-word">Cadde</span>
@@ -1371,7 +1389,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <span class="sm-story-line" aria-hidden="true"></span>
 
-    <p class="sm-body" data-sm-reveal>
+    <p class="sm-body" data-sm-reveal data-i="story_body">
       Street Munch, Kalkan Mahallesi Demokrasi Caddesi'nin basinda sizi karsilayan
       sokak lezzeti duragidir. Tatildesin mi, iste misin; en hizli ve lezzetli
       munch cozumu burada. Paket siparis verebilir, kapiniza teslim ettirebilir;
@@ -1384,12 +1402,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="sm-fact-label">Demokrasi Caddesi</span>
       </div>
       <div role="listitem" data-sm-reveal data-sm-delay="0.2">
-        <span class="sm-fact-num">7/7</span>
-        <span class="sm-fact-label">Acik</span>
+        <span class="sm-fact-num">7/12</span>
+        <span class="sm-fact-label" data-i="fact_open">Acik</span>
       </div>
       <div role="listitem" data-sm-reveal data-sm-delay="0.3">
         <span class="sm-fact-num">5km</span>
-        <span class="sm-fact-label">Paket Servis Alani</span>
+        <span class="sm-fact-label" data-i="fact_zone">Paket Servis Alani</span>
       </div>
     </div>
   </div>
@@ -1407,9 +1425,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <section class="sm-section" id="menu" aria-label="Menu" style="padding-top:120px;padding-bottom:120px;background:var(--bg);">
   <div style="max-width:1400px;margin:0 auto;">
-    <div class="sm-section-label">Menu</div>
-    <h2 class="sm-h2">Tam Menü</h2>
-    <p style="font-size:14px;color:var(--muted);max-width:560px;margin-top:14px;line-height:1.7;">Tüm lezzetlerimiz ve güncel fiyatlar. Bir karta dokunarak büyütüp inceleyebilirsiniz.</p>
+    <div class="sm-section-label" data-i="menu_label">Menu</div>
+    <h2 class="sm-h2" data-i="menu_title">Tam Menü</h2>
+    <p style="font-size:14px;color:var(--muted);max-width:560px;margin-top:14px;line-height:1.7;" data-i="menu_intro">Tüm lezzetlerimiz ve güncel fiyatlar. Bir karta dokunarak büyütüp inceleyebilirsiniz.</p>
 
     <div class="sm-menu-grid sm-menu-grid--posters">
       <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Çıtır Tavuk Kanat menüsünü büyüt">
@@ -1573,7 +1591,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="sm-menu-order-wrap">
       <a class="sm-menu-order-btn" href="https://wa.me/905455270275?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp ile sipariş ver">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.512 5.26l-.999 3.648 3.726-.977zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
-        Sipariş Ver
+        <span data-i="cta_order">Sipariş Ver</span>
       </a>
     </div>
 
@@ -1592,15 +1610,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="max-width:1400px;margin:0 auto;">
     <div class="sm-delivery-info">
       <div>
-        <div class="sm-section-label">Teslimat</div>
-        <h2 class="sm-h2">Paket Servis<br>Bolgesi</h2>
+        <div class="sm-section-label" data-i="delivery_label">Teslimat</div>
+        <h2 class="sm-h2" data-i="delivery_title">Paket Servis<br>Bolgesi</h2>
       </div>
       <div>
         <div class="sm-delivery-badge" data-sm-reveal>
           <span class="sm-delivery-badge-dot" aria-hidden="true"></span>
-          Aktif Teslimat
+          <span data-i="delivery_badge">Aktif Teslimat</span>
         </div>
-        <p class="sm-body" data-sm-reveal>
+        <p class="sm-body" data-sm-reveal data-i="delivery_body">
           Kalkan Mahallesi ve cevresine paket servis yapiyoruz.
           Siparis vermek veya bolge sorgulamak icin WhatsApp'tan ulasabilirsiniz.
         </p>
@@ -1612,18 +1630,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             aria-label="WhatsApp ile paket servis siparis ver"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-            Paket Servis Siparis
+            <span data-i="delivery_btn">Paket Servis Siparis</span>
           </a>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=36.2686793,29.4122333"
             target="_blank" rel="noopener"
             class="btn-ghost"
             aria-label="Google Maps yol tarifi al"
-          >Yol Tarifi Al</a>
+          ><span data-i="delivery_directions">Yol Tarifi Al</span></a>
         </div>
 
         <div style="margin-top:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.07);">
-          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:8px;">Adres</div>
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:8px;" data-i="addr_label">Adres</div>
           <div style="font-size:15px;color:var(--text);line-height:1.6;">
             Kalkan Mahallesi Demokrasi Caddesi No:1<br>
             <span style="color:var(--muted);">Kas, Antalya</span>
@@ -1659,8 +1677,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div style="max-width:1400px;margin:0 auto;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;">
       <div>
-        <div class="sm-section-label">Galeri</div>
-        <h2 class="sm-h2">Lezzet<br>Kareleri</h2>
+        <div class="sm-section-label" data-i="gallery_label">Galeri</div>
+        <h2 class="sm-h2" data-i="gallery_title">Lezzet<br>Kareleri</h2>
       </div>
       <a
         href="https://www.instagram.com/streetmunchkalkan/"
@@ -1764,8 +1782,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <section class="sm-section sm-reviews" id="reviews" aria-label="Yorumlar ve sosyal medya">
   <div style="max-width:1400px;margin:0 auto;">
-    <div class="sm-section-label">Yorumlar</div>
-    <h2 class="sm-h2">Munchlayanlar<br>Ne Dedi?</h2>
+    <div class="sm-section-label" data-i="reviews_label">Yorumlar</div>
+    <h2 class="sm-h2" data-i="reviews_title">Munchlayanlar<br>Ne Dedi?</h2>
 
     <div class="sm-review-grid" role="list">
       <article class="sm-review-card" role="listitem" data-sm-reveal data-sm-delay="0">
@@ -1776,10 +1794,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
         </div>
-        <blockquote class="sm-review-text">
+        <blockquote class="sm-review-text" data-i="review1_text">
           "Kalkan'da en iyi sokak yemegi burada. Hizli, lezzetli, fiyat da mantikli. Her gun ugrayacagim."
         </blockquote>
-        <div class="sm-review-author">Tatilci Misafir</div>
+        <div class="sm-review-author" data-i="review1_author">Tatilci Misafir</div>
       </article>
 
       <article class="sm-review-card" role="listitem" data-sm-reveal data-sm-delay="0.1">
@@ -1790,10 +1808,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
         </div>
-        <blockquote class="sm-review-text">
+        <blockquote class="sm-review-text" data-i="review2_text">
           "Paket servisimiz cok hizli geldi, burger sicacikti. Ertesi gun tekrar siparis verdim."
         </blockquote>
-        <div class="sm-review-author">Kalkan Sakini</div>
+        <div class="sm-review-author" data-i="review2_author">Kalkan Sakini</div>
       </article>
 
       <article class="sm-review-card" role="listitem" data-sm-reveal data-sm-delay="0.2">
@@ -1804,10 +1822,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
           <span class="sm-review-star" aria-hidden="true">&#9733;</span>
         </div>
-        <blockquote class="sm-review-text">
+        <blockquote class="sm-review-text" data-i="review3_text">
           "Cok rahat, manzarali ve lezzetli. Wrap'i kesinlikle tavsiye ederim."
         </blockquote>
-        <div class="sm-review-author">Instagram Takipcisi</div>
+        <div class="sm-review-author" data-i="review3_author">Instagram Takipcisi</div>
       </article>
     </div>
 
@@ -1829,9 +1847,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <section class="sm-cta-section" id="contact" aria-label="Iletisim ve siparis">
   <div>
-    <div class="sm-section-label" style="justify-content:center;margin-bottom:24px;">Siparis Ver</div>
-    <h2 class="sm-cta-big" aria-label="Aciksin mi?">ACIKSIN<br>MI?</h2>
-    <p class="sm-cta-sub">Bir mesajla siparis ver, kapina gelsin.</p>
+    <div class="sm-section-label" style="justify-content:center;margin-bottom:24px;" data-i="cta_order">Siparis Ver</div>
+    <h2 class="sm-cta-big" aria-label="Aciksin mi?" data-i="cta_big">ACIKSIN<br>MI?</h2>
+    <p class="sm-cta-sub" data-i="cta_sub">Bir mesajla siparis ver, kapina gelsin.</p>
 
     <div class="sm-cta-btns">
       <a
@@ -1842,7 +1860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         aria-label="WhatsApp ile siparis ver — +90 545 527 02 75"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-        WhatsApp ile Siparis Ver
+        <span data-i="cta_wa">WhatsApp ile Siparis Ver</span>
       </a>
       <a
         href="https://www.google.com/maps/dir/?api=1&destination=36.2686793,29.4122333"
@@ -1850,7 +1868,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         rel="noopener"
         class="btn-ghost"
         aria-label="Google Maps'te yol tarifi al"
-      >Yol Tarifi</a>
+      ><span data-i="hero_directions">Yol Tarifi</span></a>
       <a
         href="https://www.instagram.com/streetmunchkalkan/"
         target="_blank"
@@ -1865,11 +1883,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="sm-contact-row" role="list">
       <div class="sm-contact-item" role="listitem">
-        <span class="sm-contact-label">Telefon</span>
+        <span class="sm-contact-label" data-i="phone_label">Telefon</span>
         <a href="tel:+905455270275" class="sm-contact-val" aria-label="Ara: +90 545 527 02 75">+90 545 527 02 75</a>
       </div>
       <div class="sm-contact-item" role="listitem">
-        <span class="sm-contact-label">Adres</span>
+        <span class="sm-contact-label" data-i="addr_label">Adres</span>
         <span class="sm-contact-val">Demokrasi Caddesi No:1, Kalkan</span>
       </div>
       <div class="sm-contact-item" role="listitem">
@@ -1889,19 +1907,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- KVKK COOKIE BAR                                                        -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <div class="sm-kvkk" id="kvkk-bar" role="region" aria-label="Gizlilik bildirimi" style="display:none;">
-  <p class="sm-kvkk-text">
+  <p class="sm-kvkk-text" data-i="kvkk_text">
     Bu site, deneyiminizi iyilestirmek icin cerezler kullanmaktadir. Siteyi kullanarak
     <a href="https://kalkaninfo.com/kvkk.html" style="color:var(--accent);text-decoration:none;">KVKK / Gizlilik Politikasi</a>'ni
     kabul etmis sayilirsiniz. Telefon numarasi ve iletisim bilgileri sadece siparis amaciyla kullanilir.
   </p>
-  <button class="sm-kvkk-btn" id="kvkk-accept" aria-label="Anladim, kapat">Anladim</button>
+  <button class="sm-kvkk-btn" id="kvkk-accept" aria-label="Anladim, kapat" data-i="kvkk_btn">Anladim</button>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!-- FOOTER                                                                 -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <footer class="sm-footer" role="contentinfo">
-  <div class="sm-footer-copy">
+  <div class="sm-footer-copy" data-i="footer_copy">
     &copy; 2026 Street Munch &middot; Kalkan, Antalya &middot; Tum haklari saklidir.
   </div>
   <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="sm-footer-brand">
@@ -1920,14 +1938,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     aria-label="WhatsApp siparis"
   >
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-    Siparis Ver
+    <span data-i="cta_order">Siparis Ver</span>
   </a>
   <a
     href="https://www.google.com/maps/dir/?api=1&destination=36.2686793,29.4122333"
     target="_blank" rel="noopener"
     class="btn-ghost"
     aria-label="Yol tarifi"
-  >Yol Tarifi</a>
+  ><span data-i="hero_directions">Yol Tarifi</span></a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
@@ -2032,6 +2050,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
+
+<!-- Language switcher (TR/EN/DE/RU/FR) -->
+<script>
+(function(){
+  var I18N = {"tr":{"nav_story":"Hikaye","nav_menu":"Menü","nav_delivery":"Paket Servis","nav_gallery":"Galeri","nav_contact":"İletişim","cta_order":"Sipariş Ver","hero_label":"Sokak Lezzeti · Kalkan","hero_tagline":"Munch'a düştüysen, Street Munch'ta buluşalım.<br>Caddenin başındayız.","hero_directions":"Yol Tarifi","story_label":"Hikayemiz","story_body":"Street Munch, Kalkan Mahallesi Demokrasi Caddesi'nin başında sizi karşılayan sokak lezzeti durağıdır. Tatilde misin, işte misin; en hızlı ve lezzetli munch çözümü burada. Paket sipariş verebilir, kapınıza teslim ettirebilir ya da caddenin başına uğrarken sıcak sıcak alabilirsiniz.","fact_open":"Açık","fact_zone":"Paket Servis Alanı","menu_label":"Menü","menu_title":"Tam Menü","menu_intro":"Tüm lezzetlerimiz ve güncel fiyatlar. Bir karta dokunarak büyütüp inceleyebilirsiniz.","delivery_label":"Teslimat","delivery_title":"Paket Servis<br>Bölgesi","delivery_badge":"Aktif Teslimat","delivery_body":"Kalkan Mahallesi ve çevresine paket servis yapıyoruz. Sipariş vermek veya bölge sorgulamak için WhatsApp'tan ulaşabilirsiniz.","delivery_btn":"Paket Servis Siparişi","delivery_directions":"Yol Tarifi Al","addr_label":"Adres","gallery_label":"Galeri","gallery_title":"Lezzet<br>Kareleri","reviews_label":"Yorumlar","reviews_title":"Munchlayanlar<br>Ne Dedi?","review1_text":"\"Kalkan'da en iyi sokak yemeği burada. Hızlı, lezzetli, fiyat da mantıklı. Her gün uğrayacağım.\"","review1_author":"Tatilci Misafir","review2_text":"\"Paket servisimiz çok hızlı geldi, burger sıcacıktı. Ertesi gün tekrar sipariş verdim.\"","review2_author":"Kalkan Sakini","review3_text":"\"Çok rahat, manzaralı ve lezzetli. Wrap'i kesinlikle tavsiye ederim.\"","review3_author":"Instagram Takipçisi","cta_big":"ACIKSIN<br>MI?","cta_sub":"Bir mesajla sipariş ver, kapına gelsin.","cta_wa":"WhatsApp ile Sipariş Ver","phone_label":"Telefon","kvkk_text":"Bu site, deneyiminizi iyileştirmek için çerezler kullanmaktadır. Siteyi kullanarak <a href=\"https://kalkaninfo.com/kvkk.html\" style=\"color:var(--accent);text-decoration:none;\">KVKK / Gizlilik Politikası</a>'nı kabul etmiş sayılırsınız. Telefon numarası ve iletişim bilgileri sadece sipariş amacıyla kullanılır.","kvkk_btn":"Anladım","footer_copy":"© 2026 Street Munch · Kalkan, Antalya · Tüm hakları saklıdır."},"en":{"nav_story":"Story","nav_menu":"Menu","nav_delivery":"Delivery","nav_gallery":"Gallery","nav_contact":"Contact","cta_order":"Order Now","hero_label":"Street Food · Kalkan","hero_tagline":"Craving a munch? Let's meet at Street Munch.<br>We're at the top of the street.","hero_directions":"Directions","story_label":"Our Story","story_body":"Street Munch is the street-food stop welcoming you at the top of Demokrasi Street in Kalkan. On holiday or at work — the fastest, tastiest munch is right here. Order takeaway, get it delivered to your door, or grab it hot as you pass by.","fact_open":"Open","fact_zone":"Delivery Zone","menu_label":"Menu","menu_title":"Full Menu","menu_intro":"All our flavours and current prices. Tap a card to enlarge and explore.","delivery_label":"Delivery","delivery_title":"Delivery<br>Zone","delivery_badge":"Active Delivery","delivery_body":"We deliver to Kalkan and the surrounding area. Message us on WhatsApp to order or check your zone.","delivery_btn":"Order Delivery","delivery_directions":"Get Directions","addr_label":"Address","gallery_label":"Gallery","gallery_title":"Flavour<br>Frames","reviews_label":"Reviews","reviews_title":"What Munchers<br>Say","review1_text":"\"Best street food in Kalkan. Fast, tasty and well priced. I'll be coming every day.\"","review1_author":"Holiday Guest","review2_text":"\"Our delivery arrived super fast and the burger was piping hot. Ordered again the next day.\"","review2_author":"Kalkan Local","review3_text":"\"Relaxed, great view and delicious. I definitely recommend the wrap.\"","review3_author":"Instagram Follower","cta_big":"HUNGRY<br>YET?","cta_sub":"Order with one message — we'll bring it to your door.","cta_wa":"Order via WhatsApp","phone_label":"Phone","kvkk_text":"This site uses cookies to improve your experience. By using the site you accept our <a href=\"https://kalkaninfo.com/kvkk.html\" style=\"color:var(--accent);text-decoration:none;\">Privacy Policy</a>. Phone and contact details are used only for orders.","kvkk_btn":"Got it","footer_copy":"© 2026 Street Munch · Kalkan, Antalya · All rights reserved."},"de":{"nav_story":"Story","nav_menu":"Speisekarte","nav_delivery":"Lieferung","nav_gallery":"Galerie","nav_contact":"Kontakt","cta_order":"Bestellen","hero_label":"Street Food · Kalkan","hero_tagline":"Lust auf einen Snack? Treffen wir uns im Street Munch.<br>Wir sind am Anfang der Straße.","hero_directions":"Route","story_label":"Unsere Geschichte","story_body":"Street Munch ist der Street-Food-Stopp am Anfang der Demokrasi-Straße in Kalkan. Ob im Urlaub oder bei der Arbeit — der schnellste, leckerste Snack wartet hier. Zum Mitnehmen, mit Lieferung nach Hause oder frisch im Vorbeigehen.","fact_open":"Geöffnet","fact_zone":"Liefergebiet","menu_label":"Speisekarte","menu_title":"Komplette Karte","menu_intro":"Alle Gerichte und aktuelle Preise. Tippen Sie auf eine Karte zum Vergrößern.","delivery_label":"Lieferung","delivery_title":"Liefer-<br>gebiet","delivery_badge":"Aktive Lieferung","delivery_body":"Wir liefern in Kalkan und Umgebung. Schreiben Sie uns auf WhatsApp, um zu bestellen oder Ihr Gebiet zu prüfen.","delivery_btn":"Lieferung bestellen","delivery_directions":"Route planen","addr_label":"Adresse","gallery_label":"Galerie","gallery_title":"Genuss-<br>Momente","reviews_label":"Bewertungen","reviews_title":"Was Gäste<br>sagen","review1_text":"\"Das beste Street Food in Kalkan. Schnell, lecker und fair im Preis. Ich komme jeden Tag.\"","review1_author":"Urlaubsgast","review2_text":"\"Die Lieferung kam superschnell und der Burger war heiß. Am nächsten Tag gleich wieder bestellt.\"","review2_author":"Einheimischer","review3_text":"\"Entspannt, toller Ausblick und lecker. Den Wrap kann ich nur empfehlen.\"","review3_author":"Instagram-Follower","cta_big":"HUNGRIG<br>?","cta_sub":"Mit einer Nachricht bestellen — wir liefern bis vor die Tür.","cta_wa":"Per WhatsApp bestellen","phone_label":"Telefon","kvkk_text":"Diese Seite verwendet Cookies, um Ihr Erlebnis zu verbessern. Mit der Nutzung akzeptieren Sie unsere <a href=\"https://kalkaninfo.com/kvkk.html\" style=\"color:var(--accent);text-decoration:none;\">Datenschutzrichtlinie</a>. Telefon- und Kontaktdaten werden nur für Bestellungen verwendet.","kvkk_btn":"Verstanden","footer_copy":"© 2026 Street Munch · Kalkan, Antalya · Alle Rechte vorbehalten."},"ru":{"nav_story":"История","nav_menu":"Меню","nav_delivery":"Доставка","nav_gallery":"Галерея","nav_contact":"Контакты","cta_order":"Заказать","hero_label":"Уличная еда · Калкан","hero_tagline":"Захотелось перекусить? Встретимся в Street Munch.<br>Мы в начале улицы.","hero_directions":"Маршрут","story_label":"Наша история","story_body":"Street Munch — точка уличной еды в начале улицы Демокраси в Калкане. На отдыхе или на работе — самый быстрый и вкусный перекус здесь. Закажите навынос, доставку до двери или возьмите горячим по пути.","fact_open":"Открыто","fact_zone":"Зона доставки","menu_label":"Меню","menu_title":"Полное меню","menu_intro":"Все наши блюда и актуальные цены. Нажмите на карточку, чтобы увеличить.","delivery_label":"Доставка","delivery_title":"Зона<br>доставки","delivery_badge":"Активная доставка","delivery_body":"Доставляем по Калкану и окрестностям. Напишите нам в WhatsApp, чтобы заказать или уточнить зону.","delivery_btn":"Заказать доставку","delivery_directions":"Построить маршрут","addr_label":"Адрес","gallery_label":"Галерея","gallery_title":"Вкусные<br>кадры","reviews_label":"Отзывы","reviews_title":"Что говорят<br>гости","review1_text":"\"Лучшая уличная еда в Калкане. Быстро, вкусно и недорого. Буду заходить каждый день.\"","review1_author":"Гость на отдыхе","review2_text":"\"Доставка приехала очень быстро, бургер был горячим. На следующий день заказали снова.\"","review2_author":"Местный житель","review3_text":"\"Уютно, красивый вид и вкусно. Однозначно советую врап.\"","review3_author":"Подписчик в Instagram","cta_big":"ГОЛОДНЫ<br>?","cta_sub":"Закажите одним сообщением — привезём к двери.","cta_wa":"Заказать через WhatsApp","phone_label":"Телефон","kvkk_text":"Этот сайт использует файлы cookie для улучшения работы. Используя сайт, вы принимаете <a href=\"https://kalkaninfo.com/kvkk.html\" style=\"color:var(--accent);text-decoration:none;\">Политику конфиденциальности</a>. Телефон и контактные данные используются только для заказов.","kvkk_btn":"Понятно","footer_copy":"© 2026 Street Munch · Калкан, Анталья · Все права защищены."},"fr":{"nav_story":"Histoire","nav_menu":"Menu","nav_delivery":"Livraison","nav_gallery":"Galerie","nav_contact":"Contact","cta_order":"Commander","hero_label":"Street Food · Kalkan","hero_tagline":"Une petite faim ? Rendez-vous au Street Munch.<br>Nous sommes en haut de la rue.","hero_directions":"Itinéraire","story_label":"Notre Histoire","story_body":"Street Munch est l'arrêt street-food qui vous accueille en haut de la rue Demokrasi à Kalkan. En vacances ou au travail — le munch le plus rapide et savoureux est ici. À emporter, livré chez vous ou chaud en passant.","fact_open":"Ouvert","fact_zone":"Zone de livraison","menu_label":"Menu","menu_title":"Menu Complet","menu_intro":"Toutes nos saveurs et les prix actuels. Touchez une carte pour l'agrandir.","delivery_label":"Livraison","delivery_title":"Zone de<br>Livraison","delivery_badge":"Livraison active","delivery_body":"Nous livrons à Kalkan et ses environs. Écrivez-nous sur WhatsApp pour commander ou vérifier votre zone.","delivery_btn":"Commander en livraison","delivery_directions":"Obtenir l'itinéraire","addr_label":"Adresse","gallery_label":"Galerie","gallery_title":"Instants<br>Gourmands","reviews_label":"Avis","reviews_title":"Ils ont<br>goûté","review1_text":"\"Le meilleur street food de Kalkan. Rapide, savoureux et bon prix. J'y reviendrai chaque jour.\"","review1_author":"Client en vacances","review2_text":"\"La livraison est arrivée très vite et le burger était bien chaud. J'ai recommandé le lendemain.\"","review2_author":"Habitant de Kalkan","review3_text":"\"Détendu, belle vue et délicieux. Je recommande vivement le wrap.\"","review3_author":"Abonné Instagram","cta_big":"UN PETIT<br>CREUX ?","cta_sub":"Commandez en un message — on vous livre.","cta_wa":"Commander via WhatsApp","phone_label":"Téléphone","kvkk_text":"Ce site utilise des cookies pour améliorer votre expérience. En utilisant le site, vous acceptez notre <a href=\"https://kalkaninfo.com/kvkk.html\" style=\"color:var(--accent);text-decoration:none;\">Politique de confidentialité</a>. Le téléphone et les coordonnées ne servent qu'aux commandes.","kvkk_btn":"Compris","footer_copy":"© 2026 Street Munch · Kalkan, Antalya · Tous droits réservés."}};
+  function setLang(lang){
+    if(!I18N[lang]) lang = 'tr';
+    document.documentElement.lang = lang;
+    var dict = I18N[lang];
+    document.querySelectorAll('[data-i]').forEach(function(el){
+      var k = el.getAttribute('data-i');
+      if(dict[k] != null) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('.sm-lang-pill').forEach(function(p){
+      p.classList.toggle('active', p.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('lang', lang); } catch(e){}
+  }
+  document.querySelectorAll('.sm-lang-pill').forEach(function(p){
+    p.addEventListener('click', function(){ setLang(p.getAttribute('data-lang')); });
+  });
+  var saved = 'tr';
+  try { saved = localStorage.getItem('lang') || 'tr'; } catch(e){}
+  setLang(saved);
+})();
+</script>
 </body>
 </html>
 
