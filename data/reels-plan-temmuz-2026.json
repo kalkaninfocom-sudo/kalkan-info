@@ -1,0 +1,484 @@
+{
+  "_meta": {
+    "title": "Kalkan Info — Temmuz 2026 Reels İçerik Planı",
+    "subtitle": "10 Reels konsepti · @kalkaninfo · Temmuz 2026",
+    "created": "2026-06-27",
+    "version": "1.0",
+    "author": "kalkan-info content pipeline",
+    "render_guide": {
+      "format": "9:16 portrait, 1080x1920, 30fps",
+      "duration_target": "25-35 seconds",
+      "voiceover_lang": "TR + EN (ayrı versiyon — EN primary yayın, TR story/close-friends)",
+      "subtitle": "Auto-generate from voiceover (CapCut auto-captions veya ElevenLabs transcript)",
+      "branding": {
+        "logo": "Sol alt — 72x72px, %70 opacity, tüm süre",
+        "cta_card": "Son 3 saniye — tam ekran overlay, #0a2e4c bg, #f4b53d metin: 'kalkaninfo.com'",
+        "color_palette": {
+          "primary": "#0a2e4c",
+          "secondary": "#072136",
+          "accent_gold": "#f4b53d",
+          "accent_warm": "#e89812",
+          "bg_light": "#dce6ef",
+          "text_overlay_bg": "rgba(7, 33, 54, 0.72)"
+        },
+        "typography": {
+          "heading": "Inter 700, tracking -0.03em, uppercase",
+          "body": "Inter 400, line-height 1.6",
+          "note": "Inter — site genelinde kullanılan font, reels'de tutarlılık için aynı"
+        }
+      },
+      "music_source": "Epidemic Sound veya Mubert — royalty-free",
+      "elevenlabs_voice_default": {
+        "tr": "Türkçe doğal kadın ses — ElevenLabs 'Rachel TR' veya 'Bella'",
+        "en": "British English, calm-warm — ElevenLabs 'Charlotte' (George alternatif)"
+      },
+      "lut": "Cinematic Teal & Orange — Kalkan'ın turkuaz suyunu ve altın güneşi öne çıkarır",
+      "posting_note": "Temmuz ayı gün batımı saati ~20:45 TR — sunset reels için 20:00 paylaşım idealdir"
+    },
+    "pillar_distribution": {
+      "Gizli Mücevher": 3,
+      "Lokal Lezzet": 2,
+      "Sunset/Beach Vibes": 2,
+      "Kalkan'da Bir Gün": 1,
+      "Antik Kent Hikâyesi": 1,
+      "Pratik Bilgi": 1
+    }
+  },
+  "items": [
+    {
+      "id": "reel-01-kekova-batik-sehir",
+      "pillar": "Gizli Mücevher",
+      "title": "Kekova — Suyun Altındaki Şehir",
+      "hook_3sec": "Bu şehir 2.000 yıl önce battı. Hâlâ orada.",
+      "duration_sec": 30,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Cam tabanlı tekneden suyun altındaki antik duvarların yakın çekimi — net turkuaz su, duvardaki detaylar görünür",
+          "text_overlay": "2.000 yıl önce bir deprem bu şehri yuttu."
+        },
+        {
+          "t": "3-10s",
+          "shot": "Drone: Kekova adası boyunca düşük irtifa uçuş, su yüzeyine yakın — batık yapılar yüzeyden seçilir",
+          "text_overlay": "Kekova Batık Şehri — Kalkan'a 2 saat"
+        },
+        {
+          "t": "10-18s",
+          "shot": "Simena kalesi tepesinden panorama çekimi — Kekova körfezi, renkli tekne ve ada silueti",
+          "text_overlay": "Tekne + kale + batık şehir = tek gün"
+        },
+        {
+          "t": "18-25s",
+          "shot": "Yolcu POV: tekneden suya bakış, altında net görünen sütunlar — yüzeyden dalış hareketi",
+          "text_overlay": "Yüzebilirsiniz. Dokunamazsınız. Tescilli sit alanı."
+        },
+        {
+          "t": "25-30s",
+          "shot": "Gün batımında koy manzarası — tekneler ve portakal ışık",
+          "text_overlay": "kalkaninfo.com → Turlar"
+        }
+      ],
+      "voiceover_tr": "Kekova. MS 2. yüzyılda bir deprem bu Likya şehrini yuttu. Bugün suyun altında sütunlar, merdivenler, duvarlar duruyor. Cam tabanlı tekneden bakıyorsunuz — 2.000 yıl geçmiyor. Simena kalesine çıkın, yukarıdan görün. Kalkan'dan günlük tur kalkıyor. Bunu çoğu turist kaçırıyor.",
+      "voiceover_en": "Kekova. In the second century AD, an earthquake swallowed this Lycian city whole. Today, columns, staircases and walls sit just beneath the surface. You look down through glass. Two thousand years disappear. Climb Simena Castle for the full picture. Day trips depart from Kalkan. Most tourists never find this one.",
+      "music_mood": "mystical-ambient-build",
+      "caption_tr": "Suyun altında bir şehir. Kalkan'dan günlük tur.\n\nÇoğu turist Kekova'yı kaçırıyor — rehbere ekleyin.\n\n📍 kalkaninfo.com → Turlar\n\n#kalkan #kekova #likya #gizliturkey",
+      "caption_en": "An entire city swallowed by the sea. Day trip from Kalkan.\n\nMost visitors never find this — add it to your itinerary.\n\n📍 kalkaninfo.com\n\n#kalkan #kekova #lycia #hiddenturkey",
+      "cta": "Kaydet & Kalkan turuna ekle — kalkaninfo.com → Turlar",
+      "best_post_time": "Salı 19:30 TR",
+      "production_notes": "Çekim: Kekova tekne turu sırasında cam tabanlı bölümden GoPro ile su altı çekim + tekne üstü drone. Lens: geniş açı (16mm eşdeğeri) su altı detaylar için. LUT: teal-orange hafif, mavi tonları canlı tut. ElevenLabs EN: Charlotte. Kekova tekne turu data/turlar.json 'kekova-tekne' id'inden referans al. Sponsorlu değil — rehber tonu."
+    },
+    {
+      "id": "reel-02-saklıkent-kanyon",
+      "pillar": "Gizli Mücevher",
+      "title": "Saklıkent — Avrupa'nın En Derin Kanyonu",
+      "hook_3sec": "18°C — temmuzda. 300 metre derinlikte.",
+      "duration_sec": 28,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Ayaklar buz gibi suya giriyor — kanyon tabanından yukarıya bakmak — gökyüzü dar bir şerit",
+          "text_overlay": "18°C. Temmuzda."
+        },
+        {
+          "t": "3-10s",
+          "shot": "Drone: kanyon girişinden içeriye doğru ilerleyiş — duvarlar yaklaşıyor, dramatik derinlik hissi",
+          "text_overlay": "Saklıkent Kanyonu — 300m derinlik, 18km uzunluk"
+        },
+        {
+          "t": "10-17s",
+          "shot": "Yürüyüş köprüsünden nehir çekimi — çoğul yürüyüşçü siluetleri, suya değen eller",
+          "text_overlay": "Kalkan'dan 1.5 saat"
+        },
+        {
+          "t": "17-22s",
+          "shot": "Kanyon kenarındaki lokal pide restoran — nehir kıyısında masa, ayaklar suda",
+          "text_overlay": "Yemeği nehrin içinde yiyin"
+        },
+        {
+          "t": "22-28s",
+          "shot": "Kanyondan çıkış — güneş ışığı açılıyor",
+          "text_overlay": "Jeep Safari + Saklıkent — kalkaninfo.com"
+        }
+      ],
+      "voiceover_tr": "Saklıkent. Temmuzda dışarısı 40 derece. Kanyon içinde 18. 300 metre derinlikte, 18 kilometre uzunluğunda. Dar geçitten girerken duvarlar sizi sarıyor. Nehir akıyor, ayaklarınız sızıyor. Ortasında bir pide fırını var — suya ayak sokarak yemek yiyorsunuz. Kalkan'dan Jeep Safari ile tam gün.",
+      "voiceover_en": "Saklıkent. It's 40 degrees outside. Inside the gorge, 18. Three hundred metres deep, eighteen kilometres long. You wade in through a narrow slot. The walls close around you. A mountain stream rushes past your ankles. Halfway through, there's a pide restaurant — you eat with your feet in the water. Full-day jeep safari from Kalkan.",
+      "music_mood": "acoustic-adventure-warm",
+      "caption_tr": "40 derece dışarda, 18 derece içeride. Saklıkent böyle bir yer.\n\nJeep Safari ile tam gün — rehber dahil.\n\n📍 kalkaninfo.com → Turlar\n\n#saklıkent #kalkan #kanyon #türkiye",
+      "caption_en": "40 outside, 18 inside. Saklıkent canyon is that kind of place.\n\nFull day jeep safari with guide from Kalkan.\n\n📍 kalkaninfo.com\n\n#saklikent #kalkan #canyon #turkey",
+      "cta": "Kaydet — Kalkan'a gelince mutlaka git",
+      "best_post_time": "Perşembe 11:00 TR",
+      "production_notes": "Çekim: Sabah erken saatte (gölge içinde, serin ışık). GoPro su geçirmez kılıf şart — nehirde çekim. Drone: kanyon girişi yukarıdan (kanyon içi drone yasaktır — dışarıdan bakış yeterli). ElevenLabs EN: Charlotte. Jeep Safari tur: data/turlar.json 'jeep-safari'. Sponsorlu değil."
+    },
+    {
+      "id": "reel-03-xanthos-nehri-kano",
+      "pillar": "Gizli Mücevher",
+      "title": "Xanthos Nehri'nde Kano — 12km Likya",
+      "hook_3sec": "12 kilometre nehir. Antik kent boyunca. Kano ile.",
+      "duration_sec": 27,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Kano içinden ileriye bakış — iki yanında sazlıklar ve ağaçlar, dar nehir kıvrılıyor",
+          "text_overlay": "12km. Antik Likya'nın nehri."
+        },
+        {
+          "t": "3-10s",
+          "shot": "Drone: yukarıdan Eşen Çayı + kano grubu — patara plajı solukta görünüyor",
+          "text_overlay": "Xanthos Nehri — Kalkan'a 45 dk"
+        },
+        {
+          "t": "10-17s",
+          "shot": "Kano köprü altından geçiş — yakın çekim, ışık-gölge oyunu yüzde",
+          "text_overlay": "UNESCO topraklarının içinden geçiyorsunuz"
+        },
+        {
+          "t": "17-23s",
+          "shot": "Patara kumsalında finişi — kanolar karaya çekiliyor, insanlar gülüyor",
+          "text_overlay": "Bitiş: 18km Patara Plajı"
+        },
+        {
+          "t": "23-27s",
+          "shot": "Patara plajından gün batımı silüeti",
+          "text_overlay": "kalkaninfo.com → Turlar"
+        }
+      ],
+      "voiceover_tr": "Xanthos Nehri. Antik Likya başkentinin yanından geçiyor. 12 kilometre boyunca kano çekiyorsunuz — sazlıklar, kuşlar, UNESCO toprakları. Başlangıç Eşen Çayı, bitiş Patara plajı. Sabah 9'da başlayın, öğleden sonra Türkiye'nin en uzun plajındasınız. Bu turu kimse anlatmıyor.",
+      "voiceover_en": "The Xanthos River runs past the capital of ancient Lycia. Twelve kilometres by canoe — reed beds, kingfishers, UNESCO land on both sides. You start on the Eşen River and finish on Patara beach: Turkey's longest untouched coastline. Start at nine, you're swimming by afternoon. Nobody talks about this tour.",
+      "music_mood": "lo-fi-nature-chill",
+      "caption_tr": "Antik Likya'nın nehri boyunca kano. Bitiş noktası: Türkiye'nin en uzun plajı.\n\nSabah başla, öğleden sonra yüz. Rehber ve transfer dahil.\n\n📍 kalkaninfo.com → Turlar\n\n#kalkan #xanthos #patara #kano",
+      "caption_en": "Canoeing the river of ancient Lycia. Finish line: Turkey's longest beach.\n\nStart at 9, swim by afternoon. Guide and transfer included.\n\n📍 kalkaninfo.com\n\n#kalkan #xanthos #patara #canoe #turkey",
+      "cta": "Kaydet — Kalkan'dan günübirlik yapılabilir",
+      "best_post_time": "Cumartesi 10:00 TR",
+      "production_notes": "Çekim: Kano içi GoPro chest mount + drone yukarıdan. Patara plajında bitiş sahnesi altın saat (17-18). Sazlık ve kuş detayları için sabah erken ışık. ElevenLabs EN: Charlotte (doğa içeriğinde sakin ton). data/turlar.json 'xanthos-kano'. Sponsorlu değil."
+    },
+    {
+      "id": "reel-04-street-munch-lokal",
+      "pillar": "Lokal Lezzet",
+      "title": "Street Munch — Kalkan'ın Sokak Lezzeti",
+      "hook_3sec": "Kalkan'da fast food yok. Ama Street Munch var.",
+      "duration_sec": 28,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Yakın çekim — el dolu sandviç/dürüm kameraya uzanıyor, buhar görünür",
+          "text_overlay": "Fast food yok. Sokak lezzeti var."
+        },
+        {
+          "t": "3-10s",
+          "shot": "Dışarıdan mekan çekimi — Demokrasi Caddesi'nde dükkan önü, insanlar bekliyor/yiyor",
+          "text_overlay": "Street Munch — Kalkan Mahallesi, Demokrasi Cad."
+        },
+        {
+          "t": "10-17s",
+          "shot": "Hazırlık süreci — ellerin malzeme koyması, taze ekmeğe sarılması (B-roll yakın)",
+          "text_overlay": "Paket & delivery da var"
+        },
+        {
+          "t": "17-22s",
+          "shot": "Biri ısırıyor — gerçek müşteri tepkisi (izin alarak) veya el kamerasıyla dürüm çekimi",
+          "text_overlay": "+90 545 527 02 75"
+        },
+        {
+          "t": "22-28s",
+          "shot": "Kalkan dar sokakta yürüyüş — elde sandviç, arka planda deniz",
+          "text_overlay": "kalkaninfo.com → Restoranlar"
+        }
+      ],
+      "voiceover_tr": "Kalkan'da 174 restoran var. Ama bazen sadece hızlı, iyi ve ucuz istersiniz. Street Munch tam burada — Demokrasi Caddesi başı, Kalkan mahallesi. Paket alıp koyu götürün, delivery da var. Bu tür yerleri bulmak zor oluyor tatilde.",
+      "voiceover_en": "Kalkan has 174 restaurants. But sometimes you just want something quick, good and easy. Street Munch is right there at the top of Demokrasi Street. Take it to the harbour, get it delivered, or eat standing. The kind of spot that's hard to find when you're a tourist.",
+      "music_mood": "upbeat-acoustic-warm",
+      "caption_tr": "Tatilde de bazen sokak yemeği istiyorsun.\n\nStreet Munch — Kalkan'ın en pratik munch durağı. Paket & delivery.\n\n📍 kalkaninfo.com → Restoranlar\n\n#kalkan #sokakleyzemleri #streetfood #kalkaninfo",
+      "caption_en": "Sometimes on holiday you just want something quick and good.\n\nStreet Munch — Kalkan's most convenient street food stop. Takeaway & delivery.\n\n📍 kalkaninfo.com\n\n#kalkan #streetfood #turkey #kalkaninfo",
+      "cta": "Kaydet — Kalkan'a gelince ilk akşam al",
+      "best_post_time": "Çarşamba 13:00 TR",
+      "production_notes": "Mekan: Kalkan Mahallesi Demokrasi Caddesi No:1. Instagram: @streetmunchkalkan ile koordinasyon önerilir — izin al, story mention al. Çekim: el kamerası vibe (tripod değil), doğal ışık öğleden önce. 1.5-2x hızlandırılmış hazırlık sekansı. Sesli müzik kısmı için mekan müziği kapanabilir. Sponsorlu mi? İstersen belirt — mevcut veriye göre 'featured: true' ama ücretli değil."
+    },
+    {
+      "id": "reel-05-korsan-kalamar-lokal",
+      "pillar": "Lokal Lezzet",
+      "title": "Korsan Kalamar — Balıkçının Masası",
+      "hook_3sec": "Kalkan'da kalamara ne zaman gitmelisiniz? Erken.",
+      "duration_sec": 30,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Taze kalamar tabağı servisi — buhar, sarı limon, zeytinyağı damlası yakın çekim",
+          "text_overlay": "Kalamar tükendi mi? Erken gelmediniz."
+        },
+        {
+          "t": "3-11s",
+          "shot": "Liman kenarında mekan — tekne sesleri arka planda, sarı lamba ışığı akşam",
+          "text_overlay": "Korsan Kalamar — Kalkan Liman"
+        },
+        {
+          "t": "11-18s",
+          "shot": "Meze tabağı gelişi — çoklu tabak servisi, masa doluyor (B-roll üstten çekim)",
+          "text_overlay": "Deniz ürünleri / meze / balık"
+        },
+        {
+          "t": "18-24s",
+          "shot": "Akşam limanda insanlar — tekne yatları görünür, sıcak ışıklar yansıması suda",
+          "text_overlay": "Akşam 18:00'de gelin. Sonra dolup taşıyor."
+        },
+        {
+          "t": "24-30s",
+          "shot": "Hesap geldiğinde masadan geniş açı — dolu masa, mutlu insanlar",
+          "text_overlay": "kalkaninfo.com → Restoranlar"
+        }
+      ],
+      "voiceover_tr": "Kalkan limanında balıkçının masası diye bir şey var. Korsan Kalamar. Akşam 18'den sonra gidiyorsunuz — 19'da boş masa bulmak zor. Taze kalamar, günlük meze, limanın kokusu. Turistik değil, lokal. Instagram'ları @korsankalkan.",
+      "voiceover_en": "There's a fisherman's table at Kalkan harbour. Korsan Kalamar. You go after six in the evening — by seven finding a table is hard. Fresh squid, daily mezze, the smell of the harbour. Not touristy. Local. Their Instagram is korsankalkan.",
+      "music_mood": "warm-mediterranean-acoustic",
+      "caption_tr": "Liman kenarında balıkçı sofrası.\n\nKorsan Kalamar — akşam 18:00'den önce gidin.\n\n📍 kalkaninfo.com → Restoranlar\n\n#kalkan #denizürünleri #kalamar #kalkanrestoranları",
+      "caption_en": "A fisherman's table at the harbour.\n\nKorsan Kalamar — get there before 6pm.\n\n📍 kalkaninfo.com\n\n#kalkan #seafood #squid #kalkanrestaurants #turkey",
+      "cta": "Kaydet — Kalkan restoranı listene ekle",
+      "best_post_time": "Cuma 18:30 TR",
+      "production_notes": "Çekim: Altın saat (19:00-19:30 temmuzda) — liman ışıkları ve doğal ışık çakışması. Tripod + yakın lens kalamar servisinde. Instagram @korsankalkan — izin + mention. Mekandan müzik arka planda bırakılabilir (ambient). LUT: sıcak tonlar, teal kalamar detayında. Sponsorlu değil."
+    },
+    {
+      "id": "reel-06-kaputas-golden-hour",
+      "pillar": "Sunset/Beach Vibes",
+      "title": "Kaputaş — 187 Basamak, Bir Turkuaz Koy",
+      "hook_3sec": "187 basamak. Bu manzara için yapılır.",
+      "duration_sec": 30,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Merdivenlerden hızlı aşağı inme POV — son adımda koy açılıyor (dramatik reveal)",
+          "text_overlay": "187 basamak."
+        },
+        {
+          "t": "3-11s",
+          "shot": "Drone: Kaputaş koyunun yüksekten tam cephesi — turkuaz renk, beyaz çakıl, kanyonun yarığı",
+          "text_overlay": "Kaputaş Plajı — Kalkan'a 10 dakika"
+        },
+        {
+          "t": "11-18s",
+          "shot": "Suya girme anı — berrak sudan içeriye bakış, taşlar seçilir",
+          "text_overlay": "Türkiye'nin en çok fotoğraflanan plajlarından biri"
+        },
+        {
+          "t": "18-24s",
+          "shot": "Altın saat — gün batımı ışığı koyun suyuna vururken yukarıdan drone çekimi",
+          "text_overlay": "Sabah 09:00 öncesi veya 17:00 sonrası gidin"
+        },
+        {
+          "t": "24-30s",
+          "shot": "Basamaktan yukarı bakış — tepeyi frame'de tut, koy arkada",
+          "text_overlay": "kalkaninfo.com → Plajlar"
+        }
+      ],
+      "voiceover_tr": "Kaputaş. 187 basamak. Merdivenin sonunda Türkiye'nin en çok fotoğraflanan koylarından biri açılıyor. Kalkan'a 10 dakika, Kaş'a 15. Öğlen aşırı kalabalık. Sabah dokuzdan önce veya öğleden sonra beşten sonra gidin — suya giren sadece siz olursunuz.",
+      "voiceover_en": "Kaputaş. One hundred and eighty-seven steps down. At the bottom — one of Turkey's most photographed coves. Ten minutes from Kalkan, fifteen from Kaş. Packed at midday. Go before nine in the morning or after five in the afternoon. Then the water is just yours.",
+      "music_mood": "cinematic-uplift-soft",
+      "caption_tr": "187 basamak. Bu manzara için değer.\n\nSabah erken veya öğleden sonra gidin — kalabalıktan kaçın.\n\n📍 kalkaninfo.com → Plajlar\n\n#kaputaş #kalkan #plaj #türkiyeplajları",
+      "caption_en": "187 steps. Worth every one.\n\nGo early morning or late afternoon — beat the crowds.\n\n📍 kalkaninfo.com\n\n#kaputas #kalkan #beach #turkey #turkishriviera",
+      "cta": "Kaydet — Kalkan tatil listenize ekleyin",
+      "best_post_time": "Pazartesi 20:00 TR",
+      "production_notes": "Drone: D400 yol kenarı park, koy üstü uçuş — irtifa düşük tut, dramatik perspektif. Sabah erken (08:00-09:00) veya altın saat çekim. Reveal sahnesi kritik: merdiven son adımı + koy açılış tek shot olmalı. LUT: teal-orange (su turkuazı ve altın ışık). ElevenLabs EN: Charlotte, sakin ve etkileyici. data/plajlar.json 'kaputas'."
+    },
+    {
+      "id": "reel-07-sunset-cruise-koy",
+      "pillar": "Sunset/Beach Vibes",
+      "title": "Sunset Cruise — Kalkan Koyu'nda Gün Biter",
+      "hook_3sec": "Gün batımını tekneden izlemek başka bir şey.",
+      "duration_sec": 32,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Suyun üzerinde kızıl güneş yansıması — yakın çekim, neredeyse soyut",
+          "text_overlay": "Gün biterken en iyi yer."
+        },
+        {
+          "t": "3-10s",
+          "shot": "Drone: Sunset Cruise teknesi Kalkan koyu üzerinde — arka planda Kalkan kasabası, gün batımı gökyüzü",
+          "text_overlay": "Sunset Cruise — Kalkan Yat Limanı, 18:00"
+        },
+        {
+          "t": "10-18s",
+          "shot": "Teknede meze tabağı ve kokteyl — güneşin altında masa, insanlar konuşuyor",
+          "text_overlay": "Cocktail + meze + canlı müzik dahil"
+        },
+        {
+          "t": "18-25s",
+          "shot": "Güneş ufka inerken geniş çekim — siluet fotoğrafı (insanlar tekne kenarında), gökyüzü kızarıyor",
+          "text_overlay": "Her gün 18:00 – 21:30"
+        },
+        {
+          "t": "25-32s",
+          "shot": "Gece limanına dönüş — ışıklar yanmış, tekne yanaşıyor",
+          "text_overlay": "₺750 / kişi · kalkaninfo.com → Turlar"
+        }
+      ],
+      "voiceover_tr": "Kalkan'da gün batımını en iyi nereden görürsünüz? Açık denizden. Sunset Cruise her gün 18'de kalkıyor — cocktail, meze, canlı müzik. Kasaba ışıkları yavaş yavaş yanıyor, güneş batıyor. 21:30'da limana dönüyorsunuz. Bu geceyi planlamak gerekiyor.",
+      "voiceover_en": "Where's the best place to watch the sunset in Kalkan? From the water. The Sunset Cruise leaves at six every evening — cocktail, mezze, live music. The town lights slowly come on. The sun drops. You're back at the harbour by half past nine. Plan this evening.",
+      "music_mood": "cinematic-uplift-golden",
+      "caption_tr": "Kasabayı su üzerinden izlemek — başka bir şey.\n\nSunset Cruise: 18:00 kalkış, cocktail + meze dahil.\n\n📍 kalkaninfo.com → Turlar\n\n#kalkan #sunsetcruise #gunbatimi #tekne",
+      "caption_en": "Watching the town from the water as the sun goes down.\n\nSunset Cruise: 6pm departure, cocktail + mezze included.\n\n📍 kalkaninfo.com\n\n#kalkan #sunsetcruise #yacht #turkey #mediterranean",
+      "cta": "Kaydet — Kalkan'da bir geceyi bu için ayır",
+      "best_post_time": "Perşembe 20:30 TR",
+      "production_notes": "Drone: altın saat (20:00-20:45 Temmuz) — tekneden çekilebiliyorsa çek, yoksa uzaktan. Tripod tekne içi için gimbal şart. Gün batımı rengi maksimum: beyaz balans 5600-6000K, LUT sıcak tut. ElevenLabs EN: Charlotte, yavaş ritim. data/turlar.json 'sunset-cruise'. Sponsorlu değil — fiyat vermek rehber tonuna uygun."
+    },
+    {
+      "id": "reel-08-kalkan-bir-gun",
+      "pillar": "Kalkan'da Bir Gün",
+      "title": "Kalkan'da Mükemmel Bir Gün — Sabahtan Geceye",
+      "hook_3sec": "Kalkan'da 24 saat. Nasıl geçirilir?",
+      "duration_sec": 35,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Güneş doğarken Kalkan çatıları üzerinde geniş çekim — pembe gökyüzü",
+          "text_overlay": "07:00 — Kalkan sabahı"
+        },
+        {
+          "t": "3-8s",
+          "shot": "Sahil yürüyüşü — sessiz Kalkan limanı, kedi, kahve bardağı elde",
+          "text_overlay": "Kahve. Liman. Sessizlik."
+        },
+        {
+          "t": "8-13s",
+          "shot": "Kaputaş plajında yüzme — öğlen öncesi mavi su, az kişi",
+          "text_overlay": "10:00 — Kaputaş'a 10 dakika"
+        },
+        {
+          "t": "13-18s",
+          "shot": "Eski Kalkan sokaklarında öğle yemeği — gölgeli terasta meze tabağı",
+          "text_overlay": "13:00 — Eski Kalkan, terasta öğle"
+        },
+        {
+          "t": "18-23s",
+          "shot": "Butik dükkanlarda gezinti — dar sokak, renkli kapılar, saksı çiçekleri",
+          "text_overlay": "16:00 — Kalkan çarşısı"
+        },
+        {
+          "t": "23-30s",
+          "shot": "Sunset Cruise veya liman kenarı gün batımı — altın ışık",
+          "text_overlay": "20:00 — Gün biter. Güzel biter."
+        },
+        {
+          "t": "30-35s",
+          "shot": "Gece Kalkan sokakları — ışıklar, gülüşmeler, yürüyüş",
+          "text_overlay": "kalkaninfo.com — Tam rehber"
+        }
+      ],
+      "voiceover_tr": "Kalkan'da mükemmel bir gün şöyle geçer. Sabah erken kahveyi limanda içersiniz — tekne sesleri, kedi. On'da Kaputaş'tasınız — turkuaz su, az kişi. Öğlen eski Kalkanda, terasta. Öğleden sonra dar sokaklar, butikler. Akşam ya Sunset Cruise ya liman kenarı gün batımı. Gece yemeği ve yürüyüş. Yirmi dört saat. Yetmiyor.",
+      "voiceover_en": "A perfect day in Kalkan looks like this. Early morning coffee at the harbour — boat sounds, a cat. By ten you're at Kaputaş — turquoise water, almost nobody there. Lunch in old Kalkan, on a terrace in the shade. Afternoon through narrow streets and boutiques. Evening: Sunset Cruise or harbour-side sundowner. Dinner and a night walk. Twenty-four hours. Never enough.",
+      "music_mood": "warm-day-montage-acoustic",
+      "caption_tr": "Kalkan'da 24 saat nasıl geçirilir — saat saat rehber.\n\nTatil planı yapıyorsanız bu reeli kaydedin.\n\n📍 kalkaninfo.com — Tam tatil rehberi\n\n#kalkan #tatilrehberi #türkiye #akdeniz",
+      "caption_en": "How to spend 24 hours in Kalkan — an honest hour-by-hour guide.\n\nSave this for trip planning.\n\n📍 kalkaninfo.com\n\n#kalkan #travelguide #turkey #mediterranean #turkeytravel",
+      "cta": "Kaydet — Kalkan tatil planını buradan yap",
+      "best_post_time": "Pazar 11:00 TR",
+      "production_notes": "Bu reel montaj — farklı günlerde çekilip birleştirilebilir. Sabah: 07:00-08:00, liman boş. Kaputaş: 09:00-10:00. Eski Kalkan öğle: 13:00. Butikler: 16:00. Gün batımı: 20:30-20:45. J-cut ve L-cut geçişler — her sahne bir öncekiyle ses overlapping. Tempo: orta, nefes alan. ElevenLabs EN: Charlotte. LUT: tutarlı warm teal-orange tüm shot'larda."
+    },
+    {
+      "id": "reel-09-patara-aziz-nikolas",
+      "pillar": "Antik Kent Hikâyesi",
+      "title": "Patara — Noel Baba'nın Gerçek Memleketi",
+      "hook_3sec": "Noel Baba Kuzey Kutbu'ndan değil. Buradan.",
+      "duration_sec": 32,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Patara Bouleuterion içinden yukarı bakış — dramatik taş duvar ve gökyüzü",
+          "text_overlay": "Noel Baba gerçek miydi? Evet. Buradandı."
+        },
+        {
+          "t": "3-11s",
+          "shot": "Drone: Patara antik kenti havadan — tiyatro, sütunlu cadde, arka planda plaj",
+          "text_overlay": "Patara Antik Kenti — MS 270, Aziz Nikolas doğdu"
+        },
+        {
+          "t": "11-18s",
+          "shot": "Bouleuterion içi yakın çekim — taş sıralar, akustik test (fısıltı sahnesi)",
+          "text_overlay": "Dünyanın ilk demokratik meclisi — MÖ 2. yy"
+        },
+        {
+          "t": "18-24s",
+          "shot": "Patara plajı — antik kentten plaja geçiş, 18km kum",
+          "text_overlay": "Aynı bilet: antik kent + 18km plaj"
+        },
+        {
+          "t": "24-32s",
+          "shot": "Tiyatrodan Akdeniz'e bakış — gün batımı saatinde dramatik geniş çekim",
+          "text_overlay": "Kalkan'a 20 dk · kalkaninfo.com → Antik Kentler"
+        }
+      ],
+      "voiceover_tr": "Noel Baba gerçekti. Adı Aziz Nikolas. MS 270'te Patara'da doğdu — Kalkan'a 20 dakika. Likya Birliği'nin başkenti, Apollo'nun doğum yeri, dünyanın ilk demokratik meclisi. Tiyatrodan Akdeniz'e bakıyorsunuz. Sonra aynı biletle 18 kilometre el değmemiş plaja geçiyorsunuz. Bir şehir bu kadar hikâye taşıyamaz. Taşıyor.",
+      "voiceover_en": "Saint Nicholas was real. He was born here — in Patara — in 270 AD. Twenty minutes from Kalkan. Capital of the Lycian League. Birthplace of Apollo. Home to the world's first democratic parliament. You stand in the theatre and look out over the Mediterranean. Then, same ticket, you walk to an eighteen-kilometre untouched beach. One place. Too many stories. All of them true.",
+      "music_mood": "epic-cinematic-rise",
+      "caption_tr": "Noel Baba Kuzey Kutbu'ndan değil. Patara'dan.\n\nLikya başkenti, Apollo'nun memleketi, dünyanın ilk meclisi. Kalkan'a 20 dk.\n\n📍 kalkaninfo.com → Antik Kentler\n\n#patara #kalkan #likya #aziznikolas",
+      "caption_en": "Santa Claus wasn't from the North Pole. He was from Patara.\n\nLycian capital. Apollo's birthplace. World's first parliament. 20 minutes from Kalkan.\n\n📍 kalkaninfo.com\n\n#patara #kalkan #lycia #saintnicolas #ancientruins #turkey",
+      "cta": "Kaydet — Kalkan'a gelince Patara şart",
+      "best_post_time": "Salı 20:00 TR",
+      "production_notes": "Bu reel antik-reels.json'daki Patara script'ini Temmuz 2026 için yeniden kurgular — farklı hook ve daha kısa format. Çekim: Bouleuterion akustik anı önemli — fısıltı kameraya yakın mic ile. Tiyatro drone sabah veya akşam (öğlen sert gölge). Plaj geçişi: aynı gün bilet göstererek girilir, çekim orada. ElevenLabs EN: Charlotte. LUT: teal-orange, taş ve deniz kontrası."
+    },
+    {
+      "id": "reel-10-kalkan-pratik-bilgi",
+      "pillar": "Pratik Bilgi",
+      "title": "Kalkan'da Bilmen Gereken 5 Şey — Locals'tan",
+      "hook_3sec": "Kalkan'a gelmeden önce kimse bunları söylemez.",
+      "duration_sec": 30,
+      "shot_list": [
+        {
+          "t": "0-3s",
+          "shot": "Kalkan dar sokak üstten çekim — turistler yürüyor, kimse bilgi kartına bakmıyor",
+          "text_overlay": "Kalkan'a gelmeden önce kimse bunları söylemez."
+        },
+        {
+          "t": "3-9s",
+          "shot": "Restoran kapısı — 'KAPALI' yazısı (öğlen molası), bir çift şaşkın bakıyor",
+          "text_overlay": "1. Restoranlar 14:00-18:00 kapalı. Plan yap."
+        },
+        {
+          "t": "9-15s",
+          "shot": "Kalkan dar sokakta araba — arka plan tıkandı, yaya yolu sıkışık",
+          "text_overlay": "2. Arabayı üstte park et. Aşağı yürü."
+        },
+        {
+          "t": "15-20s",
+          "shot": "Kaputaş merdivenleri — öğlen kalabalık, kuyruk görünür",
+          "text_overlay": "3. Kaputaş'a 09:00 öncesi veya 17:00 sonrası"
+        },
+        {
+          "t": "20-25s",
+          "shot": "Taksi durağı veya minibüs — Kalkan otogar çekimi",
+          "text_overlay": "4. Kaş ve Patara'ya dolmuş var. Taksi pahalı."
+        },
+        {
+          "t": "25-30s",
+          "shot": "Nöbetçi eczane işareti veya kalkaninfo.com açık ekran",
+          "text_overlay": "5. kalkaninfo.com — nöbetçi eczane + haberler + rehber"
+        }
+      ],
+      "voiceover_tr": "Kalkan'a gelmeden önce beş şey. Birincisi: restoranlar öğleden sonra genellikle kapalı, planlayın. İkincisi: arabayı yukarıda park edin, aşağıya yürüyün — sokaklar çok dar. Üçüncüsü: Kaputaş sabah erken veya öğleden sonra geç. Dördüncüsü: Kaş ve Patara'ya dolmuş var, taksi değil. Ve son olarak: kalkaninfo.com — nöbetçi eczane, haberler, rehber. Şimdi hazırsınız.",
+      "voiceover_en": "Five things before you arrive in Kalkan. One: most restaurants close in the afternoon — plan around it. Two: park at the top of town and walk down — the streets are too narrow. Three: Kaputaş is early morning or late afternoon — midday is a crowd. Four: there are minibuses to Kaş and Patara, you don't need a taxi. And five: kalkaninfo.com — duty pharmacy, local news, full guide. Now you're ready.",
+      "music_mood": "light-upbeat-info",
+      "caption_tr": "Kalkan'a gelmeden önce bunları bilin.\n\n5 lokal ipucu — pratik, dürüst, spoilersız.\n\n📍 kalkaninfo.com — Tam rehber\n\n#kalkan #seyahatipuçları #türkiye #kalkanrehber",
+      "caption_en": "Know these before you arrive in Kalkan.\n\n5 local tips — practical, honest, no fluff.\n\n📍 kalkaninfo.com\n\n#kalkan #traveltips #turkey #mediterraneantravel #kalkantravel",
+      "cta": "Kaydet & arkadaşına gönder — Kalkan'a geleceklere",
+      "best_post_time": "Cuma 09:00 TR",
+      "production_notes": "Format: kinetic typography ağırlıklı — her ipucu için tek shot + büyük metin overlay. B-roll gerçek durumları yansıtmalı (öğlen kapalı kapı, dar sokak). Seslendirme hızlı ve net. Liste formatı IG'de iyi kaydet oranı verir. ElevenLabs EN: Charlotte, tempolu. Sponsorlu değil — kalkaninfo.com CTA organik."
+    }
+  ]
+}
