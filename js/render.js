@@ -319,7 +319,7 @@ const KalkanData = (() => {
           </div>
         </div>
         <div class="p-4">
-          <h3 ${nameAttrs} class="font-display font-extrabold text-ink-900 text-lg leading-tight">${escape(name)}</h3>
+          <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight"><a ${nameAttrs} href="${r.detailPath || `restoran/${escape(r.id)}/`}" class="hover:text-sea-700 transition-colors" style="color:inherit;text-decoration:none;">${escape(name)}</a></h3>
           <div class="text-xs text-ink-700/60 mt-1">${escape(cuisine)}${location?` · ${escape(location)}`:''}</div>
           <p ${summaryAttrs} class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(summary)}</p>
           <div class="flex flex-wrap gap-1 mt-3">${specs}</div>
