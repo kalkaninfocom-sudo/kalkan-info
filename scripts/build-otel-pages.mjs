@@ -218,14 +218,17 @@ function amenityIcon(name) {
   return svg('<path d="M4 12l5 5L20 7"/>');
 }
 
-// AggregateRating JSON-LD
-function aggregateRatingJson(cache) {
+// AggregateRating JSON-LD — gecerli rating+reviewCount yoksa null (alan cikarilir).
+// Bos "{}" Rich Results'ta invalid markup uyarisi verir.
+function aggregateRatingJson(cache, r) {
   const place = cache?.place || {};
-  if (!place.rating && !place.reviews) return {};
+  const ratingValue = place.rating ?? r?.rating ?? null;
+  const reviewCount = place.reviews ?? r?.reviewCount ?? null;
+  if (!ratingValue || !reviewCount) return null;
   return {
     '@type': 'AggregateRating',
-    ratingValue: place.rating ?? undefined,
-    reviewCount: place.reviews ?? undefined,
+    ratingValue: Number(ratingValue),
+    reviewCount: Number(reviewCount),
     bestRating: 5,
     worstRating: 1
   };
@@ -477,7 +480,7 @@ for (const slug of targets) {
     STAR_RATING_HTML: officialStarsHtml(r.starRating),
     STAR_RATING_JSON: r.starRating ? JSON.stringify({ '@type':'Rating', ratingValue: r.starRating, bestRating: 5 }) : 'null',
     AMENITY_FEATURE_JSON: JSON.stringify(amenityFeatureJson(r.amenities)),
-    AGGREGATE_RATING_JSON: JSON.stringify(aggregateRatingJson(reviewCache)),
+    AGGREGATE_RATING_BLOCK: (() => { const a = aggregateRatingJson(reviewCache, r); return a ? `"aggregateRating":${JSON.stringify(a)},\n  ` : ''; })(),
     REVIEW_ARRAY_JSON: JSON.stringify(reviewArrayJson(reviewCache)),
     SAME_AS_JSON: JSON.stringify(sameAs),
     I18N_JSON: JSON.stringify(I18N_BASE),

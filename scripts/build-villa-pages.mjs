@@ -554,10 +554,18 @@ for (const slug of targets) {
   const paymentMethods = ['Cash', 'CreditCard', 'BankTransfer'];
 
   // Template doldur
+  // Geo — gercek koordinat varsa uretilir, yoksa cikar (sahte merkez koordinat basma).
+  const _vlat = (v.coordinates && (v.coordinates.latitude ?? v.coordinates.lat)) ?? (v.geo && (v.geo.lat ?? v.geo.latitude)) ?? null;
+  const _vlng = (v.coordinates && (v.coordinates.longitude ?? v.coordinates.lng)) ?? (v.geo && (v.geo.lng ?? v.geo.longitude)) ?? null;
+  const geoBlock = (_vlat != null && _vlng != null)
+    ? `"geo":{"@type":"GeoCoordinates","latitude":${Number(_vlat)},"longitude":${Number(_vlng)}},\n  `
+    : '';
+
   const repl = {
     NAME: v.name,
     NAME_URL: encodeURIComponent(v.name),
     SLUG: v.id,
+    GEO_BLOCK: geoBlock,
     CATEGORY: v.category,
     SUMMARY: v.summary || c.tagline || '',
     TAGLINE: c.tagline || v.summary || '',

@@ -120,16 +120,31 @@ function starsHtml(rating) {
 }
 
 // AggregateRating JSON-LD objesi (Schema.org)
-function aggregateRatingJson(cache) {
+// Oncelik: SerpApi review cache > restoranlar.json'daki rating/reviewCount.
+// Hicbiri yoksa null doner -> JSON-LD'de aggregateRating alani TAMAMEN cikarilir
+// (bos "{}" Rich Results'ta invalid markup uyarisi verir).
+function aggregateRatingJson(cache, r) {
   const place = cache?.place || {};
-  if (!place.rating && !place.reviews) return {};
+  const ratingValue = place.rating ?? r?.rating ?? null;
+  const reviewCount = place.reviews ?? r?.reviewCount ?? null;
+  if (!ratingValue || !reviewCount) return null;
   return {
     '@type': 'AggregateRating',
-    ratingValue: place.rating ?? undefined,
-    reviewCount: place.reviews ?? undefined,
+    ratingValue: Number(ratingValue),
+    reviewCount: Number(reviewCount),
     bestRating: 5,
     worstRating: 1
   };
+}
+
+// Geo JSON-LD blok — restoranlar.json coordinates.latitude/longitude varsa gercek
+// koordinati uretir; yoksa null (sablonda satir tamamen cikarilir).
+function geoJson(r) {
+  const c = r?.coordinates || {};
+  const lat = c.latitude ?? c.lat ?? null;
+  const lng = c.longitude ?? c.lng ?? c.lon ?? null;
+  if (lat == null || lng == null) return null;
+  return { '@type': 'GeoCoordinates', latitude: Number(lat), longitude: Number(lng) };
 }
 
 // Review array JSON-LD (en fazla 5 yorum)
@@ -347,6 +362,12 @@ for (const slug of targets) {
   const reviewCache = await loadReviewCache(r.id);
   const reviewsSectionHtml = buildReviewsSection(r, reviewCache);
 
+  // JSON-LD kosullu bloklar: gecerli veri yoksa alan TAMAMEN cikarilir.
+  const aggObj = aggregateRatingJson(reviewCache, r);
+  const aggregateRatingBlock = aggObj ? `"aggregateRating":${JSON.stringify(aggObj)},\n  ` : '';
+  const geoObj = geoJson(r);
+  const geoBlock = geoObj ? `"geo":${JSON.stringify(geoObj)},\n  ` : '';
+
   // Template doldur
   const repl = {
     NAME: r.name,
@@ -381,7 +402,8 @@ for (const slug of targets) {
     SOCIAL_LINKS: socialLinks(r),
     REVIEWS_SECTION: reviewsSectionHtml,
     RESERVATIONS: r.reservation ? 'True' : 'True',
-    AGGREGATE_RATING_JSON: JSON.stringify(aggregateRatingJson(reviewCache)),
+    AGGREGATE_RATING_BLOCK: aggregateRatingBlock,
+    GEO_BLOCK: geoBlock,
     REVIEW_ARRAY_JSON: JSON.stringify(reviewArrayJson(reviewCache)),
     SAME_AS_JSON: JSON.stringify(sameAs),
     I18N_JSON: JSON.stringify(I18N_BASE),

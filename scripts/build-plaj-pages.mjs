@@ -238,16 +238,17 @@ function infoIcon(name) {
   return svg('<path d="M4 12l5 5L20 7"/>');
 }
 
-// AggregateRating JSON-LD
-function aggregateRatingJson(cache, fallbackRating) {
+// AggregateRating JSON-LD — rating VE reviewCount ikisi de gerekli, yoksa null.
+// Bos "{}" veya reviewCount'suz AggregateRating Rich Results'ta invalid.
+function aggregateRatingJson(cache, r) {
   const place = cache?.place || {};
-  const rating = place.rating ?? fallbackRating ?? null;
-  const reviewCount = place.reviews ?? null;
-  if (!rating && !reviewCount) return {};
+  const rating = place.rating ?? r?.rating ?? null;
+  const reviewCount = place.reviews ?? r?.reviewCount ?? null;
+  if (!rating || !reviewCount) return null;
   return {
     '@type': 'AggregateRating',
-    ratingValue: rating ?? undefined,
-    reviewCount: reviewCount ?? undefined,
+    ratingValue: Number(rating),
+    reviewCount: Number(reviewCount),
     bestRating: 5,
     worstRating: 1
   };
@@ -429,11 +430,15 @@ for (const slug of targets) {
   // Maps query
   const mapsQuery = encodeURIComponent(`${r.name} ${r.region || 'Kalkan'} Antalya`);
 
-  // Geo
+  // Geo — sadece gercek GPS varsa uretilir. Kaputas/Patara gibi uzak plajlara
+  // sahte Kalkan-merkez koordinati basmak yanlis konum verir; gercek yoksa cikar.
   const reviewCache = await loadReviewCache(r.id);
   const gpsRaw = reviewCache?.place?.gps;
-  const geoLat = (gpsRaw && gpsRaw.latitude) || 36.2655;
-  const geoLng = (gpsRaw && gpsRaw.longitude) || 29.4138;
+  const geoLat = gpsRaw?.latitude ?? (r.coordinates && (r.coordinates.latitude ?? r.coordinates.lat)) ?? null;
+  const geoLng = gpsRaw?.longitude ?? (r.coordinates && (r.coordinates.longitude ?? r.coordinates.lng)) ?? null;
+  const geoBlock = (geoLat != null && geoLng != null)
+    ? `"geo":{"@type":"GeoCoordinates","latitude":${Number(geoLat)},"longitude":${Number(geoLng)}},\n  `
+    : '';
 
   // Reviews section
   const reviewsSectionHtml = buildReviewsSection(r, reviewCache);
@@ -481,8 +486,7 @@ for (const slug of targets) {
     HERO_IMAGE_FULL: heroImageFull,
     OG_IMAGE_FULL: ogImageFull,
     MAPS_QUERY: mapsQuery,
-    GEO_LAT: geoLat,
-    GEO_LNG: geoLng,
+    GEO_BLOCK: geoBlock,
     HIGHLIGHT_TILES: highlightTiles || `<div class="info-tile col-span-full text-sm" style="color:var(--theme-muted);">Bilgi yakında eklenecek.</div>`,
     FACILITY_TILES: facilityTiles || `<div class="info-tile col-span-full text-sm" style="color:var(--theme-muted);">Doğal plaj, sınırlı olanak.</div>`,
     TAG_PILLS: tagPills,
@@ -492,7 +496,7 @@ for (const slug of targets) {
     FAQ_JSON_LD: faqJsonLd,
     RATING_HTML: ratingHtml(reviewCache?.place?.rating ?? r.rating),
     AMENITY_FEATURE_JSON: JSON.stringify(amenityFeatureJson([...(r.facilities || []), ...(r.highlights || [])])),
-    AGGREGATE_RATING_JSON: JSON.stringify(aggregateRatingJson(reviewCache, r.rating)),
+    AGGREGATE_RATING_BLOCK: (() => { const a = aggregateRatingJson(reviewCache, r); return a ? `"aggregateRating":${JSON.stringify(a)},\n  ` : ''; })(),
     REVIEW_ARRAY_JSON: JSON.stringify(reviewArrayJson(reviewCache)),
     SAME_AS_JSON: JSON.stringify(sameAs),
     I18N_JSON: JSON.stringify(I18N_BASE),
