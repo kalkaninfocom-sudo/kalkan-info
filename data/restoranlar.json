@@ -29,6 +29,81 @@
   ],
   "items": [
     {
+      "id": "street-munch",
+      "name": "Street Munch",
+      "category": "Sokak Yemeği",
+      "cuisine": "Sokak Yemeği / Paket & Delivery",
+      "priceRange": "₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mahallesi Demokrasi Caddesi No:1, Kaş, Antalya",
+      "phone": "+90 545 527 02 75",
+      "website": "https://www.instagram.com/streetmunchkalkan/",
+      "instagram": "https://www.instagram.com/streetmunchkalkan/",
+      "image": "/assets/img/streetmunch-hero.jpg",
+      "gallery": [
+        "/assets/img/streetmunch-hero.jpg"
+      ],
+      "summary": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+      "specialties": [
+        "Sokak Yemeği",
+        "Paket Servis",
+        "Delivery"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": true,
+      "source": "instagram",
+      "detailPath": "restoran/street-munch-premium/",
+      "customSiteUrl": "https://www.kalkaninfo.com/restoran/street-munch-premium/",
+      "place_id": "",
+      "coordinates": {
+        "latitude": 36.2686793,
+        "longitude": 29.4122333
+      },
+      "nameI18n": {
+        "tr": "Street Munch",
+        "en": "Street Munch",
+        "de": "Street Munch",
+        "ru": "Street Munch",
+        "fr": "Street Munch"
+      },
+      "summaryI18n": {
+        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+        "en": "Street food waiting for you at the top of the road. Kalkan's most convenient munch stop with takeaway & delivery.",
+        "de": "Street Food am Anfang der Straße. Kalkans praktischster Munch-Stopp mit Takeaway & Lieferung.",
+        "ru": "Уличная еда в начале улицы. Самая удобная точка перекуса в Калкане с доставкой и навынос.",
+        "fr": "Street food qui vous attend au bout de la rue. L'arrêt munch le plus pratique de Kalkan avec emporter & livraison."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Sokak Yemeği",
+          "Paket Servis",
+          "Delivery"
+        ],
+        "en": [
+          "Street Food",
+          "Takeaway",
+          "Delivery"
+        ],
+        "de": [
+          "Street Food",
+          "Mitnahme",
+          "Lieferung"
+        ],
+        "ru": [
+          "Уличная еда",
+          "Навынос",
+          "Доставка"
+        ],
+        "fr": [
+          "Street Food",
+          "À emporter",
+          "Livraison"
+        ]
+      }
+    },
+    {
       "id": "ehl-i-keyf-kas",
       "name": "Ehl-i Keyf Meyhanesi · Kaş",
       "category": "Türk Mutfağı",
@@ -6524,79 +6599,6 @@
       "nameI18n": {
         "tr": "DÖNER & MORE Restaurant – No Alcohol Served",
         "en": "DÖNER & MORE Restaurant – No Alcohol Served"
-      }
-    },
-    {
-      "id": "street-munch",
-      "name": "Street Munch",
-      "category": "Sokak Yemeği",
-      "cuisine": "Sokak Yemeği / Paket & Delivery",
-      "priceRange": "₺",
-      "rating": null,
-      "reviewCount": 0,
-      "location": "Kalkan Mahallesi Demokrasi Caddesi No:1, Kaş, Antalya",
-      "phone": "+90 545 527 02 75",
-      "website": "https://www.instagram.com/streetmunchkalkan/",
-      "instagram": "https://www.instagram.com/streetmunchkalkan/",
-      "image": "/assets/img/streetmunch-hero.jpg",
-      "gallery": [
-        "/assets/img/streetmunch-hero.jpg"
-      ],
-      "summary": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-      "specialties": [
-        "Sokak Yemeği",
-        "Paket Servis",
-        "Delivery"
-      ],
-      "hours": null,
-      "reservation": false,
-      "featured": true,
-      "source": "instagram",
-      "place_id": "",
-      "coordinates": {
-        "latitude": 36.2686793,
-        "longitude": 29.4122333
-      },
-      "nameI18n": {
-        "tr": "Street Munch",
-        "en": "Street Munch",
-        "de": "Street Munch",
-        "ru": "Street Munch",
-        "fr": "Street Munch"
-      },
-      "summaryI18n": {
-        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-        "en": "Street food waiting for you at the top of the road. Kalkan's most convenient munch stop with takeaway & delivery.",
-        "de": "Street Food am Anfang der Straße. Kalkans praktischster Munch-Stopp mit Takeaway & Lieferung.",
-        "ru": "Уличная еда в начале улицы. Самая удобная точка перекуса в Калкане с доставкой и навынос.",
-        "fr": "Street food qui vous attend au bout de la rue. L'arrêt munch le plus pratique de Kalkan avec emporter & livraison."
-      },
-      "specialtiesI18n": {
-        "tr": [
-          "Sokak Yemeği",
-          "Paket Servis",
-          "Delivery"
-        ],
-        "en": [
-          "Street Food",
-          "Takeaway",
-          "Delivery"
-        ],
-        "de": [
-          "Street Food",
-          "Mitnahme",
-          "Lieferung"
-        ],
-        "ru": [
-          "Уличная еда",
-          "Навынос",
-          "Доставка"
-        ],
-        "fr": [
-          "Street Food",
-          "À emporter",
-          "Livraison"
-        ]
       }
     }
   ]

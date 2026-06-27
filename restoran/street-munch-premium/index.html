@@ -633,6 +633,57 @@ h1, h2, h3, h4, .font-display {
   pointer-events: none;
 }
 .sm-menu-card:hover .sm-card-tint { opacity: 1; }
+
+/* ── Poster menu cards (full menu pages) ───────────────────────────────── */
+.sm-menu-grid--posters {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+@media (max-width: 1100px) { .sm-menu-grid--posters { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px)  { .sm-menu-grid--posters { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px)  { .sm-menu-grid--posters { grid-template-columns: 1fr; } }
+.sm-menu-card--poster {
+  aspect-ratio: 4419 / 6250;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 14px 32px -16px rgba(0,0,0,0.85);
+}
+.sm-menu-card--poster img { object-fit: cover; }
+.sm-menu-card--poster:hover img,
+.sm-menu-card--poster:focus-visible img { transform: scale(1.04); }
+.sm-card-expand {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+}
+.sm-menu-card--poster:hover .sm-card-expand,
+.sm-menu-card--poster:focus-visible .sm-card-expand { opacity: 1; }
+.sm-card-expand-ic {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,107,26,0.94); color: #0a0a0a;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.55);
+}
+.sm-menu-order-wrap { text-align: center; margin-top: 44px; }
+.sm-menu-order-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 18px 46px; border-radius: 999px;
+  background: var(--accent); color: #0a0a0a;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 14px 32px -8px rgba(255,107,26,0.55);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.sm-menu-order-btn:hover,
+.sm-menu-order-btn:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  background: var(--accent-2);
+  box-shadow: 0 18px 40px -8px rgba(255,107,26,0.7);
+}
+.sm-menu-order-btn:active { transform: translateY(0) scale(1); }
+
 .sm-card-info {
   position: absolute;
   bottom: 0;
@@ -1354,156 +1405,182 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!-- MENU HIGHLIGHTS                                                        -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
-<section class="sm-section" id="menu" aria-label="Menu one cikanlari" style="padding-top:120px;padding-bottom:120px;background:var(--bg);">
+<section class="sm-section" id="menu" aria-label="Menu" style="padding-top:120px;padding-bottom:120px;background:var(--bg);">
   <div style="max-width:1400px;margin:0 auto;">
     <div class="sm-section-label">Menu</div>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:0;">
-      <h2 class="sm-h2">One Cikanlar</h2>
-      <a
-        href="https://wa.me/905455270275?text=Merhaba%2C%20guncel%20menu%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-        target="_blank" rel="noopener"
-        class="btn-ghost"
-        data-sm-reveal
-        style="margin-bottom:28px;"
-      >Tam Menu icin WhatsApp</a>
+    <h2 class="sm-h2">Tam Menü</h2>
+    <p style="font-size:14px;color:var(--muted);max-width:560px;margin-top:14px;line-height:1.7;">Tüm lezzetlerimiz ve güncel fiyatlar. Bir karta dokunarak büyütüp inceleyebilirsiniz.</p>
+
+    <div class="sm-menu-grid sm-menu-grid--posters">
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Çıtır Tavuk Kanat menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-1.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-1.jpg" alt="Street Munch Çıtır Tavuk Kanat menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Çıtır Tavuk Kanat</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Burgerler menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-2.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-2.jpg" alt="Street Munch Burgerler menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Burgerler</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="French Tacos menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-3.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-3.jpg" alt="Street Munch French Tacos menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">French Tacos</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Makarnalar menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-4.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-4.jpg" alt="Street Munch Makarnalar menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Makarnalar</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Seafood menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-5.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-5.jpg" alt="Street Munch Seafood menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Seafood</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Salatalar menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-6.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-6.jpg" alt="Street Munch Salatalar menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Salatalar</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Omletler menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-7.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-7.jpg" alt="Street Munch Omletler menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Omletler</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Aperatifler menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-8.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-8.jpg" alt="Street Munch Aperatifler menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Aperatifler</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Tost & Pilav menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-9.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-9.jpg" alt="Street Munch Tost & Pilav menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Tost & Pilav</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="İçecekler menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-10.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-10.jpg" alt="Street Munch İçecekler menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">İçecekler</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Biralar & İçkiler menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-11.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-11.jpg" alt="Street Munch Biralar & İçkiler menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Biralar & İçkiler</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
+      <article class="sm-menu-card sm-menu-card--poster" tabindex="0" role="button" aria-label="Shots menüsünü büyüt">
+        <picture>
+          <source srcset="/assets/img/streetmunch-menucard-12.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-menucard-12.jpg" alt="Street Munch Shots menüsü — fiyatlarıyla" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;">
+        </picture>
+        <span class="sm-card-name" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">Shots</span>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-expand" aria-hidden="true">
+          <span class="sm-card-expand-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </span>
+        </div>
+      </article>
     </div>
 
-    <div class="sm-menu-grid sm-menu-grid--5col">
-      <!-- Menü Kategorisi 1: Burgerler -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Burgerler menü kartı">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-2.webp" type="image/webp">
-          <img
-            src="/assets/img/streetmunch-gallery-2.jpg"
-            alt="Street Munch burgerler menü kartı — fiyatlarıyla"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
-          >
-        </picture>
-        <div class="sm-card-overlay"></div>
-        <div class="sm-card-tint" aria-hidden="true"></div>
-        <div class="sm-card-info">
-          <span class="sm-card-name">BURGERLER</span>
-          <p class="sm-card-desc">Çıtır tavuk, köfte, cheeseburger seçenekleri.</p>
-          <a
-            href="https://wa.me/905455270275?text=Merhaba%2C%20burger%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" rel="noopener"
-            class="sm-menu-wa-btn"
-          >WhatsApp'tan Sipariş</a>
-        </div>
-      </article>
-
-      <!-- Menü Kategorisi 2: French Tacos -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="French Tacos menü kartı">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-3.webp" type="image/webp">
-          <img
-            src="/assets/img/streetmunch-gallery-3.jpg"
-            alt="Street Munch French tacos menü kartı — fiyatlarıyla"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
-          >
-        </picture>
-        <div class="sm-card-overlay"></div>
-        <div class="sm-card-tint" aria-hidden="true"></div>
-        <div class="sm-card-info">
-          <span class="sm-card-name">FRENCH TACOS</span>
-          <p class="sm-card-desc">Soslu, dolgulu, Fransız usulü tacos çeşitleri.</p>
-          <a
-            href="https://wa.me/905455270275?text=Merhaba%2C%20French%20tacos%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" rel="noopener"
-            class="sm-menu-wa-btn"
-          >WhatsApp'tan Sipariş</a>
-        </div>
-      </article>
-
-      <!-- Menü Kategorisi 3: Makarnalar -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Makarnalar menü kartı">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-4.webp" type="image/webp">
-          <img
-            src="/assets/img/streetmunch-gallery-4.jpg"
-            alt="Street Munch makarna menü kartı — fiyatlarıyla"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
-          >
-        </picture>
-        <div class="sm-card-overlay"></div>
-        <div class="sm-card-tint" aria-hidden="true"></div>
-        <div class="sm-card-info">
-          <span class="sm-card-name">MAKARNALAR</span>
-          <p class="sm-card-desc">Mantarlı, kremalı ve soslu makarna seçenekleri.</p>
-          <a
-            href="https://wa.me/905455270275?text=Merhaba%2C%20makarna%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" rel="noopener"
-            class="sm-menu-wa-btn"
-          >WhatsApp'tan Sipariş</a>
-        </div>
-      </article>
-
-      <!-- Menü Kategorisi 4: Seafood -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Seafood menü kartı">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-5.webp" type="image/webp">
-          <img
-            src="/assets/img/streetmunch-gallery-5.jpg"
-            alt="Street Munch seafood menü kartı — fiyatlarıyla"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
-          >
-        </picture>
-        <div class="sm-card-overlay"></div>
-        <div class="sm-card-tint" aria-hidden="true"></div>
-        <div class="sm-card-info">
-          <span class="sm-card-name">SEAFOOD</span>
-          <p class="sm-card-desc">Taze deniz ürünleri, balık sandviç ve karides.</p>
-          <a
-            href="https://wa.me/905455270275?text=Merhaba%2C%20seafood%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" rel="noopener"
-            class="sm-menu-wa-btn"
-          >WhatsApp'tan Sipariş</a>
-        </div>
-      </article>
-
-      <!-- Menü Kategorisi 5: Salatalar -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Salatalar menü kartı">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-6.webp" type="image/webp">
-          <img
-            src="/assets/img/streetmunch-gallery-6.jpg"
-            alt="Street Munch salatalar menü kartı — fiyatlarıyla"
-            loading="lazy"
-            decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
-            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
-          >
-        </picture>
-        <div class="sm-card-overlay"></div>
-        <div class="sm-card-tint" aria-hidden="true"></div>
-        <div class="sm-card-info">
-          <span class="sm-card-name">SALATALAR</span>
-          <p class="sm-card-desc">Taze ve doyurucu salata çeşitleri.</p>
-          <a
-            href="https://wa.me/905455270275?text=Merhaba%2C%20salata%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" rel="noopener"
-            class="sm-menu-wa-btn"
-          >WhatsApp'tan Sipariş</a>
-        </div>
-      </article>
+    <div class="sm-menu-order-wrap">
+      <a class="sm-menu-order-btn" href="https://wa.me/905455270275?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp ile sipariş ver">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.512 5.26l-.999 3.648 3.726-.977zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
+        Sipariş Ver
+      </a>
     </div>
 
     <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:24px;letter-spacing:0.08em;">
-      Guncel menu ve fiyatlar icin
+      Güncel menü ve fiyatlar için
       <a href="https://www.instagram.com/streetmunchkalkan/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">@streetmunchkalkan</a>
-      Instagram sayfasini takip edin.
+      Instagram sayfasını takip edin.
     </p>
   </div>
 </section>
@@ -1598,16 +1675,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="sm-gallery-grid" role="list" aria-label="Fotograf galerisi">
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 1">
-        <picture>
-          <source srcset="/assets/img/streetmunch-gallery-1.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-1.jpg" alt="Klasik heykelin tuttuğu Street Munch double cheeseburger" loading="lazy" decoding="async">
-        </picture>
-        <div class="sm-gallery-tint" aria-hidden="true"></div>
-        <div class="sm-gallery-expand" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-        </div>
-      </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Cheeseburger close-up">
         <picture>
           <source srcset="/assets/img/streetmunch-food-burger.webp" type="image/webp">
@@ -1872,6 +1939,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- streetmunch-custom.js (premium effects) -->
 <script src="/js/streetmunch-custom.js" defer></script>
 
+<!-- Menu Lightbox -->
+<div class="sm-menu-lightbox" id="smMenuLightbox" role="dialog" aria-modal="true" aria-labelledby="smMenuLightboxTitle">
+  <button class="sm-menu-lightbox-close" aria-label="Kapat">&#x2715;</button>
+  <div class="sm-menu-lightbox-inner">
+    <img class="sm-menu-lightbox-img" src="" alt="">
+    <h3 id="smMenuLightboxTitle" class="sm-menu-lightbox-title"></h3>
+    <a class="sm-menu-lightbox-cta" href="https://wa.me/905455270275?text=Merhaba%2C%20sipari%C5%9F%20vermek%20istiyorum." target="_blank" rel="noopener">
+      Sipariş Ver
+    </a>
+  </div>
+</div>
+
 <script>
 // ── KVKK bar ───────────────────────────────────────────────────────────
 (function() {
@@ -1953,17 +2032,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<!-- Menu Lightbox -->
-<div class="sm-menu-lightbox" id="smMenuLightbox" role="dialog" aria-modal="true" aria-labelledby="smMenuLightboxTitle">
-  <button class="sm-menu-lightbox-close" aria-label="Kapat">&#x2715;</button>
-  <div class="sm-menu-lightbox-inner">
-    <img class="sm-menu-lightbox-img" src="" alt="">
-    <h3 id="smMenuLightboxTitle" class="sm-menu-lightbox-title"></h3>
-    <a class="sm-menu-lightbox-cta" href="https://wa.me/905455270275" target="_blank" rel="noopener">
-      WhatsApp'tan Siparis Ver
-    </a>
-  </div>
-</div>
-
 </body>
 </html>
+
