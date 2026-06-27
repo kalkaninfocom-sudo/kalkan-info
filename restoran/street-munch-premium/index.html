@@ -796,8 +796,7 @@ h1, h2, h3, h4, .font-display {
 .sm-gallery-item:nth-child(6)  { grid-column: span 5; }
 .sm-gallery-item:nth-child(7)  { grid-column: span 4; }
 .sm-gallery-item:nth-child(8)  { grid-column: span 4; }
-.sm-gallery-item:nth-child(9)  { grid-column: span 4; }
-.sm-gallery-item:nth-child(10) { grid-column: span 8; }
+.sm-gallery-item:nth-child(9)  { grid-column: span 8; }
 .sm-gallery-item img {
   width: 100%;
   height: 100%;
@@ -847,8 +846,7 @@ h1, h2, h3, h4, .font-display {
   .sm-gallery-item:nth-child(6)  { grid-column: span 2; }
   .sm-gallery-item:nth-child(7)  { grid-column: span 2; }
   .sm-gallery-item:nth-child(8)  { grid-column: span 2; }
-  .sm-gallery-item:nth-child(9)  { grid-column: span 2; }
-  .sm-gallery-item:nth-child(10) { grid-column: span 6; }
+  .sm-gallery-item:nth-child(9)  { grid-column: span 6; }
 }
 @media (max-width: 560px) {
   .sm-gallery-grid {
@@ -863,8 +861,7 @@ h1, h2, h3, h4, .font-display {
   .sm-gallery-item:nth-child(6),
   .sm-gallery-item:nth-child(7),
   .sm-gallery-item:nth-child(8),
-  .sm-gallery-item:nth-child(9),
-  .sm-gallery-item:nth-child(10) { grid-column: span 1; }
+  .sm-gallery-item:nth-child(9) { grid-column: span 1; }
 }
 
 /* ── Reviews / Social ───────────────────────────────────────────────────── */
@@ -1157,6 +1154,45 @@ h1, h2, h3, h4, .font-display {
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
 }
+
+/* ── Menu Lightbox ──────────────────────────────────────────────────────── */
+.sm-menu-lightbox {
+  position: fixed; inset: 0; z-index: 9000;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.92);
+  padding: 24px;
+}
+.sm-menu-lightbox[data-open="true"] { display: flex; }
+.sm-menu-lightbox-inner {
+  max-width: 900px; max-height: 92vh;
+  overflow-y: auto;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.sm-menu-lightbox-img {
+  max-width: 100%; max-height: 80vh;
+  object-fit: contain; border-radius: 16px;
+}
+.sm-menu-lightbox-close {
+  position: absolute; top: 20px; right: 20px;
+  background: transparent; border: 0; color: #fff;
+  font-size: 40px; cursor: pointer;
+  width: 48px; height: 48px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.sm-menu-lightbox-close:hover { color: var(--accent); }
+.sm-menu-lightbox-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 0.08em;
+  color: var(--cream); margin: 0;
+}
+.sm-menu-lightbox-cta {
+  display: inline-block; padding: 16px 32px;
+  background: var(--accent); color: #0a0a0a;
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.05em;
+  border-radius: 999px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.sm-menu-lightbox-cta:hover { background: var(--accent-2); transform: scale(1.03); }
 </style>
 </head>
 
@@ -1652,16 +1688,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Street Munch lezzet karesi">
-        <picture>
-          <source srcset="/assets/img/streetmunch-food-extra.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-food-extra.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
-        </picture>
-        <div class="sm-gallery-tint" aria-hidden="true"></div>
-        <div class="sm-gallery-expand" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1877,13 +1903,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     card.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        var wa = 'https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20menu%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.';
-        window.open(wa, '_blank', 'noopener');
+        card.click();
       }
     });
   });
 })();
+
+// ── Menu Card Lightbox ────────────────────────────────────────────────────
+(function() {
+  var lightbox = document.getElementById('smMenuLightbox');
+  if (!lightbox) return;
+  var lbImg   = lightbox.querySelector('.sm-menu-lightbox-img');
+  var lbTitle = lightbox.querySelector('.sm-menu-lightbox-title');
+
+  function openLightbox(imgSrc, title) {
+    if (lbImg)   { lbImg.src = imgSrc; lbImg.alt = title; }
+    if (lbTitle) lbTitle.textContent = title;
+    lightbox.dataset.open = 'true';
+    document.body.style.overflow = 'hidden';
+    lightbox.querySelector('.sm-menu-lightbox-close').focus();
+  }
+
+  function closeLightbox() {
+    lightbox.dataset.open = 'false';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.sm-menu-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // WA butonuna tıklanırsa lightbox açılmasın
+      if (e.target.closest('.sm-menu-wa-btn')) return;
+      var img   = card.querySelector('img');
+      var imgSrc = img ? img.currentSrc || img.src : '';
+      // webp tercih et
+      var source = card.querySelector('source[type="image/webp"]');
+      if (source) imgSrc = source.srcset;
+      var title = card.querySelector('.sm-card-name') ? card.querySelector('.sm-card-name').textContent : '';
+      openLightbox(imgSrc, title);
+    });
+  });
+
+  lightbox.querySelector('.sm-menu-lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.dataset.open === 'true') closeLightbox();
+  });
+})();
 </script>
+
+<!-- Menu Lightbox -->
+<div class="sm-menu-lightbox" id="smMenuLightbox" role="dialog" aria-modal="true" aria-labelledby="smMenuLightboxTitle">
+  <button class="sm-menu-lightbox-close" aria-label="Kapat">&#x2715;</button>
+  <div class="sm-menu-lightbox-inner">
+    <img class="sm-menu-lightbox-img" src="" alt="">
+    <h3 id="smMenuLightboxTitle" class="sm-menu-lightbox-title"></h3>
+    <a class="sm-menu-lightbox-cta" href="https://wa.me/905455270275" target="_blank" rel="noopener">
+      WhatsApp'tan Siparis Ver
+    </a>
+  </div>
+</div>
 
 </body>
 </html>
