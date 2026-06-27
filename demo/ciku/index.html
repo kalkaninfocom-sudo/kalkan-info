@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>/* base path fix: works both at site root and under /demo/ciku/ (cleanUrls strips trailing slash) */(function(){var p=location.pathname.replace(/\/(index|admin)(\.html)?$/,'/');if(!p.endsWith('/'))p+='/';document.write('<base href="'+p+'">');})();</script>
 
 <!-- ===== SEO ===== -->
 <title>Çiku — Çikolata & Kuruyemiş | Samsun'un Tatlı Adresi</title>
@@ -731,6 +732,12 @@ document.getElementById('cart-btn').addEventListener('click',openCart);
 document.getElementById('cart-close').addEventListener('click',closeCart);
 document.getElementById('cart-overlay').addEventListener('click',closeCart);
 document.getElementById('cart-order').addEventListener('click',waOrder);
+// in-page anchors: smooth scroll without navigation (base tag would otherwise reload)
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  const id=a.getAttribute('href'); if(id.length<2) return;
+  const el=document.querySelector(id); if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+});
 // search + load more
 document.getElementById('search').addEventListener('input',()=>{ shown=PAGE_SIZE; renderProducts(); });
 document.getElementById('load-more').addEventListener('click',()=>{ shown+=PAGE_SIZE; renderProducts(); });

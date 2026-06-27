@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
+<script>/* base path fix: works at root and under /demo/ciku/ */(function(){var p=location.pathname.replace(/\/(index|admin)(\.html)?$/,'/');if(!p.endsWith('/'))p+='/';document.write('<base href="'+p+'">');})();</script>
 <title>Çiku · Yönetim Paneli</title>
 <link rel="icon" type="image/png" href="img/favicon.png" />
 <script src="catalog.js"></script>
@@ -47,7 +48,7 @@
         <span class="font-display text-lg font-semibold hidden sm:inline">Yönetim Paneli</span>
       </div>
       <div class="flex items-center gap-2">
-        <a href="index.html" target="_blank" class="text-sm font-semibold text-cream-200 hover:text-gold-400 px-3 py-2 rounded-lg hover:bg-cream-100/5 transition">↗ Siteyi Gör</a>
+        <a href="./" target="_blank" class="text-sm font-semibold text-cream-200 hover:text-gold-400 px-3 py-2 rounded-lg hover:bg-cream-100/5 transition">↗ Siteyi Gör</a>
         <button id="reset" class="text-sm font-semibold text-red-300/80 hover:text-red-300 px-3 py-2 rounded-lg hover:bg-red-500/10 transition">Sıfırla</button>
         <button id="logout" class="text-sm font-semibold text-cream-200 hover:text-gold-400 px-3 py-2 rounded-lg hover:bg-cream-100/5 transition">Çıkış</button>
       </div>
