@@ -1,9 +1,9 @@
 /**
  * streetmunch-custom.js — Street Munch Premium sayfa özel efektler
- * Stack: Lenis smooth scroll + GSAP scrub timeline + Custom cursor + Grain
+ * Stack: GSAP scrub timeline + Grain
  * Kurallar:
  *  - prefers-reduced-motion: tümü kapalı
- *  - gsap.matchMedia: parallax/cursor/scrub sadece desktop ≥768px
+ *  - gsap.matchMedia: parallax/scrub sadece desktop ≥768px
  *  - will-change sadece aktif animasyon boyunca
  */
 
@@ -13,51 +13,6 @@
   // ── Reduced motion guard ─────────────────────────────────────────────────
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) return;
-
-  // ── Lenis smooth scroll init ─────────────────────────────────────────────
-  function initLenis() {
-    if (!window.Lenis) return;
-    const lenis = new window.Lenis({
-      duration: 1.15,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 1.5
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Sync Lenis with GSAP ScrollTrigger if available
-    function syncGSAP() {
-      if (window.gsap && window.ScrollTrigger) {
-        lenis.on('scroll', window.ScrollTrigger.update);
-        window.gsap.ticker.add(function (time) {
-          lenis.raf(time * 1000);
-        });
-        window.gsap.ticker.lagSmoothing(0);
-      }
-    }
-
-    if (window.gsap && window.ScrollTrigger) {
-      syncGSAP();
-    } else {
-      var checkGSAP = setInterval(function () {
-        if (window.gsap && window.ScrollTrigger) {
-          clearInterval(checkGSAP);
-          syncGSAP();
-        }
-      }, 40);
-    }
-
-    window.__smLenis = lenis;
-    return lenis;
-  }
 
   // ── Wait for GSAP ────────────────────────────────────────────────────────
   function waitForGSAP(cb) {
@@ -112,62 +67,15 @@
     });
   }
 
-  // ── Custom cursor ────────────────────────────────────────────────────────
-  function setupCustomCursor() {
-    var dot = document.querySelector('.sm-cursor-dot');
-    var ring = document.querySelector('.sm-cursor-ring');
-    if (!dot || !ring) return;
-
-    var mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', function (e) {
-      mx = e.clientX;
-      my = e.clientY;
-      if (window.gsap) {
-        window.gsap.to(dot, { x: mx, y: my, duration: 0.08, ease: 'none' });
-      }
-    });
-
-    (function ringRaf() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      if (window.gsap) {
-        window.gsap.set(ring, { x: rx, y: ry });
-      }
-      requestAnimationFrame(ringRaf);
-    })();
-
-    // Hover expand
-    var interactives = document.querySelectorAll('a, button, .btn-primary, .btn-ghost, .gallery-item, .sm-menu-card');
-    interactives.forEach(function (el) {
-      el.addEventListener('mouseenter', function () {
-        if (window.gsap) {
-          window.gsap.to(ring, { scale: 2.4, opacity: 0.6, duration: 0.3, ease: 'power2.out' });
-          window.gsap.to(dot, { scale: 0.4, duration: 0.25 });
-        }
-      });
-      el.addEventListener('mouseleave', function () {
-        if (window.gsap) {
-          window.gsap.to(ring, { scale: 1, opacity: 1, duration: 0.4, ease: 'elastic.out(1,0.5)' });
-          window.gsap.to(dot, { scale: 1, duration: 0.3 });
-        }
-      });
-    });
-
-    // Hide default cursor on desktop
-    document.documentElement.style.cursor = 'none';
-  }
-
-  // ── Hero video: float, tilt, scroll-entry, glow pulse ──────────────────
-  function initHeroVideo(gsap, ST) {
+  // ── Hero image: float, tilt, scroll-entry, glow pulse ──────────────────
+  function initHeroImage(gsap, ST) {
     var videoEl = document.getElementById('smHeroVisualImg');
     var wrap    = document.getElementById('smHeroImgWrap');
     var glow    = document.querySelector('.sm-hero-glow');
     if (!videoEl) return;
 
-    // prefers-reduced-motion: pause video, skip GSAP motion
+    // prefers-reduced-motion: skip GSAP motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      videoEl.pause();
-      videoEl.removeAttribute('autoplay');
       gsap.set(videoEl, { opacity: 1, scale: 1 });
       return;
     }
@@ -642,19 +550,10 @@
   }
 
   function boot() {
-    // Always init: nav, ripple, lenis
+    // Always init: nav, ripple
     setupNav();
     setupRipple();
 
-    // Wait for Lenis CDN
-    var lenisCheck = setInterval(function () {
-      if (window.Lenis) {
-        clearInterval(lenisCheck);
-        initLenis();
-      }
-    }, 40);
-
-    // Food icon float — works without GSAP via CSS
     // Lightbox inject styles
     injectLightboxStyles();
 
@@ -663,8 +562,8 @@
       var ST = window.ScrollTrigger;
       gsap.registerPlugin(ST);
 
-      // Hero video motion — runs on all viewports (mobile gets simplified float only)
-      initHeroVideo(gsap, ST);
+      // Hero image motion — runs on all viewports (mobile gets simplified float only)
+      initHeroImage(gsap, ST);
 
       gsap.matchMedia().add({
         // Desktop ≥768px
@@ -677,7 +576,6 @@
           setupSectionReveals(gsap, ST);
           setupCtaFooter(gsap, ST);
           setupMagnetic('.btn-primary, .btn-ghost, .sm-wa-btn');
-          setupCustomCursor();
         },
         // Mobile <768px
         '(max-width: 767px)': function () {

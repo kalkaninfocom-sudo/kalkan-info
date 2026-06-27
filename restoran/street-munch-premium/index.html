@@ -33,10 +33,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://kalkaninfo.com/assets/img/streetmunch-hero.jpg">
 <meta property="og:site_name" content="Kalkan Info">
 <meta property="og:locale" content="tr_TR">
-<meta property="og:video" content="https://kalkaninfo.com/assets/img/streetmunch-burger.mp4">
-<meta property="og:video:type" content="video/mp4">
-<meta property="og:video:width" content="720">
-<meta property="og:video:height" content="1248">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Street Munch — Kalkan">
@@ -79,8 +75,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
-<!-- Lenis smooth scroll -->
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
 
 <style>
 /* ── CSS Custom Properties ──────────────────────────────────────────────── */
@@ -100,7 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 /* ── Reset & Base ───────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-html { scroll-behavior: auto; } /* Lenis handles this */
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Space Grotesk', system-ui, sans-serif;
   background: var(--bg);
@@ -136,32 +130,6 @@ h1, h2, h3, h4, .font-display {
   100% { transform: translate(4%,-3%); }
 }
 
-/* ── Custom cursor (desktop) ────────────────────────────────────────────── */
-.sm-cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  will-change: transform;
-}
-.sm-cursor-ring {
-  position: fixed;
-  top: 0; left: 0;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,107,26,0.7);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%,-50%);
-  will-change: transform;
-}
-@media (hover: none) {
-  .sm-cursor-dot, .sm-cursor-ring { display: none; }
-}
 
 /* ── Nav ────────────────────────────────────────────────────────────────── */
 .sm-nav {
@@ -346,7 +314,7 @@ h1, h2, h3, h4, .font-display {
 }
 .sm-hero-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 10vw, 144px);
+  font-size: clamp(140px, 22vw, 360px);
   line-height: 0.9;
   letter-spacing: 0.02em;
   color: var(--cream);
@@ -444,23 +412,6 @@ h1, h2, h3, h4, .font-display {
   transform-style: preserve-3d;
 }
 
-/* ── Hero cinematic video ────────────────────────────────────────────────── */
-.sm-hero-visual-video {
-  display: block;
-  aspect-ratio: 696 / 1248;
-  max-height: 88vh;
-  width: auto;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 24px;
-  filter: drop-shadow(0 40px 80px rgba(255,107,26,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.8));
-  opacity: 0;
-  transform: scale(0.85);
-  will-change: transform, opacity;
-  transform-style: preserve-3d;
-  pointer-events: none;
-}
-
 /* Mobile: show visual below content, compact */
 @media (max-width: 1023px) {
   .sm-hero-inner {
@@ -472,9 +423,6 @@ h1, h2, h3, h4, .font-display {
     padding-bottom: 24px;
   }
   .sm-hero-visual-img {
-    max-height: 60vh;
-  }
-  .sm-hero-visual-video {
     max-height: 60vh;
   }
   .sm-hero-glow {
@@ -510,11 +458,10 @@ h1, h2, h3, h4, .font-display {
   .sm-scroll-hint { right: 20px; bottom: 20px; }
 }
 
-/* prefers-reduced-motion: glow pulse off + video pause */
+/* prefers-reduced-motion: glow pulse off */
 @media (prefers-reduced-motion: reduce) {
   .sm-hero-glow { animation: none; }
   .sm-hero-visual-img { opacity: 1 !important; transform: none !important; }
-  .sm-hero-visual-video { opacity: 1 !important; transform: none !important; }
 }
 
 /* ── Buttons ────────────────────────────────────────────────────────────── */
@@ -535,7 +482,7 @@ h1, h2, h3, h4, .font-display {
   position: relative;
   overflow: hidden;
   transition: background 0.25s, color 0.25s, border-color 0.25s;
-  cursor: none;
+  cursor: pointer;
 }
 .btn-primary:hover { background: transparent; color: var(--accent); }
 .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -556,7 +503,7 @@ h1, h2, h3, h4, .font-display {
   position: relative;
   overflow: hidden;
   transition: background 0.25s, color 0.25s;
-  cursor: none;
+  cursor: pointer;
 }
 .btn-ghost:hover { background: var(--accent); color: #0a0a0a; }
 .btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -697,16 +644,46 @@ h1, h2, h3, h4, .font-display {
   gap: 2px;
   margin-top: 56px;
 }
+.sm-menu-grid--5col {
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 1100px) {
+  .sm-menu-grid--5col { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .sm-menu-grid { grid-template-columns: 1fr 1fr; }
+  .sm-menu-grid--5col { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
   .sm-menu-grid { grid-template-columns: 1fr; }
+  .sm-menu-grid--5col { grid-template-columns: 1fr; }
 }
+.sm-menu-card { aspect-ratio: 4/5; }
+.sm-menu-wa-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 7px 14px;
+  background: rgba(255,107,26,0.15);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.sm-menu-wa-btn:hover,
+.sm-menu-wa-btn:focus-visible {
+  background: var(--accent);
+  color: #0a0a0a;
+}
+.sm-menu-wa-btn:active { opacity: 0.85; }
 .sm-menu-card {
   position: relative;
   overflow: hidden;
-  cursor: none;
+  cursor: pointer;
   aspect-ratio: 3/4;
   background: var(--bg-3);
 }
@@ -890,17 +867,19 @@ h1, h2, h3, h4, .font-display {
 .sm-gallery-item {
   position: relative;
   overflow: hidden;
-  cursor: none;
+  cursor: pointer;
 }
 @media (hover: none) { .sm-gallery-item { cursor: pointer; } }
-.sm-gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
-.sm-gallery-item:nth-child(2) { grid-column: span 4; }
-.sm-gallery-item:nth-child(3) { grid-column: span 3; }
-.sm-gallery-item:nth-child(4) { grid-column: span 3; }
-.sm-gallery-item:nth-child(5) { grid-column: span 4; }
-.sm-gallery-item:nth-child(6) { grid-column: span 5; }
-.sm-gallery-item:nth-child(7) { grid-column: span 6; }
-.sm-gallery-item:nth-child(8) { grid-column: span 6; }
+.sm-gallery-item:nth-child(1)  { grid-column: span 5; grid-row: span 2; }
+.sm-gallery-item:nth-child(2)  { grid-column: span 4; }
+.sm-gallery-item:nth-child(3)  { grid-column: span 3; }
+.sm-gallery-item:nth-child(4)  { grid-column: span 3; }
+.sm-gallery-item:nth-child(5)  { grid-column: span 4; }
+.sm-gallery-item:nth-child(6)  { grid-column: span 5; }
+.sm-gallery-item:nth-child(7)  { grid-column: span 4; }
+.sm-gallery-item:nth-child(8)  { grid-column: span 4; }
+.sm-gallery-item:nth-child(9)  { grid-column: span 4; }
+.sm-gallery-item:nth-child(10) { grid-column: span 8; }
 .sm-gallery-item img {
   width: 100%;
   height: 100%;
@@ -942,28 +921,32 @@ h1, h2, h3, h4, .font-display {
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 180px;
   }
-  .sm-gallery-item:nth-child(1) { grid-column: span 6; grid-row: span 2; }
-  .sm-gallery-item:nth-child(2) { grid-column: span 3; }
-  .sm-gallery-item:nth-child(3) { grid-column: span 3; }
-  .sm-gallery-item:nth-child(4) { grid-column: span 2; }
-  .sm-gallery-item:nth-child(5) { grid-column: span 2; }
-  .sm-gallery-item:nth-child(6) { grid-column: span 2; }
-  .sm-gallery-item:nth-child(7) { grid-column: span 3; }
-  .sm-gallery-item:nth-child(8) { grid-column: span 3; }
+  .sm-gallery-item:nth-child(1)  { grid-column: span 6; grid-row: span 2; }
+  .sm-gallery-item:nth-child(2)  { grid-column: span 3; }
+  .sm-gallery-item:nth-child(3)  { grid-column: span 3; }
+  .sm-gallery-item:nth-child(4)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(5)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(6)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(7)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(8)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(9)  { grid-column: span 2; }
+  .sm-gallery-item:nth-child(10) { grid-column: span 6; }
 }
 @media (max-width: 560px) {
   .sm-gallery-grid {
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 160px;
   }
-  .sm-gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+  .sm-gallery-item:nth-child(1)  { grid-column: span 2; grid-row: span 1; }
   .sm-gallery-item:nth-child(2),
   .sm-gallery-item:nth-child(3),
   .sm-gallery-item:nth-child(4),
   .sm-gallery-item:nth-child(5),
   .sm-gallery-item:nth-child(6),
   .sm-gallery-item:nth-child(7),
-  .sm-gallery-item:nth-child(8) { grid-column: span 1; }
+  .sm-gallery-item:nth-child(8),
+  .sm-gallery-item:nth-child(9),
+  .sm-gallery-item:nth-child(10) { grid-column: span 1; }
 }
 
 /* ── Reviews / Social ───────────────────────────────────────────────────── */
@@ -1094,7 +1077,7 @@ h1, h2, h3, h4, .font-display {
   position: relative;
   overflow: hidden;
   transition: background 0.25s, transform 0.2s;
-  cursor: none;
+  cursor: pointer;
   box-shadow: 0 8px 32px -8px rgba(37,211,102,0.45);
 }
 .sm-wa-btn:hover { background: #1aa855; transform: translateY(-2px); }
@@ -1215,7 +1198,7 @@ h1, h2, h3, h4, .font-display {
   text-decoration: none;
   box-shadow: 0 8px 28px -6px rgba(37,211,102,0.6);
   transition: transform 0.25s ease, box-shadow 0.25s;
-  cursor: none;
+  cursor: pointer;
 }
 .sm-wa-float:hover {
   transform: scale(1.1);
@@ -1268,9 +1251,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ── Grain overlay ──────────────────────────────────────────────────── -->
 <div class="sm-grain" aria-hidden="true"></div>
 
-<!-- ── Custom cursor (hidden on touch) ───────────────────────────────── -->
-<div class="sm-cursor-dot" aria-hidden="true"></div>
-<div class="sm-cursor-ring" aria-hidden="true"></div>
 
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!-- NAV                                                                    -->
@@ -1358,21 +1338,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Ambient orange glow behind image -->
       <div class="sm-hero-glow"></div>
 
-      <!-- Video wrapper (grain overlay via ::after pseudo) -->
+      <!-- Image wrapper (grain overlay via ::after pseudo) -->
       <div class="sm-hero-img-wrap" id="smHeroImgWrap">
-        <video
-          id="smHeroVisualImg"
-          class="sm-hero-visual-video"
-          autoplay loop muted playsinline preload="metadata"
-          poster="/assets/img/streetmunch-burger-poster.jpg"
-          aria-label="Lezzetli hamburger animasyonu"
-          draggable="false"
-          width="480" height="832"
-        >
-          <source src="/assets/img/streetmunch-burger-sm.webm" type="video/webm">
-          <source src="/assets/img/streetmunch-burger-sm.mp4" type="video/mp4">
-        </video>
-        <!-- Bottom fade mask: video fades into bg at bottom -->
+        <picture>
+          <source srcset="/assets/img/streetmunch-hero.webp" type="image/webp">
+          <img
+            id="smHeroVisualImg"
+            class="sm-hero-visual-img"
+            src="/assets/img/streetmunch-hero.jpg"
+            alt="Street Munch cheeseburger — eritilmiş peynir + susam ekmek"
+            width="1600" height="1760"
+            fetchpriority="high"
+            decoding="async"
+            draggable="false"
+          >
+        </picture>
+        <!-- Bottom fade mask -->
         <div class="sm-hero-img-mask"></div>
       </div>
     </div>
@@ -1451,73 +1432,134 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       >Tam Menu icin WhatsApp</a>
     </div>
 
-    <div class="sm-menu-grid">
-      <!-- Card 1: Burger -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Cheeseburger">
+    <div class="sm-menu-grid sm-menu-grid--5col">
+      <!-- Menü Kategorisi 1: Burgerler -->
+      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Burgerler menü kartı">
         <picture>
-          <source srcset="/assets/img/streetmunch-menu-burger.webp" type="image/webp">
+          <source srcset="/assets/img/streetmunch-gallery-2.webp" type="image/webp">
           <img
-            src="/assets/img/streetmunch-menu-burger.jpg"
-            alt="Street Munch Cheeseburger — sıcak, buharlı, bol malzemeli"
+            src="/assets/img/streetmunch-gallery-2.jpg"
+            alt="Street Munch burgerler menü kartı — fiyatlarıyla"
             loading="lazy"
             decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
           >
         </picture>
         <div class="sm-card-overlay"></div>
         <div class="sm-card-tint" aria-hidden="true"></div>
         <div class="sm-card-info">
-          <span class="sm-card-badge">En Cok Satan</span>
-          <span class="sm-card-name">CHEESEBURGER</span>
-          <p class="sm-card-desc">Bol malzemeli, taze ekmekte sokak burgeri.</p>
-          <div class="sm-card-price">Fiyat icin WhatsApp'tan sorun</div>
+          <span class="sm-card-name">BURGERLER</span>
+          <p class="sm-card-desc">Çıtır tavuk, köfte, cheeseburger seçenekleri.</p>
+          <a
+            href="https://wa.me/905455270275?text=Merhaba%2C%20burger%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" rel="noopener"
+            class="sm-menu-wa-btn"
+          >WhatsApp'tan Sipariş</a>
         </div>
       </article>
 
-      <!-- Card 2: Wrap -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Chicken Wrap">
+      <!-- Menü Kategorisi 2: French Tacos -->
+      <article class="sm-menu-card" tabindex="0" role="article" aria-label="French Tacos menü kartı">
         <picture>
-          <source srcset="/assets/img/streetmunch-menu-wrap.webp" type="image/webp">
+          <source srcset="/assets/img/streetmunch-gallery-3.webp" type="image/webp">
           <img
-            src="/assets/img/streetmunch-menu-wrap.jpg"
-            alt="Street Munch Chicken Wrap — taze malzemeler, ince yufka"
+            src="/assets/img/streetmunch-gallery-3.jpg"
+            alt="Street Munch French tacos menü kartı — fiyatlarıyla"
             loading="lazy"
             decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
           >
         </picture>
         <div class="sm-card-overlay"></div>
         <div class="sm-card-tint" aria-hidden="true"></div>
         <div class="sm-card-info">
-          <span class="sm-card-badge">Hafif Secenek</span>
-          <span class="sm-card-name">CHICKEN WRAP</span>
-          <p class="sm-card-desc">Taze malzemeler, ince yufka, baya doyurucu.</p>
-          <div class="sm-card-price">Fiyat icin WhatsApp'tan sorun</div>
+          <span class="sm-card-name">FRENCH TACOS</span>
+          <p class="sm-card-desc">Soslu, dolgulu, Fransız usulü tacos çeşitleri.</p>
+          <a
+            href="https://wa.me/905455270275?text=Merhaba%2C%20French%20tacos%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" rel="noopener"
+            class="sm-menu-wa-btn"
+          >WhatsApp'tan Sipariş</a>
         </div>
       </article>
 
-      <!-- Card 3: Patates -->
-      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Krispy Fries">
+      <!-- Menü Kategorisi 3: Makarnalar -->
+      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Makarnalar menü kartı">
         <picture>
-          <source srcset="/assets/img/streetmunch-menu-fries.webp" type="image/webp">
+          <source srcset="/assets/img/streetmunch-gallery-4.webp" type="image/webp">
           <img
-            src="/assets/img/streetmunch-menu-fries.jpg"
-            alt="Street Munch Krispy Fries — kızarmış, bol baharatlı"
+            src="/assets/img/streetmunch-gallery-4.jpg"
+            alt="Street Munch makarna menü kartı — fiyatlarıyla"
             loading="lazy"
             decoding="async"
-            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
           >
         </picture>
         <div class="sm-card-overlay"></div>
         <div class="sm-card-tint" aria-hidden="true"></div>
         <div class="sm-card-info">
-          <span class="sm-card-badge">Yan Lezzet</span>
-          <span class="sm-card-name">KRISPY FRIES</span>
-          <p class="sm-card-desc">Kizarmis, bol baharatli, soslu.</p>
-          <div class="sm-card-price">Fiyat icin WhatsApp'tan sorun</div>
+          <span class="sm-card-name">MAKARNALAR</span>
+          <p class="sm-card-desc">Mantarlı, kremalı ve soslu makarna seçenekleri.</p>
+          <a
+            href="https://wa.me/905455270275?text=Merhaba%2C%20makarna%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" rel="noopener"
+            class="sm-menu-wa-btn"
+          >WhatsApp'tan Sipariş</a>
+        </div>
+      </article>
+
+      <!-- Menü Kategorisi 4: Seafood -->
+      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Seafood menü kartı">
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-5.webp" type="image/webp">
+          <img
+            src="/assets/img/streetmunch-gallery-5.jpg"
+            alt="Street Munch seafood menü kartı — fiyatlarıyla"
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
+          >
+        </picture>
+        <div class="sm-card-overlay"></div>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-info">
+          <span class="sm-card-name">SEAFOOD</span>
+          <p class="sm-card-desc">Taze deniz ürünleri, balık sandviç ve karides.</p>
+          <a
+            href="https://wa.me/905455270275?text=Merhaba%2C%20seafood%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" rel="noopener"
+            class="sm-menu-wa-btn"
+          >WhatsApp'tan Sipariş</a>
+        </div>
+      </article>
+
+      <!-- Menü Kategorisi 5: Salatalar -->
+      <article class="sm-menu-card" tabindex="0" role="article" aria-label="Salatalar menü kartı">
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-6.webp" type="image/webp">
+          <img
+            src="/assets/img/streetmunch-gallery-6.jpg"
+            alt="Street Munch salatalar menü kartı — fiyatlarıyla"
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 20vw"
+            style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.5s ease;"
+          >
+        </picture>
+        <div class="sm-card-overlay"></div>
+        <div class="sm-card-tint" aria-hidden="true"></div>
+        <div class="sm-card-info">
+          <span class="sm-card-name">SALATALAR</span>
+          <p class="sm-card-desc">Taze ve doyurucu salata çeşitleri.</p>
+          <a
+            href="https://wa.me/905455270275?text=Merhaba%2C%20salata%20men%C3%BCs%C3%BC%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" rel="noopener"
+            class="sm-menu-wa-btn"
+          >WhatsApp'tan Sipariş</a>
         </div>
       </article>
     </div>
@@ -1630,70 +1672,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 2">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Cheeseburger close-up">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-2.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-2.jpg" alt="Street Munch burger menüsü — çıtır tavuk, köfte, cheeseburger" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-burger.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-burger.jpg" alt="Street Munch cheeseburger close-up" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 3">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Tavuklu wrap">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-3.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-3.jpg" alt="Street Munch French tacos menüsü" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-wrap.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-wrap.jpg" alt="Street Munch tavuklu wrap" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 4">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Köfteli wrap">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-4.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-4.jpg" alt="Street Munch makarna menüsü" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-beefwrap.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-beefwrap.jpg" alt="Street Munch köfteli wrap" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 5">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Çıtır tavuk parmakları">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-5.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-5.jpg" alt="Street Munch seafood ve balık sandviç menüsü" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-chickenfinger.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-chickenfinger.jpg" alt="Street Munch çıtır tavuk parmakları" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 6">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Crispy chicken wings">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-6.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-6.jpg" alt="Street Munch taze salatalar menüsü" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-wings.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-wings.jpg" alt="Street Munch crispy chicken wings" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 7">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Midye dolma">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-7.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-7.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-midye.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-midye.jpg" alt="Street Munch midye dolma" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
-      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 8">
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Mantarlı makarna">
         <picture>
-          <source srcset="/assets/img/streetmunch-gallery-8.webp" type="image/webp">
-          <img src="/assets/img/streetmunch-gallery-8.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
+          <source srcset="/assets/img/streetmunch-food-pasta.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-pasta.jpg" alt="Street Munch mantarlı makarna" loading="lazy" decoding="async">
+        </picture>
+        <div class="sm-gallery-tint" aria-hidden="true"></div>
+        <div class="sm-gallery-expand" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Karides po' boy sandviç">
+        <picture>
+          <source srcset="/assets/img/streetmunch-food-shrimp.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-shrimp.jpg" alt="Street Munch karides po' boy sandviç" loading="lazy" decoding="async">
+        </picture>
+        <div class="sm-gallery-tint" aria-hidden="true"></div>
+        <div class="sm-gallery-expand" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Street Munch lezzet karesi">
+        <picture>
+          <source srcset="/assets/img/streetmunch-food-extra.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-food-extra.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
         </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
@@ -1885,18 +1947,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/streetmunch-custom.js" defer></script>
 
 <script>
-// ── Mobil: video yüklemeyi engelle (bandwidth tasarrufu) ─────────────
-(function() {
-  if (window.innerWidth < 1024) {
-    var vid = document.getElementById('smHeroVisualImg');
-    if (vid) {
-      vid.removeAttribute('autoplay');
-      vid.setAttribute('preload', 'none');
-      vid.pause && vid.pause();
-    }
-  }
-})();
-
 // ── KVKK bar ───────────────────────────────────────────────────────────
 (function() {
   var bar = document.getElementById('kvkk-bar');
