@@ -882,6 +882,42 @@
           "featured": true
         }
       ]
+    },
+    "kuru-temizleme": {
+      "title": "Kuru Temizleme & Çamaşırhane",
+      "icon": "🧺",
+      "providers": [
+        {
+          "id": "kurutemizleme-karakiz",
+          "name": "Karakız Laundry Çamaşırhane",
+          "type": "İşletme",
+          "rating": 0,
+          "reviewCount": 0,
+          "image": null,
+          "logo": null,
+          "website": null,
+          "instagram": null,
+          "summary": "Kalkan merkezde çamaşırhane ve kuru temizleme hizmeti.",
+          "specialties": [
+            "Çamaşır yıkama",
+            "Kuru temizleme",
+            "Ütüleme"
+          ],
+          "experience": null,
+          "phone": null,
+          "whatsapp": null,
+          "email": null,
+          "location": "Kalkan / Kaş — Antalya",
+          "googleMaps": "https://maps.app.goo.gl/?q=36.2797563,29.4086693",
+          "coords": {
+            "lat": 36.2797563,
+            "lng": 29.4086693
+          },
+          "placeId": "0x14c02dcf7432aa31",
+          "verified": false,
+          "featured": true
+        }
+      ]
     }
   }
 }
