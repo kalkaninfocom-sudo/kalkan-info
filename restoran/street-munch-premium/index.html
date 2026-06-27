@@ -899,6 +899,8 @@ h1, h2, h3, h4, .font-display {
 .sm-gallery-item:nth-child(4) { grid-column: span 3; }
 .sm-gallery-item:nth-child(5) { grid-column: span 4; }
 .sm-gallery-item:nth-child(6) { grid-column: span 5; }
+.sm-gallery-item:nth-child(7) { grid-column: span 6; }
+.sm-gallery-item:nth-child(8) { grid-column: span 6; }
 .sm-gallery-item img {
   width: 100%;
   height: 100%;
@@ -946,6 +948,8 @@ h1, h2, h3, h4, .font-display {
   .sm-gallery-item:nth-child(4) { grid-column: span 2; }
   .sm-gallery-item:nth-child(5) { grid-column: span 2; }
   .sm-gallery-item:nth-child(6) { grid-column: span 2; }
+  .sm-gallery-item:nth-child(7) { grid-column: span 3; }
+  .sm-gallery-item:nth-child(8) { grid-column: span 3; }
 }
 @media (max-width: 560px) {
   .sm-gallery-grid {
@@ -957,7 +961,9 @@ h1, h2, h3, h4, .font-display {
   .sm-gallery-item:nth-child(3),
   .sm-gallery-item:nth-child(4),
   .sm-gallery-item:nth-child(5),
-  .sm-gallery-item:nth-child(6) { grid-column: span 1; }
+  .sm-gallery-item:nth-child(6),
+  .sm-gallery-item:nth-child(7),
+  .sm-gallery-item:nth-child(8) { grid-column: span 1; }
 }
 
 /* ── Reviews / Social ───────────────────────────────────────────────────── */
@@ -1361,9 +1367,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           poster="/assets/img/streetmunch-burger-poster.jpg"
           aria-label="Lezzetli hamburger animasyonu"
           draggable="false"
+          width="480" height="832"
         >
-          <source src="/assets/img/streetmunch-burger.webm" type="video/webm">
-          <source src="/assets/img/streetmunch-burger.mp4" type="video/mp4">
+          <source src="/assets/img/streetmunch-burger-sm.webm" type="video/webm">
+          <source src="/assets/img/streetmunch-burger-sm.mp4" type="video/mp4">
         </video>
         <!-- Bottom fade mask: video fades into bg at bottom -->
         <div class="sm-hero-img-mask"></div>
@@ -1614,72 +1621,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="sm-gallery-grid" role="list" aria-label="Fotograf galerisi">
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 1">
-        <img
-          src="https://placehold.co/900x600/111111/ff6b1a?text=Street+Munch"
-          alt="Street Munch lezzet"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-1.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-1.jpg" alt="Klasik heykelin tuttuğu Street Munch double cheeseburger" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 2">
-        <img
-          src="https://placehold.co/600x400/161616/ff6b1a?text=Burger"
-          alt="Burger"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-2.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-2.jpg" alt="Street Munch burger menüsü — çıtır tavuk, köfte, cheeseburger" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 3">
-        <img
-          src="https://placehold.co/500x400/0f0f0f/ff6b1a?text=Wrap"
-          alt="Wrap"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-3.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-3.jpg" alt="Street Munch French tacos menüsü" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 4">
-        <img
-          src="https://placehold.co/400x400/131313/ff6b1a?text=Patates"
-          alt="Patates"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-4.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-4.jpg" alt="Street Munch makarna menüsü" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 5">
-        <img
-          src="https://placehold.co/600x400/0d0d0d/ff6b1a?text=Lezzet"
-          alt="Lezzet"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-5.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-5.jpg" alt="Street Munch seafood ve balık sandviç menüsü" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
         </div>
       </div>
       <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 6">
-        <img
-          src="https://placehold.co/900x400/111111/ff6b1a?text=Street+Food"
-          alt="Street food"
-          loading="lazy"
-          decoding="async"
-        >
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-6.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-6.jpg" alt="Street Munch taze salatalar menüsü" loading="lazy" decoding="async">
+        </picture>
+        <div class="sm-gallery-tint" aria-hidden="true"></div>
+        <div class="sm-gallery-expand" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 7">
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-7.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-7.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
+        </picture>
+        <div class="sm-gallery-tint" aria-hidden="true"></div>
+        <div class="sm-gallery-expand" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="sm-gallery-item" role="listitem" tabindex="0" aria-label="Galeri fotografi 8">
+        <picture>
+          <source srcset="/assets/img/streetmunch-gallery-8.webp" type="image/webp">
+          <img src="/assets/img/streetmunch-gallery-8.jpg" alt="Street Munch lezzet karesi" loading="lazy" decoding="async">
+        </picture>
         <div class="sm-gallery-tint" aria-hidden="true"></div>
         <div class="sm-gallery-expand" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
