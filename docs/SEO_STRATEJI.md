@@ -386,3 +386,97 @@ Teknik temel hazır; asıl değer **şablon+veri düzeltmelerinin ölçeklenmesi
 - Google Search Console + Bing Webmaster'da sitemap'i (270 URL) doğrula, 'kalkan ...' uzun-kuyruk sorgularda mevcut impression/CTR verisini çekip düşük asılı meyveleri (poz 5-15) optimize et
 - Site genelinde tutarlı tek NAP formatı (telefon +90, açık tam adres) zorla; Yelp/TripAdvisor/Foursquare'daki mevcut kayıtlarla tutarsızlıkları temizle
 
+
+
+---
+
+## EK-2: Sayfa-Tipi Denetimleri (re-run — restoran/otel-villa/plaj-tur-hizmet)
+
+### Restoranlar (Restaurants) — listing restoranlar.html + 175 generated detail pages under /restoran/[slug]/ via scripts/build-restoran-pages.mjs (template restoran/_template/index.html)
+
+**Durum:** 175 restaurants in data/restoranlar.json (150 with rating+reviewCount+coordinates+place_id, full nameI18n/summaryI18n/specialtiesI18n for 5 languages). Listing page restoranlar.html has solid SEO (unique title, description, keywords, canonical, full hreflang tr/en/de/ru/fr/x-default with ?lang params, OG locale alternates). Detail pages are statically generated from one template: each gets a Restaurant JSON-LD + BreadcrumbList, OG/Twitter cards, geo meta, canonical with trailing slash, GTM + Meta Pixel. Two reference tiers exist: hand-built premium (street-munch-premium — richer JSON-LD with array servesCuisine, areaServed, real geo, hasMenu) vs the bulk generic template (kaptan-restaurant and ~170 others) which is thinner and has several template-level SEO defects.
+
+**Boşluklar:**
+- [high/low] JSON-LD geo coordinates are HARD-CODED to lat 36.2655 / lng 29.4138 on ALL 175 pages (template line 77), even though 150 items carry real per-item coordinates.latitude/longitude. Every restaurant reports the identical (wrong) location to Google — undermines local/Maps relevance and looks like duplicate spam data.
+  - *Düzeltme:* In build-restoran-pages.mjs add GEO_LAT/GEO_LNG from r.coordinates (fallback to town centroid) and template the geo block: {"latitude":{{GEO_LAT}},"longitude":{{GEO_LNG}}}. Also template hasMap to the place_id/coords Maps URL. Rebuild all pages.
+- [high/low] AggregateRating is only populated from the 28 SerpApi cache files, so ~122 pages that HAVE rating+reviewCount in restoranlar.json still emit invalid empty objects: "aggregateRating":{} and "review":[]. Empty {} / [] are invalid Schema and block star rich results for the majority of restaurants.
+  - *Düzeltme:* In aggregateRatingJson() fall back to r.rating / r.reviewCount when no cache. Critically, OMIT the aggregateRating/review keys entirely when there is no data (build the JSON-LD object conditionally) instead of injecting {} or []. This unlocks star snippets on 150 pages.
+- [high/medium] Generic detail pages are TR-only with NO hreflang and no translated server content. The template (_template/index.html) emits zero <link rel=alternate hreflang> tags; nameI18n/summaryI18n/specialtiesI18n exist in data but are never baked into the static HTML or JSON-LD — Google only sees Turkish. Language switch is client-side JS with no distinct URL.
+  - *Düzeltme:* At minimum add self-referencing hreflang + x-default and inLanguage:tr-TR to JSON-LD. Better: bake i18n into the static body as data-en/de/ru/fr attributes (mirroring render.js card pattern) for about/menu/specialties, and add a multilingual description/alternateName into JSON-LD so non-TR content is crawlable.
+- [high/high] Thin content on the ~170 non-CUSTOM pages. Only 3 slugs (aubergine, korsan-kalamar, harbor-lights) have hand-written about/menu seeds. The rest get about_p1 = summary (one sentence), about_p2 = EMPTY (renders a stray empty <p>), and a single menu placeholder card 'Tam menü için PDF'. Page word count is very low and near-duplicate in structure across 170 pages — weak for ranking and risks thin/duplicate-content signals.
+  - *Düzeltme:* Generate per-restaurant body copy from structured fields (category, cuisine, location, specialties, hours, priceRange, rating) — 2-3 templated-but-varied paragraphs + a specialties-driven highlights list. Berkay's CLAUDE.md allows Ollama/trgemma-t1 for Turkish boilerplate: batch-generate unique 80-120 word about/menu intros. Suppress empty about_p2 <p> when blank.
+- [medium/medium] Weak internal linking. Detail pages have NO real HTML link back to the restoranlar.html listing (only inside BreadcrumbList JSON-LD; the visible footer links to the homepage and nav has no listing link) and NO detail-to-detail links (no 'nearby / similar restaurants' block). Crawl depth and topical clustering suffer.
+  - *Düzeltme:* Add a visible breadcrumb nav (Kalkan Info / Restoranlar / Name) linking /restoranlar.html, and append a 'Yakındaki Restoranlar' section with 3-6 anchor links to same-category siblings (build script already iterates all items, so siblings are trivial to compute). Use restaurant names as anchor text.
+- [medium/low] Listing-to-detail anchor text is poor. In render.js restoranCard the only link into the detail page is the 'Google Yorumları' button pointing to restoran/{id}/#reviews; the card <h3> restaurant name is NOT a link. Primary crawl path uses generic 'Google Yorumları' anchor text instead of the restaurant name/keyword.
+  - *Düzeltme:* Wrap the card <h3> (or image) in <a href="restoran/{id}/"> with the restaurant name as anchor text so the strongest internal link carries keyword-rich anchor text; keep the reviews deep-link as secondary.
+- [medium/low] Generic title and image alts. Titles are uniform '{{NAME}} — Kalkan | kalkaninfo.com' (unique by name but no cuisine/intent keyword), and gallery image alts are generic counters '{{NAME}} 1..8'. Meta description has no fallback when summary is empty.
+  - *Düzeltme:* Template title as '{{NAME}} — {{CUISINE}} Kalkan | Menü & Rezervasyon'. Make gallery alt descriptive: '{{NAME}} — {{CATEGORY}} Kalkan (foto N)'. Add description fallback when SUMMARY is empty (compose from name+cuisine+location).
+- [low/low] servesCuisine is a single comma-joined string ('Balık / Meze / Izgara') on generic pages, while the premium reference correctly uses a JSON array. Single-string cuisine is less machine-parseable for rich results.
+  - *Düzeltme:* Split r.cuisine on '/' and ',' into a JSON array for servesCuisine in the template, mirroring street-munch-premium.
+
+**Hızlı kazanımlar:**
+- Replace hard-coded geo lat/lng in the template with per-item r.coordinates and rebuild — fixes wrong location on all 175 pages (low effort, high impact).
+- Make aggregateRatingJson fall back to r.rating/r.reviewCount AND omit aggregateRating/review keys entirely when empty — instantly enables star rich-results on ~150 pages and removes invalid empty {} / [].
+- Wrap the listing card <h3> name in an <a href="restoran/{id}/"> so the primary internal link uses the restaurant name as anchor text instead of 'Google Yorumları'.
+- Suppress the empty about_p2 <p> and upgrade title to include {{CUISINE}} and 'Menü & Rezervasyon'; add descriptive gallery alt text.
+- Split servesCuisine into a JSON array and add inLanguage + self-referencing hreflang/x-default to the template head.
+
+### SEO Audit — Oteller & Villalar (listing + detail templates)
+
+**Durum:** İncelenen dosyalar: oteller.html, villalar.html, js/render.js (otelCard/villaCard), data/oteller.json (16 otel), data/villalar.json (3 villa), scripts/build-otel-pages.mjs + build-villa-pages.mjs, ve örnek detaylar (otel/white-house-kalkan/, villa/villa-poyraz/). Genel SEO temeli iyi: her listeleme sayfasında benzersiz title/description, canonical, 5 dil hreflang, OG/Twitter, geo meta, BreadcrumbList + Organization + WebSite JSON-LD var. Otel detay sayfaları güçlü: gerçek `Hotel` şeması + Google yorumlarından `aggregateRating` + gerçek `starRating` (3-5, veriden geliyor) + `amenityFeature`. Villa detayları `LodgingBusiness` şeması taşıyor. Ana eksikler: (1) listeleme sayfası şema tutarsızlığı — villalar.html'de inline ItemList var ama oteller.html'de yok; (2) self-serving/üçüncü-taraf rating riski; (3) fiyat/oda yapılandırılmış verisi yok; (4) detay sayfalarında hreflang yok.
+
+**Boşluklar:**
+- [high/low] oteller.html'de hiç ItemList/CollectionPage JSON-LD yok — villalar.html'de 3 villalık inline ItemList var ama oteller.html'de 16 otel için listeleme şeması tamamen eksik. Google otel carousel/rich list fırsatı kaçıyor.
+  - *Düzeltme:* build-all veya inline script ile data/oteller.json'dan otomatik üretilen ItemList ekle; her item={'@type':'Hotel', url:'/otel/<slug>/', name, image, starRating, address}. Inline 3 villayı da elle yazmak yerine data/villalar.json'dan üret ki içerikle senkron kalsın.
+- [medium/low] villalar.html ItemList'inde her item url'i 'https://kalkaninfo.com/villalar.html' (listeleme sayfasının kendisi) — detay sayfasına işaret etmiyor (/villa/villa-poyraz/). Ayrıca image host'u www.kalkaninfo.com, canonical ise non-www: host tutarsızlığı.
+  - *Düzeltme:* item.url'leri '/villa/<slug>/' yap; tüm görsel/URL'lerde canonical ile aynı host'u (non-www https://kalkaninfo.com) kullan.
+- [high/medium] Tüm villalarda starRating:5 sabit kodlu (LodgingBusiness self-declared). Villalar resmi yıldız almaz; ayrıca otel detaylarındaki aggregateRating Google Maps'ten alınıyor (kendi sitenizde toplanan yorum değil). Google'ın yapılandırılmış veri politikası üçüncü-taraf/öz-beyan rating'i manuel ceza sebebi sayar.
+  - *Düzeltme:* Villalardan starRating'i kaldır (LodgingBusiness için zorunlu değil). Otel aggregateRating'i ya kendi sitenizde topladığınız yorumlarla sınırla ya da review kaynağını net belirt; en güvenlisi üçüncü-taraf rating'i şemadan çıkarıp sadece görsel olarak 'Google'da X' diye göstermek.
+- [medium/medium] Fiyat yapılandırılmış verisi yok. priceRange sadece sembolik ($$/₺₺₺). Villa verisinde deposit_tl, short_stay_fee_tl gibi gerçek sayısal alanlar, otel verisinde roomTypes var ama hiçbiri Offer/PriceSpecification/Accommodation olarak işaretlenmemiş.
+  - *Düzeltme:* Otel oda tiplerini Accommodation/HotelRoom + makeOffer ile, villaları 'makesOffer':{'@type':'Offer','priceCurrency':'TRY', priceSpecification...} ile işaretle. Net fiyat yoksa en azından priceRange'i gerçek aralıkla (ör. '₺15.000–₺45.000') doldur.
+- [medium/medium] Otel ve villa DETAY sayfalarında hreflang/alternate yok — sadece canonical var (build-otel-pages.mjs'de hreflang üretimi hiç yok). i18n tamamen client-side JS, yani Google için sayfalar tek dilli görünüyor; çok dilli görünürlük kayıp.
+  - *Düzeltme:* build-otel-pages ve build-villa-pages şablonlarına 5 dil hreflang + x-default ekle (listeleme sayfalarındaki ?lang= modelini takip ederek), VEYA daha iyisi her dil için ayrı statik HTML üret.
+- [medium/high] hreflang URL'leri ?lang=en/de/ru/fr query-param'a işaret ediyor ama bu URL'ler sunucudan AYNI HTML'i döndürüyor (çeviri client-side). Google için bu, farklı dilli belge değil duplicate içerik — hreflang anotasyonu geçersiz/yanıltıcı.
+  - *Düzeltme:* Ya dil başına gerçek server-rendered/statik çeviri sayfaları üret (en doğru çözüm), ya da sahte ?lang hreflang'leri kaldırıp tek dilli canonical bırak. Mevcut hali her iki dünyanın da kötüsü.
+- [low/low] Otel kartı/detayında benzersiz meta var ama otel detay sayfalarında otel adı + 'Kalkan' kombinasyonu title'da tutarlı değil ve villalar.html title/description 3 villayı '2+1'den 6+1'e' diye anlatıyor oysa veride sadece 3 villa ve bedrooms farklı — içerik/iddia uyumsuzluğu küçük güven riski.
+  - *Düzeltme:* villalar.html description'ını gerçek envanterle hizala (3 seçili villa, kapasiteleri). Otel detay title şablonunu '<Otel Adı> — <Kategori> Otel Kalkan | Kalkan Info' olarak standartlaştır.
+- [low/low] Listeleme OG görseli her iki sayfada da generic og-default.png. Otel/villa için kategoriye özel paylaşım görseli yok (detaylarda var, listeleme yok).
+  - *Düzeltme:* oteller.html ve villalar.html için kategoriye özel og görseli üret (scripts/generate-og.mjs ile) — sosyal CTR'yi artırır.
+
+**Hızlı kazanımlar:**
+- oteller.html'e data/oteller.json'dan otomatik üretilen Hotel ItemList JSON-LD ekle (en yüksek etki, en düşük efor)
+- villalar.html ItemList item.url'lerini /villa/<slug>/'a düzelt ve www/non-www host'u canonical ile birleştir
+- Villalardan self-declared starRating:5'i kaldır (politika riski)
+- villalar.html ItemList'i 3 villayı elle yazmak yerine data/villalar.json'dan üret (içerikle senkron)
+- villalar.html description'ını gerçek 3-villa envanteriyle hizala
+- Listeleme sayfaları için kategoriye özel OG görseli üret (generate-og.mjs)
+- Otel/villa detay şablonlarına 5 dil hreflang + x-default ekle
+
+### SEO audit — Plajlar (beaches), Turlar (tours), Hizmetler (services) sections of kalkaninfo.com
+
+**Durum:** Three section landing pages (plajlar.html, turlar.html, hizmetler.html) plus templated detail pages: 15 beach mini-sites (plaj/<slug>/) from build-plaj-pages.mjs, 10 tour mini-sites (tur/<slug>/) from build-tur-pages.mjs, and a JSON-driven services hub. Landing pages are solid: unique titles, unique meta descriptions, self-canonical, full hreflang set (tr/en/de/ru/fr/x-default via ?lang= params), and Organization+WebSite+BreadcrumbList JSON-LD. Beach detail pages carry TouristAttraction + BreadcrumbList + FAQPage JSON-LD with aggregateRating/review sourced from a real Google review cache (data/plaj-reviews/<slug>.json). Tour detail pages carry TouristTrip + BreadcrumbList + Offer + aggregateRating. Services page renders eczane/acil/taksi data with NO local schema. Both detail templates use client-side JS i18n (lang-pill + data-i, 5 languages) on a single URL. Build scripts auto-append detail URLs to sitemap.xml.
+
+**Boşluklar:**
+- [high/low] Tour pages emit a FABRICATED aggregateRating: ratingValue is self-assigned in turlar.json (4.5-4.9) and reviewCount is HARDCODED to 25 for every tour (build-tur-pages.mjs line ~405), with zero backing Review objects. This is self-serving/fake review markup on TouristTrip and violates Google's structured-data review-snippet policy — manual-action / rich-result removal risk.
+  - *Düzeltme:* Remove aggregateRating from the TouristTrip schema entirely until real, verifiable reviews exist (mirror the beach approach: only emit when a data/tur-reviews/<slug>.json cache has genuine place.rating + place.reviews count, and include matching Review objects). Never hardcode reviewCount.
+- [medium/medium] Tour detail pages have NO hreflang and NO FAQPage schema despite shipping 5-language JS i18n and visible FAQ content. Beach pages have FAQPage; tours do not. The multilingual content is invisible to Google because it lives on one URL with no language annotation.
+  - *Düzeltme:* Add the same hreflang alternate block used on landing pages (?lang= variants + x-default) to both plaj and tur templates, and add a FAQPage JSON-LD block to the tur template fed by genericFaq()/CUSTOM faqs (the data already exists in the build script).
+- [medium/medium] Beach AND tour detail pages have NO hreflang at all (only self-canonical), inconsistent with the landing pages which do. Meta description, og:description and twitter:description are single-language Turkish ({{SUMMARY}}) so EN/DE/RU/FR searchers get a Turkish snippet.
+  - *Düzeltme:* Emit hreflang alternates on detail templates and, at minimum, localize the meta description per language (or add data-en/de/ru/fr on the description meta as already done for the plajlar.html title) so non-TR SERP snippets are not Turkish.
+- [medium/medium] Services (hizmetler.html) has zero local-business / NAP schema. Pharmacy, emergency numbers, taxi, transfer, catering data sit in hizmetler.json with name/address/phone but render without LocalBusiness/Pharmacy/Service markup, and there is no NAP consistency between the concierge phone used on tour pages (+90 530 665 07 94) and the services listings.
+  - *Düzeltme:* Add LocalBusiness/Pharmacy JSON-LD for the nöbetçi eczane (name+address+telephone+geo from hizmetler.json) and ItemList/Service schema for the service categories; standardize one canonical NAP (name, address, phone) and reuse it consistently across hizmetler and tur provider blocks.
+- [low/low] Landing pages (plajlar/turlar/hizmetler) lack an ItemList / CollectionPage schema enumerating the beaches/tours, missing carousel-style rich-result eligibility and internal entity signals.
+  - *Düzeltme:* Add an ItemList JSON-LD on each landing page listing child items (name + url) — beaches on plajlar.html, tours on turlar.html — generated from plajlar.json/turlar.json.
+- [low/high] hreflang on landing pages points all languages to the SAME HTML differentiated only by ?lang= query params; the page serves identical default (Turkish) markup and swaps text via JS. Google may treat ?lang= URLs as duplicates of the canonical and ignore the hreflang, since server-rendered content is identical.
+  - *Düzeltme:* Longer-term: render language variants server-side (or prerender ?lang= URLs) so each hreflang target returns genuinely localized HTML; short-term ensure ?lang= URLs at least set <html lang> and localized title/description on load.
+- [low/low] Tour Offer schema derives price via regex with a silent default of '850' TRY when parsing fails (build-tur-pages.mjs ~line 423). A wrong/stale hardcoded price in structured data can trigger Merchant/price-mismatch issues and erodes trust.
+  - *Düzeltme:* Only emit the Offer/price when a real numeric price exists in turlar.json; drop the '850' fallback and omit price (or the whole Offer) otherwise.
+
+**Hızlı kazanımlar:**
+- Delete aggregateRating from tur/_template TouristTrip (or gate it behind a real review cache) — removes fabricated-review policy risk in one edit
+- Add FAQPage JSON-LD to the tur template (FAQ data already generated by genericFaq())
+- Drop the '850' TRY price fallback in build-tur-pages.mjs so Offer only appears with a real price
+- Add hreflang alternate block (already used on landings) to both plaj and tur detail templates
+- Add ItemList JSON-LD to plajlar.html and turlar.html enumerating child beach/tour URLs
+- Add Pharmacy LocalBusiness JSON-LD for the nöbetçi eczane from hizmetler.json (name/address/phone/geo)
+

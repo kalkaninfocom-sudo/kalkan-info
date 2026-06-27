@@ -2,7 +2,7 @@
   'use strict';
 
   const STORAGE_KEY = 'lang';
-  const DEFAULT_LANG = 'en';
+  const DEFAULT_LANG = 'tr';
   const SUPPORTED = ['en', 'tr', 'de', 'ru', 'fr'];
 
   // ?lang=xx query param desteği (hreflang SEO için)
