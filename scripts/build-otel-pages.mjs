@@ -550,7 +550,7 @@ if (built.length) {
   let sitemap = await readFile(sitemapPath, 'utf8');
   const today = new Date().toISOString().slice(0,10);
   for (const b of built) {
-    const url = `https://kalkaninfo.com/otel/${b.slug}/`;
+    const url = `https://kalkaninfo.com/otel/${b.slug}`;
     if (!sitemap.includes(url)) {
       const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
       sitemap = sitemap.replace('</urlset>', entry + '</urlset>');

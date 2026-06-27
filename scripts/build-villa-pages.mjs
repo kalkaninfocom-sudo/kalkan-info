@@ -698,7 +698,7 @@ if (built.length) {
   let sitemap = await readFile(sitemapPath, 'utf8');
   const today = new Date().toISOString().slice(0,10);
   for (const b of built) {
-    const url = `https://kalkaninfo.com/villa/${b.slug}/`;
+    const url = `https://kalkaninfo.com/villa/${b.slug}`;
     if (!sitemap.includes(url)) {
       const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
       sitemap = sitemap.replace('</urlset>', entry + '</urlset>');
