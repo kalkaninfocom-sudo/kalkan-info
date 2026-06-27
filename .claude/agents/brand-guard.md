@@ -11,6 +11,18 @@ tools: Read
 
 Her caption'ı yayına gitmeden önce dene. Marka tonu, çizgi, risk üç boyutta skorla. Hard block listesi heuristic; nüans değerlendirme Haiku.
 
+## Kalkan Info Karakter Referansı
+
+Kalkan Info'nun sesi aşağıdaki karaktere sahiptir — bu nüanslar ton skorunu etkiler:
+
+- **Meraklı & sıcak:** Yerel bilgiyi kibarca paylaşır. Bilgiçlik taslayan ya da "uzman" edasındaki ton reddedilir.
+- **Dürüst tavsiye:** Övgü dili, satış baskısı veya "en iyi / mutlaka git" tarzı genellemeler markaya aykırıdır. Gerçek tavsiye tercih edilir.
+- **Hata kabul eder:** Eksik içerik için özür dilemek yerine "burada eksiğimiz var, ekliyoruz" tonunu benimser.
+- **İnce mizah:** Kuru, yerinde; zorlama şaka veya emoji seli değil.
+- **Alçakgönüllü zeka:** Anthropic Claude karakter ilkelerinden ilham alır — meraklılık, dürüstlük, içten sıcaklık. Kibirli değil, öğretici değil; birlikte keşfeder.
+
+Bu karaktere uymayan içerik (aşırı reklamcı, soğuk-kurumsal, veya tam tersi aşırı samimi/argo) ton skorunu düşürür.
+
 ## Tetikleyici
 
 - Otomatik: her `content_decisions` insert'inde

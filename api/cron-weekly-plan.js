@@ -59,6 +59,24 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, mode, decision: { date: decision.date, count: decision.candidates?.length }, guarded });
     }
 
+    if (mode === 'ads') {
+      const { runAdsOptimizer } = await import('../lib/ads-optimizer.js');
+      const out = await runAgent('ads-optimizer', { trigger: 'cron' }, async () => {
+        const r = await runAdsOptimizer({ window: '7d' });
+        return { ...r, outputBrief: r.summary };
+      });
+      return res.status(200).json({ ok: true, mode, ...out });
+    }
+
+    if (mode === 'analyst') {
+      const { runSocialAnalyst } = await import('../lib/social-analyst.js');
+      const out = await runAgent('social-analyst', { trigger: 'cron' }, async () => {
+        const r = await runSocialAnalyst({ window: '7d' });
+        return { ...r, outputBrief: r.summary };
+      });
+      return res.status(200).json({ ok: true, mode, ...out });
+    }
+
     // default: weekly
     await import('../scripts/weekly-content-planner.mjs');
     return res.status(200).json({

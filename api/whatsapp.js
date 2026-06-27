@@ -19,6 +19,7 @@
 
 import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
+import { runAgent } from '../lib/agent-logger.js';
 
 for (const k of Object.keys(process.env)) {
   if (typeof process.env[k] === 'string') process.env[k] = process.env[k].trim();
@@ -298,19 +299,22 @@ async function processMessage(supabase, allowlist, msg) {
     const { isBerkay, buildBriefing, askSecretary } = await import('../lib/secretary.js');
     if (isBerkay(normalised)) {
       const briefing = await buildBriefing();
-      const { reply, cost, usage } = await askSecretary({ userMessage: userText, briefing });
-      const waId = await sendWhatsAppText(normalised, reply);
-      await saveTurn(supabase, {
-        phone_hash: phoneHash,
-        phone_mask: phoneMask,
-        wa_message_id: waId,
-        role: 'assistant',
-        content: reply,
-        model: 'claude-sonnet-4-6-secretary',
-        tokens_in: usage?.input_tokens ?? 0,
-        tokens_out: usage?.output_tokens ?? 0,
+      const result = await runAgent('secretary', { trigger: 'whatsapp', input: userText, meta: { from: normalised } }, async () => {
+        const { reply, cost, usage } = await askSecretary({ userMessage: userText, briefing });
+        const waId = await sendWhatsAppText(normalised, reply);
+        await saveTurn(supabase, {
+          phone_hash: phoneHash,
+          phone_mask: phoneMask,
+          wa_message_id: waId,
+          role: 'assistant',
+          content: reply,
+          model: 'claude-sonnet-4-6-secretary',
+          tokens_in: usage?.input_tokens ?? 0,
+          tokens_out: usage?.output_tokens ?? 0,
+        });
+        console.log('[whatsapp] Secretary reply', { cost: cost.toFixed(4), usage });
+        return { reply, cost, usage };
       });
-      console.log('[whatsapp] Secretary reply', { cost: cost.toFixed(4), usage });
       return;
     }
   } catch (e) {

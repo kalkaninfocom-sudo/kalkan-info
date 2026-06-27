@@ -31,6 +31,14 @@
       "schedule": "0 4 * * 1"
     },
     {
+      "path": "/api/cron-weekly-plan?mode=analyst",
+      "schedule": "0 8 * * 1"
+    },
+    {
+      "path": "/api/cron-weekly-plan?mode=ads",
+      "schedule": "0 10 * * 1"
+    },
+    {
       "path": "/api/social-publish-queue",
       "schedule": "0 10 * * *"
     }
