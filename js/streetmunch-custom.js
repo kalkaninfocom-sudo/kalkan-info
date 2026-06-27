@@ -67,100 +67,6 @@
     });
   }
 
-  // ── Hero image: float, tilt, scroll-entry, glow pulse ──────────────────
-  function initHeroImage(gsap, ST) {
-    var videoEl = document.getElementById('smHeroVisualImg');
-    var wrap    = document.getElementById('smHeroImgWrap');
-    var glow    = document.querySelector('.sm-hero-glow');
-    if (!videoEl) return;
-
-    // prefers-reduced-motion: skip GSAP motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(videoEl, { opacity: 1, scale: 1 });
-      return;
-    }
-
-    // 1. Scroll-entry: scale 0.85→1, opacity 0→1
-    gsap.to(videoEl, {
-      opacity: 1,
-      scale: 1,
-      duration: 1.4,
-      ease: 'power3.out',
-      delay: 0.6
-    });
-
-    // 2. Idle float: container floats, video plays inside — layered effect
-    gsap.to(videoEl, {
-      y: -16,
-      duration: 3.5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: 1.0
-    });
-
-    // 3. Slow rotation: -1.5deg <-> +1.5deg
-    gsap.to(videoEl, {
-      rotation: 1.5,
-      duration: 8,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: 1.0
-    });
-
-    // 4. Glow pulse
-    if (glow) {
-      gsap.to(glow, {
-        opacity: 0.7,
-        scale: 1.08,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: 'sine.inOut',
-        delay: 0.8
-      });
-    }
-
-    // 5. Mousemove tilt — desktop only
-    gsap.matchMedia().add('(min-width: 768px)', function () {
-      var hero = document.querySelector('.sm-hero');
-      if (!hero || !wrap) return;
-
-      var _smTiltRaf = null;
-      hero.addEventListener('mousemove', function (e) {
-        if (_smTiltRaf) return;
-        _smTiltRaf = requestAnimationFrame(function () {
-          _smTiltRaf = null;
-          var rect = hero.getBoundingClientRect();
-          var nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
-          var ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
-          var rx = -ny * 10;
-          var ry =  nx * 10;
-          gsap.to(videoEl, {
-            rotateX: rx,
-            rotateY: ry,
-            transformPerspective: 1000,
-            transformOrigin: '50% 50%',
-            duration: 0.6,
-            ease: 'power2.out',
-            overwrite: 'auto'
-          });
-        });
-      });
-
-      hero.addEventListener('mouseleave', function () {
-        gsap.to(videoEl, {
-          rotateX: 0,
-          rotateY: 0,
-          duration: 1.2,
-          ease: 'elastic.out(1, 0.5)',
-          overwrite: 'auto'
-        });
-      });
-    });
-  }
-
   // ── Hero cinematic load sequence ─────────────────────────────────────────
   function setupHeroSequence(gsap, ST) {
     var heroEl = document.querySelector('.sm-hero');
@@ -561,9 +467,6 @@
       var gsap = window.gsap;
       var ST = window.ScrollTrigger;
       gsap.registerPlugin(ST);
-
-      // Hero image motion — runs on all viewports (mobile gets simplified float only)
-      initHeroImage(gsap, ST);
 
       gsap.matchMedia().add({
         // Desktop ≥768px

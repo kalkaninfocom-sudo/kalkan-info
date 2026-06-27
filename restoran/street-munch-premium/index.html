@@ -71,6 +71,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Hero image preload (LCP) -->
+<link rel="preload" as="image" href="/assets/img/streetmunch-hero.webp" type="image/webp" fetchpriority="high">
+
 <!-- GSAP + ScrollTrigger -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -212,6 +215,11 @@ h1, h2, h3, h4, .font-display {
 }
 
 /* ── Hero ───────────────────────────────────────────────────────────────── */
+@keyframes smKenBurns {
+  0%   { transform: scale(1.0) translateX(0) translateY(0); }
+  50%  { transform: scale(1.06) translateX(-1%) translateY(-1%); }
+  100% { transform: scale(1.0) translateX(0) translateY(0); }
+}
 .sm-hero {
   position: relative;
   min-height: 100svh;
@@ -220,78 +228,72 @@ h1, h2, h3, h4, .font-display {
   display: grid;
   grid-template-rows: 1fr;
 }
-/* Full-bleed bg image stays as parallax layer */
+/* Full-bleed bg image — Ken Burns slow zoom */
 .sm-hero-bg {
   position: absolute;
-  inset: -10%;
-  width: 120%;
-  height: 120%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
   will-change: transform;
   filter: saturate(1.05) contrast(1.08);
   transform-origin: center center;
+  animation: smKenBurns 18s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sm-hero-bg { animation: none; }
+}
+/* Mobile: no fixed attachment jank */
+@media (max-width: 767px) {
+  .sm-hero-bg { object-position: 60% center; }
 }
 .sm-hero-gradient {
   position: absolute;
   inset: 0;
-  /* Only darken bottom-left; right col stays dark naturally */
   background:
-    linear-gradient(to top, rgba(10,10,10,0.55) 0%, transparent 40%),
-    linear-gradient(to right, rgba(10,10,10,0.18) 0%, transparent 50%);
+    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.85) 100%);
   z-index: 1;
 }
 .sm-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10,10,10,0.08);
+  background: rgba(10,10,10,0.15);
   z-index: 1;
 }
 /* Duotone color treatment layer */
 .sm-hero-duotone {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 30% 60%, rgba(255,107,26,0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 70%, rgba(255,107,26,0.10) 0%, transparent 70%);
   z-index: 2;
   mix-blend-mode: screen;
 }
 
-/* ── Hero inner grid (2 col on lg+) ────────────────────────────────────── */
+/* ── Hero inner — single centered column ───────────────────────────────── */
 .sm-hero-inner {
   position: relative;
   z-index: 10;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   min-height: 100svh;
-  padding: 120px 48px 80px;
-  gap: 0;
+  padding: 120px 48px 100px;
 }
-@media (min-width: 1024px) {
-  .sm-hero-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    padding: 0 64px 0 64px;
-  }
-}
-@media (min-width: 1280px) {
-  .sm-hero-inner {
-    gap: 64px;
-    padding: 0 80px;
-  }
+@media (max-width: 767px) {
+  .sm-hero-inner { padding: 100px 24px 80px; }
 }
 
-/* ── Left col ───────────────────────────────────────────────────────────── */
+/* ── Content (centered) ─────────────────────────────────────────────────── */
 .sm-hero-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 0;
-  max-width: 100%;
-}
-@media (max-width: 1023px) {
-  .sm-hero-content {
-    padding-bottom: 48px;
-  }
+  max-width: 900px;
+  width: 100%;
 }
 .sm-hero-label {
   display: inline-flex;
@@ -312,91 +314,41 @@ h1, h2, h3, h4, .font-display {
   height: 1px;
   background: var(--accent);
 }
+.sm-hero-label::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+}
 .sm-hero-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(140px, 22vw, 360px);
-  line-height: 0.9;
+  font-size: clamp(100px, 18vw, 300px);
+  line-height: 0.88;
   letter-spacing: 0.02em;
   color: var(--cream);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   will-change: transform;
+  text-shadow: 0 4px 60px rgba(0,0,0,0.6);
 }
 .sm-hero-h1 .accent-word { color: var(--accent); }
 .sm-hero-tagline {
-  font-size: clamp(15px, 1.6vw, 19px);
+  font-size: clamp(15px, 1.6vw, 18px);
   font-weight: 400;
-  color: rgba(255,255,255,0.82);
-  max-width: 440px;
-  line-height: 1.6;
-  margin-bottom: 36px;
+  color: rgba(255,255,255,0.85);
+  max-width: 480px;
+  line-height: 1.65;
+  margin-bottom: 40px;
   opacity: 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 .sm-hero-ctas {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  justify-content: center;
   opacity: 0;
 }
-
-/* ── Right col — hero image visual ─────────────────────────────────────── */
-.sm-hero-visual {
-  display: none;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-@media (min-width: 1024px) {
-  .sm-hero-visual {
-    display: flex;
-  }
-}
-
-/* Ambient glow behind the image */
-.sm-hero-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(ellipse 70% 70% at 50% 55%, rgba(255,107,26,0.55) 0%, transparent 70%);
-  z-index: 0;
-  opacity: 0.45;
-  filter: blur(40px);
-  animation: smGlowPulse 4s ease-in-out infinite alternate;
-}
-@keyframes smGlowPulse {
-  from { opacity: 0.4; transform: scale(0.95); }
-  to   { opacity: 0.72; transform: scale(1.05); }
-}
-
-/* picture wrapper — grain overlay via pseudo */
-.sm-hero-img-wrap {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sm-hero-img-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain-url);
-  background-size: 180px 180px;
-  opacity: 0.025;
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-/* Bottom fade mask on the visual image */
-.sm-hero-img-mask {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 28%;
-  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-  z-index: 3;
-  pointer-events: none;
 }
 
 .sm-hero-visual-img {
@@ -412,24 +364,7 @@ h1, h2, h3, h4, .font-display {
   transform-style: preserve-3d;
 }
 
-/* Mobile: show visual below content, compact */
-@media (max-width: 1023px) {
-  .sm-hero-inner {
-    grid-template-columns: 1fr;
-  }
-  .sm-hero-visual {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 24px;
-  }
-  .sm-hero-visual-img {
-    max-height: 60vh;
-  }
-  .sm-hero-glow {
-    animation: none;
-    opacity: 0.35;
-  }
-}
+/* (right-col visual removed — hero is now full-bleed single column) */
 
 /* ── Scroll hint ────────────────────────────────────────────────────────── */
 .sm-scroll-hint {
@@ -458,10 +393,9 @@ h1, h2, h3, h4, .font-display {
   .sm-scroll-hint { right: 20px; bottom: 20px; }
 }
 
-/* prefers-reduced-motion: glow pulse off */
+/* prefers-reduced-motion: ken burns off */
 @media (prefers-reduced-motion: reduce) {
-  .sm-hero-glow { animation: none; }
-  .sm-hero-visual-img { opacity: 1 !important; transform: none !important; }
+  .sm-hero-bg { animation: none !important; }
 }
 
 /* ── Buttons ────────────────────────────────────────────────────────────── */
@@ -1281,22 +1215,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <!-- HERO                                                                   -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
-<section class="sm-hero" id="hero" aria-label="Hero bolumu">
-  <!-- Background: deep dark gradient -->
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 120% 90% at 10% 70%,#1f0a00 0%,#0d0500 40%,#0a0a0a 75%);z-index:0;" aria-hidden="true"></div>
-  <!-- Subtle texture grain -->
-  <div style="position:absolute;inset:0;background-image:var(--grain-url);background-size:200px 200px;opacity:0.045;z-index:0;" aria-hidden="true"></div>
-  <!-- Warm accent streak top-left -->
-  <div style="position:absolute;top:-10%;left:-5%;width:55%;height:70%;background:radial-gradient(ellipse 70% 80% at 30% 40%,rgba(255,107,26,0.07) 0%,transparent 70%);z-index:0;" aria-hidden="true"></div>
+<section class="sm-hero" id="hero" role="img" aria-label="Street Munch — Kalkan Sokak Lezzeti">
+  <!-- Full-bleed background image with Ken Burns zoom -->
+  <picture>
+    <source srcset="/assets/img/streetmunch-hero.webp" type="image/webp">
+    <img
+      class="sm-hero-bg"
+      src="/assets/img/streetmunch-hero.jpg"
+      alt=""
+      aria-hidden="true"
+      width="1600" height="1067"
+      fetchpriority="high"
+      decoding="async"
+    >
+  </picture>
 
+  <!-- Dark overlay layers -->
   <div class="sm-hero-overlay" aria-hidden="true"></div>
   <div class="sm-hero-gradient" aria-hidden="true"></div>
   <div class="sm-hero-duotone" aria-hidden="true"></div>
+  <!-- Grain texture -->
+  <div style="position:absolute;inset:0;background-image:var(--grain-url);background-size:200px 200px;opacity:0.04;z-index:3;pointer-events:none;" aria-hidden="true"></div>
 
-  <!-- ── 2-column inner grid ────────────────────────────────────────────── -->
+  <!-- ── Single centered column ─────────────────────────────────────────── -->
   <div class="sm-hero-inner">
-
-    <!-- LEFT: typography + CTA -->
     <div class="sm-hero-content">
       <div class="sm-hero-label" aria-hidden="true">Sokak Lezzeti &middot; Kalkan</div>
 
@@ -1306,7 +1248,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <p class="sm-hero-tagline">
         Munch'a dustuysen, StreetMunch'ta bulusalim.<br>
-        Caddenin basindayiz.&nbsp;&#128526;
+        Caddenin basindayiz.
       </p>
 
       <div class="sm-hero-ctas">
@@ -1332,32 +1274,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
       </div>
     </div>
-
-    <!-- RIGHT: hero visual with motion -->
-    <div class="sm-hero-visual" aria-hidden="true">
-      <!-- Ambient orange glow behind image -->
-      <div class="sm-hero-glow"></div>
-
-      <!-- Image wrapper (grain overlay via ::after pseudo) -->
-      <div class="sm-hero-img-wrap" id="smHeroImgWrap">
-        <picture>
-          <source srcset="/assets/img/streetmunch-hero.webp" type="image/webp">
-          <img
-            id="smHeroVisualImg"
-            class="sm-hero-visual-img"
-            src="/assets/img/streetmunch-hero.jpg"
-            alt="Street Munch cheeseburger — eritilmiş peynir + susam ekmek"
-            width="1600" height="1760"
-            fetchpriority="high"
-            decoding="async"
-            draggable="false"
-          >
-        </picture>
-        <!-- Bottom fade mask -->
-        <div class="sm-hero-img-mask"></div>
-      </div>
-    </div>
-
   </div><!-- /.sm-hero-inner -->
 
   <!-- Scroll indicator -->
