@@ -359,6 +359,47 @@ function socialLinks(v){
 }
 
 // =====================================================================
+// RELATED SECTION — I18N + BUILDER
+// =====================================================================
+const RELATED_I18N = {
+  tr: { related_label:'Keşfet', related_title:"Kalkan'da Benzer Villalar", related_sub:'Tatiliniz için keşfedebileceğiniz diğer Kalkan kiralık villaları.', related_all:'Tüm Kalkan Villaları →' },
+  en: { related_label:'Discover', related_title:'Similar Villas in Kalkan', related_sub:'Other Kalkan holiday villas worth exploring.', related_all:'All Kalkan Villas →' },
+  de: { related_label:'Entdecken', related_title:'Ähnliche Villen in Kalkan', related_sub:'Weitere Ferienvillen in Kalkan zum Entdecken.', related_all:'Alle Villen in Kalkan →' },
+  ru: { related_label:'Откройте', related_title:'Похожие виллы в Калкане', related_sub:'Другие виллы Калкана для вашего отдыха.', related_all:'Все виллы Калкана →' },
+  fr: { related_label:'Découvrir', related_title:'Villas similaires à Kalkan', related_sub:'D’autres villas de vacances à Kalkan à explorer.', related_all:'Toutes les villas de Kalkan →' }
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], RELATED_I18N[l]);
+
+function relatedSection(current, allItems) {
+  const sameCat = allItems.filter(x => x.id !== current.id && x.category === current.category);
+  const others = allItems.filter(x => x.id !== current.id && x.category !== current.category);
+  const picks = [...sameCat, ...others].slice(0, 6);
+  if (!picks.length) return '';
+  const cards = picks.map(x => {
+    const href = `/villa/${x.id}`;
+    const sub = esc(x.category || x.location || '');
+    return `
+      <a href="${href}" class="related-card block p-5 transition" style="border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">${esc(x.category || 'Villa')}</div>
+        <div class="font-display text-xl font-bold mb-1" style="color:var(--theme-text);">${esc(x.name)}</div>
+        <div class="text-sm" style="color:var(--theme-muted);">${sub}</div>
+      </a>`;
+  }).join('');
+  return `
+<section class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-label mb-6" data-i="related_label">Keşfet</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="related_title">Kalkan'da Benzer Villalar</h2>
+    <p class="mb-12 text-base max-w-2xl" style="color:var(--theme-muted);" data-i="related_sub">Tatiliniz için keşfedebileceğiniz diğer Kalkan kiralık villaları.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${cards}</div>
+    <div class="mt-12">
+      <a href="/villalar" class="btn-ghost" data-i="related_all">Tüm Kalkan Villaları →</a>
+    </div>
+  </div>
+</section>`;
+}
+
+// =====================================================================
 // BUILD LOOP
 // =====================================================================
 let built = [];
@@ -619,6 +660,7 @@ for (const slug of targets) {
     AMENITY_FEATURE_JSON: JSON.stringify(amenityFeatureJson),
     SAME_AS_JSON: JSON.stringify(sameAs),
     PAYMENT_METHODS_JSON: JSON.stringify(paymentMethods),
+    RELATED_SECTION: relatedSection(v, data.items || []),
     I18N_JSON: JSON.stringify(I18N_BASE),
     THEME_BG: T.bg,
     THEME_BG_2: T.bg2,

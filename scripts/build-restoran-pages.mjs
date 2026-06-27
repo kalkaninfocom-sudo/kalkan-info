@@ -261,6 +261,48 @@ const I18N_BASE = {
   fr: { about:'À propos', menu:'Menu', gallery:'Galerie', reserve:'Réservation', contact:'Contact', cta_reserve:'Réserver', cta_menu:'Voir le Menu', cta_reserve_send:'Envoyer la demande', about_label:'À propos', menu_label:'Menu', gallery_label:'Galerie', gallery_title:'Instants', reserve_label:'Réservation', reserve_title:'Réservez votre table', reserve_sub:'Réservation rapide via WhatsApp ou remplissez le formulaire — réponse en 60 secondes.', contact_label:'Contact', contact_title:'Contactez-nous', contact_addr:'Adresse', contact_phone:'Téléphone', contact_hours:'Horaires', contact_social:'Réseaux sociaux', menu_pdf:'Télécharger le menu (PDF)', reviews:'Avis', reviews_label:'Avis des clients', reviews_title:'Ce que disent les clients sur Google', reviews_sub:'Les avis ci-dessous proviennent de Google Maps. Cliquez pour les voir tous.', reviews_all:'Voir tous les avis (Google)', reviews_empty:'Avis bientôt disponibles.' }
 };
 
+// Benzer Mekanlar bolumu i18n etiketleri (data-i ile dil degisir)
+const RELATED_I18N = {
+  tr: { related_label:'Keşfet', related_title:"Kalkan'da Benzer Mekanlar", related_sub:'Aynı kategoride keşfedebileceğiniz diğer Kalkan restoran ve barları.', related_all:'Tüm Kalkan Restoranları →' },
+  en: { related_label:'Discover', related_title:'Similar Places in Kalkan', related_sub:'Other Kalkan restaurants and bars in the same category worth exploring.', related_all:'All Kalkan Restaurants →' },
+  de: { related_label:'Entdecken', related_title:'Ähnliche Orte in Kalkan', related_sub:'Weitere Restaurants und Bars in Kalkan derselben Kategorie.', related_all:'Alle Restaurants in Kalkan →' },
+  ru: { related_label:'Откройте', related_title:'Похожие места в Калкане', related_sub:'Другие рестораны и бары Калкана той же категории.', related_all:'Все рестораны Калкана →' },
+  fr: { related_label:'Découvrir', related_title:'Lieux similaires à Kalkan', related_sub:'D’autres restaurants et bars de Kalkan dans la même catégorie.', related_all:'Tous les restaurants de Kalkan →' }
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], RELATED_I18N[l]);
+
+// "Benzer Mekanlar" bolumu — ayni kategoriden 6 restorana isim-anchor ile ic link.
+// SEO: detay sayfalari arasi link agi + listing'e keyword anchor. URL'ler clean
+// (slash yok) -> canonical ile eslesir, 308 redirect hop'u yok.
+function relatedSection(current, allItems) {
+  const sameCat = allItems.filter(x => x.id !== current.id && x.category === current.category);
+  const others = allItems.filter(x => x.id !== current.id && x.category !== current.category);
+  const picks = [...sameCat, ...others].slice(0, 6);
+  if (!picks.length) return '';
+  const cards = picks.map(x => {
+    const href = (x.detailPath ? '/' + x.detailPath.replace(/\/$/, '') : `/restoran/${x.id}`);
+    const sub = esc(x.cuisine || x.category || '');
+    return `
+      <a href="${href}" class="related-card block p-5 transition" style="border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">${esc(x.category || '')}</div>
+        <div class="font-display text-xl font-bold mb-1" style="color:var(--theme-text);">${esc(x.name)}</div>
+        <div class="text-sm" style="color:var(--theme-muted);">${sub}</div>
+      </a>`;
+  }).join('');
+  return `
+<section class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-label mb-6" data-i="related_label">Keşfet</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="related_title">Kalkan'da Benzer Mekanlar</h2>
+    <p class="mb-12 text-base max-w-2xl" style="color:var(--theme-muted);" data-i="related_sub">Aynı kategoride keşfedebileceğiniz diğer Kalkan restoran ve barları.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${cards}</div>
+    <div class="mt-12">
+      <a href="/restoranlar" class="btn-ghost" data-i="related_all">Tüm Kalkan Restoranları →</a>
+    </div>
+  </div>
+</section>`;
+}
+
 let built = [];
 
 for (const slug of targets) {
@@ -401,6 +443,7 @@ for (const slug of targets) {
     SPECIALTIES_PILLS: specs,
     SOCIAL_LINKS: socialLinks(r),
     REVIEWS_SECTION: reviewsSectionHtml,
+    RELATED_SECTION: relatedSection(r, data.items || []),
     RESERVATIONS: r.reservation ? 'True' : 'True',
     AGGREGATE_RATING_BLOCK: aggregateRatingBlock,
     GEO_BLOCK: geoBlock,

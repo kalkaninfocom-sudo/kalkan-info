@@ -356,6 +356,42 @@ const I18N_BASE = {
   fr: { about:'À propos', highlights:'Points Forts', facilities:'Équipements', travel:'Accès', gallery:'Galerie', reviews:'Avis', faq:'FAQ', cta_directions:'Itinéraire', cta_gallery:'Photos', cta_route:'Itinéraire sur Google Maps', about_label:'À propos', highlights_label:'Points Forts', highlights_title:'Ce qui rend cette plage spéciale', highlights_sub:'Les caractéristiques les plus appréciées par les visiteurs.', facilities_label:'Équipements', facilities_title:'Disponible sur place', facilities_sub:'Services et installations pour votre visite.', travel_label:'Accès', travel_title:'Comment s\'y rendre', travel_sub:'Emplacement, distance et transport.', travel_distance:'Distance', travel_drive:'Durée', travel_best:'Meilleure période', tip_label:'Conseils aux visiteurs', gallery_label:'Galerie', map_label:'Emplacement', map_title:'Où se trouve la plage', reviews_label:'Avis des visiteurs', reviews_title:'Ce que disent les visiteurs sur Google', reviews_sub:'Les avis ci-dessous proviennent de Google Maps.', reviews_all:'Voir tous les avis (Google)', reviews_empty:'Avis bientôt disponibles.', faq_label:'FAQ', faq_title:'Questions fréquentes', all_beaches:'Toutes les plages →' }
 };
 
+const RELATED_I18N = {
+  tr: { related_label:'Keşfet', related_title:"Kalkan'ın Diğer Plajları", related_sub:'Kalkan ve çevresinde keşfedebileceğiniz diğer plaj ve koylar.', related_all:'Tüm Kalkan Plajları →' },
+  en: { related_label:'Discover', related_title:'Other Beaches in Kalkan', related_sub:'More beaches and coves to explore around Kalkan.', related_all:'All Kalkan Beaches →' },
+  de: { related_label:'Entdecken', related_title:'Weitere Strände in Kalkan', related_sub:'Mehr Strände und Buchten rund um Kalkan.', related_all:'Alle Strände in Kalkan →' },
+  ru: { related_label:'Откройте', related_title:'Другие пляжи Калкана', related_sub:'Больше пляжей и бухт в окрестностях Калкана.', related_all:'Все пляжи Калкана →' },
+  fr: { related_label:'Découvrir', related_title:'Autres plages de Kalkan', related_sub:'D\'autres plages et criques à explorer autour de Kalkan.', related_all:'Toutes les plages de Kalkan →' }
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], RELATED_I18N[l]);
+
+function relatedSection(current, allItems) {
+  const picks = allItems.filter(x => x.id !== current.id).slice(0, 6);
+  if (!picks.length) return '';
+  const cards = picks.map(x => {
+    const href = `/plaj/${x.id}`;
+    const sub = esc(x.region || x.location || 'Kalkan, Antalya');
+    return `
+      <a href="${href}" class="related-card block p-5 transition" style="border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Plaj</div>
+        <div class="font-display text-xl font-bold mb-1" style="color:var(--theme-text);">${esc(x.name)}</div>
+        <div class="text-sm" style="color:var(--theme-muted);">${sub}</div>
+      </a>`;
+  }).join('');
+  return `
+<section class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-label mb-6" data-i="related_label">Keşfet</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="related_title">Kalkan'ın Diğer Plajları</h2>
+    <p class="mb-12 text-base max-w-2xl" style="color:var(--theme-muted);" data-i="related_sub">Kalkan ve çevresinde keşfedebileceğiniz diğer plaj ve koylar.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${cards}</div>
+    <div class="mt-12">
+      <a href="/plajlar" class="btn-ghost" data-i="related_all">Tüm Kalkan Plajları →</a>
+    </div>
+  </div>
+</section>`;
+}
+
 let built = [];
 
 for (const slug of targets) {
@@ -506,7 +542,8 @@ for (const slug of targets) {
     THEME_ACCENT_2: t.accent2,
     THEME_TEXT: t.text,
     THEME_MUTED: t.muted,
-    FONT_DISPLAY: t.font
+    FONT_DISPLAY: t.font,
+    RELATED_SECTION: relatedSection(r, data.items || [])
   };
 
   let html = template;

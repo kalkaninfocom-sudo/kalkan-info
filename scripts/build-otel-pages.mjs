@@ -349,6 +349,44 @@ const I18N_BASE = {
   fr: { about:'À propos', amenities:'Équipements', rooms:'Chambres', gallery:'Galerie', reserve:'Réservation', contact:'Contact', reviews:'Avis', cta_reserve:'Réserver', cta_rooms:'Voir les chambres', cta_reserve_send:'Envoyer la demande', about_label:'À propos', amenities_label:'Équipements', amenities_title:'Ce que nous offrons', amenities_sub:'Installations et services pendant votre séjour.', rooms_label:'Chambres', rooms_title:'Types de chambres', rooms_sub:'Options selon votre niveau de confort.', rooms_cta:'Demander disponibilité', rooms_sleeps:'pers.', gallery_label:'Galerie', gallery_title:'Moments de l\'hôtel', reserve_label:'Réservation', reserve_title:'Réservez votre chambre', reserve_sub:'Réservation rapide via WhatsApp ou remplissez le formulaire — réponse en 60 secondes.', contact_label:'Contact', contact_title:'Contactez-nous', contact_addr:'Adresse', contact_phone:'Téléphone', contact_checkin:'Arrivée / Départ', contact_social:'Réseaux sociaux', reviews_label:'Avis des clients', reviews_title:'Ce que disent les clients sur Google', reviews_sub:'Les avis ci-dessous proviennent de Google Maps.', reviews_all:'Voir tous les avis (Google)', reviews_empty:'Avis bientôt disponibles.' }
 };
 
+const RELATED_I18N = {
+  tr: { related_label:'Keşfet', related_title:"Kalkan'da Benzer Oteller", related_sub:'Konaklamak için keşfedebileceğiniz diğer Kalkan otelleri.', related_all:'Tüm Kalkan Otelleri →' },
+  en: { related_label:'Discover', related_title:'Similar Hotels in Kalkan', related_sub:'Other Kalkan hotels worth considering for your stay.', related_all:'All Kalkan Hotels →' },
+  de: { related_label:'Entdecken', related_title:'Ähnliche Hotels in Kalkan', related_sub:'Weitere Hotels in Kalkan für Ihren Aufenthalt.', related_all:'Alle Hotels in Kalkan →' },
+  ru: { related_label:'Откройте', related_title:'Похожие отели в Калкане', related_sub:'Другие отели Калкана для вашего отдыха.', related_all:'Все отели Калкана →' },
+  fr: { related_label:'Découvrir', related_title:'Hôtels similaires à Kalkan', related_sub:'D\'autres hôtels de Kalkan pour votre séjour.', related_all:'Tous les hôtels de Kalkan →' }
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], RELATED_I18N[l]);
+
+function relatedSection(current, allItems) {
+  const sameCat = allItems.filter(x => x.id !== current.id && x.category === current.category);
+  const others = allItems.filter(x => x.id !== current.id && x.category !== current.category);
+  const picks = [...sameCat, ...others].slice(0, 6);
+  if (!picks.length) return '';
+  const cards = picks.map(x => {
+    const href = `/otel/${x.id}`;
+    const sub = esc(x.category || x.location || '');
+    return `
+      <a href="${href}" class="related-card block p-5 transition" style="border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+        <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">${esc(x.category || 'Otel')}</div>
+        <div class="font-display text-xl font-bold mb-1" style="color:var(--theme-text);">${esc(x.name)}</div>
+        <div class="text-sm" style="color:var(--theme-muted);">${sub}</div>
+      </a>`;
+  }).join('');
+  return `
+<section class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-7xl mx-auto">
+    <div class="section-label mb-6" data-i="related_label">Keşfet</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="related_title">Kalkan'da Benzer Oteller</h2>
+    <p class="mb-12 text-base max-w-2xl" style="color:var(--theme-muted);" data-i="related_sub">Konaklamak için keşfedebileceğiniz diğer Kalkan otelleri.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">${cards}</div>
+    <div class="mt-12">
+      <a href="/oteller" class="btn-ghost" data-i="related_all">Tüm Kalkan Otelleri →</a>
+    </div>
+  </div>
+</section>`;
+}
+
 let built = [];
 
 for (const slug of targets) {
@@ -474,6 +512,7 @@ for (const slug of targets) {
     GALLERY_ITEMS: galleryItems,
     SOCIAL_LINKS: socialLinks(r),
     REVIEWS_SECTION: reviewsSectionHtml,
+    RELATED_SECTION: relatedSection(r, data.items || []),
     DIRECT_HOTEL_CTA: directHotelCta,
     CONCIERGE_LINE: conciergeLine,
     CHECKIN_TIMES: 'Giriş 14:00 · Çıkış 12:00',
