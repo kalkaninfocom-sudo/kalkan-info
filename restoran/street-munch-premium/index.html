@@ -33,6 +33,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="https://kalkaninfo.com/assets/img/streetmunch-hero.jpg">
 <meta property="og:site_name" content="Kalkan Info">
 <meta property="og:locale" content="tr_TR">
+<meta property="og:video" content="https://kalkaninfo.com/assets/img/streetmunch-burger.mp4">
+<meta property="og:video:type" content="video/mp4">
+<meta property="og:video:width" content="720">
+<meta property="og:video:height" content="1248">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Street Munch — Kalkan">
@@ -189,6 +193,28 @@ h1, h2, h3, h4, .font-display {
   transition: color 0.2s;
 }
 .sm-nav-logo span { color: var(--accent); }
+.sm-nav-brand-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+.sm-nav-logo:hover .sm-nav-brand-logo {
+  transform: scale(1.05) rotate(-3deg);
+}
+.sm-nav-wordmark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+.sm-nav-wordmark span { color: var(--accent); }
+@media (max-width: 480px) {
+  .sm-nav-wordmark { display: none; }
+  .sm-nav-brand-logo { width: 36px; height: 36px; }
+}
 .sm-nav-links { display: flex; align-items: center; gap: 36px; }
 .sm-nav-link {
   font-family: 'Space Grotesk', sans-serif;
@@ -222,13 +248,13 @@ h1, h2, h3, h4, .font-display {
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 .sm-hero {
   position: relative;
-  height: 100svh;
+  min-height: 100svh;
   min-height: 640px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
   overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr;
 }
+/* Full-bleed bg image stays as parallax layer */
 .sm-hero-bg {
   position: absolute;
   inset: -10%;
@@ -242,15 +268,16 @@ h1, h2, h3, h4, .font-display {
 .sm-hero-gradient {
   position: absolute;
   inset: 0;
+  /* Only darken bottom-left; right col stays dark naturally */
   background:
-    linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.7) 35%, rgba(10,10,10,0.2) 70%, transparent 100%),
-    linear-gradient(to right, rgba(10,10,10,0.65) 0%, transparent 60%);
+    linear-gradient(to top, rgba(10,10,10,0.55) 0%, transparent 40%),
+    linear-gradient(to right, rgba(10,10,10,0.18) 0%, transparent 50%);
   z-index: 1;
 }
 .sm-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10,10,10,0.32);
+  background: rgba(10,10,10,0.08);
   z-index: 1;
 }
 /* Duotone color treatment layer */
@@ -261,11 +288,44 @@ h1, h2, h3, h4, .font-display {
   z-index: 2;
   mix-blend-mode: screen;
 }
-.sm-hero-content {
+
+/* ── Hero inner grid (2 col on lg+) ────────────────────────────────────── */
+.sm-hero-inner {
   position: relative;
   z-index: 10;
-  padding: 0 48px 80px;
-  max-width: 860px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  min-height: 100svh;
+  padding: 120px 48px 80px;
+  gap: 0;
+}
+@media (min-width: 1024px) {
+  .sm-hero-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 0 64px 0 64px;
+  }
+}
+@media (min-width: 1280px) {
+  .sm-hero-inner {
+    gap: 64px;
+    padding: 0 80px;
+  }
+}
+
+/* ── Left col ───────────────────────────────────────────────────────────── */
+.sm-hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 0;
+  max-width: 100%;
+}
+@media (max-width: 1023px) {
+  .sm-hero-content {
+    padding-bottom: 48px;
+  }
 }
 .sm-hero-label {
   display: inline-flex;
@@ -288,7 +348,7 @@ h1, h2, h3, h4, .font-display {
 }
 .sm-hero-h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(72px, 12vw, 160px);
+  font-size: clamp(72px, 10vw, 144px);
   line-height: 0.9;
   letter-spacing: 0.02em;
   color: var(--cream);
@@ -297,11 +357,11 @@ h1, h2, h3, h4, .font-display {
 }
 .sm-hero-h1 .accent-word { color: var(--accent); }
 .sm-hero-tagline {
-  font-size: clamp(15px, 2vw, 20px);
+  font-size: clamp(15px, 1.6vw, 19px);
   font-weight: 400;
   color: rgba(255,255,255,0.82);
-  max-width: 480px;
-  line-height: 1.5;
+  max-width: 440px;
+  line-height: 1.6;
   margin-bottom: 36px;
   opacity: 0;
 }
@@ -311,6 +371,121 @@ h1, h2, h3, h4, .font-display {
   gap: 12px;
   opacity: 0;
 }
+
+/* ── Right col — hero image visual ─────────────────────────────────────── */
+.sm-hero-visual {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+@media (min-width: 1024px) {
+  .sm-hero-visual {
+    display: flex;
+  }
+}
+
+/* Ambient glow behind the image */
+.sm-hero-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse 70% 70% at 50% 55%, rgba(255,107,26,0.55) 0%, transparent 70%);
+  z-index: 0;
+  opacity: 0.45;
+  filter: blur(40px);
+  animation: smGlowPulse 4s ease-in-out infinite alternate;
+}
+@keyframes smGlowPulse {
+  from { opacity: 0.4; transform: scale(0.95); }
+  to   { opacity: 0.72; transform: scale(1.05); }
+}
+
+/* picture wrapper — grain overlay via pseudo */
+.sm-hero-img-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sm-hero-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  background-size: 180px 180px;
+  opacity: 0.025;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Bottom fade mask on the visual image */
+.sm-hero-img-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28%;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.sm-hero-visual-img {
+  display: block;
+  max-height: 88vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 40px 80px rgba(255,107,26,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.8));
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+/* ── Hero cinematic video ────────────────────────────────────────────────── */
+.sm-hero-visual-video {
+  display: block;
+  aspect-ratio: 696 / 1248;
+  max-height: 88vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  filter: drop-shadow(0 40px 80px rgba(255,107,26,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.8));
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+/* Mobile: show visual below content, compact */
+@media (max-width: 1023px) {
+  .sm-hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .sm-hero-visual {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 24px;
+  }
+  .sm-hero-visual-img {
+    max-height: 60vh;
+  }
+  .sm-hero-visual-video {
+    max-height: 60vh;
+  }
+  .sm-hero-glow {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+/* ── Scroll hint ────────────────────────────────────────────────────────── */
 .sm-scroll-hint {
   position: absolute;
   bottom: 32px;
@@ -333,8 +508,15 @@ h1, h2, h3, h4, .font-display {
   display: block;
 }
 @media (max-width: 767px) {
-  .sm-hero-content { padding: 0 20px 60px; }
+  .sm-hero-inner { padding: 100px 20px 60px; }
   .sm-scroll-hint { right: 20px; bottom: 20px; }
+}
+
+/* prefers-reduced-motion: glow pulse off + video pause */
+@media (prefers-reduced-motion: reduce) {
+  .sm-hero-glow { animation: none; }
+  .sm-hero-visual-img { opacity: 1 !important; transform: none !important; }
+  .sm-hero-visual-video { opacity: 1 !important; transform: none !important; }
 }
 
 /* ── Buttons ────────────────────────────────────────────────────────────── */
@@ -1086,7 +1268,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- NAV                                                                    -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <nav class="sm-nav" role="navigation" aria-label="Ana menü">
-  <a href="#hero" class="sm-nav-logo">Street <span>Munch</span></a>
+  <a href="#hero" class="sm-nav-logo" style="display:flex;align-items:center;gap:10px;">
+    <picture>
+      <source srcset="/assets/img/streetmunch-logo.webp" type="image/webp">
+      <img src="/assets/img/streetmunch-logo.png" alt="Street Munch logo" width="48" height="48" class="sm-nav-brand-logo" loading="eager">
+    </picture>
+    <span class="sm-nav-wordmark">Street <span>Munch</span></span>
+  </a>
   <div class="sm-nav-links" role="list">
     <a href="#story"    class="sm-nav-link" role="listitem">Hikaye</a>
     <a href="#menu"     class="sm-nav-link" role="listitem">Menu</a>
@@ -1106,49 +1294,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HERO                                                                   -->
 <!-- ══════════════════════════════════════════════════════════════════════ -->
 <section class="sm-hero" id="hero" aria-label="Hero bolumu">
-  <!-- Background image -->
-  <img
-    class="sm-hero-bg"
-    src="/assets/img/streetmunch-hero.jpg"
-    alt=""
-    aria-hidden="true"
-    loading="eager"
-    onerror="this.style.display='none'"
-  >
-  <!-- Fallback gradient if no image -->
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 60% 40%,#2a1200 0%,#0a0a0a 70%);z-index:0;" aria-hidden="true"></div>
+  <!-- Background: deep dark gradient -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 120% 90% at 10% 70%,#1f0a00 0%,#0d0500 40%,#0a0a0a 75%);z-index:0;" aria-hidden="true"></div>
+  <!-- Subtle texture grain -->
+  <div style="position:absolute;inset:0;background-image:var(--grain-url);background-size:200px 200px;opacity:0.045;z-index:0;" aria-hidden="true"></div>
+  <!-- Warm accent streak top-left -->
+  <div style="position:absolute;top:-10%;left:-5%;width:55%;height:70%;background:radial-gradient(ellipse 70% 80% at 30% 40%,rgba(255,107,26,0.07) 0%,transparent 70%);z-index:0;" aria-hidden="true"></div>
 
   <div class="sm-hero-overlay" aria-hidden="true"></div>
   <div class="sm-hero-gradient" aria-hidden="true"></div>
   <div class="sm-hero-duotone" aria-hidden="true"></div>
 
-  <div class="sm-hero-content">
-    <div class="sm-hero-label" aria-hidden="true">Sokak Lezzeti &middot; Kalkan</div>
+  <!-- ── 2-column inner grid ────────────────────────────────────────────── -->
+  <div class="sm-hero-inner">
 
-    <h1 class="sm-hero-h1" aria-label="Street Munch">
-      STREET<br><span class="accent-word">MUNCH</span>
-    </h1>
+    <!-- LEFT: typography + CTA -->
+    <div class="sm-hero-content">
+      <div class="sm-hero-label" aria-hidden="true">Sokak Lezzeti &middot; Kalkan</div>
 
-    <p class="sm-hero-tagline">
-      Munch'a dustuysen, StreetMunch'ta bulusalim.<br>
-      Caddenin basindayiz.
-    </p>
+      <h1 class="sm-hero-h1" aria-label="Street Munch">
+        STREET<br><span class="accent-word">MUNCH</span>
+      </h1>
 
-    <div class="sm-hero-ctas">
-      <a
-        href="https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20sipari%C5%9F%20vermek%20istiyorum."
-        target="_blank"
-        rel="noopener"
-        class="btn-primary"
-        aria-label="WhatsApp ile siparis ver"
-      >
-        <!-- WhatsApp icon -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
-        Siparis Ver
-      </a>
-      <a href="#menu" class="btn-ghost">Menuyu Gor</a>
+      <p class="sm-hero-tagline">
+        Munch'a dustuysen, StreetMunch'ta bulusalim.<br>
+        Caddenin basindayiz.&nbsp;&#128526;
+      </p>
+
+      <div class="sm-hero-ctas">
+        <a
+          href="https://wa.me/905455270275?text=Merhaba%20Street%20Munch%2C%20sipari%C5%9F%20vermek%20istiyorum."
+          target="_blank"
+          rel="noopener"
+          class="btn-primary"
+          aria-label="WhatsApp ile siparis ver"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+          Siparis Ver
+        </a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=36.2686793,29.4122333"
+          target="_blank"
+          rel="noopener"
+          class="btn-ghost"
+          aria-label="Google Maps'te yol tarifi al"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Yol Tarifi
+        </a>
+      </div>
     </div>
-  </div>
+
+    <!-- RIGHT: hero visual with motion -->
+    <div class="sm-hero-visual" aria-hidden="true">
+      <!-- Ambient orange glow behind image -->
+      <div class="sm-hero-glow"></div>
+
+      <!-- Video wrapper (grain overlay via ::after pseudo) -->
+      <div class="sm-hero-img-wrap" id="smHeroImgWrap">
+        <video
+          id="smHeroVisualImg"
+          class="sm-hero-visual-video"
+          autoplay loop muted playsinline preload="metadata"
+          poster="/assets/img/streetmunch-burger-poster.jpg"
+          aria-label="Lezzetli hamburger animasyonu"
+          draggable="false"
+        >
+          <source src="/assets/img/streetmunch-burger.webm" type="video/webm">
+          <source src="/assets/img/streetmunch-burger.mp4" type="video/mp4">
+        </video>
+        <!-- Bottom fade mask: video fades into bg at bottom -->
+        <div class="sm-hero-img-mask"></div>
+      </div>
+    </div>
+
+  </div><!-- /.sm-hero-inner -->
 
   <!-- Scroll indicator -->
   <div class="sm-scroll-hint" aria-hidden="true">

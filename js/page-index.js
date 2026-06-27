@@ -176,8 +176,9 @@
     const hizmetlerList = document.getElementById('hizmetler-list');
     if (hizmetlerList) {
       const enriched = (hizmetler.items || []).map(it => ({ ...it, providerCount: providerCounts[it.id] || 0 }));
-      const featured = enriched.filter(h => h.featured).slice(0,8);
-      const list = featured.length ? featured : enriched.slice(0,8);
+      const blacklistAnasayfa = new Set(['kuafor-erkek','kuafor-bayan','kuafor-unisex']);
+      const featured = enriched.filter(h => h.featured && !blacklistAnasayfa.has(h.id)).slice(0,8);
+      const list = featured.length ? featured : enriched.filter(h => !blacklistAnasayfa.has(h.id)).slice(0,8);
       hizmetlerList.innerHTML = list.map(KalkanData.hizmetCard).join('');
     }
   }

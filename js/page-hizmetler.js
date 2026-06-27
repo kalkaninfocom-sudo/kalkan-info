@@ -75,8 +75,10 @@
   function listUrlCard(it) {
     const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const details = (it.details || []).map(d => `<li class="flex items-start gap-1.5 text-xs text-ink-700/70"><span class="text-sea-600">•</span>${esc(d)}</li>`).join('');
+    const imageBlock = it.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1"><img src="${esc(it.image)}" alt="${esc(it.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div></div>` : '';
     return `
       <a href="${esc(it.listUrl)}" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
+        ${imageBlock}
         <div class="flex items-start gap-3">
           <div class="text-3xl">${esc(it.icon || '✂️')}</div>
           <div class="flex-1 min-w-0">

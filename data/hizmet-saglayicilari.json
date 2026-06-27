@@ -850,6 +850,38 @@
           "defaultMessage": "Merhaba! Kalkan Info üzerinden ulaşıyorum, Nirvana Boat Kalkan ile günübirlik / özel tekne turu için bilgi istiyorum. Müsait tarihler için yardım eder misiniz?"
         }
       ]
+    },
+    "barmen": {
+      "title": "Özel Barmen",
+      "icon": "🍹",
+      "providers": [
+        {
+          "id": "barmen-mobilbarmen",
+          "name": "Mobil Barmen",
+          "type": "İşletme",
+          "rating": 5,
+          "reviewCount": 0,
+          "image": null,
+          "logo": null,
+          "website": null,
+          "instagram": "https://www.instagram.com/mobilbarmen/",
+          "summary": "Craft kokteyller, sıra dışı tarifler ve özel günlere bar deneyimi getiren mobil barmen hizmeti.",
+          "specialties": [
+            "Craft cocktails",
+            "Unusual prescriptions",
+            "Mobile bar setup",
+            "Düğün & özel etkinlik",
+            "Bachelorette / yıldönümü"
+          ],
+          "experience": "Mobile Bartender | Craft Cocktails",
+          "phone": null,
+          "whatsapp": null,
+          "email": null,
+          "location": "Kalkan / Kaş — mobil",
+          "verified": false,
+          "featured": true
+        }
+      ]
     }
   }
 }
