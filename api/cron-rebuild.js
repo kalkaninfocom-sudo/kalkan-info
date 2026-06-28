@@ -46,6 +46,28 @@ export default async function handler(req, res) {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 
+  // Günlük durum raporu dalı: /api/cron-rebuild?job=daily-status
+  // (Yeni api/ fonksiyonu eklenemez — 12/12 dolu; yeni Vercel cron da eklenemez — Hobby 2-cron sınırı.
+  //  Bu yüzden mevcut fonksiyona dal eklendi. Serverless'ta git yok → yalnızca yol haritası bölümü.
+  //  git'li tam rapor için PC: node scripts/daily-status-report.mjs — bkz. docs/GUNLUK_RAPOR.md)
+  if (req.query.job === 'daily-status') {
+    try {
+      const { buildReport } = await import('../scripts/daily-status-report.mjs');
+      const report = buildReport({ includeGit: false });
+      const chat = process.env.TELEGRAM_ADMIN_CHAT_ID;
+      const token = process.env.TELEGRAM_BOT_TOKEN;
+      if (!chat || !token) {
+        return res.status(200).json({ ok: false, job: 'daily-status', skipped: 'telegram_env_missing' });
+      }
+      const { sendMessage } = await import('../lib/telegram.js');
+      await sendMessage(chat, report, { parse_mode: 'HTML' });
+      return res.status(200).json({ ok: true, job: 'daily-status', sent_at: new Date().toISOString() });
+    } catch (err) {
+      console.error('[cron-rebuild] daily-status failed:', err.message);
+      return res.status(500).json({ ok: false, job: 'daily-status', error: String(err.message || err) });
+    }
+  }
+
   // 1. Süresi dolan ilanları kapat
   const expireResult = await expireJobs();
 

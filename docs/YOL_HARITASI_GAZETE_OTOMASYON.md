@@ -1,0 +1,56 @@
+# 🗺️ YOL HARİTASI — Gazete + Etkinlik + Sosyal Medya Otomasyonu
+
+> **Bu dosya CANLI haritadır.** İş parça parça gidiyor; yarım kalırsa buradan "ne yaptık, nerede kaldık, sıradaki ne" görülür. Her büyük adımda güncellenir.
+>
+> **Son güncelleme:** 2026-06-28
+> **Durum kodları:** ✅ bitti · 🔨 sürüyor · ⏳ bekliyor · ⛔ bloke (canlıya bir şey lazım)
+
+---
+
+## 🎯 Vizyon
+Kalkan'ın günlük medya ekosistemi: **gerçek veriyle dolan günlük gazete (ön: haber, arka: gece hayatı magazini)** + **gün-gün etkinlik takvimi (web + gazete)** + **kalkaninfo kendi sosyal medyasında otonom haber-ajansı yayını ve oto-cevap** + bölgesel haber toplama. Hepsi tek veri katmanından beslenir.
+
+---
+
+## 📊 DURUM TABLOSU
+
+| # | İş | Durum | Dosyalar | Canlıya ne lazım |
+|---|----|-------|----------|------------------|
+| 1 | Gazete ön yüz — gerçek veri | ✅ | `newspaper/generator/sources.mjs`, `build.mjs` | — (çalışıyor) |
+| 2 | Etkinlik takvimi backbone | ✅ | `data/etkinlik-takvimi.json`, `scripts/events-lib.mjs` | — |
+| 3 | Gazete ön yüz "Bugün Kalkan'da" → takvim | ✅ | `sources.mjs` getEventsColumn | — |
+| 4 | Magazin arka yüz (gece hayatı) | ✅ | `newspaper/templates/magazine.html` | — (Chocolate hero çalışıyor) |
+| 5 | Web `/etkinlikler` sayfası | ✅ kod (localhost doğrulandı) | `scripts/build-events-page.mjs`, `etkinlikler/index.html` | deploy (commit + push) |
+| 6 | Kendi IG: haber → ajans paylaşımı | ✅ kod (kart üretildi) | `scripts/ig-news-card.mjs`, `ig-news-post.mjs` | IG token doğrula + cron/PC runner |
+| 7 | Kendi IG: yorum/DM oto-cevap | ✅ kod | `lib/ig-reply.mjs`, `scripts/ig-reply-poll.mjs` | IG token + runner (api 12/12 → polling) |
+| 8 | Bölgesel haber RSS genişletme | ✅ canlı | `scripts/news-aggregator.mjs` (+4 RSS, 7/7) | — |
+| 9 | Otonom etkinlik toplama | ✅ kod (dry-run) | `scripts/discover-events.mjs` | ⛔ SerpApi quota + IG scraper kararı |
+| 10 | FB "Friends of Kalkan" güvenli responder | ✅ kod (test geçti) | `scripts/fb-lead-responder.mjs`, `docs/FB_RESPONDER.md` | ⛔ FB okuma (Apify ~$30-49/ay) + onay |
+| 11 | Ucuz LLM router (token tasarrufu) | ✅ CANLI+BAĞLI | `lib/cheap-llm.mjs` | nvidia+ollama(llama3.2:3b)+gemini hazır. 4 script bağlandı (discover-events/fb-responder/ig-news-post/ig-reply) → angarya Claude token'ı = 0 |
+| 12 | Proje geneli durum haritası | ✅ | `docs/PROJE_DURUMU.md` | — (master "nerede kaldık") |
+| 13 | Günlük 00:00 Telegram raporu | ✅ kod (dry-run) | `scripts/daily-status-report.mjs`, `docs/GUNLUK_RAPOR.md` | Telegram token/chat ID + cron wiring |
+
+---
+
+## ✅ BİTENLER (detay)
+- **Gazete demo → gerçek veri:** Open-Meteo (hava/deniz/UV/rüzgar/gün doğ-bat) + `haberler.json` Kalkan-yerel skorlama (ulusal haber sızması çözüldü) + Şefin Önerisi (restoranlar.json) + nöbetçi eczane. `--demo` flag + her alan fallback.
+- **Etkinlik takvimi:** recurring (haftalık) + oneoff (tarihli) şema, 11 seed (hepsi `verified:false` taslak). Motor: gün/hafta açar, mekan koordinat/foto enrich. CLI: `node scripts/events-lib.mjs 2026-06-28`.
+- **Magazin:** "Chocolate Club Kalkan dün geceyi salladı" hero + 3 kart + "Bu Akşam Program". Foto `file://` (PDF garanti) + gradient fallback. `node newspaper/generator/build.mjs magazine`.
+
+## ✅ 8 AGENT TAMAMLANDI (paralel, 2026-06-28)
+5–13 numaralı işler 8 paralel agent + cheap-llm ile inşa edildi, hepsi diskte doğrulandı (syntax + smoke test + görsel). Web sayfası localhost'tan, magazin/gazete PDF, IG kartı screenshot ile teyit edildi. **Hiçbiri henüz commit edilmedi.**
+
+## ⛔ BLOKE / KARAR BEKLEYEN (Berkay)
+- **SerpApi quota DOLU** → otonom Google etkinlik (#9) çalışmaz. Çözüm: saat başı reset bekle ya da plan upgrade ($75/ay → 5K query).
+- **IG/FB scraper (sahip olunmayan profil/sayfa)** → #9 (IG caption), #10 (FB okuma). Karar: Apify (~$30-49/ay, ToS gri) mı, manuel mı, atla mı?
+- **IG token canlı mı?** → #6, #7 için. env'de `IG_LONG_LIVED_TOKEN` var ama local'de invalid olabilir; prod'da doğrula. `api/cron-refresh-ig-token.js` mevcut.
+- **api/ 12/12 DOLU** (Vercel Hobby) → yeni webhook eklenemez; otomasyonlar script/cron olarak çalışır.
+
+## ▶️ SIRADAKİ NET ADIM
+1. 6 agent bitsin → çıktıları doğrula, bu haritayı güncelle.
+2. Hepsini **tek commit grubu** halinde commit et (henüz commit edilmedi).
+3. Berkay kararı: IG token doğrula (en güvenli/yüksek değer #6-7'yi canlıya al) + scraper kararı (#9-10).
+
+## 📌 NOTLAR
+- Hiçbir şey henüz **commit edilmedi** — oturum sonunda commit grubu lazım.
+- Her parça tek başına çalışır/test edilmiş halde; yarım kalsa bile birleşince bütün tamamlanır.
