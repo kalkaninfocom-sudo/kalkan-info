@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<script src="/js/gtm-events.js" defer></script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Kalkan Etkinlik Takvimi — Bu Hafta Canlı Müzik, DJ & Parti | Kalkan Info</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Leaflet (CDN — yeni paket bağımlılığı yok) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+.ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+.grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+.marquee{animation:marquee 35s linear infinite;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.underline-grow{position:relative;}
+.underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+.underline-grow:hover::after{transform:scaleX(1);}
+.breaking::before{content:'';display:inline-block;width:6px;height:6px;border-radius:9999px;background:#fff;margin-right:8px;animation:pulse 1.4s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+.card-hover{transition:box-shadow .22s ease, transform .22s ease;}
+.card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+.nav-active{color:#f4b53d!important;}
+#evt-map{height:380px;border-radius:0.75rem;z-index:0;}
+.leaflet-popup-content{font-family:'Inter',sans-serif;margin:10px 12px;}
+.evt-pin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(7,33,54,.4);border:2px solid #fff;}
+.evt-pin span{transform:rotate(45deg);font-size:14px;line-height:1;}
+</style>
+<!-- SEO -->
+<meta name="description" content="Kalkan'da bu hafta: gün gün canlı müzik, DJ, parti ve gece programı. 22 Haziran – 28 Haziran haftası 11 etkinlik, mekan ve saat bilgisiyle.">
+<meta name="keywords" content="Kalkan etkinlik, Kalkan canlı müzik, Kalkan gece hayatı, Kalkan parti, Kalkan DJ, Kalkan bu hafta, Kalkan konser, Kalkan bar program, Kaş etkinlik">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/etkinlikler">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:title" content="Kalkan Etkinlik Takvimi — Bu Hafta">
+<meta property="og:description" content="Kalkan'da bu hafta gün gün canlı müzik, DJ ve parti programı.">
+<meta property="og:url" content="https://kalkaninfo.com/etkinlikler">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2658;29.4118">
+<!-- /SEO -->
+<script src="/js/site-drawer.js?v=20260516b" defer></script>
+<script src="/js/supabase-window.js"></script>
+<script src="/js/i18n.js?v=20260519a" defer></script>
+<script src="/js/cookie-banner.js" defer></script>
+<script src="/js/bottom-nav.js?v=20260516b" defer></script>
+<script src="/js/analytics.js" defer></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer></script>
+</head>
+<body class="bg-[#dce6ef]">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- HERO -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(212,175,55,0.25) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.65) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide">Bugün</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date"></span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span data-weather class="hidden md:inline opacity-80">—</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-12 md:pt-16 pb-12 md:pb-16 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> 22 Haziran – 28 Haziran · 11 etkinlik
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">Etkinlikler</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed">Kalkan'da bu hafta — gün gün canlı müzik, DJ, parti ve gece programı.</p>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <div class="flex items-center -ml-3">
+      <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm">MENÜ</span>
+      </button>
+      <a href="/index.html" aria-label="Ana Sayfa" title="Ana Sayfa" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+      </a>
+    </div>
+    <a href="/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center" aria-label="Ara">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/haberler.html">Haberler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/villalar.html">Villalar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/oteller.html">Oteller</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/restoranlar.html">Restoran &amp; Bar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/plajlar.html">Plajlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/turlar.html">Turlar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="/etkinlikler">Etkinlikler</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/hizmetler.html">Hizmetler</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger>Concierge</a>
+    </div>
+  </div>
+  <div class="ribbon-bg grain text-[12px]">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded">DUYURU</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+          <span class="mr-10">🎶 Kalkan'da bu hafta 11 etkinlik — gün gün program aşağıda</span>
+          <span class="mr-10">🎧 Cuma & Cumartesi gece partileri · 23:00 sonrası</span>
+          <span class="mr-10">🛎️ Masa/rezervasyon için Concierge: +90 530 665 07 94</span>
+          <span class="mr-10">🎶 Kalkan'da bu hafta 11 etkinlik — gün gün program aşağıda</span>
+          <span class="mr-10">🎧 Cuma & Cumartesi gece partileri · 23:00 sonrası</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="max-w-7xl mx-auto px-4 py-8 md:py-12">
+
+  <!-- HARİTA -->
+  <section class="mb-8">
+    <div class="flex items-center gap-2 mb-3">
+      <h2 class="font-display font-extrabold text-xl text-sea-900">Mekan Haritası</h2>
+      <span class="text-xs text-sea-500">— pinlere tıklayın</span>
+    </div>
+    <div id="evt-map" role="img" aria-label="Kalkan etkinlik mekanları haritası"></div>
+    <p class="text-[11px] text-sea-500/80 mt-2">Seçili güne ait mekanlar haritada vurgulanır. Pinler etkinlik tipine göre renklidir.</p>
+  </section>
+
+  <!-- GÜN SEKMELERİ -->
+  <div class="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-1 px-1" role="tablist" aria-label="Gün seçimi">
+    <button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Pazartesi" aria-pressed="false">
+        Pazartesi <span class="opacity-60 font-normal">1</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Salı" aria-pressed="false">
+        Salı <span class="opacity-60 font-normal">1</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Çarşamba" aria-pressed="false">
+        Çarşamba <span class="opacity-60 font-normal">1</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Perşembe" aria-pressed="false">
+        Perşembe <span class="opacity-60 font-normal">1</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Cuma" aria-pressed="false">
+        Cuma <span class="opacity-60 font-normal">2</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Cumartesi" aria-pressed="false">
+        Cumartesi <span class="opacity-60 font-normal">3</span>
+      </button>
+<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-sea-800 text-white border-sea-800" data-day="Pazar" aria-pressed="true">
+        Pazar <span class="opacity-60 font-normal">2</span>
+      </button>
+  </div>
+
+  <!-- TASLAK UYARISI -->
+  <p class="text-xs text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-6 inline-flex items-start gap-2">
+    <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5 shrink-0">Taslak</span>
+    rozeti taşıyan etkinlikler Kalkan Info ekibi tarafından henüz doğrulanmadı; saat ve mekan değişebilir.
+  </p>
+
+  <!-- GÜN PANELLERİ -->
+  
+      <section class="day-panel" data-day="Pazartesi" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Pazartesi</h2>
+          <span class="text-sm text-sea-600">22 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">1 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #e89812;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#e89812;background:#e898121a;">
+                <span aria-hidden="true">🎸</span> Canlı Müzik
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">21:00 – 00:30</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <span class="font-display font-bold text-sea-800">Ehl-i Keyf Meyhanesi</span><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kaş
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Fasıl &amp; canlı müzik gecesi</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Salı" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Salı</h2>
+          <span class="text-sm text-sea-600">23 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">1 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #0ea5a4;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#0ea5a4;background:#0ea5a41a;">
+                <span aria-hidden="true">🎻</span> Akustik
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">20:30 – 23:30</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <span class="font-display font-bold text-sea-800">Shade Lounge and Kitchen</span><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Akustik akşam</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Çarşamba" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Çarşamba</h2>
+          <span class="text-sm text-sea-600">24 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">1 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #3b82f6;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#3b82f6;background:#3b82f61a;">
+                <span aria-hidden="true">🧠</span> Quiz Gecesi
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">21:00 – 23:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <span class="font-display font-bold text-sea-800">The Mezzanine Bar</span><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Pub quiz night</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Perşembe" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Perşembe</h2>
+          <span class="text-sm text-sea-600">25 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">1 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #e89812;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#e89812;background:#e898121a;">
+                <span aria-hidden="true">🎸</span> Canlı Müzik
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">21:30 – 00:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="https://www.blackandgoldterracebar.com/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Black &amp; Gold Terrace Cocktail Bar</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Teras canlı müzik</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Cuma" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Cuma</h2>
+          <span class="text-sm text-sea-600">26 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">2 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #e89812;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#e89812;background:#e898121a;">
+                <span aria-hidden="true">🎸</span> Canlı Müzik
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">21:00 – 00:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <span class="font-display font-bold text-sea-800">The Fountain Terrace Bar</span><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Cuma canlı performans</p>
+          </div>
+        </article>
+
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #8b5cf6;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#8b5cf6;background:#8b5cf61a;">
+                <span aria-hidden="true">🎧</span> DJ
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">23:00 – 04:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="https://www.instagram.com/clubchocolatekalkan/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Chocolate Club Kalkan</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Resident DJ — Cuma partisi</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Cumartesi" hidden>
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Cumartesi</h2>
+          <span class="text-sm text-sea-600">27 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">3 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #8b5cf6;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#8b5cf6;background:#8b5cf61a;">
+                <span aria-hidden="true">🎧</span> DJ
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">22:00 – 02:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="http://www.kalkanclubkarma.com/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Vibes Lounge Club</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">DJ performans</p>
+          </div>
+        </article>
+
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #8b5cf6;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#8b5cf6;background:#8b5cf61a;">
+                <span aria-hidden="true">🎧</span> DJ
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">23:00 – 04:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="https://www.instagram.com/clubchocolatekalkan/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Chocolate Club Kalkan</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Cumartesi gece partisi</p>
+          </div>
+        </article>
+
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #8b5cf6;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#8b5cf6;background:#8b5cf61a;">
+                <span aria-hidden="true">🎉</span> Parti
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">23:30 – 04:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="https://www.instagram.com/noemacommunity/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Noema Community</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Hafta sonu partisi</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="day-panel" data-day="Pazar">
+        <div class="flex items-baseline gap-3 mb-4">
+          <h2 class="font-display font-extrabold text-2xl text-sea-900">Pazar</h2>
+          <span class="text-sm text-sea-600">28 Haziran</span>
+          <span class="ml-auto text-xs font-semibold text-sea-500">2 etkinlik</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #0ea5a4;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#0ea5a4;background:#0ea5a41a;">
+                <span aria-hidden="true">🎻</span> Akustik
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">20:00 – 23:00</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <a href="https://www.blackandgoldterracebar.com/" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">Black &amp; Gold Terrace Cocktail Bar</a><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kalkan
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Pazar akustik</p>
+          </div>
+        </article>
+
+        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid #ef4444;">
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:#ef4444;background:#ef44441a;">
+                <span aria-hidden="true">🪕</span> Türk Gecesi
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">21:00 – 00:30</span>
+            </div>
+            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
+              <span class="font-display font-bold text-sea-800">Ehl-i Keyf Meyhanesi</span><span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              Kaş
+            </div>
+            <p class="text-sm text-sea-700/80 mt-1 leading-snug">Türk gecesi</p>
+          </div>
+        </article>
+        </div>
+      </section>
+
+  <!-- CONCIERGE CTA -->
+  <section class="mt-12 rounded-2xl section-dark text-white p-6 md:p-8 text-center" style="background:#0d3a5f;">
+    <h2 class="font-display font-extrabold text-2xl">Mekan sahibi misiniz?</h2>
+    <p class="text-white/75 mt-2 max-w-xl mx-auto text-sm md:text-base">Etkinliğinizi bu takvime ekletmek veya hafta programınızı güncellemek için Kalkan Info Concierge ile iletişime geçin.</p>
+    <a href="#" data-concierge-trigger class="inline-flex items-center gap-2 mt-5 px-5 py-3 rounded-xl font-display font-bold text-sm shadow-lg transition" style="background:linear-gradient(135deg,#e89812 0%,#c97b09 100%);color:#fff;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+      Concierge'e Yaz
+    </a>
+  </section>
+</main>
+
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-12 pb-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+    <div class="col-span-2">
+      <a href="/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Keşfet</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/restoranlar.html">Restoran &amp; Bar</a></li>
+        <li><a class="hover:text-sun-400" href="/etkinlikler">Etkinlikler</a></li>
+        <li><a class="hover:text-sun-400" href="/oteller.html">Oteller</a></li>
+        <li><a class="hover:text-sun-400" href="/turlar.html">Turlar</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">İletişim</div>
+      <p class="text-white/70 text-xs leading-relaxed">Atatürk Cad. No:1<br>Kalkan / Kaş / Antalya<br><a href="mailto:info@kalkaninfo.com" class="hover:text-sun-400">info@kalkaninfo.com</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
+    <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+    <div class="flex items-center gap-3 mt-3 md:mt-0">
+      <a class="hover:text-sun-400" href="/hakkimizda.html">Hakkımızda</a>
+      <a class="hover:text-sun-400" href="/privacy.html">Gizlilik</a>
+      <a class="hover:text-sun-400" href="/kvkk.html">KVKK</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#" data-concierge-trigger class="fixed bottom-5 right-5 z-50 bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-lg flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+<!-- Gömülü veri (SSR ile aynı kaynak; harita ve sekme filtresi bunu kullanır) -->
+<script id="evt-data" type="application/json">{"generatedAt":"2026-06-28T15:39:38.993Z","weekStart":"2026-06-22","weekEnd":"2026-06-28","center":{"lat":36.2658,"lng":29.4118},"total":11,"days":[{"date":"2026-06-22","day":"Pazartesi","events":[{"id":"rec-ehlikeyf-pzt","type":"Canlı Müzik","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Fasıl & canlı müzik gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-06-23","day":"Salı","events":[{"id":"rec-shade-sal","type":"Akustik","time":"20:30","endTime":"23:30","venueName":"Shade Lounge and Kitchen","area":"Kalkan","title":"Akustik akşam","coordinates":{"lat":36.2637084,"lng":29.4160467},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-06-24","day":"Çarşamba","events":[{"id":"rec-mezzanine-car","type":"Quiz Gecesi","time":"21:00","endTime":"23:00","venueName":"The Mezzanine Bar","area":"Kalkan","title":"Pub quiz night","coordinates":{"lat":36.2649319,"lng":29.4151307},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-06-25","day":"Perşembe","events":[{"id":"rec-blackgold-per","type":"Canlı Müzik","time":"21:30","endTime":"00:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Teras canlı müzik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true}]},{"date":"2026-06-26","day":"Cuma","events":[{"id":"rec-fountain-cum","type":"Canlı Müzik","time":"21:00","endTime":"00:00","venueName":"The Fountain Terrace Bar","area":"Kalkan","title":"Cuma canlı performans","coordinates":{"lat":36.262726,"lng":29.415293},"detailUrl":null,"verified":false,"recurring":true},{"id":"rec-chocolate-cum","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Resident DJ — Cuma partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true}]},{"date":"2026-06-27","day":"Cumartesi","events":[{"id":"rec-vibes-cmt","type":"DJ","time":"22:00","endTime":"02:00","venueName":"Vibes Lounge Club","area":"Kalkan","title":"DJ performans","coordinates":{"lat":36.2640098,"lng":29.414664499999997},"detailUrl":"http://www.kalkanclubkarma.com/","verified":false,"recurring":true},{"id":"rec-chocolate-cmt","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Cumartesi gece partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true},{"id":"rec-noema-cmt","type":"Parti","time":"23:30","endTime":"04:00","venueName":"Noema Community","area":"Kalkan","title":"Hafta sonu partisi","coordinates":{"lat":36.2632603,"lng":29.4155065},"detailUrl":"https://www.instagram.com/noemacommunity/","verified":false,"recurring":true}]},{"date":"2026-06-28","day":"Pazar","events":[{"id":"rec-blackgold-paz","type":"Akustik","time":"20:00","endTime":"23:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Pazar akustik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true},{"id":"rec-ehlikeyf-paz","type":"Türk Gecesi","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Türk gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]}]}</script>
+<!-- Leaflet (CDN) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function(){
+  // Bugünün tarihini hero üst barına yaz
+  try {
+    var td = document.getElementById('today-date');
+    if (td) td.textContent = new Date().toLocaleDateString('tr-TR', {day:'numeric',month:'long',year:'numeric'});
+  } catch(e){}
+
+  var TYPE_COLOR = {"Canlı Müzik":"#e89812","DJ":"#8b5cf6","Akustik":"#0ea5a4","Karaoke":"#ec4899","Quiz Gecesi":"#3b82f6","Happy Hour":"#22c55e","Türk Gecesi":"#ef4444","Parti":"#8b5cf6","Festival":"#e89812"};
+  var DEFAULT_COLOR = '#0a2e4c';
+  var ICONS = {"Canlı Müzik":"🎸","DJ":"🎧","Akustik":"🎻","Karaoke":"🎤","Quiz Gecesi":"🧠","Happy Hour":"🍹","Türk Gecesi":"🪕","Parti":"🎉","Festival":"🎪"};
+  var KALKAN = [36.2658, 29.4118];
+
+  // Veriyi statik dosyadan çek; başarısız olursa gömülü JSON'a düş
+  function loadData(){
+    return fetch('/data/etkinlik-haftalik.json', {cache:'no-cache'})
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .catch(function(){
+        try { return JSON.parse(document.getElementById('evt-data').textContent); }
+        catch(e){ return null; }
+      });
+  }
+
+  function pinIcon(type){
+    var color = TYPE_COLOR[type] || DEFAULT_COLOR;
+    var icon = ICONS[type] || '🎶';
+    return L.divIcon({
+      className: '',
+      html: '<div class="evt-pin" style="background:'+color+'"><span>'+icon+'</span></div>',
+      iconSize: [30,30], iconAnchor: [15,30], popupAnchor: [0,-28]
+    });
+  }
+
+  var map, markers = [];
+  function initMap(data){
+    map = L.map('evt-map', {scrollWheelZoom:false}).setView(KALKAN, 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    (data.days || []).forEach(function(day){
+      (day.events || []).forEach(function(ev){
+        if (!ev.coordinates || ev.coordinates.lat == null || ev.coordinates.lng == null) return;
+        var m = L.marker([ev.coordinates.lat, ev.coordinates.lng], {icon: pinIcon(ev.type)});
+        var t = (ev.time||'') + (ev.endTime ? ' – '+ev.endTime : '');
+        m.bindPopup('<strong>'+(ev.venueName||'')+'</strong><br>'+
+          '<span style="color:#0a2e4c">'+(ev.type||'')+' · '+day.day+' '+t+'</span>'+
+          (ev.title ? '<br><span style="color:#555">'+ev.title+'</span>' : '') +
+          (ev.detailUrl ? '<br><a href="'+ev.detailUrl+'" target="_blank" rel="noopener" style="color:#e89812;font-weight:600">Mekan sayfası →</a>' : ''));
+        m._evtDay = day.day;
+        markers.push(m);
+        m.addTo(map);
+      });
+    });
+    filterMarkers(currentDay);
+  }
+
+  var currentDay = "Pazar";
+  function filterMarkers(day){
+    var group = [];
+    markers.forEach(function(m){
+      var on = m._evtDay === day;
+      m.setOpacity(on ? 1 : 0.25);
+      m.setZIndexOffset(on ? 1000 : 0);
+      if (on) group.push(m.getLatLng());
+    });
+    if (map && group.length){
+      try { map.fitBounds(L.latLngBounds(group).pad(0.4), {maxZoom:16}); } catch(e){}
+    } else if (map){ map.setView(KALKAN, 15); }
+  }
+
+  // Sekme filtresi (gün panelleri + harita)
+  function showDay(day){
+    currentDay = day;
+    document.querySelectorAll('.day-panel').forEach(function(p){
+      p.hidden = p.getAttribute('data-day') !== day;
+    });
+    document.querySelectorAll('.evt-tab').forEach(function(b){
+      var on = b.getAttribute('data-day') === day;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.classList.toggle('bg-sea-800', on);
+      b.classList.toggle('text-white', on);
+      b.classList.toggle('border-sea-800', on);
+      b.classList.toggle('bg-white', !on);
+      b.classList.toggle('text-sea-700', !on);
+      b.classList.toggle('border-sea-200', !on);
+    });
+    if (markers.length) filterMarkers(day);
+  }
+  document.querySelectorAll('.evt-tab').forEach(function(b){
+    b.addEventListener('click', function(){ showDay(b.getAttribute('data-day')); });
+  });
+
+  if (window.L) {
+    loadData().then(function(data){ if (data) initMap(data); });
+  }
+})();
+</script>
+</body>
+</html>

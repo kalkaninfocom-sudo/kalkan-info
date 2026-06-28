@@ -1,0 +1,224 @@
+{
+  "generatedAt": "2026-06-28T15:39:38.993Z",
+  "weekStart": "2026-06-22",
+  "weekEnd": "2026-06-28",
+  "center": {
+    "lat": 36.2658,
+    "lng": 29.4118
+  },
+  "total": 11,
+  "days": [
+    {
+      "date": "2026-06-22",
+      "day": "Pazartesi",
+      "events": [
+        {
+          "id": "rec-ehlikeyf-pzt",
+          "type": "Canlı Müzik",
+          "time": "21:00",
+          "endTime": "00:30",
+          "venueName": "Ehl-i Keyf Meyhanesi",
+          "area": "Kaş",
+          "title": "Fasıl & canlı müzik gecesi",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "day": "Salı",
+      "events": [
+        {
+          "id": "rec-shade-sal",
+          "type": "Akustik",
+          "time": "20:30",
+          "endTime": "23:30",
+          "venueName": "Shade Lounge and Kitchen",
+          "area": "Kalkan",
+          "title": "Akustik akşam",
+          "coordinates": {
+            "lat": 36.2637084,
+            "lng": 29.4160467
+          },
+          "detailUrl": null,
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "day": "Çarşamba",
+      "events": [
+        {
+          "id": "rec-mezzanine-car",
+          "type": "Quiz Gecesi",
+          "time": "21:00",
+          "endTime": "23:00",
+          "venueName": "The Mezzanine Bar",
+          "area": "Kalkan",
+          "title": "Pub quiz night",
+          "coordinates": {
+            "lat": 36.2649319,
+            "lng": 29.4151307
+          },
+          "detailUrl": null,
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "day": "Perşembe",
+      "events": [
+        {
+          "id": "rec-blackgold-per",
+          "type": "Canlı Müzik",
+          "time": "21:30",
+          "endTime": "00:00",
+          "venueName": "Black & Gold Terrace Cocktail Bar",
+          "area": "Kalkan",
+          "title": "Teras canlı müzik",
+          "coordinates": {
+            "lat": 36.2634845,
+            "lng": 29.4153417
+          },
+          "detailUrl": "https://www.blackandgoldterracebar.com/",
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "day": "Cuma",
+      "events": [
+        {
+          "id": "rec-fountain-cum",
+          "type": "Canlı Müzik",
+          "time": "21:00",
+          "endTime": "00:00",
+          "venueName": "The Fountain Terrace Bar",
+          "area": "Kalkan",
+          "title": "Cuma canlı performans",
+          "coordinates": {
+            "lat": 36.262726,
+            "lng": 29.415293
+          },
+          "detailUrl": null,
+          "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-chocolate-cum",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Resident DJ — Cuma partisi",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-27",
+      "day": "Cumartesi",
+      "events": [
+        {
+          "id": "rec-vibes-cmt",
+          "type": "DJ",
+          "time": "22:00",
+          "endTime": "02:00",
+          "venueName": "Vibes Lounge Club",
+          "area": "Kalkan",
+          "title": "DJ performans",
+          "coordinates": {
+            "lat": 36.2640098,
+            "lng": 29.414664499999997
+          },
+          "detailUrl": "http://www.kalkanclubkarma.com/",
+          "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-chocolate-cmt",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Cumartesi gece partisi",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-cmt",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Hafta sonu partisi",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    },
+    {
+      "date": "2026-06-28",
+      "day": "Pazar",
+      "events": [
+        {
+          "id": "rec-blackgold-paz",
+          "type": "Akustik",
+          "time": "20:00",
+          "endTime": "23:00",
+          "venueName": "Black & Gold Terrace Cocktail Bar",
+          "area": "Kalkan",
+          "title": "Pazar akustik",
+          "coordinates": {
+            "lat": 36.2634845,
+            "lng": 29.4153417
+          },
+          "detailUrl": "https://www.blackandgoldterracebar.com/",
+          "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-ehlikeyf-paz",
+          "type": "Türk Gecesi",
+          "time": "21:00",
+          "endTime": "00:30",
+          "venueName": "Ehl-i Keyf Meyhanesi",
+          "area": "Kaş",
+          "title": "Türk gecesi",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": false,
+          "recurring": true
+        }
+      ]
+    }
+  ]
+}
