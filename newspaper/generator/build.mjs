@@ -12,13 +12,16 @@
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildData as buildRealData, buildMagazineData } from './sources.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-const [, , typeArg = 'morning', dateArg] = process.argv;
-const type = typeArg;
-const today = dateArg || new Date().toISOString().slice(0, 10);
+const argv = process.argv.slice(2);
+const useDemo = argv.includes('--demo');
+const positional = argv.filter(a => !a.startsWith('--'));
+const type = positional[0] || 'morning';
+const today = positional[1] || new Date().toISOString().slice(0, 10);
 
 const DAY_TR = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 const MONTH_TR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
@@ -107,7 +110,29 @@ async function main() {
     process.exit(1);
   }
   const tpl = await readFile(tplPath, 'utf8');
-  const data = demoData(today);
+
+  const demo = demoData(today);
+  let data;
+  if (useDemo) {
+    data = demo;
+    console.log('ℹ --demo: sahte veri kullanılıyor');
+  } else if (type === 'magazine') {
+    try {
+      data = await buildMagazineData(today, demo);
+      console.log('✓ Magazin verisi (gece hayatı + etkinlik takvimi)');
+    } catch (err) {
+      console.warn(`⚠ Magazin verisi çekilemedi (${err.message}) — demo veriye düşülüyor`);
+      data = demo;
+    }
+  } else {
+    try {
+      data = await buildRealData(today, demo);
+      console.log('✓ Gerçek veri çekildi (Open-Meteo + haberler + restoran + eczane + etkinlik)');
+    } catch (err) {
+      console.warn(`⚠ Gerçek veri çekilemedi (${err.message}) — demo veriye düşülüyor`);
+      data = demo;
+    }
+  }
   const html = render(tpl, data);
 
   const outDir = join(ROOT, 'archive', today);
