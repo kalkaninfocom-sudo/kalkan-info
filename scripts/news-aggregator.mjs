@@ -34,6 +34,30 @@ const SOURCES = [
     sourceHome: 'https://www.aa.com.tr',
     requireKeyword: true, // national feed, filter to region
   },
+  {
+    name: 'Antalya Haber Takip',
+    url: 'https://www.antalyahabertakip.com/rss.xml',
+    sourceHome: 'https://www.antalyahabertakip.com',
+    requireKeyword: false, // Antalya-bölgesel
+  },
+  {
+    name: "Antalya'dan Haberler",
+    url: 'https://www.antalyadanhaberler.com/rss.xml',
+    sourceHome: 'https://www.antalyadanhaberler.com',
+    requireKeyword: false, // Antalya-bölgesel
+  },
+  {
+    name: 'Antalya Haber (antalyahakkinda)',
+    url: 'https://www.antalyahakkinda.com/rss',
+    sourceHome: 'https://www.antalyahakkinda.com',
+    requireKeyword: true, // karışık içerik, bölge filtresi gerekli
+  },
+  {
+    name: 'AntalyaBugün',
+    url: 'https://antalyabugun.com.tr/rss.xml',
+    sourceHome: 'https://antalyabugun.com.tr',
+    requireKeyword: true, // karışık içerik, bölge filtresi gerekli
+  },
 ];
 
 // Region keyword filter (case-insensitive)
