@@ -1,0 +1,65 @@
+name: Newspaper daily (Kalkan Today)
+
+on:
+  schedule:
+    # Her gün 03:00 UTC = 06:00 Europe/Istanbul
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Sayı tarihi YYYY-MM-DD (boş = bugün)'
+        required: false
+        default: ''
+      no_social:
+        description: 'Sadece web (sosyal onay kuyruğunu atla)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: newspaper-daily
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # newspaper-daily + build.mjs puppeteer (PDF + 4:5 sosyal kart) için chrome gerekir
+      - name: Install puppeteer (+ Chrome)
+        run: npm install puppeteer@24 --no-save
+
+      - name: Generate daily edition (web + social queue)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://www.kalkaninfo.com
+        run: |
+          FLAGS=""
+          if [ "${{ github.event.inputs.no_social }}" = "true" ]; then FLAGS="--no-social"; fi
+          node scripts/newspaper-daily.mjs ${{ github.event.inputs.date }} $FLAGS
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add newspaper/archive data/newspaper-index.json
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+            exit 0
+          fi
+          git commit -m "content(gazete): günlük sayı $(date -u +%Y-%m-%d) [auto]"
+          # RSS botu araya girmiş olabilir → rebase ile push
+          git pull --rebase origin main || true
+          git push
