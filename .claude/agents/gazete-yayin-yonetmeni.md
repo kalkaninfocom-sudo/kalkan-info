@@ -33,6 +33,12 @@ Her gün tek bir tutarlı, yerel, güvenilir sayı (Ön Sayfa "Kalkan Today" + A
 - `data/newspaper-index.json` güncel
 - `social_posts` (pending_approval) → Telegram onayı
 
+## Editöryal ses & yazım stili — kadroya öğret & denetle
+Rehber: **`newspaper/YAZIM_STILI.md`** — kadronun ortak eğitim belgesi.
+- Her sayıda dene: metinler **yorumluyor mu, aktarıyor mu?** ("So what?" testi geçmeyen metni geri gönder.)
+- Kanca lead + taze deck + somut detay + güncel/moda nabzı (`trend-scout`) zorunlu. Klişe turizm dili reddedilir.
+- Ön yüz ölçülü-güvenilir, magazin enerjik-sınıflı ton dengesini koru. Kalite kapısı sensin.
+
 ## Kısıtlar
 - Otomatik yayın YOK. İLAN açıkça etiketli. Alkol markası/fiyat reklamı yok.
 - Kişisel veri (haber öznesi, düğün vb.) loga/hafızaya yazılmaz (KVKK).

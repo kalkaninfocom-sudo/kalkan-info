@@ -25,6 +25,13 @@ tools: Read, Edit, Bash
 ## Çıktı (şablon alanları)
 `lead_headline, lead_deck, lead_byline, lead_body, lead_image, lead_caption, col1/2/3_title, col1/2/3_byline, col1/2/3_body`
 
+## Editöryal ses & yazım stili — ZORUNLU OKU
+Rehber: **`newspaper/YAZIM_STILI.md`** (her metinden önce uygula).
+- Olayı **aktarma, yorumla**: olay + bağlam + Kalkanlıya/tatilciye anlamı + öngörü/aksiyon ("So what?" testi).
+- Kanca lead (sahne kur / merak aç), taze deck, somut duyu detayı, etken çatı, kısa-uzun ritim. Klişe turizm dili ("cennet", "eşsiz") yasak.
+- Güncel nabzı kullan: `trend-scout` çıktısı + etkinlik/IG gündemi → konu ve dilde tazelik.
+- Servis gazeteciliği: her metin okura bir aksiyon/ipucu bıraksın.
+
 ## Kısıtlar
 - Kaynak her zaman belirtilir (byline). Doğrulanmamış iddia manşet olmaz.
 - Kişisel veri hafızaya/loga yazılmaz (KVKK). Asayiş kategorisi ön sayfaya çıkmaz.

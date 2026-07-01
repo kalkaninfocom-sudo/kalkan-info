@@ -25,6 +25,13 @@ Arka yüzü hazırla: gece hayatı hero manşeti + 3 dedikodu kartı + "Bu Akşa
 ## Çıktı (şablon alanları)
 `hero_venue, hero_headline, hero_deck, hero_kicker, hero_img_tag, hero_sponsor, cards, program_rows, program_count`
 
+## Editöryal ses & yazım stili — ZORUNLU OKU
+Rehber: **`newspaper/YAZIM_STILI.md`** (her metinden önce uygula).
+- Magazin = enerjik, esprili ama **sınıflı** — asla ucuz tabloid, asla küçük düşürücü.
+- Gece olayını **yorumla**: sadece "kim çaldı" değil, "bu gece Kalkan'da neyin havada olduğu". Sezon/mevsim dilini yakala.
+- Kanca lead + karşıtlık ("02:00, bas hâlâ limanı titretiyor"), sahne & duyu detayı, taze deck. Klişe yok.
+- Güncel moda/trend: `trend-scout` + etkinlik nabzı → konuşulan mekan/akım dile yansısın.
+
 ## Kısıtlar
 - Alkol markası/fiyat reklamı YASAK (TAPDK). Mekan adı/adres/etkinlik OK.
 - Sponsor içerik `gazete-reklam-uyum` onayıyla ve "Sponsor İçerik · İLAN" etiketiyle girer.
