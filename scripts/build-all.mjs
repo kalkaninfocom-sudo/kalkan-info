@@ -11,6 +11,7 @@ const steps = [
   { name: 'restoran-pages',  cmd: 'node', args: ['scripts/build-restoran-pages.mjs'],  required: false },
   { name: 'news-aggregator', cmd: 'node', args: ['scripts/news-aggregator.mjs'],       required: false },
   { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
+  { name: 'build-ads',       cmd: 'node', args: ['scripts/build-ads.mjs'],             required: false },
 ];
 
 let hardFail = false;

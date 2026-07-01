@@ -1,0 +1,47 @@
+{
+  "_comment": "Kalkan Today reklam envanteri. Şema newspaper_ads (migration) ile uyumlu. Generator bunu okuyup İLAN slotlarına yerleştirir; QR /q/<slug> statik redirect+Plausible takip sayfasına gider. status: active|paused|expired. edition: morning|magazine|both.",
+  "ads": [
+    {
+      "slug": "kaptan-restaurant-temmuz",
+      "slot_type": "lead_sponsor",
+      "edition": "morning",
+      "venue": "Kaptan Restaurant",
+      "title": "Kaptan Restaurant — Marina Manzaralı Akşam Yemeği",
+      "body": "Bu akşam deniz mahsulü tabağında sezon menüsü. Marina kenarında rezervasyonlu masalar için QR'ı okutun.",
+      "cta_label": "Hemen Rezervasyon",
+      "dest_url": "https://kalkaninfo.com/restoranlar/",
+      "cover_url": "",
+      "starts_at": "2026-06-01",
+      "ends_at": "2026-09-30",
+      "status": "active"
+    },
+    {
+      "slug": "chocolate-club-gece",
+      "slot_type": "magazine_sponsor",
+      "edition": "magazine",
+      "venue": "Chocolate Club Kalkan",
+      "title": "Chocolate Club — Bu Gece DJ Performansı",
+      "body": "Kalkan Merkez'de gecenin merkezi. Masa ve giriş için QR'ı okutun.",
+      "cta_label": "Masa Ayırt",
+      "dest_url": "https://kalkaninfo.com/etkinlikler",
+      "cover_url": "",
+      "starts_at": "2026-06-01",
+      "ends_at": "2026-09-30",
+      "status": "active"
+    },
+    {
+      "slug": "ornek-villa-advertorial",
+      "slot_type": "advertorial",
+      "edition": "both",
+      "venue": "Deniz Manzaralı Villa",
+      "title": "Şefin Değil, Editörün Seçimi: Deniz Manzaralı Villa",
+      "body": "Özel havuz, 4 kişi, Kalkan merkeze 5 dk. Temmuz için son müsait haftalar.",
+      "cta_label": "Villayı Gör",
+      "dest_url": "https://kalkaninfo.com/villa/",
+      "cover_url": "",
+      "starts_at": "2026-06-01",
+      "ends_at": "2026-12-31",
+      "status": "paused"
+    }
+  ]
+}

@@ -262,6 +262,38 @@ export async function getEventsColumn(iso) {
   };
 }
 
+// ─── 3c) REKLAM (İLAN slotları — data/ads.json) ───
+// newspaper_ads şemasını yansıtan yerel envanter. QR /q/<slug> statik redirect'e gider.
+export async function getAds(iso) {
+  const data = await readJson('ads.json');
+  const ads = data?.ads || [];
+  const active = ads.filter(a =>
+    a.status === 'active' &&
+    (!a.starts_at || iso >= a.starts_at) &&
+    (!a.ends_at || iso <= a.ends_at));
+  const qr = slug => `https://kalkaninfo.com/q/${slug}`;
+  const out = {};
+
+  // Sabah manşet sponsoru: lead_sponsor / advertorial, edition morning|both
+  const lead = active.find(a =>
+    ['lead_sponsor', 'advertorial'].includes(a.slot_type) &&
+    ['morning', 'both'].includes(a.edition));
+  if (lead) {
+    out.ad_title = lead.title;
+    out.ad_body = lead.body;
+    out.ad_cta = lead.cta_label || 'Detay';
+    out.ad_qr_url = qr(lead.slug);
+  }
+
+  // Magazin sponsoru: magazine_sponsor / edition magazine|both
+  const mag = active.find(a =>
+    a.slot_type === 'magazine_sponsor' ||
+    (['magazine', 'both'].includes(a.edition) && a.slot_type === 'advertorial'));
+  if (mag) out._magSponsor = { slug: mag.slug, venue: mag.venue };
+
+  return out;
+}
+
 // ─── 4) NÖBETÇİ ECZANE ───
 export async function getPharmacy() {
   const data = await readJson('eczane.json');
@@ -285,9 +317,10 @@ export async function buildData(iso, demo) {
   };
 
   // Paralel çek
-  const [weather, news, resto, pharmacy, eventsCol] = await Promise.all([
-    getWeather(), getNews(), getRestaurant(), getPharmacy(), getEventsColumn(iso),
+  const [weather, news, resto, pharmacy, eventsCol, ads] = await Promise.all([
+    getWeather(), getNews(), getRestaurant(), getPharmacy(), getEventsColumn(iso), getAds(iso),
   ]);
+  delete ads._magSponsor; // magazin-özel alan, sabahta kullanılmaz
 
   // col2 "Mekan & Yaşam": her zaman Şefin Önerisi (restoran) — on-brand, daima yerel
   const chef = resto._chef;
@@ -307,7 +340,8 @@ export async function buildData(iso, demo) {
 
   // undefined alanları demo'dan tamamla
   // col1 önceliği: bugünün etkinlik takvimi > haber
-  const merged = { ...fallback, ...base, ...staticBus, ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy) };
+  // ads en sonda (restoran reklam slotunu ezer — ücretli İLAN önceliklidir)
+  const merged = { ...fallback, ...base, ...staticBus, ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(ads) };
   return merged;
 }
 
@@ -366,6 +400,10 @@ export async function buildMagazineData(iso, demo) {
   const withPhoto = night.filter(venuePhoto);
   const ranked = [...withPhoto, ...night.filter(v => !venuePhoto(v))];
 
+  // Ücretli magazin sponsoru (İLAN) — data/ads.json
+  const adsData = await getAds(iso);
+  const magSponsor = adsData._magSponsor || null;
+
   // Bu akşamın etkinlikleri (program + manşet eşleştirme)
   let todays = [];
   try { todays = await eventsForDate(iso); } catch { /* yok say */ }
@@ -386,7 +424,10 @@ export async function buildMagazineData(iso, demo) {
     out.hero_kicker = ev ? `Gece · ${ev.type}` : 'Gece Hayatı';
     out.hero_img_tag = photo ? `<img src="${esc(photo)}" alt="${esc(heroVenue.name)}" onerror="this.style.display='none'">` : '';
     out.hero_noimg = photo ? '' : 'noimg';
-    out.hero_sponsor = heroVenue.source === 'client' ? '<div class="sponsor">Sponsor İçerik · İLAN</div>' : '';
+    // Ücretli İLAN sponsoru öncelikli; yoksa hero mekan client ise sponsor etiketi
+    out.hero_sponsor = magSponsor
+      ? '<div class="sponsor">Sponsor İçerik · İLAN</div>'
+      : (heroVenue.source === 'client' ? '<div class="sponsor">Sponsor İçerik · İLAN</div>' : '');
   }
 
   // 3 kart: hero dışındaki sonraki gece mekanları
