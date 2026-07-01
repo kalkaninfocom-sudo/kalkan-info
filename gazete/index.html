@@ -32,10 +32,11 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
 .underline-grow:hover::after{transform:scaleX(1);}
 .nav-active{color:#f4b53d!important;}
-/* A4 önizleme: 210x297 iframe'i kart içine ölçekle */
-.paper-frame{position:relative;width:100%;aspect-ratio:210/297;overflow:hidden;background:#fbf9f4;border-radius:.5rem;}
-.paper-frame iframe{position:absolute;top:0;left:0;width:794px;height:1123px;border:0;transform-origin:top left;pointer-events:none;}
-.paper-frame .tap{position:absolute;inset:0;z-index:2;}
+/* A4 kapak önizleme (PNG — iframe X-Frame-Options:DENY nedeniyle kullanılamıyor) */
+.paper-cover{display:block;background:#fbf9f4;border-bottom:1px solid #ece5d6;}
+.paper-cover img{width:100%;display:block;transition:transform .3s ease;}
+.card-hover:hover .paper-cover img{transform:scale(1.02);}
+.paper-ph{aspect-ratio:4/5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
 .edition-badge{font-family:'Inter';font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;}
 </style>
 <meta name="description" content="Kalkan Today — Kalkan'ın günlük dijital gazetesi. Ön sayfa güncel haber ve hava durumu, arka yüz gece hayatı magazini. Her gün yeni sayı, PDF olarak indir veya çevrimiçi oku.">
@@ -195,9 +196,13 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 
   function editionCard(iso, type, ed){
     var m = EDITIONS[type];
+    var preview = ed.card
+      ? '<a href="'+esc(ed.html)+'" class="block paper-cover" aria-label="'+esc(m.tag)+' oku"><img loading="lazy" src="'+esc(ed.card)+'" alt="'+esc(m.tag)+' kapak" style="width:100%;display:block"></a>'
+      : '<a href="'+esc(ed.html)+'" class="paper-cover paper-ph" aria-label="'+esc(m.tag)+' oku">'
+        + '<span class="serif" style="font-size:26px;color:'+m.accent+'">'+esc(m.tag)+'</span>'
+        + '<span class="edition-badge mt-2" style="color:#6b7280">Önizleme için oku →</span></a>';
     return '<article class="card-base card-hover rounded-2xl overflow-hidden flex flex-col">'
-      + '<div class="paper-frame"><iframe loading="lazy" src="'+esc(ed.html)+'" title="'+esc(m.tag)+'" scrolling="no"></iframe>'
-      + '<a class="tap" href="'+esc(ed.html)+'" aria-label="'+esc(m.tag)+' tam ekran oku"></a></div>'
+      + preview
       + '<div class="p-5 flex-1 flex flex-col">'
       + '<div class="flex items-center gap-2"><span class="edition-badge px-2 py-0.5 rounded" style="background:'+m.accent+'12;color:'+m.accent+'">'+esc(m.name)+'</span>'
       + '<span class="font-display font-extrabold text-lg text-sea-900">'+esc(m.tag)+'</span></div>'
@@ -206,14 +211,6 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       + '<a href="'+esc(ed.html)+'" class="flex-1 text-center bg-sea-800 hover:bg-sea-900 text-white rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition">Çevrimiçi Oku</a>'
       + (ed.pdf ? '<a href="'+esc(ed.pdf)+'" class="text-center border border-sea-300 hover:border-sun-500 text-sea-800 rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition" download>PDF</a>' : '')
       + '</div></div></article>';
-  }
-
-  function fitFrames(){
-    document.querySelectorAll('.paper-frame').forEach(function(f){
-      var w = f.clientWidth; var s = w/794;
-      var ifr = f.querySelector('iframe');
-      if (ifr){ ifr.style.transform = 'scale('+s+')'; f.style.height = (1123*s)+'px'; f.style.aspectRatio='auto'; }
-    });
   }
 
   function render(data){
@@ -253,8 +250,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     }).join('');
   }
 
-  function boot(data){ render(data); requestAnimationFrame(fitFrames); }
-  window.addEventListener('resize', fitFrames);
+  function boot(data){ render(data); }
 
   fetch('/data/newspaper-index.json',{cache:'no-cache'})
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })

@@ -39,6 +39,7 @@ async function main() {
       editions[t] = {
         html: `/newspaper/archive/${date}/${t}`,
         pdf: (await has(join(base, `${t}.pdf`))) ? `/newspaper/archive/${date}/${t}.pdf` : null,
+        card: (await has(join(base, `${t}-card.png`))) ? `/newspaper/archive/${date}/${t}-card.png` : null,
       };
     }
     if (Object.keys(editions).length) {
