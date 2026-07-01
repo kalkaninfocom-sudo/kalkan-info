@@ -77,6 +77,31 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, mode, ...out });
     }
 
+    if (mode === 'publish') {
+      // Gap A fix: "Önerilen Saatte" onaylanan (approved + scheduled_at<=now) post'ları
+      // yayınla. Vercel cron 2/2 dolu olduğu için ayrı cron yerine bu router'a dal +
+      // dış tetikleyici (cron-job.org). social-publish-queue.js mantığını çağırır.
+      const pub = (await import('./social-publish-queue.js')).default;
+      // İç auth: publish-queue kendi secret'ını query'den bekler.
+      const shimReq = { query: { secret: expected }, headers: {} };
+      let payload = null;
+      const shimRes = {
+        status() { return this; },
+        json(o) { payload = o; return this; },
+      };
+      await pub(shimReq, shimRes);
+      return res.status(200).json({ ok: true, mode: 'publish', ...payload });
+    }
+
+    if (mode === 'remind') {
+      // Workflow 4 (takip/tırmandırma) + Gap C (seed→onay köprüsü).
+      await import('../scripts/approval-reminder.mjs');
+      return res.status(200).json({
+        ok: true, mode: 'remind', triggered_at: new Date().toISOString(),
+        note: 'approval-reminder çalıştı — hatırlatma/eskalasyon için bota bak.',
+      });
+    }
+
     // default: weekly
     await import('../scripts/weekly-content-planner.mjs');
     return res.status(200).json({

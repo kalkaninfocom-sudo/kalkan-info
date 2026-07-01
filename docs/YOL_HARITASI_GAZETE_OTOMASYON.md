@@ -54,3 +54,20 @@ Kalkan'ın günlük medya ekosistemi: **gerçek veriyle dolan günlük gazete (�
 ## 📌 NOTLAR
 - Hiçbir şey henüz **commit edilmedi** — oturum sonunda commit grubu lazım.
 - Her parça tek başına çalışır/test edilmiş halde; yarım kalsa bile birleşince bütün tamamlanır.
+
+## ✅ SOSYAL ONAY ZİNCİRİ — 3 BOŞLUK KAPATILDI (2026-07-01)
+n8n/VPS spec'i geldi ama sistemin %85'i zaten canlıydı (Supabase `social_posts` + `weekly-content-planner` + `telegram-webhook` onay + `social-publish-queue` yayın). n8n kurulmadı; 3 gerçek boşluk mevcut sisteme script/dal olarak eklendi:
+
+- **Gap A — "Önerilen Saatte" ölü yol:** `social-publish-queue.js` çalışıyordu ama onu tetikleyen cron yoktu (cron 2/2 dolu). Çözüm: `api/cron-weekly-plan.js`'e `mode=publish` dalı (queue mantığını çağırır, yeni fonksiyon/cron yok).
+- **Gap B — Workflow 4 (hatırlatma/eskalasyon):** hiç yoktu → `scripts/approval-reminder.mjs`. Kademe: H1 nazik, H2 ikinci+ping, H3 son çare (config'e göre auto-approve veya atla). `engagement_metrics.reminder_stage` ile tekrar spam engellenir.
+- **Gap C — seed→onay kopukluğu:** `seed-30day-social.mjs` `pending_approval` ekliyor ama onay mesajı göndermiyordu. Aynı `approval-reminder.mjs`: `telegram_message_id` yoksa ilk onay mesajını (4 buton) gönderir.
+
+**Dal:** `api/cron-weekly-plan.js?mode=publish` ve `?mode=remind` (mevcut router, secret korumalı).
+
+### ⛔ BERKAY MANUEL (2 adım, ~5 dk) — cron 2/2 dolu olduğu için dış tetikleyici
+1. **cron-job.org** (bedava) → 2 iş ekle, ikisi de `Authorization: Bearer <IG_CRON_SECRET>` header ile:
+   - `https://www.kalkaninfo.com/api/cron-weekly-plan?mode=remind` → **saatte 1** (hatırlatma/eskalasyon + seed onay gönderimi)
+   - `https://www.kalkaninfo.com/api/cron-weekly-plan?mode=publish` → **saatte 1** (zamanı gelen approved post'ları yayınla)
+2. **Vercel env** (opsiyonel, varsayılan güvenli): `APPROVAL_ESCALATION=skip` (24s onaysız → atla) veya `=default` (24s onaysız → otomatik yayınla). Eşikler: `APPROVAL_REMIND_H1/H2/H3` (varsayılan 4/12/24 saat).
+
+**Not:** local test 401 verir (Supabase service-role local'de bayat, bilinen kısıt); prod env'de geçerli. Henüz commit edilmedi.
