@@ -305,6 +305,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ============== BUGÜNÜN GAZETESİ ============== -->
+<section style="background:#072136;border-top:3px solid #e89812;">
+  <div class="max-w-7xl mx-auto px-4 py-8 md:py-10">
+    <a href="/gazete" class="group block rounded-2xl overflow-hidden relative" style="background:linear-gradient(135deg,#0c3858,#0a2e4c);box-shadow:0 20px 60px -16px rgba(7,33,54,0.55);">
+      <div class="absolute inset-0 opacity-[0.06]" style="background-image:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 7px);"></div>
+      <div class="relative grid md:grid-cols-[auto,1fr,auto] items-center gap-5 md:gap-8 p-6 md:p-8 text-white">
+        <div class="shrink-0">
+          <div class="w-20 h-24 md:w-24 md:h-28 rounded-md bg-[#fbf9f4] text-[#14181c] p-2 flex flex-col justify-between rotate-[-3deg] group-hover:rotate-0 transition-transform" style="box-shadow:0 12px 30px rgba(0,0,0,.4);">
+            <div class="text-center leading-none" style="font-family:'Playfair Display',Georgia,serif;"><span class="italic font-black text-[13px]">Kalkan</span> <span class="font-extrabold text-[13px]">Today</span></div>
+            <div class="space-y-1"><div class="h-1 bg-[#14181c]/80 rounded"></div><div class="h-1 bg-[#14181c]/30 rounded w-4/5"></div><div class="h-1 bg-[#14181c]/30 rounded"></div><div class="h-1 bg-[#b88a2f] rounded w-2/3"></div></div>
+            <div class="text-[6px] uppercase tracking-wider text-[#5a6675] text-center" style="font-family:'Inter';">Sabah Edisyonu</div>
+          </div>
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase text-sun-400 font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Bugünün Gazetesi · <span id="gz-date"></span></div>
+          <h2 class="font-display text-2xl md:text-3xl font-extrabold mt-1.5" data-en="Kalkan Today — daily paper" data-de="Kalkan Today — Tageszeitung" data-ru="Kalkan Today — газета" data-fr="Kalkan Today — journal">Kalkan Today — günlük gazete</h2>
+          <p class="text-white/70 mt-1 text-sm md:text-base max-w-xl" data-en="Front page news &amp; weather, back page nightlife magazine. New issue every day." data-de="Titelseite Nachrichten, Rückseite Nachtleben-Magazin. Täglich neu." data-ru="Новости на первой полосе, ночная жизнь на обороте. Новый выпуск каждый день." data-fr="Actualités en une, magazine nocturne au dos. Nouveau numéro chaque jour.">Ön sayfa haber &amp; hava, arka yüz gece hayatı magazini. Her gün yeni sayı.</p>
+          <div id="gz-chips" class="flex gap-2 mt-3 flex-wrap"></div>
+        </div>
+        <div class="shrink-0">
+          <span class="inline-flex items-center gap-2 bg-sun-500 group-hover:bg-sun-400 text-[#0a2e4c] font-display font-bold rounded-full px-5 py-3 transition" data-en="Open the paper" data-de="Zeitung öffnen" data-ru="Открыть газету" data-fr="Ouvrir le journal">Gazeteyi Aç
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <script>(function(){
+    try{document.getElementById('gz-date').textContent=new Date().toLocaleDateString('tr-TR',{day:'numeric',month:'long'});}catch(e){}
+    fetch('/data/newspaper-index.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+      var t=d&&d.issues&&d.issues[0]; if(!t)return; var box=document.getElementById('gz-chips'); if(!box)return;
+      var names={morning:'Ön Sayfa · Kalkan Today',magazine:'Arka Yüz · Magazin'};var h='';
+      ['morning','magazine'].forEach(function(k){if(t.editions[k])h+='<a href="'+t.editions[k].html+'" onclick="event.stopPropagation()" class="text-[11px] tracking-wide uppercase font-semibold bg-white/10 hover:bg-white/20 border border-white/15 rounded-full px-3 py-1.5 transition">'+names[k]+'</a>';});
+      box.innerHTML=h;
+    }).catch(function(){});
+  })();</script>
+</section>
+
 <!-- ============== NÖBETÇİ ECZANE DETAY ============== -->
 <section id="nobetci" class="bg-white" style="border-top:3px solid #0a2e4c;">
   <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-6">

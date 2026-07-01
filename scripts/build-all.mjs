@@ -12,6 +12,7 @@ const steps = [
   { name: 'news-aggregator', cmd: 'node', args: ['scripts/news-aggregator.mjs'],       required: false },
   { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
   { name: 'build-ads',       cmd: 'node', args: ['scripts/build-ads.mjs'],             required: false },
+  { name: 'newspaper-index',  cmd: 'node', args: ['scripts/build-newspaper-index.mjs'], required: false },
 ];
 
 let hardFail = false;
