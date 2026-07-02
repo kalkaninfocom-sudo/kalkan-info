@@ -40,6 +40,14 @@
       "task": "SELF-UPDATE: Bugün sosyal medya / yerel turizm dünyasında Kalkan Info'yu ilgilendiren ne değişti? 3 madde güncel gelişme + her biri için 1 uygulanabilir fikir."
     },
 
+    {
+      "id": "daily-ig-post",
+      "time": "18:00",
+      "type": "script",
+      "script": "scripts/ig-news-post.mjs",
+      "desc": "Günün en yeni haberinden IG gönderi kartı üret → Telegram'a GÖRSELLİ onay (foto + Onayla/Reddet). Onaylanınca IG'de yayınlanır. Görsel kuralına uygun (prompt değil, kart)."
+    },
+
     { "id": "growth-weekly", "dow": "Mon", "time": "07:00", "type": "agent", "agent": "growth",  "task": "Bu haftanın büyüme planı: 6 kaldıraç üzerinden 3 somut aksiyon belirle, sahiplerini ata, ölçülebilir hedef koy." },
     { "id": "analyst-weekly", "dow": "Mon", "time": "08:00", "type": "agent", "agent": "analyst", "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı." },
 
