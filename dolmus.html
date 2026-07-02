@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dolmuş Sefer Saatleri — Kalkan · Kaş · Patara | Kalkan Info</title>
+<meta name="description" content="Kalkan, Kaş, Patara, Kaputaş, Kınık, Çavdır dolmuş sefer saatleri. Sıradaki dolmuşu anında gör. Güncel tarife.">
+<link rel="canonical" href="https://kalkaninfo.com/dolmus" />
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy-900:#072136; --navy-800:#0a2e4c; --navy-700:#0c3858; --blue:#1a5e93;
+    --gold:#f4b53d; --gold-600:#e89812; --surface:#eef4f9; --line:#dce8f0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--navy-800);background:#dce6ef;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.disp{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px;}
+
+  /* Header */
+  .topbar{background:linear-gradient(180deg,var(--navy-700),var(--navy-800));color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 4px 20px -6px rgba(7,33,54,.5);}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;height:58px;}
+  .logo{font-family:'Montserrat';font-weight:800;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:8px;}
+  .logo .diamond{width:14px;height:14px;background:var(--gold);transform:rotate(45deg);border-radius:2px;}
+  .logo .info{color:var(--gold);}
+  .back{font-size:13px;color:rgba(255,255,255,.85);display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:9999px;transition:background .2s;}
+  .back:hover{background:rgba(255,255,255,.1);}
+  .back:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* Hero */
+  .hero{background:var(--navy-900);color:#fff;padding:26px 0 20px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 0%,rgba(26,94,147,.35),transparent 60%);pointer-events:none;}
+  .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:8px;}
+  .kicker::before{content:'';width:22px;height:2px;background:var(--gold);border-radius:2px;}
+  .hero h1{font-size:clamp(26px,6vw,40px);font-weight:900;margin:.35em 0 .15em;line-height:1.05;}
+  .hero p{color:rgba(255,255,255,.75);font-size:14px;max-width:60ch;margin:0;}
+  .clock{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9999px;padding:8px 14px;font-weight:600;font-size:14px;}
+  .clock b{font-variant-numeric:tabular-nums;color:var(--gold);}
+
+  /* Filter chips */
+  .filters{display:flex;gap:8px;overflow-x:auto;padding:16px 0 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .filters::-webkit-scrollbar{display:none;}
+  .chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--navy-800);border-radius:9999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .2s,border-color .2s,color .2s;white-space:nowrap;}
+  .chip:hover{transform:translateY(-1px);}
+  .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .chip.active{background:var(--navy-800);color:#fff;border-color:var(--navy-800);}
+
+  /* Route grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:12px 0 40px;}
+  .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,.07),0 8px 26px -10px rgba(7,33,54,.22);border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .22s,transform .22s;}
+  .card:hover{box-shadow:0 6px 14px rgba(7,33,54,.1),0 20px 46px -12px rgba(7,33,54,.3);transform:translateY(-2px);}
+  .card .head{padding:14px 16px;color:#fff;position:relative;}
+  .card .head .from{font-family:'Montserrat';font-weight:800;font-size:17px;display:flex;align-items:center;gap:8px;}
+  .card .head .route{font-size:12px;font-weight:600;opacity:.92;margin-top:4px;line-height:1.5;}
+  .card .head .route .arw{opacity:.6;margin:0 3px;}
+  .next{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--line);font-size:13px;}
+  .next .lbl{color:#5a6f85;font-weight:600;}
+  .next .val{font-family:'Montserrat';font-weight:800;font-size:16px;color:var(--navy-900);font-variant-numeric:tabular-nums;}
+  .next .in{margin-left:auto;background:var(--gold);color:var(--navy-900);font-weight:700;font-size:12px;padding:4px 10px;border-radius:9999px;}
+  .next.done .val{color:#94a3b8;}
+  .next.done .in{background:#e2e8f0;color:#64748b;}
+  .times{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px;padding:14px 16px 16px;}
+  .t{font-variant-numeric:tabular-nums;text-align:center;font-size:13px;font-weight:600;padding:7px 4px;border-radius:8px;background:var(--surface);color:var(--navy-800);}
+  .t.past{color:#b3bfcc;background:#f4f7fa;text-decoration:line-through;}
+  .t.next{background:var(--gold);color:var(--navy-900);box-shadow:0 4px 12px -3px rgba(232,152,18,.55);animation:pop .5s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes pop{0%{transform:scale(.85)}100%{transform:scale(1)}}
+
+  .note{background:#fff8e8;border:1px solid #f3dca0;color:#7a5a10;border-radius:12px;padding:12px 16px;font-size:13px;margin:8px 0 32px;display:flex;gap:10px;align-items:flex-start;}
+  .foot{background:var(--navy-900);color:rgba(255,255,255,.6);font-size:12px;text-align:center;padding:20px 16px;}
+  .foot a{color:var(--gold);}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+  <div class="topbar"><div class="wrap row">
+    <a class="logo" href="/">Kalkan <span class="info">Info</span></a>
+    <a class="back" href="/">← Anasayfa</a>
+  </div></div>
+
+  <header class="hero"><div class="wrap">
+    <span class="kicker">Ulaşım · Bölge Dolmuşları</span>
+    <h1>Dolmuş Sefer Saatleri</h1>
+    <p>Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır hatları. Her kartta <b style="color:#fff">sıradaki dolmuş</b> otomatik işaretlenir.</p>
+    <div class="clock">🕐 Şu an: <b id="now">--:--</b></div>
+  </div></header>
+
+  <main class="wrap">
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+    <div class="note">
+      <span>ℹ️</span>
+      <span><b>Saatler yaz sezonu tarifesine göredir ve değişebilir.</b> Yola çıkmadan durak veya operatörle teyit etmenizi öneririz. Bir hata görürseniz <a href="/" style="color:#7a5a10;text-decoration:underline">bize bildirin</a>.</span>
+    </div>
+  </main>
+
+  <footer class="foot">© 2026 Kalkan Info · Bölge ulaşım rehberi · <a href="/">kalkaninfo.com</a></footer>
+
+<script>
+(function(){
+  var FALLBACK={hatlar:[]};
+  var grid=document.getElementById('grid'), filters=document.getElementById('filters');
+  var activeDest=null, DATA=null;
+
+  function pad(n){return (n<10?'0':'')+n;}
+  function nowMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
+  function toMin(hhmm){var p=hhmm.split(':');var h=+p[0],m=+p[1];var t=h*60+m;if(h<4)t+=24*60;return t;} // 00:30 gece = ertesi
+  function tick(){var d=new Date();document.getElementById('now').textContent=pad(d.getHours())+':'+pad(d.getMinutes());}
+
+  function nextIdx(saatler){
+    var cur=nowMin(); if(new Date().getHours()<4)cur+=24*60;
+    for(var i=0;i<saatler.length;i++){ if(toMin(saatler[i])>=cur) return i; }
+    return -1;
+  }
+  function humanIn(mins){
+    if(mins<=0) return 'şimdi';
+    if(mins<60) return mins+' dk sonra';
+    var h=Math.floor(mins/60), m=mins%60; return h+' sa '+(m?m+' dk':'').trim()+' sonra';
+  }
+
+  function render(){
+    grid.innerHTML='';
+    DATA.hatlar.forEach(function(h){
+      if(activeDest && h.guzergah.indexOf(activeDest)===-1) return;
+      var ni=nextIdx(h.saatler);
+      var card=document.createElement('div'); card.className='card';
+      var routeHtml=h.guzergah.map(function(s,i){return (i?'<span class="arw">›</span>':'')+s;}).join('');
+      var nextBlock;
+      if(ni>=0){
+        var cur=nowMin(); if(new Date().getHours()<4)cur+=24*60;
+        var inMin=toMin(h.saatler[ni])-cur;
+        nextBlock='<div class="next"><span class="lbl">Sıradaki</span><span class="val">'+h.saatler[ni]+'</span><span class="in">'+humanIn(inMin)+'</span></div>';
+      } else {
+        nextBlock='<div class="next done"><span class="lbl">Bugün</span><span class="val">Seferler bitti</span><span class="in">yarın 🌅</span></div>';
+      }
+      var timesHtml=h.saatler.map(function(t,i){
+        var cls='t'; if(ni<0||i<ni)cls+=' past'; if(i===ni)cls+=' next'; return '<div class="'+cls+'">'+t+'</div>';
+      }).join('');
+      card.innerHTML=
+        '<div class="head" style="background:linear-gradient(135deg,'+h.renk+',rgba(0,0,0,.28))">'+
+          '<div class="from">🚐 '+h.kalkis+'</div>'+
+          '<div class="route">'+routeHtml+'</div>'+
+        '</div>'+ nextBlock +
+        '<div class="times">'+timesHtml+'</div>';
+      grid.appendChild(card);
+    });
+  }
+
+  function buildFilters(){
+    var dests={};
+    DATA.hatlar.forEach(function(h){h.guzergah.forEach(function(s){dests[s]=1;});});
+    var list=Object.keys(dests).sort();
+    var mk=function(label,val){var b=document.createElement('button');b.className='chip'+(val===activeDest?' active':'');b.textContent=label;
+      b.onclick=function(){activeDest=val;[].forEach.call(filters.children,function(c){c.classList.remove('active');});b.classList.add('active');render();};return b;};
+    filters.innerHTML='';
+    filters.appendChild(mk('Tüm Hatlar',null));
+    list.forEach(function(s){filters.appendChild(mk(s,s));});
+  }
+
+  function boot(d){DATA=d; buildFilters(); render(); tick(); setInterval(tick,1000); setInterval(render,30000);}
+
+  fetch('/data/dolmus-saatleri.json',{cache:'no-cache'})
+    .then(function(r){return r.ok?r.json():FALLBACK;})
+    .then(boot)
+    .catch(function(){boot(FALLBACK);});
+})();
+</script>
+</body>
+</html>
