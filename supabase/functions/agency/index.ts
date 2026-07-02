@@ -68,7 +68,7 @@ async function runLLM(system: string, task: string): Promise<{ text: string; pro
       messages: [...(system ? [{ role: 'system', content: system }] : []), { role: 'user', content: task }],
       temperature: 0.4, max_tokens: 700,
     }),
-    signal: AbortSignal.timeout(45000),
+    signal: AbortSignal.timeout(60000),
   });
   if (!res.ok) throw new Error(`nvidia ${res.status} ${(await res.text()).slice(0, 160)}`);
   const d = await res.json();

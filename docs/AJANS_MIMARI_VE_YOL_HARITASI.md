@@ -59,6 +59,14 @@ Durum, cockpit'in `agency_state` tablosundan okunur → görselde agent o alana 
 - LLM işi Edge Function + NVIDIA'da (zaten canlı). Yayın işleri mevcut scriptlerde.
 - Onay kapısı: Telegram (mevcut `telegram-webhook`).
 
+### 3.1.1 🔒 GÖRSEL ONAY KURALI (ZORUNLU — Berkay 2026-07-02)
+**Onaya çıkan HER içerik (gazete, gönderi, reels, hikaye) için Telegram'a mutlaka NİHAİ GÖRSEL/VİDEO gönderilir — asla prompt/metin değil.** Kurucu, onay ekranında birebir yayınlanacak ürünü görür (render edilmiş kart/PDF/reel/story). Akış her içerik tipi için:
+1. İçerik üretilir + bir **yayın saati** atanır.
+2. Yayından **5 dk önce** → içerik RENDER edilir (PNG/MP4/PDF) → Telegram'a **görsel + Onayla/Değiştir/Reddet** butonlarıyla gider.
+3. Onaylanırsa → **atanan yayın saatinde** web + Instagram + Facebook'ta yayınlanır.
+4. Onaylanmazsa → yayınlanmaz (reddet) veya düzeltme istenir (değiştir).
+> Uygulama: `ig-news-post.mjs` zaten kart PNG'sini Telegram'a görselli onaya gönderiyor — bu desen tüm içerik tiplerine (gazete kapağı, reel MP4, story) genişletilecek. Metin taslakları yalnızca DAHİLİ ara üründür, kurucuya gitmez.
+
 ### 3.2 Bayrak akış — Günlük Gazete (Berkay'ın verdiği örnek, birebir)
 | Saat | Aksiyon | Sorumlu agent | Nasıl |
 |---|---|---|---|
