@@ -60,15 +60,32 @@ async function renderCards(chromePath) {
       await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
       await page.goto(pathToFileURL(htmlPath).href, { waitUntil: 'networkidle0', timeout: 60000 });
       const shot = await page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: 794, height: 1123 } });
-      // 4:5 (1080x1350) krem zeminli kapak — tüm sayfa sığar (contain)
-      const wrapper = `<!doctype html><html><head><meta charset="utf-8"><style>
-        html,body{margin:0}#c{width:1080px;height:1350px;background:#fbf9f4;display:flex;align-items:center;justify-content:center;overflow:hidden}
-        #c img{height:1310px;box-shadow:0 20px 60px rgba(0,0,0,.25);border:1px solid #e6ddcb}</style></head>
-        <body><div id="c"><img src="data:image/png;base64,${shot.toString('base64')}"></div></body></html>`;
-      await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 1 });
+      // 9:16 (1080x1920) Instagram HİKAYE — markalı navy zemin, gazete sayfası ortalı
+      const label = type === 'morning' ? 'GÜNLÜK GAZETE · ÖN SAYFA' : 'GÜNLÜK GAZETE · MAGAZİN';
+      const dTR = new Date(date + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+      const wrapper = `<!doctype html><html><head><meta charset="utf-8">
+        <style>
+        html,body{margin:0}
+        #c{width:1080px;height:1920px;overflow:hidden;position:relative;
+           background:radial-gradient(120% 80% at 50% 0%,#0f4066 0%,#0a2e4c 45%,#072136 100%);
+           display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,Arial,sans-serif}
+        .top{position:absolute;top:0;left:0;right:0;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+        .brand{font-family:Georgia,'Times New Roman',serif;font-weight:900;font-size:46px;color:#fff;letter-spacing:1px}
+        .brand span{color:#f4b53d}
+        .kicker{font-size:20px;font-weight:700;letter-spacing:6px;color:#f4b53d;text-transform:uppercase}
+        #c img{width:1000px;border:1px solid #e6ddcb;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+        .bot{position:absolute;bottom:0;left:0;right:0;height:130px;display:flex;align-items:center;justify-content:center;gap:14px;color:#cfe2f2;font-size:24px;font-weight:600}
+        .bot b{color:#fff}.dot{color:#f4b53d}
+        </style></head>
+        <body><div id="c">
+          <div class="top"><div class="brand">KALKAN <span>INFO</span></div><div class="kicker">${label}</div></div>
+          <img src="data:image/png;base64,${shot.toString('base64')}">
+          <div class="bot"><b>${dTR}</b><span class="dot">•</span>kalkaninfo.com/gazete</div>
+        </div></body></html>`;
+      await page.setViewport({ width: 1080, height: 1920, deviceScaleFactor: 1 });
       await page.setContent(wrapper, { waitUntil: 'load' });
       const outRel = `newspaper/archive/${date}/${type}-card.png`;
-      await page.screenshot({ path: join(ROOT, outRel), clip: { x: 0, y: 0, width: 1080, height: 1350 } });
+      await page.screenshot({ path: join(ROOT, outRel), clip: { x: 0, y: 0, width: 1080, height: 1920 } });
       await page.close();
       cards.push({ type, path: `/${outRel}` });
       console.log(`  ✓ ${outRel}`);

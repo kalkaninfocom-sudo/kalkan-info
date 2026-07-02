@@ -83,13 +83,31 @@ async function main() {
   if (!existsSync(cardPath)) { console.error(`❌ Kapak kartı yok: ${cardPath} — onay gönderilemez.`); process.exit(1); }
   console.log(`✓ Kapak görseli hazır: newspaper/archive/${date}/morning-card.png`);
 
-  // 2) social_posts satır id'si
+  // 2) social_posts satırı — UYGULAMA SEVİYESİ upsert (DB unique constraint gerekmez)
   if (!SUPA_URL || !SUPA_KEY) { console.warn('ℹ Supabase env yok — id çekilemedi, Telegram onayı atlandı. (Kart hazır.)'); return; }
+  let post;
   const q = await supa(`/social_posts?content_pack_id=eq.gazete-${date}&select=id,telegram_message_id&limit=1`);
-  const rows = q.ok ? await q.json() : [];
-  const post = rows[0];
-  if (!post) { console.warn('ℹ social_posts satırı bulunamadı (newspaper-daily kuyruğa alamadı — env?). Kart hazır.'); return; }
-  if (post.telegram_message_id) { console.log('ℹ Bu sayı için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
+  post = (q.ok ? await q.json() : [])[0];
+  if (post?.telegram_message_id) { console.log('ℹ Bu sayı için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
+  if (!post) {
+    const assets = ['morning', 'magazine']
+      .map(t => `/newspaper/archive/${date}/${t}-card.png`)
+      .filter(p => existsSync(join(ROOT, p.slice(1))));
+    const caption = `Kalkan Today — ${date} sayısı. Ön sayfa + magazin. Tüm sayı: ${SITE_BASE}/gazete`;
+    const row = {
+      content_pack_id: `gazete-${date}`,
+      content_type: assets.length >= 2 ? 'carousel' : 'post',
+      language: 'tr', caption,
+      hashtags: ['#kalkan', '#kalkaninfo', '#kalkantoday', '#kaş', '#gündem'],
+      local_assets: assets, status: 'pending_approval',
+      scheduled_at: `${date}T08:00:00+03:00`,
+      telegram_chat_id: TG_CHAT ? Number(TG_CHAT) : null,
+    };
+    const ins = await supa('/social_posts?select=id', { method: 'POST', headers: { Prefer: 'return=representation' }, body: JSON.stringify(row) });
+    if (!ins.ok) { console.error('  ✗ social_posts insert fail:', ins.status, (await ins.text()).slice(0, 140)); return; }
+    post = (await ins.json())[0];
+    console.log(`✓ social_posts oluşturuldu: ${post.id}`);
+  }
 
   // 3) Kartı FOTO olarak onaya gönder
   const caption =
