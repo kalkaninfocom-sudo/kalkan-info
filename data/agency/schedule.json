@@ -29,15 +29,7 @@
       "time": "07:55",
       "type": "script",
       "script": "scripts/agency/gazete-approval.mjs",
-      "desc": "Sabah biriken haber+magazin başlıklarını derle → Telegram'da ONAYA sun (Onayla/Değiştir/Reddet)."
-    },
-    {
-      "id": "gazete-publish",
-      "time": "08:00",
-      "type": "script",
-      "script": "scripts/agency/newspaper-daily.mjs",
-      "requiresApproval": "gazete",
-      "desc": "Onay geldiyse o günün 2 sayfalı gazetesini üret → web + Instagram + Facebook yayınla."
+      "desc": "Gazeteyi üret + kapak kartını RENDER et → Telegram'a GÖRSELLİ onaya sun (✅ Yayınla / ⏰ 08:00'de / ❌ Reddet). Web anında canlı; IG/FB onaydan sonra 08:00'de. Yayın, onay butonuyla (pub:<id>:scheduled → scheduled_at=08:00) tetiklenir; ayrı 08:00 script'i gerekmez."
     },
 
     {
