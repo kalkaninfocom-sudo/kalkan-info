@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "note": "Kalkan Info MULTIVERSE — şirketin departmanları = cockpit odaları. Her oda kendi agent'larıyla, 7/24 üretim, yayın ONAYLI (semi-auto).",
+    "yayinModu": "uret-7-24-yayin-onayli",
+    "updated": "2026-07-02"
+  },
+  "departmanlar": [
+    {
+      "id": "sosyal",
+      "ad": "Sosyal Medya Ajansı",
+      "emoji": "🎨",
+      "accent": "#f4b53d",
+      "tema": "warm-studio",
+      "aciklama": "İçerik üretir, marka sesini yönetir, reels/hikaye/post üretip onaya sunar.",
+      "agents": ["director", "trend", "writer", "guard", "analyst", "growth", "ads", "reception"],
+      "durum": "kuruldu"
+    },
+    {
+      "id": "gazete",
+      "ad": "Haber Merkezi — Kalkan Today",
+      "emoji": "📰",
+      "accent": "#d72631",
+      "tema": "newsroom",
+      "aciklama": "Günlük gazete: ön sayfa haber + arka yüz magazin. Muhabir derler, editör kurar, foto seçilir, sosyal editör paylaşıma hazırlar.",
+      "agents": ["yayin-yonetmeni", "muhabir", "foto-editoru", "magazin-editoru", "gazete-sosyal", "reklam-uyum", "news-verifier", "hava-plan"],
+      "durum": "kadro-hazir"
+    },
+    {
+      "id": "concierge",
+      "ad": "Concierge / Misafir İlişkileri",
+      "emoji": "🛎️",
+      "accent": "#1a5e93",
+      "tema": "lobby",
+      "aciklama": "Misafire tatil planı, rehberlik, sağlayıcı eşleştirme, menü ve çeviri. WhatsApp'tan gelen talepleri karşılar.",
+      "agents": ["tatil-planner", "gezgin-rehber", "menu-chef", "provider-matcher", "dil-cevirmen", "reception"],
+      "durum": "kadro-hazir"
+    },
+    {
+      "id": "teknik",
+      "ad": "Teknik & Uyum",
+      "emoji": "⚙️",
+      "accent": "#8b5cf6",
+      "tema": "ops",
+      "aciklama": "Site sağlığı, denetim, KVKK/hukuki uyum, dağıtım. Arka planda operasyonu ayakta tutar.",
+      "agents": ["deploy-agent", "audit-agent", "kvkk-guardian"],
+      "durum": "kadro-hazir"
+    }
+  ]
+}

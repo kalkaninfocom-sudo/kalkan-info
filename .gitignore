@@ -44,6 +44,11 @@ desktop.ini
 temporary screenshots/
 data/temporary screenshots/
 data/.omc/
+# Ajans runtime state (canlıda Supabase DB'de; bunlar yerel/geçici)
+data/agency/jobs.json
+data/agency/state.json
+data/agency/content-queue.json
+data/agency/news-intake.json
 
 # Remotion render artifacts (büyük PNG/MP4 — git'e atma)
 remotion/public/screens/

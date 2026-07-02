@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "note": "Sosyal medya KALIP (template) tanımları — Kalkan Info paleti + bölüm başlığı şeridi. render-card.mjs bunu kullanır.",
+    "updated": "2026-07-02"
+  },
+  "boyutlar": {
+    "post":   { "w": 1080, "h": 1350, "aciklama": "IG feed dikey post" },
+    "kare":   { "w": 1080, "h": 1080, "aciklama": "IG kare / haber kartı" },
+    "story":  { "w": 1080, "h": 1920, "aciklama": "IG/FB hikaye · reels kapak" }
+  },
+  "bolumler": {
+    "HABERLER":  { "renk": "#d72631", "ust": "KALKAN INFO · HABER" },
+    "MAGAZİN":   { "renk": "#9b6dc4", "ust": "KALKAN INFO · MAGAZİN" },
+    "DUYURU":    { "renk": "#e89812", "ust": "KALKAN INFO · DUYURU" },
+    "ETKİNLİK":  { "renk": "#f97316", "ust": "KALKAN INFO · ETKİNLİK" },
+    "REHBER":    { "renk": "#1a5e93", "ust": "KALKAN INFO · REHBER" },
+    "GÜNDEM":    { "renk": "#d72631", "ust": "KALKAN INFO · GÜNDEM" },
+    "LEZZET":    { "renk": "#0e8aa0", "ust": "KALKAN INFO · LEZZET" }
+  },
+  "tipler": {
+    "haber":   { "boyut": "kare",  "bolum": "HABERLER", "ciktilar": ["gorsel"] },
+    "magazin": { "boyut": "post",  "bolum": "MAGAZİN",  "ciktilar": ["gorsel"] },
+    "post":    { "boyut": "post",  "bolum": "GÜNDEM",   "ciktilar": ["gorsel"] },
+    "story":   { "boyut": "story", "bolum": "DUYURU",   "ciktilar": ["gorsel"] },
+    "reel":    { "boyut": "story", "bolum": "REHBER",   "ciktilar": ["kapak", "storyboard"] }
+  }
+}

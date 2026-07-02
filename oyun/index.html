@@ -1311,9 +1311,20 @@ let AG_BY_ID=Object.fromEntries(AGENTS.map(a=>[a.id,a]));
 let liveMode=false, liveEverOn=false, liveContent=[], pollTimer=null, pollFails=0;
 
 function escapeHTML(x){return String(x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-async function apiGET(p){const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error('http '+r.status);return r.json();}
+/* Canlı: /agency/* çağrıları Supabase Edge Function'a gider (serve.mjs sadece localhost'ta var).
+   Yerel geliştirme (localhost): relative kalır → serve.mjs karşılar. /data/agency/*.json her iki
+   ortamda da statik dosya olduğundan dokunulmaz. */
+const AGENCY_EDGE='https://dgichfealzdpfhdgryym.supabase.co/functions/v1/agency';
+const AGENCY_KEY='sb_publishable_26HXaUgGqxZUOuxbcPhiDQ_s3MvKVpr';
+const _isLocalHost=['localhost','127.0.0.1'].indexOf(location.hostname)!==-1;
+function _agencyURL(p){
+  if(_isLocalHost || !p.startsWith('/agency/')) return {url:p,headers:{}};
+  return {url:AGENCY_EDGE+p.slice('/agency'.length), headers:{apikey:AGENCY_KEY,Authorization:'Bearer '+AGENCY_KEY}};
+}
+async function apiGET(p){const t=_agencyURL(p);const r=await fetch(t.url,{cache:'no-store',headers:t.headers});if(!r.ok)throw new Error('http '+r.status);return r.json();}
 async function apiPOST(p,body){
-  const r=await fetch(p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const t=_agencyURL(p);
+  const r=await fetch(t.url,{method:'POST',headers:{'Content-Type':'application/json',...t.headers},body:JSON.stringify(body)});
   if(!r.ok)throw new Error('http '+r.status); return r.json();
 }
 
