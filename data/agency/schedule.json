@@ -1,0 +1,63 @@
+{
+  "timezone": "Europe/Istanbul",
+  "note": "Her işin sabit saati. scheduler.mjs bunu okuyup o ana denk gelen görevleri çalıştırır. type: agent=Edge Function'a enqueue (NVIDIA ile çalışır), script=yerel/CI node script, approval=Telegram onay kapısı.",
+  "tasks": [
+    {
+      "id": "trend-scan-am",
+      "time": "05:00",
+      "type": "agent",
+      "agent": "trend",
+      "task": "Kalkan/Kaş/Patara ile alakalı bugünkü Google Trends + Instagram hashtag sinyallerini topla. En alakalı 8 trendi Kalkan-alaka skoruna göre sırala. Kısa liste + neden alakalı."
+    },
+    {
+      "id": "director-daily-decision",
+      "time": "06:00",
+      "type": "agent",
+      "agent": "director",
+      "task": "Bugün Kalkan Info sosyal medyası için TEK en iyi post fikrini seç. Trend sinyallerini ve mevsimi düşün. Çıktı: kısa başlık + 1 cümle açı + hedef platform + güven skoru (0-1)."
+    },
+
+    { "id": "gazete-research-0700", "time": "07:00", "type": "agent", "agent": "muhabir",         "task": "Kalkan bölgesel güncel haberleri araştır. 3 ön sayfa haber başlığı + 1 cümle özet üret. Olgusal, abartısız haber-ajansı tonu." },
+    { "id": "gazete-research-0710", "time": "07:10", "type": "agent", "agent": "magazin-editoru", "task": "Kalkan gece hayatı / etkinlik / mekan açısından bugünkü magazin başlıklarını üret. 3 magazin başlığı + kısa açı." },
+    { "id": "gazete-research-0720", "time": "07:20", "type": "agent", "agent": "muhabir",         "task": "Kalkan bölgesel haber taraması (2. tur) — sabah 07:00'dekilerden farklı, yeni gelişme var mı? Varsa 2 başlık, yoksa 'yeni yok' de." },
+    { "id": "gazete-research-0730", "time": "07:30", "type": "agent", "agent": "magazin-editoru", "task": "Magazin taraması (2. tur). Bugünkü etkinlik/rezervasyon/mekan hareketliliğinden 2 taze başlık." },
+    { "id": "gazete-research-0740", "time": "07:40", "type": "agent", "agent": "muhabir",         "task": "Son tur haber kontrolü (07:40). Öne çıkarılacak günün MANŞET adayını seç + gerekçe." },
+    { "id": "gazete-research-0750", "time": "07:50", "type": "agent", "agent": "magazin-editoru", "task": "Son tur magazin (07:50). Arka yüz için günün en güçlü magazin açısını seç." },
+
+    {
+      "id": "gazete-approval",
+      "time": "07:55",
+      "type": "script",
+      "script": "scripts/agency/gazete-approval.mjs",
+      "desc": "Sabah biriken haber+magazin başlıklarını derle → Telegram'da ONAYA sun (Onayla/Değiştir/Reddet)."
+    },
+    {
+      "id": "gazete-publish",
+      "time": "08:00",
+      "type": "script",
+      "script": "scripts/agency/newspaper-daily.mjs",
+      "requiresApproval": "gazete",
+      "desc": "Onay geldiyse o günün 2 sayfalı gazetesini üret → web + Instagram + Facebook yayınla."
+    },
+
+    {
+      "id": "daily-self-update",
+      "time": "09:00",
+      "type": "agent",
+      "agent": "director",
+      "task": "SELF-UPDATE: Bugün sosyal medya / yerel turizm dünyasında Kalkan Info'yu ilgilendiren ne değişti? 3 madde güncel gelişme + her biri için 1 uygulanabilir fikir."
+    },
+
+    { "id": "growth-weekly", "dow": "Mon", "time": "07:00", "type": "agent", "agent": "growth",  "task": "Bu haftanın büyüme planı: 6 kaldıraç üzerinden 3 somut aksiyon belirle, sahiplerini ata, ölçülebilir hedef koy." },
+    { "id": "analyst-weekly", "dow": "Mon", "time": "08:00", "type": "agent", "agent": "analyst", "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı." },
+
+    {
+      "id": "founder-weekly-report",
+      "dow": "Fri",
+      "time": "16:00",
+      "type": "script",
+      "script": "scripts/agency/weekly-founder-report.mjs",
+      "desc": "Hafta boyu tartışmalar + iş sonuçları + metrikleri tek haftalık sunuma derle → kurucuya gönder."
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: Ajans Zamanlayıcı (7/24)
+
+# Her 10 dakikada bir çalışır → data/agency/schedule.json'daki o ana denk gelen
+# görevleri tetikler. Agent görevleri canlı Supabase Edge Function'a gider (secret
+# gerekmez). Script görevleri (gazete vb.) repo secret'ları varsa çalışır.
+# Vercel cron/api limitine DOKUNMAZ. Public repo = ücretsiz dakika.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'      # her 10 dk (UTC; scheduler TR saatine kendi çevirir)
+  workflow_dispatch:
+    inputs:
+      now:
+        description: 'Saat override (HH:MM, test için)'
+        required: false
+      force:
+        description: 'Runlog yok say (true/false)'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: agency-scheduler
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Zamanlayıcı tick
+        env:
+          # Script görevleri (gazete/rapor) için — yoksa graceful atlanır
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: |
+          ARGS="tick"
+          if [ -n "${{ github.event.inputs.now }}" ]; then ARGS="$ARGS --now ${{ github.event.inputs.now }}"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          node scripts/agency/scheduler.mjs $ARGS
