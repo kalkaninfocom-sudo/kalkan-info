@@ -16,7 +16,7 @@ const PAGES = [
   { id: 'plajlar',      path: '/plajlar',         wait: 2400, fullPage: true,  maxHeight: 3200 },
   { id: 'antik',        path: '/antik-kentler',   wait: 2400, fullPage: true,  maxHeight: 3200 },
   { id: 'hizmetler',    path: '/hizmetler',       wait: 2400, fullPage: true,  maxHeight: 3200 },
-  { id: 'ilanlar',      path: '/ilanlar',         wait: 2400, fullPage: true,  maxHeight: 3200 },
+  // NOT: /ilanlar (iş ilanları) 404 verdiği için tur'dan çıkarıldı — reels'i bozuyordu.
   { id: 'tatil',        path: '/tatil-planla',    wait: 2400, fullPage: true,  maxHeight: 3200 },
 ];
 
@@ -43,6 +43,16 @@ for (const p of PAGES) {
   // Mobile portrait, retina-ish for crisp Reels frames
   await page.setViewport({ width: 540, height: 960, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
   await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1');
+
+  // KRİTİK: Navigasyondan ÖNCE consent + install-dismiss flag'lerini set et —
+  // böylece çerez bannerı ve "Uygulamayı Yükle" bannerı HİÇ görünmez (video temiz çıkar).
+  await page.evaluateOnNewDocument(() => {
+    try {
+      localStorage.setItem('ki-consent-v1', JSON.stringify({ functional: true, analytics: true, marketing: true, ts: new Date().toISOString(), version: 1 }));
+      localStorage.setItem('kalkan_install_dismissed', String(Date.now()));
+      localStorage.setItem('lang', 'tr');
+    } catch (_) {}
+  });
 
   try {
     await page.goto(`${BASE}${p.path}`, { waitUntil: 'networkidle2', timeout: 25000 });
