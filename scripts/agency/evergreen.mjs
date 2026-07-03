@@ -20,7 +20,11 @@ export function getEvergreen(dateStr) {
   const doy = dayOfYear(dateStr);
   const out = {};
 
-  const cities = arr(load('antik-kentler.json'));
+  const allCities = arr(load('antik-kentler.json'));
+  // Kalkan/Kaş/Patara çekirdek + tanınmış Likya kentleri öne (Berkay: "Kalkan/Kaş/Patara ile ilgili olsun").
+  const CORE = /(patara|ksanthos|xanthos|letoon|kekova|simena|kaş|kas|kalkan|kaputaş|kaputas|saklıkent|saklikent|likya|myra|olimpos|üçağız|kaleköy)/i;
+  const coreCities = allCities.filter(c => CORE.test(`${c.name || ''} ${(Array.isArray(c.tags) ? c.tags.join(' ') : '')}`));
+  const cities = coreCities.length ? coreCities : allCities;
   if (cities.length) {
     const c = cities[doy % cities.length];
     const bits = [...(Array.isArray(c.highlights) ? c.highlights : []), ...(Array.isArray(c.tips) ? c.tips : [])]

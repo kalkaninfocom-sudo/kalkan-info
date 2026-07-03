@@ -48,7 +48,7 @@ async function main() {
     date_long: src.formatDateLong ? src.formatDateLong(date) : date,
     issue: src.issueOf ? `Sayı ${src.issueOf(date)}` : '',
     lead_headline: news.lead_headline,
-    lead_deck: news.lead_deck || '',
+    lead_deck: oneLine(news.lead_deck),
     lead_image: news.lead_image || '',
     col1_label: labelFrom(news.col1_byline, 'Gündem'),
     col1_title: news.col1_title || '',
@@ -88,7 +88,7 @@ async function main() {
   if (music) {
     console.log(`── Müzik mix: ${music.split(/[\\/]/).pop()} ──`);
     const ff = spawnSync('ffmpeg', ['-y', '-i', silentMp4, '-i', music,
-      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=32:d=3[m]',
+      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=27:d=3[m]',
       '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
       { stdio: 'ignore' });
     musicOk = ff.status === 0 && existsSync(outMp4);

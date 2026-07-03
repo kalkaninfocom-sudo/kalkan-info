@@ -81,7 +81,7 @@ const Masthead: React.FC<GazeteReelProps> = (p) => {
   const { o } = useAppear(6, 14);
   const { o: o2 } = useAppear(24);
   const frame = useCurrentFrame();
-  const fade = interpolate(frame, [70, 90], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const fade = interpolate(frame, [58, 75], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 28, letterSpacing: 7, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
@@ -106,12 +106,12 @@ const Masthead: React.FC<GazeteReelProps> = (p) => {
 // ── Sahne 2: Manşet (Sequence-göreli 0–360) ──
 const Lead: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame(); // Sequence içinde 0-tabanlı
-  const { o } = useAppear(10, 18);
-  const { o: oDeck } = useAppear(30);
-  const kb = interpolate(frame, [0, 360], [1.08, 1.22]); // ken-burns
-  const imgFade = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: 'clamp' });
-  const outFade = interpolate(frame, [340, 360], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const kbC = interpolate(frame, [0, 360], [1.0, 1.06]); // contain için hafif zoom
+  const { o } = useAppear(8, 18);
+  const { o: oDeck } = useAppear(24);
+  const kb = interpolate(frame, [0, 240], [1.08, 1.20]); // ken-burns
+  const imgFade = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [220, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const kbC = interpolate(frame, [0, 240], [1.0, 1.05]); // contain için hafif zoom
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
       {p.lead_image ? (
@@ -163,7 +163,7 @@ const HeadlineCard: React.FC<{ label?: string; title?: string; summary?: string;
 const Headlines: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame(); // Sequence-göreli 0–270
   const { o } = useAppear(6);
-  const outFade = interpolate(frame, [220, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [205, 225], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', gap: 40, opacity: outFade }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>AYRICA BUGÜN</div>
@@ -206,13 +206,17 @@ const Evergreen: React.FC<GazeteReelProps> = (p) => {
   const { o: oAd } = useAppear(56, 16);
   const outFade = interpolate(frame, [160, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
-    <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', opacity: outFade }}>
-      <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 16 }}>BİLİYOR MUYDUN?</div>
-      {p.eg_antik_name ? <div style={{ fontFamily: SANS, fontSize: 30, color: C.muted, fontWeight: 600, opacity: o, marginBottom: 18 }}>📍 {p.eg_antik_name}{p.eg_antik_tag ? ` · ${p.eg_antik_tag}` : ''}</div> : null}
-      <div style={{ marginBottom: 22 }}><Rule w={140} o={o} h={5} /></div>
-      <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: 58, color: C.cream, lineHeight: 1.2, opacity: o2, transform: `translateY(${(1 - o2) * 30}px)` }}>{p.eg_antik_fact}</div>
+    <AbsoluteFill style={{ opacity: outFade }}>
+      {/* Antik az-bilinen — üst çeyrek */}
+      <div style={{ position: 'absolute', top: '20%', left: 70, right: 70 }}>
+        <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 16 }}>BİLİYOR MUYDUN?</div>
+        {p.eg_antik_name ? <div style={{ fontFamily: SANS, fontSize: 30, color: C.muted, fontWeight: 600, opacity: o, marginBottom: 18 }}>📍 {p.eg_antik_name}{p.eg_antik_tag ? ` · ${p.eg_antik_tag}` : ''}</div> : null}
+        <div style={{ marginBottom: 22 }}><Rule w={140} o={o} h={5} /></div>
+        <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: 58, color: C.cream, lineHeight: 1.2, opacity: o2, transform: `translateY(${(1 - o2) * 30}px)` }}>{p.eg_antik_fact}</div>
+      </div>
+      {/* İş birliği/reklam — alt kısım (Berkay: daha aşağıda) */}
       {p.eg_ad_name ? (
-        <div style={{ marginTop: 56, background: C.navy2, border: `1px solid ${C.gold}55`, borderRadius: 14, padding: '26px 32px', opacity: oAd, transform: `translateY(${(1 - oAd) * 30}px)` }}>
+        <div style={{ position: 'absolute', bottom: '11%', left: 70, right: 70, background: C.navy2, border: `1px solid ${C.gold}55`, borderRadius: 14, padding: '26px 32px', opacity: oAd, transform: `translateY(${(1 - oAd) * 30}px)` }}>
           <div style={{ fontFamily: SANS, fontSize: 22, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 10 }}>İŞ BİRLİĞİ · REKLAM</div>
           <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 800, color: C.cream }}>{p.eg_ad_name}</div>
           {p.eg_ad_tagline ? <div style={{ fontFamily: SANS, fontSize: 27, color: C.muted, marginTop: 8, lineHeight: 1.35 }}>{p.eg_ad_tagline}</div> : null}
@@ -227,11 +231,11 @@ export const GazeteReel: React.FC<GazeteReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
-      <Sequence from={0} durationInFrames={90}><Masthead {...props} /></Sequence>
-      <Sequence from={90} durationInFrames={360}><Lead {...props} /></Sequence>
-      <Sequence from={450} durationInFrames={240}><Headlines {...props} /></Sequence>
-      <Sequence from={690} durationInFrames={180}><Evergreen {...props} /></Sequence>
-      <Sequence from={870} durationInFrames={180}><Outro /></Sequence>
+      <Sequence from={0} durationInFrames={75}><Masthead {...props} /></Sequence>
+      <Sequence from={75} durationInFrames={240}><Lead {...props} /></Sequence>
+      <Sequence from={315} durationInFrames={225}><Headlines {...props} /></Sequence>
+      <Sequence from={540} durationInFrames={180}><Evergreen {...props} /></Sequence>
+      <Sequence from={720} durationInFrames={180}><Outro /></Sequence>
     </AbsoluteFill>
   );
 };
