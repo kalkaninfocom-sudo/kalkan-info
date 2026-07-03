@@ -1,0 +1,55 @@
+name: Otomatik yayın (onay gelmezse — 6h + BrandGuard PASS)
+
+# Berkay kararı: onay 6 saat gelmezse + BrandGuard PASS ise otomatik yayınla.
+# Vercel cron 2/2 dolu → GitHub Actions saatlik. scripts/agency/auto-publish-stale.mjs:
+#   6h+ bekleyen pending_approval → BrandGuard (cheap-llm) → PASS ise approve + publish endpoint tetikle.
+# ⚠️ IG yayını IG_LONG_LIVED_TOKEN ister (dolabilir → yenile). Yoksa approve olur, publish atlanır (Telegram uyarır).
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # her saat başı
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: 'Bekleme eşiği (saat)'
+        required: false
+        default: '6'
+      dry:
+        description: 'Deneme (yayınlama, sadece raporla) true/false'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auto-publish
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Otomatik yayın taraması
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          IG_CRON_SECRET: ${{ secrets.IG_CRON_SECRET }}
+          SITE_BASE: https://www.kalkaninfo.com
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+        run: |
+          FLAGS=""
+          if [ "${{ github.event.inputs.dry }}" = "true" ]; then FLAGS="--dry-run"; fi
+          H="${{ github.event.inputs.hours }}"; if [ -n "$H" ]; then FLAGS="$FLAGS --hours=$H"; fi
+          node scripts/agency/auto-publish-stale.mjs $FLAGS
