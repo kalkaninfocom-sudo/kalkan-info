@@ -1,0 +1,68 @@
+name: Gazete sabah onayı (build + web + Telegram)
+
+# SABAH GAZETE AKIŞI — TEK ADANMIŞ WORKFLOW.
+# Neden ayrı: agency-scheduler (*/10) GitHub tarafından throttle edilip 07:55 slotunu
+# kaçırıyordu; ayrıca scheduler script'leri detached spawn ile CI'da öldürüyor ve
+# puppeteer kurmuyordu. Bu workflow üçünü de atlar:
+#   - tek günlük cron (belirli 10dk slotu gerekmez; GitHub gecikse de sabah içinde çalışır)
+#   - node script'i DOĞRUDAN (senkron) çalıştırır → tamamlanır
+#   - puppeteer + Chrome kurar → kapak kartı render edilir
+# gazete-approval.mjs içeride newspaper-daily.mjs'i çalıştırır (web + kart + social kuyruk),
+# sonra kapak kartını Telegram'a GÖRSELLİ onaya sunar. Ardından arşivi commit+push → Vercel canlı.
+
+on:
+  schedule:
+    # 04:45 UTC = 07:45 Europe/Istanbul. GitHub gecikmesine tampon (onay ~07:45–08:45 arası).
+    - cron: '45 4 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Sayı tarihi YYYY-MM-DD (boş = bugün TR)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gazete-approval
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install puppeteer (+ Chrome)
+        run: npm install puppeteer@24 --no-save
+
+      - name: Gazete üret + kapak render + Telegram görselli onay
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://www.kalkaninfo.com
+        run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
+
+      - name: Commit & push arşiv (web canlı)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add newspaper/archive data/newspaper-index.json
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+            exit 0
+          fi
+          git commit -m "content(gazete): günlük sayı $(TZ=Europe/Istanbul date +%Y-%m-%d) [auto]"
+          git pull --rebase origin main || true
+          git push

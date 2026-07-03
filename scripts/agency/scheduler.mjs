@@ -83,13 +83,15 @@ async function runAgentTask(t) {
 }
 
 function runScriptTask(t) {
+  // SENKRON çalıştır + tamamlanmasını BEKLE. Eski hali detached+unref idi → CI job
+  // bitince (saveRunlog sonrası process exit) detached child ÖLDÜRÜLÜYORDU, script hiç
+  // bitmiyordu. Artık çıkış kodunu bekliyoruz ki CI runner script bitene kadar ayakta kalsın.
   return new Promise((resolve) => {
     const scriptPath = join(ROOT, t.script);
-    if (!existsSync(scriptPath)) return resolve(`⚠ script yok: ${t.script} (Faz 1b'de eklenecek)`);
-    const child = spawn(process.execPath, [scriptPath], { cwd: ROOT, stdio: 'ignore', detached: true });
+    if (!existsSync(scriptPath)) return resolve(`⚠ script yok: ${t.script}`);
+    const child = spawn(process.execPath, [scriptPath], { cwd: ROOT, stdio: 'inherit' });
     child.on('error', (e) => resolve(`script spawn hata: ${e.message}`));
-    child.unref();
-    resolve(`script başlatıldı: ${t.script}`);
+    child.on('exit', (code) => resolve(code === 0 ? `script tamamlandı (0): ${t.script}` : `script çıkış ${code}: ${t.script}`));
   });
 }
 

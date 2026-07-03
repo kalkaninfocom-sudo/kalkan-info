@@ -1,6 +1,7 @@
 {
   "timezone": "Europe/Istanbul",
   "note": "Her işin sabit saati. scheduler.mjs bunu okuyup o ana denk gelen görevleri çalıştırır. type: agent=Edge Function'a enqueue (NVIDIA ile çalışır), script=yerel/CI node script, approval=Telegram onay kapısı.",
+  "_moved": "07:55 gazete onayı ARTIK .github/workflows/gazete-approval.yml'de (adanmış workflow: puppeteer + senkron + tek günlük cron). Scheduler'ın */10 slot + detached-spawn + puppeteersiz CI kombinasyonu bu işi kaçırıyordu — buraya gazete-approval GERİ EKLENMEZ.",
   "tasks": [
     {
       "id": "trend-scan-am",
@@ -23,14 +24,6 @@
     { "id": "gazete-research-0730", "time": "07:30", "type": "agent", "agent": "magazin-editoru", "task": "Magazin taraması (2. tur). Bugünkü etkinlik/rezervasyon/mekan hareketliliğinden 2 taze başlık." },
     { "id": "gazete-research-0740", "time": "07:40", "type": "agent", "agent": "muhabir",         "task": "Son tur haber kontrolü (07:40). Öne çıkarılacak günün MANŞET adayını seç + gerekçe." },
     { "id": "gazete-research-0750", "time": "07:50", "type": "agent", "agent": "magazin-editoru", "task": "Son tur magazin (07:50). Arka yüz için günün en güçlü magazin açısını seç." },
-
-    {
-      "id": "gazete-approval",
-      "time": "07:55",
-      "type": "script",
-      "script": "scripts/agency/gazete-approval.mjs",
-      "desc": "Gazeteyi üret + kapak kartını RENDER et → Telegram'a GÖRSELLİ onaya sun (✅ Yayınla / ⏰ 08:00'de / ❌ Reddet). Web anında canlı; IG/FB onaydan sonra 08:00'de. Yayın, onay butonuyla (pub:<id>:scheduled → scheduled_at=08:00) tetiklenir; ayrı 08:00 script'i gerekmez."
-    },
 
     {
       "id": "daily-self-update",
