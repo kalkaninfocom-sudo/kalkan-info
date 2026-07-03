@@ -919,6 +919,83 @@
           "featured": true
         }
       ]
+    },
+    "doviz": {
+      "title": "Döviz & Ödeme Noktaları",
+      "icon": "💱",
+      "providers": [
+        {
+          "id": "kalkan-money-noktasi",
+          "name": "Kalkan Money Noktası (Western Union)",
+          "type": "İşletme",
+          "rating": 4.7,
+          "reviewCount": 16,
+          "image": "/assets/img/business/kalkan-money-noktasi/hero.webp",
+          "logo": "/assets/img/business/kalkan-money-noktasi/hero.webp",
+          "summary": "Kalkan'da döviz bozdurma ve Western Union para transferi hizmeti. Migros'un hemen yanında Şehitler Caddesi'nde konumlanan bu nokta, EUR, USD ve GBP başta olmak üzere yabancı para bozumu ile uluslararası havale için Kalkan'ın en merkezi ve güvenilir adresidir.",
+          "specialties": [
+            "Western Union",
+            "EUR · USD · GBP",
+            "Uluslararası havale",
+            "Migros yanı"
+          ],
+          "phone": "+90 545 769 60 60",
+          "hours": "09:00–21:00",
+          "location": "Kalkan, Şehitler Cd. No:14 B, 07960 Kaş/Antalya, Türkiye",
+          "coordinates": {
+            "latitude": 36.2693444,
+            "longitude": 29.4119937
+          },
+          "place_id": "ChIJI2BoUtMtwBQRO-soTMREX0s"
+        },
+        {
+          "id": "kalkan-tommi-pay-point",
+          "name": "Kalkan Tommi Pay Point",
+          "type": "İşletme",
+          "rating": 5,
+          "reviewCount": 2,
+          "image": "/assets/img/business/kalkan-tommi-pay-point/hero.webp",
+          "logo": "/assets/img/business/kalkan-tommi-pay-point/hero.webp",
+          "summary": "Kalkan'da geç saatlere kadar açık döviz ve ödeme noktası. Şehitler Caddesi üzerindeki Tommi Pay Point, gece 23:30'a kadar döviz bozumu ve ödeme işlemleri sunarak Kalkan'daki tatilcilerin nakit ihtiyacını çözüyor. Kalkan para transferi ve döviz için güvenilir adres.",
+          "specialties": [
+            "Döviz bozumu",
+            "Ödeme & transfer",
+            "Geç saate kadar açık",
+            "EUR · USD · GBP"
+          ],
+          "phone": "+90 551 878 86 71",
+          "hours": "09:00–23:30 (Her gün)",
+          "location": "Kalkan, Şehitler Cd. No:34/4, 07580 Kaş/Antalya, Türkiye",
+          "coordinates": {
+            "latitude": 36.2668493,
+            "longitude": 29.412829
+          },
+          "place_id": "ChIJ42kpk0OtCxQRz9UPXIo2D88"
+        },
+        {
+          "id": "change-office-kalkan",
+          "name": "Change Office",
+          "type": "İşletme",
+          "rating": 4,
+          "reviewCount": 5,
+          "image": "/assets/img/business/kalkan-money-noktasi/hero.webp",
+          "logo": null,
+          "summary": "Kalkan Change Office, Süleyman Yılmaz Caddesi'nde faaliyet gösteren yerel bir kambiyo bürosu. EUR, USD, GBP ve RUB dahil pek çok yabancı para birimini bozdurabileceğiniz bu Kalkan döviz ofisi, tatilciler için pratik ve ulaşılabilir bir seçenek sunmaktadır.",
+          "specialties": [
+            "Kambiyo bürosu",
+            "EUR · USD · GBP · RUB",
+            "Yerel döviz ofisi"
+          ],
+          "phone": null,
+          "hours": "Sezon boyunca açık",
+          "location": "Kalkan, Süleyman Yılmaz Cd., 07580 Kaş/Antalya, Türkiye",
+          "coordinates": {
+            "latitude": 36.2644937,
+            "longitude": 29.4153958
+          },
+          "place_id": "ChIJhxud2dUswBQRPtzvRVSardk"
+        }
+      ]
     }
   }
 }
