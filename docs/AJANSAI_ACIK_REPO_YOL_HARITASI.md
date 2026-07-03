@@ -44,6 +44,24 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
 - [ ] İYİLEŞTİRME: Gemini billing açılırsa (GCP kredisi) daha hızlı/güvenilir olur; NVIDIA gece yavaşlarsa yedek.
 - [ ] İYİLEŞTİRME: magazine (arka yüz) build'i de gazete-today.json magazine_* alanlarını kullansın (şu an sadece ön yüz).
 
+## GAZETE / REEL BACKLOG (Berkay istekleri — öncelik sırası)
+
+Bitenler ✅: editöryal köprü (Groq 70B kaliteli içerik), reel motoru (tasarım+müzik+onay+IG yayın kodu),
+görsel fix (masthead/foto), Kaş scraper + yerel-alaka sıralama (daha fazla Kalkan içeriği), yazı işleri kılavuzu.
+
+Sıradaki (yapılacak):
+- [ ] **EN+TR iki dilli üretim** — İngiliz yerliler/tatilciler için gazete+reel hem İngilizce hem Türkçe üret+paylaş.
+      (Editöryal LLM iki dilde üretir; reel EN varyantı; IG'de iki post veya çift-altyazı.)
+- [ ] **Evergreen fallback içerik** — haber azken sayfadan üret: antik kent az-bilinenler/detay + hizmetler'den reklam.
+      (news < N ise gazete-today.json'a filler ekle: antik-kentler data + bir hizmet/restoran ilanı.)
+- [ ] **İş ilanları bölümü** — gazetede iş ilanları (site'de zaten /ilan/ + jobs sitemap var → oradan çek).
+- [ ] **Ölüm ilanı bölümü** — gazetede vefat ilanları. ⚠ Veri kaynağı yok → manuel giriş / yerel kaynak gerekir (Berkay input).
+- [ ] **Haftalık bülten** — Pzt-Cmt günlük; Pazar = haftanın haber+magazin özeti (her gün editöryal'i arşivle → Pazar topla).
+- [ ] **IG story-tag oto-repost** — biri hikayede @kalkaninfo etiketler → onay → kendi hikayemize ekle (IG API kısıt araştır).
+- [ ] **Agent-Reach** — Kalkan içerik kaynağını web/sosyal aramayla daha da genişlet.
+- [ ] **Webhook secret** (`TELEGRAM_WEBHOOK_SECRET` Vercel'de) → onay butonu→IG yayın çalışsın (şu an 401).
+- [ ] Cerebras gpt-oss-120b "boş yanıt" (reasoning/json_object) → düzelt veya sadece groq kullan.
+
 ## FAZ 2 — Temiz public template repo'ya çıkar
 
 - [ ] Yeni repo (örn. `ajansai`) — framework'ü kalkan-info'dan ayıkla.
