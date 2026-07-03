@@ -36,6 +36,16 @@ function theme(category){
 // HTML escape
 const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+// ── i18n attribute uretici ── {tr,en,de,ru,fr} -> `data-en="..." data-de="..."` (TR taban DOM'da).
+// js/inline i18n icerik metnini bu data-* attribute'larindan okur (fallback: hedef->en->tr).
+const I18N_LANGS = ['en', 'de', 'ru', 'fr'];
+function i18nAttrs(i18n){
+  if (!i18n || typeof i18n !== 'object') return '';
+  const out = [];
+  for (const l of I18N_LANGS){ const v = i18n[l]; if (typeof v === 'string' && v.trim()) out.push(`data-${l}="${esc(v)}"`); }
+  return out.join(' ');
+}
+
 // Yildizlar
 function starsHtml(rating) {
   if (!rating) return '';
@@ -426,6 +436,14 @@ for (const slug of targets) {
   const phone = concierge;
   const phoneRaw = phone.replace(/[^\d+]/g, '');
 
+  // META i18n — title isim tabanli (TR SEO korunur), aciklama cevrilir (summaryI18n).
+  const metaTitle = `${r.name} — ${r.category} | Kalkan Info`;
+  const descI18n = r.summaryI18n || {};
+  const META_I18N = {};
+  for (const l of ['tr', 'en', 'de', 'ru', 'fr']){
+    META_I18N[l] = { title: metaTitle, desc: (l === 'tr') ? (r.summary || '') : (descI18n[l] || r.summary || '') };
+  }
+
   const repl = {
     NAME: r.name,
     NAME_URL: encodeURIComponent(r.name),
@@ -433,6 +451,11 @@ for (const slug of targets) {
     CATEGORY: r.category,
     SUMMARY: r.summary || c.tagline || '',
     TAGLINE: c.tagline || r.summary || '',
+    TAGLINE_I18N_ATTRS: i18nAttrs(r.taglineI18n),
+    ABOUT_TITLE_I18N_ATTRS: i18nAttrs(r.aboutTitleI18n),
+    ABOUT_P1_I18N_ATTRS: i18nAttrs(r.aboutP1I18n),
+    ABOUT_P2_I18N_ATTRS: i18nAttrs(r.aboutP2I18n),
+    META_I18N_JSON: JSON.stringify(META_I18N),
     PHONE: phone,
     PHONE_RAW: phoneRaw,
     WA_RAW: conciergeRaw,

@@ -60,7 +60,21 @@
           "Mutfak gereçleri",
           "Havuz terasına direkt çıkış",
           "Bulaşık makinesi"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Amerikan Mutfak · Tam Donanımlı",
+          "en": "American Kitchen · Fully Equipped",
+          "de": "Amerikanische Küche · Voll Ausgestattet",
+          "ru": "Американская кухня · Полностью оборудована",
+          "fr": "Cuisine américaine · Entièrement équipée"
+        },
+        "introI18n": {
+          "tr": "Modern Amerikan mutfak, havuz terasına direkt çıkışla aile yemeklerinin merkezi olarak tasarlandı.",
+          "en": "The modern American kitchen is designed as the hub of family meals, with direct access to the pool terrace.",
+          "de": "Die moderne amerikanische Küche wurde mit direktem Zugang zur Pool-Terrasse als Zentrum für Familienmahlzeiten entworfen.",
+          "ru": "Современная американская кухня, имеющая прямой выход на террасу бассейна, предназначена для семейных обедов.",
+          "fr": "La cuisine américaine moderne, avec sortie directe sur la terrasse de la piscine, est conçue comme le centre des repas en famille."
+        }
       },
       "salon_detail": {
         "title": "Salon · Şık, Geniş ve Ferah",
@@ -72,55 +86,169 @@
           "Klima",
           "Lavabo",
           "Havuz terasına çıkış"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Salon · Şık, Geniş ve Ferah",
+          "en": "Living Room · Elegant, Spacious, and Airy",
+          "de": "Wohnzimmer · Elegant, Geräumig und Luftig",
+          "ru": "Гостиная · Элегантная, просторная и светлая",
+          "fr": "Salon · Élégant, spacieux et aéré"
+        },
+        "introI18n": {
+          "tr": "Lüks oturma grubu ve havuz terasına açılan tasarımıyla salon, gündüz dinlenme akşam ise sohbetin merkezi olur.",
+          "en": "The living room, with its luxurious seating group and design that opens up to the pool terrace, becomes the center of daytime relaxation and evening conversation.",
+          "de": "Das luxuriöse Sitzsofa und die Pool-Terrasse, die sich zum Wohnzimmer öffnet, machen das Wohnzimmer zum Mittelpunkt der Entspannung am Tag und der Unterhaltung am Abend.",
+          "ru": "Роскошная зона отдыха и дизайн гостиной, открывающейся на террасу бассейна, делает ее центром отдыха днем и разговора вечером.",
+          "fr": "Le salon, avec son coin salon de luxe et son accès à la terrasse de la piscine, devient le centre du repos diurne et des conversations du soir."
+        }
       },
       "garden_detail": {
         "title": "Bahçe, Havuz & Üst Kat Seyir Terası",
         "intro": "Geniş özel havuzun yanı sıra üst katta yer alan seyir terası, gün batımı yemekleri için ayrı bir kaçış noktasıdır.",
         "items": [
-          { "label": "Özel ısıtmalı havuz", "value": "9.5m × 3.5m × 1.70m derinlik", "icon": "pool" },
-          { "label": "Üst kat seyir terası", "value": "Oturma grubu, masa, sandalyeler — gün batımı yemekleri", "icon": "view" },
-          { "label": "Açık hava jakuzisi", "value": "Havuz terasında yıldız altı keyif", "icon": "jacuzzi" },
-          { "label": "Barbekü", "value": "Akşam yemekleri için açık ateş", "icon": "grill" },
-          { "label": "Açık hava mobilyaları", "value": "Şezlonglar, oturma alanı", "icon": "chair" }
-        ]
+          {
+            "label": "Özel ısıtmalı havuz",
+            "value": "9.5m × 3.5m × 1.70m derinlik",
+            "icon": "pool"
+          },
+          {
+            "label": "Üst kat seyir terası",
+            "value": "Oturma grubu, masa, sandalyeler — gün batımı yemekleri",
+            "icon": "view"
+          },
+          {
+            "label": "Açık hava jakuzisi",
+            "value": "Havuz terasında yıldız altı keyif",
+            "icon": "jacuzzi"
+          },
+          {
+            "label": "Barbekü",
+            "value": "Akşam yemekleri için açık ateş",
+            "icon": "grill"
+          },
+          {
+            "label": "Açık hava mobilyaları",
+            "value": "Şezlonglar, oturma alanı",
+            "icon": "chair"
+          }
+        ],
+        "titleI18n": {
+          "tr": "Bahçe, Havuz & Üst Kat Seyir Terası",
+          "en": "Garden, Pool & Upper Floor Observation Deck",
+          "de": "Garten, Pool & Obere Aussichtsterrasse",
+          "ru": "Сад, бассейн и верхняя наблюдательная терраса",
+          "fr": "Jardin, piscine & terrasse d'observation à l'étage"
+        },
+        "introI18n": {
+          "tr": "Geniş özel havuzun yanı sıra üst katta yer alan seyir terası, gün batımı yemekleri için ayrı bir kaçış noktasıdır.",
+          "en": "In addition to the large private pool, the observation deck on the upper floor provides a separate escape for sunset dinners.",
+          "de": "Neben dem großen privaten Pool bietet die obere Aussichtsterrasse einen separaten Fluchtpunkt für Mahlzeiten bei Sonnenuntergang.",
+          "ru": "Широкий частный бассейн и верхняя наблюдательная терраса создают отдельную зону для ужина при закате.",
+          "fr": "En plus de la grande piscine privée, la terrasse d'observation à l'étage offre un point de retraite unique pour les dîners au coucher de soleil."
+        }
       },
       "bedrooms_detail": [
         {
           "number": 1,
           "title": "Ana Yatak Odası · Jakuzili",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Jakuzi", "Balkon", "Banyo + WC", "Klima"],
-          "items": ["Gardırop", "Komodin", "Makyaj masası", "Klima", "Banyo + WC", "Balkon", "Özel jakuzi"]
+          "highlights": [
+            "Jakuzi",
+            "Balkon",
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Gardırop",
+            "Komodin",
+            "Makyaj masası",
+            "Klima",
+            "Banyo + WC",
+            "Balkon",
+            "Özel jakuzi"
+          ]
         },
         {
           "number": 2,
           "title": "Yatak Odası · LCD TV",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["LCD TV", "Balkon", "Banyo + WC"],
-          "items": ["LCD TV", "Gardırop", "Komodin", "Makyaj masası", "Klima", "Banyo + WC", "Balkon"]
+          "highlights": [
+            "LCD TV",
+            "Balkon",
+            "Banyo + WC"
+          ],
+          "items": [
+            "LCD TV",
+            "Gardırop",
+            "Komodin",
+            "Makyaj masası",
+            "Klima",
+            "Banyo + WC",
+            "Balkon"
+          ]
         },
         {
           "number": 3,
           "title": "Yatak Odası · Konfor Yatak",
           "beds": "2 tek kişilik konfor yatak",
-          "highlights": ["Balkon", "Banyo + WC"],
-          "items": ["Makyaj masası", "Gardırop", "Komodin", "Klima", "Banyo + WC", "Balkon"]
+          "highlights": [
+            "Balkon",
+            "Banyo + WC"
+          ],
+          "items": [
+            "Makyaj masası",
+            "Gardırop",
+            "Komodin",
+            "Klima",
+            "Banyo + WC",
+            "Balkon"
+          ]
         },
         {
           "number": 4,
           "title": "Suit · King-Size & Jakuzi",
           "beds": "King-size yatak",
-          "highlights": ["King-Size", "Özel Jakuzi", "LCD TV", "Balkon"],
-          "items": ["King-size yatak", "LCD TV", "Özel jakuzi", "Komodin", "Makyaj masası", "Gardırop", "Klima", "Banyo + WC", "Balkon"]
+          "highlights": [
+            "King-Size",
+            "Özel Jakuzi",
+            "LCD TV",
+            "Balkon"
+          ],
+          "items": [
+            "King-size yatak",
+            "LCD TV",
+            "Özel jakuzi",
+            "Komodin",
+            "Makyaj masası",
+            "Gardırop",
+            "Klima",
+            "Banyo + WC",
+            "Balkon"
+          ]
         }
       ],
       "amenities": [
-        "Fırın", "TV", "Havlular/Çarşaflar", "Jakuzi", "Ütü", "Balkon",
-        "Amerikan Mutfak", "Ayrı Mutfak", "Klima", "Otopark", "Barbekü",
-        "Ses Yalıtımlı Odalar", "Açık Hava Mobilyaları", "Mikrodalga",
-        "Bilardo Masası", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
-        "Elektrikli Su Isıtıcısı", "Mutfak Gereçleri", "WiFi"
+        "Fırın",
+        "TV",
+        "Havlular/Çarşaflar",
+        "Jakuzi",
+        "Ütü",
+        "Balkon",
+        "Amerikan Mutfak",
+        "Ayrı Mutfak",
+        "Klima",
+        "Otopark",
+        "Barbekü",
+        "Ses Yalıtımlı Odalar",
+        "Açık Hava Mobilyaları",
+        "Mikrodalga",
+        "Bilardo Masası",
+        "Buzdolabı",
+        "Çamaşır Makinesi",
+        "Bulaşık Makinesi",
+        "Elektrikli Su Isıtıcısı",
+        "Mutfak Gereçleri",
+        "WiFi"
       ],
       "included_services": [
         "Klima / Su / Gaz",
@@ -146,18 +274,85 @@
       "phone_concierge": "+905306650794",
       "wa_message": "Merhaba, Villa Poyraz (Jakuzili oda, bilardo masası ve seyir teraslı) için rezervasyon bilgisi almak istiyorum.",
       "faqs": [
-        { "q": "Villa Poyraz'da kaç kişi konaklayabilir?", "a": "Villa 4 yatak odası ile maksimum 8 kişiye konfor sağlar. King-size yataklı ana suit dahil, iki çift kişilik yatak odası ve bir adet 2 tek kişilik konfor yatak içeren oda mevcuttur." },
-        { "q": "Jakuzili oda mevcut mu?", "a": "Evet. Villa Poyraz'da 1. ve 4. yatak odalarında özel jakuzi bulunur. 4. yatak odası ayrıca king-size yatak ve LCD TV ile premium bir suit deneyimi sunar. Açık hava jakuzisi de havuz terasında yer alır." },
-        { "q": "Bilardo masası gerçekten var mı?", "a": "Evet. Villa Poyraz'ın eğlence donanımı içinde tam boy bilardo masası yer alır — akşamları aile içi turnuvalar için ideal." },
-        { "q": "Üst kat seyir terası nasıl?", "a": "Üst katta oturma grubu, masa ve sandalyelerle donatılmış geniş bir seyir terası bulunur. Gün batımında akşam yemeği veya çay keyfi için kusursuz bir alandır." },
-        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir ve villada hasar yoksa çıkışta eksiksiz iade edilir." },
-        { "q": "7 geceden az konaklama yapılabilir mi?", "a": "Evet, mümkün. Ancak 7 geceden kısa rezervasyonlarda 10.000 TL kısa konaklama farkı uygulanır." },
-        { "q": "Evcil hayvanımı getirebilir miyim?", "a": "Evet, küçük ve orta ırk olmak üzere maksimum 1 evcil hayvan kabul edilir. 15.000 TL evcil hayvan ücreti uygulanır." },
-        { "q": "Havalimanından nasıl ulaşabilirim?", "a": "En yakın havalimanı 125 km mesafedeki Dalaman'dır. Toplu taşıma mevcut olmadığından concierge ekibimiz ücretli özel transfer organize edebilir." }
+        {
+          "q": "Villa Poyraz'da kaç kişi konaklayabilir?",
+          "a": "Villa 4 yatak odası ile maksimum 8 kişiye konfor sağlar. King-size yataklı ana suit dahil, iki çift kişilik yatak odası ve bir adet 2 tek kişilik konfor yatak içeren oda mevcuttur."
+        },
+        {
+          "q": "Jakuzili oda mevcut mu?",
+          "a": "Evet. Villa Poyraz'da 1. ve 4. yatak odalarında özel jakuzi bulunur. 4. yatak odası ayrıca king-size yatak ve LCD TV ile premium bir suit deneyimi sunar. Açık hava jakuzisi de havuz terasında yer alır."
+        },
+        {
+          "q": "Bilardo masası gerçekten var mı?",
+          "a": "Evet. Villa Poyraz'ın eğlence donanımı içinde tam boy bilardo masası yer alır — akşamları aile içi turnuvalar için ideal."
+        },
+        {
+          "q": "Üst kat seyir terası nasıl?",
+          "a": "Üst katta oturma grubu, masa ve sandalyelerle donatılmış geniş bir seyir terası bulunur. Gün batımında akşam yemeği veya çay keyfi için kusursuz bir alandır."
+        },
+        {
+          "q": "Depozito ne kadar?",
+          "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir ve villada hasar yoksa çıkışta eksiksiz iade edilir."
+        },
+        {
+          "q": "7 geceden az konaklama yapılabilir mi?",
+          "a": "Evet, mümkün. Ancak 7 geceden kısa rezervasyonlarda 10.000 TL kısa konaklama farkı uygulanır."
+        },
+        {
+          "q": "Evcil hayvanımı getirebilir miyim?",
+          "a": "Evet, küçük ve orta ırk olmak üzere maksimum 1 evcil hayvan kabul edilir. 15.000 TL evcil hayvan ücreti uygulanır."
+        },
+        {
+          "q": "Havalimanından nasıl ulaşabilirim?",
+          "a": "En yakın havalimanı 125 km mesafedeki Dalaman'dır. Toplu taşıma mevcut olmadığından concierge ekibimiz ücretli özel transfer organize edebilir."
+        }
       ],
       "referenceUrl": "https://kalkanvilla.org/tr/villa-poyraz/",
       "featured": true,
-      "instagram": "https://www.instagram.com/kalkanvillapoyraz"
+      "instagram": "https://www.instagram.com/kalkanvillapoyraz",
+      "taglineI18n": {
+        "tr": "Seyir Terası, Jakuzili Suite & Bilardo Masası",
+        "en": "Observation Deck, Jacuzzi Suite & Billiard Table",
+        "de": "Aussichtsterrasse, Whirlpool-Suite & Billardtisch",
+        "ru": "Наблюдательная терраса, джакузи-сьют и бильярдный стол",
+        "fr": "Terrasse d'observation, suite avec jacuzzi & table de billard"
+      },
+      "aboutTitleI18n": {
+        "tr": "Modern Lüks, İki Jakuzili Suite, Bilardo Akşamları.",
+        "en": "Modern Luxury, Two Jacuzzi Suites, Billiard Evenings",
+        "de": "Modernes Luxus, Zwei Whirlpool-Suiten, Billardabende.",
+        "ru": "Современный люкс, два джакузи-сьюта, бильярдные вечера.",
+        "fr": "Luxueux et moderne, deux suites avec jacuzzi, soirées de billard."
+      },
+      "summaryI18n": {
+        "tr": "Kalkan Kalamar'da deniz ve doğa manzaralı, jakuzili, özel havuzlu 4 yatak odalı 8 kişilik lüks kiralık villa. Modern mimari, bilardo masası ve king-size yataklı suit ile aileler ve arkadaş grupları için ideal.",
+        "en": "This 4-bedroom, 8-person luxury rental villa in Kalkan Kalamar boasts sea and nature views, a jacuzzi, and a private pool. With its modern architecture, billiard table, and king-size beds, it's ideal for families and friend groups.",
+        "de": "In Kalkan Kalamar, mit Meerblick und Naturblick, Whirlpool, privater Pool, 4 Schlafzimmer, 8 Personen, luxuriöse Villa zur Miete. Moderne Architektur, Billardtisch und Kingsize-Bett-Suite, ideal für Familien und Freundesgruppen.",
+        "ru": "Вилла в Кalkan Каламаре с видом на море и природу, джакузи, частный бассейн, 4 спальни, 8 мест, роскошная аренда. Современная архитектура, бильярдный стол и сьют с королевской кроватью - идеально для семей и групп друзей.",
+        "fr": "Villa de luxe à Kalkan Kalamar, avec vue sur la mer et la nature, jacuzzi, piscine privée, 4 chambres, 8 personnes. Architecture moderne, table de billard et suite avec lit king-size, idéale pour les familles et les groupes d'amis."
+      },
+      "descriptionLongI18n": {
+        "en": [
+          "Villa Poyraz is a luxury villa located in Kalkan's popular Kalamar region, standing out with its modern architecture and simple decor. Its spacious living area and meticulous details provide a comfortable stay for families and friend groups.",
+          "The upper floor observation deck is designed for sunset dining, complete with a seating group, table, and chairs. The beach, restaurants, market, and entertainment spots are within walking distance.",
+          "The villa's most special feature is the jacuzzis in two of the bedrooms. The master bedroom, with its king-size bed, private jacuzzi, and LCD TV, creates a premium suite experience. The billiard table also brings family entertainment to life in the evenings."
+        ],
+        "de": [
+          "Villa Poyraz, eine luxuriöse Villa in Kalkans begehrtem Kalamar-Viertel, mit moderner Architektur und schlichter Dekoration. Großer Wohnbereich und sorgfältige Details bieten Familien und Freundesgruppen eine geräumige Unterkunftserfahrung.",
+          "Die obere Aussichtsterrasse wurde mit Sitzgruppe, Tisch und Stühlen für das Genussessen bei Sonnenuntergang entworfen. Strand, Restaurants, Markt und Unterhaltungspunkte sind fußläufig erreichbar.",
+          "Das besondere Detail der Villa sind die Whirlpools in zwei Schlafzimmern. Das Kingsize-Bett-Schlafzimmer mit eigenem Whirlpool und LCD-Fernseher schafft ein Premium-Suite-Erlebnis. Zusätzlich wird der Billardtisch zum Mittelpunkt des Familienvergnügens am Abend."
+        ],
+        "ru": [
+          "Вилла Пойраз, расположенная в популярном районе Каламар в Кalkan, - это роскошная вилла с современной архитектурой и простым декором. Широкие жилые пространства и тщательные детали обеспечивают семьям и группам друзей комфортный опыт проживания.",
+          "Верхняя наблюдательная терраса; зона отдыха, стол и стулья предназначены для ужина при закате. Пляж, рестораны, магазины и развлекательные заведения находятся в шаговой доступности.",
+          "Самая уникальная деталь виллы - два джакузи в спальнях. Главная спальня с королевской кроватью, частным джакузи и ЖК-телевизором создает премиум-опыт сьюта. Кроме того, бильярдный стол делает семейное развлечение душой виллы в вечернее время."
+        ],
+        "fr": [
+          "La Villa Poyraz, située dans le quartier prisé de Kalamar à Kalkan, est une villa de luxe qui se distingue par son architecture moderne et sa décoration sobre. Son vaste espace de vie et ses détails soignés offrent une expérience de séjour aérée aux familles et aux groupes d'amis.",
+          "La terrasse d'observation du premier étage, avec son coin salon, sa table et ses chaises, est conçue pour les dîners au coucher de soleil. La plage, les restaurants, les magasins et les lieux de divertissement sont à distance de marche.",
+          "Le détail le plus exceptionnel de la villa est les jacuzzis dans deux des chambres. La chambre principale avec lit king-size, jacuzzi privé et télévision LCD, crée une expérience de suite premium. De plus, la table de billard rend les soirées en famille un moment de divertissement incontournable."
+        ]
+      }
     },
     {
       "id": "villa-ship-ahoy",
@@ -215,7 +410,21 @@
           "Çatal-bıçak takımı",
           "Bardaklar",
           "Tencere & tava seti"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Amerikan Mutfak · Ada Mutfak & Türk Kahve Makinesi",
+          "en": "American Kitchen · Island Kitchen & Turkish Coffee Machine",
+          "de": "Amerikanische Küche · Inselküche & Türkische Kaffeemaschine",
+          "ru": "Американская кухня · Островная кухня и турецкая кофеварка",
+          "fr": "Cuisine américaine · Îlot central & Machine à café turc"
+        },
+        "introI18n": {
+          "tr": "Tam donanımlı Amerikan mutfak ve ada mutfak ile aile yemeklerinin merkezi. Türk kahve makinesi sabah keyfini bambaşka bir boyuta taşır.",
+          "en": "Fully equipped American kitchen and island kitchen, the hub of family meals, with a Turkish coffee machine taking morning pleasure to a whole new level.",
+          "de": "Eine voll ausgestattete amerikanische Küche und Inselküche sind das Zentrum für Familienmahlzeiten. Die türkische Kaffeemaschine bringt den morgendlichen Genuss auf ein neues Level.",
+          "ru": "Полностью оборудованная американская кухня и островная кухня - центр семейных ужинов. Турецкая кофеварка переносит утреннее удовольствие на новый уровень.",
+          "fr": "La cuisine américaine entièrement équipée et l'îlot central sont le cœur des repas en famille. La machine à café turc ajoute une dimension unique au plaisir du matin."
+        }
       },
       "salon_detail": {
         "title": "Salon · Deniz ve Doğa Manzaralı",
@@ -229,57 +438,161 @@
           "Kablosuz internet",
           "8 kişilik yemek masası",
           "Havuz terasına geçiş"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Salon · Deniz ve Doğa Manzaralı",
+          "en": "Living Room · Sea and Nature View",
+          "de": "Wohnzimmer · Mit Meeres- und Naturblick",
+          "ru": "Гостиная · Вид на море и природу",
+          "fr": "Salon · Vue sur la mer et la nature"
+        },
+        "introI18n": {
+          "tr": "Modern ve sade tasarımıyla salon, konforlu oturma grubu ve premium eğlence donanımıyla aile akşamlarının merkezidir.",
+          "en": "With its modern and simple design, the living room is the center of family evenings, featuring a comfortable seating group and premium entertainment equipment.",
+          "de": "Das moderne und schlichte Design des Wohnzimmers mit bequemer Sitzgruppe und hochwertiger Unterhaltungsausstattung ist das Zentrum für Familienabende.",
+          "ru": "Современный и простой дизайн гостиной, комфортная зона отдыха и премиальное развлекательное оборудование делают ее центром семейных вечеров.",
+          "fr": "Le salon, conçu de manière moderne et sobre, est le centre des soirées en famille avec son coin salon confortable et son équipement de divertissement de haute gamme."
+        }
       },
       "garden_detail": {
         "title": "Salıncaklı Bahçe & Üst Kat Jakuzi",
         "intro": "Geniş bahçe çocuklar için bir oyun alanı, üst kat terası ise yetişkinler için sakin bir kaçış noktasıdır.",
         "items": [
-          { "label": "Özel havuz", "value": "9.5m × 3.5m × 1.60m derinlik", "icon": "pool" },
-          { "label": "Salıncak", "value": "Bahçenin kalbinde çocuklar ve büyükler için", "icon": "swing" },
-          { "label": "Üst kat terası jakuzisi", "value": "Gün batımı manzarası eşliğinde", "icon": "jacuzzi" },
-          { "label": "Şezlonglar & güneş şemsiyeleri", "value": "Havuz başı yatay dinlenme", "icon": "umbrella" },
-          { "label": "Oturma köşesi", "value": "Akşam sohbetleri için gölgeli alan", "icon": "chair" },
-          { "label": "Barbekü & yemek masası", "value": "Bahçede aile akşamları", "icon": "grill" }
-        ]
+          {
+            "label": "Özel havuz",
+            "value": "9.5m × 3.5m × 1.60m derinlik",
+            "icon": "pool"
+          },
+          {
+            "label": "Salıncak",
+            "value": "Bahçenin kalbinde çocuklar ve büyükler için",
+            "icon": "swing"
+          },
+          {
+            "label": "Üst kat terası jakuzisi",
+            "value": "Gün batımı manzarası eşliğinde",
+            "icon": "jacuzzi"
+          },
+          {
+            "label": "Şezlonglar & güneş şemsiyeleri",
+            "value": "Havuz başı yatay dinlenme",
+            "icon": "umbrella"
+          },
+          {
+            "label": "Oturma köşesi",
+            "value": "Akşam sohbetleri için gölgeli alan",
+            "icon": "chair"
+          },
+          {
+            "label": "Barbekü & yemek masası",
+            "value": "Bahçede aile akşamları",
+            "icon": "grill"
+          }
+        ],
+        "titleI18n": {
+          "tr": "Salıncaklı Bahçe & Üst Kat Jakuzi",
+          "en": "Swing Garden & Upper Floor Jacuzzi",
+          "de": "Schaukelgarten & Jacuzzi im Obergeschoss",
+          "ru": "Сад с качелями и джакузи на верхнем этаже",
+          "fr": "Jardin avec balançoire & Jacuzzi au dernier étage"
+        },
+        "introI18n": {
+          "tr": "Geniş bahçe çocuklar için bir oyun alanı, üst kat terası ise yetişkinler için sakin bir kaçış noktasıdır.",
+          "en": "The spacious garden serves as a playground for children, while the upper floor terrace provides a serene escape for adults.",
+          "de": "Der große Garten ist ein Spielplatz für Kinder, während die Dachterrasse im Obergeschoss ein ruhiger Rückzugsort für Erwachsene ist.",
+          "ru": "Широкий сад - это игровая площадка для детей, а верхняя терраса - спокойное место отдыха для взрослых.",
+          "fr": "Le grand jardin est un espace de jeu pour les enfants, tandis que la terrasse du dernier étage est un refuge paisible pour les adultes."
+        }
       },
       "bedrooms_detail": [
         {
           "number": 1,
           "title": "Yatak Odası · Ensuite",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 2,
           "title": "Yatak Odası · Ensuite",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 3,
           "title": "Yatak Odası · Ensuite",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 4,
           "title": "Yatak Odası · 2 Tek Kişilik",
           "beds": "2 tek kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         }
       ],
       "amenities": [
-        "Fırın", "Televizyon", "Havlular/Çarşaflar", "Ütü ve Gereçleri", "Balkon",
-        "Amerikan Mutfak", "Ayrı Mutfak", "Klima", "Özel Havuz", "Otopark",
-        "Barbekü", "Ses Yalıtımlı Odalar", "Şömine", "Açık Hava Mobilyaları",
-        "Mikrodalga Fırın", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
-        "Ekmek Kızartma Makinesi", "PlayStation 3", "Türk Kahve Makinesi",
-        "Salıncak", "Ücretsiz WiFi"
+        "Fırın",
+        "Televizyon",
+        "Havlular/Çarşaflar",
+        "Ütü ve Gereçleri",
+        "Balkon",
+        "Amerikan Mutfak",
+        "Ayrı Mutfak",
+        "Klima",
+        "Özel Havuz",
+        "Otopark",
+        "Barbekü",
+        "Ses Yalıtımlı Odalar",
+        "Şömine",
+        "Açık Hava Mobilyaları",
+        "Mikrodalga Fırın",
+        "Buzdolabı",
+        "Çamaşır Makinesi",
+        "Bulaşık Makinesi",
+        "Ekmek Kızartma Makinesi",
+        "PlayStation 3",
+        "Türk Kahve Makinesi",
+        "Salıncak",
+        "Ücretsiz WiFi"
       ],
       "included_services": [
         "Klima / Su / Gaz",
@@ -305,19 +618,89 @@
       "phone_concierge": "+905306650794",
       "wa_message": "Merhaba, Villa Ship Ahoy (Kalamar, 4 yatak, salıncaklı bahçe ve üst kat jakuzi) için rezervasyon bilgisi almak istiyorum.",
       "faqs": [
-        { "q": "Villa Ship Ahoy denize ne kadar uzakta?", "a": "Denize yalnızca 1 km, merkeze 2 dakika mesafededir — yürüyerek de erişilebilir." },
-        { "q": "Bahçede salıncak ve barbekü var mı?", "a": "Evet. Bahçede özel havuz, salıncak, oturma köşesi, barbekü, yemek masası, şezlonglar ve güneş şemsiyeleri bulunur." },
-        { "q": "Üst kat terasındaki jakuziyi her zaman kullanabilir miyim?", "a": "Evet. Üst kat terası; jakuzi, manzara ve gün batımı için 7/24 misafirlerin kullanımına açıktır." },
-        { "q": "Mutfak donanımı nasıl?", "a": "Tam donanımlı Amerikan + ada mutfak: buzdolabı, bulaşık makinesi, ocak, fırın, mikrodalga, su ısıtıcısı, Türk kahve makinesi, yemek takımı, çatal-bıçak takımı, bardaklar, tencere-tava." },
-        { "q": "Salonda PlayStation 3 var mı?", "a": "Evet. Salon donanımında TV, DVD oynatıcı, uydu alıcısı ve PlayStation 3 birlikte sunulur. Yağmurlu günler için bile programınız hazırdır." },
-        { "q": "Şömine kullanılıyor mu?", "a": "Evet. Villa, ses yalıtımlı odalara ek olarak salon tarafında şömineye sahiptir — kış aylarında sıcak ve samimi bir ortam yaratır." },
-        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir, hasarsız teslimde çıkışta eksiksiz iade edilir." },
-        { "q": "7 geceden kısa konaklama olur mu?", "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır." },
-        { "q": "Evcil hayvan getirebilir miyim?", "a": "Maksimum 1 küçük/orta ırk evcil hayvan için 15.000 TL ücret uygulanır." }
+        {
+          "q": "Villa Ship Ahoy denize ne kadar uzakta?",
+          "a": "Denize yalnızca 1 km, merkeze 2 dakika mesafededir — yürüyerek de erişilebilir."
+        },
+        {
+          "q": "Bahçede salıncak ve barbekü var mı?",
+          "a": "Evet. Bahçede özel havuz, salıncak, oturma köşesi, barbekü, yemek masası, şezlonglar ve güneş şemsiyeleri bulunur."
+        },
+        {
+          "q": "Üst kat terasındaki jakuziyi her zaman kullanabilir miyim?",
+          "a": "Evet. Üst kat terası; jakuzi, manzara ve gün batımı için 7/24 misafirlerin kullanımına açıktır."
+        },
+        {
+          "q": "Mutfak donanımı nasıl?",
+          "a": "Tam donanımlı Amerikan + ada mutfak: buzdolabı, bulaşık makinesi, ocak, fırın, mikrodalga, su ısıtıcısı, Türk kahve makinesi, yemek takımı, çatal-bıçak takımı, bardaklar, tencere-tava."
+        },
+        {
+          "q": "Salonda PlayStation 3 var mı?",
+          "a": "Evet. Salon donanımında TV, DVD oynatıcı, uydu alıcısı ve PlayStation 3 birlikte sunulur. Yağmurlu günler için bile programınız hazırdır."
+        },
+        {
+          "q": "Şömine kullanılıyor mu?",
+          "a": "Evet. Villa, ses yalıtımlı odalara ek olarak salon tarafında şömineye sahiptir — kış aylarında sıcak ve samimi bir ortam yaratır."
+        },
+        {
+          "q": "Depozito ne kadar?",
+          "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir, hasarsız teslimde çıkışta eksiksiz iade edilir."
+        },
+        {
+          "q": "7 geceden kısa konaklama olur mu?",
+          "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır."
+        },
+        {
+          "q": "Evcil hayvan getirebilir miyim?",
+          "a": "Maksimum 1 küçük/orta ırk evcil hayvan için 15.000 TL ücret uygulanır."
+        }
       ],
       "referenceUrl": "https://www.villacim.com.tr/villa-ship-ahoy",
       "featured": true,
-      "instagram": "https://www.instagram.com/villashipahoy"
+      "instagram": "https://www.instagram.com/villashipahoy",
+      "taglineI18n": {
+        "tr": "Kalamar'da Salıncaklı Bahçe & Üst Kat Jakuzi",
+        "en": "Swing Garden in Kalamar & Upper Floor Jacuzzi",
+        "de": "Schaukelgarten in Kalamar & Jacuzzi im Obergeschoss",
+        "ru": "Каламар: Дом с качелями в саду и джакузи на верхнем этаже",
+        "fr": "Jardin avec balançoire à Kalamar & Jacuzzi au dernier étage"
+      },
+      "aboutTitleI18n": {
+        "tr": "Denize 1 km, Salıncaklı Bahçe, Şömineli Salon.",
+        "en": "1 km to the sea, Swing Garden, Salon with Fireplace.",
+        "de": "1 km vom Meer entfernt, Schaukelgarten, Kaminzimmer.",
+        "ru": "В 1 км от моря, сад с качелями, гостиная с камином.",
+        "fr": "À 1 km de la mer, jardin avec balançoire, salon avec cheminée."
+      },
+      "summaryI18n": {
+        "tr": "Kalkan Kalamar bölgesinde denize 1 km, merkeze 2 dakika mesafede salıncaklı geniş bahçeli lüks tatil villası. Üst kat terasında jakuzi, ada mutfak, şömine ve PlayStation 3 ile aileler ve arkadaş grupları için 8 kişilik bahçe klasiği.",
+        "en": "Luxury holiday villa in Kalkan Kalamar, 1 km to the sea, 2 minutes from the center, with a swing garden, upper floor jacuzzi, island kitchen, fireplace, and PlayStation 3, ideal for families and friend groups, accommodating 8 people.",
+        "de": "Luxus-Ferienhaus in Kalkan, Kalamar, 1 km vom Meer und 2 Minuten vom Zentrum entfernt, mit schaukelndem Garten, Jacuzzi auf der Dachterrasse, amerikanischer Küche, Kamin und PlayStation 3, ideal für Familien und Freundesgruppen für 8 Personen.",
+        "ru": "В районе Каламар, Кalkан, в 1 км от моря и 2 минутах от центра, роскошная вилла для отдыха с садом и качелями. На верхней террасе джакузи, островная кухня, камин и PlayStation 3 для семей и групп друзей на 8 человек.",
+        "fr": "Dans le quartier de Kalamar à Kalkan, à 1 km de la mer et à 2 minutes du centre, villa de luxe avec jardin spacieux et balançoire. Le jacuzzi sur la terrasse du dernier étage, la cuisine américaine, la cheminée et la PlayStation 3 en font un classique de jardin pour les familles et les groupes d'amis de 8 personnes."
+      },
+      "descriptionLongI18n": {
+        "en": [
+          "Villa Ship Ahoy is located in Kalkan's popular Kalamar area, just 1 km from the sea and 2 minutes from the center, offering a swing garden, private pool, and barbecue corner, making it one of the Mediterranean's hottest meeting points for families and friend groups.",
+          "The garden features a private pool, sun loungers, sun umbrellas, seating area, swing, barbecue, and dining table, allowing children to play freely while adults relax by the pool.",
+          "The upper floor terrace is designed for jacuzzi, panoramic views, and sunset enjoyment, providing a getaway spot to experience special moments while watching the Mediterranean horizon in the evenings, with DVD player, satellite receiver, and PlayStation 3 ensuring enjoyable nights."
+        ],
+        "de": [
+          "Villa Ship Ahoy, in der beliebten Kalamar-Region von Kalkan, nur 1 km vom Meer und 2 Minuten vom Zentrum entfernt, bietet einen schaukelnden Garten, einen privaten Pool und eine Grill-Ecke, ideal für Familien und Freundesgruppen, einen der heißesten Treffpunkte im Mittelmeer.",
+          "Im Garten befinden sich ein privater Pool, Liegen, Sonnenschirme, Sitzbereich, Schaukel, Grill und Esstisch. Kinder können im Garten frei spielen, während Erwachsene am Pool entspannen können.",
+          "Die Dachterrasse im Obergeschoss ist für Jacuzzi, Panorama und Sonnenuntergang konzipiert. Abends können Sie am Mittelmeer-Horizont entspannen und besondere Momente erleben. Im Wohnzimmer sorgen DVD-Player, Satellitenempfänger und PlayStation 3 für unterhaltsame Abende."
+        ],
+        "ru": [
+          "Вилла Ship Ahoy, расположенная в популярном районе Каламар, Кalkан, в 1 км от моря и 2 минутах от центра, предлагает сад с качелями, частный бассейн и уголок для барбекю для семей и групп друзей, одно из самых популярных мест встреч на Средиземном море.",
+          "В саду есть частный бассейн, шезлонги, солнцезащитные зонтики, уголок для отдыха, качели, барбекю и стол для ужина. Дети могут свободно играть в саду, а взрослые могут отдыхать у бассейна.",
+          "Верхняя терраса спроектирована для джакузи, широкого вида и наслаждения закатом. Это место, где можно провести особые моменты, наблюдая за горизонтом Средиземного моря. В гостиной DVD-плеер, спутниковый приемник и PlayStation 3 гарантируют приятные вечера."
+        ],
+        "fr": [
+          "La villa Ship Ahoy, située dans le quartier prisé de Kalamar à Kalkan, est à seulement 1 km de la mer et à 2 minutes du centre. Son jardin avec balançoire, sa piscine privée et son coin barbecue en font l'un des points de rencontre les plus chauds de la Méditerranée pour les familles et les groupes d'amis.",
+          "Le jardin comporte une piscine privée, des transats, des parasols, un coin salon, une balançoire, un barbecue et une table à manger. Les enfants peuvent jouer librement dans le jardin tandis que les adultes se détendent près de la piscine.",
+          "La terrasse du dernier étage est conçue pour le jacuzzi, la vue panoramique et le coucher de soleil. Le soir, c'est un point de départ idéal pour vivre des moments inoubliables en regardant l'horizon de la Méditerranée. Le salon est équipé d'un lecteur DVD, d'un récepteur satellite et d'une PlayStation 3 pour des soirées agréables."
+        ]
+      }
     },
     {
       "id": "villa-seascape",
@@ -371,7 +754,21 @@
           "Tencere & tava seti",
           "12 kişilik yemek takımı",
           "Mutfak gereçleri"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Amerikan Mutfak · 4'lü Ankastre Ocak & 12 Kişilik Yemek Takımı",
+          "en": "American Kitchen · 4-Burner Built-in Stove & 12-Person Dinner Set",
+          "de": "Amerikanische Küche · 4-flammiger Einbauspieß & 12-sitzige Essgruppe",
+          "ru": "Кухня в американском стиле · Варочная панель на 4 конфорки и сервиз на 12 персон",
+          "fr": "Cuisine américaine · Cuisinière à 4 feux & Vaisselle pour 12 personnes"
+        },
+        "introI18n": {
+          "tr": "Modern ve ferah mutfak, kalabalık aile sofraları için 12 kişilik yemek takımı ile tam donanım sunar.",
+          "en": "The modern and airy kitchen is fully equipped with a 12-person dinner set, perfect for large family gatherings.",
+          "de": "Die moderne und helle Küche bietet für große Familienmahlzeiten eine 12-sitzige Essgruppe und eine vollständige Ausstattung.",
+          "ru": "Современная и просторная кухня полностью оборудована и располагает обеденным гарнитуром на 12 персон для больших семейных трапез.",
+          "fr": "La cuisine moderne et spacieuse est équipée d'une vaisselle pour 12 personnes, offrant ainsi tout le nécessaire pour les repas de famille nombreuse."
+        }
       },
       "salon_detail": {
         "title": "Salon · Deniz Manzaralı Uydu LCD TV",
@@ -383,57 +780,162 @@
           "Klima",
           "8 kişilik yemek masası",
           "Havuz terasına çıkış"
-        ]
+        ],
+        "titleI18n": {
+          "tr": "Salon · Deniz Manzaralı Uydu LCD TV",
+          "en": "Living Room · Sea View Satellite LCD TV",
+          "de": "Wohnzimmer · Satelliten-LCD-Fernseher mit Meerblick",
+          "ru": "Гостиная · Спутниковый LCD-телевизор с видом на море",
+          "fr": "Salon · Télévision LCD par satellite avec vue sur la mer"
+        },
+        "introI18n": {
+          "tr": "Deniz ve doğa manzaralı ferah salon, uydu LCD TV ve 8 kişilik yemek masasıyla aile sofralarının merkezidir.",
+          "en": "The airy living room, with its sea and nature views, features a satellite LCD TV and an 8-person dining table, making it the centre of your family meals.",
+          "de": "Das helle Wohnzimmer mit Meerblick und Naturblick bietet einen Satelliten-LCD-Fernseher und einen 8-sitzigen Esstisch und wird zum Zentrum Ihrer Familienmahlzeiten.",
+          "ru": "Светлая гостиная с видом на море и природу, оснащенная спутниковым LCD-телевизором и обеденным столом на 8 человек, является центром семейного общения.",
+          "fr": "Le salon spacieux et lumineux, avec vue sur la mer et la nature, est équipé d'une télévision LCD par satellite et d'une table à manger pour 8 personnes, ce qui en fait le cœur des repas en famille."
+        }
       },
       "garden_detail": {
         "title": "Sonsuzluk Havuzu, Çocuk Havuzu & Akşam Jakuzi",
         "intro": "Sonsuzluk havuzu Akdeniz ufkuyla birleşir, çocuk havuzu çocuklara güvenli bir alan sağlar, akşam jakuzi gün batımıyla buluşur.",
         "items": [
-          { "label": "Sonsuzluk havuzu", "value": "9.5m × 3.5m × 1.65m derinlik — Akdeniz ufkuna açılır", "icon": "infinity" },
-          { "label": "Çocuk havuzu", "value": "Aileler için ayrı, sığ ve güvenli alan", "icon": "child" },
-          { "label": "Akşam jakuzi", "value": "Gün batımında özel keyif", "icon": "jacuzzi" },
-          { "label": "Şezlonglar", "value": "Havuz başı yatay dinlenme", "icon": "chair" },
-          { "label": "Yemek masası", "value": "Açık havada aile sofrası", "icon": "table" },
-          { "label": "Oturma alanı", "value": "Akşam sohbetlerine ayrılmış alan", "icon": "chair" }
-        ]
+          {
+            "label": "Sonsuzluk havuzu",
+            "value": "9.5m × 3.5m × 1.65m derinlik — Akdeniz ufkuna açılır",
+            "icon": "infinity"
+          },
+          {
+            "label": "Çocuk havuzu",
+            "value": "Aileler için ayrı, sığ ve güvenli alan",
+            "icon": "child"
+          },
+          {
+            "label": "Akşam jakuzi",
+            "value": "Gün batımında özel keyif",
+            "icon": "jacuzzi"
+          },
+          {
+            "label": "Şezlonglar",
+            "value": "Havuz başı yatay dinlenme",
+            "icon": "chair"
+          },
+          {
+            "label": "Yemek masası",
+            "value": "Açık havada aile sofrası",
+            "icon": "table"
+          },
+          {
+            "label": "Oturma alanı",
+            "value": "Akşam sohbetlerine ayrılmış alan",
+            "icon": "chair"
+          }
+        ],
+        "titleI18n": {
+          "tr": "Sonsuzluk Havuzu, Çocuk Havuzu & Akşam Jakuzi",
+          "en": "Infinity Pool, Children's Pool & Evening Jacuzzi",
+          "de": "Unendlicher Pool, Kinderpool & Abend-Jakuzzi",
+          "ru": "Инфинити-бассейн, детский бассейн и вечернее джакузи",
+          "fr": "Piscine à débordement, Piscine pour enfants & Jacuzzi le soir"
+        },
+        "introI18n": {
+          "tr": "Sonsuzluk havuzu Akdeniz ufkuyla birleşir, çocuk havuzu çocuklara güvenli bir alan sağlar, akşam jakuzi gün batımıyla buluşur.",
+          "en": "The infinity pool merges with the Mediterranean horizon, the children's pool provides a safe area for kids, and the evening jacuzzi meets the sunset.",
+          "de": "Der unendliche Pool verschmilzt mit dem Mittelmeerhorizont, der Kinderpool bietet den Kindern einen sicheren Bereich, die abendliche Jakuzzi trifft sich mit dem Sonnenuntergang.",
+          "ru": "Инфинити-бассейн сливается с горизонтом Средиземного моря, детский бассейн обеспечивает безопасность детей, а вечернее джакузи дарит истинное наслаждение на закате.",
+          "fr": "La piscine à débordement se fond dans l'horizon méditerranéen, la piscine pour enfants offre un espace sécurisé pour les enfants, et le jacuzzi le soir se marie avec le coucher de soleil."
+        }
       },
       "bedrooms_detail": [
         {
           "number": 1,
           "title": "Yatak Odası · Ensuite",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 2,
           "title": "Suit · Jakuzili",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Jakuzi", "Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Özel jakuzi", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Jakuzi",
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Özel jakuzi",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 3,
           "title": "Yatak Odası · Ensuite",
           "beds": "1 çift kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Makyaj masası", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Makyaj masası",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         },
         {
           "number": 4,
           "title": "Yatak Odası · 2 Tek Kişilik",
           "beds": "2 tek kişilik yatak",
-          "highlights": ["Banyo + WC", "Klima"],
-          "items": ["Komodin", "Elbise dolabı", "Klima", "Özel banyo + WC"]
+          "highlights": [
+            "Banyo + WC",
+            "Klima"
+          ],
+          "items": [
+            "Komodin",
+            "Elbise dolabı",
+            "Klima",
+            "Özel banyo + WC"
+          ]
         }
       ],
       "amenities": [
-        "Fırın", "TV", "Havlular/Çarşaflar", "Jakuzi", "Ütü", "Balkon",
-        "Amerikan Mutfak", "Özel Otopark", "Özel Havuz", "Otopark",
-        "Barbekü", "Ses Yalıtımlı Odalar", "Açık Hava Mobilyaları",
-        "Mikrodalga", "Buzdolabı", "Çamaşır Makinesi", "Bulaşık Makinesi",
-        "Elektrikli Su Isıtıcısı", "Mutfak Gereçleri", "WiFi",
-        "Sonsuzluk Havuzu", "Çocuk Havuzu"
+        "Fırın",
+        "TV",
+        "Havlular/Çarşaflar",
+        "Jakuzi",
+        "Ütü",
+        "Balkon",
+        "Amerikan Mutfak",
+        "Özel Otopark",
+        "Özel Havuz",
+        "Otopark",
+        "Barbekü",
+        "Ses Yalıtımlı Odalar",
+        "Açık Hava Mobilyaları",
+        "Mikrodalga",
+        "Buzdolabı",
+        "Çamaşır Makinesi",
+        "Bulaşık Makinesi",
+        "Elektrikli Su Isıtıcısı",
+        "Mutfak Gereçleri",
+        "WiFi",
+        "Sonsuzluk Havuzu",
+        "Çocuk Havuzu"
       ],
       "included_services": [
         "Klima / Su / Gaz",
@@ -459,19 +961,89 @@
       "phone_concierge": "+905306650794",
       "wa_message": "Merhaba, Villa Seascape (Sonsuzluk havuzu, çocuk havuzu, denize 400 m) için rezervasyon bilgisi almak istiyorum.",
       "faqs": [
-        { "q": "Sonsuzluk havuzu nedir?", "a": "Villa Seascape sonsuzluk havuzu 9.5m × 3.5m × 1.65m derinliğinde, modern tasarımı ile Akdeniz ufkuyla bütünleşir. Erken/geç sezon ısıtma talepleri için concierge ekibimize WhatsApp üzerinden ulaşabilirsiniz." },
-        { "q": "Çocuklar için ayrı havuz var mı?", "a": "Evet. Teras alanında ana sonsuzluk havuzunun yanı sıra çocuklar için ayrı, sığ bir çocuk havuzu bulunur — aileler için ideal." },
-        { "q": "Denize ne kadar uzakta?", "a": "Villa Seascape, denize yalnızca 400 metre mesafededir. Kalkan merkezi ve plaja yürüme mesafesindedir." },
-        { "q": "Kaç kişiye yemek takımı mevcut?", "a": "Mutfak 12 kişilik yemek takımı ile donatılmıştır. Salon ve teras 8 kişilik yemek masaları içerir." },
-        { "q": "Jakuzili oda hangisi?", "a": "2. yatak odasında özel jakuzi mevcuttur. Ayrıca teras alanında gün batımıyla buluşan akşam jakuzisi yer alır." },
-        { "q": "4'lü ankastre ocak ile ne pişirebilirim?", "a": "Modern ankastreli mutfak; aile sofraları, sahil kahvaltıları, gece kebap ya da makarna gibi her tür yemek için tam donanım sunar." },
-        { "q": "Depozito ne kadar?", "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir, hasarsız teslimde çıkışta eksiksiz iade edilir." },
-        { "q": "7 geceden kısa konaklama mümkün mü?", "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır." },
-        { "q": "Evcil hayvan kabul ediliyor mu?", "a": "Maksimum 1 küçük veya orta ırk evcil hayvan için 15.000 TL ücretle kabul edilmektedir." }
+        {
+          "q": "Sonsuzluk havuzu nedir?",
+          "a": "Villa Seascape sonsuzluk havuzu 9.5m × 3.5m × 1.65m derinliğinde, modern tasarımı ile Akdeniz ufkuyla bütünleşir. Erken/geç sezon ısıtma talepleri için concierge ekibimize WhatsApp üzerinden ulaşabilirsiniz."
+        },
+        {
+          "q": "Çocuklar için ayrı havuz var mı?",
+          "a": "Evet. Teras alanında ana sonsuzluk havuzunun yanı sıra çocuklar için ayrı, sığ bir çocuk havuzu bulunur — aileler için ideal."
+        },
+        {
+          "q": "Denize ne kadar uzakta?",
+          "a": "Villa Seascape, denize yalnızca 400 metre mesafededir. Kalkan merkezi ve plaja yürüme mesafesindedir."
+        },
+        {
+          "q": "Kaç kişiye yemek takımı mevcut?",
+          "a": "Mutfak 12 kişilik yemek takımı ile donatılmıştır. Salon ve teras 8 kişilik yemek masaları içerir."
+        },
+        {
+          "q": "Jakuzili oda hangisi?",
+          "a": "2. yatak odasında özel jakuzi mevcuttur. Ayrıca teras alanında gün batımıyla buluşan akşam jakuzisi yer alır."
+        },
+        {
+          "q": "4'lü ankastre ocak ile ne pişirebilirim?",
+          "a": "Modern ankastreli mutfak; aile sofraları, sahil kahvaltıları, gece kebap ya da makarna gibi her tür yemek için tam donanım sunar."
+        },
+        {
+          "q": "Depozito ne kadar?",
+          "a": "Depozito 20.000 TL (USD/EUR/GBP karşılığı). Bu ücret girişten önce tahsis edilir, hasarsız teslimde çıkışta eksiksiz iade edilir."
+        },
+        {
+          "q": "7 geceden kısa konaklama mümkün mü?",
+          "a": "Mümkündür. 7 geceden kısa kalışlarda 10.000 TL ek ücret uygulanır."
+        },
+        {
+          "q": "Evcil hayvan kabul ediliyor mu?",
+          "a": "Maksimum 1 küçük veya orta ırk evcil hayvan için 15.000 TL ücretle kabul edilmektedir."
+        }
       ],
       "referenceUrl": "https://www.hepsivilla.com/villa-seascape/",
       "featured": true,
-      "instagram": "https://www.instagram.com/kalkanvillaseascape"
+      "instagram": "https://www.instagram.com/kalkanvillaseascape",
+      "taglineI18n": {
+        "tr": "Sonsuzluk Havuzu, Çocuk Havuzu & Denize 400 Metre",
+        "en": "Infinity Pool, Children's Pool & 400 Metres to the Sea",
+        "de": "Unendlicher Pool, Kinderpool & 400 Meter zum Meer",
+        "ru": "Инфинити-бассейн, детский бассейн и 400 метров до моря",
+        "fr": "Piscine à débordement, Piscine pour enfants & À 400 mètres de la mer"
+      },
+      "aboutTitleI18n": {
+        "tr": "Akdeniz Ufkuyla Birleşen Bir Silüet · Aile Dostu.",
+        "en": "A Silhouette Uniting with the Mediterranean Horizon · Family-Friendly",
+        "de": "Ein Silhouette, die mit dem Mittelmeerhorizont verschmilzt · Familienfreundlich.",
+        "ru": "Силуэт, сливающийся с горизонтом Средиземноморья · Для всей семьи",
+        "fr": "Un profil fusionnant avec l'horizon méditerranéen · Convivial pour les familles."
+      },
+      "summaryI18n": {
+        "tr": "Kalkan Kalamar'da denize sadece 400 metre mesafedeki sonsuzluk havuzlu, çocuk havuzlu, modern dekorlu lüks villa. Akşam jakuzi, 12 kişilik yemek takımı, 4'lü ankastre ocak — Akdeniz Premium ailelerin buluşma noktası.",
+        "en": "This luxury villa in Kalkan Kalamar, just 400 metres from the sea, features an infinity pool, children's pool, and modern decor. Enjoy the evening jacuzzi, 12-person dinner set, and 4-burner built-in stove — the Mediterranean Premium meeting point for families.",
+        "de": "Eine luxuriöse Villa in Kalkan Kalamar, nur 400 Meter vom Meer entfernt, mit unendlichem Pool, Kinderpool und moderner Dekoration. Abend-Jakuzzi, 12-sitzige Essgruppe, 4-flammiger Einbauspieß - Mittelmeer-Premium-Treffpunkt für Familien.",
+        "ru": "Роскошная вилла с современным декором, инфинити-бассейном и детским бассейном в Калкане, район Каламар, всего в 400 метрах от моря. Вечернее джакузи, обеденный стол на 12 персон, встроенная варочная панель на 4 конфорки — Akdeniz Premium, идеальное место для семейного отдыха.",
+        "fr": "Villa de luxe avec piscine à débordement, piscine pour enfants et décoration moderne, à seulement 400 mètres de la mer à Kalkan Kalamar. Jacuzzi le soir, vaisselle pour 12 personnes, cuisinière à 4 feux — Le point de rencontre des familles premium de la Méditerranée."
+      },
+      "descriptionLongI18n": {
+        "en": [
+          "Villa Seascape is a privately owned villa in Kalkan's desirable Kalamar area, just 400 metres from the sea, boasting modern decor. The infinity pool and silhouette blending with the Mediterranean horizon create a unique holiday experience.",
+          "The spacious terrace features an infinity pool, children's pool, sun loungers, dining table, seating area, and an evening jacuzzi to enhance your sunset experience. The children's pool is a privilege for families, while the infinity pool's pleasure is a bonus for parents.",
+          "This villa, within walking distance to Kalkan town centre and the beach, offers a modern and airy kitchen with a 4-burner built-in stove and a 12-person dinner set. The living room, with its sea and nature views, features an 8-person dining table, becoming the hub of your family meals."
+        ],
+        "de": [
+          "Villa Seascape, eine privatgeführte Villa in der beliebten Kalamar-Region von Kalkan, nur 400 Meter vom Meer entfernt, mit moderner Dekoration. Der unendliche Pool und die Silhouette, die mit dem Mittelmeerhorizont verschmilzt, schaffen ein einzigartiges Urlaubserlebnis.",
+          "Auf der großen Terrasse befinden sich der unendliche Pool, der Kinderpool, Liegestühle, der Esstisch, die Sitzgelegenheit und die abendliche Jakuzzi, die den Genuss des Sonnenuntergangs erhöht. Für Familien ist der Kinderpool ein Privileg, während die Eltern den Genuss des unendlichen Pools suchen.",
+          "Die Villa, die sich in Laufnähe zum Zentrum von Kalkan und zum Strand befindet, bietet eine moderne und helle Küche mit 4-flammigem Einbauspieß und 12-sitziger Essgruppe. Das Wohnzimmer mit Meerblick und 8-sitzigem Esstisch wird zum Zentrum Ihrer Familienmahlzeiten."
+        ],
+        "ru": [
+          "Villa Seascape — эксклюзивная вилла с современным интерьером, расположенная в престижном районе Каламар в Калкане, всего в 400 метрах от побережья. Инфинити-бассейн и вид, сливающийся с горизонтом Средиземного моря, создают уникальную атмосферу отдыха.",
+          "Просторная терраса включает инфинити-бассейн, детский бассейн, шезлонги, обеденную зону, гостиную и джакузи для незабываемых вечеров на закате. Безопасный детский бассейн и релакс в инфинити-бассейне для родителей — идеальный баланс для всей семьи.",
+          "Вилла находится в пешей доступности от центра Калкана и пляжа. Современная просторная кухня полностью оборудована, включая варочную панель на 4 конфорки и сервиз на 12 персон. Гостиная с обеденным столом на 8 человек и видом на море и природу станет сердцем ваших семейных ужинов."
+        ],
+        "fr": [
+          "La Villa Seascape, une villa privée avec décoration moderne, est située à seulement 400 mètres de la mer dans le quartier prisé de Kalamar à Kalkan. La piscine à débordement et le profil fusionnant avec l'horizon méditerranéen offrent une expérience de vacances unique.",
+          "La vaste terrasse comporte une piscine à débordement, une piscine pour enfants, des transats, une table à manger, un espace de détente et un jacuzzi le soir pour rendre les couchers de soleil encore plus agréables. Le privilège de la piscine pour enfants pour les familles, et le plaisir de la piscine à débordement pour les parents.",
+          "La villa, située à distance de marche du centre-ville de Kalkan et de la plage, offre une cuisine moderne et spacieuse avec une cuisinière à 4 feux et une vaisselle pour 12 personnes. Le salon, avec sa table à manger pour 8 personnes et sa vue sur la mer et la nature, est le cœur des repas en famille."
+        ]
+      }
     }
   ]
 }

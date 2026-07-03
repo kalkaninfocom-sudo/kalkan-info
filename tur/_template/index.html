@@ -216,7 +216,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label justify-center mb-6">{{CATEGORY}} · Kalkan</div>
     <h1 class="font-display text-6xl md:text-8xl font-extrabold mb-4 text-white" style="text-shadow:0 4px 32px rgba(0,0,0,0.5);">{{NAME}}</h1>
     {{RATING_HTML}}
-    <p class="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed mb-6" data-i="hero_sub">{{TAGLINE}}</p>
+    <p class="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed mb-6" data-i="hero_sub" {{TAGLINE_I18N_ATTRS}}>{{TAGLINE}}</p>
     <div class="flex flex-wrap justify-center gap-2 mb-10">{{HERO_TAGS}}</div>
     <div class="flex flex-wrap justify-center gap-3">
       <a href="#reserve" class="btn-primary" data-i="cta_reserve">Şimdi Rezervasyon</a>
@@ -231,9 +231,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
     <div>
       <div class="section-label mb-6" data-i="about_label">Hakkımızda</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title">{{ABOUT_TITLE}}</h2>
-      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="about_p1">{{ABOUT_P1}}</p>
-      <p class="text-base leading-relaxed" style="color:var(--theme-muted);" data-i="about_p2">{{ABOUT_P2}}</p>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title" {{ABOUT_TITLE_I18N_ATTRS}}>{{ABOUT_TITLE}}</h2>
+      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="about_p1" {{ABOUT_P1_I18N_ATTRS}}>{{ABOUT_P1}}</p>
+      <p class="text-base leading-relaxed" style="color:var(--theme-muted);" data-i="about_p2" {{ABOUT_P2_I18N_ATTRS}}>{{ABOUT_P2}}</p>
     </div>
     <div class="aspect-[4/5] overflow-hidden">
       <img src="{{ABOUT_IMAGE}}" alt="{{NAME}} ambiyans" class="w-full h-full object-cover hero-img" loading="lazy">
@@ -440,14 +440,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/gtm-events.js" defer></script>
 
 <script>
-// 5-dil i18n
+// i18n - 5 dil: UI etiketleri (data-i + I18N) + ICERIK (data-en/de/ru/fr) + title/meta
 const I18N = {{I18N_JSON}};
+const META_I18N = {{META_I18N_JSON}}; // { tr:{title,desc}, en:{...}, ... }
+const SUPPORTED = ['tr','en','de','ru','fr'];
+
+// data-en/de/ru/fr icin deger sec: hedef -> en -> tr(orijinal). '' bos deger = ceviri yok say.
+function contentVal(el, lang){
+  if (lang === 'tr') return el.dataset.tr != null ? el.dataset.tr : null;
+  const pick = el.dataset[lang] || el.dataset.en || (el.dataset.tr != null ? el.dataset.tr : '');
+  return pick !== '' ? pick : null;
+}
+
 function setLang(lang){
+  if (!SUPPORTED.includes(lang)) lang = 'tr';
   document.documentElement.lang = lang;
+
+  // 1) UI etiketleri (data-i sozlugu). Bulunmazsa TR tabanina don.
   document.querySelectorAll('[data-i]').forEach(el=>{
     const key = el.dataset.i;
-    if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
+    if (I18N[lang] && I18N[lang][key] != null) el.textContent = I18N[lang][key];
+    else if (I18N.tr && I18N.tr[key] != null) el.textContent = I18N.tr[key];
   });
+
+  // 2) Icerik: data-en/de/ru/fr (tagline, hakkimizda paragraflari)
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if (el.dataset.tr == null) el.dataset.tr = el.textContent.trim();
+    const v = contentVal(el, lang);
+    if (v != null) el.textContent = v;
+  });
+
+  // 3) Title + meta description (SEO — TR taban korunur, dil degisince guncellenir)
+  try {
+    const m = META_I18N && META_I18N[lang];
+    if (m){
+      if (m.title) document.title = m.title;
+      const md = document.querySelector('meta[name="description"]');
+      if (md && m.desc) md.setAttribute('content', m.desc);
+    }
+  } catch(e){}
+
   document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active', p.dataset.lang===lang));
   try { localStorage.setItem('lang', lang); } catch(e){}
 }
