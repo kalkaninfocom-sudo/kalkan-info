@@ -49,8 +49,11 @@ jobs:
       # cheap-llm CI'da ollama'sız: gemini→nvidia→claude. Başarısızsa graceful atlar, build RSS'e döner.
       - name: Editöryal içerik üret (agent)
         env:
-          CHEAP_LLM_ORDER: nvidia,gemini,claude
-          NVIDIA_MODEL: meta/llama-3.1-8b-instruct   # 8B: hızlı + geçerli JSON (70B CI'da timeout ediyordu)
+          # Kartsız yetenekli modeller önce (Cerebras/Groq 70B) → nvidia 8B son çare.
+          CHEAP_LLM_ORDER: cerebras,groq,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
