@@ -116,7 +116,8 @@
     "Erkek Kuaförü & Berber",
     "Bayan Kuaförü",
     "Saç & Güzellik (Unisex)",
-    "Döviz & Ödeme"
+    "Döviz & Ödeme",
+    "Su Sporları"
   ],
   "items": [
     {
@@ -1109,6 +1110,144 @@
       "phone": null,
       "hours": "Sezon boyunca",
       "featured": true
+    },
+    {
+      "id": "su-sporlari",
+      "name": "Su Sporları",
+      "category": "Su Sporları",
+      "icon": "🌊",
+      "image": "/assets/img/hizmet/seapro-watersports-kalkan-hero.jpg",
+      "summary": "Kalkan'da jet ski, dalış, tekne turu, parasailing ve balık turu — 5 su sporları işletmesi.",
+      "details": [
+        "Jet ski & parasailing",
+        "Dalış kursları ve dalış turları",
+        "Tekne turları & balık turları",
+        "5 işletme · Google puanlı"
+      ],
+      "nameI18n": {
+        "tr": "Su Sporları",
+        "en": "Water Sports",
+        "de": "Wassersport",
+        "ru": "Водные виды спорта",
+        "fr": "Sports nautiques"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan'da jet ski, dalış, tekne turu, parasailing ve balık turu — 5 su sporları işletmesi.",
+        "en": "Jet ski, diving, boat tours, parasailing and fishing trips in Kalkan — 5 water sports businesses.",
+        "de": "Jetski, Tauchen, Bootstouren, Parasailing und Angeltouren in Kalkan — 5 Wassersport-Anbieter.",
+        "ru": "Гидроциклы, дайвинг, морские экскурсии, парасейлинг и рыбалка в Калкане — 5 компаний водных видов спорта.",
+        "fr": "Jet ski, plongée, excursions en bateau, parachute ascensionnel et pêche à Kalkan — 5 prestataires de sports nautiques."
+      },
+      "detailsI18n": {
+        "tr": ["Jet ski & parasailing", "Dalış kursları ve dalış turları", "Tekne turları & balık turları", "5 işletme · Google puanlı"],
+        "en": ["Jet ski & parasailing", "Diving courses and dive tours", "Boat tours & fishing trips", "5 businesses · Google rated"],
+        "de": ["Jetski & Parasailing", "Tauchkurse und Tauchtouren", "Bootstouren & Angeltouren", "5 Anbieter · Google bewertet"],
+        "ru": ["Гидроциклы и парасейлинг", "Курсы дайвинга и дайв-туры", "Морские и рыболовные туры", "5 компаний · с оценкой Google"],
+        "fr": ["Jet ski & parachute ascensionnel", "Cours et sorties de plongée", "Excursions en bateau & pêche", "5 prestataires · notés sur Google"]
+      },
+      "hours": "Sezon boyunca",
+      "listUrl": "/hizmetler.html?cat=Su%20Sporlar%C4%B1",
+      "featured": true
+    },
+    {
+      "id": "seapro-watersports-kalkan",
+      "name": "SEAPRO WATERSPORTS KALKAN",
+      "category": "Su Sporları",
+      "categoryKey": "watersports",
+      "rating": 4.4,
+      "reviewCount": 62,
+      "location": "kışla mevki no:37 Greenbeach hotel, Kalkan, Kışla Cd., 07014 Kaş/Antalya, Türkiye",
+      "phone": "+90 535 600 50 03",
+      "website": "",
+      "hours": "Her gün 08:00–20:30",
+      "coordinates": {
+        "latitude": 36.2501125,
+        "longitude": 29.414783099999998
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJtSvDhxEtwBQRHZGlCpvOXa4",
+      "image": "/assets/img/hizmet/seapro-watersports-kalkan-hero.jpg"
+    },
+    {
+      "id": "kalamar-watersports",
+      "name": "Kalamar Watersports",
+      "category": "Su Sporları",
+      "categoryKey": "watersports",
+      "rating": 5,
+      "reviewCount": 4,
+      "location": "Kalkan, Karanfil Sk., 07960 Kaş/Antalya, Türkiye",
+      "phone": "",
+      "website": "",
+      "hours": "Açık · Kapanış saati:  19:00",
+      "coordinates": {
+        "latitude": 36.2627415,
+        "longitude": 29.3965474
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJF6oZWgAtwBQRR6JiSOobkws",
+      "image": "/assets/img/hizmet/kalamar-watersports-hero.jpg"
+    },
+    {
+      "id": "kalkan-dive-centre",
+      "name": "Kalkan Dive Centre",
+      "category": "Su Sporları",
+      "categoryKey": "watersports",
+      "rating": 4.7,
+      "reviewCount": 79,
+      "location": "Kalamar beach, Kalkan, 07580 Kaş/Antalya, Türkiye",
+      "phone": "+90 532 553 20 06",
+      "website": "http://www.kalkandiving.com/",
+      "hours": "",
+      "coordinates": {
+        "latitude": 36.262969,
+        "longitude": 29.3967161
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJi3Ynu90swBQRfCJtfGKwzrA",
+      "image": "/assets/img/hizmet/kalkan-dive-centre-hero.jpg"
+    },
+    {
+      "id": "pro-fishing-tours-kalkan",
+      "name": "PRO FİSHİNG TOURS",
+      "category": "Su Sporları",
+      "categoryKey": "watersports",
+      "rating": null,
+      "reviewCount": null,
+      "location": "Gelemiş mh, Yalı sk No:21, 07976 Kaş/Antalya, Türkiye",
+      "phone": "+90 532 158 80 69",
+      "website": "http://www.profishingtrip.com/",
+      "hours": "Açık · Kapanış saati:  22:00",
+      "coordinates": {
+        "latitude": 36.2617458,
+        "longitude": 29.4140585
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJaekpieotwBQRvPMBUtWHQyg",
+      "image": "/assets/img/hizmet/pro-fishing-tours-kalkan-hero.jpg"
+    },
+    {
+      "id": "aristos-water-sports-kalkan",
+      "name": "Aristos Water Sports Kalkan",
+      "category": "Su Sporları",
+      "categoryKey": "watersports",
+      "rating": 4.1,
+      "reviewCount": 86,
+      "location": "Kalkan, 07580 Kaş/Antalya, Türkiye",
+      "phone": "",
+      "website": "https://www.kalkanwatersports.com/",
+      "hours": "Her gün 09:00–00:00",
+      "coordinates": {
+        "latitude": 36.2621969,
+        "longitude": 29.412526
+      },
+      "source": "google_maps",
+      "verified": false,
+      "place_id": "ChIJOffcI9QswBQR93noP6zL0_0",
+      "image": "/assets/img/hizmet/aristos-water-sports-kalkan-hero.jpg"
     }
   ]
 }

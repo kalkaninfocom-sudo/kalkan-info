@@ -74,7 +74,11 @@
   // Kategori listesi linki olan özet kart (berber/kuaför aggregate kartları için)
   function listUrlCard(it) {
     const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const details = (it.details || []).map(d => `<li class="flex items-start gap-1.5 text-xs text-ink-700/70"><span class="text-sea-600">•</span>${esc(d)}</li>`).join('');
+    // {tr,en,de,ru,fr} i18n objesinden data-en/de/ru/fr attribute üret (i18n.js MutationObserver çevirir).
+    const i18nAttr = obj => !obj || typeof obj !== 'object' ? '' :
+      ['en','de','ru','fr'].map(l => (typeof obj[l] === 'string' && obj[l].trim()) ? `data-${l}="${esc(obj[l])}"` : '').filter(Boolean).join(' ');
+    const detAt = i => { const m = it.detailsI18n; if (!m) return ''; const o = {}; ['en','de','ru','fr'].forEach(l => { if (Array.isArray(m[l]) && m[l][i]) o[l] = m[l][i]; }); return i18nAttr(o); };
+    const details = (it.details || []).map((d, i) => `<li class="flex items-start gap-1.5 text-xs text-ink-700/70"><span class="text-sea-600">•</span><span ${detAt(i)}>${esc(d)}</span></li>`).join('');
     const imageBlock = it.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1"><img src="${esc(it.image)}" alt="${esc(it.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div></div>` : '';
     return `
       <a href="${esc(it.listUrl)}" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
@@ -82,11 +86,11 @@
         <div class="flex items-start gap-3">
           <div class="text-3xl">${esc(it.icon || '✂️')}</div>
           <div class="flex-1 min-w-0">
-            <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${esc(it.name)}</h3>
+            <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight" ${i18nAttr(it.nameI18n)}>${esc(it.name)}</h3>
             <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${esc(it.category || '')}</div>
           </div>
         </div>
-        <p class="text-sm text-ink-700/80 mt-3">${esc(it.summary || '')}</p>
+        <p class="text-sm text-ink-700/80 mt-3" ${i18nAttr(it.summaryI18n)}>${esc(it.summary || '')}</p>
         ${details ? `<ul class="mt-3 space-y-1">${details}</ul>` : ''}
         <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
           <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-sea-700 uppercase tracking-wide">
@@ -130,13 +134,14 @@
   // --- Items render ---
   // Ana view'da bireysel kuaför/berber kayıtları aggregate kart altında toplanır.
   // Sadece kategori filtresi veya arama yapıldığında bireysel kayıtlar görünür.
-  const KUAFOR_CATS = new Set(['Erkek Kuaförü & Berber', 'Bayan Kuaförü', 'Saç & Güzellik (Unisex)']);
+  // Ana view'da bireysel kayıtları aggregate kart altında toplayan kategoriler.
+  const AGGREGATE_HIDE_CATS = new Set(['Erkek Kuaförü & Berber', 'Bayan Kuaförü', 'Saç & Güzellik (Unisex)', 'Su Sporları']);
   function renderItems() {
     const cat = catFilter ? catFilter.value : '';
     const q = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
     let filtered = KalkanData.filterItems(allItems, { category: cat || undefined, q: q || undefined });
     if (!cat && !q) {
-      filtered = filtered.filter(it => !KUAFOR_CATS.has(it.category) || it.listUrl);
+      filtered = filtered.filter(it => !AGGREGATE_HIDE_CATS.has(it.category) || it.listUrl);
     }
     const grid = document.getElementById('items-grid');
     const heading = document.getElementById('items-heading');
