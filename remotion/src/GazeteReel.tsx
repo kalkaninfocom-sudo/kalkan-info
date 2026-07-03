@@ -41,6 +41,9 @@ export const gazeteReelSchema = z.object({
   eg_ad_name: z.string().optional(),
   eg_ad_tagline: z.string().optional(),
   eg_ad_cta: z.string().optional(),
+  // Gazete sayfa kartları — base64 data-URI (build-gazete-reel gömer)
+  morning_uri: z.string().optional(),
+  magazine_uri: z.string().optional(),
 });
 export type GazeteReelProps = z.infer<typeof gazeteReelSchema>;
 
@@ -62,6 +65,8 @@ export const defaultGazeteReelProps: GazeteReelProps = {
   eg_ad_name: 'Kalkan Info Hizmetler',
   eg_ad_tagline: 'Villa, transfer, tekne turu — güvenilir yerel işletmeler.',
   eg_ad_cta: 'kalkaninfo.com/hizmetler',
+  morning_uri: '',
+  magazine_uri: '',
 };
 
 // ── Ortak yardımcılar ──
@@ -227,15 +232,32 @@ const Evergreen: React.FC<GazeteReelProps> = (p) => {
   );
 };
 
+// ── Gazete sayfa kartı sahnesi (1080x1920) — gerçek gazete ön yüz / magazin görüntüsü ──
+const GazetePage: React.FC<{ uri?: string; label: string }> = ({ uri, label }) => {
+  const frame = useCurrentFrame();
+  const { o } = useAppear(4);
+  const outFade = interpolate(frame, [78, 90], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const kb = interpolate(frame, [0, 90], [1.02, 1.07]);
+  return (
+    <AbsoluteFill style={{ opacity: outFade, background: C.navy }}>
+      {uri ? <Img src={uri} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${kb})` }} /> : null}
+      {!uri ? <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}><div style={{ fontFamily: SERIF, fontSize: 72, fontWeight: 900, color: C.cream, opacity: o }}>{label}</div></AbsoluteFill> : null}
+      <div style={{ position: 'absolute', top: 44, left: 44, background: C.gold, color: C.navy, padding: '10px 20px', borderRadius: 6, fontFamily: SANS, fontWeight: 800, fontSize: 28, letterSpacing: 2, opacity: o, boxShadow: '0 6px 24px rgba(0,0,0,0.4)' }}>{label}</div>
+    </AbsoluteFill>
+  );
+};
+
 export const GazeteReel: React.FC<GazeteReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
       <Sequence from={0} durationInFrames={75}><Masthead {...props} /></Sequence>
-      <Sequence from={75} durationInFrames={240}><Lead {...props} /></Sequence>
-      <Sequence from={315} durationInFrames={225}><Headlines {...props} /></Sequence>
-      <Sequence from={540} durationInFrames={180}><Evergreen {...props} /></Sequence>
-      <Sequence from={720} durationInFrames={180}><Outro /></Sequence>
+      <Sequence from={75} durationInFrames={90}><GazetePage uri={props.morning_uri} label="BUGÜNÜN GAZETESİ" /></Sequence>
+      <Sequence from={165} durationInFrames={240}><Lead {...props} /></Sequence>
+      <Sequence from={405} durationInFrames={225}><Headlines {...props} /></Sequence>
+      <Sequence from={630} durationInFrames={180}><Evergreen {...props} /></Sequence>
+      <Sequence from={810} durationInFrames={90}><GazetePage uri={props.magazine_uri} label="MAGAZİN" /></Sequence>
+      <Sequence from={900} durationInFrames={180}><Outro /></Sequence>
     </AbsoluteFill>
   );
 };

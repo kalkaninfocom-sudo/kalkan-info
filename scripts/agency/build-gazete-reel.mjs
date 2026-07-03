@@ -10,7 +10,7 @@
  * Gerektirir: remotion (kurulu), data/gazete-today.json veya data/haberler.json.
  */
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, writeFileSync, existsSync, statSync, copyFileSync, unlinkSync } from 'node:fs';
+import { mkdirSync, writeFileSync, existsSync, statSync, copyFileSync, unlinkSync, readFileSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -39,6 +39,12 @@ async function main() {
   const { getEvergreen } = await import(pathToFileURL(join(ROOT, 'scripts', 'agency', 'evergreen.mjs')).href);
   const eg = getEvergreen(date);
   const news = await src.getNews();
+
+  // Gazete kartlarını (1080x1920) reel'e base64 data-URI olarak göm (staticFile render'da 404 veriyordu).
+  const cardUri = (rel) => { try { const p = resolve(ROOT, rel); if (existsSync(p)) return 'data:image/png;base64,' + readFileSync(p).toString('base64'); } catch {} return ''; };
+  const morningUri = cardUri(`newspaper/archive/${date}/morning-card.png`);
+  const magazineUri = cardUri(`newspaper/archive/${date}/magazine-card.png`);
+  console.log(`  gazete kartları → reel: morning=${!!morningUri} magazine=${!!magazineUri}`);
   if (!news || !news.lead_headline) {
     console.error('❌ İçerik yok (getNews boş). Önce gazete-editorial.mjs veya haberler.json gerekir.');
     process.exit(1);
@@ -63,6 +69,8 @@ async function main() {
     eg_ad_name: eg.ad?.name || '',
     eg_ad_tagline: eg.ad?.tagline || '',
     eg_ad_cta: eg.ad?.cta || '',
+    morning_uri: morningUri,
+    magazine_uri: magazineUri,
   };
 
   const propsPath = resolve(ROOT, 'remotion', 'props-gazete.json');
@@ -88,7 +96,7 @@ async function main() {
   if (music) {
     console.log(`── Müzik mix: ${music.split(/[\\/]/).pop()} ──`);
     const ff = spawnSync('ffmpeg', ['-y', '-i', silentMp4, '-i', music,
-      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=27:d=3[m]',
+      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=33:d=3[m]',
       '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
       { stdio: 'ignore' });
     musicOk = ff.status === 0 && existsSync(outMp4);
