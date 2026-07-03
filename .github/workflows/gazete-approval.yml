@@ -45,6 +45,16 @@ jobs:
       - name: Install puppeteer (+ Chrome)
         run: npm install puppeteer@24 --no-save
 
+      # Faz 1: ajans↔gazete köprüsü — ham RSS'i agent editöryal içeriğe çevir → data/gazete-today.json.
+      # cheap-llm CI'da ollama'sız: gemini→nvidia→claude. Başarısızsa graceful atlar, build RSS'e döner.
+      - name: Editöryal içerik üret (agent)
+        env:
+          CHEAP_LLM_ORDER: gemini,nvidia,claude
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/agency/gazete-editorial.mjs || echo "editöryal atlandı (RSS fallback)"
+
       - name: Gazete üret + kapak render + Telegram görselli onay
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

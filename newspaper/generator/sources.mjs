@@ -156,6 +156,17 @@ function newsScore(it) {
 }
 
 export async function getNews() {
+  // ── EDİTÖRYAL KATMAN (Faz 1: ajans↔gazete) ── agent-yazımı bugünün dosyası varsa ÖNCE onu kullan.
+  // scripts/agency/gazete-editorial.mjs üretir. Yoksa/eskiyse ham RSS'e fallback (aşağısı).
+  try {
+    const ed = await readJson('gazete-today.json');
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
+    if (ed && ed.date === today && ed.lead_headline) {
+      const { magazine_lead_headline, magazine_lead_body, date, generated_at, provider, source_ids, ...front } = ed;
+      return front; // getNews ile aynı alan adları (lead_*/col1_*/col3_*)
+    }
+  } catch {}
+
   const data = await readJson('haberler.json');
   if (!data?.items?.length) return {};
   // Skor + tarih ile sırala

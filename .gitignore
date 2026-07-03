@@ -74,3 +74,6 @@ coverage/
 .vercel
 .env*.local
 data/agency/schedule-runlog.json
+
+# Gazete editöryal günlük artifact (workflow her sabah üretir)
+data/gazete-today.json
