@@ -50,6 +50,7 @@ jobs:
       - name: Editöryal içerik üret (agent)
         env:
           CHEAP_LLM_ORDER: nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct   # 8B: hızlı + geçerli JSON (70B CI'da timeout ediyordu)
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
