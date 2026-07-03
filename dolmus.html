@@ -57,7 +57,7 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
     "name":"Kalkan Dolmuş Durağı (Migros Jet önü)",
     "description":"Kalkan merkez dolmuş durağı — Kaş, Patara, Kaputaş yönleri.",
     "address":{"@type":"PostalAddress","streetAddress":"Şehitler Cd., Migros Jet önü","addressLocality":"Kalkan","addressRegion":"Antalya","postalCode":"07580","addressCountry":"TR"},
-    "geo":{"@type":"GeoCoordinates","latitude":36.2693,"longitude":29.4120},
+    "geo":{"@type":"GeoCoordinates","latitude":36.2660826,"longitude":29.4140577},
     "areaServed":["Kalkan","Kaş","Patara","Kaputaş","Kınık","Çavdır"],
     "url":"https://kalkaninfo.com/dolmus"
   };
@@ -185,7 +185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><span class="arw">›</span><span data-i="dir2">Kaş → Kalkan</span></li>
           <li><span class="arw">›</span><span data-i="dir3">Patara → Kalkan / Kaş</span></li>
         </ul>
-        <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=36.2693,29.4120">🗺️ <span data-i="openMap">Haritada Aç</span></a>
+        <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=36.2660826,29.4140577">🗺️ <span data-i="openMap">Haritada Aç</span></a>
       </div>
       <div id="map" role="img" aria-label="Kalkan dolmuş durağı haritası"></div>
     </section>
@@ -269,7 +269,7 @@ try{var ld=document.createElement('script');ld.type='application/ld+json';ld.tex
 /* ===== Harita (Leaflet) — durak: Migros Jet önü ===== */
 (function(){
   if(typeof L==='undefined')return;
-  var STOP=[36.2693,29.4120];
+  var STOP=[36.2660826,29.4140577];
   var map=L.map('map',{scrollWheelZoom:false,attributionControl:true}).setView(STOP,15);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
   var icon=L.divIcon({className:'',html:'<div style="width:26px;height:26px;background:#f4b53d;border:3px solid #0a2e4c;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 4px 12px rgba(7,33,54,.5)"></div>',iconSize:[26,26],iconAnchor:[13,26]});
