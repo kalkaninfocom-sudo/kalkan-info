@@ -17,6 +17,20 @@ const OUT = join(ROOT, 'data', 'haberler.json');
 
 const SOURCES = [
   {
+    // Kaş/Kalkan/Patara odaklı — RSS yok, sayfa SCRAPE. En yüksek yerel-alaka kaynağı.
+    name: 'Haberler.com Kaş',
+    type: 'scrape',
+    url: 'https://www.haberler.com/kas/',
+    sourceHome: 'https://www.haberler.com',
+    requireKeyword: false, // zaten Kaş sayfası
+  },
+  {
+    name: 'Akdeniz Gerçek',
+    url: 'https://www.akdenizgercek.com.tr/rss',
+    sourceHome: 'https://www.akdenizgercek.com.tr',
+    requireKeyword: true, // Antalya geneli → bölge filtresi
+  },
+  {
     name: 'Antalya Körfez',
     url: 'https://www.antalyakorfez.com/rss',
     sourceHome: 'https://www.antalyakorfez.com',
@@ -185,14 +199,36 @@ function parseRss(xml, source) {
   return items;
 }
 
+// haberler.com/kas/ gibi agregatör sayfalarını SCRAPE et (RSS yok, ama bol yerel Kaş/Kalkan haberi).
+// Kart yapısı: <a href="URL">...<img src="IMG">...<div class="new3card-body"><h3>BAŞLIK</h3><div class="hbbiText">Kaş - TARİH</div></div></a>
+function parseHaberlerScrape(html, source) {
+  const items = [];
+  const RX = /<a\s+href="([^"]+)"[^>]*>(?:(?!<\/a>)[\s\S])*?<img[^>]+src="([^"]+)"(?:(?!<\/a>)[\s\S])*?<div class="new3card-body"><h3>([^<]+)<\/h3><div class="hbbiText">([^<]*)<\/div>/g;
+  let m;
+  while ((m = RX.exec(html)) !== null) {
+    const link = m[1].startsWith('http') ? m[1] : (source.sourceHome || 'https://www.haberler.com') + m[1];
+    const image = m[2] && /^https?:/.test(m[2]) ? m[2] : '';
+    const title = decode(m[3]).trim();
+    if (!title || title.length < 12) continue;
+    items.push({
+      _source: source.name, _sourceHome: source.sourceHome,
+      title, link, pubDate: '', // liste yeniden-eskiye sıralı; tarih normalize'da bugüne düşer
+      summary: title, content: title, image,
+      _matchText: `${title} ${m[4] || ''}`,
+    });
+    if (items.length >= 25) break;
+  }
+  return items;
+}
+
 // Returns { items, failed } — never throws
 async function fetchSource(src) {
   try {
+    const scrape = src.type === 'scrape';
     const res = await fetch(src.url, {
-      headers: {
-        'User-Agent': 'KalkanInfoBot/1.0 (+https://kalkaninfo.com)',
-        Accept: 'application/rss+xml, application/xml, text/xml, */*',
-      },
+      headers: scrape
+        ? { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36', Accept: 'text/html,application/xhtml+xml' }
+        : { 'User-Agent': 'KalkanInfoBot/1.0 (+https://kalkaninfo.com)', Accept: 'application/rss+xml, application/xml, text/xml, */*' },
       // 12s timeout via AbortController
       signal: AbortSignal.timeout(12_000),
     });
@@ -201,7 +237,7 @@ async function fetchSource(src) {
       return { items: [], failed: true, reason: `HTTP ${res.status}` };
     }
     const xml = await res.text();
-    const items = parseRss(xml, src);
+    const items = scrape ? parseHaberlerScrape(xml, src) : parseRss(xml, src);
     console.log(`[${src.name}] parsed ${items.length} items`);
     return { items, failed: false };
   } catch (err) {
@@ -323,8 +359,23 @@ async function main() {
     unique.push(it);
   }
 
-  // Sort by date desc, take 30
-  unique.sort((a, b) => (new Date(b.pubDate || 0)) - (new Date(a.pubDate || 0)));
+  // Kalkan-alaka skoru: Kaş/Kalkan/Patara jenerik Antalya'nın ÜSTÜNDE; asayiş/kaza tatilci gazetesine uymaz.
+  const LOCAL_STRONG = /\b(kalkan|kaş|kas|patara|kaputaş|kaputas)\b/i;
+  const LOCAL_MED = /\b(demre|likya|saklıkent|saklikent|meis|üçağız|kekova|çukurbağ|islamlar|bezirgan|kalamar)\b/i;
+  const localScore = (it) => {
+    const t = it._matchText || it.title || '';
+    let s = 0;
+    if (LOCAL_STRONG.test(t)) s += 5;
+    else if (LOCAL_MED.test(t)) s += 3;
+    else if (/\bantalya\b/i.test(t)) s += 1;
+    if (/\b(cinayet|öldür|kaçak|iflas|gözaltı|tutuklan|yaralan|kaza|yangın|uyuşturucu|zehirlen)\b/i.test(t)) s -= 4;
+    return s;
+  };
+  // Sırala: önce yerel-alaka, sonra tarih (scraped tarihsiz → bugün sayılır, batmaz). Top 30.
+  const nowMs = Date.now();
+  unique.sort((a, b) =>
+    localScore(b) - localScore(a) ||
+    (new Date(b.pubDate || nowMs) - new Date(a.pubDate || nowMs)));
   const top = unique.slice(0, 30).map(normalize);
 
   // Mark top 4 most recent as featured
