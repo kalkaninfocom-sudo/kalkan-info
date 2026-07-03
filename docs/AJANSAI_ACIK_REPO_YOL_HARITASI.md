@@ -53,6 +53,40 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
 - [ ] Cockpit UI'yi (`ajansAI/index.html`) config-driven yap (marka/agent listesi dışarıdan).
 - [ ] Demo: temiz kurulumda 1 agent + 1 zamanlı görev uçtan uca çalışsın.
 
+## FAZ 3 — kalkaninfo.com = satılabilir çok-kiracılı (multi-tenant) SaaS
+
+**Vizyon (Berkay 2026-07-03):** kalkaninfo.com altyapısını başka küçük tatil bölgelerine satmak. Alan kişi kendi
+bölgesine entegre eder, o bölgeye uygun "info" sitesini çalıştırır. Doğru terim: **white-label / vertical
+multi-tenant SaaS** (bölgesel turizm platformu). Gerçekçi ve yapılabilir — abartı değil.
+
+> AÇIK-REPO (Faz 2) vs SaaS (Faz 3) gerilimi: İkisi aynı teknolojinin farklı dağıtım modeli. Öneri = "open core":
+> çekirdek/showcase açık (lead-gen), asıl gelir white-label SaaS. Şimdi ODAK dağıtmadan ÖNCE ortak önkoşulu bitir.
+
+**Ortak önkoşul (her üç yol için de aynı):** sistem gerçekten çalışsın (Faz 1) + kalkan hardcoding'i kaldır
+(konfig/tenant-driven). Bu iş yapılmadan ne repo ne SaaS satılır.
+
+Adımlar:
+- [ ] **Genelleştirme/tenant modeli**: bölge verisi (restoran/otel/plaj/etkinlik/haber kaynağı), marka (renk/logo/font),
+      dil seti, harita merkezi → tek `tenant config` (JSON/DB). Kod bölgeden bağımsız hale gelir.
+- [ ] **İçerik edinme sorunu (asıl zor kısım, teknik değil)**: her yeni bölge kendi işletme/etkinlik verisini ister.
+      Çözüm: onboarding'de Google Maps/SerpApi scrape + RSS kaynak seçimi + agent'ların bölgeye adapte olması.
+- [ ] **Fiyatlama/paket**: aylık abonelik + kurulum ücreti; katmanlar (info / info+ajans / info+ajans+gazete).
+- [ ] **Self-serve onboarding**: yeni bölge = yeni tenant kaydı → domain/subdomain → config → veri seed.
+- [ ] **Operasyon**: destek, güncelleme dağıtımı, tenant izolasyonu, faturalama (Stripe/iyzico).
+- [ ] Pilot: Kalkan dışı 1 küçük bölge ile kanıt (case study) → sonra satış.
+
+**Dürüst zorluklar:** teknik kısım (multi-tenant) yapılabilir; asıl zorluk (1) her bölge için içerik/veri,
+(2) satış/dağıtım kanalı, (3) sürekli destek yükü. Ürün iyi + genelleştirilmiş olursa model sağlam.
+
+## FAZ 0 (paralel) — İLERLEME RAPORU altyapısı (şu an BLOKE)
+
+Berkay gerçek veri raporu istedi (IG erişim + Google Analytics → kalkaninfo.com nasıl ilerliyor).
+- ⛔ **IG_LONG_LIVED_TOKEN 17-May-2026'da expire** → IG Insights çekilemiyor. Yenilenmeli (Meta re-auth,
+      IG_BUSINESS_ID + META_APP_ID/SECRET mevcut).
+- ⛔ **Google Analytics API erişimi yok** — site sadece GTM-PLWTGK2G (client-side). GA4 Data API için property ID +
+      service account (veya Berkay export/paylaşım) gerekir.
+- Kredi gelince: `scripts/agency` altında recurring `analyst` raporu (IG reach + GA + site trafiği → Telegram/PDF).
+
 ## Mimari (mevcut, ayıklanacak parçalar)
 
 - Cockpit UI: `ajansAI/index.html` (izometrik ofis; Supabase Edge Function `agency`'e konuşur).
