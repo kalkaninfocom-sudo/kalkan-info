@@ -39,8 +39,8 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
       (`meta/llama-3.1-8b-instruct`) hızlı+geçerli JSON. GitHub secret'ları eklendi: NVIDIA_API_KEY, GOOGLE_GEMINI_API_KEY.
       Katı "sadece JSON" prompt küçük modelin şemaya uymasını sağladı. timeoutMs 180s.
 - [x] Uçtan uca CI testi ✓ — "Editöryal içerik üretildi (nvidia)".
-- [ ] KALAN POLİSAJ: `newspaper-daily.mjs` `on_conflict=content_pack_id` 400 (tabloda unique yok — app-level upsert'e çevir, non-fatal noise).
-- [ ] KALAN POLİSAJ: sabah bayat social_posts guard'ı (gece oluşan satır sabahki gönderimi bloklamasın — bugün elle silindi).
+- [x] POLİSAJ ✅: `newspaper-daily.mjs` app-level upsert (satır 109-119: mevcut kontrolü + insert; `on_conflict` query kaldırıldı → 400 noise yok).
+- [x] POLİSAJ ✅: sabah bayat social_posts guard'ı `gazete-approval.yml` satır 62-74'te otomatik (sabah çalışmadan önce bayat `gazete-<date>` satırını DELETE → taze onay; elle silme gerekmez).
 - [ ] İYİLEŞTİRME: Gemini billing açılırsa (GCP kredisi) daha hızlı/güvenilir olur; NVIDIA gece yavaşlarsa yedek.
 - [ ] İYİLEŞTİRME: magazine (arka yüz) build'i de gazete-today.json magazine_* alanlarını kullansın (şu an sadece ön yüz).
 
