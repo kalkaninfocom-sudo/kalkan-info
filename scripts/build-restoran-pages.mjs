@@ -437,7 +437,7 @@ for (const slug of targets) {
     MENU_SUB: c.menuSub || '',
     MENU_TABS: menuTabs,
     MENU_ITEMS: menuItems,
-    MENU_PDF: `https://wa.me/${waRaw}?text=${encodeURIComponent('Merhaba, tam menüyü görmek istiyorum.')}`,
+    MENU_PDF: r.menuUrl || `https://wa.me/${waRaw}?text=${encodeURIComponent('Merhaba, tam menüyü görmek istiyorum.')}`,
     GALLERY_TITLE: 'Mekândan Kareler',
     GALLERY_ITEMS: galleryItems,
     SPECIALTIES_PILLS: specs,
