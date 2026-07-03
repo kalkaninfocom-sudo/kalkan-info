@@ -56,6 +56,23 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/agency/gazete-editorial.mjs || echo "editöryal atlandı (RSS fallback)"
 
+      # Sabah AUTHORITATIVE: bugüne ait bayat social_posts satırını sil (gece oluşan + telegram_message_id
+      # dolu satır, gazete-approval'ın "zaten gönderilmiş" guard'ını tetikleyip sabah onayını bloklıyordu).
+      # Silinince gazete-approval taze satır oluşturup taze onay gönderir. Workflow günde 1 çalışır → tek onay.
+      - name: Bugünün bayat onay satırını temizle
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          D=$(TZ=Europe/Istanbul date +%F)
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            curl -s -X DELETE "$SUPABASE_URL/rest/v1/social_posts?content_pack_id=eq.gazete-$D" \
+              -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" >/dev/null || true
+            echo "bayat satır temizlendi (varsa): gazete-$D"
+          else
+            echo "Supabase env yok — temizleme atlandı"
+          fi
+
       - name: Gazete üret + kapak render + Telegram görselli onay
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
