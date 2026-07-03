@@ -32,7 +32,7 @@
       "id": "omar-s-kokobus-kokorec-kofte-tavuk-ekmek",
       "name": "Omar's Kokobüs - Kokoreç, Köfte, Tavuk Ekmek",
       "category": "Restoran",
-      "cuisine": "",
+      "cuisine": "Kokoreç · Köfte · Sokak Lezzetleri",
       "priceRange": "₺200–400",
       "rating": 4.6,
       "reviewCount": 82,
@@ -42,8 +42,15 @@
       "instagram": "",
       "image": "https://i.hizliresim.com/2jVAhS.png",
       "gallery": [],
-      "summary": "",
-      "specialties": [],
+      "summary": "Omar's Kokobüs (Köfteci Ömer Usta) — Kalkan'da kokoreç, köfte ve tavuk ekmek arası denince ilk akla gelen sokak lezzeti durağı. Migros yanında; taze ızgara köfte, bol malzemeli kokoreç, çıtır tavuk. Yarım, çeyrek ve üç çeyrek ekmek arası ile tabakta servis seçenekleri. Gece geç saatlere kadar açık.",
+      "specialties": [
+        "Kokoreç",
+        "Köfte Ekmek",
+        "Tavuk Ekmek",
+        "Yarım Ekmek Kokoreç",
+        "Tabakta Köfte",
+        "Çeyrek Ekmek"
+      ],
       "hours": "Açık · Kapanış saati:  03:30",
       "reservation": true,
       "featured": true,
@@ -61,7 +68,73 @@
       "logo": "https://i.hizliresim.com/2jVAhS.png",
       "menuUrl": "https://kokobus.kalkanyemek.com/",
       "reservationUrl": "https://kokobus.kalkanyemek.com/rezervasyon/",
-      "priority": 100
+      "priority": 100,
+      "menu": {
+        "🥖 Yarım Ekmek": [
+          "Kokoreç Ekmek — 280 ₺ · İnce kıyılmış kokoreç ile baharat içermektedir. (Ankara usulü)",
+          "Köfte Ekmek — 290 ₺ · 5 adet köfte, dilimlenmiş domates, maydanoz ve soğan içerir.",
+          "Tavuk Ekmek (İncik) — 270 ₺ · İncik tavuk, domates, soğan, maydanoz veya marul",
+          "Tavuk Döner — 250 ₺ · Yaprak döner, domates, soğan ve marul.",
+          "Sucuk Ekmek — 300 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+        ],
+        "🥖 Üç Çeyrek Ekmek": [
+          "1.5 Kokoreç — 400 ₺ · Sade, ince kıyılmış kokoreç ile baharat içerir.",
+          "1.5 Köfte Ekmek — 440 ₺ · 8 adet köfte, domates, maydanoz ve soğan içerir.",
+          "1.5 Tavuk İncik — 380 ₺ · İncik tavuk, domates, maydanoz ve soğan.",
+          "1.5 Tavuk Döner — 330 ₺ · Yaprak döner, domates, soğan ve marul.",
+          "1.5 Sucuk Ekmek — 450 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+        ],
+        "🥖 Çeyrek Ekmek": [
+          "Çeyrek Kokoreç — 190 ₺ · Sade, ince kıyılmış kokoreç ile baharat içerir.",
+          "Çeyrek Köfte — 200 ₺ · Köfte, domates, maydanoz ve soğan içerir.",
+          "Çeyrek Tavuk — 180 ₺ · İncik tavuk, domates, maydanoz ve soğan.",
+          "Çeyrek Sucuk — 220 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+        ],
+        "🍽 Tabakta Servis": [
+          "Köfte Izgara — 550 ₺ · Porsiyon köfte, salata, pilav veya patates cipsi közlenmiş domates ve biber içerir.",
+          "Tavuk Izgara — 450 ₺ · İncik tavuk, salata, pilav veya cipsi, közlenmiş biber ve domates içerir.",
+          "Nohutlu Pilav — 200 ₺ · Tavuklu pilav, kornişon turşu ve domates söğüş.",
+          "Tavuklu Pilav — 250 ₺ · Tavuklu pilav, kornişon turşu ve domates söğüş.",
+          "Hamburger — 450 ₺ · Burger eti, domates, marul, soğan, turşu ve özel sos.",
+          "Çizburger — 480 ₺ · Burger eti, çedar peyniri, domates, marul, soğan ve turşu.",
+          "Cips — 200 ₺ · Kızarmış Patates Cipsi"
+        ],
+        "🧃 Soğuk İçecekler": [
+          "Küçük Ayran — 40 ₺ · Yörükoğlu Ayran 200 ml",
+          "Büyük Ayran — 50 ₺ · Yörükoğlu Ayran 285 ml",
+          "Küçük Su — 30 ₺ · Damla Pet Su 0.5 L",
+          "Kutu Pepsi Kola — 90 ₺ · Kutu Pepsi Kola 330 ml",
+          "Şişe Pepsi Kola — 80 ₺ · Pepsi Şişe Kola 300 ml",
+          "Şişe Gara Kola — 80 ₺ · Antalya Kolası 250 ml",
+          "Şişe Kola Zero — 70 ₺ · Coca Cola Zero 200 ml",
+          "Şişe Yedigün Portakal — 80 ₺ · Yedigün Portakal 300 ml",
+          "Şişe 7Up Gazoz — 70 ₺ · SevenUp Gazlı İçecek 200 ml",
+          "Meyveli Soda — 50 ₺ · Meyveli Soda 200 ml",
+          "Maden Suyu — 40 ₺ · Doğal Maden Suyu 200 ml",
+          "Acılı Şalgam — 60 ₺ · Acılı Şalgam Suyu 300 ml",
+          "Acısız Şalgam — 60 ₺ · Acısız Şalgam Suyu 300 ml",
+          "Lipton Ice Tea Şeftali — 100 ₺ · Lipton Ice Tea Limon (330 ml)",
+          "Lipton Ice Tea Limon — 100 ₺ · Lipton Ice Tea Limon (330 ml)",
+          "Vişne Suyu — 100 ₺ · Cappy Vişne Suyu 330 ml",
+          "Şeftali Suyu — 100 ₺ · Cappy Şeftali Suyu 330 ml"
+        ],
+        "☕ Sıcak İçecekler": [
+          "Çay — 30 ₺ · Siyah Demli Çay",
+          "Türk Kahvesi — 80 ₺ · Geleneksel pişirimle hazırlanan Türk kahvesi.",
+          "Sade Kahve — 90 ₺ · Sade Nescafe",
+          "Sütlü Kahve — 120 ₺ · Sütlü Nescafe"
+        ]
+      },
+      "menuTitle": "Menümüz",
+      "menuSub": "Taze ızgara köfte, bol malzemeli kokoreç ve çıtır tavuk — yarım/çeyrek ekmek arası ve tabakta servis.",
+      "tags": [
+        "kalkan kokoreç",
+        "kalkan köfte",
+        "kalkan tavuk ekmek",
+        "kokobüs",
+        "köfteci ömer usta",
+        "kalkan sokak lezzetleri"
+      ]
     },
     {
       "id": "street-munch",

@@ -361,7 +361,7 @@ for (const slug of targets) {
   const aboutImage = ownGallery[1] || ownGallery[0] || baseImg;
 
   // Menü kategorileri
-  const menu = c.menu || { 'Menü': ['Tam menü için yandaki PDF butonuna tıklayın.'] };
+  const menu = c.menu || r.menu || { 'Menü': ['Tam menü için yandaki PDF butonuna tıklayın.'] };
   const cats = Object.keys(menu);
   const menuTabs = `<div class="menu-tab active" data-cat="all">Tümü</div>` +
     cats.map(cat => `<div class="menu-tab" data-cat="${esc(cat.toLowerCase())}">${esc(cat)}</div>`).join('');
@@ -433,8 +433,8 @@ for (const slug of targets) {
     HERO_IMAGE_FULL: heroImageFull,
     OG_IMAGE_FULL: ogImageFull,
     MAPS_QUERY: mapsQuery,
-    MENU_TITLE: c.menuTitle || 'Menümüz',
-    MENU_SUB: c.menuSub || '',
+    MENU_TITLE: c.menuTitle || r.menuTitle || 'Menümüz',
+    MENU_SUB: c.menuSub || r.menuSub || '',
     MENU_TABS: menuTabs,
     MENU_ITEMS: menuItems,
     MENU_PDF: r.menuUrl || `https://wa.me/${waRaw}?text=${encodeURIComponent('Merhaba, tam menüyü görmek istiyorum.')}`,
