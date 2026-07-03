@@ -45,7 +45,7 @@ async function tagline(v) {
       `Kalkan'daki "${v.name}" lüks kiralık villası için TEK cümlelik, davetkâr, abartısız Türkçe tanıtım yaz. ` +
       `Öne çıkanlar: ${v.pool || ''} ${v.seaView ? 'deniz manzarası' : ''} ${v.capacity || ''}. ` +
       `Emoji YOK, tırnak YOK, max 95 karakter.`,
-      { maxTokens: 80 },
+      { maxTokens: 80, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] },
     );
     const line = String(text || '').replace(/["“”]/g, '').split('\n')[0].trim();
     return line && line.length >= 15 && line.length <= 120 ? line : fallback;

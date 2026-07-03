@@ -39,7 +39,7 @@ async function tagline(r) {
       `Kalkan'daki "${r.name}" plajı/koyu için TEK cümlelik, davetkâr, abartısız Türkçe tanıtım yaz. ` +
       `Öne çıkanlar: ${listOf(r.highlights, 3) || r.summary || ''}. ` +
       `Emoji YOK, tırnak YOK, max 95 karakter.`,
-      { maxTokens: 80 },
+      { maxTokens: 80, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] },
     );
     const line = String(text || '').replace(/["“”]/g, '').split('\n')[0].trim();
     return line && line.length >= 15 && line.length <= 120 ? line : fallback;

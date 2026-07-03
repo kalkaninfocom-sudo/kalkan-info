@@ -43,7 +43,7 @@ async function tagline(r) {
       `Kalkan yakınındaki "${r.name}" için az bilinen, merak uyandıran TEK cümlelik Türkçe ilginç gerçek yaz. ` +
       `İpucu: ${(r.highlights || []).slice(0, 3).join('; ') || r.summary || ''}. ` +
       `Emoji YOK, tırnak YOK, max 100 karakter.`,
-      { maxTokens: 90 },
+      { maxTokens: 90, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] },
     );
     const line = String(text || '').replace(/["“”]/g, '').split('\n')[0].trim();
     return line && line.length >= 15 && line.length <= 130 ? line : fallback;

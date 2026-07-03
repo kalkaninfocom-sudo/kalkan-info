@@ -42,7 +42,7 @@ async function tagline(r) {
     const { text } = await cheapLLM(
       `Kalkan'daki "${r.name}" restoranı için TEK cümlelik, iştah açıcı, abartısız Türkçe tanıtım yaz. ` +
       `Mutfak: ${r.cuisine || '-'}. Puan: ${r.rating || '-'}. Emoji YOK, tırnak YOK, max 90 karakter.`,
-      { maxTokens: 80 },
+      { maxTokens: 80, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] },
     );
     const line = String(text || '').replace(/["“”]/g, '').split('\n')[0].trim();
     return line && line.length >= 15 && line.length <= 120 ? line : fallback;
