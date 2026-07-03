@@ -27,20 +27,22 @@ showcase). Bu dosya bu girişimin TEK canlı yol haritasıdır — her adımda g
    süre limitini aşıyor) + eskiden "NVIDIA_API_KEY yok". Cron throttling nedeniyle 07:00–07:50 araştırma
    tick'leri de çoğu sabah hiç ateşlenmiyor.
 
-## FAZ 1 — Burada çalışır hale getir (KANIT) · SEÇİLDİ: "RSS + agent editöryal katman"
+## FAZ 1 — Burada çalışır hale getir (KANIT) · ✅ ÇEKİRDEK CANLI (2026-07-03)
 
 Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kaynağı + agent editöryal katmanı.
 
-- [ ] **Editöryal katman**: sabah workflow'unda (scheduler'a GÜVENME):
-      1. RSS tazele → `data/haberler.json` güncel.
-      2. Muhabir agent ham haberleri 3 editöryal manşet+özete dönüştürür.
-      3. Magazin editörü arka yüz başlıklarını yazar.
-      4. Çıktı → `data/gazete-today.json`; `sources.mjs.getNews()` ÖNCE bunu okur, RSS'e fallback.
-- [ ] **Agent timeout fix**: editöryal çağrıyı Edge Function yerine workflow içinde `lib/cheap-llm.mjs`
-      ile yap (CI'da nvidia uzun timeout / gemini fallback). Edge Function timeout'u da gözden geçir.
-- [ ] Uçtan uca test: workflow'u tetikle → gazete içeriği gerçekten değişti mi doğrula.
-- [ ] `newspaper-daily.mjs` `on_conflict=content_pack_id` 400 fix (tabloda unique yok) — app-level upsert'e çevir.
-- [ ] Sabah bayat social_posts satırı guard'ını sağlamlaştır (gece oluşan satır sabahki gönderimi bloklamasın).
+- [x] **Editöryal katman CANLI** — `scripts/agency/gazete-editorial.mjs`: ham RSS'i Kalkan-alaka+güncelliğe
+      göre sıralar, en iyi 4'ünü cheap-llm ile editöryal manşet/sütun/magazine'e çevirir → `data/gazete-today.json`.
+      `sources.mjs.getNews()` bugünün dosyasını ÖNCE okur, yoksa RSS fallback. gazete-approval.yml'de build'den
+      önce çalışır. CI testi ✓ (NVIDIA 8B, ~5sn, geçerli JSON).
+- [x] **LLM sağlayıcı çözüldü**: Gemini free kotası tükenmiş (429), NVIDIA 70B CI'da timeout → **NVIDIA 8B**
+      (`meta/llama-3.1-8b-instruct`) hızlı+geçerli JSON. GitHub secret'ları eklendi: NVIDIA_API_KEY, GOOGLE_GEMINI_API_KEY.
+      Katı "sadece JSON" prompt küçük modelin şemaya uymasını sağladı. timeoutMs 180s.
+- [x] Uçtan uca CI testi ✓ — "Editöryal içerik üretildi (nvidia)".
+- [ ] KALAN POLİSAJ: `newspaper-daily.mjs` `on_conflict=content_pack_id` 400 (tabloda unique yok — app-level upsert'e çevir, non-fatal noise).
+- [ ] KALAN POLİSAJ: sabah bayat social_posts guard'ı (gece oluşan satır sabahki gönderimi bloklamasın — bugün elle silindi).
+- [ ] İYİLEŞTİRME: Gemini billing açılırsa (GCP kredisi) daha hızlı/güvenilir olur; NVIDIA gece yavaşlarsa yedek.
+- [ ] İYİLEŞTİRME: magazine (arka yüz) build'i de gazete-today.json magazine_* alanlarını kullansın (şu an sadece ön yüz).
 
 ## FAZ 2 — Temiz public template repo'ya çıkar
 
