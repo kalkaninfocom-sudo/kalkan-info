@@ -8,7 +8,7 @@
 //   ✅ Webhook URL: https://www.kalkaninfo.com/api/telegram-webhook
 
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
-import { publishCarousel, publishSingleImage } from '../lib/instagram-publish.js';
+import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
 import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
@@ -59,7 +59,10 @@ async function publishNow(post) {
 
   try {
     let mediaId;
-    if (assets.length >= 2) {
+    if (post.content_type === 'reels' || post.content_type === 'video') {
+      // Reel: assets[0] = video URL (Supabase storage). publishReels container→poll→publish.
+      mediaId = await publishReels(IG_USER_ID, IG_TOKEN, assets[0], caption);
+    } else if (assets.length >= 2) {
       mediaId = await publishCarousel(IG_USER_ID, IG_TOKEN, assets, caption);
     } else {
       mediaId = await publishSingleImage(IG_USER_ID, IG_TOKEN, assets[0], caption);

@@ -31,7 +31,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -81,6 +81,17 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
+
+      # Faz 1.5: Claude-tasarımı günlük gazete reel'i (aynı editöryal içerikten) → Supabase → Telegram video onayı.
+      # Non-fatal: Remotion render CI'da patlarsa gazete akışı bozulmasın (|| echo).
+      - name: Günlük gazete reel'i üret + video onayı
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://www.kalkaninfo.com
+        run: node scripts/agency/reel-approval.mjs || echo "reel adımı atlandı (gazete akışı etkilenmez)"
 
       - name: Commit & push arşiv (web canlı)
         run: |

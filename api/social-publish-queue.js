@@ -2,7 +2,7 @@
 // Vercel cron: her saat başı approved post'ları IG'de yayınlar.
 // Manuel test: GET /api/social-publish-queue?secret=...&dry=1
 
-import { publishCarousel, publishSingleImage } from '../lib/instagram-publish.js';
+import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
 import { sendMessage } from '../lib/telegram.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
@@ -139,7 +139,10 @@ export default async function handler(req, res) {
       const caption = buildCaption(post);
 
       let result;
-      if (imageUrls.length >= 2) {
+      if (post.content_type === 'reels' || post.content_type === 'video') {
+        if (!imageUrls.length) throw new Error('reels: video URL (local_assets[0]) yok');
+        result = await publishReels(IG_USER_ID, IG_TOKEN, imageUrls[0], caption);
+      } else if (imageUrls.length >= 2) {
         result = await publishCarousel(IG_USER_ID, IG_TOKEN, imageUrls, caption);
       } else if (imageUrls.length === 1) {
         result = await publishSingleImage(IG_USER_ID, IG_TOKEN, imageUrls[0], caption);
