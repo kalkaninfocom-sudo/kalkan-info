@@ -29,7 +29,7 @@ if (!TOKEN) {
 }
 
 const WEBHOOK_URL = process.env.TELEGRAM_WEBHOOK_URL ||
-  'https://www.kalkaninfo.com/api/telegram-webhook';
+  'https://kalkaninfo.com/api/telegram-webhook'; // non-www: www 308→non-www, Telegram redirect takip etmez
 
 const SECRET = process.env.TELEGRAM_WEBHOOK_SECRET ||
   randomBytes(24).toString('hex');
