@@ -17,7 +17,7 @@ const PAGES = [
   { id: 'antik',        path: '/antik-kentler',   wait: 2400, fullPage: true,  maxHeight: 3200 },
   { id: 'hizmetler',    path: '/hizmetler',       wait: 2400, fullPage: true,  maxHeight: 3200 },
   // NOT: /ilanlar (iş ilanları) 404 verdiği için tur'dan çıkarıldı — reels'i bozuyordu.
-  { id: 'tatil',        path: '/tatil-planla',    wait: 2400, fullPage: true,  maxHeight: 3200 },
+  { id: 'tatil',        path: '/tatil-asistani',  wait: 2400, fullPage: true,  maxHeight: 3200 },
 ];
 
 const outDir = resolve('dist/site-tour/screens');
@@ -48,10 +48,27 @@ for (const p of PAGES) {
   // böylece çerez bannerı ve "Uygulamayı Yükle" bannerı HİÇ görünmez (video temiz çıkar).
   await page.evaluateOnNewDocument(() => {
     try {
+      // Çerez consent (cookie-banner.js → CONSENT_KEY='ki-consent-v1', localStorage)
       localStorage.setItem('ki-consent-v1', JSON.stringify({ functional: true, analytics: true, marketing: true, ts: new Date().toISOString(), version: 1 }));
-      localStorage.setItem('kalkan_install_dismissed', String(Date.now()));
+      // PWA install banner (bottom-nav.js → sessionStorage 'ki-bn-install-dismissed')
+      sessionStorage.setItem('ki-bn-install-dismissed', '1');
       localStorage.setItem('lang', 'tr');
     } catch (_) {}
+    // Kurşun-geçirmez: pwa.js iOS/install bannerını (#kalkan-install-banner/#kalkan-ios-banner)
+    // ne zaman eklerse eklesin baştan öldür — video temiz kalsın.
+    const kill = () => {
+      ['#kalkan-install-banner', '#kalkan-ios-banner', '#kalkan-install-btn', '.ki-bn-item.cta'].forEach(s => {
+        document.querySelectorAll(s).forEach(el => el.remove());
+      });
+    };
+    try {
+      const st = document.createElement('style');
+      st.textContent = '#kalkan-install-banner,#kalkan-ios-banner,.ki-bn-item.cta{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
+      (document.head || document.documentElement).appendChild(st);
+    } catch (_) {}
+    const iv = setInterval(kill, 250);
+    document.addEventListener('DOMContentLoaded', kill);
+    window.addEventListener('load', () => { kill(); setTimeout(() => clearInterval(iv), 6000); });
   });
 
   try {
