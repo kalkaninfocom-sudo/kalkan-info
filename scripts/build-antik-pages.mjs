@@ -16,6 +16,7 @@
  * Run: node scripts/build-antik-pages.mjs
  */
 import { readFile, writeFile, mkdir } from 'fs/promises';
+import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve, join } from 'path';
 
@@ -24,7 +25,7 @@ const ROOT = resolve(__dirname, '..');
 const DATA = resolve(ROOT, 'data/antik-kentler.json');
 const OUT_DIR = resolve(ROOT, 'antik-kentler');
 
-const PRIORITY = [
+export const PRIORITY = [
   'patara', 'xanthos', 'letoon', 'tlos', 'pinara',
   'simena', 'antiphellos', 'myra', 'andriake', 'aperlae'
 ];
@@ -44,7 +45,7 @@ const LOCALITY = {
 };
 
 // Özgün, ChatGPT-jenerik olmayan ek tarih anlatımı (her kent için 200-300 kelime)
-const EXTENDED = {
+export const EXTENDED = {
   patara: `Patara'da yürüdüğünüz tozlu Decumanus, M.S. 100'lerde Roma'nın en geniş anayollarından biriydi — 12 metre genişliğindeki cadde, tahıl yüklü iki at arabasının yan yana geçebileceği kadar genişti. Bouleuterion'un yarım yuvarlak basamaklarına oturunca, M.Ö. 168'de Likya Birliği temsilcilerinin "her büyük şehir 3 oy, küçük şehir 1 oy" sistemini burada tartıştığını düşünün — bu, dünyanın bilinen ilk oransal temsil sistemiydi. Türk arkeologların 1988'den beri devam eden kazılarında ortaya çıkan Hadrian Granarium'unun duvarları, Mısır'dan Roma'ya giden tahılın 6-8 ay burada bekletildiğini gösteriyor. Aziz Nikolas'ın doğduğu eve dair somut iz yok ama M.S. 270'lerde piskopos olduğu kilise temelleri görülebiliyor. Antik kentten 1.5 km batıda ise Türkiye'nin en uzun kumsalı (18 km) başlar — caretta caretta deniz kaplumbağalarının yumurtladığı bu plaja antik kent biletiyle aynı gün girebilirsiniz, ekstra ücret yok.`,
 
   xanthos: `Xanthos'ta hissedilen ağırlık, sadece taşlardan değil — tarihin iki kez kendini yok eden bir halkın anısından geliyor. M.Ö. 540'ta Pers komutanı Harpagos kenti kuşattığında, Xanthoslular kadınlarını, çocuklarını ve hazinelerini akropoldeki bir binaya koyup ateşe verdi, sonra son neferleri düşmana saldırdı. M.Ö. 42'de Brutus geldiğinde aynı sahne tekrarlandı — Plutarkhos bu olayı "tarihin en hazin sahnesi" olarak yazdı. Bugün gördüğünüz Harpya Anıtı (M.Ö. 480) ve Likya Sütunlu Anıtı'nın orijinalleri 1842'de İngiliz arkeolog Charles Fellows tarafından 80 sandık halinde British Museum'a taşındı; tepede gördükleriniz replika. Ancak Roma tiyatrosunun 2.200 kişilik basamakları orijinal — Eşen vadisine bakan basamaklara oturup gün batımını izlemek, Likya hikayesini en doğru hissetme yolu. Sabah erken saatlerde gidin: tepe gölgesiz, öğle sıcağı yorucu.`,
@@ -68,7 +69,7 @@ const EXTENDED = {
 
 // EN/DE/RU/FR çeviriler için: data-en, data-de, data-ru, data-fr — translate-i18n.mjs sonra doldurur
 // Manuel olarak temel meta etiketlerini EN ile veriyoruz, diğer 3'ünü EN'den otomatik doldurulacak şekilde işaretliyoruz.
-const EN_OVERVIEW = {
+export const EN_OVERVIEW = {
   patara: "UNESCO World Heritage Site. Capital of the Lycian League, birthplace of Apollo and St. Nicholas. The world's first known democratic assembly building.",
   xanthos: "UNESCO World Heritage Site. Co-capital of Lycia with Letoon. Famous for the harrowing self-immolation tale and the Harpy Tomb.",
   letoon: "UNESCO World Heritage Site (with Xanthos). Lycia's federal religious centre dedicated to Leto, Apollo and Artemis.",
@@ -87,6 +88,32 @@ function escapeHtml(s = '') {
 
 function escapeAttr(s = '') {
   return String(s).replace(/[<>&"]/g, c => ({ '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;' }[c]));
+}
+
+// ── i18n içerik çevirileri (translate-antik.mjs üretir) ──────────────────────
+// data/antik-kentler-i18n.json: { <slug>: { en:{summary,history,extended,highlights[],tips,transport}, de, ru, fr } }
+const I18N_PATH = resolve(ROOT, 'data/antik-kentler-i18n.json');
+const I18N = existsSync(I18N_PATH) ? JSON.parse(readFileSync(I18N_PATH, 'utf8')) : {};
+
+// Bir içerik alanı için data-en/de/ru/fr attribute dizisi üret (js/i18n.js okur, fallback lang→en→tr).
+function langAttrs(slug, field, langs = ['en', 'de', 'ru', 'fr']) {
+  const rec = I18N[slug];
+  if (!rec) return '';
+  return langs
+    .map(l => (rec[l] && rec[l][field]) ? `data-${l}="${escapeAttr(rec[l][field])}"` : '')
+    .filter(Boolean)
+    .join(' ');
+}
+
+// highlights[] için: verilen index'in çevirisinden data-* attribute'ları (li text span'ine).
+function highlightAttrs(slug, idx, langs = ['en', 'de', 'ru', 'fr']) {
+  const rec = I18N[slug];
+  if (!rec) return '';
+  return langs
+    .map(l => (rec[l] && Array.isArray(rec[l].highlights) && rec[l].highlights[idx])
+      ? `data-${l}="${escapeAttr(rec[l].highlights[idx])}"` : '')
+    .filter(Boolean)
+    .join(' ');
 }
 
 function buildJsonLd(item, slug) {
@@ -131,13 +158,8 @@ function pageHtml(item, slug) {
   const loc = LOCALITY[slug] || { city: 'Antalya', region: 'Antalya' };
   const enOverview = EN_OVERVIEW[slug] || item.summary;
   const extended = EXTENDED[slug] || item.history;
-  // Ozet DE/RU/FR — summaryI18n'den (js/i18n.js data-de/ru/fr okur, fallback: de/ru/fr -> en -> tr).
-  const s18 = item.summaryI18n || {};
-  const overviewLangAttrs = ['de', 'ru', 'fr']
-    .map(l => (s18[l] ? `data-${l}="${escapeAttr(s18[l])}"` : ''))
-    .filter(Boolean)
-    .join(' ');
-  const highlights = (item.highlights || []).map(h => `<li class="flex gap-2 items-start"><span class="text-sun-500 mt-1.5">◆</span><span>${escapeHtml(h)}</span></li>`).join('\n          ');
+  // Özet/içerik DE/RU/FR: langAttrs() I18N sidecar'dan okur (js/i18n.js fallback: lang→en→tr).
+  const highlights = (item.highlights || []).map((h, idx) => `<li class="flex gap-2 items-start"><span class="text-sun-500 mt-1.5">◆</span><span ${highlightAttrs(slug, idx)}>${escapeHtml(h)}</span></li>`).join('\n          ');
   const tags = (item.tags || []).map(t => `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">${escapeHtml(t)}</span>`).join(' ');
 
   const metaDesc = `${item.name} — ${item.summary}`.slice(0, 158);
@@ -243,7 +265,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="${escapeAttr(item.category)}">${escapeHtml(item.category)}</span>
     </div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold mt-4 max-w-3xl leading-[1.05]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="${escapeAttr(item.name)}">${escapeHtml(item.name)}</h1>
-    <p class="mt-4 text-white/85 max-w-2xl text-base md:text-lg leading-relaxed" data-en="${escapeAttr(enOverview)}" ${overviewLangAttrs}>${escapeHtml(item.summary)}</p>
+    <p class="mt-4 text-white/85 max-w-2xl text-base md:text-lg leading-relaxed" data-en="${escapeAttr(enOverview)}" ${langAttrs(slug, 'summary', ['de', 'ru', 'fr'])}>${escapeHtml(item.summary)}</p>
     <div class="mt-5 flex flex-wrap gap-2">${tags}</div>
   </div>
 </header>
@@ -295,8 +317,8 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
         <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="History &amp; Visit Guide">Tarih &amp; Ziyaret Rehberi</span>
       </div>
       <h2 class="font-display text-2xl md:text-4xl font-extrabold text-sea-800 leading-tight" data-en="What you'll see at ${escapeAttr(item.name)}">${escapeHtml(item.name)}'nde ne göreceksiniz?</h2>
-      <p class="text-sea-700 mt-5 text-base md:text-lg leading-relaxed">${escapeHtml(item.history || '')}</p>
-      <p class="text-sea-700 mt-4 text-base leading-relaxed">${escapeHtml(extended)}</p>
+      <p class="text-sea-700 mt-5 text-base md:text-lg leading-relaxed" ${langAttrs(slug, 'history')}>${escapeHtml(item.history || '')}</p>
+      <p class="text-sea-700 mt-4 text-base leading-relaxed" ${langAttrs(slug, 'extended')}>${escapeHtml(extended)}</p>
 
       <h3 class="font-display text-xl font-extrabold text-sea-800 mt-10 mb-4" data-en="Highlights">Görülmesi Gerekenler</h3>
       <ul class="space-y-2.5 text-sea-700 text-[15px]">
@@ -305,7 +327,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 
       <div class="mt-10 bg-sun-50 border-l-4 border-sun-500 rounded-r-xl p-5">
         <div class="text-[11px] uppercase tracking-widest text-sun-700 font-bold mb-2" data-en="Local tip">Yerel Tavsiye</div>
-        <p class="text-sea-800 text-[15px] leading-relaxed">${escapeHtml(item.tips || '')}</p>
+        <p class="text-sea-800 text-[15px] leading-relaxed" ${langAttrs(slug, 'tips')}>${escapeHtml(item.tips || '')}</p>
       </div>
     </article>
 
@@ -314,7 +336,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <div class="bg-white border border-sea-100 rounded-2xl p-5 shadow-sm">
         <div class="text-[11px] uppercase tracking-widest text-sun-500 font-bold mb-2" data-en="How to get there">Nasıl Gidilir</div>
         <h3 class="font-display font-extrabold text-sea-800 text-lg mb-3">Kalkan → ${escapeHtml(item.name)}</h3>
-        <p class="text-sea-700 text-sm leading-relaxed">${escapeHtml(item.transport || '')}</p>
+        <p class="text-sea-700 text-sm leading-relaxed" ${langAttrs(slug, 'transport')}>${escapeHtml(item.transport || '')}</p>
         <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
           <div class="bg-sea-50 rounded-lg p-2.5">
             <div class="text-[10px] uppercase tracking-wider text-sea-700/60 font-bold" data-en="By car">Araçla</div>
@@ -434,4 +456,7 @@ async function main() {
   console.log(`\nDone — ${built.length} pages written to ${OUT_DIR}`);
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+// Sadece doğrudan çalıştırıldığında build et — import edildiğinde (translate-antik.mjs) değil.
+if (process.argv[1] && process.argv[1].endsWith('build-antik-pages.mjs')) {
+  main().catch(err => { console.error(err); process.exit(1); });
+}
