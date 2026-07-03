@@ -309,7 +309,7 @@ for (const slug of targets) {
   const r = (data.items || []).find(x => x.id === slug);
   if (!r) { console.warn(`Atlandi: ${slug} restoranlar.json'da yok`); continue; }
   const c = CUSTOM[slug] || {};
-  const t = theme(r.category);
+  const t = r.theme || c.theme || theme(r.category); // per-restoran tema override (logo paleti vb.)
 
   // Galeri: SADECE bu restoranin kendi fotograflari.
   // Sirayla: (a) fetch-restoran-photos.mjs indirdigi /assets/img/restoran/<slug>-{1..8}.jpg,
