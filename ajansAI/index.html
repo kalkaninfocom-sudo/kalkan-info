@@ -1,1696 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kalkan Info — Ajans Ofisi</title>
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Kalkan Info — AjansAI Operasyon Merkezi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-:root{
-  --navy-1:#072136; --navy-2:#0a2e4c; --navy-3:#0d3a5f; --blue:#1a5e93;
-  --gold-1:#f4b53d; --gold-2:#e89812; --gold-3:#c97b09;
-  --sand-1:#e8dcc2; --sand-2:#dfd0af; --sand-3:#d4c39c;
-  --ink:#eaf2f9; --muted:#9db8cc;
-  --room-accent:#f4b53d;
-  --shadow-soft:0 6px 24px rgba(4,18,32,.45), 0 2px 8px rgba(4,18,32,.35);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;overflow:hidden}
-body{
-  font-family:'Inter',sans-serif; color:var(--ink);
-  background:
-    radial-gradient(1100px 700px at 18% -10%, rgba(26,94,147,.35), transparent 60%),
-    radial-gradient(900px 600px at 85% 110%, rgba(232,152,18,.10), transparent 55%),
-    radial-gradient(1400px 900px at 50% 50%, #0a2e4c, #04121f 85%);
-  user-select:none; -webkit-user-select:none;
-}
-h1,h2,h3,.mont{font-family:'Montserrat',sans-serif;letter-spacing:-0.02em}
+  :root{
+    --navy:#071726; --navy2:#0c2438; --card:#0e2a44; --card2:#123453; --line:#1d425f;
+    --gold:#e89812; --gold2:#f4b53d; --sea:#4a9ef5; --ink:#eaf3fb; --muted:#7fa3c0;
+    --green:#3ad07f; --red:#e0603f; --amber:#f0b429;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(232,152,18,.10), transparent 60%),
+    radial-gradient(900px 700px at -5% 110%, rgba(74,158,245,.10), transparent 60%),
+    var(--navy);color:var(--ink);min-height:100vh}
+  a{color:inherit}
+  .mono{font-variant-numeric:tabular-nums}
 
-/* grain */
-#grain{position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.05;mix-blend-mode:overlay}
+  /* Gate */
+  #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--navy)}
+  #gate .box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px 30px;width:min(90vw,340px);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  #gate .lg{font-family:'Montserrat';font-weight:900;font-size:20px}.lg .d{color:var(--gold)}
+  #gate .sub{color:var(--muted);font-size:12px;margin:4px 0 20px;letter-spacing:.1em;text-transform:uppercase}
+  #gate input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--navy2);color:var(--ink);font-size:16px;text-align:center;outline:none}
+  #gate input:focus{border-color:var(--gold)}
+  #gate button{margin-top:14px;width:100%;border:0;background:var(--gold);color:#0a2136;font-family:'Montserrat';font-weight:800;font-size:15px;padding:12px;border-radius:10px;cursor:pointer}
+  #gate .err{color:var(--red);font-size:12px;margin-top:10px;display:none}
 
-/* ============ TOP BAR ============ */
-#topbar{
-  position:fixed;top:0;left:0;right:0;height:60px;z-index:100;
-  display:flex;align-items:center;gap:18px;padding:0 22px;
-  background:linear-gradient(180deg, rgba(7,33,54,.94), rgba(7,33,54,.82));
-  border-bottom:1px solid rgba(244,181,61,.22);
-  backdrop-filter:blur(8px);
-  box-shadow:0 8px 30px rgba(3,14,26,.5);
-}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;white-space:nowrap}
-.logo .k{color:#fff}.logo .i{color:var(--gold-1)}
-.logo-sub{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-left:2px}
-#topbar .divider{width:1px;height:26px;background:rgba(157,184,204,.25)}
-.office-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:var(--room-accent);transition:color .4s ease;white-space:nowrap;
-  max-width:270px;overflow:hidden;text-overflow:ellipsis;flex-shrink:1;min-width:0}
-@media (max-width:1240px){.office-title{display:none}}
-#hud-stats{display:flex;align-items:center;gap:14px;margin-left:auto;font-size:12.5px;font-weight:600;color:var(--muted)}
-#hud-stats .stat b{color:#fff;font-weight:700}
-#hud-stats .dot{width:4px;height:4px;border-radius:50%;background:rgba(157,184,204,.5)}
-#clock{
-  font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:#fff;
-  background:rgba(13,58,95,.65);border:1px solid rgba(244,181,61,.3);
-  padding:6px 14px;border-radius:10px;min-width:96px;text-align:center;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 4px 14px rgba(3,14,26,.4);
-  font-variant-numeric:tabular-nums;
-}
-#clock small{font-size:9px;display:block;color:var(--gold-1);font-weight:700;letter-spacing:.12em;margin-top:-1px}
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(7,23,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .hwrap{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .brand{font-family:'Montserrat';font-weight:900;font-size:16px;letter-spacing:.01em}.brand .d{color:var(--gold)}
+  .brand small{display:block;font-family:'Inter';font-weight:600;font-size:9px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:1px}
+  .live{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:600}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+  .live.on .dot{background:var(--green);box-shadow:0 0 0 4px rgba(58,208,127,.18);animation:pulse 2s infinite}
+  .live.stale .dot{background:var(--amber)}
+  @keyframes pulse{50%{opacity:.5}}
+  .clock{margin-left:auto;font-family:'Montserrat';font-weight:800;font-size:14px;color:var(--gold2);background:var(--navy2);padding:6px 12px;border-radius:8px;border:1px solid var(--line)}
+  nav.tabs{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;gap:4px}
+  nav.tabs button{background:none;border:0;color:var(--muted);font-family:'Montserrat';font-weight:700;font-size:13px;padding:12px 16px;cursor:pointer;border-bottom:3px solid transparent}
+  nav.tabs button.on{color:var(--ink);border-bottom-color:var(--gold)}
+  nav.tabs button .b{display:inline-block;min-width:18px;padding:0 5px;margin-left:6px;background:var(--gold);color:#0a2136;border-radius:9px;font-size:10px;font-weight:800}
 
-/* ============ VIEWPORT / WORLD ============ */
-#viewport{position:fixed;inset:60px 0 0 0;overflow:hidden}
-#world{
-  position:absolute;left:50%;top:50%;
-  width:1600px;height:1080px;
-  transform-origin:center center;
-}
-#room-svg{position:absolute;left:0;top:0;z-index:0}
-.obj{position:absolute;transform:translate(-50%,-100%);pointer-events:none}
-.obj svg{display:block;overflow:visible}
+  main{max-width:1200px;margin:0 auto;padding:22px 20px 60px}
+  .view{display:none}.view.on{display:block}
 
-/* characters */
-.agent-el{cursor:pointer;transition:filter .25s ease}
-body:not(.mode-decor) .agent-el{pointer-events:auto}
-body.mode-decor .furn{pointer-events:auto}
-.agent-el:hover .persona{transform:translateY(-4px) scale(1.04)}
-.agent-el .persona{position:relative;z-index:1;transition:transform .35s cubic-bezier(.34,1.56,.64,1);transform-origin:bottom center}
-.chair-back{position:absolute;z-index:0}
-body.mode-decor .agent-el{cursor:default;filter:saturate(.55) brightness(.8)}
-body.mode-decor .agent-el:hover .persona{transform:none}
-.eyes{transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}
-@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%,98%{transform:scaleY(.08)}}
+  /* Stat cards */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat .k{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+  .stat .v{font-family:'Montserrat';font-weight:900;font-size:26px;margin-top:4px;line-height:1}
+  .stat .v.gold{color:var(--gold2)}.stat .v.green{color:var(--green)}.stat .v.amber{color:var(--amber)}
 
-/* status bubble */
-.bubble{
-  position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);
-  display:flex;align-items:center;gap:5px;white-space:nowrap;
-  font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;
-  background:rgba(255,255,255,.96);color:var(--navy-1);
-  box-shadow:0 4px 14px rgba(4,18,32,.4), 0 1px 3px rgba(4,18,32,.3);
-  animation:bob 3.2s ease-in-out infinite;
-}
-.bubble::after{
-  content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);
-  border:5px solid transparent;border-top-color:rgba(255,255,255,.96);
-}
-@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
-.bubble.st-work{background:#e9f4ff}.bubble.st-work::after{border-top-color:#e9f4ff}
-.bubble.st-alert{background:#ffe9e6;color:#8a2418}.bubble.st-alert::after{border-top-color:#ffe9e6}
-.bubble.st-cron{background:#fff6e2;color:#7a4a05}.bubble.st-cron::after{border-top-color:#fff6e2}
-.bubble .tdots{display:inline-flex;gap:2.5px;align-items:center}
-.bubble .tdots i{width:4px;height:4px;border-radius:50%;background:var(--blue);animation:tdot 1.2s infinite}
-.bubble .tdots i:nth-child(2){animation-delay:.15s}.bubble .tdots i:nth-child(3){animation-delay:.3s}
-@keyframes tdot{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-.status-pop{animation:spop .5s cubic-bezier(.34,1.56,.64,1)}
-@keyframes spop{0%{transform:translateX(-50%) scale(.4);opacity:0}100%{transform:translateX(-50%) scale(1);opacity:1}}
+  /* Filter pills */
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .pill{background:var(--card);border:1px solid var(--line);color:var(--muted);font-weight:700;font-size:12px;padding:7px 13px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .pill.on{background:var(--gold);color:#0a2136;border-color:var(--gold)}
 
-.name-tag{
-  position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);
-  font-size:10px;font-weight:700;letter-spacing:.02em;white-space:nowrap;
-  color:#fff;background:rgba(7,33,54,.78);padding:3px 9px;border-radius:12px;
-  border:1px solid rgba(244,181,61,.35);
-  text-shadow:0 1px 2px rgba(0,0,0,.5);
-}
+  /* Automations table */
+  .tbl{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .row{display:grid;grid-template-columns:24px 2.4fr 1fr 1.3fr 1fr auto;gap:12px;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:0}
+  .row.head{background:var(--navy2);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+  .row:not(.head):hover{background:var(--card2)}
+  .sdot{width:11px;height:11px;border-radius:50%;background:var(--muted)}
+  .sdot.work{background:var(--green);box-shadow:0 0 0 3px rgba(58,208,127,.2)}
+  .sdot.cron{background:var(--sea)}.sdot.idle{background:#4a6178}.sdot.alert{background:var(--red)}
+  .a-name{font-family:'Montserrat';font-weight:700;font-size:13px}
+  .a-role{font-size:10.5px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:340px}
+  .badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;display:inline-block}
+  .sched{font-size:11px;color:var(--ink);font-weight:600}
+  .ago{font-size:11px;color:var(--muted)}
+  .btn{border:0;border-radius:8px;font-family:'Montserrat';font-weight:700;font-size:11px;padding:7px 12px;cursor:pointer}
+  .btn.run{background:var(--gold);color:#0a2136}.btn.run:hover{background:var(--gold2)}
+  .btn.ghost{background:var(--navy2);color:var(--muted);border:1px solid var(--line)}
+  .btn.ghost:hover{color:var(--ink)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .rowacts{display:flex;gap:6px}
 
-/* screen glow */
-.glow{position:absolute;left:50%;top:0;transform:translate(-50%,-50%);border-radius:50%;
-  pointer-events:none;filter:blur(10px);opacity:.5;animation:flick 3.4s ease-in-out infinite}
-@keyframes flick{0%,100%{opacity:.45}40%{opacity:.7}60%{opacity:.5}}
+  /* Görev ver */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .fld{margin-bottom:14px}.fld label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:6px}
+  select,textarea,input.txt{width:100%;background:var(--navy2);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:11px 13px;font-size:13px;font-family:inherit;outline:none}
+  select:focus,textarea:focus,input.txt:focus{border-color:var(--gold)}
+  textarea{min-height:90px;resize:vertical}
+  .send{background:var(--gold);color:#0a2136;border:0;font-family:'Montserrat';font-weight:800;font-size:14px;padding:12px 22px;border-radius:10px;cursor:pointer}
+  #job-out{margin-top:16px;background:var(--navy2);border:1px solid var(--line);border-radius:10px;padding:14px;font-size:12.5px;line-height:1.6;white-space:pre-wrap;display:none}
+  #job-out.run{color:var(--gold2)}
+  #job-out pre{white-space:pre-wrap;font-size:11.5px}
 
-/* furniture */
-.furn{cursor:default}
-body.mode-decor .furn{cursor:grab}
-body.mode-decor .furn.dragging{cursor:grabbing}
-.furn .emo{font-size:46px;line-height:1;display:block;text-align:center;
-  filter:drop-shadow(0 6px 5px rgba(4,18,32,.35));position:relative;z-index:1}
-.furn .fshadow{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);
-  width:52px;height:20px;border-radius:50%;background:radial-gradient(ellipse, rgba(4,18,32,.35), transparent 70%)}
-.furn.selected .emo{animation:wig .6s ease-in-out infinite}
-@keyframes wig{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
-.del-pop{
-  position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
-  background:#fff;color:#8a2418;font-size:12px;font-weight:700;
-  padding:6px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;
-  box-shadow:0 6px 20px rgba(4,18,32,.5);border:1px solid rgba(201,123,9,.3);
-}
-.del-pop:hover{background:#ffe9e6}
+  /* Queue */
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+  .qcard .qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .qtype{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--gold2)}
+  .qbody{font-size:12.5px;line-height:1.6;color:var(--ink);max-height:120px;overflow:auto;white-space:pre-wrap}
+  .qacts{display:flex;gap:8px;margin-top:12px}
+  .btn.ok{background:var(--green);color:#062418}.btn.no{background:var(--red);color:#fff}
 
-/* tile highlight */
-#tileHi{position:absolute;width:0;height:0;pointer-events:none;z-index:9000;display:none}
-#tileHi svg{overflow:visible;display:block}
-
-/* drag ghost */
-#ghost{position:fixed;pointer-events:none;z-index:150;font-size:46px;transform:translate(-50%,-70%);
-  filter:drop-shadow(0 8px 8px rgba(4,18,32,.4));opacity:.85;display:none}
-
-/* ============ BOTTOM BAR ============ */
-#botbar{
-  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:100;
-  display:flex;flex-direction:column;align-items:center;gap:10px;max-width:96vw;
-}
-#controls{
-  display:flex;align-items:center;gap:10px;
-  background:linear-gradient(180deg, rgba(10,46,76,.92), rgba(7,33,54,.94));
-  border:1px solid rgba(244,181,61,.25);border-radius:16px;padding:8px 10px;
-  box-shadow:var(--shadow-soft);backdrop-filter:blur(8px);
-}
-.mode-pill{display:flex;background:rgba(4,18,32,.55);border-radius:11px;padding:3px;gap:3px}
-.mode-btn{
-  font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;color:var(--muted);
-  padding:8px 16px;border:none;border-radius:9px;background:transparent;cursor:pointer;
-  transition:transform .15s ease, opacity .15s ease;
-}
-.mode-btn:hover{color:#fff}
-.mode-btn:active{transform:scale(.96)}
-.mode-btn:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-.mode-btn.on{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));color:var(--navy-1);box-shadow:0 3px 10px rgba(232,152,18,.4)}
-.ctl-btn{
-  font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;color:#fff;
-  padding:9px 15px;border-radius:10px;cursor:pointer;
-  background:rgba(26,94,147,.45);border:1px solid rgba(26,94,147,.7);
-  transition:transform .15s ease;
-}
-.ctl-btn:hover{background:rgba(26,94,147,.7)}
-.ctl-btn:active{transform:scale(.96)}
-.ctl-btn:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-.ctl-btn.gold{background:linear-gradient(180deg,var(--gold-1),var(--gold-2));border-color:var(--gold-3);color:var(--navy-1);font-weight:700}
-.ctl-btn.gold:hover{filter:brightness(1.07)}
-
-#tray{
-  display:none;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;max-width:94vw;
-  background:linear-gradient(180deg, rgba(10,46,76,.92), rgba(7,33,54,.94));
-  border:1px solid rgba(244,181,61,.25);border-radius:16px;padding:10px 12px;
-  box-shadow:var(--shadow-soft);backdrop-filter:blur(8px);
-}
-body.mode-decor #tray{display:flex;animation:trayIn .4s cubic-bezier(.34,1.56,.64,1)}
-@keyframes trayIn{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
-.tray-item{
-  display:flex;flex-direction:column;align-items:center;gap:3px;width:56px;padding:7px 2px 5px;
-  border-radius:12px;cursor:grab;background:rgba(4,18,32,.35);border:1px solid transparent;
-  transition:transform .18s cubic-bezier(.34,1.56,.64,1);
-}
-.tray-item:hover{transform:translateY(-4px);border-color:rgba(244,181,61,.45);background:rgba(13,58,95,.6)}
-.tray-item:active{cursor:grabbing;transform:scale(.94)}
-.tray-item .ti-emo{font-size:23px;line-height:1}
-.tray-item .ti-name{font-size:8.5px;font-weight:600;color:var(--muted);white-space:nowrap}
-.tray-hint{font-size:11px;color:var(--muted);width:100%;text-align:center;margin-top:2px}
-
-/* ============ AGENT CARD ============ */
-#card-veil{position:fixed;inset:0;z-index:110;background:rgba(4,14,26,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
-#card-veil.open{opacity:1;pointer-events:auto}
-#card{
-  position:fixed;top:0;right:0;bottom:0;width:380px;max-width:92vw;z-index:120;
-  background:linear-gradient(180deg,#0a2e4c 0%, #072136 100%);
-  border-left:1px solid rgba(244,181,61,.3);
-  box-shadow:-20px 0 60px rgba(3,14,26,.6);
-  transform:translateX(105%);transition:transform .42s cubic-bezier(.32,1,.35,1);
-  display:flex;flex-direction:column;overflow-y:auto;
-}
-#card.open{transform:translateX(0)}
-#card::-webkit-scrollbar{width:6px}#card::-webkit-scrollbar-thumb{background:rgba(157,184,204,.3);border-radius:3px}
-.card-head{position:relative;padding:26px 24px 18px;background:
-  radial-gradient(300px 160px at 80% -20%, rgba(244,181,61,.16), transparent 70%)}
-.card-close{
-  position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:9px;border:1px solid rgba(157,184,204,.3);
-  background:rgba(4,18,32,.5);color:var(--muted);font-size:15px;cursor:pointer;transition:transform .15s ease;
-}
-.card-close:hover{color:#fff;border-color:rgba(244,181,61,.5)}
-.card-close:active{transform:scale(.92)}
-.card-close:focus-visible{outline:2px solid var(--gold-1)}
-.card-ava{width:86px;height:86px;border-radius:22px;display:flex;align-items:flex-end;justify-content:center;
-  border:2px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(3,14,26,.5), inset 0 1px 0 rgba(255,255,255,.15);overflow:hidden}
-.card-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:21px;margin-top:14px;color:#fff}
-.card-role{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5}
-.chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.chip{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:20px}
-.chip.model-haiku{background:rgba(26,94,147,.35);color:#8ecaf5;border:1px solid rgba(26,94,147,.8)}
-.chip.model-sonnet{background:rgba(232,152,18,.2);color:var(--gold-1);border:1px solid rgba(232,152,18,.6)}
-.chip.st{background:rgba(255,255,255,.08);color:#d7e6f2;border:1px solid rgba(157,184,204,.3)}
-.card-body{padding:6px 24px 26px;display:flex;flex-direction:column;gap:14px}
-.info-block{background:rgba(4,18,32,.4);border:1px solid rgba(157,184,204,.14);border-radius:14px;padding:13px 15px}
-.info-block .lbl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-1);margin-bottom:6px}
-.info-block .val{font-size:13.5px;line-height:1.6;color:#d7e6f2}
-.info-block .val.mono{font-family:'Inter';font-weight:600}
-.task-row{display:flex;gap:8px;margin-top:4px}
-#task-inp{
-  flex:1;background:rgba(4,18,32,.6);border:1px solid rgba(157,184,204,.25);border-radius:10px;
-  color:#fff;font-family:'Inter';font-size:13px;padding:10px 13px;outline:none;transition:border-color .2s;
-}
-#task-inp:focus{border-color:var(--gold-1)}
-#task-inp::placeholder{color:rgba(157,184,204,.55)}
-#task-btn{
-  font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px;color:var(--navy-1);
-  background:linear-gradient(180deg,var(--gold-1),var(--gold-2));border:none;border-radius:10px;
-  padding:10px 16px;cursor:pointer;transition:transform .15s ease, filter .15s ease;white-space:nowrap;
-  box-shadow:0 4px 14px rgba(232,152,18,.35);
-}
-#task-btn:hover{filter:brightness(1.08)}
-#task-btn:active{transform:scale(.95)}
-#task-btn:focus-visible{outline:2px solid #fff}
-
-/* toast */
-#toasts{position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:160;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
-.toast{
-  background:linear-gradient(180deg,#0d3a5f,#0a2e4c);border:1px solid rgba(244,181,61,.45);color:#fff;
-  font-size:13px;font-weight:600;padding:11px 20px;border-radius:12px;
-  box-shadow:0 10px 30px rgba(3,14,26,.6);display:flex;align-items:center;gap:9px;
-  animation:toastIn .45s cubic-bezier(.34,1.56,.64,1);
-}
-.toast.out{animation:toastOut .35s ease forwards}
-@keyframes toastIn{0%{opacity:0;transform:translateY(16px) scale(.9)}100%{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes toastOut{100%{opacity:0;transform:translateY(10px) scale(.95)}}
-.toast .tick{color:var(--gold-1);font-weight:800}
-
-/* mobile note */
-#mobile-note{display:none;position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:105;
-  font-size:11.5px;font-weight:600;color:var(--navy-1);background:linear-gradient(180deg,var(--gold-1),var(--gold-2));
-  padding:7px 16px;border-radius:20px;box-shadow:0 6px 18px rgba(3,14,26,.5);white-space:nowrap}
-@media (max-width:900px){
-  #mobile-note{display:block}
-  #hud-stats .stat.hide-m{display:none}
-  .logo-sub{display:none}
-}
-
-/* window / ambient svg anims */
-.palm-sway{transform-box:fill-box;transform-origin:bottom center;animation:sway 6s ease-in-out infinite}
-.palm-sway.p2{animation-duration:7.4s;animation-delay:-2s}
-@keyframes sway{0%,100%{transform:rotate(-2.4deg)}50%{transform:rotate(2.4deg)}}
-.cloud-drift{animation:drift 46s linear infinite}
-.cloud-drift.c2{animation-duration:64s;animation-delay:-30s}
-@keyframes drift{0%{transform:translateX(-140px)}100%{transform:translateX(920px)}}
-.boat-drift{animation:boat 38s linear infinite}
-@keyframes boat{0%{transform:translateX(-60px)}100%{transform:translateX(760px)}}
-.sun-glow{animation:sunp 8s ease-in-out infinite}
-@keyframes sunp{0%,100%{opacity:.85}50%{opacity:1}}
-
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
-}
-
-/* ============ LIVE / AGENCY OPS LAYER ============ */
-#live-ind{display:flex;align-items:center;gap:6px;color:#4ADE80;font-weight:800;letter-spacing:.02em}
-#live-ind .lv-dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px rgba(74,222,128,.9);animation:lvpulse 2s ease-in-out infinite}
-#live-ind.stale{color:var(--muted)}
-#live-ind.stale .lv-dot{background:var(--muted);box-shadow:none;animation:none}
-@keyframes lvpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
-
-.ctl-btn.live-only{display:none}
-body.is-live .ctl-btn.live-only{display:inline-flex;align-items:center;gap:7px}
-body.is-live #btn-sim{display:none}
-.ctl-btn.pipe{background:linear-gradient(180deg,#1f8a5a,#155e3d);border-color:#0f4a30;color:#eafff4;font-weight:700}
-.ctl-btn.pipe:hover{filter:brightness(1.1)}
-.ctl-btn.pipe.running{opacity:.75;pointer-events:none}
-.q-count{background:rgba(4,18,32,.55);border:1px solid rgba(244,181,61,.45);color:var(--gold-1);
-  font-size:11px;font-weight:800;min-width:20px;height:19px;padding:0 6px;border-radius:10px;
-  display:inline-flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
-
-/* job result inside agent card */
-#job-block{display:none}
-#job-result{max-height:280px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;font-size:12.5px;line-height:1.55}
-#job-result.running{color:var(--gold-1);font-weight:700}
-#job-result pre{white-space:pre-wrap;word-break:break-word;font-family:'Inter',sans-serif;font-size:12px;line-height:1.5;margin:0;color:#cfe2f2}
-#job-result::-webkit-scrollbar{width:5px}#job-result::-webkit-scrollbar-thumb{background:rgba(157,184,204,.3);border-radius:3px}
-.prov-tag{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:#8ecaf5;background:rgba(26,94,147,.3);border:1px solid rgba(26,94,147,.7);padding:3px 9px;border-radius:12px}
-
-/* ============ CONTENT QUEUE PANEL ============ */
-#queue-veil{position:fixed;inset:0;z-index:110;background:rgba(4,14,26,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
-#queue-veil.open{opacity:1;pointer-events:auto}
-#queue{
-  position:fixed;top:0;left:0;bottom:0;width:452px;max-width:94vw;z-index:120;
-  background:linear-gradient(180deg,#0a2e4c 0%, #072136 100%);
-  border-right:1px solid rgba(244,181,61,.3);
-  box-shadow:20px 0 60px rgba(3,14,26,.6);
-  transform:translateX(-105%);transition:transform .42s cubic-bezier(.32,1,.35,1);
-  display:flex;flex-direction:column;
-}
-#queue.open{transform:translateX(0)}
-.q-head{position:relative;padding:24px 22px 16px;border-bottom:1px solid rgba(157,184,204,.14);
-  background:radial-gradient(300px 160px at 18% -20%, rgba(244,181,61,.15), transparent 70%)}
-.q-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:#fff}
-.q-sub{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5;max-width:340px}
-.q-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:9px;border:1px solid rgba(157,184,204,.3);
-  background:rgba(4,18,32,.5);color:var(--muted);font-size:15px;cursor:pointer;transition:transform .15s ease}
-.q-close:hover{color:#fff;border-color:rgba(244,181,61,.5)}.q-close:active{transform:scale(.92)}
-.q-close:focus-visible{outline:2px solid var(--gold-1)}
-.q-list{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
-.q-list::-webkit-scrollbar{width:6px}.q-list::-webkit-scrollbar-thumb{background:rgba(157,184,204,.3);border-radius:3px}
-.q-empty{color:var(--muted);font-size:13px;text-align:center;padding:44px 14px;line-height:1.7}
-.q-item{background:rgba(4,18,32,.4);border:1px solid rgba(157,184,204,.14);border-radius:14px;padding:14px 15px;
-  animation:qin .4s cubic-bezier(.34,1.56,.64,1)}
-@keyframes qin{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
-.q-item .q-top{display:flex;align-items:center;gap:9px;margin-bottom:9px;flex-wrap:wrap}
-.q-item .q-date{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.03em}
-.q-item .q-type{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#8ecaf5;
-  background:rgba(26,94,147,.3);border:1px solid rgba(26,94,147,.6);padding:3px 8px;border-radius:10px}
-.vchip{font-size:10px;font-weight:800;letter-spacing:.06em;padding:4px 10px;border-radius:12px;margin-left:auto;
-  color:var(--vc);background:color-mix(in srgb, var(--vc) 18%, transparent);border:1px solid var(--vc)}
-.q-decision{font-size:12.5px;color:#d7e6f2;line-height:1.55;margin-bottom:9px}
-.q-caption{background:rgba(4,18,32,.55);border:1px solid rgba(157,184,204,.12);border-radius:10px;padding:11px 13px;
-  font-size:12.5px;line-height:1.6;color:#e7f0f7;max-height:156px;overflow-y:auto;white-space:pre-wrap;margin-bottom:8px}
-.q-caption::-webkit-scrollbar{width:5px}.q-caption::-webkit-scrollbar-thumb{background:rgba(157,184,204,.3);border-radius:3px}
-.q-notes{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:11px}
-.q-actions{display:flex;gap:8px}
-.q-btn{flex:1;font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px;padding:10px 12px;border-radius:10px;cursor:pointer;
-  border:none;transition:transform .15s ease, filter .15s ease}
-.q-btn:active{transform:scale(.96)}
-.q-btn:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-.q-btn.ok{background:linear-gradient(180deg,#34a06a,#1f7a4e);color:#fff;box-shadow:0 3px 10px rgba(52,160,106,.3)}
-.q-btn.ok:hover{filter:brightness(1.1)}
-.q-btn.no{background:rgba(224,82,82,.16);color:#ff9d92;border:1px solid rgba(224,82,82,.5)}
-.q-btn.no:hover{background:rgba(224,82,82,.28)}
-
-/* ============ HUD ACTION BUTTONS ============ */
-.hud-actions{display:flex;align-items:center;gap:8px;margin-left:16px}
-.hud-btn{
-  font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;color:#d7e6f2;
-  background:rgba(13,58,95,.55);border:1px solid rgba(157,184,204,.28);border-radius:10px;
-  padding:8px 13px;cursor:pointer;white-space:nowrap;
-  transition:transform .15s ease, border-color .2s ease, background .2s ease, color .2s ease;
-}
-.hud-btn:hover{border-color:rgba(244,181,61,.6);background:rgba(13,58,95,.9);color:#fff}
-.hud-btn:active{transform:scale(.95)}
-.hud-btn:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-@media (max-width:900px){.hud-actions{display:none}}
-
-/* ============ DESK NAMEPLATES (name + role) ============ */
-.name-tag.np{display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 11px 4px;max-width:176px}
-.name-tag .np-name{font-size:10px;font-weight:800;letter-spacing:.02em;color:#fff;line-height:1.12}
-.name-tag .np-role{font-size:8px;font-weight:600;color:#9db8cc;line-height:1.15;max-width:160px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.01em}
-
-/* ============ SIDE PANELS · ROSTER / GUIDE ============ */
-#roster-veil,#guide-veil{position:fixed;inset:0;z-index:110;background:rgba(4,14,26,.45);opacity:0;pointer-events:none;transition:opacity .3s ease}
-#roster-veil.open,#guide-veil.open{opacity:1;pointer-events:auto}
-#roster,#guide{
-  position:fixed;top:0;bottom:0;width:452px;max-width:94vw;z-index:120;
-  background:linear-gradient(180deg,#0a2e4c 0%, #072136 100%);
-  display:flex;flex-direction:column;
-}
-#roster{left:0;border-right:1px solid rgba(244,181,61,.3);box-shadow:20px 0 60px rgba(3,14,26,.6);
-  transform:translateX(-105%);transition:transform .42s cubic-bezier(.32,1,.35,1)}
-#guide{right:0;border-left:1px solid rgba(244,181,61,.3);box-shadow:-20px 0 60px rgba(3,14,26,.6);
-  transform:translateX(105%);transition:transform .42s cubic-bezier(.32,1,.35,1)}
-#roster.open,#guide.open{transform:translateX(0)}
-
-/* roster rows */
-.emp{display:flex;align-items:flex-start;gap:12px;background:rgba(4,18,32,.4);border:1px solid rgba(157,184,204,.14);
-  border-radius:14px;padding:13px 14px;animation:qin .4s cubic-bezier(.34,1.56,.64,1)}
-.emp .emp-dot{width:12px;height:12px;border-radius:50%;margin-top:4px;flex-shrink:0;background:var(--ac);box-shadow:0 0 9px var(--ac)}
-.emp .emp-main{flex:1;min-width:0}
-.emp .emp-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.emp .emp-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#fff}
-.emp .emp-model{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:9px}
-.emp .emp-model.model-haiku{background:rgba(26,94,147,.35);color:#8ecaf5;border:1px solid rgba(26,94,147,.8)}
-.emp .emp-model.model-sonnet{background:rgba(232,152,18,.2);color:var(--gold-1);border:1px solid rgba(232,152,18,.6)}
-.emp .emp-live{margin-left:auto;font-size:10px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:5px;white-space:nowrap}
-.emp .emp-live .el-dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
-.emp .emp-role{font-size:12px;color:#d7e6f2;line-height:1.45;margin-top:5px}
-.emp .emp-mission{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:6px;font-style:italic}
-
-/* guide steps */
-.guide-step{background:rgba(4,18,32,.4);border:1px solid rgba(157,184,204,.14);border-radius:14px;padding:14px 15px;
-  animation:qin .4s cubic-bezier(.34,1.56,.64,1)}
-.guide-step .gs-h{display:flex;align-items:center;gap:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13.5px;color:var(--gold-1);line-height:1.3}
-.guide-step .gs-b{font-size:12.5px;color:#d7e6f2;line-height:1.62;margin-top:8px}
-.guide-step .gs-b b{color:#fff;font-weight:700}
-
-/* ============ MULTIVERSE · ROOM WASH + DEPARTMENT TABS ============ */
-#room-wash{position:fixed;inset:0;z-index:0;pointer-events:none;transition:background .55s ease;
-  background:radial-gradient(1200px 820px at 50% 42%, rgba(244,181,61,.15), transparent 68%)}
-#viewport{z-index:1}
-
-#dept-tabs{display:flex;align-items:center;gap:4px;background:rgba(4,18,32,.5);
-  border:1px solid rgba(157,184,204,.18);border-radius:12px;padding:3px}
-.dept-tab{display:flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;
-  color:var(--muted);background:transparent;border:none;border-radius:9px;padding:7px 11px;cursor:pointer;white-space:nowrap;
-  transition:transform .15s ease, color .2s ease, background .2s ease}
-.dept-tab .dt-emo{font-size:14px;line-height:1}
-.dept-tab:hover{color:#fff;background:rgba(13,58,95,.5)}
-.dept-tab:active{transform:scale(.95)}
-.dept-tab:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-.dept-tab.on{color:#fff;background:linear-gradient(180deg, color-mix(in srgb, var(--room-accent) 42%, #0a2e4c), #0a2e4c);
-  box-shadow:inset 0 0 0 1px var(--room-accent), 0 3px 10px rgba(3,14,26,.4)}
-@media (max-width:1080px){.dept-tab .dt-label{display:none}.dept-tab{padding:7px 9px}}
-
-/* roster scope toggle + dept tag */
-.roster-scope{display:flex;gap:4px;margin-top:12px;background:rgba(4,18,32,.5);border:1px solid rgba(157,184,204,.16);
-  border-radius:11px;padding:3px;width:fit-content}
-.rs-btn{font-family:'Montserrat',sans-serif;font-weight:700;font-size:11.5px;color:var(--muted);background:transparent;
-  border:none;border-radius:8px;padding:6px 13px;cursor:pointer;transition:transform .15s ease, color .2s, background .2s}
-.rs-btn:hover{color:#fff}
-.rs-btn:active{transform:scale(.96)}
-.rs-btn:focus-visible{outline:2px solid var(--gold-1);outline-offset:1px}
-.rs-btn.on{color:var(--navy-1);background:linear-gradient(180deg,var(--gold-1),var(--gold-2))}
-.emp .emp-dept{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
-  background:rgba(157,184,204,.12);border:1px solid rgba(157,184,204,.22);padding:2px 7px;border-radius:9px}
+  .empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:13px}
+  .modal{position:fixed;inset:0;z-index:60;background:rgba(4,14,24,.7);display:none;place-items:center;padding:20px}
+  .modal.on{display:grid}
+  .mbox{background:var(--card);border:1px solid var(--line);border-radius:16px;max-width:560px;width:100%;padding:24px;max-height:85vh;overflow:auto}
+  .mbox h3{font-family:'Montserrat';font-weight:800;font-size:18px}
+  .mbox .mrole{color:var(--muted);font-size:12px;margin:4px 0 14px}
+  .mrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .mrow .mk{color:var(--muted);min-width:110px;font-weight:600}
+  .mclose{float:right;background:var(--navy2);border:1px solid var(--line);color:var(--muted);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px}
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--gold);border-radius:12px;padding:12px 20px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:80;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(max-width:720px){.stats{grid-template-columns:1fr 1fr}.row{grid-template-columns:20px 1.6fr auto;gap:8px}.row .col-dept,.row .col-sched,.row .col-ago{display:none}.a-role{max-width:200px}}
 </style>
 </head>
 <body>
 
-<!-- ============== BASİT ŞİFRE KAPISI (ekranda şifre) ============== -->
-<div id="auth-guard" style="position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:linear-gradient(135deg,#071726 0%,#0a2e4c 55%,#0d3a5f 100%);color:#fff;font-family:system-ui,sans-serif;">
-  <form id="ag-form" style="text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:32px 28px;width:min(340px,90vw);box-shadow:0 20px 60px rgba(0,0,0,.4);">
-    <div style="font-size:34px;margin-bottom:6px;">🏢</div>
-    <div style="font-family:'Montserrat',system-ui,sans-serif;font-weight:800;letter-spacing:.02em;">KALKAN <span style="color:#f4b53d">INFO</span> · AJANS OFİSİ</div>
-    <div style="font-size:13px;opacity:.7;margin:6px 0 18px;">Devam etmek için şifreyi gir</div>
-    <input id="ag-pass" type="password" inputmode="numeric" autocomplete="off" autofocus placeholder="Şifre"
-      style="width:100%;text-align:center;letter-spacing:.3em;font-size:18px;padding:12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff;outline:none;" />
-    <div id="ag-err" style="display:none;color:#fca5a5;font-size:13px;font-weight:600;margin-top:10px;">✕ Şifre hatalı</div>
-    <button type="submit" style="margin-top:16px;width:100%;border:0;background:#f4b53d;color:#0a2e4c;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;padding:12px;border-radius:10px;cursor:pointer;">Gir</button>
-  </form>
-</div>
-<script>
-  // Basit ekran şifresi (istek üzerine Supabase admin onayı kaldırıldı).
-  // NOT: Client-side şifre — gerçek koruma değil; yayın işlemleri sunucuda RLS + Telegram onayıyla korunur.
-  (function () {
-    var PASS = '123';
-    var SS_KEY = 'kalkan_oyun_gate_ok';
-    var g = document.getElementById('auth-guard');
-    var isLocal = ['localhost', '127.0.0.1'].indexOf(location.hostname) !== -1;
-    var devBypass = isLocal && new URLSearchParams(location.search).has('dev');
-    // Bu oturumda daha önce girildiyse tekrar sorma
-    if (devBypass || sessionStorage.getItem(SS_KEY) === '1') { if (g) g.remove(); return; }
-    var form = document.getElementById('ag-form');
-    var inp = document.getElementById('ag-pass');
-    var err = document.getElementById('ag-err');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (inp.value === PASS) {
-        try { sessionStorage.setItem(SS_KEY, '1'); } catch (_) {}
-        if (g) g.remove();
-      } else {
-        err.style.display = 'block';
-        inp.value = '';
-        inp.focus();
-      }
-    });
-  })();
-</script>
+<!-- Şifre kapısı -->
+<div id="gate"><form class="box">
+  <div class="lg">◆ KALKAN <span class="d">INFO</span></div>
+  <div class="sub">AjansAI · Operasyon Merkezi</div>
+  <input id="pass" type="password" inputmode="numeric" autocomplete="off" autofocus placeholder="Şifre" />
+  <button type="submit">Gir</button>
+  <div class="err" id="perr">Hatalı şifre</div>
+</form></div>
 
-<div id="room-wash"></div>
-<svg id="grain" xmlns="http://www.w3.org/2000/svg"><filter id="gn"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#gn)"/></svg>
-
-<header id="topbar">
-  <div>
-    <div class="logo"><span class="k">KALKAN</span> <span class="i">INFO</span></div>
-    <div class="logo-sub">Ajans Ofisi</div>
+<header>
+  <div class="hwrap">
+    <div class="brand">◆ KALKAN <span class="d">INFO</span> · AjansAI<small>Operasyon Merkezi</small></div>
+    <div class="live" id="live"><span class="dot"></span><span id="live-txt">bağlanıyor…</span></div>
+    <div class="clock mono" id="clock">--:--</div>
   </div>
-  <div class="divider"></div>
-  <div id="dept-tabs"></div>
-  <div class="office-title mont" id="office-title">🎨 Sosyal Medya Ajansı</div>
-  <div class="hud-actions">
-    <button class="hud-btn" id="btn-roster">👥 Kadro</button>
-    <button class="hud-btn" id="btn-guide">❓ Nasıl Kullanılır</button>
-  </div>
-  <div id="hud-stats">
-    <span class="stat"><b id="st-total">8</b> ajan</span><span class="dot"></span>
-    <span class="stat"><b id="st-active">0</b> aktif</span><span class="dot"></span>
-    <span class="stat hide-m">sıradaki cron <b id="st-cron">—</b></span>
-    <span class="dot" id="live-dot-sep" style="display:none"></span>
-    <span class="stat" id="live-ind" style="display:none"><span class="lv-dot"></span>canlı</span>
-  </div>
-  <div id="clock">--:--<small>KALKAN · TR</small></div>
+  <nav class="tabs">
+    <button data-view="oto" class="on">⚙️ Otomasyonlar</button>
+    <button data-view="gorev">📋 Görev Ver</button>
+    <button data-view="onay">✅ Onay Kuyruğu<span class="b" id="q-badge" style="display:none">0</span></button>
+  </nav>
 </header>
 
-<div id="mobile-note">📱 En iyi deneyim masaüstünde</div>
-
-<div id="viewport"><div id="world">
-  <svg id="room-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-  <div id="tileHi"></div>
-</div></div>
-
-<div id="ghost"></div>
-
-<div id="botbar">
-  <div id="tray"></div>
-  <div id="controls">
-    <div class="mode-pill">
-      <button class="mode-btn on" id="btn-play">🎮 Oyna</button>
-      <button class="mode-btn" id="btn-decor">🛋️ Dekore Et</button>
+<main>
+  <!-- OTOMASYONLAR -->
+  <section class="view on" id="view-oto">
+    <div class="stats">
+      <div class="stat"><div class="k">Toplam otomasyon</div><div class="v" id="s-total">—</div></div>
+      <div class="stat"><div class="k">Zamanlı (cron)</div><div class="v gold" id="s-cron">—</div></div>
+      <div class="stat"><div class="k">Son 24s çalışan</div><div class="v green" id="s-ran">—</div></div>
+      <div class="stat"><div class="k">Bekleyen onay</div><div class="v amber" id="s-pend">—</div></div>
     </div>
-    <button class="ctl-btn pipe live-only" id="btn-pipeline">▶ Günlük İçerik Üret</button>
-    <button class="ctl-btn live-only" id="btn-queue">📥 İçerik Kuyruğu <span class="q-count" id="q-count">0</span></button>
-    <button class="ctl-btn" id="btn-sim">▶ Simülasyonu Başlat</button>
-    <button class="ctl-btn gold" id="btn-save" style="display:none">💾 Kaydet</button>
-    <button class="ctl-btn" id="btn-reset" style="display:none">↺ Sıfırla</button>
-  </div>
-</div>
-
-<div id="card-veil"></div>
-<aside id="card">
-  <div class="card-head">
-    <button class="card-close" id="card-close">✕</button>
-    <div class="card-ava" id="c-ava"></div>
-    <div class="card-name" id="c-name"></div>
-    <div class="card-role" id="c-role"></div>
-    <div class="chips">
-      <span class="chip" id="c-model"></span>
-      <span class="chip st" id="c-status"></span>
+    <div class="pills" id="pills"></div>
+    <div class="tbl" id="oto-tbl">
+      <div class="row head"><span></span><span>Otomasyon</span><span class="col-dept">Departman</span><span class="col-sched">Zamanlama</span><span class="col-ago">Son çalışma</span><span>Aksiyon</span></div>
+      <div id="oto-rows"></div>
     </div>
-  </div>
-  <div class="card-body">
-    <div class="info-block"><div class="lbl">⏱ Tetik / Zamanlama</div><div class="val mono" id="c-cron"></div></div>
-    <div class="info-block"><div class="lbl">📤 Son Çıktı</div><div class="val" id="c-out"></div><div class="prov-tag" id="c-prov" style="display:none"></div></div>
-    <div class="info-block"><div class="lbl">🎯 Misyon</div><div class="val" id="c-mission"></div></div>
-    <div class="info-block">
-      <div class="lbl">📨 Görev Ver</div>
-      <div class="task-row">
-        <input id="task-inp" type="text" placeholder="Örn: yarın için plaj postu hazırla…">
-        <button id="task-btn">Gönder</button>
-      </div>
+  </section>
+
+  <!-- GÖREV VER -->
+  <section class="view" id="view-gorev">
+    <div class="panel">
+      <div class="fld"><label>Çalışan / Agent seç</label><select id="g-agent"></select></div>
+      <div class="fld"><label>Görev / talep</label><textarea id="g-task" placeholder="Örn: Bu hafta için villa reel konsepti öner…"></textarea></div>
+      <button class="send" id="g-send">Görevi Gönder →</button>
+      <div id="job-out"></div>
     </div>
-    <div class="info-block" id="job-block">
-      <div class="lbl">🧠 Görev Sonucu</div>
-      <div class="val" id="job-result"></div>
-    </div>
-  </div>
-</aside>
+  </section>
 
-<div id="queue-veil"></div>
-<aside id="queue">
-  <div class="q-head">
-    <button class="q-close" id="queue-close">✕</button>
-    <div class="q-title">📥 İçerik Kuyruğu</div>
-    <div class="q-sub">Yayın öncesi onay kapısı — BrandGuard denetiminden geçen içerikler burada bekler.</div>
-  </div>
-  <div class="q-list" id="q-list"></div>
-</aside>
+  <!-- ONAY KUYRUĞU -->
+  <section class="view" id="view-onay">
+    <div id="q-list"></div>
+  </section>
+</main>
 
-<div id="roster-veil"></div>
-<aside id="roster">
-  <div class="q-head">
-    <button class="q-close" id="roster-close">✕</button>
-    <div class="q-title">👥 Ajans Kadrosu</div>
-    <div class="q-sub" id="roster-sub">Her biri kendi uzmanlık alanında görev başında.</div>
-    <div class="roster-scope" id="roster-scope" style="display:none">
-      <button class="rs-btn on" data-scope="dept">Bu Departman</button>
-      <button class="rs-btn" data-scope="all">Tüm Şirket</button>
-    </div>
-  </div>
-  <div class="q-list" id="roster-list"></div>
-</aside>
-
-<div id="guide-veil"></div>
-<aside id="guide">
-  <div class="q-head">
-    <button class="q-close" id="guide-close">✕</button>
-    <div class="q-title">❓ Nasıl Kullanılır</div>
-    <div class="q-sub">Bu ofis gerçek bir sosyal medya ajansı — ajanlara iş verir, ürettiklerini onaylarsın.</div>
-  </div>
-  <div class="q-list" id="guide-list"></div>
-</aside>
-
-<div id="toasts"></div>
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+<div id="toast"></div>
 
 <script>
-'use strict';
-/* ================= ISO MATH ================= */
-const TW=118, TH=59, COLS=13, ROWS=11, WALL_H=190;
-const OX=800, OY=248;               // world coords of tile (0,0) top vertex
-const W=1600, H=1080;
-const iso=(c,r)=>({x:OX+(c-r)*TW/2, y:OY+(c+r)*TH/2});
-const unIso=(x,y)=>{const dx=x-OX, dy=y-OY; return {c:(dx/(TW/2)+dy/(TH/2))/2, r:(dy/(TH/2)-dx/(TW/2))/2};};
-const P=(pts)=>pts.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ');
-const up=(p,h)=>({x:p.x,y:p.y-h});
-
-/* ================= AGENT DATA ================= */
-let AGENTS=[
- {id:'director',  name:'ContentDirector', role:'"Bugün ne post atalım?" — günün içerik kararını verir', model:'sonnet',
-  cron:'Her gün 06:00 (cron)', out:'3 aday post üretildi (güven 0.88 / 0.72 / 0.55)',
-  mission:'Kalkan’ın hikâyesini her sabah taze tutmak; markanın sesini tek elden yönetmek.',
-  accent:'#f4b53d', skin:'#e8b48c', hair:'#3a2b20', hairStyle:'exec', extra:'tie',
-  desk:{c:1.0,r:1.3}, status:'cron', cronLbl:'06:00'},
- {id:'trend',     name:'TrendScout', role:'Google Trends + IG hashtag sinyali toplar', model:'haiku',
-  cron:'05:00 & 17:00 (günde 2 koşu)', out:'12 trend bulundu, Kalkan-alaka skoruna göre sıralandı',
-  mission:'Dalga daha kıyıya varmadan yakalamak — trendleri herkesten önce görmek.',
-  accent:'#2e7cc0', skin:'#d9a06b', hair:'#1d1d1d', hairStyle:'cap', extra:null,
-  desk:{c:4.3,r:3.3}, status:'work'},
- {id:'writer',    name:'SocialWriter', role:'IG/X/FB/TikTok caption + hashtag + CTA · 5 dilde', model:'haiku',
-  cron:'Tetik: haber onayı sonrası', out:'4 platform caption + 18 hashtag hazırlandı',
-  mission:'Her platforma kendi dilinde, her okura kendi sesinde yazmak.',
-  accent:'#14b8a6', skin:'#f0c8a0', hair:'#7a4a1e', hairStyle:'bun', extra:'pen',
-  desk:{c:7.3,r:3.3}, status:'work'},
- {id:'guard',     name:'BrandGuard', role:'Yayın öncesi ton / marka / risk denetimi', model:'haiku',
-  cron:'Tetik: her caption (hard block + soft öneri)', out:'2 onay verildi, 1 soft-uyarı düşüldü',
-  mission:'Kapıdan markaya yakışmayan hiçbir cümle geçmez.',
-  accent:'#e05252', skin:'#e0a87c', hair:'#4a4a4a', hairStyle:'short', extra:'glasses',
-  desk:{c:10.2,r:3.3}, status:'idle'},
- {id:'analyst',   name:'SocialAnalyst', role:'Plausible + IG Insights + Clarity + Ads → haftalık digest', model:'haiku',
-  cron:'Pazartesi 08:00 (cron)', out:'Reach +18%, 3 aksiyon önerisi çıkarıldı',
-  mission:'Gürültünün içinden sinyali sakin sakin ayıklamak.',
-  accent:'#8b5cf6', skin:'#e8b48c', hair:'#2b2118', hairStyle:'long', extra:'glasses',
-  desk:{c:4.3,r:6.3}, status:'cron', cronLbl:'Pzt 08:00'},
- {id:'growth',    name:'GrowthStrategist', role:'Haftalık büyüme planı — 6 kaldıraç', model:'sonnet',
-  cron:'Pazartesi 07:00 (cron)', out:'3 aksiyon belirlendi, sahipleri atandı',
-  mission:'Her hafta bir vida daha sıkmak; büyümeyi şansa bırakmamak.',
-  accent:'#34a06a', skin:'#d9a06b', hair:'#101010', hairStyle:'short', extra:null,
-  desk:{c:7.3,r:6.3}, status:'cron', cronLbl:'Pzt 07:00'},
- {id:'ads',       name:'AdsOptimizer', role:'Meta / TikTok / Google Ads ROAS optimizasyonu', model:'sonnet',
-  cron:'Sürekli (lean bütçe $300–500/ay)', out:'ROAS 2.4x — TikTok bütçesine +$40 kaydırıldı',
-  mission:'Her doların avını yapmak; boşa akan tek kuruş bırakmamak.',
-  accent:'#f97316', skin:'#f0c8a0', hair:'#5a3a10', hairStyle:'curly', extra:null,
-  desk:{c:10.2,r:6.3}, status:'work'},
- {id:'reception', name:'WhatsAppReception', role:'Gelen WhatsApp triage — rezervasyon / soru / şikayet', model:'haiku',
-  cron:'Anlık (her mesajda)', out:'7 mesaj: 4 oto-yanıt, 3 eskale edildi',
-  mission:'Kalkan’a gelen herkesi güler yüzle karşılamak — gece yarısı bile.',
-  accent:'#10b981', skin:'#e8b48c', hair:'#241a12', hairStyle:'bun', extra:'headset',
-  desk:{c:1.0,r:7.6}, status:'alert'},
-];
-const DESK_W=1.7, DESK_D=0.95, DESK_H=40;
-
-/* ================= ROOM SVG ================= */
-const NS='http://www.w3.org/2000/svg';
-const roomSvg=document.getElementById('room-svg');
-roomSvg.setAttribute('width',W); roomSvg.setAttribute('height',H);
-roomSvg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||roomSvg).appendChild(e);return e;}
-
-function buildRoom(){
-  const defs=el('defs',{});
-  defs.innerHTML=`
-   <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0" stop-color="#aee0f5"/><stop offset=".55" stop-color="#d8effa"/><stop offset=".56" stop-color="#2e7cc0"/><stop offset="1" stop-color="#1a5e93"/>
-   </linearGradient>
-   <linearGradient id="wallNE" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0" stop-color="#0f4066"/><stop offset="1" stop-color="#0a2e4c"/>
-   </linearGradient>
-   <linearGradient id="wallNW" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0" stop-color="#0c3555"/><stop offset="1" stop-color="#082640"/>
-   </linearGradient>
-   <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1">
-     <stop offset="0" stop-color="#f4b53d" stop-opacity=".14"/><stop offset="1" stop-color="#f4b53d" stop-opacity="0"/>
-   </linearGradient>`;
-  // ---- floor shadow (soft blob under room) ----
-  const A=iso(0,0),B=iso(COLS,0),C=iso(COLS,ROWS),D=iso(0,ROWS);
-  el('polygon',{points:P([{x:A.x,y:A.y+8},{x:B.x+26,y:B.y+16},{x:C.x,y:C.y+34},{x:D.x-26,y:D.y+16}]),fill:'rgba(2,10,18,.55)',filter:'blur(0px)'});
-
-  // ---- walls ----
-  // NW wall (left, along r axis at c=0): A -> D
-  el('polygon',{points:P([up(A,WALL_H),up(D,WALL_H),D,A]),fill:'url(#wallNW)'});
-  // NE wall (right, along c axis at r=0): A -> B
-  el('polygon',{points:P([up(A,WALL_H),up(B,WALL_H),B,A]),fill:'url(#wallNE)'});
-  // wall top caps (thin gold-ish edge)
-  el('polygon',{points:P([up(A,WALL_H),up(B,WALL_H),up({x:B.x,y:B.y},WALL_H-6),up(A,WALL_H-6)]),fill:'rgba(244,181,61,.28)'});
-  el('polygon',{points:P([up(A,WALL_H),up(D,WALL_H),up(D,WALL_H-6),up(A,WALL_H-6)]),fill:'rgba(244,181,61,.2)'});
-  // baseboards
-  el('polygon',{points:P([up(A,14),up(B,14),B,A]),fill:'rgba(4,18,32,.5)'});
-  el('polygon',{points:P([up(A,14),up(D,14),D,A]),fill:'rgba(4,18,32,.55)'});
-
-  // ---- windows on NE wall (sea view) ----
-  const winY1=152,winY2=46; // heights above floor line
-  [[1.4,4.4],[5.4,8.4],[9.4,12.4]].forEach(([c1,c2],wi)=>{
-    const p1=iso(c1,0),p2=iso(c2,0);
-    const cid='winclip'+wi;
-    const clip=el('clipPath',{id:cid},defs);
-    el('polygon',{points:P([up(p1,winY1),up(p2,winY1),up(p2,winY2),up(p1,winY2)])},clip);
-    // content drawn in WALL-PLANE coords: origin at p1 (floor line), x along wall, y up = negative
-    const gClip=el('g',{'clip-path':`url(#${cid})`});
-    const g=el('g',{transform:`translate(${p1.x},${p1.y}) matrix(1,0.5,0,1,0,0)`},gClip);
-    const wpx=p2.x-p1.x;                    // window width in wall coords
-    const horizon=-100;                     // horizon height above floor line
-    // sky
-    el('rect',{x:-10,y:-164,width:wpx+20,height:-164*-1+horizon+164,fill:'#bfe3f4'},g);
-    el('rect',{x:-10,y:-164,width:wpx+20,height:30,fill:'#a7d8ef'},g);
-    // sun
-    el('circle',{cx:wpx*0.66,cy:horizon-32,r:15,fill:'#ffd97a',class:'sun-glow'},g);
-    el('circle',{cx:wpx*0.66,cy:horizon-32,r:27,fill:'#ffd97a',opacity:.22,class:'sun-glow'},g);
-    // clouds
-    const cg=el('g',{class:'cloud-drift'+(wi===1?' c2':''),opacity:.85},g);
-    el('ellipse',{cx:-60,cy:horizon-50,rx:32,ry:8,fill:'#fff'},cg);
-    el('ellipse',{cx:-34,cy:horizon-56,rx:20,ry:6,fill:'#fff'},cg);
-    // distant hills at horizon
-    el('path',{d:`M -10 ${horizon} q ${wpx*0.2} -22 ${wpx*0.42} -4 q ${wpx*0.2} 14 ${wpx*0.62} 3 l 0 8 l -${wpx+20} 0 z`,fill:'#3e88b8',opacity:.75},g);
-    // sea
-    el('rect',{x:-10,y:horizon,width:wpx+20,height:-horizon-26,fill:'#1f6ba3'},g);
-    el('rect',{x:-10,y:horizon,width:wpx+20,height:13,fill:'#2e7cc0'},g);
-    // sun glitter on sea
-    el('ellipse',{cx:wpx*0.66,cy:horizon+16,rx:22,ry:5,fill:'#ffd97a',opacity:.30,class:'sun-glow'},g);
-    // boat in middle window
-    if(wi===1){const bg=el('g',{class:'boat-drift'},g);
-      el('path',{d:`M -40 ${horizon+28} l 26 0 l -6 8 l -14 0 z`,fill:'#fff'},bg);
-      el('path',{d:`M -28 ${horizon+28} l 0 -18 l 11 16 z`,fill:'#f4b53d'},bg);}
-    // palm silhouettes in windows 0 & 2
-    if(wi!==1){
-      const px=wi===0?wpx-40:44;
-      const baseY=-30;
-      const pg=el('g',{class:'palm-sway'+(wi===2?' p2':'')},g);
-      el('path',{d:`M ${px} ${baseY} q -5 -40 -12 -62`,stroke:'#0d3a2a','stroke-width':6,fill:'none','stroke-linecap':'round'},pg);
-      const fx=px-12, fy=baseY-62;
-      [[-34,-10],[-20,-27],[4,-30],[25,-18],[30,-3],[-38,5]].forEach(([dx,dy])=>{
-        el('path',{d:`M ${fx} ${fy} q ${dx*0.6} ${dy*0.9} ${dx} ${dy}`,stroke:'#116048','stroke-width':5,fill:'none','stroke-linecap':'round'},pg);
-      });
-    }
-    // window frame
-    el('polygon',{points:P([up(p1,winY1),up(p2,winY1),up(p2,winY2),up(p1,winY2)]),fill:'none',stroke:'#c97b09','stroke-width':5});
-    el('polygon',{points:P([up(p1,winY1),up(p2,winY1),up(p2,winY2),up(p1,winY2)]),fill:'none',stroke:'rgba(244,181,61,.5)','stroke-width':1.5});
-    // mullion
-    const mcc=(c1+c2)/2, mp=iso(mcc,0);
-    el('line',{x1:mp.x,y1:mp.y-winY1,x2:mp.x,y2:mp.y-winY2,stroke:'#c97b09','stroke-width':3});
-    // light ray onto floor
-    const f1=iso(c1+0.2,0), f2=iso(c2-0.2,0);
-    el('polygon',{points:P([f1,f2,iso(c2-0.2+2.6,2.8),iso(c1+0.2+2.6,2.8)]),fill:'url(#ray)'});
-  });
-
-  // ---- gold sign on NW wall (left, above/right of door) ----
-  const sp=iso(0,4.0);
-  const signG=el('g',{transform:`translate(${sp.x+6},${sp.y-118}) matrix(1,-0.5,0,1,0,0)`});
-  const st=el('text',{x:0,y:0,'text-anchor':'middle','font-family':'Montserrat,sans-serif','font-weight':'900','font-size':'26','letter-spacing':'2'},signG);
-  st.innerHTML='<tspan fill="#ffffff">KALKAN</tspan> <tspan fill="#f4b53d">INFO</tspan>';
-  const st2=el('text',{x:0,y:20,'text-anchor':'middle','font-family':'Inter,sans-serif','font-weight':'600','font-size':'10','letter-spacing':'5','fill':'#7fa3c0'},signG);
-  st2.textContent='AJANS OFİSİ';
-  el('line',{x1:-92,y1:32,x2:92,y2:32,stroke:'#c97b09','stroke-width':2,opacity:.6},signG);
-
-  // ---- door on NW wall ----
-  const d1=iso(0,8.1), d2=iso(0,9.7);
-  el('polygon',{points:P([up(d1,150),up(d2,150),d2,d1]),fill:'#051a2c',stroke:'#c97b09','stroke-width':4});
-  el('polygon',{points:P([up(d1,150),up(d2,150),d2,d1]),fill:'rgba(244,181,61,.05)'});
-  // door mat
-  const m1=iso(0.15,8.2),m2=iso(1.5,8.2),m3=iso(1.5,9.6),m4=iso(0.15,9.6);
-  el('polygon',{points:P([m1,m2,m3,m4]),fill:'#b3542e',opacity:.85,rx:3});
-  el('polygon',{points:P([iso(0.3,8.35),iso(1.35,8.35),iso(1.35,9.45),iso(0.3,9.45)]),fill:'none',stroke:'#e8dcc2','stroke-width':2,opacity:.7});
-  const wt=el('text',{x:iso(0.85,8.9).x,y:iso(0.85,8.9).y+14,'text-anchor':'middle','font-family':'Montserrat','font-weight':'800','font-size':'11',fill:'#f7e3d3',transform:`rotate(26.5 ${iso(0.85,8.9).x} ${iso(0.85,8.9).y+14})`});
-  wt.textContent='hoş geldin';
-
-  // ---- floor tiles ----
-  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
-    const t=iso(c,r);
-    const pts=P([t,{x:t.x+TW/2,y:t.y+TH/2},{x:t.x,y:t.y+TH},{x:t.x-TW/2,y:t.y+TH/2}]);
-    const even=(c+r)%2===0;
-    el('polygon',{points:pts,fill:even?'#e8dcc2':'#ddcfae',stroke:'rgba(160,130,80,.28)','stroke-width':1});
-  }
-  // subtle floor vignette
-  el('polygon',{points:P([A,B,C,D]),fill:'rgba(7,33,54,.10)',style:'mix-blend-mode:multiply'});
-
-  // ---- boss rug (gold diamond under director) ----
-  const rg1=iso(0.4,0.6),rg2=iso(3.4,0.6),rg3=iso(3.4,3.0),rg4=iso(0.4,3.0);
-  el('polygon',{points:P([rg1,rg2,rg3,rg4]),fill:'#c8a45c',opacity:.5});
-  el('polygon',{points:P([iso(0.6,0.8),iso(3.2,0.8),iso(3.2,2.8),iso(0.6,2.8)]),fill:'none',stroke:'#8a6a2c','stroke-width':2,opacity:.5});
-
-  // ---- meeting nook rug ----
-  el('polygon',{points:P([iso(9.6,8.0),iso(12.7,8.0),iso(12.7,10.7),iso(9.6,10.7)]),fill:'#1a5e93',opacity:.32});
-  el('polygon',{points:P([iso(9.8,8.2),iso(12.5,8.2),iso(12.5,10.5),iso(9.8,10.5)]),fill:'none',stroke:'#0d3a5f','stroke-width':2,opacity:.4});
-}
-buildRoom();
-
-/* ================= WORLD OBJECT HELPERS ================= */
-const world=document.getElementById('world');
-const zOf=(c,r)=>Math.round((c+r)*100)+1000;
-
-function shade(hex,f){ // f<1 darker
-  const n=parseInt(hex.slice(1),16);
-  const r=Math.min(255,Math.round(((n>>16)&255)*f)),g=Math.min(255,Math.round(((n>>8)&255)*f)),b=Math.min(255,Math.round((n&255)*f));
-  return `rgb(${r},${g},${b})`;
-}
-
-/* iso box svg (local coords, anchor = bottom vertex of footprint) */
-function isoBoxSVG(wc,dc,h,topCol,opts={}){
-  // local iso: origin at bottom vertex (c=wc,r=dc corner)
-  const l=(c,r)=>({x:(c-r)*TW/2, y:(c+r)*TH/2});
-  const o=l(wc,dc); // bottom
-  const pt=(c,r,dh)=>{const p=l(c,r);return {x:p.x-o.x, y:p.y-o.y-dh};};
-  const T=[pt(0,0,h),pt(wc,0,h),pt(wc,dc,h),pt(0,dc,h)];
-  const SE=[pt(wc,0,h),pt(wc,dc,h),pt(wc,dc,0),pt(wc,0,0)];
-  const SW=[pt(0,dc,h),pt(wc,dc,h),pt(wc,dc,0),pt(0,dc,0)];
-  const minX=Math.min(...[...T,...SE,...SW].map(p=>p.x)), maxX=Math.max(...[...T,...SE,...SW].map(p=>p.x));
-  const minY=Math.min(...[...T,...SE,...SW].map(p=>p.y)), maxY=Math.max(...[...T,...SE,...SW].map(p=>p.y));
-  const w=maxX-minX, hh=maxY-minY;
-  const off=p=>`${(p.x-minX).toFixed(1)},${(p.y-minY).toFixed(1)}`;
-  return {
-    svg:`<svg width="${w.toFixed(0)}" height="${hh.toFixed(0)}" viewBox="0 0 ${w.toFixed(0)} ${hh.toFixed(0)}">
-      <polygon points="${SW.map(off).join(' ')}" fill="${shade(topCol,0.62)}"/>
-      <polygon points="${SE.map(off).join(' ')}" fill="${shade(topCol,0.78)}"/>
-      <polygon points="${T.map(off).join(' ')}" fill="${topCol}" stroke="${shade(topCol,0.55)}" stroke-width="1"/>
-      ${opts.inner||''}
-    </svg>`,
-    // anchor: bottom vertex is at x = -minX from left, y = -minY... bottom vertex local (0,0)-o? bottom vertex = pt(wc,dc,0) => offset:
-    ax:(pt(wc,dc,0).x-minX), ay:(pt(wc,dc,0).y-minY), w, h:hh
-  };
-}
-
-function placeObj(html,c,r,cls,zBias=0){
-  const d=document.createElement('div');
-  d.className='obj '+(cls||'');
-  const p=iso(c,r); // anchor point = ground point (tile coordinate)
-  d.style.left=p.x+'px'; d.style.top=p.y+'px';
-  d.style.zIndex=zOf(c,r)+zBias;
-  d.innerHTML=html;
-  world.appendChild(d);
-  return d;
-}
-
-/* ================= DESKS + CHAIRS + MONITORS ================= */
-function buildDesk(a){
-  const {c,r}=a.desk;
-  // desk box with wood top
-  const wood='#c99a5b';
-  const dk=isoBoxSVG(DESK_W,DESK_D,DESK_H,wood);
-  const deskEl=placeObj(`<div style="position:relative">${dk.svg}</div>`, c+DESK_W, r+DESK_D, 'roomobj', 0);
-  deskEl.style.marginLeft=(dk.w/2-dk.ax)+'px'; // align bottom vertex to anchor
-  const deskZ=zOf(c+DESK_W,r+DESK_D);
-  // monitor on desk (back facing camera) + glow — must render ABOVE desk image
-  const mon=`
-    <svg width="64" height="58" viewBox="0 0 64 58">
-      <rect x="26" y="40" width="12" height="9" rx="2" fill="#111e2b"/>
-      <rect x="18" y="47" width="28" height="5" rx="2.5" fill="#0b1622"/>
-      <g transform="translate(32,24) skewY(-14)">
-        <rect x="-26" y="-18" width="52" height="36" rx="4" fill="#132638" stroke="#0a1723" stroke-width="2"/>
-        <rect x="-21" y="-13" width="42" height="26" rx="2" fill="#0a1723"/>
-      </g>
-    </svg>`;
-  const monEl=placeObj(`<div style="position:relative">
-      <div class="glow" data-agent-glow="${a.id}" style="width:70px;height:40px;background:${a.accent};top:8px"></div>
-      ${mon}
-    </div>`, c+DESK_W*0.55, r+DESK_D*0.5, 'roomobj', 0);
-  monEl.style.marginTop=(-DESK_H+8)+'px';
-  monEl.style.zIndex=deskZ+3;
-  // coffee mug on desk corner
-  const mugEl=placeObj(`<svg width="18" height="16" viewBox="0 0 18 16">
-      <rect x="3" y="3" width="9" height="11" rx="2" fill="#eef4f9"/>
-      <path d="M12 5 q5 0 4 4 q-1 3 -4 2" stroke="#eef4f9" stroke-width="2" fill="none"/>
-      <ellipse cx="7.5" cy="3.5" rx="4.5" ry="1.6" fill="#8a5a2c"/>
-    </svg>`, c+DESK_W*0.22, r+DESK_D*0.5, 'roomobj', 0);
-  mugEl.style.marginTop=(-DESK_H+6)+'px';
-  mugEl.style.zIndex=deskZ+3;
-  // name tag pinned to desk front
-  const npRole=a.role.includes('—')?a.role.split('—').pop().trim():a.role;
-  const tagEl=placeObj(`<div class="name-tag np" style="position:static;transform:none"><span class="np-name">${a.name}</span><span class="np-role">${npRole}</span></div>`,
-    c+DESK_W*0.62, r+DESK_D+0.12, 'roomobj', 0);
-  tagEl.style.zIndex=deskZ+6;
-  tagEl.style.transform='translate(-50%,-6px)';
-  return {deskEl,monEl};
-}
-
-/* ================= CHARACTERS ================= */
-function hairSVG(a){
-  const h=a.hair;
-  switch(a.hairStyle){
-    case 'exec': return `<path d="M20 30 Q20 12 36 12 Q52 12 52 30 L52 26 Q52 18 46 17 Q38 8 26 17 Q20 18 20 26 Z" fill="${h}"/><path d="M20 28 Q19 20 24 16 L22 30 Z" fill="${h}"/>`;
-    case 'cap':  return `<path d="M19 27 Q19 10 36 10 Q53 10 53 27 L53 24 Q53 22 50 22 L22 22 Q19 22 19 24 Z" fill="#e89812"/><rect x="14" y="22" width="26" height="5" rx="2.5" fill="#c97b09"/><path d="M20 22 Q20 26 22 29 L20 30Z" fill="${h}"/><path d="M52 22 Q52 26 50 29 L52 30Z" fill="${h}"/>`;
-    case 'bun':  return `<circle cx="36" cy="10" r="8" fill="${h}"/><path d="M19 32 Q17 12 36 11 Q55 12 53 32 L50 26 Q51 17 36 16 Q21 17 22 26 Z" fill="${h}"/>`;
-    case 'long': return `<path d="M18 34 Q16 10 36 10 Q56 10 54 34 L54 44 Q52 46 50 44 L50 26 Q48 16 36 16 Q24 16 22 26 L22 44 Q20 46 18 44 Z" fill="${h}"/>`;
-    case 'curly':return `<circle cx="24" cy="20" r="8" fill="${h}"/><circle cx="33" cy="14" r="9" fill="${h}"/><circle cx="44" cy="15" r="8" fill="${h}"/><circle cx="50" cy="23" r="7" fill="${h}"/><circle cx="21" cy="28" r="5" fill="${h}"/><circle cx="51" cy="30" r="4.5" fill="${h}"/>`;
-    default:     return `<path d="M20 30 Q19 12 36 11 Q53 12 52 30 L49 26 Q50 16 36 15 Q22 16 23 26 Z" fill="${h}"/>`;
-  }
-}
-function extraSVG(a){
-  switch(a.extra){
-    case 'glasses': return `<g stroke="#243b52" stroke-width="2" fill="rgba(255,255,255,.24)"><circle cx="29" cy="31" r="6"/><circle cx="43" cy="31" r="6"/><line x1="35" y1="31" x2="37" y2="31"/></g>`;
-    case 'headset': return `<path d="M19 28 Q19 8 36 8 Q53 8 53 28" stroke="#132638" stroke-width="4" fill="none"/><rect x="15" y="24" width="8" height="12" rx="4" fill="#132638"/><path d="M22 36 Q26 44 33 44" stroke="#132638" stroke-width="3" fill="none"/><circle cx="34" cy="44" r="3" fill="#f4b53d"/>`;
-    case 'tie':     return `<path d="M36 52 l5 6 -5 16 -5 -16 z" fill="#0d3a5f"/>`;
-    case 'pen':     return ``;
-    default: return '';
-  }
-}
-function personSVG(a){
-  const acc=a.accent, accD=shade(acc,0.72);
-  return `<svg width="72" height="98" viewBox="0 0 72 98" class="persona">
-    <ellipse cx="36" cy="93" rx="26" ry="8" fill="rgba(4,18,32,.30)"/>
-    <!-- body -->
-    <path d="M18 92 L18 64 Q18 50 36 50 Q54 50 54 64 L54 92 Z" fill="${acc}"/>
-    <path d="M18 92 L18 64 Q18 52 27 51 L27 92 Z" fill="${accD}"/>
-    <path d="M22 58 Q14 62 13 74 L13 84 Q13 88 17 88 Q21 88 21 84 L21 66 Z" fill="${accD}"/>
-    <path d="M50 58 Q58 62 59 74 L59 84 Q59 88 55 88 Q51 88 51 84 L51 66 Z" fill="${accD}"/>
-    <!-- collar -->
-    <path d="M28 51 L36 58 L44 51 Q40 48 36 48 Q32 48 28 51 Z" fill="#fff" opacity=".9"/>
-    <!-- head -->
-    <circle cx="36" cy="31" r="17" fill="${a.skin}"/>
-    <ellipse cx="19.5" cy="32" rx="3" ry="4" fill="${a.skin}"/>
-    <ellipse cx="52.5" cy="32" rx="3" ry="4" fill="${a.skin}"/>
-    ${hairSVG(a)}
-    <g class="eyes"><circle cx="30" cy="31" r="2.2" fill="#25313d"/><circle cx="42" cy="31" r="2.2" fill="#25313d"/></g>
-    <path d="M31 39 Q36 43 41 39" stroke="#b06a48" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <circle cx="26" cy="36" r="2.6" fill="#e88f6a" opacity=".4"/>
-    <circle cx="46" cy="36" r="2.6" fill="#e88f6a" opacity=".4"/>
-    ${extraSVG(a)}
-  </svg>`;
-}
-
-const STATUS_META={
-  idle:{emoji:'💤',label:'boşta',cls:''},
-  work:{emoji:'💬',label:'çalışıyor',cls:'st-work',typing:true},
-  cron:{emoji:'⏰',label:'',cls:'st-cron'},
-  alert:{emoji:'🔴',label:'dikkat!',cls:'st-alert'},
-};
-
-function bubbleHTML(a){
-  const m=STATUS_META[a.status];
-  let txt=m.label;
-  if(a.status==='cron') txt=a.cronLbl||'bekliyor';
-  return `<span>${m.emoji}</span><span>${txt}</span>${m.typing?'<span class="tdots"><i></i><i></i><i></i></span>':''}`;
-}
-
-function buildAgent(a){
-  buildDesk(a);
-  const cc=a.desk.c+DESK_W/2+0.30, cr=a.desk.r-0.12;
-  const elA=placeObj(`
-    <div class="chair-back" style="left:50%;bottom:22px;transform:translateX(-50%);width:48px;height:56px;border-radius:14px 14px 4px 4px;background:#0d3a5f;border:2px solid #08243c"></div>
-    ${personSVG(a)}
-    <div class="bubble ${STATUS_META[a.status].cls}" data-bubble>${bubbleHTML(a)}</div>
-  `, cc, cr, 'agent-el roomobj', -10);
-  elA.style.marginTop='-24px';
-  a.el=elA;
-  elA.addEventListener('click',()=>{ if(mode==='play') openCard(a); });
-}
-AGENTS.forEach(buildAgent);
-
-function refreshBubble(a){
-  if(!a.el) return;
-  const b=a.el.querySelector('[data-bubble]');
-  b.className='bubble '+STATUS_META[a.status].cls+' status-pop';
-  b.innerHTML=bubbleHTML(a);
-  setTimeout(()=>b.classList.remove('status-pop'),520);
-  const g=document.querySelector(`[data-agent-glow="${a.id}"]`);
-  if(g){g.style.opacity = a.status==='work'?'0.75':(a.status==='alert'?'0.8':'0.28');
-       g.style.background = a.status==='alert'?'#e05252':a.accent;}
-  updateHUD();
-}
-AGENTS.forEach(a=>{ // init glows
-  const g=document.querySelector(`[data-agent-glow="${a.id}"]`);
-  if(g) g.style.opacity=a.status==='work'?'0.75':(a.status==='alert'?'0.8':'0.28');
-});
-
-/* ================= FURNITURE ================= */
-const CATALOG=[
-  {type:'chair',   emo:'🪑', name:'Sandalye'},
-  {type:'monitor', emo:'🖥️', name:'Monitör'},
-  {type:'palm',    emo:'🌴', name:'Palmiye', size:60},
-  {type:'coffee',  emo:'☕', name:'Kahve'},
-  {type:'poster',  emo:'🖼️', name:'Poster'},
-  {type:'trophy',  emo:'🏆', name:'Ödül'},
-  {type:'sofa',    emo:'🛋️', name:'Kanepe', size:58},
-  {type:'lamp',    emo:'💡', name:'Lamba'},
-  {type:'plant',   emo:'🪴', name:'Saksı'},
-  {type:'cooler',  emo:'🧊', name:'Sebil'},
-  {type:'board',   emo:'🎯', name:'Pano', size:52},
-  {type:'rug',     emo:'🟫', name:'Halı'},
-];
-const DEFAULT_LAYOUT=[
-  {type:'palm',c:12.5,r:0.6},{type:'palm',c:12.4,r:3.6},{type:'plant',c:6.0,r:0.5},
-  {type:'coffee',c:11.6,r:1.5},{type:'cooler',c:2.6,r:6.0},{type:'trophy',c:2.4,r:0.5},
-  {type:'sofa',c:10.6,r:9.4},{type:'sofa',c:12.0,r:8.6},{type:'board',c:12.5,r:7.4},
-  {type:'plant',c:9.9,r:10.2},{type:'lamp',c:3.6,r:9.8},{type:'plant',c:6.6,r:9.9},
-];
-let furniture=[]; let furnSeq=1;
-const LS_KEY='kalkan-ofis-layout-v1';
-
-function catOf(t){return CATALOG.find(x=>x.type===t)||CATALOG[0];}
-
-function renderFurn(f){
-  const cat=catOf(f.type);
-  if(f.type==='rug'){
-    const p1=iso(f.c-1.1,f.r-0.9),p2=iso(f.c+1.1,f.r-0.9),p3=iso(f.c+1.1,f.r+0.9),p4=iso(f.c-1.1,f.r+0.9);
-    const minX=Math.min(p1.x,p4.x)-4, minY=p1.y<p2.y?p1.y:p2.y;
-    const wpx=Math.max(p2.x,p3.x)-minX+8, hpx=Math.max(p3.y,p4.y)-Math.min(p1.y,p2.y)+8;
-    const off=p=>`${p.x-minX},${p.y-minY+4}`;
-    f.el=placeObj(`<svg width="${wpx}" height="${hpx}" viewBox="0 0 ${wpx} ${hpx}" style="display:block">
-        <polygon points="${off(p1)} ${off(p2)} ${off(p3)} ${off(p4)}" fill="#b3542e" opacity=".8"/>
-        <polygon points="${off(iso(f.c-0.9,f.r-0.7))} ${off(iso(f.c+0.9,f.r-0.7))} ${off(iso(f.c+0.9,f.r+0.7))} ${off(iso(f.c-0.9,f.r+0.7))}" fill="none" stroke="#e8dcc2" stroke-width="2" opacity=".65"/>
-      </svg>`, f.c, f.r+0.9, 'furn', -80);
-    f.el.style.transform='translate(-50%,-100%)';
-  } else {
-    const sz=cat.size||46;
-    f.el=placeObj(`<div class="fshadow"></div><span class="emo" style="font-size:${sz}px">${cat.emo}</span>`, f.c, f.r, 'furn', 0);
-    f.el.style.paddingBottom='6px';
-  }
-  f.el.dataset.fid=f.id;
-  attachFurnEvents(f);
-}
-
-function addFurn(type,c,r,skipSave){
-  const f={id:furnSeq++,type,c,r};
-  furniture.push(f); renderFurn(f);
-  return f;
-}
-function removeFurn(f){
-  furniture=furniture.filter(x=>x!==f);
-  if(f.el) f.el.remove();
-}
-function clearFurn(){furniture.forEach(f=>f.el&&f.el.remove());furniture=[];}
-function saveLayout(){
-  localStorage.setItem(LS_KEY,JSON.stringify(furniture.map(f=>({type:f.type,c:+f.c.toFixed(2),r:+f.r.toFixed(2)}))));
-  toast('💾','Ofis düzeni kaydedildi');
-}
-function loadLayout(){
-  clearFurn();
-  let items=DEFAULT_LAYOUT;
-  try{const s=localStorage.getItem(LS_KEY); if(s) items=JSON.parse(s);}catch(e){}
-  items.forEach(it=>addFurn(it.type,it.c,it.r,true));
-}
-loadLayout();
-
-/* blocked tiles (desk footprints + characters) */
-function isBlocked(c,r){
-  for(const a of AGENTS){
-    if(c>a.desk.c-0.6 && c<a.desk.c+DESK_W+0.6 && r>a.desk.r-0.9 && r<a.desk.r+DESK_D+0.5) return true;
-  }
-  return false;
-}
-
-/* ================= MODES ================= */
-let mode='play';
-const btnPlay=document.getElementById('btn-play'),btnDecor=document.getElementById('btn-decor');
-const btnSave=document.getElementById('btn-save'),btnReset=document.getElementById('btn-reset');
-function setMode(m){
-  mode=m;
-  document.body.classList.toggle('mode-decor',m==='decor');
-  btnPlay.classList.toggle('on',m==='play');
-  btnDecor.classList.toggle('on',m==='decor');
-  btnSave.style.display=m==='decor'?'':'none';
-  btnReset.style.display=m==='decor'?'':'none';
-  deselectAll(); hideTileHi();
-  if(m==='decor') toast('🛋️','Dekorasyon modu — tepsiden eşya sürükle, eşyaya tıkla → sil');
-}
-btnPlay.addEventListener('click',()=>setMode('play'));
-btnDecor.addEventListener('click',()=>setMode('decor'));
-btnSave.addEventListener('click',saveLayout);
-btnReset.addEventListener('click',()=>{localStorage.removeItem(LS_KEY);loadLayout();toast('↺','Varsayılan düzen geri yüklendi');});
-
-/* ================= TRAY ================= */
-const tray=document.getElementById('tray');
-CATALOG.forEach(cat=>{
-  const b=document.createElement('div');
-  b.className='tray-item'; b.dataset.type=cat.type;
-  b.innerHTML=`<span class="ti-emo">${cat.emo}</span><span class="ti-name">${cat.name}</span>`;
-  tray.appendChild(b);
-});
-const hint=document.createElement('div');hint.className='tray-hint';
-hint.textContent='Eşyayı zemine sürükle · yerleştirilen eşyaya tıkla → taşı ya da sil · 💾 Kaydet ile sakla';
-tray.appendChild(hint);
-
-/* ================= SCALING ================= */
-const vp=document.getElementById('viewport');
-let scale=1;
-function fit(){
-  const vw=vp.clientWidth, vh=vp.clientHeight-90;
-  scale=Math.min(vw/(W-120), vh/(H-140), 1.05);
-  world.style.transform=`translate(-50%,-50%) scale(${scale})`;
-  world.style.marginLeft='0'; world.style.marginTop='-20px';
-}
-window.addEventListener('resize',fit); fit();
-function worldPoint(clientX,clientY){
-  const rect=world.getBoundingClientRect();
-  return {x:(clientX-rect.left)*(W/rect.width), y:(clientY-rect.top)*(H/rect.height)};
-}
-
-/* ================= TILE HIGHLIGHT ================= */
-const tileHi=document.getElementById('tileHi');
-tileHi.innerHTML=`<svg width="${TW+8}" height="${TH+8}" style="transform:translate(${-(TW+8)/2}px,${-(TH+8)/2}px)">
-  <polygon points="${(TW+8)/2},2 ${TW+6},${(TH+8)/2} ${(TW+8)/2},${TH+6} 2,${(TH+8)/2}" fill="rgba(244,181,61,.28)" stroke="#f4b53d" stroke-width="2.5"/></svg>`;
-const hiPoly=tileHi.querySelector('polygon');
-function showTileHi(c,r,ok){
-  const p=iso(Math.floor(c)+0.5,Math.floor(r)+0.5); // center of tile
-  tileHi.style.display='block';
-  tileHi.style.left=p.x+'px'; tileHi.style.top=p.y+'px';
-  hiPoly.setAttribute('stroke',ok?'#f4b53d':'#e05252');
-  hiPoly.setAttribute('fill',ok?'rgba(244,181,61,.28)':'rgba(224,82,82,.3)');
-}
-function hideTileHi(){tileHi.style.display='none';}
-
-/* ================= DRAG & DROP ================= */
-const ghost=document.getElementById('ghost');
-let drag=null; // {type, from:'tray'|f, moved}
-
-function startDrag(type,f,clientX,clientY){
-  drag={type,f:f||null,moved:false,sx:clientX,sy:clientY};
-  ghost.textContent=catOf(type).emo;
-  ghost.style.display='block';
-  ghost.style.left=clientX+'px'; ghost.style.top=clientY+'px';
-  if(f&&f.el) f.el.style.opacity='0.35';
-}
-window.addEventListener('pointermove',e=>{
-  if(!drag) return;
-  if(Math.abs(e.clientX-drag.sx)+Math.abs(e.clientY-drag.sy)>5) drag.moved=true;
-  ghost.style.left=e.clientX+'px'; ghost.style.top=e.clientY+'px';
-  const wp=worldPoint(e.clientX,e.clientY);
-  const t=unIso(wp.x,wp.y);
-  if(t.c>=0&&t.c<COLS&&t.r>=0&&t.r<ROWS){
-    showTileHi(t.c,t.r,!isBlocked(Math.floor(t.c)+0.5,Math.floor(t.r)+0.5));
-  } else hideTileHi();
-});
-window.addEventListener('pointerup',e=>{
-  if(!drag) return;
-  ghost.style.display='none'; hideTileHi();
-  const d=drag; drag=null;
-  if(d.f&&d.f.el) d.f.el.style.opacity='';
-  const wp=worldPoint(e.clientX,e.clientY);
-  const t=unIso(wp.x,wp.y);
-  const inRoom=t.c>=0&&t.c<COLS&&t.r>=0&&t.r<ROWS;
-  if(!d.moved && d.f){toggleSelect(d.f);return;} // click = select for delete
-  if(!inRoom){ if(d.f){toast('🌊','Eşya denize düşmesin! Oda içine bırak.');} return; }
-  const c=Math.floor(t.c)+0.5, r=Math.floor(t.r)+0.5;
-  if(isBlocked(c,r)){toast('🚫','Orası dolu — masaların üstüne olmaz');return;}
-  if(d.f){ // move existing
-    d.f.c=c; d.f.r=r; d.f.el.remove(); renderFurn(d.f);
-  } else {
-    addFurn(d.type,c,r);
-  }
-});
-tray.addEventListener('pointerdown',e=>{
-  if(mode!=='decor') return;
-  const item=e.target.closest('.tray-item');
-  if(!item) return;
-  e.preventDefault();
-  startDrag(item.dataset.type,null,e.clientX,e.clientY);
-});
-function attachFurnEvents(f){
-  f.el.addEventListener('pointerdown',e=>{
-    if(mode!=='decor') return;
-    e.preventDefault(); e.stopPropagation();
-    deselectAll();
-    startDrag(f.type,f,e.clientX,e.clientY);
-  });
-}
-let selected=null;
-function toggleSelect(f){
-  if(selected===f){deselectAll();return;}
-  deselectAll();
-  selected=f; f.el.classList.add('selected');
-  const del=document.createElement('div');
-  del.className='del-pop'; del.textContent='🗑 Sil';
-  del.addEventListener('pointerdown',e=>{e.stopPropagation();removeFurn(f);selected=null;toast('🗑','Eşya kaldırıldı');});
-  f.el.appendChild(del);
-}
-function deselectAll(){
-  if(selected){selected.el.classList.remove('selected');const dp=selected.el.querySelector('.del-pop');if(dp)dp.remove();selected=null;}
-}
-document.getElementById('viewport').addEventListener('pointerdown',e=>{
-  if(e.target.closest('.furn')||e.target.closest('.tray-item')) return;
-  deselectAll();
-});
-
-/* ================= AGENT CARD ================= */
-const card=document.getElementById('card'),veil=document.getElementById('card-veil');
-let cardAgent=null;
-function openCard(a){
-  cardAgent=a;
-  document.getElementById('c-ava').innerHTML=personSVG(a).replace('width="72" height="98"','width="80" height="96"');
-  document.getElementById('c-ava').style.background=`linear-gradient(180deg, ${a.accent}33, ${a.accent}18), linear-gradient(180deg,#0d3a5f,#0a2e4c)`;
-  document.getElementById('c-name').textContent=a.name;
-  document.getElementById('c-role').textContent=a.role;
-  const mc=document.getElementById('c-model');
-  mc.textContent='model · '+a.model; mc.className='chip model-'+a.model;
-  const st=document.getElementById('c-status');
-  const m=STATUS_META[a.status];
-  st.textContent=m.emoji+' '+(a.status==='cron'?('cron '+(a.cronLbl||'')):m.label);
-  document.getElementById('c-cron').textContent=a.cron+(a.nextRun?'  ·  sıradaki: '+a.nextRun:'');
-  document.getElementById('c-out').textContent='“'+a.out+'”';
-  const prov=document.getElementById('c-prov');
-  if(a.lastProvider){prov.style.display='';prov.textContent='⚙ '+a.lastProvider;}else{prov.style.display='none';}
-  document.getElementById('c-mission').textContent=a.mission;
-  document.getElementById('task-inp').value='';
-  const jb=document.getElementById('job-block');jb.style.display='none';
-  document.getElementById('job-result').textContent='';document.getElementById('job-result').className='val';
-  card.classList.add('open'); veil.classList.add('open');
-}
-function closeCard(){card.classList.remove('open');veil.classList.remove('open');cardAgent=null;}
-document.getElementById('card-close').addEventListener('click',closeCard);
-veil.addEventListener('click',closeCard);
-window.addEventListener('keydown',e=>{if(e.key==='Escape')closeCard();});
-document.getElementById('task-btn').addEventListener('click',sendTask);
-document.getElementById('task-inp').addEventListener('keydown',e=>{if(e.key==='Enter')sendTask();});
-async function sendTask(){
-  if(!cardAgent) return;
-  const a=cardAgent;
-  const inp=document.getElementById('task-inp');
-  const v=inp.value.trim();
-  if(!liveMode){ // graceful degrade — local toy behavior (static host, no backend)
-    toast('✓',`Görev kuyruğa alındı → ${a.name}${v?': “'+ (v.length>34?v.slice(0,34)+'…':v)+'”':''}`);
-    inp.value=''; a.status='work'; refreshBubble(a);
-    document.getElementById('c-status').textContent='💬 çalışıyor';
-    return;
-  }
-  if(!v){toast('⚠','Önce bir görev yaz'); inp.focus(); return;}
-  const btn=document.getElementById('task-btn'); const oldLbl=btn.textContent;
-  btn.disabled=true; btn.textContent='⏳';
-  try{
-    const res=await apiPOST('/agency/enqueue',{agent:a.id,task:v});
-    toast('✓',`Görev gönderildi → ${a.name}`);
-    inp.value=''; a.status='work'; refreshBubble(a); updateCardLive(a);
-    watchJob(a,res.jobId);
-  }catch(e){ toast('⚠','Görev gönderilemedi — yerel ops modu gerekli'); }
-  btn.disabled=false; btn.textContent=oldLbl;
-}
-
-/* ================= TOAST ================= */
-function toast(icon,msg){
-  const t=document.createElement('div');
-  t.className='toast'; t.innerHTML=`<span class="tick">${icon}</span><span>${msg}</span>`;
-  document.getElementById('toasts').appendChild(t);
-  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),380);},2600);
-}
-
-/* ================= CLOCK + HUD ================= */
-const fmt=new Intl.DateTimeFormat('tr-TR',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit'});
-function tick(){document.getElementById('clock').childNodes[0].nodeValue=fmt.format(new Date());}
-tick(); setInterval(tick,5000);
-
-const CRONS=[{h:5,m:0},{h:6,m:0},{h:17,m:0},{h:7,m:0,dow:1},{h:8,m:0,dow:1}];
-function nextCron(){
-  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Istanbul'}));
-  let best=null;
-  for(let add=0;add<8;add++){
-    const d=new Date(now); d.setDate(d.getDate()+add);
-    for(const c of CRONS){
-      if(c.dow!==undefined && d.getDay()!==c.dow) continue;
-      const t=new Date(d); t.setHours(c.h,c.m,0,0);
-      if(t>now && (!best||t<best)) best=t;
-    }
-    if(best) break;
-  }
-  return best?String(best.getHours()).padStart(2,'0')+':'+String(best.getMinutes()).padStart(2,'0'):'—';
-}
-function updateHUD(){
-  const act=AGENTS.filter(a=>a.status==='work').length;
-  document.getElementById('st-active').textContent=act;
-  document.getElementById('st-cron').textContent=nextCron();
-}
-updateHUD();
-
-/* ================= SIMULATION ================= */
-let simOn=false, simTimer=null;
-const btnSim=document.getElementById('btn-sim');
-const SIM_LINES={
-  director:['3 aday post üretildi (güven 0.91 / 0.66 / 0.58)','Günün seçimi: gün batımı carousel','Beach club postu revize edildi'],
-  trend:['9 yeni trend yakalandı','#kalkanbeach yükselişte (+34%)','İngiliz turist aramaları zirvede'],
-  writer:['5 dilde caption tamamlandı','TikTok hook 3 varyant yazıldı','CTA A/B seti hazır'],
-  guard:['3 onay, 0 uyarı — temiz seri','1 hard block: fiyat iddiası','Ton denetimi geçti ✓'],
-  analyst:['Reach +22%, kaydetme oranı 2x','Clarity: mobil scroll derinliği ↑','Digest taslağı hazır'],
-  growth:['Kaldıraç #2 aktive edildi','Haftalık plan revize: 4 aksiyon','Villa funnel dönüşümü +0.8pt'],
-  ads:['ROAS 2.6x — bütçe dengelendi','Meta CBO yeniden öğreniyor','TikTok CPM düştü, +$25 eklendi'],
-  reception:['5 mesaj: 5 oto-yanıt ✓','Rezervasyon sorusu eskale edildi','Tekne turu bilgisi iletildi'],
-};
-function simStep(){
-  const n=1+(Math.random()<0.4?1:0);
-  for(let i=0;i<n;i++){
-    const a=AGENTS[Math.floor(Math.random()*AGENTS.length)];
-    const roll=Math.random();
-    let next;
-    if(a.status==='work') next=roll<0.55?'idle':(roll<0.85?'work':(roll<0.95?'cron':'alert'));
-    else if(a.status==='alert') next=roll<0.7?'work':'idle';
-    else next=roll<0.55?'work':(roll<0.8?'idle':'cron');
-    if(next==='cron'&&!a.cronLbl) a.cronLbl=['17:00','06:00','Pzt 07:00'][Math.floor(Math.random()*3)];
-    if(next==='work'){const lines=SIM_LINES[a.id];if(lines)a.out=lines[Math.floor(Math.random()*lines.length)];}
-    a.status=next; refreshBubble(a);
-    if(cardAgent===a){const st=document.getElementById('c-status');const m=STATUS_META[a.status];
-      st.textContent=m.emoji+' '+(a.status==='cron'?('cron '+(a.cronLbl||'')):m.label);
-      document.getElementById('c-out').textContent='“'+a.out+'”';}
-  }
-}
-btnSim.addEventListener('click',()=>{
-  simOn=!simOn;
-  if(simOn){btnSim.textContent='⏸ Simülasyonu Durdur';btnSim.classList.add('gold');simTimer=setInterval(simStep,2800);toast('▶','Ofis canlandı — ajanlar çalışıyor');}
-  else{btnSim.textContent='▶ Simülasyonu Başlat';btnSim.classList.remove('gold');clearInterval(simTimer);}
-});
-
-/* ================= LIVE AGENCY BACKEND ================= */
-let AG_BY_ID=Object.fromEntries(AGENTS.map(a=>[a.id,a]));
-let liveMode=false, liveEverOn=false, liveContent=[], pollTimer=null, pollFails=0;
-
-function escapeHTML(x){return String(x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
-/* Canlı: /agency/* çağrıları Supabase Edge Function'a gider (serve.mjs sadece localhost'ta var).
-   Yerel geliştirme (localhost): relative kalır → serve.mjs karşılar. /data/agency/*.json her iki
-   ortamda da statik dosya olduğundan dokunulmaz. */
+/* ===================== BACKEND ===================== */
 const AGENCY_EDGE='https://dgichfealzdpfhdgryym.supabase.co/functions/v1/agency';
 const AGENCY_KEY='sb_publishable_26HXaUgGqxZUOuxbcPhiDQ_s3MvKVpr';
-const _isLocalHost=['localhost','127.0.0.1'].indexOf(location.hostname)!==-1;
-function _agencyURL(p){
-  if(_isLocalHost || !p.startsWith('/agency/')) return {url:p,headers:{}};
-  return {url:AGENCY_EDGE+p.slice('/agency'.length), headers:{apikey:AGENCY_KEY,Authorization:'Bearer '+AGENCY_KEY}};
+const isLocal=['localhost','127.0.0.1'].includes(location.hostname);
+function agencyURL(p){
+  if(isLocal || !p.startsWith('/agency/')) return {url:p,headers:{}};
+  return {url:AGENCY_EDGE+p.slice('/agency'.length),headers:{apikey:AGENCY_KEY,Authorization:'Bearer '+AGENCY_KEY}};
 }
-async function apiGET(p){const t=_agencyURL(p);const r=await fetch(t.url,{cache:'no-store',headers:t.headers});if(!r.ok)throw new Error('http '+r.status);return r.json();}
-async function apiPOST(p,body){
-  const t=_agencyURL(p);
-  const r=await fetch(t.url,{method:'POST',headers:{'Content-Type':'application/json',...t.headers},body:JSON.stringify(body)});
-  if(!r.ok)throw new Error('http '+r.status); return r.json();
-}
+async function apiGET(p){const t=agencyURL(p);const r=await fetch(t.url,{cache:'no-store',headers:t.headers});if(!r.ok)throw new Error('http '+r.status);return r.json();}
+async function apiPOST(p,body){const t=agencyURL(p);const r=await fetch(t.url,{method:'POST',headers:{'Content-Type':'application/json',...t.headers},body:JSON.stringify(body)});if(!r.ok)throw new Error('http '+r.status);return r.json();}
 
-function setLive(on){
-  const ind=document.getElementById('live-ind'), sep=document.getElementById('live-dot-sep');
-  if(on){
-    liveMode=true; liveEverOn=true;
-    document.body.classList.add('is-live');
-    ind.style.display=''; sep.style.display=''; ind.classList.remove('stale');
-  }else{
-    liveMode=false; ind.classList.add('stale');
-  }
-}
+/* ===================== STATE ===================== */
+const DEPT={}, DEPT_LIST=[]; let AGENTS={}, STATE={}, QUEUE=[]; let liveOn=false, curFilter='all';
+const STATUS_META={work:{t:'çalışıyor',c:'work'},cron:{t:'zamanlı',c:'cron'},idle:{t:'boşta',c:'idle'},alert:{t:'dikkat',c:'alert'},done:{t:'tamam',c:'work'}};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function ago(iso){ if(!iso) return '—'; const d=(Date.now()-new Date(iso).getTime())/1000; if(isNaN(d))return '—';
+  if(d<60)return 'az önce'; if(d<3600)return Math.floor(d/60)+' dk önce'; if(d<86400)return Math.floor(d/3600)+' sa önce'; return Math.floor(d/86400)+' gün önce'; }
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600);}
+function setLive(on,stale){const el=document.getElementById('live');liveOn=on;el.className='live'+(on?' on':'')+(stale?' stale':'');
+  document.getElementById('live-txt').textContent=on?'canlı':(stale?'çevrimdışı (yerel veri)':'yerel veri');}
 
-function mergeStatus(state){
-  if(!state||!state.agents) return;
-  for(const id in state.agents){
-    const a=AG_BY_ID[id]; if(!a) continue;
-    const s=state.agents[id];
-    if(s.lastOutput) a.out=s.lastOutput;
-    if(s.nextRun) a.nextRun=s.nextRun;
-    if('lastProvider' in s) a.lastProvider=s.lastProvider;
-    const ns=STATUS_META[s.status]?s.status:(s.status?'work':a.status);
-    if(ns!==a.status){a.status=ns; refreshBubble(a);}
-  }
-  if(cardAgent) updateCardLive(cardAgent);
-  if(document.getElementById('roster').classList.contains('open')) renderRoster();
+/* ===================== DATA LOAD ===================== */
+async function loadData(){
+  const [depts,agents]=await Promise.all([apiGET('/data/agency/departments.json'),apiGET('/data/agency/agents.json')]);
+  (depts.departmanlar||[]).forEach(d=>{DEPT[d.id]=d;DEPT_LIST.push(d);});
+  AGENTS=agents.agents||{};
+  // yerel son-durum (canlı yoksa)
+  try{const s=await apiGET('/data/agency/state.json');STATE=s.agents||{};}catch(_){}
+  try{const q=await apiGET('/data/agency/content-queue.json');QUEUE=Array.isArray(q)?q:(q.items||q.queue||[]);}catch(_){}
+  // canlı dene
+  await pollLive();
 }
-
-function updateCardLive(a){
-  if(!card.classList.contains('open')||cardAgent!==a) return;
-  document.getElementById('c-out').textContent='“'+a.out+'”';
-  document.getElementById('c-cron').textContent=a.cron+(a.nextRun?'  ·  sıradaki: '+a.nextRun:'');
-  const prov=document.getElementById('c-prov');
-  if(a.lastProvider){prov.style.display='';prov.textContent='⚙ '+a.lastProvider;}else{prov.style.display='none';}
-  const st=document.getElementById('c-status'), m=STATUS_META[a.status];
-  st.textContent=m.emoji+' '+(a.status==='cron'?('cron '+(a.cronLbl||'')):m.label);
-}
-
-function updateQueue(content){
-  liveContent=Array.isArray(content)?content:[];
-  const pending=liveContent.filter(x=>x.status==='pending_approval');
-  document.getElementById('q-count').textContent=pending.length;
-  if(document.getElementById('queue').classList.contains('open')) renderQueue();
-}
-
-async function pollOnce(){
+async function pollLive(){
   try{
     const j=await apiGET('/agency/status');
-    pollFails=0;
-    if(!liveMode) setLive(true); else document.getElementById('live-ind').classList.remove('stale');
-    mergeStatus(j.state);
-    updateQueue(j.content);
-    return j;
-  }catch(e){
-    pollFails++;
-    if(liveEverOn && pollFails>=2) document.getElementById('live-ind').classList.add('stale');
-    return null; // silent — no console spam on static host
-  }
+    if(j.state&&j.state.agents) STATE={...STATE,...j.state.agents};
+    if(j.content) QUEUE=j.content;
+    setLive(true,false);
+  }catch(_){ setLive(false, liveEver); }
 }
+let liveEver=false;
+const _origSetLive=setLive; // liveEver izle
+setLive=function(on,stale){ if(on)liveEver=true; _origSetLive(on,stale); };
 
-async function initLive(){
-  const j=await pollOnce();
-  if(j){ pollTimer=setInterval(pollOnce,5000); return; }
-  // not live at start → a few gentle retries, then give up (stay in read-only local mode)
-  let tries=0;
-  const retry=setInterval(async()=>{
-    tries++;
-    const r=await pollOnce();
-    if(r){ clearInterval(retry); pollTimer=setInterval(pollOnce,5000); }
-    else if(tries>=3){ clearInterval(retry); }
-  },4000);
-}
+/* ===================== RENDER: OTOMASYONLAR ===================== */
+function agentDept(id){ const d=DEPT_LIST.find(x=>(x.agents||[]).includes(id)); return d||{id:'',ad:'',accent:'#7fa3c0',emoji:''}; }
+function statusOf(id){ const s=STATE[id]; const meta=AGENTS[id]; if(s&&s.status)return s.status; if(meta&&meta.schedule&&meta.schedule.type==='cron')return 'cron'; return 'idle'; }
+function schedLabel(id){ const m=AGENTS[id]; if(!m||!m.schedule)return 'Tetik: canlı'; return m.schedule.label||(m.schedule.type==='cron'?'Zamanlı':'Tetik'); }
 
-/* ---- job result rendering (Görev Ver) ---- */
-function fmtResult(txt){
-  if(txt==null) return {html:'', json:false};
-  let s=String(txt).trim();
-  const fence=s.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
-  if(fence) s=fence[1].trim();
-  try{const o=JSON.parse(s);return {json:true,html:'<pre>'+escapeHTML(JSON.stringify(o,null,2))+'</pre>'};}
-  catch(_){ return {json:false,html:escapeHTML(s)}; }
+function renderPills(){
+  const el=document.getElementById('pills');
+  const counts={all:Object.keys(AGENTS).length};
+  DEPT_LIST.forEach(d=>counts[d.id]=(d.agents||[]).filter(id=>AGENTS[id]).length);
+  el.innerHTML=`<div class="pill ${curFilter==='all'?'on':''}" data-f="all">Tümü <b>${counts.all}</b></div>`+
+    DEPT_LIST.map(d=>`<div class="pill ${curFilter===d.id?'on':''}" data-f="${d.id}" style="${curFilter===d.id?'':'border-color:'+d.accent+'55'}">${d.emoji} ${esc(d.ad.split(' ')[0])} <b>${counts[d.id]}</b></div>`).join('');
+  el.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{curFilter=p.dataset.f;renderPills();renderRows();});
 }
-async function watchJob(a,jobId){
-  const block=document.getElementById('job-block'), out=document.getElementById('job-result');
-  block.style.display=''; out.className='val running'; out.textContent='⏳ çalışıyor…';
-  let tries=0;
-  const iv=setInterval(async()=>{
-    tries++;
-    let j; try{ j=await apiGET('/agency/status'); }catch(e){ if(tries>24) clearInterval(iv); return; }
-    mergeStatus(j.state); updateQueue(j.content);
-    const job=(j.jobs||[]).find(x=>x.id===jobId);
-    if(!job){ if(tries>24){clearInterval(iv); if(cardAgent===a){out.className='val';out.textContent='Sonuç bulunamadı.';}} return; }
-    if(job.status==='done'){
-      clearInterval(iv);
-      toast('✓',`${a.name} görevi tamamladı`);
-      if(cardAgent!==a) return;
-      const r=fmtResult(job.result);
-      out.className='val'; out.innerHTML=r.html+(job.provider?`<div class="prov-tag">⚙ ${escapeHTML(job.provider)}</div>`:'');
-    }else if(job.status==='error'){
-      clearInterval(iv);
-      if(cardAgent!==a) return;
-      out.className='val'; out.textContent='⚠ '+(job.error||'Hata oluştu');
-    }else if(tries>27){ clearInterval(iv); }
-  },2000);
+function idsForFilter(){
+  if(curFilter==='all') return Object.keys(AGENTS);
+  return (DEPT[curFilter]?.agents||[]).filter(id=>AGENTS[id]);
 }
-
-/* ---- pipeline ---- */
-async function runPipeline(){
-  if(!liveMode) return;
-  const btn=document.getElementById('btn-pipeline'), old=btn.textContent;
-  btn.classList.add('running'); btn.textContent='⏳ Üretiliyor…';
-  try{
-    await apiPOST('/agency/run',{target:'pipeline'});
-    toast('▶','Pipeline başladı — TrendScout→Director→Writer→BrandGuard');
-    let n=0; const iv=setInterval(async()=>{ n++; await pollOnce(); if(n>=12){clearInterval(iv);btn.classList.remove('running');btn.textContent=old;} },3000);
-  }catch(e){ toast('⚠','Pipeline başlatılamadı'); btn.classList.remove('running'); btn.textContent=old; }
-}
-
-/* ---- content queue panel ---- */
-const queue=document.getElementById('queue'), queueVeil=document.getElementById('queue-veil');
-function closeSidePanels(){ ['queue','roster','guide'].forEach(id=>{document.getElementById(id).classList.remove('open');document.getElementById(id+'-veil').classList.remove('open');}); }
-function openQueue(){ closeSidePanels(); queue.classList.add('open'); queueVeil.classList.add('open'); renderQueue(); pollOnce(); }
-function closeQueue(){ queue.classList.remove('open'); queueVeil.classList.remove('open'); }
-function verdictChip(g){
-  const v=((g&&g.verdict)||'').toUpperCase();
-  const col={PASS:'#4ADE80',SOFT:'#f4b53d',BLOCK:'#e05252'}[v]||'#9db8cc';
-  const score=(g&&g.score!=null)?' · '+g.score:'';
-  return `<span class="vchip" style="--vc:${col}">${escapeHTML(v||'—')}${score}</span>`;
-}
-function renderQueue(){
-  const list=document.getElementById('q-list');
-  const pending=liveContent.filter(x=>x.status==='pending_approval');
-  if(!pending.length){
-    list.innerHTML='<div class="q-empty">Onay bekleyen içerik yok.<br>“▶ Günlük İçerik Üret” ile pipeline’ı çalıştır — birkaç saniye içinde burada belirir.</div>';
-    return;
-  }
-  list.innerHTML=pending.map(it=>`
-    <div class="q-item" data-cid="${escapeHTML(it.id)}">
-      <div class="q-top">
-        <span class="q-date">${escapeHTML(it.date||'')}</span>
-        ${it.type?`<span class="q-type">${escapeHTML(it.type)}</span>`:''}
-        ${verdictChip(it.guard)}
-      </div>
-      ${it.decision?`<div class="q-decision">${escapeHTML(it.decision)}</div>`:''}
-      <div class="q-caption">${escapeHTML(it.caption||'')}</div>
-      ${it.guard&&it.guard.notes?`<div class="q-notes">🛡 ${escapeHTML(it.guard.notes)}</div>`:''}
-      <div class="q-actions">
-        <button class="q-btn ok" data-act="approve">✓ Onayla</button>
-        <button class="q-btn no" data-act="reject">✕ Reddet</button>
-      </div>
-    </div>`).join('');
-}
-document.getElementById('q-list').addEventListener('click',async e=>{
-  const b=e.target.closest('.q-btn'); if(!b) return;
-  const item=b.closest('.q-item'), cid=item.dataset.cid, act=b.dataset.act;
-  item.style.opacity='.5'; item.querySelectorAll('.q-btn').forEach(x=>x.disabled=true);
-  try{
-    await apiPOST('/agency/approve',{contentId:cid,decision:act});
-    toast(act==='approve'?'✓':'✕', act==='approve'?'İçerik onaylandı':'İçerik reddedildi');
-    await pollOnce(); renderQueue();
-  }catch(err){ toast('⚠','İşlem başarısız'); item.style.opacity=''; item.querySelectorAll('.q-btn').forEach(x=>x.disabled=false); }
-});
-
-document.getElementById('btn-pipeline').addEventListener('click',runPipeline);
-document.getElementById('btn-queue').addEventListener('click',openQueue);
-document.getElementById('queue-close').addEventListener('click',closeQueue);
-queueVeil.addEventListener('click',closeQueue);
-window.addEventListener('keydown',e=>{if(e.key==='Escape')closeQueue();});
-
-/* ---- roster (Kadro) panel ---- */
-const rosterEl=document.getElementById('roster'), rosterVeil=document.getElementById('roster-veil');
-function statusDotColor(a){ return a.status==='work'?'#4ADE80':a.status==='alert'?'#e05252':a.status==='cron'?'#f4b53d':'#9db8cc'; }
-function statusLabel(a){ const m=STATUS_META[a.status]||{}; return a.status==='cron'?('cron '+(a.cronLbl||'')):(m.label||a.status||''); }
-let rosterScope='dept';
-function deptOf(id){ return (DEPARTMENTS||[]).find(d=>(d.agents||[]).includes(id)); }
-function renderRoster(){
-  const list = rosterScope==='all' && ALL.length ? ALL : AGENTS;
-  document.getElementById('roster-list').innerHTML=list.map(a=>{
-    const title=a.role.includes('—')?a.role.split('—').pop().trim():a.role;
-    const mission=a.mission||a.role||'';
-    const d = rosterScope==='all' ? (DEPARTMENTS||[]).find(x=>x.id===a.department) : null;
-    return `<div class="emp" style="--ac:${a.accent}">
-      <span class="emp-dot"></span>
-      <div class="emp-main">
-        <div class="emp-top">
-          <span class="emp-name">${escapeHTML(a.name)}</span>
-          <span class="emp-model model-${a.model}">${escapeHTML(a.model)}</span>
-          ${d?`<span class="emp-dept">${d.emoji} ${escapeHTML((d.ad||'').split(/[—-]/)[0].trim())}</span>`:''}
-          <span class="emp-live"><span class="el-dot" style="background:${statusDotColor(a)}"></span>${escapeHTML(statusLabel(a))}</span>
-        </div>
-        <div class="emp-role">${escapeHTML(title)}</div>
-        ${mission?`<div class="emp-mission">“${escapeHTML(mission)}”</div>`:''}
-      </div>
+function renderRows(){
+  const wrap=document.getElementById('oto-rows');
+  const ids=idsForFilter();
+  if(!ids.length){wrap.innerHTML='<div class="empty">Bu departmanda otomasyon yok.</div>';return;}
+  wrap.innerHTML=ids.map(id=>{
+    const m=AGENTS[id]||{}, d=agentDept(id), st=statusOf(id), sm=STATUS_META[st]||STATUS_META.idle;
+    const last=STATE[id]&&STATE[id].lastRun;
+    return `<div class="row" data-id="${id}">
+      <span class="sdot ${sm.c}" title="${sm.t}"></span>
+      <div><div class="a-name">${esc(m.name||id)}</div><div class="a-role">${esc(m.role||'')}</div></div>
+      <span class="col-dept"><span class="badge" style="background:${d.accent}22;color:${d.accent}">${d.emoji} ${esc((d.ad||'').split(' ')[0])}</span></span>
+      <span class="col-sched sched">${esc(schedLabel(id))}</span>
+      <span class="col-ago ago">${ago(last)}</span>
+      <span class="rowacts"><button class="btn run" data-run="${id}">Çalıştır</button><button class="btn ghost" data-det="${id}">Detay</button></span>
     </div>`;
   }).join('');
+  wrap.querySelectorAll('[data-run]').forEach(b=>b.onclick=()=>runAgent(b.dataset.run,b));
+  wrap.querySelectorAll('[data-det]').forEach(b=>b.onclick=()=>showDetail(b.dataset.det));
 }
-function openRoster(){
-  closeSidePanels();
-  const sub=document.getElementById('roster-sub');
-  const dept=(DEPARTMENTS||[]).find(d=>d.id===activeDept);
-  const scopeUI=document.getElementById('roster-scope');
-  if(ALL.length){ scopeUI.style.display='flex'; }
-  else { scopeUI.style.display='none'; rosterScope='dept'; }
-  if(sub) sub.textContent = rosterScope==='all'
-    ? `Tüm şirket — ${ALL.length} yapay zekâ çalışan, ${DEPARTMENTS.length} departman.`
-    : (dept?`${dept.emoji} ${dept.ad} — ${AGENTS.length} çalışan.`:'Her biri kendi uzmanlık alanında görev başında.');
-  renderRoster(); rosterEl.classList.add('open'); rosterVeil.classList.add('open');
+function renderStats(){
+  const ids=Object.keys(AGENTS);
+  document.getElementById('s-total').textContent=ids.length;
+  document.getElementById('s-cron').textContent=ids.filter(id=>AGENTS[id].schedule&&AGENTS[id].schedule.type==='cron').length;
+  const ran=ids.filter(id=>{const l=STATE[id]&&STATE[id].lastRun;return l&&(Date.now()-new Date(l))<86400000;}).length;
+  document.getElementById('s-ran').textContent=ran;
+  const pend=QUEUE.filter(q=>(q.status||'').includes('pending')).length;
+  document.getElementById('s-pend').textContent=pend;
+  const badge=document.getElementById('q-badge');
+  if(pend>0){badge.style.display='';badge.textContent=pend;}else badge.style.display='none';
 }
-function closeRoster(){ rosterEl.classList.remove('open'); rosterVeil.classList.remove('open'); }
 
-/* ---- how-to-use (Nasıl Kullanılır) panel ---- */
-const guideEl=document.getElementById('guide'), guideVeil=document.getElementById('guide-veil');
-const GUIDE_STEPS=[
-  {icon:'🧑‍💼',h:'1 · Bir ajana iş ver',b:'Ofiste bir çalışana tıkla → açılan kartta <b>Görev Ver</b> kutusuna yapmasını istediğin işi yaz → <b>Gönder</b>. Ajan <b>gerçekten</b> çalışır, birkaç saniye içinde sonucu kartta belirir.'},
-  {icon:'▶',h:'2 · Günlük içerik üret (Pipeline)',b:'Alt bardaki <b>▶ Günlük İçerik Üret</b> zinciri başlatır: <b>TrendScout → ContentDirector → SocialWriter → BrandGuard</b>. Sonunda yayına hazır bir Instagram postu üretilir.'},
-  {icon:'📥',h:'3 · İçeriği onayla',b:'Üretilen içerik <b>İçerik Kuyruğu</b>’na düşer ve <b>onayını bekler</b>. Beğenirsen <b>Onayla</b>, beğenmezsen <b>Reddet</b>. Sen onaylamadan hiçbir şey paylaşılmaz — yarı-otomatik güvenlik kapısı.'},
-  {icon:'💬',h:'Durum balonları (canlı)',b:'Her ajanın başındaki balon durumu gösterir: <b>💤 boşta · 💬 çalışıyor · ⏰ cron (zamanlı) · 🔴 uyarı</b>. Her 5 saniyede otomatik güncellenir. Sağ üstteki <b>● canlı</b> bağlantının açık olduğunu gösterir.'},
-  {icon:'🛋️',h:'Ofisi dekore et',b:'Alt bardan <b>Dekore Et</b> moduna geç → tepsiden mobilya sürükle-bırak, taşı ya da sil → <b>💾 Kaydet</b> ile düzenini sakla.'},
-];
-function renderGuide(){
-  document.getElementById('guide-list').innerHTML=GUIDE_STEPS.map(s=>`
-    <div class="guide-step">
-      <div class="gs-h"><span>${s.icon}</span><span>${s.h}</span></div>
-      <div class="gs-b">${s.b}</div>
-    </div>`).join('')
-    +`<div class="guide-step"><div class="gs-b" style="color:#9db8cc;margin-top:0">💡 Not: <b>Görev Ver</b> ve <b>Pipeline</b> yalnızca yerel ajans sunucusu açıkken çalışır. Sunucu kapalıysa ofis salt-görüntü modunda kalır.</div></div>`;
+/* ===================== ÇALIŞTIR / GÖREV VER ===================== */
+async function runAgent(id,btn){
+  if(!liveOn){toast('⚠ Canlı backend gerekli (yerel modda tetikleme yok)');return;}
+  const old=btn.textContent;btn.disabled=true;btn.textContent='…';
+  try{ await apiPOST('/agency/enqueue',{agent:id,task:'Manuel tetikleme (operasyon merkezi)'}); toast('▶ '+(AGENTS[id].name||id)+' tetiklendi'); }
+  catch(e){ toast('✗ Hata: '+e.message); }
+  finally{ btn.disabled=false;btn.textContent=old; setTimeout(pollLive,1500); }
 }
-function openGuide(){ closeSidePanels(); renderGuide(); guideEl.classList.add('open'); guideVeil.classList.add('open'); }
-function closeGuide(){ guideEl.classList.remove('open'); guideVeil.classList.remove('open'); }
-
-document.getElementById('btn-roster').addEventListener('click',openRoster);
-document.getElementById('btn-guide').addEventListener('click',openGuide);
-document.getElementById('roster-close').addEventListener('click',closeRoster);
-document.getElementById('guide-close').addEventListener('click',closeGuide);
-rosterVeil.addEventListener('click',closeRoster);
-guideVeil.addEventListener('click',closeGuide);
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){closeRoster();closeGuide();}});
-document.getElementById('roster-scope').addEventListener('click',e=>{
-  const b=e.target.closest('.rs-btn'); if(!b) return;
-  rosterScope=b.dataset.scope;
-  document.querySelectorAll('#roster-scope .rs-btn').forEach(x=>x.classList.toggle('on',x.dataset.scope===rosterScope));
-  openRoster();
-});
-
-/* ================= MULTIVERSE · DEPARTMENT ROOMS ================= */
-let DEPARTMENTS=[], ALL=[], activeDept='sosyal', deptDeskMap={};
-/* desk grid slots for procedurally-laid-out departments (fits inside room, avoids walls) */
-const DESK_SLOTS=[
-  {c:1.0,r:1.4},{c:4.3,r:1.4},{c:7.3,r:1.4},{c:10.2,r:1.4},
-  {c:1.0,r:4.4},{c:4.3,r:4.4},{c:7.3,r:4.4},{c:10.2,r:4.4},
-  {c:1.0,r:7.4},{c:4.3,r:7.4},{c:7.3,r:7.4},{c:10.2,r:7.4},
-];
-const SKIN_POOL=['#e8b48c','#d9a06b','#f0c8a0','#e0a87c','#c88a5e','#eac3a3'];
-const HAIR_POOL=['#3a2b20','#1d1d1d','#7a4a1e','#4a4a4a','#2b2118','#101010','#5a3a10','#241a12'];
-const STYLE_POOL=['exec','cap','bun','long','curly','short'];
-const EXTRA_POOL=[null,'glasses','tie','pen','headset',null,'glasses',null];
-function hashStr(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
-function hexToHsl(hex){
-  let n=parseInt(hex.slice(1),16),r=((n>>16)&255)/255,g=((n>>8)&255)/255,b=(n&255)/255;
-  const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h=0,s=0,l=(mx+mn)/2;
-  if(mx!==mn){const d=mx-mn;s=l>0.5?d/(2-mx-mn):d/(mx+mn);
-    h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h*=60;}
-  return {h,s:s*100,l:l*100};
+function fillAgentSelect(){
+  const sel=document.getElementById('g-agent');
+  sel.innerHTML=DEPT_LIST.map(d=>`<optgroup label="${d.emoji} ${esc(d.ad)}">`+
+    (d.agents||[]).filter(id=>AGENTS[id]).map(id=>`<option value="${id}">${esc(AGENTS[id].name||id)} — ${esc((AGENTS[id].role||'').slice(0,40))}</option>`).join('')+`</optgroup>`).join('');
 }
-function hslToHex(h,s,l){
-  s/=100;l/=100;const a=s*Math.min(l,1-l);const k=n=>(n+h/30)%12;
-  const f=n=>{const c=l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return Math.round(255*c);};
-  const to=x=>x.toString(16).padStart(2,'0');
-  return '#'+to(f(0))+to(f(8))+to(f(4));
-}
-function deriveAccent(base,seed){
-  const c=hexToHsl(base);
-  const h=(c.h+((seed%7)-3)*11+360)%360;
-  const s=Math.max(45,Math.min(96,c.s+(((seed>>5)%3)-1)*10));
-  const l=Math.max(40,Math.min(66,c.l+(((seed>>3)%5)-2)*6));
-  return hslToHex(h,s,l);
-}
-function buildRegistry(deptData, agentData){
-  DEPARTMENTS = deptData.departmanlar || deptData.departments || [];
-  const ag = agentData.agents || agentData;
-  const seedById=Object.fromEntries(AGENTS.map(a=>[a.id,a])); // 8 hand-crafted social agents
-  ALL=[]; AG_BY_ID={};
-  for(const id in ag){
-    const meta=ag[id]||{};
-    let v=seedById[id];
-    if(!v){ // procedural visual agent (non-social)
-      const seed=hashStr(id), sched=meta.schedule||{};
-      v={ id, name:meta.name||id, role:meta.role||'', model:meta.model||'haiku',
-          mission:meta.role||'', out:'—',
-          cron: sched.label || (sched.type==='cron'?'Zamanlı':'Tetik: canlı'),
-          cronLbl: sched.type==='cron' && sched.label ? sched.label.replace(/^Her gün\s*/,'').replace(/^Pazartesi\s*/,'Pzt ') : '',
-          status: sched.type==='cron' ? 'cron' : 'idle',
-          skin:SKIN_POOL[seed%SKIN_POOL.length],
-          hair:HAIR_POOL[(seed>>4)%HAIR_POOL.length],
-          hairStyle:STYLE_POOL[(seed>>8)%STYLE_POOL.length],
-          extra:EXTRA_POOL[(seed>>11)%EXTRA_POOL.length],
-          accent:'#7f93a6', procedural:true };
-    }
-    v.department = meta.department || v.department;
-    AG_BY_ID[id]=v; ALL.push(v);
-  }
-  deptDeskMap={};
-  DEPARTMENTS.forEach(d=>{
-    deptDeskMap[d.id]={};
-    (d.agents||[]).forEach((id,i)=>{
-      const v=AG_BY_ID[id]; if(!v) return;
-      if(v.procedural){ v.accent=deriveAccent(d.accent, hashStr(id+d.id)); }
-      deptDeskMap[d.id][id] = (d.id==='sosyal' && v.desk) ? v.desk : DESK_SLOTS[i%DESK_SLOTS.length];
-    });
-  });
-}
-function applyDeptTheme(dept){
-  document.body.style.setProperty('--room-accent',dept.accent);
-  const wash=document.getElementById('room-wash');
-  if(wash) wash.style.background=`radial-gradient(1200px 820px at 50% 42%, ${dept.accent}26, transparent 68%)`;
-}
-function buildDeptTabs(){
-  const wrap=document.getElementById('dept-tabs'); wrap.innerHTML='';
-  const short={sosyal:'Sosyal',gazete:'Haber',concierge:'Concierge',teknik:'Teknik'};
-  DEPARTMENTS.forEach(d=>{
-    const b=document.createElement('button');
-    b.className='dept-tab'+(d.id===activeDept?' on':''); b.dataset.dept=d.id; b.title=d.ad;
-    b.innerHTML=`<span class="dt-emo">${d.emoji}</span><span class="dt-label">${short[d.id]||d.ad}</span>`;
-    b.addEventListener('click',()=>{ if(d.id!==activeDept) renderDepartment(d.id); });
-    wrap.appendChild(b);
-  });
-}
-function renderDepartment(deptId){
-  const dept=DEPARTMENTS.find(d=>d.id===deptId); if(!dept) return;
-  activeDept=deptId;
-  document.querySelectorAll('#world .roomobj').forEach(e=>e.remove()); // clear previous room
-  AGENTS = (dept.agents||[]).map(id=>AG_BY_ID[id]).filter(Boolean);
-  AGENTS.forEach(a=>{ a.el=null; a.desk = (deptDeskMap[deptId]&&deptDeskMap[deptId][a.id]) || {c:1,r:1}; });
-  AGENTS.forEach(buildAgent);
-  AGENTS.forEach(a=>{ const g=document.querySelector(`[data-agent-glow="${a.id}"]`);
-    if(g) g.style.opacity=a.status==='work'?'0.75':(a.status==='alert'?'0.8':'0.28'); });
-  applyDeptTheme(dept);
-  document.getElementById('office-title').textContent=dept.emoji+' '+dept.ad;
-  document.getElementById('st-total').textContent=AGENTS.length;
-  document.querySelectorAll('.dept-tab').forEach(t=>t.classList.toggle('on',t.dataset.dept===deptId));
-  if(cardAgent && !AGENTS.includes(cardAgent)) closeCard();
-  if(document.getElementById('roster').classList.contains('open')) openRoster();
-  updateHUD();
-}
-async function initMultiverse(){
-  let depts, agentsData;
+async function sendTask(){
+  const id=document.getElementById('g-agent').value, task=document.getElementById('g-task').value.trim();
+  const out=document.getElementById('job-out');
+  if(!task){toast('Görev metni gir');return;}
+  if(!liveOn){out.style.display='';out.className='';out.textContent='⚠ Canlı backend gerekli — yerel modda görev gönderilemez. (Prod: kalkaninfo.com/ajansAI)';return;}
+  out.style.display='';out.className='run';out.textContent='⏳ Gönderiliyor…';
   try{
-    [depts,agentsData]=await Promise.all([
-      apiGET('/data/agency/departments.json'),
-      apiGET('/data/agency/agents.json'),
-    ]);
-  }catch(e){ return; } // graceful degrade → single social room stays
-  if(!depts || !(depts.departmanlar||depts.departments)) return;
-  buildRegistry(depts, agentsData);
-  buildDeptTabs();
-  const soc=DEPARTMENTS.find(d=>d.id==='sosyal')||DEPARTMENTS[0];
-  activeDept=soc.id;
-  applyDeptTheme(soc);
-  document.getElementById('office-title').textContent=soc.emoji+' '+soc.ad;
-  document.getElementById('st-total').textContent=AGENTS.length;
-  document.querySelectorAll('.dept-tab').forEach(t=>t.classList.toggle('on',t.dataset.dept===activeDept));
+    const r=await apiPOST('/agency/enqueue',{agent:id,task});
+    const jobId=r.jobId||r.id;
+    out.textContent='⏳ '+(AGENTS[id].name||id)+' çalışıyor…';
+    let tries=0; const iv=setInterval(async()=>{
+      tries++; let j; try{j=await apiGET('/agency/status');}catch(_){ if(tries>20)clearInterval(iv); return; }
+      const job=(j.jobs||[]).find(x=>x.id===jobId);
+      if(job&&(job.status==='done'||job.result)){ clearInterval(iv); out.className='';
+        out.innerHTML='<b>✓ '+esc(AGENTS[id].name||id)+':</b>\n'+esc(job.result||job.output||'(çıktı yok)'); }
+      else if(tries>20){ clearInterval(iv); out.className=''; out.textContent='Sonuç zaman aşımı — /agency/status kontrol et.'; }
+    },2500);
+  }catch(e){ out.className='';out.textContent='✗ Hata: '+e.message; }
 }
 
-initLive();
-initMultiverse();
+/* ===================== ONAY KUYRUĞU ===================== */
+function renderQueue(){
+  const el=document.getElementById('q-list');
+  const pend=QUEUE.filter(q=>(q.status||'').includes('pending'));
+  if(!pend.length){el.innerHTML='<div class="empty">Bekleyen onay yok. 🎉</div>';return;}
+  el.innerHTML=pend.map(q=>{
+    const body=q.decision||q.caption||q.content||q.text||JSON.stringify(q).slice(0,300);
+    return `<div class="qcard" data-cid="${q.id}">
+      <div class="qhead"><span class="qtype">${esc(q.type||'içerik')}</span><span class="ago">${ago(q.createdAt)}</span></div>
+      <div class="qbody">${esc(typeof body==='string'?body:JSON.stringify(body,null,2))}</div>
+      <div class="qacts"><button class="btn ok" data-ap="${q.id}">✓ Paylaş</button><button class="btn no" data-rj="${q.id}">✕ Reddet</button></div>
+    </div>`;
+  }).join('');
+  el.querySelectorAll('[data-ap]').forEach(b=>b.onclick=()=>decide(b.dataset.ap,'approve'));
+  el.querySelectorAll('[data-rj]').forEach(b=>b.onclick=()=>decide(b.dataset.rj,'reject'));
+}
+async function decide(cid,act){
+  if(!liveOn){toast('⚠ Canlı backend gerekli');return;}
+  try{ await apiPOST('/agency/approve',{contentId:cid,decision:act}); toast(act==='approve'?'✓ Onaylandı':'✕ Reddedildi');
+    QUEUE=QUEUE.filter(q=>q.id!==cid); renderQueue();renderStats(); }
+  catch(e){ toast('✗ Hata: '+e.message); }
+}
+
+/* ===================== DETAY MODAL ===================== */
+function showDetail(id){
+  const m=AGENTS[id]||{}, d=agentDept(id), s=STATE[id]||{};
+  const wf=(m.workflows||[]).join(', ');
+  document.getElementById('mbox').innerHTML=`<button class="mclose" onclick="document.getElementById('modal').classList.remove('on')">×</button>
+    <h3>${esc(m.name||id)}</h3><div class="mrole">${esc(m.role||'')}</div>
+    <div class="mrow"><span class="mk">Departman</span><span>${d.emoji} ${esc(d.ad)}</span></div>
+    <div class="mrow"><span class="mk">Model</span><span>${esc(m.model||'—')}</span></div>
+    <div class="mrow"><span class="mk">Zamanlama</span><span>${esc(schedLabel(id))}</span></div>
+    ${wf?`<div class="mrow"><span class="mk">Workflow</span><span>${esc(wf)}</span></div>`:''}
+    <div class="mrow"><span class="mk">Son çalışma</span><span>${ago(s.lastRun)}</span></div>
+    ${s.lastOutput?`<div class="mrow" style="flex-direction:column;gap:5px"><span class="mk">Son çıktı</span><span style="color:var(--muted);font-size:11.5px;line-height:1.5">${esc(String(s.lastOutput).slice(0,400))}</span></div>`:''}
+    ${m.system?`<div class="mrow" style="flex-direction:column;gap:5px"><span class="mk">Görev tanımı</span><span style="color:var(--muted);font-size:11px;line-height:1.5">${esc(m.system.slice(0,300))}</span></div>`:''}`;
+  document.getElementById('modal').classList.add('on');
+}
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('on');};
+
+/* ===================== TABS & CLOCK ===================== */
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('view-'+b.dataset.view).classList.add('on');
+  if(b.dataset.view==='onay')renderQueue();
+});
+function tickClock(){const d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})+' · Kalkan';}
+setInterval(tickClock,1000);tickClock();
+
+/* ===================== INIT ===================== */
+async function boot(){
+  try{ await loadData(); }catch(e){ document.getElementById('oto-rows').innerHTML='<div class="empty">Veri yüklenemedi: '+esc(e.message)+'</div>'; return; }
+  renderPills();renderRows();renderStats();fillAgentSelect();renderQueue();
+  document.getElementById('g-send').onclick=sendTask;
+  setInterval(async()=>{await pollLive();renderRows();renderStats();},8000);
+}
+
+/* Şifre kapısı */
+(function(){
+  const PASS='123', SS='kalkan_ajansai_gate';
+  const gate=document.getElementById('gate'), form=gate.querySelector('form'), inp=document.getElementById('pass'), err=document.getElementById('perr');
+  if(sessionStorage.getItem(SS)==='1'){ gate.remove(); boot(); return; }
+  form.addEventListener('submit',e=>{e.preventDefault();
+    if(inp.value===PASS){ try{sessionStorage.setItem(SS,'1');}catch(_){}; gate.remove(); boot(); }
+    else{ err.style.display='block'; inp.value=''; inp.focus(); }
+  });
+})();
 </script>
 </body>
 </html>
