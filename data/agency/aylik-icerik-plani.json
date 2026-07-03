@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "name": "Kalkan Info — Aylık Sosyal Medya İçerik Planı",
+    "timezone": "Europe/Istanbul",
+    "doc": "docs/SOSYAL_MEDYA_AYLIK_PLAN.md",
+    "balance": { "ciddi": 0.4, "orijinal": 0.6 },
+    "note": "Ajans bu şablonu uygular. daily=her gün sabit; weekly_theme=13:00 orijinal içerik günün temasına göre; tone: ciddi|orijinal|karisik. Her içerik Telegram onay kapısından geçer.",
+    "languages": { "primary": "tr", "secondary": "en", "always_bilingual": ["gazete", "haftalik-bulten"] }
+  },
+  "daily": [
+    { "time": "07:45", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web", "instagram", "facebook"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat"], "source": "gazete-approval.yml", "lang": "tr+en", "note": "Ön sayfa + magazin + reel. Pazar hariç (Pazar=haftalık bülten)." },
+    { "time": "13:00", "id": "gunun-temasi", "tone": "orijinal", "type": "post|reel", "platforms": ["instagram"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "source": "weekly_theme", "lang": "alternating", "note": "Günün temasına göre (weekly_theme)." },
+    { "time": "19:30", "id": "aksam-etkinlik", "tone": "karisik", "type": "post+story", "platforms": ["instagram"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "source": "etkinlik-takvimi", "lang": "tr", "note": "Bu akşam / etkinlik / mekan." },
+    { "time": "21:00", "id": "gece-magazin", "tone": "orijinal", "type": "story|reel", "platforms": ["instagram"], "days": ["Thu","Fri","Sat"], "source": "magazin", "lang": "tr", "note": "Gece hayatı / magazin (hafta sonu ağırlıklı)." },
+    { "time": "event", "id": "story-tag-repost", "tone": "orijinal", "type": "story", "platforms": ["instagram"], "days": ["*"], "source": "ig-story-mentions", "lang": "as-is", "note": "Biri hikayede etiketlerse otomatik hazırla → onay → repost." }
+  ],
+  "weekly_theme": {
+    "Mon": { "theme": "Bu hafta Kalkan'da (rehber)", "tone": "orijinal", "source": "etkinlik-haftalik", "lang": "tr" },
+    "Tue": { "theme": "Restoran / mekan tanıtım reels", "tone": "orijinal", "revenue": true, "source": "restoranlar", "lang": "tr+en" },
+    "Wed": { "theme": "Antik kent / kültür (biliyor muydun)", "tone": "orijinal", "source": "antik-kentler", "lang": "en+tr" },
+    "Thu": { "theme": "Plaj / koy / aktivite", "tone": "orijinal", "source": "plajlar+turlar", "lang": "en+tr" },
+    "Fri": { "theme": "Hafta sonu etkinlik rehberi", "tone": "karisik", "source": "etkinlik-takvimi", "lang": "tr" },
+    "Sat": { "theme": "Villa / konaklama vitrini", "tone": "orijinal", "revenue": true, "source": "villalar+oteller", "lang": "en+tr" },
+    "Sun": { "theme": "Haftanın bülteni + magazin özeti", "tone": "ciddi", "time": "09:00", "source": "haftalik-bulten", "lang": "tr+en", "note": "Pazar sabahı gazete yerine haftanın özeti." }
+  },
+  "monthly_specials": [
+    { "when": "month-day-1", "id": "aylik-onizleme", "theme": "Bu ay Kalkan'da — aylık etkinlik önizlemesi", "tone": "karisik" },
+    { "when": "first-tuesday", "id": "partner-spot", "theme": "Partner işletme kampanya spotu", "tone": "orijinal", "revenue": true },
+    { "when": "month-end", "id": "aylik-ozet", "theme": "Aylık öne çıkanlar + topluluk teşekkürü (story-repost derlemesi)", "tone": "orijinal" }
+  ]
+}
