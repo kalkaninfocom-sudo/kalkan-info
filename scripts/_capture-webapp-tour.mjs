@@ -56,14 +56,13 @@ for (const p of PAGES) {
     } catch (_) {}
     // Kurşun-geçirmez: pwa.js iOS/install bannerını (#kalkan-install-banner/#kalkan-ios-banner)
     // ne zaman eklerse eklesin baştan öldür — video temiz kalsın.
-    const kill = () => {
-      ['#kalkan-install-banner', '#kalkan-ios-banner', '#kalkan-install-btn', '.ki-bn-item.cta'].forEach(s => {
-        document.querySelectorAll(s).forEach(el => el.remove());
-      });
-    };
+    // GERÇEK element id'leri (DOM'dan doğrulandı): çerez #ki-cookie-banner,
+    // install #kalkan-install-banner / #kalkan-ios-banner / #ki-bn-install
+    const KILL = '#ki-cookie-banner, #kalkan-install-banner, #kalkan-ios-banner, #ki-bn-install, #kalkan-install-btn';
+    const kill = () => { document.querySelectorAll(KILL).forEach(el => el.remove()); };
     try {
       const st = document.createElement('style');
-      st.textContent = '#kalkan-install-banner,#kalkan-ios-banner,.ki-bn-item.cta{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
+      st.textContent = KILL + '{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
       (document.head || document.documentElement).appendChild(st);
     } catch (_) {}
     const iv = setInterval(kill, 250);
