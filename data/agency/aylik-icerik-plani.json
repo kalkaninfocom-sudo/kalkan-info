@@ -1,27 +1,64 @@
 {
   "_meta": {
-    "name": "Kalkan Info — Aylık Sosyal Medya İçerik Planı",
+    "name": "Kalkan Info — Aylık Sosyal Medya İçerik Planı (algoritma-optimize)",
     "timezone": "Europe/Istanbul",
     "doc": "docs/SOSYAL_MEDYA_AYLIK_PLAN.md",
     "balance": { "ciddi": 0.4, "orijinal": 0.6 },
-    "note": "Ajans bu şablonu uygular. daily=her gün sabit; weekly_theme=13:00 orijinal içerik günün temasına göre; tone: ciddi|orijinal|karisik. Her içerik Telegram onay kapısından geçer.",
-    "languages": { "primary": "tr", "secondary": "en", "always_bilingual": ["gazete", "haftalik-bulten"] }
+    "algo_notes": "2026 IG verisi: en iyi günler Çar>Prş>Sal (hafta ortası); Pazar sakin; en iyi saatler sabah 07-09 & akşam 18-21. Flagship/reels → Sal/Çar/Prş akşamı (18:30-20:00). Saatler gün gün DEĞİŞİR (algoritma + tekdüzelik kırma).",
+    "languages": { "primary": "tr", "secondary": "en", "always_bilingual": ["gazete", "haftalik-bulten"] },
+    "hashtag_max": 5
   },
-  "daily": [
-    { "time": "07:45", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web", "instagram", "facebook"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat"], "source": "gazete-approval.yml", "lang": "tr+en", "note": "Ön sayfa + magazin + reel. Pazar hariç (Pazar=haftalık bülten)." },
-    { "time": "13:00", "id": "gunun-temasi", "tone": "orijinal", "type": "post|reel", "platforms": ["instagram"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "source": "weekly_theme", "lang": "alternating", "note": "Günün temasına göre (weekly_theme)." },
-    { "time": "19:30", "id": "aksam-etkinlik", "tone": "karisik", "type": "post+story", "platforms": ["instagram"], "days": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "source": "etkinlik-takvimi", "lang": "tr", "note": "Bu akşam / etkinlik / mekan." },
-    { "time": "21:00", "id": "gece-magazin", "tone": "orijinal", "type": "story|reel", "platforms": ["instagram"], "days": ["Thu","Fri","Sat"], "source": "magazin", "lang": "tr", "note": "Gece hayatı / magazin (hafta sonu ağırlıklı)." },
-    { "time": "event", "id": "story-tag-repost", "tone": "orijinal", "type": "story", "platforms": ["instagram"], "days": ["*"], "source": "ig-story-mentions", "lang": "as-is", "note": "Biri hikayede etiketlerse otomatik hazırla → onay → repost." }
-  ],
-  "weekly_theme": {
-    "Mon": { "theme": "Bu hafta Kalkan'da (rehber)", "tone": "orijinal", "source": "etkinlik-haftalik", "lang": "tr" },
-    "Tue": { "theme": "Restoran / mekan tanıtım reels", "tone": "orijinal", "revenue": true, "source": "restoranlar", "lang": "tr+en" },
-    "Wed": { "theme": "Antik kent / kültür (biliyor muydun)", "tone": "orijinal", "source": "antik-kentler", "lang": "en+tr" },
-    "Thu": { "theme": "Plaj / koy / aktivite", "tone": "orijinal", "source": "plajlar+turlar", "lang": "en+tr" },
-    "Fri": { "theme": "Hafta sonu etkinlik rehberi", "tone": "karisik", "source": "etkinlik-takvimi", "lang": "tr" },
-    "Sat": { "theme": "Villa / konaklama vitrini", "tone": "orijinal", "revenue": true, "source": "villalar+oteller", "lang": "en+tr" },
-    "Sun": { "theme": "Haftanın bülteni + magazin özeti", "tone": "ciddi", "time": "09:00", "source": "haftalik-bulten", "lang": "tr+en", "note": "Pazar sabahı gazete yerine haftanın özeti." }
+  "week": {
+    "Mon": [
+      { "time": "08:00", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete" },
+      { "time": "13:00", "id": "bu-hafta-kalkanda", "tone": "orijinal", "type": "post", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "etkinlik" },
+      { "time": "19:00", "id": "aksam-etkinlik", "tone": "karisik", "type": "story", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "etkinlik" }
+    ],
+    "Tue": [
+      { "time": "07:45", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete" },
+      { "time": "12:00", "id": "gunluk-orijinal", "tone": "orijinal", "type": "post", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "genel" },
+      { "time": "20:00", "id": "restoran-reel", "tone": "orijinal", "revenue": true, "type": "reel", "platforms": ["instagram","facebook"], "lang": "tr+en", "hashtag_set": "restoran", "note": "FLAGSHIP — güçlü gün akşam prime (💰 monetizasyon)." }
+    ],
+    "Wed": [
+      { "time": "07:45", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete" },
+      { "time": "11:00", "id": "gunluk-orijinal", "tone": "orijinal", "type": "story", "platforms": ["instagram"], "lang": "en", "hashtag_set": "genel" },
+      { "time": "19:30", "id": "antik-kent-reel", "tone": "orijinal", "type": "reel", "platforms": ["instagram","facebook"], "lang": "en+tr", "hashtag_set": "antik", "note": "FLAGSHIP — HAFTANIN EN İYİ GÜNÜ akşam prime." }
+    ],
+    "Thu": [
+      { "time": "07:45", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete" },
+      { "time": "12:30", "id": "gunluk-orijinal", "tone": "orijinal", "type": "post", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "genel" },
+      { "time": "20:00", "id": "plaj-aktivite-reel", "tone": "orijinal", "type": "reel", "platforms": ["instagram","facebook"], "lang": "en+tr", "hashtag_set": "plaj", "note": "FLAGSHIP — güçlü gün akşam prime." }
+    ],
+    "Fri": [
+      { "time": "08:00", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete" },
+      { "time": "18:30", "id": "hafta-sonu-rehberi", "tone": "karisik", "type": "post+story", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "etkinlik", "note": "Hafta sonu etkinlik rehberi — insanlar plan yaparken." }
+    ],
+    "Sat": [
+      { "time": "08:30", "id": "gunun-gazetesi", "tone": "ciddi", "type": "carousel+reel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete", "note": "Hafta sonu geç sabah." },
+      { "time": "14:00", "id": "villa-konaklama", "tone": "orijinal", "revenue": true, "type": "reel", "platforms": ["instagram","facebook"], "lang": "en+tr", "hashtag_set": "villa", "note": "💰 Konaklama — hafta sonu tatil planlayanlar." },
+      { "time": "21:00", "id": "gece-magazin", "tone": "orijinal", "type": "story", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "magazin" }
+    ],
+    "Sun": [
+      { "time": "09:00", "id": "haftalik-bulten", "tone": "ciddi", "type": "reel+carousel", "platforms": ["web","instagram","facebook"], "lang": "tr+en", "hashtag_set": "gazete", "note": "Pazar gazete yerine HAFTANIN BÜLTENİ (sakin gün → otorite içeriği)." },
+      { "time": "17:00", "id": "hafta-magazin-ozet", "tone": "orijinal", "type": "story", "platforms": ["instagram"], "lang": "tr", "hashtag_set": "magazin" }
+    ]
+  },
+  "story_tag_repost": { "trigger": "ig-story-mention", "tone": "orijinal", "flow": "otomatik hazırla → Telegram onay → kendi hikayemize ekle", "platforms": ["instagram"], "any_time": true },
+  "hashtag_strategy": {
+    "rule": "Instagram MAX 5 etiket (2026). Karışım: 1 marka + 2 niş + 1-2 yerel/konum. Konum+niş birleştir (#kalkanvillas > #villas). Tekrarı azalt (setleri döndür). Etiket = algoritma sınıflandırma sinyali, spam değil.",
+    "branded": ["#kalkaninfo", "#kalkantoday"],
+    "local_core": ["#kalkan", "#kaş", "#patara", "#kaputaş", "#antalya", "#likya"],
+    "en_reach": ["#kalkanturkey", "#visitkalkan", "#turkishriviera", "#lycianway"],
+    "sets": {
+      "gazete": ["#kalkaninfo", "#kalkan", "#kaşgündem", "#antalyahaber", "#kalkantoday"],
+      "restoran": ["#kalkaninfo", "#kalkanrestaurants", "#kalkanfood", "#kalkan", "#visitkalkan"],
+      "villa": ["#kalkaninfo", "#kalkanvillas", "#kalkankiralıkvilla", "#kalkan", "#turkishriviera"],
+      "antik": ["#kalkaninfo", "#patara", "#lycianway", "#ancientlycia", "#visitkalkan"],
+      "plaj": ["#kalkaninfo", "#kaputasbeach", "#kalkanbeach", "#kalkan", "#turkishriviera"],
+      "etkinlik": ["#kalkaninfo", "#kalkanetkinlik", "#kaş", "#kalkan", "#antalya"],
+      "magazin": ["#kalkaninfo", "#kalkangece", "#kalkan", "#kaş", "#visitkalkan"],
+      "genel": ["#kalkaninfo", "#kalkan", "#kaş", "#patara", "#visitkalkan"]
+    }
   },
   "monthly_specials": [
     { "when": "month-day-1", "id": "aylik-onizleme", "theme": "Bu ay Kalkan'da — aylık etkinlik önizlemesi", "tone": "karisik" },

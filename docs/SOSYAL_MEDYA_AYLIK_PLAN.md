@@ -19,27 +19,38 @@ bu ritmi uygular. Makine-okur sürümü: `data/agency/aylik-icerik-plani.json`.
 **Zamanlama mantığı:** SABAH = ciddi (haber otoritesi; insanlar günü haberle açar). AKŞAM & HAFTA SONU =
 orijinal (yaşam tarzı, etkileşim, monetizasyon; insanlar akşam keşfeder/eğlenir).
 
-## 2. Günlük sabit ritim (her gün)
+## 2. Gün-gün program (algoritma-optimize — saatler her gün FARKLI)
 
-| Saat (TR) | İçerik | Ton | Platform | Kaynak / not |
-|---|---|---|---|---|
-| **07:45** | **Günün gazetesi** — ön sayfa + magazin | CİDDİ | Web + IG carousel + Reel | gazete-approval.yml (Pzt–Cmt). Telegram onayı → yayın. |
-| **13:00** | **Günün teması** (aşağıdaki haftalık tema) | ORİJİNAL | IG post/reel | Temaya göre kaynak (restoran/antik/plaj…) |
-| **19:30** | **Etkinlik / mekan / bu akşam** | KARIŞIK | IG post + story | etkinlik-takvimi + mekan |
-| **21:00** | **Magazin / gece hayatı** | ORİJİNAL | IG story/reel | magazin şeridi |
-| Anlık | **Story-tag repost** (biri etiketlerse) | ORİJİNAL | IG story | otomatik onay → repost |
+2026 IG verisi: en iyi günler **Çar > Prş > Sal**; Pazar sakin; en iyi saatler **sabah 07-09 & akşam 18-21**.
+Bu yüzden **flagship reels (restoran/antik/plaj) hafta ortası akşam prime'a** konur; gazete sabah kalır ama
+saati güne göre kayar; hafta sonu geç sabah. Tekdüzelik yok — her günün kendi saatleri var.
 
-## 3. Haftalık tema (13:00 orijinal içerik)
-
-| Gün | Tema | Ton | Not |
+| Gün | Sabah (CİDDİ) | Gündüz/Akşam (ORİJİNAL) | Flagship |
 |---|---|---|---|
-| **Pazartesi** | Bu hafta Kalkan'da (rehber) | ORİJİNAL | Haftalık etkinlik/hava önizleme |
-| **Salı** | 🍽️ Restoran / mekan tanıtım **reels** | ORİJİNAL 💰 | Ücretli işletme tanıtımı (gelir) |
-| **Çarşamba** | 🏛️ Antik kent / kültür (derinlemesine) | ORİJİNAL | Patara/Ksanthos/Kekova/Antiphellos |
-| **Perşembe** | 🏖️ Plaj / koy / aktivite | ORİJİNAL | Kaputaş, tekne turu, dalış |
-| **Cuma** | 🎉 Hafta sonu etkinlik rehberi | KARIŞIK | Gece programı + etkinlik |
-| **Cumartesi** | 🏡 Villa / konaklama vitrini | ORİJİNAL 💰 | Konaklama tanıtımı (gelir) |
-| **Pazar** | 📰 **Haftanın bülteni** + magazin özeti | CİDDİ | 09:00 haftalık özet (gazete yerine) |
+| **Pzt** | 08:00 gazete | 13:00 "Bu hafta Kalkan'da" · 19:00 etkinlik story | — |
+| **Sal** | 07:45 gazete | 12:00 orijinal · **20:00 🍽️ Restoran reel 💰** | ✅ prime |
+| **Çar** | 07:45 gazete | 11:00 story (EN) · **19:30 🏛️ Antik kent reel** | ✅ EN İYİ GÜN |
+| **Prş** | 07:45 gazete | 12:30 orijinal · **20:00 🏖️ Plaj/aktivite reel** | ✅ prime |
+| **Cum** | 08:00 gazete | 18:30 🎉 Hafta sonu rehberi | — |
+| **Cmt** | 08:30 gazete | 14:00 🏡 Villa reel 💰 · 21:00 gece magazin | 💰 |
+| **Paz** | **09:00 📰 Haftanın bülteni** (gazete yerine) | 17:00 magazin özet | otorite |
+
++ **Story-tag repost**: anlık (biri etiketlerse) → otomatik onay → hikayemize ekle.
+
+## 3. Hashtag (etiket) stratejisi — 2026 kuralı
+
+⚠️ **Instagram artık MAX 5 etiket** (Aralık 2025 sabit limit). 30-etiket devri bitti. Etiket = algoritma
+sınıflandırma sinyali, spam değil.
+
+- **Formül:** 1 marka + 2 niş + 1-2 yerel/konum = **max 5**.
+- **Altın kural:** konum+niş birleştir. `#kalkanvillas` > `#villas` (yerel + niyetli kitle).
+- **Setleri döndür** (tekrar etme). İçerik türüne göre hazır setler `aylik-icerik-plani.json > hashtag_strategy.sets`:
+  - Gazete: `#kalkaninfo #kalkan #kaşgündem #antalyahaber #kalkantoday`
+  - Restoran: `#kalkaninfo #kalkanrestaurants #kalkanfood #kalkan #visitkalkan`
+  - Villa: `#kalkaninfo #kalkanvillas #kalkankiralıkvilla #kalkan #turkishriviera`
+  - Antik: `#kalkaninfo #patara #lycianway #ancientlycia #visitkalkan`
+  - Plaj: `#kalkaninfo #kaputasbeach #kalkanbeach #kalkan #turkishriviera`
+- **EN erişim** (İngiliz kitle): `#kalkanturkey #visitkalkan #turkishriviera #lycianway` niş yerine koy.
 
 ## 4. Dil (TR / EN) — İngiliz yerliler & tatilciler
 
