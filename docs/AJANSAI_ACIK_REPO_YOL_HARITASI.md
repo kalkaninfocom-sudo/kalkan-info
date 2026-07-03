@@ -75,8 +75,15 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
       (build→Supabase upload→Telegram video onayı, reel-approval ikizi) + **adanmış `.github/workflows/restoran-reel.yml`**
       (Salı 17:00 UTC, npm ci + ffmpeg + Remotion Chrome). Scheduler'a EKLENMEDİ (her-10dk tick npm ci yapmıyor →
       Remotion patlar; gazete `_moved` dersi). ⛔ CI'da çalışması için secret'lar: SUPABASE_*, TELEGRAM_*, GROQ/CEREBRAS/NVIDIA.
-3. [ ] **EN+TR çift dil** — editöryal iki dilde + reel EN varyantı + IG çift post/altyazı (İngiliz kitle).
-4. [ ] **Villa reel (Cmt 💰)** + **Antik/Plaj reel (Çar/Prş)** — aynı reel motoru, farklı veri.
+3. [x] **EN çift dil (gazete reel) — CANLI + RENDER ✅ (2026-07-03, commit 1e7b729)** — `build-gazete-reel-en.mjs`
+      + `gazete-editorial-en.mjs` (cheap-llm çeviri → `gazete-today.en.json`) + `reel-approval-en.mjs`
+      + `gazete-approval.yml` entegrasyonu (bayat EN satır temizleme). dist/social/gazete/gazete-reel-en.mp4 ✓.
+      KALAN: IG çift post/altyazı (EN varyantını IG'ye ayrı gönderme) — henüz yok.
+4. [x] **Villa/Antik/Plaj reel — CANLI + RENDER ✅ (2026-07-03, commit 1e7b729)** — `VillaReel/AntikReel/PlajReel.tsx`
+      + `build-{villa,antik,plaj}-reel.mjs` (veriden rotasyon, data-URI foto, müzik, state ile tekrar önleme)
+      + `{villa,antik,plaj}-reel-approval.mjs` + adanmış workflow (villa Cmt 20:00 flagship 💰 / antik Çar / plaj Prş,
+      restoran-reel deseni, scheduler'a EKLENMEDİ). 4'ü de render doğrulandı (6-18MB). Root.tsx'e kayıtlı.
+      ⛔ CI secret'ları: SUPABASE_*, TELEGRAM_*, GROQ/CEREBRAS/NVIDIA (restoran-reel ile aynı — doğrula).
 5. [ ] **IG story-tag oto-repost** — etiketlenince onay→repost (IG API story mentions + STORIES publish; kısıt araştır).
 6. [ ] **Webhook secret** — `TELEGRAM_WEBHOOK_SECRET` (Vercel) → onay butonu→IG yayın (şu an 401; Berkay değeri versin ya da yenisi üretilsin).
 7. [ ] **İş ilanları** (site /ilan/ verisi var) + **Ölüm ilanı** (⚠ veri kaynağı yok — Berkay input).

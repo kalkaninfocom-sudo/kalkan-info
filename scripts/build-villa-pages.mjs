@@ -122,6 +122,15 @@ const CUSTOM = {
 // HTML escape
 const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+// ── i18n attribute uretici ── {tr,en,de,ru,fr} -> `data-en="..." data-de="..."` (TR taban DOM'da).
+const I18N_LANGS = ['en', 'de', 'ru', 'fr'];
+function i18nAttrs(i18n){
+  if (!i18n || typeof i18n !== 'object') return '';
+  const out = [];
+  for (const l of I18N_LANGS){ const v = i18n[l]; if (typeof v === 'string' && v.trim()) out.push(`data-${l}="${esc(v)}"`); }
+  return out.join(' ');
+}
+
 // =====================================================================
 // I18N 5-DIL
 // =====================================================================
@@ -435,10 +444,18 @@ for (const slug of targets) {
   const kitchenImage = realGallery[0] || baseImg;
   const salonImage = realGallery[realGallery.length-1] || baseImg;
 
-  // About paragraphs
-  const aboutParas = (v.description_long || [v.summary || '']).map(p =>
-    `<p class="text-base md:text-lg leading-relaxed mb-5" style="color:var(--theme-muted);">${esc(p)}</p>`
-  ).join('');
+  // About paragraphs — her paragraf data-en/de/ru/fr ile (descriptionLongI18n dizisinden).
+  const aboutSrc = (v.description_long && v.description_long.length) ? v.description_long : [v.summary || ''];
+  const dlI18n = v.descriptionLongI18n || {};
+  const aboutParas = aboutSrc.map((p, i) => {
+    const attrs = i18nAttrs({
+      en: Array.isArray(dlI18n.en) ? dlI18n.en[i] : undefined,
+      de: Array.isArray(dlI18n.de) ? dlI18n.de[i] : undefined,
+      ru: Array.isArray(dlI18n.ru) ? dlI18n.ru[i] : undefined,
+      fr: Array.isArray(dlI18n.fr) ? dlI18n.fr[i] : undefined,
+    });
+    return `<p class="text-base md:text-lg leading-relaxed mb-5" style="color:var(--theme-muted);"${attrs ? ' ' + attrs : ''}>${esc(p)}</p>`;
+  }).join('');
 
   // Hero tags
   const heroTags = (v.tags || []).slice(0, 5).map(t =>
@@ -602,8 +619,21 @@ for (const slug of targets) {
     ? `"geo":{"@type":"GeoCoordinates","latitude":${Number(_vlat)},"longitude":${Number(_vlng)}},\n  `
     : '';
 
+  // META i18n — baslik isim tabanli (TR SEO korunur), aciklama cevrilir (summaryI18n).
+  const metaTitle = `${v.name} — Kalkan Kiralık Villa | kalkaninfo.com`;
+  const descI18n = v.summaryI18n || {};
+  const META_I18N = {};
+  for (const l of ['tr', 'en', 'de', 'ru', 'fr']){
+    META_I18N[l] = { title: metaTitle, desc: (l === 'tr') ? (v.summary || '') : (descI18n[l] || v.summary || '') };
+  }
+  const villaTaglineI18n = v.taglineI18n || {};
+
   const repl = {
     NAME: v.name,
+    NAME_JSON: JSON.stringify(v.name),
+    META_I18N_JSON: JSON.stringify(META_I18N),
+    TAGLINE_I18N_ATTRS: i18nAttrs(villaTaglineI18n),
+    ABOUT_TITLE_I18N_ATTRS: i18nAttrs(v.aboutTitleI18n),
     NAME_URL: encodeURIComponent(v.name),
     SLUG: v.id,
     GEO_BLOCK: geoBlock,

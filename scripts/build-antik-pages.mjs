@@ -131,6 +131,12 @@ function pageHtml(item, slug) {
   const loc = LOCALITY[slug] || { city: 'Antalya', region: 'Antalya' };
   const enOverview = EN_OVERVIEW[slug] || item.summary;
   const extended = EXTENDED[slug] || item.history;
+  // Ozet DE/RU/FR — summaryI18n'den (js/i18n.js data-de/ru/fr okur, fallback: de/ru/fr -> en -> tr).
+  const s18 = item.summaryI18n || {};
+  const overviewLangAttrs = ['de', 'ru', 'fr']
+    .map(l => (s18[l] ? `data-${l}="${escapeAttr(s18[l])}"` : ''))
+    .filter(Boolean)
+    .join(' ');
   const highlights = (item.highlights || []).map(h => `<li class="flex gap-2 items-start"><span class="text-sun-500 mt-1.5">◆</span><span>${escapeHtml(h)}</span></li>`).join('\n          ');
   const tags = (item.tags || []).map(t => `<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">${escapeHtml(t)}</span>`).join(' ');
 
@@ -152,6 +158,10 @@ function pageHtml(item, slug) {
 <meta name="description" content="${escapeAttr(metaDesc)}">
 <link rel="canonical" href="${canonical}">
 <link rel="alternate" hreflang="tr" href="${canonical}">
+<link rel="alternate" hreflang="en" href="${canonical}?lang=en">
+<link rel="alternate" hreflang="de" href="${canonical}?lang=de">
+<link rel="alternate" hreflang="ru" href="${canonical}?lang=ru">
+<link rel="alternate" hreflang="fr" href="${canonical}?lang=fr">
 <link rel="alternate" hreflang="x-default" href="${canonical}">
 <meta name="keywords" content="${escapeAttr(item.name)}, ${escapeAttr((item.tags||[]).join(', '))}, Likya, antik kent, Kalkan">
 
@@ -233,7 +243,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="${escapeAttr(item.category)}">${escapeHtml(item.category)}</span>
     </div>
     <h1 class="font-display text-4xl md:text-6xl font-extrabold mt-4 max-w-3xl leading-[1.05]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="${escapeAttr(item.name)}">${escapeHtml(item.name)}</h1>
-    <p class="mt-4 text-white/85 max-w-2xl text-base md:text-lg leading-relaxed" data-en="${escapeAttr(enOverview)}">${escapeHtml(item.summary)}</p>
+    <p class="mt-4 text-white/85 max-w-2xl text-base md:text-lg leading-relaxed" data-en="${escapeAttr(enOverview)}" ${overviewLangAttrs}>${escapeHtml(item.summary)}</p>
     <div class="mt-5 flex flex-wrap gap-2">${tags}</div>
   </div>
 </header>

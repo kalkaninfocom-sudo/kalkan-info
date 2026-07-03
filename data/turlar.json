@@ -4,17 +4,674 @@
     "subtitle": "Tekne, safari, at ve kano turları — Kalkan'da deneyim listeniz",
     "updated": "2026-04-30"
   },
-  "categories": ["Tekne Turu", "Safari", "At Turu", "Kano Turu"],
+  "categories": [
+    "Tekne Turu",
+    "Safari",
+    "At Turu",
+    "Kano Turu"
+  ],
   "items": [
-    {"id":"gunluk-tekne","name":"Günlük Tekne Turu (12 Koy)","category":"Tekne Turu","duration":"08:30 – 18:00","price":"₺ 850 / kişi","priceNote":"Öğle yemeği dahil","capacity":"20–40 kişi","image":"/assets/img/f7ccb955f343.webp","gallery":["/assets/img/16ed3a3f5c21.webp","/assets/img/343fdd505a81.webp"],"rating":4.8,"summary":"Kalkan limanından kalkıp Sarı Limon, Beyaz Ada, Soğuk Su ve diğer 12 koyda yüzme molaları.","includes":["Limandan transfer","Öğle yemeği","Çay/kahve","Snorkel ekipmanı"],"excludes":["İçecek","Bahşiş"],"meetingPoint":"Kalkan Yat Limanı","languages":["TR","EN","RU"],"featured":true},
-    {"id":"kekova-tekne","name":"Kekova Tekne Turu (Batık Şehir)","category":"Tekne Turu","duration":"08:00 – 19:00","price":"₺ 1.450 / kişi","priceNote":"Transfer + öğle yemeği dahil","capacity":"15–30 kişi","image":"/assets/img/b006c27149e7.webp","gallery":["/assets/img/9aae5688bcff.webp","/assets/img/c81f592fdd67.webp"],"rating":4.9,"summary":"Üçağız limanından Kekova batık şehri, Simena kalesi ve gizli koylar turu.","includes":["Otelden transfer","Cam tabanlı tekne","Öğle yemeği","Rehber"],"excludes":["Müze giriş ücreti","İçecek"],"meetingPoint":"Otelinizden alım","languages":["TR","EN"],"featured":true},
-    {"id":"sunset-cruise","name":"Sunset Cruise","category":"Tekne Turu","duration":"18:00 – 21:30","price":"₺ 750 / kişi","priceNote":"Cocktail dahil","capacity":"10–20 kişi","image":"/assets/img/78147c0c504b.webp","gallery":["/assets/img/d529ab5b24ef.webp","/assets/img/36a7f5f45d38.webp"],"rating":4.7,"summary":"Kalkan koyu boyunca gün batımı keyfi, açık büfe meze, canlı müzik.","includes":["Cocktail","Meze tabağı","Canlı müzik"],"excludes":["Akşam yemeği"],"meetingPoint":"Kalkan Yat Limanı","languages":["TR","EN"],"featured":true},
-    {"id":"patara-tekne","name":"Patara Plajı Tekne Turu","category":"Tekne Turu","duration":"09:00 – 17:00","price":"₺ 950 / kişi","priceNote":"Öğle yemeği dahil","capacity":"15–25 kişi","image":"/assets/img/43915d1cdad3.webp","gallery":["/assets/img/cb51be91ff4b.webp","/assets/img/f98475dbe04f.webp"],"rating":4.6,"summary":"Patara antik kentine deniz yoluyla varış, antik kent gezisi + plaj.","includes":["Öğle yemeği","Antik kent rehberi","Yüzme molaları"],"excludes":["Antik kent giriş ücreti"],"meetingPoint":"Kalkan Yat Limanı","languages":["TR","EN"],"featured":false},
-    {"id":"jeep-safari","name":"Jeep Safari (Saklıkent)","category":"Safari","duration":"09:30 – 17:30","price":"₺ 1.150 / kişi","priceNote":"Transfer + öğle dahil","capacity":"6–8 jeep konvoyu","image":"/assets/img/a07aefee1b15.webp","gallery":["/assets/img/b586f0a56c6e.webp","/assets/img/cf71d3fc0a7d.webp"],"rating":4.7,"summary":"Saklıkent kanyonu, Tlos antik kenti ve dağ köyleri üzerinden jeep safari.","includes":["Otelden transfer","Öğle yemeği","Saklıkent giriş","Profesyonel sürücü"],"excludes":["Tlos giriş ücreti","Su/içecek"],"meetingPoint":"Otelinizden alım","languages":["TR","EN","RU"],"featured":true},
-    {"id":"quad-safari","name":"Quad ATV Safari","category":"Safari","duration":"15:00 – 18:00","price":"₺ 1.350 / quad","priceNote":"Tek/Çift kişilik","capacity":"1–2 kişi/quad","image":"/assets/img/a302377d61c3.webp","gallery":["/assets/img/a302377d61c3.webp","/assets/img/a302377d61c3.webp"],"rating":4.5,"summary":"Kalkan tepelerinde 3 saatlik ATV safari, gün batımı manzarası.","includes":["Quad","Kask","Eğitim","Su"],"excludes":["18 yaş altı binemez"],"meetingPoint":"Kalkan ATV merkezi","languages":["TR","EN"],"featured":false},
-    {"id":"patara-at","name":"Patara Plajı At Turu","category":"At Turu","duration":"08:00 – 11:00","price":"₺ 1.250 / kişi","priceNote":"Transfer dahil","capacity":"4–10 kişi","image":"/assets/img/27985827e093.webp","gallery":["/assets/img/d393b78f5cbd.webp","/assets/img/3af7b6e2f9d6.webp"],"rating":4.8,"summary":"18 km Patara plajında at sırtında deneyim. Antik kent kenarından geçiş.","includes":["Otelden transfer","Eğitmen","Kask","Su"],"excludes":["Antik kent giriş"],"meetingPoint":"Otelinizden alım","languages":["TR","EN"],"featured":true},
-    {"id":"koy-at","name":"Yöre Köyleri At Turu","category":"At Turu","duration":"15:30 – 18:00","price":"₺ 950 / kişi","priceNote":"Çay molası dahil","capacity":"4–8 kişi","image":"/assets/img/27985827e093.webp","gallery":["/assets/img/2f8d46e7b4a7.webp"],"rating":4.6,"summary":"Kalkan tepelerindeki köylerde at turu, geleneksel ev ziyareti.","includes":["Eğitmen","Köyde çay molası","Manzara durağı"],"excludes":["Akşam yemeği"],"meetingPoint":"Kalkan tepe","languages":["TR","EN"],"featured":false},
-    {"id":"xanthos-kano","name":"Xanthos Nehri Kano","category":"Kano Turu","duration":"09:00 – 14:00","price":"₺ 1.050 / kişi","priceNote":"Transfer + ekipman dahil","capacity":"2 kişi/kano","image":"/assets/img/52269be22fb8.webp","gallery":["/assets/img/da9ffd1dd878.webp","/assets/img/a7d2258216e4.webp"],"rating":4.7,"summary":"Xanthos nehri boyunca 12 km kano, Patara'da bitiş.","includes":["Kano","Yelek","Eğitmen","Atıştırmalık","Transfer"],"excludes":["Yüzme havlusu"],"meetingPoint":"Otelinizden alım","languages":["TR","EN"],"featured":true},
-    {"id":"saklikent-kano","name":"Saklıkent Kanyon Kano","category":"Kano Turu","duration":"10:00 – 15:00","price":"₺ 1.150 / kişi","priceNote":"Öğle dahil","capacity":"2 kişi/kano","image":"/assets/img/eb725b1c14b2.webp","gallery":["/assets/img/029c5008eeda.webp","/assets/img/dcfa5bcac17a.webp"],"rating":4.6,"summary":"Saklıkent kanyon girişinden başlayıp Eşen çayında kano deneyimi.","includes":["Kano","Yelek","Öğle yemeği","Transfer"],"excludes":["Saklıkent giriş ücreti"],"meetingPoint":"Otelinizden alım","languages":["TR","EN"],"featured":false}
+    {
+      "id": "gunluk-tekne",
+      "name": "Günlük Tekne Turu (12 Koy)",
+      "category": "Tekne Turu",
+      "duration": "08:30 – 18:00",
+      "price": "₺ 850 / kişi",
+      "priceNote": "Öğle yemeği dahil",
+      "capacity": "20–40 kişi",
+      "image": "/assets/img/f7ccb955f343.webp",
+      "gallery": [
+        "/assets/img/16ed3a3f5c21.webp",
+        "/assets/img/343fdd505a81.webp"
+      ],
+      "rating": 4.8,
+      "summary": "Kalkan limanından kalkıp Sarı Limon, Beyaz Ada, Soğuk Su ve diğer 12 koyda yüzme molaları.",
+      "includes": [
+        "Limandan transfer",
+        "Öğle yemeği",
+        "Çay/kahve",
+        "Snorkel ekipmanı"
+      ],
+      "excludes": [
+        "İçecek",
+        "Bahşiş"
+      ],
+      "meetingPoint": "Kalkan Yat Limanı",
+      "languages": [
+        "TR",
+        "EN",
+        "RU"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "Kalkan limanından kalkıp Sarı Limon, Beyaz Ada, Soğuk Su ve diğer 12 koyda yüzme molaları.",
+        "en": "Swimming stops from Kalkan harbour to Sarı Limon, Beyaz Ada, Soğuk Su and other 12 bays.",
+        "de": "Unser Hafen Kalkan bietet Schwimmbäder in Sarı Limon, Beyaz Ada, Soğuk Su und anderen 12 Bucht.",
+        "ru": "Путешествие из Кalkан порта в Калинник, Сарий Лимон, Бelayзный Остров, Согук Су и другие 12 бухт с утомлением.",
+        "fr": "Depot de Kalkan, nous partons pour Sarı Limon, Beyaz Ada, Soğuk Su et d'autres 12 pêches où vous pouvez faire du plongé."
+      },
+      "taglineI18n": {
+        "tr": "12 Koy · Sarı Limon · Beyaz Ada",
+        "en": "12 Bays · Sarı Limon · Beyaz Ada",
+        "de": "12 Bucht · Sarı Limon · Beyaz Ada",
+        "ru": "12 Кой · Сарий Лимон · Бelayзный Остров",
+        "fr": "12 Pêches · Sarı Limon · Beyaz Ada"
+      },
+      "aboutTitleI18n": {
+        "tr": "Akdeniz'in 12 Saklı Koyu.",
+        "en": "The 12 Protected Coves of the Aegean.",
+        "de": "Die 12 geschützten Küstenbäche des Mittelmeers.",
+        "ru": "Аккеянский архипелаг из 12 защищенных湾.",
+        "fr": "Les 12 Coves de la Méditerranée."
+      },
+      "aboutP1I18n": {
+        "tr": "Kalkan Yat Limanı'ndan saat 08:30'da hareket eden klasik günlük tekne turu, Sarı Limon, Beyaz Ada, Soğuk Su ve diğer koylarda toplam 12 yüzme molası verir. Snorkel ekipmanı tekneden temin edilir.",
+        "en": "A daily sailing tour departing from Kalkan Yat Marina at 08:30, visiting Sarı Limon, Beyaz Ada, Soğuk Su and other bays for a total of 12 swimming stops. Snorkelling equipment is provided on board.",
+        "de": "Unser Yachthafen in Kalkan startet um 08:30 Uhr mit einem klassischen Tagesfahrt-Tour, die insgesamt 12 Schwimmbäder an den Bucht Sarı Limon, Beyaz Ada und Soğuk Su macht. Snorkelgeräte wird von der Bootshülle bezogen.",
+        "ru": "Классический дневной тур по Калиннику, departing из Кальянского яхтенного порта в 08:30, с посещением Сарий Лимона, Бelayзного Острова, Согук Су и других 12 бухт. В technede будет snorkeling-эquipмент.",
+        "fr": "Départ à partir du port de Kalkan à 08:30, un tour quotidien classique qui visite Sarı Limon, Beyaz Ada, Soğuk Su et d'autres cotes pour un total de 12 haltes de plongée. L'équipement de snorkel est fourni sur la mer."
+      },
+      "aboutP2I18n": {
+        "tr": "Öğle yemeği teknede taze pişer — ızgara balık veya tavuk seçenekleri, Türk salatası, ekmek ve çay/kahve dahil. Akşam 18:00 civarı limana dönüş, gün batımı önce.",
+        "en": "Lunch eaten onboard - fresh cooked - options include grilled fish or chicken, Turkish salad, bread and tea/coffee, including. Return to the harbour around 18:00 in the evening, before sunset.",
+        "de": "Mittagessen auf dem Boot - frisch zubereitet: ızgara-frittiertes Fisch- oder Hühnchen-Menü, türkische Salate, Brot und Tee/Kaffee. Abends um 18:00 Uhr kehrt man ins Hafen zurück, bevor der Tag zu Ende geht.",
+        "ru": "Обед на борту приготовитсяfresh — ızгара рыбка или тавук варианты, турк салата, хлеб и чай/кофе включены. Вечер 18:00 примерно в порту возвращение, до заката.",
+        "fr": "Le déjeuner est servi à bord frais — options comme le poisson grillé ou les volailles, salade turque, pain et thé/café inclus. Le retour vers le port à 18h00 environ, avant le coucher du soleil."
+      }
+    },
+    {
+      "id": "kekova-tekne",
+      "name": "Kekova Tekne Turu (Batık Şehir)",
+      "category": "Tekne Turu",
+      "duration": "08:00 – 19:00",
+      "price": "₺ 1.450 / kişi",
+      "priceNote": "Transfer + öğle yemeği dahil",
+      "capacity": "15–30 kişi",
+      "image": "/assets/img/b006c27149e7.webp",
+      "gallery": [
+        "/assets/img/9aae5688bcff.webp",
+        "/assets/img/c81f592fdd67.webp"
+      ],
+      "rating": 4.9,
+      "summary": "Üçağız limanından Kekova batık şehri, Simena kalesi ve gizli koylar turu.",
+      "includes": [
+        "Otelden transfer",
+        "Cam tabanlı tekne",
+        "Öğle yemeği",
+        "Rehber"
+      ],
+      "excludes": [
+        "Müze giriş ücreti",
+        "İçecek"
+      ],
+      "meetingPoint": "Otelinizden alım",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "Üçağız limanından Kekova batık şehri, Simena kalesi ve gizli koylar turu.",
+        "en": "Tour from Üçağız port to the underwater city of Kekova, Simena castle and hidden coves.",
+        "de": "Fahrt vom Hafen von Üçağız nach dem Kekova-Schiffswrack-Stadt, der Simena-Festung und den geheimen Bächen.",
+        "ru": "Путешествие из порта Üçağıз в город Кекова разрушенный корабль, Симена крепость и тайные бухты.",
+        "fr": "Excursion from the port of Üçağız to the underwater city of Kekova, Simena castle and secret coves."
+      },
+      "taglineI18n": {
+        "tr": "Batık Şehir · Simena Kalesi · Cam Tabanlı Tekne",
+        "en": "The Underwater City · Simena Castle · Cam-Topped Boat",
+        "de": "Schiffswrack-Stadt · Simena Festung · Boot mit Glasboden",
+        "ru": "Городище · Симена Крепость · Каменные лодки",
+        "fr": "The Underwater City · Simena Castle · Glass-Backed Boat"
+      },
+      "aboutTitleI18n": {
+        "tr": "Batık Lykia Şehrini Cam Tabandan İzleyin.",
+        "en": "Explore the ancient Lykian City from under the sea.",
+        "de": "Erkunde das Schiffswrack-Lykien-Städtchen aus dem Glasboden.",
+        "ru": "Пройдитесь по разрушенному Ликийскому городу из за каменной стены.",
+        "fr": "Explore the ancient city of Lycia from behind glass."
+      },
+      "aboutP1I18n": {
+        "tr": "Üçağız limanından kalkan tur, cam tabanlı tekneyle Kekova'nın batık antik şehrinin üzerinden geçer — duvar kalıntıları, basamaklar ve amforalar net görülür.",
+        "en": "A tour from Üçağız port to Kalkan, on a cam-topped boat, passing through the ruins of Kekova's ancient city - with visible wall remains, stairs and amphorae.",
+        "de": "Fahrt vom Hafen von Üçağız nach Kalkan, Boot mit Glasboden führt durch die Antike Stadt des Kekova-Schiffswracks - Sichtbar sind Mauerreste, Treppen und Amphoren.",
+        "ru": "Путешествие из порта Üçağıз в Кalkан, на каменных лодках через разрушенный древний город Кекова — остатки стен,escalаторы и amphоры видны rõко.",
+        "fr": "Excursion from the port of Üçağız to Kalkan tour, on a glass-backed boat passing through the ruins of Kekova's ancient city — visible are the wall remains, stairs and amphorae."
+      },
+      "aboutP2I18n": {
+        "tr": "Simena Kalesi durağında yürüyüş, Kale Köy'de öğle yemeği. Rehber eşliğinde tarih + deniz, çocuklu aileler için uygun.",
+        "en": "Walking at Simena Castle stop, lunch in Kale Village. Suitable for families with children, accompanied by guides who offer history + sea, suitable for all ages.",
+        "de": "Spaziergang an der Simena-Festung, Mittagessen in Kale-Köy. Für Familien mit Kindern geeignet, begleitet von einem Reiseführer, bietet Geschichte + Meer.",
+        "ru": "Пешая по Simone Kalesi стоянке, посещение Деревни Kale, обед. Путешествие с руководителем, подходящее для истории + море, suitable for families with children.",
+        "fr": "Walking at Simena Castle stop, lunch in Kale Village. Suitable for families with children, accompanied by guides."
+      }
+    },
+    {
+      "id": "sunset-cruise",
+      "name": "Sunset Cruise",
+      "category": "Tekne Turu",
+      "duration": "18:00 – 21:30",
+      "price": "₺ 750 / kişi",
+      "priceNote": "Cocktail dahil",
+      "capacity": "10–20 kişi",
+      "image": "/assets/img/78147c0c504b.webp",
+      "gallery": [
+        "/assets/img/d529ab5b24ef.webp",
+        "/assets/img/36a7f5f45d38.webp"
+      ],
+      "rating": 4.7,
+      "summary": "Kalkan koyu boyunca gün batımı keyfi, açık büfe meze, canlı müzik.",
+      "includes": [
+        "Cocktail",
+        "Meze tabağı",
+        "Canlı müzik"
+      ],
+      "excludes": [
+        "Akşam yemeği"
+      ],
+      "meetingPoint": "Kalkan Yat Limanı",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "Kalkan koyu boyunca gün batımı keyfi, açık büfe meze, canlı müzik.",
+        "en": "Kalkan is a picturesque town with an endless sunset along its coastline, open buffet meze, live music.",
+        "de": "Kalkan entlang der Sonnenuntergang, offen Buffet mit Meze, lebendige Musik.",
+        "ru": "Калкан по устьюм калимана при заходе солнца, открытый buffet с мезой, живая музыка.",
+        "fr": "Kalkan le long de la côte propose des soirées de fin d'après-midi aléatoires, un buffet ouvert avec des plats de tapas et une musique en direct."
+      },
+      "taglineI18n": {
+        "tr": "Kokteyl · Meze · Canlı Müzik",
+        "en": "Cocktail · Meze · Live Music",
+        "de": "Kokteil · Meze · Lebendige Musik",
+        "ru": "Коктейль · Меза · Живая música",
+        "fr": "Cocktails · Tapas · Musique en direct"
+      },
+      "aboutTitleI18n": {
+        "tr": "Akdeniz'in En Güzel Gün Batımı.",
+        "en": "The most beautiful sunset in the Aegean.",
+        "de": "Die schönste Sonnenuntergangszeit am Ägäis.",
+        "ru": "Лучший вечер на Акке.",
+        "fr": "Le meilleur coucher de soleil de l'Ancien Monde."
+      },
+      "aboutP1I18n": {
+        "tr": "Akşamüstü Kalkan limanından kalkan 3.5 saatlik gün batımı seyiri. Açık büfe meze tabağı, sınırsız kokteyl ve canlı akustik müzik dahil.",
+        "en": "An evening cruise from Kalkan harbour, 3.5 hour sunset sailing trip, including open buffet meze table, unlimited cocktails and live acoustic music.",
+        "de": "Abends aus dem Kalkan-Hafen startet eine 3,5-stündige Sonnenuntergangsfahrt. Offen Buffet mit Meze-Teller, unbegrenzter Kokteil und lebendige Akustik-Musik sind inklusive.",
+        "ru": "Вечерний путь по Калкану из линии порта. Путешествие в течение 3,5 часов при заходе солнца. Открытый buffet с мезой, бесконечные коктейли и живая акустическая музыка включены.",
+        "fr": "Une promenade de 3,5 heures le long du port de Kalkan au crépuscule, avec un buffet ouvert et des plats de tapas, des cocktails sans fin et une musique acoustique en direct."
+      },
+      "aboutP2I18n": {
+        "tr": "Çiftler ve küçük gruplar için ideal — 20 kişilik küçük tekne, kalabalıksız bir keyif. Akşam yemeği yerine de tercih edilebilir.",
+        "en": "Ideal for couples and small groups — a 20-person small boat, enjoying a peaceful experience without crowds. Also preferred for dinner instead of lunch.",
+        "de": "Ideal für Paare und kleine Gruppen – 20 Personen fassende kleine Boot, ohne überfüllt. Abends als Ersatz für das Abendessen bevorzugt werden kann.",
+        "ru": "Иdeal для пар и малых групп — 20-местная pequeña лодка, без crowds. Вместо обеда на вечер можно предпочитать.",
+        "fr": "Idéal pour les couples et les petits groupes — une petite bateau pour 20 personnes, une soirée détendue sans foule. C'est également préférable à un dîner du soir."
+      }
+    },
+    {
+      "id": "patara-tekne",
+      "name": "Patara Plajı Tekne Turu",
+      "category": "Tekne Turu",
+      "duration": "09:00 – 17:00",
+      "price": "₺ 950 / kişi",
+      "priceNote": "Öğle yemeği dahil",
+      "capacity": "15–25 kişi",
+      "image": "/assets/img/43915d1cdad3.webp",
+      "gallery": [
+        "/assets/img/cb51be91ff4b.webp",
+        "/assets/img/f98475dbe04f.webp"
+      ],
+      "rating": 4.6,
+      "summary": "Patara antik kentine deniz yoluyla varış, antik kent gezisi + plaj.",
+      "includes": [
+        "Öğle yemeği",
+        "Antik kent rehberi",
+        "Yüzme molaları"
+      ],
+      "excludes": [
+        "Antik kent giriş ücreti"
+      ],
+      "meetingPoint": "Kalkan Yat Limanı",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": false,
+      "summaryI18n": {
+        "tr": "Patara antik kentine deniz yoluyla varış, antik kent gezisi + plaj.",
+        "en": "The ancient city of Patara can be reached by sea, an archaeological site tour and beach.",
+        "de": "Die Anreise nach dem antiken Patara durchs Meer, eine Bootstour zur Erkundung des antiken Stadtkerns und zum Strand.",
+        "ru": "Парфен antik китая на море приходит, туристическая экскурсия по античному граду + пляж.",
+        "fr": "Arrivée par bateau au site antique de Patara, visite du site antique et plage."
+      },
+      "taglineI18n": {
+        "tr": "18 km Beyaz Kum · Antik Patara · Yüzme",
+        "en": "18 km White Beach · Ancient Patara · Swimming",
+        "de": "18 km weiße Sandstrand · Antikes Patara · Schwimmen",
+        "ru": "18 км Белый песок · Античный Парфа · Плавание",
+        "fr": "18 km de plages blanches · Site antique de Patara · Plongée"
+      },
+      "aboutTitleI18n": {
+        "tr": "Türkiye'nin En Uzun Plajı Patara'ya Deniz Yoluyla.",
+        "en": "Turkey's Longest Beach is accessible by sea to Patara.",
+        "de": "Turkei's längster Strand ist in Patara über das Meer erreichbar.",
+        "ru": "Самый длинный пляж в Турции приходит из Парфы на море.",
+        "fr": "La plus longue plage de Turquie se trouve à Patara, accessible par voie maritime."
+      },
+      "aboutP1I18n": {
+        "tr": "Kalkan'dan tekneyle Patara plajına varış — yol boyunca koylarda mola, açık denizde rota. Antik Patara kentine rehberli kısa gezi.",
+        "en": "Travel from Kalkan by boat to Patara beach - with stops at bays along the way, sailing in open sea, guided short tour to ancient Patara.",
+        "de": "Aus Kalkan aus fuhrten Sie mit Booten zum weißen Sandstrand von Patara - auf dem Weg dicht an Küstenbänken vorbeifahren, im offenen Meer die Route setzen. Eine kurze Führung durch das antike Patara.",
+        "ru": "Путешествие из Калькана на лодке до пляжа Парфы — по пути мы делаем остановки у koyов, а в открытом море навигуем по роте. Античный Парфа китаям предлагается ориентированный короткий путь.",
+        "fr": "Départ en bateau depuis Kalkan pour atteindre la plage de Patara — halte aux ports côtiers le long du chemin, mer ouverte et navigation. Visite guidée du site antique de Patara."
+      },
+      "aboutP2I18n": {
+        "tr": "Patara plajının uçsuz bucaksız beyaz kumunda 2-3 saat yüzme + güneşlenme. Akşamüstü Kalkan limanına dönüş.",
+        "en": "Swimming and sunbathing on the endless white sand of Patara beach for 2-3 hours. Returning to Kalkan harbour in the evening.",
+        "de": "In den unendlich weiten weißen Sandstränden von Patara schwammen Sie 2-3 Stunden + Sonnenbaden. Abends um Sonnenuntergang kehrten Sie in die Hafenstadt Kalkan zurück.",
+        "ru": "Пляж Парфы на безграничном белом песке 2-3 часа плавание + солнечное лежание. Вечерняя часть Калькана в порту.",
+        "fr": "2-3 heures de plongée dans les vastes plages de blancs sable de Patara + soleil. Retour vers le port de Kalkan le soir."
+      }
+    },
+    {
+      "id": "jeep-safari",
+      "name": "Jeep Safari (Saklıkent)",
+      "category": "Safari",
+      "duration": "09:30 – 17:30",
+      "price": "₺ 1.150 / kişi",
+      "priceNote": "Transfer + öğle dahil",
+      "capacity": "6–8 jeep konvoyu",
+      "image": "/assets/img/a07aefee1b15.webp",
+      "gallery": [
+        "/assets/img/b586f0a56c6e.webp",
+        "/assets/img/cf71d3fc0a7d.webp"
+      ],
+      "rating": 4.7,
+      "summary": "Saklıkent kanyonu, Tlos antik kenti ve dağ köyleri üzerinden jeep safari.",
+      "includes": [
+        "Otelden transfer",
+        "Öğle yemeği",
+        "Saklıkent giriş",
+        "Profesyonel sürücü"
+      ],
+      "excludes": [
+        "Tlos giriş ücreti",
+        "Su/içecek"
+      ],
+      "meetingPoint": "Otelinizden alım",
+      "languages": [
+        "TR",
+        "EN",
+        "RU"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "Saklıkent kanyonu, Tlos antik kenti ve dağ köyleri üzerinden jeep safari.",
+        "en": "Jeep safari through Saklıkent Canyon, Tlos ancient city and mountain village roads.",
+        "de": "Safaris über den Saklıkent-Kanyon, das antike Tlos-Stadt und die Bergdörfer.",
+        "ru": "Путешествие по Саклиджентскому каньону, через Тлос и деревни на горе.",
+        "fr": "Excursion à travers le canyon de Saklıkent, le site antique de Tlos et les villages montagnards."
+      },
+      "taglineI18n": {
+        "tr": "Saklıkent Kanyonu · Tlos · Köy Yolları",
+        "en": "Saklıkent Canyon · Tlos · Village Roads",
+        "de": "Saklıkent Kanyon · Tlos · Dorfwege",
+        "ru": "Саклиджентский каньон · Тлос · Дороги в деревнях",
+        "fr": "Saklıkent Canyon · Tlos · Chemins ruraux"
+      },
+      "aboutTitleI18n": {
+        "tr": "Toros Dağları'nda 8 Saat Macera.",
+        "en": "8-hour adventure in the Toros Mountains.",
+        "de": "8-Stunden-Abenteuer im Toros-Gebirge.",
+        "ru": "8-часовая экскурсия в Троисских горах.",
+        "fr": "Aventure de 8 heures dans les monts du Toros."
+      },
+      "aboutP1I18n": {
+        "tr": "Otelden alıp jeep konvoyu eşliğinde Saklıkent kanyonuna doğru. 18 km uzunluğundaki kanyona kısa yürüyüş + Eşen Çayı'nda serinleme.",
+        "en": "Picked up from our hotel and accompanied by a jeep convoy to Saklıkent Canyon, with a short hike + relaxation at Esen Çayı.",
+        "de": "Vom Hotel aus mit dem Jeep-Konvoi zum Saklkent-Kanyon, einem 18 km langen Kanyon mit kurzer Wanderung + Erholung am Eschen-Fluss.",
+        "ru": "Из отеля мы отправляемся с конвойем по jeep, направляясь на Саклиджентский каньон. Краткий путь по 18 км на каньон + серебренение у Eşен Çayı.",
+        "fr": "Departement d'un hôtel pour une excursion en jeep avec convoy, vers le canyon de Saklıkent de 18 km de longueur. Une courte marche + séjour à Esen Çayı pour se rafraîchir."
+      },
+      "aboutP2I18n": {
+        "tr": "Tlos antik kenti — Likya kaya mezarları ve amfitiyatro. Yamaç köylerinde geleneksel öğle yemeği. Konvoy şoförü deneyimli — su geçişleri, çamur, eğlenceli rota.",
+        "en": "Tlos ancient city — Lycian rock tombs and amphitheater. Traditional lunch in village settlements. Experienced convoy driver — river crossings, mud, fun route.",
+        "de": "Das antike Tlos-Stadt – die Likya-Felsgräber und das Amphitheater. Im Dorf traditionelles Mittagessen. Der Konvoi-Führer erfahrener – Wasserübergänge, Schlammen, unterhaltsame Route.",
+        "ru": "Тлос — древний город Ликии с каменными могилами и амфитеатром. Обед в деревне на горе, традиционный обед. Конвойный шофер с опытом — пролеты через воду, грязь, веселые маршруты.",
+        "fr": "Le site antique de Tlos — Tombeaux lydiens et amphithéâtre. Déjeuner traditionnel du soir dans un village montagnard. Le chauffeur du convoy est expérimenté — traverses d'eau, boue, itinéraire amusant."
+      }
+    },
+    {
+      "id": "quad-safari",
+      "name": "Quad ATV Safari",
+      "category": "Safari",
+      "duration": "15:00 – 18:00",
+      "price": "₺ 1.350 / quad",
+      "priceNote": "Tek/Çift kişilik",
+      "capacity": "1–2 kişi/quad",
+      "image": "/assets/img/a302377d61c3.webp",
+      "gallery": [
+        "/assets/img/a302377d61c3.webp",
+        "/assets/img/a302377d61c3.webp"
+      ],
+      "rating": 4.5,
+      "summary": "Kalkan tepelerinde 3 saatlik ATV safari, gün batımı manzarası.",
+      "includes": [
+        "Quad",
+        "Kask",
+        "Eğitim",
+        "Su"
+      ],
+      "excludes": [
+        "18 yaş altı binemez"
+      ],
+      "meetingPoint": "Kalkan ATV merkezi",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": false,
+      "summaryI18n": {
+        "tr": "Kalkan tepelerinde 3 saatlik ATV safari, gün batımı manzarası.",
+        "en": "Kalkan on the hills for a 3-hour ATV safari with sunset views.",
+        "de": "ATV-Tour auf den Hügeln von Kalkan für 3 Stunden, Sonnenuntergangs-Blick.",
+        "ru": "Путешествие в Калькан на ATV с 3-часовой экскурсией, заканчивающаяся при sunset.",
+        "fr": "Excursions in the mountains of Kalkan for a 3-hour ATV safari with sunset views."
+      },
+      "taglineI18n": {
+        "tr": "Tepelerden Kalkan Manzarası · Gün Batımı",
+        "en": "Kalkan View from the Hills · Sunset",
+        "de": "Panorama aus den Bergen von Kalkan - Sonnenuntergang",
+        "ru": "Экскурсия из гор и вид на Калькан при sunset.",
+        "fr": "Kalkan View from the Mountains · Sunset"
+      },
+      "aboutTitleI18n": {
+        "tr": "Direksiyon Sizde — Kalkan'ın Yüksek Yolları.",
+        "en": "Your driving experience — High Roads of Kalkan.",
+        "de": "Steuerung in Ihren Händen - Straßen der Hochlagen von Kalkan.",
+        "ru": "Водитель - это вы — Кальκανские высокие шоссе.",
+        "fr": "Driving on Your Own — High Roads of Kalkan."
+      },
+      "aboutP1I18n": {
+        "tr": "15:00'de Kalkan ATV merkezinden başlayan 3 saatlik quad turu. Kısa eğitim sonrası tek veya çift kişilik ATV ile Kalkan tepelerinde keşif.",
+        "en": "A 3-hour quad tour starting at 15:00 from the Kalkan ATV center, following a secure route after a short training session for solo or double ATV rides on the hills.",
+        "de": "15:00 Uhr beginnendes 3-stündiger Quad-Tour vom ATV-Zentrum in Kalkan. Nach kurzer Einführung fahren Sie mit einem Ein- oder Zweiradrücker auf die Hügeln zu.",
+        "ru": "Тур начнется в 15:00 с ATV-экскурсии в Калькане, продолжающаяся 3 часа. После краткого обучения, вы сможете проехать на ATV по Кальčanским горам.",
+        "fr": "A 3-hour quad tour starting at 15:00 from the Kalkan ATV center, followed by an exploration of the mountains in a single or double ATV after a short training session."
+      },
+      "aboutP2I18n": {
+        "tr": "Toz, çakıl, eğlence — rehber öncülüğünde güvenli rota. Gün batımı saatinde tepeden Kalkan koyu manzarası eşsiz. 18 yaş altı binemez.",
+        "en": "Dust, gravel, fun — guided by your guide. Sunset time offers an unparalleled view of the Kalkan bay from the top. Not allowed for those under 18 years old.",
+        "de": "Schnee, Sand, Spaß - unter Anleitung Ihres Reiseführers sicherer Weg. Sonnenuntergangszeit ist der Höhepunkt für einen atemberaubenden Blick von den Hügeln auf das Kalkan-Hafen. 18 Jahre oder jünger sind nicht erlaubt.",
+        "ru": "Пески, галька, развлечение — под руководством руководителя безопасный маршрут. При sunset-часах вид из гор на Кальканский залив уникален. Возраст от 18 лет не допускается.",
+        "fr": "Sand, pebbles, fun — guided route under supervision. Unique sunset views from the top to the bay of Kalkan at the end of the day. Not allowed for those under 18 years old."
+      }
+    },
+    {
+      "id": "patara-at",
+      "name": "Patara Plajı At Turu",
+      "category": "At Turu",
+      "duration": "08:00 – 11:00",
+      "price": "₺ 1.250 / kişi",
+      "priceNote": "Transfer dahil",
+      "capacity": "4–10 kişi",
+      "image": "/assets/img/27985827e093.webp",
+      "gallery": [
+        "/assets/img/d393b78f5cbd.webp",
+        "/assets/img/3af7b6e2f9d6.webp"
+      ],
+      "rating": 4.8,
+      "summary": "18 km Patara plajında at sırtında deneyim. Antik kent kenarından geçiş.",
+      "includes": [
+        "Otelden transfer",
+        "Eğitmen",
+        "Kask",
+        "Su"
+      ],
+      "excludes": [
+        "Antik kent giriş"
+      ],
+      "meetingPoint": "Otelinizden alım",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "18 km Patara plajında at sırtında deneyim. Antik kent kenarından geçiş.",
+        "en": "Experience 18 km of beach riding on horseback at Patara Beach.",
+        "de": "18 km auf der 18 km langen Strand von Patara mit Pferderitt.",
+        "ru": "18 км на пляж Патара с лыжным катанием. Переход по краю древнего города.",
+        "fr": "18 km sur Patara plage, à cheval sur l'expérience. Passage le long du bord antique."
+      },
+      "taglineI18n": {
+        "tr": "18 km Patara Plajı · At Sırtında · Antik Kent Yanından",
+        "en": "Patara Beach · Horse Riding · Along the Ancient City's Edge",
+        "de": "18 km Strand von Patara · Pferderitt · am Strand der Antike Stadt",
+        "ru": "18 км Пляж Патара · Лыжное катание · Дворец Antik Патара сзади",
+        "fr": "18 km Patara Plage · At Cheval · Le bord antique"
+      },
+      "aboutTitleI18n": {
+        "tr": "Patara'da Şafakta At Binme Deneyimi.",
+        "en": "Horseback Riding Experience in Patara in the Morning.",
+        "de": "Pferdekutschenfahrt in Patara - At Binme Erfahrung.",
+        "ru": "Лыжное катание в Патара в утренней части.",
+        "fr": "Patara ensoleillé : l'essai de monture à cheval."
+      },
+      "aboutP1I18n": {
+        "tr": "Sabah erken Patara çiftliğine transfer. Kısa eğitim ve at seçimi sonrası 18 km uzunluğundaki Patara plajının kenarında at sırtında yürüyüş.",
+        "en": "Early morning transfer to our Patara farm. After a short training and choosing your horse, you will have a 18 km long walk on the beach with horseback riding experience at the edge of Patara Beach.",
+        "de": "Frühmorgens Transfer zur Patara Farm. Nach kurzer Training und Auswahl des Pferdes folgt eine 18 km lange Wanderung am Strand, bei der man auf dem Pferd reitet.",
+        "ru": "Ранний 아침 на ферме Патара. После краткого обучения и выбора лошади 18 км длинный пляж Патара с лыжным катанием.",
+        "fr": "Matin, transfert vers la ferme de Patara à l'aube. Après une courte formation et choix d'un cheval, promenade le long du bord de 18 km de la plage de Patara, à cheval."
+      },
+      "aboutP2I18n": {
+        "tr": "Antik Patara kentinin yanından geçiş, kumsalda toynak izi. Tecrübeli eğitmen eşliğinde — başlangıç seviyeleri için de uygun. Kask zorunludur.",
+        "en": "Passing along the ancient city's edge, leaving footprints on the beach - suitable for beginners as well, accompanied by experienced trainers. Helmet is compulsory.",
+        "de": "Überquerung der Antike Stadt Patara an der Küste - Spuren am Strand. Mit erfahrenen Lehrern - auch für Anfänger geeignet. Helm ist Pflicht.",
+        "ru": "Переход по краю древнего города Патара, следуя тропам на пляже, отпечаток унитаза. Экзамен с опытом — подходящ для всех уровней. Накладное шлеме обязательны.",
+        "fr": "Passage le long du bord antique de l'ancienne ville de Patara, avec empreintes de baignade sur la plage. Entraînement expérimenté - adapté aux débutants. Casque obligatoire."
+      }
+    },
+    {
+      "id": "koy-at",
+      "name": "Yöre Köyleri At Turu",
+      "category": "At Turu",
+      "duration": "15:30 – 18:00",
+      "price": "₺ 950 / kişi",
+      "priceNote": "Çay molası dahil",
+      "capacity": "4–8 kişi",
+      "image": "/assets/img/27985827e093.webp",
+      "gallery": [
+        "/assets/img/2f8d46e7b4a7.webp"
+      ],
+      "rating": 4.6,
+      "summary": "Kalkan tepelerindeki köylerde at turu, geleneksel ev ziyareti.",
+      "includes": [
+        "Eğitmen",
+        "Köyde çay molası",
+        "Manzara durağı"
+      ],
+      "excludes": [
+        "Akşam yemeği"
+      ],
+      "meetingPoint": "Kalkan tepe",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": false,
+      "summaryI18n": {
+        "tr": "Kalkan tepelerindeki köylerde at turu, geleneksel ev ziyareti.",
+        "en": "Kalkan hill villages offer horseback rides, traditional house visits.",
+        "de": "Touren in den kleinen Dörfern der Kalkan-Berge, traditionelle Hausbesuche.",
+        "ru": "Пестья Кalkан с поселениями, туристический поездок в традиционных домах.",
+        "fr": "Kalkan tepeler dansent les villages, une excursion à cheval traditionnelle."
+      },
+      "taglineI18n": {
+        "tr": "Kalkan Tepeleri · Köy Sokakları · Çay Molası",
+        "en": "Kalkan Hills · Village Streets · Tea Break",
+        "de": "Kalkan Tepen · Dorfstraßen · Tee-Pausen",
+        "ru": "Калкан · Сельские улицы · Чайная Pause",
+        "fr": "Kalkan Tepes · Rues du village · Pause au thé"
+      },
+      "aboutTitleI18n": {
+        "tr": "Kalkan'ın Üst Köylerinde At Sırtında.",
+        "en": "Horseback riding in Upper Kalkan's At Ridge.",
+        "de": "In den oberen Dörfern von Kalkan, am At-Hügel.",
+        "ru": "В üstнем поселении Кalkан на подножии горы Ат.",
+        "fr": "Kalkan's Upper Village, sur la crête de l'at."
+      },
+      "aboutP1I18n": {
+        "tr": "Öğleden sonra Kalkan tepesindeki ata binme merkezinden başlayan 2.5 saatlik tur. Köy yollarında, zeytinliklerde ve manzara duraklarında yürüyüş.",
+        "en": "A 2.5-hour tour starting from the horse riding center on Kalkan Hill after lunch, walking through village roads, olive groves and scenic stops.",
+        "de": "Nach dem Mittagessen beginnt ein 2,5-Stunden-Tour vom Reitschulen in Kalkan-Berge. Fußgänge durch Dorfstraßen, Olivenhaine und Aussichtspunkte.",
+        "ru": "После обеда 2,5-часовой тур с начала ata бинга в КALKAN. Пешеходка по деревенским дорогам, зейтинlichen местах и viewpoints.",
+        "fr": "Une excursion de 2,5 heures partant d'un centre de chevauchée situé après le déjeuner, dans les villages, les vignobles et les arrêts de vue."
+      },
+      "aboutP2I18n": {
+        "tr": "Bir yöre köyünde geleneksel ev ziyareti — Türk çayı ve yöresel atıştırmalık ikramı. Manzara durağında uzun mola, fotoğraf molası.",
+        "en": "Traditional house visit in a local village — Turkish tea and regional snacks served with views at scenic stop.",
+        "de": "In einem lokalen Dorf traditionelle Hausbesuche – türkischer Tee und regionale Snacks als Willkommensgrüße. Auf einer Aussichtspunktstelle lange Pause, Fotopause.",
+        "ru": "В традиционном доме поселения — традиционный обед: турк чай и местные кушанья. Manzara durağında длинная Pause, фотографическая Pause.",
+        "fr": "Un village local traditionnel — un thé turc et des spécialités locales offertes. Un arrêt de vue longue pause, une pause photo."
+      }
+    },
+    {
+      "id": "xanthos-kano",
+      "name": "Xanthos Nehri Kano",
+      "category": "Kano Turu",
+      "duration": "09:00 – 14:00",
+      "price": "₺ 1.050 / kişi",
+      "priceNote": "Transfer + ekipman dahil",
+      "capacity": "2 kişi/kano",
+      "image": "/assets/img/52269be22fb8.webp",
+      "gallery": [
+        "/assets/img/da9ffd1dd878.webp",
+        "/assets/img/a7d2258216e4.webp"
+      ],
+      "rating": 4.7,
+      "summary": "Xanthos nehri boyunca 12 km kano, Patara'da bitiş.",
+      "includes": [
+        "Kano",
+        "Yelek",
+        "Eğitmen",
+        "Atıştırmalık",
+        "Transfer"
+      ],
+      "excludes": [
+        "Yüzme havlusu"
+      ],
+      "meetingPoint": "Otelinizden alım",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": true,
+      "summaryI18n": {
+        "tr": "Xanthos nehri boyunca 12 km kano, Patara'da bitiş.",
+        "en": "The Xanthos River is navigable for 12 km canoes in Patara.",
+        "de": "Entlang des Xanthos Flusses über 12 km Kajakfahren in Patara endet.",
+        "ru": "Путешествие по кано по Хантосу на расстоянии 12 км от Патары до конца.",
+        "fr": "Le long du fleuve Xanthos sur 12 km de canoë, à Patara."
+      },
+      "taglineI18n": {
+        "tr": "Xanthos Nehri · 12 km Kano · Patara Bitiş",
+        "en": "Xanthos River · 12 km Canoe · Patara End",
+        "de": "Xanthos Nehri · 12 km Kano · Patara Bitish",
+        "ru": "Хантос - 12 км кано - Патара - конец",
+        "fr": "Fleuve Xanthos · 12 km Canoë · Patara Arrivée"
+      },
+      "aboutTitleI18n": {
+        "tr": "Likya Başkenti Xanthos'tan Patara'ya Su Yolculuğu.",
+        "en": "The ancient city of Lydia's capital, Xanthos, to Patara by boat journey.",
+        "de": "Fahrt von Xanthos, der Hauptstadt der Lyder, nach Patara entlang des Flusses.",
+        "ru": "Путешествие по воде из Ликии с Хантоса в Патара.",
+        "fr": "Pélerinage en bateau le long de Xanthos depuis la capitale lygienne jusqu'à Patara."
+      },
+      "aboutP1I18n": {
+        "tr": "Xanthos nehri akıntısıyla 2 kişilik kano ile 12 km lik bir nehir yolculuğu. Antik Xanthos kentinin yakınından başlar, sazlık + ormanlık bölgelerden geçer.",
+        "en": "A 2-person canoe trip along a 12 km river with the current of the Xanthos River. The tour starts near the ancient city of Antic Xanthos, passing through grassland and forested areas.",
+        "de": "Ein 2-fachmanns-Kajak mit 12 km langem Flussweg entlang dem Xanthos-Fluss. Der Start liegt in der Nähe der antiken Stadt Xanthos, die durch Sumpf- und Waldgebiete führt.",
+        "ru": "Путешествие по кано по Хантосу с двумя людьми, на расстоянии 12 км от реки. Путешествие начинается у древнего города Хантоса, через сенокос и лесные зоны.",
+        "fr": "Un voyage en canoë de 12 km avec un partenaire, dans un fleuve qui coule avec l'écoulement du Xanthos. Le voyage commence près de l'ancien Xanthos antique, en passant par des zones de sable et de forêt."
+      },
+      "aboutP2I18n": {
+        "tr": "Patara antik kentinin yakınında biter. Su kuşları, kaplumbağa görme şansı yüksek. Eğitmen + emniyet teknesi turla birlikte gider. Yüzme bilmek tavsiye edilir.",
+        "en": "The canoe trip ends near the ancient city of Patara. High chance to see birds, turtles, and swim. Recommended to know how to swim.",
+        "de": "Die Fahrt endet in der Nähe des antiken Patara-Tempels. Viele Wasservögel, Schlangen und viele andere Tiere zu sehen sind möglich. Ein erfahrener Führer mit Sicherheitsboot begleitet die Teilnehmer. Tauchen zu lernen wird empfohlen.",
+        "ru": "Путешествие кончается в vicinity древнего города Патары. Шанс увидеть водоплавающих птиц, а также каплунбаги высок. Руководитель + безопасность кано-tekны тournage вместе проходим. Навыки плавания рекомендуются.",
+        "fr": "Le voyage se termine près de la ville antique de Patara. L'occasion de voir des oiseaux aquatiques, des capodidactyles, est élevée. Un guide + un équipement de sécurité sont à bord pour accompagner le tour. Apprendre à nager est recommandé."
+      }
+    },
+    {
+      "id": "saklikent-kano",
+      "name": "Saklıkent Kanyon Kano",
+      "category": "Kano Turu",
+      "duration": "10:00 – 15:00",
+      "price": "₺ 1.150 / kişi",
+      "priceNote": "Öğle dahil",
+      "capacity": "2 kişi/kano",
+      "image": "/assets/img/eb725b1c14b2.webp",
+      "gallery": [
+        "/assets/img/029c5008eeda.webp",
+        "/assets/img/dcfa5bcac17a.webp"
+      ],
+      "rating": 4.6,
+      "summary": "Saklıkent kanyon girişinden başlayıp Eşen çayında kano deneyimi.",
+      "includes": [
+        "Kano",
+        "Yelek",
+        "Öğle yemeği",
+        "Transfer"
+      ],
+      "excludes": [
+        "Saklıkent giriş ücreti"
+      ],
+      "meetingPoint": "Otelinizden alım",
+      "languages": [
+        "TR",
+        "EN"
+      ],
+      "featured": false,
+      "summaryI18n": {
+        "tr": "Saklıkent kanyon girişinden başlayıp Eşen çayında kano deneyimi.",
+        "en": "Starting from the Saklıkent Canyon entrance and experiencing a canoe trip in the Eşen River.",
+        "de": "Unsere Reise beginnt am Eingang des Saklıkent-Kanyons und bietet eine Kanoe-Erfahrung im Eşen-Fluss.",
+        "ru": "Начинайте от Sakликентского каньона и попробуйте experience kayaking по Eşенскому чaye.",
+        "fr": "Departement du canyon de Saklıkent, puis une expérience en cano sur l'Ésène."
+      },
+      "taglineI18n": {
+        "tr": "Eşen Çayı · Kanyon Girişi · Suyun Soğuk Akıntısı",
+        "en": "Eşen River · Canyon Entrance · Cold Water Current",
+        "de": "Eşen-Fluss · Kanyon-Eingang · Abfluss des kalten Wassers",
+        "ru": "Эшенский Чай · Въезд в Каньон · Гидрая Водопады",
+        "fr": "L'Ésène · L'entrée du canyon · La descente de l'eau froide"
+      },
+      "aboutTitleI18n": {
+        "tr": "Saklıkent Kanyonunun Buz Gibi Sularında Kano.",
+        "en": "Sailing in the icy waters of the Saklıkent Canyon.",
+        "de": "In den kühlen Wasser des Saklkent-Kanyons paddeln.",
+        "ru": "Канио в icy waters of Saklıkent Canyon.",
+        "fr": "Dans les eaux cristallines du canyon de Saklıkent, en cano."
+      },
+      "aboutP1I18n": {
+        "tr": "Saklıkent kanyonu girişindeki Eşen çayı üzerinde kanolama. Sulara mevsime göre az veya çok akıntı eşlik eder. Ortalama 5 km lik rota.",
+        "en": "Canoeing on the Eşen River at the entrance of the Saklıkent Canyon, where the water currents vary with the season. Average 5 km route.",
+        "de": "Über die Eşen-Çayı am Eingang des Saklkent-Kanyons zu kanou. Die Strömung passt der Jahreszeit nach und verläuft durchschnittlich 5 km lang.",
+        "ru": "Проведите каноламку на Eşенском чaye, входящий в каньон. Суроватые воды меняют направление течения по мере времени. Средняя длина 5 км.",
+        "fr": "Une navigation sur l'Ésène au départ de l'entrée du canyon de Saklkent. Les eaux suivent un courant variable selon la saison moyennant une distance de 5 km."
+      },
+      "aboutP2I18n": {
+        "tr": "Öğle yemeği nehir kenarı restoranda ızgara alabalık servisi (yemek dahil). Su ayakkabısı ve yüzme bilmek tavsiye edilir.",
+        "en": "Having lunch by the riverbank restaurant and ordering grilled trout (including meal). It is recommended to wear water shoes and know how to swim.",
+        "de": "Am Nachmittag kann man am Ufer des Flusses ein Izzara-Aal serviert (mit Essen). Ein Schwimmschuh und das Schwimmen sind empfohlen.",
+        "ru": "Обедайте на набережной реки на ресторане и заказайте сервированное ızgara alabalık (включая еду). Намечьте обувь для пешего бега и уметь плыть.",
+        "fr": "Le déjeuner près du rivage, avec service d'izgara alabalık (y compris le repas). Il est recommandé de connaître les règles du bain et de nager."
+      }
+    }
   ]
 }
