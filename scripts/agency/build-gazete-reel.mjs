@@ -10,7 +10,7 @@
  * Gerektirir: remotion (kurulu), data/gazete-today.json veya data/haberler.json.
  */
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, writeFileSync, existsSync, statSync } from 'node:fs';
+import { mkdirSync, writeFileSync, existsSync, statSync, copyFileSync, unlinkSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -52,15 +52,35 @@ async function main() {
   const outDir = resolve(ROOT, 'dist', 'social', 'gazete');
   mkdirSync(outDir, { recursive: true });
   const outMp4 = join(outDir, 'gazete-reel.mp4');
+  const silentMp4 = join(outDir, 'gazete-reel-silent.mp4');
 
-  console.log('── Remotion render (GazeteReel) ──');
-  const r = spawnSync('npx', ['remotion', 'render', 'src/index.tsx', 'GazeteReel', outMp4, `--props=${propsPath}`, '--log=error'], {
+  console.log('── Remotion render (GazeteReel, sessiz) ──');
+  const r = spawnSync('npx', ['remotion', 'render', 'src/index.tsx', 'GazeteReel', silentMp4, `--props=${propsPath}`, '--log=error'], {
     cwd: resolve(ROOT, 'remotion'), stdio: 'inherit', shell: true,
   });
-  if (r.status !== 0) { console.error('❌ render başarısız'); process.exit(1); }
+  if (r.status !== 0 || !existsSync(silentMp4)) { console.error('❌ render başarısız'); process.exit(1); }
+
+  // ── Müzik mix (ffmpeg) — haber-bed'i varsa onu, yoksa track1 (Pixabay). Sessizden iyidir. ──
+  // Haber-ajansı tonu için dist/audio/news-bed.mp3 koy → otomatik onu kullanır (takas kolay).
+  const music = ['dist/audio/news-bed.mp3', 'dist/audio/track1.mp3']
+    .map(p => resolve(ROOT, p)).find(p => existsSync(p) && statSync(p).size > 1000);
+  let musicOk = false;
+  if (music) {
+    console.log(`── Müzik mix: ${music.split(/[\\/]/).pop()} ──`);
+    const ff = spawnSync('ffmpeg', ['-y', '-i', silentMp4, '-i', music,
+      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=27:d=3[m]',
+      '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
+      { stdio: 'ignore' });
+    musicOk = ff.status === 0 && existsSync(outMp4);
+    if (!musicOk) console.warn('⚠ ffmpeg müzik mix başarısız — sessiz sürüm kullanılacak.');
+  } else {
+    console.warn('⚠ Müzik dosyası yok (dist/audio/) — sessiz sürüm.');
+  }
+  if (!musicOk) copyFileSync(silentMp4, outMp4);
+  try { unlinkSync(silentMp4); } catch {}
 
   const kb = existsSync(outMp4) ? Math.round(statSync(outMp4).size / 1024) : 0;
-  console.log(`✅ Reel hazır: dist/social/gazete/gazete-reel.mp4 (${kb} KB)`);
+  console.log(`✅ Reel hazır${musicOk ? ' (müzikli)' : ' (SESSİZ)'}: dist/social/gazete/gazete-reel.mp4 (${kb} KB)`);
 }
 
 main().catch(e => { console.error('[build-gazete-reel]', e); process.exit(1); });
