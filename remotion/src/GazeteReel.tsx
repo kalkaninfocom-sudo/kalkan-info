@@ -67,8 +67,8 @@ const Masthead: React.FC<GazeteReelProps> = (p) => {
   const fade = interpolate(frame, [70, 90], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
-      <div style={{ fontFamily: SANS, fontSize: 26, letterSpacing: 8, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
-        G Ü N Ü N   G A Z E T E S İ
+      <div style={{ fontFamily: SANS, fontSize: 28, letterSpacing: 7, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
+        GÜNÜN GAZETESİ
       </div>
       <div style={{ margin: '18px 0' }}><Rule w={360} o={o} /></div>
       <div style={{
@@ -94,27 +94,31 @@ const Lead: React.FC<GazeteReelProps> = (p) => {
   const kb = interpolate(frame, [0, 360], [1.08, 1.22]); // ken-burns
   const imgFade = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: 'clamp' });
   const outFade = interpolate(frame, [340, 360], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const kbC = interpolate(frame, [0, 360], [1.0, 1.06]); // contain için hafif zoom
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
       {p.lead_image ? (
-        <AbsoluteFill style={{ opacity: imgFade, overflow: 'hidden' }}>
-          <Img src={p.lead_image} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${kb})` }} />
-          <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(7,33,54,0.55) 0%, rgba(7,33,54,0.30) 40%, rgba(7,33,54,0.86) 78%, rgba(7,33,54,0.98) 100%)' }} />
-        </AbsoluteFill>
+        // Foto ÜST blokta (yatay foto kesilmez): blurlu 'cover' dolgu + net 'contain' ön plan.
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '55%', overflow: 'hidden', opacity: imgFade }}>
+          <Img src={p.lead_image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(30px) brightness(0.55)', transform: `scale(${kb})` }} />
+          <Img src={p.lead_image} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', transform: `scale(${kbC})` }} />
+          <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '48%', background: 'linear-gradient(180deg, rgba(4,20,35,0) 0%, rgba(4,20,35,0.55) 55%, #041423 100%)' }} />
+        </div>
       ) : null}
-      <AbsoluteFill style={{ justifyContent: 'flex-end', padding: '0 70px 200px' }}>
-        <div style={{ display: 'inline-block', alignSelf: 'flex-start', background: C.gold, color: C.navy, fontFamily: SANS, fontWeight: 800, fontSize: 26, letterSpacing: 3, padding: '8px 18px', borderRadius: 4, opacity: o, marginBottom: 26 }}>
+      {/* Metin ALT blokta, düz navy zemin */}
+      <AbsoluteFill style={{ justifyContent: 'flex-end', padding: '0 70px 150px' }}>
+        <div style={{ display: 'inline-block', alignSelf: 'flex-start', background: C.gold, color: C.navy, fontFamily: SANS, fontWeight: 800, fontSize: 26, letterSpacing: 3, padding: '8px 18px', borderRadius: 4, opacity: o, marginBottom: 22 }}>
           MANŞET
         </div>
-        <div style={{ marginBottom: 22 }}><Rule w={140} o={o} h={5} /></div>
+        <div style={{ marginBottom: 20 }}><Rule w={140} o={o} h={5} /></div>
         <div style={{
-          fontFamily: SERIF, fontWeight: 900, fontSize: 82, color: C.white, lineHeight: 1.04,
+          fontFamily: SERIF, fontWeight: 900, fontSize: 76, color: C.white, lineHeight: 1.05,
           letterSpacing: -1.5, opacity: o, transform: `translateY(${(1 - o) * 40}px)`, textShadow: '0 6px 40px rgba(0,0,0,0.6)',
         }}>
           {p.lead_headline}
         </div>
         {p.lead_deck ? (
-          <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 38, color: C.muted, lineHeight: 1.4, marginTop: 26, opacity: oDeck, transform: `translateY(${(1 - oDeck) * 30}px)` }}>
+          <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 36, color: C.muted, lineHeight: 1.4, marginTop: 22, opacity: oDeck, transform: `translateY(${(1 - oDeck) * 30}px)` }}>
             {p.lead_deck}
           </div>
         ) : null}
