@@ -33,6 +33,14 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://kalkaninfo.com/restoran/cafe-del-mar">
 
+<!-- Hreflang — cok dilli SEO (dil ?lang= varyanti ile) -->
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/restoran/cafe-del-mar/">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/restoran/cafe-del-mar/?lang=en">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/restoran/cafe-del-mar/?lang=de">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/restoran/cafe-del-mar/?lang=ru">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/restoran/cafe-del-mar/?lang=fr">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/restoran/cafe-del-mar/">
+
 <!-- Open Graph -->
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="Cafe Del Mar — Kalkan">
@@ -223,7 +231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="relative z-10 px-6 max-w-3xl">
     <div class="section-label justify-center mb-6">Kafe · Kalkan</div>
     <h1 class="font-display text-6xl md:text-8xl font-extrabold mb-6 text-white" style="text-shadow:0 4px 32px rgba(0,0,0,0.5);">Cafe Del Mar</h1>
-    <p class="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed mb-10" data-i="hero_sub"></p>
+    <p class="text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed mb-10" data-i="hero_sub" ></p>
     <div class="flex flex-wrap justify-center gap-3">
       <a href="#reserve" class="btn-primary" data-i="cta_reserve">Rezervasyon</a>
       <a href="#menu" class="btn-ghost" data-i="cta_menu">Menüyü Gör</a>
@@ -237,9 +245,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
     <div>
       <div class="section-label mb-6" data-i="about_label">Hakkımızda</div>
-      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title">Cafe Del Mar</h2>
-      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="about_p1"></p>
-      <p class="text-base leading-relaxed" style="color:var(--theme-muted);" data-i="about_p2"></p>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title" >Cafe Del Mar</h2>
+      <p class="text-base md:text-lg leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="about_p1" ></p>
+      <p class="text-base leading-relaxed" style="color:var(--theme-muted);" data-i="about_p2" ></p>
       <div class="flex flex-wrap gap-3 mt-8"></div>
     </div>
     <div class="aspect-[4/5] overflow-hidden">
@@ -252,16 +260,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="menu" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
   <div class="max-w-6xl mx-auto text-center">
     <div class="section-label justify-center mb-6" data-i="menu_label">Menü</div>
-    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="menu_title">Menümüz</h2>
-    <p class="max-w-2xl mx-auto mb-12 text-base" style="color:var(--theme-muted);" data-i="menu_sub"></p>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="menu_title" >Menümüz</h2>
+    <p class="max-w-2xl mx-auto mb-12 text-base" style="color:var(--theme-muted);" data-i="menu_sub" ></p>
     <div class="flex flex-wrap justify-center gap-3 mb-12">
-      <div class="menu-tab active" data-cat="all">Tümü</div><div class="menu-tab" data-cat="menü">Menü</div>
+      <div class="menu-tab active" data-cat="all" data-en="All" data-de="Alle" data-ru="Все" data-fr="Tout">Tümü</div><div class="menu-tab" data-cat="menü" >Menü</div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-5xl mx-auto">
       
     <div class="menu-section p-6 border-l-2" data-cat="menü" style="border-color:var(--theme-accent);">
-      <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">Menü</div>
-      <div class="font-display text-lg font-bold">Tam menü için yandaki PDF butonuna tıklayın.</div>
+      <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);" >Menü</div>
+      <div class="font-display text-lg font-bold" >Tam menü için yandaki PDF butonuna tıklayın.</div>
     </div>
     </div>
     <div class="mt-12">
@@ -412,19 +420,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/js/restoran-motion.js" defer></script>
 
 <script>
-// Basit i18n - 5 dil
+// i18n - 5 dil: UI etiketleri (data-i + I18N) + ICERIK (data-en/de/ru/fr) + title/meta
 const I18N = {"tr":{"about":"Hakkımızda","menu":"Menü","gallery":"Galeri","reserve":"Rezervasyon","contact":"İletişim","cta_reserve":"Rezervasyon","cta_menu":"Menüyü Gör","cta_reserve_send":"Talebi Gönder","about_label":"Hakkımızda","menu_label":"Menü","gallery_label":"Galeri","gallery_title":"Mekândan Kareler","reserve_label":"Rezervasyon","reserve_title":"Masanızı Ayırın","reserve_sub":"Doğrudan WhatsApp ile hızlı rezervasyon yapın veya formu doldurun — 60 saniye içinde döneriz.","contact_label":"İletişim","contact_title":"Bize Ulaşın","contact_addr":"Adres","contact_phone":"Telefon","contact_hours":"Açılış Saatleri","contact_social":"Sosyal Medya","menu_pdf":"Tam Menüyü İndir (PDF)","reviews":"Yorumlar","reviews_label":"Misafir Yorumları","reviews_title":"Google'da Bizi Anlatanlar","reviews_sub":"Aşağıdaki yorumlar Google Maps'ten alınmıştır. Tümünü Google'da görmek için butona tıklayın.","reviews_all":"Tüm Yorumları Gör (Google)","reviews_empty":"Yorumlar yakında eklenecek.","related_label":"Keşfet","related_title":"Kalkan'da Benzer Mekanlar","related_sub":"Aynı kategoride keşfedebileceğiniz diğer Kalkan restoran ve barları.","related_all":"Tüm Kalkan Restoranları →"},"en":{"about":"About","menu":"Menu","gallery":"Gallery","reserve":"Reservation","contact":"Contact","cta_reserve":"Reserve","cta_menu":"View Menu","cta_reserve_send":"Send Request","about_label":"About Us","menu_label":"Menu","gallery_label":"Gallery","gallery_title":"Moments","reserve_label":"Reservation","reserve_title":"Reserve Your Table","reserve_sub":"Reserve fast via WhatsApp or fill the form — we reply in 60 seconds.","contact_label":"Contact","contact_title":"Get In Touch","contact_addr":"Address","contact_phone":"Phone","contact_hours":"Opening Hours","contact_social":"Social Media","menu_pdf":"Download Full Menu (PDF)","reviews":"Reviews","reviews_label":"Guest Reviews","reviews_title":"What People Say on Google","reviews_sub":"The reviews below are sourced from Google Maps. Click to see all reviews on Google.","reviews_all":"See All Reviews (Google)","reviews_empty":"Reviews coming soon.","related_label":"Discover","related_title":"Similar Places in Kalkan","related_sub":"Other Kalkan restaurants and bars in the same category worth exploring.","related_all":"All Kalkan Restaurants →"},"de":{"about":"Über uns","menu":"Speisekarte","gallery":"Galerie","reserve":"Reservierung","contact":"Kontakt","cta_reserve":"Reservieren","cta_menu":"Speisekarte","cta_reserve_send":"Anfrage senden","about_label":"Über uns","menu_label":"Speisekarte","gallery_label":"Galerie","gallery_title":"Momente","reserve_label":"Reservierung","reserve_title":"Tisch reservieren","reserve_sub":"Schnelle Reservierung per WhatsApp oder Formular — Antwort in 60 Sekunden.","contact_label":"Kontakt","contact_title":"Kontaktiere uns","contact_addr":"Adresse","contact_phone":"Telefon","contact_hours":"Öffnungszeiten","contact_social":"Soziale Medien","menu_pdf":"Speisekarte als PDF","reviews":"Bewertungen","reviews_label":"Gästebewertungen","reviews_title":"Was Gäste auf Google sagen","reviews_sub":"Die Bewertungen stammen von Google Maps. Klicken Sie, um alle auf Google zu sehen.","reviews_all":"Alle Bewertungen (Google)","reviews_empty":"Bewertungen folgen in Kürze.","related_label":"Entdecken","related_title":"Ähnliche Orte in Kalkan","related_sub":"Weitere Restaurants und Bars in Kalkan derselben Kategorie.","related_all":"Alle Restaurants in Kalkan →"},"ru":{"about":"О нас","menu":"Меню","gallery":"Галерея","reserve":"Бронирование","contact":"Контакты","cta_reserve":"Забронировать","cta_menu":"Меню","cta_reserve_send":"Отправить запрос","about_label":"О нас","menu_label":"Меню","gallery_label":"Галерея","gallery_title":"Моменты","reserve_label":"Бронирование","reserve_title":"Забронируйте столик","reserve_sub":"Быстрое бронирование в WhatsApp или заполните форму — ответ за 60 секунд.","contact_label":"Контакты","contact_title":"Свяжитесь с нами","contact_addr":"Адрес","contact_phone":"Телефон","contact_hours":"Часы работы","contact_social":"Социальные сети","menu_pdf":"Скачать меню (PDF)","reviews":"Отзывы","reviews_label":"Отзывы гостей","reviews_title":"Что говорят в Google","reviews_sub":"Отзывы ниже — из Google Карт. Нажмите, чтобы посмотреть все на Google.","reviews_all":"Все отзывы (Google)","reviews_empty":"Отзывы появятся скоро.","related_label":"Откройте","related_title":"Похожие места в Калкане","related_sub":"Другие рестораны и бары Калкана той же категории.","related_all":"Все рестораны Калкана →"},"fr":{"about":"À propos","menu":"Menu","gallery":"Galerie","reserve":"Réservation","contact":"Contact","cta_reserve":"Réserver","cta_menu":"Voir le Menu","cta_reserve_send":"Envoyer la demande","about_label":"À propos","menu_label":"Menu","gallery_label":"Galerie","gallery_title":"Instants","reserve_label":"Réservation","reserve_title":"Réservez votre table","reserve_sub":"Réservation rapide via WhatsApp ou remplissez le formulaire — réponse en 60 secondes.","contact_label":"Contact","contact_title":"Contactez-nous","contact_addr":"Adresse","contact_phone":"Téléphone","contact_hours":"Horaires","contact_social":"Réseaux sociaux","menu_pdf":"Télécharger le menu (PDF)","reviews":"Avis","reviews_label":"Avis des clients","reviews_title":"Ce que disent les clients sur Google","reviews_sub":"Les avis ci-dessous proviennent de Google Maps. Cliquez pour les voir tous.","reviews_all":"Voir tous les avis (Google)","reviews_empty":"Avis bientôt disponibles.","related_label":"Découvrir","related_title":"Lieux similaires à Kalkan","related_sub":"D’autres restaurants et bars de Kalkan dans la même catégorie.","related_all":"Tous les restaurants de Kalkan →"}};
+const META_I18N = {"tr":{"title":"Cafe Del Mar — Kalkan | kalkaninfo.com","desc":""},"en":{"title":"Cafe Del Mar — Kalkan | kalkaninfo.com","desc":""},"de":{"title":"Cafe Del Mar — Kalkan | kalkaninfo.com","desc":""},"ru":{"title":"Cafe Del Mar — Kalkan | kalkaninfo.com","desc":""},"fr":{"title":"Cafe Del Mar — Kalkan | kalkaninfo.com","desc":""}}; // { tr:{title,desc}, en:{...}, ... }
+const SUPPORTED = ['tr','en','de','ru','fr'];
+
+// data-en/de/ru/fr icin deger sec: hedef -> en -> tr(orijinal). '' bos deger = ceviri yok say.
+function contentVal(el, lang){
+  if (lang === 'tr') return el.dataset.tr != null ? el.dataset.tr : null;
+  const pick = el.dataset[lang] || el.dataset.en || (el.dataset.tr != null ? el.dataset.tr : '');
+  return pick !== '' ? pick : null;
+}
+
 function setLang(lang){
+  if (!SUPPORTED.includes(lang)) lang = 'tr';
   document.documentElement.lang = lang;
+
+  // 1) UI etiketleri (data-i sozlugu). Bulunmazsa TR tabanina don.
   document.querySelectorAll('[data-i]').forEach(el=>{
     const key = el.dataset.i;
-    if (I18N[lang] && I18N[lang][key]) el.textContent = I18N[lang][key];
+    if (I18N[lang] && I18N[lang][key] != null) el.textContent = I18N[lang][key];
+    else if (I18N.tr && I18N.tr[key] != null) el.textContent = I18N.tr[key];
   });
+
+  // 2) Icerik: data-en/de/ru/fr (tagline, hakkimizda, menu kategori+oge)
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if (el.dataset.tr == null) el.dataset.tr = el.textContent.trim();
+    const v = contentVal(el, lang);
+    if (v != null) el.textContent = v;
+  });
+
+  // 3) Title + meta description (SEO — TR taban korunur, dil degisince guncellenir)
+  try {
+    const m = META_I18N && META_I18N[lang];
+    if (m){
+      if (m.title) document.title = m.title;
+      const md = document.querySelector('meta[name="description"]');
+      if (md && m.desc) md.setAttribute('content', m.desc);
+    }
+  } catch(e){}
+
   document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active', p.dataset.lang===lang));
   try { localStorage.setItem('lang', lang); } catch(e){}
 }
 document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click', ()=>setLang(p.dataset.lang)));
-try { const saved = localStorage.getItem('lang'); if (saved) setLang(saved); } catch(e){}
+
+// Baslangic dili: ?lang= (hreflang inisi) > localStorage > tr
+(function(){
+  let initial = 'tr';
+  try {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q && SUPPORTED.includes(q)) initial = q;
+    else { const s = localStorage.getItem('lang'); if (s && SUPPORTED.includes(s)) initial = s; }
+  } catch(e){}
+  setLang(initial);
+})();
 
 // Menu tabs
 document.querySelectorAll('.menu-tab').forEach(t=>{
@@ -442,7 +492,7 @@ function sendReservation(){
   const f = document.querySelector('#reserve form');
   const fd = new FormData(f);
   const msg = encodeURIComponent(
-    'Merhaba Cafe Del Mar, rezervasyon talebim:\n'+
+    'Merhaba ' + "Cafe Del Mar" + ', rezervasyon talebim:\n'+
     '👤 ' + (fd.get('name')||'') + '\n'+
     '📞 ' + (fd.get('phone')||'') + '\n'+
     '👥 ' + (fd.get('people')||'') + ' kişi\n'+

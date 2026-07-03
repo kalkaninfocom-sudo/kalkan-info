@@ -7,6 +7,7 @@
 import { readFile, writeFile, mkdir, copyFile, readdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CUSTOM, theme } from './restoran-content.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -34,19 +35,7 @@ const REAL_HEROES = new Set(
     : ['aubergine', 'korsan-kalamar', 'harbor-lights', 'ziizi-pizza']
 );
 
-// Kategoriye gore tema secimi
-function theme(category){
-  const map = {
-    'Fine Dining':       { bg:'#0d0610', bg2:'#1a0a14', accent:'#d4af37', accent2:'#b8932a', text:'#e8e2d4', muted:'#9b8f78', font:'Playfair+Display' },
-    'Deniz Ürünleri':    { bg:'#061826', bg2:'#0a2236', accent:'#4eb1b3', accent2:'#3a8e91', text:'#e1ecf2', muted:'#7f9aae', font:'Cormorant+Garamond' },
-    'Cafe & Bar':        { bg:'#1a120a', bg2:'#241710', accent:'#e8a55a', accent2:'#c8853e', text:'#f0e5d6', muted:'#a89882', font:'Cormorant+Garamond' },
-    'Türk Mutfağı':      { bg:'#1a0e0a', bg2:'#241410', accent:'#d97757', accent2:'#b85a3d', text:'#f0e2d4', muted:'#a89682', font:'Cormorant+Garamond' },
-    'Dünya Mutfağı':     { bg:'#0f0f10', bg2:'#1a1a1c', accent:'#c9b87f', accent2:'#a89860', text:'#e8e3d8', muted:'#9a948a', font:'Cormorant+Garamond' },
-    'Pub & Lounge':      { bg:'#0a0d10', bg2:'#13181c', accent:'#e8c46c', accent2:'#c9a44e', text:'#e6e4dc', muted:'#94918a', font:'Playfair+Display' },
-    'Gece Kulübü':       { bg:'#0a0410', bg2:'#15082a', accent:'#c47ae0', accent2:'#9a5cb8', text:'#ecdcf0', muted:'#9c8aa8', font:'Playfair+Display' }
-  };
-  return map[category] || map['Dünya Mutfağı'];
-}
+// Kategoriye gore tema secimi -> theme() scripts/restoran-content.mjs'den import edilir.
 
 // Kategoriye gore Unsplash fallback gorsel keyword'leri
 const UNSPLASH_KEYWORDS = {
@@ -59,60 +48,38 @@ const UNSPLASH_KEYWORDS = {
   'Gece Kulübü':     ['nightclub','dj-lights','dancing','party-night']
 };
 
-// Hakkimda ve menu icerik tohumlari
-const CUSTOM = {
-  'aubergine': {
-    tagline: 'Akdeniz fine dining — taze malzeme, hassas detay.',
-    aboutTitle: 'Detay ve Sadelik.',
-    aboutP1: 'Aubergine, Kalkan\'ın kalbinde, denize bakan terasıyla Akdeniz mutfağının ince yorumunu sunar. Mevsimsel ürünler, kısa menü, dikkatle seçilmiş şarap kart.',
-    aboutP2: 'Her tabak, mutfak şefimiz ve yerel üretici arasındaki diyaloğun ürünüdür. Aubergine\'de yemek, bir akşamın merkezi olmak için tasarlandı.',
-    menuTitle: 'Mevsimlik Menü',
-    menuSub: 'Menümüz her hafta yerel pazara göre yenilenir. Aşağıda mevcut sezonun seçili tabakları.',
-    menu: {
-      'Başlangıç': ['Karides ve avokado tartare', 'Roka, çam fıstığı, parmesan', 'Mevsim çorbası'],
-      'Ana Yemek': ['Akdeniz levrek fileto', 'Kuzu pirzola, taze kekik', 'Bahçe sebzeli risotto'],
-      'Tatlı': ['Sıcak çikolata fondan', 'Limon parfait', 'Mevsim meyveleri']
-    },
-    hours: 'Her gün 18:00 — 23:30'
-  },
-  'korsan-kalamar': {
-    tagline: 'Kalkan klasiği — taze balık, liman manzarası.',
-    aboutTitle: 'Limanın Yanı Başında.',
-    aboutP1: 'Korsan Kalamar, Kalamar Koyu\'nda hizmet veriyor. Gün taze balık, ev yapımı mezeler ve sıcak misafirperverlik — Kalkan\'ın eski havasını koruyan az sayıdaki yerden biri.',
-    aboutP2: 'Mevsimine göre balıkçımızın kıyıya getirdiği taze ürünleri masada görüyorsunuz. Klasik tarifler, taze otlar, sade sunum.',
-    menuTitle: 'Günlük Taze Balık',
-    menuSub: 'Menümüz her gün limana göre değişir. Aşağıdakiler değişmez klasiklerimiz.',
-    menu: {
-      'Mezeler': ['Topik', 'Haydari', 'Patlıcan ezme', 'Lakerda', 'Roka salatası'],
-      'Ana Yemek': ['Izgara çipura', 'Levrek buğulama', 'Kalamar ızgara', 'Karides güveç', 'Lüfer mevsim'],
-      'Sonrası': ['Lokum tabağı', 'Karpuz & beyaz peynir', 'Türk kahvesi']
-    },
-    hours: 'Her gün 12:00 — 24:00'
-  },
-  'omar-s-kokobus-kokorec-kofte-tavuk-ekmek': {
-    tagline: 'Kalkan\'ın gece klasiği — kokoreç, köfte, tavuk ekmek. Izgara 03:30\'a kadar sıcak.',
-    aboutTitle: 'Izgaranın Başında Ömer Usta.',
-    aboutP1: 'Omar\'s Kokobüs — nam-ı diğer Köfteci Ömer Usta — Kalkan\'da sokak lezzetinin adresi. Migros\'un yanındaki tezgahtan yükselen ızgara kokusu akşam saatlerinde sokağı sarar: bol malzemeli kokoreç, közde köfte, çıtır tavuk.',
-    aboutP2: 'Çeyrek, yarım, üç çeyrek — ekmeğin boyunu siz seçin, arasını usta doldursun. Plaj dönüşü hızlı bir kaçamaktan gece 03:30 acıkmalarına kadar tezgah hep açık, ekmek hep taze.'
-  },
-  'harbor-lights': {
-    tagline: 'Sabahtan geceye — sanatkâr kahve, brunch, kokteyl.',
-    aboutTitle: 'Limanın Işığı.',
-    aboutP1: 'Harbor Lights, Kalkan iskelesinde artisan cafe & cocktail bar. Sabah erken brunch ile başlar, gün boyu kahve ritüeli, akşam el yapımı kokteyl ile devam eder.',
-    aboutP2: 'Liman kıyısındaki konumumuz, kahve içerken Kalkan teknelerini izlemenizi sağlar. İçeride ev yapımı pastalar, dışarıda Lykia rüzgârı.',
-    menuTitle: 'Gün Boyu Menü',
-    menuSub: 'Üç ana saatte üç farklı menü: kahvaltı, öğle, akşam.',
-    menu: {
-      'Kahvaltı': ['Avokado toast', 'Eggs Benedict', 'Türk kahvaltı tabağı', 'Açai bowl'],
-      'Kahve & İçecek': ['Filter kahve (origin)', 'Cortado', 'Soğuk demleme', 'Matcha latte'],
-      'Akşam': ['Sezar salata', 'Trüf mantar tabağı', 'El yapımı kokteyl seti', 'Mezze tabağı']
-    },
-    hours: 'Her gün 08:00 — 24:00'
-  }
-};
+// Hakkimda ve menu icerik tohumlari -> CUSTOM scripts/restoran-content.mjs'den import edilir.
 
 // HTML escape
 const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// ── i18n attribute uretici ──
+// Bir {tr,en,de,ru,fr} i18n objesinden `data-en="..." data-de="..."` uretir.
+// TR taban (DOM'daki metin) oldugu icin sadece en/de/ru/fr eklenir; bos/yok atlanir.
+const I18N_LANGS = ['en', 'de', 'ru', 'fr'];
+function i18nAttrs(i18n){
+  if (!i18n || typeof i18n !== 'object') return '';
+  const out = [];
+  for (const l of I18N_LANGS){
+    const v = i18n[l];
+    if (typeof v === 'string' && v.trim()) out.push(`data-${l}="${esc(v)}"`);
+  }
+  return out.join(' ');
+}
+// Menu kategori etiketi (menuCatI18n) icin lang -> label objesi cikar
+function catLabelAttrs(r, cat){
+  const m = r.menuCatI18n; if (!m) return '';
+  const obj = {};
+  for (const l of I18N_LANGS) if (m[l] && m[l][cat]) obj[l] = m[l][cat];
+  return i18nAttrs(obj);
+}
+// Menu oge (menuItemsI18n) icin lang -> item objesi cikar
+function menuItemAttrs(r, cat, idx){
+  const m = r.menuItemsI18n; if (!m) return '';
+  const obj = {};
+  for (const l of I18N_LANGS){ const arr = m[l] && m[l][cat]; if (Array.isArray(arr) && arr[idx]) obj[l] = arr[idx]; }
+  return i18nAttrs(obj);
+}
 
 // Yildizlar — full + half + empty (5'lik sistem)
 function starsHtml(rating) {
@@ -369,12 +336,13 @@ for (const slug of targets) {
   // Menü kategorileri
   const menu = c.menu || r.menu || { 'Menü': ['Tam menü için yandaki PDF butonuna tıklayın.'] };
   const cats = Object.keys(menu);
-  const menuTabs = `<div class="menu-tab active" data-cat="all">Tümü</div>` +
-    cats.map(cat => `<div class="menu-tab" data-cat="${esc(cat.toLowerCase())}">${esc(cat)}</div>`).join('');
-  const menuItems = cats.map(cat => menu[cat].map(item => `
+  const tumuAttrs = i18nAttrs({ en: 'All', de: 'Alle', ru: 'Все', fr: 'Tout' });
+  const menuTabs = `<div class="menu-tab active" data-cat="all" ${tumuAttrs}>Tümü</div>` +
+    cats.map(cat => `<div class="menu-tab" data-cat="${esc(cat.toLowerCase())}" ${catLabelAttrs(r, cat)}>${esc(cat)}</div>`).join('');
+  const menuItems = cats.map(cat => menu[cat].map((item, idx) => `
     <div class="menu-section p-6 border-l-2" data-cat="${esc(cat.toLowerCase())}" style="border-color:var(--theme-accent);">
-      <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);">${esc(cat)}</div>
-      <div class="font-display text-lg font-bold">${esc(item)}</div>
+      <div class="text-[10px] tracking-[0.2em] uppercase font-bold mb-2" style="color:var(--theme-accent);" ${catLabelAttrs(r, cat)}>${esc(cat)}</div>
+      <div class="font-display text-lg font-bold" ${menuItemAttrs(r, cat, idx)}>${esc(item)}</div>
     </div>`).join('')).join('');
 
   // Specialties pills
@@ -416,9 +384,21 @@ for (const slug of targets) {
   const geoObj = geoJson(r);
   const geoBlock = geoObj ? `"geo":${JSON.stringify(geoObj)},\n  ` : '';
 
+  // META i18n — title tum dillerde ayni (isim tabanli, TR SEO korunur), aciklama cevrilir.
+  const metaTitle = `${r.name} — Kalkan | kalkaninfo.com`;
+  const descI18n = r.summaryI18n || {};
+  const META_I18N = {};
+  for (const l of ['tr', 'en', 'de', 'ru', 'fr']){
+    META_I18N[l] = {
+      title: metaTitle,
+      desc: (l === 'tr') ? (r.summary || '') : (descI18n[l] || r.summary || ''),
+    };
+  }
+
   // Template doldur
   const repl = {
     NAME: r.name,
+    NAME_JSON: JSON.stringify(r.name), // JS string icinde guvenli kullanim (Omar's gibi apostroflu isimler)
     NAME_URL: encodeURIComponent(r.name),
     SLUG: r.id,
     CATEGORY: r.category,
@@ -426,6 +406,13 @@ for (const slug of targets) {
     PRICE_RANGE: r.priceRange || '₺₺',
     SUMMARY: r.summary || c.tagline || '',
     TAGLINE: c.tagline || r.summary || '',
+    TAGLINE_I18N_ATTRS: i18nAttrs(r.taglineI18n),
+    ABOUT_TITLE_I18N_ATTRS: i18nAttrs(r.aboutTitleI18n),
+    ABOUT_P1_I18N_ATTRS: i18nAttrs(r.aboutP1I18n),
+    ABOUT_P2_I18N_ATTRS: i18nAttrs(r.aboutP2I18n),
+    MENU_TITLE_I18N_ATTRS: i18nAttrs(r.menuTitleI18n),
+    MENU_SUB_I18N_ATTRS: i18nAttrs(r.menuSubI18n),
+    META_I18N_JSON: JSON.stringify(META_I18N),
     LOCATION: r.location || 'Kalkan, Antalya',
     PHONE: phone,
     PHONE_RAW: phoneRaw,

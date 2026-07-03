@@ -171,7 +171,380 @@
         "kokobüs",
         "köfteci ömer usta",
         "kalkan sokak lezzetleri"
-      ]
+      ],
+      "taglineI18n": {
+        "tr": "Kalkan'ın gece klasiği — kokoreç, köfte, tavuk ekmek. Izgara 03:30'a kadar sıcak.",
+        "en": "Kalkan's night classic — a variety of dishes including kokoreç, köfte, and tavuk ekmek. Served hot until 03:30.",
+        "de": "Kalkans Nachtklasse — Kokoreç, Köfte, Tavuk Ekmek. Bis 03:30 Uhr warm.",
+        "ru": "Калкана nighttime classic — kokoreç, köfte, tavук екмек. Изгара до 03:30 часа остается горячей.",
+        "fr": "Kalkan's night classic — grilled meat platter with kokoreç, köfte, and tavuk ekmek. Hot until 03:30."
+      },
+      "aboutTitleI18n": {
+        "tr": "Izgaranın Başında Ömer Usta.",
+        "en": "The main attraction is Ömer Usta.",
+        "de": "Die Hauptattraktion ist Ömer Usta.",
+        "ru": "Изгара начинается у Омара Уста.",
+        "fr": "The grill is headed by Ömer Usta."
+      },
+      "aboutP1I18n": {
+        "tr": "Omar's Kokobüs — nam-ı diğer Köfteci Ömer Usta — Kalkan'da sokak lezzetinin adresi. Migros'un yanındaki tezgahtan yükselen ızgara kokusu akşam saatlerinde sokağı sarar: bol malzemeli kokoreç, közde köfte, çıtır tavuk.",
+        "en": "Omar's Kokobüs — also known as Köfteci Ömer Usta — the address of Kalkan's street food heaven. The aroma of sizzling izgara wafting from the grill next to Migros rises and fills the streets in the evenings: generous kokoreç, meaty köfte, crispy tavuk.",
+        "de": "Omar's Kokobüs — Namens des berühmten Köfteci Ömer Usta — Der Adresse der Straßenleckerie in Kalkan. Die aromatische Izzara-Geschmack, der sich am Nachmittag über den Straßen ausbreitet: reichhaltiger Kokoreç, herzhafte Köfte und scharfes Tavuk.",
+        "ru": "Омарын Кокобюс — иначе известный как Köfteci Омар Уста — адрес Калкана улица лепроза. kokорец, сосиски и тавук екмек: в evenings пахнет из заряженной изгары: полноценный kokoreç, közde köfte, çıtır tavук.",
+        "fr": "Omar's Kokobüs — also known as Köfteci Ömer Usta — the address of street food in Kalkan. The smell of sizzling grill wafts from the nearby workshop, filling the streets at evening hours: generous kokoreç, meatballs köfte, crispy tavuk ekmek."
+      },
+      "aboutP2I18n": {
+        "tr": "Çeyrek, yarım, üç çeyrek — ekmeğin boyunu siz seçin, arasını usta doldursun. Plaj dönüşü hızlı bir kaçamaktan gece 03:30 acıkmalarına kadar tezgah hep açık, ekmek hep taze.",
+        "en": "Quarter, half, three-quarters — choose your bread size, have it filled by the expert. The counter is open until 03:30, fresh bread is always available.",
+        "de": "Halb, die Hälfte, drei Drittel — Wählen Sie die Größe Ihres Brotes, lassen Sie ihn von dem Meister auffüllen. Die Rückkehr am Strand in einer schnellen Pause bis zur Nachtzeit 03:30 Uhr. Das Arbeitsplatz ist immer offen, das Brot ist immer frisch.",
+        "ru": "Четверть, половина, три четверти — вы выбираете размер эммента, а остаток умащивает мастер. Плайсбэк speedy comeback от краткого разговора до 03:30 утра остается открытым, эммент всегдаfresh.",
+        "fr": "Quarter, half, three-quarters — choose your bread size, have the expert fill it up. Fast turnaround after the beach, until 03:30, the grill is always open, fresh bread always available."
+      },
+      "menuTitleI18n": {
+        "tr": "Menümüz",
+        "en": "Our Menu",
+        "de": "Unser Menü",
+        "ru": "Наше меню",
+        "fr": "Notre menu"
+      },
+      "menuSubI18n": {
+        "tr": "Taze ızgara köfte, bol malzemeli kokoreç ve çıtır tavuk — yarım/çeyrek ekmek arası ve tabakta servis.",
+        "en": "Fresh sizzling izgara köfte, generous kokoreç and crispy tavuk — served between half and quarter bread sizes and in a plate.",
+        "de": "Frische Izzara-Köfte, reichhaltiger Kokoreç und scharfes Tavuk — Halb/Three-Quarter-Brote-Intermezzo und auf dem Teller serviert.",
+        "ru": "Свежая изгара с köfte, полноценный kokoreç и çıtır tavук — между половиной/четверть и полной порции. Сервирование на таре.",
+        "fr": "Fresh grilled meat platter with generous kokoreç and crispy tavuk ekmek — served in the middle of the plate and during the half/quarter bread size interval."
+      },
+      "summaryI18n": {
+        "tr": "Omar's Kokobüs (Köfteci Ömer Usta) — Kalkan'da kokoreç, köfte ve tavuk ekmek arası denince ilk akla gelen sokak lezzeti durağı. Migros yanında; taze ızgara köfte, bol malzemeli kokoreç, çıtır tavuk. Yarım, çeyrek ve üç çeyrek ekmek arası ile tabakta servis seçenekleri. Gece geç saatlere kadar açık.",
+        "en": "Omar's Kokobüs (Köfteci Ömer Usta) — the go-to spot for street food in Kalkan, known for its kokoreç, köfte, and tavuk ekmek. Next to Migros; fresh sizzling izgara köfte, generous kokoreç, crispy tavuk. Options include quarter, half, and three-quarters bread sizes served in a plate. Open until late at night.",
+        "de": "Omar's Kokobüs (Köfteci Ömer Usta) — Die Adresse der Straßenleckerie in Kalkan, die beim Namen von Kokoreç, Köfte und Tavuk Ekmek an erster Stelle steht. Neben Migros; frische Izzara-Köfte, reichhaltiger Kokoreç und scharfes Tavuk. Auswahlmöglichkeiten: Halb, drei-Quarter-Brote-Intermezzo und auf dem Teller serviert. Geöffnet bis in die späten Abendstunden.",
+        "ru": "Омарын Кокобюс (Кöfteci Омар Уста) — это улица лепроза Калкана, когда вы думаете о kokoreç, köfte и tavук екмек. Near Migros; свежая изгара с полноценным kokoreç, сосиски и тавук екмек. Четверть, три четверти и половина эммента — это варианты для сервировки. Открыто до поздних часов.",
+        "fr": "Omar's Kokobüs (Köfteci Ömer Usta) — the first place that comes to mind when thinking of street food in Kalkan. Next to Migros; fresh grilled meat platter with generous kokoreç, crispy tavuk ekmek. Options available: quarter, half and three-quarters bread size served from the plate. Open until late evening hours."
+      },
+      "menuCatI18n": {
+        "tr": {
+          "🥖 Yarım Ekmek": "🥖 Yarım Ekmek",
+          "🥖 Üç Çeyrek Ekmek": "🥖 Üç Çeyrek Ekmek",
+          "🥖 Çeyrek Ekmek": "🥖 Çeyrek Ekmek",
+          "🍽 Tabakta Servis": "🍽 Tabakta Servis",
+          "🧃 Soğuk İçecekler": "🧃 Soğuk İçecekler",
+          "☕ Sıcak İçecekler": "☕ Sıcak İçecekler"
+        },
+        "en": {
+          "🥖 Yarım Ekmek": "Half Bread",
+          "🥖 Üç Çeyrek Ekmek": "🥖 Three Quarter Bread",
+          "🥖 Çeyrek Ekmek": "🥖 Half-Loaf Bread",
+          "🍽 Tabakta Servis": "🍽 Table Service",
+          "🧃 Soğuk İçecekler": "Cold Drinks",
+          "☕ Sıcak İçecekler": "☕ Hot Beverages"
+        },
+        "de": {
+          "🥖 Yarım Ekmek": "Hälfen Brot",
+          "🥖 Üç Çeyrek Ekmek": "🥖 Drei Viertel Ekmek",
+          "🥖 Çeyrek Ekmek": "🥖 Çeyrek Ekmek ist ein leckeres Brot mit einer halben Portion Füllung.",
+          "🍽 Tabakta Servis": "🍽 Servicenetz",
+          "🧃 Soğuk İçecekler": "Kühle Getränke",
+          "☕ Sıcak İçecekler": "Kaffee - Heißgetränke"
+        },
+        "ru": {
+          "🥖 Yarım Ekmek": "Половина хлеба 🥖",
+          "🥖 Üç Çeyrek Ekmek": "🥖 Три четверки эмек",
+          "🥖 Çeyrek Ekmek": "🥖 Çeyrek Ekmek - Секстак емек",
+          "🍽 Tabakta Servis": "🍽 Сервис в тарелке",
+          "🧃 Soğuk İçecekler": "❄️ Холодные напитки",
+          "☕ Sıcak İçecekler": "☕ Грязная Drinka"
+        },
+        "fr": {
+          "🥖 Yarım Ekmek": "🥖 Pain à miel",
+          "🥖 Üç Çeyrek Ekmek": "🥖 Un Çeyrek Ekmek",
+          "🥖 Çeyrek Ekmek": "🥖 Le Çeyrek Ekmek",
+          "🍽 Tabakta Servis": "Service au plat",
+          "🧃 Soğuk İçecekler": "🧃 Boissons fraîches",
+          "☕ Sıcak İçecekler": "Un café chaud"
+        }
+      },
+      "menuItemsI18n": {
+        "tr": {
+          "🥖 Yarım Ekmek": [
+            "Kokoreç Ekmek — 280 ₺ · İnce kıyılmış kokoreç ile baharat içermektedir. (Ankara usulü)",
+            "Köfte Ekmek — 290 ₺ · 5 adet köfte, dilimlenmiş domates, maydanoz ve soğan içerir.",
+            "Tavuk Ekmek (İncik) — 270 ₺ · İncik tavuk, domates, soğan, maydanoz veya marul",
+            "Tavuk Döner — 250 ₺ · Yaprak döner, domates, soğan ve marul.",
+            "Sucuk Ekmek — 300 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+          ],
+          "🥖 Üç Çeyrek Ekmek": [
+            "1.5 Kokoreç — 400 ₺ · Sade, ince kıyılmış kokoreç ile baharat içerir.",
+            "1.5 Köfte Ekmek — 440 ₺ · 8 adet köfte, domates, maydanoz ve soğan içerir.",
+            "1.5 Tavuk İncik — 380 ₺ · İncik tavuk, domates, maydanoz ve soğan.",
+            "1.5 Tavuk Döner — 330 ₺ · Yaprak döner, domates, soğan ve marul.",
+            "1.5 Sucuk Ekmek — 450 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+          ],
+          "🥖 Çeyrek Ekmek": [
+            "Çeyrek Kokoreç — 190 ₺ · Sade, ince kıyılmış kokoreç ile baharat içerir.",
+            "Çeyrek Köfte — 200 ₺ · Köfte, domates, maydanoz ve soğan içerir.",
+            "Çeyrek Tavuk — 180 ₺ · İncik tavuk, domates, maydanoz ve soğan.",
+            "Çeyrek Sucuk — 220 ₺ · Dana kangal sucuk, domates, soğan ve biber."
+          ],
+          "🍽 Tabakta Servis": [
+            "Köfte Izgara — 550 ₺ · Porsiyon köfte, salata, pilav veya patates cipsi közlenmiş domates ve biber içerir.",
+            "Tavuk Izgara — 450 ₺ · İncik tavuk, salata, pilav veya cipsi, közlenmiş biber ve domates içerir.",
+            "Nohutlu Pilav — 200 ₺ · Tavuklu pilav, kornişon turşu ve domates söğüş.",
+            "Tavuklu Pilav — 250 ₺ · Tavuklu pilav, kornişon turşu ve domates söğüş.",
+            "Hamburger — 450 ₺ · Burger eti, domates, marul, soğan, turşu ve özel sos.",
+            "Çizburger — 480 ₺ · Burger eti, çedar peyniri, domates, marul, soğan ve turşu.",
+            "Cips — 200 ₺ · Kızarmış Patates Cipsi"
+          ],
+          "🧃 Soğuk İçecekler": [
+            "Küçük Ayran — 40 ₺ · Yörükoğlu Ayran 200 ml",
+            "Büyük Ayran — 50 ₺ · Yörükoğlu Ayran 285 ml",
+            "Küçük Su — 30 ₺ · Damla Pet Su 0.5 L",
+            "Kutu Pepsi Kola — 90 ₺ · Kutu Pepsi Kola 330 ml",
+            "Şişe Pepsi Kola — 80 ₺ · Pepsi Şişe Kola 300 ml",
+            "Şişe Gara Kola — 80 ₺ · Antalya Kolası 250 ml",
+            "Şişe Kola Zero — 70 ₺ · Coca Cola Zero 200 ml",
+            "Şişe Yedigün Portakal — 80 ₺ · Yedigün Portakal 300 ml",
+            "Şişe 7Up Gazoz — 70 ₺ · SevenUp Gazlı İçecek 200 ml",
+            "Meyveli Soda — 50 ₺ · Meyveli Soda 200 ml",
+            "Maden Suyu — 40 ₺ · Doğal Maden Suyu 200 ml",
+            "Acılı Şalgam — 60 ₺ · Acılı Şalgam Suyu 300 ml",
+            "Acısız Şalgam — 60 ₺ · Acısız Şalgam Suyu 300 ml",
+            "Lipton Ice Tea Şeftali — 100 ₺ · Lipton Ice Tea Limon (330 ml)",
+            "Lipton Ice Tea Limon — 100 ₺ · Lipton Ice Tea Limon (330 ml)",
+            "Vişne Suyu — 100 ₺ · Cappy Vişne Suyu 330 ml",
+            "Şeftali Suyu — 100 ₺ · Cappy Şeftali Suyu 330 ml"
+          ],
+          "☕ Sıcak İçecekler": [
+            "Çay — 30 ₺ · Siyah Demli Çay",
+            "Türk Kahvesi — 80 ₺ · Geleneksel pişirimle hazırlanan Türk kahvesi.",
+            "Sade Kahve — 90 ₺ · Sade Nescafe",
+            "Sütlü Kahve — 120 ₺ · Sütlü Nescafe"
+          ]
+        },
+        "en": {
+          "🥖 Yarım Ekmek": [
+            "Kokoreç Bread — Half-cooked kokoreç with spices is included (Ankara style)",
+            "Meatball Bread — 290₺ · 5 pieces of meatballs, sliced tomatoes, parsley and onion are included.",
+            "Chicken Ekmek (Incir) — 270₺ · Incir chicken, tomatoes, onions, parsley or lettuce",
+            "Chicken Döner — 250₺ · Yaprak döner, tomatoes, onions and lettuce.",
+            "Sucuk Bread — 300₺ · Dana kangal sucuk, tomatoes, onions and pepper."
+          ],
+          "🥖 Üç Çeyrek Ekmek": [
+            "1.5 Kokoreç — 400 ₺ · Contains simple, finely chopped kokoreç with spices.",
+            "1.5 Köfte Bread — 440 ₺ · Contains 8 pieces of meatballs, tomatoes, parsley, and onion.",
+            "1.5 Tavuk İncik — 380 ₺ · Contains incir chicken, tomatoes, parsley, and onion.",
+            "1.5 Tavuk Döner — 330 ₺ · Contains spring roll-style meat, tomatoes, onion, and lettuce.",
+            "1.5 Sucuk Bread — 450 ₺ · Contains dana kangal sucuk, tomatoes, onion, and pepper."
+          ],
+          "🥖 Çeyrek Ekmek": [
+            "Half-Kokoreç — 190 ₺ · Contains simple, finely chopped kokoreç with spices.",
+            "Half-Köfte — 200 ₺ · Contains kebabs, tomatoes, parsley, and onions.",
+            "Half-Tavuk — 180 ₺ · Contains incir chicken, tomatoes, parsley, and onions.",
+            "Half-Sucuk — 220 ₺ · Contains dana kangal sucuk, tomatoes, onions, and pepper."
+          ],
+          "🍽 Tabakta Servis": [
+            "Köfte Izgara — 550 ₺ · Serving with patty of minced meat, salad, rice or fries, mixed with tomato and pepper.",
+            "Tavuk Izgara — 450 ₺ · Chicken skewer served with salad, rice or fries, mixed with pepper and tomato.",
+            "Nohutlu Pilav — 200 ₺ · Turkey pilaf with cornish salt and tomato sauce.",
+            "Tavuklu Pilav — 250 ₺ · Turkey pilaf with cornish salt and tomato sauce.",
+            "Hamburger — 450 ₺ · Burger made of beef, lettuce, onion, tomato, pickles, and special sauce.",
+            "Çizburger — 480 ₺ · Burger topped with cheese, lettuce, onion, tomato, and pickles.",
+            "Cips — 200 ₺ · Fried Potato Chips"
+          ],
+          "🧃 Soğuk İçecekler": [
+            "Small Ayran — 40₹ · Yörükoğlu Ayran 200ml",
+            "Large Ayran — 50₹ · Yörükoğlu Ayran 285ml",
+            "Small Water — 30₹ · Damla Pet Su 0.5 L",
+            "Pepsi Kola Box — 90₹ · Pepsi Kola Box 330 ml",
+            "Pepsi Cola Bottle — 80₹ · Pepsi Cola Bottle 300 ml",
+            "Gara Kola Bottle — 80₹ · Antalya Kolası 250 ml",
+            "Coca Cola Zero Bottle — 70₹ · Coca Cola Zero 200 ml",
+            "Yedigün Portakal Bottle — 80₹ · Yedigün Portakal 300 ml",
+            "SevenUp Gazlı Drink — 70₹ · SevenUp Fizzy Drink 200 ml",
+            "Fruity Soda — 50₹ · Fruity Soda 200 ml",
+            "Maden Suyu Bottle — 40₹ · Natural Mineral Water 200 ml",
+            "Acidic Şalgam — 60₹ · Acidic Şalgam 300 ml",
+            "Non-Acidic Şalgam — 60₹ · Non-Acidic Şalgam 300 ml",
+            "Lipton Ice Tea Strawberry — 100₹ · Lipton Ice Tea Lemon (330 ml)",
+            "Lipton Ice Tea Lemon — 100₹ · Lipton Ice Tea Lemon (330 ml)",
+            "Cranberry Juice — 100₹ · Cappy Cranberry Juice 330 ml",
+            "Orange Juice — 100₹ · Cappy Orange Juice 330 ml"
+          ],
+          "☕ Sıcak İçecekler": [
+            "Tea — 30 ₺ · Black Tea with Milk",
+            "Turkish Coffee — 80 ₺ · Traditional Turkish coffee made with finely ground coffee beans.",
+            "Plain Coffee — 90 ₺ · Plain Nescafe",
+            "Milk Coffee — 120 ₺ · Milk Nescafe"
+          ]
+        },
+        "de": {
+          "🥖 Yarım Ekmek": [
+            "Kokoreç Brot — 280 € · Mit fein gehacktem, angereichertem Kokoreç und Kräutern ist es zubereitet (Ankara-Style).",
+            "Köfte Brot — 290 € · 5 Köfte, in Scheiben geschnittenen Tomaten, Petersilie und Zwiebeln enthält.",
+            "Tavuk Ekmek (İncik) — 270 € · Inci-Tau, Tomaten, Zwiebeln, Petersilie oder Marul enthält.",
+            "Tavuk Döner — 250 € · Yaprak-Döner, Tomaten, Zwiebeln und Marul.",
+            "Sucuk Brot — 300 € · Dana-Kangal-Sucuk, Tomaten, Zwiebeln und Pfeffer."
+          ],
+          "🥖 Üç Çeyrek Ekmek": [
+            "1.5 Kokoreç — 400 € · Mit scharfen Kräutern und fein gehacktem Kokoreç.",
+            "1.5 Köfte Ekmek — 440 € · 8 Stück Köfte, Tomaten, Petersilie und Zwiebeln enthalten.",
+            "1.5 Tavuk İncik — 380 € · Tavuk-İncik mit Tomaten, Petersilie und Zwiebeln.",
+            "1.5 Tavuk Döner — 330 € · Yaprak-Döner mit Tomaten, Zwiebeln und Marul.",
+            "1.5 Sucuk Ekmek — 450 € · Dana-Kangal-Sucuk mit Tomaten, Zwiebeln und Chili-Pfeffer."
+          ],
+          "🥖 Çeyrek Ekmek": [
+            "Çeyrek Kokoreç — 190 ₺ · Das ist ein einfaches, fein gehacktes Kokoreç mit Kräutern.",
+            "Çeyrek Köfte — 200 ₺ · Hier sind die Körner, Tomaten, Petersilie und Zwiebeln enthalten.",
+            "Çeyrek Tavuk — 180 ₺ · Es ist ein einfacher Tavuk mit Ingwer, Tomaten, Petersilie und Zwiebeln.",
+            "Çeyrek Sucuk — 220 ₺ · Hier gibt es dana Kangal-Sucuk, Tomaten, Zwiebeln und Pfeffer."
+          ],
+          "🍽 Tabakta Servis": [
+            "Köfte-Grill - 550 € · Eine Portion mit Königsköfte, Salat, Reis oder Pommes frites mit Tomaten und Paprika.",
+            "Tavuk-Grill - 450 € · Ingwerhühner, Salat, Reis oder Pommes frites mit Paprika und Tomaten.",
+            "Nudel-Pilaw - 200 € · Hühnchenpilaw mit Kornisonturmus und Tomatensoß.",
+            "Hühnchenpilaw - 250 € · Hühnchenpilaw mit Kornisonturmus und Tomatensoß.",
+            "Hamburger - 450 € · Burger-Steak, Tomaten, Salat, Zwiebel, Senf und ein besonderer Saft.",
+            "Cheeseburger - 480 € · Burger-Steak, Cheddar-Käse, Tomaten, Salat, Zwiebel und Senf.",
+            "Cips - 200 € · Gebratene Pommes frites"
+          ],
+          "🧃 Soğuk İçecekler": [
+            "Klein Ayran — 40 € · Yörükoğlu Ayran 200 ml",
+            "Groß Ayran — 50 € · Yörenkoğlu Ayran 285 ml",
+            "Klein Wasser — 30 € · Damla Pet Wasser 0,5 L",
+            "Papierkorb Pepsi Kola — 90 € · Papierkorb Pepsi Kola 330 ml",
+            "Flasche Pepsi Kola — 80 € · Pepsi Flasche Kola 300 ml",
+            "Flasche Gara Kola — 80 € · Antalya Kolasen 250 ml",
+            "Kolawasser Zero — 70 € · Coca Cola Zero 200 ml",
+            "Flasche Yedigün Portakal — 80 € · Yedigün Portakalsaft 300 ml",
+            "Flasche 7Up Gazoz — 70 € · SevenUp Gazwasser 200 ml",
+            "Meylensoda — 50 € · Meylensoda 200 ml",
+            "Maden Sauer — 40 € · Naturmader Sauer 200 ml",
+            "Süßes Salzsalat — 60 € · Süßes Salzsalatsaft 300 ml",
+            "Ungesüßtes Salzsalat — 60 € · Ungesüßter Salzsalatsaft 300 ml",
+            "Lipton Eis Tee Limon — 100 € · Lipton Eis Tee Limon (330 ml)",
+            "Lipton Eis Tee Limon — 100 € · Lipton Eis Tee Limon (330 ml)",
+            "Viognesaft — 100 € · Cappy Viognesaft 330 ml",
+            "Limettensaft — 100 € · Cappy Limettensaft 330 ml"
+          ],
+          "☕ Sıcak İçecekler": [
+            "Tea — 30 € · Schwarzer Tee mit Schuss",
+            "Türkischer Kaffee — 80 € · Traditionell zubereitetes türkischer Kaffee.",
+            "Einfacher Kaffee — 90 € · Einfach Nescafe",
+            "Milchiger Kaffee — 120 € · Milchiger Nescafe"
+          ]
+        },
+        "ru": {
+          "🥖 Yarım Ekmek": [
+            "Кокорец с хлебом — 280 ₺ · Кокорец с измельченным и пряным содержанием. (Аналогичный Ankara-стиль)",
+            "Кофте с хлебом — 290 ₺ · 5 штук cofte, разрезанный помидор, петрушка и лук.",
+            "Птичный еkmek (Инчик) — 270 ₺ · Инчик птица, помидор, лук, петрушка или марулу.",
+            "Птичный döнер — 250 ₺ · Япраковый döuner, помидор, лук и марул.",
+            "Суçúк с хлебом — 300 ₺ · Дана kangal суку́к, помидор, лук и перец."
+          ],
+          "🥖 Üç Çeyrek Ekmek": [
+            "1.5 Кокорец — 400 ₺ · Простой, ince измельченный кокорец с пряностями содержит.",
+            "1.5 Köfte Ekmek — 440 ₺ · 8 штук köfte, домат, майданов и soğан содержат.",
+            "1.5 Тавук Инджик — 380 ₺ · Инджик тавук, домат, майданов и soğан.",
+            "1.5 Тавук Дöner — 330 ₺ · Япраковый döнер, домат, soğан и марул.",
+            "1.5 Суçuк эмек — 450 ₺ · Дана кангаль суку, домат, soğан и пiper."
+          ],
+          "🥖 Çeyrek Ekmek": [
+            "Çeyrek Kokoreç — 190 ₺ · Садый, ince разрезанный kokорец с пряностями содержит.",
+            "Çeyrek Köfte — 200 ₺ · Кофте, домат, майданово и soğан содержат.",
+            "Çeyrek Tavuk — 180 ₺ · Инчик tavук, домат, майданово и soğан.",
+            "Çeyrek Sucuk — 220 ₺ · Дана кангаль сусук, домат, soğан и пiper."
+          ],
+          "🍽 Tabakta Servis": [
+            "Кöttе Изгара — 550 ₺ · Порция кофте, салата, пилав или чипсы с помешанным помидором и перцем.",
+            "Тавук Изгара — 450 ₺ · Изначный tavук, салата, пилав или чипсы с помешанным перцем и помидором.",
+            "Ножатый пилав — 200 ₺ · Тавучный пилав, консервированная корнисон и помешанный помидор.",
+            "Тавучный пилав — 250 ₺ · Тавучный пилав, консервированная корнисон и помешанный помидор.",
+            "Гамбургер — 450 ₺ · Бургерное мясо, помидор, марулу, soğан, сметана и специальный sos.",
+            "Чизбургер — 480 ₺ · Бургерное мясо, чедарный сыр, помидор, марулу, soğан и сметана.",
+            "Чипсы — 200 ₺ · Пататные чипсы, приготовленные в печи"
+          ],
+          "🧃 Soğuk İçecekler": [
+            "Маленький Айран — 40₽ · Юрökоглу Айран 200 мл",
+            "Больший Айран — 50₽ · Юрökоглу Айран 285 мл",
+            "Маленький Водка — 30₽ · Дамла Пет Вода 0,5 Л",
+            "Коробка Пепси Кола — 90₽ · Коробка Пепси Кола 330 мл",
+            "Шишка Пепси Кола — 80₽ · Пепси Шишка Кола 300 мл",
+            "Шишка Гара Кола — 80₽ · Анталья Кола 250 мл",
+            "Шишка Кола ноль — 70₽ · Кока-Кола ноль 200 мл",
+            "Шишка Яедигюн Портакал — 80₽ · Яедигюн Портакал 300 мл",
+            "Шишка Севенアップ Газоз — 70₽ · Севенуп Газли Напиток 200 мл",
+            "Мыльная Сода — 50₽ · Мыльная Сода 200 мл",
+            "Медный Су — 40₽ · Домашний Медный Су 200 мл",
+            "Акcipерированный Шалгам — 60₽ · Акcipерированный Шалгам Су 300 мл",
+            "Безакcipерированный Шалгам — 60₽ · Безакcipерированный Шалгам Су 300 мл",
+            "Лайптон Ice Tea Лимон (330 мл) — 100₽ · Лайптон Ice Tea Limон (330 мл)",
+            "Лайптон Ice Tea Лимон (330 мл) — 100₽ · Лайптон Ice Tea Limон (330 мл)",
+            "Вишня Су — 100₽ · Кэпи Вишня Су 330 мл",
+            "Шeftелий Су — 100₽ · Кэпи Шeftелий Су 330 мл"
+          ],
+          "☕ Sıcak İçecekler": [
+            "Чай — 30 ₺ · Синий сaçивый Чай",
+            "Турецкая Кофе — 80 ₺ · Давيدово приготовленная традиционная турецкая кофе.",
+            "Совершенно простая Кофе — 90 ₺ · Совершенно простой Nescafe",
+            "Свежесекоченная Кофе — 120 ₺ · Свежесекоченная Nescafe"
+          ]
+        },
+        "fr": {
+          "🥖 Yarım Ekmek": [
+            "Kokoreç Sandwich — 280 € · Fait avec du kokoreç émincé et des herbes, selon la recette d'Ankara.",
+            "Köfte Sandwich — 290 € · Composé de 5 köfte, de tomates concassées, d'épinards et d'oignons.",
+            "Tavuk Ekmek (İncik) — 270 € · Fait avec du poulet incik, des tomates, des oignons, des épinards ou de la marue.",
+            "Tavuk Döner — 250 € · Présentant un yaprak döner, des tomates concassées, des oignons et de la marue.",
+            "Sucuk Ekmek — 300 € · Fait avec du sucuk de dana kangal, des tomates, des oignons et du poivre."
+          ],
+          "🥖 Üç Çeyrek Ekmek": [
+            "1.5 Kokoreç — 400 € · Un kokoreç avec des herbes contient.",
+            "1.5 Köfte Ekmek — 440 € · Huit köfte, tomates, poivre et oignon contiennent.",
+            "1.5 Tavuk İncik — 380 € · Incik de poulet, tomates, poivre et oignon.",
+            "1.5 Tavuk Döner — 330 € · Döner de poulet, tomates, oignon et laitue.",
+            "1.5 Sucuk Ekmek — 450 € · Sucuk de bœuf, tomates, oignon et poivre."
+          ],
+          "🥖 Çeyrek Ekmek": [
+            "Le Çeyrek Kokoreç — 190 ₺ · Ce kokoreç est préparé avec des herbes et contient de fines tranches de kokoreç.",
+            "Le Çeyrek Köfte — 200 ₺ · Le köfte, accompagné de tomates, de persil et d'oignons.",
+            "Le Çeyrek Tavuk — 180 ₺ · Tavuk préparé avec des herbes, des tomates, du persil et des oignons.",
+            "Le Çeyrek Sucuk — 220 ₺ · Le sucuk de kangal de porc, accompagné de tomates, d'oignons et de poivre."
+          ],
+          "🍽 Tabakta Servis": [
+            "Köfte Izgara — 550 ₺ · Le plat comprend des köfte, salade, riz pilaf ou frites avec tomate et poivre.",
+            "Tavuk Izgara — 450 ₺ · Le plat contient de l'incik de poulet, salade, riz pilaf ou frites avec poivre et tomate.",
+            "Pilaw aux haricots — 200 ₺ · Le pilaw aux haricots est fait avec du poulet, kornisoun turc et tomate.",
+            "Pilaw aux haricots au poulet — 250 ₺ · Le pilaw aux haricots au poulet est fait avec du poulet, kornisoun turc et tomate.",
+            "Hamburger — 450 ₺ · Le burger est composé de viande de bœuf, tomate, laitue, oignon, cornichon et sauce spéciale.",
+            "Çizburger — 480 ₺ · Le burger est composé de viande de bœuf, fromage de chèvre, tomate, laitue, oignon et cornichon.",
+            "Cips — 200 ₺ · Les frites de pommes de terre cuites"
+          ],
+          "🧃 Soğuk İçecekler": [
+            "Petit Ayran — 40 € · Yörükoğlu Ayran 200 ml",
+            "Grand Ayran — 50 € · Yörükoğlu Ayran 285 ml",
+            "Petit Eau — 30 € · Damla Pet Su 0,5 L",
+            "Boîte de Pepsi Kola — 90 € · Boîte de Pepsi Kola 330 ml",
+            "Bouteille de Pepsi Kola — 80 € · Pepsi Bouteille Kola 300 ml",
+            "Bouteille de Gara Kola — 80 € · Antalya Kolas 250 ml",
+            "Bouteille de Coca Cola Zero — 70 € · Coca Cola Zero 200 ml",
+            "Bouteille de Yedigün Portakal — 80 € · Yedigün Portakal 300 ml",
+            "Bouteille de SevenUp Gazoz — 70 € · SevenUp Gazli Boisson 200 ml",
+            "Meyveli Soda — 50 € · Meyveli Soda 200 ml",
+            "Maden Suyu — 40 € · Suyu Naturel 200 ml",
+            "Acidee Shalgam — 60 € · Acidee Shalgam Suyu 300 ml",
+            "Sans Acide Shalgam — 60 € · Sans Acide Shalgam Suyu 300 ml",
+            "Lipton Ice Tea à la Framboise — 100 € · Lipton Ice Tea Limon (330 ml)",
+            "Lipton Ice Tea Limon — 100 € · Lipton Ice Tea Limon (330 ml)",
+            "Sauce de Myrtille — 100 € · Cappy Sauce de Myrtille 330 ml",
+            "Sauce de Cerise — 100 € · Cappy Sauce de Cerise 330 ml"
+          ],
+          "☕ Sıcak İçecekler": [
+            "Thé — 30 € · Thé noir avec sucre",
+            "Le Café Turc — 80 € · Un café traditionnel préparé avec du poivre.",
+            "Un café simple — 90 € · Un simple Nescafé",
+            "Un café au lait — 120 € · Un café au lait Nescafé"
+          ]
+        }
+      }
     },
     {
       "id": "street-munch",

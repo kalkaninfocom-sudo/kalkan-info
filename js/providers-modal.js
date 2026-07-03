@@ -26,6 +26,37 @@
     );
   }
 
+  // ── i18n ──────────────────────────────────────────────────────────────────
+  // Aktif dili KalkanI18n (js/i18n.js) veya localStorage'dan al.
+  function curLang() {
+    try { if (window.KalkanI18n && window.KalkanI18n.get) return window.KalkanI18n.get(); } catch (e) {}
+    try { const s = localStorage.getItem('lang'); if (s) return s; } catch (e) {}
+    return 'tr';
+  }
+  // Bir {tr,en,de,ru,fr} i18n objesinden aktif dili sec; yoksa en, yoksa base (TR).
+  function pick(i18n, base) {
+    const l = curLang();
+    if (l === 'tr') return base;
+    if (i18n && typeof i18n === 'object' && !Array.isArray(i18n)) {
+      if (i18n[l]) return i18n[l];
+      if (i18n.en) return i18n.en;
+    }
+    return base;
+  }
+  function pickArr(i18n, base) {
+    const v = pick(i18n, base);
+    return Array.isArray(v) ? v : (base || []);
+  }
+  // Modal UI etiketleri (statik) — 5 dil.
+  const UI = {
+    tr: { providersOf: t => `Kalkan'da ${t} Veren Sağlayıcılar`, foundN: n => `${n} onaylı sağlayıcı bulundu`, verified: '✓ Onaylı', concierge: '⏳ Concierge', featuredRibbon: '⭐ Öne Çıkan', directions: 'Yol Tarifi', wa: 'WhatsApp', askConcierge: "Concierge'e Sor", notVerified: 'ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.', reviews: 'değerlendirme' },
+    en: { providersOf: t => `${t} Providers in Kalkan`, foundN: n => `${n} verified providers found`, verified: '✓ Verified', concierge: '⏳ Concierge', featuredRibbon: '⭐ Featured', directions: 'Directions', wa: 'WhatsApp', askConcierge: 'Ask Concierge', notVerified: 'ℹ️ Contact details not yet verified — Kalkan Info concierge will assist.', reviews: 'reviews' },
+    de: { providersOf: t => `${t}-Anbieter in Kalkan`, foundN: n => `${n} geprüfte Anbieter gefunden`, verified: '✓ Geprüft', concierge: '⏳ Concierge', featuredRibbon: '⭐ Empfohlen', directions: 'Route', wa: 'WhatsApp', askConcierge: 'Concierge fragen', notVerified: 'ℹ️ Kontaktdaten noch nicht bestätigt — der Kalkan Info Concierge hilft.', reviews: 'Bewertungen' },
+    ru: { providersOf: t => `Поставщики услуг «${t}» в Калкане`, foundN: n => `Найдено проверенных поставщиков: ${n}`, verified: '✓ Проверено', concierge: '⏳ Консьерж', featuredRibbon: '⭐ Рекомендуем', directions: 'Маршрут', wa: 'WhatsApp', askConcierge: 'Спросить консьержа', notVerified: 'ℹ️ Контакты ещё не подтверждены — консьерж Kalkan Info поможет.', reviews: 'отзывов' },
+    fr: { providersOf: t => `Prestataires « ${t} » à Kalkan`, foundN: n => `${n} prestataires vérifiés trouvés`, verified: '✓ Vérifié', concierge: '⏳ Concierge', featuredRibbon: '⭐ En vedette', directions: 'Itinéraire', wa: 'WhatsApp', askConcierge: 'Demander au concierge', notVerified: 'ℹ️ Coordonnées non encore vérifiées — le concierge Kalkan Info vous orientera.', reviews: 'avis' },
+  };
+  function ui() { return UI[curLang()] || UI.tr; }
+
   function waUrl(provider, serviceTitle) {
     const name = (provider && provider.name) || '';
     const raw = provider && provider.whatsappRaw;
@@ -203,19 +234,24 @@
   // ── Provider card HTML ────────────────────────────────────────────────────
 
   function providerCard(p, serviceTitle) {
+    const L = ui();
+    const pSummary = pick(p.summaryI18n, p.summary);
+    const pType = pick(p.typeI18n, p.type);
+    const pSpecialties = pickArr(p.specialtiesI18n, p.specialties || []);
+
     const verifiedBadge = p.verified
       ? `<span title="Onaylı Sağlayıcı" style="
           display:inline-flex;align-items:center;gap:3px;
           background:#dbeafe;color:#1e40af;
           font-size:0.65rem;font-weight:700;
           padding:2px 7px;border-radius:20px;
-        ">✓ Onaylı</span>`
+        ">${esc(L.verified)}</span>`
       : `<span title="İletişim bilgileri Kalkan Info concierge üzerinden teyit edilir" style="
           display:inline-flex;align-items:center;gap:3px;
           background:#fef3c7;color:#92400e;
           font-size:0.65rem;font-weight:700;
           padding:2px 7px;border-radius:20px;
-        ">⏳ Concierge</span>`;
+        ">${esc(L.concierge)}</span>`;
 
     const featuredRibbon = p.featured
       ? `<div style="
@@ -225,10 +261,10 @@
           padding:3px 10px;border-radius:0 4px 4px 0;
           box-shadow:0 2px 8px rgba(232,152,18,0.4);
           letter-spacing:0.05em;text-transform:uppercase;
-        ">⭐ Öne Çıkan</div>`
+        ">${esc(L.featuredRibbon)}</div>`
       : '';
 
-    const specialtyTags = (p.specialties || []).slice(0, 3).map(s =>
+    const specialtyTags = pSpecialties.slice(0, 3).map(s =>
       `<span style="
         background:rgba(26,94,147,0.08);color:#134c79;
         font-size:0.62rem;font-weight:600;
@@ -273,7 +309,7 @@
             color:#fff;font-size:0.62rem;font-weight:700;
             padding:2px 8px;border-radius:20px;
             border:1px solid rgba(255,255,255,0.2);
-          ">${esc(p.type)}</span>
+          ">${esc(pType)}</span>
         </div>
 
         <!-- Content -->
@@ -293,7 +329,7 @@
           <div style="display:flex;align-items:center;gap:6px;">
             <div style="font-size:0.82rem;letter-spacing:1px;">${stars(p.rating || 0)}</div>
             <span style="font-size:0.72rem;font-weight:700;color:#0a2e4c;">${Number(p.rating || 0).toFixed(1)}</span>
-            <span style="font-size:0.68rem;color:#5d97c4;">(${p.reviewCount || 0} değerlendirme)</span>
+            <span style="font-size:0.68rem;color:#5d97c4;">(${p.reviewCount || 0} ${esc(L.reviews)})</span>
           </div>
 
           <!-- Summary -->
@@ -301,7 +337,7 @@
             font-size:0.76rem;color:#0d3a5f;opacity:0.8;
             line-height:1.5;margin:0;
             display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-          ">${esc(p.summary)}</p>
+          ">${esc(pSummary)}</p>
 
           <!-- Specialty tags -->
           ${specialtyTags ? `<div style="display:flex;flex-wrap:wrap;gap:4px;">${specialtyTags}</div>` : ''}
@@ -319,7 +355,7 @@
 
         <!-- CTA -->
         <div style="padding:12px 14px 14px;margin-top:auto;display:flex;flex-direction:column;gap:6px;">
-          ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0;line-height:1.4;">ℹ️ İletişim bilgileri henüz onaylanmadı — Kalkan Info concierge yönlendirir.</p>` : ''}
+          ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0;line-height:1.4;">${esc(L.notVerified)}</p>` : ''}
           ${p.verified && p.phoneRaw ? `<a href="tel:${esc(p.phoneRaw)}" data-pm-action="phone" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
             background:#0a2e4c;color:#fff;
@@ -343,7 +379,7 @@
             transition:background 0.18s ease;
           " onmouseover="this.style.background='#f0f7ff';" onmouseout="this.style.background='#fff';">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Yol Tarifi
+            ${esc(L.directions)}
           </a>` : ''}
           <a href="${waLink}" target="_blank" rel="noopener" data-pm-action="wa" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" data-verified="${p.verified ? '1' : '0'}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
@@ -358,7 +394,7 @@
           onmouseover="this.style.background='#15803d';this.style.boxShadow='0 6px 18px -4px rgba(22,163,74,0.55)';"
           onmouseout="this.style.background='#16a34a';this.style.boxShadow='0 4px 14px -4px rgba(22,163,74,0.4)';">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
-            ${p.verified ? 'WhatsApp' : "Concierge'e Sor"}
+            ${p.verified ? esc(L.wa) : esc(L.askConcierge)}
           </a>
         </div>
 
@@ -410,12 +446,13 @@
       attachModalEvents();
     }
 
-    // Populate header
+    // Populate header (dile gore)
+    const L = ui();
+    const svcTitle = pick(serviceData.titleI18n, serviceData.title);
     document.getElementById('pm-icon').textContent = serviceData.icon || '';
-    document.getElementById('pm-title').textContent =
-      `Kalkan'da ${serviceData.title} Veren Sağlayıcılar`;
+    document.getElementById('pm-title').textContent = L.providersOf(svcTitle);
     document.getElementById('pm-subtitle').textContent =
-      `${(serviceData.providers || []).length} onaylı sağlayıcı bulundu`;
+      L.foundN((serviceData.providers || []).length);
 
     // Reset sort
     currentSort = 'featured';
@@ -620,6 +657,21 @@
 
     // Programatik erişim için global hook
     window.openProvidersModal = openModal;
+
+    // Dil değişince açık modalı yeniden render et (KalkanI18n 'kalkanlangchange' yayar)
+    document.addEventListener('kalkanlangchange', () => {
+      if (!modalEl || modalEl.style.pointerEvents === 'none') return;
+      const sid = modalEl._currentServiceId;
+      const sdata = modalEl._currentServiceData;
+      if (!sid || !sdata) return;
+      const L = ui();
+      const svcTitle = pick(sdata.titleI18n, sdata.title);
+      const titleEl = document.getElementById('pm-title');
+      const subEl = document.getElementById('pm-subtitle');
+      if (titleEl) titleEl.textContent = L.providersOf(svcTitle);
+      if (subEl) subEl.textContent = L.foundN((sdata.providers || []).length);
+      renderProviders(sid, sdata);
+    });
   }
 
   // ── Init ──────────────────────────────────────────────────────────────────
