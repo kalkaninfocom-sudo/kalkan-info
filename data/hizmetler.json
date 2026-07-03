@@ -121,24 +121,6 @@
   ],
   "items": [
     {
-      "id": "ciku-demo",
-      "name": "Çiku Çikolata — Web Vitrini (Demo)",
-      "category": "Diğer",
-      "icon": "🍫",
-      "image": "/demo/ciku/preview.jpg",
-      "summary": "Çiku Çikolata & Kuruyemiş için tasarladığımız yeni nesil e-ticaret vitrini. 205 ürünlük canlı katalog, WhatsApp sipariş hattı, 3 dil ve yönetim paneli.",
-      "details": [
-        "205 ürünlük canlı katalog",
-        "WhatsApp sipariş hattı",
-        "TR / EN / RU dil desteği",
-        "Ürün ekle-çıkar yönetim paneli"
-      ],
-      "phone": null,
-      "hours": "Web Demo",
-      "listUrl": "/demo/ciku/",
-      "featured": true
-    },
-    {
       "id": "catering",
       "name": "Catering",
       "category": "Diğer",
@@ -1139,11 +1121,36 @@
         "fr": "Jet ski, plongée, excursions en bateau, parachute ascensionnel et pêche à Kalkan — 5 prestataires de sports nautiques."
       },
       "detailsI18n": {
-        "tr": ["Jet ski & parasailing", "Dalış kursları ve dalış turları", "Tekne turları & balık turları", "5 işletme · Google puanlı"],
-        "en": ["Jet ski & parasailing", "Diving courses and dive tours", "Boat tours & fishing trips", "5 businesses · Google rated"],
-        "de": ["Jetski & Parasailing", "Tauchkurse und Tauchtouren", "Bootstouren & Angeltouren", "5 Anbieter · Google bewertet"],
-        "ru": ["Гидроциклы и парасейлинг", "Курсы дайвинга и дайв-туры", "Морские и рыболовные туры", "5 компаний · с оценкой Google"],
-        "fr": ["Jet ski & parachute ascensionnel", "Cours et sorties de plongée", "Excursions en bateau & pêche", "5 prestataires · notés sur Google"]
+        "tr": [
+          "Jet ski & parasailing",
+          "Dalış kursları ve dalış turları",
+          "Tekne turları & balık turları",
+          "5 işletme · Google puanlı"
+        ],
+        "en": [
+          "Jet ski & parasailing",
+          "Diving courses and dive tours",
+          "Boat tours & fishing trips",
+          "5 businesses · Google rated"
+        ],
+        "de": [
+          "Jetski & Parasailing",
+          "Tauchkurse und Tauchtouren",
+          "Bootstouren & Angeltouren",
+          "5 Anbieter · Google bewertet"
+        ],
+        "ru": [
+          "Гидроциклы и парасейлинг",
+          "Курсы дайвинга и дайв-туры",
+          "Морские и рыболовные туры",
+          "5 компаний · с оценкой Google"
+        ],
+        "fr": [
+          "Jet ski & parachute ascensionnel",
+          "Cours et sorties de plongée",
+          "Excursions en bateau & pêche",
+          "5 prestataires · notés sur Google"
+        ]
       },
       "hours": "Sezon boyunca",
       "listUrl": "/hizmetler.html?cat=Su%20Sporlar%C4%B1",

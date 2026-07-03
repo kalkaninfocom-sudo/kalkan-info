@@ -109,15 +109,18 @@
       ? `<span class="inline-flex items-center gap-1 bg-sun-50 text-sun-700 text-[11px] font-bold px-2 py-0.5 rounded-full border border-sun-200">⭐ ${it.rating}${it.reviewCount ? ` · ${it.reviewCount}` : ''}</span>`
       : '';
     const summary = it.summary || `Kalkan'da ${it.category || 'hizmet'}.`;
+    // it.image varsa transfer kartı gibi üstte gerçek foto (su sporları vb.).
+    const imageBlock = it.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1"><img src="${esc(it.image)}" alt="${esc(it.name)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,33,54,0.5) 100%);"></div>${it.rating ? `<span style="position:absolute;top:8px;right:8px;" class="inline-flex items-center gap-1 bg-white/90 text-sun-700 text-[11px] font-bold px-2 py-0.5 rounded-full">⭐ ${it.rating}${it.reviewCount ? ` · ${it.reviewCount}` : ''}</span>` : ''}</div>` : '';
     return `
       <a href="/hizmet/${esc(it.id)}/" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
+        ${imageBlock}
         <div class="flex items-start gap-3">
-          <div class="text-3xl">🏪</div>
+          ${it.image ? '' : '<div class="text-3xl">🏪</div>'}
           <div class="flex-1 min-w-0">
             <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${esc(it.name)}</h3>
             <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${esc(it.category || '')}</div>
           </div>
-          ${rating}
+          ${it.image ? '' : rating}
         </div>
         <p class="text-sm text-ink-700/70 mt-3 line-clamp-2">${esc(summary)}</p>
         <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
@@ -136,6 +139,26 @@
   // Sadece kategori filtresi veya arama yapıldığında bireysel kayıtlar görünür.
   // Ana view'da bireysel kayıtları aggregate kart altında toplayan kategoriler.
   const AGGREGATE_HIDE_CATS = new Set(['Erkek Kuaförü & Berber', 'Bayan Kuaförü', 'Saç & Güzellik (Unisex)', 'Su Sporları']);
+
+  // Hizmetleri "en çok kullanılacaktan en aza" sırala (turist/villa misafiri talebine göre).
+  // Bilinen id'ler için öncelik; kalanlar kategori grubuna göre; en sona niş/nadir.
+  const USE_ORDER = [
+    'transfer-havalimani', 'araba-kiralama', 'su-sporlari', 'temizlik', 'su-bayi', 'tup-bayi',
+    'bisiklet-kiralama', 'catering', 'barmen', 'eczane-merkez', 'saglik-merkez', 'hastane-kas',
+    'kuafor-bayan', 'kuafor-erkek', 'kuafor-unisex', 'balikci', 'kasap', 'tekel', 'doviz', 'atm',
+    'havuz', 'tesisat', 'bahce', 'boya', 'kuru-temizleme', 'tenis-kursu', 'cocukbakim', 'evcilbakim',
+    'postane', 'nakliyat', 'tasduvar',
+  ];
+  const orderIndex = new Map(USE_ORDER.map((id, i) => [id, i]));
+  // google_maps alt-kayıtlar aggregate id'sinden hemen sonra gelsin (kategori bazlı yakınlık).
+  const CAT_ANCHOR = { 'Su Sporları': 'su-sporlari', 'Erkek Kuaförü & Berber': 'kuafor-erkek', 'Bayan Kuaförü': 'kuafor-bayan', 'Saç & Güzellik (Unisex)': 'kuafor-unisex' };
+  function usePriority(it) {
+    if (orderIndex.has(it.id)) return orderIndex.get(it.id);
+    const anchor = CAT_ANCHOR[it.category];
+    if (anchor && orderIndex.has(anchor)) return orderIndex.get(anchor) + 0.5; // aggregate'in hemen ardından
+    return 500; // bilinmeyen → sona
+  }
+
   function renderItems() {
     const cat = catFilter ? catFilter.value : '';
     const q = document.getElementById('search-input') ? document.getElementById('search-input').value : '';
@@ -143,6 +166,7 @@
     if (!cat && !q) {
       filtered = filtered.filter(it => !AGGREGATE_HIDE_CATS.has(it.category) || it.listUrl);
     }
+    filtered = filtered.slice().sort((a, b) => usePriority(a) - usePriority(b));
     const grid = document.getElementById('items-grid');
     const heading = document.getElementById('items-heading');
     if (heading) heading.textContent = filtered.length + ' Hizmet';
