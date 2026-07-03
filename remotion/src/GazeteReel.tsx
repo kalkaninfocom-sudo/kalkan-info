@@ -34,6 +34,13 @@ export const gazeteReelSchema = z.object({
   col3_label: z.string().optional(),
   col3_title: z.string().optional(),
   col3_summary: z.string().optional(),
+  // Evergreen (siteden): antik kent az-bilinen + hizmet reklamı
+  eg_antik_name: z.string().optional(),
+  eg_antik_tag: z.string().optional(),
+  eg_antik_fact: z.string().optional(),
+  eg_ad_name: z.string().optional(),
+  eg_ad_tagline: z.string().optional(),
+  eg_ad_cta: z.string().optional(),
 });
 export type GazeteReelProps = z.infer<typeof gazeteReelSchema>;
 
@@ -49,6 +56,12 @@ export const defaultGazeteReelProps: GazeteReelProps = {
   col3_label: 'Sahil',
   col3_title: 'Kaputaş’ta güvenli yüzme uyarısı',
   col3_summary: 'Dalgalı hava nedeniyle cankurtaran ekipleri uyardı.',
+  eg_antik_name: 'Patara Antik Kenti',
+  eg_antik_tag: 'UNESCO',
+  eg_antik_fact: 'Dünyanın bilinen ilk deniz fenerlerinden biri Patara’dadır.',
+  eg_ad_name: 'Kalkan Info Hizmetler',
+  eg_ad_tagline: 'Villa, transfer, tekne turu — güvenilir yerel işletmeler.',
+  eg_ad_cta: 'kalkaninfo.com/hizmetler',
 };
 
 // ── Ortak yardımcılar ──
@@ -150,7 +163,7 @@ const HeadlineCard: React.FC<{ label?: string; title?: string; summary?: string;
 const Headlines: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame(); // Sequence-göreli 0–270
   const { o } = useAppear(6);
-  const outFade = interpolate(frame, [250, 270], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [220, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', gap: 40, opacity: outFade }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>AYRICA BUGÜN</div>
@@ -185,14 +198,40 @@ const Outro: React.FC = () => {
   );
 };
 
+// ── Sahne 4: Evergreen (Sequence-göreli 0–180) — antik az-bilinen + hizmet reklamı ──
+const Evergreen: React.FC<GazeteReelProps> = (p) => {
+  const frame = useCurrentFrame();
+  const { o } = useAppear(6);
+  const { o: o2 } = useAppear(22);
+  const { o: oAd } = useAppear(56, 16);
+  const outFade = interpolate(frame, [160, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  return (
+    <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', opacity: outFade }}>
+      <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 16 }}>BİLİYOR MUYDUN?</div>
+      {p.eg_antik_name ? <div style={{ fontFamily: SANS, fontSize: 30, color: C.muted, fontWeight: 600, opacity: o, marginBottom: 18 }}>📍 {p.eg_antik_name}{p.eg_antik_tag ? ` · ${p.eg_antik_tag}` : ''}</div> : null}
+      <div style={{ marginBottom: 22 }}><Rule w={140} o={o} h={5} /></div>
+      <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: 58, color: C.cream, lineHeight: 1.2, opacity: o2, transform: `translateY(${(1 - o2) * 30}px)` }}>{p.eg_antik_fact}</div>
+      {p.eg_ad_name ? (
+        <div style={{ marginTop: 56, background: C.navy2, border: `1px solid ${C.gold}55`, borderRadius: 14, padding: '26px 32px', opacity: oAd, transform: `translateY(${(1 - oAd) * 30}px)` }}>
+          <div style={{ fontFamily: SANS, fontSize: 22, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 10 }}>İŞ BİRLİĞİ · REKLAM</div>
+          <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 800, color: C.cream }}>{p.eg_ad_name}</div>
+          {p.eg_ad_tagline ? <div style={{ fontFamily: SANS, fontSize: 27, color: C.muted, marginTop: 8, lineHeight: 1.35 }}>{p.eg_ad_tagline}</div> : null}
+          {p.eg_ad_cta ? <div style={{ fontFamily: SANS, fontSize: 26, color: C.gold, fontWeight: 700, marginTop: 12 }}>📞 {p.eg_ad_cta}</div> : null}
+        </div>
+      ) : null}
+    </AbsoluteFill>
+  );
+};
+
 export const GazeteReel: React.FC<GazeteReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
       <Sequence from={0} durationInFrames={90}><Masthead {...props} /></Sequence>
       <Sequence from={90} durationInFrames={360}><Lead {...props} /></Sequence>
-      <Sequence from={450} durationInFrames={270}><Headlines {...props} /></Sequence>
-      <Sequence from={720} durationInFrames={180}><Outro /></Sequence>
+      <Sequence from={450} durationInFrames={240}><Headlines {...props} /></Sequence>
+      <Sequence from={690} durationInFrames={180}><Evergreen {...props} /></Sequence>
+      <Sequence from={870} durationInFrames={180}><Outro /></Sequence>
     </AbsoluteFill>
   );
 };

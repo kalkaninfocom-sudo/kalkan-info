@@ -36,6 +36,8 @@ const oneLine = (body) => {
 async function main() {
   console.log(`\n════ GAZETE REEL — ${date} ════`);
   const src = await import(pathToFileURL(join(ROOT, 'newspaper', 'generator', 'sources.mjs')).href);
+  const { getEvergreen } = await import(pathToFileURL(join(ROOT, 'scripts', 'agency', 'evergreen.mjs')).href);
+  const eg = getEvergreen(date);
   const news = await src.getNews();
   if (!news || !news.lead_headline) {
     console.error('❌ İçerik yok (getNews boş). Önce gazete-editorial.mjs veya haberler.json gerekir.');
@@ -54,6 +56,13 @@ async function main() {
     col3_label: labelFrom(news.col3_byline, 'Sahil'),
     col3_title: news.col3_title || '',
     col3_summary: oneLine(news.col3_body),
+    // Evergreen (siteden): antik kent az-bilinen + hizmet reklamı
+    eg_antik_name: eg.antik?.name || '',
+    eg_antik_tag: eg.antik?.tag || '',
+    eg_antik_fact: eg.antik?.fact || '',
+    eg_ad_name: eg.ad?.name || '',
+    eg_ad_tagline: eg.ad?.tagline || '',
+    eg_ad_cta: eg.ad?.cta || '',
   };
 
   const propsPath = resolve(ROOT, 'remotion', 'props-gazete.json');
@@ -79,7 +88,7 @@ async function main() {
   if (music) {
     console.log(`── Müzik mix: ${music.split(/[\\/]/).pop()} ──`);
     const ff = spawnSync('ffmpeg', ['-y', '-i', silentMp4, '-i', music,
-      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=27:d=3[m]',
+      '-filter_complex', '[1:a]volume=0.25,afade=in:st=0:d=1.5,afade=out:st=32:d=3[m]',
       '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
       { stdio: 'ignore' });
     musicOk = ff.status === 0 && existsSync(outMp4);
