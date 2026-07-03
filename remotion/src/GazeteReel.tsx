@@ -41,6 +41,16 @@ export const gazeteReelSchema = z.object({
   eg_ad_name: z.string().optional(),
   eg_ad_tagline: z.string().optional(),
   eg_ad_cta: z.string().optional(),
+  // Opsiyonel sabit-etiket sözlüğü (EN varyantı için). Yoksa TR literal fallback → mevcut davranış korunur.
+  labels: z.object({
+    kicker: z.string(),      // Masthead üst etiket ("GÜNÜN GAZETESİ")
+    lead: z.string(),        // "MANŞET"
+    more: z.string(),        // "AYRICA BUGÜN"
+    didYouKnow: z.string(),  // "BİLİYOR MUYDUN?"
+    ad: z.string(),          // "İŞ BİRLİĞİ · REKLAM"
+    outroTop: z.string(),    // "BÜTÜN HABERLER, HER SABAH"
+    cta: z.string(),         // "kalkaninfo.com/gazete"
+  }).partial().optional(),
 });
 export type GazeteReelProps = z.infer<typeof gazeteReelSchema>;
 
@@ -85,7 +95,7 @@ const Masthead: React.FC<GazeteReelProps> = (p) => {
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 28, letterSpacing: 7, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
-        GÜNÜN GAZETESİ
+        {p.labels?.kicker ?? 'GÜNÜN GAZETESİ'}
       </div>
       <div style={{ margin: '18px 0' }}><Rule w={360} o={o} /></div>
       <div style={{
@@ -125,7 +135,7 @@ const Lead: React.FC<GazeteReelProps> = (p) => {
       {/* Metin ALT blokta, düz navy zemin */}
       <AbsoluteFill style={{ justifyContent: 'flex-end', padding: '0 70px 150px' }}>
         <div style={{ display: 'inline-block', alignSelf: 'flex-start', background: C.gold, color: C.navy, fontFamily: SANS, fontWeight: 800, fontSize: 26, letterSpacing: 3, padding: '8px 18px', borderRadius: 4, opacity: o, marginBottom: 22 }}>
-          MANŞET
+          {p.labels?.lead ?? 'MANŞET'}
         </div>
         <div style={{ marginBottom: 20 }}><Rule w={140} o={o} h={5} /></div>
         <div style={{
@@ -166,7 +176,7 @@ const Headlines: React.FC<GazeteReelProps> = (p) => {
   const outFade = interpolate(frame, [205, 225], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', gap: 40, opacity: outFade }}>
-      <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>AYRICA BUGÜN</div>
+      <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>{p.labels?.more ?? 'AYRICA BUGÜN'}</div>
       <HeadlineCard label={p.col1_label} title={p.col1_title} summary={p.col1_summary} from={20} />
       <HeadlineCard label={p.col3_label} title={p.col3_title} summary={p.col3_summary} from={50} />
     </AbsoluteFill>
@@ -174,7 +184,7 @@ const Headlines: React.FC<GazeteReelProps> = (p) => {
 };
 
 // ── Sahne 4: Outro / CTA (720–900) ──
-const Outro: React.FC = () => {
+const Outro: React.FC<{ labels?: GazeteReelProps['labels'] }> = ({ labels }) => {
   const { o } = useAppear(10, 14);
   const { o: o2 } = useAppear(32);
   const frame = useCurrentFrame(); // Sequence-göreli 0–180
@@ -182,7 +192,7 @@ const Outro: React.FC = () => {
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 34, letterSpacing: 4, color: C.muted, fontWeight: 500, opacity: o, textAlign: 'center' }}>
-        BÜTÜN HABERLER, HER SABAH
+        {labels?.outroTop ?? 'BÜTÜN HABERLER, HER SABAH'}
       </div>
       <div style={{ margin: '28px 0' }}><Rule w={300} o={o} /></div>
       <div style={{ fontFamily: SERIF, fontSize: 92, fontWeight: 900, color: C.cream, opacity: o, textAlign: 'center', lineHeight: 1, letterSpacing: -1 }}>
@@ -192,7 +202,7 @@ const Outro: React.FC = () => {
         marginTop: 50, background: C.gold, color: C.navy, fontFamily: SANS, fontWeight: 800, fontSize: 40,
         padding: '22px 44px', borderRadius: 12, opacity: o2, transform: `scale(${pulse})`, boxShadow: `0 16px 44px ${C.gold2}66`,
       }}>
-        kalkaninfo.com/gazete
+        {labels?.cta ?? 'kalkaninfo.com/gazete'}
       </div>
     </AbsoluteFill>
   );
@@ -209,7 +219,7 @@ const Evergreen: React.FC<GazeteReelProps> = (p) => {
     <AbsoluteFill style={{ opacity: outFade }}>
       {/* Antik az-bilinen — üst çeyrek */}
       <div style={{ position: 'absolute', top: '20%', left: 70, right: 70 }}>
-        <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 16 }}>BİLİYOR MUYDUN?</div>
+        <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 16 }}>{p.labels?.didYouKnow ?? 'BİLİYOR MUYDUN?'}</div>
         {p.eg_antik_name ? <div style={{ fontFamily: SANS, fontSize: 30, color: C.muted, fontWeight: 600, opacity: o, marginBottom: 18 }}>📍 {p.eg_antik_name}{p.eg_antik_tag ? ` · ${p.eg_antik_tag}` : ''}</div> : null}
         <div style={{ marginBottom: 22 }}><Rule w={140} o={o} h={5} /></div>
         <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: 58, color: C.cream, lineHeight: 1.2, opacity: o2, transform: `translateY(${(1 - o2) * 30}px)` }}>{p.eg_antik_fact}</div>
@@ -217,7 +227,7 @@ const Evergreen: React.FC<GazeteReelProps> = (p) => {
       {/* İş birliği/reklam — alt kısım (Berkay: daha aşağıda) */}
       {p.eg_ad_name ? (
         <div style={{ position: 'absolute', bottom: '11%', left: 70, right: 70, background: C.navy2, border: `1px solid ${C.gold}55`, borderRadius: 14, padding: '26px 32px', opacity: oAd, transform: `translateY(${(1 - oAd) * 30}px)` }}>
-          <div style={{ fontFamily: SANS, fontSize: 22, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 10 }}>İŞ BİRLİĞİ · REKLAM</div>
+          <div style={{ fontFamily: SANS, fontSize: 22, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 10 }}>{p.labels?.ad ?? 'İŞ BİRLİĞİ · REKLAM'}</div>
           <div style={{ fontFamily: SERIF, fontSize: 44, fontWeight: 800, color: C.cream }}>{p.eg_ad_name}</div>
           {p.eg_ad_tagline ? <div style={{ fontFamily: SANS, fontSize: 27, color: C.muted, marginTop: 8, lineHeight: 1.35 }}>{p.eg_ad_tagline}</div> : null}
           {p.eg_ad_cta ? <div style={{ fontFamily: SANS, fontSize: 26, color: C.gold, fontWeight: 700, marginTop: 12 }}>📞 {p.eg_ad_cta}</div> : null}
@@ -235,7 +245,7 @@ export const GazeteReel: React.FC<GazeteReelProps> = (props) => {
       <Sequence from={75} durationInFrames={240}><Lead {...props} /></Sequence>
       <Sequence from={315} durationInFrames={225}><Headlines {...props} /></Sequence>
       <Sequence from={540} durationInFrames={180}><Evergreen {...props} /></Sequence>
-      <Sequence from={720} durationInFrames={180}><Outro /></Sequence>
+      <Sequence from={720} durationInFrames={180}><Outro labels={props.labels} /></Sequence>
     </AbsoluteFill>
   );
 };

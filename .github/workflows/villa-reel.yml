@@ -1,19 +1,19 @@
-name: Haftanın Mekânı reel (Salı 20:00 · 💰 flagship)
+name: Haftanın Villası reel (Cumartesi 20:00 · 💰 flagship)
 
-# ADANMIŞ REEL WORKFLOW — neden ayrı (gazete-approval.yml ile aynı gerekçe):
+# ADANMIŞ REEL WORKFLOW — neden ayrı (restoran-reel.yml ile aynı gerekçe):
 #   agency-scheduler (*/10) npm ci YAPMIYOR → Remotion render orada patlar/atlanır.
 #   Remotion + ffmpeg gerektiren ağır iş adanmış workflow'da güvenilir çalışır:
 #   npm ci (remotion kurar) + ffmpeg (ubuntu-latest'ta hazır) + Remotion Chrome (otomatik indirir).
-# restoran-reel-approval.mjs: RestoranReel render (data-URI foto, müzik) → Supabase upload → Telegram video onayı.
+# villa-reel-approval.mjs: VillaReel render (data-URI foto, müzik) → Supabase upload → Telegram video onayı.
 
 on:
   schedule:
-    # 17:00 UTC = 20:00 Europe/Istanbul, Salı (2). GitHub gecikmesine tampon var (onay akşam içinde).
-    - cron: '0 17 * * 2'
+    # 17:00 UTC = 20:00 Europe/Istanbul, Cumartesi (6). GitHub gecikmesine tampon var (onay akşam içinde).
+    - cron: '0 17 * * 6'
   workflow_dispatch:
     inputs:
-      restoran:
-        description: 'Belirli restoran (slug/isim, boş = rotasyondan sıradaki)'
+      villa:
+        description: 'Belirli villa (slug/isim, boş = rotasyondan sıradaki)'
         required: false
         default: ''
 
@@ -21,7 +21,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: restoran-reel
+  group: villa-reel
   cancel-in-progress: false
 
 jobs:
@@ -41,23 +41,7 @@ jobs:
       - name: Bağımlılıkları kur (remotion dahil)
         run: npm ci
 
-      # Bugüne ait bayat onay satırını temizle — gece/önceki çalışmada telegram_message_id doluysa
-      # reel-approval "zaten gönderilmiş" guard'ını tetikler. Silince taze onay gönderilir.
-      - name: Bayat onay satırını temizle
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: |
-          D=$(TZ=Europe/Istanbul date +%F)
-          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
-            curl -s -X DELETE "$SUPABASE_URL/rest/v1/social_posts?content_pack_id=eq.restoran-reel-$D" \
-              -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" >/dev/null || true
-            echo "bayat satır temizlendi (varsa): restoran-reel-$D"
-          else
-            echo "Supabase env yok — temizleme atlandı"
-          fi
-
-      - name: Restoran reel üret + video onayı
+      - name: Villa reel üret + video onayı
         env:
           # Tagline için ücretsiz LLM (kartsız 70B önce → nvidia 8B son çare); yoksa şablon fallback.
           CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
@@ -72,17 +56,17 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://kalkaninfo.com
-        run: node scripts/agency/restoran-reel-approval.mjs ${{ github.event.inputs.restoran }}
+        run: node scripts/agency/villa-reel-approval.mjs ${{ github.event.inputs.villa }}
 
       - name: Rotasyon durumunu commit et
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add data/agency/restoran-reel-state.json
+          git add data/agency/villa-reel-state.json
           if git diff --cached --quiet; then
             echo "Rotasyon değişikliği yok."
             exit 0
           fi
-          git commit -m "content(reel): haftanın mekânı rotasyon güncellendi [auto]"
+          git commit -m "content(reel): haftanın villası rotasyon güncellendi [auto]"
           git pull --rebase origin main || true
           git push

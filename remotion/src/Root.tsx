@@ -5,6 +5,9 @@ import { SiteIntroReels, siteIntroSchema, defaultSiteIntroProps } from './SiteIn
 import { GazeteReel, gazeteReelSchema, defaultGazeteReelProps } from './GazeteReel';
 import { RestoranReel, restoranReelSchema, defaultRestoranReelProps } from './RestoranReel';
 import { BultenReel, bultenReelSchema, defaultBultenReelProps } from './BultenReel';
+import { VillaReel, villaReelSchema, defaultVillaReelProps } from './VillaReel';
+import { AntikReel, antikReelSchema, defaultAntikReelProps } from './AntikReel';
+import { PlajReel, plajReelSchema, defaultPlajReelProps } from './PlajReel';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -68,6 +71,36 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         schema={bultenReelSchema}
         defaultProps={defaultBultenReelProps}
+      />
+      <Composition
+        id="VillaReel"
+        component={VillaReel}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={villaReelSchema}
+        defaultProps={defaultVillaReelProps}
+      />
+      <Composition
+        id="AntikReel"
+        component={AntikReel}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={antikReelSchema}
+        defaultProps={defaultAntikReelProps}
+      />
+      <Composition
+        id="PlajReel"
+        component={PlajReel}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={plajReelSchema}
+        defaultProps={defaultPlajReelProps}
       />
     </>
   );

@@ -85,6 +85,22 @@ jobs:
           SITE_BASE: https://www.kalkaninfo.com
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
 
+      # Faz 1.5: Reel için bayat onay satırını temizle (gazete-reel-<tarih>).
+      # Gece üretilen + telegram_message_id dolu satır varsa siler → reel-approval taze onay gönderir.
+      - name: Reel bayat onay satırını temizle
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          D=$(TZ=Europe/Istanbul date +%F)
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            curl -s -X DELETE "$SUPABASE_URL/rest/v1/social_posts?content_pack_id=eq.gazete-reel-$D" \
+              -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" >/dev/null || true
+            echo "bayat reel satırı temizlendi (varsa): gazete-reel-$D"
+          else
+            echo "Supabase env yok — reel temizleme atlandı"
+          fi
+
       # Faz 1.5: Claude-tasarımı günlük gazete reel'i (aynı editöryal içerikten) → Supabase → Telegram video onayı.
       # Non-fatal: Remotion render CI'da patlarsa gazete akışı bozulmasın (|| echo).
       - name: Günlük gazete reel'i üret + video onayı
@@ -95,6 +111,40 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
         run: node scripts/agency/reel-approval.mjs || echo "reel adımı atlandı (gazete akışı etkilenmez)"
+
+      # Faz 1.5-EN: EN reel bayat onay satırını temizle (gazete-reel-en-<tarih>) → taze onay.
+      - name: EN reel bayat onay satırını temizle
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          D=$(TZ=Europe/Istanbul date +%F)
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            curl -s -X DELETE "$SUPABASE_URL/rest/v1/social_posts?content_pack_id=eq.gazete-reel-en-$D" \
+              -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" >/dev/null || true
+            echo "bayat EN reel satırı temizlendi (varsa): gazete-reel-en-$D"
+          else
+            echo "Supabase env yok — EN reel temizleme atlandı"
+          fi
+
+      # Faz 1.5-EN: İngiliz/uluslararası kitle için EN gazete reel'i (aynı editöryalin çevirisi).
+      # build-gazete-reel-en içeride gazete-editorial-en.mjs'i çağırıp gazete-today.en.json üretir (cheap-llm çeviri).
+      # Non-fatal: EN çeviri/Remotion CI'da patlarsa TR gazete akışı etkilenmez (|| echo).
+      - name: İngilizce gazete reel'i üret + video onayı
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://www.kalkaninfo.com
+        run: node scripts/agency/reel-approval-en.mjs || echo "EN reel adımı atlandı (gazete akışı etkilenmez)"
 
       - name: Commit & push arşiv (web canlı)
         run: |
