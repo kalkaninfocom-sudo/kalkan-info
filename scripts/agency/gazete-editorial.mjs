@@ -115,7 +115,7 @@ async function main() {
   const { cheapLLM } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
   for (let attempt = 1; attempt <= 3 && !ed; attempt++) {
     try {
-      const res = await cheapLLM(prompt + jsonRules, { system: EDITORIAL_SYSTEM, json: true, timeoutMs: 180000, maxTokens: 900, temperature: 0.3 });
+      const res = await cheapLLM(prompt + jsonRules, { system: EDITORIAL_SYSTEM, json: true, timeoutMs: 180000, maxTokens: 900, temperature: 0.3, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] });
       const parsed = parseJson(res.text);
       if (parsed && parsed.lead && parsed.lead.headline) { ed = parsed; provider = res.provider; }
       else console.warn(`  deneme ${attempt}: geçersiz JSON, tekrar...`);

@@ -74,7 +74,7 @@ async function llmPick(pool, week) {
       `Aşağıda Kalkan'ın bu haftaki gazete haber havuzu var. Haftanın EN ÖNEMLİ ve BİRBİRİNDEN FARKLI ` +
       `4 haberini seç. Her biri için kısa etiket, güncel başlık ve TEK cümle özet ver. Sadece JSON:\n` +
       `{"items":[{"label":"","title":"","summary":""}]}\n\nHAVUZ:\n${list}`,
-      { system: 'Kısa, olgusal, abartısız Türkçe haber-ajansı tonu. Emoji yok. Sadece geçerli JSON döndür.' },
+      { system: 'Kısa, olgusal, abartısız Türkçe haber-ajansı tonu. Emoji yok. Sadece geçerli JSON döndür.', order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] },
     );
     const items = (data?.items || []).filter(x => x?.title).slice(0, 4)
       .map(x => ({ label: String(x.label || '').slice(0, 20), title: String(x.title).slice(0, 90), summary: String(x.summary || '').slice(0, 130) }));
