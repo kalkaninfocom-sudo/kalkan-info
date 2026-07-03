@@ -86,9 +86,16 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
       ⛔ CI secret'ları: SUPABASE_*, TELEGRAM_*, GROQ/CEREBRAS/NVIDIA (restoran-reel ile aynı — doğrula).
 5. [ ] **IG story-tag oto-repost** — etiketlenince onay→repost (IG API story mentions + STORIES publish; kısıt araştır).
 6. [x] **Webhook secret ÇÖZÜLDÜ ✅ (2026-07-03)** — kök sorun: Telegram'a kayıtlı `secret_token` ≠ Vercel `TELEGRAM_WEBHOOK_SECRET` (401). Yeni secret üretilip Telegram webhook'una (non-www URL) kaydedildi + Vercel env'e aynı değer + redeploy. Doğrulandı: doğru secret→200, yanlış→401, pending→0. `setup-telegram.mjs` www→non-www tuzağı da düzeltildi (commit 6ab287f). Onay butonu→IG yayın zinciri artık aktif.
-7. [ ] **İş ilanları** (site /ilan/ verisi var) + **Ölüm ilanı** (⚠ veri kaynağı yok — Berkay input).
+7. [x] **İş ilanları ÇİFT-MOD ✅ (2026-07-03)** — `scripts/agency/ilan-post.mjs`: jobs(active) VARSA haftalık
+      "KALKAN'DA İŞ VAR" dijest kartı (≤5 ilan), YOKSA "İş var mı?" tanıtım kartı (iş arayan+işveren çağrısı →
+      boş board flywheel'i). NOT: jobs tablosu şu an BOŞ (0) → şimdilik promo üretir, ilan girilince otomatik
+      dijeste döner. 1080×1350 navy+gold kart (puppeteer), cheap-llm caption, Supabase storage upload → public URL,
+      social_posts pending_approval + Telegram onay. Adanmış `.github/workflows/ilan-weekly.yml` (Pzt 08:00).
+      Her iki kart görsel QA'dan geçti. Ölüm ilanı: hâlâ veri kaynağı yok (Berkay input).
 8. [ ] **Agent-Reach** — Kalkan içerik kaynağını daha da genişlet.
-9. [ ] Cerebras gpt-oss-120b "boş yanıt" (reasoning/json_object) — düzelt veya groq'ta kal.
+9. [x] **Cerebras FIX ✅ (2026-07-03)** — kök sorun "boş yanıt" değil model-ID: hesap seti değişmiş, `llama-3.3-70b`
+      404 (yok). Erişilebilir: gemma-4-31b / gpt-oss-120b / zai-glm-4.7. Son ikisi reasoning → json'da boş.
+      `gemma-4-31b` hem text hem JSON'da güvenilir → yeni Cerebras varsayılanı (commit 408ace1). groq birincil.
 
 > Motora bağlama = yukarıdaki üreticiler kurulunca scheduler/haftalık-planlayıcı `aylik-icerik-plani.json`'u okuyup
 > otomatik üretir/kuyruğa alır. Gazete daily zaten planın sabah ayağını çalıştırıyor.
