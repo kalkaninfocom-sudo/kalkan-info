@@ -44,23 +44,34 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
 - [ ] İYİLEŞTİRME: Gemini billing açılırsa (GCP kredisi) daha hızlı/güvenilir olur; NVIDIA gece yavaşlarsa yedek.
 - [ ] İYİLEŞTİRME: magazine (arka yüz) build'i de gazete-today.json magazine_* alanlarını kullansın (şu an sadece ön yüz).
 
-## GAZETE / REEL BACKLOG (Berkay istekleri — öncelik sırası)
+## GAZETE / REEL / PLAN — DURUM & YENİ OTURUM YOL HARİTASI
 
-Bitenler ✅: editöryal köprü (Groq 70B kaliteli içerik), reel motoru (tasarım+müzik+onay+IG yayın kodu),
-görsel fix (masthead/foto), Kaş scraper + yerel-alaka sıralama (daha fazla Kalkan içeriği), yazı işleri kılavuzu.
+### ✅ BİTENLER (2026-07-03 maraton oturumu)
+- Sabah gazete onayı tamir + kalıcı (adanmış `gazete-approval.yml`, 4 secret, bayat-row temizleme).
+- **Editöryal köprü**: RSS → Groq 70B editöryal içerik → `gazete-today.json` → gazete build. Kartsız/ücretsiz.
+- **Kartsız LLM**: cheap-llm'e Groq + Cerebras (kart yok, 70B kaliteli). Groq birincil.
+- **Kaş içerik kaynağı**: haberler.com/kas scraper + localScore (Kalkan/Kaş/Patara üstte).
+- **Reel motoru olgun** (`GazeteReel.tsx` + `build-gazete-reel.mjs`): 30sn snappy, masthead→manşet→başlıklar→
+  Evergreen(Biliyor muydun Kaş + REKLAM)→CTA, müzik (ffmpeg), Kaş antik + hizmet reklamı. Berkay onayladı.
+- **Evergreen** (`scripts/agency/evergreen.mjs`): haber azken antik az-bilinen + hizmet reklamı.
+- **Yazı işleri kılavuzu** (`docs/YAZI_ISLERI_KILAVUZU.md`) — agent gazetecilik eğitimi (system prompt).
+- **✅ AYLIK PLAN ONAYLANDI**: `docs/SOSYAL_MEDYA_AYLIK_PLAN.md` + `data/agency/aylik-icerik-plani.json`
+  (gün-gün algoritma-optimize saat, %40 ciddi/%60 orijinal, hashtag stratejisi MAX 5). = KAYNAK DOĞRULUK.
+- /ajansAI rename, dolmuş konum fix, IG token süresiz, maliyet/SaaS raporları.
 
-Sıradaki (yapılacak):
-- [ ] **EN+TR iki dilli üretim** — İngiliz yerliler/tatilciler için gazete+reel hem İngilizce hem Türkçe üret+paylaş.
-      (Editöryal LLM iki dilde üretir; reel EN varyantı; IG'de iki post veya çift-altyazı.)
-- [ ] **Evergreen fallback içerik** — haber azken sayfadan üret: antik kent az-bilinenler/detay + hizmetler'den reklam.
-      (news < N ise gazete-today.json'a filler ekle: antik-kentler data + bir hizmet/restoran ilanı.)
-- [ ] **İş ilanları bölümü** — gazetede iş ilanları (site'de zaten /ilan/ + jobs sitemap var → oradan çek).
-- [ ] **Ölüm ilanı bölümü** — gazetede vefat ilanları. ⚠ Veri kaynağı yok → manuel giriş / yerel kaynak gerekir (Berkay input).
-- [ ] **Haftalık bülten** — Pzt-Cmt günlük; Pazar = haftanın haber+magazin özeti (her gün editöryal'i arşivle → Pazar topla).
-- [ ] **IG story-tag oto-repost** — biri hikayede @kalkaninfo etiketler → onay → kendi hikayemize ekle (IG API kısıt araştır).
-- [ ] **Agent-Reach** — Kalkan içerik kaynağını web/sosyal aramayla daha da genişlet.
-- [ ] **Webhook secret** (`TELEGRAM_WEBHOOK_SECRET` Vercel'de) → onay butonu→IG yayın çalışsın (şu an 401).
-- [ ] Cerebras gpt-oss-120b "boş yanıt" (reasoning/json_object) → düzelt veya sadece groq kullan.
+### 🔜 YENİ OTURUM — SIRADAKİ (plan onaylı; her slot'un ÜRETİCİSİNİ tek tek kur, çalışır+test)
+1. [ ] **Haftalık bülten (Paz 09:00)** — gazete motorunun uzantısı; her gün editöryal'i arşivle → Pazar 7 günü topla → reel+carousel.
+2. [ ] **Restoran reel (Sal 20:00 flagship 💰)** — reel motoru hazır; `restoranlar.json` verisini bağla (GazeteReel varyantı).
+3. [ ] **EN+TR çift dil** — editöryal iki dilde + reel EN varyantı + IG çift post/altyazı (İngiliz kitle).
+4. [ ] **Villa reel (Cmt 💰)** + **Antik/Plaj reel (Çar/Prş)** — aynı reel motoru, farklı veri.
+5. [ ] **IG story-tag oto-repost** — etiketlenince onay→repost (IG API story mentions + STORIES publish; kısıt araştır).
+6. [ ] **Webhook secret** — `TELEGRAM_WEBHOOK_SECRET` (Vercel) → onay butonu→IG yayın (şu an 401; Berkay değeri versin ya da yenisi üretilsin).
+7. [ ] **İş ilanları** (site /ilan/ verisi var) + **Ölüm ilanı** (⚠ veri kaynağı yok — Berkay input).
+8. [ ] **Agent-Reach** — Kalkan içerik kaynağını daha da genişlet.
+9. [ ] Cerebras gpt-oss-120b "boş yanıt" (reasoning/json_object) — düzelt veya groq'ta kal.
+
+> Motora bağlama = yukarıdaki üreticiler kurulunca scheduler/haftalık-planlayıcı `aylik-icerik-plani.json`'u okuyup
+> otomatik üretir/kuyruğa alır. Gazete daily zaten planın sabah ayağını çalıştırıyor.
 
 ## FAZ 2 — Temiz public template repo'ya çıkar
 
