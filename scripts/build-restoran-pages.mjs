@@ -89,6 +89,12 @@ const CUSTOM = {
     },
     hours: 'Her gün 12:00 — 24:00'
   },
+  'omar-s-kokobus-kokorec-kofte-tavuk-ekmek': {
+    tagline: 'Kalkan\'ın gece klasiği — kokoreç, köfte, tavuk ekmek. Izgara 03:30\'a kadar sıcak.',
+    aboutTitle: 'Izgaranın Başında Ömer Usta.',
+    aboutP1: 'Omar\'s Kokobüs — nam-ı diğer Köfteci Ömer Usta — Kalkan\'da sokak lezzetinin adresi. Migros\'un yanındaki tezgahtan yükselen ızgara kokusu akşam saatlerinde sokağı sarar: bol malzemeli kokoreç, közde köfte, çıtır tavuk.',
+    aboutP2: 'Çeyrek, yarım, üç çeyrek — ekmeğin boyunu siz seçin, arasını usta doldursun. Plaj dönüşü hızlı bir kaçamaktan gece 03:30 acıkmalarına kadar tezgah hep açık, ekmek hep taze.'
+  },
   'harbor-lights': {
     tagline: 'Sabahtan geceye — sanatkâr kahve, brunch, kokteyl.',
     aboutTitle: 'Limanın Işığı.',
