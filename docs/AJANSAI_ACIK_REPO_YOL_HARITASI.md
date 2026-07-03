@@ -85,7 +85,7 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
       restoran-reel deseni, scheduler'a EKLENMEDİ). 4'ü de render doğrulandı (6-18MB). Root.tsx'e kayıtlı.
       ⛔ CI secret'ları: SUPABASE_*, TELEGRAM_*, GROQ/CEREBRAS/NVIDIA (restoran-reel ile aynı — doğrula).
 5. [ ] **IG story-tag oto-repost** — etiketlenince onay→repost (IG API story mentions + STORIES publish; kısıt araştır).
-6. [ ] **Webhook secret** — `TELEGRAM_WEBHOOK_SECRET` (Vercel) → onay butonu→IG yayın (şu an 401; Berkay değeri versin ya da yenisi üretilsin).
+6. [x] **Webhook secret ÇÖZÜLDÜ ✅ (2026-07-03)** — kök sorun: Telegram'a kayıtlı `secret_token` ≠ Vercel `TELEGRAM_WEBHOOK_SECRET` (401). Yeni secret üretilip Telegram webhook'una (non-www URL) kaydedildi + Vercel env'e aynı değer + redeploy. Doğrulandı: doğru secret→200, yanlış→401, pending→0. `setup-telegram.mjs` www→non-www tuzağı da düzeltildi (commit 6ab287f). Onay butonu→IG yayın zinciri artık aktif.
 7. [ ] **İş ilanları** (site /ilan/ verisi var) + **Ölüm ilanı** (⚠ veri kaynağı yok — Berkay input).
 8. [ ] **Agent-Reach** — Kalkan içerik kaynağını daha da genişlet.
 9. [ ] Cerebras gpt-oss-120b "boş yanıt" (reasoning/json_object) — düzelt veya groq'ta kal.
