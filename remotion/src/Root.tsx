@@ -3,6 +3,8 @@ import { AntikKentReels, antikKentSchema, defaultAntikKentProps } from './AntikK
 import { AntikKentVideoReels, antikKentVideoSchema, defaultAntikKentVideoProps } from './AntikKentVideo';
 import { SiteIntroReels, siteIntroSchema, defaultSiteIntroProps } from './SiteIntro';
 import { GazeteReel, gazeteReelSchema, defaultGazeteReelProps } from './GazeteReel';
+import { RestoranReel, restoranReelSchema, defaultRestoranReelProps } from './RestoranReel';
+import { BultenReel, bultenReelSchema, defaultBultenReelProps } from './BultenReel';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -46,6 +48,26 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         schema={gazeteReelSchema}
         defaultProps={defaultGazeteReelProps}
+      />
+      <Composition
+        id="RestoranReel"
+        component={RestoranReel}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={restoranReelSchema}
+        defaultProps={defaultRestoranReelProps}
+      />
+      <Composition
+        id="BultenReel"
+        component={BultenReel}
+        durationInFrames={900}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={bultenReelSchema}
+        defaultProps={defaultBultenReelProps}
       />
     </>
   );

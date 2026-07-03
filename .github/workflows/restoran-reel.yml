@@ -1,0 +1,72 @@
+name: Haftanın Mekânı reel (Salı 20:00 · 💰 flagship)
+
+# ADANMIŞ REEL WORKFLOW — neden ayrı (gazete-approval.yml ile aynı gerekçe):
+#   agency-scheduler (*/10) npm ci YAPMIYOR → Remotion render orada patlar/atlanır.
+#   Remotion + ffmpeg gerektiren ağır iş adanmış workflow'da güvenilir çalışır:
+#   npm ci (remotion kurar) + ffmpeg (ubuntu-latest'ta hazır) + Remotion Chrome (otomatik indirir).
+# restoran-reel-approval.mjs: RestoranReel render (data-URI foto, müzik) → Supabase upload → Telegram video onayı.
+
+on:
+  schedule:
+    # 17:00 UTC = 20:00 Europe/Istanbul, Salı (2). GitHub gecikmesine tampon var (onay akşam içinde).
+    - cron: '0 17 * * 2'
+  workflow_dispatch:
+    inputs:
+      restoran:
+        description: 'Belirli restoran (slug/isim, boş = rotasyondan sıradaki)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: restoran-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Bağımlılıkları kur (remotion dahil)
+        run: npm ci
+
+      - name: Restoran reel üret + video onayı
+        env:
+          # Tagline için ücretsiz LLM (kartsız 70B önce → nvidia 8B son çare); yoksa şablon fallback.
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          # Yayın/onay için
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://kalkaninfo.com
+        run: node scripts/agency/restoran-reel-approval.mjs ${{ github.event.inputs.restoran }}
+
+      - name: Rotasyon durumunu commit et
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/agency/restoran-reel-state.json
+          if git diff --cached --quiet; then
+            echo "Rotasyon değişikliği yok."
+            exit 0
+          fi
+          git commit -m "content(reel): haftanın mekânı rotasyon güncellendi [auto]"
+          git pull --rebase origin main || true
+          git push

@@ -15,7 +15,7 @@
  *
  * Kullanım: node scripts/agency/gazete-editorial.mjs [YYYY-MM-DD]
  */
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -148,6 +148,15 @@ async function main() {
   await writeFile(join(ROOT, 'data', 'gazete-today.json'), JSON.stringify(out, null, 2));
   console.log(`✓ Editöryal içerik üretildi (sağlayıcı: ${out.provider}) → data/gazete-today.json`);
   console.log(`  Manşet: "${out.lead_headline}"`);
+
+  // Haftalık bülten için dated arşiv (Pazar build-bulten-reel bunu okur). gazete-today.json
+  // her gün üzerine yazılıyor → o günün editöryalini tarihli sabitle. Idempotent (üzerine yazar).
+  try {
+    const archDir = join(ROOT, 'data', 'gazete-archive');
+    await mkdir(archDir, { recursive: true });
+    await writeFile(join(archDir, `${out.date}.json`), JSON.stringify(out, null, 2));
+    console.log(`  ↳ arşivlendi: data/gazete-archive/${out.date}.json`);
+  } catch (e) { console.warn('  ⚠ arşiv yazılamadı (non-fatal):', e.message); }
 }
 
 main().catch(e => { console.error('[gazete-editorial]', e); process.exit(0); }); // bozma: hata olsa da build devam

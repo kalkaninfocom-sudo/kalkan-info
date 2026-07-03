@@ -60,8 +60,21 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
 - /ajansAI rename, dolmuş konum fix, IG token süresiz, maliyet/SaaS raporları.
 
 ### 🔜 YENİ OTURUM — SIRADAKİ (plan onaylı; her slot'un ÜRETİCİSİNİ tek tek kur, çalışır+test)
-1. [ ] **Haftalık bülten (Paz 09:00)** — gazete motorunun uzantısı; her gün editöryal'i arşivle → Pazar 7 günü topla → reel+carousel.
-2. [ ] **Restoran reel (Sal 20:00 flagship 💰)** — reel motoru hazır; `restoranlar.json` verisini bağla (GazeteReel varyantı).
+1. [x] **Haftalık bülten (Paz 09:00) — CANLI + TEST ✅ (2026-07-03)** — 2 parça: **(A) günlük editöryal arşivi**
+      (`gazete-editorial.mjs` artık `data/gazete-archive/<date>.json` yazıyor; gazete-approval.yml commit'liyor → CI'da kalıcı)
+      + **(B) Pazar üreticisi** `scripts/agency/build-bulten-reel.mjs` (son 7 gün arşivi topla → haftanın en iyi ~4 haber
+      + magazin, cheap-llm seçim/heuristik fallback) → `remotion/src/BultenReel.tsx` (intro→öne çıkanlar→magazin→outro,
+      fotosuz/hafif). Render+QA doğrulandı (2.1MB, 4 sahne ✓). Yayın: `bulten-approval.mjs` + adanmış
+      `.github/workflows/bulten-weekly.yml` (Paz 06:00 UTC=09:00 TR, npm ci+ffmpeg). Not: arşiv biriktikçe 4 haber dolar (ilk hafta az).
+2. [x] **Restoran reel (Sal 20:00 flagship 💰) — CANLI + TEST ✅ (2026-07-03)** — `RestoranReel.tsx` (GazeteReel
+      kardeşi: intro→hero→galeri→bilgi→outro, 30sn, müzik) + `scripts/agency/build-restoran-reel.mjs`
+      (restoranlar.json'dan rotasyonla seçer: ≥2 gerçek foto olan **31/175** restoran havuzu, rating önceliği,
+      `data/agency/restoran-reel-state.json` tekrar önler; tagline cheap-llm; **foto → base64 data URI**
+      çünkü Chromium file://+cross-origin(CORP same-site)+Remotion publicDir hepsi bloklu).
+      Uçtan uca render doğrulandı (Salonika 1881, 11.9MB, 5 sahne gözle QA ✓). Yayın: `restoran-reel-approval.mjs`
+      (build→Supabase upload→Telegram video onayı, reel-approval ikizi) + **adanmış `.github/workflows/restoran-reel.yml`**
+      (Salı 17:00 UTC, npm ci + ffmpeg + Remotion Chrome). Scheduler'a EKLENMEDİ (her-10dk tick npm ci yapmıyor →
+      Remotion patlar; gazete `_moved` dersi). ⛔ CI'da çalışması için secret'lar: SUPABASE_*, TELEGRAM_*, GROQ/CEREBRAS/NVIDIA.
 3. [ ] **EN+TR çift dil** — editöryal iki dilde + reel EN varyantı + IG çift post/altyazı (İngiliz kitle).
 4. [ ] **Villa reel (Cmt 💰)** + **Antik/Plaj reel (Çar/Prş)** — aynı reel motoru, farklı veri.
 5. [ ] **IG story-tag oto-repost** — etiketlenince onay→repost (IG API story mentions + STORIES publish; kısıt araştır).

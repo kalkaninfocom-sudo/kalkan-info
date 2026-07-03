@@ -100,7 +100,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add newspaper/archive data/newspaper-index.json
+          git add newspaper/archive data/newspaper-index.json data/gazete-archive
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0
