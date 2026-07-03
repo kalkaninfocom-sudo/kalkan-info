@@ -106,8 +106,19 @@ async function queueSocial(cards) {
     `Tüm sayı: ${SITE_BASE}/gazete`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#kalkantoday', '#kaş', '#gündem', '#gecehayatı', '#antalya'];
 
+  // Uygulama-seviyesi upsert (DB'de unique constraint yok → on_conflict 400 verir).
+  const supa = (path, opts = {}) => fetch(`${SUPA_URL}/rest/v1${path}`, {
+    ...opts,
+    headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json', ...(opts.headers || {}) },
+  });
+  const packId = `gazete-${date}`;
+  const existing = await supa(`/social_posts?content_pack_id=eq.${packId}&select=id&limit=1`);
+  if (existing.ok && (await existing.json()).length > 0) {
+    console.log(`  ℹ social_posts zaten var (${packId}) — atlandı`);
+    return;
+  }
   const row = {
-    content_pack_id: `gazete-${date}`,
+    content_pack_id: packId,
     content_type: cards.length >= 2 ? 'carousel' : 'post',
     language: 'tr',
     caption, hashtags,
@@ -116,15 +127,12 @@ async function queueSocial(cards) {
     scheduled_at: new Date().toISOString(),
     telegram_chat_id: process.env.TELEGRAM_ADMIN_CHAT_ID ? Number(process.env.TELEGRAM_ADMIN_CHAT_ID) : null,
   };
-  const res = await fetch(`${SUPA_URL}/rest/v1/social_posts?on_conflict=content_pack_id`, {
+  const res = await supa('/social_posts', {
     method: 'POST',
-    headers: {
-      apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`,
-      'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal',
-    },
+    headers: { Prefer: 'return=minimal' },
     body: JSON.stringify(row),
   });
-  if (res.ok) console.log(`  ✓ social_posts kuyruğa alındı (gazete-${date}) → Telegram onayı bekliyor`);
+  if (res.ok) console.log(`  ✓ social_posts kuyruğa alındı (${packId}) → Telegram onayı bekliyor`);
   else console.error('  ✗ social_posts insert fail:', res.status, await res.text());
 }
 

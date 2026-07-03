@@ -261,16 +261,24 @@ async function generateCaption(mode, jobs) {
     `🏪 Eleman arıyorsan: işletmen için ücretsiz ilan ver.\n\n` +
     `kalkaninfo.com/ilanlar`;
 
+  // Marka sesi — övgü/satış/klişe YASAK (BrandGuard reddediyor). System prompt'a koy (model daha iyi dinler).
+  const MARKA_SESI = `Sen Kalkan Info'nun marka sesisin: meraklı, sıcak ve DÜRÜST bir yerel.
+KESİN YASAKLAR: övgü ve satış dili YOK; şu tür klişeleri KULLANMA — "hayalindeki iş", "fırsat kaçırma", "yeni yolu",
+"hemen keşfet", "seni bekliyor", ünlem yağmuru, tıklama tuzağı, abartı. Reklamcı gibi konuşma; bir arkadaş gibi sade
+ve olgusal bilgi ver. Kalkan küçük bir kasaba — ona uygun ölçülü, samimi bir ton. Sadece caption metnini döndür.`;
+
   const prompt = mode === 'digest'
-    ? `Sen Kalkan Info yerel turizm/haber markasının Instagram editörüsün. Aşağıdaki aktif iş ilanlarından bölge halkına hitap eden kısa, samimi ama profesyonel bir Türkçe caption yaz.
-Kurallar: en fazla 4 kısa paragraf/600 karakter; ilk satır dikkat çekici (1 emoji olabilir 📢); ilanları tek tek uzun uzun yazma, "bu hafta X aktif ilan var" tonu; son satırda net CTA "kalkaninfo.com/ilanlar"; hashtag EKLEME; sadece caption metnini döndür.
+    ? `Aşağıdaki aktif iş ilanlarından bölge halkına yönelik kısa, sade bir Türkçe caption yaz.
+Kurallar: en fazla 3 kısa paragraf/500 karakter; ilanları tek tek sayma, "bu hafta bölgede şu alanlarda iş var" tonu;
+son satırda sade CTA "Tümü: kalkaninfo.com/ilanlar"; abartı/övgü yok; hashtag EKLEME.
 AKTİF İLANLAR:
 ${jobs.slice(0, 6).map((j) => `- ${j.title} | ${j.employer_name || ''} | ${j.location || ''} | ${TYPES[j.type] || ''}`).join('\n')}`
-    : `Sen Kalkan Info yerel turizm/haber markasının Instagram editörüsün. Bölgenin ÜCRETSİZ iş ilanı panosunu tanıtan kısa Türkçe caption yaz. İki kitleye hitap et: (1) iş arayanlar (fırsatları takip et, kolay başvur), (2) işletmeler (ücretsiz ilan ver, bölge halkı görsün).
-Kurallar: en fazla 4 kısa paragraf/600 karakter; ilk satır dikkat çekici (1 emoji 📢); net CTA "kalkaninfo.com/ilanlar"; hashtag EKLEME; sadece caption metnini döndür.`;
+    : `Bölgenin ücretsiz iş ilanı panosunu sade ve dürüst tanıt. İki kitle: iş arayanlar (fırsatları takip eder, kolay başvurur) ve işletmeler (ücretsiz ilan verir, bölge halkı görür).
+Kurallar: en fazla 3 kısa paragraf/500 karakter; abartı/satış dili yok; sade CTA "kalkaninfo.com/ilanlar"; hashtag EKLEME.`;
 
   try {
-    const { text, provider } = await cheapLLM(prompt, { maxTokens: 700 });
+    // Caption = public brand içeriği → kaliteli model (groq 70B), ollama'yı ATLA (zayıf Türkçe/marka sesi).
+    const { text, provider } = await cheapLLM(prompt, { system: MARKA_SESI, maxTokens: 700, order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'] });
     console.log(`  [cheap-llm] caption ✓ ${provider}`);
     // Küçük modeller talimata rağmen hashtag ekleyebiliyor → temizle (hashtag'ları biz ekliyoruz).
     const cleaned = (text || '')

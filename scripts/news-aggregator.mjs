@@ -5,6 +5,7 @@
 import { writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { parseKasBel } from './scrapers/kasbel.mjs';
 
 // Trim all env vars (same pattern as api/welcome-email.js)
 for (const k of Object.keys(process.env)) {
@@ -17,12 +18,38 @@ const OUT = join(ROOT, 'data', 'haberler.json');
 
 const SOURCES = [
   {
+    // Kaş Belediyesi resmi HABERLER — meclis/festival/altyapı. EN yüksek yerel-alaka (resmi kaynak).
+    name: 'Kaş Belediyesi Haber',
+    type: 'kasbel',
+    url: 'https://www.kas.bel.tr/AnaSayfa/Haberler',
+    sourceHome: 'https://www.kas.bel.tr',
+    requireKeyword: false, // resmi Kaş kaynağı
+  },
+  {
+    // Kaş Belediyesi resmi DUYURULAR — sahil/deniz uyarısı, etkinlik, başvuru. Tarihli.
+    name: 'Kaş Belediyesi Duyuru',
+    type: 'kasbel',
+    url: 'https://www.kas.bel.tr/AnaSayfa/Duyurular',
+    sourceHome: 'https://www.kas.bel.tr',
+    requireKeyword: false, // resmi Kaş kaynağı
+  },
+  {
     // Kaş/Kalkan/Patara odaklı — RSS yok, sayfa SCRAPE. En yüksek yerel-alaka kaynağı.
+    // NOT: haberler.com/kalkan/ KULLANILMAZ — orada "kalkan" kelimesi (balık/siper) ulusal
+    // haberleri yanlış eşliyor; Kalkan beldesi içeriği Kaş sayfası + Kaş Belediyesi + Kalkan Times'tan gelir.
     name: 'Haberler.com Kaş',
     type: 'scrape',
     url: 'https://www.haberler.com/kas/',
     sourceHome: 'https://www.haberler.com',
     requireKeyword: false, // zaten Kaş sayfası
+  },
+  {
+    // Demre (Myra/Likya) — Kaş'a komşu, tarih/turizm içeriği. Bölgesel MED alaka.
+    name: 'Haberler.com Demre',
+    type: 'scrape',
+    url: 'https://www.haberler.com/demre/',
+    sourceHome: 'https://www.haberler.com',
+    requireKeyword: false, // zaten Demre sayfası
   },
   {
     name: 'Akdeniz Gerçek',
@@ -224,9 +251,9 @@ function parseHaberlerScrape(html, source) {
 // Returns { items, failed } — never throws
 async function fetchSource(src) {
   try {
-    const scrape = src.type === 'scrape';
+    const isHtml = src.type === 'scrape' || src.type === 'kasbel';
     const res = await fetch(src.url, {
-      headers: scrape
+      headers: isHtml
         ? { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36', Accept: 'text/html,application/xhtml+xml' }
         : { 'User-Agent': 'KalkanInfoBot/1.0 (+https://kalkaninfo.com)', Accept: 'application/rss+xml, application/xml, text/xml, */*' },
       // 12s timeout via AbortController
@@ -237,7 +264,10 @@ async function fetchSource(src) {
       return { items: [], failed: true, reason: `HTTP ${res.status}` };
     }
     const xml = await res.text();
-    const items = scrape ? parseHaberlerScrape(xml, src) : parseRss(xml, src);
+    const items =
+      src.type === 'kasbel' ? parseKasBel(xml, src) :
+      src.type === 'scrape' ? parseHaberlerScrape(xml, src) :
+      parseRss(xml, src);
     console.log(`[${src.name}] parsed ${items.length} items`);
     return { items, failed: false };
   } catch (err) {
@@ -359,20 +389,35 @@ async function main() {
     unique.push(it);
   }
 
-  // Kalkan-alaka skoru: Kaş/Kalkan/Patara jenerik Antalya'nın ÜSTÜNDE; asayiş/kaza tatilci gazetesine uymaz.
-  const LOCAL_STRONG = /\b(kalkan|kaş|kas|patara|kaputaş|kaputas)\b/i;
-  const LOCAL_MED = /\b(demre|likya|saklıkent|saklikent|meis|üçağız|kekova|çukurbağ|islamlar|bezirgan|kalamar)\b/i;
+  // Kalkan-alaka skoru: Kalkan > Kaş/Patara > Likya/Demre > Antalya. Asayiş/kaza tatilci gazetesine uymaz.
+  const nowMs = Date.now();
+  const KALKAN_RX = /\bkalkan\b/i; // markanın merkezi — en yüksek ağırlık
+  const LOCAL_STRONG = /\b(kaş|kas|patara|kaputaş|kaputas|kalkan times)\b/i;
+  const LOCAL_MED = /\b(demre|myra|likya|lik[iy]a|saklıkent|saklikent|meis|üçağız|ucagiz|kekova|çukurbağ|cukurbag|islamlar|bezirgan|kalamar|xanthos|ksanthos|letoon|kaş belediye|kas belediye)\b/i;
+  const TRUSTED_LOCAL = /(kalkan times|kaş belediye|kalkan)/i; // kaynak adına göre resmi/yerel güven
+  const NEG_RX = /\b(cinayet|öldür|kaçak|iflas|gözaltı|tutuklan|yaralan|kaza|yangın|uyuşturucu|zehirlen)\b/i;
   const localScore = (it) => {
     const t = it._matchText || it.title || '';
     let s = 0;
-    if (LOCAL_STRONG.test(t)) s += 5;
+    // Yer adı ağırlığı (Kalkan'ın kendisi jenerik Kaş'ın da üstünde)
+    if (KALKAN_RX.test(t)) s += 7;
+    else if (LOCAL_STRONG.test(t)) s += 5;
     else if (LOCAL_MED.test(t)) s += 3;
     else if (/\bantalya\b/i.test(t)) s += 1;
-    if (/\b(cinayet|öldür|kaçak|iflas|gözaltı|tutuklan|yaralan|kaza|yangın|uyuşturucu|zehirlen)\b/i.test(t)) s -= 4;
+    // Kaynak güveni: resmi/yerel kaynaklar üste (Kaş Belediyesi, Kalkan Times)
+    if (TRUSTED_LOCAL.test(it._source || '')) s += 3;
+    // Tarih tazeliği (tarihsiz scrape → nötr; batmaz)
+    const ts = it.pubDate ? Date.parse(it.pubDate) : NaN;
+    if (!isNaN(ts)) {
+      const ageDays = (nowMs - ts) / 86_400_000;
+      if (ageDays <= 2) s += 2;
+      else if (ageDays <= 7) s += 1;
+      else if (ageDays > 30) s -= 2;
+    }
+    if (NEG_RX.test(t)) s -= 4;
     return s;
   };
   // Sırala: önce yerel-alaka, sonra tarih (scraped tarihsiz → bugün sayılır, batmaz). Top 30.
-  const nowMs = Date.now();
   unique.sort((a, b) =>
     localScore(b) - localScore(a) ||
     (new Date(b.pubDate || nowMs) - new Date(a.pubDate || nowMs)));

@@ -84,7 +84,9 @@
       <a href="${esc(it.listUrl)}" class="card block" style="background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);text-decoration:none;color:inherit;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08)';">
         ${imageBlock}
         <div class="flex items-start gap-3">
-          <div class="text-3xl">${esc(it.icon || '✂️')}</div>
+          ${it.avatar
+            ? `<img src="${esc(it.avatar)}" alt="${esc(it.name)}" loading="lazy" style="width:52px;height:52px;border-radius:9999px;object-fit:cover;border:2px solid #f4b53d;flex:0 0 auto;">`
+            : `<div class="text-3xl">${esc(it.icon || '✂️')}</div>`}
           <div class="flex-1 min-w-0">
             <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight" ${i18nAttr(it.nameI18n)}>${esc(it.name)}</h3>
             <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${esc(it.category || '')}</div>
@@ -93,8 +95,8 @@
         <p class="text-sm text-ink-700/80 mt-3" ${i18nAttr(it.summaryI18n)}>${esc(it.summary || '')}</p>
         ${details ? `<ul class="mt-3 space-y-1">${details}</ul>` : ''}
         <div class="flex items-center justify-between mt-4 pt-3 border-t border-ink-700/8 gap-2">
-          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-sea-700 uppercase tracking-wide">
-            Tümünü Gör →
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-sea-700 uppercase tracking-wide" ${i18nAttr(it.ctaLabelI18n)}>
+            ${esc(it.ctaLabel || 'Tümünü Gör')} →
           </span>
           ${it.hours ? `<span class="text-[11px] text-ink-700/50">${esc(it.hours)}</span>` : ''}
         </div>

@@ -125,6 +125,7 @@ const KalkanData = (() => {
       providers:      { tr:'sağlayıcı', en:'providers', de:'Anbieter', ru:'поставщиков', fr:'prestataires' },
       soonProviders:  { tr:'Yakında sağlayıcı', en:'Providers coming soon', de:'Anbieter bald verfügbar', ru:'Скоро поставщики', fr:'Prestataires bientôt' },
       seeProviders:   { tr:'→ Sağlayıcıları Gör', en:'→ See Providers', de:'→ Anbieter ansehen', ru:'→ Посмотреть поставщиков', fr:'→ Voir les prestataires' },
+      seeProfile:     { tr:'Profili Gör →', en:'View Profile →', de:'Profil ansehen →', ru:'Смотреть профиль →', fr:'Voir le profil →' },
       directContact:  { tr:'Direkt İletişim', en:'Direct Contact', de:'Direktkontakt', ru:'Прямой контакт', fr:'Contact direct' },
       whatsappCta:    { tr:'WhatsApp ile İletişim', en:'Contact via WhatsApp', de:'Kontakt per WhatsApp', ru:'Связь через WhatsApp', fr:'Contact via WhatsApp' },
       instagramShow:  { tr:'Instagram\'da gör', en:'View on Instagram', de:'Auf Instagram ansehen', ru:'Смотреть в Instagram', fr:'Voir sur Instagram' },
@@ -396,6 +397,39 @@ const KalkanData = (() => {
             ${h.hours ? `<span class="text-[11px] text-ink-700/60">${escape(h.hours)}</span>` : ''}
           </div>
         </a>
+      `;
+    }
+    // Profilli kart (ör. çocuk bakımı → Sezin): tıklayınca kişinin sayfasına gider, LinkedIn rozeti gösterir.
+    if (h.providerUrl && h.providerName) {
+      const li = h.providerLinkedin ? escape(h.providerLinkedin) : '';
+      const avatar = h.providerAvatar
+        ? `<img src="${escape(h.providerAvatar)}" alt="${escape(h.providerName)}" loading="lazy" style="width:34px;height:34px;border-radius:9999px;object-fit:cover;border:2px solid #fff;box-shadow:0 1px 4px rgba(7,33,54,0.18);">`
+        : `<span style="width:34px;height:34px;border-radius:9999px;display:grid;place-items:center;background:#eef4f8;font-size:1rem;">👤</span>`;
+      // Stretched-link deseni: kart <article>; ana link mutlak konumlu overlay (z:1),
+      // LinkedIn ikonu overlay üstünde (z:2) tıklanabilir. İç içe <a> HTML hatasını önler.
+      const liIcon = li ? `<a href="${li}" target="_blank" rel="noopener" aria-label="${escape(h.providerName)} LinkedIn" title="LinkedIn" style="position:relative;z-index:2;display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:#0A66C2;color:#fff;flex-shrink:0;transition:transform .15s ease,background .15s ease;" onmouseover="this.style.transform='scale(1.08)';this.style.background='#0954a0';" onmouseout="this.style.transform='';this.style.background='#0A66C2';"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.1c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.75 1.86-2.75 3.78V24h-4V8z"/></svg></a>` : '';
+      return `
+        <article class="card" style="position:relative;background:white;border-radius:12px;padding:1.25rem;box-shadow:0 1px 3px rgba(7,33,54,0.08);border:1px solid rgba(26,94,147,0.06);cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 8px rgba(7,33,54,0.1),0 16px 40px -8px rgba(7,33,54,0.2)';" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 3px rgba(7,33,54,0.08),0 0 0 0 transparent';">
+          <a href="${escape(h.providerUrl)}" aria-label="${escape(name)}" style="position:absolute;inset:0;z-index:1;border-radius:12px;text-decoration:none;"></a>
+          ${h.image ? `<div class="relative aspect-[16/9] overflow-hidden rounded-lg mb-3 -mx-1">${safeImage(h.image, name)}<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(7,33,54,0.55) 100%);"></div></div>` : ''}
+          <div class="flex items-start gap-3">
+            <div class="text-3xl">${escape(h.icon||'🛠️')}</div>
+            <div class="flex-1 min-w-0">
+              <h3 class="font-display font-extrabold text-ink-900 text-base leading-tight">${escape(name)}</h3>
+              <div class="text-[11px] text-ink-700/60 uppercase tracking-wide mt-0.5">${escape(category)}</div>
+            </div>
+          </div>
+          <p class="text-sm text-ink-700/80 mt-3">${escape(summary)}</p>
+          ${details.length ? `<ul class="text-xs text-ink-700/70 mt-3 space-y-1">${details.map(d => `<li class="flex items-start gap-1.5"><span class="text-sea-600">•</span>${escape(d)}</li>`).join('')}</ul>` : ''}
+          <div class="flex items-center gap-2.5 mt-4 pt-3 border-t border-ink-700/8" style="position:relative;z-index:2;pointer-events:none;">
+            ${avatar}
+            <div class="flex-1 min-w-0">
+              <div class="text-[13px] font-bold text-ink-900 leading-tight truncate">${escape(h.providerName)}</div>
+              <div class="text-[11px] text-sea-700 font-semibold">${escape(uiLabel('seeProfile'))}</div>
+            </div>
+            <span style="pointer-events:auto;">${liIcon}</span>
+          </div>
+        </article>
       `;
     }
     const providerCount = Number(h.providerCount || 0);
