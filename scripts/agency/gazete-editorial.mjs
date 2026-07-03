@@ -77,13 +77,21 @@ async function main() {
     `Sütun başlıkları max 8 kelime, body 2-3 cümle. Magazin arka yüz için hafif, davetkâr ton.\n\n` +
     `MANŞET KAYNAK:\n${brief(lead)}\n\nSÜTUN-1 KAYNAK:\n${brief(col1)}\n\nSÜTUN-3 KAYNAK:\n${brief(col3)}\n\nMAGAZİN KAYNAK:\n${brief(mag)}`;
 
-  const schemaHint = `Yanıtı SADECE şu JSON şemasıyla ver: ` +
-    `{"lead":{"headline":"","deck":"","body":""},"col1":{"title":"","body":""},"col3":{"title":"","body":""},"magazine":{"headline":"","body":""}}`;
+  const SCHEMA = `{"lead":{"headline":"...","deck":"...","body":"..."},"col1":{"title":"...","body":"..."},"col3":{"title":"...","body":"..."},"magazine":{"headline":"...","body":"..."}}`;
+  const jsonRules =
+    `\n\nÇOK ÖNEMLİ ÇIKTI KURALI: Yanıtın SADECE geçerli bir JSON nesnesi olsun. ` +
+    `Markdown, kod bloğu (\`\`\`), açıklama veya başka metin EKLEME. ` +
+    `Tam olarak şu anahtarları kullan (Türkçe değerlerle doldur):\n${SCHEMA}`;
 
   let ed, provider;
   try {
     const { cheapJSON } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
-    const res = await cheapJSON(prompt, { system: schemaHint });
+    // Şema talimatını hem system hem prompt sonuna koy (küçük modeller system'i yok sayabilir).
+    // NVIDIA NIM (70B) yavaş olabilir → uzun timeout (CI job 15dk). Gemini/ollama zaten hızlı.
+    const res = await cheapJSON(prompt + jsonRules, {
+      system: 'Sen bir JSON API\'sisin. Yalnızca istenen şemada geçerli JSON döndürürsün, başka hiçbir şey yazmazsın.',
+      timeoutMs: 180000, maxTokens: 900, temperature: 0.3,
+    });
     ed = res.data; provider = res.provider;
   } catch (e) {
     console.warn('⚠ cheap-llm başarısız — editöryal atlandı (build RSS ile devam):', String(e.message || e).slice(0, 120));
