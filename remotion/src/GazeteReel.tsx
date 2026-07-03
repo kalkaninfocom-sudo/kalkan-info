@@ -30,8 +30,10 @@ export const gazeteReelSchema = z.object({
   lead_image: z.string().optional(),
   col1_label: z.string().optional(),
   col1_title: z.string().optional(),
+  col1_summary: z.string().optional(),
   col3_label: z.string().optional(),
   col3_title: z.string().optional(),
+  col3_summary: z.string().optional(),
 });
 export type GazeteReelProps = z.infer<typeof gazeteReelSchema>;
 
@@ -43,8 +45,10 @@ export const defaultGazeteReelProps: GazeteReelProps = {
   lead_image: '',
   col1_label: 'Gündem',
   col1_title: 'Belediyeden yeni sahil düzenlemesi',
+  col1_summary: 'Kalamar sahilinde yaya yolu ve aydınlatma yenilendi.',
   col3_label: 'Sahil',
   col3_title: 'Kaputaş’ta güvenli yüzme uyarısı',
+  col3_summary: 'Dalgalı hava nedeniyle cankurtaran ekipleri uyardı.',
 };
 
 // ── Ortak yardımcılar ──
@@ -128,17 +132,18 @@ const Lead: React.FC<GazeteReelProps> = (p) => {
 };
 
 // ── Sahne 3: Başlıklar (450–720) ──
-const HeadlineCard: React.FC<{ label?: string; title?: string; from: number }> = ({ label, title, from }) => {
+const HeadlineCard: React.FC<{ label?: string; title?: string; summary?: string; from: number }> = ({ label, title, summary, from }) => {
   const { o } = useAppear(from, 16);
   if (!title) return null;
   return (
     <div style={{
-      background: C.navy2, borderLeft: `8px solid ${C.gold}`, borderRadius: 12, padding: '34px 38px',
+      background: C.navy2, borderLeft: `8px solid ${C.gold}`, borderRadius: 12, padding: '30px 38px',
       width: '100%', boxShadow: '0 20px 50px rgba(0,0,0,0.35)',
       opacity: o, transform: `translateX(${(1 - o) * -50}px)`,
     }}>
-      {label ? <div style={{ fontFamily: SANS, fontSize: 24, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 14 }}>{label.toUpperCase()}</div> : null}
-      <div style={{ fontFamily: SERIF, fontSize: 52, fontWeight: 800, color: C.cream, lineHeight: 1.1 }}>{title}</div>
+      {label ? <div style={{ fontFamily: SANS, fontSize: 24, letterSpacing: 3, color: C.gold, fontWeight: 800, marginBottom: 12 }}>{label.toUpperCase()}</div> : null}
+      <div style={{ fontFamily: SERIF, fontSize: 48, fontWeight: 800, color: C.cream, lineHeight: 1.12 }}>{title}</div>
+      {summary ? <div style={{ fontFamily: SANS, fontSize: 30, fontWeight: 400, color: C.muted, lineHeight: 1.35, marginTop: 12 }}>{summary}</div> : null}
     </div>
   );
 };
@@ -149,8 +154,8 @@ const Headlines: React.FC<GazeteReelProps> = (p) => {
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', gap: 40, opacity: outFade }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>AYRICA BUGÜN</div>
-      <HeadlineCard label={p.col1_label} title={p.col1_title} from={20} />
-      <HeadlineCard label={p.col3_label} title={p.col3_title} from={50} />
+      <HeadlineCard label={p.col1_label} title={p.col1_title} summary={p.col1_summary} from={20} />
+      <HeadlineCard label={p.col3_label} title={p.col3_title} summary={p.col3_summary} from={50} />
     </AbsoluteFill>
   );
 };

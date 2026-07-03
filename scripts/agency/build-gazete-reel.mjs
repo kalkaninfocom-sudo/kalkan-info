@@ -24,6 +24,15 @@ const labelFrom = (byline, fallback) => {
   return t && t.length <= 24 ? t : fallback;
 };
 
+// Kolon gövdesini tek kısa satıra indir (ilk cümle, ~110 karakter) — kart özeti için.
+const oneLine = (body) => {
+  let s = Array.isArray(body) ? body.join(' ') : String(body || '');
+  s = s.replace(/\s+/g, ' ').trim();
+  const dot = s.indexOf('. ');
+  if (dot > 20 && dot < 120) s = s.slice(0, dot + 1);
+  return s.length > 110 ? s.slice(0, 107).trimEnd() + '…' : s;
+};
+
 async function main() {
   console.log(`\n════ GAZETE REEL — ${date} ════`);
   const src = await import(pathToFileURL(join(ROOT, 'newspaper', 'generator', 'sources.mjs')).href);
@@ -41,8 +50,10 @@ async function main() {
     lead_image: news.lead_image || '',
     col1_label: labelFrom(news.col1_byline, 'Gündem'),
     col1_title: news.col1_title || '',
+    col1_summary: oneLine(news.col1_body),
     col3_label: labelFrom(news.col3_byline, 'Sahil'),
     col3_title: news.col3_title || '',
+    col3_summary: oneLine(news.col3_body),
   };
 
   const propsPath = resolve(ROOT, 'remotion', 'props-gazete.json');

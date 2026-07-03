@@ -51,6 +51,19 @@ function score(it) {
   return s;
 }
 
+// ── AGENT EĞİTİMİ (system prompt) — docs/YAZI_ISLERI_KILAVUZU.md özeti ──
+const EDITORIAL_SYSTEM =
+  'Sen Kalkan Today gazetesinin deneyimli yazı işleri editörüsün. Gerçek bir haber ajansı gibi yazarsın.\n' +
+  'İLKELER:\n' +
+  '1. TERS PİRAMİT: en önemli bilgi ilk cümlede (5N1K). Detay sonra.\n' +
+  '2. LEDE: tek güçlü, SOMUT cümle. Genel/klişe değil; aktif fiil. Rakam/isim/yer varsa kullan.\n' +
+  '3. BAŞLIK: max 9 kelime, fiil içersin, olayı söylesin. Clickbait YOK.\n' +
+  '4. KISALIK: deck 1 cümle (≤16 kelime); ikincil haber özeti 1 cümle (≤13 kelime). Dolgu/tekrar yok.\n' +
+  '5. YEREL AÇI: tatilci gazetesi — turizm/plaj/etkinlik/mekan/kültür. Kalkan/Kaş/Patara açısını öne çıkar; ulusal politika/asayiş kullanma.\n' +
+  '6. OLGUSALLIK: ASLA olgu/isim/tarih/rakam UYDURMA — sadece verilen kaynağı yeniden yaz. Abartma yok.\n' +
+  '7. Her ikincil habere mutlaka bir bilgi cümlesi ekle; "sadece başlık" bırakma.\n' +
+  'ÇIKTI: yalnızca istenen şemada geçerli JSON döndür, başka hiçbir şey yazma.';
+
 async function main() {
   console.log(`\n════ GAZETE EDİTÖRYAL — ${date} ════`);
   let data;
@@ -73,8 +86,13 @@ async function main() {
     `Kalkan (Antalya) için günlük tatilci gazetesi editörüsün. Aşağıda ham haber kaynakları var. ` +
     `Bunları OLGUSAL, abartısız, haber-ajansı tonunda EDİTÖRYAL metne dönüştür. ` +
     `SADECE verilen bilgiyi yeniden yaz/özetle — YENİ olgu, isim, tarih veya rakam UYDURMA. ` +
-    `Türkçe. Manşet başlığı kısa ve çekici (max 12 kelime), deck 1-2 cümle, body 2 kısa paragraf. ` +
-    `Sütun başlıkları max 8 kelime, body 2-3 cümle. Magazin arka yüz için hafif, davetkâr ton.\n\n` +
+    `Mümkünse Kalkan/Kaş/Patara/tatilci açısını öne çıkar. Türkçe. KISA VE ÖZ yaz (reels için):\n` +
+    `- lead.headline: max 9 kelime, çekici.\n` +
+    `- lead.deck: TEK kısa cümle (max 16 kelime).\n` +
+    `- lead.body: 2 kısa paragraf.\n` +
+    `- col1/col3.title: max 7 kelime.\n` +
+    `- col1/col3.body: TEK kısa cümle özet (max 13 kelime) — başlığı tamamlasın, tekrar etmesin.\n` +
+    `- magazine.headline: max 8 kelime; magazine.body: 1 cümle.\n\n` +
     `MANŞET KAYNAK:\n${brief(lead)}\n\nSÜTUN-1 KAYNAK:\n${brief(col1)}\n\nSÜTUN-3 KAYNAK:\n${brief(col3)}\n\nMAGAZİN KAYNAK:\n${brief(mag)}`;
 
   const SCHEMA = `{"lead":{"headline":"...","deck":"...","body":"..."},"col1":{"title":"...","body":"..."},"col3":{"title":"...","body":"..."},"magazine":{"headline":"...","body":"..."}}`;
@@ -83,21 +101,27 @@ async function main() {
     `Markdown, kod bloğu (\`\`\`), açıklama veya başka metin EKLEME. ` +
     `Tam olarak şu anahtarları kullan (Türkçe değerlerle doldur):\n${SCHEMA}`;
 
+  // Küçük modeller (nvidia 8B) bazen bozuk/çift-escape JSON verir → sağlam parse + 3 deneme.
+  const parseJson = (text) => {
+    let t = String(text || '').trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+    const m = t.match(/\{[\s\S]*\}/);
+    if (m) t = m[0];
+    for (const cand of [t, t.replace(/\\"/g, '"').replace(/\\n/g, ' '), t.replace(/\\\\/g, '\\')]) {
+      try { const j = JSON.parse(cand); if (j && j.lead) return j; } catch {}
+    }
+    return null;
+  };
   let ed, provider;
-  try {
-    const { cheapJSON } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
-    // Şema talimatını hem system hem prompt sonuna koy (küçük modeller system'i yok sayabilir).
-    // NVIDIA NIM (70B) yavaş olabilir → uzun timeout (CI job 15dk). Gemini/ollama zaten hızlı.
-    const res = await cheapJSON(prompt + jsonRules, {
-      system: 'Sen bir JSON API\'sisin. Yalnızca istenen şemada geçerli JSON döndürürsün, başka hiçbir şey yazmazsın.',
-      timeoutMs: 180000, maxTokens: 900, temperature: 0.3,
-    });
-    ed = res.data; provider = res.provider;
-  } catch (e) {
-    console.warn('⚠ cheap-llm başarısız — editöryal atlandı (build RSS ile devam):', String(e.message || e).slice(0, 120));
-    return;
+  const { cheapLLM } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
+  for (let attempt = 1; attempt <= 3 && !ed; attempt++) {
+    try {
+      const res = await cheapLLM(prompt + jsonRules, { system: EDITORIAL_SYSTEM, json: true, timeoutMs: 180000, maxTokens: 900, temperature: 0.3 });
+      const parsed = parseJson(res.text);
+      if (parsed && parsed.lead && parsed.lead.headline) { ed = parsed; provider = res.provider; }
+      else console.warn(`  deneme ${attempt}: geçersiz JSON, tekrar...`);
+    } catch (e) { console.warn(`  deneme ${attempt}: ${String(e.message || e).slice(0, 80)}`); }
   }
-  if (!ed || !ed.lead || !ed.lead.headline) { console.warn('⚠ LLM geçerli JSON vermedi — editöryal atlandı.'); return; }
+  if (!ed) { console.warn('⚠ 3 denemede geçerli içerik alınamadı — editöryal atlandı (RSS fallback).'); return; }
 
   const toParas = (t) => String(t || '').split(/\n{2,}|\r?\n/).map(s => s.trim()).filter(Boolean);
   const out = {
