@@ -227,7 +227,7 @@ function aggregateRatingJson(cache, r) {
   if (!ratingValue || !reviewCount) return null;
   return {
     '@type': 'AggregateRating',
-    ratingValue: Number(ratingValue),
+    ratingValue: Math.min(Number(ratingValue), 5), // schema geçerliliği: bestRating=5'i asla aşma
     reviewCount: Number(reviewCount),
     bestRating: 5,
     worstRating: 1
@@ -242,7 +242,7 @@ function reviewArrayJson(cache) {
     const obj = {
       '@type': 'Review',
       author: { '@type': 'Person', name: rv.user || 'Anonim' },
-      reviewRating: { '@type': 'Rating', ratingValue: rv.rating || 5, bestRating: 5 }
+      reviewRating: { '@type': 'Rating', ratingValue: Math.min(rv.rating || 5, 5), bestRating: 5 }
     };
     if (rv.date && /\d{4}/.test(rv.date)) obj.datePublished = rv.date;
     if (rv.snippet) obj.reviewBody = rv.snippet.slice(0, 500);

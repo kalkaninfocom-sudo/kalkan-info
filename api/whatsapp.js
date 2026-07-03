@@ -88,7 +88,7 @@ KAPSAM:
 - Villa kiralama (3+1 → 6+1, ₺9.500–₺32.000/gece, kalkaninfo.com/villalar)
 - Restoran rezervasyonu (27 restoran, kalkaninfo.com/restoranlar)
 - Tekne turları, jeep safari, antik kent rehberi
-- Tatil planı (kalkaninfo.com/tatil-planla — AI plan üretici, 1 dakikada gün gün program)
+- Tatil planı (kalkaninfo.com/tatil-asistani — AI plan üretici, 1 dakikada gün gün program)
 - Transfer (havalimanı, Dalaman 1.5 saat, Antalya 3 saat)
 - Hizmet sağlayıcı (temizlik, masaj, market, organizasyon)
 - 5 dil: Türkçe, İngilizce, Rusça, Almanca, Arapça
