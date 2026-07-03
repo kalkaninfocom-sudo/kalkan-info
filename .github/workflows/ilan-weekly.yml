@@ -1,0 +1,56 @@
+name: İş İlanları haftalık (Pazartesi 08:00)
+
+# ADANMIŞ İŞ İLANLARI WORKFLOW (çift-mod: dijest / tanıtım).
+#   scripts/agency/ilan-post.mjs: jobs (status=active) VARSA haftalık dijest kartı, YOKSA
+#   "İş var mı? İlan ver" tanıtım kartı → Supabase storage upload → social_posts pending_approval
+#   → Telegram video/foto onayı (pub:<id> callback → telegram-webhook.js → IG yayın).
+#   Puppeteer (HTML→PNG kart) için Chrome gerekir → npm install puppeteer@24 (newspaper-daily deseni).
+#   Commit YOK — kart Supabase storage'a gider (deploy beklemez).
+
+on:
+  schedule:
+    # Pazartesi 05:00 UTC = 08:00 Europe/Istanbul (hafta başı, "yeni hafta yeni ilanlar").
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      promo:
+        description: 'İlan olsa bile tanıtım kartını zorla (true/false)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ilan-weekly
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install puppeteer (+ Chrome)
+        run: npm install puppeteer@24 --no-save
+
+      - name: İş ilanları kartı üret + onaya gönder
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+        run: |
+          FLAGS=""
+          if [ "${{ github.event.inputs.promo }}" = "true" ]; then FLAGS="--promo"; fi
+          node scripts/agency/ilan-post.mjs $FLAGS

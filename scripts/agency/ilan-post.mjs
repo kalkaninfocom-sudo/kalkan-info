@@ -315,6 +315,25 @@ async function sendTelegramCard(cardPath, preview, postId) {
   }
 }
 
+// ── Supabase storage: kartı yükle → public URL (IG publish local_assets[0]'ı okur) ─
+async function uploadCard(cardPath, id) {
+  if (!SUPA_URL || !SUPA_KEY) return null;
+  try {
+    const objectPath = `ilan-card/${id}.png`;
+    const buf = await readFile(cardPath);
+    const up = await fetch(`${SUPA_URL}/storage/v1/object/social-media/${objectPath}`, {
+      method: 'POST',
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'image/png', 'x-upsert': 'true' },
+      body: buf,
+    });
+    if (!up.ok) { console.warn('  ⚠️  storage upload fail:', up.status, (await up.text()).slice(0, 140)); return null; }
+    return `${SUPA_URL}/storage/v1/object/public/social-media/${objectPath}`;
+  } catch (e) {
+    console.warn('  ⚠️  storage upload hatası:', e.message);
+    return null;
+  }
+}
+
 // ── Supabase: social_posts satırı ───────────────────────────────────────────
 async function insertSocialPost({ mode, caption, hashtags, publicPath }) {
   if (!SUPA_URL || !SUPA_KEY) {
@@ -370,8 +389,12 @@ async function main() {
 
   if (DRY) { console.log('\n🧪 --dry-run: DB/Telegram atlandı. Kart + caption hazır.'); return; }
 
+  console.log('\n☁️  Kart Supabase storage\'a yükleniyor...');
+  const storageUrl = await uploadCard(card.outPath, id);
+  console.log(storageUrl ? `   ✅ ${storageUrl}` : '   ℹ️  storage atlandı — yerel path kullanılacak');
+
   console.log('\n🗄️  social_posts kaydı...');
-  const postId = await insertSocialPost({ mode, caption: fullCaption, hashtags, publicPath: card.publicPath });
+  const postId = await insertSocialPost({ mode, caption: fullCaption, hashtags, publicPath: storageUrl || card.publicPath });
   if (postId === 'EXISTS') { console.log('   Bugün zaten üretilmiş — çıkılıyor.'); return; }
   if (postId) console.log(`   ✅ social_posts id: ${postId}`);
 
