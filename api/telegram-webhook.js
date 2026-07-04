@@ -48,7 +48,12 @@ async function publishNow(post) {
     console.warn('[publishNow] IG env eksik');
     return;
   }
-  const assets = post.local_assets || [];
+  // local_assets göreli yol ('/newspaper/...') tutabilir — IG/FB image_url'i FETCH eder,
+  // göreli yolu çözemez → Graph API 9004 "Only photo or video". Mutlak public URL'e normalize et.
+  // Non-www doğrulanmış 200 (www 308 redirect → Meta fetch'i bozabilir), o yüzden non-www.
+  const SITE = (process.env.SITE_BASE || 'https://kalkaninfo.com').replace(/\/$/, '');
+  const assets = (post.local_assets || []).map(a =>
+    /^https?:\/\//i.test(a) ? a : `${SITE}/${String(a).replace(/^\//, '')}`);
   if (!assets.length) {
     console.warn('[publishNow] local_assets yok, atlandı');
     await updateStatus(post.id, { status: 'failed', engagement_metrics: { error: 'no_assets' } });

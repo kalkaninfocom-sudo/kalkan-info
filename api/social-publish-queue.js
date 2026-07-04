@@ -12,7 +12,8 @@ const IG_USER_ID = process.env.IG_BUSINESS_ID;
 const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN;
 const CRON_SECRET = process.env.IG_CRON_SECRET;
 const TG_CHAT_ID = process.env.TELEGRAM_ADMIN_CHAT_ID;
-const SITE_BASE = 'https://www.kalkaninfo.com';
+// non-www: canonical + Vercel primary. www 308-redirect eder → Meta image-fetch'i bozabilir.
+const SITE_BASE = 'https://kalkaninfo.com';
 
 // Supabase REST helper
 async function supa(path, opts = {}) {
