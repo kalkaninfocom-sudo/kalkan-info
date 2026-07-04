@@ -138,6 +138,7 @@
     <button data-view="oto" class="on">⚙️ Otomasyonlar</button>
     <button data-view="gorev">📋 Görev Ver</button>
     <button data-view="onay">✅ Onay Kuyruğu<span class="b" id="q-badge" style="display:none">0</span></button>
+    <button data-view="oneri">🔄 Öneriler<span class="b" id="p-badge" style="display:none">0</span></button>
   </nav>
 </header>
 
@@ -168,6 +169,12 @@
   </section>
 
   <!-- ONAY KUYRUĞU -->
+  <!-- SİTE GÜNCELLEME ÖNERİLERİ -->
+  <section class="view" id="view-oneri">
+    <p style="color:var(--muted);font-size:12px;margin-bottom:14px">Ajanlar beat'lerinde site verisini denetler; eksikleri (fotoğrafsız/çevirisiz/bayat) burada önerir. <b>Canlı veri otomatik değişmez</b> — sen karar verirsin.</p>
+    <div id="p-list"></div>
+  </section>
+
   <section class="view" id="view-onay">
     <div id="q-list"></div>
   </section>
@@ -302,6 +309,28 @@ async function sendTask(){
   }catch(e){ out.className='';out.textContent='✗ Hata: '+e.message; }
 }
 
+/* ===================== SİTE GÜNCELLEME ÖNERİLERİ ===================== */
+let PROPOSALS=[];
+async function loadProposals(){ try{ const d=await apiGET('/data/agency/site-proposals.json'); PROPOSALS=d.proposals||[]; }catch(_){ PROPOSALS=[]; } }
+function renderProposals(){
+  const el=document.getElementById('p-list');
+  if(!PROPOSALS.length){ el.innerHTML='<div class="empty">Öneri verisi yok. Haftalık freshness taraması çalışınca dolar (scripts/agency/site-freshness.mjs).</div>'; return; }
+  const sorted=[...PROPOSALS].sort((a,b)=>(a.score??100)-(b.score??100));
+  el.innerHTML=sorted.map(p=>{
+    const dot=p.score>=85?'var(--green)':p.score>=60?'var(--amber)':'var(--red)';
+    const issues=(p.issues||[]).map(i=>`<li style="font-size:12px;color:var(--ink);margin:3px 0">• ${esc(i.text)}</li>`).join('');
+    return `<div class="qcard">
+      <div class="qhead"><span style="display:flex;align-items:center;gap:9px"><span class="sdot" style="background:${dot}"></span><b style="font-family:'Montserrat';font-size:14px">${esc(p.beat)}</b><span class="a-beat">${esc(p.agentPerson||'')}</span></span><span class="ago">skor ${p.score??'-'}/100 · ${p.total} kayıt</span></div>
+      ${issues?`<ul style="list-style:none;margin:8px 0 0">${issues}</ul>`:'<div style="font-size:12px;color:var(--green)">Bölüm güncel ✓</div>'}
+      ${p.action?`<div style="margin-top:9px;font-size:12px;color:var(--gold2)"><b>Öneri:</b> ${esc(p.action)}</div>`:''}
+      ${p.url?`<a href="..${esc(p.url)}" target="_blank" style="display:inline-block;margin-top:10px;font-size:11px;color:var(--sea)">Bölümü aç →</a>`:''}
+    </div>`;
+  }).join('');
+  const bad=PROPOSALS.filter(p=>(p.score??100)<85).length;
+  const badge=document.getElementById('p-badge');
+  if(bad>0){badge.style.display='';badge.textContent=bad;}else badge.style.display='none';
+}
+
 /* ===================== ONAY KUYRUĞU ===================== */
 function renderQueue(){
   const el=document.getElementById('q-list');
@@ -349,6 +378,7 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById('view-'+b.dataset.view).classList.add('on');
   if(b.dataset.view==='onay')renderQueue();
+  if(b.dataset.view==='oneri')renderProposals();
 });
 function tickClock(){const d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})+' · Kalkan';}
 setInterval(tickClock,1000);tickClock();
@@ -356,7 +386,8 @@ setInterval(tickClock,1000);tickClock();
 /* ===================== INIT ===================== */
 async function boot(){
   try{ await loadData(); }catch(e){ document.getElementById('oto-rows').innerHTML='<div class="empty">Veri yüklenemedi: '+esc(e.message)+'</div>'; return; }
-  renderPills();renderRows();renderStats();fillAgentSelect();renderQueue();
+  await loadProposals();
+  renderPills();renderRows();renderStats();fillAgentSelect();renderQueue();renderProposals();
   document.getElementById('g-send').onclick=sendTask;
   setInterval(async()=>{await pollLive();renderRows();renderStats();},8000);
 }

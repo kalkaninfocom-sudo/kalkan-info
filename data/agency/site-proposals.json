@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-07-04T03:33:10.094Z",
+  "proposals": [
+    {
+      "key": "restoranlar",
+      "beat": "Restoranlar",
+      "url": "/restoranlar",
+      "agent": "menu-chef",
+      "agentPerson": "Kerem Bulut",
+      "total": 175,
+      "score": 0,
+      "issues": [
+        {
+          "type": "foto",
+          "count": 144,
+          "text": "144 kayıt fotoğrafsız"
+        },
+        {
+          "type": "galeri",
+          "count": 28,
+          "text": "28 kaydın galerisi zayıf (<3 foto)"
+        },
+        {
+          "type": "i18n",
+          "count": 144,
+          "text": "144/175 kaydın çevirisi (summaryI18n) eksik"
+        }
+      ],
+      "suggestion": "Restoranlar: 144 kayıt fotoğrafsız; 28 kaydın galerisi zayıf (<3 foto); 144/175 kaydın çevirisi (summaryI18n) eksik."
+    },
+    {
+      "key": "villalar",
+      "beat": "Villalar",
+      "url": "/villalar",
+      "agent": "provider-matcher",
+      "agentPerson": "Nazlı Ekin",
+      "total": 3,
+      "score": 0,
+      "issues": [
+        {
+          "type": "galeri",
+          "count": 2,
+          "text": "2 kaydın galerisi zayıf (<3 foto)"
+        },
+        {
+          "type": "kapsam",
+          "count": 3,
+          "text": "Sadece 3 villa — katalog genişletilebilir"
+        }
+      ],
+      "suggestion": "Villalar: 2 kaydın galerisi zayıf (<3 foto); Sadece 3 villa — katalog genişletilebilir."
+    },
+    {
+      "key": "oteller",
+      "beat": "Oteller",
+      "url": "/oteller",
+      "agent": "provider-matcher",
+      "agentPerson": "Nazlı Ekin",
+      "total": 16,
+      "score": 100,
+      "issues": [],
+      "suggestion": "Oteller: bölüm güncel görünüyor ✓"
+    },
+    {
+      "key": "antik",
+      "beat": "Antik Kentler",
+      "url": "/antik-kentler",
+      "agent": "gezgin-rehber",
+      "agentPerson": "Leyla Tunç",
+      "total": 17,
+      "score": 53,
+      "issues": [
+        {
+          "type": "galeri",
+          "count": 1,
+          "text": "1 kaydın galerisi zayıf (<3 foto)"
+        },
+        {
+          "type": "i18n",
+          "count": 7,
+          "text": "7/17 kentin 5-dil çevirisi eksik"
+        }
+      ],
+      "suggestion": "Antik Kentler: 1 kaydın galerisi zayıf (<3 foto); 7/17 kentin 5-dil çevirisi eksik."
+    },
+    {
+      "key": "turlar",
+      "beat": "Turlar",
+      "url": "/turlar",
+      "agent": "tatil-planner",
+      "agentPerson": "Hakan Uçar",
+      "total": 10,
+      "score": 0,
+      "issues": [
+        {
+          "type": "galeri",
+          "count": 10,
+          "text": "10 kaydın galerisi zayıf (<3 foto)"
+        }
+      ],
+      "suggestion": "Turlar: 10 kaydın galerisi zayıf (<3 foto)."
+    },
+    {
+      "key": "plajlar",
+      "beat": "Plajlar",
+      "url": "/plajlar",
+      "agent": "gezgin-rehber",
+      "agentPerson": "Leyla Tunç",
+      "total": 15,
+      "score": 0,
+      "issues": [
+        {
+          "type": "galeri",
+          "count": 11,
+          "text": "11 kaydın galerisi zayıf (<3 foto)"
+        },
+        {
+          "type": "i18n",
+          "count": 15,
+          "text": "15/15 kaydın çevirisi (summaryI18n) eksik"
+        }
+      ],
+      "suggestion": "Plajlar: 11 kaydın galerisi zayıf (<3 foto); 15/15 kaydın çevirisi (summaryI18n) eksik."
+    },
+    {
+      "key": "haberler",
+      "beat": "Haberler",
+      "url": "/haberler",
+      "agent": "muhabir",
+      "agentPerson": "Elif Şahin",
+      "total": 30,
+      "score": 100,
+      "issues": [],
+      "suggestion": "Haberler: güncel ✓"
+    }
+  ]
+}

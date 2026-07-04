@@ -1,0 +1,43 @@
+name: Site güncelleme önerileri (haftalık freshness audit)
+
+# #6 güvenli iskelet: ajanlar beat'lerinde site verisini denetler (fotoğrafsız/çevirisiz/bayat),
+# öneri üretir → data/agency/site-proposals.json → ajansAI "Öneriler" sekmesi. Canlı veriyi DÜZENLEMEZ.
+# Haftalık çalışır, proposals.json'ı commit'ler (dashboard statik servis eder), Telegram özeti gönderir.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # Pazartesi 04:00 UTC = 07:00 TR
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-freshness
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Freshness audit
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: node scripts/agency/site-freshness.mjs --llm --telegram
+      - name: Commit öneriler
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/agency/site-proposals.json
+          if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
+          git commit -m "chore(agency): haftalık site freshness önerileri [auto]"
+          git pull --rebase origin main || true
+          git push
