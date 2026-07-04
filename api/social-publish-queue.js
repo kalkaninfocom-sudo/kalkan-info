@@ -3,6 +3,7 @@
 // Manuel test: GET /api/social-publish-queue?secret=...&dry=1
 
 import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
+import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
 import { sendMessage } from '../lib/telegram.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
@@ -150,10 +151,20 @@ export default async function handler(req, res) {
         throw new Error('local_assets boş veya geçersiz — yayınlamak için en az 1 görsel gerekli');
       }
 
+      // Facebook paralel yayın (aynı system-user token; hata IG'yi bozmaz)
+      let fbResult = 'atlandı';
+      const FB_ID = process.env.FB_PAGE_ID, FB_TOKEN = process.env.FB_PAGE_TOKEN;
+      if (FB_ID && FB_TOKEN && imageUrls.length) {
+        try {
+          if (post.content_type === 'reels' || post.content_type === 'video') { await publishFacebookReel(FB_ID, FB_TOKEN, imageUrls[0], caption); fbResult = 'reel ✓'; }
+          else { await publishFacebookPhoto(FB_ID, FB_TOKEN, imageUrls[0], caption); fbResult = 'foto ✓'; }
+        } catch (fe) { console.error('[publish-queue] FB fail', fe.message); fbResult = 'hata'; }
+      }
+
       await markPublished(post.id, result.mediaId);
       published++;
 
-      const msg = `✅ Yayınlandı: <b>${label}</b>\nTür: ${result.type} | Media ID: ${result.mediaId}`;
+      const msg = `✅ Yayınlandı: <b>${label}</b>\nTür: ${result.type} | IG: ${result.mediaId} | FB: ${fbResult}`;
       await notify(msg);
 
       results.push({ id: post.id, label, status: 'published', mediaId: result.mediaId, type: result.type });

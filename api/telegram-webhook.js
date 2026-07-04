@@ -9,6 +9,7 @@
 
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
 import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
+import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
 import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
@@ -67,6 +68,25 @@ async function publishNow(post) {
     } else {
       mediaId = await publishSingleImage(IG_USER_ID, IG_TOKEN, assets[0], caption);
     }
+
+    // Facebook paralel yayın (aynı system-user token). Hata IG yayınını BOZMAZ (FB bonus).
+    let fbResult = 'atlandı (env yok)';
+    const FB_ID = process.env.FB_PAGE_ID, FB_TOKEN = process.env.FB_PAGE_TOKEN;
+    if (FB_ID && FB_TOKEN) {
+      try {
+        if (post.content_type === 'reels' || post.content_type === 'video') {
+          await publishFacebookReel(FB_ID, FB_TOKEN, assets[0], caption);
+          fbResult = 'reel ✓';
+        } else {
+          await publishFacebookPhoto(FB_ID, FB_TOKEN, assets[0], caption);
+          fbResult = 'foto ✓';
+        }
+      } catch (fe) {
+        console.error('[publishNow] FB fail', fe);
+        fbResult = 'hata: ' + String(fe.message || fe).slice(0, 80);
+      }
+    }
+
     await updateStatus(post.id, {
       status: 'published',
       published_at: new Date().toISOString(),
@@ -74,7 +94,7 @@ async function publishNow(post) {
     });
     if (process.env.TELEGRAM_ADMIN_CHAT_ID) {
       await sendMessage(process.env.TELEGRAM_ADMIN_CHAT_ID,
-        `✅ *Yayınlandı*\n\n${escapeMd(post.content_pack_id)} · IG Media ID: \`${escapeMd(String(mediaId))}\``);
+        `✅ *Yayınlandı*\n\n${escapeMd(post.content_pack_id)}\nIG Media ID: \`${escapeMd(String(mediaId))}\`\nFB: ${escapeMd(fbResult)}`);
     }
   } catch (e) {
     console.error('[publishNow] fail', e);
