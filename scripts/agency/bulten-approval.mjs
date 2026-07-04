@@ -94,7 +94,9 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu bülten için onay zaten gönderilmiş.'); return; }
 
   const topTitles = (p.items || []).slice(0, 3).map(i => `• ${i.title}`).join('\n');
-  const caption = `🗞️ HAFTANIN BÜLTENİ${range ? ` · ${range}` : ''}\n\n${topTitles}\n\nHaftanın tüm haberleri: ${SITE_BASE}/gazete`;
+  const caption = `🗞️ HAFTANIN BÜLTENİ${range ? ` · ${range}` : ''}\n\n${topTitles}\n\nHaftanın tüm haberleri: ${SITE_BASE}/gazete
+
+🇬🇧 Kalkan’s weekly roundup. All news: ${SITE_BASE}/gazete`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#haftanınbülteni', '#kaş', '#antalya'];
 
   if (!post) {

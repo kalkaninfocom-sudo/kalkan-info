@@ -105,7 +105,9 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu reel için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
 
   const cta = p.cta || 'kalkaninfo.com/plajlar.html';
-  const caption = `🏖️ HAFTANIN PLAJI · ${name}\n\n${p.tagline || ''}\n\nDetay & ulaşım: ${cta}`;
+  const caption = `🏖️ HAFTANIN PLAJI · ${name}\n\n${p.tagline || ''}\n\nDetay & ulaşım: ${cta}
+
+🇬🇧 Beach of the week around Kalkan — ${name}. Guide & access: ${cta}`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#kalkanplaj', '#kaş', '#plaj'].slice(0, 5);
 
   if (!post) {

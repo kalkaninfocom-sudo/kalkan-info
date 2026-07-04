@@ -105,7 +105,9 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu reel için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
 
   const cta = p.cta || 'kalkaninfo.com/restoranlar';
-  const caption = `🍽️ HAFTANIN MEKÂNI · ${name}\n\n${p.tagline || ''}\n\nDetay & menü: ${cta}`;
+  const caption = `🍽️ HAFTANIN MEKÂNI · ${name}\n\n${p.tagline || ''}\n\nDetay & menü: ${cta}
+
+🇬🇧 Restaurant of the week in Kalkan — ${name}. Details & menu: ${cta}`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#kalkanrestoran', '#kaş', '#lezzet', '#antalya', '#nerede yenir'].slice(0, 5);
 
   if (!post) {

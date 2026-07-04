@@ -105,7 +105,9 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu reel için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
 
   const cta = p.cta || 'kalkaninfo.com/antik-kentler.html';
-  const caption = `🏛️ HAFTANIN ANTİK KENTİ · ${name}\n\n${p.tagline || ''}\n\nDetay & ziyaret: ${cta}`;
+  const caption = `🏛️ HAFTANIN ANTİK KENTİ · ${name}\n\n${p.tagline || ''}\n\nDetay & ziyaret: ${cta}
+
+🇬🇧 This week’s featured ancient city near Kalkan — ${name}. Guide: ${cta}`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#likya', '#kaş', '#antikkent'].slice(0, 5);
 
   if (!post) {

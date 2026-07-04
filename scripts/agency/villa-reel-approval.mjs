@@ -105,7 +105,9 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu reel için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
 
   const cta = p.cta || 'kalkaninfo.com/villalar';
-  const caption = `🏡 HAFTANIN VİLLASI · ${name}\n\n${p.tagline || ''}\n\nDetay & rezervasyon: ${cta}`;
+  const caption = `🏡 HAFTANIN VİLLASI · ${name}\n\n${p.tagline || ''}\n\nDetay & rezervasyon: ${cta}
+
+🇬🇧 Villa of the week in Kalkan — ${name}. Details & booking: ${cta}`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#kalkanvilla', '#kaş', '#tatil'].slice(0, 5);
 
   if (!post) {

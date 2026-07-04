@@ -98,7 +98,9 @@ async function main() {
   // Caption: bugünün manşetinden
   let headline = 'Bugünün Kalkan gündemi';
   try { headline = JSON.parse(await readFile(join(ROOT, 'data', 'gazete-today.json'), 'utf8')).lead_headline || headline; } catch {}
-  const caption = `📰 ${headline}\n\nGünün Kalkan haberleri — tamamı: ${SITE_BASE}/gazete`;
+  const caption = `📰 ${headline}\n\nGünün Kalkan haberleri — tamamı: ${SITE_BASE}/gazete
+
+🇬🇧 Today’s Kalkan headlines. Full paper: ${SITE_BASE}/gazete`;
   const hashtags = ['#kalkan', '#kalkaninfo', '#kalkantoday', '#kaş', '#gündem', '#antalya'];
 
   if (!post) {
