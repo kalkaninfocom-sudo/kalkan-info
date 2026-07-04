@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Kalkan Today — 2026-07-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    background: #fbf9f4;
+    color: #14181c;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    overflow: hidden;
+  }
+  body {
+    padding: 10mm 11mm 8mm;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .ink { color: #14181c; }
+  .muted { color: #5a6675; }
+  .gold { color: #b88a2f; }
+  .sea { color: #1a3a52; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    border-top: 3px solid #14181c;
+    border-bottom: 1px solid #14181c;
+    padding: 5mm 0 4mm;
+    position: relative;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: -6px; left: 0; right: 0;
+    height: 1px;
+    background: #14181c;
+  }
+  .masthead-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6mm;
+  }
+  .nameplate {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 44pt;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: #14181c;
+  }
+  .nameplate .post {
+    font-style: normal;
+    font-weight: 800;
+  }
+  .tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5a6675;
+    margin-top: 1mm;
+  }
+  .meta-block {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.06em;
+    color: #2a313a;
+  }
+  .meta-block .vol { display: block; }
+  .meta-block .date {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #14181c;
+    margin-top: 1.5mm;
+  }
+  .weather-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #14181c;
+    border-bottom: 1px solid #14181c;
+    padding: 2mm 0;
+    margin-top: 3mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.05em;
+  }
+  .weather-strip .item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5mm;
+  }
+  .weather-strip .item .lbl { color: #5a6675; text-transform: uppercase; font-size: 6.5pt; letter-spacing: 0.15em; }
+  .weather-strip .item .val { font-weight: 600; color: #14181c; font-size: 9pt; }
+
+  /* ─── LEAD STORY ─── */
+  .lead {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6mm;
+    padding: 2mm 0 3mm;
+    border-bottom: 1px solid #14181c;
+  }
+  .lead-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 26pt;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #14181c;
+  }
+  .lead-deck {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12pt;
+    line-height: 1.35;
+    color: #2a313a;
+    margin-top: 2.5mm;
+  }
+  .lead-byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a6675;
+    margin-top: 2.5mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid #d7cfc0;
+  }
+  .lead-body {
+    column-count: 1;
+    text-align: justify;
+    hyphens: auto;
+    font-size: 9pt;
+    line-height: 1.55;
+  }
+  .lead-body p + p { text-indent: 3mm; margin-top: 1.5mm; }
+  .lead-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 28pt;
+    float: left;
+    line-height: 0.9;
+    padding: 1mm 1.5mm 0 0;
+    color: #1a3a52;
+  }
+  .lead-image {
+    background: #d7cfc0 url('https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=1200&q=80') center/cover;
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 1px solid #14181c;
+    position: relative;
+  }
+  .lead-caption {
+    font-size: 7pt;
+    color: #5a6675;
+    margin-top: 1.5mm;
+    font-style: italic;
+  }
+
+  /* ─── 3-COL GRID ─── */
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5mm;
+    padding-top: 3mm;
+  }
+  .col h3.kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #b88a2f;
+    border-bottom: 2px solid #14181c;
+    padding-bottom: 1.5mm;
+    margin-bottom: 2mm;
+  }
+  .col h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 14pt;
+    line-height: 1.1;
+    margin-bottom: 1.5mm;
+    color: #14181c;
+  }
+  .col h2 a { color: inherit; text-decoration: none; }
+  .col p {
+    text-align: justify;
+    font-size: 8.5pt;
+    line-height: 1.5;
+    margin-bottom: 1.5mm;
+  }
+  .col .byline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5a6675;
+    margin-bottom: 1.5mm;
+  }
+
+  /* ─── AD SLOT ─── */
+  .ad-slot {
+    background: #fff;
+    border: 2px solid #14181c;
+    padding: 4mm;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4mm;
+    align-items: center;
+  }
+  .ad-slot::before {
+    content: 'İLAN';
+    position: absolute;
+    top: -2.5mm;
+    left: 3mm;
+    background: #14181c;
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    padding: 0.8mm 2mm;
+  }
+  .ad-slot h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 13pt;
+    line-height: 1.15;
+    color: #14181c;
+    margin-bottom: 1mm;
+  }
+  .ad-slot p {
+    font-size: 8pt;
+    line-height: 1.4;
+    color: #2a313a;
+    margin-bottom: 1.5mm;
+  }
+  .ad-slot .ad-cta {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #b88a2f;
+    border-bottom: 1px solid #b88a2f;
+    padding-bottom: 0.5mm;
+  }
+  .ad-slot .qr {
+    width: 22mm;
+    height: 22mm;
+    background: #14181c;
+    padding: 1.5mm;
+    border-radius: 1mm;
+  }
+  .ad-slot .qr img { width: 100%; height: 100%; display: block; background: #fff; }
+
+  /* ─── SERVICE BAR ─── */
+  .service-bar {
+    background: #14181c;
+    color: #fbf9f4;
+    padding: 3.5mm 4mm;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4mm;
+    margin-top: auto;
+  }
+  .service-bar .svc { border-left: 2px solid #b88a2f; padding-left: 2.5mm; }
+  .service-bar .svc .lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #b88a2f;
+    margin-bottom: 1mm;
+  }
+  .service-bar .svc .val {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: #fbf9f4;
+  }
+  .service-bar .svc .sub {
+    font-size: 7pt;
+    color: #d7cfc0;
+    margin-top: 0.5mm;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2mm;
+    border-top: 1px solid #14181c;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a6675;
+  }
+  .footer .qr-foot { display: flex; align-items: center; gap: 2mm; }
+  .footer .qr-foot img { width: 10mm; height: 10mm; }
+</style>
+</head>
+<body>
+
+  <!-- ═══ MASTHEAD ═══ -->
+  <header class="masthead">
+    <div class="masthead-row">
+      <div>
+        <div class="nameplate"><em>Kalkan</em> <span class="post">Today</span></div>
+        <div class="tagline">Antalya · Kalkan · Kaş — Sabah Edisyonu</div>
+      </div>
+      <div class="meta-block">
+        <span class="vol">Sayı № 034 · Cilt 1</span>
+        <span class="date">4 Temmuz 2026</span>
+        <span class="vol" style="margin-top:1mm;">Cumartesi · ₺ 0 · kalkaninfo.com</span>
+      </div>
+    </div>
+    <div class="weather-strip">
+      <div class="item"><span class="lbl">Hava</span><span class="val">27°C</span></div>
+      <div class="item"><span class="lbl">Deniz</span><span class="val">27°C</span></div>
+      <div class="item"><span class="lbl">UV</span><span class="val">8</span></div>
+      <div class="item"><span class="lbl">Rüzgar</span><span class="val">G 3 km/h</span></div>
+      <div class="item"><span class="lbl">Gün Doğumu</span><span class="val">05:50</span></div>
+      <div class="item"><span class="lbl">Gün Batımı</span><span class="val">20:23</span></div>
+    </div>
+  </header>
+
+  <!-- ═══ LEAD STORY ═══ -->
+  <section class="lead">
+    <div>
+      <h1 class="lead-headline">Kalkan'da Villa Turizmi Zirveye Çıkıyor</h1>
+      <p class="lead-deck">Kaş ve Kalkan'da villa turizmi artıyor.</p>
+      <div class="lead-byline">Kalkan Today Editör · Google News — Kalkan/Kaş</div>
+      <div class="lead-body">
+        Kaş ve Kalkan'da villa turizmi son dönemde zirveye çıkıyor. Yeni Alanya'nın haberine göre, bu bölge villa turizminde önemli bir yer tutuyor. Turistler, özellikle Kaş ve Kalkan'daki villaları tercih ediyor.
+      </div>
+    </div>
+    <div>
+      <div class="lead-image"></div>
+      <p class="lead-caption">Foto: Google News — Kalkan/Kaş · Turizm</p>
+    </div>
+  </section>
+
+  <!-- ═══ 3-COLUMN GRID ═══ -->
+  <section class="three-col">
+    <article class="col">
+      <h3 class="kicker">Bugün Kalkan'da</h3>
+      <h2>Bugün Kalkan'da · 3 Etkinlik</h2>
+      <div class="byline">Gece programı · taslak</div>
+      <p><strong>22:00</strong> DJ · Vibes Lounge Club (Kalkan) &nbsp;·&nbsp; <strong>23:00</strong> DJ · Chocolate Club Kalkan (Kalkan) &nbsp;·&nbsp; <strong>23:30</strong> Parti · Noema Community (Kalkan)</p>
+    </article>
+
+    <article class="col">
+      <h3 class="kicker">Mekan & Yaşam</h3>
+      <h2>Şefin Önerisi · Kaptan Restaurant</h2>
+      <div class="byline">Restoran · Deniz Ürünleri · ⭐4.7</div>
+      <p>Kalkan kıyı şeridinde balık, meze ve ızgara · craft kokteyller · sunset masaları · mavi saat manzarası.</p>
+    </article>
+
+    <article class="col">
+      <h3 class="kicker">Plaj & Antik</h3>
+      <h2>Villa Turizmi Zirve Yapıyor</h2>
+      <div class="byline">Sahil · Turizm</div>
+      <p>Kaş ve Kalkan'da villa turizmi temmuzda zirve yapacak.</p>
+    </article>
+  </section>
+
+  <!-- ═══ AD SLOT (Manşet Sponsoru) ═══ -->
+  <section class="ad-slot">
+    <div>
+      <h4>Kaptan Restaurant — Marina Manzaralı Akşam Yemeği</h4>
+      <p>Bu akşam deniz mahsulü tabağında sezon menüsü. Marina kenarında rezervasyonlu masalar için QR'ı okutun.</p>
+      <span class="ad-cta">Hemen Rezervasyon →</span>
+    </div>
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=https://kalkaninfo.com/q/kaptan-restaurant-temmuz" alt="QR">
+    </div>
+  </section>
+
+  <!-- ═══ SERVICE BAR ═══ -->
+  <section class="service-bar">
+    <div class="svc">
+      <div class="lbl">Nöbetçi Eczane</div>
+      <div class="val">Doğa Eczanesi</div>
+      <div class="sub">MENTESE MH. SEHITLER CD. NO:35 KALKAN · +90 242 844 11 38</div>
+    </div>
+    <div class="svc">
+      <div class="lbl">Acil</div>
+      <div class="val">112 · 110 · 156</div>
+      <div class="sub">Sahil Güv. 158 · Jandarma 156</div>
+    </div>
+    <div class="svc">
+      <div class="lbl">Otobüs</div>
+      <div class="val">08:15 → Kaş</div>
+      <div class="sub">Kalkan Otogar · saat başı</div>
+    </div>
+    <div class="svc">
+      <div class="lbl">Deniz Suyu</div>
+      <div class="val">27°C</div>
+      <div class="sub">Kalamar Plajı · 09:00</div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div>© Kalkan Today · Sorumlu Yazı İşleri: Berkay Elmastaş</div>
+    <div class="qr-foot">
+      <span>Dijital sürüm</span>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https://kalkaninfo.com/" alt="kalkaninfo.com">
+    </div>
+  </footer>
+
+</body>
+</html>
