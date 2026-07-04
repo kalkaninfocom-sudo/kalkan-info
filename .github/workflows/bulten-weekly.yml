@@ -34,9 +34,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       - name: ffmpeg kur (webp foto + müzik mix için)
         run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
-          cache: 'npm'
 
       - name: Bağımlılıkları kur (remotion dahil)
         run: npm install --no-audit --no-fund
