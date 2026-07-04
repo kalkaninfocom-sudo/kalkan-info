@@ -39,7 +39,7 @@ jobs:
           cache: 'npm'
 
       - name: Bağımlılıkları kur (remotion dahil)
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Villa reel üret + video onayı
         env:

@@ -37,7 +37,7 @@ jobs:
           cache: 'npm'
 
       - name: Bağımlılıkları kur (remotion dahil)
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       # Bugüne ait bayat onay satırını temizle — önceki çalışmada telegram_message_id doluysa
       # bulten-approval "zaten gönderilmiş" guard'ını tetikler. Silince taze onay gönderilir.

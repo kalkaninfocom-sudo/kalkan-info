@@ -39,7 +39,7 @@ jobs:
           cache: 'npm'
 
       - name: Bağımlılıkları kur (remotion dahil)
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       # Bugüne ait bayat onay satırını temizle — gece/önceki çalışmada telegram_message_id doluysa
       # reel-approval "zaten gönderilmiş" guard'ını tetikler. Silince taze onay gönderilir.
