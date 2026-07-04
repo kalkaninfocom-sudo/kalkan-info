@@ -121,7 +121,7 @@ async function main() {
   if (r.status !== 0 || !existsSync(silentMp4)) { console.error('❌ render başarısız'); process.exit(1); }
 
   // Müzik mix: haber-bed → track1 (gazete reel ile aynı ton).
-  const music = ['dist/audio/news-bed.mp3', 'dist/audio/track1.mp3']
+  const music = ['assets/audio/reel-bed.mp3', 'dist/audio/news-bed.mp3', 'dist/audio/track1.mp3']
     .map(p => resolve(ROOT, p)).find(p => existsSync(p) && statSync(p).size > 1000);
   let musicOk = false;
   if (music) {

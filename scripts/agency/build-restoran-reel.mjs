@@ -134,7 +134,7 @@ async function main() {
   if (rr.status !== 0 || !existsSync(silentMp4)) { console.error('❌ render başarısız'); process.exit(1); }
 
   // ── Müzik mix: sıcak/restoran tonu (relaxing → newdawn → track1). ──
-  const music = ['dist/audio/relaxing.mp3', 'dist/audio/newdawn.mp3', 'dist/audio/track1.mp3']
+  const music = ['assets/audio/reel-bed.mp3', 'dist/audio/relaxing.mp3', 'dist/audio/newdawn.mp3', 'dist/audio/track1.mp3']
     .map(p => resolve(ROOT, p)).find(p => existsSync(p) && statSync(p).size > 1000);
   let musicOk = false;
   if (music) {

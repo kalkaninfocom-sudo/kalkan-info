@@ -82,7 +82,7 @@ async function main() {
 
   // ── Müzik mix (ffmpeg) — haber-bed'i varsa onu, yoksa track1 (Pixabay). Sessizden iyidir. ──
   // Haber-ajansı tonu için dist/audio/news-bed.mp3 koy → otomatik onu kullanır (takas kolay).
-  const music = ['dist/audio/news-bed.mp3', 'dist/audio/track1.mp3']
+  const music = ['assets/audio/reel-bed.mp3', 'dist/audio/news-bed.mp3', 'dist/audio/track1.mp3']
     .map(p => resolve(ROOT, p)).find(p => existsSync(p) && statSync(p).size > 1000);
   let musicOk = false;
   if (music) {
