@@ -199,13 +199,14 @@ export async function generateNewsCard({ item, outDir = OUT_DIR_DEFAULT, browser
     await page.setContent(html, { waitUntil: 'networkidle0', timeout: 20000 });
     await page.evaluate(() => document.fonts.ready).catch(() => {});
 
-    const outPath = join(outDir, `${item.id}.png`);
-    await page.screenshot({ path: outPath, type: 'png', clip: { x: 0, y: 0, width: 1080, height: 1080 } });
+    const outPath = join(outDir, `${item.id}.jpg`);
+    // JPEG: Instagram Graph API feed/carousel SADECE JPEG kabul eder (PNG → 9004).
+    await page.screenshot({ path: outPath, type: 'jpeg', quality: 92, clip: { x: 0, y: 0, width: 1080, height: 1080 } });
     await page.close();
 
     const st = await stat(outPath);
     const kb = Math.round(st.size / 1024);
-    const publicPath = `/assets/ig-news/${item.id}.png`;
+    const publicPath = `/assets/ig-news/${item.id}.jpg`;
     return { outPath, publicPath, kb, hadImage: !!imageDataUrl };
   } finally {
     if (!sharedBrowser) await browser.close();

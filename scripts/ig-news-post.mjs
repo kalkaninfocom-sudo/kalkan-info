@@ -152,7 +152,7 @@ async function sendTelegramCard(cardPath, captionPreview, postId) {
     const buf = await readFile(cardPath);
     const form = new FormData();
     form.append('chat_id', String(TG_CHAT));
-    form.append('photo', new Blob([buf], { type: 'image/png' }), 'haber-karti.png');
+    form.append('photo', new Blob([buf], { type: 'image/jpeg' }), 'haber-karti.jpg');
     form.append('caption', captionPreview.slice(0, 1024));
     form.append('parse_mode', 'MarkdownV2');
     form.append('reply_markup', JSON.stringify(approvalKeyboard(postId)));

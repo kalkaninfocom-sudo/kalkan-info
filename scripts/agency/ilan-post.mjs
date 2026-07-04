@@ -237,11 +237,12 @@ async function renderCard(html, id) {
     await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 1 });
     await page.setContent(html, { waitUntil: 'networkidle0', timeout: 20000 });
     await page.evaluate(() => document.fonts.ready).catch(() => {});
-    const outPath = join(OUT_DIR, `${id}.png`);
-    await page.screenshot({ path: outPath, type: 'png', clip: { x: 0, y: 0, width: 1080, height: 1350 } });
+    const outPath = join(OUT_DIR, `${id}.jpg`);
+    // JPEG: Instagram Graph API feed/carousel SADECE JPEG kabul eder (PNG → 9004).
+    await page.screenshot({ path: outPath, type: 'jpeg', quality: 92, clip: { x: 0, y: 0, width: 1080, height: 1350 } });
     await page.close();
     const st = await stat(outPath);
-    return { outPath, publicPath: `/assets/ig-ilan/${id}.png`, kb: Math.round(st.size / 1024) };
+    return { outPath, publicPath: `/assets/ig-ilan/${id}.jpg`, kb: Math.round(st.size / 1024) };
   } finally {
     await browser.close();
   }
@@ -309,7 +310,7 @@ async function sendTelegramCard(cardPath, preview, postId) {
     const buf = await readFile(cardPath);
     const form = new FormData();
     form.append('chat_id', String(TG_CHAT));
-    form.append('photo', new Blob([buf], { type: 'image/png' }), 'ilan-karti.png');
+    form.append('photo', new Blob([buf], { type: 'image/jpeg' }), 'ilan-karti.jpg');
     form.append('caption', preview.slice(0, 1024));
     form.append('parse_mode', 'MarkdownV2');
     form.append('reply_markup', JSON.stringify(approvalKeyboard(postId)));
@@ -327,11 +328,11 @@ async function sendTelegramCard(cardPath, preview, postId) {
 async function uploadCard(cardPath, id) {
   if (!SUPA_URL || !SUPA_KEY) return null;
   try {
-    const objectPath = `ilan-card/${id}.png`;
+    const objectPath = `ilan-card/${id}.jpg`;
     const buf = await readFile(cardPath);
     const up = await fetch(`${SUPA_URL}/storage/v1/object/social-media/${objectPath}`, {
       method: 'POST',
-      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'image/png', 'x-upsert': 'true' },
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'image/jpeg', 'x-upsert': 'true' },
       body: buf,
     });
     if (!up.ok) { console.warn('  ⚠️  storage upload fail:', up.status, (await up.text()).slice(0, 140)); return null; }
