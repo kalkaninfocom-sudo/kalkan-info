@@ -62,7 +62,7 @@ async function sendPhotoUpload(cardPath, caption, postId) {
   const buf = await readFile(cardPath);
   const form = new FormData();
   form.append('chat_id', String(TG_CHAT));
-  form.append('photo', new Blob([buf], { type: 'image/png' }), 'gazete-kapak.png');
+  form.append('photo', new Blob([buf], { type: 'image/jpeg' }), 'gazete-kapak.jpg');
   form.append('caption', caption.slice(0, 1024));
   form.append('reply_markup', JSON.stringify(approvalKeyboard(postId)));
   const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendPhoto`, { method: 'POST', body: form });
@@ -79,9 +79,9 @@ async function main() {
   const r = spawnSync('node', ['scripts/newspaper-daily.mjs', date], { cwd: ROOT, stdio: 'inherit' });
   if (r.status !== 0) console.warn('⚠ newspaper-daily hata verdi ama kartlar üretilmiş olabilir, devam.');
 
-  const cardPath = join(ROOT, 'newspaper', 'archive', date, 'morning-card.png');
+  const cardPath = join(ROOT, 'newspaper', 'archive', date, 'morning-card.jpg');
   if (!existsSync(cardPath)) { console.error(`❌ Kapak kartı yok: ${cardPath} — onay gönderilemez.`); process.exit(1); }
-  console.log(`✓ Kapak görseli hazır: newspaper/archive/${date}/morning-card.png`);
+  console.log(`✓ Kapak görseli hazır: newspaper/archive/${date}/morning-card.jpg`);
 
   // 2) social_posts satırı — UYGULAMA SEVİYESİ upsert (DB unique constraint gerekmez)
   if (!SUPA_URL || !SUPA_KEY) { console.warn('ℹ Supabase env yok — id çekilemedi, Telegram onayı atlandı. (Kart hazır.)'); return; }
@@ -91,7 +91,7 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu sayı için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
   if (!post) {
     const assets = ['morning', 'magazine']
-      .map(t => `/newspaper/archive/${date}/${t}-card.png`)
+      .map(t => `/newspaper/archive/${date}/${t}-card.jpg`)
       .filter(p => existsSync(join(ROOT, p.slice(1))));
     const caption = `Kalkan Today — ${date} sayısı. Ön sayfa + magazin. Tüm sayı: ${SITE_BASE}/gazete`;
     const row = {

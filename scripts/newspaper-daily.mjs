@@ -84,8 +84,10 @@ async function renderCards(chromePath) {
         </div></body></html>`;
       await page.setViewport({ width: 1080, height: 1920, deviceScaleFactor: 1 });
       await page.setContent(wrapper, { waitUntil: 'load' });
-      const outRel = `newspaper/archive/${date}/${type}-card.png`;
-      await page.screenshot({ path: join(ROOT, outRel), clip: { x: 0, y: 0, width: 1080, height: 1920 } });
+      // JPEG üret: Instagram Graph API feed/carousel'de SADECE JPEG kabul eder (PNG → 9004 hatası).
+      // q92 metin/çizgi için yeterli net; IG zaten yeniden sıkıştırır.
+      const outRel = `newspaper/archive/${date}/${type}-card.jpg`;
+      await page.screenshot({ path: join(ROOT, outRel), type: 'jpeg', quality: 92, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
       await page.close();
       cards.push({ type, path: `/${outRel}` });
       console.log(`  ✓ ${outRel}`);
