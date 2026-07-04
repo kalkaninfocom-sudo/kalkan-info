@@ -86,7 +86,7 @@ const Intro: React.FC<PlajReelProps> = (p) => {
   const { o } = useAppear(6, 14);
   const { o: o2 } = useAppear(24);
   const frame = useCurrentFrame();
-  const fade = interpolate(frame, [58, 74], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const fade = interpolate(frame, [46, 60], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 28, letterSpacing: 7, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
@@ -113,10 +113,10 @@ const Hero: React.FC<PlajReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(14, 18);
   const { o: oMeta } = useAppear(30);
-  const kb = interpolate(frame, [0, 255], [1.08, 1.22]);
-  const kbC = interpolate(frame, [0, 255], [1.0, 1.06]);
-  const imgFade = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: 'clamp' });
-  const outFade = interpolate(frame, [235, 255], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const kb = interpolate(frame, [0, 180], [1.08, 1.20]);
+  const kbC = interpolate(frame, [0, 180], [1.0, 1.06]);
+  const imgFade = interpolate(frame, [0, 16], [0, 1], { extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [162, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const hero = p.photos[0] || '';
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
@@ -152,8 +152,8 @@ const Gallery: React.FC<PlajReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(6);
   const shots = p.photos.slice(1, 4);
-  const per = 100;
-  const outFade = interpolate(frame, [280, 300], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const per = 80;
+  const outFade = interpolate(frame, [222, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   if (shots.length === 0) return null;
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
@@ -195,7 +195,7 @@ const InfoRow: React.FC<{ icon: string; label: string; value?: string; from: num
 const Info: React.FC<PlajReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(6);
-  const outFade = interpolate(frame, [160, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [132, 150], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 80px', gap: 44, opacity: outFade }}>
       <div style={{ fontFamily: SERIF, fontSize: 60, fontWeight: 900, color: C.cream, opacity: o, lineHeight: 1.05, letterSpacing: -1 }}>{p.name}</div>
@@ -240,11 +240,11 @@ export const PlajReel: React.FC<PlajReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
-      <Sequence from={0} durationInFrames={75}><Intro {...props} /></Sequence>
-      <Sequence from={75} durationInFrames={255}><Hero {...props} /></Sequence>
-      <Sequence from={330} durationInFrames={300}><Gallery {...props} /></Sequence>
-      <Sequence from={630} durationInFrames={180}><Info {...props} /></Sequence>
-      <Sequence from={810} durationInFrames={90}><Outro {...props} /></Sequence>
+      <Sequence from={0} durationInFrames={60}><Intro {...props} /></Sequence>
+      <Sequence from={60} durationInFrames={180}><Hero {...props} /></Sequence>
+      <Sequence from={240} durationInFrames={240}><Gallery {...props} /></Sequence>
+      <Sequence from={480} durationInFrames={150}><Info {...props} /></Sequence>
+      <Sequence from={630} durationInFrames={90}><Outro {...props} /></Sequence>
     </AbsoluteFill>
   );
 };

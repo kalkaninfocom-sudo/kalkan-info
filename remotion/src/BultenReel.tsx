@@ -66,7 +66,7 @@ const Intro: React.FC<BultenReelProps> = (p) => {
   const { o } = useAppear(6, 14);
   const { o: o2 } = useAppear(26);
   const frame = useCurrentFrame();
-  const fade = interpolate(frame, [72, 88], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const fade = interpolate(frame, [58, 70], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 9, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
@@ -110,12 +110,12 @@ const NewsCard: React.FC<{ item: { label?: string; title: string; summary?: stri
 const Highlights: React.FC<BultenReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(6);
-  const outFade = interpolate(frame, [430, 450], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [344, 360], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const items = p.items.slice(0, 4);
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 66px', gap: 30, opacity: outFade }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 4 }}>BU HAFTA ÖNE ÇIKANLAR</div>
-      {items.map((it, i) => <NewsCard key={i} item={it} from={22 + i * 26} />)}
+      {items.map((it, i) => <NewsCard key={i} item={it} from={18 + i * 21} />)}
     </AbsoluteFill>
   );
 };
@@ -125,8 +125,8 @@ const Magazine: React.FC<BultenReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(6);
   const { o: o2 } = useAppear(24);
-  const { o: o3 } = useAppear(40);
-  const outFade = interpolate(frame, [220, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const { o: o3 } = useAppear(32);
+  const outFade = interpolate(frame, [176, 192], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   if (!p.magazine_title) return null;
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 74px', opacity: outFade }}>
@@ -173,10 +173,10 @@ export const BultenReel: React.FC<BultenReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
-      <Sequence from={0} durationInFrames={90}><Intro {...props} /></Sequence>
-      <Sequence from={90} durationInFrames={450}><Highlights {...props} /></Sequence>
-      <Sequence from={540} durationInFrames={240}><Magazine {...props} /></Sequence>
-      <Sequence from={780} durationInFrames={120}><Outro {...props} /></Sequence>
+      <Sequence from={0} durationInFrames={72}><Intro {...props} /></Sequence>
+      <Sequence from={72} durationInFrames={360}><Highlights {...props} /></Sequence>
+      <Sequence from={432} durationInFrames={192}><Magazine {...props} /></Sequence>
+      <Sequence from={624} durationInFrames={96}><Outro {...props} /></Sequence>
     </AbsoluteFill>
   );
 };

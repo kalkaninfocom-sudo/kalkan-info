@@ -91,7 +91,7 @@ const Masthead: React.FC<GazeteReelProps> = (p) => {
   const { o } = useAppear(6, 14);
   const { o: o2 } = useAppear(24);
   const frame = useCurrentFrame();
-  const fade = interpolate(frame, [58, 75], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const fade = interpolate(frame, [46, 60], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center', opacity: fade, padding: 80 }}>
       <div style={{ fontFamily: SANS, fontSize: 28, letterSpacing: 7, color: C.gold, fontWeight: 700, opacity: o, transform: `translateY(${(1 - o) * -20}px)` }}>
@@ -118,10 +118,10 @@ const Lead: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame(); // Sequence içinde 0-tabanlı
   const { o } = useAppear(8, 18);
   const { o: oDeck } = useAppear(24);
-  const kb = interpolate(frame, [0, 240], [1.08, 1.20]); // ken-burns
+  const kb = interpolate(frame, [0, 192], [1.08, 1.20]); // ken-burns
   const imgFade = interpolate(frame, [0, 18], [0, 1], { extrapolateRight: 'clamp' });
-  const outFade = interpolate(frame, [220, 240], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
-  const kbC = interpolate(frame, [0, 240], [1.0, 1.05]); // contain için hafif zoom
+  const outFade = interpolate(frame, [176, 192], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const kbC = interpolate(frame, [0, 192], [1.0, 1.05]); // contain için hafif zoom
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
       {p.lead_image ? (
@@ -173,12 +173,12 @@ const HeadlineCard: React.FC<{ label?: string; title?: string; summary?: string;
 const Headlines: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame(); // Sequence-göreli 0–270
   const { o } = useAppear(6);
-  const outFade = interpolate(frame, [205, 225], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const outFade = interpolate(frame, [164, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ justifyContent: 'center', padding: '0 70px', gap: 40, opacity: outFade }}>
       <div style={{ fontFamily: SANS, fontSize: 30, letterSpacing: 6, color: C.gold, fontWeight: 700, opacity: o, marginBottom: 6 }}>{p.labels?.more ?? 'AYRICA BUGÜN'}</div>
       <HeadlineCard label={p.col1_label} title={p.col1_title} summary={p.col1_summary} from={20} />
-      <HeadlineCard label={p.col3_label} title={p.col3_title} summary={p.col3_summary} from={50} />
+      <HeadlineCard label={p.col3_label} title={p.col3_title} summary={p.col3_summary} from={40} />
     </AbsoluteFill>
   );
 };
@@ -213,8 +213,8 @@ const Evergreen: React.FC<GazeteReelProps> = (p) => {
   const frame = useCurrentFrame();
   const { o } = useAppear(6);
   const { o: o2 } = useAppear(22);
-  const { o: oAd } = useAppear(56, 16);
-  const outFade = interpolate(frame, [160, 180], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const { o: oAd } = useAppear(45, 16);
+  const outFade = interpolate(frame, [128, 144], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
       {/* Antik az-bilinen — üst çeyrek */}
@@ -241,11 +241,11 @@ export const GazeteReel: React.FC<GazeteReelProps> = (props) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 0%, ${C.navy3} 0%, ${C.navy} 55%, #041423 100%)` }}>
       <AbsoluteFill style={{ backgroundImage: GRAIN, opacity: 0.06, mixBlendMode: 'overlay' }} />
-      <Sequence from={0} durationInFrames={75}><Masthead {...props} /></Sequence>
-      <Sequence from={75} durationInFrames={240}><Lead {...props} /></Sequence>
-      <Sequence from={315} durationInFrames={225}><Headlines {...props} /></Sequence>
-      <Sequence from={540} durationInFrames={180}><Evergreen {...props} /></Sequence>
-      <Sequence from={720} durationInFrames={180}><Outro labels={props.labels} /></Sequence>
+      <Sequence from={0} durationInFrames={60}><Masthead {...props} /></Sequence>
+      <Sequence from={60} durationInFrames={192}><Lead {...props} /></Sequence>
+      <Sequence from={252} durationInFrames={180}><Headlines {...props} /></Sequence>
+      <Sequence from={432} durationInFrames={144}><Evergreen {...props} /></Sequence>
+      <Sequence from={576} durationInFrames={144}><Outro labels={props.labels} /></Sequence>
     </AbsoluteFill>
   );
 };

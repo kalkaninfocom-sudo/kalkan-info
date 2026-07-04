@@ -93,7 +93,7 @@ async function main() {
       else input = `${SITE}/${p.replace(/^\//, '')}`;
     }
     const outJpg = join(tmp, `p${i}.jpg`);
-    const ff = spawnSync('ffmpeg', ['-y', '-i', input, '-vf', "scale='min(1200,iw)':-2", '-q:v', '4', outJpg], { stdio: 'ignore' });
+    const ff = spawnSync('ffmpeg', ['-y', '-i', input, '-vf', "scale='min(1600,iw)':-2", '-q:v', '2', outJpg], { stdio: 'ignore' });
     if (ff.status !== 0 || !existsSync(outJpg)) { console.warn(`⚠ foto işlenemedi, atlanıyor: ${p}`); continue; }
     const b64 = readFileSync(outJpg).toString('base64');
     photoRel.push(`data:image/jpeg;base64,${b64}`);
@@ -140,7 +140,7 @@ async function main() {
   if (music) {
     console.log(`── Müzik mix: ${music.split(/[\\/]/).pop()} ──`);
     const ff = spawnSync('ffmpeg', ['-y', '-i', silentMp4, '-i', music,
-      '-filter_complex', '[1:a]volume=0.28,afade=in:st=0:d=1.5,afade=out:st=27:d=3[m]',
+      '-filter_complex', '[1:a]volume=0.28,afade=in:st=0:d=1.5,afade=out:st=21:d=3[m]',
       '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
       { stdio: 'ignore' });
     musicOk = ff.status === 0 && existsSync(outMp4);

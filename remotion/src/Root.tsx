@@ -45,7 +45,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="GazeteReel"
         component={GazeteReel}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1080}
         height={1920}
@@ -65,7 +65,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="BultenReel"
         component={BultenReel}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1080}
         height={1920}
@@ -75,7 +75,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="VillaReel"
         component={VillaReel}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1080}
         height={1920}
@@ -85,7 +85,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="AntikReel"
         component={AntikReel}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1080}
         height={1920}
@@ -95,7 +95,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="PlajReel"
         component={PlajReel}
-        durationInFrames={900}
+        durationInFrames={720}
         fps={30}
         width={1080}
         height={1920}
