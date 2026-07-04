@@ -22,6 +22,10 @@ concurrency:
   group: agency-scheduler
   cancel-in-progress: false
 
+permissions:
+  contents: read
+  actions: write   # gazete-approval'ı dispatch edebilmek için (GitHub'ın flaky once-daily cron'una yedek)
+
 jobs:
   tick:
     runs-on: ubuntu-latest
@@ -44,3 +48,18 @@ jobs:
           if [ -n "${{ github.event.inputs.now }}" ]; then ARGS="$ARGS --now ${{ github.event.inputs.now }}"; fi
           if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           node scripts/agency/scheduler.mjs $ARGS
+
+      # BULLETPROOF günlük gazete — GitHub'ın once-daily cron'u güvenilmez, güvenilir */10 scheduler'dan tetikle.
+      # Sabah penceresinde (04:40–05:10 UTC = 07:40–08:10 TR) çalışır; "bugün zaten çalıştı mı" kontrolüyle ÇİFT göndermez.
+      - name: Günlük gazete onayı (yedek tetik)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          H=$(date -u +%H); M=$(date -u +%M); TODAY=$(date -u +%Y-%m-%d)
+          IN_WINDOW=false
+          if { [ "$H" = "04" ] && [ "$M" -ge 40 ]; } || { [ "$H" = "05" ] && [ "$M" -le 10 ]; }; then IN_WINDOW=true; fi
+          if [ "$IN_WINDOW" != "true" ]; then echo "Gazete penceresi değil ($H:$M UTC) — atlandı"; exit 0; fi
+          RAN=$(gh run list --workflow=gazete-approval.yml --created="$TODAY" -L 30 --json databaseId -q 'length' 2>/dev/null || echo 0)
+          if [ "$RAN" != "0" ]; then echo "Gazete bugün zaten çalışmış ($RAN run) — atlandı"; exit 0; fi
+          echo "Gazete bugün çalışmamış → tetikleniyor (yedek)"
+          gh workflow run gazete-approval.yml
