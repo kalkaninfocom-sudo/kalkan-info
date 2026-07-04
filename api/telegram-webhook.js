@@ -10,6 +10,7 @@
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
 import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
 import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
+import { fanoutExtraPlatforms, fanoutSummary } from '../lib/social-fanout.js';
 import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
@@ -92,14 +93,25 @@ async function publishNow(post) {
       }
     }
 
+    // IG başarılı — durumu HEMEN kaydet (ek platform gecikmesi/timeout bunu kaybetmesin).
     await updateStatus(post.id, {
       status: 'published',
       published_at: new Date().toISOString(),
       ig_media_id: mediaId,
     });
+
+    // Ek platformlar (Threads/Bluesky/YouTube/TikTok) — graceful, IG/FB'yi bozmaz. Bonus dağıtım.
+    let extraSummary = '';
+    try {
+      const isVid = post.content_type === 'reels' || post.content_type === 'video';
+      const extra = await fanoutExtraPlatforms({ caption, mediaUrl: assets[0], isVideo: isVid });
+      extraSummary = fanoutSummary(extra);
+    } catch (fe) { console.error('[publishNow] fanout fail', fe); }
+
     if (process.env.TELEGRAM_ADMIN_CHAT_ID) {
       await sendMessage(process.env.TELEGRAM_ADMIN_CHAT_ID,
-        `✅ *Yayınlandı*\n\n${escapeMd(post.content_pack_id)}\nIG Media ID: \`${escapeMd(String(mediaId))}\`\nFB: ${escapeMd(fbResult)}`);
+        `✅ *Yayınlandı*\n\n${escapeMd(post.content_pack_id)}\nIG Media ID: \`${escapeMd(String(mediaId))}\`\nFB: ${escapeMd(fbResult)}` +
+        (extraSummary ? `\n\n_Ek platformlar:_\n${escapeMd(extraSummary)}` : ''));
     }
   } catch (e) {
     console.error('[publishNow] fail', e);
