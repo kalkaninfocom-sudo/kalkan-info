@@ -70,6 +70,21 @@ const SOURCES = [
     requireKeyword: false, // Kalkan-specific
   },
   {
+    // Agent-Reach: Google News araması — tüm Türk kaynaklardan "Kalkan Kaş" haberleri (100 item).
+    // İki kelime birlikte → ulusal "kalkan" (balık/siper) gürültüsünü eler; requireKeyword ekstra bölge filtresi.
+    name: 'Google News — Kalkan/Kaş',
+    url: 'https://news.google.com/rss/search?q=Kalkan%20Ka%C5%9F&hl=tr&gl=TR&ceid=TR:tr',
+    sourceHome: 'https://news.google.com',
+    requireKeyword: true,
+  },
+  {
+    // Agent-Reach: bölge antik/turizm — Patara/Kekova/Likya (antik kent + tur içeriği için).
+    name: 'Google News — Patara/Kekova/Likya',
+    url: 'https://news.google.com/rss/search?q=(Patara%20OR%20Kekova%20OR%20Letoon%20OR%20Likya)%20Antalya&hl=tr&gl=TR&ceid=TR:tr',
+    sourceHome: 'https://news.google.com',
+    requireKeyword: true,
+  },
+  {
     name: 'Anadolu Ajansı',
     url: 'https://www.aa.com.tr/tr/rss/default?cat=guncel',
     sourceHome: 'https://www.aa.com.tr',
