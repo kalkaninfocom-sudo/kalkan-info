@@ -77,8 +77,7 @@ const Stars: React.FC<{ rating?: number; o: number }> = ({ rating, o }) => {
 // Blurlu 'cover' dolgu + net 'contain' ön plan (yatay foto 9:16'da kesilmez).
 const Photo: React.FC<{ src: string; kb: number; kbC: number; fade: number }> = ({ src, kb, kbC, fade }) => (
   <AbsoluteFill style={{ opacity: fade }}>
-    <Img src={src} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(34px) brightness(0.5)', transform: `scale(${kb})` }} />
-    <Img src={src} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', transform: `scale(${kbC})` }} />
+    <Img src={src} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${kb})` }} />
   </AbsoluteFill>
 );
 
@@ -122,9 +121,9 @@ const Hero: React.FC<AntikReelProps> = (p) => {
   return (
     <AbsoluteFill style={{ opacity: outFade }}>
       {hero ? (
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '58%', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
           <Photo src={hero} kb={kb} kbC={kbC} fade={imgFade} />
-          <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '55%', background: 'linear-gradient(180deg, rgba(4,20,35,0) 0%, rgba(4,20,35,0.6) 55%, #041423 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(4,20,35,0.35) 0%, rgba(4,20,35,0) 30%, rgba(4,20,35,0.15) 55%, rgba(4,20,35,0.75) 82%, #041423 100%)' }} />
         </div>
       ) : null}
       <AbsoluteFill style={{ justifyContent: 'flex-end', padding: '0 70px 140px' }}>
