@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{{NAME}} — Kalkan | kalkaninfo.com</title>
+<title>{{SEO_TITLE}}</title>
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -29,7 +29,7 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
 
 <!-- SEO -->
 <meta name="description" content="{{SUMMARY}}">
-<meta name="keywords" content="{{NAME}}, Kalkan {{CATEGORY}}, {{CUISINE}}, Kalkan restoran, kalkaninfo">
+<meta name="keywords" content="{{SEO_KEYWORDS}}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://kalkaninfo.com/restoran/{{SLUG}}">
 
@@ -73,7 +73,7 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
   "url":"https://kalkaninfo.com/restoran/{{SLUG}}/",
   "telephone":"{{PHONE}}",
   "priceRange":"{{PRICE_RANGE}}",
-  "servesCuisine":"{{CUISINE}}",
+  "servesCuisine":{{SERVES_CUISINE_JSON}},
   "address":{
     "@type":"PostalAddress",
     "streetAddress":"{{LOCATION}}",

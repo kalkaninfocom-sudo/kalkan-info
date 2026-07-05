@@ -384,8 +384,34 @@ for (const slug of targets) {
   const geoObj = geoJson(r);
   const geoBlock = geoObj ? `"geo":${JSON.stringify(geoObj)},\n  ` : '';
 
-  // META i18n — title tum dillerde ayni (isim tabanli, TR SEO korunur), aciklama cevrilir.
-  const metaTitle = `${r.name} — Kalkan | kalkaninfo.com`;
+  // ── SEO: anahtar kelime odakli baslik + keywords + servesCuisine dizisi ──
+  // Cuisine ("Köfte · Tantuni · Kokoreç · Fast Food") ve specialties'ten arama
+  // terimleri uretilir. "Kalkan köfte / tantuni / kokoreç" gibi sorgularda ve
+  // yapay zeka onerilerinde bu sayfanin cikmasi icin.
+  const cuisineParts = String(r.cuisine || '').split(/[·,|]/).map(s => s.trim()).filter(Boolean);
+  const specTerms = (r.specialties || []).map(s => String(s).trim()).filter(Boolean);
+  // servesCuisine JSON dizisi (Schema.org array — AI/rich result icin daha guclu)
+  const cuisineSet = [...new Set([...cuisineParts, ...specTerms])];
+  const servesCuisineJson = cuisineSet.length
+    ? JSON.stringify(cuisineSet)
+    : JSON.stringify(r.cuisine || r.category || 'Restoran');
+  // Keyword meta: isim + "Kalkan <specialty>" kombinasyonlari + mutfak + jenerik
+  const kwParts = [
+    r.name,
+    ...specTerms.map(s => `Kalkan ${s}`),
+    ...specTerms,
+    ...cuisineParts,
+    `Kalkan ${r.category}`,
+    'Kalkan restoran', 'Kalkan yemek', 'Kalkan nerede yenir', 'kalkaninfo'
+  ];
+  const seoKeywords = [...new Set(kwParts.map(s => String(s).trim()).filter(Boolean))].join(', ');
+  // SEO baslik: sadece entry'de seoTitle varsa keyword-zenginlestir; yoksa isim tabanli (mevcut davranis korunur).
+  const seoTitle = r.seoTitle
+    ? `${r.name} — ${r.seoTitle} | kalkaninfo.com`
+    : `${r.name} — Kalkan | kalkaninfo.com`;
+
+  // META i18n — title tum dillerde ayni (SEO korunur), aciklama cevrilir.
+  const metaTitle = seoTitle;
   const descI18n = r.summaryI18n || {};
   const META_I18N = {};
   for (const l of ['tr', 'en', 'de', 'ru', 'fr']){
@@ -403,6 +429,9 @@ for (const slug of targets) {
     SLUG: r.id,
     CATEGORY: r.category,
     CUISINE: r.cuisine || r.category,
+    SEO_TITLE: seoTitle,
+    SEO_KEYWORDS: seoKeywords,
+    SERVES_CUISINE_JSON: servesCuisineJson,
     PRICE_RANGE: r.priceRange || '₺₺',
     SUMMARY: r.summary || c.tagline || '',
     TAGLINE: c.tagline || r.summary || '',
