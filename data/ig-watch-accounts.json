@@ -1,0 +1,19 @@
+{
+  "note": "Küratörlü Kalkan mekan Instagram kullanıcı adları. SADECE PUBLIC Business/Creator hesapları business_discovery ile okunabilir (görsel + caption + tarih; 'video izleme' YOK). Kişisel/gizli hesaplar API'den okunamaz → o hesap otomatik atlanır. active:true olan 3 hesap CANLI test edildi (2026-07-07) ve public business doğrulandı. active:false olanlar en iyi tahmin — Berkay: GERÇEK IG kullanıcı adıyla düzelt ve `node scripts/ig-venue-watch.mjs --probe kullaniciadi` ile doğrulayınca active:true yap ('Invalid user id' = yanlış handle veya public business değil).",
+  "accounts": [
+    { "username": "kalamarbeachclub", "name": "Kalamar Beach Club", "category": "plaj", "active": true },
+    { "username": "kalkanregency", "name": "Kalkan Regency Hotel", "category": "otel", "active": true },
+    { "username": "korsankalkan", "name": "Korsan Fish Terrace Kalkan", "category": "restoran", "active": true },
+    { "username": "auberginekalkan", "name": "Aubergine Restaurant Kalkan", "category": "restoran", "active": false },
+    { "username": "pataraprince", "name": "Patara Prince Hotel & Resort", "category": "otel", "active": false },
+    { "username": "happyhourskalkan", "name": "Happy Hours Kalkan", "category": "bar", "active": false },
+    { "username": "zinbadkalkan", "name": "Zinbad Restaurant", "category": "restoran", "active": false },
+    { "username": "likyabistrokalkan", "name": "Likya Restaurant Kalkan", "category": "restoran", "active": false },
+    { "username": "mahalkalkan", "name": "Mahal Beach Club", "category": "beach-club", "active": false },
+    { "username": "kalkanmarina", "name": "Kalkan Marina", "category": "etkinlik", "active": false },
+    { "username": "kasbelediyesi", "name": "Kaş Belediyesi", "category": "belediye", "active": false },
+    { "username": "kalkanbaykalkan", "name": "Kalkan Bay", "category": "beach-club", "active": false },
+    { "username": "villamahal", "name": "Villa Mahal Kalkan", "category": "otel", "active": false },
+    { "username": "guruskalkan", "name": "Guru's Place Kalkan", "category": "restoran", "active": false }
+  ]
+}
