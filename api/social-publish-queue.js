@@ -8,8 +8,11 @@ import { sendMessage } from '../lib/telegram.js';
 
 const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const IG_USER_ID = process.env.IG_BUSINESS_ID;
-const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN;
+// Env adı toleransı: prod'da hangi ad set edilmişse çalışsın (isim parçalanması gerçek risk).
+const IG_USER_ID = process.env.IG_BUSINESS_ID || process.env.IG_ACCOUNT_ID || process.env.IG_USER_ID;
+const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN || process.env.IG_TOKEN;
+// Bayat onaylı postları yayınlama (hafta birikmiş approved backlog'u toplu basıp IG'yi spamlemesin).
+const STALE_HOURS = Number(process.env.PUBLISH_STALE_HOURS || 12);
 const CRON_SECRET = process.env.IG_CRON_SECRET;
 const TG_CHAT_ID = process.env.TELEGRAM_ADMIN_CHAT_ID;
 // non-www: canonical + Vercel primary. www 308-redirect eder → Meta image-fetch'i bozabilir.
@@ -30,8 +33,10 @@ async function supa(path, opts = {}) {
 
 async function fetchApprovedPosts() {
   const now = new Date().toISOString();
+  // Yalnız SON STALE_HOURS içinde planlanmış onaylıları çek — eski backlog otomatik atlanır.
+  const floor = new Date(Date.now() - STALE_HOURS * 3600_000).toISOString();
   const res = await supa(
-    `/social_posts?status=eq.approved&scheduled_at=lte.${encodeURIComponent(now)}&published_at=is.null&order=scheduled_at.asc&limit=5`
+    `/social_posts?status=eq.approved&scheduled_at=lte.${encodeURIComponent(now)}&scheduled_at=gte.${encodeURIComponent(floor)}&published_at=is.null&order=scheduled_at.asc&limit=5`
   );
   if (!res.ok) {
     const text = await res.text();

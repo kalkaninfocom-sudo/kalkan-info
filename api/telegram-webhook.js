@@ -43,10 +43,17 @@ async function updateStatus(postId, patch) {
 }
 
 async function publishNow(post) {
-  const IG_USER_ID = process.env.IG_BUSINESS_ID;
-  const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN;
+  // Env adı toleransı: prod'da hangi ad set edilmişse çalışsın.
+  const IG_USER_ID = process.env.IG_BUSINESS_ID || process.env.IG_ACCOUNT_ID || process.env.IG_USER_ID;
+  const IG_TOKEN = process.env.IG_LONG_LIVED_TOKEN || process.env.IG_TOKEN;
   if (!IG_USER_ID || !IG_TOKEN) {
-    console.warn('[publishNow] IG env eksik');
+    // Sessizce dönme — durumu 'failed' işaretle + Telegram'a net bildir (yoksa post sonsuza dek 'approved' çürür).
+    console.error('[publishNow] IG env eksik (IG_BUSINESS_ID/IG_LONG_LIVED_TOKEN)');
+    await updateStatus(post.id, { status: 'failed', engagement_metrics: { error: 'IG env eksik (prod: IG_BUSINESS_ID + IG_LONG_LIVED_TOKEN set edilmeli)' } });
+    if (process.env.TELEGRAM_ADMIN_CHAT_ID) {
+      await sendMessage(process.env.TELEGRAM_ADMIN_CHAT_ID,
+        `❌ *Yayın yapılamadı* — IG env eksik\n\n${escapeMd(String(post.content_pack_id || post.id))}\n\n_Vercel prod'da IG\\_BUSINESS\\_ID ve IG\\_LONG\\_LIVED\\_TOKEN set edilmeli._`);
+    }
     return;
   }
   // local_assets göreli yol ('/newspaper/...') tutabilir — IG/FB image_url'i FETCH eder,
