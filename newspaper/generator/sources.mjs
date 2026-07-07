@@ -11,7 +11,7 @@
  *   - Nöbetçi eczane                     → data/eczane.json (her gün 06:00 otomatik)
  */
 
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -20,6 +20,38 @@ import { eventsForDate } from '../../scripts/events-lib.mjs';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = join(__dirname, '..', '..');
 const DATA = join(REPO, 'data');
+
+// ─── ROTASYON GEÇMİŞİ (tekrarı kır) ───
+// Berkay: "her gün Kaptan restoran öneriliyor, magazin hep aynı mekan". Seçim deterministik + geçmişsizdi.
+// Bu dosya son önerilen mekan/hero id'lerini tutar; seçim son N günde kullanılmayanı önceler.
+const HISTORY_FILE = join(DATA, 'gazete-history.json');
+async function loadHistory() {
+  try { return JSON.parse(await readFile(HISTORY_FILE, 'utf8')); } catch { return {}; }
+}
+async function recordHistory(key, id, iso, keep = 25) {
+  if (id == null) return;
+  const h = await loadHistory();
+  const arr = Array.isArray(h[key]) ? h[key] : [];
+  const filtered = arr.filter(e => !(e.id === id && e.date === iso)); // aynı gün 2. build idempotent
+  filtered.push({ id, date: iso });
+  h[key] = filtered.slice(-keep);
+  try { await writeFile(HISTORY_FILE, JSON.stringify(h, null, 2)); } catch {}
+}
+function recentIds(history, key, days, iso) {
+  const arr = Array.isArray(history[key]) ? history[key] : [];
+  const cutoff = new Date(iso + 'T00:00:00'); cutoff.setDate(cutoff.getDate() - days);
+  return new Set(arr.filter(e => new Date(e.date + 'T00:00:00') >= cutoff).map(e => e.id));
+}
+// Son N günde kullanılmayan adaylardan, gün-tabanlı deterministik offset ile seç (stabil ama her gün farklı).
+function pickRotated(candidates, history, key, iso, days = 6) {
+  const list = (candidates || []).filter(Boolean);
+  if (!list.length) return null;
+  const recent = recentIds(history, key, days, iso);
+  const fresh = list.filter(c => !recent.has(c.id));
+  const pool = fresh.length ? fresh : list;             // hepsi tükendiyse tüm havuza dön
+  const offset = Number(issueOf(iso)) % pool.length;    // gün numarası → deterministik dönüş
+  return pool[offset];
+}
 
 const KALKAN_LAT = 36.2658;
 const KALKAN_LNG = 29.4118;
@@ -131,19 +163,22 @@ export async function getWeather() {
 
 // ─── 2) HABERLER (manşet + 2 haber sütunu) ───
 // Kalkan-yerel skorlama: tatilci gazetesine ulusal/dünya politikası sızmasın.
-const PLACE_RX = [
+// ÇEKİRDEK yer adları (Kalkan/Kaş/Patara ekseni). 'antalya' KASITLI yok — il-geneli haber
+// çekirdek yer geçmiyorsa ön sayfayı basmasın (Berkay: "haber Antalya merkezli, Kalkan değil").
+const CORE_RX = [
   /\bkalkan\b/i, /\bkaş\b/i, /\bpatara\b/i, /\bkaputaş\b/i, /\bletoon\b/i,
-  /\bksanthos\b/i, /\bxanthos\b/i, /\bantalya\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
-  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i, /\bkutso\b/i,
+  /\bksanthos\b/i, /\bxanthos\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
+  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i, /\bkutso\b/i, /\bdemre\b/i,
 ];
 const TOURIST_CATS = { Turizm: 2, Plaj: 2, Etkinlik: 2, Kültür: 2, Belediye: 0, Gündem: 0, Hava: 1, Asayiş: -3 };
 
 function newsScore(it) {
   const txt = `${it.title || ''} ${it.summary || ''} ${(it.tags || []).join(' ')}`;
   let s = 0;
-  // Yer adı (kelime sınırlı — "Kasım" ≠ "Kaş")
-  for (const rx of PLACE_RX) if (rx.test(txt)) { s += 2; break; }
-  if (/\bkalkan\b/i.test(txt)) s += 2; // Kalkan'ın kendisi ekstra puan
+  const hasCore = CORE_RX.some(rx => rx.test(txt));
+  if (hasCore) s += 3;                                   // Kalkan/Kaş/Patara ekseni → güçlü
+  else if (/\bantalya\b/i.test(txt)) s -= 4;             // yalnız Antalya (çekirdek yok) → tatilci gazetesine girmesin
+  if (/\bkalkan\b/i.test(txt)) s += 2;                   // Kalkan'ın kendisi ekstra
   // Kaynak güveni: yerel > bölgesel > ulusal
   const src = it.source || '';
   if (/kalkan/i.test(src)) s += 3;
@@ -212,10 +247,12 @@ export async function getNews() {
 }
 
 // ─── 3) RESTORAN (Şefin Önerisi col2 + reklam slotu) ───
-export async function getRestaurant(opts = {}) {
+export async function getRestaurant(iso, opts = {}) {
   const data = await readJson('restoranlar.json');
   if (!data?.items?.length) return {};
   const items = data.items;
+  const history = await loadHistory();
+  const day = iso || new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
 
   const detailUrl = (r) => {
     if (r.customSiteUrl) return r.customSiteUrl;
@@ -226,13 +263,15 @@ export async function getRestaurant(opts = {}) {
 
   const out = {};
 
-  // ── Reklam slotu: sponsor (source=client) öncelik, yoksa en yüksek puanlı detay sayfalı mekan
+  // ── Reklam slotu: ücretli sponsor (source=client) ROTASYON DIŞI (parası ödenmiş, hep göster).
+  //    Sponsor yoksa: yüksek puanlı detay-sayfalı mekanlardan ROTASYONLA (son 6 gün tekrarı önle).
   let ad = items.find(r => r.source === 'client' && (r.phone || r.reservation));
   if (!ad) {
-    const rated = items
+    const ratedPool = items
       .filter(r => r.rating && r.reviewCount >= 30 && (r.detailPath || r.customSiteUrl))
-      .sort((a, b) => b.rating - a.rating);
-    ad = rated[0];
+      .sort((a, b) => b.rating - a.rating)
+      .slice(0, 12); // üst havuz — kaliteyi koru, içinden döndür
+    ad = pickRotated(ratedPool, history, 'ad', day);
   }
   if (ad) {
     out.ad_title = `${ad.name}${ad.location ? ' — ' + ad.location : ''}`;
@@ -240,19 +279,28 @@ export async function getRestaurant(opts = {}) {
     out.ad_body = `${sum}${ad.phone ? ' · Rezervasyon: ' + ad.phone : ''}`.trim();
     out.ad_cta = ad.reservation ? 'Hemen Rezervasyon' : 'Mekanı Keşfet';
     out.ad_qr_url = detailUrl(ad);
+    if (ad.source !== 'client') await recordHistory('ad', ad.id, day); // sponsoru geçmişe yazma (rotasyon dışı)
   }
 
-  // ── col2 "Şefin Önerisi": haber yoksa restoran ile doldur (build kararı verir)
-  const featured = items
-    .filter(r => r.rating && r.reviewCount >= 30 && r.summary)
+  // ── col2 "Şefin Önerisi": yüksek puanlı YEMEK mekanı GENİŞ havuzundan ROTASYONLA (ad ile aynı olmasın).
+  //    summary ŞART DEĞİL (yalnız 7 mekanda var → rotasyon çökerdi); yoksa gövde kategori/uzmanlıktan üretilir.
+  const chefAll = items
+    .filter(r => r.rating && (r.reviewCount || 0) >= 25 && r.id !== ad?.id)
     .sort((a, b) => b.rating - a.rating);
-  const chef = featured.find(r => r.id !== ad?.id) || featured[0];
+  const chefFood = chefAll.filter(r => !/\b(bar|pub|club|gece kul|fast\s?food|pastane|tatlı|çay bah)/i.test(`${r.category || ''} ${r.name || ''}`));
+  const chefPool = (chefFood.length ? chefFood : chefAll).slice(0, 40);
+  const chef = pickRotated(chefPool, history, 'chef', day, 8); // 8 gün dedup — geniş havuzla gerçek çeşitlilik
   if (chef) {
+    const blurb = chef.summary
+      ? trimWords(chef.summary, 230)
+      : trimWords(`${chef.category || 'Restoran'}${chef.location ? ' · ' + chef.location : ''}. ${(chef.specialties || []).slice(0, 3).join(', ')}`.replace(/\.\s*$/, '') +
+          (chef.reviewCount ? ` · ${chef.reviewCount}+ değerlendirme` : ''), 230);
     out._chef = {
       title: `Şefin Önerisi · ${chef.name}`,
       byline: `Restoran · ${chef.category || ''} · ⭐${chef.rating}`,
-      body: trimWords(chef.summary, 230),
+      body: blurb,
     };
+    await recordHistory('chef', chef.id, day);
   }
   return out;
 }
@@ -329,7 +377,7 @@ export async function buildData(iso, demo) {
 
   // Paralel çek
   const [weather, news, resto, pharmacy, eventsCol, ads] = await Promise.all([
-    getWeather(), getNews(), getRestaurant(), getPharmacy(), getEventsColumn(iso), getAds(iso),
+    getWeather(), getNews(), getRestaurant(iso), getPharmacy(), getEventsColumn(iso), getAds(iso),
   ]);
   delete ads._magSponsor; // magazin-özel alan, sabahta kullanılmaz
 
@@ -380,7 +428,7 @@ const HEADLINES = {
   turk: ['{v}’ta Türk gecesi şöleni', '{v}’ta fasıl coşkusu'],
   default: ['{v}’ta hareketli bir akşam', '{v} hafta sonuna hazır', '{v}’ta keyifli kalabalık'],
 };
-function headlineFor(v, ev, idx) {
+function headlineFor(v, ev, idx, seed = 0) {
   const cat = `${v?.category || ''} ${ev?.type || ''}`.toLowerCase();
   let pool = HEADLINES.default;
   if (/dj|parti|gece kul|club|night/.test(cat)) pool = HEADLINES.dj;
@@ -388,7 +436,8 @@ function headlineFor(v, ev, idx) {
   else if (/müzik|muzik|akustik|canlı|live|karaoke/.test(cat)) pool = HEADLINES.muzik;
   else if (/lounge|bar|pub|teras|beach|plaj/.test(cat)) pool = HEADLINES.lounge;
   const name = v?.name || ev?.venueName || 'Kalkan';
-  return pool[idx % pool.length].replace('{v}', name);
+  // seed = gün numarası → aynı mekan farklı günlerde farklı manşetle çıkar (konserve tekrarı kırar)
+  return pool[(idx + seed) % pool.length].replace('{v}', name);
 }
 function deckFor(v, ev) {
   if (ev) {
@@ -422,15 +471,22 @@ export async function buildMagazineData(iso, demo) {
   for (const e of todays) if (e.venueName) evByVenue.set(e.venueName.toLowerCase(), e);
   const evFor = (v) => evByVenue.get((v.name || '').toLowerCase()) || null;
 
-  // Hero: ilk fotoğraflı gece mekanı (Gece Kulübü öncelik)
-  const heroVenue = ranked.find(v => /gece kul|club/i.test(v.category)) || ranked[0];
+  // Hero: (1) bugün ETKİNLİĞİ olan gece mekanı öncelik → gerçek program bağlantısı, (2) ROTASYON.
+  const history = await loadHistory();
+  const daySeed = Number(issueOf(iso));
+  const eventVenues = ranked.filter(v => evFor(v));                 // bugün programı olanlar
+  const heroBase = eventVenues.length ? eventVenues : ranked;
+  const heroWithPhoto = heroBase.filter(venuePhoto);
+  const heroPool = heroWithPhoto.length ? heroWithPhoto : heroBase;
+  const heroVenue = pickRotated(heroPool, history, 'mag_hero', iso) || ranked[0];
+  if (heroVenue) await recordHistory('mag_hero', heroVenue.id, iso);
   const out = { ...base };
 
   if (heroVenue) {
     const ev = evFor(heroVenue);
     const photo = venuePhoto(heroVenue);
     out.hero_venue = `${heroVenue.name}${heroVenue.location ? ' · ' + heroVenue.location : ' · Kalkan'}`;
-    out.hero_headline = headlineFor(heroVenue, ev, 0);
+    out.hero_headline = headlineFor(heroVenue, ev, 0, daySeed);
     out.hero_deck = deckFor(heroVenue, ev);
     out.hero_kicker = ev ? `Gece · ${ev.type}` : 'Gece Hayatı';
     out.hero_img_tag = photo ? `<img src="${esc(photo)}" alt="${esc(heroVenue.name)}" onerror="this.style.display='none'">` : '';
@@ -441,8 +497,11 @@ export async function buildMagazineData(iso, demo) {
       : (heroVenue.source === 'client' ? '<div class="sponsor">Sponsor İçerik · İLAN</div>' : '');
   }
 
-  // 3 kart: hero dışındaki sonraki gece mekanları
-  const cardVenues = ranked.filter(v => v.id !== heroVenue?.id).slice(0, 3);
+  // 3 kart: hero dışı gece mekanları — son 3 günde kullanılmayanlar önce (kart tekrarını da kır).
+  const recentCards = recentIds(history, 'mag_card', 3, iso);
+  const cardBase = ranked.filter(v => v.id !== heroVenue?.id);
+  const cardVenues = [...cardBase.filter(v => !recentCards.has(v.id)), ...cardBase.filter(v => recentCards.has(v.id))].slice(0, 3);
+  for (const cv of cardVenues) await recordHistory('mag_card', cv.id, iso);
   out.cards = cardVenues.map((v, i) => {
     const ev = evFor(v);
     const photo = venuePhoto(v);
@@ -453,7 +512,7 @@ export async function buildMagazineData(iso, demo) {
       ${ph}
       <div class="body">
         <div class="meta">${esc(v.location || 'Kalkan')}${ev ? ' · ' + esc(ev.time) : ''}</div>
-        <h3>${esc(headlineFor(v, ev, i + 1))}</h3>
+        <h3>${esc(headlineFor(v, ev, i + 1, daySeed))}</h3>
         <p>${esc(trimWords(v.summary || deckFor(v, ev), 95))}</p>
       </div>
     </article>`;

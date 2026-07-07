@@ -57,6 +57,9 @@ jobs:
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Fix F: sabah ajanlarının agency_jobs araştırmasını editöryale bağla (yoksa graceful atlar).
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/agency/gazete-editorial.mjs || echo "editöryal atlandı (RSS fallback)"
 
       # Sabah AUTHORITATIVE: bugüne ait bayat social_posts satırını sil (gece oluşan + telegram_message_id

@@ -61,7 +61,7 @@ const SOURCES = [
     name: 'Antalya Körfez',
     url: 'https://www.antalyakorfez.com/rss',
     sourceHome: 'https://www.antalyakorfez.com',
-    requireKeyword: false, // already Antalya-focused
+    requireKeyword: true, // Antalya geneli kaynak → Kalkan/Kaş/Patara bölge filtresi ŞART (yoksa ön sayfa Antalya seli)
   },
   {
     name: 'Kalkan Times',
@@ -117,7 +117,9 @@ const SOURCES = [
 ];
 
 // Region keyword filter (case-insensitive)
-const REGION_RX = /\b(kalkan|kaş|kas|patara|saklıkent|saklikent|likya|demre|fethiye|antalya|kaputaş|kaputas|kalkan times)\b/i;
+// NOT: 'antalya' KASITLI çıkarıldı — Kalkan/Kaş tatilci gazetesi. Kaş içeren yerel haber zaten 'kaş' ile
+// geçer; yalnız "Antalya" geçen (Kalkan/Kaş/Patara'sız) il-geneli haber ön sayfayı basmasın diye eleniyor.
+const REGION_RX = /\b(kalkan|kaş|kas|patara|saklıkent|saklikent|likya|demre|kaputaş|kaputas|kalkan times)\b/i;
 
 // Category inference from title/description
 function inferCategory(text) {

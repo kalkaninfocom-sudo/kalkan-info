@@ -36,14 +36,17 @@ const date = process.argv.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a)) ||
   new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
 
 // ── Kalkan-alaka skorlama (sources.mjs mantığının hafif kopyası) ──
-const PLACE_RX = [/\bkalkan\b/i, /\bkaş\b/i, /\bpatara\b/i, /\bkaputaş\b/i, /\bletoon\b/i,
-  /\bksanthos\b/i, /\bxanthos\b/i, /\bantalya\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
-  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i];
+// ÇEKİRDEK yer adları — 'antalya' KASITLI yok (sources.mjs ile aynı Kalkan-merkez politikası).
+const CORE_RX = [/\bkalkan\b/i, /\bkaş\b/i, /\bpatara\b/i, /\bkaputaş\b/i, /\bletoon\b/i,
+  /\bksanthos\b/i, /\bxanthos\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
+  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i, /\bdemre\b/i];
 const CATS = { Turizm: 2, Plaj: 2, Etkinlik: 2, Kültür: 2, Belediye: 0, Gündem: 0, Hava: 1, Asayiş: -3 };
 function score(it) {
   const txt = `${it.title || ''} ${it.summary || ''}`;
   let s = 0;
-  for (const rx of PLACE_RX) if (rx.test(txt)) { s += 2; break; }
+  const hasCore = CORE_RX.some(rx => rx.test(txt));
+  if (hasCore) s += 3;
+  else if (/\bantalya\b/i.test(txt)) s -= 4;   // yalnız Antalya → manşet/sütun adayı olmasın
   if (/\bkalkan\b/i.test(txt)) s += 2;
   const src = it.source || '';
   if (/kalkan/i.test(src)) s += 3; else if (/körfez|antalya/i.test(src)) s += 1; else s -= 4;
@@ -64,6 +67,45 @@ const EDITORIAL_SYSTEM =
   '7. Her ikincil habere mutlaka bir bilgi cümlesi ekle; "sadece başlık" bırakma.\n' +
   'ÇIKTI: yalnızca istenen şemada geçerli JSON döndür, başka hiçbir şey yazma.';
 
+// ── AGENT → GAZETE KÖPRÜSÜ (Fix F) ──
+// Sabah 07:00-07:50 muhabir/magazin/yayın-yönetmeni ajanları agency_jobs'a araştırma yazıyor ama
+// gazeteye HİÇ bağlanmıyordu (çöpe gidiyordu). Burada o günün agent çıktısını + site etkinliklerini
+// çekip editöryal LLM'e EK KAYNAK olarak veriyoruz (uydurma değil, ajanların derlediği).
+const SUPA_URL = process.env.SUPABASE_URL;
+const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY;
+async function fetchAgentResearch(iso) {
+  if (!SUPA_URL || !SUPA_KEY) return '';
+  try {
+    const dayStart = `${iso}T00:00:00`;
+    const agents = 'muhabir,magazin-editoru,yayin-yonetmeni,news-verifier';
+    const url = `${SUPA_URL}/rest/v1/agency_jobs?agent=in.(${agents})&status=eq.done&created_at=gte.${encodeURIComponent(dayStart)}` +
+      `&order=created_at.desc&limit=10&select=agent,result`;
+    const r = await fetch(url, { headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}` } });
+    if (!r.ok) return '';
+    const rows = await r.json();
+    if (!Array.isArray(rows) || !rows.length) return '';
+    return rows.filter(x => x.result).map(x => `• [${x.agent}] ${String(x.result).replace(/\s+/g, ' ').slice(0, 320)}`).join('\n');
+  } catch { return ''; }
+}
+async function fetchTodayEvents(iso) {
+  try {
+    const { eventsForDate } = await import(pathToFileURL(join(ROOT, 'scripts', 'events-lib.mjs')).href);
+    const evs = await eventsForDate(iso);
+    if (!evs?.length) return '';
+    return evs.slice(0, 6).map(e => `• ${e.time || ''} ${e.type || ''} · ${e.venueName || ''}${e.area ? ' (' + e.area + ')' : ''}`).join('\n');
+  } catch { return ''; }
+}
+// Phase 3: küratörlü Kalkan mekanlarının public IG gönderilerinden çıkarılan olgusal haber sinyalleri
+// (scripts/ig-venue-watch.mjs üretir → data/ig-venue-news.json). Magazin/mekan açısı için ek kaynak.
+async function fetchIgVenueNews() {
+  try {
+    const d = JSON.parse(await readFile(join(ROOT, 'data', 'ig-venue-news.json'), 'utf8'));
+    const items = (d.items || []).filter(x => x.headline);
+    if (!items.length) return '';
+    return items.slice(0, 5).map(x => `• [${x.category || 'mekan'}] ${x.venueName || x.username}: ${x.headline}`).join('\n');
+  } catch { return ''; }
+}
+
 async function main() {
   console.log(`\n════ GAZETE EDİTÖRYAL — ${date} ════`);
   let data;
@@ -81,6 +123,12 @@ async function main() {
   const col3 = ranked.find(it => it !== lead && it !== col1 && ['Plaj', 'Turizm', 'Hava'].includes(it.category)) || ranked[2] || ranked[1];
   const mag  = ranked.find(it => it !== lead && it !== col1 && it !== col3) || ranked[1];
 
+  // Agent araştırması + bugünkü site etkinlikleri + IG mekan sinyalleri — editöryal grounding (paralel çek)
+  const [agentResearch, todayEvents, igVenueNews] = await Promise.all([fetchAgentResearch(date), fetchTodayEvents(date), fetchIgVenueNews()]);
+  if (agentResearch) console.log('  ↳ agent araştırması eklendi (agency_jobs)');
+  if (todayEvents) console.log('  ↳ bugünkü site etkinlikleri eklendi');
+  if (igVenueNews) console.log('  ↳ IG mekan sinyalleri eklendi (ig-venue-news)');
+
   const brief = (it, n = 320) => it ? `[${it.category || '-'}] ${it.title}\n${(it.summary || it.content || '').slice(0, n)}` : '';
   const prompt =
     `Kalkan (Antalya) için günlük tatilci gazetesi editörüsün. Aşağıda ham haber kaynakları var. ` +
@@ -93,7 +141,10 @@ async function main() {
     `- col1/col3.title: max 7 kelime.\n` +
     `- col1/col3.body: TEK kısa cümle özet (max 13 kelime) — başlığı tamamlasın, tekrar etmesin.\n` +
     `- magazine.headline: max 8 kelime; magazine.body: 1 cümle.\n\n` +
-    `MANŞET KAYNAK:\n${brief(lead)}\n\nSÜTUN-1 KAYNAK:\n${brief(col1)}\n\nSÜTUN-3 KAYNAK:\n${brief(col3)}\n\nMAGAZİN KAYNAK:\n${brief(mag)}`;
+    `MANŞET KAYNAK:\n${brief(lead)}\n\nSÜTUN-1 KAYNAK:\n${brief(col1)}\n\nSÜTUN-3 KAYNAK:\n${brief(col3)}\n\nMAGAZİN KAYNAK:\n${brief(mag)}` +
+    (todayEvents ? `\n\nBUGÜNKÜ ETKİNLİKLER (site verisi — col1/magazine için kullanılabilir):\n${todayEvents}` : '') +
+    (agentResearch ? `\n\nAJANS ARAŞTIRMASI (bugün muhabir/magazin ajanlarının derlediği — kaynak; yeni olgu UYDURMA):\n${agentResearch}` : '') +
+    (igVenueNews ? `\n\nKALKAN MEKAN IG SİNYALLERİ (mekanların public gönderilerinden — magazin/mekan açısı; caption dışı olgu UYDURMA):\n${igVenueNews}` : '');
 
   const SCHEMA = `{"lead":{"headline":"...","deck":"...","body":"..."},"col1":{"title":"...","body":"..."},"col3":{"title":"...","body":"..."},"magazine":{"headline":"...","body":"..."}}`;
   const jsonRules =

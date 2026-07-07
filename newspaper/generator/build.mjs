@@ -69,18 +69,18 @@ function demoData(iso) {
     col1_byline: 'Etkinlik · 19:30 itibarıyla',
     col1_body: 'Patara Antik Kenti\'nde bu akşam saat 21:00\'de açıkhava klasik müzik konseri var. Bilet kalkaninfo.com\'dan ücretsiz; kapasite 400 kişi ile sınırlı.',
 
-    col2_title: 'Şefin Önerisi · Kalkan\'da Akşam Yemeği İçin Üç Yeni Adres',
+    col2_title: 'Şefin Önerisi · Bugün Kalkan Sofrası',
     col2_byline: 'Restoran · Mekan editörü',
-    col2_body: 'Marina manzaralı Kaptan Restaurant menüsünü yeniledi: deniz mahsulü ön plana çıktı. Ehl-i Keyf ise bu hafta meze tabağında üç yeni tarife başladı.',
+    col2_body: 'Kalkan\'ın marina ve koy manzaralı restoranlarında akşam yemeği için taze deniz mahsulü ve zeytinyağlı mezeler öne çıkıyor. Güncel öneriler kalkaninfo.com/restoranlar.',
 
     col3_title: 'Kaputaş\'ta Dalga Uyarısı · Plaj Trafiği Sabah 11\'de Açılıyor',
     col3_byline: 'Plaj · Sahil Güvenlik bülteni',
     col3_body: 'Lodos nedeniyle Kaputaş Plajı 09:00–11:00 arası dalga uyarısı altında. Antik kent rotasında Patara ve Letoon dün gün boyu 1.200\'ün üzerinde ziyaretçi ağırladı.',
 
-    ad_title: 'Kaptan Restaurant — Marina Manzaralı Akşam Yemeği',
-    ad_body: 'Bu akşam balık tabağında %15 indirim. Rezervasyon için QR kodu okutun ya da +90 242 844 35 35.',
-    ad_cta: 'Hemen Rezervasyon',
-    ad_qr_url: 'https://kalkaninfo.com/restoranlar/KaptanRestaurant/',
+    ad_title: 'Kalkan Restoranları — Akşam Yemeği Rehberi',
+    ad_body: 'Marina, koy ve eski köy sokaklarındaki mekanları keşfedin. Rezervasyon ve menüler: kalkaninfo.com/restoranlar',
+    ad_cta: 'Mekanları Keşfet',
+    ad_qr_url: 'https://kalkaninfo.com/restoranlar/',
 
     pharmacy_name: 'Merkez Eczanesi',
     pharmacy_addr: 'Yalı Cad. No:8',
