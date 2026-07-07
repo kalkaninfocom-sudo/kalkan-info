@@ -3,10 +3,25 @@
 > **Amaç:** Tüm kalkaninfo işlerinin "ne yaptık · nerede kaldık · sıradaki ne"sini tek canlı dosyada toplamak.
 > Parça parça çalışıyoruz, çok iş yarım kalıyor — bu dosya kayıp thread bırakmamak için var.
 >
-> **Son güncelleme:** 2026-06-28
+> **Son güncelleme:** 2026-07-08
 > **Durum kodları:** ✅ bitti & canlı · 🔨 sürüyor · ⏳ bekliyor (sıraya alındı) · ⛔ bloke (canlıya bir şey lazım — ne lazımı yazılı)
 >
 > Bu dosya **CANLI**'dır: her oturumda güncellenir. Her parça **tek başına çalışır** halde bırakılır; yarım kalsa bile birleşince bütün tamamlanır.
+
+---
+
+## 🗓️ SON OTURUM — 2026-07-08 (Publish fix + Gazete kalite + Öğrenme + IG izleme)
+
+**5 commit push'landı, canlıda.** 4 faz:
+
+- **Phase 0 — Publish bug ÇÖZÜLDÜ (kök neden):** Onaylı postlar `approved`'da çürüyordu — onları yayınlayacak tetikleyici yoktu. Ayrıca "korumalı endpoint'i `IG_CRON_SECRET` ile curl'le" deseni repo genelinde KIRIK (prod secret dış çağrılarla eşleşmiyor → 401; `auto-publish.yml` de sessizce fail ediyormuş). Çözüm: self-contained `scripts/agency/publish-approved.mjs` (Supabase + IG/FB doğrudan, secret-eşleştirme yok) + `.github/workflows/publish-approved.yml` (saatlik). IG env toleransı + tazelik guard'ı (12h). IG/FB token canlı geçerli+kalıcı doğrulandı.
+  - ⛔ **Canlıya lazım:** GitHub Actions'a `IG_BUSINESS_ID` + `IG_LONG_LIVED_TOKEN` secret'ları (GitHub'da yok). Komut: `vercel env pull /tmp/p.env --environment=production --yes` → değerleri `gh secret set` ile ekle. Eklenene dek workflow sessiz fail etmez, Telegram'a "IG env eksik" uyarır. **Ara çözüm: "✅ Yayınla Şimdi" inline butonu şimdi çalışıyor** (prod'da IG env var).
+- **Phase 1 — Gazete kalite ✅:** `sources.mjs`/`build.mjs` — restoran/magazin deterministik seçimi rotasyon+dedup'a çevrildi (`data/gazete-history.json`; 7 gün=7 farklı mekan). Antalya-merkez düzeltildi (`news-aggregator.mjs` REGION_RX + skorlamadan `antalya` çıkarıldı, Antalya-only negatif). Demo "Kaptan" hardcode kaldırıldı. **Agent→gazete köprüsü:** `gazete-editorial.mjs` artık `agency_jobs` (sabah ajan araştırması) + site etkinlik + IG mekan sinyalini kaynak alıyor.
+- **Phase 2 — Saatlik öğrenme ✅:** `scripts/agency/agent-learn.mjs` + `learn-rotation.mjs` + `data/agency/reading-list.json` + `knowledge/<id>.json`. Muhabir Poynter/Reuters Institute'tan gazetecilik dersi çıkardı (doğrulandı). Edge Function `runAgent` öğrendikleri prompt'a enjekte ediyor. `schedule.json` 6 kota-güvenli slot (10-22).
+- **Phase 3 — IG mekan izleme ✅:** `scripts/ig-venue-watch.mjs` + `data/ig-watch-accounts.json` + business_discovery (canlı test 18 gönderi). Editöryale bağlandı.
+  - ⏳ **Berkay:** `ig-watch-accounts.json` — sadece 3 hesap doğrulandı aktif (kalamarbeachclub/kalkanregency/korsankalkan). 11 tahmini ad "Invalid user id" (pasif). Gerçek Kalkan mekan IG adlarını ekle → `active:true`.
+
+**Sıradaki:** (1) 2 GitHub secret ekle → otomatik yayın uçtan uca doğrula. (2) IG hesap adlarını doldur. (3) Sabah gazete akışında rotasyon+editöryal çıktısını canlı gözlemle.
 
 ---
 
