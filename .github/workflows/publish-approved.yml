@@ -1,16 +1,20 @@
 name: Onaylı postları yayınla (approved → IG/FB)
 
 # KÖK SORUN (2026-07-08): "⏰ 08:00'de Yayınla" ile onaylanan postlar status=approved oluyordu ama
-# hiçbir cron onları yayınlamıyordu → sonsuza dek 'approved' çürüyordu (webhook'un inline publishNow'ı
-# yalnız "✅ Yayınla Şimdi" için çalışır). api/social-publish-queue.js tam bu işi yapar (approved +
-# scheduled_at<=now + published_at null → IG/FB yayın + Telegram bildirim) ama tetikleyicisi yoktu.
-# Vercel Hobby cron 2/2 dolu → GitHub Actions saatlik tetikler. Bayat backlog guard'ı endpoint'te
-# (PUBLISH_STALE_HOURS=12) → eski gazeteler toplu yayınlanıp IG spamlenmez.
+# hiçbir cron onları yayınlamıyordu → sonsuza dek 'approved' çürüyordu. Ayrıca "korumalı endpoint'i
+# curl'le" deseni kırık: prod IG_CRON_SECRET dış çağrılarla eşleşmiyor (401) → auto-publish dahil sessiz fail.
+# ÇÖZÜM: self-contained scripts/agency/publish-approved.mjs → Supabase + IG/FB DOĞRUDAN (secret-eşleştirme yok).
+# Vercel Hobby cron 2/2 dolu → GitHub Actions saatlik. Bayat backlog guard'ı script'te (STALE_HOURS=12).
 
 on:
   schedule:
     - cron: '20 * * * *'   # her saat :20 (auto-publish :00 ile çakışmasın)
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: 'Deneme (yayınlama, sadece listele) true/false'
+        required: false
+        default: 'false'
 
 permissions:
   contents: read
@@ -22,19 +26,27 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Yayın kuyruğunu tetikle (approved → IG/FB)
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Onaylı postları yayınla (approved → IG/FB)
         env:
-          IG_CRON_SECRET: ${{ secrets.IG_CRON_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # ⚠️ Bu iki secret GitHub'da YOK ise script graceful hata verir + Telegram uyarır (sessiz 401 DEĞİL).
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          SITE_BASE: https://kalkaninfo.com
         run: |
-          if [ -z "$IG_CRON_SECRET" ]; then echo "::error::IG_CRON_SECRET secret yok"; exit 1; fi
-          # non-www canonical (www 308 redirect → Meta/endpoint davranışını bozar)
-          RESP=$(curl -s -w "\n%{http_code}" \
-            "https://kalkaninfo.com/api/social-publish-queue?secret=$IG_CRON_SECRET")
-          CODE=$(echo "$RESP" | tail -n1)
-          BODY=$(echo "$RESP" | sed '$d')
-          echo "HTTP $CODE"
-          echo "$BODY"
-          # 200 değilse workflow'u kırmızı yap (IG env eksik / secret yanlış görünür olsun)
-          if [ "$CODE" != "200" ]; then echo "::error::yayın kuyruğu $CODE döndü"; exit 1; fi
+          FLAGS=""
+          if [ "${{ github.event.inputs.dry }}" = "true" ]; then FLAGS="--dry-run"; fi
+          node scripts/agency/publish-approved.mjs $FLAGS
