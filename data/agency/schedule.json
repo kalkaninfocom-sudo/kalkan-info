@@ -41,6 +41,9 @@
       "desc": "Günün en yeni haberinden IG gönderi kartı üret → Telegram'a GÖRSELLİ onay (foto + Onayla/Reddet). Onaylanınca IG'de yayınlanır. Görsel kuralına uygun (prompt değil, kart)."
     },
 
+    { "id": "ig-venue-watch-am", "time": "09:30", "type": "script", "script": "scripts/ig-venue-watch.mjs", "desc": "Küratörlü Kalkan mekanlarının public IG gönderilerini business_discovery ile tara → ig-venue-intake + olgusal haber taslağı (ig-venue-news). Gazete/editöryal kaynağı." },
+    { "id": "ig-venue-watch-pm", "time": "15:30", "type": "script", "script": "scripts/ig-venue-watch.mjs", "desc": "IG mekan taraması (2. tur, öğleden sonra hareketliliği)." },
+
     { "id": "growth-weekly", "dow": "Mon", "time": "07:00", "type": "agent", "agent": "growth",  "task": "Bu haftanın büyüme planı: 6 kaldıraç üzerinden 3 somut aksiyon belirle, sahiplerini ata, ölçülebilir hedef koy." },
     { "id": "analyst-weekly", "dow": "Mon", "time": "08:00", "type": "agent", "agent": "analyst", "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı." },
 
@@ -51,6 +54,13 @@
       "type": "script",
       "script": "scripts/agency/weekly-founder-report.mjs",
       "desc": "Hafta boyu tartışmalar + iş sonuçları + metrikleri tek haftalık sunuma derle → kurucuya gönder."
-    }
+    },
+
+    { "id": "learn-rotation-1000", "time": "10:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu: en eski öğrenen 1-2 agent alanındaki kaynağı okur → knowledge/<id>.json. Kota-güvenli (max 2/tur)." },
+    { "id": "learn-rotation-1200", "time": "12:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
+    { "id": "learn-rotation-1400", "time": "14:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
+    { "id": "learn-rotation-1600", "time": "16:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
+    { "id": "learn-rotation-2000", "time": "20:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
+    { "id": "learn-rotation-2200", "time": "22:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." }
   ]
 }

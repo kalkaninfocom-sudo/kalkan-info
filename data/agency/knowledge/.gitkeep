@@ -1,0 +1,5 @@
+# Agent bilgi tabanı (knowledge base) dizini.
+# agent-learn.mjs her agent için <agentId>.json üretir:
+#   { agent, lessons:[{source,url,summary,learnedAt}], updatedAt }
+# Edge Function (agency/index.ts) bunları system prompt'a enjekte eder.
+# Bu dosya dizini git'te tutmak için var.

@@ -1,0 +1,202 @@
+{
+  "_meta": {
+    "note": "Agent SAATLİK ÖĞRENME kaynak listesi. agentId → { sources:[{title,url,type}], booklist:[{title,author,concepts}] }. agent-learn.mjs bunu okur, knowledge/<id>.json'daki learned URL'lerle dedup eder, sıradaki okunmamış kaynağı çeker ve cheap-llm ile 3 somut ders çıkarır. Kaynaklar HERKESE AÇIK (blog/RSS/makale). Kitaplar tam metin DEĞİL — sadece başlık+yazar+ana kavram (o kavramdan öğrenilir). Olgusallık: özetle, uydurma yok.",
+    "updated": "2026-07-08",
+    "sourceTypes": ["rss", "article", "book"]
+  },
+  "defaults": {
+    "sources": [
+      { "title": "Buffer Blog — Sosyal Medya", "url": "https://buffer.com/resources/rss/", "type": "rss" },
+      { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+    ],
+    "booklist": [
+      { "title": "Made to Stick", "author": "Chip Heath & Dan Heath", "concepts": ["basitlik", "beklenmedik olan", "somutluk", "güvenilirlik", "duygu", "hikaye (SUCCESs modeli)"] },
+      { "title": "Building a StoryBrand", "author": "Donald Miller", "concepts": ["müşteri kahraman", "net mesaj", "problem-rehber-plan-eylem", "karmaşayı azalt"] }
+    ]
+  },
+  "agents": {
+    "director": {
+      "sources": [
+        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" },
+        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" },
+        { "title": "Later Blog — Social Media Strategy", "url": "https://later.com/blog/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Contagious: Why Things Catch On", "author": "Jonah Berger", "concepts": ["sosyal para birimi", "tetikleyiciler", "duygu", "kamusallık", "pratik değer", "hikaye (STEPPS)"] },
+        { "title": "Building a StoryBrand", "author": "Donald Miller", "concepts": ["müşteri kahraman", "net tek mesaj", "kafa karışıklığını azalt"] }
+      ]
+    },
+    "trend": {
+      "sources": [
+        { "title": "Google Trends Blog", "url": "https://blog.google/products/search/rss/", "type": "rss" },
+        { "title": "Social Media Today", "url": "https://www.socialmediatoday.com/feeds/news/", "type": "rss" },
+        { "title": "Later Blog", "url": "https://later.com/blog/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Trend-Driven Innovation", "author": "Henry Mason vd.", "concepts": ["temel tüketici ihtiyaçları", "trend sinyalleri", "beklenti değişimi", "uygulama fırsatı"] }
+      ]
+    },
+    "writer": {
+      "sources": [
+        { "title": "Copyblogger", "url": "https://copyblogger.com/feed/", "type": "rss" },
+        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "The Copywriter's Handbook", "author": "Robert Bly", "concepts": ["başlık formülleri", "fayda odaklı", "net CTA", "AIDA"] },
+        { "title": "Everybody Writes", "author": "Ann Handley", "concepts": ["empati", "sadelik", "aktif dil", "düzenleme disiplini"] }
+      ]
+    },
+    "muhabir": {
+      "sources": [
+        { "title": "Poynter — Gazetecilik", "url": "https://www.poynter.org/feed/", "type": "rss" },
+        { "title": "Reuters Institute", "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "The Elements of Journalism", "author": "Bill Kovach & Tom Rosenstiel", "concepts": ["gerçeğe sadakat", "doğrulama disiplini", "bağımsızlık", "kamu yararı"] },
+        { "title": "The Associated Press Stylebook", "author": "Associated Press", "concepts": ["ters piramit", "5N1K", "kısa net cümle", "atıf/kaynak gösterme", "abartısız ton"] }
+      ]
+    },
+    "magazin-editoru": {
+      "sources": [
+        { "title": "Nieman Storyboard", "url": "https://niemanstoryboard.org/feed/", "type": "rss" },
+        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Made to Stick", "author": "Chip Heath & Dan Heath", "concepts": ["somut detay", "beklenmedik açı", "duygusal bağ", "hikaye kancası"] },
+        { "title": "The Art of the Feature", "author": "gazetecilik referansı", "concepts": ["insan hikayesi", "sahne kurma", "renk detayı", "açı seçimi"] }
+      ]
+    },
+    "yayin-yonetmeni": {
+      "sources": [
+        { "title": "Poynter", "url": "https://www.poynter.org/feed/", "type": "rss" },
+        { "title": "Nieman Lab", "url": "https://www.niemanlab.org/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "The Elements of Journalism", "author": "Bill Kovach & Tom Rosenstiel", "concepts": ["manşet önceliklendirme", "denge", "editöryal yargı", "kamu yararı"] }
+      ]
+    },
+    "news-verifier": {
+      "sources": [
+        { "title": "First Draft / Doğrulama", "url": "https://www.poynter.org/feed/", "type": "rss" },
+        { "title": "Reuters Institute", "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Verification Handbook", "author": "Craig Silverman (ed.)", "concepts": ["kaynak doğrulama", "çapraz kontrol", "yanıltıcı içerik tespiti", "alaka filtresi"] }
+      ]
+    },
+    "growth": {
+      "sources": [
+        { "title": "Ahrefs Blog — SEO", "url": "https://ahrefs.com/blog/feed/", "type": "rss" },
+        { "title": "Backlinko", "url": "https://backlinko.com/feed", "type": "rss" },
+        { "title": "GrowthHackers", "url": "https://growthhackers.com/posts.rss", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Traction", "author": "Gabriel Weinberg & Justin Mares", "concepts": ["19 kanal", "bullseye çerçevesi", "kanal testi", "ölçülebilir hedef"] },
+        { "title": "Hacking Growth", "author": "Sean Ellis & Morgan Brown", "concepts": ["kuzey yıldızı metriği", "hızlı deney döngüsü", "aktivasyon/tutundurma", "kaldıraç"] }
+      ]
+    },
+    "ads": {
+      "sources": [
+        { "title": "WordStream Blog", "url": "https://www.wordstream.com/blog/rss.xml", "type": "rss" },
+        { "title": "Search Engine Land — PPC", "url": "https://searchengineland.com/feed", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Ilon Specht'ten Ogilvy'ye — Reklam Klasikleri", "author": "David Ogilvy", "concepts": ["net teklif", "test et-öğren", "ROAS odak", "kreatif hijyen"] }
+      ]
+    },
+    "analyst": {
+      "sources": [
+        { "title": "Plausible Blog — Analitik", "url": "https://plausible.io/blog/feed.xml", "type": "rss" },
+        { "title": "CXL Blog", "url": "https://cxl.com/blog/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Lean Analytics", "author": "Alistair Croll & Benjamin Yoskovitz", "concepts": ["tek önemli metrik (OMTM)", "vanity metrik tuzağı", "dönüşüm hunisi", "aksiyona dönük ölçüm"] }
+      ]
+    },
+    "gazete-sosyal": {
+      "sources": [
+        { "title": "Later Blog", "url": "https://later.com/blog/feed/", "type": "rss" },
+        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Jab, Jab, Jab, Right Hook", "author": "Gary Vaynerchuk", "concepts": ["platforma özgü içerik", "değer önce sat sonra", "bağlam", "mikro-içerik"] }
+      ]
+    },
+    "hava-plan": {
+      "sources": [
+        { "title": "Skift — Seyahat Trendleri", "url": "https://skift.com/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Hizmet Tasarımı Temelleri", "author": "genel referans", "concepts": ["duruma göre öneri", "alternatif plan", "misafir konforu", "proaktif uyarı"] }
+      ]
+    },
+    "tatil-planner": {
+      "sources": [
+        { "title": "Skift — Seyahat", "url": "https://skift.com/feed/", "type": "rss" },
+        { "title": "Lonely Planet — Blog", "url": "https://www.lonelyplanet.com/news/feed", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Setting the Table", "author": "Danny Meyer", "concepts": ["misafirperverlik", "beklentiyi aşma", "kişiselleştirme", "gerçekçi öneri"] }
+      ]
+    },
+    "gezgin-rehber": {
+      "sources": [
+        { "title": "Smarthistory — Sanat/Arkeoloji", "url": "https://smarthistory.org/feed/", "type": "rss" },
+        { "title": "Archaeology News Network", "url": "https://www.archaeology.org/rss", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "The Lycian Shore", "author": "Freya Stark", "concepts": ["Likya coğrafyası", "antik kent anlatısı", "yer hissi", "tarih-anlatı dengesi"] }
+      ]
+    },
+    "menu-chef": {
+      "sources": [
+        { "title": "Eater", "url": "https://www.eater.com/rss/index.xml", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Menu Engineering", "author": "genel referans", "concepts": ["iştah açıcı dil", "fiyat psikolojisi", "alerjen şeffaflığı", "kategori düzeni"] }
+      ]
+    },
+    "provider-matcher": {
+      "sources": [
+        { "title": "Skift — Konaklama", "url": "https://skift.com/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Setting the Table", "author": "Danny Meyer", "concepts": ["ihtiyaç eşleştirme", "güven", "şeffaf gerekçe"] }
+      ]
+    },
+    "dil-cevirmen": {
+      "sources": [
+        { "title": "Smartling Blog — Lokalizasyon", "url": "https://www.smartling.com/resources/rss/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Found in Translation", "author": "Nataly Kelly & Jost Zetzsche", "concepts": ["kültürel uyarlama", "ton koruma", "yerelleştirme > birebir çeviri", "turizm dili"] }
+      ]
+    },
+    "reels-uretici": {
+      "sources": [
+        { "title": "Later Blog — Reels", "url": "https://later.com/blog/feed/", "type": "rss" },
+        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Contagious", "author": "Jonah Berger", "concepts": ["ilk 3 saniye kancası", "duygu", "paylaşılabilirlik", "tetikleyici"] }
+      ]
+    },
+    "ilan-uzmani": {
+      "sources": [
+        { "title": "LinkedIn Talent Blog", "url": "https://www.linkedin.com/blog/talent/rss", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "İş İlanı Yazımı — İK Referansı", "author": "genel referans", "concepts": ["net rol tanımı", "somut şart", "çağrı-eylem", "şeffaf koşul"] }
+      ]
+    },
+    "bulten-editoru": {
+      "sources": [
+        { "title": "Really Good Emails Blog", "url": "https://reallygoodemails.com/feed.xml", "type": "rss" },
+        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+      ],
+      "booklist": [
+        { "title": "Newsletter Ninja", "author": "Tammi Labrecque", "concepts": ["haftalık özet kurgusu", "en iyiyi seçme", "okuyucu değeri", "tutarlı ritim"] }
+      ]
+    }
+  }
+}

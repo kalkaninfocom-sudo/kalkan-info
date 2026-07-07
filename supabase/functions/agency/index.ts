@@ -21,6 +21,8 @@ const SERVICE_ROLE   = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const NVIDIA_API_KEY = Deno.env.get('NVIDIA_API_KEY') ?? '';
 const NVIDIA_MODEL   = Deno.env.get('NVIDIA_MODEL') ?? 'meta/llama-3.3-70b-instruct';
 const AGENTS_URL     = Deno.env.get('AGENTS_URL') ?? 'https://kalkaninfo.com/data/agency/agents.json';
+// Öğrenme bilgi tabanı (agent-learn.mjs üretir, statik deploy edilir). <id> ile doldurulur.
+const KNOWLEDGE_URL  = Deno.env.get('KNOWLEDGE_URL') ?? 'https://kalkaninfo.com/data/agency/knowledge/{id}.json';
 
 const ALLOWED_ORIGINS = [
   'https://kalkaninfo.com', 'https://www.kalkaninfo.com',
@@ -57,6 +59,25 @@ async function getAgents(): Promise<Record<string, any>> {
   } catch { return {}; }
 }
 
+// ---- agent öğrenme bilgisi (knowledge/<id>.json, statik deploy; graceful) ----
+// agent-learn.mjs her agent için son dersleri biriktirir; burada system prompt'a enjekte edilir.
+const KNOWLEDGE_CACHE = new Map<string, { lessons: string[]; at: number }>();
+async function getKnowledge(agentId: string): Promise<string[]> {
+  const cached = KNOWLEDGE_CACHE.get(agentId);
+  if (cached && Date.now() - cached.at < 15 * 60_000) return cached.lessons; // 15dk cold-cache
+  try {
+    const r = await fetch(KNOWLEDGE_URL.replace('{id}', encodeURIComponent(agentId)), {
+      signal: AbortSignal.timeout(8000), headers: { accept: 'application/json' },
+    });
+    if (!r.ok) throw new Error(String(r.status));
+    const d = await r.json();
+    // son 3-5 dersin özetini al (her lesson.summary = "1. ...\n2. ...\n3. ...")
+    const lessons = (d.lessons ?? []).slice(-5).map((l: any) => short(String(l.summary ?? ''), 600)).filter(Boolean);
+    KNOWLEDGE_CACHE.set(agentId, { lessons, at: Date.now() });
+    return lessons;
+  } catch { return []; } // knowledge yoksa/erişilemezse normal çalış
+}
+
 // ---- NVIDIA NIM (OpenAI-uyumlu) — cheap-llm ile aynı ----
 async function runLLM(system: string, task: string): Promise<{ text: string; provider: string }> {
   if (!NVIDIA_API_KEY) throw new Error('NVIDIA_API_KEY yok (secret set edilmeli)');
@@ -89,7 +110,14 @@ async function runAgent(agentId: string, task: string) {
   if (!a) throw new Error(`Bilinmeyen agent: ${agentId}`);
   await patchState(agentId, { status: 'work' });
   try {
-    const { text, provider } = await runLLM(a.system || '', task);
+    // Öğrendiklerini system prompt'a ekle (kendi alanında son okumaları — çıktıda uygula)
+    let system = a.system || '';
+    const lessons = await getKnowledge(agentId);
+    if (lessons.length) {
+      system += `\n\nÖĞRENDİKLERİN (kendi alanında son okumaların — çıktında bunları uygula):\n`
+        + lessons.map((l, i) => `[${i + 1}] ${l}`).join('\n');
+    }
+    const { text, provider } = await runLLM(system, task);
     await patchState(agentId, {
       status: a.schedule?.type === 'cron' ? 'cron' : 'idle',
       last_run: now(), last_output: short(text), last_provider: provider,
