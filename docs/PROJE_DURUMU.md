@@ -15,13 +15,13 @@
 **5 commit push'landı, canlıda.** 4 faz:
 
 - **Phase 0 — Publish bug ÇÖZÜLDÜ (kök neden):** Onaylı postlar `approved`'da çürüyordu — onları yayınlayacak tetikleyici yoktu. Ayrıca "korumalı endpoint'i `IG_CRON_SECRET` ile curl'le" deseni repo genelinde KIRIK (prod secret dış çağrılarla eşleşmiyor → 401; `auto-publish.yml` de sessizce fail ediyormuş). Çözüm: self-contained `scripts/agency/publish-approved.mjs` (Supabase + IG/FB doğrudan, secret-eşleştirme yok) + `.github/workflows/publish-approved.yml` (saatlik). IG env toleransı + tazelik guard'ı (12h). IG/FB token canlı geçerli+kalıcı doğrulandı.
-  - ⛔ **Canlıya lazım:** GitHub Actions'a `IG_BUSINESS_ID` + `IG_LONG_LIVED_TOKEN` secret'ları (GitHub'da yok). Komut: `vercel env pull /tmp/p.env --environment=production --yes` → değerleri `gh secret set` ile ekle. Eklenene dek workflow sessiz fail etmez, Telegram'a "IG env eksik" uyarır. **Ara çözüm: "✅ Yayınla Şimdi" inline butonu şimdi çalışıyor** (prod'da IG env var).
+  - ✅ **ÇÖZÜLDÜ (2026-07-08 17:01):** `IG_BUSINESS_ID` + `IG_LONG_LIVED_TOKEN` GitHub Actions secret'larına eklendi. Doğrulama: "Onaylı postları yayınla" workflow'u 17:01'de **success** (17:01 öncesi 16:49 schedule fail idi). Otonom yayın hattı artık uçtan uca çalışıyor.
 - **Phase 1 — Gazete kalite ✅:** `sources.mjs`/`build.mjs` — restoran/magazin deterministik seçimi rotasyon+dedup'a çevrildi (`data/gazete-history.json`; 7 gün=7 farklı mekan). Antalya-merkez düzeltildi (`news-aggregator.mjs` REGION_RX + skorlamadan `antalya` çıkarıldı, Antalya-only negatif). Demo "Kaptan" hardcode kaldırıldı. **Agent→gazete köprüsü:** `gazete-editorial.mjs` artık `agency_jobs` (sabah ajan araştırması) + site etkinlik + IG mekan sinyalini kaynak alıyor.
 - **Phase 2 — Saatlik öğrenme ✅:** `scripts/agency/agent-learn.mjs` + `learn-rotation.mjs` + `data/agency/reading-list.json` + `knowledge/<id>.json`. Muhabir Poynter/Reuters Institute'tan gazetecilik dersi çıkardı (doğrulandı). Edge Function `runAgent` öğrendikleri prompt'a enjekte ediyor. `schedule.json` 6 kota-güvenli slot (10-22).
 - **Phase 3 — IG mekan izleme ✅:** `scripts/ig-venue-watch.mjs` + `data/ig-watch-accounts.json` + business_discovery (canlı test 18 gönderi). Editöryale bağlandı.
   - ⏳ **Berkay:** `ig-watch-accounts.json` — sadece 3 hesap doğrulandı aktif (kalamarbeachclub/kalkanregency/korsankalkan). 11 tahmini ad "Invalid user id" (pasif). Gerçek Kalkan mekan IG adlarını ekle → `active:true`.
 
-**Sıradaki:** (1) 2 GitHub secret ekle → otomatik yayın uçtan uca doğrula. (2) IG hesap adlarını doldur. (3) Sabah gazete akışında rotasyon+editöryal çıktısını canlı gözlemle.
+**Sıradaki:** (1) ✅ 2 GitHub secret eklendi → otomatik yayın uçtan uca doğrulandı (workflow success). (2) IG hesap adlarını doldur. (3) Sabah gazete akışında rotasyon+editöryal çıktısını canlı gözlemle.
 
 ---
 
@@ -158,7 +158,7 @@
 
 | # | Bloke | Neyi durduruyor | Çözüm / karar |
 |---|-------|-----------------|---------------|
-| B1 | **IG long-lived token doğrula** | Tüm reels yayını (site-intro, 7 Plaj, antik), IG haber paylaşımı (#6), IG oto-cevap (#7) | env'de `IG_LONG_LIVED_TOKEN` var; prod'da geçerli mi doğrula. `api/cron-refresh-ig-token.js` mevcut |
+| ~~B1~~ | ✅ **ÇÖZÜLDÜ (2026-07-08)** — IG token + business ID GitHub secret'larına eklendi | ~~Tüm reels yayını + IG otomasyon~~ | Publish workflow success doğrulandı. Bu satır bir sonraki oturumda silinebilir. |
 | B2 | **SerpApi quota dolu** | Google Maps eksik 7 kategori + foto enrich, otonom etkinlik (#9) | Saat başı reset bekle **veya** plan upgrade (~$75/ay, 5K query) |
 | B3 | **Resend API key invalid** | Newsletter onay/welcome maili gitmiyor | Resend key rotate + Vercel env güncelle |
 | B4 | **FB/IG scraper kararı (sahip olunmayan profil)** | FB responder (#10) okuma, IG caption etkinlik scrape | Apify (~$30-49/ay, ToS gri) mı, manuel mı, atla mı? |
@@ -173,7 +173,7 @@
 
 1. **COMMIT GRUBU:** Bu oturumun gazete+etkinlik+otomasyon çıktıları **henüz commit edilmedi** (`git status`: `newspaper/generator/sources.mjs`, `magazine.html`, `etkinlikler/index.html`, `data/etkinlik-*.json`, `lib/ig-reply.mjs`, `content/reel-*`, `docs/*` untracked). Tek mantıklı commit grubu halinde commit et.
 2. **Web `/etkinlikler` deploy** — sayfa hazır, sadece deploy (#5).
-3. **B1 IG token doğrula** → en yüksek değerli kilidi açar: reels yayını + IG otomasyon (#6, #7) hepsi buna bağlı.
+3. ~~**B1 IG token doğrula**~~ → ✅ ÇÖZÜLDÜ (2026-07-08): secret'lar eklendi, publish workflow success. Reels + IG otomasyon kilidi açık.
 4. **B3 Resend key rotate** → newsletter hattı çalışır hale gelir (1 değişken).
 5. **B2 SerpApi kararı** → Google Maps verisi + otonom etkinlik tamamlanır.
 6. **Google Search Console'a sitemap submit** (SEO Faz 2 kapanışı).
