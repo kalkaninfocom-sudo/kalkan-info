@@ -1,493 +1,592 @@
 {
   "date": "2026-07-08",
-  "generated_at": "2026-07-08T02:42:27.059Z",
-  "count": 27,
+  "generated_at": "2026-07-08T02:57:09.292Z",
+  "count": 28,
   "agents": [
     {
       "id": "director",
       "name": "ContentDirector",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin güzelliği, Kalamar Beach Club'ın happy hour etkinlikleriyle birleştiğinde, ziyaretçilere unutulmaz bir deneyim sunuyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da kültür-sanat etkinliklerinin turizme katkısını inceleyen bir yazı"
+          "baslik": "Kalkan'ın Gizli Koyları: Kaputaş ve Kalamar'ın Sırları",
+          "aci": "Kalkan'ın en güzel ve gizli koylarını keşfetmek isteyenler için, Kaputaş ve Kalamar koylarının güzelliğini ve ziyaretçilere sunduğu deneyimleri anlatan bir yazı."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın sunduğu Akdeniz mutfağı ve aktivitelerini gösteren kısa bir video"
+          "baslik": "Likya Yolu'nu Keşfedin: Kalkan'dan Patara'ya",
+          "aci": "Likya Yolu'nun Kalkan'dan Patara'ya kadar olan kısmını gösteren, ziyaretçilere bu tarihi ve doğal güzelliğin keyfini çıkarma fırsatı sunan bir video."
         }
       ],
-      "gelistirme": "KalkanInfo'ya bir etkinlik takvimi eklenmesi, böylece ziyaretçilerin şehrin güncel etkinliklerine kolayca ulaşabilmesi",
+      "gelistirme": "KalkanInfo web sitesine, ziyaretçilerin Kalkan'da yapacakları etkinlik ve gezileri planlamalarına yardımcı olacak bir 'Kalkan Rehberi' bölümü eklenmesi, ziyaretçilerin deneyimlerini zenginleştirecektir.",
       "_provider": "groq"
     },
     {
       "id": "trend",
       "name": "TrendScout",
       "department": "sosyal",
-      "kalkan_guncel": "Kaş’ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi, ayrıca Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin tadını çıkarmak için en iyi noktalardan biri olan Kalamar Beach Club, happy hour ve yemek seçenekleriyle misafirlerini ağırlamaya devam ediyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü gibi etkinliklerin bölgedeki turizme etkisi"
+          "baslik": "Kalkan'ın Gizli Koyları: Kaputaş ve Kalamar Koyu",
+          "aci": "Kalkan'ın en güzel ve gizli koylarını keşfetmek isteyenler için Kaputaş ve Kalamar Koyu gibi yerlerin güzelliğini ve nasıl ulaşılacağını anlatan bir içerik."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'ın plaj ve beach club'larının sunduğu yemek ve eğlence olanakları"
+          "baslik": "Likya Yolu: Tarih ve Doğanın Birleştiği Yer",
+          "aci": "Likya Yolu'nun güzergahını ve tarihi önemini anlatan, aynı zamanda doğa ve tarih severler için bir rehber niteliğinde olan bir içerik."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde bölgedeki güncel etkinlik ve haberleri takip edebilecek bir bölüm eklenmesi",
+      "gelistirme": "KalkanInfo sitesinde 'Kalkan'da Yapılacak Şeyler' bölümüne, mevsimsel etkinlik ve festival takvimi eklenerek ziyaretçilerin plan yapmalarına yardımcı olunabilir.",
       "_provider": "groq"
     },
     {
       "id": "writer",
       "name": "SocialWriter",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin keyfini çıkarmak için en iyi noktalardan biri olan Kalamar Koyu, gün batımının tadını çıkarmak için ideal bir mekan.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin renkli anlarını ve festivalin bölgeye ekonomik katkısını inceleyen bir haber"
+          "baslik": "Likya Yolu Üzerine Bir Gezi",
+          "aci": "Likya Yolu'nun Kalkan bölümünde bir yürüyüş deneyimi ve bölgenin tarihi ve doğal güzelliklerini keşfetme fırsatı."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'da geçirilen bir günün kısa ve renkli görüntülerini gösteren, #kalkan ve #kalamarvibes hashtag'lerini içeren bir video"
+          "baslik": "Kalkan'ın Lezzet Durakları",
+          "aci": "Kalkan'ın yerel lezzetlerini tanıtan bir video, yöresel yemekler ve meze kültürü hakkında bilgiler içerir."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde, bölgedeki güncel etkinliklere ve haberlere yer veren bir 'etkinlikler' veya 'haberler' bölümü oluşturulabilir, böylece ziyaretçilerin Kalkan ile ilgili en güncel bilgileri kolayca bulabilmesi sağlanabilir.",
+      "gelistirme": "KalkanInfo web sitesine bir 'Kalkan Rehberi' bölümü eklenmesi, ziyaretçilere Kalkan'da neler yapabilecekleri, nerede kalabilecekleri ve ne yiyebilecekleri hakkında daha detalı bilgi verebilir.",
       "_provider": "groq"
     },
     {
       "id": "guard",
       "name": "BrandGuard",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin güzelliği, Kalamar Beach Club'ın happy hour etkinlikleriyle birlikte keşfedilebilir.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir haber yazısı"
+          "baslik": "Kalkan'ın Gizli Koyları: Bir Keşif Yolculuğu",
+          "aci": "Kalkan'ın saklı koylarını ve plajlarını keşfetmek için rehber niteliğinde bir içerik."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'da geçirilen bir günün kısa ve renkli bir videosu, #kalkan #kalamarvibes etiketleriyle"
+          "baslik": "Kalkan Lezzetleri: Yöresel Yemeklerin Tadını Çıkarın",
+          "aci": "Kalkan'ın yerel mutfağını ve yöresel yemeklerini tanıtan, lezzet dolu bir içerik."
         }
       ],
-      "gelistirme": "KalkanInfo'nun etkinlik takvimi bölümünü genişleterek, kullanıcıların kolayca ulaşabileceği bir şekilde düzenlemek ve bölgedeki önemli etkinliklere.link vermek",
+      "gelistirme": "KalkanInfo websitesine bir 'Kalkan'da Yapılacaklar' bölümü eklenerek, ziyaretçilere çeşitli aktivite ve etkinlik önerileri sunulabilir.",
       "_provider": "groq"
     },
     {
       "id": "analyst",
       "name": "SocialAnalyst",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz geceleri, plajların ve koyların güzelliğiyle birlikte, tarihi ve kültürel zenginlikler de keşfedilmeyi bekliyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da turizm sezonunun başlangıcında bölünmüş yol projesinin iptali ve kültür-sanat festivalinin etkileri"
+          "baslik": "Likya Yolu: Kalkan'ın Gizli Hazineleşmiş Tarihi",
+          "aci": "Likya Yolu'nun Kalkan bölümünde yapılan yürüyüşler ve keşifler, ziyaretçilere bölgenin tarihi ve doğal güzelliklerini keşfetme fırsatı sunuyor."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın happy hour ve yemek etkinliklerine odaklanan bir video"
+          "baslik": "Kalkan'ın Lezzet Durakları",
+          "aci": "Kalkan'ın yerel lezzetlerini ve geleneksel yemeklerini tanıtan bir içerik, ziyaretçilere bölgenin mutfak kültürünü keşfetme fırsatı sunuyor."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi ve mekanlar için ayrı bir bölüm açarak, kullanıcıların kolayca bilgi bulabilmesini sağlamak",
+      "gelistirme": "KalkanInfo sitesinde, ziyaretçilerin bölgede yapabilecekleri aktiviteleri ve gezilecek yerleri keşfetmelerine yardımcı olacak bir 'Kalkan Rehberi' oluşturulabilir.",
       "_provider": "groq"
     },
     {
       "id": "growth",
       "name": "GrowthStrategist",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'ın isminin kökeni ve liman kenti kimliğinin tarihsel gelişimi üzerine derinlemesine bir bakış.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair bir haber makalesi yazarak festivalin içeriği, katılımcıları ve etkinlik detaylarını okuyuculara sunabilir"
+          "tur": "reels",
+          "baslik": "Likya'nın Siyasi Kalbi: Patara Meclisi",
+          "aci": "Dünyanın ilk demokratik meclis yapısını ve Roma dönemindeki etkilerini görsel bir anlatımla işlemek."
         },
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın happy hour ve yemek etkinliklerine dair kısa, çekici videolar hazırlayarak Kalkan'ın sosyal yaşamını vurgulayabilir"
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Gastronomi Mirası: Nesilden Nesile Mezeler",
+          "aci": "Kalkan'daki köklü işletmelerin imza lezzetlerinin hikayelerini ve reçetelerin nasıl korunduğunu işletme sahipleriyle röportaj yaparak anlatmak."
         }
       ],
-      "gelistirme": "KalkanInfo'nun etkinlik takvimi bölümünü geliştirerek, kullanıcıların kolayca upcoming etkinliklere ulaşabilmesi ve bunları takvimlerine ekleyebilmesi için bir 'Etkinlik Takvimi' sayfası oluşturulabilir",
-      "_provider": "groq"
+      "gelistirme": "Kalkan'daki en popüler 10 aktivite ve mekan için 'En İyi [Kategori]' formatında, kullanıcı yorumları ve veriyle desteklenmiş, aylık güncellenen listicle içerikler oluşturarak AI arama motorlarında (LLM) görünürlüğü artırmak.",
+      "_provider": "cerebras"
     },
     {
       "id": "ads",
       "name": "AdsOptimizer",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'ın isminin kökenine dair yerel anlatılar ve coğrafi yapısının 'kalkan' şeklini andırması üzerinden, kasabanın kimliğini sorgulayan zamansız bir anlatı.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir makale"
+          "tur": "reels",
+          "baslik": "Likya'nın Siyasi Kalbi: Patara Meclisi",
+          "aci": "Dünyanın ilk demokratik meclis yapısını ve Roma dönemindeki etkisini, günümüzdeki kalıntılar üzerinden hızlı geçişlerle anlatan tarihsel bir yolculuk."
         },
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club'ta geçirdiğiniz bir günün kısa ve renkli bir videosu, #kalkan #kalamarvibes etiketleriyle"
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Lezzet Mirası: Nesilden Nesile Mezeler",
+          "aci": "Kalkan'daki köklü işletmelerin imza mezelerinin hikayelerini ve kullanılan yerel malzemelerin (badem, zeytinyağı) kökenini araştıran bir portre serisi."
         }
       ],
-      "gelistirme": "KalkanInfo web sitesine, bölgedeki güncel etkinliklere ve haberlere hızlı erişim sağlamak için bir 'etkinlikler' ve 'haberler' sekmesi eklenmesi",
-      "_provider": "groq"
+      "gelistirme": "kalkaninfo.com üzerinde 'Kalkan'da Ne Yenir/Nerede Yenir?' sorusuna yanıt veren, kullanıcıların kendi favori mezelerini ve mekanlarını oylayabildiği interaktif bir 'Lezzet Haritası' modülü eklenmesi.",
+      "_provider": "cerebras"
     },
     {
       "id": "reception",
       "name": "WhatsAppReception",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'ın isminin kökenine dair yerel anlatılar ve bu ismin bölgenin coğrafi yapısıyla olan bağı üzerine zamansız bir kültürel inceleme.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir makale"
+          "tur": "reels",
+          "baslik": "Likya'nın Sessiz Tanıkları: Kaya Mezarları",
+          "aci": "Kalkan ve çevresindeki kaya mezarlarının mimari gizemlerini, görkemli manzaralar eşliğinde kısa ve etkileyici geçişlerle anlatmak."
         },
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın sunduğu happy hour ve yemek deneyimi hakkında kısa bir video"
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Lezzet Mirası: Nesiller Boyu Süren Tarifler",
+          "aci": "Bölgedeki köklü işletmelerin imza yemeklerinin hikayelerini ve bu tariflerin nasıl korunduğunu işletme sahipleriyle yapılacak röportajlarla işlemek."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturmak ve kullanıcıların kolayca bulabilecekleri bir şekilde BUGÜNKÜ ETKİNLİKLER bölümünü eklemek",
-      "_provider": "groq"
+      "gelistirme": "kalkaninfo.com üzerinde, ziyaretçilerin ilgi alanlarına göre (tarih, gastronomi, doğa) kişiselleştirilmiş rotalar oluşturabileceği interaktif bir 'Kendi Gezini Planla' modülü eklenmesi.",
+      "_provider": "cerebras"
     },
     {
       "id": "yayin-yonetmeni",
       "name": "YayınYönetmeni",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin güzelliği, Kalamar Beach Club'ın happy hour etkinlikleriyle birleşiyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da gerçekleştirilen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair detaylı bir haber"
+          "baslik": "Kalkan'ın Gizli Koyları: Kaputaş ve Kalamar",
+          "aci": "Kalkan'ın en güzel ve gizli koylarını keşfedin."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'da bulunan Kalamar Beach Club'ın sunduğu yemek ve eğlence olanaklarını gösteren bir video"
+          "baslik": "Likya Yolu'nda Bir Gün",
+          "aci": "Tarihi Likya Yolu'nda bir gün geçirmenin keyfini yaşayın."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde yer alan etkinlik takvimine, kullanıcıların kendi etkinliklerini ekleyebilecekleri bir bölüm eklenmesi",
+      "gelistirme": "KalkanInfo sitesinde 'Kalkan'da Yapılacak Şeyler' başlığı altında, mevsimsel etkinlik ve faaliyetlere yer verilmesi.",
       "_provider": "groq"
     },
     {
       "id": "muhabir",
       "name": "Muhabir",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararının iptal edilmesi, bölgenin ulaşım ve çevre geleceği açısından kritik bir gelişme olarak öne çıkıyor. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali ile 5. Kaş Kınık Tarım Fuarı bölgedeki kültürel ve ekonomik hareketliliği artırmış durumda.",
+      "kalkan_guncel": "Temmuz sıcağında serinleme rotası: Kalkan'ın gizli koyları ve Kalamar'ın denizle buluştuğu noktada gün batımı ritüelleri.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptal kararının yerel ekosisteme ve ulaşım planlarına etkilerini inceleyen analiz haberi."
+          "baslik": "Likya'nın Siyasi Mirası: Patara Meclisi ve Demokrasinin İlk İzleri",
+          "aci": "Dünyanın ilk demokratik meclis yapılarından biri olan Patara Meclis Binası'nın mimari özellikleri ve Likya Birliği'nin yönetim modelinin günümüze yansımaları."
         },
         {
           "tur": "reels",
-          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntülerle Kalkan ve çevresindeki etkinlik takvimini özetleyen hızlı bir rehber."
+          "baslik": "Kalkan'ın Tadı: Bir Meze, Bin Hikaye",
+          "aci": "Kalkan'ın yerel restoranlarındaki imza mezelerin hazırlanış süreçleri ve bu lezzetlerin arkasındaki aile geleneklerinin kısa kesitlerle anlatımı."
         }
       ],
-      "gelistirme": "Sitedeki etkinlikler bölümüne, sadece tarih değil, 'Katılımcı İlgi ve Kayıt' butonları ekleyerek yerel etkinliklerin gerçek etkileşim oranlarını ölçen bir sistem kurulabilir.",
+      "gelistirme": "kalkaninfo.com için 'Antik Rotalar' sekmesi eklenerek; Patara, Xanthos ve Letoon arasındaki mesafe, ulaşım ipuçları ve ziyaret sırası öneren interaktif bir dijital harita entegrasyonu.",
       "_provider": "cerebras"
     },
     {
       "id": "foto-editoru",
       "name": "FotoEditörü",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesinin 'ÇED olumlu' kararının iptal edilmesi bölge için kritik bir gelişme; aynı zamanda 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali ile bölgede kültürel hareketlilik hakim.",
+      "kalkan_guncel": "Kalkan'ın isminin kökenine dair anlatılan hikayeler ve bu ismin kasabanın fiziksel yapısıyla (kalkan şeklinde korunaklı liman) olan bağı üzerine zamansız bir kültürel inceleme.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptali kararının bölge ekosistemi ve yerel yaşam üzerindeki etkilerini inceleyen bir analiz haberi."
+          "tur": "reels",
+          "baslik": "Likya'nın Siyasi Kalbi: Patara Meclisi",
+          "aci": "Dünyanın ilk demokratik meclis yapısını, günümüz yönetim biçimleriyle kıyaslayan, hızlı geçişli ve atmosferik bir tarih turu."
         },
         {
-          "tur": "reels",
-          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden canlı kesitlerle, Kalkan'ın sanatsal atmosferini yansıtan hızlı geçişli bir video kolajı."
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Bahçeleri: Zeytin ve Badem",
+          "aci": "Hasat dönemlerinin yerel yaşam üzerindeki etkisi ve bu ürünlerin Kalkan mutfağındaki imza dokunuşlarını anlatan bir kültür yazısı."
         }
       ],
-      "gelistirme": "KalkanInfo'ya, bölgedeki güncel belediye duyurularını ve festival takvimlerini anlık olarak takip edebilecekleri bir 'Etkinlik ve Duyuru Panosu' entegre edilmeli.",
+      "gelistirme": "kalkaninfo.com için 'Kalkan'ın Sesleri' adlı interaktif bir harita eklenerek; dalga sesleri, çarşı uğultusu ve antik kent rüzgarı gibi ambiyans kayıtlarıyla dijital bir deneyim alanı oluşturulabilir.",
       "_provider": "cerebras"
     },
     {
       "id": "magazin-editoru",
       "name": "MagazinEditörü",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Kalkan'ın gizli koylarından biri olan Kalamar Koyu, yaz aylarında ziyaretçilerini bekliyor. Bu koyun muhteşem manzarası ve sakin suları, Kalkan'ın en güzel yerlerinden biri olarak kabul ediliyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da yaz mevsiminin başlangıcını kutlayan bir yazı, özellikle @kalamarbeachclub'ın happy hour etkinliklerine odaklanarak"
+          "baslik": "Kalkan'ın En Eski Deniz Feneri: Patara",
+          "aci": "Patara, Likya Birliği'nin başkenti ve dünyanın en eski deniz fenerlerinden biridir."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'ın en güzel plajlarını ve beach clublarını tanıtan bir video, @kalamarbeachclub'ın sunduğu lezzetlerin ve aktivitelere yer verilmesi"
+          "baslik": "Kalkan'da Yöresel Lezzetler",
+          "aci": "Kalkan'da bulunan yerel restoranlar, yöresel lezzetlerin tadını sunuyor."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Tarihini Anlatan Kaya Mezarları",
+          "aci": "Kalkan'ın tarihi, kaya mezarlarından birçoğunda gizli."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Zeytin Hasadı",
+          "aci": "Kalkan'da zeytin hasadı, bir gelenek olarak kabul ediliyor."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın En Güzel Plajları: Kaputaş ve Kalamar Koyu",
+          "aci": "Kalkan'ın en güzel plajlarından biri, Kaputaş Plajıdır."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Yöresel Yemekler",
+          "aci": "Kalkan'da bulunan yerel restoranlar, yöresel yemeklerin tadını sunuyor."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde, Kalkan ve Kaş'taki yerel etkinliklere ve festivallere daha geniş yer verilmesi, ayrıca @kalamarbeachclub gibi popüler mekanların sunduğu hizmetlere özel bir bölüm açılması",
-      "_provider": "groq"
+      "gelistirme": "KalkanInfo'nun web sitesine, Kalkan'ın en güzel yerlerinden biri olan Kalamar Koyu'nun fotoğraflarını ekleyin ve ziyaretçilerin bu koyu keşfetmelerine yardımcı olun.",
+      "_provider": "nvidia"
     },
     {
       "id": "gazete-sosyal",
       "name": "SosyalEditör",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararının iptal edilmesi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin başlaması öne çıkıyor.",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin güzelliği, gün batımı noktaları ve romantik atmosferi",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptal kararının detayları ve bölgeye olası etkileri üzerine bir analiz haberi."
+          "baslik": "Kalkan'ın Gizli Koyları: Bir Keşif Yolculuğu",
+          "aci": "Kalkan'ın en güzel ve saklı koylarını keşfederken, doğanın güzelliği ve tarihi öneminin birleştiği bir yolculuğa çıkın."
         },
         {
           "tur": "reels",
-          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntülerle hazırlanan 'Kalkan'da Festival Heyecanı' temalı kısa video."
+          "baslik": "Kalkan'da Lezzetli Bir Gün: Yöresel Yemekler ve Mezeler",
+          "aci": "Kalkan'ın yöresel lezzetlerini keşfederken, yerel pazarları, restoranları ve mezeleri tanıtan bir gastronomi turuna katılın."
         }
       ],
-      "gelistirme": "kalkaninfo.com üzerinde, bölgedeki güncel etkinlikleri (Festival, Quiz Gecesi vb.) tarih ve saat bazlı listeleyen dinamik bir 'Kalkan Etkinlik Takvimi' modülü oluşturulması.",
-      "_provider": "cerebras"
+      "gelistirme": "KalkanInfo websitesine bir 'Kalkan Rehberi' bölümü eklenmesi, ziyaretçilerin Kalkan'da neler yapabilecekleri, nerede kalabilecekleri ve ne yiyebilecekleri hakkında bilgi alabilecekleri bir kaynak oluşturulması.",
+      "_provider": "groq"
+    },
+    {
+      "id": "reklam-uyum",
+      "name": "Reklam-Uyum",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan'da Likya Yolu'nu keşfedin, dünyanın en eski deniz fenerlerinden biri olan Patara'yı ziyaret edin ve Roma senato/meclis yapısını görüntüleyin.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Koyları: Kalamar Koyu ve Kaputaş",
+          "aci": "Kalkan'ın en güzel koylarından biri olan Kalamar Koyu'nun gizli güzelliğini keşfedin."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Yöresel Lezzetleri",
+          "aci": "Kalkan'ın en özel lezzetlerini deneyimleyin ve yerel malzemelerle hazırlanan yemekleri keşfedin."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya 'Kalkan'da Tekne Turu' sayfası ekleyin ve ziyaretçiler için en iyi rotaları ve deneyimleri paylaşın.",
+      "_provider": "nvidia"
     },
     {
       "id": "news-verifier",
       "name": "NewsVerifier",
       "department": "gazete",
-      "kalkan_guncel": "Bugün Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Kalkan'ın en eski deniz fenerinden günümüze olan yolculuğu ve Patara'nın Likya Birliği'nin başkenti olmasıyla ilgili genel bilgiler.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kaş Belediyesi'nin son projeleri ve etkinlikleri hakkında detaylı bir haber yazısı."
+          "baslik": "Likya Kaya Mezarları: Kalkan'ın Gizli Mirası",
+          "aci": "Kalkan'ın Likya kaya mezarları, Likya medeniyetinin kalıntılarını ve tarihini yansıtan bir miras olarak kabul edilir."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'ın güneşli bir gününde, The Mezzanine Bar'da gerçekleşen Quiz Gecesi'nin keyfini çıkarmak."
+          "baslik": "Kalkan'da Zeytin Hasadı: Bir Gelenek",
+          "aci": "Zeytin hasadı, Kalkan'da bir gelenek olarak sürdürülen bir aktivite ve yerel halkın yaşam tarzını yansıtan bir örnek."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Yöresel Yemekleri: Lezzetli Tarifler",
+          "aci": "Kalkan'ın yöresel yemekleri, deniz ürünlerini ve yerel malzemeleri kullanarak hazırlanan lezzetli tariflerdir."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Dalış: Gizli Koylar ve Canlılar",
+          "aci": "Kalkan'da dalış, gizli koyları ve canlıları keşfetmek için ideal bir aktivite ve doğa ile iç içe olmak."
         }
       ],
-      "gelistirme": "KalkanInfo'ya, haberlerin ve etkinliklerin daha kolay bulunabilir hale gelmesi için, bir arama fonksiyonu eklenmesi önerilir. Bu sayede kullanıcılar, aradıkları konulara hızlı bir şekilde ulaşabilirler.",
+      "gelistirme": "KalkanInfo'nun ana sayfasında, Kalkan hakkında daha fazla bilgi ve içerik sunmak için bir 'Kalkan Hakkında' sayfası oluşturulması. Bu sayfa, Kalkan'ın tarihi, kültürü, turizm olanakları ve daha fazlasını kapsayacak.",
       "_provider": "nvidia"
     },
     {
       "id": "hava-plan",
       "name": "HavaPlan",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz geceleri, Likya Yolu üzerindeki gizli koylar ve plajlar keşfetmek için ideal bir zaman",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin renkli anlarını fotoğraflayarak okuyucularla paylaşın"
+          "baslik": "Kalkan'ın Lezzet Mirası: Yöresel Yemekler ve Mezeler",
+          "aci": "Kalkan'ın geleneksel mutfağını ve yöresel lezzetlerini keşfederken, yerel işletmelerin hikayelerini ve tariflerini öğrenin"
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'dahappy hour keyfini ve Mediterranean feast'i kısa bir video ile gösterin"
+          "baslik": "Kaputaş Plajı ve Kalamar Koyu: Kalkan'ın Gizli Cennetleri",
+          "aci": "Kalkan'ın en güzel plajları ve koylarını keşfederken, bu doğal güzelliklerin oluşumunu ve önemini öğrenin"
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturarak, ziyaretçilerin kolayca Kalkan'da gerçekleşen etkinliklere ulaşmasını sağlayın",
+      "gelistirme": "KalkanInfo web sitesinde, Likya Yolu üzerindeki tarihi ve doğal güzelliklerin interaktif bir haritasını oluşturmak, ziyaretçilerin Kalkan'ı daha iyi keşfetmelerine yardımcı olabilir",
       "_provider": "groq"
     },
     {
       "id": "tatil-planner",
       "name": "TatilPlanner",
       "department": "concierge",
-      "kalkan_guncel": "27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı; bölgede kültürel hareketlilik yüksek. Kalkan bölünmüş yol projesinin ÇED kararı iptal edildi, ulaşım planlamaları mevcut durumla devam ediyor.",
+      "kalkan_guncel": "Temmuz sıcağında Kalkan'ın dik yokuşlarından kaçıp serinlemek isteyenler için 'Kalamar Koyu'nun kristal suları ve gün batımı sonrası deniz kenarı akşam yemekleri en gerçekçi sığınak.",
       "icerik_fikirleri": [
         {
           "tur": "reels",
-          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nin atmosferini ve etkinlik takvimini içeren 'Kaş'ta Bu Hafta' rehberi."
+          "baslik": "Likya Birliği'nin Kalbi: Patara'da Zaman Yolculuğu",
+          "aci": "Dünyanın ilk demokratik meclis binasından antik plaja uzanan rotada, turist kalabalığının dışında kalan sessiz köşeleri ve Aziz Nikolaos'un izlerini gösteren bir görsel anlatım."
         },
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın happy hour ve akşam yemeği geçişlerini gösteren 'Kalkan'da Bir Gün' kurgusu."
+          "tur": "gazete",
+          "baslik": "Kalkan'ın İsim Hikayesi: Bir Limandan Daha Fazlası",
+          "aci": "Kalkan isminin kökenine dair yerel anlatıları ve kasabanın coğrafi yapısının bu isme nasıl yön verdiğini inceleyen, bölge kimliğini ön plana çıkaran bir yazı."
         }
       ],
-      "gelistirme": "Sitede, bölgedeki festival ve etkinlik takvimlerini (Likya Sanat Festivali gibi) konaklama önerileriyle eşleştiren dinamik bir 'Etkinlik Bazlı Gezi Planlayıcı' modülü eklenmeli.",
+      "gelistirme": "KalkanInfo'ya, ziyaretçilerin aracı kurumlar yerine bölgedeki butik otel ve villalarla doğrudan iletişim kurabileceği, işletmelerin kendi resmi rezervasyon linklerini paylaştığı 'Doğrudan İletişim Rehberi' sekmesi eklenmeli.",
       "_provider": "cerebras"
     },
     {
       "id": "gezgin-rehber",
       "name": "GezginRehber",
       "department": "concierge",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bu kararın iptali, bölünmüş yol projelerinin geleceği hakkında endişeleri artırmaktadır.",
+      "kalkan_guncel": "Kalkan'ın gizli koylarından biri olan Kalamar Koyu, yaz aylarında ziyaretçilerini kendine çekiyor. Koyun sığınakları ve kayalıkları, dalış severler için ideal bir destinasyon haline geliyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "'Kalkan'da Turizm ve Çevre: Birlikte Geleceği Korumak' başlıklı haberde, bölgenin turizm potansiyelinin korunması ve çevre sorunlarının çözümü hakkında yerel halkın görüşleri yer almalıdır."
+          "baslik": "Kalkan'ın Yöresel Lezzeti: Zeytin Hasadı ve Badem Muhallebisi",
+          "aci": "Kalkan'ın zeytin hasadı ve badem muhallebisi, yöresel lezzetlerin en güzel örneklerinden."
         },
         {
           "tur": "reels",
-          "fikir": "'Kalkan'da Akşam Gecesi: Kalkan Regency'nin BBQ Seti' başlıklı reels'de, Kalkan Regency'nin Wednesdays BBQ seti hakkında bir önizleme sunulmalıdır."
+          "baslik": "Kalkan'da Bir Gün: Deniz Feneri ve Roma Senato Yapısı",
+          "aci": "Kalkan'da bir gün geçirmek istiyorsanız, Patara'nın deniz fenerini ve Roma senato yapısını ziyaret etmenizi öneririm."
         }
       ],
-      "gelistirme": "KalkanInfo'ya, bölünmüş yol projeleri ve çevre sorunları hakkında güncel haberler ve analizler eklenmelidir. Ayrıca, yerel halkın görüşleri ve önerileri de dahil edilmelidir. Bu, ziyaretçilere daha kapsamlı ve doğru bilgi sunulmasını sağlayacaktır.",
+      "gelistirme": "KalkanInfo'yu geliştirmek için bir öneri olarak, web sitesinin ana sayfasında bir 'Haberler' sekmesi oluşturabiliriz. Bu sekmede, son dakika haberleri, turizm haberleri ve yerel etkinlikler gibi konuları içerebiliriz.",
       "_provider": "nvidia"
     },
     {
       "id": "menu-chef",
       "name": "MenuChef",
       "department": "concierge",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Kalkan'ın deniz feneri, dünyanın en eski ve en iyi korunmuş fenerlerinden biri olarak kabul edilir.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılımın yüksek olması ve bölgedeki turizm faaliyetleri"
+          "baslik": "Kalkan'ın Gizli Koyları",
+          "aci": "Kalkan'ın gizli koyları, yemyeşil ağaçlar ve mavi sularıyla bir doğa harikasıdır."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'ta düzenlenen happy hour ve deniz kenarında yapılan akşam yemeklerinin renkli anlarını paylaşmak"
+          "baslik": "Likya Yolu'nda Yürüyüş",
+          "aci": "Likya Yolu'nda yürüyüş yaparken, tarihi ve doğal güzellikleri keşfedebilirsiniz."
         }
       ],
-      "gelistirme": "KalkanInfo websitesine bölgedeki güncel etkinlik ve haberleri gerçek zamanlı olarak güncelleyen bir bölüm eklemek",
-      "_provider": "groq"
+      "gelistirme": "KalkanInfo'da, ziyaretçilerin Kalkan'da neler yapabileceği, nerede yemek yiyebileceği, nerede kalabileceği ve daha fazlası hakkında bilgi sunan bir rehber oluşturulabilir. Bu rehber, Kalkan'ın en iyi yerlerini ve deneyimlerini keşfetmek için ziyaretçilere yardımcı olabilir.",
+      "_provider": "nvidia"
     },
     {
       "id": "provider-matcher",
       "name": "ProviderMatcher",
       "department": "concierge",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bu kararın iptal edilmesi, bölünmüş yol projesinin geleceği hakkında belirsizliklere neden olabilir.",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin tadını çıkarmak için en iyi noktalardan biri olan Kalamar Beach Club, happy hour ve akşam yemekleri için ideal bir seçim.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da turizm sezonu yaklaşırken, bölünmüş yol projesinin iptal edilmesi, bölgedeki turizm faaliyetlerini nasıl etkileyecektir?"
+          "baslik": "Kalkan'ın Gizli Koyları: Bir Keşif Yolculuğu",
+          "aci": "Kalkan'ın gizli koylarını keşfetmek ve bu doğal güzellikleri deneyimlemek isteyenler için bir rehber."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'da ilk happy hour sezonu bugün başladı! Kalamar Beach Club'da keyifli bir gün geçirmek için neyi bekliyoruz?"
+          "baslik": "Kalkan Lezzetleri: Yöresel Yemekler ve Mezeler",
+          "aci": "Kalkan'ın yöresel lezzetlerini ve meze kültürünü tanıtan bir içerik, yerel restoranların önerileriyle."
         }
       ],
-      "gelistirme": "KalkanInfo'ya, bölgedeki etkinlikleri ve haberleri daha hızlı ve kolay bir şekilde erişilebilmesi için, bir mobil uygulamaya geçilmesi önerilir. Bu, kullanıcıların daha fazla içerik keşfetmesine ve bölgedeki en güncel bilgileri takip etmesine olanak tanıyacaktır.",
-      "_provider": "nvidia"
+      "gelistirme": "KalkanInfo web sitesine bir 'Yerel Lezzetler' bölümü eklenmesi, ziyaretçilerin Kalkan'ın yöresel yemeklerini ve meze kültürünü keşfetmelerine yardımcı olabilir.",
+      "_provider": "groq"
     },
     {
       "id": "dil-cevirmen",
       "name": "DilÇevirmen",
       "department": "concierge",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Temmuz sıcağında Kalkan'ın serin sularına açılmak için en ideal zaman: Kalamar Koyu'nun kristal berraklığındaki sularında dalış yaparak deniz altı dünyasını keşfetmek, yazın bunaltıcı etkisinden kurtulmanın en premium yolu.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "Kalkan ve Kaş'ta düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılımın yüksek olması"
+          "tur": "reels",
+          "baslik": "Likya'nın Siyasi Kalbi: Patara Meclisi",
+          "aci": "Dünyanın ilk demokratik meclis yapısını ve Roma dönemindeki yönetim anlayışını, antik kentin atmosferik görüntüleriyle harmanlayarak anlatan tarihsel bir yolculuk."
         },
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club'ın sunduğu Akdeniz mutfağı ve happy hour etkinlikleri"
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gastronomi Mirası: Meze Kültürü",
+          "aci": "Kalkan sofralarının vazgeçilmezi olan yerel mezelerin kökenleri, kullanılan taze Ege otları ve bu sofraların sosyal yaşamdaki 'paylaşım' anlamı üzerine derinlemesine bir inceleme."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde güncel etkinlik takvimi ve mekanlar için interaktif bir harita eklemek",
-      "_provider": "groq"
+      "gelistirme": "KalkanInfo.com'a 'Kalkan'da Zaman Yolculuğu' adlı interaktif bir harita eklenerek; Patara, Xanthos ve Letoon arasındaki tarihsel bağların, kullanıcıların rotasını çizerek keşfedebileceği bir hikaye anlatıcılığı modülü entegre edilebilir.",
+      "_provider": "cerebras"
     },
     {
       "id": "deploy-agent",
       "name": "DeployAgent",
       "department": "teknik",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bölgede 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Kalkan'ın ismi nerede geliyor?",
       "icerik_fikirleri": [
         {
-          "tur": "reels",
-          "fikir": "Kalamar Beach Club happy hour ve akşam yemeği atmosferini içeren 'Kalkan'da bir gün' temalı kısa video."
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Likya Mirası: Patara ve Xanthos-Letoon",
+          "aci": "Kalkan'ın adı Likya'nın eski başkenti Patara'dan geliyor ve bölgenin zengin tarihi mirasına ev sahipliği yapıyor."
         },
         {
-          "tur": "gazete",
-          "fikir": "ÇED kararının iptalinin Kalkan ulaşım projeleri üzerindeki etkileri üzerine analiz."
+          "tur": "reels",
+          "baslik": "Kalkan'ın Yöresel Lezzetleri",
+          "aci": "Kalkan'da denize kenetlenmiş bir restoranın bahçesinde, yerel malzemelerle hazırlanan lezzetli yemekler ve meze kültürü sizi bekliyor."
         }
       ],
-      "gelistirme": "Kalkan'daki güncel etkinlikleri (Quiz Gecesi, Festival vb.) ve belediye duyurularını otomatik çeken, sosyal medya API'leri ile entegre bir 'Canlı Etkinlik Takvimi' paneli eklenmeli.",
-      "_provider": "cerebras"
+      "gelistirme": "KalkanInfo'ya bir 'Kalkan Yolu' sayfası ekleyin, bu sayfa Likya Yolu'nun Kalkan bölgesindeki rotalarını ve gizli koyları kapsayacak.",
+      "_provider": "nvidia"
     },
     {
       "id": "audit-agent",
       "name": "AuditAgent",
       "department": "teknik",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi.",
+      "kalkan_guncel": "Kalkan'da ilk yaz tatiline hazırlanmak için, yerel balıkçılardan öğrenilen zeytin hasadı ve badem toplama tekniklerini denemek için Kalkan'a gelin.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği hakkında detaylı bir makale yazılabilir."
+          "baslik": "Kalkan'da Bir Gün: Likya Yolu'nda Tekne Rotaları",
+          "aci": "Kalkan'da bir gün geçirmek için en iyi rotaları keşfedin ve Likya Yolu'nda keyifli bir tekne turu yapın."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'ın en güzel plajları ve denizleri hakkında bir video dizisi oluşturulabilir."
+          "baslik": "Kalkan'ın Gizli Koyları",
+          "aci": "Kalkan'ın gizli koylarını keşfedin ve doğanın muhteşem güzelliğini deneyimleyin."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturulabilir. Bu takvim, Kalkan'da gerçekleşecek tüm etkinlikleri ve festivalleri listeleyerek ziyaretçilere kolayca erişebilmeleri için bir platform oluşturabilir.",
+      "gelistirme": "KalkanInfo'ya bir 'Doğal Kalkan' sekmesi ekleyin ve Kalkan'daki doğa aktiviteleri ve gizli koyları kapsayan bir rehber oluşturun.",
       "_provider": "nvidia"
     },
     {
       "id": "kvkk-guardian",
       "name": "KVKKGuardian",
       "department": "teknik",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'da yaz gecelerinin güzelliği, Kalamar Beach Club'ın happy hour etkinlikleriyle birleşiyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da turizmin canlandırılması için Kaş Belediyesi'nin gerçekleştirdiği faaliyetler"
+          "baslik": "Kalkan'ın Gizli Koyları: Bir Keşif Yolculuğu",
+          "aci": "Kalkan'ın en güzel ve gizli koylarını keşfetmenin yollarını ve bu koylara nasıl ulaşabileceğinizi anlatıyor."
         },
         {
           "tur": "reels",
-          "fikir": "Kalkan'ın doğal güzelliklerini ve plajlarını gösteren bir video"
+          "baslik": "Likya Yolu Üzerinde Bir Gün",
+          "aci": "Likya Yolu'nun güzelliğini ve tarihi öneminin yanı sıra, bu yolu yürüyüşünüze dahil etmenin keyfini anlatıyor."
         }
       ],
-      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturarak, ziyaretçilerin kolayca Kalkan'da neler olup bittiğini takip edebilmesi",
+      "gelistirme": "KalkanInfo websitesine bir 'Kalkan'ın En Güzel Plajları' bölümü eklenmesi, ziyaretçilerin en güzel plajları keşfetmelerine yardımcı olabilir.",
       "_provider": "groq"
     },
     {
       "id": "reels-uretici",
       "name": "ReelsProducer",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Temmuz sıcağında 'Kalkan'ın ismi nereden geliyor?' sorusu üzerinden, kasabanın coğrafi yapısının (kalkan şeklindeki kıyı şeridi) doğal bir serinleme ve sığınak noktası olduğu zamansız bir anlatı.",
       "icerik_fikirleri": [
         {
-          "tur": "gazete",
-          "fikir": "Kalkan bölünmüş yol projesi iptal edildi: Kaş'ta trafikte ne olacak?"
-        },
-        {
           "tur": "reels",
-          "fikir": "Kalkan'da 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nde neler var?"
+          "baslik": "Patara'nın Sessiz Tanığı: Deniz Feneri",
+          "aci": "Dünyanın en eski deniz fenerlerinden birinin önünde, gün batımı ışığında 'yol gösteren' temalı, minimal kurgulu bir atmosfer videosu."
         }
       ],
-      "gelistirme": "KalkanInfo'nun sosyal medya kanallarında daha fazla etkileşim sağlamak için Instagram Reels ve Facebook Live kullanılması önerilir.",
-      "_provider": "nvidia"
+      "gelistirme": "Kalkaninfo.com'a 'Kalkan'ın Gizli Köşeleri' isimli, kullanıcıların kendi keşfettiği bakir noktaları koordinatla ekleyebildiği interaktif bir topluluk haritası entegre edilmeli.",
+      "_provider": "cerebras"
     },
     {
       "id": "ilan-uzmani",
       "name": "İlanUzmanı",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Ayrıca, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "kalkan_guncel": "Kalkan'ın Likya mirası, Patara Antik Kenti'nde hissedilir. Dünyanın en eski deniz fenerlerinden biri olan Patara Feneri, Likya Birliği'nin başkenti olan Patara'nın tarihi önemini vurguluyor.",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "'Kalkan'da İş Var' başlıklı bir haber yazısı yazarak, bölgedeki yeni iş fırsatlarını ve yerel istihdamı teşvik eden projeleri vurgulayabilirsiniz."
+          "baslik": "Patara'nın Gizli Plajı: Kaputaş Koyu",
+          "aci": "Kaputaş Koyu, Patara Antik Kenti'nin gizli plajı, Likya'nın muhteşem doğası ile buluşuyor."
         },
         {
           "tur": "reels",
-          "fikir": "'Kalkan'da tatil yaparken de iş bulabilirsin!' sloganıyla, bölgedeki iş ilanlarını ve fırsatlarını göstererek, turistik destinasyon olarak Kalkan'ın avantajlarını vurgulayabilirsiniz."
+          "baslik": "Kalkan'da Yöresel Lezzetler",
+          "aci": "Kalkan'ın yerel lezzetlerini keşfedin, yöresel yemekler ve meze kültürü ile tatlı bir deneyim bekliyor."
         }
       ],
-      "gelistirme": "KalkanInfo'yu geliştirmek için, bölgedeki güncel haberleri ve etkinlikleri bir harita üzerinde göstermek mümkün olabilir. Böylece, kullanıcılar daha kolayca bölgedeki olayları ve fırsatları bulabilirler.",
+      "gelistirme": "KalkanInfo'nun web sitesine, 'Kalkan'da Bir Gün' rehberi eklenmelidir. Bu rehber, Kalkan'ın en iyi noktalarını ve aktiviteleri listeleyecek, ziyaretçiler için pratik bir kaynak olacaktır.",
       "_provider": "nvidia"
     },
     {
       "id": "bulten-editoru",
       "name": "BültenEditörü",
       "department": "sosyal",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "kalkan_guncel": "Kalkan'ın ismi nerede geliyor?",
       "icerik_fikirleri": [
         {
           "tur": "gazete",
-          "fikir": "Kalkan'da gerçekleşen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair detaylı bir haber"
+          "baslik": "Kalkan'ın Tarihi ve Efsanesi",
+          "aci": "Patara, Likya Birliği'nin başkenti ve dünyanın en eski deniz fenerlerinden biridir."
         },
         {
           "tur": "reels",
-          "fikir": "Kalamar Beach Club'ta geçirdiğiniz bir günün kısa ve renkli bir videosu"
+          "baslik": "Kalamar Beach Club'un Lezzetli Hikayesi",
+          "aci": "Kalamar Beach Club'un imza lezzeti, nesilden nesile aktarılan bir tarif."
         }
       ],
-      "gelistirme": "KalkanInfo'ya bir 'etkinlik takvimi' eklenmesi, böylece ziyaretçiler ve yerel halkın gelecekteki etkinliklere dair kolayca bilgi alabilmesi",
-      "_provider": "groq"
+      "gelistirme": "KalkanInfo'nun web sitesine bir 'Kalkan'da Gezilecek Yerler' rehberi ekleyin, ziyaretçilere en iyi yerleri ve deneyimlerini önerin.",
+      "_provider": "nvidia"
     },
     {
       "id": "gazete-reel-en",
       "name": "GazeteReelEN",
       "department": "gazete",
-      "kalkan_guncel": "Kalkan bölünmüş yol projesinin ÇED olumlu kararının iptal edilmesi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin başlaması öne çıkıyor.",
+      "kalkan_guncel": "Kalkan'ın gizli koyları ve tekne rotaları, doğa severler için ideal bir destinasyon sunuyor. Bu koylar, sığ ve sakin sularıyla, dalış ve yüzmeye ideal bir ortam sunuyor. Ayrıca, koyların etrafındaki ağaçlar ve bitkiler, bir doğa harikası yaratıyor.",
       "icerik_fikirleri": [
         {
-          "tur": "reels",
-          "fikir": "'Cultural Summer in Kalkan' başlığıyla Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntüler ve etkinlik takvimi paylaşımı."
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Yöresel Yemekleri: Lezzetli ve Doğal",
+          "aci": "Kalkan'ın yöresel yemekleri, lezzetli ve doğal malzemelerden hazırlanıyor ve yerel halk tarafından sevilerek tüketiliyor."
         },
         {
           "tur": "reels",
-          "fikir": "'Mediterranean Evenings' temasıyla Kalamar Beach ve Mezzanine Bar'daki quiz gecesi gibi sosyal aktiviteleri birleştiren bir 'Kalkan'da bir gün' kurgusu."
+          "baslik": "Kalkan'ın Gizli Koyları: Doğa Harikası",
+          "aci": "Kalkan'ın gizli koyları, sığ ve sakin sularıyla, dalış ve yüzmeye ideal bir ortam sunuyor."
         }
       ],
-      "gelistirme": "KalkanInfo'ya, bölgedeki güncel festivalleri ve belediye etkinliklerini (Likya Yolu yürüyüşü, sanat festivalleri vb.) tarih bazlı listeleyen dinamik bir 'Etkinlik Takvimi' modülü eklenmeli.",
-      "_provider": "cerebras"
+      "gelistirme": "KalkanInfo'nun web sitesine, Kalkan'daki işletmeler ve aktivitelerin güncel durumunu gösteren bir harita eklenebilir. Bu harita, kullanıcıların Kalkan'daki en iyi yerleri ve en uygun aktivitelerini bulmalarını kolaylaştırabilir.",
+      "_provider": "nvidia"
     }
   ]
 }
