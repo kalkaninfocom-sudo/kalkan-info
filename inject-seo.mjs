@@ -68,7 +68,7 @@ function buildSeoBlock(page, key) {
     "name": SITE_NAME,
     "url": SITE_URL,
     "logo": `${SITE_URL}/icons/icon-512.png`,
-    "sameAs": ["https://instagram.com/kalkaninfo", "https://facebook.com/kalkaninfo"]
+    "sameAs": ["https://instagram.com/kalkaninfo", "https://www.facebook.com/profile.php?id=61590126832715"]
   };
 
   const websiteSchema = {

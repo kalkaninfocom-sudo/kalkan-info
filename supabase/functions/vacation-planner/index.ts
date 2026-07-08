@@ -33,10 +33,10 @@ function corsHeaders(origin: string | null) {
 // ---------------------------------------------------------------------------
 const CREATE_PLAN_TOOL = {
   name: 'create_plan',
-  description: 'Kalkan/Kaş/Patara bölgesi için kişiselleştirilmiş tatil planı oluştur. JSON formatında gün gün plan üret.',
+  description: 'Kalkan/Kaş/Patara bölgesi için kişiselleştirilmiş gezi öneri taslağı oluştur. JSON formatında gün gün öneri üret.',
   input_schema: {
     type: 'object',
-    required: ['days', 'totalPrice', 'rationale'],
+    required: ['days', 'rationale'],
     properties: {
       days: {
         type: 'array',
@@ -58,7 +58,7 @@ const CREATE_PLAN_TOOL = {
                   description: { type: 'string' },
                   time:        { type: 'string' },
                   refId:       { type: 'string' },
-                  price:       { type: 'number' },
+                  price:       { type: 'number', description: 'Tahmini fiyat göstergesi — işletmece belirlenir, bağlayıcı değildir' },
                   priceNote:   { type: 'string' },
                 },
               },
@@ -66,8 +66,7 @@ const CREATE_PLAN_TOOL = {
           },
         },
       },
-      totalPrice: { type: 'number' },
-      rationale:  { type: 'string' },
+      rationale:  { type: 'string', description: 'Öneri hakkında kısa açıklama — neden bu seçenekler önerildi' },
     },
   },
 };
@@ -220,8 +219,10 @@ ${transferLine}${cateringLine}`.trim();
 // Promptlar
 // ---------------------------------------------------------------------------
 function buildSystemPrompt() {
-  return `Sen Kalkan, Kaş ve Patara bölgesinde uzman bir tatil planlayıcısısın.
-Görevin: kullanıcının form verilerini analiz edip create_plan tool'unu kullanarak kapsamlı bir tatil planı oluşturmak.
+  return `Sen Kalkan, Kaş ve Patara bölgesinde uzman bir gezi öneri asistanısın.
+Görevin: kullanıcının form verilerini analiz edip create_plan tool'unu kullanarak kişiselleştirilmiş gezi önerileri sunmak.
+ÖNEMLİ: kalkaninfo.com bir seyahat acentası DEĞİLDİR. Sen rezervasyon yapmıyor, paket satmıyor, ödeme almıyorsun.
+Sadece tavsiye ve öneri sunuyorsun; rezervasyon ve ödeme kullanıcı ile işletme arasında doğrudan gerçekleşir.
 
 ZORUNLU KURALLAR:
 1. create_plan tool'unu MUTLAKA kullan — düz metin yanıt KABUL EDİLMEZ.
@@ -229,11 +230,12 @@ ZORUNLU KURALLAR:
 3. Varış günü: uçuş + transfer + konaklama check-in.
 4. Ayrılış günü: sadece check-out + transfer + uçuş.
 5. Ara günler: 2-3 aktivite + yemek önerisi.
-6. Fiyatları katalog verilerinden al; katalogda yoksa gerçekçi piyasa tahmini yap.
-7. Toplam fiyat bütçeyi aşmamalı; aşarsa öncelikleri azalt ve gerekçede belirt.
+6. Fiyatları katalog verilerinden al; katalogda yoksa gerçekçi piyasa tahmini yap. Fiyatlar tahmini göstergedir, işletmece belirlenir.
+7. totalPrice alanını KULLANMA — toplam/paket fiyatı verme. Sadece bireysel item fiyatları ver.
 8. refId alanına MUTLAKA katalog ID'sini yaz (varsa).
 9. Tüm metinler Türkçe.
-10. Çocuk varsa çocuk dostu aktiviteler ekle.`;
+10. Çocuk varsa çocuk dostu aktiviteler ekle.
+11. rationale metninde "sizin için ayarlıyorum/organize ediyorum/planlıyorum" ifadelerini KULLANMA. Bunun yerine "öneri sunuyorum, rezervasyonu işletmeyle kendiniz yaparsınız" tonunu kullan.`;
 }
 
 function buildUserPrompt(f: Record<string, unknown>, meta: { nights: number; totalPeople: number }, catalog: string) {
@@ -307,8 +309,7 @@ function buildStubPlan(f: Record<string, unknown>, meta: { nights: number; total
 
   return {
     days,
-    totalPrice: 18000 * meta.nights + 7000 * meta.totalPeople + 5000,
-    rationale: `STUB MODE — Anthropic key henüz ayarlanmamış. Bu örnek bir 7-günlük Kalkan planıdır. Gerçek API key set edildiğinde kişiselleştirilmiş plan üretilecek.`,
+    rationale: `STUB MODE — Anthropic key henüz ayarlanmamış. Bu örnek bir 7-günlük Kalkan öneri taslağıdır. Gerçek API key set edildiğinde kişiselleştirilmiş öneri üretilecek. Fiyatlar tahminidir, işletmece belirlenir, bağlayıcı değildir.`,
     _stub: true,
   };
 }
@@ -481,7 +482,6 @@ Deno.serve(async (req: Request) => {
         },
         ai_plan:           plan,
         claude_request_id: requestId,
-        total_price:       (plan.totalPrice as number) ?? null,
         status:            'draft',
       })
       .select('id')

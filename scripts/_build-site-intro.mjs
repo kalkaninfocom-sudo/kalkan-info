@@ -146,7 +146,7 @@ try {
   const FB_PAGE_ID = '1140537645805138';
   const fb = await publishFacebookReel(FB_PAGE_ID, PAGE_TOK, videoUrl, caption);
   console.log(`   ✓ FB Reel video_id: ${fb.videoId}`);
-  console.log('   https://www.facebook.com/kalkaninfo');
+  console.log('   https://www.www.facebook.com/profile.php?id=61590126832715');
 } catch (e) {
   console.error('   ❌ FB publish fail (IG OK):', e.message);
 }

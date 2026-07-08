@@ -33,10 +33,10 @@ const db = admin.firestore();
 // ---------------------------------------------------------------------------
 const CREATE_PLAN_TOOL = {
   name: 'create_plan',
-  description: 'Kalkan/Kaş/Patara bölgesi için kişiselleştirilmiş tatil planı oluştur. JSON formatında gün gün plan üret.',
+  description: 'Kalkan/Kaş/Patara bölgesi için kişiselleştirilmiş gezi öneri taslağı oluştur. JSON formatında gün gün öneri üret.',
   input_schema: {
     type: 'object',
-    required: ['days', 'totalPrice', 'rationale'],
+    required: ['days', 'rationale'],
     properties: {
       days: {
         type: 'array',
@@ -58,7 +58,7 @@ const CREATE_PLAN_TOOL = {
                   description: { type: 'string' },
                   time:        { type: 'string', description: 'Örn: 09:30' },
                   refId:       { type: 'string', description: 'Katalog ID (villa-mira, gunluk-tekne vb.)' },
-                  price:       { type: 'number', description: 'Fiyat, seçilen para biriminde' },
+                  price:       { type: 'number', description: 'Tahmini fiyat göstergesi — işletmece belirlenir, bağlayıcı değildir' },
                   priceNote:   { type: 'string', description: 'Fiyat notu (kişi başı, gecelik vb.)' },
                 },
               },
@@ -66,13 +66,9 @@ const CREATE_PLAN_TOOL = {
           },
         },
       },
-      totalPrice: {
-        type: 'number',
-        description: 'Tüm bileşenlerin tahmini toplam fiyatı',
-      },
       rationale: {
         type: 'string',
-        description: 'Plan hakkında kısa açıklama — neden bu villa, bu aktiviteler seçildi',
+        description: 'Öneri hakkında kısa açıklama — neden bu villa, bu aktiviteler önerildi',
       },
     },
   },
@@ -181,8 +177,10 @@ ${cateringLine ? '\nCatering:\n' + cateringLine : ''}
 // Sistem ve kullanıcı promptu
 // ---------------------------------------------------------------------------
 function buildSystemPrompt() {
-  return `Sen Kalkan, Kaş ve Patara bölgesinde uzman bir tatil planlayıcısısın.
-Görevin: kullanıcının form verilerini analiz edip create_plan tool'unu kullanarak kapsamlı bir tatil planı oluşturmak.
+  return `Sen Kalkan, Kaş ve Patara bölgesinde uzman bir gezi öneri asistanısın.
+Görevin: kullanıcının form verilerini analiz edip create_plan tool'unu kullanarak kişiselleştirilmiş gezi önerileri sunmak.
+ÖNEMLİ: kalkaninfo.com bir seyahat acentası DEĞİLDİR. Sen rezervasyon yapmıyor, paket satmıyor, ödeme almıyorsun.
+Sadece tavsiye ve öneri sunuyorsun; rezervasyon ve ödeme kullanıcı ile işletme arasında doğrudan gerçekleşir.
 
 ZORUNLU KURALLAR:
 1. create_plan tool'unu MUTLAKA kullan — düz metin yanıt KABUL EDİLMEZ.
@@ -190,11 +188,12 @@ ZORUNLU KURALLAR:
 3. Varış günü: uçuş + transfer + konaklama check-in.
 4. Ayrılış günü: sadece check-out + transfer + uçuş.
 5. Ara günler: 2-3 aktivite + yemek önerisi.
-6. Fiyatları katalog verilerinden al; katalogda yoksa gerçekçi piyasa tahmini yap.
-7. Toplam fiyat bütçeyi aşmamalı; aşarsa öncelikleri azalt ve gerekçede belirt.
+6. Fiyatları katalog verilerinden al; katalogda yoksa gerçekçi piyasa tahmini yap. Fiyatlar tahmini göstergedir, işletmece belirlenir.
+7. totalPrice alanını KULLANMA — toplam/paket fiyatı verme. Sadece bireysel item fiyatları ver.
 8. refId alanına MUTLAKA katalog ID'sini yaz (varsa).
 9. Tüm metinler Türkçe.
-10. Çocuk varsa çocuk dostu aktiviteler ekle.`;
+10. Çocuk varsa çocuk dostu aktiviteler ekle.
+11. rationale metninde "sizin için ayarlıyorum/organize ediyorum/planlıyorum" ifadelerini KULLANMA. Bunun yerine "öneri sunuyorum, rezervasyonu işletmeyle kendiniz yaparsınız" tonunu kullan.`;
 }
 
 function buildUserPrompt(formData, { nights, totalPeople }, catalogSummary) {
@@ -362,7 +361,6 @@ exports.vacationPlanner = onCall(
           })),
           status:          'draft',
           claudeRequestId: claudeResult.requestId,
-          totalPrice:      plan.totalPrice || null,
           createdAt:       FieldValue.serverTimestamp(),
         });
         planId = docRef.id;

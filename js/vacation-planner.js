@@ -180,23 +180,21 @@ function generateLocalPlan(f) {
   }
 
   const conciergeMsg = encodeURIComponent(
-    `Merhaba Kalkan Info, tatil planımı oluşturdum:\n` +
+    `Merhaba Kalkan Info, tatil önerilerimi aldım:\n` +
     `📅 ${f.dateStart} – ${f.dateEnd} (${nights} gece)\n` +
     `👥 ${f.adults} yetişkin, ${f.children} çocuk\n` +
     `🏡 ${accomTitle} (${f.rooms} oda)\n` +
     `✈️ Kalkış: ${f.departureAirport || 'belirtilmedi'}\n` +
-    `💰 Bütçe: ${currencySymbol(f.currency)} ${f.budget.toLocaleString('tr-TR')}\n` +
     `🗺️ Aktiviteler: ${(f.activities || []).join(', ') || '—'}\n` +
     `🍽️ Yemek: ${(f.food || []).join(', ') || '—'}\n\n` +
-    `Detaylı plan ve rezervasyon için yardım rica ediyorum.`
+    `İşletmelerle iletişim için yönlendirme ricasındayım.`
   );
 
   return {
     days,
-    totalPrice:   total,
-    rationale:    `Bu, formdaki tercihlerinizden üretilen bir taslak plandır. Fiyatlar yaklaşık tahmindir. ` +
-                  `Detaylı, gerçek zamanlı uygunluk ve rezervasyon için Concierge ekibimize WhatsApp üzerinden ulaşabilirsiniz: ` +
-                  `https://wa.me/905306650794?text=${conciergeMsg}`,
+    rationale:    `Bu, formdaki tercihlerinizden üretilen bir gezi öneri taslağıdır. ` +
+                  `Belirtilen fiyatlar işletmece belirlenir ve bağlayıcı değildir; gerçek fiyat için ilgili işletmeyle doğrudan iletişime geçin. ` +
+                  `Rezervasyon ve ödeme işlemleri doğrudan ilgili işletmeyle yapılır.`,
     isLocalDraft: true,
     conciergeUrl: `https://wa.me/905306650794?text=${conciergeMsg}`,
   };
@@ -250,11 +248,11 @@ function renderResult(data, formData, { stub, requestId } = {}) {
   document.getElementById('result-subtitle').textContent =
     `${formData.adults} yetişkin${formData.children ? ', ' + formData.children + ' çocuk' : ''} · ${formatDate(formData.dateStart)} – ${formatDate(formData.dateEnd)}`;
 
-  const total    = data.totalPrice || data.total_price;
   const currency = formData.currency;
-  document.getElementById('result-total').textContent = total
-    ? `${currencySymbol(currency)} ${Number(total).toLocaleString('tr-TR')}`
-    : '—';
+  // Toplam/paket fiyat gösterilmez; bireysel fiyatlar işletmece belirlenir
+  const totalEl = document.getElementById('result-total');
+  if (totalEl) totalEl.closest('[id*="total"], .result-total-row, .total-row') && totalEl.closest('[id*="total"], .result-total-row, .total-row').style.setProperty('display','none');
+  if (totalEl) totalEl.textContent = '';
 
   const timelineEl = document.getElementById('timeline-content');
   timelineEl.innerHTML = '';
@@ -287,7 +285,7 @@ function renderResult(data, formData, { stub, requestId } = {}) {
         </div>
         <div class="text-right flex-shrink-0 ml-3">
           ${item.price     ? `<div class="font-bold text-sm text-sea-800">${currencySymbol(currency)} ${Number(item.price).toLocaleString('tr-TR')}</div>` : ''}
-          ${item.priceNote ? `<div class="text-xs text-sea-300">${item.priceNote}</div>` : ''}
+          ${item.price     ? `<div class="text-xs text-sea-300" style="color:#e07b00;">${item.priceNote || ''} — işletmece belirlenir, bağlayıcı değildir</div>` : ''}
         </div>`;
       wrapper.appendChild(itemEl);
     });
@@ -313,12 +311,12 @@ function renderResult(data, formData, { stub, requestId } = {}) {
     banner.style.cssText = 'margin-top:14px;padding:14px 18px;background:#fff8ed;border:1.5px solid #f4b53d;border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;';
     banner.innerHTML = `
       <div style="flex:1;min-width:200px;">
-        <div style="font-family:'Montserrat',sans-serif;font-weight:700;color:#0a2e4c;font-size:14px;">📋 Bu bir taslak plandır</div>
-        <div style="font-size:12px;color:#5d97c4;margin-top:2px;">Gerçek uygunluk, kesin fiyat ve rezervasyon için Concierge ekibimiz size yardımcı olur.</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:700;color:#0a2e4c;font-size:14px;">📋 Bu bir gezi öneri taslağıdır</div>
+        <div style="font-size:12px;color:#5d97c4;margin-top:2px;">Fiyatlar işletmece belirlenir ve bağlayıcı değildir. Rezervasyon ve ödeme işlemleri doğrudan ilgili işletmeyle yapılır. kalkaninfo.com bir seyahat acentası değildir.</div>
       </div>
       <a href="${data.conciergeUrl}" target="_blank" rel="noopener"
          style="background:#25D366;color:white;padding:10px 18px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
-        💬 Concierge'e Götür
+        💬 İşletmelerle İletişim
       </a>`;
     rationaleEl.parentElement.appendChild(banner);
   }
@@ -392,7 +390,6 @@ window.savePlan = async function savePlan() {
         specialRequests: formData.specialRequests,
       },
       ai_plan:     planData,
-      total_price: planData.totalPrice || planData.total_price || null,
       status:      'draft',
     });
 
@@ -460,12 +457,7 @@ window.downloadPDF = function downloadPDF() {
   doc.setTextColor(93, 151, 196);
   doc.text(`${formData.adults} yetişkin · ${formatDate(formData.dateStart)} – ${formatDate(formData.dateEnd)}`, margin, y);
 
-  const total = data.totalPrice || data.total_price;
-  if (total) {
-    doc.setTextColor(232, 152, 18);
-    doc.setFont('helvetica', 'bold');
-    doc.text(`Toplam: ${currencySymbol(formData.currency)} ${Number(total).toLocaleString('tr-TR')}`, pageW - margin, y, { align: 'right' });
-  }
+  // Toplam/paket fiyat PDF'e dahil edilmez; fiyatlar işletmece belirlenir, bağlayıcı değildir
 
   y += 10;
   doc.setDrawColor(226, 234, 242);

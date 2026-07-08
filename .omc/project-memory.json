@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1778952909394,
+  "lastScanned": 1783540419627,
   "projectRoot": "C:\\Users\\socie\\kalkan-info",
   "techStack": {
     "languages": [
@@ -14,7 +14,7 @@
       }
     ],
     "frameworks": [],
-    "packageManager": "npm",
+    "packageManager": "pnpm",
     "runtime": null
   },
   "build": {
@@ -29,7 +29,7 @@
     }
   },
   "conventions": {
-    "namingStyle": null,
+    "namingStyle": "camelCase",
     "importStyle": null,
     "testPattern": null,
     "fileOrganization": null
@@ -40,9 +40,13 @@
     "mainDirectories": [
       "assets",
       "docs",
+      "lib",
       "scripts"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
@@ -50,7 +54,7 @@
       "path": "admin",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1778952909352,
+      "lastAccessed": 1783540419557,
       "keyFiles": [
         "admin.js",
         "jobs.html",
@@ -58,68 +62,147 @@
         "news-moderation.js"
       ]
     },
+    "ajansAI": {
+      "path": "ajansAI",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1783540419559,
+      "keyFiles": [
+        "index-oyun-yedek.html",
+        "index.html"
+      ]
+    },
+    "antik-kentler": {
+      "path": "antik-kentler",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1783540419575,
+      "keyFiles": [
+        "andriake.html",
+        "antiphellos.html",
+        "aperlae.html",
+        "letoon.html",
+        "myra.html"
+      ]
+    },
     "api": {
       "path": "api",
       "purpose": "API routes",
-      "fileCount": 5,
-      "lastAccessed": 1778952909353,
+      "fileCount": 13,
+      "lastAccessed": 1783540419577,
       "keyFiles": [
-        "job-decision.js",
-        "newsletter-confirm.js",
-        "README.md",
-        "welcome-email.js",
-        "whatsapp.js"
+        "cron-rebuild.js",
+        "cron-refresh-ig-token.js",
+        "cron-weekly-plan.js",
+        "ilan-page.js",
+        "instagram-hashtag.js"
       ]
     },
     "assets": {
       "path": "assets",
       "purpose": "Static assets",
       "fileCount": 1,
-      "lastAccessed": 1778952909362,
+      "lastAccessed": 1783540419577,
       "keyFiles": [
         "og-default.png"
+      ]
+    },
+    "cocuk-bakimi": {
+      "path": "cocuk-bakimi",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419578,
+      "keyFiles": []
+    },
+    "COMPANY": {
+      "path": "COMPANY",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1783540419579,
+      "keyFiles": [
+        "APP_SUBMISSION.md",
+        "AUDIT_FINDINGS.md",
+        "CHARTER.md",
+        "DATA_INVENTORY.md",
+        "INCIDENT_RESPONSE.md"
+      ]
+    },
+    "content": {
+      "path": "content",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1783540419579,
+      "keyFiles": [
+        "antik-reels.json",
+        "patara-drone-clips.json",
+        "README.md",
+        "social-media-plan-30day.json",
+        "social-media-plan-30day.md"
       ]
     },
     "data": {
       "path": "data",
       "purpose": "Data files",
-      "fileCount": 14,
-      "lastAccessed": 1778952909362,
+      "fileCount": 33,
+      "lastAccessed": 1783540419581,
       "keyFiles": [
+        "ads.json",
         "aktiviteler.json",
+        "antik-kentler-i18n.json",
         "antik-kentler.json",
-        "concierge.json",
-        "config.json",
-        "eczane.json"
+        "concierge.json"
       ]
     },
-    "dist": {
-      "path": "dist",
-      "purpose": "Distribution/build output",
-      "fileCount": 1,
-      "lastAccessed": 1778952909363,
-      "keyFiles": [
-        "tw.css"
-      ]
+    "demo": {
+      "path": "demo",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419581,
+      "keyFiles": []
     },
     "docs": {
       "path": "docs",
       "purpose": "Documentation",
-      "fileCount": 6,
-      "lastAccessed": 1778952909363,
+      "fileCount": 21,
+      "lastAccessed": 1783540419582,
       "keyFiles": [
+        "AJANSAI_ACIK_REPO_YOL_HARITASI.md",
+        "AJANSAI_MALIYET_ORTAKLIK_RAPORU.md",
+        "AJANS_MIMARI_VE_YOL_HARITASI.md",
         "ARCHITECTURE.md",
-        "AUTOMATION_PIPELINE.md",
-        "INSTAGRAM_AUTOMATION.md",
-        "ONBOARDING_FLOW.md",
-        "REVIEWS_INTEGRATION.md"
+        "AUTOMATION_PIPELINE.md"
+      ]
+    },
+    "etkinlikler": {
+      "path": "etkinlikler",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1783540419584,
+      "keyFiles": [
+        "index.html",
+        "kalkaninfo-ben-listem.html",
+        "kalkaninfo-ben-listem.pdf",
+        "kalkaninfo-kurumsal-yatirimci.pdf",
+        "kalkaninfo-lansman-partisi.pdf"
+      ]
+    },
+    "finansal-model": {
+      "path": "finansal-model",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1783540419585,
+      "keyFiles": [
+        "brand.mjs",
+        "build.mjs",
+        "model.mjs",
+        "YOL_HARITASI.md"
       ]
     },
     "functions": {
       "path": "functions",
       "purpose": null,
       "fileCount": 8,
-      "lastAccessed": 1778952909364,
+      "lastAccessed": 1783540419585,
       "keyFiles": [
         "index.js",
         "instagramHarvester.js",
@@ -128,11 +211,27 @@
         "scheduledNobetciEczaneSync.js"
       ]
     },
+    "gazete": {
+      "path": "gazete",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1783540419586,
+      "keyFiles": [
+        "index.html"
+      ]
+    },
+    "hizmet": {
+      "path": "hizmet",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419587,
+      "keyFiles": []
+    },
     "icons": {
       "path": "icons",
       "purpose": null,
-      "fileCount": 17,
-      "lastAccessed": 1778952909364,
+      "fileCount": 18,
+      "lastAccessed": 1783540419592,
       "keyFiles": [
         "apple-touch-icon.png",
         "avatar-berkay.svg",
@@ -141,11 +240,24 @@
         "favicon.svg"
       ]
     },
+    "instagram": {
+      "path": "instagram",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1783540419594,
+      "keyFiles": [
+        "post-magazin-gece-hayati.html",
+        "post-magazin-gece-hayati.jpg",
+        "story-magazin-gece-hayati.html",
+        "story-magazin-gece-hayati.jpg",
+        "story-villa-arama-20260804.html"
+      ]
+    },
     "investor-deck": {
       "path": "investor-deck",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1778952909365,
+      "lastAccessed": 1783540419595,
       "keyFiles": [
         "export-pdf.mjs",
         "index.html",
@@ -156,34 +268,144 @@
     "js": {
       "path": "js",
       "purpose": null,
-      "fileCount": 37,
-      "lastAccessed": 1778952909366,
+      "fileCount": 45,
+      "lastAccessed": 1783540419595,
       "keyFiles": [
         "activities.js",
         "admin-auth.js",
+        "analytics.js",
         "auth-pill.js",
-        "auth.js",
-        "bottom-nav.js"
+        "auth.js"
       ]
+    },
+    "kartlar": {
+      "path": "kartlar",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1783540419596,
+      "keyFiles": [
+        "index.html",
+        "premium.png",
+        "temel.png",
+        "vip.png"
+      ]
+    },
+    "kartvizit": {
+      "path": "kartvizit",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1783540419596,
+      "keyFiles": [
+        "index.html",
+        "Kalkaninfo-Kartvizit.pdf"
+      ]
+    },
+    "lib": {
+      "path": "lib",
+      "purpose": "Library code",
+      "fileCount": 20,
+      "lastAccessed": 1783540419596,
+      "keyFiles": [
+        "ads-optimizer.js",
+        "agent-logger.js",
+        "anthropic.js",
+        "bluesky-publish.js",
+        "brand-guard.js"
+      ]
+    },
+    "mobile": {
+      "path": "mobile",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1783540419597,
+      "keyFiles": [
+        "README.md"
+      ]
+    },
+    "mockups": {
+      "path": "mockups",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419597,
+      "keyFiles": []
+    },
+    "newspaper": {
+      "path": "newspaper",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1783540419599,
+      "keyFiles": [
+        "EKIP.md",
+        "README.md",
+        "YAZIM_STILI.md"
+      ]
+    },
+    "otel": {
+      "path": "otel",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419600,
+      "keyFiles": []
+    },
+    "plaj": {
+      "path": "plaj",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419600,
+      "keyFiles": []
+    },
+    "remotion": {
+      "path": "remotion",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1783540419601,
+      "keyFiles": [
+        "props-antik.json",
+        "props-bulten.json",
+        "props-gazete-en.json",
+        "props-gazete.json",
+        "props-plaj.json"
+      ]
+    },
+    "restoran": {
+      "path": "restoran",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419602,
+      "keyFiles": []
+    },
+    "restoranlar": {
+      "path": "restoranlar",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419602,
+      "keyFiles": []
     },
     "scripts": {
       "path": "scripts",
       "purpose": "Build/utility scripts",
-      "fileCount": 10,
-      "lastAccessed": 1778952909366,
+      "fileCount": 101,
+      "lastAccessed": 1783540419603,
       "keyFiles": [
-        "build-supabase-config.mjs",
-        "build-tailwind.mjs",
-        "download-all-images.mjs",
-        "download-unsplash.mjs",
-        "generate-og.mjs"
+        "approval-reminder.mjs",
+        "build-ads.mjs",
+        "build-all.mjs",
+        "build-antik-pages.mjs",
+        "build-carousel-assets.mjs"
       ]
+    },
+    "sunum": {
+      "path": "sunum",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419604,
+      "keyFiles": []
     },
     "supabase": {
       "path": "supabase",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1778952909366,
+      "lastAccessed": 1783540419605,
       "keyFiles": [
         "config.toml"
       ]
@@ -191,21 +413,53 @@
     "temporary screenshots": {
       "path": "temporary screenshots",
       "purpose": null,
-      "fileCount": 13,
-      "lastAccessed": 1778952909367,
+      "fileCount": 3,
+      "lastAccessed": 1783540419605,
       "keyFiles": [
-        "screenshot-1-kalkan-localhost-live.png",
-        "screenshot-10-deck-preview.png",
-        "screenshot-11-haberler-canli.png",
-        "screenshot-12-canli-prod.png",
-        "screenshot-13-villa-modal-test.png"
+        "screenshot-1-social-r1.png",
+        "screenshot-2-social-r2.png",
+        "screenshot-3-social-r2b.png"
+      ]
+    },
+    "tur": {
+      "path": "tur",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419605,
+      "keyFiles": []
+    },
+    "vendor": {
+      "path": "vendor",
+      "purpose": "Third-party code",
+      "fileCount": 1,
+      "lastAccessed": 1783540419606,
+      "keyFiles": [
+        "supabase.mjs"
+      ]
+    },
+    "villa": {
+      "path": "villa",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1783540419606,
+      "keyFiles": []
+    },
+    "finansal-model\\out": {
+      "path": "finansal-model\\out",
+      "purpose": "Build output",
+      "fileCount": 12,
+      "lastAccessed": 1783540419615,
+      "keyFiles": [
+        "01-operating-model.pdf",
+        "01-operating-model.png",
+        "02-uc-tablo-model.pdf"
       ]
     },
     "functions\\lib": {
       "path": "functions\\lib",
       "purpose": "Library code",
       "fileCount": 2,
-      "lastAccessed": 1778952909369,
+      "lastAccessed": 1783540419618,
       "keyFiles": [
         "claude.js",
         "social.js"
@@ -215,16 +469,27 @@
       "path": "functions\\src",
       "purpose": "Source code",
       "fileCount": 1,
-      "lastAccessed": 1778952909369,
+      "lastAccessed": 1783540419619,
       "keyFiles": [
         "sendWelcomeEmail.js"
+      ]
+    },
+    "remotion\\src": {
+      "path": "remotion\\src",
+      "purpose": "Source code",
+      "fileCount": 12,
+      "lastAccessed": 1783540419624,
+      "keyFiles": [
+        "AntikKent.tsx",
+        "AntikKentVideo.tsx",
+        "AntikReel.tsx"
       ]
     },
     "supabase\\migrations": {
       "path": "supabase\\migrations",
       "purpose": "Database migrations",
-      "fileCount": 5,
-      "lastAccessed": 1778952909371,
+      "fileCount": 16,
+      "lastAccessed": 1783540419626,
       "keyFiles": [
         "20260513200000_initial_schema.sql",
         "20260515040000_newsletter.sql",
@@ -234,304 +499,34 @@
   },
   "hotPaths": [
     {
-      "path": "js\\render.js",
-      "accessCount": 33,
-      "lastAccessed": 1783090700553,
-      "type": "file"
-    },
-    {
-      "path": "restoran\\_template\\index.html",
-      "accessCount": 27,
-      "lastAccessed": 1783085653375,
-      "type": "file"
-    },
-    {
-      "path": "",
-      "accessCount": 27,
-      "lastAccessed": 1783091030553,
-      "type": "directory"
-    },
-    {
-      "path": "antik-kentler.html",
-      "accessCount": 21,
-      "lastAccessed": 1778953263831,
-      "type": "file"
-    },
-    {
-      "path": "vercel.json",
-      "accessCount": 21,
-      "lastAccessed": 1783084553749,
-      "type": "file"
-    },
-    {
-      "path": "api\\instagram-hashtag.js",
-      "accessCount": 16,
-      "lastAccessed": 1779022068889,
-      "type": "file"
-    },
-    {
-      "path": "data\\restoranlar.json",
-      "accessCount": 15,
-      "lastAccessed": 1783084562531,
+      "path": "plajlar.html",
+      "accessCount": 6,
+      "lastAccessed": 1783540687881,
       "type": "directory"
     },
     {
       "path": "turlar.html",
-      "accessCount": 12,
-      "lastAccessed": 1782542599819,
-      "type": "file"
-    },
-    {
-      "path": "index.html",
-      "accessCount": 7,
-      "lastAccessed": 1782539275185,
+      "accessCount": 3,
+      "lastAccessed": 1783540646686,
       "type": "directory"
     },
     {
-      "path": "hizmetler.html",
-      "accessCount": 7,
-      "lastAccessed": 1783084995881,
-      "type": "file"
-    },
-    {
-      "path": "js\\page-index.js",
-      "accessCount": 7,
-      "lastAccessed": 1783089655647,
-      "type": "file"
-    },
-    {
-      "path": "js",
-      "accessCount": 7,
-      "lastAccessed": 1783090212943,
+      "path": "villalar.html",
+      "accessCount": 3,
+      "lastAccessed": 1783540659470,
       "type": "directory"
     },
     {
-      "path": "js\\providers-modal.js",
-      "accessCount": 6,
-      "lastAccessed": 1783089589224,
+      "path": "otel\\asfiya-retreat-spa\\index.html",
+      "accessCount": 3,
+      "lastAccessed": 1783540687201,
+      "type": "file"
+    },
+    {
+      "path": "otel\\_template\\index.html",
+      "accessCount": 2,
+      "lastAccessed": 1783540582208,
       "type": "directory"
-    },
-    {
-      "path": "tatil-asistani.html",
-      "accessCount": 4,
-      "lastAccessed": 1778953258447,
-      "type": "file"
-    },
-    {
-      "path": "scripts\\fetch-google-reviews.mjs",
-      "accessCount": 4,
-      "lastAccessed": 1780422100117,
-      "type": "file"
-    },
-    {
-      "path": "sunum\\restoran-paketi\\index.html",
-      "accessCount": 4,
-      "lastAccessed": 1780426426595,
-      "type": "file"
-    },
-    {
-      "path": "js\\i18n.js",
-      "accessCount": 4,
-      "lastAccessed": 1783086191704,
-      "type": "file"
-    },
-    {
-      "path": "haberler.html",
-      "accessCount": 3,
-      "lastAccessed": 1778953251872,
-      "type": "file"
-    },
-    {
-      "path": "aktiviteler.html",
-      "accessCount": 3,
-      "lastAccessed": 1778953253034,
-      "type": "file"
-    },
-    {
-      "path": "js\\instagram-feed.js",
-      "accessCount": 3,
-      "lastAccessed": 1779021530215,
-      "type": "file"
-    },
-    {
-      "path": "js\\concierge-modal.js",
-      "accessCount": 3,
-      "lastAccessed": 1779022374588,
-      "type": "file"
-    },
-    {
-      "path": "profil.html",
-      "accessCount": 3,
-      "lastAccessed": 1779042940471,
-      "type": "file"
-    },
-    {
-      "path": "js\\profile.js",
-      "accessCount": 3,
-      "lastAccessed": 1779043921566,
-      "type": "file"
-    },
-    {
-      "path": "scripts\\clean-fake-data.mjs",
-      "accessCount": 3,
-      "lastAccessed": 1780418209037,
-      "type": "file"
-    },
-    {
-      "path": "serve.mjs",
-      "accessCount": 3,
-      "lastAccessed": 1780422251912,
-      "type": "file"
-    },
-    {
-      "path": ".env.local",
-      "accessCount": 3,
-      "lastAccessed": 1780428717745,
-      "type": "file"
-    },
-    {
-      "path": ".env.example",
-      "accessCount": 2,
-      "lastAccessed": 1779018123127,
-      "type": "file"
-    },
-    {
-      "path": "admin\\admin.js",
-      "accessCount": 2,
-      "lastAccessed": 1779022249183,
-      "type": "file"
-    },
-    {
-      "path": "scripts\\seo-brand-boost.mjs",
-      "accessCount": 2,
-      "lastAccessed": 1780418209057,
-      "type": "file"
-    },
-    {
-      "path": "docs\\META_SETUP.md",
-      "accessCount": 2,
-      "lastAccessed": 1780428717967,
-      "type": "file"
-    },
-    {
-      "path": "data\\hizmet-saglayicilari.json.bak",
-      "accessCount": 2,
-      "lastAccessed": 1782542194860,
-      "type": "directory"
-    },
-    {
-      "path": "data\\haberler.json",
-      "accessCount": 2,
-      "lastAccessed": 1783091039877,
-      "type": "file"
-    },
-    {
-      "path": "js\\page-antik-kentler.js",
-      "accessCount": 1,
-      "lastAccessed": 1778953075186,
-      "type": "file"
-    },
-    {
-      "path": "sw.js",
-      "accessCount": 1,
-      "lastAccessed": 1778953182189,
-      "type": "file"
-    },
-    {
-      "path": "js\\bottom-nav.js",
-      "accessCount": 1,
-      "lastAccessed": 1778961110938,
-      "type": "file"
-    },
-    {
-      "path": "assets\\img\\tenis-kursu.webp",
-      "accessCount": 1,
-      "lastAccessed": 1779008054179,
-      "type": "file"
-    },
-    {
-      "path": "icons\\icon-512.png",
-      "accessCount": 1,
-      "lastAccessed": 1779009759786,
-      "type": "file"
-    },
-    {
-      "path": "data-deletion.html",
-      "accessCount": 1,
-      "lastAccessed": 1779009886902,
-      "type": "file"
-    },
-    {
-      "path": "admin.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022221710,
-      "type": "file"
-    },
-    {
-      "path": "data\\eczane.json",
-      "accessCount": 1,
-      "lastAccessed": 1779022229376,
-      "type": "file"
-    },
-    {
-      "path": "hizmet-ekle.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022229811,
-      "type": "file"
-    },
-    {
-      "path": "ilan-ver.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022235808,
-      "type": "file"
-    },
-    {
-      "path": "ilanlar.html",
-      "accessCount": 1,
-      "lastAccessed": 1779022235978,
-      "type": "file"
-    },
-    {
-      "path": "scripts\\set-admin.mjs",
-      "accessCount": 1,
-      "lastAccessed": 1779043590349,
-      "type": "file"
-    },
-    {
-      "path": "scripts\\inspect-user.mjs",
-      "accessCount": 1,
-      "lastAccessed": 1779043825120,
-      "type": "file"
-    },
-    {
-      "path": "temporary screenshots\\screenshot-21-prod-turlar.png",
-      "accessCount": 1,
-      "lastAccessed": 1779559077644,
-      "type": "file"
-    },
-    {
-      "path": "restoranlar.html",
-      "accessCount": 1,
-      "lastAccessed": 1780417008384,
-      "type": "directory"
-    },
-    {
-      "path": "temporary screenshots\\screenshot-22-restoranlar-after-fix.png",
-      "accessCount": 1,
-      "lastAccessed": 1780417472054,
-      "type": "file"
-    },
-    {
-      "path": "temporary screenshots\\screenshot-23-hizmetler-clean.png",
-      "accessCount": 1,
-      "lastAccessed": 1780417518216,
-      "type": "file"
-    },
-    {
-      "path": "js\\news.js",
-      "accessCount": 1,
-      "lastAccessed": 1780419517851,
-      "type": "file"
     }
   ],
   "userDirectives": []
