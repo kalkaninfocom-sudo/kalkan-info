@@ -12,6 +12,7 @@ import { publishCarousel, publishSingleImage, publishReels } from '../lib/instag
 import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
 import { fanoutExtraPlatforms, fanoutSummary } from '../lib/social-fanout.js';
 import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
+import { cheapLLM } from '../lib/cheap-llm.mjs';
 
 const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -40,6 +41,88 @@ async function updateStatus(postId, patch) {
   }
   const [updated] = await res.json();
   return updated;
+}
+
+// ── AJAN YÖNLENDİRME (Telegram'dan ajanlarla konuş) ──
+// Berkay: "yazdığım hangi alanla ilgiliyse o ajan çalışsın." Düz metin → alan sınıflandır → ajan çalış → yanıt.
+const AGENCY_EDGE = process.env.AGENCY_EDGE || 'https://dgichfealzdpfhdgryym.supabase.co/functions/v1/agency';
+const AGENCY_KEY = process.env.AGENCY_KEY || 'sb_publishable_26HXaUgGqxZUOuxbcPhiDQ_s3MvKVpr';
+
+// Alan → ajan anahtar kelime haritası (en çok eşleşen kazanır; yoksa director).
+const AGENT_KEYWORDS = {
+  muhabir: ['haber', 'manşet', 'gazete haber', 'muhabir', 'gündem', 'gelişme'],
+  'magazin-editoru': ['magazin', 'gece hayatı', 'kültür', 'lezzet', 'gece kulüb'],
+  'reels-uretici': ['reels', 'reel', 'video', 'tiktok video'],
+  writer: ['caption', 'post yaz', 'sosyal metin', 'instagram yazı', 'gönderi metni', 'hashtag'],
+  trend: ['trend', 'gündemde ne', 'popüler'],
+  growth: ['büyüme', 'seo', 'trafik', 'kaldıraç', 'organik'],
+  ads: ['reklam bütçe', 'ads', 'roas', 'meta reklam'],
+  analyst: ['analitik', 'metrik', 'istatistik', 'performans raporu'],
+  'tatil-planner': ['tatil', 'rota', 'gezi planı', 'kaç gün', 'program öner'],
+  'gezgin-rehber': ['antik', 'likya', 'patara', 'xanthos', 'letoon', 'tlos', 'kekova', 'tarihi', 'rehber'],
+  'menu-chef': ['menü', 'yemek listesi', 'restoran menü'],
+  'provider-matcher': ['villa', 'otel', 'tekne', 'transfer', 'sağlayıcı', 'konaklama'],
+  'dil-cevirmen': ['çeviri', 'çevir', 'translate', 'ingilizce', 'almanca', 'rusça'],
+  'hava-plan': ['hava', 'yağmur', 'fırtına', 'meteoroloji'],
+  'kvkk-guardian': ['kvkk', 'gdpr', 'gizlilik', 'hukuk', 'yasal'],
+  'ilan-uzmani': ['iş ilanı', 'eleman', 'iş var', 'personel'],
+  'bulten-editoru': ['bülten', 'haftalık özet'],
+  'news-verifier': ['doğrula', 'haber doğru mu', 'teyit'],
+  guard: ['marka denetim', 'ton kontrol', 'risk denetim'],
+  'audit-agent': ['site denetim', 'eksik bul', 'audit', 'kırık link'],
+  'deploy-agent': ['deploy', 'build', 'dağıtım'],
+  reception: ['whatsapp', 'müşteri mesaj', 'rezervasyon talep'],
+  director: ['ne paylaşalım', 'içerik kararı', 'fikir öner', 'bugün ne'],
+};
+const KNOWN_AGENTS = new Set([...Object.keys(AGENT_KEYWORDS),
+  'foto-editoru', 'gazete-sosyal', 'yayin-yonetmeni', 'reklam-uyum', 'gazete-reel-en']);
+
+function routeToAgent(text) {
+  const t = (text || '').toLowerCase();
+  let best = 'director', bestScore = 0;
+  for (const [agent, kws] of Object.entries(AGENT_KEYWORDS)) {
+    let s = 0;
+    for (const kw of kws) if (t.includes(kw)) s += kw.length; // uzun eşleşme daha güçlü
+    if (s > bestScore) { bestScore = s; best = agent; }
+  }
+  return best;
+}
+
+// Ajan config + hafızasını deploy edilmiş statik JSON'dan çek (Vercel bundle'a bağımlı değil).
+let AGENTS_CFG = null;
+async function getAgentsCfg() {
+  if (AGENTS_CFG) return AGENTS_CFG;
+  try {
+    const r = await fetch('https://kalkaninfo.com/data/agency/agents.json', { signal: AbortSignal.timeout(6000) });
+    const d = await r.json();
+    AGENTS_CFG = d.agents || {};
+  } catch { AGENTS_CFG = {}; }
+  return AGENTS_CFG;
+}
+async function getAgentKnowledge(id) {
+  try {
+    const r = await fetch(`https://kalkaninfo.com/data/agency/knowledge/${id}.json`, { signal: AbortSignal.timeout(5000) });
+    if (!r.ok) return '';
+    const d = await r.json();
+    const lessons = (d.lessons || []).slice(-3).map(l => l.summary).filter(Boolean);
+    return lessons.length ? `\n\nÖĞRENDİKLERİN (kendi alanında son okumaların — bunu uygula):\n- ${lessons.join('\n- ')}` : '';
+  } catch { return ''; }
+}
+// Ajanı DOĞRUDAN cheap-llm ile çalıştır (hızlı, çok-sağlayıcı). Yavaş NVIDIA Edge Function'a bağımlı DEĞİL.
+async function runAgentChat(agentId, task) {
+  try {
+    const agents = await getAgentsCfg();
+    const a = agents[agentId];
+    if (!a) return { error: `bilinmeyen ajan: ${agentId}` };
+    const know = await getAgentKnowledge(agentId);
+    const res = await cheapLLM(String(task).slice(0, 2000), {
+      system: (a.system || '') + know,
+      maxTokens: 700, temperature: 0.5,
+      order: ['groq', 'cerebras', 'gemini', 'claude'], // ollama/nvidia hariç (Vercel'de yok/yavaş)
+      timeoutMs: 20000,
+    });
+    return { result: res.text, provider: res.provider, name: a.name };
+  } catch (e) { return { error: String(e.message || e) }; }
 }
 
 async function publishNow(post) {
@@ -195,6 +278,27 @@ export default async function handler(req, res) {
           await sendMessage(chatId, `📋 *Bekleyen Post'lar*\n\n${body}`);
         } else {
           await sendMessage(chatId, '_Supabase yapılandırılmadı\\._');
+        }
+      } else if (text === '/ajanlar' || text === '/help') {
+        await sendMessage(chatId,
+          '🤖 *Ajanlarla konuş*\n\nDüz yaz — mesajın hangi alanla ilgiliyse o ajan çalışır ve yanıtlar\\.\n' +
+          'Belirli ajanı zorla: `@muhabir <mesaj>` veya `/ajan muhabir <mesaj>`\n\n' +
+          'Örn: _"kaputaş için reels fikri"_ → reels ajanı\\. _"patara tarihi"_ → rehber ajanı\\.');
+      } else if (text.startsWith('@') || text.startsWith('/ajan ') || (text && !text.startsWith('/'))) {
+        // ── Serbest metin → ilgili ajana yönlendir, çalıştır, yanıtla (PC gerekmez, serverless)
+        let agentId = null, task = text;
+        const mAt = text.match(/^@([a-z][a-z-]+)\s+([\s\S]+)/i);
+        const mCmd = text.match(/^\/ajan\s+([a-z][a-z-]+)\s+([\s\S]+)/i);
+        if (mAt) { agentId = mAt[1].toLowerCase(); task = mAt[2].trim(); }
+        else if (mCmd) { agentId = mCmd[1].toLowerCase(); task = mCmd[2].trim(); }
+        else { agentId = routeToAgent(text); }
+        if (!KNOWN_AGENTS.has(agentId)) agentId = 'director';
+        await sendMessage(chatId, `🧠 _${escapeMd(agentId)}_ çalışıyor\\.\\.\\.`);
+        const out = await runAgentChat(agentId, task);
+        if (out.result) {
+          await sendMessage(chatId, `🤖 *${escapeMd(agentId)}*\n\n${escapeMd(String(out.result).slice(0, 3500))}`);
+        } else {
+          await sendMessage(chatId, `❌ _${escapeMd(agentId)}_ yanıt veremedi: ${escapeMd(String(out.error || 'bilinmeyen hata').slice(0, 200))}`);
         }
       }
       return res.status(200).json({ ok: true });

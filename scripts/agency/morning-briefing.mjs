@@ -81,7 +81,18 @@ async function agentKnowledge(id) {
   return lessons.length ? `\n\nÖĞRENDİKLERİN (kendi alanında son okumaların — bu bakışı uygula):\n- ${lessons.join('\n- ')}` : '';
 }
 
-const BRIEF_SCHEMA = `{"kalkan_guncel":"...","icerik_fikirleri":[{"tur":"gazete|reels","fikir":"..."}],"gelistirme":"..."}`;
+const BRIEF_SCHEMA = `{"kalkan_guncel":"...","icerik_fikirleri":[{"tur":"gazete|reels","baslik":"...","aci":"..."}],"gelistirme":"..."}`;
+
+// Kalkan içerik sütunları — briefing'in ÖZGÜN/ZAMANSIZ içerik üretmesini sağlar (haber tekrarı değil).
+const KALKAN_PILLARS =
+`KALKAN İÇERİK SÜTUNLARI (sürekli haber gerekmez — bunlardan ÖZGÜN, ZAMANSIZ içerik üret):
+• TARİH & ANTİK: Patara (Likya Birliği'nin başkenti, dünyanın en eski deniz fenerlerinden, Aziz Nikolaos'un doğduğu topraklar, Roma senato/meclis yapısı, geniş antik plaj), Xanthos-Letoon (UNESCO), Kaş (antik Antiphellos), Likya kaya mezarları, Likya Yolu.
+• İŞLETME HİKAYELERİ: bir mekân kaç yıllık, kurucu/aile hikayesi, imza lezzetin kökeni, mekânın adının hikayesi, nesilden nesile tarif.
+• KÜLTÜR & YAŞAM: yerel gelenek, el sanatı, balıkçılık, zeytin/badem hasadı, mevsimsel yaşam.
+• DOĞA & YER: Kaputaş, Kalamar koyu, gizli koylar, tekne rotaları, dalış, caretta caretta.
+• LEZZET: yöresel yemek, meze kültürü, deniz ürünü, Kalkan kahvaltısı.
+• PRATİK REHBER: "Kalkan'da bir gün", gün batımı noktaları, aile/çift önerileri.
+• MEVSİM: içinde bulunulan aya özgü açı (yaz geceleri, tekne turu, festival).`;
 
 function parseJson(text) {
   let t = String(text || '').trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
@@ -107,13 +118,18 @@ async function main() {
     const a = agents[id];
     const know = await agentKnowledge(id);
     const task =
-      `Bugün ${date}. Aşağıda Kalkan hakkında TAZE internet/veri sinyalleri var. ROLÜNE GÖRE bunları değerlendir.\n\n` +
-      `SİNYALLER:\n${signals}\n\n` +
-      `Üret (SADECE verilen sinyallere ve kendi uzmanlığına dayan — YENİ olgu/isim/rakam UYDURMA):\n` +
-      `1) kalkan_guncel: alanında bugün öne çıkan 1-2 GERÇEK gözlem/gelişme (yoksa "belirgin yeni yok").\n` +
-      `2) icerik_fikirleri: gazete VEYA reels için 1-2 SOMUT içerik fikri (tur + tek cümle fikir).\n` +
-      `3) gelistirme: KalkanInfo'yu (kalkaninfo.com) geliştirecek / katma değer katacak / eksik gördüğün 1 uygulanabilir öneri.\n` +
-      `Kısa, somut, klişesiz. Türkçe. SADECE şu JSON: ${BRIEF_SCHEMA}`;
+      `Bugün ${date}. Sen Kalkan turizm markası için içerik üreticisisin. Kalkan hakkında SÜREKLİ yeni haber çıkmaz — ` +
+      `görevin taze haberi tekrarlamak DEĞİL; ROLÜNE göre ÖZGÜN, ZAMANSIZ (evergreen), ilgi çekici içerik üretmek.\n\n` +
+      `${KALKAN_PILLARS}\n\n` +
+      `(Opsiyonel taze sinyaller — YALNIZ gerçekten turistik/ilginç ise kullan; ihale/ÇED/meclis/bürokratik/rutin haberi ASLA kullanma):\n${signals}\n\n` +
+      `ROLÜNE göre üret:\n` +
+      `1) kalkan_guncel: alanında bugün işlenebilecek 1 taze VEYA zamansız açı (kısa; yoksa güçlü bir evergreen açı).\n` +
+      `2) icerik_fikirleri: gazete VEYA reels için 1-2 ÖZGÜN içerik — her biri {tur, baslik (çekici başlık), aci (1 cümle: ne anlatır)}. ` +
+      `Tarih/işletme hikayesi/kültür/lezzet/doğa gibi EVERGREEN'e öncelik ver.\n` +
+      `3) gelistirme: KalkanInfo'yu (kalkaninfo.com) geliştirecek 1 somut öneri.\n\n` +
+      `ODAK: Kendi uzmanlık alanına EN YAKIN sütundan üret, başka ajanın alanına kayma — ör. lezzet ajanı→yemek/işletme hikayesi, rehber→tarih/antik, magazin→gece hayatı/kültür, provider→villa/konaklama açısı. Aynı klişe başlığı ("Kalkan'da bir gün") tekrarlama.\n` +
+      `KURALLAR: Tarih/efsane için genel bilgiye dayan (Patara/Likya iyi belgeli). İŞLETMEYE ÖZEL rakam/tarih (kaç yıllık, ciro vb.) UYDURMA — ` +
+      `açıyı öner, gerçek detayın işletmeden alınacağını belirt. Klişe/dolgu/övgü yok. Türkçe. SADECE şu JSON: ${BRIEF_SCHEMA}`;
 
     if (DRY) { console.log(`  [dry] ${id}`); continue; }
     let out = null;
@@ -146,7 +162,9 @@ async function main() {
 
   // İçerik fikirlerini düzleştir → gazete/reels tüketir
   const ideas = results.flatMap(r => (r.icerik_fikirleri || []).map(i => ({
-    agent: r.id, department: r.department, tur: i.tur || 'gazete', fikir: i.fikir,
+    agent: r.id, department: r.department, tur: i.tur || 'gazete',
+    baslik: i.baslik || '', aci: i.aci || i.fikir || '',
+    fikir: [i.baslik, i.aci || i.fikir].filter(Boolean).join(' — '),
   }))).filter(i => i.fikir);
   await writeFile(join(ROOT, 'data', 'agency', 'content-ideas.json'),
     JSON.stringify({ date, generated_at: new Date().toISOString(), ideas }, null, 2));
