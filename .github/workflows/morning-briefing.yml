@@ -65,5 +65,5 @@ jobs:
           git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json 2>/dev/null || true
           if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
           git commit -m "content(brifing): günlük ajans brifingi $(TZ=Europe/Istanbul date +%F) [auto]"
-          git pull --rebase origin main || true
-          git push
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"

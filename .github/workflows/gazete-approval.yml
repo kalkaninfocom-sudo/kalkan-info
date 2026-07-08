@@ -159,5 +159,5 @@ jobs:
             exit 0
           fi
           git commit -m "content(gazete): günlük sayı $(TZ=Europe/Istanbul date +%Y-%m-%d) [auto]"
-          git pull --rebase origin main || true
-          git push
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"

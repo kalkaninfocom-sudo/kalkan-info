@@ -39,5 +39,5 @@ jobs:
           git add data/agency/site-proposals.json
           if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
           git commit -m "chore(agency): haftalık site freshness önerileri [auto]"
-          git pull --rebase origin main || true
-          git push
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"

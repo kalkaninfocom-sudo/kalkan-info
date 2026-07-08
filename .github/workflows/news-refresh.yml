@@ -39,4 +39,4 @@ jobs:
           fi
           git add data/haberler.json
           git commit -m "chore(news): RSS refresh $(date -u +'%Y-%m-%dT%H:%MZ')"
-          git push
+          git push || echo "push atlandi (non-fatal)"

@@ -61,5 +61,5 @@ jobs:
           fi
           git commit -m "content(gazete): günlük sayı $(date -u +%Y-%m-%d) [auto]"
           # RSS botu araya girmiş olabilir → rebase ile push
-          git pull --rebase origin main || true
-          git push
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"
