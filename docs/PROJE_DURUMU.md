@@ -87,13 +87,13 @@
 | Reels üretim motoru (Remotion, EN+TR, foto-enhance, audio-sync) | ✅ motor | `scripts/_build-kalkan-reel.mjs`, `_enhance-photos.mjs`, `remotion/src/KalkanReel.tsx` | Motor çalışıyor, işlenmiş gerçek Kalkan fotoları | — |
 | site-intro reel (Berkay beğendi) | 🔨 | `dist/site-intro/site-intro-silent.mp4` + `voice.mp3`, `scripts/_publish-site-intro.mjs` | Render edildi, **YAYINLANMADI** | ⛔ **IG token** (publish) |
 | "7 Plaj" reel EN+TR | 🔨 | `content/reel-themes/beaches.json`, `remotion/` | dist'te hazır, **YAYINLANMADI** | ⛔ **IG token** |
-| Antik kentler reels — Patara EN/TR sesli pilot | 🔨 | `dist/antik-reels/patara-en-final.mp4`, `patara-tr-final.mp4`, `scripts/_build-antik-reel.mjs` | Pilot render bitti (EN+TR sesli) | ⛔ **Sinematik müzik bozuk** (placeholder'lar) + **TR native ses** (EL free plan bloklu) + Berkay 4-5 foto/kent verecek |
+| Antik kentler reels — Patara EN/TR sesli pilot | 🔨 | `scripts/_voiceover-patara.mjs`, `scripts/lib/tts-free.mjs`, `assets/audio/ambient-bed.mp3` | ✅ TR native ses + müzik SIFIR-MALİYET çözüldü (edge-tts + telifsiz bed, uçtan uca test). Pipeline TR varsayılan | Sadece Berkay 4-5 foto/kent verecek (foto olunca batch) |
 | 10 antik kent EN+TR senaryo | ✅ metin | `content/antik-reels.json`, `docs/antik-kentler-viral-facts.md` | Senaryolar hazır | Foto + ses (yukarıdaki blokerlar) → 20 reels batch |
 | Webapp tanıtım videosu | ✅ | `scripts/_build-webapp-tour.mjs`, `_capture-webapp-tour.mjs`, `dist/site-tour/` | Pipeline + render + upload | — |
 | Reel backlog / loop motoru | 🔨 | `content/reel-backlog.json`, `content/REEL_LOOP.md`, `scripts/_reel-loop-tick.mjs` | Otomatik üretim loop'u taslak | IG token + runner kararı |
 | Temmuz reels planı + WhatsApp foto kampanyası | ✅ plan | `data/reels-plan-temmuz-2026.json`, `data/whatsapp-photo-campaign.json` | Plan + foto toplama kampanyası | Berkay foto toplayacak |
 
-> ⛔ **Ortak bloke: tüm reels yayını IG token'a takılı.** Antik kentlerde ek olarak müzik + TR ses sorunu var.
+> ✅ **IG token (B1) çözüldü** → reels yayın kilidi açık. ✅ Antik reels müzik + TR ses de sıfır-maliyet çözüldü (edge-tts + telifsiz bed). Kalan tek girdi: Berkay'ın kent fotoğrafları.
 
 ---
 
@@ -163,7 +163,7 @@
 | B3 | **Resend API key invalid** | Newsletter onay/welcome maili gitmiyor | Resend key rotate + Vercel env güncelle |
 | B4 | **FB/IG scraper kararı (sahip olunmayan profil)** | FB responder (#10) okuma, IG caption etkinlik scrape | Apify (~$30-49/ay, ToS gri) mı, manuel mı, atla mı? |
 | B5 | **Telegram bot token** | Telefondan komut asistanı | Berkay token alıp config'e koyacak (social bot'tan ayrı polling) |
-| B6 | **Antik reels müzik + TR native ses** | Antik kentler reels batch | Sinematik müzik placeholder'ları bozuk; ElevenLabs free plan TR ses bloklu (plan upgrade?) |
+| ~~B6~~ | ✅ **ÇÖZÜLDÜ (2026-07-08, sıfır-maliyet)** — TR native ses = edge-tts (`scripts/lib/tts-free.mjs`), müzik = telifsiz `assets/audio/ambient-bed.mp3`. ElevenLabs/plan upgrade GEREKMİYOR | ~~Antik reels batch~~ | Kalan: Berkay kent fotoğrafları verecek. Ayrıca sızmış EL anahtarı ROTATE edilmeli (koddan temizlendi, git geçmişinde) |
 | B7 | **Anthropic local key geride** | Yeni içerik çeviri/AI işleri local'de | Prod'da geçerli; local manuel test için key güncelle (opsiyonel) |
 | B8 | **api/ 12/12 dolu** | Yeni Vercel webhook | Otomasyonları script/cron olarak yaz (mimari karar, çözüldü) |
 
