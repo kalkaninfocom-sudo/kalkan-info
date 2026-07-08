@@ -1,0 +1,493 @@
+{
+  "date": "2026-07-08",
+  "generated_at": "2026-07-08T02:42:27.059Z",
+  "count": 27,
+  "agents": [
+    {
+      "id": "director",
+      "name": "ContentDirector",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da kültür-sanat etkinliklerinin turizme katkısını inceleyen bir yazı"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın sunduğu Akdeniz mutfağı ve aktivitelerini gösteren kısa bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya bir etkinlik takvimi eklenmesi, böylece ziyaretçilerin şehrin güncel etkinliklerine kolayca ulaşabilmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "trend",
+      "name": "TrendScout",
+      "department": "sosyal",
+      "kalkan_guncel": "Kaş’ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi, ayrıca Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü gibi etkinliklerin bölgedeki turizme etkisi"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'ın plaj ve beach club'larının sunduğu yemek ve eğlence olanakları"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde bölgedeki güncel etkinlik ve haberleri takip edebilecek bir bölüm eklenmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "writer",
+      "name": "SocialWriter",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin renkli anlarını ve festivalin bölgeye ekonomik katkısını inceleyen bir haber"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'da geçirilen bir günün kısa ve renkli görüntülerini gösteren, #kalkan ve #kalamarvibes hashtag'lerini içeren bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde, bölgedeki güncel etkinliklere ve haberlere yer veren bir 'etkinlikler' veya 'haberler' bölümü oluşturulabilir, böylece ziyaretçilerin Kalkan ile ilgili en güncel bilgileri kolayca bulabilmesi sağlanabilir.",
+      "_provider": "groq"
+    },
+    {
+      "id": "guard",
+      "name": "BrandGuard",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir haber yazısı"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'da geçirilen bir günün kısa ve renkli bir videosu, #kalkan #kalamarvibes etiketleriyle"
+        }
+      ],
+      "gelistirme": "KalkanInfo'nun etkinlik takvimi bölümünü genişleterek, kullanıcıların kolayca ulaşabileceği bir şekilde düzenlemek ve bölgedeki önemli etkinliklere.link vermek",
+      "_provider": "groq"
+    },
+    {
+      "id": "analyst",
+      "name": "SocialAnalyst",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da turizm sezonunun başlangıcında bölünmüş yol projesinin iptali ve kültür-sanat festivalinin etkileri"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın happy hour ve yemek etkinliklerine odaklanan bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi ve mekanlar için ayrı bir bölüm açarak, kullanıcıların kolayca bilgi bulabilmesini sağlamak",
+      "_provider": "groq"
+    },
+    {
+      "id": "growth",
+      "name": "GrowthStrategist",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair bir haber makalesi yazarak festivalin içeriği, katılımcıları ve etkinlik detaylarını okuyuculara sunabilir"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın happy hour ve yemek etkinliklerine dair kısa, çekici videolar hazırlayarak Kalkan'ın sosyal yaşamını vurgulayabilir"
+        }
+      ],
+      "gelistirme": "KalkanInfo'nun etkinlik takvimi bölümünü geliştirerek, kullanıcıların kolayca upcoming etkinliklere ulaşabilmesi ve bunları takvimlerine ekleyebilmesi için bir 'Etkinlik Takvimi' sayfası oluşturulabilir",
+      "_provider": "groq"
+    },
+    {
+      "id": "ads",
+      "name": "AdsOptimizer",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir makale"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ta geçirdiğiniz bir günün kısa ve renkli bir videosu, #kalkan #kalamarvibes etiketleriyle"
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesine, bölgedeki güncel etkinliklere ve haberlere hızlı erişim sağlamak için bir 'etkinlikler' ve 'haberler' sekmesi eklenmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "reception",
+      "name": "WhatsAppReception",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılan sanatçılar ve festivalin öne çıkan etkinlikleri hakkında bir makale"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın sunduğu happy hour ve yemek deneyimi hakkında kısa bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturmak ve kullanıcıların kolayca bulabilecekleri bir şekilde BUGÜNKÜ ETKİNLİKLER bölümünü eklemek",
+      "_provider": "groq"
+    },
+    {
+      "id": "yayin-yonetmeni",
+      "name": "YayınYönetmeni",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da gerçekleştirilen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair detaylı bir haber"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'da bulunan Kalamar Beach Club'ın sunduğu yemek ve eğlence olanaklarını gösteren bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde yer alan etkinlik takvimine, kullanıcıların kendi etkinliklerini ekleyebilecekleri bir bölüm eklenmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "muhabir",
+      "name": "Muhabir",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararının iptal edilmesi, bölgenin ulaşım ve çevre geleceği açısından kritik bir gelişme olarak öne çıkıyor. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali ile 5. Kaş Kınık Tarım Fuarı bölgedeki kültürel ve ekonomik hareketliliği artırmış durumda.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptal kararının yerel ekosisteme ve ulaşım planlarına etkilerini inceleyen analiz haberi."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntülerle Kalkan ve çevresindeki etkinlik takvimini özetleyen hızlı bir rehber."
+        }
+      ],
+      "gelistirme": "Sitedeki etkinlikler bölümüne, sadece tarih değil, 'Katılımcı İlgi ve Kayıt' butonları ekleyerek yerel etkinliklerin gerçek etkileşim oranlarını ölçen bir sistem kurulabilir.",
+      "_provider": "cerebras"
+    },
+    {
+      "id": "foto-editoru",
+      "name": "FotoEditörü",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesinin 'ÇED olumlu' kararının iptal edilmesi bölge için kritik bir gelişme; aynı zamanda 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali ile bölgede kültürel hareketlilik hakim.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptali kararının bölge ekosistemi ve yerel yaşam üzerindeki etkilerini inceleyen bir analiz haberi."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden canlı kesitlerle, Kalkan'ın sanatsal atmosferini yansıtan hızlı geçişli bir video kolajı."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya, bölgedeki güncel belediye duyurularını ve festival takvimlerini anlık olarak takip edebilecekleri bir 'Etkinlik ve Duyuru Panosu' entegre edilmeli.",
+      "_provider": "cerebras"
+    },
+    {
+      "id": "magazin-editoru",
+      "name": "MagazinEditörü",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da yaz mevsiminin başlangıcını kutlayan bir yazı, özellikle @kalamarbeachclub'ın happy hour etkinliklerine odaklanarak"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'ın en güzel plajlarını ve beach clublarını tanıtan bir video, @kalamarbeachclub'ın sunduğu lezzetlerin ve aktivitelere yer verilmesi"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde, Kalkan ve Kaş'taki yerel etkinliklere ve festivallere daha geniş yer verilmesi, ayrıca @kalamarbeachclub gibi popüler mekanların sunduğu hizmetlere özel bir bölüm açılması",
+      "_provider": "groq"
+    },
+    {
+      "id": "gazete-sosyal",
+      "name": "SosyalEditör",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararının iptal edilmesi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin başlaması öne çıkıyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan bölünmüş yol projesindeki ÇED iptal kararının detayları ve bölgeye olası etkileri üzerine bir analiz haberi."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntülerle hazırlanan 'Kalkan'da Festival Heyecanı' temalı kısa video."
+        }
+      ],
+      "gelistirme": "kalkaninfo.com üzerinde, bölgedeki güncel etkinlikleri (Festival, Quiz Gecesi vb.) tarih ve saat bazlı listeleyen dinamik bir 'Kalkan Etkinlik Takvimi' modülü oluşturulması.",
+      "_provider": "cerebras"
+    },
+    {
+      "id": "news-verifier",
+      "name": "NewsVerifier",
+      "department": "gazete",
+      "kalkan_guncel": "Bugün Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kaş Belediyesi'nin son projeleri ve etkinlikleri hakkında detaylı bir haber yazısı."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'ın güneşli bir gününde, The Mezzanine Bar'da gerçekleşen Quiz Gecesi'nin keyfini çıkarmak."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya, haberlerin ve etkinliklerin daha kolay bulunabilir hale gelmesi için, bir arama fonksiyonu eklenmesi önerilir. Bu sayede kullanıcılar, aradıkları konulara hızlı bir şekilde ulaşabilirler.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "hava-plan",
+      "name": "HavaPlan",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin renkli anlarını fotoğraflayarak okuyucularla paylaşın"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'dahappy hour keyfini ve Mediterranean feast'i kısa bir video ile gösterin"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturarak, ziyaretçilerin kolayca Kalkan'da gerçekleşen etkinliklere ulaşmasını sağlayın",
+      "_provider": "groq"
+    },
+    {
+      "id": "tatil-planner",
+      "name": "TatilPlanner",
+      "department": "concierge",
+      "kalkan_guncel": "27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı; bölgede kültürel hareketlilik yüksek. Kalkan bölünmüş yol projesinin ÇED kararı iptal edildi, ulaşım planlamaları mevcut durumla devam ediyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "fikir": "Likya Kaş Kültür ve Sanat Festivali'nin atmosferini ve etkinlik takvimini içeren 'Kaş'ta Bu Hafta' rehberi."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın happy hour ve akşam yemeği geçişlerini gösteren 'Kalkan'da Bir Gün' kurgusu."
+        }
+      ],
+      "gelistirme": "Sitede, bölgedeki festival ve etkinlik takvimlerini (Likya Sanat Festivali gibi) konaklama önerileriyle eşleştiren dinamik bir 'Etkinlik Bazlı Gezi Planlayıcı' modülü eklenmeli.",
+      "_provider": "cerebras"
+    },
+    {
+      "id": "gezgin-rehber",
+      "name": "GezginRehber",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bu kararın iptali, bölünmüş yol projelerinin geleceği hakkında endişeleri artırmaktadır.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "'Kalkan'da Turizm ve Çevre: Birlikte Geleceği Korumak' başlıklı haberde, bölgenin turizm potansiyelinin korunması ve çevre sorunlarının çözümü hakkında yerel halkın görüşleri yer almalıdır."
+        },
+        {
+          "tur": "reels",
+          "fikir": "'Kalkan'da Akşam Gecesi: Kalkan Regency'nin BBQ Seti' başlıklı reels'de, Kalkan Regency'nin Wednesdays BBQ seti hakkında bir önizleme sunulmalıdır."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya, bölünmüş yol projeleri ve çevre sorunları hakkında güncel haberler ve analizler eklenmelidir. Ayrıca, yerel halkın görüşleri ve önerileri de dahil edilmelidir. Bu, ziyaretçilere daha kapsamlı ve doğru bilgi sunulmasını sağlayacaktır.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "menu-chef",
+      "name": "MenuChef",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılımın yüksek olması ve bölgedeki turizm faaliyetleri"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ta düzenlenen happy hour ve deniz kenarında yapılan akşam yemeklerinin renkli anlarını paylaşmak"
+        }
+      ],
+      "gelistirme": "KalkanInfo websitesine bölgedeki güncel etkinlik ve haberleri gerçek zamanlı olarak güncelleyen bir bölüm eklemek",
+      "_provider": "groq"
+    },
+    {
+      "id": "provider-matcher",
+      "name": "ProviderMatcher",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bu kararın iptal edilmesi, bölünmüş yol projesinin geleceği hakkında belirsizliklere neden olabilir.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da turizm sezonu yaklaşırken, bölünmüş yol projesinin iptal edilmesi, bölgedeki turizm faaliyetlerini nasıl etkileyecektir?"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'da ilk happy hour sezonu bugün başladı! Kalamar Beach Club'da keyifli bir gün geçirmek için neyi bekliyoruz?"
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya, bölgedeki etkinlikleri ve haberleri daha hızlı ve kolay bir şekilde erişilebilmesi için, bir mobil uygulamaya geçilmesi önerilir. Bu, kullanıcıların daha fazla içerik keşfetmesine ve bölgedeki en güncel bilgileri takip etmesine olanak tanıyacaktır.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "dil-cevirmen",
+      "name": "DilÇevirmen",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan ve Kaş'ta düzenlenen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne katılımın yüksek olması"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ın sunduğu Akdeniz mutfağı ve happy hour etkinlikleri"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde güncel etkinlik takvimi ve mekanlar için interaktif bir harita eklemek",
+      "_provider": "groq"
+    },
+    {
+      "id": "deploy-agent",
+      "name": "DeployAgent",
+      "department": "teknik",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Bölgede 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club happy hour ve akşam yemeği atmosferini içeren 'Kalkan'da bir gün' temalı kısa video."
+        },
+        {
+          "tur": "gazete",
+          "fikir": "ÇED kararının iptalinin Kalkan ulaşım projeleri üzerindeki etkileri üzerine analiz."
+        }
+      ],
+      "gelistirme": "Kalkan'daki güncel etkinlikleri (Quiz Gecesi, Festival vb.) ve belediye duyurularını otomatik çeken, sosyal medya API'leri ile entegre bir 'Canlı Etkinlik Takvimi' paneli eklenmeli.",
+      "_provider": "cerebras"
+    },
+    {
+      "id": "audit-agent",
+      "name": "AuditAgent",
+      "department": "teknik",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği hakkında detaylı bir makale yazılabilir."
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'ın en güzel plajları ve denizleri hakkında bir video dizisi oluşturulabilir."
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturulabilir. Bu takvim, Kalkan'da gerçekleşecek tüm etkinlikleri ve festivalleri listeleyerek ziyaretçilere kolayca erişebilmeleri için bir platform oluşturabilir.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "kvkk-guardian",
+      "name": "KVKKGuardian",
+      "department": "teknik",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da turizmin canlandırılması için Kaş Belediyesi'nin gerçekleştirdiği faaliyetler"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'ın doğal güzelliklerini ve plajlarını gösteren bir video"
+        }
+      ],
+      "gelistirme": "KalkanInfo sitesinde etkinlik takvimi oluşturarak, ziyaretçilerin kolayca Kalkan'da neler olup bittiğini takip edebilmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "reels-uretici",
+      "name": "ReelsProducer",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Ayrıca 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan bölünmüş yol projesi iptal edildi: Kaş'ta trafikte ne olacak?"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalkan'da 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nde neler var?"
+        }
+      ],
+      "gelistirme": "KalkanInfo'nun sosyal medya kanallarında daha fazla etkileşim sağlamak için Instagram Reels ve Facebook Live kullanılması önerilir.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "ilan-uzmani",
+      "name": "İlanUzmanı",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi. Ayrıca, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "'Kalkan'da İş Var' başlıklı bir haber yazısı yazarak, bölgedeki yeni iş fırsatlarını ve yerel istihdamı teşvik eden projeleri vurgulayabilirsiniz."
+        },
+        {
+          "tur": "reels",
+          "fikir": "'Kalkan'da tatil yaparken de iş bulabilirsin!' sloganıyla, bölgedeki iş ilanlarını ve fırsatlarını göstererek, turistik destinasyon olarak Kalkan'ın avantajlarını vurgulayabilirsiniz."
+        }
+      ],
+      "gelistirme": "KalkanInfo'yu geliştirmek için, bölgedeki güncel haberleri ve etkinlikleri bir harita üzerinde göstermek mümkün olabilir. Böylece, kullanıcılar daha kolayca bölgedeki olayları ve fırsatları bulabilirler.",
+      "_provider": "nvidia"
+    },
+    {
+      "id": "bulten-editoru",
+      "name": "BültenEditörü",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi, 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali başladı",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "fikir": "Kalkan'da gerçekleşen 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'ne dair detaylı bir haber"
+        },
+        {
+          "tur": "reels",
+          "fikir": "Kalamar Beach Club'ta geçirdiğiniz bir günün kısa ve renkli bir videosu"
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya bir 'etkinlik takvimi' eklenmesi, böylece ziyaretçiler ve yerel halkın gelecekteki etkinliklere dair kolayca bilgi alabilmesi",
+      "_provider": "groq"
+    },
+    {
+      "id": "gazete-reel-en",
+      "name": "GazeteReelEN",
+      "department": "gazete",
+      "kalkan_guncel": "Kalkan bölünmüş yol projesinin ÇED olumlu kararının iptal edilmesi ve 27. Uluslararası Likya Kaş Kültür ve Sanat Festivali'nin başlaması öne çıkıyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "fikir": "'Cultural Summer in Kalkan' başlığıyla Likya Kaş Kültür ve Sanat Festivali'nden anlık görüntüler ve etkinlik takvimi paylaşımı."
+        },
+        {
+          "tur": "reels",
+          "fikir": "'Mediterranean Evenings' temasıyla Kalamar Beach ve Mezzanine Bar'daki quiz gecesi gibi sosyal aktiviteleri birleştiren bir 'Kalkan'da bir gün' kurgusu."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya, bölgedeki güncel festivalleri ve belediye etkinliklerini (Likya Yolu yürüyüşü, sanat festivalleri vb.) tarih bazlı listeleyen dinamik bir 'Etkinlik Takvimi' modülü eklenmeli.",
+      "_provider": "cerebras"
+    }
+  ]
+}
