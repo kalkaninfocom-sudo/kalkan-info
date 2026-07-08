@@ -1,201 +1,1014 @@
 {
   "_meta": {
-    "note": "Agent SAATLİK ÖĞRENME kaynak listesi. agentId → { sources:[{title,url,type}], booklist:[{title,author,concepts}] }. agent-learn.mjs bunu okur, knowledge/<id>.json'daki learned URL'lerle dedup eder, sıradaki okunmamış kaynağı çeker ve cheap-llm ile 3 somut ders çıkarır. Kaynaklar HERKESE AÇIK (blog/RSS/makale). Kitaplar tam metin DEĞİL — sadece başlık+yazar+ana kavram (o kavramdan öğrenilir). Olgusallık: özetle, uydurma yok.",
+    "note": "Agent SAATLİK ÖĞRENME kaynak listesi. agentId → { sources:[{title,url,type}], booklist:[{title,author,concepts}], foundations:[{title,author,kavram,url?}] }. agent-learn.mjs bunu okur, knowledge/<id>.json'daki learned URL'lerle dedup eder, sıradaki okunmamış kaynağı çeker ve cheap-llm ile 3 somut ders çıkarır. Kaynaklar HERKESE AÇIK (blog/RSS/makale). Kitaplar tam metin DEĞİL — sadece başlık+yazar+ana kavram (o kavramdan öğrenilir). foundations = işin ALTINDAKİ bilim/matematik/mekanizma (bilişsel psikoloji, ikna bilimi, renk-duygu, retention matematiği). ETİK çerçeve: bu bilim aldatma/karanlık-desen için DEĞİL, dürüst içeriği daha etkili kılmak için (etik ikna). Olgusallık: gerçek eserler, uydurma yok. | foundations: her meslegin altindaki bilim/matematik (etik ikna, mekanizma) 2026-07-08.",
     "updated": "2026-07-08",
-    "sourceTypes": ["rss", "article", "book"]
+    "sourceTypes": [
+      "rss",
+      "article",
+      "book"
+    ]
   },
   "defaults": {
     "sources": [
-      { "title": "Buffer Blog — Sosyal Medya", "url": "https://buffer.com/resources/rss/", "type": "rss" },
-      { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+      {
+        "title": "Buffer Blog — Sosyal Medya",
+        "url": "https://buffer.com/resources/rss/",
+        "type": "rss"
+      },
+      {
+        "title": "Content Marketing Institute",
+        "url": "https://contentmarketinginstitute.com/feed/",
+        "type": "rss"
+      }
     ],
     "booklist": [
-      { "title": "Made to Stick", "author": "Chip Heath & Dan Heath", "concepts": ["basitlik", "beklenmedik olan", "somutluk", "güvenilirlik", "duygu", "hikaye (SUCCESs modeli)"] },
-      { "title": "Building a StoryBrand", "author": "Donald Miller", "concepts": ["müşteri kahraman", "net mesaj", "problem-rehber-plan-eylem", "karmaşayı azalt"] }
+      {
+        "title": "Made to Stick",
+        "author": "Chip Heath & Dan Heath",
+        "concepts": [
+          "basitlik",
+          "beklenmedik olan",
+          "somutluk",
+          "güvenilirlik",
+          "duygu",
+          "hikaye (SUCCESs modeli)"
+        ]
+      },
+      {
+        "title": "Building a StoryBrand",
+        "author": "Donald Miller",
+        "concepts": [
+          "müşteri kahraman",
+          "net mesaj",
+          "problem-rehber-plan-eylem",
+          "karmaşayı azalt"
+        ]
+      }
+    ],
+    "foundations": [
+      {
+        "title": "Made to Stick",
+        "author": "Chip & Dan Heath",
+        "concepts": [
+          "SUCCESs: akılda kalıcılığın 6 ilkesi"
+        ]
+      },
+      {
+        "title": "Thinking, Fast and Slow",
+        "author": "Daniel Kahneman",
+        "concepts": [
+          "bilişsel önyargılar, karar mekaniği"
+        ]
+      }
     ]
   },
   "agents": {
     "director": {
       "sources": [
-        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" },
-        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" },
-        { "title": "Later Blog — Social Media Strategy", "url": "https://later.com/blog/feed/", "type": "rss" }
+        {
+          "title": "Buffer Blog",
+          "url": "https://buffer.com/resources/rss/",
+          "type": "rss"
+        },
+        {
+          "title": "Content Marketing Institute",
+          "url": "https://contentmarketinginstitute.com/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Later Blog — Social Media Strategy",
+          "url": "https://later.com/blog/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Contagious: Why Things Catch On", "author": "Jonah Berger", "concepts": ["sosyal para birimi", "tetikleyiciler", "duygu", "kamusallık", "pratik değer", "hikaye (STEPPS)"] },
-        { "title": "Building a StoryBrand", "author": "Donald Miller", "concepts": ["müşteri kahraman", "net tek mesaj", "kafa karışıklığını azalt"] }
+        {
+          "title": "Contagious: Why Things Catch On",
+          "author": "Jonah Berger",
+          "concepts": [
+            "sosyal para birimi",
+            "tetikleyiciler",
+            "duygu",
+            "kamusallık",
+            "pratik değer",
+            "hikaye (STEPPS)"
+          ]
+        },
+        {
+          "title": "Building a StoryBrand",
+          "author": "Donald Miller",
+          "concepts": [
+            "müşteri kahraman",
+            "net tek mesaj",
+            "kafa karışıklığını azalt"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Designing Organizations for an Information-Rich World",
+          "author": "Herbert Simon",
+          "concepts": [
+            "dikkat ekonomisi: bilgi bolluğu dikkat kıtlığı yaratır"
+          ]
+        },
+        {
+          "title": "Diffusion of Innovations",
+          "author": "Everett Rogers",
+          "concepts": [
+            "benimseme eğrisi",
+            "trend yayılım matematiği"
+          ]
+        }
       ]
     },
     "trend": {
       "sources": [
-        { "title": "Google Trends Blog", "url": "https://blog.google/products/search/rss/", "type": "rss" },
-        { "title": "Social Media Today", "url": "https://www.socialmediatoday.com/feeds/news/", "type": "rss" },
-        { "title": "Later Blog", "url": "https://later.com/blog/feed/", "type": "rss" }
+        {
+          "title": "Google Trends Blog",
+          "url": "https://blog.google/products/search/rss/",
+          "type": "rss"
+        },
+        {
+          "title": "Social Media Today",
+          "url": "https://www.socialmediatoday.com/feeds/news/",
+          "type": "rss"
+        },
+        {
+          "title": "Later Blog",
+          "url": "https://later.com/blog/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Trend-Driven Innovation", "author": "Henry Mason vd.", "concepts": ["temel tüketici ihtiyaçları", "trend sinyalleri", "beklenti değişimi", "uygulama fırsatı"] }
+        {
+          "title": "Trend-Driven Innovation",
+          "author": "Henry Mason vd.",
+          "concepts": [
+            "temel tüketici ihtiyaçları",
+            "trend sinyalleri",
+            "beklenti değişimi",
+            "uygulama fırsatı"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Contagious: Why Things Catch On",
+          "author": "Jonah Berger",
+          "concepts": [
+            "STEPPS: sosyal para, tetik, duygu, kamusallık, pratik değer, hikaye"
+          ]
+        },
+        {
+          "title": "Diffusion of Innovations",
+          "author": "Everett Rogers",
+          "concepts": [
+            "trend difüzyon eğrisi"
+          ]
+        }
       ]
     },
     "writer": {
       "sources": [
-        { "title": "Copyblogger", "url": "https://copyblogger.com/feed/", "type": "rss" },
-        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+        {
+          "title": "Copyblogger",
+          "url": "https://copyblogger.com/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Buffer Blog",
+          "url": "https://buffer.com/resources/rss/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "The Copywriter's Handbook", "author": "Robert Bly", "concepts": ["başlık formülleri", "fayda odaklı", "net CTA", "AIDA"] },
-        { "title": "Everybody Writes", "author": "Ann Handley", "concepts": ["empati", "sadelik", "aktif dil", "düzenleme disiplini"] }
+        {
+          "title": "The Copywriter's Handbook",
+          "author": "Robert Bly",
+          "concepts": [
+            "başlık formülleri",
+            "fayda odaklı",
+            "net CTA",
+            "AIDA"
+          ]
+        },
+        {
+          "title": "Everybody Writes",
+          "author": "Ann Handley",
+          "concepts": [
+            "empati",
+            "sadelik",
+            "aktif dil",
+            "düzenleme disiplini"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Influence: The Psychology of Persuasion",
+          "author": "Robert Cialdini",
+          "concepts": [
+            "6 ikna ilkesi: karşılıklılık, tutarlılık, sosyal kanıt, otorite, sevgi, kıtlık"
+          ]
+        },
+        {
+          "title": "The Adweek Copywriting Handbook",
+          "author": "Joseph Sugarman",
+          "concepts": [
+            "kayma etkisi (slippery slope)",
+            "duygusal tetikleyiciler",
+            "ilk cümlenin tek görevi ikinciyi okutmak"
+          ]
+        }
       ]
     },
     "muhabir": {
       "sources": [
-        { "title": "Poynter — Gazetecilik", "url": "https://www.poynter.org/feed/", "type": "rss" },
-        { "title": "Reuters Institute", "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml", "type": "rss" }
+        {
+          "title": "Poynter — Gazetecilik",
+          "url": "https://www.poynter.org/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Reuters Institute",
+          "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "The Elements of Journalism", "author": "Bill Kovach & Tom Rosenstiel", "concepts": ["gerçeğe sadakat", "doğrulama disiplini", "bağımsızlık", "kamu yararı"] },
-        { "title": "The Associated Press Stylebook", "author": "Associated Press", "concepts": ["ters piramit", "5N1K", "kısa net cümle", "atıf/kaynak gösterme", "abartısız ton"] }
+        {
+          "title": "The Elements of Journalism",
+          "author": "Bill Kovach & Tom Rosenstiel",
+          "concepts": [
+            "gerçeğe sadakat",
+            "doğrulama disiplini",
+            "bağımsızlık",
+            "kamu yararı"
+          ]
+        },
+        {
+          "title": "The Associated Press Stylebook",
+          "author": "Associated Press",
+          "concepts": [
+            "ters piramit",
+            "5N1K",
+            "kısa net cümle",
+            "atıf/kaynak gösterme",
+            "abartısız ton"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Information Gap Theory of Curiosity",
+          "author": "George Loewenstein",
+          "concepts": [
+            "merak = bilinen ile bilinmek istenen arasındaki boşluk",
+            "başlıkta merak boşluğu aç"
+          ]
+        }
       ]
     },
     "magazin-editoru": {
       "sources": [
-        { "title": "Nieman Storyboard", "url": "https://niemanstoryboard.org/feed/", "type": "rss" },
-        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+        {
+          "title": "Nieman Storyboard",
+          "url": "https://niemanstoryboard.org/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Content Marketing Institute",
+          "url": "https://contentmarketinginstitute.com/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Made to Stick", "author": "Chip Heath & Dan Heath", "concepts": ["somut detay", "beklenmedik açı", "duygusal bağ", "hikaye kancası"] },
-        { "title": "The Art of the Feature", "author": "gazetecilik referansı", "concepts": ["insan hikayesi", "sahne kurma", "renk detayı", "açı seçimi"] }
+        {
+          "title": "Made to Stick",
+          "author": "Chip Heath & Dan Heath",
+          "concepts": [
+            "somut detay",
+            "beklenmedik açı",
+            "duygusal bağ",
+            "hikaye kancası"
+          ]
+        },
+        {
+          "title": "The Art of the Feature",
+          "author": "gazetecilik referansı",
+          "concepts": [
+            "insan hikayesi",
+            "sahne kurma",
+            "renk detayı",
+            "açı seçimi"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "The Role of Transportation in Narrative Persuasion",
+          "author": "Green & Brock",
+          "concepts": [
+            "narrative transportation: hikayeye kapılan okur daha ikna olur"
+          ]
+        },
+        {
+          "title": "Contagious",
+          "author": "Jonah Berger",
+          "concepts": [
+            "duygu ve paylaşılabilirlik"
+          ]
+        }
       ]
     },
     "yayin-yonetmeni": {
       "sources": [
-        { "title": "Poynter", "url": "https://www.poynter.org/feed/", "type": "rss" },
-        { "title": "Nieman Lab", "url": "https://www.niemanlab.org/feed/", "type": "rss" }
+        {
+          "title": "Poynter",
+          "url": "https://www.poynter.org/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Nieman Lab",
+          "url": "https://www.niemanlab.org/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "The Elements of Journalism", "author": "Bill Kovach & Tom Rosenstiel", "concepts": ["manşet önceliklendirme", "denge", "editöryal yargı", "kamu yararı"] }
+        {
+          "title": "The Elements of Journalism",
+          "author": "Bill Kovach & Tom Rosenstiel",
+          "concepts": [
+            "manşet önceliklendirme",
+            "denge",
+            "editöryal yargı",
+            "kamu yararı"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "The Elements of Journalism",
+          "author": "Kovach & Rosenstiel",
+          "concepts": [
+            "doğrulama disiplini",
+            "önem sıralaması (news judgment)"
+          ]
+        }
       ]
     },
     "news-verifier": {
       "sources": [
-        { "title": "First Draft / Doğrulama", "url": "https://www.poynter.org/feed/", "type": "rss" },
-        { "title": "Reuters Institute", "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml", "type": "rss" }
+        {
+          "title": "First Draft / Doğrulama",
+          "url": "https://www.poynter.org/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Reuters Institute",
+          "url": "https://reutersinstitute.politics.ox.ac.uk/rss.xml",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Verification Handbook", "author": "Craig Silverman (ed.)", "concepts": ["kaynak doğrulama", "çapraz kontrol", "yanıltıcı içerik tespiti", "alaka filtresi"] }
+        {
+          "title": "Verification Handbook",
+          "author": "Craig Silverman (ed.)",
+          "concepts": [
+            "kaynak doğrulama",
+            "çapraz kontrol",
+            "yanıltıcı içerik tespiti",
+            "alaka filtresi"
+          ]
+        }
       ]
     },
     "growth": {
       "sources": [
-        { "title": "Ahrefs Blog — SEO", "url": "https://ahrefs.com/blog/feed/", "type": "rss" },
-        { "title": "Backlinko", "url": "https://backlinko.com/feed", "type": "rss" },
-        { "title": "GrowthHackers", "url": "https://growthhackers.com/posts.rss", "type": "rss" }
+        {
+          "title": "Ahrefs Blog — SEO",
+          "url": "https://ahrefs.com/blog/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Backlinko",
+          "url": "https://backlinko.com/feed",
+          "type": "rss"
+        },
+        {
+          "title": "GrowthHackers",
+          "url": "https://growthhackers.com/posts.rss",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Traction", "author": "Gabriel Weinberg & Justin Mares", "concepts": ["19 kanal", "bullseye çerçevesi", "kanal testi", "ölçülebilir hedef"] },
-        { "title": "Hacking Growth", "author": "Sean Ellis & Morgan Brown", "concepts": ["kuzey yıldızı metriği", "hızlı deney döngüsü", "aktivasyon/tutundurma", "kaldıraç"] }
+        {
+          "title": "Traction",
+          "author": "Gabriel Weinberg & Justin Mares",
+          "concepts": [
+            "19 kanal",
+            "bullseye çerçevesi",
+            "kanal testi",
+            "ölçülebilir hedef"
+          ]
+        },
+        {
+          "title": "Hacking Growth",
+          "author": "Sean Ellis & Morgan Brown",
+          "concepts": [
+            "kuzey yıldızı metriği",
+            "hızlı deney döngüsü",
+            "aktivasyon/tutundurma",
+            "kaldıraç"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Hacking Growth",
+          "author": "Sean Ellis & Morgan Brown",
+          "concepts": [
+            "AARRR hunisi",
+            "kuzey yıldızı metriği",
+            "yüksek-tempo deney matematiği"
+          ]
+        },
+        {
+          "title": "100 Things Every Designer Needs to Know About People",
+          "author": "Susan Weinschenk",
+          "concepts": [
+            "davranış tetikleyicileri",
+            "bilişsel yük"
+          ]
+        }
       ]
     },
     "ads": {
       "sources": [
-        { "title": "WordStream Blog", "url": "https://www.wordstream.com/blog/rss.xml", "type": "rss" },
-        { "title": "Search Engine Land — PPC", "url": "https://searchengineland.com/feed", "type": "rss" }
+        {
+          "title": "WordStream Blog",
+          "url": "https://www.wordstream.com/blog/rss.xml",
+          "type": "rss"
+        },
+        {
+          "title": "Search Engine Land — PPC",
+          "url": "https://searchengineland.com/feed",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Ilon Specht'ten Ogilvy'ye — Reklam Klasikleri", "author": "David Ogilvy", "concepts": ["net teklif", "test et-öğren", "ROAS odak", "kreatif hijyen"] }
+        {
+          "title": "Ilon Specht'ten Ogilvy'ye — Reklam Klasikleri",
+          "author": "David Ogilvy",
+          "concepts": [
+            "net teklif",
+            "test et-öğren",
+            "ROAS odak",
+            "kreatif hijyen"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Buyology",
+          "author": "Martin Lindstrom",
+          "concepts": [
+            "neuromarketing",
+            "bilinçdışı satın alma tetikleyicileri"
+          ]
+        },
+        {
+          "title": "Ogilvy on Advertising",
+          "author": "David Ogilvy",
+          "concepts": [
+            "başlık okunma oranı",
+            "test edilmiş reklam ilkeleri"
+          ]
+        }
       ]
     },
     "analyst": {
       "sources": [
-        { "title": "Plausible Blog — Analitik", "url": "https://plausible.io/blog/feed.xml", "type": "rss" },
-        { "title": "CXL Blog", "url": "https://cxl.com/blog/feed/", "type": "rss" }
+        {
+          "title": "Plausible Blog — Analitik",
+          "url": "https://plausible.io/blog/feed.xml",
+          "type": "rss"
+        },
+        {
+          "title": "CXL Blog",
+          "url": "https://cxl.com/blog/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Lean Analytics", "author": "Alistair Croll & Benjamin Yoskovitz", "concepts": ["tek önemli metrik (OMTM)", "vanity metrik tuzağı", "dönüşüm hunisi", "aksiyona dönük ölçüm"] }
+        {
+          "title": "Lean Analytics",
+          "author": "Alistair Croll & Benjamin Yoskovitz",
+          "concepts": [
+            "tek önemli metrik (OMTM)",
+            "vanity metrik tuzağı",
+            "dönüşüm hunisi",
+            "aksiyona dönük ölçüm"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Thinking, Fast and Slow",
+          "author": "Daniel Kahneman",
+          "concepts": [
+            "Sistem 1/2",
+            "bilişsel önyargılar",
+            "çerçeveleme etkisi"
+          ]
+        },
+        {
+          "title": "The Visual Display of Quantitative Information",
+          "author": "Edward Tufte",
+          "concepts": [
+            "veri-mürekkep oranı",
+            "yanıltmadan görselleştirme"
+          ]
+        }
       ]
     },
     "gazete-sosyal": {
       "sources": [
-        { "title": "Later Blog", "url": "https://later.com/blog/feed/", "type": "rss" },
-        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+        {
+          "title": "Later Blog",
+          "url": "https://later.com/blog/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Buffer Blog",
+          "url": "https://buffer.com/resources/rss/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Jab, Jab, Jab, Right Hook", "author": "Gary Vaynerchuk", "concepts": ["platforma özgü içerik", "değer önce sat sonra", "bağlam", "mikro-içerik"] }
+        {
+          "title": "Jab, Jab, Jab, Right Hook",
+          "author": "Gary Vaynerchuk",
+          "concepts": [
+            "platforma özgü içerik",
+            "değer önce sat sonra",
+            "bağlam",
+            "mikro-içerik"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Influence",
+          "author": "Robert Cialdini",
+          "concepts": [
+            "sosyal kanıt",
+            "kıtlık",
+            "CTA psikolojisi"
+          ]
+        },
+        {
+          "title": "Jab, Jab, Jab, Right Hook",
+          "author": "Gary Vaynerchuk",
+          "concepts": [
+            "platform-native değer sonra istek",
+            "etkileşim ekonomisi"
+          ]
+        }
       ]
     },
     "hava-plan": {
       "sources": [
-        { "title": "Skift — Seyahat Trendleri", "url": "https://skift.com/feed/", "type": "rss" }
+        {
+          "title": "Skift — Seyahat Trendleri",
+          "url": "https://skift.com/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Hizmet Tasarımı Temelleri", "author": "genel referans", "concepts": ["duruma göre öneri", "alternatif plan", "misafir konforu", "proaktif uyarı"] }
+        {
+          "title": "Hizmet Tasarımı Temelleri",
+          "author": "genel referans",
+          "concepts": [
+            "duruma göre öneri",
+            "alternatif plan",
+            "misafir konforu",
+            "proaktif uyarı"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Nudge",
+          "author": "Thaler & Sunstein",
+          "concepts": [
+            "bağlama duyarlı öneri (hava->aktivite) karar kolaylaştırır"
+          ]
+        }
       ]
     },
     "tatil-planner": {
       "sources": [
-        { "title": "Skift — Seyahat", "url": "https://skift.com/feed/", "type": "rss" },
-        { "title": "Lonely Planet — Blog", "url": "https://www.lonelyplanet.com/news/feed", "type": "rss" }
+        {
+          "title": "Skift — Seyahat",
+          "url": "https://skift.com/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Lonely Planet — Blog",
+          "url": "https://www.lonelyplanet.com/news/feed",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Setting the Table", "author": "Danny Meyer", "concepts": ["misafirperverlik", "beklentiyi aşma", "kişiselleştirme", "gerçekçi öneri"] }
+        {
+          "title": "Setting the Table",
+          "author": "Danny Meyer",
+          "concepts": [
+            "misafirperverlik",
+            "beklentiyi aşma",
+            "kişiselleştirme",
+            "gerçekçi öneri"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Nudge",
+          "author": "Thaler & Sunstein",
+          "concepts": [
+            "seçim mimarisi",
+            "varsayılanların gücü",
+            "karar kolaylaştırma"
+          ]
+        }
       ]
     },
     "gezgin-rehber": {
       "sources": [
-        { "title": "Smarthistory — Sanat/Arkeoloji", "url": "https://smarthistory.org/feed/", "type": "rss" },
-        { "title": "Archaeology News Network", "url": "https://www.archaeology.org/rss", "type": "rss" }
+        {
+          "title": "Smarthistory — Sanat/Arkeoloji",
+          "url": "https://smarthistory.org/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Archaeology News Network",
+          "url": "https://www.archaeology.org/rss",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "The Lycian Shore", "author": "Freya Stark", "concepts": ["Likya coğrafyası", "antik kent anlatısı", "yer hissi", "tarih-anlatı dengesi"] }
+        {
+          "title": "The Lycian Shore",
+          "author": "Freya Stark",
+          "concepts": [
+            "Likya coğrafyası",
+            "antik kent anlatısı",
+            "yer hissi",
+            "tarih-anlatı dengesi"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Narrative Transportation",
+          "author": "Green & Brock",
+          "concepts": [
+            "yer-hikayesi ile bağ",
+            "zihinsel canlandırma"
+          ]
+        }
       ]
     },
     "menu-chef": {
       "sources": [
-        { "title": "Eater", "url": "https://www.eater.com/rss/index.xml", "type": "rss" }
+        {
+          "title": "Eater",
+          "url": "https://www.eater.com/rss/index.xml",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Menu Engineering", "author": "genel referans", "concepts": ["iştah açıcı dil", "fiyat psikolojisi", "alerjen şeffaflığı", "kategori düzeni"] }
+        {
+          "title": "Menu Engineering",
+          "author": "genel referans",
+          "concepts": [
+            "iştah açıcı dil",
+            "fiyat psikolojisi",
+            "alerjen şeffaflığı",
+            "kategori düzeni"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Predictably Irrational",
+          "author": "Dan Ariely",
+          "concepts": [
+            "decoy (tuzak) etkisi",
+            "fiyat çıpalama",
+            "bedava kelimesinin gücü"
+          ]
+        },
+        {
+          "title": "Menu Engineering",
+          "author": "Kasavana & Smith",
+          "concepts": [
+            "yıldız/at/bulmaca/köpek matrisi",
+            "göz-izleme sıcak noktaları",
+            "fiyatı çıpasız sağa hizalama"
+          ]
+        }
       ]
     },
     "provider-matcher": {
       "sources": [
-        { "title": "Skift — Konaklama", "url": "https://skift.com/feed/", "type": "rss" }
+        {
+          "title": "Skift — Konaklama",
+          "url": "https://skift.com/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Setting the Table", "author": "Danny Meyer", "concepts": ["ihtiyaç eşleştirme", "güven", "şeffaf gerekçe"] }
+        {
+          "title": "Setting the Table",
+          "author": "Danny Meyer",
+          "concepts": [
+            "ihtiyaç eşleştirme",
+            "güven",
+            "şeffaf gerekçe"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Nudge",
+          "author": "Thaler & Sunstein",
+          "concepts": [
+            "seçim mimarisi",
+            "aşırı seçenek felci"
+          ]
+        }
       ]
     },
     "dil-cevirmen": {
       "sources": [
-        { "title": "Smartling Blog — Lokalizasyon", "url": "https://www.smartling.com/resources/rss/", "type": "rss" }
+        {
+          "title": "Smartling Blog — Lokalizasyon",
+          "url": "https://www.smartling.com/resources/rss/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Found in Translation", "author": "Nataly Kelly & Jost Zetzsche", "concepts": ["kültürel uyarlama", "ton koruma", "yerelleştirme > birebir çeviri", "turizm dili"] }
+        {
+          "title": "Found in Translation",
+          "author": "Nataly Kelly & Jost Zetzsche",
+          "concepts": [
+            "kültürel uyarlama",
+            "ton koruma",
+            "yerelleştirme > birebir çeviri",
+            "turizm dili"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Found in Translation",
+          "author": "Kelly & Zetzsche",
+          "concepts": [
+            "transcreation: anlam+duygu aktarımı",
+            "kültürel uyarlama"
+          ]
+        }
       ]
     },
     "reels-uretici": {
       "sources": [
-        { "title": "Later Blog — Reels", "url": "https://later.com/blog/feed/", "type": "rss" },
-        { "title": "Buffer Blog", "url": "https://buffer.com/resources/rss/", "type": "rss" }
+        {
+          "title": "Later Blog — Reels",
+          "url": "https://later.com/blog/feed/",
+          "type": "rss"
+        },
+        {
+          "title": "Buffer Blog",
+          "url": "https://buffer.com/resources/rss/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Contagious", "author": "Jonah Berger", "concepts": ["ilk 3 saniye kancası", "duygu", "paylaşılabilirlik", "tetikleyici"] }
+        {
+          "title": "Contagious",
+          "author": "Jonah Berger",
+          "concepts": [
+            "ilk 3 saniye kancası",
+            "duygu",
+            "paylaşılabilirlik",
+            "tetikleyici"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Hooked: How to Build Habit-Forming Products",
+          "author": "Nir Eyal",
+          "concepts": [
+            "tetik-eylem-değişken ödül-yatırım döngüsü",
+            "değişken ödül ve dopamin",
+            "ilk 3 saniye hook"
+          ]
+        },
+        {
+          "title": "Contagious",
+          "author": "Jonah Berger",
+          "concepts": [
+            "STEPPS viralite mekaniği",
+            "yüksek uyarım duygular paylaşımı artırır"
+          ]
+        }
       ]
     },
     "ilan-uzmani": {
       "sources": [
-        { "title": "LinkedIn Talent Blog", "url": "https://www.linkedin.com/blog/talent/rss", "type": "rss" }
+        {
+          "title": "LinkedIn Talent Blog",
+          "url": "https://www.linkedin.com/blog/talent/rss",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "İş İlanı Yazımı — İK Referansı", "author": "genel referans", "concepts": ["net rol tanımı", "somut şart", "çağrı-eylem", "şeffaf koşul"] }
+        {
+          "title": "İş İlanı Yazımı — İK Referansı",
+          "author": "genel referans",
+          "concepts": [
+            "net rol tanımı",
+            "somut şart",
+            "çağrı-eylem",
+            "şeffaf koşul"
+          ]
+        }
       ]
     },
     "bulten-editoru": {
       "sources": [
-        { "title": "Really Good Emails Blog", "url": "https://reallygoodemails.com/feed.xml", "type": "rss" },
-        { "title": "Content Marketing Institute", "url": "https://contentmarketinginstitute.com/feed/", "type": "rss" }
+        {
+          "title": "Really Good Emails Blog",
+          "url": "https://reallygoodemails.com/feed.xml",
+          "type": "rss"
+        },
+        {
+          "title": "Content Marketing Institute",
+          "url": "https://contentmarketinginstitute.com/feed/",
+          "type": "rss"
+        }
       ],
       "booklist": [
-        { "title": "Newsletter Ninja", "author": "Tammi Labrecque", "concepts": ["haftalık özet kurgusu", "en iyiyi seçme", "okuyucu değeri", "tutarlı ritim"] }
+        {
+          "title": "Newsletter Ninja",
+          "author": "Tammi Labrecque",
+          "concepts": [
+            "haftalık özet kurgusu",
+            "en iyiyi seçme",
+            "okuyucu değeri",
+            "tutarlı ritim"
+          ]
+        }
+      ],
+      "foundations": [
+        {
+          "title": "Hooked",
+          "author": "Nir Eyal",
+          "concepts": [
+            "alışkanlık döngüsü",
+            "açılış oranı için tetik tasarımı"
+          ]
+        }
+      ]
+    },
+    "foto-editoru": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "Wie Farben wirken (Psychology of Color)",
+          "author": "Eva Heller",
+          "concepts": [
+            "renk-duygu eşlemesi",
+            "kültürel renk anlamları",
+            "sıcak/soğuk renk dikkat etkisi"
+          ]
+        },
+        {
+          "title": "Picture This: How Pictures Work",
+          "author": "Molly Bang",
+          "concepts": [
+            "görsel yapı-duygu ilişkisi",
+            "kompozisyon boyut konum ile gerilim"
+          ]
+        },
+        {
+          "title": "Gestalt İlkeleri",
+          "author": "Wertheimer/Koffka",
+          "concepts": [
+            "yakınlık benzerlik süreklilik şekil-zemin: göz nasıl gruplar"
+          ]
+        }
+      ]
+    },
+    "reception": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "The Effortless Experience",
+          "author": "Dixon/Toman/DeLisi",
+          "concepts": [
+            "müşteri çabasını azalt",
+            "ilk-yanıt hızının memnuniyete etkisi"
+          ]
+        }
+      ]
+    },
+    "guard": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "Influence",
+          "author": "Robert Cialdini",
+          "concepts": [
+            "ikna vs manipülasyon sınırı — mekanizmayı bil ki markayı aldatmadan koru"
+          ]
+        }
+      ]
+    },
+    "kvkk-guardian": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "Deceptive Design (dark patterns)",
+          "author": "Harry Brignull",
+          "concepts": [
+            "karanlık desen tipolojisi",
+            "aldatıcı arayüz tespiti"
+          ]
+        }
+      ]
+    },
+    "reklam-uyum": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "Deceptive Design",
+          "author": "Harry Brignull",
+          "concepts": [
+            "gizli reklam aldatıcı ifade tespiti"
+          ]
+        }
+      ]
+    },
+    "deploy-agent": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "The Doherty Threshold / Core Web Vitals",
+          "author": "IBM / Google",
+          "concepts": [
+            "400ms altı yanıt üretkenliği ve algıyı artırır",
+            "algılanan hız gerçek hız kadar önemli"
+          ]
+        }
+      ]
+    },
+    "audit-agent": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "100 Things Every Designer Needs to Know About People",
+          "author": "Susan Weinschenk",
+          "concepts": [
+            "algılanan performans",
+            "bilişsel yük ve terk oranı"
+          ]
+        }
+      ]
+    },
+    "gazete-reel-en": {
+      "sources": [],
+      "booklist": [],
+      "foundations": [
+        {
+          "title": "Hooked",
+          "author": "Nir Eyal",
+          "concepts": [
+            "ilk saniye hook",
+            "değişken ödül"
+          ]
+        }
       ]
     }
   }

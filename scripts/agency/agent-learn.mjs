@@ -106,12 +106,23 @@ async function main() {
   const kb = await loadKnowledge(agentId);
   const learnedUrls = new Set(kb.lessons.map(l => l.url).filter(Boolean));
 
-  // 1) Okunmamış ilk kaynağı seç (sıra: reading-list düzeni)
-  const nextSource = sources.find(s => s.url && !learnedUrls.has(s.url));
+  // 0) ÖNCELİK: işin ALTINDAKİ bilim/matematik (foundations) — okunmamışsa ÖNCE onu öğren
+  const foundations = cfg.foundations || list.defaults?.foundations || [];
+  const nextFoundation = foundations.find(b => !learnedUrls.has(`book://${b.title}`));
 
   let sourceLabel, sourceUrl, material;
 
-  if (nextSource) {
+  if (nextFoundation) {
+    sourceUrl = `book://${nextFoundation.title}`;
+    sourceLabel = `${nextFoundation.title} — ${nextFoundation.author} [TEMEL BİLİM]`;
+    material = `İşinin ALTINDAKİ bilim/mekanizma. Kitap: "${nextFoundation.title}" (${nextFoundation.author}). ` +
+      `Ana kavramlar: ${(nextFoundation.concepts || []).join(', ')}. Bu mekanizmayı bu agentın işine NASIL uygulayacağını çıkar.`;
+  }
+
+  // 1) Foundation kalmadıysa: okunmamış ilk URL kaynağı (güncel makale/blog)
+  const nextSource = !material && sources.find(s => s.url && !learnedUrls.has(s.url));
+
+  if (!material && nextSource) {
     sourceUrl = nextSource.url;
     sourceLabel = nextSource.title || nextSource.url;
     try {
@@ -143,11 +154,13 @@ async function main() {
   // 3) cheap-llm ile 3 somut ders çıkar
   const { cheapLLM } = await import('../../lib/cheap-llm.mjs');
   const system = `Sen bir mesleki eğitmensin. "${agentMeta.name || agentId}" adlı ajans agentı şu işi yapıyor: ${beat}. `
-    + `Sana verilen kaynağı OKU ve bu agentın çıktı kalitesini artıracak SOMUT, UYGULANABİLİR 3 ders çıkar. `
+    + `Sana verilen kaynağı OKU ve bu agentın işinin ALTINDAKİ MEKANİZMAYI/MATEMATİĞİ kavramasını sağlayacak 3 ders çıkar. `
+    + `Yüzeysel ipucu DEĞİL: NEDEN işe yaradığını (bilişsel/psikolojik/istatistiksel mekanizma — renk-duygu eşlemesi, dikkat/retention matematiği, ikna ilkesi, önyargı) + çıktısına NASIL uygulanacağını ver. `
+    + `Etik çerçeve: bu bilgi daha iyi/etkili ve DÜRÜST içerik için; aldatma/karanlık desen için değil. `
     + `KURAL: Sadece verilen kaynaktan özetle — UYDURMA, kaynakta olmayan iddia ekleme. `
-    + `Her ders tek cümle, doğrudan agentın günlük işine uygulanabilir olsun. Türkçe. `
+    + `Her ders tek net cümle, doğrudan işe uygulanabilir. Türkçe. `
     + `SADECE JSON döndür: {"lessons":["ders1","ders2","ders3"]}`;
-  const prompt = `KAYNAK: ${sourceLabel}\n\nİÇERİK:\n${material}\n\nBu agentın işine yarayacak 3 somut ders (JSON).`;
+  const prompt = `KAYNAK: ${sourceLabel}\n\nİÇERİK:\n${material}\n\nBu agentın işinin ARKASINDAKİ mekanizmayı kavratacak + çıktısına uygulanabilir 3 ders (JSON).`;
 
   let lessons = [];
   try {
