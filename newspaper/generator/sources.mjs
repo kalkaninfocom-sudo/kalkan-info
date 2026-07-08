@@ -410,10 +410,10 @@ export async function buildData(iso, demo) {
 function absPhoto(p) {
   if (!p) return null;
   if (/^https?:/i.test(p)) return p;
-  // Yerel /assets yolunu PDF render için file:// olarak çöz (ağdan bağımsız)
+  // MUTLAK WEB yolu. ÖNCE file:// döndürüyordu (PDF için) ama arşiv HTML'i WEB'DE servis ediliyor
+  // → file:///home/runner/... CI runner yolu web'de KIRIK (magazin görselleri patlak). Puppeteer PDF
+  // de bu https URL'i ağdan çeker (CI'da ağ var). Non-www: canonical.
   const rel = String(p).replace(/^\//, '');
-  const local = join(REPO, rel);
-  if (existsSync(local)) return pathToFileURL(local).href;
   return `https://kalkaninfo.com/${rel}`;
 }
 function venuePhoto(v) {
