@@ -28,6 +28,129 @@
   ],
   "items": [
     {
+      "id": "turkevi-kalkan",
+      "name": "Kalkan Türk Evi",
+      "category": "Butik Pansiyon",
+      "starRating": 3,
+      "priceRange": "$$",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Şehitler Cad. No:48, Yaliboyu Mah., Kalkan",
+      "phone": "+90 242 844 3129",
+      "website": "https://kalkanturkevi.com",
+      "instagram": "kalkanturkevi",
+      "image": "/assets/img/turkevi-kalkan-1.jpg",
+      "gallery": [
+        "/assets/img/turkevi-kalkan-1.jpg",
+        "/assets/img/turkevi-kalkan-2.jpg"
+      ],
+      "summary": "1988'den beri Kalkan'ın en köklü butik pansiyonu — eski Türk köy evi, çatı terası koy manzarası, yerel kaynaklı kahvaltı, limana 5 dakika.",
+      "amenities": [
+        "Çatı teras",
+        "Kahvaltı dahil",
+        "Deniz manzarası",
+        "WiFi",
+        "Klima",
+        "Limana yakın",
+        "Pet-friendly"
+      ],
+      "roomTypes": [
+        {
+          "name": "En-Suite Oda",
+          "sleeps": 2,
+          "description": "9 odadan biri — geleneksel Türk ev dokusu, özel banyo."
+        }
+      ],
+      "rating_source": null,
+      "featured": true,
+      "geo": null,
+      "nameI18n": {
+        "tr": "Kalkan Türk Evi",
+        "en": "Kalkan Türk Evi",
+        "de": "Kalkan Türk Evi",
+        "ru": "Kalkan Türk Evi",
+        "fr": "Kalkan Türk Evi"
+      },
+      "summaryI18n": {
+        "tr": "1988'den beri Kalkan'ın en köklü butik pansiyonu — eski Türk köy evi, çatı terası koy manzarası, yerel kaynaklı kahvaltı, limana 5 dakika.",
+        "en": "Kalkan's oldest boutique guesthouse since 1988 — old Turkish village house, rooftop terrace bay views, locally sourced breakfast, 5 min to harbour.",
+        "de": "Kalkans ältestes Boutique-Gästehaus seit 1988 — altes türkisches Dorfhaus, Dachterrasse mit Buchtblick, regionales Frühstück, 5 Minuten zum Hafen.",
+        "ru": "Старейший бутик-пансион Калкана с 1988 года — старый турецкий деревенский дом, терраса на крыше с видом на бухту, завтрак из местных продуктов, 5 минут до гавани.",
+        "fr": "Le plus ancien gîte boutique de Kalkan depuis 1988 — ancienne maison de village turque, terrasse sur le toit vue baie, petit-déjeuner local, 5 min du port."
+      }
+    },
+    {
+      "id": "hotel-pirat-kalkan",
+      "name": "Hotel Pirat Kalkan",
+      "category": "Beach Hotel",
+      "starRating": 3,
+      "priceRange": "$$",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Limanı, İskele",
+      "phone": null,
+      "website": null,
+      "instagram": null,
+      "image": "/assets/img/oteller/hotel-pirat-kalkan-hero.jpg",
+      "gallery": [
+        "/assets/img/oteller/hotel-pirat-kalkan-1.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-2.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-3.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-4.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-5.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-6.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-7.jpg",
+        "/assets/img/oteller/hotel-pirat-kalkan-8.jpg"
+      ],
+      "summary": "Kalkan limanında klasik bir adres — iskeleye yürüme mesafesi, deniz manzaralı oda, sade konfor.",
+      "amenities": [
+        "Limana yakın",
+        "Deniz manzarası",
+        "Restoran",
+        "Bar",
+        "WiFi",
+        "Klima",
+        "Plaj transferi"
+      ],
+      "roomTypes": [
+        {
+          "name": "Standart Oda",
+          "sleeps": 2,
+          "description": "Şehir veya dağ manzaralı, klasik dekor."
+        },
+        {
+          "name": "Deniz Manzaralı",
+          "sleeps": 2,
+          "description": "Liman ve koy panoraması."
+        },
+        {
+          "name": "Aile Odası",
+          "sleeps": 3,
+          "description": "Ailelere uygun geniş oda."
+        }
+      ],
+      "rating_source": "Google",
+      "featured": true,
+      "geo": {
+        "lat": 36.2627,
+        "lng": 29.4137
+      },
+      "nameI18n": {
+        "tr": "Hotel Pirat Kalkan",
+        "en": "Hotel Pirat Kalkan",
+        "de": "Hotel Pirat Kalkan",
+        "ru": "Hotel Pirat Kalkan",
+        "fr": "Hotel Pirat Kalkan"
+      },
+      "summaryI18n": {
+        "tr": "Kalkan limanında klasik bir adres — iskeleye yürüme mesafesi, deniz manzaralı oda, sade konfor.",
+        "en": "A classic address at Kalkan harbor — walking distance to the pier, sea-view rooms, simple comfort.",
+        "de": "Eine klassische Adresse am Hafen von Kalkan — fußläufig zur Mole, Zimmer mit Meerblick, schlichter Komfort.",
+        "ru": "Классический адрес в гавани Калкана — пешком до пирса, номера с видом на море, простой комфорт.",
+        "fr": "Une adresse classique au port de Kalkan — à pied du quai, chambres vue mer, confort simple."
+      }
+    },
+    {
       "id": "white-house-kalkan",
       "name": "White House Hotel",
       "category": "Boutique",
@@ -240,77 +363,6 @@
         "de": "5-Sterne-Boutique-Luxushotel an der Akdeniz Avenue — Suiten mit Pool, große Terrasse, Panoramablick aufs Meer.",
         "ru": "5-звёздочный бутик-отель на Akdeniz Caddesi — номера с бассейном, большая терраса, панорамный вид на море.",
         "fr": "Hôtel boutique de luxe 5 étoiles sur l'avenue Akdeniz — suites avec piscine, grande terrasse, vue panoramique sur la mer."
-      }
-    },
-    {
-      "id": "hotel-pirat-kalkan",
-      "name": "Hotel Pirat Kalkan",
-      "category": "Beach Hotel",
-      "starRating": 3,
-      "priceRange": "$$",
-      "rating": null,
-      "reviewCount": 0,
-      "location": "Kalkan Limanı, İskele",
-      "phone": null,
-      "website": null,
-      "instagram": null,
-      "image": "/assets/img/oteller/hotel-pirat-kalkan-hero.jpg",
-      "gallery": [
-        "/assets/img/oteller/hotel-pirat-kalkan-1.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-2.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-3.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-4.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-5.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-6.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-7.jpg",
-        "/assets/img/oteller/hotel-pirat-kalkan-8.jpg"
-      ],
-      "summary": "Kalkan limanında klasik bir adres — iskeleye yürüme mesafesi, deniz manzaralı oda, sade konfor.",
-      "amenities": [
-        "Limana yakın",
-        "Deniz manzarası",
-        "Restoran",
-        "Bar",
-        "WiFi",
-        "Klima",
-        "Plaj transferi"
-      ],
-      "roomTypes": [
-        {
-          "name": "Standart Oda",
-          "sleeps": 2,
-          "description": "Şehir veya dağ manzaralı, klasik dekor."
-        },
-        {
-          "name": "Deniz Manzaralı",
-          "sleeps": 2,
-          "description": "Liman ve koy panoraması."
-        },
-        {
-          "name": "Aile Odası",
-          "sleeps": 3,
-          "description": "Ailelere uygun geniş oda."
-        }
-      ],
-      "rating_source": "Google",
-      "featured": false,
-      "geo": {
-        "lat": 36.2627,
-        "lng": 29.4137
-      },
-      "nameI18n": {
-        "tr": "Hotel Pirat Kalkan",
-        "en": "Hotel Pirat Kalkan",
-        "de": "Hotel Pirat Kalkan",
-        "ru": "Hotel Pirat Kalkan",
-        "fr": "Hotel Pirat Kalkan"
-      },
-      "summaryI18n": {
-        "tr": "Kalkan limanında klasik bir adres — iskeleye yürüme mesafesi, deniz manzaralı oda, sade konfor.",
-        "en": "A classic address at Kalkan harbor — walking distance to the pier, sea-view rooms, simple comfort.",
-        "de": "Eine klassische Adresse am Hafen von Kalkan — fußläufig zur Mole, Zimmer mit Meerblick, schlichter Komfort.",
-        "ru": "Классический адрес в гавани Калкана — пешком до пирса, номера с видом на море, простой комфорт.",
-        "fr": "Une adresse classique au port de Kalkan — à pied du quai, chambres vue mer, confort simple."
       }
     },
     {
