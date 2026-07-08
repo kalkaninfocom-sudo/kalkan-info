@@ -37,8 +37,9 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: ffmpeg kur (webp foto + müzik mix için)
-        uses: FedericoCarboni/setup-ffmpeg@v3
+      - name: ffmpeg kur (sistem hazir; yoksa apt noninteractive)
+        run: |
+          if command -v ffmpeg >/dev/null 2>&1; then echo "sistem ffmpeg: $(ffmpeg -version | head -1)"; else sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ffmpeg; fi
 
       - name: Bağımlılıkları kur (remotion dahil)
         run: npm install --no-audit --no-fund
