@@ -281,6 +281,10 @@ let built = [];
 for (const slug of targets) {
   const r = (data.items || []).find(x => x.id === slug);
   if (!r) { console.warn(`Atlandi: ${slug} restoranlar.json'da yok`); continue; }
+  // BESPOKE koruması: elle tasarlanmış özel sayfaları (r.bespoke) generator EZMEZ. Aksi halde
+  // build-all her deploy'da standart _template'i restoran/<slug>/index.html'e yazıp bespoke'u siliyordu
+  // (ör. The Social Kalkan — canlıda karanlık standart şablon görünüyordu). Bespoke sayfa git'te sabit kalır.
+  if (r.bespoke) { console.log(`Bespoke sayfa — generator ATLADI (elle yapıldı): ${slug}`); continue; }
   const c = CUSTOM[slug] || {};
   const t = r.theme || c.theme || theme(r.category); // per-restoran tema override (logo paleti vb.)
 
