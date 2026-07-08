@@ -36,7 +36,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - name: ffmpeg kur (webp foto + müzik mix için)
-        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
 
       - name: Bağımlılıkları kur (remotion dahil)
         run: npm install --no-audit --no-fund
