@@ -25,7 +25,7 @@
  *   node scripts/agency/whatsapp-photo-campaign.mjs --limit 3  # smoke test (ilk 3)
  */
 import { readFile, writeFile } from 'node:fs/promises';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -82,7 +82,7 @@ const STOP = new Set(['the', 'and', 'bar', 'cafe', 'kalkan', 'kas', 'restaurant'
 function walkImages(dir) {
   let out = [];
   let entries = [];
-  try { entries = require('node:fs').readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+  try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return out; }
   for (const e of entries) {
     const p = join(dir, e.name);
     if (e.isDirectory()) out = out.concat(walkImages(p));
@@ -209,7 +209,7 @@ async function main() {
   const prevById = new Map();
   if (!process.argv.includes('--fresh')) {
     try {
-      const prev = JSON.parse(require('node:fs').readFileSync(outPath, 'utf8'));
+      const prev = JSON.parse(readFileSync(outPath, 'utf8'));
       for (const p of (prev.items || [])) if (p.id && p.message && p.message.length > 60) prevById.set(p.id, p);
     } catch {}
   }
