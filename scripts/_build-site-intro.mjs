@@ -6,8 +6,6 @@ import { resolve } from 'node:path';
 
 const PAGE_TOK = process.argv[2];
 if (!PAGE_TOK) { console.error('Usage: ... <page_token>'); process.exit(1); }
-const PEXELS_KEY = '55915949-dc268c403aa21756b1890f0d3';
-const EL_KEY = 'sk_a2b356c41547bf5e2f406262fa23dbb88d503cdd39bda3f0';
 const CHARLOTTE = 'EXAVITQu4vr4xnSDxMaL'; // Sarah (free female narrator, American)
 const IG = '17841464755523227';
 
@@ -17,6 +15,8 @@ function pick(k) {
   if (!l) return '';
   return l.slice(k.length + 1).replace(/^"|"$/g, '').replace(/\\n$/, '').trim();
 }
+const EL_KEY = pick('ELEVENLABS_API_KEY');  // secret koddan çıkarıldı → .env.local
+if (!EL_KEY) { console.error('ELEVENLABS_API_KEY .env.local\'de yok'); process.exit(1); }
 const SUPA = pick('SUPABASE_URL');
 const KEY = pick('SUPABASE_SERVICE_ROLE_KEY');
 
