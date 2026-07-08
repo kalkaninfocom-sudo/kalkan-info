@@ -1,0 +1,69 @@
+name: Günlük ajans brifingi (07:00 — 28 agent → Kalkan araştırma + içerik + geliştirme)
+
+# Berkay: her sabah 07:00'de 28 ajanın hepsi rolüne göre Kalkan hakkında güncel internet
+# araştırması yapsın, gazete + reels için içerik bulsun, KalkanInfo'yu geliştirecek/eksik
+# bulacak öneriler üretsin → tek departman-bazlı Telegram raporu + content-ideas.json.
+# Önce taze haber çekilir; sonra briefing. Çıktı commit'lenir → gazete akışı (07:45) tüketir.
+# Vercel cron dolu → GitHub Actions (cron limiti yok).
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # 04:00 UTC = 07:00 Europe/Istanbul (gazete 07:45'ten önce)
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: 'Deneme (LLM çağırma) true/false'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: morning-briefing
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      # Taze Kalkan haberi çek (internet araştırmasının sinyal katmanı). Non-fatal.
+      - name: Taze haber çek (RSS/Google News — Kalkan merkezli)
+        run: node scripts/news-aggregator.mjs || echo "haber çekme atlandı"
+
+      # Küratörlü mekan IG sinyalleri (IG secret varsa; yoksa graceful). Non-fatal.
+      - name: Mekan IG sinyalleri
+        env:
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+        run: node scripts/ig-venue-watch.mjs || echo "IG mekan izleme atlandı (secret yoksa normal)"
+
+      # 28 ajan brifingi → Telegram + content-ideas.json
+      - name: Ajan brifingi (28 agent)
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: node scripts/agency/morning-briefing.mjs
+
+      - name: Commit brifing çıktısı (gazete akışı tüketsin)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
+          git commit -m "content(brifing): günlük ajans brifingi $(TZ=Europe/Istanbul date +%F) [auto]"
+          git pull --rebase origin main || true
+          git push

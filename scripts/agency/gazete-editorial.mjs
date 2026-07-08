@@ -105,6 +105,16 @@ async function fetchIgVenueNews() {
     return items.slice(0, 5).map(x => `• [${x.category || 'mekan'}] ${x.venueName || x.username}: ${x.headline}`).join('\n');
   } catch { return ''; }
 }
+// Günlük 07:00 ajan brifinginden GAZETE içerik fikirleri (morning-briefing.mjs → content-ideas.json).
+async function fetchBriefingIdeas() {
+  try {
+    const d = JSON.parse(await readFile(join(ROOT, 'data', 'agency', 'content-ideas.json'), 'utf8'));
+    if (d.date !== date) return ''; // yalnız bugünün fikirleri
+    const gz = (d.ideas || []).filter(i => /gazete/i.test(i.tur) && i.fikir).slice(0, 6);
+    if (!gz.length) return '';
+    return gz.map(i => `• [${i.agent}] ${i.fikir}`).join('\n');
+  } catch { return ''; }
+}
 
 async function main() {
   console.log(`\n════ GAZETE EDİTÖRYAL — ${date} ════`);
@@ -123,11 +133,13 @@ async function main() {
   const col3 = ranked.find(it => it !== lead && it !== col1 && ['Plaj', 'Turizm', 'Hava'].includes(it.category)) || ranked[2] || ranked[1];
   const mag  = ranked.find(it => it !== lead && it !== col1 && it !== col3) || ranked[1];
 
-  // Agent araştırması + bugünkü site etkinlikleri + IG mekan sinyalleri — editöryal grounding (paralel çek)
-  const [agentResearch, todayEvents, igVenueNews] = await Promise.all([fetchAgentResearch(date), fetchTodayEvents(date), fetchIgVenueNews()]);
+  // Editöryal grounding (paralel çek): agent araştırması + etkinlik + IG sinyali + brifing fikirleri
+  const [agentResearch, todayEvents, igVenueNews, briefingIdeas] = await Promise.all([
+    fetchAgentResearch(date), fetchTodayEvents(date), fetchIgVenueNews(), fetchBriefingIdeas()]);
   if (agentResearch) console.log('  ↳ agent araştırması eklendi (agency_jobs)');
   if (todayEvents) console.log('  ↳ bugünkü site etkinlikleri eklendi');
   if (igVenueNews) console.log('  ↳ IG mekan sinyalleri eklendi (ig-venue-news)');
+  if (briefingIdeas) console.log('  ↳ 07:00 brifing gazete fikirleri eklendi (content-ideas)');
 
   const brief = (it, n = 320) => it ? `[${it.category || '-'}] ${it.title}\n${(it.summary || it.content || '').slice(0, n)}` : '';
   const prompt =
@@ -144,7 +156,8 @@ async function main() {
     `MANŞET KAYNAK:\n${brief(lead)}\n\nSÜTUN-1 KAYNAK:\n${brief(col1)}\n\nSÜTUN-3 KAYNAK:\n${brief(col3)}\n\nMAGAZİN KAYNAK:\n${brief(mag)}` +
     (todayEvents ? `\n\nBUGÜNKÜ ETKİNLİKLER (site verisi — col1/magazine için kullanılabilir):\n${todayEvents}` : '') +
     (agentResearch ? `\n\nAJANS ARAŞTIRMASI (bugün muhabir/magazin ajanlarının derlediği — kaynak; yeni olgu UYDURMA):\n${agentResearch}` : '') +
-    (igVenueNews ? `\n\nKALKAN MEKAN IG SİNYALLERİ (mekanların public gönderilerinden — magazin/mekan açısı; caption dışı olgu UYDURMA):\n${igVenueNews}` : '');
+    (igVenueNews ? `\n\nKALKAN MEKAN IG SİNYALLERİ (mekanların public gönderilerinden — magazin/mekan açısı; caption dışı olgu UYDURMA):\n${igVenueNews}` : '') +
+    (briefingIdeas ? `\n\nSABAH AJANS BRİFİNGİ — GAZETE FİKİRLERİ (28 ajanın 07:00 araştırmasından; olgusal kalın):\n${briefingIdeas}` : '');
 
   const SCHEMA = `{"lead":{"headline":"...","deck":"...","body":"..."},"col1":{"title":"...","body":"..."},"col3":{"title":"...","body":"..."},"magazine":{"headline":"...","body":"..."}}`;
   const jsonRules =
