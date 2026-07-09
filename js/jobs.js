@@ -131,6 +131,49 @@ export async function createJob(data, ownerUid) {
   }
 }
 
+export async function updateJob(id, patch, ownerUid) {
+  if (!isSupabaseConfigured) {
+    return { ok: false, error: 'Supabase yapılandırılmamış. Lütfen önce giriş yapın.' };
+  }
+  try {
+    const row = { ...patch, status: 'pending', updated_at: new Date().toISOString() };
+    // owner_id/id gibi immutable alanları patch'ten çıkar (defans)
+    delete row.id;
+    delete row.owner_id;
+    delete row.slug;
+    let q = supabase.from('jobs').update(row).eq('id', id);
+    if (ownerUid) q = q.eq('owner_id', ownerUid);
+    const { data: updated, error } = await q.select('id, slug').single();
+    if (error) throw error;
+    return { ok: true, id: updated.id, slug: updated.slug };
+  } catch (err) {
+    const msg = (err.message || '').toLowerCase();
+    if (msg.includes('row-level security') || msg.includes('policy')) {
+      return { ok: false, error: 'Bu ilanı düzenleme yetkiniz yok. Lütfen tekrar giriş yapın.' };
+    }
+    return { ok: false, error: err.message };
+  }
+}
+
+export async function deleteJob(id, ownerUid) {
+  if (!isSupabaseConfigured) {
+    return { ok: false, error: 'Supabase yapılandırılmamış. Lütfen önce giriş yapın.' };
+  }
+  try {
+    let q = supabase.from('jobs').delete().eq('id', id);
+    if (ownerUid) q = q.eq('owner_id', ownerUid);
+    const { error } = await q;
+    if (error) throw error;
+    return { ok: true };
+  } catch (err) {
+    const msg = (err.message || '').toLowerCase();
+    if (msg.includes('row-level security') || msg.includes('policy')) {
+      return { ok: false, error: 'Bu ilanı silme yetkiniz yok. Lütfen tekrar giriş yapın.' };
+    }
+    return { ok: false, error: err.message };
+  }
+}
+
 export async function applyToJob(jobId, applicantData, applicantUid) {
   if (!isSupabaseConfigured) return { ok: false, error: 'Önce giriş yapın.' };
   try {

@@ -409,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ============== SCRIPTS ============== -->
 <script type="module">
-import { createJob, renderJobCard } from './js/jobs.js';
+import { createJob, updateJob, getJob, renderJobCard } from './js/jobs.js';
 
 const form = document.getElementById('job-form');
 const steps = [...document.querySelectorAll('.step-fieldset')];
@@ -425,6 +425,11 @@ let _currentStep = 1;
 let _selectedLangs = new Set();
 let _user = null;
 
+// ----- Düzenleme modu: ?edit=<id>
+const _editId = new URLSearchParams(location.search).get('edit');
+let _editJob = null;      // yüklenen mevcut ilan (edit modunda)
+let _prefilled = false;   // form bir kez dolduruldu mu
+
 // ----- Auth check
 try {
   const { auth, onAuthStateChanged } = await import('./js/auth.js');
@@ -432,10 +437,79 @@ try {
     _user = u;
     if (!u) authWarning.classList.remove('hidden');
     else authWarning.classList.add('hidden');
+    // Kullanıcı hazır olunca edit ilanını yükle (ownership kontrolü için user gerek)
+    if (u && _editId && !_prefilled) loadEditJob();
   });
 } catch {
-  // Firebase yapılandırılmamış — demo mod
+  // Supabase yapılandırılmamış — demo mod
   authWarning.classList.remove('hidden');
+}
+
+// ----- Edit modu: başlık/CTA'yı düzenlemeye çevir + formu doldur
+function applyEditChrome() {
+  const h1 = document.querySelector('header h1');
+  if (h1) { h1.textContent = 'İlanı Düzenle'; h1.removeAttribute('data-en'); h1.removeAttribute('data-de'); h1.removeAttribute('data-ru'); h1.removeAttribute('data-fr'); }
+  document.title = 'İlanı Düzenle — Kalkan Info';
+  const submitLabel = form.querySelector('button[type=submit] span');
+  if (submitLabel) { submitLabel.textContent = 'DEĞİŞİKLİKLERİ KAYDET'; submitLabel.removeAttribute('data-en'); submitLabel.removeAttribute('data-de'); submitLabel.removeAttribute('data-ru'); submitLabel.removeAttribute('data-fr'); }
+}
+
+async function loadEditJob() {
+  if (_prefilled) return;
+  const job = await getJob(_editId);
+  if (!job) {
+    submitErr.textContent = 'Düzenlenecek ilan bulunamadı.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+  // Sadece owner düzenleyebilir
+  if (_user && job.owner_id && job.owner_id !== _user.id) {
+    authWarning.classList.remove('hidden');
+    authWarning.querySelector('p').textContent = 'Bu ilanı yalnızca sahibi düzenleyebilir.';
+    form.classList.add('hidden');
+    return;
+  }
+  _editJob = job;
+  _prefilled = true;
+  applyEditChrome();
+  prefillForm(job);
+}
+
+function prefillForm(job) {
+  if (form.title) form.title.value = job.title || '';
+  if (form.category) form.category.value = job.category || '';
+  if (form.location) form.location.value = job.location || '';
+  if (form.employerName) form.employerName.value = job.employer_name || '';
+  // İstihdam tipi (radio + type-card görseli)
+  const typeRadio = form.querySelector(`input[name=type][value="${job.type}"]`);
+  if (typeRadio) {
+    typeRadio.checked = true;
+    typeCards.forEach(c => c.classList.remove('active'));
+    typeRadio.closest('.type-card')?.classList.add('active');
+  }
+  // Açıklama: description_html → düz metin (paragrafları geri aç)
+  if (form.description) {
+    const html = job.description_html || '';
+    const plain = html
+      .replace(/<\/p>\s*<p>/gi, '\n\n')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/?p>/gi, '')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+      .trim();
+    form.description.value = plain;
+  }
+  if (form.requirements) form.requirements.value = (job.requirements || []).join('\n');
+  // Diller (tr varsayılan, chip'leri işaretle)
+  _selectedLangs = new Set((job.languages || []).filter(l => l !== 'tr'));
+  langChips.forEach(c => c.classList.toggle('active', _selectedLangs.has(c.dataset.lang)));
+  if (form.experience) form.experience.value = job.experience || '';
+  if (form.salaryMin) form.salaryMin.value = job.salary_min ?? '';
+  if (form.salaryMax) form.salaryMax.value = job.salary_max ?? '';
+  if (form.currency) form.currency.value = job.currency || 'TRY';
+  if (form.contactEmail) form.contactEmail.value = job.contact_email || '';
+  if (job.expires_at && form.expiresAt) {
+    try { form.expiresAt.value = new Date(job.expires_at).toISOString().slice(0, 10); } catch {}
+  }
 }
 
 // ----- Step navigation
@@ -573,22 +647,50 @@ form.addEventListener('submit', async (e) => {
 
   const submitBtn = form.querySelector('button[type=submit]');
   submitBtn.disabled = true;
-  submitBtn.textContent = 'GÖNDERİLİYOR...';
+  submitBtn.textContent = _editId ? 'KAYDEDİLİYOR...' : 'GÖNDERİLİYOR...';
 
-  const result = await createJob(data, _user.uid);
+  let result;
+  if (_editId && _editJob) {
+    // Düzenleme: sadece değişebilir alanları gönder (slug/owner_id korunur, status jobs.js'te 'pending'e döner)
+    const patch = {
+      title:            data.title,
+      category:         data.category,
+      type:             data.type,
+      location:         data.location,
+      employer_name:    data.employerName,
+      contact_email:    data.contactEmail,
+      description_html: data.descriptionHtml,
+      requirements:     data.requirements,
+      languages:        data.languages,
+      experience:       data.experience,
+      salary_min:       data.salaryMin,
+      salary_max:       data.salaryMax,
+      currency:         data.currency,
+      expires_at:       data.expiresAt ? data.expiresAt.toISOString() : null,
+    };
+    result = await updateJob(_editJob.id, patch, _user.id);
+  } else {
+    result = await createJob(data, _user.id);
+  }
+
   if (result.ok) {
     submitOk.classList.remove('hidden');
+    if (_editId) {
+      const okTitle = submitOk.querySelector('.font-display');
+      if (okTitle) okTitle.textContent = 'İlanın güncellendi!';
+    }
     submitBtn.classList.add('hidden');
     setTimeout(() => { window.location.href = 'profil.html#ilanlarim'; }, 2500);
   } else {
     submitErr.textContent = result.error || 'İlan gönderilemedi.';
     submitErr.classList.remove('hidden');
     submitBtn.disabled = false;
-    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> İLANI GÖNDER';
+    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> ' + (_editId ? 'DEĞİŞİKLİKLERİ KAYDET' : 'İLANI GÖNDER');
   }
 });
 
 // init
+if (_editId) applyEditChrome();   // edit modunda başlığı/CTA'yı hemen değiştir (veri auth sonrası dolar)
 goToStep(1);
 </script>
 <script src="js/pwa.js?v=20260516c" defer></script>

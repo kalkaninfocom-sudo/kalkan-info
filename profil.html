@@ -209,7 +209,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="space-y-5 max-w-md">
           <div>
             <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-en="Full Name" data-de="Vollständiger Name" data-ru="Полное имя" data-fr="Nom Complet">Ad Soyad</label>
-            <input class="input-field" type="text" id="profile-name-input" placeholder="Ad Soyad" data-en-placeholder="Full Name" aria-label="Ad Soyad" data-en-aria="Full Name" / data-de-aria="Vollständiger Name" data-ru-aria="Полное имя" data-fr-aria="Nom Complet">>>>
+            <input class="input-field" type="text" id="profile-name-input" placeholder="Ad Soyad" data-en-placeholder="Full Name" aria-label="Ad Soyad" data-en-aria="Full Name" data-de-aria="Vollständiger Name" data-ru-aria="Полное имя" data-fr-aria="Nom Complet">
           </div>
           <div>
             <label class="block text-sm font-semibold text-sea-700 mb-1.5" data-en="Email" data-de="E-Mail" data-ru="Электронная почта" data-fr="Adresse E-mail">E-posta</label>
@@ -385,10 +385,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<!-- ===== MODAL: İlan Silme ===== -->
+<div id="modal-delete-job" class="modal-backdrop hidden">
+  <div class="bg-white rounded-2xl p-8 max-w-md w-full" style="box-shadow:0 24px 64px -16px rgba(7,33,54,0.4);">
+    <div class="text-center mb-6">
+      <div class="w-14 h-14 bg-coral-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-lg text-sea-800" data-en="Delete this listing?" data-de="Diese Anzeige löschen?" data-ru="Удалить это объявление?" data-fr="Supprimer cette annonce ?">Bu ilanı silmek istiyor musunuz?</h3>
+      <p class="text-sm text-sea-600 mt-2">
+        <span id="delete-job-title" class="font-semibold text-sea-800"></span>
+        <span class="block mt-1" data-en="This listing will be permanently deleted. This action cannot be undone." data-de="Diese Anzeige wird dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden." data-ru="Это объявление будет удалено безвозвратно. Это действие нельзя отменить." data-fr="Cette annonce sera supprimée définitivement. Cette action est irréversible.">İlan kalıcı olarak silinecektir. Bu işlem geri alınamaz.</span>
+      </p>
+      <div id="delete-job-error" class="hidden text-coral-600 text-sm font-semibold mt-3"></div>
+    </div>
+    <div class="flex gap-3">
+      <button id="btn-delete-job-cancel" class="btn-secondary flex-1 justify-center" aria-label="Vazgeç" data-en-aria="Cancel" data-de-aria="Abbrechen" data-ru-aria="Отмена" data-fr-aria="Annuler">
+        <span data-en="Cancel" data-de="Abbrechen" data-ru="Отмена" data-fr="Annuler">Vazgeç</span>
+      </button>
+      <button id="btn-delete-job-confirm" class="flex-1 justify-center btn-danger" style="background:#e74c3c;color:#fff;border-color:#e74c3c;" aria-label="Evet, Sil" data-en-aria="Yes, Delete" data-de-aria="Ja, löschen" data-ru-aria="Да, удалить" data-fr-aria="Oui, supprimer">
+        <span data-en="Yes, Delete" data-de="Ja, Löschen" data-ru="Да, удалить" data-fr="Oui, Supprimer">Evet, Sil</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script type="module">
 // Sidebar navigation + lazy section loaders (İlanlarım, Başvurularım)
 import { supabase } from './js/supabase-client.js';
-import { getMyJobs, getMyApplications } from './js/jobs.js';
+import { getMyJobs, getMyApplications, deleteJob } from './js/jobs.js';
 
 const CATEGORIES = { restoran:'Restoran & Cafe', villa:'Villa & Konaklama', otel:'Otel & Pansiyon', tur:'Tekne & Tur', hizmet:'Hizmet & Bakım', ofis:'Ofis & Yönetim', diger:'Diğer' };
 const TYPES = { full:'Tam zamanlı', part:'Yarı zamanlı', seasonal:'Sezonluk', freelance:'Serbest' };
@@ -421,7 +446,7 @@ async function loadIlanlarim() {
     const statusColor = STATUS_COLOR[j.status] || 'bg-sea-50 text-sea-700 border-sea-200';
     const slug = j.slug || '';
     const isLive = j.status === 'active';
-    return `<article class="border border-sea-100 rounded-xl p-4 hover:border-sea-300 transition">
+    return `<article class="border border-sea-100 rounded-xl p-4 hover:border-sea-300 transition" data-job-id="${esc(j.id)}">
       <div class="flex items-start justify-between gap-3 mb-2">
         <div class="min-w-0 flex-1">
           <div class="text-[10px] font-bold uppercase tracking-wider text-sun-500">${esc(cat)} · ${esc(typeLabel)}</div>
@@ -431,16 +456,74 @@ async function loadIlanlarim() {
         <span class="text-[10px] font-bold px-2 py-1 rounded-full border whitespace-nowrap ${statusColor}">${esc(statusLabel)}</span>
       </div>
       <div class="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-sea-50 text-xs">
-        <span class="text-sea-500">${esc(fmtDate(j.created_at))}</span>
-        <div class="flex gap-3">
-          ${isLive ? `<a href="/ilan/${esc(slug)}" target="_blank" class="text-sea-600 font-semibold hover:text-sea-800">Sayfa →</a>` : ''}
-          ${j.status === 'pending' ? '<span class="text-sun-600 italic">Admin onayı bekliyor</span>' : ''}
+        <span class="text-sea-500 flex items-center gap-2">
+          ${esc(fmtDate(j.created_at))}
+          ${j.status === 'pending' ? '<span class="text-sun-600 italic">· Admin onayı bekliyor</span>' : ''}
+        </span>
+        <div class="flex items-center gap-1.5">
+          ${isLive ? `<a href="/ilan/${esc(slug)}" target="_blank" class="px-2 py-1 rounded-md text-sea-600 font-semibold hover:bg-sea-50" data-en="Page" data-de="Seite" data-ru="Страница" data-fr="Page">Sayfa</a>` : ''}
+          <a href="ilan-ver.html?edit=${esc(j.id)}" class="px-2 py-1 rounded-md text-sea-700 font-semibold hover:bg-sea-50 inline-flex items-center gap-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+            <span data-en="Edit" data-de="Bearbeiten" data-ru="Изменить" data-fr="Modifier">Düzenle</span>
+          </a>
+          <button type="button" data-delete-id="${esc(j.id)}" data-title="${esc(j.title)}" class="px-2 py-1 rounded-md text-coral-600 font-semibold hover:bg-coral-500/8 inline-flex items-center gap-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            <span data-en="Delete" data-de="Löschen" data-ru="Удалить" data-fr="Supprimer">Sil</span>
+          </button>
         </div>
       </div>
     </article>`;
   }).join('');
+
+  // Sil butonlarını bağla (event delegation)
+  list.querySelectorAll('[data-delete-id]').forEach(btn => {
+    btn.addEventListener('click', () => openDeleteJobModal(btn.dataset.deleteId, btn.dataset.title));
+  });
   _loaded.ilanlarim = true;
 }
+
+// ----- İlan silme onay modalı
+let _pendingDeleteId = null;
+function openDeleteJobModal(id, title) {
+  _pendingDeleteId = id;
+  const modal = document.getElementById('modal-delete-job');
+  const titleEl = document.getElementById('delete-job-title');
+  if (titleEl) titleEl.textContent = title || '';
+  const errEl = document.getElementById('delete-job-error');
+  if (errEl) errEl.classList.add('hidden');
+  modal.classList.remove('hidden');
+}
+function closeDeleteJobModal() {
+  _pendingDeleteId = null;
+  document.getElementById('modal-delete-job').classList.add('hidden');
+}
+
+async function confirmDeleteJob() {
+  if (!_pendingDeleteId) return;
+  const confirmBtn = document.getElementById('btn-delete-job-confirm');
+  const errEl = document.getElementById('delete-job-error');
+  confirmBtn.disabled = true;
+  confirmBtn.dataset.orig = confirmBtn.textContent;
+  confirmBtn.textContent = 'Siliniyor...';
+  const { data: { user } } = await supabase.auth.getUser();
+  const res = await deleteJob(_pendingDeleteId, user?.id);
+  confirmBtn.disabled = false;
+  confirmBtn.textContent = confirmBtn.dataset.orig || 'Evet, Sil';
+  if (res.ok) {
+    closeDeleteJobModal();
+    _loaded.ilanlarim = false;      // yeniden yükleme için cache sıfırla
+    await loadIlanlarim();
+  } else if (errEl) {
+    errEl.textContent = res.error || 'İlan silinemedi.';
+    errEl.classList.remove('hidden');
+  }
+}
+
+document.getElementById('btn-delete-job-cancel')?.addEventListener('click', closeDeleteJobModal);
+document.getElementById('btn-delete-job-confirm')?.addEventListener('click', confirmDeleteJob);
+document.getElementById('modal-delete-job')?.addEventListener('click', (e) => {
+  if (e.target.id === 'modal-delete-job') closeDeleteJobModal();
+});
 
 async function loadBasvurularim() {
   if (_loaded.basvurularim) return;

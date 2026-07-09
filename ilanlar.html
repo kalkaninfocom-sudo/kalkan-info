@@ -53,6 +53,9 @@ src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></n
   /* Pulse for "yeni" badge */
   .pulse-dot{animation:pulse 1.6s ease infinite;}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  /* Sticky filtre çubuğu — nav yüksekliğiyle hizala (mobil tek satır ~49px, md+ iki satır ~91px) */
+  .filter-sticky{position:sticky;top:49px;}
+  @media (min-width:768px){.filter-sticky{top:91px;}}
 </style>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -158,7 +161,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU" data-de="MENÜ" data-ru="МЕНЮ" data-fr="MENU">MENÜ</span>
       </button>
-      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil" data-de-aria="Startseite" data-ru-aria="Главная" data-fr-aria="Accueil">>>>
+      <a href="index.html" aria-label="Ana Sayfa" title="Ana Sayfa" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil" data-de-aria="Startseite" data-ru-aria="Главная" data-fr-aria="Accueil">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
       </a>
     </div>
@@ -185,7 +188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <!-- ============== FILTER BAR ============== -->
-<section id="listeleme" class="bg-white border-b border-sea-100 z-30 shadow-sm" style="position:sticky;top:64px;">
+<section id="listeleme" class="filter-sticky bg-white border-b border-sea-100 z-30 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 py-4">
     <div class="flex flex-col md:flex-row md:items-center gap-3">
       <!-- Arama -->
