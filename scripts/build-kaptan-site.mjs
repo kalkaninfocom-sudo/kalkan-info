@@ -1,0 +1,737 @@
+#!/usr/bin/env node
+/**
+ * build-kaptan-site.mjs — Kaptan Restaurant özel site generator
+ * Kullanım: node scripts/build-kaptan-site.mjs
+ */
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { cheapLLM } from '../lib/cheap-llm.mjs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(__dirname, '..');
+
+// Load client data
+const clients = JSON.parse(await readFile(join(ROOT, 'data', 'clients.json'), 'utf8'));
+const item = clients.find(c => c.id === 'kaptan');
+if (!item) { console.error('kaptan not found in clients.json'); process.exit(1); }
+
+function esc(s) {
+  return String(s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])
+  );
+}
+
+function waRaw(phone) {
+  return (phone || '').replace(/[^+0-9]/g, '').replace(/^\+/, '');
+}
+
+// Generate content via cheap-llm
+async function generateContent() {
+  const prompt = `You are a copywriter for a premium seafood restaurant in Turkey.
+Write short, evocative English + Turkish copy for Kaptan Restaurant in Kaş.
+Concept: fresh fish & mezze, sunset terrace, nautical, Aegean vibes, romantic couples + families.
+
+Return JSON:
+{
+  "taglineEN": "one evocative English tagline (max 10 words)",
+  "taglineTR": "one evocative Turkish tagline (max 10 words)",
+  "aboutTitleEN": "about section heading EN (max 6 words)",
+  "aboutTitleTR": "about section heading TR (max 6 words)",
+  "aboutP1EN": "2 sentences EN, warm and evocative",
+  "aboutP1TR": "2 sentences TR, warm and evocative",
+  "aboutP2EN": "2 sentences EN about the food/experience",
+  "aboutP2TR": "2 sentences TR about the food/experience",
+  "metaDescEN": "SEO meta description EN (max 155 chars)"
+}`.trim();
+
+  try {
+    const result = await cheapLLM(prompt, { json: true, maxTokens: 600, timeoutMs: 30000 });
+    const text = result.text || result;
+    const match = text.match(/\{[\s\S]*\}/);
+    if (match) return JSON.parse(match[0]);
+  } catch (e) {
+    console.warn('cheap-llm failed, using fallback:', e.message);
+  }
+  return {
+    taglineEN: 'Where the Aegean meets your table.',
+    taglineTR: 'Ege\'nin lezzeti sofranıza geliyor.',
+    aboutTitleEN: 'A Taste of the Sea',
+    aboutTitleTR: 'Denizin Lezzeti',
+    aboutP1EN: 'Perched on the Kaş waterfront, Kaptan has been welcoming guests with the finest fresh fish and mezze for decades. Every table tells a story of sun, salt air, and shared meals.',
+    aboutP1TR: 'Kaş sahilinde konumlanan Kaptan, yıllardır en taze balık ve mezelerle misafirlerini ağırlıyor. Her masa, güneş, deniz esintisi ve paylaşılan öğünlerin hikâyesini anlatıyor.',
+    aboutP2EN: 'Our daily catch arrives straight from local fishermen, grilled simply to let the Aegean flavours shine. Paired with handcrafted mezze and a spectacular sunset — this is Kaş at its finest.',
+    aboutP2TR: 'Günlük taze balığımız doğrudan yerel balıkçılardan gelir; Ege lezzetlerini ön plana çıkarmak için sade pişirilir. El yapımı mezeler ve muhteşem gün batımıyla — bu Kaş\'ın en güzeli.',
+    metaDescEN: 'Kaptan Restaurant Kaş — fresh fish, mezze & grill on the Aegean waterfront. Sunset terrace, daily catch, unforgettable evenings.',
+  };
+}
+
+function serviceCards(items) {
+  if (!items || !items.length) return '';
+  return items.map(s => `
+    <div class="menu-card reveal">
+      <div class="menu-cat">${esc(s.category)}</div>
+      <div class="menu-name">${esc(s.name)}</div>
+      ${s.description ? `<div class="menu-desc">${esc(s.description)}</div>` : ''}
+      ${s.price ? `<div class="menu-price">${esc(s.price)}</div>` : ''}
+    </div>`).join('\n');
+}
+
+function galleryHtml(images) {
+  if (!images || !images.length) return '';
+  // Layout: 3-col grid, first photo spans 2 rows (tall hero), remaining 5 fill right+bottom
+  // 3col × 2row = 6 slots exact — no orphan
+  return images.map((src, i) =>
+    `<div class="g-item${i === 0 ? ' g-tall' : ''}"><img src="${esc(src)}" alt="Kaptan Restaurant" loading="eager"></div>`
+  ).join('\n');
+}
+
+function ratingStars(rating, reviewCount) {
+  if (!rating) return '';
+  const full = Math.round(rating);
+  const stars = '★'.repeat(full) + '☆'.repeat(5 - full);
+  return `<div class="rating-row">
+    <span class="rating-stars">${stars}</span>
+    <span class="rating-meta">${rating} · ${reviewCount} reviews on Tripadvisor</span>
+  </div>`;
+}
+
+function schemaJson(item, content) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    name: item.name,
+    description: content.metaDescEN,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kaş',
+      addressRegion: 'Antalya',
+      addressCountry: 'TR',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: item.coordinates.latitude, longitude: item.coordinates.longitude },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: item.rating, reviewCount: item.reviewCount },
+    servesCuisine: ['Seafood', 'Mediterranean', 'Turkish'],
+    url: `https://kalkaninfo.com/site/kaptan/`,
+    sameAs: [item.instagram].filter(Boolean),
+  }, null, 2);
+}
+
+console.log('Generating Kaptan content via cheap-llm...');
+const content = await generateContent();
+console.log(`  tagline: "${content.taglineEN}"`);
+
+const mapsQ = encodeURIComponent('Kaptan Restaurant Kaş Antalya');
+const galleryItems = galleryHtml(item.gallery);
+const menuCards = serviceCards(item.services);
+const stars = ratingStars(item.rating, item.reviewCount);
+const schema = schemaJson(item, content);
+
+const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kaptan Restaurant — Fresh Fish &amp; Mezze in Kaş | kalkaninfo.com</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="${esc(content.metaDescEN)}">
+<link rel="canonical" href="https://kalkaninfo.com/site/kaptan/">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Kaptan Restaurant — Kaş Waterfront">
+<meta property="og:description" content="${esc(content.metaDescEN)}">
+<meta property="og:url" content="https://kalkaninfo.com/site/kaptan/">
+<meta property="og:image" content="/site/kaptan/img/p2_04_224x240.jpeg">
+<meta name="geo.region" content="TR-07">
+<meta name="geo.position" content="${item.coordinates.latitude};${item.coordinates.longitude}">
+
+<script type="application/ld+json">${schema}</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ── */
+:root {
+  --blue:     #0D2E8C;
+  --blue-md:  #1E88E5;
+  --blue-lt:  #B9D6E6;
+  --cream:    #F7F7F3;
+  --cream2:   #EBF2F8;
+  --wood:     #A66A3C;
+  --olive:    #2C6B4F;
+  --sunset:   #E8720C;
+  --txt:      #0D1A3A;
+  --muted:    #4A6080;
+  --border:   rgba(13,46,140,0.13);
+  --sh-blue:  0 8px 32px rgba(13,46,140,.18), 0 2px 8px rgba(13,46,140,.10);
+  --sh-sm:    0 1px 4px rgba(13,46,140,.08), 0 1px 2px rgba(13,46,140,.05);
+  --sh-md:    0 6px 24px rgba(13,46,140,.10), 0 2px 8px rgba(13,46,140,.06);
+  --sh-lg:    0 20px 60px rgba(13,46,140,.14), 0 6px 20px rgba(13,46,140,.08);
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+body{font-family:'Barlow',system-ui,sans-serif;background:var(--cream);color:var(--txt);line-height:1.7;overflow-x:hidden;}
+
+/* ── GRAIN ── */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:0 32px;transition:background .3s,box-shadow .3s;}
+.nav.scrolled{background:rgba(247,247,243,.93);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 1px 0 var(--border),var(--sh-sm);}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-wheel{color:#fff;font-size:22px;transition:color .2s;}
+.nav.scrolled .nav-logo-wheel{color:var(--blue);}
+.nav-logo-text{font-family:'Caveat',cursive;font-size:26px;font-weight:700;color:#fff;letter-spacing:.02em;transition:color .2s;}
+.nav.scrolled .nav-logo-text{color:var(--blue);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-link{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.78);text-decoration:none;position:relative;transition:color .2s;}
+.nav.scrolled .nav-link{color:var(--muted);}
+.nav-link::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--wood);transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(.4,0,.2,1);}
+.nav-link:hover{color:var(--wood);}
+.nav.scrolled .nav-link:hover{color:var(--blue);}
+.nav.scrolled .nav-link:hover::after{background:var(--blue);}
+.nav-link:hover::after,.nav-link:focus-visible::after{transform:scaleX(1);}
+.nav-link:focus-visible{outline:none;}
+.lang-pills{display:flex;gap:2px;}
+.lang-pill{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.16em;font-weight:700;padding:4px 9px;border-radius:999px;color:rgba(255,255,255,.5);cursor:pointer;border:none;background:transparent;transition:background .2s,color .2s;}
+.nav.scrolled .lang-pill{color:var(--muted);}
+.lang-pill.active{background:var(--blue);color:#fff!important;}
+.lang-pill:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+@media(max-width:768px){.nav-links{display:none;}}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.15) contrast(1.05);transform:scale(1.06);transition:transform 10s ease;}
+.hero:hover .hero-bg{transform:scale(1.0);}
+/* Layer 1 — luminance gradient */
+.hero-ov1{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,26,58,.18) 0%,rgba(13,26,58,.42) 45%,rgba(13,26,58,.78) 78%,rgba(235,242,248,.95) 100%);}
+/* Layer 2 — radial vignette */
+.hero-ov2{position:absolute;inset:0;background:radial-gradient(ellipse 110% 80% at 50% 60%,transparent 22%,rgba(13,26,58,.36) 100%);}
+/* Layer 3 — sunset glow top-right */
+.hero-ov3{position:absolute;inset:0;background:radial-gradient(ellipse 52% 45% at 80% 12%,rgba(232,114,12,.28),transparent 68%);mix-blend-mode:screen;}
+/* Layer 4 — blue depth bottom-left */
+.hero-ov4{position:absolute;inset:0;background:radial-gradient(ellipse 44% 42% at 12% 86%,rgba(13,46,140,.22),transparent 65%);mix-blend-mode:screen;}
+.hero-content{position:relative;z-index:10;padding:0 24px;max-width:860px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.34em;text-transform:uppercase;font-weight:600;
+  color:var(--wood);margin-bottom:18px;
+  opacity:0;transform:translateY(12px);
+  animation:kFadeUp .6s .1s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;width:24px;height:1px;background:var(--wood);}
+.hero-script{
+  font-family:'Caveat',cursive;font-size:clamp(18px,3.5vw,38px);font-weight:600;
+  color:var(--wood);margin-bottom:-8px;letter-spacing:.04em;
+  opacity:0;transform:translateY(10px);
+  animation:kFadeUp .6s .18s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(56px,11vw,130px);font-weight:900;letter-spacing:-.01em;line-height:.95;
+  color:#fff;
+  text-shadow:0 2px 40px rgba(13,26,58,.5),0 0 80px rgba(13,26,58,.22);
+  opacity:0;transform:translateY(20px);
+  animation:kFadeUp .72s .26s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-tagline{
+  font-family:'Barlow',sans-serif;font-size:clamp(15px,2vw,20px);font-weight:300;
+  color:rgba(255,255,255,.84);letter-spacing:.03em;line-height:1.6;
+  max-width:520px;margin:18px auto 42px;
+  opacity:0;transform:translateY(10px);
+  animation:kFadeUp .6s .42s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-rating{
+  margin-bottom:28px;
+  opacity:0;transform:translateY(8px);
+  animation:kFadeUp .5s .34s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-ctas{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:14px;
+  opacity:0;transform:translateY(8px);
+  animation:kFadeUp .5s .52s cubic-bezier(.22,1,.36,1) forwards;
+}
+.hero-scroll{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.38em;
+  color:rgba(255,255,255,.38);display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:kBounce 2.4s 1.4s ease-in-out infinite;
+}
+.hero-scroll::after{content:'';display:block;width:1px;height:26px;background:linear-gradient(to bottom,rgba(255,255,255,.38),transparent);}
+@keyframes kFadeUp{to{opacity:1;transform:translateY(0);}}
+@keyframes kBounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
+
+/* ── RATING ── */
+.rating-row{display:inline-flex;align-items:center;gap:10px;}
+.rating-stars{color:var(--wood);font-size:18px;letter-spacing:2px;}
+.rating-meta{font-size:12px;color:rgba(255,255,255,.7);font-weight:500;font-style:italic;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,background .18s,color .18s,border-color .18s;position:relative;overflow:hidden;}
+.btn:active{transform:scale(.965)!important;}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:var(--sh-blue);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(13,46,140,.32),0 4px 12px rgba(13,46,140,.18);}
+.btn-primary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+.btn-wood{background:var(--wood);color:#fff;box-shadow:0 8px 28px rgba(166,106,60,.28),0 2px 8px rgba(166,106,60,.16);}
+.btn-wood:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(166,106,60,.38);}
+.btn-wood:focus-visible{outline:2px solid var(--wood);outline-offset:3px;}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.34);backdrop-filter:blur(8px);}
+.btn-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.62);transform:translateY(-3px);}
+.btn-ghost:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px;}
+.btn-outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue);}
+.btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-3px);box-shadow:var(--sh-blue);}
+.btn-outline:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+/* ── WAVE DIVIDER ── */
+.wave{display:block;width:100%;height:60px;margin-top:-1px;}
+
+/* ── SECTIONS ── */
+.section{padding:92px 24px;}
+.section-blue{background:var(--cream2);}
+.container{max-width:1100px;margin:0 auto;}
+.slabel{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:14px;}
+.slabel::before{content:'';display:block;width:24px;height:2px;background:var(--blue);}
+.s-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,56px);font-weight:900;letter-spacing:-.01em;line-height:1.0;color:var(--txt);margin-bottom:8px;}
+.s-script{font-family:'Caveat',cursive;font-size:clamp(18px,2.5vw,28px);color:var(--wood);margin-bottom:20px;letter-spacing:.03em;}
+.s-body{font-size:16px;color:var(--muted);line-height:1.78;max-width:520px;}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:48px;}}
+.about-img-wrap{position:relative;}
+.about-img-wrap::before{
+  content:'';position:absolute;inset:-12px -12px 12px 12px;
+  border:2px solid color-mix(in srgb,var(--blue) 20%,transparent);
+  z-index:0;transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.about-img-wrap:hover::before{transform:translate(-5px,-5px);}
+.about-img{position:relative;z-index:1;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--sh-lg);}
+.about-img img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.04);transition:transform .6s cubic-bezier(.22,1,.36,1);}
+.about-img:hover img{transform:scale(1.06);}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,46,140,.24) 0%,transparent 55%);mix-blend-mode:multiply;}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid color-mix(in srgb,var(--blue) 26%,transparent);background:color-mix(in srgb,var(--blue) 7%,transparent);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);border-radius:999px;transition:background .2s,border-color .2s,transform .2s;cursor:default;}
+.pill:hover{background:color-mix(in srgb,var(--blue) 14%,transparent);border-color:var(--blue);transform:translateY(-2px);}
+
+/* ── MENU CARDS ── */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.menu-card{background:#fff;border:1px solid var(--border);padding:24px 26px;position:relative;overflow:hidden;box-shadow:var(--sh-sm);transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s,border-color .22s;}
+.menu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-md));transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.22,1,.36,1);}
+.menu-card:hover{transform:translateY(-6px);box-shadow:var(--sh-md),0 0 0 1px color-mix(in srgb,var(--blue) 18%,transparent);}
+.menu-card:hover::before{transform:scaleX(1);}
+.menu-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--wood);margin-bottom:6px;}
+.menu-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:-.005em;color:var(--txt);margin-bottom:6px;line-height:1.2;}
+.menu-desc{font-size:13px;color:var(--muted);line-height:1.62;}
+.menu-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--blue);margin-top:12px;letter-spacing:-.01em;}
+
+/* ── GALLERY ── */
+/* Gallery: 3-col uniform grid, 2 rows = 6 slots exact, no orphan */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:320px;gap:6px;max-width:1200px;margin:0 auto;}
+.g-item{overflow:hidden;position:relative;cursor:pointer;background:var(--cream2);}
+.g-tall{/* no special span — all equal for clean 3×2 */}
+.g-item img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05);transition:transform .55s cubic-bezier(.22,1,.36,1),filter .4s;}
+.g-item:hover img{transform:scale(1.1);filter:saturate(1.25) contrast(1.06);}
+.g-item::after{content:'';position:absolute;inset:0;background:linear-gradient(155deg,rgba(13,26,58,.02),rgba(13,26,58,.44));opacity:0;transition:opacity .35s;z-index:1;}
+.g-item:hover::after{opacity:1;}
+.g-item::before{content:'';position:absolute;inset:0;background:rgba(13,46,140,.2);mix-blend-mode:multiply;opacity:0;transition:opacity .35s;z-index:2;}
+.g-item:hover::before{opacity:1;}
+.g-item:focus-visible{outline:2px solid var(--blue);outline-offset:-2px;}
+@media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px;}}
+
+/* ── SUNSET STRIP ── */
+.sunset-strip{
+  position:relative;padding:80px 24px;text-align:center;overflow:hidden;
+  background:linear-gradient(135deg,#0D2E8C 0%,#1a4ab5 30%,#c45c0a 70%,#E8720C 100%);
+  color:#fff;
+}
+.sunset-strip::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(255,255,255,.06),transparent 70%);
+}
+.sunset-strip-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.sunset-script{font-family:'Caveat',cursive;font-size:clamp(22px,3vw,36px);font-weight:700;color:rgba(255,255,255,.88);margin-bottom:12px;}
+.sunset-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,5vw,58px);font-weight:900;letter-spacing:-.01em;line-height:1.0;margin-bottom:20px;}
+.sunset-sub{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:36px;line-height:1.65;}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:48px;}}
+.cfield{margin-bottom:20px;}
+.cfield-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:5px;}
+.cfield-val{font-size:15px;color:var(--txt);}
+.cfield-val a{color:var(--txt);text-decoration:none;font-weight:600;transition:color .2s;}
+.cfield-val a:hover{color:var(--blue);}
+.inp{width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--border);padding:12px 0;color:var(--txt);font-size:14px;font-family:'Barlow',inherit;outline:none;transition:border-color .2s;}
+.inp:focus{border-bottom-color:var(--blue);}
+.inp::placeholder{color:color-mix(in srgb,var(--muted) 55%,transparent);font-size:11px;letter-spacing:.14em;text-transform:uppercase;}
+.map-frame{width:100%;height:420px;border:0;display:block;filter:saturate(.8) contrast(1.06);box-shadow:var(--sh-md);}
+
+/* ── ICON ROW ── */
+.icon-row{display:flex;flex-wrap:wrap;justify-content:center;gap:48px;padding:64px 24px;background:var(--cream2);}
+.icon-item{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;max-width:100px;}
+.icon-svg{color:var(--blue);transition:color .2s,transform .3s;}
+.icon-item:hover .icon-svg{color:var(--wood);transform:scale(1.15) rotate(-5deg);}
+.icon-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--muted);}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:20px;right:20px;z-index:60;width:56px;height:56px;border-radius:999px;background:#25D366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.45),0 2px 8px rgba(37,211,102,.24);transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s;}
+.wa-float:hover{transform:scale(1.11) translateY(-3px);box-shadow:0 14px 42px rgba(37,211,102,.52);}
+.wa-float:active{transform:scale(.95);}
+.wa-float:focus-visible{outline:2px solid #25D366;outline-offset:3px;}
+
+/* ── FOOTER ── */
+.footer{background:var(--txt);color:rgba(255,255,255,.62);padding:52px 24px 36px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;}
+.footer-logo{font-family:'Caveat',cursive;font-size:28px;font-weight:700;color:#fff;}
+.footer-meta{font-size:12px;opacity:.6;}
+.footer-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:rgba(255,255,255,.5);transition:color .2s;}
+.footer-brand:hover{color:rgba(255,255,255,.9);}
+.footer-mark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;color:var(--blue-lt);}
+.footer-legal{max-width:1100px;margin:20px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:11px;opacity:.4;line-height:1.65;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.1s;}.rd2{transition-delay:.2s;}.rd3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="nav-logo-wheel">⎈</span>
+      <span class="nav-logo-text">Kaptan</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about"   class="nav-link" data-i="nav_about">About</a>
+      <a href="#menu"    class="nav-link" data-i="nav_menu">Menu</a>
+      <a href="#gallery" class="nav-link" data-i="nav_gallery">Gallery</a>
+      <a href="#contact" class="nav-link" data-i="nav_contact">Contact</a>
+    </div>
+    <div class="lang-pills">
+      <button class="lang-pill active" data-lang="en">EN</button>
+      <button class="lang-pill" data-lang="tr">TR</button>
+      <button class="lang-pill" data-lang="de">DE</button>
+      <button class="lang-pill" data-lang="ru">RU</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="top" class="hero">
+  <img src="/site/kaptan/img/p2_04_224x240.jpeg" alt="Kaptan Restaurant Kaş sunset" class="hero-bg" loading="eager">
+  <div class="hero-ov1"></div>
+  <div class="hero-ov2"></div>
+  <div class="hero-ov3"></div>
+  <div class="hero-ov4"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Meze · Fish · Grill &nbsp;·&nbsp; Kaş</div>
+    <div class="hero-script">Where the sea begins</div>
+    <h1 class="hero-h1">KAPTAN</h1>
+    <div class="hero-rating">${stars}</div>
+    <p class="hero-tagline" data-i="hero_tagline">${esc(content.taglineEN)}</p>
+    <div class="hero-ctas">
+      <a href="#menu"    class="btn btn-wood"  data-i="cta_menu">View Menu</a>
+      <a href="#contact" class="btn btn-ghost" data-i="cta_reserve">Book a Table</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</header>
+
+<!-- WAVE -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C240,70 480,10 720,40 C960,70 1200,10 1440,40 L1440,60 L0,60 Z" fill="#F7F7F3"/></svg>
+
+<!-- ICON ROW -->
+<div class="icon-row">
+  <div class="icon-item">
+    <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M12 2 C8 6 8 18 12 22"/><path d="M12 2 C16 6 16 18 12 22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+    <span class="icon-label">Nautical Soul</span>
+  </div>
+  <div class="icon-item">
+    <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5C18 5.46 15.31 3 12 3s-6 2.46-6 5.5c0 3.78 6 11 6 11s6-7.22 6-11z"/><ellipse cx="12" cy="8.5" rx="2.5" ry="2.5"/></svg>
+    <span class="icon-label">Waterfront</span>
+  </div>
+  <div class="icon-item">
+    <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c0 0 4-4 8-4s8 4 8 4"/><path d="M12 16V8"/><path d="M8 12c0 0 1-4 4-4s4 4 4 4"/><circle cx="12" cy="5" r="2"/></svg>
+    <span class="icon-label">Fresh Catch</span>
+  </div>
+  <div class="icon-item">
+    <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 C3 17 6 13 9 13 C12 13 12 17 15 17 C18 17 21 13 21 13"/><path d="M3 12 C3 12 6 8 9 8 C12 8 12 12 15 12 C18 12 21 8 21 8"/></svg>
+    <span class="icon-label">Aegean Waves</span>
+  </div>
+  <div class="icon-item">
+    <svg class="icon-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <span class="icon-label">Sunset Terrace</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="slabel" data-i="about_label">About Us</div>
+        <div class="s-script" data-i="about_script">A story of sea &amp; flavour</div>
+        <h2 class="s-title" data-i="about_title">${esc(content.aboutTitleEN)}</h2>
+        <p class="s-body" data-i="about_p1">${esc(content.aboutP1EN)}</p>
+        <p class="s-body" style="margin-top:14px;" data-i="about_p2">${esc(content.aboutP2EN)}</p>
+        <div class="pills">
+          <span class="pill">⎈ Nautical character</span>
+          <span class="pill">🐟 Daily fresh catch</span>
+          <span class="pill">🌅 Sunset terrace</span>
+          <span class="pill">🫒 Handcrafted mezze</span>
+          <span class="pill">🍷 Raki &amp; cocktails</span>
+        </div>
+      </div>
+      <div class="about-img-wrap reveal rd2">
+        <div class="about-img">
+          <img src="/site/kaptan/img/p2_01_222x240.jpeg" alt="Kaptan Restaurant seafront table" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="section section-blue">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;" class="reveal">
+      <div class="slabel" style="justify-content:center;" data-i="menu_label">Our Menu</div>
+      <div class="s-script" style="text-align:center;" data-i="menu_script">Fresh from the Aegean</div>
+      <h2 class="s-title" style="text-align:center;" data-i="menu_title">What We Offer</h2>
+    </div>
+    <div class="menu-grid">${menuCards}</div>
+    <div style="text-align:center;margin-top:44px;" class="reveal">
+      <a href="https://www.instagram.com/kaptanrestaurantkalkan" target="_blank" rel="noopener" class="btn btn-outline" data-i="menu_cta">Full Menu on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section" style="padding-left:0;padding-right:0;padding-bottom:0;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px 40px;">
+    <div style="text-align:center;margin-bottom:40px;" class="reveal">
+      <div class="slabel" style="justify-content:center;" data-i="gallery_label">Gallery</div>
+      <div class="s-script" style="text-align:center;" data-i="gallery_script">The Kaptan experience</div>
+      <h2 class="s-title" style="text-align:center;" data-i="gallery_title">Photos</h2>
+    </div>
+  </div>
+  <div class="gallery-grid reveal">${galleryItems}</div>
+</section>
+
+<!-- SUNSET STRIP -->
+<div class="sunset-strip">
+  <div class="sunset-strip-inner reveal">
+    <div class="sunset-script">Come for dinner, stay for the sunset</div>
+    <h2 class="sunset-title" data-i="strip_title">Reserve Your Table</h2>
+    <p class="sunset-sub" data-i="strip_sub">Join us as the sun sets over the Aegean. Tables fill fast — contact us on WhatsApp to secure your evening.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
+      <a href="https://www.instagram.com/kaptanrestaurantkalkan" target="_blank" rel="noopener" class="btn btn-ghost" data-i="strip_ig">Instagram</a>
+      <a href="#contact" class="btn btn-primary" data-i="strip_contact">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="slabel" data-i="contact_label">Contact</div>
+        <div class="s-script" data-i="contact_script">We'd love to hear from you</div>
+        <h2 class="s-title" data-i="contact_title">Get in Touch</h2>
+        <div style="margin-top:28px;">
+          <div class="cfield">
+            <div class="cfield-label" data-i="lbl_addr">Location</div>
+            <div class="cfield-val">Kaş, Antalya, Turkey</div>
+          </div>
+          <div class="cfield">
+            <div class="cfield-label" data-i="lbl_phone">Phone / WhatsApp</div>
+            <div class="cfield-val" style="color:var(--muted);font-style:italic;" data-i="phone_note">Contact details coming soon</div>
+          </div>
+          <div class="cfield">
+            <div class="cfield-label" data-i="lbl_hours">Opening Hours</div>
+            <div class="cfield-val">${esc(item.hours)}</div>
+          </div>
+          <div class="cfield">
+            <div class="cfield-label" data-i="lbl_social">Social</div>
+            <div class="cfield-val">
+              <a href="https://www.instagram.com/kaptanrestaurantkalkan" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;text-decoration:none;">@kaptanrestaurantkalkan</a>
+            </div>
+          </div>
+          <div class="cfield">
+            <div class="cfield-label">Tripadvisor</div>
+            <div class="cfield-val">
+              <span style="color:var(--wood);font-weight:600;">${item.rating}/5</span>
+              <span style="color:var(--muted);font-size:13px;"> · ${item.reviewCount} reviews</span>
+            </div>
+          </div>
+        </div>
+        <form style="margin-top:32px;display:flex;flex-direction:column;gap:18px;" onsubmit="event.preventDefault();sendWA();" novalidate>
+          <input class="inp" type="text"  name="name"  placeholder="Your name" required>
+          <input class="inp" type="email" name="email" placeholder="Email (optional)">
+          <textarea class="inp" name="msg" rows="3" placeholder="Your message"></textarea>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:4px;">
+            <button type="submit" class="btn btn-primary" data-i="cta_send">Send via WhatsApp</button>
+          </div>
+        </form>
+      </div>
+      <div class="reveal rd2">
+        <iframe src="https://www.google.com/maps?q=${mapsQ}&output=embed"
+          class="map-frame" loading="lazy" allowfullscreen title="Kaptan Restaurant Kaş"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Kaptan</div>
+      <div class="footer-meta">Meze · Fish · Grill · Kaş, Antalya</div>
+    </div>
+    <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="footer-brand">
+      <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;">Powered by</span>
+      <span class="footer-mark">◆ KALKAN INFO</span>
+    </a>
+  </div>
+  <div class="footer-legal">
+    © 2026 Kaptan Restaurant · kalkaninfo.com is an information and discovery platform. Reservations are handled directly with the restaurant.
+  </div>
+</footer>
+
+<!-- WA FLOAT (disabled until phone added) -->
+<a href="https://www.instagram.com/kaptanrestaurantkalkan" target="_blank" rel="noopener" class="wa-float" aria-label="Instagram" title="Follow on Instagram">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+</a>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+nav.classList.toggle('scrolled',window.scrollY>60);
+
+// Scroll reveal — headless safe
+const revEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const ro=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});
+  },{threshold:.05,rootMargin:'0px 0px -20px 0px'});
+  revEls.forEach(el=>ro.observe(el));
+  setTimeout(()=>{
+    if(![...revEls].some(el=>el.classList.contains('visible')))
+      revEls.forEach(el=>el.classList.add('visible'));
+  },700);
+} else {
+  revEls.forEach(el=>el.classList.add('visible'));
+}
+
+// i18n
+const I18N=${JSON.stringify({
+  en: {
+    nav_about:'About', nav_menu:'Menu', nav_gallery:'Gallery', nav_contact:'Contact',
+    hero_tagline:content.taglineEN,
+    about_label:'About Us', about_script:'A story of sea & flavour', about_title:content.aboutTitleEN,
+    about_p1:content.aboutP1EN, about_p2:content.aboutP2EN,
+    menu_label:'Our Menu', menu_script:'Fresh from the Aegean', menu_title:'What We Offer', menu_cta:'Full Menu on Instagram',
+    gallery_label:'Gallery', gallery_script:'The Kaptan experience', gallery_title:'Photos',
+    strip_title:'Reserve Your Table', strip_sub:'Join us as the sun sets over the Aegean.',
+    strip_ig:'Instagram', strip_contact:'Contact Us',
+    contact_label:'Contact', contact_script:"We'd love to hear from you", contact_title:'Get in Touch',
+    lbl_addr:'Location', lbl_phone:'Phone / WhatsApp', lbl_hours:'Opening Hours', lbl_social:'Social',
+    phone_note:'Contact details coming soon',
+    cta_menu:'View Menu', cta_reserve:'Book a Table', cta_send:'Send via WhatsApp',
+  },
+  tr: {
+    nav_about:'Hakkımızda', nav_menu:'Menü', nav_gallery:'Galeri', nav_contact:'İletişim',
+    hero_tagline:content.taglineTR,
+    about_label:'Hakkımızda', about_script:'Deniz ve lezzet hikayesi', about_title:content.aboutTitleTR,
+    about_p1:content.aboutP1TR, about_p2:content.aboutP2TR,
+    menu_label:'Menümüz', menu_script:'Ege\'den taze', menu_title:'Ne Sunuyoruz', menu_cta:'Tam Menü Instagram\'da',
+    gallery_label:'Galeri', gallery_script:'Kaptan deneyimi', gallery_title:'Fotoğraflar',
+    strip_title:'Masanızı Ayırtın', strip_sub:'Ege\'nin üzerine batan güneşte bize katılın.',
+    strip_ig:'Instagram', strip_contact:'İletişime Geç',
+    contact_label:'İletişim', contact_script:'Sizden haber almak isteriz', contact_title:'Bize Ulaşın',
+    lbl_addr:'Konum', lbl_phone:'Telefon / WhatsApp', lbl_hours:'Çalışma Saatleri', lbl_social:'Sosyal Medya',
+    phone_note:'İletişim bilgisi yakında güncellenecek',
+    cta_menu:'Menüyü Gör', cta_reserve:'Masa Ayırt', cta_send:'WhatsApp ile Gönder',
+  },
+  de: {
+    nav_about:'Über uns', nav_menu:'Speisekarte', nav_gallery:'Galerie', nav_contact:'Kontakt',
+    hero_tagline:'Frischer Fang, Meze & Sonnenuntergang am Kai.',
+    cta_menu:'Speisekarte', cta_reserve:'Tisch reservieren', cta_send:'Per WhatsApp senden',
+  },
+  ru: {
+    nav_about:'О нас', nav_menu:'Меню', nav_gallery:'Галерея', nav_contact:'Контакты',
+    hero_tagline:'Свежий улов, мезе и закаты на набережной.',
+    cta_menu:'Меню', cta_reserve:'Забронировать стол', cta_send:'Написать в WhatsApp',
+  },
+})};
+function setLang(l){
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const k=el.dataset.i;if(I18N[l]?.[k])el.textContent=I18N[l][k];
+  });
+  document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active',p.dataset.lang===l));
+  try{localStorage.setItem('kif_lang',l);}catch{}
+}
+document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click',()=>setLang(p.dataset.lang)));
+try{const s=localStorage.getItem('kif_lang');if(s&&I18N[s])setLang(s);}catch{}
+
+// WA form fallback — send to IG since no phone yet
+function sendWA(){
+  const f=document.querySelector('#contact form'),fd=new FormData(f);
+  const msg='Hello Kaptan Restaurant,\\n'+fd.get('name')+'\\n'+(fd.get('msg')||'I would like to make a reservation.');
+  window.open('https://www.instagram.com/kaptanrestaurantkalkan','_blank');
+}
+
+// Hero parallax
+const hbg=document.querySelector('.hero-bg');
+if(hbg){
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY;
+    if(y<window.innerHeight)hbg.style.transform='scale(1.06) translateY('+y*.14+'px)';
+  },{passive:true});
+}
+</script>
+</body>
+</html>`;
+
+const outDir = join(ROOT, 'site', 'kaptan');
+await mkdir(outDir, { recursive: true });
+await writeFile(join(outDir, 'index.html'), html, 'utf8');
+console.log('✅ site/kaptan/index.html written');
+
+// Update sitemap
+const sitemapPath = join(ROOT, 'sitemap.xml');
+try {
+  let xml = await readFile(sitemapPath, 'utf8');
+  const url = 'https://kalkaninfo.com/site/kaptan/';
+  if (!xml.includes(url)) {
+    const entry = `  <url>
+    <loc>${url}</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+    xml = xml.replace('</urlset>', entry + '\n</urlset>');
+    await writeFile(sitemapPath, xml, 'utf8');
+    console.log('📋 sitemap.xml updated');
+  }
+} catch {}
+
+console.log('\n🎉 Kaptan done. View at http://localhost:3000/site/kaptan/');

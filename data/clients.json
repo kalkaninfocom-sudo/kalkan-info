@@ -1,0 +1,116 @@
+[
+  {
+    "id": "oz-adana",
+    "source": "client",
+    "name": "Öz Adana Kebap",
+    "category": "Restoran",
+    "schemaType": "Restaurant",
+    "locationShort": "Kalkan",
+    "location": "Cumhuriyet Mah., Hasan Altan Cd. No:12, 07580 Kalkan/Antalya",
+    "phone": "+90 242 844 11 40",
+    "website": "",
+    "instagram": "",
+    "rating": 4.7,
+    "reviewCount": 1292,
+    "hours": "Pazartesi–Pazar 11:00–23:30",
+    "noindex": true,
+    "winterMode": false,
+    "winterMessage": "Sezon kapalı — Nisan'da görüşürüz! WhatsApp'tan rezervasyon alıyoruz.",
+    "heroImage": "",
+    "aboutImage": "",
+    "tagline": "Kalkan'ın en lezzetli Adana kebabı — 1292 mutlu müşteri.",
+    "notes": "Kalkan merkezde, 1992'den beri hizmet veren geleneksel Adana kebap lokantası. Odun ateşinde pişirilmiş el yapımı kebaplar.",
+    "highlights": [
+      "1992'den beri hizmet",
+      "Odun ateşi ızgara",
+      "El yapımı kebap",
+      "Aile dostu",
+      "Açık teras"
+    ],
+    "servicesLabel": "Menü",
+    "servicesTitle": "Özel Lezzetlerimiz",
+    "services": [
+      { "category": "Kebap", "name": "Adana Kebap", "description": "El yapımı acılı kıyma kebabı, odun ateşinde. Lavash ekmeği ve çoban salatası ile servis.", "price": "₺280" },
+      { "category": "Kebap", "name": "Urfa Kebap", "description": "Az baharatlı, yumuşak kıyma kebabı. Ailelerin favorisi.", "price": "₺260" },
+      { "category": "Kebap", "name": "Kuzu Şiş", "description": "Taze kuzu etinden hazırlanan şiş kebabı, mangal aromasıyla.", "price": "₺320" },
+      { "category": "Kebap", "name": "Tavuk Şiş", "description": "Marine edilmiş tavuk göğsü, hafif baharatlı.", "price": "₺220" },
+      { "category": "Özel", "name": "Karışık Tabak", "description": "Adana, Urfa ve şiş bir arada. 2 kişilik porsiyon.", "price": "₺540" },
+      { "category": "Mezeler", "name": "Çoban Salatası", "description": "Taze domates, salatalık, biber. Günlük hazırlanır.", "price": "₺80" },
+      { "category": "Mezeler", "name": "Humus", "description": "Ev yapımı humus, zeytinyağı ve kırmızı biber ile.", "price": "₺100" },
+      { "category": "İçecek", "name": "Ayran", "description": "Soğuk ev yapımı ayran.", "price": "₺40" }
+    ],
+    "gallery": [],
+    "coordinates": { "latitude": 36.2651, "longitude": 29.4103 },
+    "theme": {
+      "bg": "#faf7f2", "bg2": "#f0ebe0", "accent": "#c47a1e", "accent2": "#2a7d6b",
+      "text": "#1a1209", "muted": "#6b5c3e", "border": "rgba(196,122,30,0.18)"
+    }
+  },
+  {
+    "id": "kaptan",
+    "source": "client",
+    "name": "Kaptan Restaurant",
+    "category": "Meze · Fish · Grill",
+    "schemaType": "Restaurant",
+    "locationShort": "Kaş",
+    "location": "Kaş, Antalya",
+    "phone": "",
+    "phoneNote": "İletişim bilgisi güncellenecek",
+    "website": "",
+    "instagram": "https://www.instagram.com/kaptanrestaurantkalkan",
+    "rating": 4.1,
+    "reviewCount": 189,
+    "hours": "Daily 12:00 – 23:00",
+    "noindex": true,
+    "winterMode": false,
+    "winterMessage": "Season closed — see you in April! Reservations via WhatsApp.",
+    "heroImage": "/site/kaptan/img/p2_04_224x240.jpeg",
+    "aboutImage": "/site/kaptan/img/p2_01_222x240.jpeg",
+    "tagline": "Fresh catch, mezze & sunset views on the Kaş waterfront.",
+    "notes": "Kaptan Restaurant, Kaş waterfront. Signature fresh fish, mezze, grills. Blue-white Aegean aesthetic, sunset terrace, nautical character. Primary audience: British/foreign tourists, couples, families.",
+    "highlights": [
+      "Sunset terrace",
+      "Fresh catch daily",
+      "Signature mezze",
+      "Seafront views",
+      "Since 1990s"
+    ],
+    "servicesLabel": "Menu",
+    "servicesTitle": "Our Menu",
+    "services": [
+      { "category": "Starters", "name": "Kaptan Mezze Plate", "description": "A selection of our signature cold and warm mezze — tarator, smoked aubergine, stuffed vine leaves, and more.", "price": "" },
+      { "category": "Fish", "name": "Fresh Catch of the Day", "description": "Grilled whole fish, caught fresh each morning from the Aegean. Ask your server for today's catch.", "price": "" },
+      { "category": "Fish", "name": "Sea Bass in Salt Crust", "description": "Whole sea bass baked in a salt crust, served tableside. A Kaptan classic.", "price": "" },
+      { "category": "Grill", "name": "Lamb Chops", "description": "Tender marinated lamb chops, charcoal-grilled to perfection.", "price": "" },
+      { "category": "Grill", "name": "Prawn Güveç", "description": "King prawns baked in a traditional clay pot with tomato, pepper and herbs.", "price": "" },
+      { "category": "Salads", "name": "Shepherd's Salad", "description": "Crisp cucumber, tomato, green pepper, onion and parsley — always fresh.", "price": "" },
+      { "category": "Desserts", "name": "Künefe", "description": "Warm shredded wheat pastry with soft cheese, soaked in syrup, topped with pistachios.", "price": "" },
+      { "category": "Drinks", "name": "Raki & Meze Set", "description": "The classic Turkish ritual — chilled raki with a curated mezze selection.", "price": "" }
+    ],
+    "gallery": [
+      "/site/kaptan/img/p2_00_593x210.jpeg",
+      "/site/kaptan/img/p2_01_222x240.jpeg",
+      "/site/kaptan/img/p2_02_224x240.jpeg",
+      "/site/kaptan/img/p2_03_224x240.jpeg",
+      "/site/kaptan/img/p2_04_224x240.jpeg",
+      "/site/kaptan/img/p2_05_223x240.jpeg"
+    ],
+    "coordinates": { "latitude": 36.1986, "longitude": 29.6433 },
+    "theme": {
+      "bg":      "#F7F7F3",
+      "bg2":     "#EBF2F8",
+      "bgFloat": "#FFFFFF",
+      "accent":  "#0D2E8C",
+      "accent2": "#A66A3C",
+      "text":    "#0D1A3A",
+      "muted":   "#4A6080",
+      "border":  "rgba(13,46,140,0.14)"
+    },
+    "fonts": {
+      "heading": "Barlow Condensed",
+      "accent": "Caveat",
+      "body": "Barlow"
+    },
+    "customTemplate": "kaptan"
+  }
+]
