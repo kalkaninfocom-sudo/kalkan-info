@@ -1,8 +1,25 @@
 {
-  "generatedAt": "2026-07-08T07:13:55.418Z",
-  "total": 10,
-  "latest": "2026-07-08",
+  "generatedAt": "2026-07-09T06:56:10.660Z",
+  "total": 11,
+  "latest": "2026-07-09",
   "issues": [
+    {
+      "date": "2026-07-09",
+      "day": "Perşembe",
+      "long": "9 Temmuz 2026",
+      "editions": {
+        "morning": {
+          "html": "/newspaper/archive/2026-07-09/morning",
+          "pdf": null,
+          "card": null
+        },
+        "magazine": {
+          "html": "/newspaper/archive/2026-07-09/magazine",
+          "pdf": null,
+          "card": null
+        }
+      }
+    },
     {
       "date": "2026-07-08",
       "day": "Çarşamba",
@@ -10,12 +27,12 @@
       "editions": {
         "morning": {
           "html": "/newspaper/archive/2026-07-08/morning",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-08/morning.pdf",
           "card": null
         },
         "magazine": {
           "html": "/newspaper/archive/2026-07-08/magazine",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-08/magazine.pdf",
           "card": null
         }
       }
