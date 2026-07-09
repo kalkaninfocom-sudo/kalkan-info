@@ -396,6 +396,18 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
             ${p.verified ? esc(L.wa) : esc(L.askConcierge)}
           </a>
+          ${p.website ? `<a href="${esc(p.website)}" target="_blank" rel="noopener" data-pm-action="website" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" style="
+            display:flex;align-items:center;justify-content:center;gap:7px;
+            background:#fff;color:#0a2e4c;border:1.5px solid #cce0ee;
+            font-family:'Montserrat',system-ui,sans-serif;
+            font-weight:700;font-size:0.72rem;
+            padding:8px 14px;border-radius:10px;
+            text-decoration:none;
+            transition:background 0.18s ease;
+          " onmouseover="this.style.background='#f0f7ff';" onmouseout="this.style.background='#fff';">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>
+            ${esc(p.website.replace(/^https?:\/\//, '').replace(/\/$/, ''))}
+          </a>` : ''}
         </div>
 
       </article>
