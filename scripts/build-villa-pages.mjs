@@ -379,6 +379,16 @@ const RELATED_I18N = {
 };
 for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], RELATED_I18N[l]);
 
+// Müsaitlik takvimi UI etiketleri
+const AVAIL_UI_I18N = {
+  tr:{avail_free:'Müsait',avail_booked:'Dolu'},
+  en:{avail_free:'Available',avail_booked:'Booked'},
+  de:{avail_free:'Verfügbar',avail_booked:'Belegt'},
+  ru:{avail_free:'Свободно',avail_booked:'Занято'},
+  fr:{avail_free:'Disponible',avail_booked:'Réservé'}
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], AVAIL_UI_I18N[l]);
+
 function relatedSection(current, allItems) {
   const sameCat = allItems.filter(x => x.id !== current.id && x.category === current.category);
   const others = allItems.filter(x => x.id !== current.id && x.category !== current.category);
@@ -628,6 +638,20 @@ for (const slug of targets) {
   }
   const villaTaglineI18n = v.taglineI18n || {};
 
+  // ====== MÜSAİTLİK (availability) — bu villa + çapraz öneri için TÜM villalar ======
+  const availAll = (data.items || []).map(x => ({
+    id: x.id,
+    name: x.name,
+    url: `/villa/${x.id}`,
+    booked: (x.availability && Array.isArray(x.availability.booked))
+      ? x.availability.booked.filter(b => b && b.from && b.to)
+      : []
+  }));
+  const availData = {
+    current: availAll.find(a => a.id === v.id) || { id: v.id, name: v.name, url: `/villa/${v.id}`, booked: [] },
+    all: availAll
+  };
+
   const repl = {
     NAME: v.name,
     NAME_JSON: JSON.stringify(v.name),
@@ -646,6 +670,7 @@ for (const slug of targets) {
     WA_RAW: waRaw,
     HELLO_MSG: helloMsg,
     TRANSFER_MSG: transferMsg,
+    AVAIL_JSON: JSON.stringify(availData),
     BEDROOMS: v.bedrooms || 4,
     BATHROOMS: v.bathrooms || 4,
     CAPACITY_NUMBER: capacityNumber,
