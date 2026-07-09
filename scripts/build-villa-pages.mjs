@@ -389,6 +389,16 @@ const AVAIL_UI_I18N = {
 };
 for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], AVAIL_UI_I18N[l]);
 
+// 360° Sanal Tur etiketleri
+const TOUR_I18N = {
+  tr:{tour_label:'360° Sanal Tur',tour_title:'Villayı Gezin',tour_sub:'Sürükleyerek bakının, odalar arasında oklara tıklayarak gezin.'},
+  en:{tour_label:'360° Virtual Tour',tour_title:'Explore the Villa',tour_sub:'Drag to look around, click the arrows to move between rooms.'},
+  de:{tour_label:'360°-Rundgang',tour_title:'Villa erkunden',tour_sub:'Ziehen zum Umsehen, Pfeile anklicken, um zwischen Räumen zu wechseln.'},
+  ru:{tour_label:'360° Виртуальный тур',tour_title:'Осмотрите виллу',tour_sub:'Перетаскивайте, чтобы осмотреться, нажимайте стрелки для перехода между комнатами.'},
+  fr:{tour_label:'Visite virtuelle 360°',tour_title:'Explorez la villa',tour_sub:'Faites glisser pour regarder, cliquez sur les flèches pour changer de pièce.'}
+};
+for (const l of Object.keys(I18N_BASE)) Object.assign(I18N_BASE[l], TOUR_I18N[l]);
+
 function relatedSection(current, allItems) {
   const sameCat = allItems.filter(x => x.id !== current.id && x.category === current.category);
   const others = allItems.filter(x => x.id !== current.id && x.category !== current.category);
@@ -652,6 +662,44 @@ for (const slug of targets) {
     all: availAll
   };
 
+  // ====== 360° SANAL TUR (Pannellum) — sadece tur verisi olan villalarda ======
+  const tour = (v.tour && Array.isArray(v.tour.scenes) && v.tour.scenes.length) ? v.tour : null;
+  let tourSection = '';
+  if (tour) {
+    const titleOf = (id) => (tour.scenes.find(x => x.id === id) || {}).title || id;
+    const scenes = {};
+    for (const sc of tour.scenes) {
+      scenes[sc.id] = {
+        title: sc.title || sc.id,
+        type: 'equirectangular',
+        panorama: sc.pano,
+        autoLoad: true,
+        hotSpots: (sc.hotspots || []).map(h => ({
+          pitch: (h.pitch != null ? h.pitch : -2),
+          yaw: (h.yaw != null ? h.yaw : 0),
+          type: 'scene',
+          text: titleOf(h.to),
+          sceneId: h.to
+        }))
+      };
+    }
+    const cfg = {
+      default: { firstScene: tour.scenes[0].id, sceneFadeDuration: 900, autoLoad: true, showFullscreenCtrl: true, hotSpotDebug: false },
+      scenes
+    };
+    tourSection = `<link rel="stylesheet" href="/js/vendor/pannellum.css">
+<section id="tour" class="py-24 md:py-32 px-6" style="background:var(--theme-bg);">
+  <div class="max-w-5xl mx-auto text-center">
+    <div class="section-label justify-center mb-6" data-i="tour_label">360° Sanal Tur</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="tour_title">Villayı Gezin</h2>
+    <p class="max-w-xl mx-auto mb-10 text-base" style="color:var(--theme-muted);" data-i="tour_sub">Sürükleyerek bakının, odalar arasında oklara tıklayarak gezin.</p>
+    <div id="panorama" style="width:100%;aspect-ratio:16/9;background:var(--theme-bg-2);border-radius:16px;overflow:hidden;border:1px solid var(--theme-border-strong);"></div>
+  </div>
+</section>
+<script src="/js/vendor/pannellum.js"></script>
+<script>window.addEventListener('load',function(){try{pannellum.viewer('panorama', ${JSON.stringify(cfg)});}catch(e){console.error('tour init',e);}});</script>`;
+  }
+
   const repl = {
     NAME: v.name,
     NAME_JSON: JSON.stringify(v.name),
@@ -671,6 +719,7 @@ for (const slug of targets) {
     HELLO_MSG: helloMsg,
     TRANSFER_MSG: transferMsg,
     AVAIL_JSON: JSON.stringify(availData),
+    TOUR_SECTION: tourSection,
     BEDROOMS: v.bedrooms || 4,
     BATHROOMS: v.bathrooms || 4,
     CAPACITY_NUMBER: capacityNumber,
