@@ -34,7 +34,15 @@
           "email": "hello@kalimerakitchen.com",
           "location": "Kalkan / Antalya",
           "verified": true,
-          "featured": true
+          "featured": true,
+          "promo": "WhatsApp'tan rezervasyonda %10 indirim",
+          "promoI18n": {
+            "en": "10% off when you book via WhatsApp",
+            "de": "10% Rabatt bei Buchung über WhatsApp",
+            "ru": "Скидка 10% при бронировании через WhatsApp",
+            "fr": "10% de réduction en réservant via WhatsApp"
+          },
+          "promoWa": "Web sitesindeki %10 rezervasyon indiriminden faydalanmak istiyorum."
         }
       ]
     },

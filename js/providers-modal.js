@@ -59,15 +59,16 @@
 
   function waUrl(provider, serviceTitle) {
     const name = (provider && provider.name) || '';
+    const promoNote = (provider && provider.promoWa) ? ` ${provider.promoWa}` : '';
     const raw = provider && provider.whatsappRaw;
     if (raw) {
       const direct = encodeURIComponent(
-        `Merhaba ${name}, Kalkan Info üzerinden "${serviceTitle}" hizmeti hakkında bilgi almak istiyorum.`
+        `Merhaba ${name}, Kalkan Info üzerinden "${serviceTitle}" hizmeti hakkında bilgi almak istiyorum.${promoNote}`
       );
       return `https://wa.me/${String(raw).replace(/[^0-9]/g, '')}?text=${direct}`;
     }
     const msg = encodeURIComponent(
-      `Merhaba! Kalkan Info üzerinden "${serviceTitle}" hizmeti için "${name}" sağlayıcısı hakkında bilgi almak istiyorum.`
+      `Merhaba! Kalkan Info üzerinden "${serviceTitle}" hizmeti için "${name}" sağlayıcısı hakkında bilgi almak istiyorum.${promoNote}`
     );
     return `${WA_BASE}?text=${msg}`;
   }
@@ -355,6 +356,7 @@
 
         <!-- CTA -->
         <div style="padding:12px 14px 14px;margin-top:auto;display:flex;flex-direction:column;gap:6px;">
+          ${p.promo ? `<div style="display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#e89812,#f4b53d);color:#fff;font-size:0.68rem;font-weight:800;letter-spacing:0.02em;padding:7px 10px;border-radius:8px;box-shadow:0 2px 8px rgba(232,152,18,0.35);">🎁 ${esc(pick(p.promoI18n, p.promo))}</div>` : ''}
           ${!p.verified ? `<p style="font-size:0.65rem;color:#92400e;background:#fef3c7;padding:6px 8px;border-radius:6px;margin:0;line-height:1.4;">${esc(L.notVerified)}</p>` : ''}
           ${p.verified && p.phoneRaw ? `<a href="tel:${esc(p.phoneRaw)}" data-pm-action="phone" data-provider-id="${esc(p.id || p.name)}" data-service-title="${esc(serviceTitle)}" style="
             display:flex;align-items:center;justify-content:center;gap:7px;
