@@ -485,6 +485,14 @@ export async function buildMagazineData(iso, demo) {
   const adsData = await getAds(iso);
   const magSponsor = adsData._magSponsor || null;
 
+  // Editöryal magazin manşeti (scripts/agency/gazete-editorial.mjs → gazete-today.json magazine_* alanları).
+  // Varsa AI-yazımı hero başlığı/deck kullan (ön yüzle aynı kalite); yoksa havuz-manşetine düş.
+  let magEd = null;
+  try {
+    const ed = await readJson('gazete-today.json');
+    if (ed && ed.date === iso && ed.magazine_lead_headline) magEd = ed;
+  } catch {}
+
   // Bu akşamın etkinlikleri (program + manşet eşleştirme)
   let todays = [];
   try { todays = await eventsForDate(iso); } catch { /* yok say */ }
@@ -507,8 +515,10 @@ export async function buildMagazineData(iso, demo) {
     const ev = evFor(heroVenue);
     const photo = venuePhoto(heroVenue);
     out.hero_venue = `${heroVenue.name}${heroVenue.location ? ' · ' + heroVenue.location : ' · Kalkan'}`;
-    out.hero_headline = headlineFor(heroVenue, ev, 0, daySeed);
-    out.hero_deck = deckFor(heroVenue, ev);
+    out.hero_headline = magEd ? magEd.magazine_lead_headline : headlineFor(heroVenue, ev, 0, daySeed);
+    out.hero_deck = magEd && magEd.magazine_lead_body
+      ? trimWords(String(magEd.magazine_lead_body).replace(/<[^>]+>/g, ''), 220)
+      : deckFor(heroVenue, ev);
     out.hero_kicker = ev ? `Gece · ${ev.type}` : 'Gece Hayatı';
     out.hero_img_tag = photo ? `<img src="${esc(photo)}" alt="${esc(heroVenue.name)}" onerror="this.style.display='none'">` : '';
     out.hero_noimg = photo ? '' : 'noimg';

@@ -42,7 +42,7 @@ Karar (Berkay 2026-07-03): LLM tek başına haber uyduramaz → gerçek RSS kayn
 - [x] POLİSAJ ✅: `newspaper-daily.mjs` app-level upsert (satır 109-119: mevcut kontrolü + insert; `on_conflict` query kaldırıldı → 400 noise yok).
 - [x] POLİSAJ ✅: sabah bayat social_posts guard'ı `gazete-approval.yml` satır 62-74'te otomatik (sabah çalışmadan önce bayat `gazete-<date>` satırını DELETE → taze onay; elle silme gerekmez).
 - [ ] İYİLEŞTİRME: Gemini billing açılırsa (GCP kredisi) daha hızlı/güvenilir olur; NVIDIA gece yavaşlarsa yedek.
-- [ ] İYİLEŞTİRME: magazine (arka yüz) build'i de gazete-today.json magazine_* alanlarını kullansın (şu an sadece ön yüz).
+- [x] magazine (arka yüz) build gazete-today.json magazine_* alanlarını kullanıyor (editöryal AI hero başlığı+deck). — DONE
 
 ## GAZETE / REEL / PLAN — DURUM & YENİ OTURUM YOL HARİTASI
 
