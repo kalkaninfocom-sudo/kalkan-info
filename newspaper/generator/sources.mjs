@@ -353,6 +353,27 @@ export async function getAds(iso) {
   return out;
 }
 
+// ─── 3d) KALİMERA GÜNLÜK TANITIM (ücretsiz partner rotasyonu — data/kalimera-content.json) ───
+// Gün indeksine (yılın günü) göre variant döner; 7 varyant = haftalık döngü.
+// NOT: Ücretli lead_sponsor (getAds → ads.json) buildData birleştirme sırasında bunu HER ZAMAN ezer.
+export async function getKalimeraSponsor(iso) {
+  const cfg = await readJson('kalimera-content.json');
+  if (!cfg || cfg.active === false) return {};
+  if (cfg.edition && !['morning', 'both'].includes(cfg.edition)) return {};
+  const variants = Array.isArray(cfg.variants) ? cfg.variants.filter(v => v?.title && v?.body) : [];
+  if (!variants.length) return {};
+  const day = iso || new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
+  const d = new Date(day + 'T08:00:00');
+  const doy = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000); // yılın günü
+  const v = variants[doy % variants.length];
+  return {
+    ad_title: v.title,
+    ad_body: v.body,
+    ad_cta: cfg.cta_label || 'Detay',
+    ad_qr_url: cfg.dest_url || 'https://kalimerakitchen.com',
+  };
+}
+
 // ─── 4) NÖBETÇİ ECZANE ───
 export async function getPharmacy() {
   const data = await readJson('eczane.json');
@@ -376,8 +397,8 @@ export async function buildData(iso, demo) {
   };
 
   // Paralel çek
-  const [weather, news, resto, pharmacy, eventsCol, ads] = await Promise.all([
-    getWeather(), getNews(), getRestaurant(iso), getPharmacy(), getEventsColumn(iso), getAds(iso),
+  const [weather, news, resto, pharmacy, eventsCol, kalimera, ads] = await Promise.all([
+    getWeather(), getNews(), getRestaurant(iso), getPharmacy(), getEventsColumn(iso), getKalimeraSponsor(iso), getAds(iso),
   ]);
   delete ads._magSponsor; // magazin-özel alan, sabahta kullanılmaz
 
@@ -399,8 +420,8 @@ export async function buildData(iso, demo) {
 
   // undefined alanları demo'dan tamamla
   // col1 önceliği: bugünün etkinlik takvimi > haber
-  // ads en sonda (restoran reklam slotunu ezer — ücretli İLAN önceliklidir)
-  const merged = { ...fallback, ...base, ...staticBus, ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(ads) };
+  // Reklam slotu precedence (soldan sağa ezilir): oto restoran < Kalimera (ücretsiz partner) < ads (ücretli İLAN, en öncelikli)
+  const merged = { ...fallback, ...base, ...staticBus, ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(kalimera), ...clean(ads) };
   return merged;
 }
 

@@ -1,0 +1,46 @@
+{
+  "_comment": "Kalimera Kitchen — günlük gazete tanıtımı. Gün indeksine (yılın günü) göre variants içinden rotasyonla seçilir; 7 varyant = haftalık döngü. Berkay gerçek menü/foto ekledikçe variants büyür (menü günü / fotoğraf günü / kampanya günü). active:false yaparsan slot otomatik ücretli sponsor ya da restoran rotasyonuna düşer. Ücretli lead_sponsor (data/ads.json, status:active) HER ZAMAN önceliklidir — bu ücretsiz partner tanıtımıdır.",
+  "venue": "Kalimera Kitchen",
+  "slug": "kalimera-gunluk",
+  "dest_url": "https://kalimerakitchen.com",
+  "cta_label": "Menü & Sipariş",
+  "edition": "morning",
+  "active": true,
+  "variants": [
+    {
+      "theme": "tanitim",
+      "title": "Kalimera Kitchen — Kalkan'ın Catering Mutfağı",
+      "body": "Ege usulü taze menüler, evinize ve etkinliğinize özel servis. WhatsApp rezervasyonlarına %10 indirim. Menü ve sipariş için QR'ı okutun."
+    },
+    {
+      "theme": "menu-bbq",
+      "title": "Bugün Kalimera'da · Premium Chicken BBQ Menüsü",
+      "body": "Kömürde marine tavuk, mevsim mezeleri ve ev yapımı soslar. Grup ve etkinlik siparişlerine uygun. Rezervasyon: kalimerakitchen.com."
+    },
+    {
+      "theme": "deniz-mahsulu",
+      "title": "Kalimera Sofrası · Ege Deniz Mahsulü Tabağı",
+      "body": "Günlük taze balık, kalamar ve zeytinyağlılarla Akdeniz sofrası. Villanıza catering ile gelsin. WhatsApp'tan %10 indirimli sipariş."
+    },
+    {
+      "theme": "mezze",
+      "title": "Kalimera Mezze Seçkisi · Zeytinyağlı Şöleni",
+      "body": "Ev yapımı mezeler, taze otlar ve fırın ekmeğiyle kahvaltıdan akşam sofrasına. Etkinlik ve toplantı ikramları için ideal."
+    },
+    {
+      "theme": "kampanya-indirim",
+      "title": "Kalimera Kitchen · WhatsApp Rezervasyona %10 İndirim",
+      "body": "Bu hafta catering siparişlerinde WhatsApp üzerinden %10 indirim. Doğum günü, villa partisi ve kurumsal ikramlar için menüyü QR'dan görün."
+    },
+    {
+      "theme": "etkinlik-catering",
+      "title": "Etkinliğiniz Kalimera'ya Emanet · Villa & Parti Catering",
+      "body": "Kalkan ve çevresinde villa partileri, düğün ve kurumsal etkinliklere anahtar teslim catering. Menü tasarımı ve servis dahil. Detay: kalimerakitchen.com."
+    },
+    {
+      "theme": "kahvalti",
+      "title": "Kalimera ile Güne Ege Kahvaltısıyla Başlayın",
+      "body": "Serpme Ege kahvaltısı, taze peynirler ve ev reçelleriyle villanıza sabah servisi. WhatsApp rezervasyonuna %10 indirim."
+    }
+  ]
+}
