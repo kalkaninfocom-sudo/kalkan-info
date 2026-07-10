@@ -3,10 +3,23 @@
 > **Amaç:** Tüm kalkaninfo işlerinin "ne yaptık · nerede kaldık · sıradaki ne"sini tek canlı dosyada toplamak.
 > Parça parça çalışıyoruz, çok iş yarım kalıyor — bu dosya kayıp thread bırakmamak için var.
 >
-> **Son güncelleme:** 2026-07-08
+> **Son güncelleme:** 2026-07-10
 > **Durum kodları:** ✅ bitti & canlı · 🔨 sürüyor · ⏳ bekliyor (sıraya alındı) · ⛔ bloke (canlıya bir şey lazım — ne lazımı yazılı)
 >
 > Bu dosya **CANLI**'dır: her oturumda güncellenir. Her parça **tek başına çalışır** halde bırakılır; yarım kalsa bile birleşince bütün tamamlanır.
+
+---
+
+## 📁 DOKÜMAN REHBERİ (hangisine güven)
+
+> **Bu dosya (`PROJE_DURUMU.md`) TEK CANLI KAYNAKTIR.** Diğer yol haritaları alt-detay ya da arşivdir.
+
+| Doküman | Durum | Not |
+|---------|-------|-----|
+| `docs/PROJE_DURUMU.md` | 🟢 **CANLI — buna güven** | Tüm işlerin tek bakış master durumu |
+| `docs/YOL_HARITASI_GAZETE_OTOMASYON.md` · `YOL_HARITASI_KALIMERA_ILAN.md` | 🟢 CANLI alt-harita | Gazete/otomasyon + Kalimera/İlan detayı |
+| `docs/AJANSAI_ACIK_REPO_YOL_HARITASI.md` · `AJANS_MIMARI_VE_YOL_HARITASI.md` | 🔷 İLERİ VİZYON | AjansAI ürünleşme + çok-kiracılı genişleme (stratejik karar) |
+| `ROADMAP.md` · `AGENT_SIRKETI_YOL_HARITASI.md` · `MASTER_PLAN.md` | 🗄️ **ARŞİV — güvenme** | Eski Firebase-devri plan; `- [ ]` kutuların çoğu ya yapıldı ya offline iş/hukuk. Açık-iş listesi olarak kullanma. |
 
 ---
 

@@ -1,5 +1,7 @@
 # Kalkan Info — Yol Haritası v1
 
+> ⚠️ **ARŞİV / ESKİ PLAN (Firebase-devri)** — Bu doküman Nisan 2026 planlama dönemine ait. İşaretsiz `- [ ]` kutuların ÇOĞU Supabase+Vercel ile **ZATEN YAPILDI** (kutu hiç işaretlenmedi): reviews.js, map.js, weather.js, tatil-asistani.html, aktiviteler.html, auth/profil, i18n vb. hepsi canlı. **Açık-iş listesi olarak KULLANMA.** Güncel canlı durum tek kaynak: **`docs/PROJE_DURUMU.md`**.
+
 **Tarih:** 2026-04-30
 **Durum:** Statik HTML + JSON tabanlı yerel rehber → Tam yığın platform geçişi
 **Sahip:** Berkay Elmastaş (solo founder)

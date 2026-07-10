@@ -1,5 +1,7 @@
 # Kalkan Info Agent Şirketi — Kurulum Yol Haritası
 
+> ⚠️ **ARŞİV / ESKİ PLAN** — Mayıs 2026 iş planı. Teknik `- [ ]` kutular **Firebase-devri** (proje Supabase+Vercel'e geçti → çoğu yapıldı/geçersiz). Kalan gerçek işlerin çoğu **kod değil, offline iş/hukuk**: Ltd/A.Ş. kuruluşu, TÜRSAB, VERBİS, mali müşavir, avukat, sosyal medya hesapları. **Yazılım açık-iş listesi olarak KULLANMA.** Güncel canlı durum: **`docs/PROJE_DURUMU.md`**.
+
 **Tarih:** 2026-05-04
 **Durum:** Pre-seed sunumu hazır, sıra Berkay'ın deploy + agent şirketi kuruluşunda
 **Süre:** 0 → Y2 sonu = 24 ay
