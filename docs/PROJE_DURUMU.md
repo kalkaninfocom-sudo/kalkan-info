@@ -138,6 +138,7 @@
 | Mabeyn Ocakbaşı örnek landing (satış taslağı) | ✅ mockup | `mockups/` | Satış taslağı | Berkay satışa sunacak |
 | Kartvizit landing + PDF | ✅ | `kartvizit/`, `scripts/build-kartvizit-pdf.mjs` | Üretildi | — |
 | **Dijital ajans satış teklif paketi** | ✅ commit `f11cada` | `satis-demo/` (+`urunler/` 8 hizmet sayfası + PDF) | Açık krem teklif sayfası + `?isletme=<Ad>` kişiselleştirme (hero/mock kart/başlık/WA mesajı otomatik dolar), gerçek WA no. Her müşteriye özel link: `/satis-demo/?isletme=Öz%20Adana` | — (deploy sonrası canlı; müşteriye link gönderilebilir) |
+| **↳ Gerçek-veri kişiselleştirilmiş teklif üretici** | ✅ commit `d00f32e` | `satis-demo/build-teklif.mjs` → `teklif/<slug>.html` | 259 işletme verisinden (restoran/otel/hizmet/villa) gerçek boşluk analizi (Google yorum sayısı/foto/web/IG) → kişisel before/after. `node satis-demo/build-teklif.mjs "Omar's Kokobüs"` (--list ile ara). Doğrulandı: Omar's ⭐4.6·82 yorum → "82'den 300+ yoruma". Sonraki fikir: teklif başına Plausible tracking + gerçek-fotolu "fotoğraflı gün" | — (deploy sonrası canlı: `/satis-demo/teklif/<slug>.html`) |
 
 ---
 
