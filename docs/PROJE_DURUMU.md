@@ -137,6 +137,7 @@
 | Street Munch restoran sayfası (premium motionsites) | ✅ canlı | `restoran/` Street Munch | Tam menü (12 poster + HTML 60 ürün), 5 dil, hero | — |
 | Mabeyn Ocakbaşı örnek landing (satış taslağı) | ✅ mockup | `mockups/` | Satış taslağı | Berkay satışa sunacak |
 | Kartvizit landing + PDF | ✅ | `kartvizit/`, `scripts/build-kartvizit-pdf.mjs` | Üretildi | — |
+| **Dijital ajans satış teklif paketi** | ✅ commit `f11cada` | `satis-demo/` (+`urunler/` 8 hizmet sayfası + PDF) | Açık krem teklif sayfası + `?isletme=<Ad>` kişiselleştirme (hero/mock kart/başlık/WA mesajı otomatik dolar), gerçek WA no. Her müşteriye özel link: `/satis-demo/?isletme=Öz%20Adana` | — (deploy sonrası canlı; müşteriye link gönderilebilir) |
 
 ---
 
