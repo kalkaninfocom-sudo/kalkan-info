@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Sitesi — Portal | Kalkan Info Dijital Ajans</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #FDF8F0;
+    --surface:  #FFFCF5;
+    --blue:     #4A9EF5;
+    --blue-dark:#2B7ED4;
+    --gold:     #E8A020;
+    --gold-light:#F5C355;
+    --teal:     #0a9b8a;
+    --green:    #4ADE80;
+    --ink:      #1A1508;
+    --muted:    #6B5E3E;
+    --border:   rgba(232,160,32,0.15);
+  }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Background radial gradients */
+  .bg-gradient {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 85% 10%, rgba(74,158,245,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 80%, rgba(10,155,138,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(232,160,32,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 12mm 14mm 10mm;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6mm;
+    border-bottom: 1.5px solid var(--border);
+    margin-bottom: 6mm;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+  }
+
+  .brand-sub {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .header-badge {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(232,160,32,0.35);
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8mm 10mm;
+    margin-bottom: 5mm;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgba(26,21,8,0.04),
+      0 4px 16px rgba(74,158,245,0.06),
+      0 12px 40px rgba(232,160,32,0.04);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(74,158,245,0.12), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .product-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(74,158,245,0.1);
+    color: var(--blue-dark);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(74,158,245,0.2);
+    margin-bottom: 4mm;
+  }
+
+  .product-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 3mm;
+  }
+
+  .product-title span {
+    color: var(--blue);
+  }
+
+  .product-desc {
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 140mm;
+  }
+
+  /* ICON ROW */
+  .icon-row {
+    display: flex;
+    gap: 4mm;
+    margin-bottom: 5mm;
+  }
+
+  .icon-stat {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3px;
+    box-shadow: 0 2px 8px rgba(26,21,8,0.04);
+  }
+
+  .icon-stat svg {
+    width: 22px; height: 22px;
+  }
+
+  .icon-stat .stat-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .icon-stat .stat-lbl {
+    font-size: 8.5px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* FEATURES */
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3mm;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5mm;
+    margin-bottom: 5mm;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 3mm 4mm;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(26,21,8,0.03);
+  }
+
+  .feature-icon {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .feature-text {
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .feature-sub {
+    font-size: 9px;
+    color: var(--muted);
+    font-weight: 400;
+    display: block;
+  }
+
+  /* ANCHOR PRICE */
+  .anchor-price {
+    text-decoration: line-through;
+    color: rgba(255,255,255,0.35);
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 1px;
+  }
+  .campaign-label {
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 2px;
+  }
+  .scarcity-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(232,160,32,0.18); border: 1px solid rgba(232,160,32,0.4);
+    color: var(--gold-light); font-size: 8.5px; font-weight: 700;
+    padding: 3px 8px; border-radius: 20px; margin-bottom: 3mm;
+    width: fit-content;
+  }
+  .value-split {
+    font-size: 9px; color: rgba(255,255,255,0.55); margin-top: 3px;
+  }
+  .compare-banner {
+    display: flex; align-items: flex-start; gap: 6px;
+    background: rgba(74,158,245,0.07); border: 1px solid rgba(74,158,245,0.15);
+    border-radius: 7px; padding: 3mm 4mm; margin-bottom: 3mm;
+    font-size: 9px; color: var(--muted); line-height: 1.6;
+  }
+  .compare-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+  /* PRICING */
+  .pricing-block {
+    background: linear-gradient(135deg, #1A1508 0%, #2D2010 100%);
+    border-radius: 12px;
+    padding: 6mm 8mm;
+    margin-bottom: 3mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 4px 20px rgba(26,21,8,0.2),
+      0 1px 3px rgba(26,21,8,0.15);
+  }
+
+  .pricing-block::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, rgba(232,160,32,0.2), transparent 70%);
+  }
+
+  .pricing-left .price-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .pricing-left .price-main {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .pricing-left .price-period {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 2px;
+  }
+
+  .pricing-right {
+    text-align: right;
+  }
+
+  .pricing-right .alt-price {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+    margin-bottom: 3px;
+  }
+
+  .pricing-right .alt-deal {
+    background: rgba(74,222,128,0.2);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(74,222,128,0.3);
+  }
+
+  .pricing-note {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 9.5px;
+    color: var(--muted);
+    padding: 3mm 4mm;
+    background: rgba(74,158,245,0.05);
+    border: 1px solid rgba(74,158,245,0.12);
+    border-radius: 6px;
+    margin-bottom: 4mm;
+  }
+
+  /* CTA */
+  .cta-block {
+    background: linear-gradient(135deg, var(--teal), #088070);
+    border-radius: 10px;
+    padding: 5mm 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(10,155,138,0.25);
+    margin-top: auto;
+  }
+
+  .cta-left .cta-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  .cta-left .cta-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .cta-wa {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff;
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  .cta-url {
+    font-size: 9px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.08em;
+  }
+
+  /* FOOTER LINE */
+  .footer-line {
+    margin-top: 4mm;
+    padding-top: 3mm;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-line span {
+    font-size: 8.5px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-line .dots {
+    display: flex;
+    gap: 3px;
+  }
+
+  .footer-line .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <!-- Compass/anchor brand icon -->
+      <svg class="brand-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="17" fill="#FDF8F0" stroke="#E8A020" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="11" stroke="#4A9EF5" stroke-width="1.2" fill="none"/>
+        <path d="M18 7 L20 16 L18 18 L16 16 Z" fill="#E8A020"/>
+        <path d="M18 29 L16 20 L18 18 L20 20 Z" fill="#4A9EF5" opacity="0.6"/>
+        <circle cx="18" cy="18" r="2" fill="#1A1508"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Kalkan Info</span>
+        <span class="brand-sub">Dijital Ajans</span>
+      </div>
+    </div>
+    <div class="header-badge">Dijital Çözümler</div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="product-tag">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="4" fill="#4A9EF5"/></svg>
+      Paket 01 · Web Varlığı
+    </div>
+    <h1 class="product-title">Web Sitesi<br><span>Portal</span></h1>
+    <p class="product-desc">
+      kalkaninfo.com çatısı altında işletmenize özel premium mini-site. Turistlerin ilk baktığı yerden fark yaratın — 5 dilde, rezervasyon formlu, Google'da görünür biçimde.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="icon-row">
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#4A9EF5" stroke-width="1.4"/><path d="M11 6 C8.5 6 7 8 7 11 C7 14 8.5 16 11 16 C13.5 16 15 14 15 11" stroke="#4A9EF5" stroke-width="1.4" stroke-linecap="round"/><path d="M8 11 L14 11 M11 7 L11 6 M11 16 L11 15" stroke="#E8A020" stroke-width="1" stroke-linecap="round"/></svg>
+      <span class="stat-val">5 Dil</span>
+      <span class="stat-lbl">TR/EN/DE/RU/FR</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="#4A9EF5" stroke-width="1.4"/><path d="M7 9 L15 9 M7 12 L12 12" stroke="#E8A020" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <span class="stat-val">SEO</span>
+      <span class="stat-lbl">Google Uyumlu</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><rect x="4" y="3" width="10" height="16" rx="2" stroke="#4A9EF5" stroke-width="1.4"/><circle cx="9" cy="17" r="1" fill="#4ADE80"/><path d="M6 7 L12 7 M6 10 L11 10 M6 13 L9 13" stroke="#E8A020" stroke-width="1" stroke-linecap="round"/><path d="M16 9 L19 12 L16 15" stroke="#0a9b8a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="stat-val">WhatsApp</span>
+      <span class="stat-lbl">Direkt Buton</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><path d="M11 3 L13.5 8.5 L19.5 9.3 L15 13.5 L16.1 19.5 L11 16.5 L5.9 19.5 L7 13.5 L2.5 9.3 L8.5 8.5 Z" stroke="#E8A020" stroke-width="1.3" stroke-linejoin="round" fill="rgba(232,160,32,0.12)"/></svg>
+      <span class="stat-val">Premium</span>
+      <span class="stat-lbl">Tasarım</span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section-label">Pakete Dahil Özellikler</div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="2" stroke="#4A9EF5" stroke-width="1.3"/><path d="M6 6 L12 6 M6 9 L10 9" stroke="#E8A020" stroke-width="1" stroke-linecap="round"/><path d="M5 15 L13 15" stroke="#4A9EF5" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <div class="feature-text">
+        Premium Mini-Site
+        <span class="feature-sub">Menü, galeri, hakkımızda, iletişim</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#0a9b8a" stroke-width="1.3"/><path d="M9 4 C7 4 5.5 6 5.5 9 C5.5 12 7 14 9 14 C11 14 12.5 12 12.5 9" stroke="#0a9b8a" stroke-width="1.3" stroke-linecap="round"/><path d="M6 9 L12 9" stroke="#E8A020" stroke-width="1" stroke-linecap="round"/></svg>
+      <div class="feature-text">
+        5 Dil Desteği
+        <span class="feature-sub">TR · EN · DE · RU · FR otomatik</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M14.5 10.5 C14.5 13 12.5 15 9 15 C6 15 3.5 13 3.5 10.5 C3.5 8 5.5 7 7 7 L9 3 L11 7 C12.5 7 14.5 8 14.5 10.5Z" stroke="#4ADE80" stroke-width="1.3" fill="rgba(74,222,128,0.1)" stroke-linejoin="round"/></svg>
+      <div class="feature-text">
+        WhatsApp Entegrasyonu
+        <span class="feature-sub">Müşteri direkt mesaj atar</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#E8A020" stroke-width="1.3"/><path d="M3 15 C3 12 5.5 10 9 10 C12.5 10 15 12 15 15" stroke="#E8A020" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <div class="feature-text">
+        Rezervasyon Formu
+        <span class="feature-sub">Talep toplama, bildirim</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M9 2 L10.8 7.1 L16.5 7.1 L11.8 10.3 L13.5 15.5 L9 12.2 L4.5 15.5 L6.2 10.3 L1.5 7.1 L7.2 7.1 Z" stroke="#4A9EF5" stroke-width="1.2" fill="rgba(74,158,245,0.12)" stroke-linejoin="round"/></svg>
+      <div class="feature-text">
+        Google SEO Kurulumu
+        <span class="feature-sub">Harita, arama görünürlüğü</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><rect x="3" y="3" width="12" height="9" rx="1.5" stroke="#4A9EF5" stroke-width="1.3"/><path d="M6 14 L12 14" stroke="#4A9EF5" stroke-width="1.3" stroke-linecap="round"/><path d="M9 12 L9 14" stroke="#4A9EF5" stroke-width="1.3" stroke-linecap="round"/><path d="M5 7 L8 7 M5 9 L11 9" stroke="#E8A020" stroke-width="1" stroke-linecap="round"/></svg>
+      <div class="feature-text">
+        Fotoğraf Galerisi
+        <span class="feature-sub">Sezon fotoları, atmosfer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCARCITY -->
+  <div class="scarcity-badge">
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" stroke="#E8A020" stroke-width="1"/><path d="M4 2 L4 4 L5.5 5" stroke="#E8A020" stroke-width="0.9" stroke-linecap="round"/></svg>
+    Sezon başı: sadece 3 işletmeye bu fiyat
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-block">
+    <div class="pricing-left">
+      <div class="campaign-label">Size Özel Kampanya</div>
+      <div class="anchor-price">Liste fiyatı ₺5.000 kurulum + ₺1.500/ay</div>
+      <div class="price-main">₺3.000</div>
+      <div class="price-period">kurulum + ₺1.000/ay · Kışın ₺0</div>
+      <div class="value-split">Günlük ~₺33 · Yılın 12 ayı görünür</div>
+    </div>
+    <div class="pricing-right">
+      <div class="alt-price">Diğer ajanslar: ₺15.000+</div>
+      <div class="alt-deal">Peşin ₺6.000 — Kazan!</div>
+    </div>
+  </div>
+
+  <!-- COMPARE -->
+  <div class="compare-banner">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#4A9EF5" stroke-width="1.1"/><path d="M4 6.5 L6 8.5 L9.5 5" stroke="#4ADE80" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>İstanbul ajansları <strong>₺15.000 web + ₺25.000/ay</strong> istiyor — biz sezonluk fiyatlandırıyoruz, kışın ödeme yok.</span>
+  </div>
+
+  <div class="pricing-note">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#4A9EF5" stroke-width="1.2"/><path d="M7 4 L7 7 L9 9" stroke="#4A9EF5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span><strong>Kışın ödeme yok</strong> — sezon kapansa da siteniz ayakta kalır, misafirler yılın her günü inceleyebilir.</span>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div class="cta-left">
+      <div class="cta-title">Hemen Başlayın</div>
+      <div class="cta-sub">Kurulum 3 iş günü · Size özel fiyatı konuşalım</div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-wa">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10.5 1.5 A6 6 0 1 0 10.8 9 L12 10.5 L10 10 A6 6 0 0 1 0 6 A6 6 0 0 1 10.5 1.5Z" fill="#0a9b8a"/><path d="M4 5 C4 7.5 7 9.5 8 8.5 L8.5 7.5 L7 6.5 L6.5 7 C6 7 4.5 5.5 5 5 L5.5 4.5 L4.5 3 Z" fill="white"/></svg>
+        WhatsApp'tan yazın
+      </div>
+      <div class="cta-url">kalkaninfo.com</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-line">
+    <span>Kalkan Info Dijital Ajans · kalkaninfo.com</span>
+    <div class="dots">
+      <div class="dot" style="background:#4A9EF5;"></div>
+      <div class="dot" style="background:#E8A020;"></div>
+      <div class="dot" style="background:#0a9b8a;"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

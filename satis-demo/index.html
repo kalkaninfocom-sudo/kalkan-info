@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[İşletme Adı] × kalkaninfo.com — Teklif</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fdf8f0;
+      --cream-2: #faf3e4;
+      --amber: #e8820c;
+      --amber-light: #f5a623;
+      --amber-pale: #fef3dc;
+      --coral: #e85c3a;
+      --teal: #0a9b8a;
+      --teal-light: #12c4b0;
+      --teal-pale: #e0f7f4;
+      --dark: #1a1208;
+      --mid: #4a3b20;
+      --muted: #8a7060;
+      --border: rgba(232,130,12,0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .font-display { font-family: 'Orbitron', sans-serif; }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: linear-gradient(135deg, #fffdf7 0%, var(--amber-pale) 60%, #fef0d2 100%);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--amber) 0%, var(--coral) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      box-shadow: 0 2px 8px rgba(232,130,12,0.35);
+    }
+    .logo-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: 0.03em;
+    }
+    .header-tag {
+      font-size: 12px;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 100%);
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg,
+        #fffdf8 0%,
+        #fef7e8 30%,
+        #fdf1d4 60%,
+        #fff9f0 100%
+      );
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    /* Radial glow blobs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(232,130,12,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -80px;
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(10,155,138,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber-pale);
+      border: 1.5px solid rgba(232,130,12,0.3);
+      border-radius: 30px;
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow span { color: var(--coral); }
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero h1 .hl-amber { color: var(--amber); }
+    .hero h1 .hl-teal  { color: var(--teal); }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--mid);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid;
+    }
+    .pill-amber { color: var(--amber); border-color: rgba(232,130,12,0.35); background: var(--amber-pale); }
+    .pill-teal  { color: var(--teal);  border-color: rgba(10,155,138,0.3); background: var(--teal-pale); }
+    .pill-coral { color: var(--coral); border-color: rgba(232,92,58,0.25); background: #fff0ec; }
+    .hero-cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease, opacity 0.18s ease;
+      text-decoration: none;
+    }
+    .btn:hover   { transform: translateY(-2px); }
+    .btn:active  { transform: translateY(0px); opacity: 0.9; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(232,130,12,0.38), 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .btn-primary:hover { box-shadow: 0 8px 28px rgba(232,130,12,0.45); }
+    .btn-outline {
+      background: #fff;
+      color: var(--teal);
+      border: 2px solid var(--teal);
+      box-shadow: 0 2px 8px rgba(10,155,138,0.12);
+    }
+    .btn-outline:hover { background: var(--teal-pale); box-shadow: 0 6px 20px rgba(10,155,138,0.2); }
+    .btn-wa {
+      background: linear-gradient(135deg, #25d366 0%, #1aad4d 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.38);
+    }
+    .btn-wa:hover { box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 560px;
+      line-height: 1.65;
+    }
+
+    /* ── BEFORE / AFTER ── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: stretch;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 30px rgba(26,18,8,0.08),
+        0 1px 4px rgba(0,0,0,0.05);
+    }
+    .ba-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .ba-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      box-shadow: 0 3px 12px rgba(232,130,12,0.4);
+      flex-shrink: 0;
+    }
+    .ba-card {
+      padding: 36px 32px;
+    }
+    .ba-before {
+      background: #f5f0e8;
+      border: 1.5px solid #e0d8cc;
+    }
+    .ba-after {
+      background: linear-gradient(145deg, #f0faf8 0%, #e8f8f5 100%);
+      border: 1.5px solid rgba(10,155,138,0.25);
+    }
+    .ba-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      padding: 4px 12px;
+      margin-bottom: 16px;
+    }
+    .ba-label-before { color: var(--muted); background: rgba(138,112,96,0.12); }
+    .ba-label-after  { color: var(--teal);  background: rgba(10,155,138,0.12); }
+    .ba-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .ba-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      display: block;
+      overflow: hidden;
+    }
+    .ba-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ba-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+    .ba-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .ba-icon-x  { background: rgba(232,92,58,0.15); color: var(--coral); }
+    .ba-icon-ok { background: rgba(10,155,138,0.15); color: var(--teal); }
+
+    /* ── PRICING ── */
+    .pricing-bg {
+      background: linear-gradient(160deg, #fffdf8 0%, var(--amber-pale) 50%, #fdf8f0 100%);
+      border-top: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .price-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 32px 28px 28px;
+      border: 1.5px solid var(--border);
+      position: relative;
+      transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s ease;
+      box-shadow: 0 2px 12px rgba(26,18,8,0.06);
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,18,8,0.1);
+    }
+    .price-card.popular {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(232,130,12,0.12), 0 8px 30px rgba(232,130,12,0.15);
+      background: linear-gradient(160deg, #fff 0%, #fffbf3 100%);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--amber) 0%, var(--amber-light) 100%);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 18px;
+      border-radius: 20px;
+      white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(232,130,12,0.35);
+    }
+    .plan-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .plan-price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-price span {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+    }
+    .plan-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 28px;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13.5px;
+      color: var(--mid);
+      line-height: 1.45;
+    }
+    .feat-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--teal-pale);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .price-card.popular .feat-check {
+      background: rgba(232,130,12,0.1);
+      color: var(--amber);
+    }
+    .plan-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
+      border: none;
+    }
+    .plan-btn:hover { transform: translateY(-2px); }
+    .plan-btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--mid);
+    }
+    .plan-btn-outline:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-pale); }
+    .plan-btn-primary {
+      background: linear-gradient(135deg, var(--amber) 0%, var(--amber-light) 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(232,130,12,0.35);
+    }
+    .plan-btn-primary:hover { box-shadow: 0 8px 28px rgba(232,130,12,0.45); }
+
+    /* ── WHY US ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .why-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
+      box-shadow: 0 2px 8px rgba(26,18,8,0.04);
+    }
+    .why-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(26,18,8,0.08);
+    }
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .wi-amber { background: var(--amber-pale); }
+    .wi-teal  { background: var(--teal-pale); }
+    .wi-coral { background: #fff0ec; }
+    .wi-dark  { background: #f0ede8; }
+    .why-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .why-text {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: linear-gradient(135deg, var(--dark) 0%, #2e2010 100%);
+      padding: 40px 24px;
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--amber-light);
+      letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(160deg, #fffdf8 0%, #fef7e6 40%, #fdf2d6 100%);
+      padding: 80px 24px;
+      text-align: center;
+      border-top: 1.5px solid var(--border);
+    }
+    .cta-inner { max-width: 620px; margin: 0 auto; }
+    .cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      border-radius: 30px;
+      border: 1.5px solid rgba(10,155,138,0.35);
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .cta-badge .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+    .cta-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .cta-title .hl { color: var(--coral); }
+    .cta-sub {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .scarcity {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--coral);
+      font-weight: 600;
+    }
+    .scarcity strong { color: var(--dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+    footer a { color: var(--amber-light); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .ba-grid { grid-template-columns: 1fr; }
+      .ba-divider { display: none; }
+      .ba-before, .ba-after { border-radius: 16px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .ba-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       HEADER
+  ══════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-badge">
+        <div class="logo-dot">KI</div>
+        <span class="logo-name">kalkaninfo</span>
+      </div>
+      <span class="header-tag">Dijital Ajans Teklifi</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
+  <section class="hero">
+    <div style="position:relative;z-index:1;">
+      <div class="hero-eyebrow">
+        <span>✦</span> Özel Teklif &nbsp;·&nbsp; Yalnızca <span>3 İşletme</span>
+      </div>
+      <h1>
+        <span class="biz-name">[İşletme Adı]</span>,<br/>
+        <span class="hl-amber">Kalkan'da</span> daha çok <span class="hl-teal">görün.</span>
+      </h1>
+      <p class="hero-sub">
+        Sosyal medya · Google görünürlüğü · kalkaninfo.com öne çıkan liste —
+        hepsi tek pakette, AI otomasyonuyla, aylık sabit fiyata.
+      </p>
+      <div class="hero-pills">
+        <span class="pill pill-amber">📱 Instagram Reels</span>
+        <span class="pill pill-teal">🔍 Google SEO</span>
+        <span class="pill pill-amber">🌐 kalkaninfo.com</span>
+        <span class="pill pill-coral">💬 WhatsApp Lead</span>
+        <span class="pill pill-teal">📊 Aylık Rapor</span>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#paketler" class="btn btn-primary">Paketleri Gör ↓</a>
+        <a href="https://wa.me/905306650794" class="btn btn-outline">Şimdi Konuş</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       BEFORE / AFTER
+  ══════════════════════════════════ -->
+  <div style="background:#f7f2ea; border-top:1.5px solid var(--border); border-bottom:1.5px solid var(--border); padding:72px 0;">
+    <div class="section" style="padding-top:0; padding-bottom:0;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <span class="section-tag">Dönüşüm</span>
+        <h2 class="section-title">Şu an böyle → Bizimle böyle</h2>
+        <p class="section-sub" style="margin:0 auto;">
+          İşletmenizin dijital varlığını dönüştürüyoruz — takipçi rekabetinden müşteri akışına.
+        </p>
+      </div>
+
+      <div class="ba-grid">
+        <!-- BEFORE -->
+        <div class="ba-card ba-before">
+          <span class="ba-label ba-label-before">⚠ Şu an</span>
+          <h3 class="ba-heading">Görünmüyor, bulunamıyor,<br/>kayıp müşteriler</h3>
+          <!-- Mock "before" social profile -->
+          <div class="ba-img" style="background:linear-gradient(135deg,#ede6da 0%,#d8cfc2 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border:1.5px dashed #c0b4a0;">
+            <div style="width:56px;height:56px;border-radius:50%;background:#c8bfb0;display:flex;align-items:center;justify-content:center;font-size:22px;color:#a09080;">👤</div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:700;color:#8a7060;margin-bottom:4px;"><span class="biz-name">[İşletme Adı]</span></div>
+              <div style="font-size:11px;color:#b0a090;">3 gönderi &nbsp;·&nbsp; 87 takipçi</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:4px;">
+              <div style="width:60px;height:60px;border-radius:6px;background:#cec4b4;"></div>
+              <div style="width:60px;height:60px;border-radius:6px;background:#c4bab0;"></div>
+              <div style="width:60px;height:60px;border-radius:6px;background:#bab0a6;"></div>
+            </div>
+            <div style="font-size:11px;color:#a09080;font-style:italic;">Son paylaşım: 4 ay önce</div>
+          </div>
+          <ul class="ba-list">
+            <li>
+              <span class="ba-icon ba-icon-x">✗</span>
+              Sosyal medyada düzensiz, eski görseller
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-x">✗</span>
+              Google'da ikinci sayfada, az yorum
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-x">✗</span>
+              kalkaninfo.com'da yok veya temel liste
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-x">✗</span>
+              WhatsApp sorularına gecikmeli cevap
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-x">✗</span>
+              Rakipler öne çıkıyor, müşteri kaçıyor
+            </li>
+          </ul>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="ba-divider">
+          <div class="ba-arrow">→</div>
+        </div>
+
+        <!-- AFTER -->
+        <div class="ba-card ba-after">
+          <span class="ba-label ba-label-after">✦ Bizimle</span>
+          <h3 class="ba-heading" style="color:var(--teal);">Profesyonel, görünür,<br/>müşteri dolu</h3>
+          <!-- Mock "after" social profile -->
+          <div class="ba-img" style="background:linear-gradient(135deg,#e0f8f4 0%,#c8f0eb 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; border:1.5px solid rgba(10,155,138,0.3);">
+            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--amber),var(--coral));display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;box-shadow:0 3px 10px rgba(232,130,12,0.35);">🏪</div>
+            <div style="text-align:center;">
+              <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:4px;"><span class="biz-name">[İşletme Adı]</span> ✓</div>
+              <div style="font-size:11px;color:var(--teal);">248 gönderi &nbsp;·&nbsp; 4.2K takipçi</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:4px;">
+              <div style="width:60px;height:60px;border-radius:6px;background:linear-gradient(135deg,#f5c842,#e8820c);display:flex;align-items:center;justify-content:center;font-size:20px;">🌊</div>
+              <div style="width:60px;height:60px;border-radius:6px;background:linear-gradient(135deg,#42c5b0,#0a9b8a);display:flex;align-items:center;justify-content:center;font-size:20px;">🍽️</div>
+              <div style="width:60px;height:60px;border-radius:6px;background:linear-gradient(135deg,#f5824a,#e85c3a);display:flex;align-items:center;justify-content:center;font-size:20px;">⭐</div>
+            </div>
+            <div style="font-size:11px;color:var(--teal);font-weight:600;">Son Reels: 2 gün önce &nbsp;·&nbsp; 1.8K görüntüleme</div>
+          </div>
+          <ul class="ba-list">
+            <li>
+              <span class="ba-icon ba-icon-ok">✓</span>
+              Haftalık profesyonel Reels + hikayeler
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-ok">✓</span>
+              Google'da öne çıkan, yorum akışı aktif
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-ok">✓</span>
+              kalkaninfo.com'da premium öne çıkan kart
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-ok">✓</span>
+              WhatsApp otomatik karşılama & yönlendirme
+            </li>
+            <li>
+              <span class="ba-icon ba-icon-ok">✓</span>
+              Aylık performans raporu, rakip takibi
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       STATS STRIP
+  ══════════════════════════════════ -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div>
+        <span class="stat-num">170+</span>
+        <span class="stat-label">kalkaninfo.com'da<br/>canlı işletme sayfası</span>
+      </div>
+      <div>
+        <span class="stat-num">5 Dil</span>
+        <span class="stat-label">TR / EN / DE / FR / RU<br/>çok dilli görünürlük</span>
+      </div>
+      <div>
+        <span class="stat-num">AI</span>
+        <span class="stat-label">Otomasyon ile<br/>düşük maliyet, hız</span>
+      </div>
+      <div>
+        <span class="stat-num">%0</span>
+        <span class="stat-label">Ekstra ajans komisyonu —<br/>tek paket, her şey dahil</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       PRICING
+  ══════════════════════════════════ -->
+  <div class="pricing-bg" id="paketler">
+    <div class="section">
+      <div style="text-align:center;">
+        <span class="section-tag">Paketler</span>
+        <h2 class="section-title">İhtiyacınıza göre seçin</h2>
+        <p class="section-sub" style="margin:0 auto 48px;">
+          Tüm paketler aylık, sözleşmesiz. İstediğiniz zaman yükseltin.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- STARTER -->
+        <div class="price-card">
+          <p class="plan-name">Başlangıç</p>
+          <p class="plan-price">₺2.500<span> / ay</span></p>
+          <p class="plan-desc">Sosyal medyaya ilk adım atan işletmeler için ideal başlangıç noktası.</p>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Ayda 4 Instagram Reels (AI destekli)</li>
+            <li><span class="feat-check">✓</span> kalkaninfo.com standart liste</li>
+            <li><span class="feat-check">✓</span> Türkçe & İngilizce içerik</li>
+            <li><span class="feat-check">✓</span> Aylık görünürlük raporu</li>
+            <li><span class="feat-check">✓</span> WhatsApp iletişim entegrasyonu</li>
+          </ul>
+          <a href="https://wa.me/905306650794" class="plan-btn plan-btn-outline">Başla →</a>
+        </div>
+
+        <!-- PRO (POPULAR) -->
+        <div class="price-card popular">
+          <span class="popular-badge">★ En Popüler</span>
+          <p class="plan-name">Pro</p>
+          <p class="plan-price">₺6.000<span> / ay</span></p>
+          <p class="plan-desc">Ciddi görünürlük ve müşteri akışı isteyen sezonluk işletmeler için.</p>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Ayda 12 Reels + 20 Story (AI + profesyonel)</li>
+            <li><span class="feat-check">✓</span> kalkaninfo.com <strong>öne çıkan kart</strong></li>
+            <li><span class="feat-check">✓</span> 5 dil içerik (TR/EN/DE/FR/RU)</li>
+            <li><span class="feat-check">✓</span> Google Haritalar yorum yönetimi</li>
+            <li><span class="feat-check">✓</span> WhatsApp otomatik lead karşılama</li>
+            <li><span class="feat-check">✓</span> Haftalık performans raporu</li>
+            <li><span class="feat-check">✓</span> Rakip analizi & SEO takibi</li>
+          </ul>
+          <a href="https://wa.me/905306650794" class="plan-btn plan-btn-primary">Hemen Başla →</a>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="price-card">
+          <p class="plan-name">Premium</p>
+          <p class="plan-price">₺12.000<span> / ay</span></p>
+          <p class="plan-desc">Tam otomasyon, rezervasyon entegrasyonu ve kapsamlı büyüme hedefleyenler için.</p>
+          <ul class="plan-features">
+            <li><span class="feat-check">✓</span> Sınırsız içerik üretimi (AI tam otomasyon)</li>
+            <li><span class="feat-check">✓</span> kalkaninfo.com <strong>altın sponsorlu konum</strong></li>
+            <li><span class="feat-check">✓</span> 5 dil + sesli AI tur rehberi içeriği</li>
+            <li><span class="feat-check">✓</span> Rezervasyon sistemi entegrasyonu</li>
+            <li><span class="feat-check">✓</span> WhatsApp AI asistan (7/24 otomatik)</li>
+            <li><span class="feat-check">✓</span> Facebook & Google Ads yönetimi</li>
+            <li><span class="feat-check">✓</span> Günlük raporlama + strateji görüşmesi</li>
+          </ul>
+          <a href="https://wa.me/905306650794" class="plan-btn plan-btn-outline">Teklif Al →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       WHY US
+  ══════════════════════════════════ -->
+  <div style="background:var(--cream);">
+    <div class="section">
+      <div style="text-align:center;">
+        <span class="section-tag">Neden Biz</span>
+        <h2 class="section-title">Zaten canlıyız. Hızlı teslimat.</h2>
+        <p class="section-sub" style="margin:0 auto 48px;">
+          kalkaninfo.com altyapısı hazır, AI motorumuz çalışıyor — siz başlar başlamaz sonuç görürsünüz.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon wi-amber">🌐</div>
+          <div>
+            <p class="why-title">kalkaninfo.com Zaten Canlı</p>
+            <p class="why-text">
+              170+ işletme sayfası yayında. Platformu sıfırdan kurmak zorunda değilsiniz — biz hazır altyapıya sizi ekliyoruz, hemen trafik alırsınız.
+            </p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon wi-teal">🤖</div>
+          <div>
+            <p class="why-title">AI Otomasyon = Düşük Maliyet</p>
+            <p class="why-text">
+              Reels, hikayeler, çeviriler ve raporlar AI motoru ile üretilir. Büyük ajans kalitesi, küçük ajans fiyatına — sezon fark etmeksizin sabit maliyet.
+            </p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon wi-coral">⚡</div>
+          <div>
+            <p class="why-title">İlk İçerik 48 Saatte</p>
+            <p class="why-text">
+              Anlaşma imzalanınca 48 saat içinde ilk Reels ve liste güncellemesi yayında. Aylarca bekleyip sonra başlamak yok.
+            </p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon wi-dark">📊</div>
+          <div>
+            <p class="why-title">Şeffaf Aylık Raporlama</p>
+            <p class="why-text">
+              Her ay görünürlük, takipçi büyümesi, web trafiği ve lead sayısı raporlanır. Neye para ödediğinizi her zaman bilirsiniz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       CTA
+  ══════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-badge">
+        <span class="pulse"></span>
+        Bu ay özel fiyat
+      </div>
+      <h2 class="cta-title">
+        Bu ay sadece <span class="hl">3 işletmeye</span><br/>başlangıç fiyatı.
+      </h2>
+      <p class="cta-sub">
+        Sezon bitmeden dijitale geçin. İlk ay kurulum ücretsiz,
+        sözleşme yok, istediğinizde iptal.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/905306650794" class="btn btn-wa">
+          💬 WhatsApp'tan Yazın
+        </a>
+        <a href="mailto:info@kalkaninfo.com" class="btn btn-outline">
+          ✉ E-posta Gönderin
+        </a>
+      </div>
+      <p class="scarcity">
+        <strong>2 yer kaldı</strong> — bu ay başlayan işletmeler Pro paketi Başlangıç fiyatına alır.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+  ══════════════════════════════════ -->
+  <footer>
+    <p>
+      &copy; 2026 <a href="https://kalkaninfo.com">kalkaninfo.com</a> &nbsp;·&nbsp;
+      Kalkan'ın dijital ajansı &nbsp;·&nbsp;
+      <a href="https://wa.me/905306650794">WhatsApp</a>
+    </p>
+  </footer>
+
+  <!-- ══════════════════════════════════
+       KİŞİSELLEŞTİRME  —  ?isletme=Kaptan
+       Berkay: her müşteriye özel link gönder →
+       satis-demo/?isletme=Öz%20Adana
+  ══════════════════════════════════ -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var biz = (params.get('isletme') || params.get('business') || '').trim();
+      if (!biz) return;
+      // Tüm [İşletme Adı] yerlerini doldur
+      document.querySelectorAll('.biz-name').forEach(function (el) { el.textContent = biz; });
+      // Sekme başlığı
+      document.title = biz + ' × kalkaninfo.com — Teklif';
+      // WhatsApp mesajına işletme adını göm
+      var msg = encodeURIComponent(biz + ' için kalkaninfo.com dijital ajans teklifini görüştürmek istiyorum.');
+      document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+        a.href = a.href.split('?')[0] + '?text=' + msg;
+      });
+    })();
+  </script>
+
+</body>
+</html>

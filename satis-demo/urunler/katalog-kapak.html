@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Kapak | Kalkan Info Dijital Ajans</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #FDF8F0; --surface: #FFFCF5; --blue: #4A9EF5; --gold: #E8A020;
+    --gold-light: #F5C355; --teal: #0a9b8a; --green: #4ADE80;
+    --ink: #1A1508; --muted: #6B5E3E; --border: rgba(232,160,32,0.15);
+  }
+  @page { size: A4; margin: 0; }
+  body { width: 210mm; min-height: 297mm; background: var(--bg); font-family: 'Inter', sans-serif; color: var(--ink); position: relative; overflow: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+
+  .bg-gradient {
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 15%, rgba(74,158,245,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 15% 75%, rgba(10,155,138,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(232,160,32,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 90% 85%, rgba(74,222,128,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .page {
+    position: relative; width: 210mm; min-height: 297mm;
+    padding: 16mm 14mm 12mm;
+    display: flex; flex-direction: column;
+  }
+
+  /* TOP BRAND */
+  .top-brand {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12mm;
+  }
+  .brand-compass {
+    width: 44px; height: 44px;
+  }
+  .brand-stacked { display: flex; flex-direction: column; }
+  .brand-name { font-family: 'Orbitron', sans-serif; font-size: 15px; font-weight: 900; letter-spacing: 0.1em; color: var(--blue); }
+  .brand-tagline { font-size: 9.5px; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 2px; }
+
+  /* HERO AREA */
+  .hero-area {
+    flex: 1;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8mm 0;
+  }
+
+  .catalog-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(232,160,32,0.12);
+    border: 1px solid rgba(232,160,32,0.25);
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #92600A;
+    margin-bottom: 5mm;
+    width: fit-content;
+  }
+
+  .catalog-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px; font-weight: 900;
+    letter-spacing: -0.03em; line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 4mm;
+  }
+  .catalog-title .accent { color: var(--blue); }
+  .catalog-title .gold { color: var(--gold); }
+
+  .catalog-desc {
+    font-size: 12.5px; line-height: 1.75; color: var(--muted);
+    max-width: 130mm;
+    margin-bottom: 8mm;
+  }
+
+  /* PRODUCT INDEX GRID */
+  .product-index {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-bottom: 8mm;
+  }
+
+  .product-index-item {
+    display: flex; align-items: center; gap: 7px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 3.5mm 4mm;
+    box-shadow: 0 1px 4px rgba(26,21,8,0.04), 0 3px 10px rgba(26,21,8,0.03);
+  }
+
+  .idx-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px; font-weight: 700;
+    min-width: 20px;
+    color: var(--gold);
+  }
+
+  .idx-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  .idx-text { font-size: 9.5px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+  .idx-sub { font-size: 8.5px; color: var(--muted); font-weight: 400; display: block; }
+
+  /* DECORATIVE DIVIDER */
+  .divider {
+    display: flex; align-items: center; gap: 3mm;
+    margin-bottom: 6mm;
+  }
+  .div-line { flex: 1; height: 1px; background: var(--border); }
+  .div-icon {
+    width: 28px; height: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* BOTTOM SECTION */
+  .bottom-section {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4mm;
+    margin-bottom: 6mm;
+  }
+
+  .bottom-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4mm 5mm;
+    box-shadow: 0 2px 8px rgba(26,21,8,0.04);
+  }
+
+  .bottom-card .card-label {
+    font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 2mm;
+  }
+
+  .price-range {
+    font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 700;
+    color: var(--gold); letter-spacing: -0.01em;
+  }
+  .price-note { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+  .contact-line { display: flex; align-items: center; gap: 5px; margin-bottom: 2px; }
+  .contact-line span { font-size: 9.5px; color: var(--ink); font-weight: 500; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: auto;
+    padding-top: 4mm;
+    border-top: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-left { font-size: 9px; color: var(--muted); }
+  .footer-url {
+    font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700;
+    color: var(--blue); letter-spacing: 0.05em;
+  }
+  .footer-dots { display: flex; gap: 4px; }
+  .footer-dot { width: 6px; height: 6px; border-radius: 50%; }
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="page">
+
+  <!-- TOP BRAND -->
+  <div class="top-brand">
+    <svg class="brand-compass" viewBox="0 0 44 44" fill="none">
+      <circle cx="22" cy="22" r="21" fill="#FDF8F0" stroke="#E8A020" stroke-width="1.5"/>
+      <circle cx="22" cy="22" r="13.5" stroke="#4A9EF5" stroke-width="1.2" fill="none"/>
+      <circle cx="22" cy="22" r="8" stroke="rgba(74,158,245,0.3)" stroke-width="0.8" fill="none"/>
+      <path d="M22 8.5 L24.5 19.5 L22 22 L19.5 19.5 Z" fill="#E8A020"/>
+      <path d="M22 35.5 L19.5 24.5 L22 22 L24.5 24.5 Z" fill="#4A9EF5" opacity="0.65"/>
+      <path d="M35.5 22 L24.5 24.5 L22 22 L24.5 19.5 Z" fill="#0a9b8a" opacity="0.5"/>
+      <path d="M8.5 22 L19.5 19.5 L22 22 L19.5 24.5 Z" fill="#4ADE80" opacity="0.4"/>
+      <circle cx="22" cy="22" r="2.5" fill="#1A1508"/>
+    </svg>
+    <div class="brand-stacked">
+      <span class="brand-name">Kalkan Info</span>
+      <span class="brand-tagline">Dijital Ajans · Hizmet Kataloğu</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-area">
+    <div class="catalog-eyebrow">
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M4 1 L5 3.5 L7.5 3.5 L5.5 5 L6.2 7.5 L4 6 L1.8 7.5 L2.5 5 L0.5 3.5 L3 3.5 Z" fill="#E8A020"/></svg>
+      2026 Sezon Hizmet Kataloğu
+    </div>
+
+    <h1 class="catalog-title">
+      Dijital<br>
+      <span class="accent">Varlığınız</span><br>
+      <span class="gold">Hazır Mı?</span>
+    </h1>
+
+    <p class="catalog-desc">
+      Kalkan'daki işletmenizi dijital dünyada güçlü kılıyoruz. Web sitesinden Google haritasına, sosyal medyadan reklam kampanyasına — 7 hizmet paketi, tek güvenilir ajans.
+    </p>
+
+    <!-- PRODUCT INDEX -->
+    <div class="product-index">
+      <div class="product-index-item">
+        <span class="idx-num">01</span>
+        <div class="idx-dot" style="background:#4A9EF5;"></div>
+        <div class="idx-text">Web Sitesi — Portal<span class="idx-sub">₺3.000 kurulum</span></div>
+      </div>
+      <div class="product-index-item">
+        <span class="idx-num">02</span>
+        <div class="idx-dot" style="background:#0a9b8a;"></div>
+        <div class="idx-text">Web Sitesi — Domaininiz<span class="idx-sub">₺15.000 kurulum</span></div>
+      </div>
+      <div class="product-index-item">
+        <span class="idx-num">03</span>
+        <div class="idx-dot" style="background:#8B5CF6;"></div>
+        <div class="idx-text">Meta Hesap Bağlama<span class="idx-sub">₺3.500 tek sefer</span></div>
+      </div>
+      <div class="product-index-item">
+        <span class="idx-num">04</span>
+        <div class="idx-dot" style="background:#F97316;"></div>
+        <div class="idx-text">Meta & Reklam Kurulum<span class="idx-sub">₺15.000 tek sefer</span></div>
+      </div>
+      <div class="product-index-item">
+        <span class="idx-num">05</span>
+        <div class="idx-dot" style="background:#EC4899;"></div>
+        <div class="idx-text">Reels & Sosyal İçerik<span class="idx-sub">₺1.500 / ay</span></div>
+      </div>
+      <div class="product-index-item">
+        <span class="idx-num">06</span>
+        <div class="idx-dot" style="background:#4ADE80;"></div>
+        <div class="idx-text">Google İşletme Yönetimi<span class="idx-sub">₺750 / ay</span></div>
+      </div>
+      <div class="product-index-item" style="grid-column: span 2;">
+        <span class="idx-num">07</span>
+        <div class="idx-dot" style="background:#F59E0B;"></div>
+        <div class="idx-text">Yorum Oto-Cevap — İtibar Yönetimi<span class="idx-sub">₺1.000 / ay</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="div-line"></div>
+    <div class="div-icon">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2 L8 5.5 L11.5 5.5 L8.8 7.7 L9.8 11.5 L7 9.2 L4.2 11.5 L5.2 7.7 L2.5 5.5 L6 5.5 Z" fill="#E8A020"/></svg>
+    </div>
+    <div class="div-line"></div>
+  </div>
+
+  <!-- BOTTOM CARDS -->
+  <div class="bottom-section">
+    <div class="bottom-card">
+      <div class="card-label">Fiyat Aralığı</div>
+      <div class="price-range">₺750 — ₺15.000</div>
+      <div class="price-note">Aylık abonelik veya tek seferlik · Sezon modeli</div>
+    </div>
+    <div class="bottom-card">
+      <div class="card-label">Bize Ulaşın</div>
+      <div class="contact-line">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M9.5 1.5 A4.5 4.5 0 1 0 9.8 8 L11 9.5 L9 9 A4.5 4.5 0 0 1 0 5 A4.5 4.5 0 0 1 9.5 1.5Z" fill="#0a9b8a"/></svg>
+        <span>WhatsApp Business</span>
+      </div>
+      <div class="contact-line">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="#4A9EF5" stroke-width="1"/><path d="M6 3 C4.5 3 3.5 4.2 3.5 6 C3.5 7.8 4.5 9 6 9" stroke="#4A9EF5" stroke-width="0.9" stroke-linecap="round"/></svg>
+        <span>kalkaninfo.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      Kalkan Info · Dijital Ajans · 2026 Sezonu<br>
+      <span style="font-size:8px; color: rgba(107,94,62,0.6);">Bu katalog WhatsApp Business üzerinden paylaşılmaktadır.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+      <div class="footer-url">kalkaninfo.com</div>
+      <div class="footer-dots">
+        <div class="footer-dot" style="background:#4A9EF5;"></div>
+        <div class="footer-dot" style="background:#E8A020;"></div>
+        <div class="footer-dot" style="background:#0a9b8a;"></div>
+        <div class="footer-dot" style="background:#4ADE80;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

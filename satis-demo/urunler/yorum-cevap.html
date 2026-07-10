@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yorum Oto-Cevap | Kalkan Info Dijital Ajans</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --bg: #FDF8F0; --surface: #FFFCF5; --blue: #4A9EF5; --gold: #E8A020; --teal: #0a9b8a; --green: #4ADE80; --amber: #F59E0B; --ink: #1A1508; --muted: #6B5E3E; --border: rgba(232,160,32,0.15); }
+  @page { size: A4; margin: 0; }
+  body { width: 210mm; min-height: 297mm; background: var(--bg); font-family: 'Inter', sans-serif; color: var(--ink); position: relative; overflow: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 100; }
+  .bg-gradient { position: fixed; inset: 0; background: radial-gradient(ellipse 60% 40% at 85% 10%, rgba(245,158,11,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(74,158,245,0.07) 0%, transparent 55%); pointer-events: none; }
+  .page { position: relative; width: 210mm; min-height: 297mm; padding: 12mm 14mm 10mm; display: flex; flex-direction: column; }
+  .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 6mm; border-bottom: 1.5px solid var(--border); margin-bottom: 6mm; }
+  .brand { display: flex; align-items: center; gap: 8px; }
+  .brand-icon { width: 36px; height: 36px; }
+  .brand-name { font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: var(--blue); }
+  .brand-sub { font-size: 9px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 1px; }
+  .header-badge { background: linear-gradient(135deg, var(--amber), #D97706); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; box-shadow: 0 2px 8px rgba(245,158,11,0.35); }
+  .hero { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 8mm 10mm; margin-bottom: 5mm; position: relative; overflow: hidden; box-shadow: 0 1px 2px rgba(26,21,8,0.04), 0 4px 16px rgba(245,158,11,0.06); }
+  .hero::before { content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(245,158,11,0.12), transparent 70%); border-radius: 50%; }
+  .product-tag { display: inline-flex; align-items: center; gap: 5px; background: rgba(245,158,11,0.1); color: #B45309; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid rgba(245,158,11,0.25); margin-bottom: 4mm; }
+  .product-title { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); margin-bottom: 3mm; }
+  .product-title span { color: var(--amber); }
+  .product-desc { font-size: 11.5px; line-height: 1.7; color: var(--muted); max-width: 140mm; }
+  .icon-row { display: flex; gap: 4mm; margin-bottom: 5mm; }
+  .icon-stat { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 4mm 5mm; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; }
+  .icon-stat svg { width: 22px; height: 22px; }
+  .icon-stat .stat-val { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 700; color: var(--ink); }
+  .icon-stat .stat-lbl { font-size: 8.5px; color: var(--muted); }
+  .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 3mm; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 5mm; }
+  .feature-item { display: flex; align-items: flex-start; gap: 6px; padding: 3mm 4mm; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
+  .feature-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+  .feature-text { font-size: 10px; line-height: 1.5; color: var(--ink); font-weight: 500; }
+  .feature-sub { font-size: 9px; color: var(--muted); font-weight: 400; display: block; }
+
+  /* Review examples */
+  .review-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-bottom: 5mm; }
+  .review-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 3mm 4mm; }
+  .review-stars { color: var(--amber); font-size: 10px; margin-bottom: 2px; }
+  .review-text { font-size: 9px; color: var(--muted); line-height: 1.5; font-style: italic; margin-bottom: 3px; }
+  .review-reply { font-size: 8.5px; color: var(--teal); background: rgba(10,155,138,0.06); border-left: 2px solid var(--teal); padding: 2px 5px; border-radius: 0 4px 4px 0; }
+  .review-reply strong { font-weight: 600; }
+
+  .anchor-price { text-decoration: line-through; color: rgba(255,255,255,0.35); font-size: 11px; font-weight: 500; margin-bottom: 1px; }
+  .campaign-label { font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4ADE80; margin-bottom: 2px; }
+  .scarcity-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(232,160,32,0.18); border: 1px solid rgba(232,160,32,0.4); color: #F5C355; font-size: 8.5px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-bottom: 3mm; width: fit-content; }
+  .value-split { font-size: 9px; color: rgba(255,255,255,0.55); margin-top: 3px; }
+  .compare-banner { display: flex; align-items: flex-start; gap: 6px; background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.15); border-radius: 7px; padding: 3mm 4mm; margin-bottom: 3mm; font-size: 9px; color: var(--muted); line-height: 1.6; }
+  .compare-banner svg { flex-shrink: 0; margin-top: 1px; }
+  .pricing-block { background: linear-gradient(135deg, #1a1000 0%, #2d1e00 100%); border-radius: 12px; padding: 6mm 8mm; margin-bottom: 3mm; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(245,158,11,0.2); }
+  .pricing-block::before { content: ''; position: absolute; top: -30px; right: -30px; width: 100px; height: 100px; background: radial-gradient(circle, rgba(245,158,11,0.3), transparent 70%); }
+  .price-label { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2px; }
+  .price-main { font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; color: var(--gold); letter-spacing: -0.02em; line-height: 1; }
+  .price-period { font-size: 10px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .monthly-badge { background: rgba(245,158,11,0.2); color: #FCD34D; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(245,158,11,0.35); }
+  .pricing-note { display: flex; align-items: center; gap: 5px; font-size: 9.5px; color: var(--muted); padding: 3mm 4mm; background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.12); border-radius: 6px; margin-bottom: 4mm; }
+  .cta-block { background: linear-gradient(135deg, #1a1000, #2d1e00); border-radius: 10px; padding: 5mm 8mm; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 16px rgba(245,158,11,0.2); margin-top: auto; }
+  .cta-title { font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 2px; }
+  .cta-sub { font-size: 10px; color: rgba(255,255,255,0.65); }
+  .cta-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .cta-wa { background: var(--amber); color: #fff; font-size: 10px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+  .cta-url { font-size: 9px; color: rgba(255,255,255,0.5); }
+  .footer-line { margin-top: 4mm; padding-top: 3mm; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-line span { font-size: 8.5px; color: var(--muted); }
+  .dots { display: flex; gap: 3px; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; }
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="page">
+  <header class="header">
+    <div class="brand">
+      <svg class="brand-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#FDF8F0" stroke="#E8A020" stroke-width="1.5"/><circle cx="18" cy="18" r="11" stroke="#4A9EF5" stroke-width="1.2" fill="none"/><path d="M18 7 L20 16 L18 18 L16 16 Z" fill="#E8A020"/><path d="M18 29 L16 20 L18 18 L20 20 Z" fill="#4A9EF5" opacity="0.6"/><circle cx="18" cy="18" r="2" fill="#1A1508"/></svg>
+      <div><div class="brand-name">Kalkan Info</div><div class="brand-sub">Dijital Ajans</div></div>
+    </div>
+    <div class="header-badge">İtibar Paketi</div>
+  </header>
+
+  <div class="hero">
+    <div class="product-tag"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="4" fill="#F59E0B"/></svg>Paket 07 · İtibar Yönetimi</div>
+    <h1 class="product-title">Yorum<br><span>Oto-Cevap</span></h1>
+    <p class="product-desc">Google ve sosyal medya yorumlarına otomatik profesyonel yanıtlar. Olumlu yorumlar teşvik edilir, olumsuzlar zararsız yönetilir — itibarınız her zaman korunur.</p>
+  </div>
+
+  <div class="icon-row">
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><path d="M4 8 C4 5.5 7 3.5 11 3.5 C15 3.5 18 5.5 18 8 C18 11 15 13 11 13 L7 18 L8 13 C5.5 12 4 10 4 8Z" stroke="#F59E0B" stroke-width="1.3" fill="rgba(245,158,11,0.08)" stroke-linejoin="round"/></svg>
+      <span class="stat-val">Otomatik</span><span class="stat-lbl">Yanıt Sistemi</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><path d="M11 4 L13 8.5 L18 9 L14.5 12.5 L15.5 18 L11 15.5 L6.5 18 L7.5 12.5 L4 9 L9 8.5 Z" stroke="#F59E0B" stroke-width="1.3" fill="rgba(245,158,11,0.1)" stroke-linejoin="round"/></svg>
+      <span class="stat-val">5 Yıldız</span><span class="stat-lbl">İtibar Hedefi</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#4A9EF5" stroke-width="1.4"/><path d="M8 11 L10 13 L14 9" stroke="#4ADE80" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="stat-val">Google</span><span class="stat-lbl">+ Sosyal Medya</span>
+    </div>
+    <div class="icon-stat">
+      <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="7" stroke="#E8A020" stroke-width="1.4"/><path d="M11 7 L11 11 L14 13" stroke="#E8A020" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="stat-val">24 Saat</span><span class="stat-lbl">İçinde Yanıt</span>
+    </div>
+  </div>
+
+  <div class="section-label">Örnek Senaryolar</div>
+  <div class="review-examples">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Amazing food and view, will come back!"</div>
+      <div class="review-reply"><strong>Cevap:</strong> Thank you! We're delighted... 🌊</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★</div>
+      <div class="review-text">"Servis yavaştı, ama yemek güzeldi."</div>
+      <div class="review-reply"><strong>Cevap:</strong> Değerli yorumunuz için teşekkürler...</div>
+    </div>
+  </div>
+
+  <div class="section-label">Pakete Dahil Hizmetler</div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M3 7 C3 5 6 3.5 9 3.5 C12 3.5 15 5 15 7 C15 9.5 12.5 11 9 11 L6 14.5 L6.5 11 C4.5 10 3 8.5 3 7Z" stroke="#F59E0B" stroke-width="1.2" fill="rgba(245,158,11,0.08)" stroke-linejoin="round"/></svg>
+      <div class="feature-text">Google Yorum Cevapları<span class="feature-sub">Türkçe ve İngilizce yanıt</span></div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><rect x="4" y="2" width="8" height="14" rx="2" stroke="#4A9EF5" stroke-width="1.3"/><circle cx="10.5" cy="5" r="1" fill="#EC4899"/></svg>
+      <div class="feature-text">Sosyal Medya Yanıtları<span class="feature-sub">IG yorum + mesaj takibi</span></div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M9 2 L10.5 6.5 L15.5 6.5 L11.5 9.5 L13 14 L9 11 L5 14 L6.5 9.5 L2.5 6.5 L7.5 6.5 Z" stroke="#F59E0B" stroke-width="1.2" fill="rgba(245,158,11,0.1)" stroke-linejoin="round"/></svg>
+      <div class="feature-text">Olumlu Yorum Teşviki<span class="feature-sub">Memnun müşteriyi yönlendir</span></div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M5 7 C5 5 6.8 3.5 9 3.5 C11.2 3.5 13 5 13 7 L13 9 L5 9 Z" stroke="#4A9EF5" stroke-width="1.3" stroke-linejoin="round"/><rect x="4" y="9" width="10" height="6" rx="1.5" stroke="#4A9EF5" stroke-width="1.3"/><circle cx="9" cy="12" r="1" fill="#4ADE80"/></svg>
+      <div class="feature-text">Olumsuz Yorum Yönetimi<span class="feature-sub">Zarar vermeden çözüme yönelt</span></div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><path d="M4 12 L4 7 M7 12 L7 4 M10 12 L10 6 M13 12 L13 2" stroke="#4ADE80" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <div class="feature-text">Aylık İtibar Raporu<span class="feature-sub">Puan trendi, yorum sayısı</span></div>
+    </div>
+    <div class="feature-item">
+      <svg class="feature-icon" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#0a9b8a" stroke-width="1.3"/><path d="M6 9 L8 11 L12 7" stroke="#4ADE80" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="feature-text">Ton Ayarlama<span class="feature-sub">İşletmenizin sesi, özel yanıt stili</span></div>
+    </div>
+  </div>
+
+  <!-- SCARCITY -->
+  <div class="scarcity-badge">
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" stroke="#E8A020" stroke-width="1"/><path d="M4 2 L4 4 L5.5 5" stroke="#E8A020" stroke-width="0.9" stroke-linecap="round"/></svg>
+    Sezon başı: sadece 3 işletmeye bu fiyat
+  </div>
+
+  <div class="pricing-block">
+    <div>
+      <div class="campaign-label">Size Özel Kampanya</div>
+      <div class="anchor-price">Liste fiyatı ₺1.500/ay</div>
+      <div class="price-main">₺1.000</div>
+      <div class="price-period">/ ay · İtibar her ay daha güçlü</div>
+      <div class="value-split">Günde ~₺33 · Google + sosyal tüm yorumlar kapsanır</div>
+    </div>
+    <div class="monthly-badge">Aylık Paket</div>
+  </div>
+
+  <div class="compare-banner">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#F59E0B" stroke-width="1.1"/><path d="M4 6.5 L6 8.5 L9.5 5" stroke="#4ADE80" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Ajanslar <strong>₺15.000 web + ₺25.000/ay</strong> istiyor — biz sezonluk fiyatlandırıyoruz, kışın ödeme yok.</span>
+  </div>
+
+  <div class="pricing-note">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#F59E0B" stroke-width="1.2"/><path d="M4 7 L6 9 L10 5" stroke="#4ADE80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Yanıtsız yorum güven kaybıdır. Profesyonel yanıt: sizi tercih ettiren etken. Yeni sezon öncesi başlayın.</span>
+  </div>
+
+  <div class="cta-block">
+    <div><div class="cta-title">İtibarınız Güvende</div><div class="cta-sub">Aktivasyon 2 iş günü · Size özel fiyatı konuşalım</div></div>
+    <div class="cta-right">
+      <div class="cta-wa">WhatsApp'tan yazın</div>
+      <div class="cta-url">kalkaninfo.com</div>
+    </div>
+  </div>
+
+  <div class="footer-line">
+    <span>Kalkan Info Dijital Ajans · kalkaninfo.com</span>
+    <div class="dots"><div class="dot" style="background:#4A9EF5;"></div><div class="dot" style="background:#E8A020;"></div><div class="dot" style="background:#F59E0B;"></div></div>
+  </div>
+</div>
+</body>
+</html>
