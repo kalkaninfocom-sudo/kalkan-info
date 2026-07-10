@@ -1051,6 +1051,40 @@
       document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
         a.href = a.href.split('?')[0] + '?text=' + msg;
       });
+
+      // ── Plausible tracking (cookieless) — hangi işletme açtı, ne tıkladı ──
+      // Not: event'ler Plausible panelinde "Goal" olarak eklenince grafiklenir (Teklif Açıldı / WhatsApp / Paket / E-posta).
+      var props = { isletme: biz };
+      if (T && T.kind) props.tur = T.kind;
+      window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+      var s = document.createElement('script');
+      s.defer = true;
+      s.setAttribute('data-domain', 'kalkaninfo.com');
+      s.src = 'https://plausible.io/js/script.manual.js';
+      s.onload = function () {
+        try { window.plausible('pageview'); } catch (e) {}
+        try { window.plausible('Teklif Açıldı', { props: props }); } catch (e) {}
+      };
+      document.head.appendChild(s);
+
+      function track(name, extra) {
+        var p = { isletme: biz };
+        for (var k in (extra || {})) p[k] = extra[k];
+        try { window.plausible(name, { props: p }); } catch (e) {}
+      }
+      document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+        a.addEventListener('click', function () { track('Teklif WhatsApp'); });
+      });
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+        a.addEventListener('click', function () { track('Teklif E-posta'); });
+      });
+      document.querySelectorAll('.plan-btn').forEach(function (a) {
+        a.addEventListener('click', function () {
+          var card = a.closest('.price-card');
+          var plan = card && card.querySelector('.plan-name');
+          track('Teklif Paket', { paket: plan ? plan.textContent.trim() : '' });
+        });
+      });
     })();
   </script>
 
