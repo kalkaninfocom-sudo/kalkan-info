@@ -74,11 +74,61 @@ async function gatherSignals() {
   return parts.join('\n\n') || '(taze sinyal bulunamadı — genel Kalkan bağlamıyla üret)';
 }
 
+// ─── Karakter dosyası (.claude/agents/kalkan-<id>.md) → system prompt (TEK KAYNAK) ───
+// "Arkası dolu" karakter tanımı tek yerde yaşar; prod (ücretsiz LLM) de dev (Claude Code subagent) de aynı karakteri kullanır.
+async function loadCharacterSystem(id, fallback) {
+  try {
+    const raw = await readFile(join(ROOT, '.claude', 'agents', `kalkan-${id}.md`), 'utf8');
+    const body = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '').trim(); // YAML frontmatter'ı at, gövde = system
+    return body.length > 40 ? body : fallback;
+  } catch { return fallback; }
+}
+
 // ─── Ajan hafızası (knowledge) → prompt enjeksiyonu ───
 async function agentKnowledge(id) {
   const k = await readJson(`data/agency/knowledge/${id}.json`, null);
   const lessons = (k?.lessons || []).slice(-3).map(l => l.summary).filter(Boolean);
   return lessons.length ? `\n\nÖĞRENDİKLERİN (kendi alanında son okumaların — bu bakışı uygula):\n- ${lessons.join('\n- ')}` : '';
+}
+
+// ─── Role-bazlı GERÇEK VERİ enjeksiyonu (BAĞLA): her ajan kendi işine ait taze, gerçek veriyi görür ───
+// Amaç: ajanlar havada beyin fırtınası yapmasın; hasat sepeti + gerçek IG metriği + etik durum girdisiyle karar versin.
+async function agentDataFeed(id) {
+  const feed = [];
+  const NEWS = ['muhabir', 'yayin-yonetmeni', 'news-verifier', 'magazin-editoru', 'gazete-sosyal', 'trend', 'director', 'reels-uretici', 'bulten-editoru', 'gazete-reel-en', 'hava-plan'];
+  const METRIC = ['analyst', 'growth', 'ads', 'director', 'trend'];
+  const GUARD = ['guard', 'kvkk-guardian', 'reklam-uyum'];
+
+  // Haber sepeti (gerçek hasat, pending) → haber/üretim ajanları işleyip geliştirebilir
+  if (NEWS.includes(id)) {
+    const lines = [];
+    for (const sc of ['kalkan', 'kas', 'bolge']) {
+      const b = await readJson(`data/agency/sepet/${sc}.json`, { items: [] });
+      for (const it of (b.items || []).filter(i => (i.status || 'pending') === 'pending').slice(0, 4))
+        lines.push(`- [${sc}→${it.placement || 'haberler'}] ${it.title}`);
+    }
+    if (lines.length) feed.push('HABER SEPETİ (gerçek, taze — sen bunları işleyip içeriğe çevirebilirsin):\n' + lines.join('\n'));
+  }
+  // Gerçek IG metrikleri → analiz/büyüme/reklam/karar ajanları
+  if (METRIC.includes(id)) {
+    const r = await readJson('data/agency/ig-report.json', null);
+    if (r?.son_30_gun) {
+      const p = r.profil || {}, s = r.son_30_gun || {};
+      const best = r.en_iyi ? `EN İYİ: "${String(r.en_iyi.baslik || r.en_iyi.caption || '').slice(0, 60)}". ` : '';
+      const worst = r.en_zayif ? `EN ZAYIF: "${String(r.en_zayif.baslik || r.en_zayif.caption || '').slice(0, 60)}". ` : '';
+      feed.push(`GERÇEK IG METRİĞİ (son 30g): takipçi ${p.takipci}, reach ${s.reach}, profil ziyareti ${s.profil_ziyareti}, web tık ${s.website_tik}, toplam etkileşim ${s.toplam_etkilesim}. ${best}${worst}→ önerini bu GERÇEK sayılara dayandır, uydurma.`);
+    }
+  }
+  // Etik/hassas durum → guard ajanları
+  if (GUARD.includes(id)) {
+    let held = 0;
+    for (const sc of ['kalkan', 'kas', 'bolge']) {
+      const b = await readJson(`data/agency/sepet/${sc}.json`, { items: [] });
+      held += (b.items || []).filter(i => i.status === 'hold').length;
+    }
+    feed.push(`ETİK DURUM: sepette ${held} hassas içerik 'hold' bekliyor (trajedi/kişisel veri → insan onayı ŞART, sansasyon YOK, kaynak atfı zorunlu). Bu kuralı denetle ve hatırlat.`);
+  }
+  return feed.length ? '\n\n★ SANA AİT GERÇEK VERİ (uydurma değil — kararını BUNA dayandır):\n' + feed.join('\n\n') : '';
 }
 
 const BRIEF_SCHEMA = `{"kalkan_guncel":"...","icerik_fikirleri":[{"tur":"gazete|reels","baslik":"...","aci":"..."}],"gelistirme":"..."}`;
@@ -103,9 +153,29 @@ function parseJson(text) {
   return null;
 }
 
+// Ajans direktifi — VİRAL Instagram içerik emri (data/agency/viral-brief.json). Düzenlenebilir tek kaynak.
+function buildViralDirective(vb) {
+  if (!vb || !vb.hedef) return '';
+  const d = vb.canli_veri_dersleri || {};
+  const f = vb.viral_formul || {};
+  return `\n★ AJANS DİREKTİFİ — VİRAL INSTAGRAM ★\n` +
+    `HEDEF: ${vb.hedef}\n` +
+    (d.ne_ise_yaradi ? `İŞE YARAYAN (canlı IG verisi): ${d.ne_ise_yaradi.join(' | ')}\n` : '') +
+    (d.ne_cokuyor ? `ÇÖKEN: ${d.ne_cokuyor.join(' | ')}\n` : '') +
+    (d.kitle_gercegi ? `KİTLE: ${d.kitle_gercegi}\n` : '') +
+    (f.hook ? `HOOK: ${f.hook}\n` : '') +
+    (f.cta_zorunlu ? `CTA (zorunlu): ${f.cta_zorunlu}\n` : '') +
+    (f.sharelik_acilar ? `PAYLAŞILABİLİR AÇILAR: ${f.sharelik_acilar.join(' · ')}\n` : '') +
+    (vb.gorsel_kaynak?.klasorler ? `GERÇEK GÖRSEL KAYNAĞI (uydurma yok): ${Object.values(vb.gorsel_kaynak.klasorler).join(' · ')}\n` : '') +
+    (vb.teknik_kurallar ? `TEKNİK: ${vb.teknik_kurallar.join(' · ')}\n` : '') +
+    `→ icerik_fikirleri üretirken bu direktife UY: Instagram-öncelikli, viral potansiyeli yüksek, gerçek Kalkan görseliyle eşleşen, CTA'lı içerik öner.`;
+}
+
 async function main() {
   console.log(`\n════ GÜNLÜK BRİFİNG — ${date} ════`);
   const agents = (await readJson('data/agency/agents.json', { agents: {} })).agents;
+  const viralDirective = buildViralDirective(await readJson('data/agency/viral-brief.json', null));
+  if (viralDirective) console.log('★ viral-brief.json yüklendi → tüm ajanlara enjekte edilecek');
   let ids = Object.keys(agents);
   if (ONLY) ids = ids.filter(id => ONLY.includes(id));
   console.log(`${ids.length} ajan · taze sinyaller toplanıyor...`);
@@ -117,11 +187,15 @@ async function main() {
   for (const id of ids) {
     const a = agents[id];
     const know = await agentKnowledge(id);
+    const dataFeed = await agentDataFeed(id);
+    const charSys = await loadCharacterSystem(id, a.system || ''); // zengin karakter (varsa) → system
     const task =
       `Bugün ${date}. Sen Kalkan turizm markası için içerik üreticisisin. Kalkan hakkında SÜREKLİ yeni haber çıkmaz — ` +
       `görevin taze haberi tekrarlamak DEĞİL; ROLÜNE göre ÖZGÜN, ZAMANSIZ (evergreen), ilgi çekici içerik üretmek.\n\n` +
-      `${KALKAN_PILLARS}\n\n` +
-      `(Opsiyonel taze sinyaller — YALNIZ gerçekten turistik/ilginç ise kullan; ihale/ÇED/meclis/bürokratik/rutin haberi ASLA kullanma):\n${signals}\n\n` +
+      `${KALKAN_PILLARS}\n` +
+      `${viralDirective}\n\n` +
+      `(Opsiyonel taze sinyaller — YALNIZ gerçekten turistik/ilginç ise kullan; ihale/ÇED/meclis/bürokratik/rutin haberi ASLA kullanma):\n${signals}` +
+      `${dataFeed}\n\n` +
       `ROLÜNE göre üret:\n` +
       `1) kalkan_guncel: alanında bugün işlenebilecek 1 taze VEYA zamansız açı (kısa; yoksa güçlü bir evergreen açı).\n` +
       `2) icerik_fikirleri: gazete VEYA reels için 1-2 ÖZGÜN içerik — her biri {tur, baslik (çekici başlık), aci (1 cümle: ne anlatır)}. ` +
@@ -136,7 +210,7 @@ async function main() {
     for (let attempt = 1; attempt <= 2 && !out; attempt++) {
       try {
         const res = await cheapLLM(task, {
-          system: (a.system || '') + know, json: true, maxTokens: 500, temperature: 0.4,
+          system: charSys + know, json: true, maxTokens: 500, temperature: 0.4,
           order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'], timeoutMs: 60000,
         });
         out = parseJson(res.text);
