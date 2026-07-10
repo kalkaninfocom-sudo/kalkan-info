@@ -66,7 +66,8 @@ jobs:
       # 28 ajan brifingi → Telegram + content-ideas.json
       - name: Ajan brifingi (28 agent)
         env:
-          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          CHEAP_LLM_ORDER: routellm,groq,cerebras,nvidia,gemini,claude
+          ROUTELLM_API_KEY: ${{ secrets.ROUTELLM_API_KEY }}
           NVIDIA_MODEL: meta/llama-3.1-8b-instruct
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}

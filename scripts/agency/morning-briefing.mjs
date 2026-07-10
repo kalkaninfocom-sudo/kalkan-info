@@ -211,7 +211,8 @@ async function main() {
       try {
         const res = await cheapLLM(task, {
           system: charSys + know, json: true, maxTokens: 500, temperature: 0.4,
-          order: ['groq', 'cerebras', 'nvidia', 'gemini', 'claude'], timeoutMs: 60000,
+          // Karakter ajanları KALİTE ister → RouteLLM (akıllı güçlü model) önce, ücretsiz fallback sonra.
+          order: (process.env.CHEAP_LLM_ORDER || 'routellm,groq,cerebras,nvidia,gemini,claude').split(','), timeoutMs: 60000,
         });
         out = parseJson(res.text);
         if (out) out._provider = res.provider;
