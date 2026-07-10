@@ -9,7 +9,7 @@ Durum kodları: ✅ bitti+canlı · 🔨 devam · ⏳ sıradaki · ⛔ bloke
 - ✅ **Kalimera %10 WhatsApp indirimi** — altın promo rozeti + WhatsApp mesajına indirim notu. `promo/promoI18n/promoWa` alanları (5 dil). (commit b006804)
 
 ## SIRADAKİ — İçerik Otomasyonu (gazete)
-- ⏳ **Kalimera günlük tanıtım (gazetede, her gün farklı)** — bir gün menü bilgisi, bir gün fotoğraflı, rotasyon. Mekanizma: `newspaper/generator/build.mjs` içine "günlük sponsor bölümü" + `data/kalimera-content.json` (N farklı içerik, gün indeksine göre döner). Gerçek menü/foto girdisi Berkay'dan.
+- ✅ **Kalimera günlük tanıtım (gazetede, her gün farklı)** — MEKANİZMA CANLI (commit b519a5b). `data/kalimera-content.json` (7 varyant, yılın gününe göre haftalık rotasyon) + `sources.mjs getKalimeraSponsor()` → sabah gazete reklam bloğu. Precedence: oto restoran < Kalimera (ücretsiz partner) < ücretli lead_sponsor. Demo Kaptan paused (slot açıldı). Doğrulandı: 4 farklı tarih = 4 farklı varyant. ⏳ **Berkay:** gerçek menü/foto girdisiyle variants'ı büyüt (şimdilik metin-tanıtım; "fotoğraflı gün" için variant'a görsel alanı + template desteği eklenebilir).
 - ⏳ **"Anlık Usta Hattı" reklamı** — hizmetler + gazetede reklam bloğu. Tesisat/elektrik/havuz acil → tek WhatsApp hattı. İçerik + görsel gerekiyor.
 - ⏳ **Her gün gerçek hizmet kişisi tanıtımı** — hizmetlerdeki gerçek ustaların günlük tanıtımı. GEREK: gerçek kişi ad/foto/onay (KVKK — açık rıza şart, memory kuralı). Veri: `data/hizmet-saglayicilari.json` genişletilir (kişi + rıza alanı).
 
