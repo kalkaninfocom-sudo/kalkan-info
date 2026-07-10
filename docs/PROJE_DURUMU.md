@@ -43,6 +43,7 @@
 | Gazete DB (editions/articles/ads/placements/qr_events, KVKK IP-hash + RLS) | ✅ | `supabase/` migration (`newspaper qr_slug pgcrypto`) | Migration yazıldı + commit'lendi | `supabase db push` (doğrulanmalı) |
 | Magazin arka yüz (gece hayatı) | ✅ | `newspaper/templates/magazine.html` | "Chocolate Club" hero + 3 kart + "Bu Akşam Program". Foto `file://` PDF-garanti | — (commit bekliyor) |
 | Gazete reklam satışı (gece hayatı sponsor) | ⏳ | `docs/GAZETE_PROJESI.md` | Planlandı, satış akışı kurulmadı | İş modeli kararı (Berkay) |
+| **Ajans → gazete editöryal köprüsü** | ✅ **FIX 2026-07-10** | `scripts/agency/gazete-editorial.mjs`, `scripts/newspaper-daily.mjs`, `.github/workflows/newspaper-daily.yml` | KÖK SORUN: daily pipeline editöryal agent'ı hiç çağırmıyordu → `gazete-today.json` bayat kalıp gazete her gün ham RSS'e düşüyordu. Fix: build'den önce editorial adımı (non-fatal) + workflow'a LLM secret'ları (GROQ/CEREBRAS/NVIDIA/GEMINI, hepsi mevcuttu). Local doğrulandı (groq, editöryal byline) | — (push sonrası bir sonraki 06:00 çalışmasında veya manuel `workflow_dispatch` ile canlı) |
 | RSS haber motoru (saatlik refresh) | ✅ | `scripts/news-aggregator.mjs`, `data/haberler.json` | Otomatik `chore(news)` commit'leri akıyor | — (çalışıyor) |
 | Bölgesel haber RSS genişletme | 🔨 | `scripts/news-aggregator.mjs` | Agent çalışıyor; RSS'i olan kaynaklar | — |
 
