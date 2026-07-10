@@ -45,6 +45,13 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
+          # Editöryal katman (ajans → gazete) için ücretsiz LLM sağlayıcıları.
+          # En az BİRİ GitHub secret olarak tanımlı olmalı (yoksa gazete ham RSS'e düşer).
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           FLAGS=""
           if [ "${{ github.event.inputs.no_social }}" = "true" ]; then FLAGS="--no-social"; fi
@@ -54,7 +61,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add newspaper/archive data/newspaper-index.json
+          git add newspaper/archive data/newspaper-index.json data/gazete-archive
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0

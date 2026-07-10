@@ -140,6 +140,11 @@ async function queueSocial(cards) {
 
 async function main() {
   console.log(`\n════ Kalkan Today — ${date} ════`);
+  // AJANS ↔ GAZETE köprüsü: editöryal katmanı build'den ÖNCE üret (data/gazete-today.json).
+  // sources.mjs.getNews() bugünün dosyasını bulursa agent metnini kullanır; yoksa/başarısızsa
+  // ham RSS'e düşer (graceful). Bu yüzden non-fatal — hata build'i durdurmaz.
+  const edOk = run(['scripts/agency/gazete-editorial.mjs', date], 'Editöryal katman (ajans → gazete)');
+  if (!edOk) console.warn('  ⚠ Editöryal agent başarısız — gazete ham RSS fallback ile üretilecek.');
   run(['newspaper/generator/build.mjs', 'morning', date], 'Ön Sayfa (morning) üret');
   run(['newspaper/generator/build.mjs', 'magazine', date], 'Arka Yüz (magazine) üret');
   run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle');
