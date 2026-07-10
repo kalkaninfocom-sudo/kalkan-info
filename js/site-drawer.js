@@ -83,6 +83,7 @@
             '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Doğa & Tarih</div>' +
             '<ul class="space-y-1.5">' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="plajlar.html">🏖️ Plajlar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="pazarlar.html">🧺 Pazarlar</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="turlar.html">⛵ Turlar</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="antik-kentler.html">🏛️ Antik Kentler</a></li>' +
             '</ul>' +

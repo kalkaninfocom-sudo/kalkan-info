@@ -2,6 +2,24 @@
   "note": "Küratörlü Kalkan mekan Instagram kullanıcı adları. SADECE PUBLIC Business/Creator hesapları business_discovery ile okunabilir (görsel + caption + tarih; 'video izleme' YOK). Kişisel/gizli hesaplar API'den okunamaz → o hesap otomatik atlanır. active:true olan 3 hesap CANLI test edildi (2026-07-07) ve public business doğrulandı. active:false olanlar en iyi tahmin — Berkay: GERÇEK IG kullanıcı adıyla düzelt ve `node scripts/ig-venue-watch.mjs --probe kullaniciadi` ile doğrulayınca active:true yap ('Invalid user id' = yanlış handle veya public business değil). | Otomatik doğrulandı 2026-07-07: business_discovery ile aktif/pasif işaretlendi.",
   "accounts": [
     {
+      "username": "kas.hakkinda",
+      "name": "Kaş Hakkında",
+      "category": "haber",
+      "active": true
+    },
+    {
+      "username": "kas.sondakika",
+      "name": "Kaş Son Dakika",
+      "category": "haber",
+      "active": true
+    },
+    {
+      "username": "kalkanhaberajansi",
+      "name": "Kalkan Haber Ajansı",
+      "category": "haber",
+      "active": true
+    },
+    {
       "username": "kalamarbeachclub",
       "name": "Kalamar Beach Club",
       "category": "plaj",
@@ -62,10 +80,10 @@
       "active": false
     },
     {
-      "username": "kasbelediyesi",
+      "username": "kasbelediye",
       "name": "Kaş Belediyesi",
       "category": "belediye",
-      "active": false
+      "active": true
     },
     {
       "username": "kalkanbaykalkan",

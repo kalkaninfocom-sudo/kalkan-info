@@ -44,6 +44,25 @@ jobs:
           IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
         run: node scripts/ig-venue-watch.mjs || echo "IG mekan izleme atlandı (secret yoksa normal)"
 
+      # Facebook kendi sayfa sinyalleri (FB secret varsa; yoksa graceful). Non-fatal.
+      - name: FB sayfa sinyalleri
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: node scripts/agency/fb-page-harvest.mjs || echo "FB sayfa hasadı atlandı (secret yoksa normal)"
+
+      # Sinyallerden HABER HASADI: 3-kararlı + psikoloji/marka/yerleştirme kapısı → sepetler (kalkan/kas/bolge). Non-fatal.
+      - name: IG haber hasadı (haber-değeri kapısı)
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/agency/ig-news-harvest.mjs || echo "IG haber hasadı atlandı (non-fatal)"
+
       # 28 ajan brifingi → Telegram + content-ideas.json
       - name: Ajan brifingi (28 agent)
         env:
@@ -62,7 +81,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json 2>/dev/null || true
+          git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json data/agency/sepet 2>/dev/null || true
           if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
           git commit -m "content(brifing): günlük ajans brifingi $(TZ=Europe/Istanbul date +%F) [auto]"
           git pull --rebase --autostash origin main || true
