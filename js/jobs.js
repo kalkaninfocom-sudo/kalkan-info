@@ -36,6 +36,8 @@ const TYPES = {
 
 const LANG_LABELS = { tr: 'TR', en: 'EN', de: 'DE', ru: 'RU', ar: 'AR', fr: 'FR' };
 
+const POSTER_TYPES = { kisi: 'Şahıs', isletme: 'İşletme' };
+
 // ----------------------------------------------------------------------------
 // Public API
 // ----------------------------------------------------------------------------
@@ -97,6 +99,7 @@ export async function createJob(data, ownerUid) {
       title:            data.title,
       category:         data.category,
       type:             data.type,
+      poster_type:      data.posterType ?? data.poster_type ?? 'isletme',
       location:         data.location,
       employer_name:    data.employerName ?? data.employer_name ?? '',
       contact_email:    data.contactEmail ?? data.contact_email ?? '',
@@ -248,7 +251,10 @@ export function renderJobCard(job) {
   return `
     <article class="card-base card-hover rounded-xl border border-sea-100 p-5 cursor-pointer" data-job-id="${_esc(job.id)}">
       <div class="flex items-center justify-between mb-3">
-        <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sea-600 bg-sea-50 px-2 py-1 rounded">${_esc(cat)}</span>
+        <div class="flex items-center gap-1.5">
+          <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sea-600 bg-sea-50 px-2 py-1 rounded">${_esc(cat)}</span>
+          ${job.poster_type === 'kisi' ? `<span class="inline-flex items-center text-[10px] uppercase tracking-wider font-bold text-sun-600 bg-sun-400/10 border border-sun-400/30 px-2 py-1 rounded">${_esc(POSTER_TYPES.kisi)}</span>` : ''}
+        </div>
         <span class="text-[11px] text-sea-500">${_esc(date)}</span>
       </div>
       <h3 class="font-display font-extrabold text-base text-sea-800 leading-tight mb-2">${_esc(job.title)}</h3>
@@ -292,6 +298,7 @@ export function renderJobDetail(job) {
         <div class="flex items-start gap-3 mb-3">
           <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sea-600 bg-white border border-sea-200 px-2.5 py-1 rounded">${_esc(cat)}</span>
           <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sun-600 bg-sun-400/10 border border-sun-400/30 px-2.5 py-1 rounded">${_esc(type)}</span>
+          <span class="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-sea-600 bg-white border border-sea-200 px-2.5 py-1 rounded">${_esc(POSTER_TYPES[job.poster_type] || POSTER_TYPES.isletme)}</span>
         </div>
         <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-800 leading-tight mb-2">${_esc(job.title)}</h1>
         <p class="text-sea-600 font-semibold">${_esc(employer)}</p>

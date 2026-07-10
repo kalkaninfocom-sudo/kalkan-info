@@ -20,6 +20,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
   const CATEGORIES = { restoran:'Restoran & Cafe', villa:'Villa & Konaklama', otel:'Otel & Pansiyon', tur:'Tekne & Tur', hizmet:'Hizmet & Bakım', ofis:'Ofis & Yönetim', diger:'Diğer' };
   const TYPES = { full:'Tam zamanlı', part:'Yarı zamanlı', seasonal:'Sezonluk', freelance:'Serbest' };
   const LANG = { tr:'TR', en:'EN', de:'DE', ru:'RU', ar:'AR', fr:'FR' };
+  const POSTER = { kisi:'Şahıs', isletme:'İşletme' };
   const PROFILE_KEY = 'kalkan_candidate_v1';
 
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
@@ -164,7 +165,10 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
             '<div class="text-[10px] font-bold uppercase tracking-wider text-sun-500">', esc(CATEGORIES[j.category] || j.category), '</div>',
             '<h3 class="font-display font-extrabold text-sea-800 text-base leading-tight mt-1 line-clamp-2">', esc(j.title), '</h3>',
           '</div>',
-          '<span class="flex-shrink-0 text-[10px] font-bold bg-sea-50 text-sea-700 px-2 py-1 rounded-full whitespace-nowrap">', esc(TYPES[j.type] || j.type), '</span>',
+          '<div class="flex-shrink-0 flex flex-col items-end gap-1">',
+            '<span class="text-[10px] font-bold bg-sea-50 text-sea-700 px-2 py-1 rounded-full whitespace-nowrap">', esc(TYPES[j.type] || j.type), '</span>',
+            j.poster_type === 'kisi' ? '<span class="text-[10px] font-bold bg-sun-400/10 text-sun-600 border border-sun-400/30 px-2 py-0.5 rounded-full whitespace-nowrap">Şahıs</span>' : '',
+          '</div>',
         '</div>',
         '<div class="text-xs text-sea-700/70 flex flex-wrap items-center gap-x-2 gap-y-1"><span>📍 ', esc(j.location), '</span><span class="text-sea-300">·</span><span>', esc(employer), '</span></div>',
         '<p class="text-sm text-sea-700/80 line-clamp-2">', esc(desc), '</p>',
@@ -194,7 +198,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
     const fullUrl = `https://kalkaninfo.com/ilan/${j.slug}`;
     return [
       '<div class="bg-white rounded-2xl p-6 md:p-8">',
-        '<div class="text-[11px] font-bold uppercase tracking-wider text-sun-500">', esc(CATEGORIES[j.category] || j.category), ' · ', esc(TYPES[j.type] || j.type), '</div>',
+        '<div class="text-[11px] font-bold uppercase tracking-wider text-sun-500">', esc(CATEGORIES[j.category] || j.category), ' · ', esc(TYPES[j.type] || j.type), ' · ', esc(POSTER[j.poster_type] || POSTER.isletme), '</div>',
         '<h2 class="font-display font-extrabold text-sea-800 text-2xl md:text-3xl mt-2">', esc(j.title), '</h2>',
         '<div class="text-sea-700/70 text-sm mt-1">', esc(employer), ' · 📍 ', esc(j.location), '</div>',
         '<div class="grid sm:grid-cols-3 gap-3 mt-5">',
@@ -246,6 +250,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
       category: els.filterCat ? els.filterCat.value : 'all',
       type: els.filterType ? els.filterType.value : 'all',
       language: els.filterLang ? els.filterLang.value : 'all',
+      poster: els.filterPoster ? els.filterPoster.value : 'all',
     };
   }
 
@@ -261,6 +266,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
       if (f.category && f.category !== 'all' && j.category !== f.category) return false;
       if (f.type && f.type !== 'all' && j.type !== f.type) return false;
       if (f.language && f.language !== 'all' && !(j.languages || []).includes(f.language)) return false;
+      if (f.poster && f.poster !== 'all' && (j.poster_type || 'isletme') !== f.poster) return false;
       return true;
     });
 
@@ -296,7 +302,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
     const filterBar = document.getElementById('filter-language')?.closest('section');
     if (filterBar && !document.getElementById('candidate-pill')) {
       const bar = document.createElement('div');
-      bar.className = 'max-w-7xl mx-auto px-4 -mt-2 mb-4 flex items-center gap-2 text-xs';
+      bar.className = 'max-w-7xl mx-auto px-4 mt-4 mb-5 flex flex-wrap items-center gap-2 text-xs';
       bar.innerHTML = `
         <button id="candidate-pill" type="button" class="inline-flex items-center gap-2 border font-bold px-3 py-1.5 rounded-full transition bg-sun-50 text-sun-700 border-sun-200 hover:bg-sun-100">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
@@ -316,6 +322,7 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
       filterCat: $('filter-category'),
       filterType: $('filter-type'),
       filterLang: $('filter-language'),
+      filterPoster: $('filter-poster'),
       clearBtn: $('clear-filters'),
     };
     const jobModal = $('job-modal');
@@ -363,11 +370,13 @@ import { listJobs, getJob, renderJobDetail } from './jobs.js';
     if (els.filterCat) els.filterCat.addEventListener('change', () => render(els));
     if (els.filterType) els.filterType.addEventListener('change', () => render(els));
     if (els.filterLang) els.filterLang.addEventListener('change', () => render(els));
+    if (els.filterPoster) els.filterPoster.addEventListener('change', () => render(els));
     if (els.clearBtn) els.clearBtn.addEventListener('click', () => {
       if (els.searchInput) els.searchInput.value = '';
       if (els.filterCat) els.filterCat.value = 'all';
       if (els.filterType) els.filterType.value = 'all';
       if (els.filterLang) els.filterLang.value = 'all';
+      if (els.filterPoster) els.filterPoster.value = 'all';
       render(els);
     });
 

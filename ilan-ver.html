@@ -185,6 +185,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="text-sea-600 text-sm mb-4" data-en="The title and general information for your listing." data-de="Der Titel und allgemeine Informationen zu Ihrem Angebot." data-ru="Название и общая информация вашего объявления." data-fr="Le titre et les informations générales de votre annonce.">İlanın başlığı ve genel bilgileri.</p>
 
       <div>
+        <label class="ob-label" data-en="Who is posting? *" data-de="Wer inseriert? *" data-ru="Кто размещает? *" data-fr="Qui publie ? *">İlanı Kim Veriyor? *</label>
+        <div class="grid grid-cols-2 gap-2.5 max-w-md">
+          <label class="type-card poster-card active">
+            <input type="radio" name="posterType" value="isletme" class="hidden poster-radio" checked />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><path d="M3 21h18M6 21V7l6-4 6 4v14"/><path d="M9 9h.01M9 12h.01M9 15h.01M15 9h.01M15 12h.01M15 15h.01"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Business" data-de="Unternehmen" data-ru="Компания" data-fr="Entreprise">İşletme</div>
+          </label>
+          <label class="type-card poster-card">
+            <input type="radio" name="posterType" value="kisi" class="hidden poster-radio" />
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Individual" data-de="Privatperson" data-ru="Частное лицо" data-fr="Particulier">Şahıs</div>
+          </label>
+        </div>
+        <div class="ob-help" data-en="Business (restaurant, villa, agency…) or an individual hiring privately." data-de="Unternehmen (Restaurant, Villa, Agentur…) oder eine Privatperson." data-ru="Компания (ресторан, вилла, агентство…) или частное лицо." data-fr="Entreprise (restaurant, villa, agence…) ou un particulier.">İşletme (restoran, villa, acente…) veya bireysel işe alan biri.</div>
+      </div>
+
+      <div>
         <label class="ob-label" for="title" data-en="Position Title *" data-de="Positionstitel *" data-ru="Название должности *" data-fr="Titre du poste *">Pozisyon Başlığı *</label>
         <input id="title" name="title" required maxlength="100" class="ob-input" placeholder="Örn. Restoran Garson — Sezonluk" data-en-placeholder="e.g. Restaurant Waiter — Seasonal" / data-de-placeholder="z. B. Restaurant-Kellner — Saisonal" data-ru-placeholder="например: Официант ресторана — Сезонная работа" data-fr-placeholder="p. ex. Serveur de restaurant — Saisonnier">
         <div class="ob-help" data-en="Keep it clear and searchable. Position + type (seasonal, full-time, etc.)." data-de="Halten Sie es klar und suchbar. Position + Typ (saisonal, Vollzeit, usw.)." data-ru="Делайте ясно и поддающимся поиску. Должность + тип (сезонная, полная занятость и т. д.)." data-fr="Restez clair et recherchable. Poste + type (saisonnier, temps plein, etc.).">Net ve aranabilir olsun. Pozisyon + tip (sezonluk, tam zamanlı vs.).</div>
@@ -416,7 +437,8 @@ const steps = [...document.querySelectorAll('.step-fieldset')];
 const dots = [...document.querySelectorAll('.step-dot')];
 const lines = [...document.querySelectorAll('.step-line')];
 const langChips = [...document.querySelectorAll('.lang-chip')];
-const typeCards = [...document.querySelectorAll('.type-card')];
+const typeCards = [...document.querySelectorAll('.type-card:not(.poster-card)')];
+const posterCards = [...document.querySelectorAll('.poster-card')];
 const authWarning = document.getElementById('auth-warning');
 const submitErr = document.getElementById('submit-error');
 const submitOk = document.getElementById('submit-success');
@@ -478,6 +500,14 @@ async function loadEditJob() {
 function prefillForm(job) {
   if (form.title) form.title.value = job.title || '';
   if (form.category) form.category.value = job.category || '';
+  // İlan veren tipi (radio + poster-card görseli)
+  const posterVal = job.poster_type || 'isletme';
+  const posterRadio = form.querySelector(`input[name=posterType][value="${posterVal}"]`);
+  if (posterRadio) {
+    posterRadio.checked = true;
+    posterCards.forEach(c => c.classList.remove('active'));
+    posterRadio.closest('.poster-card')?.classList.add('active');
+  }
   if (form.location) form.location.value = job.location || '';
   if (form.employerName) form.employerName.value = job.employer_name || '';
   // İstihdam tipi (radio + type-card görseli)
@@ -583,6 +613,16 @@ typeCards.forEach(card => {
   });
 });
 
+// ----- Poster type cards (kişi / işletme)
+posterCards.forEach(card => {
+  const radio = card.querySelector('.poster-radio');
+  card.addEventListener('click', () => {
+    posterCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    radio.checked = true;
+  });
+});
+
 // ----- Preview
 function buildJobObject() {
   const fd = new FormData(form);
@@ -597,6 +637,7 @@ function buildJobObject() {
     title: fd.get('title')?.trim(),
     category: fd.get('category'),
     type: fd.get('type'),
+    posterType: fd.get('posterType') || 'isletme',
     location: fd.get('location')?.trim(),
     employerName: fd.get('employerName')?.trim(),
     descriptionHtml: descHtml,
@@ -656,6 +697,7 @@ form.addEventListener('submit', async (e) => {
       title:            data.title,
       category:         data.category,
       type:             data.type,
+      poster_type:      data.posterType,
       location:         data.location,
       employer_name:    data.employerName,
       contact_email:    data.contactEmail,

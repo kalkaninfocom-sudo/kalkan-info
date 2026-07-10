@@ -190,7 +190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============== FILTER BAR ============== -->
 <section id="listeleme" class="filter-sticky bg-white border-b border-sea-100 z-30 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 py-4">
-    <div class="flex flex-col md:flex-row md:items-center gap-3">
+    <div class="flex flex-col md:flex-row md:flex-wrap md:items-center gap-3">
       <!-- Arama -->
       <div class="relative flex-1">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5d97c4" stroke-width="2" class="absolute left-3 top-1/2 -translate-y-1/2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -226,6 +226,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option value="ru" data-en="Russian" data-de="Russisch" data-ru="Русский" data-fr="Russe">Rusça</option>
         <option value="ar" data-en="Arabic" data-de="Arabisch" data-ru="Арабский" data-fr="Arabe">Arapça</option>
         <option value="fr" data-en="French" data-de="Französisch" data-ru="Французский" data-fr="Français">Fransızca</option>
+      </select>
+
+      <!-- İlan veren -->
+      <select id="filter-poster" class="px-3 py-2.5 border border-sea-200 rounded-lg text-sm bg-white focus:border-sea-500 focus:ring-2 focus:ring-sea-500/15 outline-none">
+        <option value="all" data-en="All Posters" data-de="Alle Inserenten" data-ru="Все" data-fr="Tous">Herkes</option>
+        <option value="isletme" data-en="Business" data-de="Unternehmen" data-ru="Компания" data-fr="Entreprise">İşletme</option>
+        <option value="kisi" data-en="Individual" data-de="Privatperson" data-ru="Частное лицо" data-fr="Particulier">Şahıs</option>
       </select>
     </div>
 
