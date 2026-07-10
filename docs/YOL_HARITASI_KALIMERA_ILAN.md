@@ -17,11 +17,11 @@ Durum kodları: ✅ bitti+canlı · 🔨 devam · ⏳ sıradaki · ⛔ bloke
 ŞU AN VAR: `register.html` + `login.html` + `profil.html` + `js/auth.js` (Supabase Auth, users tablosu, soft-delete, dil/pazarlama tercihi) · `ilan-ver.html` (giriş zorunlu, `jobs` tablosuna ekler) · `ilanlar.html` (listeleme+filtre) · `api/ilan-page.js`/`job-decision.js`/`jobs-sitemap.js` · tablolar: jobs, job_applications, providers, users, reviews.
 
 NE EKSİK / YAPILACAK:
-- ⏳ **"İlanlarım" yönetim sayfası** — giriş yapan kullanıcı kendi ilanlarını görür, **düzenler, kaldırır**. (En büyük gerçek boşluk. `js/lost-found.js`'te delete kalıbı var, örnek alınır.)
-- ⏳ **İşletme ilanı tipi** — kişi vs işletme ayrımı (`jobs` tablosuna `poster_type` alanı + ilan-ver formunda seçim).
-- ⏳ **RLS güvenlik** — kullanıcı SADECE kendi ilanını düzenler/siler (Supabase RLS policy `auth.uid() = user_id`). KVKK/güvenlik kritik.
-- ⏳ **Layout düzeltme** — `ilanlar.html` "görünüm biraz kayık" (görsel inceleme + grid/responsive fix).
-- ⏳ **Uçtan uca test** — kayıt → giriş → ilan ver → düzenle → sil → çıkış. Son kullanıcıya sunmadan önce.
+- ✅ **"İlanlarım" yönetim sayfası** — düzenle/sil canlı. (commit deaf6ed)
+- ✅ **İşletme ilanı tipi (poster_type)** — kişi/işletme radio + kart/detay rozeti + filtre. (commit f7d69d4) ⛔ **Berkay: `supabase db push` çalıştır** (migration remote'ta yok; kolon eklenmeden yeni ilan gönderiminde poster_type insert hatası olabilir).
+- ✅ **RLS güvenlik** — `jobs_owner_insert/update/delete` (`auth.uid() = owner_id`) initial_schema'da zaten mevcut + client `.eq('owner_id')` savunması. Doğrulandı.
+- ✅ **Layout düzeltme** — aday profili banner `-mt-2` yapışıklığı giderildi; filtre satırı `md:flex-wrap` (4. filtre dar ekranda kesilmiyor). (commit f7d69d4)
+- ⏳ **Uçtan uca test** — kayıt → giriş → ilan ver (poster_type dahil) → düzenle → sil → çıkış. Migration push'landıktan sonra canlıda doğrula. (Local Supabase key'leri geride → local'de 0 ilan; test prod'da yapılmalı.)
 
 ## Kısıtlar (unutma)
 - `api/*.js` = **12/12 DOLU** — yeni Vercel serverless function EKLENEMEZ. Yeni backend = Supabase Edge Function veya doğrudan supabase-js client.
