@@ -108,6 +108,65 @@ function buildFacts(b) {
   };
 }
 
+// ── tüm işletmeler → tek JSON (satis-demo/teklif-data.json) ──
+// index.html?slug=<slug> bu dosyadan okuyup kişiselleştirir; işletme başına ayrı HTML gerekmez.
+async function buildDataFile(rows) {
+  const map = {};
+  for (const b of rows) {
+    const slug = slugify(b.name);
+    if (!slug || map[slug]) continue;
+    map[slug] = { name: b.name, kind: b._kind, facts: buildFacts(b) };
+  }
+  await writeFile(join(__dirname, 'teklif-data.json'), JSON.stringify(map), 'utf8');
+  return map;
+}
+
+// ── satış paneli: işletme seç → teklif linkini kopyala/gönder ──
+async function buildPanel(rows) {
+  const items = rows
+    .map(b => ({ name: b.name, slug: slugify(b.name), kind: b._kind, rating: b.rating || '', reviews: b.reviewCount || 0 }))
+    .filter(x => x.slug)
+    .sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
+  const rowsJson = JSON.stringify(items);
+  const html = `<!DOCTYPE html>
+<html lang="tr"><head><meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Satış Paneli · Teklif Gönder</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:Inter,system-ui,sans-serif;background:#fdf8f0;color:#1a1208}</style></head>
+<body class="p-6 max-w-3xl mx-auto">
+<h1 class="text-2xl font-extrabold mb-1">Satış Paneli</h1>
+<p class="text-sm text-stone-500 mb-4">İşletme ara → <b>Teklifi Aç</b> önizle, <b>Linki Kopyala</b> ile WhatsApp'tan gönder. ${items.length} işletme.</p>
+<input id="q" placeholder="İşletme ara…" class="w-full border border-amber-300 rounded-lg px-4 py-3 mb-4 outline-none focus:ring-2 focus:ring-amber-400" />
+<div id="list" class="space-y-2"></div>
+<script>
+const ITEMS = ${rowsJson};
+const base = location.origin + location.pathname.replace(/teklif\\/(index\\.html)?$/, '');
+function linkFor(slug){ return base + '?slug=' + slug; }
+function render(f){
+  const q=(f||'').toLocaleLowerCase('tr');
+  const list=document.getElementById('list');
+  list.innerHTML = ITEMS.filter(x=>!q||x.name.toLocaleLowerCase('tr').includes(q)).slice(0,60).map(x=>
+    '<div class="flex items-center gap-3 bg-white border border-amber-100 rounded-lg px-4 py-3 shadow-sm">'
+    +'<div class="flex-1 min-w-0"><div class="font-semibold truncate">'+x.name+'</div>'
+    +'<div class="text-xs text-stone-500">'+x.kind+(x.reviews?' · '+x.reviews+' yorum':'')+(x.rating?' · ⭐'+x.rating:'')+'</div></div>'
+    +'<a href="'+linkFor(x.slug)+'" target="_blank" class="text-sm font-semibold text-teal-700 border border-teal-600 rounded-md px-3 py-1.5 hover:bg-teal-50">Teklifi Aç</a>'
+    +'<button data-l="'+linkFor(x.slug)+'" class="cp text-sm font-semibold text-white bg-amber-500 rounded-md px-3 py-1.5 hover:bg-amber-600">Linki Kopyala</button>'
+    +'</div>').join('') || '<p class="text-stone-400">Sonuç yok.</p>';
+}
+document.getElementById('q').addEventListener('input',e=>render(e.target.value));
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.cp'); if(!b)return;
+  navigator.clipboard.writeText(b.dataset.l).then(()=>{b.textContent='Kopyalandı ✓';setTimeout(()=>b.textContent='Linki Kopyala',1200);});
+});
+render('');
+</script>
+</body></html>`;
+  await mkdir(OUT_DIR, { recursive: true });
+  await writeFile(join(OUT_DIR, 'index.html'), html, 'utf8');
+  return items.length;
+}
+
 // ── ana ──────────────────────────────────────────────────────
 async function main() {
   const argv = process.argv.slice(2);
@@ -115,6 +174,17 @@ async function main() {
   const query = argv.filter(a => !a.startsWith('--')).join(' ').trim();
 
   const rows = await loadAll();
+
+  // --all / --data / --panel: tüm işletmeler için veri + panel üret (işletme başına HTML YOK)
+  if (argv.includes('--all') || argv.includes('--data') || argv.includes('--panel')) {
+    const map = await buildDataFile(rows);
+    const n = await buildPanel(rows);
+    console.log(`✓ teklif-data.json → ${Object.keys(map).length} işletme`);
+    console.log(`✓ Satış paneli → satis-demo/teklif/index.html (${n} işletme)`);
+    console.log(`  Panel: https://kalkaninfo.com/satis-demo/teklif/`);
+    console.log(`  Teklif: https://kalkaninfo.com/satis-demo/?slug=<slug>`);
+    return;
+  }
 
   if (listMode) {
     const q = norm(query);

@@ -1014,9 +1014,8 @@
     (function () {
       // __TEKLIF__ = build-teklif.mjs'nin enjekte ettiği GERÇEK işletme verisi (varsa öncelikli).
       // Yoksa ?isletme=Ad query param ile sadece isim kişiselleştirmesi.
-      var T = window.__TEKLIF__ || null;
-      var params = new URLSearchParams(location.search);
-      var biz = (T && T.name) || (params.get('isletme') || params.get('business') || '').trim();
+      function apply(T) {
+      var biz = (T && T.name) || '';
       if (!biz) return;
 
       function setText(id, txt) { var el = document.getElementById(id); if (el && txt != null) el.innerHTML = txt; }
@@ -1083,6 +1082,21 @@
           track('Teklif Paket', { paket: plan ? plan.textContent.trim() : '' });
         });
       });
+      } // end apply(T)
+
+      // ── Kaynak seçimi: gömülü __TEKLIF__ > ?slug= (teklif-data.json) > ?isletme= (sadece isim) ──
+      var params = new URLSearchParams(location.search);
+      if (window.__TEKLIF__) {
+        apply(window.__TEKLIF__);
+      } else if ((params.get('slug') || '').trim()) {
+        fetch('teklif-data.json')
+          .then(function (r) { return r.json(); })
+          .then(function (m) { var T = m[(params.get('slug') || '').trim()]; if (T) apply(T); })
+          .catch(function () {});
+      } else {
+        var nm = (params.get('isletme') || params.get('business') || '').trim();
+        if (nm) apply({ name: nm });
+      }
     })();
   </script>
 
