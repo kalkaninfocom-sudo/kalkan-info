@@ -92,6 +92,15 @@ function esc(s) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// RSS başlıklarındaki kaynak ekini temizle: " - Yeni Alanya", " – SonDakika", " -...", sonda " -"
+// Tire ETRAFINDA boşluk ŞART → "Kalkan-Kaş" gibi bileşik adlar korunur.
+function cleanHeadline(s) {
+  return String(s == null ? '' : s)
+    .replace(/\s+[-–—]\s+[^\s-–—]+(?:\s+[^\s-–—]+){0,2}\s*$/, '') // " - Kaynak" (≤3 kelime)
+    .replace(/\s+[-–—][\s.…]*$/, '')                    // sonda " -", " -...", " –…"
+    .trim();
+}
+
 // Düz metni 1-2 paragrafa böl (manşet gövdesi için)
 function toParagraphs(text, maxParas = 2, maxChars = 620) {
   if (!text) return '';
@@ -226,8 +235,11 @@ export async function getNews() {
 
   const out = {};
   if (lead) {
-    out.lead_headline = lead.title;
-    out.lead_deck = trimWords(lead.summary, 180);
+    out.lead_headline = cleanHeadline(lead.title);
+    // Deck manşeti tekrarlıyorsa (RSS'te summary≈title) gizle; değilse özet
+    const deck = trimWords(lead.summary, 180);
+    const norm = (s) => String(s || '').toLocaleLowerCase('tr').replace(/[^a-zçğıöşü0-9]/gi, '');
+    out.lead_deck = norm(deck).startsWith(norm(out.lead_headline).slice(0, 40)) ? '' : deck;
     out.lead_byline = `${lead.source || 'Kalkan Today'} · ${formatDateLong(lead.date)}`;
     out.lead_body = toParagraphs(lead.content || lead.summary);
     if (lead.image) out.lead_image = lead.image;
@@ -386,6 +398,116 @@ export async function getPharmacy() {
   };
 }
 
+// ─── 5) ÖN-YÜZ ZENGİNLEŞTİRME (referans broadsheet düzeni) ───
+// Günün başlıkları, gezilecek yerler, haftanın restoranları (foto+puan), Google puanları,
+// köşe yazısı, yarın programı, NEOMA + dalış reklam blokları → hepsi ön-render HTML.
+function starRow(rating) {
+  const full = Math.round(Number(rating) || 0);
+  return '★★★★★'.slice(0, full) + '<span class="star-empty">' + '★★★★★'.slice(full) + '</span>';
+}
+
+// Evergreen köşe yazısı havuzu (gerçek Kalkan bilgisi — rotasyonla)
+const FEATURES = [
+  { title: 'KORSAN KALKAN: TARİHİN, DOĞANIN VE ÖZGÜRLÜĞÜN KENTİ',
+    body: 'Kalkan, yüzyıllar boyunca korsanlara ev sahipliği yapmış, stratejik konumu ve doğal limanıyla Akdeniz’in en önemli noktalarından biri olmuştur. Korsanlar burada sadece saklanmadı; ticaret yaptı, dostluklar kurdu ve Kalkan’ın çok kültürlü ruhunu şekillendirdi. Bugün hâlâ bu ruh, dar sokaklarında, taş evlerinde ve tertemiz denizinde yaşamaya devam ediyor. Kalkan, geçmişin izlerini taşıyan özgür ruhlu bir kenttir.' },
+  { title: 'KALKAN’IN TAŞ EVLERİ: BİR MİMARİ MİRAS',
+    body: 'Kalkan’ın yamaçlara sıralanmış beyaz badanalı taş evleri, kentin en tanınan simgesidir. Rum ve Türk el işçiliğinin buluştuğu bu evler, ahşap balkonları ve begonvilleriyle limana bakar. Koruma altındaki tarihî doku, Kalkan’a butik bir kimlik kazandırır. Her sokak, denize inen bir hikâye anlatır.' },
+  { title: 'LİKYA’NIN KAPISI: KALKAN VE ÇEVRESİ',
+    body: 'Kalkan, antik Likya uygarlığının kalbine açılan bir kapıdır. Patara, Letoon ve Ksanthos gibi UNESCO mirası kentler bir saatlik mesafededir. Kaputaş’ın turkuaz koyundan Saklıkent’in serin kanyonuna, doğa ile tarih burada iç içe geçer. Kalkan’dan çıkan her yol, binlerce yıllık bir geçmişe uzanır.' },
+];
+
+export async function getFrontExtras(iso) {
+  const out = {};
+  const day = iso || new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
+  const history = await loadHistory();
+  const seed = Number(issueOf(day));
+
+  // ── Günün Başlıkları: haber başlıklarından kısa liste ──
+  const news = await readJson('haberler.json');
+  const heads = [];
+  if (news?.items?.length) {
+    const ranked = [...news.items].map(it => ({ it, s: newsScore(it) })).sort((a, b) => b.s - a.s);
+    for (const { it, s } of ranked) { if (s > -3 && it.title) heads.push(cleanHeadline(trimWords(it.title, 74))); if (heads.length >= 6) break; }
+  }
+  while (heads.length < 5) heads.push(['Yaz sezonu hareketlendi', 'Likya yürüyüş rotaları ilgi görüyor', 'Kalkan pazarında taze ürünler tezgâhta', 'Tekne turlarına yoğun ilgi', 'Antik kentler ziyaretçi akınına uğruyor'][heads.length] || 'Kalkan’da bugün');
+  out.headlines_list = heads.slice(0, 6).map(h => `<li>${esc(h)}</li>`).join('\n');
+
+  // ── Gezilecek Yerler (gerçek, curated) ──
+  const spots = ['Kalkan Halk Plajı', 'Kaputaş Plajı', 'Patara Antik Kenti', 'Saklıkent Kanyonu', 'İslamlar Köyü'];
+  out.gezilecek_list = spots.map(s => `<li>${esc(s)}</li>`).join('\n');
+
+  // ── Köşe yazısı (evergreen, rotasyon) ──
+  const feat = FEATURES[seed % FEATURES.length];
+  out.feature_title = feat.title;
+  out.feature_body = feat.body;
+
+  // ── Haftanın Restoranları (top-5 foto+puan, rotasyonlu havuz) ──
+  const rdata = await readJson('restoranlar.json');
+  const ritems = rdata?.items || [];
+  const photoOf = (r) => (r.gallery && r.gallery[0]) || r.image || '';
+  const ratedPhoto = ritems
+    .filter(r => r.rating && r.reviewCount >= 25 && photoOf(r))
+    .sort((a, b) => b.rating - a.rating || (b.reviewCount || 0) - (a.reviewCount || 0));
+  // Üst havuzdan gün-tabanlı pencere (çeşitlilik) — ilk 20 içinden 5'lik kayan pencere
+  const topPool = ratedPhoto.slice(0, 20);
+  const startIdx = topPool.length > 5 ? (seed % (topPool.length - 4)) : 0;
+  const top5 = topPool.slice(startIdx, startIdx + 5);
+  out.resto_list = top5.map((r, i) => {
+    const nm = r.name.replace(/\s*[·|].*$/, '').trim();
+    return `<li class="resto-item">
+      <span class="rank">${i + 1}</span>
+      <div class="thumb" style="background-image:url('${esc(photoOf(r))}')"></div>
+      <div class="resto-info">
+        <div class="resto-name">${esc(trimWords(nm, 26))}</div>
+        <div class="resto-loc">${esc(trimWords(r.location || r.category || 'Kalkan', 24))}</div>
+        <div class="stars">${starRow(r.rating)} <span class="rate-num">${r.rating}</span></div>
+      </div>
+    </li>`;
+  }).join('\n');
+
+  // ── Google puanları (grounded: gerçek puan + değerlendirme sayısı, uydurma isim YOK) ──
+  const rev5 = topPool.slice((startIdx + 5) % Math.max(1, topPool.length)).concat(topPool).slice(0, 3);
+  out.reviews_list = rev5.map(r => {
+    const nm = r.name.replace(/\s*[·|].*$/, '').trim();
+    const line = r.summary ? trimWords(r.summary, 90)
+      : `${r.category || 'Restoran'}${r.location ? ' · ' + trimWords(r.location, 30) : ''} — ziyaretçilerin beğenisini topluyor.`;
+    return `<div class="review">
+      <div class="rev-head"><span class="rev-name">${esc(trimWords(nm, 24))}</span> <span class="stars sm">${starRow(r.rating)}</span> <span class="rate-num">${r.rating}</span></div>
+      <p class="rev-text">${esc(line)}</p>
+      <div class="rev-src">Google · ${r.reviewCount || 0} değerlendirme</div>
+    </div>`;
+  }).join('\n');
+
+  // ── Yarın İçin Yapılacaklar (curated itinerary — reference birebir) ──
+  const plan = [
+    ['☕', '09:00', 'Kahvaltı & Manzara Keyfi'],
+    ['⛵', '10:30', 'Tekne Turu'],
+    ['🍽', '13:30', 'Lezzet Molası'],
+    ['🏛', '16:00', 'Patara Antik Kenti Ziyareti'],
+    ['🌅', '19:30', 'Gün Batımı Keyfi'],
+    ['🎵', '22:00', 'Gece Başlıyor'],
+  ];
+  out.tomorrow_list = plan.map(([ic, t, a]) =>
+    `<li class="plan-item"><span class="plan-ic">${ic}</span><span class="plan-t">${t}</span><span class="plan-a">${esc(a)}</span></li>`
+  ).join('\n');
+
+  // ── Canlı Etkinlikler (bu akşam) ──
+  let evs = [];
+  try { evs = await eventsForDate(day); } catch {}
+  out.events_list = evs.length
+    ? evs.slice(0, 5).map(e =>
+        `<li class="ev-item"><span class="ev-time">${esc(e.time || '')}</span><div><div class="ev-name">${esc(e.type || 'Etkinlik')}</div><div class="ev-venue">${esc(e.venueName || '')}${e.area ? ' · ' + esc(e.area) : ''}</div></div></li>`
+      ).join('\n')
+    : `<li class="ev-item"><span class="ev-time">—</span><div><div class="ev-name">Bu akşam için yayınlanmış program yok</div><div class="ev-venue">kalkaninfo.com/etkinlikler</div></div></li>`;
+
+  // ── İkincil foto (sağ rail) + hero fallback: gezi/restoran fotosundan ──
+  const anyPhoto = ratedPhoto.map(photoOf).filter(Boolean);
+  out.secondary_photo = anyPhoto[(seed + 3) % Math.max(1, anyPhoto.length)] || '';
+  out.front_hero_fallback = anyPhoto[seed % Math.max(1, anyPhoto.length)] || '';
+
+  return out;
+}
+
 // ─── ANA BİRLEŞTİRİCİ ───
 export async function buildData(iso, demo) {
   const base = {
@@ -397,10 +519,13 @@ export async function buildData(iso, demo) {
   };
 
   // Paralel çek
-  const [weather, news, resto, pharmacy, eventsCol, kalimera, ads] = await Promise.all([
-    getWeather(), getNews(), getRestaurant(iso), getPharmacy(), getEventsColumn(iso), getKalimeraSponsor(iso), getAds(iso),
+  const [weather, news, resto, pharmacy, eventsCol, kalimera, ads, front] = await Promise.all([
+    getWeather(), getNews(), getRestaurant(iso), getPharmacy(), getEventsColumn(iso), getKalimeraSponsor(iso), getAds(iso), getFrontExtras(iso),
   ]);
   delete ads._magSponsor; // magazin-özel alan, sabahta kullanılmaz
+
+  // Hero foto: haberde görsel yoksa restoran fotosuna düş (referans: hero hep dolu)
+  if (!news.lead_image && front.front_hero_fallback) news.lead_image = front.front_hero_fallback;
 
   // col2 "Mekan & Yaşam": her zaman Şefin Önerisi (restoran) — on-brand, daima yerel
   const chef = resto._chef;
@@ -421,7 +546,7 @@ export async function buildData(iso, demo) {
   // undefined alanları demo'dan tamamla
   // col1 önceliği: bugünün etkinlik takvimi > haber
   // Reklam slotu precedence (soldan sağa ezilir): oto restoran < Kalimera (ücretsiz partner) < ads (ücretli İLAN, en öncelikli)
-  const merged = { ...fallback, ...base, ...staticBus, ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(kalimera), ...clean(ads) };
+  const merged = { ...fallback, ...base, ...staticBus, ...clean(front), ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(kalimera), ...clean(ads) };
   return merged;
 }
 

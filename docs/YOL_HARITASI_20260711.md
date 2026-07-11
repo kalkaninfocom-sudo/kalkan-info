@@ -25,16 +25,25 @@
 
 ---
 
-## 🔨 KALDIĞIMIZ YER: Admin panelli siteler (mini-CMS)
-Berkay: "kardelenfastfood.tr benzeri siteler üretsek yeterki **admin paneli olan**" + birkaç örnek istiyor.
-- ✅ **Migration YAZILDI:** `supabase/migrations/20260711110000_venue_sites.sql` (venue_sites tablosu: slug, content jsonb {about,menu,hours,...}, RLS public-read + owner/admin-write). ⛔ **HENÜZ UYGULANMADI** (db push onayı gerek — marketplace gibi).
+## ✅ ADMİN PANELLİ SİTELER (mini-CMS) — YAPILDI (2026-07-11 devam)
+Berkay: "kardelenfastfood.tr benzeri siteler üretsek yeterki **admin paneli olan**".
+- ✅ **Generator zenginleştirildi** (`scripts/agency/build-venue-site.mjs`): artık **Menü** (kategori+ürün+fiyat+açıklama), **Hakkında** (aboutP1/P2 → paragraflar), **Çalışma saatleri**, slogan bölümleri üretir. GERÇEK veriden (`v.menu`, `aboutI18n`, `hours`). index.html **+ admin.html** birlikte üretir.
+- ✅ **Site canlı içerik overlay:** açılışta baked GERÇEK veriyle render (SEO/hız), sonra `venue_sites`'ten yayınlanmış içerik varsa üzerine yazar (admin düzenlemeleri anında yansır). Satır yoksa zarifçe baked'e düşer.
+- ✅ **Admin paneli** (`demo/<slug>/admin.html`): Supabase auth (email/şifre) girişi → slogan/hakkında/saat/telefon/WhatsApp/Instagram + **tam menü editörü** (kategori/ürün ekle-sil, fiyat, açıklama) → `venue_sites.content` upsert (published=true). Mevcut kaydı açılışta yükler.
+- ✅ **4 örnek üretildi + görsel doğrulandı:** Omar's Kokobüs (27 foto, **6 kat/42 ürün tam menü** — yıldız demo), THE VIEW TERRACE, Olala, Luna. (Menüsüz olanlarda admin'den menü eklenebilir.)
+- ✅ **Migration YAZILDI:** `supabase/migrations/20260711110000_venue_sites.sql` (venue_sites: slug, content jsonb, RLS public-read + owner/admin-write, `is_admin()` mevcut).
+- ⛔ **TEK BLOKAJ — `supabase db push` (Berkay çalıştırmalı):** auto-mode classifier "production deploy, açık izin yok" diye reddetti. Migration uygulanana kadar admin **kaydedemez** (site yine baked veriyle çalışır). Komut:
+  ```
+  cd C:\Users\socie\kalkan-info && supabase db push
+  ```
+  Uygulanınca: admin panelinden giriş → düzenle → Kaydet → sitede anında görünür.
 
 ## ⏳ SIRADAKİ NET ADIMLAR (buradan devam)
-1. **Generator'ı zenginleştir** (`build-venue-site.mjs`): kardelenfastfood.tr gibi bölümler ekle → **Menü** (kategoriler+ürünler+fiyat), **Hikaye/Hakkında**, **Çalışma saatleri**, differentiators. (Referans stil: story-driven, warm, QR/menü, galeri, yorumlar, iletişim.)
-2. **Admin paneli:** her site `admin.html` üret → Supabase auth (mevcut `js/auth.js`) girişi → admin/sahip **menü/hakkında/saat/iletişim/foto** düzenler → `venue_sites.content` upsert. Site içeriği `venue_sites`'ten fetch eder (yoksa baked grounded veriye fallback).
-3. **Migration'ı uygula:** `supabase db push` (Berkay onayı → venue_sites canlıya).
-4. **Birkaç örnek üret:** Kardelen, Omar's Kokobüs (27 foto), THE VIEW TERRACE, Olala → admin panellerini test et (giriş→düzenle→yansıyor).
-5. **Deploy modeli:** satılınca siteyi kendi domainine (Vercel) deploy — foto bundle dahil (tek komut, sonra kurulacak).
+1. **Berkay:** `supabase db push` (yukarıdaki komut) → venue_sites canlıya.
+2. **Admin login testi:** Berkay Supabase auth hesabıyla (admin claim'li — `is_admin`) `/demo/omar-.../admin.html` → giriş → menü düzenle → Kaydet → site overlay'i doğrula.
+3. **Müşteriye erişim:** owner_id ataması (sonra) — MVP'de Berkay tüm siteleri düzenler.
+4. **Deploy modeli:** satılınca siteyi kendi domainine (Vercel) deploy — foto bundle dahil (tek komut, sonra kurulacak).
+5. **Tüm hepsi commit edilmeli** (bu oturum uncommitted).
 
 ## 📞 BERKAY'IN AKSİYONLARI (dış — yazılım hazır bekliyor)
 - **Web sitesi satışı:** sıcak lead'leri ara → demoyu göster ("işte siteniz + kendi admin paneliniz, ₺X kurulum + ₺Y/ay") → kapat. Fiyat: kurulum ₺3-8K + aylık ₺300-500 (admin panel aylığı haklı çıkarır).

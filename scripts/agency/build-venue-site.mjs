@@ -1,15 +1,20 @@
 #!/usr/bin/env node
 /**
- * scripts/agency/build-venue-site.mjs — TEKRARLANABİLİR grounded işletme sitesi üreticisi
+ * scripts/agency/build-venue-site.mjs — TEKRARLANABİLİR grounded işletme sitesi + ADMİN PANEL üreticisi
  *
  * Bir işletmeyi (slug/isim veya sıcak-lead sırası) alır → GERÇEK verisi + GERÇEK fotoğraflarıyla
- * premium immersive tek-sayfa site üretir → demo/<slug>/index.html. "Kalkan Info altında site sat"
- * yapısının ölçeklenen hali (1 demo değil, 52 lead). Uydurma yok — sadece gerçek veri.
+ * premium immersive tek-sayfa site + kendi mini-CMS admin paneli üretir.
+ *   demo/<slug>/index.html   → satış sitesi (menü + hakkında + saat + galeri + iletişim)
+ *   demo/<slug>/admin.html   → sahip/admin girişi → içeriği düzenle → Supabase venue_sites'e kaydet
+ *
+ * Site açılışta venue_sites tablosundan içerik çeker (yayınlanmışsa canlı düzenlemeleri gösterir),
+ * satır yoksa baked GERÇEK veriye düşer. Uydurma yok — sadece gerçek veri.
  *
  * Kullanım:
  *   node scripts/agency/build-venue-site.mjs the-view-terrace      # slug ile
  *   node scripts/agency/build-venue-site.mjs --lead 2              # 2. sıcak lead
  *   node scripts/agency/build-venue-site.mjs "Olala"              # isim ile
+ *   node scripts/agency/build-venue-site.mjs --all-examples        # örnek batch üret
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -32,14 +37,48 @@ function findVenue(arg, leadIndex) {
   return all.find((b) => (b.slug || b.id) === arg) || all.find((b) => new RegExp(arg, 'i').test(b.name)) || null;
 }
 
-function siteHtml(v, photos) {
+// ---------------------------------------------------------------------------
+// GERÇEK veriyi düzenlenebilir `content` şemasına çevir (venue_sites.content ikizi)
+// content = { tagline, about:[p], menu:[{cat,items:[{name,price,desc}]}], hours:[{d,h}]|str, phone, whatsapp, instagram }
+// ---------------------------------------------------------------------------
+function toContent(v) {
+  const tr = (o) => (o && (o.tr || o.TR)) || '';
+  const about = [tr(v.aboutP1I18n), tr(v.aboutP2I18n)].filter(Boolean);
+  if (!about.length && v.summary) about.push(v.summary);
+
+  const menu = Object.entries(v.menu || {}).map(([cat, items]) => ({
+    cat,
+    items: (Array.isArray(items) ? items : []).map((s) => {
+      const str = String(s);
+      const dash = str.indexOf(' — ');
+      const name = dash === -1 ? str : str.slice(0, dash).trim();
+      const rest = dash === -1 ? '' : str.slice(dash + 3).trim();
+      let price = '', desc = '';
+      if (rest) {
+        const dot = rest.indexOf(' · ');
+        if (dot === -1) { price = rest.trim(); }
+        else { price = rest.slice(0, dot).trim(); desc = rest.slice(dot + 3).trim(); }
+      }
+      return { name, price, desc };
+    }),
+  }));
+
+  return {
+    tagline: tr(v.taglineI18n) || '',
+    about,
+    menu,
+    hours: v.hours || '',
+    phone: v.phone || '',
+    whatsapp: (v.phone || '').replace(/[^\d]/g, ''),
+    instagram: v.instagram || '',
+  };
+}
+
+function siteHtml(v, photos, content) {
   const name = v.name.replace(/\s*[·|].*$/, '').trim();
   const words = name.split(' ');
   const nameA = words.slice(0, Math.ceil(words.length / 2)).join(' ');
   const nameB = words.slice(Math.ceil(words.length / 2)).join(' ');
-  const phoneDigits = (v.phone || '').replace(/[^\d]/g, '');
-  const wa = phoneDigits ? `https://wa.me/${phoneDigits}` : '';
-  const tel = phoneDigits ? `tel:+${phoneDigits}` : '';
   const cat = [v.category, v.cuisine].filter(Boolean).join(' · ') || 'Kalkan';
   const loc = v.location || 'Kalkan, Kaş/Antalya';
   const mapsQ = encodeURIComponent(`${name} ${loc}`);
@@ -47,11 +86,12 @@ function siteHtml(v, photos) {
   const gallery = photos.slice(0, 8);
   const reviews = v.reviewCount ? `${v.reviewCount} Google reviews` : 'Loved by guests';
   const ratingLine = v.rating ? `${v.rating}★ average${v.reviewCount ? ` · ${v.reviewCount} reviews` : ''}` : '';
+  const slug = v.slug || v.id;
 
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>${esc(name)} — Kalkan${v.rating ? ` · ${v.rating}★` : ''}</title>
-<meta name="description" content="${esc(name)} in Kalkan${v.rating ? ` — ${v.rating}★ (${v.reviewCount || ''} reviews)` : ''}. ${esc((v.summary || '').slice(0, 120))}"/>
+<meta name="description" content="${esc(name)}, Kalkan${v.rating ? ` — ${v.rating}★ (${v.reviewCount || ''} yorum)` : ''}. ${esc((content.about[0] || v.summary || '').slice(0, 120))}"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -96,10 +136,20 @@ footer a{color:var(--gold-l);text-decoration:none;}
 .big{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,5.5rem);color:var(--gold-l);line-height:1;}
 .lb{position:fixed;inset:0;z-index:80;background:rgba(4,10,16,.94);display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;}
 .lb.on{display:flex;}.lb img{max-width:94vw;max-height:90vh;border-radius:4px;}
+/* menü */
+.menu-cat{margin-bottom:2.6rem;}
+.menu-cat h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--gold-l);margin-bottom:1rem;letter-spacing:.01em;}
+.menu-item{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px dashed rgba(200,150,42,.14);}
+.menu-item .mi-l{max-width:78%;}
+.menu-item .mi-n{font-weight:600;color:var(--cream);}
+.menu-item .mi-d{font-size:.85rem;color:rgba(245,237,216,.55);margin-top:.15rem;line-height:1.5;}
+.menu-item .mi-p{white-space:nowrap;color:var(--gold-l);font-weight:600;}
+.hours-line{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dashed rgba(200,150,42,.14);max-width:520px;}
+.about-p{max-width:680px;margin-top:1.2rem;color:rgba(245,237,216,.72);font-size:1.05rem;line-height:1.8;}
 </style></head>
 <body>
 <nav id="nav"><a class="wm" href="#">${esc(name)}</a>
-  <div class="links"><a href="#gallery">Gallery</a><a href="#location">Location</a>${wa ? `<a class="btn btn-gold" href="${wa}" target="_blank" rel="noopener">Reserve</a>` : ''}</div>
+  <div class="links"><a href="#about">Hakkında</a><a href="#menu">Menü</a><a href="#gallery">Galeri</a><a href="#location">Konum</a><a class="btn btn-gold" href="#reserve">Rezervasyon</a></div>
 </nav>
 
 <header class="hero">
@@ -108,87 +158,389 @@ footer a{color:var(--gold-l);text-decoration:none;}
   <div class="in">
     <div class="eyebrow reveal">${esc(loc.split(',')[0])} · Kaş, Antalya</div>
     <h1 class="title reveal" style="font-size:clamp(2.6rem,7vw,5rem);margin-top:.5rem;">${esc(nameA)}<br><em style="color:var(--gold-l);">${esc(nameB || '')}</em></h1>
+    <p class="reveal" id="heroTagline" style="margin-top:1rem;color:rgba(245,237,216,.8);font-size:1.1rem;max-width:520px;">${esc(content.tagline)}</p>
     ${v.rating ? `<div class="badge reveal"><span class="st">★★★★★</span> <b>${v.rating}</b> <span style="opacity:.7">· ${esc(reviews)}</span></div>` : ''}
-    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;">
-      ${wa ? `<a class="btn btn-gold" href="${wa}" target="_blank" rel="noopener">Reserve via WhatsApp</a>` : ''}
-      ${tel ? `<a class="btn btn-ghost" href="${tel}">Call</a>` : ''}
-    </div>
+    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;" id="heroCta"></div>
   </div>
 </header>
 
-<section class="sec">
-  <div class="eyebrow reveal">The place</div><div class="gline reveal"></div>
-  <h2 class="title reveal" style="max-width:800px;">A ${esc(cat.toLowerCase())} in the heart of Kalkan.</h2>
-  <p class="reveal" style="max-width:640px;margin-top:1.2rem;color:rgba(245,237,216,.7);font-size:1.05rem;line-height:1.75;">
-    ${esc(v.summary || `${name}, Kalkan'ın sevilen adreslerinden. Sıcak atmosfer, yerel lezzet ve ${loc.split(',')[0]}'nun eşsiz havası bir arada.`)}
-  </p>
+<section class="sec" id="about">
+  <div class="eyebrow reveal">Hakkında</div><div class="gline reveal"></div>
+  <h2 class="title reveal" style="max-width:800px;">Kalkan'ın kalbinde bir ${esc(cat.toLowerCase())}.</h2>
+  <div id="aboutBody" class="reveal"></div>
+</section>
+
+<section class="sec" id="menu" style="padding-top:0;">
+  <div class="eyebrow reveal">Menü</div><div class="gline reveal"></div>
+  <h2 class="title reveal" style="margin-bottom:2rem;">Sofradakiler.</h2>
+  <div id="menuBody" class="reveal"></div>
 </section>
 
 <section class="sec" id="gallery" style="padding-top:0;">
-  <div class="eyebrow reveal">Gallery</div><div class="gline reveal"></div>
+  <div class="eyebrow reveal">Galeri</div><div class="gline reveal"></div>
   <div class="gal reveal">
     ${gallery.map((p) => `<img src="${p}" alt="${esc(name)}" loading="lazy" onclick="lb('${p}')"/>`).join('\n    ')}
   </div>
 </section>
 
 ${v.rating ? `<section class="sec" style="padding-top:0;"><div class="rev reveal">
-  <p class="serif" style="font-size:clamp(1.4rem,2.4vw,1.9rem);font-style:italic;">One of Kalkan's best-loved spots.</p>
+  <p class="serif" style="font-size:clamp(1.4rem,2.4vw,1.9rem);font-style:italic;">Kalkan'ın en sevilen adreslerinden.</p>
   <p style="margin:.6rem 0 1.9rem;color:rgba(245,237,216,.6);letter-spacing:.06em;">${esc(ratingLine)}</p>
-  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">Read reviews on Google →</a>
+  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=${mapsQ}" target="_blank" rel="noopener">Google yorumlarını oku →</a>
 </div></section>` : ''}
 
+<section class="sec" id="hours" style="padding-top:0;">
+  <div class="eyebrow reveal">Çalışma Saatleri</div><div class="gline reveal"></div>
+  <div id="hoursBody" class="reveal"></div>
+</section>
+
 <section class="sec" id="location">
-  <div class="eyebrow reveal">Find us</div><div class="gline reveal"></div>
+  <div class="eyebrow reveal">Bizi bulun</div><div class="gline reveal"></div>
   <p class="reveal" style="color:rgba(245,237,216,.7);margin-bottom:1.5rem;">${esc(loc)}</p>
   <iframe class="map reveal" loading="lazy" src="https://maps.google.com/maps?q=${mapsQ}&output=embed"></iframe>
 </section>
 
 <section class="reserve" id="reserve">
-  <div class="eyebrow reveal" style="color:var(--gold-l);">Reservations</div>
-  <h2 class="title reveal" style="margin:.6rem 0 1.5rem;">Book your table.</h2>
-  <div class="reveal" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
-    ${wa ? `<a class="btn btn-gold" href="${wa}" target="_blank" rel="noopener">WhatsApp: ${esc(v.phone)}</a>` : ''}
-    ${tel ? `<a class="btn btn-ghost" href="${tel}">Call now</a>` : ''}
-  </div>
+  <div class="eyebrow reveal" style="color:var(--gold-l);">İletişim & Rezervasyon</div>
+  <h2 class="title reveal" style="margin:.6rem 0 1.5rem;">Yerinizi ayırtın.</h2>
+  <div class="reveal" id="reserveCta" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;"></div>
 </section>
 
 <footer>
   <div><div class="serif" style="letter-spacing:.14em;text-transform:uppercase;">${esc(name)}</div>
     <div style="font-size:.8rem;color:rgba(245,237,216,.5);margin-top:.2rem;">${esc(loc)}</div></div>
-  <div style="font-size:.78rem;color:rgba(245,237,216,.45);">Site by <a href="https://kalkaninfo.com" target="_blank" rel="noopener">Kalkan Info</a> · kalkaninfo.com</div>
+  <div style="font-size:.78rem;color:rgba(245,237,216,.45);">
+    <a href="admin.html">Yönetici Girişi</a> · Site by <a href="https://kalkaninfo.com" target="_blank" rel="noopener">Kalkan Info</a>
+  </div>
 </footer>
 
-${wa ? `<a class="wa-float" href="${wa}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 004.65 1.16h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2z"/></svg></a>` : ''}
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:none;"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 004.65 1.16h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2z"/></svg></a>
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><img id="lbi" src=""/></div>
 
 <script>
-(function(){
-  var nav=document.getElementById('nav');
-  addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>60);
-    var bg=document.getElementById('heroBg'); if(bg) bg.style.transform='translateY('+(scrollY*0.28)+'px)';});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  window.lb=function(src){var l=document.getElementById('lb');document.getElementById('lbi').src=src;l.classList.add('on');};
+window.__VENUE_SLUG__ = ${JSON.stringify(slug)};
+window.__VENUE_NAME__ = ${JSON.stringify(name)};
+window.__VENUE_BAKED__ = ${JSON.stringify(content)};
+window.__VENUE_PHONE_DISPLAY__ = ${JSON.stringify(v.phone || '')};
+</script>
+<script type="module">
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from '/js/supabase-config.js';
+import { createClient } from '/vendor/supabase.mjs';
+
+const E = (s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = (id)=>document.getElementById(id);
+
+function render(c){
+  const phone = window.__VENUE_PHONE_DISPLAY__ || c.phone || '';
+  const waDigits = (c.whatsapp || (phone||'').replace(/[^\\d]/g,'')) || '';
+  const wa = waDigits ? 'https://wa.me/'+waDigits : '';
+  const tel = (phone||'').replace(/[^\\d]/g,'') ? 'tel:+'+(phone||'').replace(/[^\\d]/g,'') : '';
+  if (c.tagline) $('heroTagline').textContent = c.tagline;
+
+  // Hakkında
+  $('aboutBody').innerHTML = (c.about||[]).map(p=>'<p class="about-p">'+E(p)+'</p>').join('') ||
+    '<p class="about-p">Kalkan\\'ın sevilen adreslerinden.</p>';
+
+  // Menü
+  const menu = (c.menu||[]).filter(m=>m && (m.cat || (m.items&&m.items.length)));
+  $('menu').style.display = menu.length ? '' : 'none';
+  $('menuBody').innerHTML = menu.map(m=>
+    '<div class="menu-cat"><h3>'+E(m.cat)+'</h3>'+
+    (m.items||[]).map(it=>
+      '<div class="menu-item"><div class="mi-l"><div class="mi-n">'+E(it.name)+'</div>'+
+      (it.desc?'<div class="mi-d">'+E(it.desc)+'</div>':'')+'</div>'+
+      (it.price?'<div class="mi-p">'+E(it.price)+'</div>':'')+'</div>'
+    ).join('')+'</div>'
+  ).join('');
+
+  // Saatler
+  const h = c.hours;
+  let hoursHtml = '';
+  if (Array.isArray(h) && h.length) hoursHtml = h.map(x=>'<div class="hours-line"><span>'+E(x.d||x.day||'')+'</span><span style="color:var(--gold-l)">'+E(x.h||x.hours||'')+'</span></div>').join('');
+  else if (typeof h === 'string' && h.trim()) hoursHtml = '<p class="about-p" style="margin-top:0">'+E(h)+'</p>';
+  $('hours').style.display = hoursHtml ? '' : 'none';
+  $('hoursBody').innerHTML = hoursHtml;
+
+  // CTA'lar
+  const heroCta = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp ile Rezervasyon</a>':'')+
+                  (tel?'<a class="btn btn-ghost" href="'+tel+'">Ara</a>':'');
+  $('heroCta').innerHTML = heroCta;
+  $('reserveCta').innerHTML = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp: '+E(phone)+'</a>':'')+
+                              (tel?'<a class="btn btn-ghost" href="'+tel+'">Hemen ara</a>':'');
+  const waf = $('waFloat');
+  if (wa){ waf.href = wa; waf.style.display='grid'; } else { waf.style.display='none'; }
+}
+
+// 1) Baked GERÇEK veriyle hemen render (SEO/hızlı ilk boya)
+render(window.__VENUE_BAKED__);
+
+// 2) venue_sites'ten canlı içerik varsa üzerine yaz (admin düzenlemeleri)
+(async()=>{
+  try{
+    const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth:{ persistSession:false } });
+    const { data } = await sb.from('venue_sites').select('content,published').eq('slug', window.__VENUE_SLUG__).eq('published', true).maybeSingle();
+    if (data && data.content && Object.keys(data.content).length){
+      render({ ...window.__VENUE_BAKED__, ...data.content });
+    }
+  }catch(e){ /* venue_sites yoksa baked içerik kalır */ }
+})();
+
+// UI: nav solid + parallax + reveal + lightbox
+const nav=$('nav');
+addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>60);
+  const bg=$('heroBg'); if(bg) bg.style.transform='translateY('+(scrollY*0.28)+'px)';});
+const io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+window.lb=function(src){var l=$('lb');$('lbi').src=src;l.classList.add('on');};
+</script>
+</body></html>`;
+}
+
+// ---------------------------------------------------------------------------
+// ADMİN PANELİ — sahip/admin girişi → içeriği düzenle → venue_sites upsert
+// ---------------------------------------------------------------------------
+function adminHtml(v, content) {
+  const name = v.name.replace(/\s*[·|].*$/, '').trim();
+  const slug = v.slug || v.id;
+  return `<!doctype html><html lang="tr"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Yönetici · ${esc(name)}</title>
+<style>
+:root{--sea:#0E2233;--sea-d:#07131E;--gold:#C8962A;--gold-l:#E0B450;--cream:#F5EDD8;--line:rgba(200,150,42,.2);}
+*{box-sizing:border-box;margin:0;}
+body{background:var(--sea);color:var(--cream);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;}
+.wrap{max-width:820px;margin:0 auto;padding:2rem 1.2rem 5rem;}
+h1{font-size:1.4rem;letter-spacing:.02em;}
+.muted{color:rgba(245,237,216,.6);font-size:.9rem;}
+.card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin-top:1.2rem;}
+label{display:block;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-l);margin:.9rem 0 .35rem;}
+input,textarea{width:100%;background:rgba(7,19,30,.6);border:1px solid var(--line);border-radius:7px;color:var(--cream);padding:.7rem .85rem;font:inherit;}
+input:focus,textarea:focus{outline:none;border-color:var(--gold);}
+textarea{resize:vertical;min-height:70px;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:0;border-radius:7px;padding:.75rem 1.4rem;font:inherit;font-weight:600;cursor:pointer;letter-spacing:.03em;transition:transform .12s,filter .12s;}
+.btn:hover{transform:translateY(-1px);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#B4653A);color:var(--sea);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--cream);}
+.btn-sm{padding:.45rem .8rem;font-size:.82rem;}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
+.mi{display:grid;grid-template-columns:1.4fr .7fr 2fr auto;gap:.5rem;margin-bottom:.5rem;}
+.cat-block{border:1px dashed var(--line);border-radius:8px;padding:.9rem;margin-bottom:1rem;}
+.cat-head{display:flex;gap:.6rem;align-items:center;margin-bottom:.7rem;}
+.cat-head input{font-weight:700;}
+.hidden{display:none;}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--sea);padding:.7rem 1.3rem;border-radius:8px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;}
+#toast.on{opacity:1;}
+a{color:var(--gold-l);}
+@media(max-width:640px){.mi{grid-template-columns:1fr 1fr;}}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="row" style="justify-content:space-between;">
+    <div><h1>${esc(name)} — Yönetim</h1><div class="muted">Kalkan Info · mini-CMS</div></div>
+    <a class="btn btn-ghost btn-sm" href="index.html" target="_blank">Siteyi gör ↗</a>
+  </div>
+
+  <!-- GİRİŞ -->
+  <div class="card" id="loginCard">
+    <label>E-posta</label><input id="email" type="email" autocomplete="username" placeholder="ornek@mail.com"/>
+    <label>Şifre</label><input id="pwd" type="password" autocomplete="current-password"/>
+    <div class="row" style="margin-top:1rem;"><button class="btn btn-gold" id="loginBtn">Giriş</button><span class="muted" id="loginMsg"></span></div>
+    <p class="muted" style="margin-top:.8rem;">Giriş bilgileriniz Kalkan Info tarafından verilir.</p>
+  </div>
+
+  <!-- EDİTÖR -->
+  <div id="editor" class="hidden">
+    <div class="card">
+      <div class="row" style="justify-content:space-between;">
+        <span class="muted">Giriş: <b id="who"></b></span>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn">Çıkış</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <label>Slogan (hero altı)</label>
+      <input id="f_tagline" placeholder="Kısa çarpıcı bir cümle"/>
+      <label>Hakkında (her paragraf ayrı satır)</label>
+      <textarea id="f_about" style="min-height:120px" placeholder="İşletmenizi anlatın..."></textarea>
+      <label>Çalışma Saatleri</label>
+      <input id="f_hours" placeholder="Her gün 09:00–23:00"/>
+      <div class="row">
+        <div style="flex:1;min-width:180px"><label>Telefon</label><input id="f_phone" placeholder="+90 5xx xxx xx xx"/></div>
+        <div style="flex:1;min-width:180px"><label>WhatsApp (sadece rakam)</label><input id="f_whatsapp" placeholder="905xxxxxxxxx"/></div>
+      </div>
+      <label>Instagram</label><input id="f_instagram" placeholder="https://instagram.com/..."/>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;">
+        <label style="margin:0">Menü</label>
+        <button class="btn btn-ghost btn-sm" id="addCat">+ Kategori</button>
+      </div>
+      <div id="menuEditor" style="margin-top:1rem;"></div>
+    </div>
+
+    <div class="row" style="margin-top:1.4rem;">
+      <button class="btn btn-gold" id="saveBtn">Kaydet ve Yayınla</button>
+      <span class="muted" id="saveMsg"></span>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script type="module">
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from '/js/supabase-config.js';
+import { createClient } from '/vendor/supabase.mjs';
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth:{ persistSession:true, autoRefreshToken:true } });
+
+const SLUG = ${JSON.stringify(slug)};
+const NAME = ${JSON.stringify(name)};
+const BAKED = ${JSON.stringify(content)};
+const $ = (id)=>document.getElementById(id);
+const toast = (m)=>{ const t=$('toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2200); };
+
+// ---- Menü editörü ----
+function catBlock(cat){
+  const el = document.createElement('div'); el.className='cat-block';
+  el.innerHTML =
+    '<div class="cat-head"><input class="c-name" placeholder="Kategori adı" value="'+(cat.cat||'').replace(/"/g,'&quot;')+'"/>'+
+    '<button class="btn btn-ghost btn-sm c-add">+ Ürün</button>'+
+    '<button class="btn btn-ghost btn-sm c-del">Sil</button></div>'+
+    '<div class="items"></div>';
+  const items = el.querySelector('.items');
+  (cat.items||[]).forEach(it=>items.appendChild(itemRow(it)));
+  el.querySelector('.c-add').onclick=()=>items.appendChild(itemRow({}));
+  el.querySelector('.c-del').onclick=()=>el.remove();
+  return el;
+}
+function itemRow(it){
+  const r = document.createElement('div'); r.className='mi';
+  r.innerHTML =
+    '<input class="i-name" placeholder="Ürün" value="'+(it.name||'').replace(/"/g,'&quot;')+'"/>'+
+    '<input class="i-price" placeholder="Fiyat" value="'+(it.price||'').replace(/"/g,'&quot;')+'"/>'+
+    '<input class="i-desc" placeholder="Açıklama" value="'+(it.desc||'').replace(/"/g,'&quot;')+'"/>'+
+    '<button class="btn btn-ghost btn-sm i-del">×</button>';
+  r.querySelector('.i-del').onclick=()=>r.remove();
+  return r;
+}
+function readMenu(){
+  return [...$('menuEditor').querySelectorAll('.cat-block')].map(b=>({
+    cat: b.querySelector('.c-name').value.trim(),
+    items: [...b.querySelectorAll('.mi')].map(r=>({
+      name: r.querySelector('.i-name').value.trim(),
+      price: r.querySelector('.i-price').value.trim(),
+      desc: r.querySelector('.i-desc').value.trim(),
+    })).filter(i=>i.name)
+  })).filter(c=>c.cat || c.items.length);
+}
+
+function fill(c){
+  $('f_tagline').value = c.tagline||'';
+  $('f_about').value = (c.about||[]).join('\\n');
+  $('f_hours').value = typeof c.hours==='string' ? c.hours : (Array.isArray(c.hours)? c.hours.map(x=>(x.d||'')+' '+(x.h||'')).join('; '):'');
+  $('f_phone').value = c.phone||'';
+  $('f_whatsapp').value = c.whatsapp||'';
+  $('f_instagram').value = c.instagram||'';
+  const me = $('menuEditor'); me.innerHTML='';
+  (c.menu||[]).forEach(cat=>me.appendChild(catBlock(cat)));
+}
+function collect(){
+  return {
+    tagline: $('f_tagline').value.trim(),
+    about: $('f_about').value.split('\\n').map(s=>s.trim()).filter(Boolean),
+    hours: $('f_hours').value.trim(),
+    phone: $('f_phone').value.trim(),
+    whatsapp: $('f_whatsapp').value.replace(/[^\\d]/g,''),
+    instagram: $('f_instagram').value.trim(),
+    menu: readMenu(),
+  };
+}
+
+$('addCat').onclick=()=>$('menuEditor').appendChild(catBlock({cat:'',items:[{}]}));
+
+// ---- Auth akışı ----
+async function showEditor(user){
+  $('loginCard').classList.add('hidden');
+  $('editor').classList.remove('hidden');
+  $('who').textContent = user.email;
+  // Mevcut kaydı çek; yoksa baked ile başlat
+  const { data } = await sb.from('venue_sites').select('content').eq('slug', SLUG).maybeSingle();
+  fill(data && data.content && Object.keys(data.content).length ? { ...BAKED, ...data.content } : BAKED);
+}
+function showLogin(){
+  $('editor').classList.add('hidden');
+  $('loginCard').classList.remove('hidden');
+}
+
+$('loginBtn').onclick=async()=>{
+  const email=$('email').value.trim(), password=$('pwd').value;
+  $('loginMsg').textContent='...';
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if (error){ $('loginMsg').textContent = 'Giriş başarısız: '+error.message; return; }
+  $('loginMsg').textContent='';
+  showEditor(data.user);
+};
+$('logoutBtn').onclick=async()=>{ await sb.auth.signOut(); showLogin(); };
+
+$('saveBtn').onclick=async()=>{
+  const { data:{ user } } = await sb.auth.getUser();
+  if (!user){ toast('Oturum yok, tekrar giriş yapın'); showLogin(); return; }
+  $('saveMsg').textContent='Kaydediliyor...';
+  const content = collect();
+  const { error } = await sb.from('venue_sites').upsert({
+    slug: SLUG, name: NAME, owner_id: user.id, content, published: true, updated_at: new Date().toISOString(),
+  }, { onConflict: 'slug' });
+  if (error){ $('saveMsg').textContent='Hata: '+error.message; toast('Kaydedilemedi'); return; }
+  $('saveMsg').textContent='✓ Yayınlandı';
+  toast('Kaydedildi ve yayınlandı');
+};
+
+// Açılışta oturum var mı?
+(async()=>{
+  const { data:{ session } } = await sb.auth.getSession();
+  if (session && session.user) showEditor(session.user); else showLogin();
 })();
 </script>
 </body></html>`;
 }
 
+function build(v) {
+  const photos = realPhotos(v);
+  if (!photos.length) { console.error('✗ gerçek fotoğraf yok:', v.name); return false; }
+  const content = toContent(v);
+  const slug = v.slug || v.id;
+  const dir = join(ROOT, 'demo', slug);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'index.html'), siteHtml(v, photos, content), 'utf8');
+  writeFileSync(join(dir, 'admin.html'), adminHtml(v, content), 'utf8');
+  const mc = content.menu.reduce((n, c) => n + c.items.length, 0);
+  console.log(`✓ ${v.name}`);
+  console.log(`  demo/${slug}/index.html  +  admin.html`);
+  console.log(`  ${v.rating || '?'}★ · ${photos.length} foto · ${content.menu.length} menü kat / ${mc} ürün · saat:${content.hours ? 'var' : 'yok'} · tel:${v.phone || 'yok'}`);
+  console.log(`  → /demo/${slug}/  ·  yönetim: /demo/${slug}/admin.html`);
+  return true;
+}
+
+// Örnek batch (kaldığımız yerden test için)
+const EXAMPLES = [
+  'omar-s-kokobus-kokorec-kofte-tavuk-ekmek',
+  'the-view-terrace-restaurant',
+  'olala',
+  'luna',
+];
+
 function main() {
   const args = process.argv.slice(2);
+  if (args.includes('--all-examples')) {
+    let ok = 0;
+    for (const q of EXAMPLES) { const v = findVenue(q); if (v && build(v)) ok++; else console.error('✗ atlandı:', q); }
+    console.log(`\n${ok}/${EXAMPLES.length} örnek üretildi.`);
+    return;
+  }
   const leadIdx = args.includes('--lead') ? parseInt(args[args.indexOf('--lead') + 1], 10) : null;
   const arg = args.find((a) => !a.startsWith('--') && !/^\d+$/.test(a));
   const v = findVenue(arg, leadIdx);
   if (!v) { console.error('✗ işletme bulunamadı:', arg || `lead ${leadIdx}`); process.exit(1); }
-  const photos = realPhotos(v);
-  if (!photos.length) { console.error('✗ gerçek fotoğraf yok:', v.name); process.exit(1); }
-  const slug = v.slug || v.id;
-  const dir = join(ROOT, 'demo', slug);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'index.html'), siteHtml(v, photos), 'utf8');
-  console.log(`✓ site: demo/${slug}/index.html`);
-  console.log(`  ${v.name} · ${v.rating || '?'}★ · ${photos.length} GERÇEK foto · tel:${v.phone || 'yok'}`);
-  console.log(`  → http://localhost:3055/demo/${slug}/  (deploy: kalkaninfo.com/demo/${slug})`);
+  if (!build(v)) process.exit(1);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();
