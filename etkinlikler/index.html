@@ -43,6 +43,14 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .leaflet-popup-content{font-family:'Inter',sans-serif;margin:10px 12px;}
 .evt-pin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(7,33,54,.4);border:2px solid #fff;}
 .evt-pin span{transform:rotate(45deg);font-size:14px;line-height:1;}
+.evt-rail{cursor:pointer;}
+.evt-rail-bar{width:4px;height:36px;border-radius:999px;background:currentColor;opacity:.18;flex:none;transition:opacity .2s, background .2s;}
+.evt-tab[aria-pressed="true"] .evt-rail-bar{opacity:1;background:#f4b53d;}
+.evt-rail-count{background:rgba(10,46,76,.08);color:#0a2e4c;}
+.evt-tab[aria-pressed="true"] .evt-rail-count{background:rgba(244,181,61,.25);color:#fff;}
+.evt-today{font-family:'Inter',sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;vertical-align:middle;margin-left:6px;background:#e89812;color:#fff;border-radius:999px;padding:1px 7px;}
+.evt-program{display:grid;gap:1.5rem;align-items:start;}
+@media(min-width:1024px){.evt-program{grid-template-columns:300px minmax(0,1fr);gap:2rem;}}
 </style>
 <!-- SEO -->
 <meta name="description" content="Kalkan'da bu hafta: gün gün canlı müzik, DJ, parti ve gece programı. 6 Temmuz – 12 Temmuz haftası 11 etkinlik, mekan ve saat bilgisiyle.">
@@ -197,39 +205,82 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- GÜN SEKMELERİ -->
-  <div class="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-1 px-1" role="tablist" aria-label="Gün seçimi">
-    <button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Pazartesi" aria-pressed="false">
-        Pazartesi <span class="opacity-60 font-normal">1</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Salı" aria-pressed="false">
-        Salı <span class="opacity-60 font-normal">1</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Çarşamba" aria-pressed="false">
-        Çarşamba <span class="opacity-60 font-normal">1</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Perşembe" aria-pressed="false">
-        Perşembe <span class="opacity-60 font-normal">1</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Cuma" aria-pressed="false">
-        Cuma <span class="opacity-60 font-normal">2</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-sea-800 text-white border-sea-800" data-day="Cumartesi" aria-pressed="true">
-        Cumartesi <span class="opacity-60 font-normal">3</span>
-      </button>
-<button type="button" class="evt-tab whitespace-nowrap px-3.5 py-2 rounded-lg text-sm font-display font-semibold border transition bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Pazar" aria-pressed="false">
-        Pazar <span class="opacity-60 font-normal">2</span>
-      </button>
-  </div>
+  <!-- HAFTALIK PROGRAM: sol gün rayı + sağ seçilen günün detayı -->
+  <div class="evt-program">
 
-  <!-- TASLAK UYARISI -->
-  <p class="text-xs text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-6 inline-flex items-start gap-2">
-    <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5 shrink-0">Taslak</span>
-    rozeti taşıyan etkinlikler Kalkan Info ekibi tarafından henüz doğrulanmadı; saat ve mekan değişebilir.
-  </p>
+    <!-- SOL: haftalık program (gün seçici) -->
+    <aside class="lg:sticky lg:top-24">
+      <div class="flex items-center gap-2 mb-3">
+        <h2 class="font-display font-extrabold text-lg text-sea-900">Haftalık Program</h2>
+        <span class="text-xs text-sea-500">— gün seç</span>
+      </div>
+      <div class="flex flex-col gap-2" role="tablist" aria-label="Gün seçimi">
+        <button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Pazartesi" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Pazartesi</span>
+          <span class="block text-xs opacity-70">6 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">1</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Salı" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Salı</span>
+          <span class="block text-xs opacity-70">7 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">1</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Çarşamba" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Çarşamba</span>
+          <span class="block text-xs opacity-70">8 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">1</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Perşembe" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Perşembe</span>
+          <span class="block text-xs opacity-70">9 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">1</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Cuma" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Cuma</span>
+          <span class="block text-xs opacity-70">10 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">2</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-sea-800 text-white border-sea-800" data-day="Cumartesi" aria-pressed="true">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Cumartesi <span class="evt-today">bugün</span></span>
+          <span class="block text-xs opacity-70">11 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">3</span>
+      </button>
+<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 bg-white text-sea-700 border-sea-200 hover:border-sea-400" data-day="Pazar" aria-pressed="false">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">Pazar</span>
+          <span class="block text-xs opacity-70">12 Temmuz</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">2</span>
+      </button>
+      </div>
+      <p class="text-[11px] text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-4 flex items-start gap-2">
+        <span class="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-1.5 py-0.5 shrink-0">Taslak</span>
+        rozetli etkinlikler henüz doğrulanmadı; saat/mekan değişebilir.
+      </p>
+    </aside>
 
-  <!-- GÜN PANELLERİ -->
-  
+    <!-- SAĞ: seçilen günün açıklamalı programı -->
+    <div class="min-w-0">
+      
       <section class="day-panel" data-day="Pazartesi" hidden>
         <div class="flex items-baseline gap-3 mb-4">
           <h2 class="font-display font-extrabold text-2xl text-sea-900">Pazartesi</h2>
@@ -508,6 +559,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </article>
         </div>
       </section>
+    </div>
+  </div>
 
   <!-- CONCIERGE CTA -->
   <section class="mt-12 rounded-2xl section-dark text-white p-6 md:p-8 text-center" style="background:#0d3a5f;">
@@ -558,7 +611,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
 
 <!-- Gömülü veri (SSR ile aynı kaynak; harita ve sekme filtresi bunu kullanır) -->
-<script id="evt-data" type="application/json">{"generatedAt":"2026-07-11T05:24:48.159Z","weekStart":"2026-07-06","weekEnd":"2026-07-12","center":{"lat":36.2658,"lng":29.4118},"total":11,"days":[{"date":"2026-07-06","day":"Pazartesi","events":[{"id":"rec-ehlikeyf-pzt","type":"Canlı Müzik","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Fasıl & canlı müzik gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-07","day":"Salı","events":[{"id":"rec-shade-sal","type":"Akustik","time":"20:30","endTime":"23:30","venueName":"Shade Lounge and Kitchen","area":"Kalkan","title":"Akustik akşam","coordinates":{"lat":36.2637084,"lng":29.4160467},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-08","day":"Çarşamba","events":[{"id":"rec-mezzanine-car","type":"Quiz Gecesi","time":"21:00","endTime":"23:00","venueName":"The Mezzanine Bar","area":"Kalkan","title":"Pub quiz night","coordinates":{"lat":36.2649319,"lng":29.4151307},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-09","day":"Perşembe","events":[{"id":"rec-blackgold-per","type":"Canlı Müzik","time":"21:30","endTime":"00:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Teras canlı müzik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true}]},{"date":"2026-07-10","day":"Cuma","events":[{"id":"rec-fountain-cum","type":"Canlı Müzik","time":"21:00","endTime":"00:00","venueName":"The Fountain Terrace Bar","area":"Kalkan","title":"Cuma canlı performans","coordinates":{"lat":36.262726,"lng":29.415293},"detailUrl":null,"verified":false,"recurring":true},{"id":"rec-chocolate-cum","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Resident DJ — Cuma partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true}]},{"date":"2026-07-11","day":"Cumartesi","events":[{"id":"rec-vibes-cmt","type":"DJ","time":"22:00","endTime":"02:00","venueName":"Vibes Lounge Club","area":"Kalkan","title":"DJ performans","coordinates":{"lat":36.2640098,"lng":29.414664499999997},"detailUrl":"http://www.kalkanclubkarma.com/","verified":false,"recurring":true},{"id":"rec-chocolate-cmt","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Cumartesi gece partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true},{"id":"rec-noema-cmt","type":"Parti","time":"23:30","endTime":"04:00","venueName":"Noema Community","area":"Kalkan","title":"Hafta sonu partisi","coordinates":{"lat":36.2632603,"lng":29.4155065},"detailUrl":"https://www.instagram.com/noemacommunity/","verified":false,"recurring":true}]},{"date":"2026-07-12","day":"Pazar","events":[{"id":"rec-blackgold-paz","type":"Akustik","time":"20:00","endTime":"23:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Pazar akustik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true},{"id":"rec-ehlikeyf-paz","type":"Türk Gecesi","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Türk gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]}]}</script>
+<script id="evt-data" type="application/json">{"generatedAt":"2026-07-11T07:28:21.451Z","weekStart":"2026-07-06","weekEnd":"2026-07-12","center":{"lat":36.2658,"lng":29.4118},"total":11,"days":[{"date":"2026-07-06","day":"Pazartesi","events":[{"id":"rec-ehlikeyf-pzt","type":"Canlı Müzik","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Fasıl & canlı müzik gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-07","day":"Salı","events":[{"id":"rec-shade-sal","type":"Akustik","time":"20:30","endTime":"23:30","venueName":"Shade Lounge and Kitchen","area":"Kalkan","title":"Akustik akşam","coordinates":{"lat":36.2637084,"lng":29.4160467},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-08","day":"Çarşamba","events":[{"id":"rec-mezzanine-car","type":"Quiz Gecesi","time":"21:00","endTime":"23:00","venueName":"The Mezzanine Bar","area":"Kalkan","title":"Pub quiz night","coordinates":{"lat":36.2649319,"lng":29.4151307},"detailUrl":null,"verified":false,"recurring":true}]},{"date":"2026-07-09","day":"Perşembe","events":[{"id":"rec-blackgold-per","type":"Canlı Müzik","time":"21:30","endTime":"00:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Teras canlı müzik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true}]},{"date":"2026-07-10","day":"Cuma","events":[{"id":"rec-fountain-cum","type":"Canlı Müzik","time":"21:00","endTime":"00:00","venueName":"The Fountain Terrace Bar","area":"Kalkan","title":"Cuma canlı performans","coordinates":{"lat":36.262726,"lng":29.415293},"detailUrl":null,"verified":false,"recurring":true},{"id":"rec-chocolate-cum","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Resident DJ — Cuma partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true}]},{"date":"2026-07-11","day":"Cumartesi","events":[{"id":"rec-vibes-cmt","type":"DJ","time":"22:00","endTime":"02:00","venueName":"Vibes Lounge Club","area":"Kalkan","title":"DJ performans","coordinates":{"lat":36.2640098,"lng":29.414664499999997},"detailUrl":"http://www.kalkanclubkarma.com/","verified":false,"recurring":true},{"id":"rec-chocolate-cmt","type":"DJ","time":"23:00","endTime":"04:00","venueName":"Chocolate Club Kalkan","area":"Kalkan","title":"Cumartesi gece partisi","coordinates":{"lat":36.2647212,"lng":29.4142591},"detailUrl":"https://www.instagram.com/clubchocolatekalkan/","verified":false,"recurring":true},{"id":"rec-noema-cmt","type":"Parti","time":"23:30","endTime":"04:00","venueName":"Noema Community","area":"Kalkan","title":"Hafta sonu partisi","coordinates":{"lat":36.2632603,"lng":29.4155065},"detailUrl":"https://www.instagram.com/noemacommunity/","verified":false,"recurring":true}]},{"date":"2026-07-12","day":"Pazar","events":[{"id":"rec-blackgold-paz","type":"Akustik","time":"20:00","endTime":"23:00","venueName":"Black & Gold Terrace Cocktail Bar","area":"Kalkan","title":"Pazar akustik","coordinates":{"lat":36.2634845,"lng":29.4153417},"detailUrl":"https://www.blackandgoldterracebar.com/","verified":false,"recurring":true},{"id":"rec-ehlikeyf-paz","type":"Türk Gecesi","time":"21:00","endTime":"00:30","venueName":"Ehl-i Keyf Meyhanesi","area":"Kaş","title":"Türk gecesi","coordinates":null,"detailUrl":null,"verified":false,"recurring":true}]}]}</script>
 <!-- Leaflet (CDN) -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>

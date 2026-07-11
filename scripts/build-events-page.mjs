@@ -184,6 +184,20 @@ function pageHtml(week, payload, featured) {
 
   const sections = week.map((d, i) => daySection(d, i === activeIdx)).join('\n');
 
+  // Sol dikey "haftalık program" rayı — gün seç, sağda o günün açıklamalı programı gelir.
+  const railTabs = week.map((d, i) => {
+    const active = i === activeIdx;
+    const isToday = i === activeIdx;
+    return `<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 ${active ? 'bg-sea-800 text-white border-sea-800' : 'bg-white text-sea-700 border-sea-200 hover:border-sea-400'}" data-day="${esc(d.day)}" aria-pressed="${active}">
+        <span class="evt-rail-bar"></span>
+        <span class="flex-1 min-w-0">
+          <span class="block font-display font-bold text-base leading-tight">${esc(d.day)}${isToday ? ' <span class="evt-today">bugün</span>' : ''}</span>
+          <span class="block text-xs opacity-70">${esc(fmtDateTR(d.date))}</span>
+        </span>
+        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">${d.events.length}</span>
+      </button>`;
+  }).join('\n');
+
   const inlineData = JSON.stringify(payload).replace(/</g, '\\u003c');
 
   return `<!doctype html>
@@ -231,6 +245,14 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .leaflet-popup-content{font-family:'Inter',sans-serif;margin:10px 12px;}
 .evt-pin{display:grid;place-items:center;width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(7,33,54,.4);border:2px solid #fff;}
 .evt-pin span{transform:rotate(45deg);font-size:14px;line-height:1;}
+.evt-rail{cursor:pointer;}
+.evt-rail-bar{width:4px;height:36px;border-radius:999px;background:currentColor;opacity:.18;flex:none;transition:opacity .2s, background .2s;}
+.evt-tab[aria-pressed="true"] .evt-rail-bar{opacity:1;background:#f4b53d;}
+.evt-rail-count{background:rgba(10,46,76,.08);color:#0a2e4c;}
+.evt-tab[aria-pressed="true"] .evt-rail-count{background:rgba(244,181,61,.25);color:#fff;}
+.evt-today{font-family:'Inter',sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;vertical-align:middle;margin-left:6px;background:#e89812;color:#fff;border-radius:999px;padding:1px 7px;}
+.evt-program{display:grid;gap:1.5rem;align-items:start;}
+@media(min-width:1024px){.evt-program{grid-template-columns:300px minmax(0,1fr);gap:2rem;}}
 </style>
 <!-- SEO -->
 <meta name="description" content="Kalkan'da bu hafta: gün gün canlı müzik, DJ, parti ve gece programı. ${esc(weekStart)} – ${esc(weekEnd)} haftası ${totalEvents} etkinlik, mekan ve saat bilgisiyle.">
@@ -353,19 +375,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- YAKLAŞAN ÖNE ÇIKANLAR -->
   ${featuredSection(featured)}
 
-  <!-- GÜN SEKMELERİ -->
-  <div class="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-1 px-1" role="tablist" aria-label="Gün seçimi">
-    ${tabs}
+  <!-- HAFTALIK PROGRAM: sol gün rayı + sağ seçilen günün detayı -->
+  <div class="evt-program">
+
+    <!-- SOL: haftalık program (gün seçici) -->
+    <aside class="lg:sticky lg:top-24">
+      <div class="flex items-center gap-2 mb-3">
+        <h2 class="font-display font-extrabold text-lg text-sea-900">Haftalık Program</h2>
+        <span class="text-xs text-sea-500">— gün seç</span>
+      </div>
+      <div class="flex flex-col gap-2" role="tablist" aria-label="Gün seçimi">
+        ${railTabs}
+      </div>
+      <p class="text-[11px] text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-4 flex items-start gap-2">
+        <span class="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-1.5 py-0.5 shrink-0">Taslak</span>
+        rozetli etkinlikler henüz doğrulanmadı; saat/mekan değişebilir.
+      </p>
+    </aside>
+
+    <!-- SAĞ: seçilen günün açıklamalı programı -->
+    <div class="min-w-0">
+      ${sections}
+    </div>
   </div>
-
-  <!-- TASLAK UYARISI -->
-  <p class="text-xs text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-6 inline-flex items-start gap-2">
-    <span class="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5 shrink-0">Taslak</span>
-    rozeti taşıyan etkinlikler Kalkan Info ekibi tarafından henüz doğrulanmadı; saat ve mekan değişebilir.
-  </p>
-
-  <!-- GÜN PANELLERİ -->
-  ${sections}
 
   <!-- CONCIERGE CTA -->
   <section class="mt-12 rounded-2xl section-dark text-white p-6 md:p-8 text-center" style="background:#0d3a5f;">

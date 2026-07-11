@@ -542,9 +542,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <h2 class="font-display text-3xl md:text-4xl font-extrabold mt-1 text-sea-800" data-en="Events" data-de="Veranstaltungen" data-ru="События" data-fr="Événements">Etkinlikler</h2>
       </div>
-      <a href="aktiviteler.html" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline" data-en="Full calendar →" data-de="Vollständiger Kalender →" data-ru="Полный календарь →" data-fr="Calendrier complet →">Tüm takvim →</a>
+      <a href="/etkinlikler" class="text-sm text-sea-600 hover:text-sea-800 underline-grow hidden md:inline" data-en="Full programme →" data-de="Ganzes Programm →" data-ru="Вся программа →" data-fr="Programme complet →">Tüm program →</a>
     </div>
-    <div id="turlar-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    <style>
+      .hafta-grid{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;}
+      @media(max-width:900px){.hafta-grid{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(160px,72vw);}}
+      .hafta-day{display:flex;flex-direction:column;background:#fff;border:1px solid #dce8f0;border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:0 1px 3px rgba(7,33,54,.05);}
+      .hafta-day:hover{transform:translateY(-3px);box-shadow:0 10px 28px -10px rgba(7,33,54,.25);border-color:#c9dcea;}
+      .hafta-day.is-today{border-color:#e89812;box-shadow:0 6px 22px -8px rgba(232,152,18,.4);}
+      .hafta-head{padding:12px 12px 10px;text-align:center;background:linear-gradient(180deg,#f4f9fd,#eaf2f8);border-bottom:1px solid #e3edf4;}
+      .hafta-day.is-today .hafta-head{background:linear-gradient(180deg,#0c3858,#0a2e4c);}
+      .hafta-head .dn{display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0a2e4c;letter-spacing:.02em;}
+      .hafta-head .dd{display:block;font-size:11px;color:#5a7893;margin-top:1px;}
+      .hafta-day.is-today .hafta-head .dn,.hafta-day.is-today .hafta-head .dd{color:#fff;}
+      .hafta-day.is-today .hafta-head .dd{color:#f4b53d;}
+      .hafta-body{padding:10px;display:flex;flex-direction:column;gap:8px;flex:1;min-height:96px;}
+      .hafta-ev{border-left:3px solid #e89812;background:#f7fafc;border-radius:8px;padding:7px 9px;}
+      .hafta-ev .t{font-size:11px;font-weight:700;color:#0a2e4c;display:flex;align-items:center;gap:5px;}
+      .hafta-ev .v{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;color:#0a2e4c;line-height:1.25;margin-top:2px;}
+      .hafta-ev .ty{font-size:10.5px;color:#5a7893;}
+      .hafta-more{font-size:11px;color:#0c5a8a;font-weight:700;text-align:center;padding-top:2px;}
+      .hafta-empty{flex:1;display:grid;place-items:center;color:#9db3c5;font-size:12px;}
+    </style>
+    <div id="hafta-program" class="hafta-grid" aria-label="Haftalık etkinlik programı"></div>
+    <script>
+    (function(){
+      var T={'Canlı Müzik':['#e89812','🎸'],'DJ':['#8b5cf6','🎧'],'Akustik':['#0ea5a4','🎻'],'Karaoke':['#ec4899','🎤'],'Quiz Gecesi':['#3b82f6','🧠'],'Happy Hour':['#22c55e','🍹'],'Türk Gecesi':['#ef4444','🪕'],'Parti':['#8b5cf6','🎉'],'Festival':['#e89812','🎪'],'Sinema Gecesi':['#7c3aed','🎬']};
+      var SHORT={'Pazartesi':'Pzt','Salı':'Sal','Çarşamba':'Çar','Perşembe':'Per','Cuma':'Cum','Cumartesi':'Cmt','Pazar':'Paz'};
+      var MON=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+      function esc(s){return String(s==null?'':s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c];});}
+      function fmtD(iso){var d=new Date(iso+'T08:00:00');return d.getDate()+' '+MON[d.getMonth()];}
+      var host=document.getElementById('hafta-program');if(!host)return;
+      var today=new Date().toLocaleDateString('en-CA');
+      fetch('/data/etkinlik-haftalik.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(data){
+        var days=(data&&data.days)||[];
+        host.innerHTML=days.map(function(d){
+          var evs=d.events||[];
+          var shown=evs.slice(0,2).map(function(e){
+            var st=T[e.type]||['#0a2e4c','🎶'];var tm=(e.time||'')+(e.endTime?'–'+e.endTime:'');
+            return '<div class="hafta-ev" style="border-left-color:'+st[0]+'"><div class="t">'+st[1]+' '+esc(tm)+'</div><div class="v">'+esc(e.venueName||'')+'</div><div class="ty">'+esc(e.type||'')+'</div></div>';
+          }).join('');
+          var more=evs.length>2?'<div class="hafta-more">+'+(evs.length-2)+' daha</div>':'';
+          var body=evs.length?shown+more:'<div class="hafta-empty">—</div>';
+          var isToday=d.date===today?' is-today':'';
+          return '<a href="/etkinlikler" class="hafta-day'+isToday+'"><div class="hafta-head"><span class="dn">'+esc(SHORT[d.day]||d.day)+'</span><span class="dd">'+esc(fmtD(d.date))+'</span></div><div class="hafta-body">'+body+'</div></a>';
+        }).join('');
+      }).catch(function(){ host.innerHTML='<div class="text-sm text-sea-600 p-4">Program yüklenemedi. <a href="/etkinlikler" class="text-sea-800 underline">Etkinlikler sayfası →</a></div>'; });
+    })();
+    </script>
   </div>
 </section>
 
