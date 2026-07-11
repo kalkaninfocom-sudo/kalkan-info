@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yönetim Paneli — Lamora Kalkan</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0F1117;--surface:#1A1D27;--surface2:#22263A;--border:#2E3348;
+  --accent:#C8391A;--accent-h:#A52D12;--green:#22C55E;--gold:#D4952A;
+  --text:#E8EAF0;--text-soft:#8891AA;--radius:10px;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
+input,select,textarea,button{font-family:inherit;font-size:inherit;}
+a{color:inherit;}
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1a1d27 0%,#0f1117 70%);}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;text-align:center;}
+.login-card .logo{font-size:1.5rem;font-weight:700;margin-bottom:6px;}
+.login-card .logo span{color:var(--accent);}
+.login-card p{color:var(--text-soft);font-size:.88rem;margin-bottom:28px;}
+.login-card input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:12px 14px;margin-bottom:12px;transition:border-color .2s;}
+.login-card input:focus{outline:none;border-color:var(--accent);}
+.login-error{color:#F87171;font-size:.82rem;margin-top:8px;min-height:20px;}
+#app{display:none;min-height:100vh;}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;}
+.sidebar{background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;}
+.sidebar-brand{padding:20px 18px;border-bottom:1px solid var(--border);font-weight:700;font-size:.95rem;}
+.sidebar-brand span{color:var(--accent);}
+.sidebar-brand small{display:block;font-weight:400;color:var(--text-soft);font-size:.76rem;margin-top:2px;}
+.sidebar-nav{flex:1;padding:10px 8px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;font-weight:500;color:var(--text-soft);transition:background .2s,color .2s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;}
+.nav-item:hover{background:var(--surface2);color:var(--text);}
+.nav-item.active{background:rgba(200,57,26,.15);color:var(--accent);}
+.nav-item svg{width:18px;height:18px;flex:0 0 auto;}
+.sidebar-footer{padding:12px 8px;border-top:1px solid var(--border);}
+.sidebar-footer a{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;text-decoration:none;color:var(--text-soft);font-size:.85rem;transition:background .2s,color .2s;}
+.sidebar-footer a:hover{background:var(--surface2);color:var(--text);}
+.sidebar-footer a svg{width:15px;height:15px;}
+.main{background:var(--bg);overflow-y:auto;}
+.tab-content{display:none;padding:32px 36px;max-width:1100px;}
+.tab-content.active{display:block;}
+.page-title{font-size:1.3rem;font-weight:700;margin-bottom:24px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+.card+.card{margin-top:16px;}
+.card-title{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);margin-bottom:16px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-weight:600;border:none;cursor:pointer;font-size:.85rem;transition:opacity .2s,transform .1s;text-decoration:none;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:var(--accent-h);}
+.btn-sm{padding:5px 12px;font-size:.8rem;}
+.btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--border);}
+.btn-danger{background:#7F1D1D;color:#FCA5A5;}
+.btn-danger:hover{background:#991B1B;}
+.btn svg{width:14px;height:14px;flex:0 0 auto;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-weight:600;font-size:.82rem;margin-bottom:6px;color:var(--text-soft);}
+.field input,.field select,.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:10px 12px;transition:border-color .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);}
+.field textarea{resize:vertical;min-height:80px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.menu-layout{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;}
+.cat-list{list-style:none;}
+.cat-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background .15s;margin-bottom:4px;border:1px solid transparent;}
+.cat-item:hover{background:var(--surface2);}
+.cat-item.active{background:rgba(200,57,26,.12);border-color:rgba(200,57,26,.3);color:var(--accent);}
+.cat-item-name{font-weight:600;font-size:.9rem;}
+.cat-item-count{font-size:.75rem;color:var(--text-soft);background:var(--surface2);padding:2px 8px;border-radius:999px;}
+.item-list{list-style:none;}
+.item-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface2);border-radius:8px;margin-bottom:8px;border:1px solid var(--border);}
+.item-info{flex:1;min-width:0;}
+.item-info strong{display:block;font-size:.92rem;margin-bottom:2px;}
+.item-info span{font-size:.8rem;color:var(--text-soft);}
+.item-price{font-weight:700;color:var(--accent);font-size:.92rem;white-space:nowrap;min-width:60px;text-align:right;}
+.item-actions{display:flex;gap:6px;}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.img-slot{border:2px dashed var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .2s;position:relative;}
+.img-slot:hover{border-color:var(--accent);}
+.img-slot-preview{aspect-ratio:4/3;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-soft);overflow:hidden;position:relative;}
+.img-slot-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;}
+.img-slot-preview img.loaded{display:block;}
+.ph-icon{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.ph-icon svg{width:32px;height:32px;opacity:.4;}
+.ph-icon span{font-size:.72rem;text-align:center;opacity:.5;}
+.img-slot-info{padding:10px 12px;font-size:.8rem;border-top:1px solid var(--border);}
+.img-slot-info strong{display:block;margin-bottom:2px;}
+.img-slot-info span{color:var(--text-soft);font-size:.73rem;}
+.img-uploading{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff;z-index:2;}
+.review-list{list-style:none;}
+.review-item{padding:16px 18px;background:var(--surface2);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:10px;}
+.review-meta{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.source-badge{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:6px;}
+.source-badge.google{background:#1A3A6E;color:#93C5FD;}
+.source-badge.tripadvisor{background:#14532D;color:#86EFAC;}
+.source-badge.diger{background:#3B2A14;color:#FCD34D;}
+.stars-display{color:var(--gold);letter-spacing:1px;font-size:.9rem;}
+.author-name{font-size:.8rem;color:var(--text-soft);}
+.review-text{font-size:.88rem;color:var(--text-soft);line-height:1.6;margin-bottom:10px;}
+.review-actions{display:flex;gap:6px;}
+.settings-grid{display:grid;gap:16px;}
+#toast{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:auto;animation:slideIn .3s ease;}
+.toast-item.ok{border-color:var(--green);color:var(--green);}
+.toast-item.err{border-color:#F87171;color:#F87171;}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:none;}}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;}
+.modal-title{font-size:1rem;font-weight:700;margin-bottom:20px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;}
+.allergen-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.check-label{display:flex;align-items:center;gap:6px;font-size:.82rem;cursor:pointer;}
+.check-label input{width:16px;height:16px;accent-color:var(--accent);}
+.mobile-tabs{display:none;}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;}
+  .sidebar{display:none;}
+  .tab-content{padding:20px;}
+  .menu-layout{grid-template-columns:1fr;}
+  .form-row,.form-row-3{grid-template-columns:1fr;}
+  .mobile-tabs{display:flex;gap:4px;overflow-x:auto;position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--border);padding:8px;-webkit-overflow-scrolling:touch;}
+  .mobile-tabs .nav-item{flex:0 0 auto;width:auto;white-space:nowrap;}
+}
+</style>
+</head>
+<body>
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="logo">Lamora <span>Admin</span></div>
+    <p>Yönetim paneline erişmek için şifrenizi girin.</p>
+    <input type="password" id="loginPassword" placeholder="Şifre" autocomplete="current-password">
+    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px;" onclick="doLogin()">Giriş Yap</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div id="app">
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand">Lamora <span>Admin</span><small>Yönetim Paneli</small></div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="menu" onclick="showTab('menu')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 0 2-2h2a2 2 0 0 0 2 2"/></svg>
+          Menü Yönetimi
+        </button>
+        <button class="nav-item" data-tab="images" onclick="showTab('images')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Görseller
+        </button>
+        <button class="nav-item" data-tab="reviews" onclick="showTab('reviews')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Yorumlar
+        </button>
+        <button class="nav-item" data-tab="settings" onclick="showTab('settings')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 0-1.37-1.37L15 5.64A7 7 0 0 0 13 5V2h-2v3a7 7 0 0 0-2 .64L7.3 3.56A10 10 0 0 0 5.93 4.93L7.64 7A7 7 0 0 0 7 9H4v2h3a7 7 0 0 0 .64 2L5.64 15c.4.5.86.96 1.37 1.37L9 14.36A7 7 0 0 0 11 15v3h2v-3a7 7 0 0 0 2-.64l1.7 1.7c.5-.4.96-.86 1.37-1.37L16.36 13A7 7 0 0 0 17 11h3V9h-3a7 7 0 0 0-.64-2l1.71-2.07z"/></svg>
+          Ayarlar
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+          Siteyi Gör
+        </a>
+        <a href="#" onclick="doLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+          Çıkış Yap
+        </a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <nav class="mobile-tabs">
+        <button class="nav-item active" data-tab="menu" onclick="showTab('menu')">Menü</button>
+        <button class="nav-item" data-tab="images" onclick="showTab('images')">Görseller</button>
+        <button class="nav-item" data-tab="reviews" onclick="showTab('reviews')">Yorumlar</button>
+        <button class="nav-item" data-tab="settings" onclick="showTab('settings')">Ayarlar</button>
+      </nav>
+      <!-- MENÜ -->
+      <div class="tab-content active" id="tab-menu">
+        <div class="page-title" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+          <span>Menü Yönetimi</span>
+          <button class="btn btn-ghost btn-sm" id="pdfDownloadBtn" onclick="downloadMenuPdf()" style="font-weight:600;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+            Menüyü PDF İndir
+          </button>
+        </div>
+        <div class="menu-layout">
+          <div>
+            <div class="card">
+              <div class="card-title">Kategoriler</div>
+              <ul class="cat-list" id="catList"></ul>
+              <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%;justify-content:center;" onclick="openCatModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Kategori Ekle
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-title" id="itemsTitle">Kategori seçin</div>
+              <ul class="item-list" id="itemList"><li style="color:var(--text-soft);font-size:.85rem;text-align:center;padding:24px;">Sol taraftan bir kategori seçin.</li></ul>
+              <button class="btn btn-primary btn-sm" id="addItemBtn" style="margin-top:12px;display:none;" onclick="openItemModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Ürün Ekle
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GÖRSELLER -->
+      <div class="tab-content" id="tab-images">
+        <div class="page-title">Görseller</div>
+        <p style="color:var(--text-soft);margin-bottom:24px;font-size:.88rem;">Her alana tıklayarak veya sürükleyip bırakarak görsel yükleyebilirsiniz.</p>
+        <div class="card" style="margin-bottom:20px;"><div class="card-title">Ana Görseller</div><div class="img-grid" id="mainImgGrid"></div></div>
+        <div class="card" style="margin-bottom:20px;"><div class="card-title">Kategori Görselleri</div><div class="img-grid" id="catImgGrid"></div></div>
+        <div class="card"><div class="card-title">Galeri Görselleri</div><div class="img-grid" id="galleryImgGrid"></div></div>
+      </div>
+
+      <!-- YORUMLAR -->
+      <div class="tab-content" id="tab-reviews">
+        <div class="page-title">Yorumlar</div>
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+          <button class="btn btn-primary" onclick="openReviewModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Yorum Ekle
+          </button>
+        </div>
+        <ul class="review-list" id="reviewList"></ul>
+      </div>
+
+      <!-- AYARLAR -->
+      <div class="tab-content" id="tab-settings">
+        <div class="page-title">Site Ayarları</div>
+        <div class="card">
+          <div class="card-title">İletişim & Bilgiler</div>
+          <div class="form-row">
+            <div class="field"><label>Restoran Adı</label><input type="text" id="s-restaurant_name"></div>
+            <div class="field"><label>Telefon</label><input type="text" id="s-phone"></div>
+          </div>
+          <div class="field"><label>Adres</label><input type="text" id="s-address"></div>
+          <div class="form-row">
+            <div class="field"><label>Instagram (@ olmadan)</label><input type="text" id="s-instagram"></div>
+            <div class="field"><label>Google Puanı</label><input type="text" id="s-google_rating"></div>
+          </div>
+          <div class="form-row-3">
+            <div class="field"><label>Çalışma Günleri</label><input type="text" id="s-hours_days"></div>
+            <div class="field"><label>Açılış</label><input type="text" id="s-hours_open"></div>
+            <div class="field"><label>Kapanış</label><input type="text" id="s-hours_close"></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">Sayfa Metinleri</div>
+          <div class="field"><label>Hero Alt Yazısı</label><input type="text" id="s-hero_tagline"></div>
+          <div class="field"><label>Hikaye Alıntısı</label><textarea id="s-about_quote" rows="2">Misafirlerimizin gönlünü hoş etmek, tek derdimiz.</textarea></div>
+          <div class="field"><label>Hakkımızda (1. paragraf)</label><textarea id="s-about_text" rows="3"></textarea></div>
+          <div class="field"><label>Hakkımızda (2. paragraf)</label><textarea id="s-about_text2" rows="3"></textarea></div>
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="card-title">Harita</div>
+          <div class="field"><label>Google Maps Embed URL</label><input type="text" id="s-maps_embed"></div>
+          <div class="field"><label>Yol Tarifi URL</label><input type="text" id="s-maps_dir_url"></div>
+        </div>
+        <div style="margin-top:20px;">
+          <button class="btn btn-primary" onclick="saveSettings()">Ayarları Kaydet</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+let TOKEN = localStorage.getItem('lamora_token') || '';
+let activeCatId = null;
+let menuData = null;
+const ALLERGENS = [
+  {code:'gluten',label:'Gluten (Tahıl)'},{code:'sut',label:'Süt / Laktoz'},
+  {code:'yumurta',label:'Yumurta'},{code:'findik',label:'Fındık / Fıstık'},
+  {code:'soya',label:'Soya'},{code:'balik',label:'Balık'},
+  {code:'kabuklu',label:'Kabuklu D.Ü.'},{code:'susam',label:'Susam'},
+  {code:'hardal',label:'Hardal'},{code:'kereviz',label:'Kereviz'},{code:'sulfit',label:'Sülfit'},
+];
+const SPECIALS = [{code:'alkol',label:'Alkol içerir'},{code:'domuz',label:'Domuz türevi'}];
+
+// Auth
+async function doLogin(){
+  const pw = document.getElementById('loginPassword').value;
+  const r = await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pw})});
+  const d = await r.json();
+  if(d.ok){TOKEN=d.token;localStorage.setItem('lamora_token',TOKEN);showApp();}
+  else{document.getElementById('loginError').textContent=d.error||'Hatalı şifre.';}
+}
+document.getElementById('loginPassword').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+async function doLogout(){await api('/api/auth/logout','POST');TOKEN='';localStorage.removeItem('lamora_token');location.reload();}
+async function checkAuth(){if(!TOKEN)return false;const r=await fetch('/api/auth/check',{headers:{'Authorization':'Bearer '+TOKEN}});return(await r.json()).ok;}
+async function init(){if(await checkAuth())showApp();else{TOKEN='';localStorage.removeItem('lamora_token');}}
+function showApp(){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';loadAll();}
+
+// API
+async function api(url,method='GET',body=null){
+  const o={method,headers:{'Authorization':'Bearer '+TOKEN}};
+  if(body&&method!=='GET'){o.headers['Content-Type']='application/json';o.body=JSON.stringify(body);}
+  const r=await fetch(url,o);return r.json();
+}
+
+async function loadAll(){await Promise.all([loadMenu(),loadReviews(),loadSettings()]);}
+
+// Tabs
+function showTab(id){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item[data-tab="'+id+'"]').forEach(n=>n.classList.add('active'));
+}
+
+// Toast
+function toast(msg,type='ok'){
+  const el=document.createElement('div');el.className='toast-item '+type;
+  el.textContent=(type==='ok'?'✓ ':'✕ ')+msg;
+  document.getElementById('toast').appendChild(el);setTimeout(()=>el.remove(),3000);
+}
+
+async function downloadMenuPdf(){
+  const btn=document.getElementById('pdfDownloadBtn');
+  if(btn.disabled)return;
+  btn.disabled=true;btn.style.opacity=.6;btn.style.cursor='wait';
+  toast('PDF oluşturuluyor…');
+  try{
+    const r=await fetch('/api/menu/pdf');
+    if(!r.ok)throw new Error();
+    const blob=await r.blob();
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='lamora-kalkan-menu.pdf';
+    document.body.appendChild(a);a.click();a.remove();
+    URL.revokeObjectURL(url);
+    toast('PDF indirildi.');
+  }catch(e){
+    toast('PDF oluşturulamadı.','err');
+  }finally{
+    btn.disabled=false;btn.style.opacity='';btn.style.cursor='';
+  }
+}
+
+// MENU
+async function loadMenu(){menuData=await api('/api/menu');renderCatList();if(activeCatId)renderItemList(activeCatId);buildImageSlots();}
+function renderCatList(){
+  const l=document.getElementById('catList');l.innerHTML='';
+  (menuData.categories||[]).forEach(cat=>{
+    const li=document.createElement('li');li.className='cat-item'+(cat.id===activeCatId?' active':'');
+    li.innerHTML=`<span class="cat-item-name">${cat.name}</span><div style="display:flex;align-items:center;gap:5px;"><span class="cat-item-count">${(cat.items||[]).length}</span><button class="btn btn-ghost btn-sm" style="padding:3px 7px;" onclick="event.stopPropagation();openCatModal('${cat.id}','${cat.name.replace(/'/g,"\\'")}')">✏</button><button class="btn btn-danger btn-sm" style="padding:3px 7px;" onclick="event.stopPropagation();deleteCat('${cat.id}')">✕</button></div>`;
+    li.addEventListener('click',()=>selectCat(cat.id));l.appendChild(li);
+  });
+}
+function selectCat(id){activeCatId=id;renderCatList();renderItemList(id);document.getElementById('addItemBtn').style.display='flex';}
+function renderItemList(catId){
+  const cat=(menuData.categories||[]).find(c=>c.id===catId);
+  const l=document.getElementById('itemList');
+  document.getElementById('itemsTitle').textContent=cat?cat.name+' — Ürünler':'Ürünler';
+  if(!cat||!(cat.items||[]).length){l.innerHTML='<li style="color:var(--text-soft);font-size:.85rem;text-align:center;padding:24px;">Bu kategoride henüz ürün yok.</li>';return;}
+  l.innerHTML='';
+  cat.items.forEach(item=>{
+    const li=document.createElement('li');li.className='item-row';
+    li.innerHTML=`<div class="item-info"><strong>${item.name}</strong><span>${item.desc||'—'}</span></div><div class="item-price">${item.price?'₺'+item.price:'—'}</div><div class="item-actions"><button class="btn btn-ghost btn-sm" onclick="openItemModal(${item.id})">✏ Düzenle</button><button class="btn btn-danger btn-sm" onclick="deleteItem(${item.id})">✕</button></div>`;
+    l.appendChild(li);
+  });
+}
+
+function openCatModal(id='',name=''){
+  makeModal(`<div class="modal-title">${id?'Kategoriyi Düzenle':'Yeni Kategori'}</div>
+    ${!id?`<div class="field"><label>Kategori ID (örn: kofte)</label><input type="text" id="mCatId" placeholder="kucuk-harf-tire"></div>`:''}
+    <div class="field"><label>Kategori Adı</label><input type="text" id="mCatName" value="${name}"></div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">İptal</button><button class="btn btn-primary" onclick="saveCat('${id}')">Kaydet</button></div>`);
+}
+async function saveCat(exId){
+  const name=document.getElementById('mCatName').value.trim();if(!name)return toast('Adı gerekli.','err');
+  if(exId){await api('/api/categories/'+exId,'PUT',{name});}
+  else{const id=(document.getElementById('mCatId').value||'').trim().toLowerCase().replace(/[^a-z0-9-]/g,'');if(!id)return toast('ID gerekli.','err');await api('/api/categories','POST',{id,name});}
+  closeModal();toast('Kategori kaydedildi.');loadMenu();
+}
+async function deleteCat(id){if(!confirm('Kategoriyi ve tüm ürünleri silmek istediğinizden emin misiniz?'))return;await api('/api/categories/'+id,'DELETE');if(activeCatId===id)activeCatId=null;toast('Kategori silindi.');loadMenu();}
+
+function openItemModal(itemId=null){
+  let item=null;
+  if(itemId){const cat=menuData.categories.find(c=>c.id===activeCatId);item=cat?(cat.items||[]).find(i=>i.id===itemId):null;}
+  const sa=item?(item.allergens||[]):[];const ss=item?(item.special_notes||[]):[];
+  const ac=ALLERGENS.map(a=>`<label class="check-label"><input type="checkbox" name="al" value="${a.code}"${sa.includes(a.code)?' checked':''}> ${a.label}</label>`).join('');
+  const sc=SPECIALS.map(s=>`<label class="check-label"><input type="checkbox" name="sp" value="${s.code}"${ss.includes(s.code)?' checked':''}> ${s.label}</label>`).join('');
+  makeModal(`<div class="modal-title">${item?'Ürünü Düzenle':'Yeni Ürün'}</div>
+    <div class="field"><label>Ürün Adı *</label><input type="text" id="mIName" value="${item?.name||''}"></div>
+    <div class="field"><label>Açıklama</label><input type="text" id="mIDesc" value="${item?.desc||''}"></div>
+    <div class="form-row">
+      <div class="field"><label>Fiyat (₺)</label><input type="text" id="mIPrice" value="${item?.price||''}" placeholder="230"></div>
+      <div class="field"><label>Kalori</label><input type="text" id="mICal" value="${item?.calories||''}" placeholder="450 kcal"></div>
+    </div>
+    <div class="field"><label>Alerjenler</label><div class="allergen-grid">${ac}</div></div>
+    <div class="field"><label>Özel Uyarılar</label><div style="display:flex;flex-direction:column;gap:6px;">${sc}</div></div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">İptal</button><button class="btn btn-primary" onclick="saveItem(${item?.id||'null'})">Kaydet</button></div>`);
+}
+async function saveItem(exId){
+  const name=document.getElementById('mIName').value.trim();if(!name)return toast('Ürün adı gerekli.','err');
+  const b={category_id:activeCatId,name,desc:document.getElementById('mIDesc').value.trim(),price:document.getElementById('mIPrice').value.trim(),calories:document.getElementById('mICal').value.trim(),allergens:[...document.querySelectorAll('input[name="al"]:checked')].map(c=>c.value),special_notes:[...document.querySelectorAll('input[name="sp"]:checked')].map(c=>c.value)};
+  if(exId&&exId!=='null')await api('/api/items/'+exId,'PUT',b);else await api('/api/items','POST',b);
+  closeModal();toast('Ürün kaydedildi.');loadMenu();
+}
+async function deleteItem(id){if(!confirm('Bu ürünü silmek istediğinizden emin misiniz?'))return;await api('/api/items/'+id,'DELETE');toast('Ürün silindi.');loadMenu();}
+
+// IMAGES
+const SLOTS_MAIN=[
+  {key:'hero',label:'Hero Görseli',hint:'1920×1080px',folder:'',filename:'hero.jpg'},
+  {key:'hikaye',label:'Hikaye / Hakkımızda',hint:'800×600px',folder:'',filename:'hikaye.jpg'},
+];
+const SLOTS_GAL=Array.from({length:8},(_,i)=>({key:'galeri-'+(i+1),label:'Galeri '+(i+1),hint:'800×800px',folder:'galeri',filename:'galeri-'+(i+1)+'.jpg'}));
+
+function buildImageSlots(){
+  renderImgGrid('mainImgGrid',SLOTS_MAIN);
+  const catSlots=(menuData?.categories||[]).map(cat=>({key:cat.id,label:cat.name,hint:'600×400px',folder:'kategoriler',filename:cat.id+'.jpg'}));
+  renderImgGrid('catImgGrid',catSlots);
+  renderImgGrid('galleryImgGrid',SLOTS_GAL);
+}
+function renderImgGrid(id,slots){
+  const g=document.getElementById(id);g.innerHTML='';
+  slots.forEach(s=>{
+    const imgPath=s.folder?'assets/images/'+s.folder+'/'+s.filename:'assets/images/'+s.filename;
+    const d=document.createElement('div');d.className='img-slot';
+    d.innerHTML=`<input type="file" accept="image/jpeg,image/png,image/webp" style="display:none" id="f-${s.key}">
+      <div class="img-slot-preview" onclick="document.getElementById('f-${s.key}').click()">
+        <img src="/${imgPath}?t=${Date.now()}" alt="${s.label}" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+        <div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Tıkla veya sürükle</span></div>
+      </div>
+      <div class="img-slot-info"><strong>${s.label}</strong><span>${s.hint} · ${s.filename}</span></div>`;
+    d.querySelector('input[type="file"]').addEventListener('change',e=>uploadImg(e.target.files[0],s,d));
+    d.addEventListener('dragover',e=>{e.preventDefault();d.style.borderColor='var(--accent)';});
+    d.addEventListener('dragleave',()=>{d.style.borderColor='';});
+    d.addEventListener('drop',e=>{e.preventDefault();d.style.borderColor='';uploadImg(e.dataTransfer.files[0],s,d);});
+    g.appendChild(d);
+  });
+}
+async function uploadImg(file,slot,el){
+  if(!file)return;
+  const prev=el.querySelector('.img-slot-preview');
+  const spin=document.createElement('div');spin.className='img-uploading';spin.textContent='Yükleniyor…';prev.appendChild(spin);
+  const fd=new FormData();fd.append('folder',slot.folder);fd.append('filename',slot.filename);fd.append('image',file);
+  const r=await fetch('/api/upload',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN},body:fd});
+  const d=await r.json();spin.remove();
+  if(d.ok){
+    toast(slot.label+' yüklendi!');
+    const img=prev.querySelector('img');img.src=d.url+'?t='+Date.now();img.style.display='';
+    img.onload=()=>img.classList.add('loaded');
+    prev.querySelector('.ph-icon').style.display='none';
+  }else{toast(d.error||'Yükleme başarısız.','err');}
+}
+
+// REVIEWS
+async function loadReviews(){const d=await api('/api/reviews');renderReviews(d.reviews||[]);}
+function renderReviews(reviews){
+  const l=document.getElementById('reviewList');
+  if(!reviews.length){l.innerHTML='<li style="color:var(--text-soft);text-align:center;padding:32px;">Henüz yorum yok.</li>';return;}
+  l.innerHTML='';
+  reviews.forEach(r=>{
+    const li=document.createElement('li');li.className='review-item';
+    const src=r.source||'google';
+    li.innerHTML=`<div class="review-meta"><span class="source-badge ${src}">${{google:'Google',tripadvisor:'Tripadvisor',diger:'Diğer'}[src]||src}</span><span class="stars-display">${'★'.repeat(r.rating||5)}</span>${r.author?`<span class="author-name">${r.author}</span>`:''}</div><div class="review-text">${r.text}</div><div class="review-actions"><button class="btn btn-ghost btn-sm" onclick="openReviewModal(${r.id})">✏ Düzenle</button><button class="btn btn-danger btn-sm" onclick="deleteReview(${r.id})">✕ Sil</button></div>`;
+    l.appendChild(li);
+  });
+}
+let _reviews=[];
+async function openReviewModal(id=null){
+  const d=await api('/api/reviews');_reviews=d.reviews||[];
+  const r=id?_reviews.find(x=>x.id===id):null;
+  makeModal(`<div class="modal-title">${r?'Yorumu Düzenle':'Yeni Yorum'}</div>
+    <div class="form-row">
+      <div class="field"><label>Kaynak</label><select id="mRS"><option value="google"${r?.source==='google'?' selected':''}>Google</option><option value="tripadvisor"${r?.source==='tripadvisor'?' selected':''}>Tripadvisor</option><option value="diger"${r?.source==='diger'?' selected':''}>Diğer</option></select></div>
+      <div class="field"><label>Puan</label><select id="mRR">${[5,4,3,2,1].map(n=>`<option value="${n}"${r?.rating===n?' selected':''}>★ ${n}</option>`).join('')}</select></div>
+    </div>
+    <div class="field"><label>Yorum Metni *</label><textarea id="mRT" rows="4">${r?.text||''}</textarea></div>
+    <div class="field"><label>Yazar (opsiyonel)</label><input type="text" id="mRA" value="${r?.author||''}"></div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">İptal</button><button class="btn btn-primary" onclick="saveReview(${r?.id||'null'})">Kaydet</button></div>`);
+}
+async function saveReview(id){
+  const text=document.getElementById('mRT').value.trim();if(!text)return toast('Yorum metni gerekli.','err');
+  const b={source:document.getElementById('mRS').value,rating:parseInt(document.getElementById('mRR').value),text,author:document.getElementById('mRA').value.trim()};
+  if(id&&id!=='null')await api('/api/reviews/'+id,'PUT',b);else await api('/api/reviews','POST',b);
+  closeModal();toast('Yorum kaydedildi.');loadReviews();
+}
+async function deleteReview(id){if(!confirm('Bu yorumu silmek istediğinizden emin misiniz?'))return;await api('/api/reviews/'+id,'DELETE');toast('Yorum silindi.');loadReviews();}
+
+// SETTINGS
+async function loadSettings(){const s=await api('/api/settings');Object.entries(s).forEach(([k,v])=>{const e=document.getElementById('s-'+k);if(e)e.value=v||'';});}
+async function saveSettings(){const b={};document.querySelectorAll('[id^="s-"]').forEach(e=>{b[e.id.replace('s-','')]=e.value;});await api('/api/settings','PUT',b);toast('Ayarlar kaydedildi!');}
+
+// Modal
+function makeModal(html){
+  closeModal();
+  const bd=document.createElement('div');bd.className='modal-backdrop';bd.id='activeModal';
+  bd.innerHTML=`<div class="modal">${html}</div>`;
+  bd.addEventListener('click',e=>{if(e.target===bd)closeModal();});
+  document.body.appendChild(bd);
+  setTimeout(()=>bd.querySelector('input,textarea,select')?.focus(),50);
+}
+function closeModal(){document.getElementById('activeModal')?.remove();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+init();
+</script>
+</body>
+</html>

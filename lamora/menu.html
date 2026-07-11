@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="menu_page_title">Menü & Fiyat Listesi | Lamora Kalkan — Kaş Kalkan Yolu</title>
+<meta name="description" content="Lamora Kalkan güncel menüsü ve fiyat listesi — köfte, tantuni, tavuk ve kokoreç. Kaş–Kalkan yolu, Yeşilköy Kavşağı, Antalya.">
+<meta name="keywords" content="lamora fastfood menü, kaş restoran fiyat listesi, köfte fiyatı kaş, tantuni fiyatı antalya, kokoreç kaş kalkan">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Lamora Kalkan">
+<meta name="theme-color" content="#111111">
+
+<link rel="canonical" href="https://lamorakalkan.com.tr/menu.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lamora Kalkan">
+<meta property="og:title" content="Menü & Fiyat Listesi | Lamora Kalkan">
+<meta property="og:description" content="Lamora Kalkan güncel menüsü — köfte, tantuni, tavuk ve kokoreç fiyat listesi.">
+<meta property="og:url" content="https://lamorakalkan.com.tr/menu.html">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:image" content="https://lamorakalkan.com.tr/assets/images/hero.jpg">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Menü | Lamora Kalkan">
+<meta name="twitter:description" content="Köfte, tantuni, tavuk ve kokoreç — güncel fiyat listesi.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Lamora Kalkan Menüsü",
+  "url": "https://lamorakalkan.com.tr/menu.html",
+  "inLanguage": "tr",
+  "hasMenuSection": [
+    { "@type": "MenuSection", "name": "Başlangıçlar" },
+    { "@type": "MenuSection", "name": "Ana Yemekler" },
+    { "@type": "MenuSection", "name": "Tavuk Ürünleri" },
+    { "@type": "MenuSection", "name": "Kokoreç" },
+    { "@type": "MenuSection", "name": "İçecekler" }
+  ],
+  "mainEntityOfPage": {
+    "@type": "Restaurant",
+    "name": "Lamora Kalkan",
+    "url": "https://lamorakalkan.com.tr"
+  }
+}
+</script>
+
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="i18n.js"></script>
+<style>
+/* ---- Menü sayfasına özel stiller ---- */
+.menu-page-header { position: relative; }
+.menu-page-header .lang-switch { position: absolute; top: 16px; right: 16px; }
+@media (max-width: 480px) {
+  .menu-page-header .lang-switch { position: static; margin: 0 auto 16px; width: max-content; }
+}
+.draft-banner {
+  background: #D4952A; color: #fff;
+  text-align: center; font-size: 0.8rem; font-weight: 600;
+  padding: 8px 16px; display: none;
+  font-family: 'Montserrat', sans-serif; letter-spacing: 0.03em;
+}
+.draft-banner.show { display: block; }
+
+.menu-page-header {
+  background: var(--dark); text-align: center; padding: 40px 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.menu-page-header .back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.82rem; font-family: 'Montserrat', sans-serif; font-weight: 600;
+  letter-spacing: 0.04em; color: rgba(255,255,255,0.5);
+  text-decoration: none; margin-bottom: 18px;
+  transition: color 0.2s ease;
+}
+.menu-page-header .back-link:hover { color: rgba(255,255,255,0.85); }
+.menu-page-header .back-link svg { width: 14px; height: 14px; }
+
+.menu-page-logo { height: 72px; width: auto; margin: 0 auto 10px; filter: brightness(0) invert(1); }
+.menu-page-header h1 {
+  font-size: 1.8rem; font-weight: 900; color: var(--white);
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px;
+}
+.menu-page-header p { color: rgba(255,255,255,0.5); font-size: 0.88rem; }
+
+.tabs-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white); border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.tabs {
+  display: flex; gap: 6px; overflow-x: auto; padding: 12px 20px;
+  max-width: var(--maxw); margin: 0 auto; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex: 0 0 auto; padding: 9px 20px; border-radius: 999px;
+  border: 2px solid var(--border); background: transparent;
+  font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer;
+  color: var(--text-soft); white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tab-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+.menu-body {
+  max-width: 820px; margin: 0 auto; padding: 40px 24px 80px;
+}
+
+#menuCat section {
+  margin-bottom: 52px;
+  scroll-margin-top: 130px;
+}
+#menuCat section h2 {
+  font-size: 1.4rem; font-weight: 900; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+#menuCat section h2::before {
+  content: ""; display: block; width: 4px; height: 1.4em;
+  background: var(--accent); border-radius: 2px; flex: 0 0 auto;
+}
+
+.menu-item {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-item .name {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.98rem; margin-bottom: 3px; color: var(--dark);
+}
+.menu-item .desc { color: var(--text-soft); font-size: 0.86rem; margin-bottom: 6px; }
+.menu-item .price {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 1.05rem; color: var(--accent);
+  white-space: nowrap; flex: 0 0 auto; margin-top: 2px;
+}
+.item-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  font-family: 'Montserrat', sans-serif; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+}
+.tag-cal    { background: #F0F9FF; color: #0369A1; border: 1px solid #BAE6FD; }
+.tag-allergen { background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; }
+.tag-special  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+
+.empty-state {
+  text-align: center; color: var(--text-soft); padding: 60px 24px;
+  font-size: 1rem;
+}
+
+.menu-actions {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+  padding: 32px 24px 48px;
+  border-top: 1px solid var(--border);
+  max-width: 820px; margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+<div class="draft-banner" id="draftBanner" data-i18n="draft_banner">Yönetici önizlemesi — bu taslak yalnızca sizin tarayıcınızda görünür.</div>
+
+<header class="menu-page-header">
+  <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang_switch_label">
+    <button type="button" class="lang-btn" data-lang="tr" onclick="setLang('tr')">TR</button>
+    <button type="button" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button type="button" class="lang-btn" data-lang="ru" onclick="setLang('ru')">RU</button>
+  </div>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    <span data-i18n="back_to_home">Ana Sayfaya Dön</span>
+  </a>
+  <img src="logo.png" alt="Lamora Kalkan logosu" class="menu-page-logo">
+  <h1 data-i18n="menu_title">Menü</h1>
+  <p>Lamora Kalkan — Kalkan, Kaş / Antalya</p>
+</header>
+
+<div class="tabs-wrap">
+  <nav class="tabs" id="tabs" data-i18n-attr="aria-label:menu_categories_label" aria-label="Menü kategorileri"></nav>
+</div>
+
+<main class="menu-body">
+  <div id="menuCat"></div>
+</main>
+
+<div class="menu-actions">
+  <a href="tel:+905XXXXXXXXX" class="btn btn-primary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.27a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92z"/></svg>
+    <span data-i18n="order_call">Sipariş İçin Ara</span>
+  </a>
+  <a href="index.html" class="btn btn-outline" data-i18n="back_home_arrow">← Ana Sayfa</a>
+</div>
+
+<!-- Statik veri fallback'i (sunucu/API yoksa buradan okunur) -->
+<script src="menu-data.js"></script>
+<script>
+  let _menuData = null;
+
+  async function loadAndRender() {
+    try {
+      _menuData = await fetch('/api/menu').then(r => r.json());
+    } catch(e) {
+      // Sunucu yoksa localStorage taslağını, o da yoksa statik menu-data.js'i kullan
+      try {
+        const draft = localStorage.getItem('lamora_menu_draft');
+        if (draft) { _menuData = JSON.parse(draft); document.getElementById('draftBanner').classList.add('show'); }
+      } catch(e2) {}
+      if (!_menuData && typeof MENU_DATA !== 'undefined') {
+        _menuData = { categories: MENU_DATA.categories, allergenList: (typeof ALLERGEN_LIST !== 'undefined' ? ALLERGEN_LIST : []), specialList: (typeof SPECIAL_NOTE_LIST !== 'undefined' ? SPECIAL_NOTE_LIST : []) };
+      }
+    }
+    if (_menuData) renderMenu(_menuData);
+  }
+  loadAndRender();
+
+  function renderMenu(data) {
+    const tabsEl = document.getElementById('tabs');
+    const catEl  = document.getElementById('menuCat');
+    tabsEl.innerHTML = '';
+    catEl.innerHTML  = '';
+
+    if (!data.categories || data.categories.length === 0) {
+      catEl.innerHTML = `<div class="empty-state">${T('empty_menu')}</div>`;
+      return;
+    }
+
+    const allergenList = data.allergenList || (typeof ALLERGEN_LIST !== 'undefined' ? ALLERGEN_LIST : []);
+    const specialList  = data.specialList  || (typeof SPECIAL_NOTE_LIST !== 'undefined' ? SPECIAL_NOTE_LIST : []);
+
+    data.categories.forEach((cat, i) => {
+      const tabId = 'cat-' + cat.id;
+
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+      btn.dataset.target = tabId;
+      btn.textContent = TC(cat.name);
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(tabId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      tabsEl.appendChild(btn);
+
+      const section = document.createElement('section');
+      section.id = tabId;
+
+      const h2 = document.createElement('h2');
+      h2.textContent = TC(cat.name);
+      section.appendChild(h2);
+
+      (cat.items || []).forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'menu-item';
+        row.innerHTML = `
+          <div>
+            <div class="name"></div>
+            <div class="desc"></div>
+            <div class="item-tags"></div>
+          </div>
+          <div class="price"></div>
+        `;
+        row.querySelector('.name').textContent = TC(item.name || '');
+        row.querySelector('.desc').textContent = TC(item.desc || '');
+        row.querySelector('.price').textContent = '₺' + (item.price || '—');
+
+        const tagsEl = row.querySelector('.item-tags');
+
+        if (item.calories) {
+          const cal = document.createElement('span');
+          cal.className = 'tag tag-cal';
+          cal.textContent = item.calories + ' kcal';
+          tagsEl.appendChild(cal);
+        }
+
+        (item.allergens || []).forEach(code => {
+          const info = allergenList.find(a => a.code === code);
+          const tag = document.createElement('span');
+          tag.className = 'tag tag-allergen';
+          tag.textContent = TC(info ? info.label : code);
+          tagsEl.appendChild(tag);
+        });
+
+        (item.special_notes || item.specialNotes || []).forEach(code => {
+          const info = specialList.find(s => s.code === code);
+          const tag = document.createElement('span');
+          tag.className = 'tag tag-special';
+          tag.textContent = '⚠ ' + TC(info ? info.label : code);
+          tagsEl.appendChild(tag);
+        });
+
+        section.appendChild(row);
+      });
+
+      catEl.appendChild(section);
+    });
+  }
+
+  window.addEventListener('langchange', () => { if (_menuData) renderMenu(_menuData); });
+</script>
+</body>
+</html>
