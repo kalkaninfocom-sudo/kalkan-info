@@ -64,65 +64,66 @@
             '</div>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Keşfet</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Discover" data-de="Entdecken" data-ru="Обзор" data-fr="Découvrir">Keşfet</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="index.html">🏠 Ana Sayfa</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="haberler.html">📰 Haberler</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="aktiviteler.html">🎯 Bölgesel Aktiviteler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="index.html" data-en="🏠 Home" data-de="🏠 Startseite" data-ru="🏠 Главная" data-fr="🏠 Accueil">🏠 Ana Sayfa</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="haberler.html" data-en="📰 News" data-de="📰 Nachrichten" data-ru="📰 Новости" data-fr="📰 Actualités">📰 Haberler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="aktiviteler.html" data-en="🎯 Local Activities" data-de="🎯 Regionale Aktivitäten" data-ru="🎯 Мероприятия" data-fr="🎯 Activités locales">🎯 Bölgesel Aktiviteler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="dolmus.html" data-en="🚌 Bus Times" data-de="🚌 Buszeiten" data-ru="🚌 Расписание автобусов" data-fr="🚌 Horaires de bus">🚌 Dolmuş Saatleri</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Konaklama & Yeme-İçme</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Stay & Dining" data-de="Unterkunft & Essen" data-ru="Проживание и еда" data-fr="Séjour & Restauration">Konaklama & Yeme-İçme</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="villalar.html">🏡 Villalar</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="restoranlar.html">🍽️ Restoran & Bar</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="hizmetler.html">🛠️ Hizmetler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="villalar.html" data-en="🏡 Villas" data-de="🏡 Villen" data-ru="🏡 Виллы" data-fr="🏡 Villas">🏡 Villalar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="restoranlar.html" data-en="🍽️ Restaurants & Bars" data-de="🍽️ Restaurants & Bars" data-ru="🍽️ Рестораны и бары" data-fr="🍽️ Restaurants & Bars">🍽️ Restoran & Bar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="hizmetler.html" data-en="🛠️ Services" data-de="🛠️ Dienstleistungen" data-ru="🛠️ Услуги" data-fr="🛠️ Services">🛠️ Hizmetler</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Doğa & Tarih</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Nature & History" data-de="Natur & Geschichte" data-ru="Природа и история" data-fr="Nature & Histoire">Doğa & Tarih</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="plajlar.html">🏖️ Plajlar</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="pazarlar.html">🧺 Pazarlar</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="turlar.html">⛵ Turlar</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="antik-kentler.html">🏛️ Antik Kentler</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="plajlar.html" data-en="🏖️ Beaches" data-de="🏖️ Strände" data-ru="🏖️ Пляжи" data-fr="🏖️ Plages">🏖️ Plajlar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="pazarlar.html" data-en="🧺 Markets" data-de="🧺 Märkte" data-ru="🧺 Рынки" data-fr="🧺 Marchés">🧺 Pazarlar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="turlar.html" data-en="⛵ Tours" data-de="⛵ Touren" data-ru="⛵ Туры" data-fr="⛵ Circuits">⛵ Turlar</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="antik-kentler.html" data-en="🏛️ Ancient Sites" data-de="🏛️ Antike Stätten" data-ru="🏛️ Древние памятники" data-fr="🏛️ Sites antiques">🏛️ Antik Kentler</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Planlama Araçları</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Planning Tools" data-de="Planungstools" data-ru="Инструменты планирования" data-fr="Outils de planification">Planlama Araçları</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="tatil-asistani.html">🧭 Tatil Asistanı</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="hizmet-ekle.html">➕ İşletme Ekle</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="tatil-asistani.html" data-en="🧭 Trip Planner" data-de="🧭 Reiseplaner" data-ru="🧭 Планировщик отдыха" data-fr="🧭 Planificateur">🧭 Tatil Asistanı</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="hizmet-ekle.html" data-en="➕ Add Business" data-de="➕ Unternehmen hinzufügen" data-ru="➕ Добавить бизнес" data-fr="➕ Ajouter une entreprise">➕ İşletme Ekle</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">İş & Kariyer</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Jobs & Careers" data-de="Jobs & Karriere" data-ru="Работа и карьера" data-fr="Emploi & Carrière">İş & Kariyer</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="ilanlar.html">💼 İş İlanları</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="ilan-ver.html">📝 İlan Ver</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="ilanlar.html" data-en="💼 Jobs" data-de="💼 Stellenangebote" data-ru="💼 Вакансии" data-fr="💼 Emplois">💼 İş İlanları</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="ilan-ver.html" data-en="📝 Post a Listing" data-de="📝 Anzeige aufgeben" data-ru="📝 Разместить объявление" data-fr="📝 Publier une annonce">📝 İlan Ver</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Hesap</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Account" data-de="Konto" data-ru="Аккаунт" data-fr="Compte">Hesap</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="login.html">🔑 Giriş Yap</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="register.html">✨ Üye Ol</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="profil.html">👤 Profilim</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="login.html" data-en="🔑 Sign In" data-de="🔑 Anmelden" data-ru="🔑 Войти" data-fr="🔑 Se connecter">🔑 Giriş Yap</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="register.html" data-en="✨ Sign Up" data-de="✨ Registrieren" data-ru="✨ Регистрация" data-fr="✨ S\'inscrire">✨ Üye Ol</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="profil.html" data-en="👤 My Profile" data-de="👤 Mein Profil" data-ru="👤 Мой профиль" data-fr="👤 Mon profil">👤 Profilim</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Kurumsal</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Company" data-de="Unternehmen" data-ru="О компании" data-fr="Entreprise">Kurumsal</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="hakkimizda.html">ℹ️ Hakkımızda</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="hakkimizda.html" data-en="ℹ️ About" data-de="ℹ️ Über uns" data-ru="ℹ️ О нас" data-fr="ℹ️ À propos">ℹ️ Hakkımızda</a></li>' +
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2">Yasal & Yönetim</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Legal & Admin" data-de="Rechtliches & Admin" data-ru="Правовое и админ" data-fr="Légal & Admin">Yasal & Yönetim</div>' +
             '<ul class="space-y-1.5">' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="kvkk.html">📋 KVKK Aydınlatma</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="privacy.html">🔒 Gizlilik Politikası</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400" href="terms.html">📄 Kullanım Şartları</a></li>' +
-              '<li><a class="block py-1.5 hover:text-sun-400 text-white/70" href="admin.html">⚙️ Admin Girişi</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="kvkk.html" data-en="📋 Privacy Notice" data-de="📋 Datenschutzhinweis" data-ru="📋 Уведомление о конфиденциальности" data-fr="📋 Avis de confidentialité">📋 KVKK Aydınlatma</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="privacy.html" data-en="🔒 Privacy Policy" data-de="🔒 Datenschutz" data-ru="🔒 Политика конфиденциальности" data-fr="🔒 Politique de confidentialité">🔒 Gizlilik Politikası</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="terms.html" data-en="📄 Terms of Use" data-de="📄 Nutzungsbedingungen" data-ru="📄 Условия использования" data-fr="📄 Conditions d\'utilisation">📄 Kullanım Şartları</a></li>' +
+              '<li><a class="block py-1.5 hover:text-sun-400 text-white/70" href="admin.html" data-en="⚙️ Admin" data-de="⚙️ Admin" data-ru="⚙️ Админ" data-fr="⚙️ Admin">⚙️ Admin Girişi</a></li>' +
             '</ul>' +
           '</div>' +
         '</nav>' +
