@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The View Terrace Restaurant — Kalkan · 4.9★</title>
+  <meta name="description" content="The View Terrace Restaurant in Kalkan — 4.9★ rated with 158 reviews. Experience unparalleled sea views from our iconic terrace. Reserve your table today." />
+  <meta property="og:title" content="The View Terrace Restaurant — Kalkan" />
+  <meta property="og:description" content="4.9★ · 158 reviews · A terrace above the Aegean." />
+  <meta property="og:image" content="/assets/img/restoran/the-view-terrace-restaurant-g1.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sea':    { DEFAULT: '#0E2233', dark: '#07131E', mid: '#16334A', light: '#1E4A68' },
+            'gold':   { DEFAULT: '#C8962A', light: '#E8B84B', pale: '#F5E3A8', warm: '#D4A843' },
+            'cream':  { DEFAULT: '#F5EDD8', off: '#EDE4CB', warm: '#FAF5E8' },
+            'terra':  { DEFAULT: '#A0513A', light: '#C4704F' },
+            'stone':  { DEFAULT: '#8C7B6A', light: '#B0A090' },
+          },
+          fontFamily: {
+            display: ['Cormorant Garamond', 'Georgia', 'serif'],
+            cinzel:  ['Cinzel', 'serif'],
+            body:    ['DM Sans', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: { cinzel: '0.15em', tight: '-0.03em', wide: '0.08em' },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --sea:    #0E2233;
+      --gold:   #C8962A;
+      --gold-l: #E8B84B;
+      --cream:  #F5EDD8;
+      --terra:  #A0513A;
+      --stone:  #8C7B6A;
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background-color: var(--sea);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--sea); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ── GRAIN OVERLAY ── */
+    .grain::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: overlay;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100svh; min-height: 600px;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      will-change: transform;
+    }
+
+    .hero-bg img {
+      width: 100%; height: 115%;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    /* Layered gradient: bottom fade + colour wash + vignette */
+    .hero-gradient {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top,    rgba(7,19,30,1)   0%,  rgba(7,19,30,0.65) 35%, transparent 65%),
+        linear-gradient(to bottom, rgba(7,19,30,0.45) 0%, transparent 40%),
+        linear-gradient(160deg,    rgba(200,150,42,0.08) 0%, transparent 50%);
+    }
+
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, transparent 50%, rgba(7,19,30,0.5) 100%);
+    }
+
+    /* Foreground depth layer (blurred silhouette bar) */
+    .hero-depth-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 30px;
+      background: linear-gradient(to top, rgba(7,19,30,1), transparent);
+    }
+
+    .hero-content {
+      position: relative; z-index: 10;
+      width: 100%; padding: 0 clamp(1.5rem, 5vw, 5rem) clamp(3rem, 7vh, 5rem);
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background 0.4s var(--ease-out), box-shadow 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(7,19,30,0.92);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      box-shadow: 0 1px 0 rgba(200,150,42,0.15), 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem clamp(1.5rem, 5vw, 5rem);
+      gap: 1.5rem;
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+      letter-spacing: 0.15em;
+      color: var(--gold-l);
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(245,237,216,0.7); text-decoration: none;
+      transition: color 0.2s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--gold-l); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--gold);
+      color: var(--gold-l) !important;
+      border-radius: 2px;
+      font-size: 0.78rem !important; letter-spacing: 0.1em;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--sea) !important; }
+
+    @media (max-width: 768px) {
+      .nav-links .hide-mobile { display: none; }
+    }
+    @media (max-width: 480px) {
+      .nav-links .hide-sm { display: none; }
+    }
+
+    /* ── STAR BADGE ── */
+    .star-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(200,150,42,0.15);
+      border: 1px solid rgba(200,150,42,0.4);
+      border-radius: 2px;
+      padding: 0.45rem 0.9rem;
+      backdrop-filter: blur(8px);
+      margin-bottom: 1.25rem;
+    }
+    .star-badge .stars { color: var(--gold-l); font-size: 0.85rem; letter-spacing: 0.05em; }
+    .star-badge .score { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 500; color: var(--gold-l); }
+    .star-badge .sep  { color: rgba(200,150,42,0.5); }
+    .star-badge .reviews { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(245,237,216,0.6); }
+
+    /* ── SECTION TITLES ── */
+    .section-eyebrow {
+      display: block; font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin: 0 0 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold-l); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 260px 220px 280px;
+      gap: 10px;
+    }
+    .gallery-item { position: relative; overflow: hidden; cursor: pointer; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-out), filter 0.4s;
+      filter: brightness(0.92) saturate(1.1);
+    }
+    .gallery-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.2); }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, transparent 50%, rgba(7,19,30,0.6) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+    /* Grid placement */
+    .gi-1 { grid-column: 1/6;  grid-row: 1/2; }
+    .gi-2 { grid-column: 6/10; grid-row: 1/2; }
+    .gi-3 { grid-column: 10/13; grid-row: 1/3; }
+    .gi-4 { grid-column: 1/4;  grid-row: 2/3; }
+    .gi-5 { grid-column: 4/6;  grid-row: 2/3; }
+    .gi-6 { grid-column: 6/10; grid-row: 2/4; }
+    .gi-7 { grid-column: 1/6;  grid-row: 3/4; }
+    .gi-8 { grid-column: 10/13; grid-row: 3/4; }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(4, 220px);
+      }
+      .gi-1,.gi-2,.gi-3,.gi-4,.gi-5,.gi-6,.gi-7,.gi-8 {
+        grid-column: auto; grid-row: auto;
+      }
+      .gi-1 { grid-column: 1/3; }
+      .gi-6 { grid-column: 1/3; }
+    }
+    @media (max-width: 540px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+      .gallery-grid .gallery-item { height: 240px; }
+      .gi-1,.gi-6 { grid-column: auto; }
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(4,11,19,0.97);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s;
+      backdrop-filter: blur(20px);
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img {
+      max-width: 92vw; max-height: 88vh;
+      object-fit: contain;
+      border: 1px solid rgba(200,150,42,0.2);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--cream);
+      font-size: 1.8rem; cursor: pointer; opacity: 0.7; line-height: 1;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(200,150,42,0.12);
+      border: 1px solid rgba(200,150,42,0.3);
+      color: var(--gold-l); width: 2.8rem; height: 2.8rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.2rem;
+      transition: background 0.2s;
+      border-radius: 2px;
+    }
+    .lightbox-nav:hover { background: rgba(200,150,42,0.3); }
+    .lightbox-prev { left: 1.2rem; }
+    .lightbox-next { right: 1.2rem; }
+
+    /* ── REVIEW CARDS ── */
+    .review-card footer {
+      background: none !important;
+      padding: 0; margin: 0;
+      color: inherit;
+    }
+    .review-card blockquote footer {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .review-card {
+      background: rgba(22,51,74,0.5);
+      border: 1px solid rgba(200,150,42,0.12);
+      border-radius: 3px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2), 0 1px 0 rgba(200,150,42,0.06) inset;
+      transition: transform 0.4s var(--ease-spring), box-shadow 0.4s, border-color 0.3s;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 1px 0 rgba(200,150,42,0.15) inset;
+      border-color: rgba(200,150,42,0.3);
+    }
+
+    /* ── BIG STAT ── */
+    .big-stat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 300;
+      line-height: 0.9;
+      color: var(--gold-l);
+      letter-spacing: -0.04em;
+    }
+
+    /* ── CTA BUTTON ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: var(--gold);
+      color: var(--sea);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; letter-spacing: 0.12em; font-weight: 500;
+      text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer;
+      border-radius: 2px;
+      box-shadow: 0 4px 20px rgba(200,150,42,0.35), 0 1px 4px rgba(0,0,0,0.2);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s var(--ease-spring);
+    }
+    .btn-primary:hover {
+      background: var(--gold-l);
+      box-shadow: 0 8px 32px rgba(200,150,42,0.5);
+      transform: translateY(-2px);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,237,216,0.35);
+      font-size: 0.82rem; letter-spacing: 0.12em; font-weight: 500;
+      text-transform: uppercase; text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s var(--ease-spring);
+    }
+    .btn-outline:hover {
+      border-color: var(--cream);
+      background: rgba(245,237,216,0.07);
+      transform: translateY(-2px);
+    }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-line {
+      width: 3rem; height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── FEATURES ── */
+    .feature-item {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .feature-icon {
+      flex-shrink: 0;
+      width: 2.5rem; height: 2.5rem;
+      border: 1px solid rgba(200,150,42,0.35);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold-l); font-size: 1rem;
+      background: rgba(200,150,42,0.08);
+    }
+
+    /* ── MAP SECTION ── */
+    .map-container {
+      position: relative;
+      border: 1px solid rgba(200,150,42,0.15);
+      border-radius: 4px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    }
+    .map-container iframe {
+      width: 100%; height: 380px; display: block;
+      filter: saturate(0.85) brightness(0.9);
+    }
+
+    /* ── RESERVE BAND ── */
+    .reserve-band {
+      background:
+        linear-gradient(135deg, rgba(14,34,51,0.98) 0%, rgba(22,51,74,0.95) 100%);
+      border-top: 1px solid rgba(200,150,42,0.2);
+      border-bottom: 1px solid rgba(200,150,42,0.1);
+      position: relative; overflow: hidden;
+    }
+    .reserve-band::before {
+      content: '';
+      position: absolute;
+      top: -40%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(200,150,42,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── INTRO PHOTO TILT ── */
+    .tilt-card {
+      perspective: 800px;
+      transform-style: preserve-3d;
+    }
+    .tilt-card-inner {
+      transition: transform 0.2s ease-out;
+      transform-style: preserve-3d;
+      border-radius: 3px; overflow: hidden;
+      box-shadow:
+        0 2px 4px  rgba(0,0,0,0.15),
+        0 8px 24px rgba(0,0,0,0.25),
+        0 30px 60px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(200,150,42,0.15);
+    }
+    .tilt-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(4,11,19,0.8);
+      border-top: 1px solid rgba(200,150,42,0.1);
+    }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+      width: 3.2rem; height: 3.2rem;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+    .wa-float svg { width: 1.6rem; height: 1.6rem; fill: #fff; }
+
+    /* ── HERO SCROLL INDICATOR ── */
+    .scroll-indicator {
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      position: absolute; bottom: 2.5rem; right: 2.5rem;
+      opacity: 0.5; z-index: 10;
+    }
+    .scroll-indicator span { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 2.5rem; background: linear-gradient(to bottom, var(--gold), transparent); animation: scroll-pulse 2.5s ease-in-out infinite; }
+    @keyframes scroll-pulse { 0%,100%{transform:scaleY(1);opacity:0.5} 50%{transform:scaleY(0.6);opacity:1} }
+
+    /* ── HERO TEXT ANIMATION ── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fade-up 0.8s var(--ease-out) 0.3s both; }
+    .hero-title   { animation: fade-up 0.9s var(--ease-out) 0.5s both; }
+    .hero-badge   { animation: fade-up 0.8s var(--ease-out) 0.7s both; }
+    .hero-ctas    { animation: fade-up 0.8s var(--ease-out) 0.9s both; }
+  </style>
+</head>
+
+<body class="grain">
+
+  <!-- ── FLOATING WHATSAPP ── -->
+  <a href="https://wa.me/905354264577" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="The View Terrace home">
+        The View Terrace
+      </a>
+      <div class="nav-links">
+        <a href="#gallery" class="hide-mobile">Gallery</a>
+        <a href="#location" class="hide-mobile">Location</a>
+        <a href="#reserve" class="nav-cta" aria-label="Reserve a table">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg>
+          Reserve
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Hero — The View Terrace Restaurant">
+
+    <div class="hero-bg" id="heroBg">
+      <img
+        src="/assets/img/restoran/the-view-terrace-restaurant-g1.jpg"
+        alt="The View Terrace — panoramic terrace overlooking the Aegean, Kalkan"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-depth-bar"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow section-eyebrow">Kalkan · Kaş, Antalya</p>
+
+      <h1 class="hero-title" style="font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,8vw,6.5rem); font-weight:300; line-height:1; letter-spacing:-0.03em; color:#F5EDD8; margin:0 0 1.2rem;">
+        The View<br /><em style="font-style:italic;color:#E8B84B;">Terrace</em>
+      </h1>
+
+      <div class="hero-badge star-badge">
+        <span class="stars">★★★★★</span>
+        <span class="score">4.9</span>
+        <span class="sep">·</span>
+        <span class="reviews">158 Google Reviews</span>
+      </div>
+
+      <div class="hero-ctas" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+        <a href="https://wa.me/905354264577" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reserve via WhatsApp
+        </a>
+        <a href="tel:+905354264577" class="btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+
+    <!-- scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </section>
+
+  <!-- ── INTRO ── -->
+  <section id="about" style="padding: clamp(4rem,10vh,8rem) clamp(1.5rem,5vw,5rem); background:linear-gradient(to bottom, #07131E 0%, #0E2233 100%);">
+    <div style="max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,6rem); align-items:center;">
+
+      <!-- Text -->
+      <div>
+        <div class="reveal">
+          <span class="section-eyebrow">About the Restaurant</span>
+          <div class="gold-line"></div>
+          <h2 class="section-title">Where the <em>Aegean</em><br />meets the sky</h2>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <p style="font-size:1.05rem; line-height:1.75; color:rgba(245,237,216,0.78); margin:0 0 1.5rem; font-weight:300;">
+            Perched above the turquoise bay of Kalkan, The View Terrace is more than a meal — it is an atmosphere. The open terrace unfolds before you like a stage, with the old town's whitewashed rooftops cascading to the sea below and the sky above painted in every shade the Mediterranean sun can conjure.
+          </p>
+          <p style="font-size:1.05rem; line-height:1.75; color:rgba(245,237,216,0.65); margin:0 0 2rem; font-weight:300;">
+            Guests from across the world return season after season — drawn not only by the food, but by the rare feeling of a place that makes time slow down. A 4.9-star rating across 158 reviews is not an accolade, it is a pattern of moments.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="feature-item">
+            <span class="feature-icon" aria-hidden="true">◈</span>
+            <div>
+              <p style="margin:0;font-weight:500;color:var(--cream);font-size:0.95rem;">Panoramic Terrace Seating</p>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:rgba(245,237,216,0.55);line-height:1.5;">Unobstructed views across the bay — unforgettable at golden hour.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon" aria-hidden="true">◈</span>
+            <div>
+              <p style="margin:0;font-weight:500;color:var(--cream);font-size:0.95rem;">Intimate Atmosphere</p>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:rgba(245,237,216,0.55);line-height:1.5;">A setting crafted for unhurried evenings and meaningful occasions.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon" aria-hidden="true">◈</span>
+            <div>
+              <p style="margin:0;font-weight:500;color:var(--cream);font-size:0.95rem;">Prime Kalkan Location</p>
+              <p style="margin:0.25rem 0 0;font-size:0.85rem;color:rgba(245,237,216,0.55);line-height:1.5;">In the heart of Yalı Boyu neighbourhood, steps from the marina.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo with 3D tilt -->
+      <div class="reveal reveal-delay-2 tilt-card" id="introTilt">
+        <div class="tilt-card-inner" style="height:520px;">
+          <img
+            src="/assets/img/restoran/the-view-terrace-restaurant-g2.jpg"
+            alt="Terrace dining at The View Terrace, Kalkan"
+            loading="lazy"
+          />
+          <!-- Colour overlay for depth -->
+          <div style="position:absolute;inset:0;background:linear-gradient(160deg,transparent 55%,rgba(14,34,51,0.55) 100%);"></div>
+          <!-- Corner caption -->
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;background:rgba(7,19,30,0.75);backdrop-filter:blur(8px);padding:0.6rem 1rem;border:1px solid rgba(200,150,42,0.2);border-radius:2px;">
+            <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--gold-l);letter-spacing:0.05em;">Kalkan Bay</p>
+            <p style="margin:0.1rem 0 0;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,237,216,0.5);">Yalı Boyu, Kaş</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile stack fix -->
+    <style>
+      @media (max-width:860px) {
+        #about > div { grid-template-columns:1fr !important; }
+        #introTilt { height:320px; }
+        #introTilt .tilt-card-inner { height:320px; }
+      }
+    </style>
+  </section>
+
+  <!-- ── GALLERY ── -->
+  <section id="gallery" style="padding:clamp(3rem,8vh,6rem) clamp(1.5rem,5vw,5rem); background:#07131E;">
+    <div style="max-width:1280px;margin:0 auto;">
+      <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+        <span class="section-eyebrow">Gallery</span>
+        <div class="gold-line" style="margin:0 auto 0.75rem;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+        <h2 class="section-title">Moments from the <em>terrace</em></h2>
+        <p style="max-width:480px;margin:0 auto;color:rgba(245,237,216,0.55);font-size:0.95rem;line-height:1.7;">Eight photographs — each a different light, a different feeling. Click any image to explore.</p>
+      </div>
+
+      <div class="gallery-grid reveal" id="galleryGrid">
+        <div class="gallery-item gi-1" data-idx="0">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g1.jpg" alt="The View Terrace — aerial bay view" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-2" data-idx="1">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g2.jpg" alt="Terrace dining at The View Terrace" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-3" data-idx="2">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g3.jpg" alt="The View Terrace ambience" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-4" data-idx="3">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g4.jpg" alt="The View Terrace restaurant interior" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-5" data-idx="4">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g5.jpg" alt="Golden hour at The View Terrace" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-6" data-idx="5">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g6.jpg" alt="The View Terrace — evening atmosphere" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-7" data-idx="6">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g7.jpg" alt="The View Terrace — panoramic views" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+        <div class="gallery-item gi-8" data-idx="7">
+          <img src="/assets/img/restoran/the-view-terrace-restaurant-g8.jpg" alt="The View Terrace — Kalkan dining" loading="lazy" />
+          <div class="gallery-item-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lbClose" aria-label="Close lightbox">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+    <img id="lbImg" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Next photo">›</button>
+  </div>
+
+  <!-- ── REVIEWS / SOCIAL PROOF ── -->
+  <section id="reviews" style="padding:clamp(4rem,10vh,8rem) clamp(1.5rem,5vw,5rem); background:linear-gradient(to bottom,#07131E,#0E2233);">
+    <div style="max-width:1280px;margin:0 auto;">
+
+      <!-- Top stat band -->
+      <div class="reveal" style="display:flex;align-items:center;gap:clamp(2rem,6vw,6rem);flex-wrap:wrap;margin-bottom:5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(200,150,42,0.12);">
+        <div style="flex-shrink:0;">
+          <div class="big-stat">4.9</div>
+          <div style="margin-top:0.5rem;display:flex;gap:4px;">
+            <span style="color:var(--gold-l);font-size:1.3rem;">★★★★★</span>
+          </div>
+          <p style="margin:0.4rem 0 0;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,237,216,0.4);">158 Google reviews</p>
+        </div>
+        <div style="flex:1;min-width:220px;">
+          <span class="section-eyebrow">Why guests return</span>
+          <div class="gold-line"></div>
+          <h2 class="section-title" style="margin-bottom:1rem;">Loved by <em>travellers</em><br />from around the world</h2>
+          <p style="color:rgba(245,237,216,0.6);font-size:0.95rem;line-height:1.7;margin:0;">A perfect 4.9-star average across 158 verified reviews — one of the highest-rated restaurants in Kalkan. Guests consistently praise the terrace, the atmosphere, and the warmth of service.</p>
+        </div>
+      </div>
+
+      <!-- Real reviews (no fabricated testimonials — links to the venue's actual Google reviews) -->
+      <div class="reveal" style="text-align:center;background:rgba(200,150,42,0.05);border:1px solid rgba(200,150,42,0.15);border-radius:4px;padding:clamp(2rem,5vw,3.5rem);">
+        <p style="margin:0 0 0.6rem;font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.4vw,1.9rem);font-style:italic;color:var(--cream);line-height:1.4;">One of the highest-rated restaurants in Kalkan.</p>
+        <p style="margin:0 0 1.9rem;font-size:0.9rem;letter-spacing:0.06em;color:rgba(245,237,216,0.6);">158 verified Google reviews · 4.9 average</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=The%20View%20Terrace%20Restaurant%20Kalkan" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.9rem 1.9rem;border:1px solid var(--gold);color:var(--gold-l);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background .2s,transform .15s;" onmouseover="this.style.background='rgba(200,150,42,0.12)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='transparent';this.style.transform='none'">Read reviews on Google →</a>
+      </div>
+
+      <!-- Badge row -->
+      <div class="reveal" style="margin-top:3.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
+        <div style="background:rgba(200,150,42,0.08);border:1px solid rgba(200,150,42,0.2);padding:0.9rem 1.5rem;border-radius:2px;display:flex;align-items:center;gap:1rem;">
+          <span style="font-size:1.75rem;">🌊</span>
+          <div>
+            <p style="margin:0;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:500;">Terrace Dining</p>
+            <p style="margin:0;font-size:0.72rem;color:rgba(245,237,216,0.5);">Open-air · sea views</p>
+          </div>
+        </div>
+        <div style="background:rgba(200,150,42,0.08);border:1px solid rgba(200,150,42,0.2);padding:0.9rem 1.5rem;border-radius:2px;display:flex;align-items:center;gap:1rem;">
+          <span style="font-size:1.75rem;">🌅</span>
+          <div>
+            <p style="margin:0;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:500;">Sunset Views</p>
+            <p style="margin:0;font-size:0.72rem;color:rgba(245,237,216,0.5);">Every evening · unforgettable</p>
+          </div>
+        </div>
+        <div style="background:rgba(200,150,42,0.08);border:1px solid rgba(200,150,42,0.2);padding:0.9rem 1.5rem;border-radius:2px;display:flex;align-items:center;gap:1rem;">
+          <span style="font-size:1.75rem;">📍</span>
+          <div>
+            <p style="margin:0;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:500;">Kalkan Centre</p>
+            <p style="margin:0;font-size:0.72rem;color:rgba(245,237,216,0.5);">Yalı Boyu, Kaş/Antalya</p>
+          </div>
+        </div>
+        <div style="background:rgba(200,150,42,0.08);border:1px solid rgba(200,150,42,0.2);padding:0.9rem 1.5rem;border-radius:2px;display:flex;align-items:center;gap:1rem;">
+          <span style="font-size:1.75rem;">⭐</span>
+          <div>
+            <p style="margin:0;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:500;">4.9 · 158 Reviews</p>
+            <p style="margin:0;font-size:0.72rem;color:rgba(245,237,216,0.5);">Verified Google rating</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── LOCATION ── -->
+  <section id="location" style="padding:clamp(4rem,10vh,8rem) clamp(1.5rem,5vw,5rem); background:#07131E;">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,6vw,5rem);align-items:start;">
+
+      <!-- Info -->
+      <div class="reveal">
+        <span class="section-eyebrow">Find us</span>
+        <div class="gold-line"></div>
+        <h2 class="section-title">In the heart of <em>Kalkan</em></h2>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;margin-top:2px;color:var(--gold-l);font-size:1.1rem;">📍</div>
+            <div>
+              <p style="margin:0;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem;">Address</p>
+              <p style="margin:0;font-size:0.95rem;line-height:1.6;color:rgba(245,237,216,0.8);">Yalı Boyu Mah. Hasan Altun Cad. No:8<br />07960 Kalkan · Kaş / Antalya</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;margin-top:2px;color:var(--gold-l);font-size:1.1rem;">📞</div>
+            <div>
+              <p style="margin:0;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem;">Phone</p>
+              <a href="tel:+905354264577" style="font-size:1rem;color:var(--cream);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold-l)'" onmouseout="this.style.color='var(--cream)'">+90 535 426 45 77</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <div style="flex-shrink:0;margin-top:2px;color:var(--gold-l);font-size:1.1rem;">💬</div>
+            <div>
+              <p style="margin:0;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.35rem;">WhatsApp Reservation</p>
+              <a href="https://wa.me/905354264577" target="_blank" rel="noopener" style="font-size:0.95rem;color:var(--cream);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold-l)'" onmouseout="this.style.color='var(--cream)'">Message us on WhatsApp →</a>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:2.5rem;">
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=The+View+Terrace+Restaurant+Kalkan"
+            target="_blank" rel="noopener"
+            class="btn-outline"
+            style="font-size:0.78rem;"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Open in Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="reveal reveal-delay-1 map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d788.7394156!2d29.4128!3d36.2638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c2b5e6b5e6b5e7%3A0x1!2sKalkan%2C+Yal%C4%B1+Boyu+Mah.+Hasan+Altun+Cad.+No%3A8%2C+07960+Ka%C5%9F%2FAntalya!5e0!3m2!1sen!2str!4v1720000000000!5m2!1sen!2str"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="The View Terrace Restaurant location on Google Maps"
+          style="border:0;"
+        ></iframe>
+      </div>
+
+    </div>
+
+    <!-- Mobile location stack fix -->
+    <style>
+      @media (max-width:860px) {
+        #location > div { grid-template-columns:1fr !important; }
+      }
+    </style>
+  </section>
+
+  <!-- ── RESERVE BAND ── -->
+  <section id="reserve" class="reserve-band">
+    <div style="max-width:960px;margin:0 auto;padding:clamp(4rem,10vh,8rem) clamp(1.5rem,5vw,5rem);text-align:center;">
+
+      <div class="reveal">
+        <span class="section-eyebrow" style="display:block;text-align:center;">Reservations</span>
+        <div class="gold-line" style="margin:0 auto 1.5rem;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
+        <h2 class="section-title" style="text-align:center;">Reserve your table<br /><em>above the bay</em></h2>
+        <p style="max-width:480px;margin:0 auto 2.5rem;color:rgba(245,237,216,0.6);font-size:1rem;line-height:1.7;">
+          Secure your spot on Kalkan's most celebrated terrace. Reach us via WhatsApp for the fastest confirmation, or simply call.
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+        <a href="https://wa.me/905354264577?text=Hello%2C%20I%20would%20like%20to%20make%20a%20reservation%20at%20The%20View%20Terrace." target="_blank" rel="noopener" class="btn-primary" style="font-size:0.85rem;padding:1rem 2.25rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Reserve via WhatsApp
+        </a>
+        <a href="tel:+905354264577" class="btn-outline" style="font-size:0.85rem;padding:1rem 2.25rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +90 535 426 45 77
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div style="max-width:1280px;margin:0 auto;padding:2.5rem clamp(1.5rem,5vw,5rem);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+
+        <div>
+          <p style="margin:0;font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:0.15em;color:var(--gold-l);">THE VIEW TERRACE</p>
+          <p style="margin:0.35rem 0 0;font-size:0.75rem;color:rgba(245,237,216,0.35);letter-spacing:0.06em;">Kalkan · Kaş, Antalya, Turkey</p>
+        </div>
+
+        <div style="display:flex;gap:1.5rem;align-items:center;">
+          <a href="tel:+905354264577" style="font-size:0.78rem;color:rgba(245,237,216,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;" onmouseover="this.style.color='var(--gold-l)'" onmouseout="this.style.color='rgba(245,237,216,0.45)'">+90 535 426 45 77</a>
+          <a href="https://wa.me/905354264577" target="_blank" rel="noopener" style="font-size:0.78rem;color:rgba(245,237,216,0.45);text-decoration:none;letter-spacing:0.05em;transition:color 0.2s;" onmouseover="this.style.color='var(--gold-l)'" onmouseout="this.style.color='rgba(245,237,216,0.45)'">WhatsApp</a>
+        </div>
+
+        <p style="margin:0;font-size:0.72rem;color:rgba(245,237,216,0.25);letter-spacing:0.05em;">
+          Site by <a href="https://kalkaninfo.com" target="_blank" rel="noopener" style="color:rgba(200,150,42,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(200,150,42,0.5)'"><strong>Kalkan Info</strong></a> · kalkaninfo.com
+        </p>
+
+      </div>
+      <div style="margin-top:1.75rem;padding-top:1.75rem;border-top:1px solid rgba(200,150,42,0.08);text-align:center;">
+        <p style="margin:0;font-size:0.7rem;color:rgba(245,237,216,0.2);letter-spacing:0.05em;">© 2026 The View Terrace Restaurant · All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── JAVASCRIPT ── -->
+  <script>
+    // ── Nav scroll state ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Hero parallax (translate only, not scale, for performance) ──
+    const heroBg = document.getElementById('heroBg');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          const maxScroll = window.innerHeight;
+          if (y < maxScroll) {
+            heroBg.style.transform = `translateY(${y * 0.35}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── 3D Tilt card ──
+    const tiltCard = document.getElementById('introTilt');
+    if (tiltCard) {
+      const inner = tiltCard.querySelector('.tilt-card-inner');
+      tiltCard.addEventListener('mousemove', e => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        inner.style.transform = `
+          perspective(800px)
+          rotateY(${x * 10}deg)
+          rotateX(${-y * 8}deg)
+          translateZ(8px)
+        `;
+      });
+      tiltCard.addEventListener('mouseleave', () => {
+        inner.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+      });
+    }
+
+    // ── Gallery tilt on hover (individual items) ──
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mousemove', e => {
+        const rect = item.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        item.style.transform = `perspective(600px) rotateY(${x * 5}deg) rotateX(${-y * 4}deg)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'perspective(600px) rotateY(0) rotateX(0)';
+        item.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+        setTimeout(() => { item.style.transition = ''; }, 500);
+      });
+    });
+
+    // ── Lightbox ──
+    const photos = [
+      '/assets/img/restoran/the-view-terrace-restaurant-g1.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g2.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g3.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g4.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g5.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g6.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g7.jpg',
+      '/assets/img/restoran/the-view-terrace-restaurant-g8.jpg',
+    ];
+    const lb    = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    let currentIdx = 0;
+
+    function openLB(idx) {
+      currentIdx = idx;
+      lbImg.src = photos[idx];
+      lbImg.alt = `The View Terrace photo ${idx + 1}`;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLB() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function prevLB() { openLB((currentIdx - 1 + photos.length) % photos.length); }
+    function nextLB() { openLB((currentIdx + 1) % photos.length); }
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => openLB(parseInt(item.dataset.idx)));
+    });
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', prevLB);
+    document.getElementById('lbNext').addEventListener('click', nextLB);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') prevLB();
+      if (e.key === 'ArrowRight') nextLB();
+    });
+  </script>
+
+</body>
+</html>
