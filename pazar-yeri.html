@@ -360,6 +360,138 @@ h1, h2, h3, h4, .font-display {
   to   { opacity: 1; transform: translateY(0); }
 }
 .hero-content { animation: heroIn .5s ease .1s both; }
+
+/* ===== Modal (overlay) ===== */
+.mk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  background: rgba(7, 24, 40, 0.62);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+.mk-overlay.open { display: flex; animation: mkFade .2s ease; }
+@keyframes mkFade { from { opacity: 0; } to { opacity: 1; } }
+.mk-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0 24px 80px -12px rgba(7, 24, 40, 0.55);
+  margin: auto;
+  animation: mkPop .28s cubic-bezier(.2,.9,.3,1);
+  overflow: hidden;
+}
+.mk-modal.mk-modal-wide { max-width: 860px; }
+@keyframes mkPop { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+.mk-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; border-bottom: 1px solid #e4edf3;
+  position: sticky; top: 0; background: #fff; z-index: 2;
+}
+.mk-modal-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #0a2e4c; letter-spacing: -0.02em; }
+.mk-close {
+  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+  background: #eef4f8; color: #0a2e4c; border: none; cursor: pointer; transition: background .18s;
+}
+.mk-close:hover { background: #dce6ef; }
+.mk-close:focus-visible { outline: 2px solid #0ea5a4; outline-offset: 2px; }
+.mk-modal-body { padding: 22px; max-height: calc(100vh - 160px); overflow-y: auto; }
+
+/* Gate */
+.mk-gate { text-align: center; padding: 22px 8px; }
+.mk-gate svg { margin: 0 auto 14px; }
+.mk-gate h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #0a2e4c; }
+.mk-gate p { color: #5d7a8c; font-size: 14px; margin-top: 8px; line-height: 1.6; }
+.mk-gate .btn-primary { margin-top: 18px; }
+
+/* Form */
+.mk-field { margin-bottom: 16px; }
+.mk-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #0d3a5f; margin-bottom: 6px; }
+.mk-input, .mk-textarea, .mk-select {
+  width: 100%; border: 1.5px solid #c8dce8; border-radius: 10px; padding: 10px 12px;
+  font-size: 14px; color: #0a2e4c; background: #fff; outline: none; font-family: 'Inter', sans-serif;
+  transition: border-color .18s, box-shadow .18s;
+}
+.mk-input:focus, .mk-textarea:focus, .mk-select:focus { border-color: #0ea5a4; box-shadow: 0 0 0 3px rgba(14,165,164,0.14); }
+.mk-textarea { min-height: 96px; resize: vertical; }
+.mk-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.mk-row > .mk-field { flex: 1; min-width: 140px; }
+.mk-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #134c79; cursor: pointer; }
+.mk-check input { width: 17px; height: 17px; accent-color: #0ea5a4; cursor: pointer; }
+.mk-required { color: #e0533b; }
+.mk-err { color: #c0392b; font-size: 12px; margin-top: 4px; font-weight: 600; display: none; }
+.mk-err.show { display: block; }
+
+/* Photo uploader */
+.mk-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.mk-photo-thumb { position: relative; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: #dce6ef; border: 1px solid #c8dce8; }
+.mk-photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mk-photo-remove {
+  position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(10,46,76,0.82); color: #fff; border: none; cursor: pointer; font-size: 14px; line-height: 1; display: grid; place-items: center;
+}
+.mk-photo-add {
+  aspect-ratio: 4/3; border: 2px dashed #9cc0dd; border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px; color: #5d97c4; cursor: pointer; background: #f5faff;
+  font-size: 12px; font-weight: 600; text-align: center; transition: border-color .18s, background .18s;
+}
+.mk-photo-add:hover { border-color: #0ea5a4; background: #eefaf9; }
+
+.mk-submit {
+  width: 100%; margin-top: 8px; background: linear-gradient(135deg, #e89812 0%, #f4b53d 100%);
+  color: #0a2e4c; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 15px;
+  padding: 13px; border-radius: 12px; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(232,152,18,0.32);
+  transition: transform .15s, box-shadow .2s; letter-spacing: 0.02em;
+}
+.mk-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,152,18,0.42); }
+.mk-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* Detail modal */
+.mk-detail { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 720px) { .mk-detail { grid-template-columns: 1.1fr 1fr; } }
+.mk-gallery { background: #dce6ef; }
+.mk-gallery-main { position: relative; aspect-ratio: 4/3; background: #dce6ef; }
+.mk-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.mk-thumbs { display: flex; gap: 6px; padding: 8px; overflow-x: auto; background: #eef4f8; }
+.mk-thumb { flex: 0 0 auto; width: 62px; height: 48px; border-radius: 7px; overflow: hidden; border: 2px solid transparent; cursor: pointer; padding: 0; background: none; }
+.mk-thumb.active { border-color: #0ea5a4; }
+.mk-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mk-detail-body { padding: 22px; }
+.mk-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.mk-badge { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 100px; background: #eef4f8; color: #0a2e4c; }
+.mk-badge-alt { background: rgba(14,165,164,0.12); color: #0891b0; }
+.mk-detail-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: #0a2e4c; line-height: 1.3; letter-spacing: -0.02em; }
+.mk-detail-price { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 26px; color: #0a2e4c; margin: 8px 0 14px; }
+.mk-price-ask { font-size: 15px; font-weight: 600; color: #7a9ab0; }
+.mk-detail-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.mk-meta-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5d7a8c; }
+.mk-meta-row svg { color: #7a9ab0; flex-shrink: 0; }
+.mk-detail-desc { font-size: 14px; color: #3a5568; line-height: 1.65; margin-bottom: 18px; white-space: normal; }
+.mk-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.mk-contact-btn {
+  flex: 1; min-width: 180px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: #0ea5a4; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  padding: 12px 18px; border-radius: 12px; text-decoration: none; transition: background .18s, transform .15s; box-shadow: 0 2px 10px rgba(14,165,164,0.28);
+}
+.mk-contact-btn:hover { background: #0891b0; transform: translateY(-1px); }
+.mk-report-btn { background: none; border: 1.5px solid #dce6ef; color: #7a9ab0; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 12px 16px; border-radius: 12px; cursor: pointer; transition: border-color .18s, color .18s; }
+.mk-report-btn:hover { border-color: #e0533b; color: #e0533b; }
+
+/* Toast */
+.mk-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+  z-index: 90; background: #0a2e4c; color: #fff; padding: 13px 22px; border-radius: 12px;
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 12px 40px -8px rgba(7,24,40,0.6);
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; max-width: 90vw; text-align: center;
+}
+.mk-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.mk-toast.err { background: #b23a26; }
+.mk-toast.ok { background: #0d7a5f; }
 </style>
 
 <!-- SEO -->
@@ -468,10 +600,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Topluluk ilanları — yerel halk ve sakinler tarafından paylaşılır.
     </p>
     <div class="mt-7 flex flex-wrap gap-3">
-      <a href="ilan-ver.html" class="btn-primary" aria-label="İlan ver">
+      <button type="button" data-post-listing class="btn-primary" aria-label="İlan ver">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         <span data-en="POST A LISTING" data-de="ANZEIGE AUFGEBEN" data-ru="РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ" data-fr="PUBLIER UNE ANNONCE">İLAN VER</span>
-      </a>
+      </button>
       <a href="#ilanlar" class="inline-flex items-center gap-2 border-2 border-white/25 text-white font-display font-bold px-5 py-3 rounded-xl hover:bg-white/10 transition text-sm"
          data-en="Browse Listings" data-de="Anzeigen durchsuchen" data-ru="Смотреть объявления" data-fr="Parcourir les annonces">
         İlanları Gör
@@ -543,33 +675,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           data-en="All" data-de="Alle" data-ru="Все" data-fr="Tout">
           🏪 Tümü
         </button>
-        <button class="chip" data-cat="EvEsyasi"
+        <button class="chip" data-cat="ev-esyasi"
           data-en="🪑 Furniture" data-de="🪑 Möbel" data-ru="🪑 Мебель" data-fr="🪑 Mobilier">
           🪑 Ev Eşyası
         </button>
-        <button class="chip" data-cat="Elektronik"
+        <button class="chip" data-cat="elektronik"
           data-en="💻 Electronics" data-de="💻 Elektronik" data-ru="💻 Электроника" data-fr="💻 Électronique">
           💻 Elektronik
         </button>
-        <button class="chip" data-cat="Arac"
+        <button class="chip" data-cat="arac-bisiklet"
           data-en="🚲 Vehicle & Bike" data-de="🚲 Fahrzeug & Fahrrad" data-ru="🚲 Транспорт" data-fr="🚲 Véhicule & Vélo">
           🚲 Araç &amp; Bisiklet
         </button>
-        <button class="chip" data-cat="YerelUrun"
+        <button class="chip" data-cat="yerel-urun"
           data-en="🫒 Local Product" data-de="🫒 Lokales Produkt" data-ru="🫒 Местный продукт" data-fr="🫒 Produit local">
           🫒 Yerel Ürün
         </button>
-        <button class="chip" data-cat="Bahce"
+        <button class="chip" data-cat="bahce-yapi"
           data-en="🌿 Garden & Build" data-de="🌿 Garten & Bau" data-ru="🌿 Сад & Строй" data-fr="🌿 Jardin & Construction">
           🌿 Bahçe &amp; Yapı
         </button>
-        <button class="chip" data-cat="Giyim"
+        <button class="chip" data-cat="giyim"
           data-en="👗 Clothing" data-de="👗 Kleidung" data-ru="👗 Одежда" data-fr="👗 Vêtements">
           👗 Giyim
         </button>
-        <button class="chip" data-cat="Hizmet"
+        <button class="chip" data-cat="hizmet"
           data-en="🛠 Service" data-de="🛠 Dienstleistung" data-ru="🛠 Услуга" data-fr="🛠 Service">
           🛠 Hizmet
+        </button>
+        <button class="chip" data-cat="diger"
+          data-en="📦 Other" data-de="📦 Sonstiges" data-ru="📦 Другое" data-fr="📦 Autre">
+          📦 Diğer
         </button>
       </div>
     </div>
@@ -668,10 +804,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </p>
       </div>
       <div class="flex md:justify-end">
-        <a href="ilan-ver.html" class="btn-primary text-base">
+        <button type="button" data-post-listing class="btn-primary text-base">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           <span data-en="POST A LISTING — FREE" data-de="KOSTENLOS ANZEIGE AUFGEBEN" data-ru="РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ — БЕСПЛАТНО" data-fr="PUBLIER UNE ANNONCE — GRATUIT">İLAN VER — ÜCRETSİZ</span>
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -738,28 +874,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="font-display font-bold text-sm">Concierge</span>
 </a>
 
-<!-- ============== PAGE SCRIPT ============== -->
-<script>
+<!-- ============== MODAL HOST + TOAST ============== -->
+<div class="mk-overlay" id="mk-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mk-modal" id="mk-modal">
+    <div class="mk-modal-head">
+      <span class="mk-modal-title" id="mk-modal-title">İlan</span>
+      <button class="mk-close" id="mk-close" aria-label="Kapat" data-en-aria="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="mk-modal-body" id="mk-modal-body"></div>
+  </div>
+</div>
+<div class="mk-toast" id="mk-toast" role="status" aria-live="polite"></div>
+
+<!-- ============== PAGE SCRIPT (marketplace module) ============== -->
+<script type="module">
+import {
+  listListings, getListing, createListing, uploadImages,
+  incrementView, reportListing, renderCard, renderDetail,
+  getCategories, getConditions, setFallbackData
+} from '/js/marketplace.js';
+import { supabase } from '/js/supabase-client.js';
+
 (function () {
   'use strict';
 
-  // --- Data & state ---
-  let allItems = [];
   let activeCategory = 'all';
   let searchQuery = '';
+  let searchTimer = null;
 
-  // --- Category labels (for badge display) ---
-  const CAT_LABELS = {
-    EvEsyasi: 'Ev Eşyası',
-    Elektronik: 'Elektronik',
-    Arac: 'Araç & Bisiklet',
-    YerelUrun: 'Yerel Ürün',
-    Bahce: 'Bahçe & Yapı',
-    Giyim: 'Giyim',
-    Hizmet: 'Hizmet'
-  };
-
-  // --- DOM refs ---
   const grid = document.getElementById('listings-grid');
   const loadingState = document.getElementById('loading-state');
   const emptyState = document.getElementById('empty-state');
@@ -769,127 +913,385 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const chips = document.querySelectorAll('.chip[data-cat]');
   const resetBtn = document.getElementById('reset-btn');
 
+  const overlay = document.getElementById('mk-overlay');
+  const modal = document.getElementById('mk-modal');
+  const modalTitle = document.getElementById('mk-modal-title');
+  const modalBody = document.getElementById('mk-modal-body');
+  const closeBtn = document.getElementById('mk-close');
+  const toastEl = document.getElementById('mk-toast');
+
   // --- Date ---
   const dateEl = document.getElementById('today-date');
-  if (dateEl) {
-    dateEl.textContent = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // --- Toast ---
+  let toastTimer = null;
+  function toast(msg, kind = '') {
+    toastEl.textContent = msg;
+    toastEl.className = 'mk-toast show ' + kind;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toastEl.className = 'mk-toast ' + kind; }, 3200);
   }
 
-  // --- Render a single card ---
-  function buildCard(item, idx) {
-    const card = document.createElement('article');
-    card.className = 'listing-card card-appear';
-    card.style.animationDelay = (idx * 40) + 'ms';
-    card.setAttribute('role', 'listitem');
-    card.setAttribute('aria-label', item.title);
-
-    const catLabel = CAT_LABELS[item.category] || item.category;
-    const priceFormatted = item.price.toLocaleString('tr-TR');
-
-    card.innerHTML = `
-      <div class="card-img-wrap">
-        <img src="${item.image}" alt="${item.title}" loading="lazy" decoding="async"
-          onerror="this.src='https://placehold.co/600x450/dce6ef/0a2e4c?text=Gorsel+Yok'">
-        <div class="card-img-overlay"></div>
-        ${item.demo ? '<span class="demo-tag">Örnek İlan</span>' : ''}
-        <span class="cat-badge">${catLabel}</span>
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">${item.title}</h3>
-        <p class="card-desc">${item.desc}</p>
-        <div class="card-meta">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-          ${item.location}
-        </div>
-        <div class="card-footer">
-          <div class="card-price">${priceFormatted} <span>${item.currency}</span></div>
-          <a href="${item.contact}" target="_blank" rel="noopener noreferrer"
-             class="btn-contact"
-             aria-label="${item.title} için iletişim">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"/></svg>
-            İletişim
-          </a>
-        </div>
-      </div>
-    `;
-    return card;
+  // --- i18n re-apply after dynamic render (best-effort) ---
+  function applyI18n(root) {
+    try { if (window.__applyI18n) window.__applyI18n(root || document); } catch (_) {}
   }
 
-  // --- Filter & render ---
-  function renderItems() {
-    const q = searchQuery.toLowerCase().trim();
-    const filtered = allItems.filter(item => {
-      const catMatch = activeCategory === 'all' || item.category === activeCategory;
-      const searchMatch = !q ||
-        item.title.toLowerCase().includes(q) ||
-        item.desc.toLowerCase().includes(q) ||
-        item.location.toLowerCase().includes(q);
-      return catMatch && searchMatch;
-    });
+  // --- Modal open/close ---
+  function openModal(title, wide = false) {
+    modalTitle.textContent = title;
+    modal.classList.toggle('mk-modal-wide', !!wide);
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalBody.innerHTML = '';
+  }
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
 
+  // --- Render listings ---
+  async function loadAndRender() {
     grid.innerHTML = '';
+    loadingState.style.display = '';
+    errorState.classList.add('hidden');
+    emptyState.style.display = 'none';
 
-    if (filtered.length === 0) {
+    let items = [];
+    try {
+      items = await listListings({ category: activeCategory, search: searchQuery });
+    } catch (err) {
+      console.error('[pazar-yeri] listListings failed:', err);
+      loadingState.style.display = 'none';
+      errorState.classList.remove('hidden');
+      return;
+    }
+    loadingState.style.display = 'none';
+
+    if (!items.length) {
       grid.classList.add('hidden');
       emptyState.style.display = 'block';
       if (resultCount) resultCount.textContent = '0 ilan';
-    } else {
-      grid.classList.remove('hidden');
-      emptyState.style.display = 'none';
-      filtered.forEach((item, i) => grid.appendChild(buildCard(item, i)));
-      if (resultCount) {
-        resultCount.textContent = filtered.length + ' ilan';
-      }
+      return;
     }
+    grid.classList.remove('hidden');
+    emptyState.style.display = 'none';
+    grid.innerHTML = items.map((it, i) => renderCard(it)).join('');
+    // stagger animation
+    Array.from(grid.children).forEach((el, i) => { el.style.animationDelay = (i * 40) + 'ms'; });
+    if (resultCount) resultCount.textContent = items.length + ' ilan';
+    applyI18n(grid);
   }
 
-  // --- Chip click handler ---
+  // --- Chip filter ---
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       activeCategory = chip.dataset.cat;
-      renderItems();
+      loadAndRender();
     });
   });
 
-  // --- Search handler ---
+  // --- Debounced search ---
   if (searchInput) {
     searchInput.addEventListener('input', () => {
-      searchQuery = searchInput.value;
-      renderItems();
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { searchQuery = searchInput.value.trim(); loadAndRender(); }, 260);
     });
   }
 
-  // --- Reset button ---
+  // --- Reset ---
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      activeCategory = 'all';
-      searchQuery = '';
+      activeCategory = 'all'; searchQuery = '';
       if (searchInput) searchInput.value = '';
       chips.forEach(c => c.classList.remove('active'));
       const allChip = document.querySelector('.chip[data-cat="all"]');
       if (allChip) allChip.classList.add('active');
-      renderItems();
+      loadAndRender();
     });
   }
 
-  // --- Fetch data ---
-  fetch('/data/pazar-yeri.json')
-    .then(r => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then(data => {
-      allItems = (data && data.items) ? data.items : [];
-      loadingState.style.display = 'none';
-      renderItems();
-    })
-    .catch(err => {
-      console.error('[pazar-yeri] fetch failed:', err);
-      loadingState.style.display = 'none';
-      errorState.classList.remove('hidden');
+  // --- Card click → detail modal ---
+  grid.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-listing-id]');
+    if (!card) return;
+    openDetail(card.getAttribute('data-listing-id'));
+  });
+  grid.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('[data-listing-id]');
+    if (!card) return;
+    e.preventDefault();
+    openDetail(card.getAttribute('data-listing-id'));
+  });
+
+  async function openDetail(idOrSlug) {
+    const item = await getListing(idOrSlug);
+    if (!item) { toast('İlan bulunamadı.', 'err'); return; }
+    openModal(item.title, true);
+    modalBody.innerHTML = renderDetail(item);
+    applyI18n(modalBody);
+    if (!item.demo) incrementView(item.id);
+
+    // gallery thumbs
+    const thumbs = modalBody.querySelector('#mk-thumbs');
+    const mainImg = modalBody.querySelector('#mk-gallery-img');
+    if (thumbs && mainImg) {
+      thumbs.addEventListener('click', (e) => {
+        const btn = e.target.closest('.mk-thumb');
+        if (!btn) return;
+        thumbs.querySelectorAll('.mk-thumb').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const img = btn.querySelector('img');
+        if (img) mainImg.src = img.src;
+      });
+    }
+    // report
+    const reportBtn = modalBody.querySelector('#mk-report-btn');
+    if (reportBtn) {
+      reportBtn.addEventListener('click', async () => {
+        if (item.demo) { toast('Örnek ilan — bildirim uygulanmaz.'); return; }
+        const res = await reportListing(item.id);
+        toast(res.ok ? 'Bildiriminiz alındı. Teşekkürler.' : 'Bildirim gönderilemedi.', res.ok ? 'ok' : 'err');
+      });
+    }
+  }
+
+  // --- Post listing (İlan Ver) → gate or form ---
+  async function openPostFlow() {
+    let user = null;
+    try { const { data } = await supabase.auth.getUser(); user = data?.user ?? null; } catch (_) {}
+    const verified = user && (user.email_confirmed_at || user.user_metadata?.email_verified);
+
+    if (!user || !verified) {
+      openModal('İlan Ver', false);
+      const nextUrl = encodeURIComponent('/pazar-yeri');
+      const reason = !user
+        ? { en: 'Log in to post a listing', de: 'Zum Anzeigen aufgeben anmelden', ru: 'Войдите, чтобы разместить объявление', fr: 'Connectez-vous pour publier une annonce', tr: 'İlan vermek için giriş yapın' }
+        : { en: 'Verify your email to post a listing', de: 'Bestätigen Sie Ihre E-Mail, um zu inserieren', ru: 'Подтвердите e-mail, чтобы разместить объявление', fr: 'Vérifiez votre e-mail pour publier', tr: 'İlan vermek için e-postanızı doğrulayın' };
+      modalBody.innerHTML = `
+        <div class="mk-gate">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0ea5a4" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h3 data-en="${reason.en}" data-de="${reason.de}" data-ru="${reason.ru}" data-fr="${reason.fr}">${reason.tr}</h3>
+          <p data-en="Posting is free — you only need a verified Kalkan Info account."
+             data-de="Das Inserieren ist kostenlos — Sie benötigen nur ein bestätigtes Kalkan-Info-Konto."
+             data-ru="Размещение бесплатно — нужен только подтверждённый аккаунт Kalkan Info."
+             data-fr="La publication est gratuite — il vous faut juste un compte Kalkan Info vérifié.">İlan vermek ücretsizdir — yalnızca doğrulanmış bir Kalkan Info hesabı gerekir.</p>
+          <a class="btn-primary" href="/login.html?next=${nextUrl}" data-en="LOG IN / SIGN UP" data-de="ANMELDEN / REGISTRIEREN" data-ru="ВОЙТИ / РЕГИСТРАЦИЯ" data-fr="CONNEXION / INSCRIPTION">GİRİŞ YAP / KAYIT OL</a>
+        </div>`;
+      applyI18n(modalBody);
+      return;
+    }
+
+    openModal('İlan Ver', false);
+    modalBody.innerHTML = buildFormHtml();
+    applyI18n(modalBody);
+    wireForm(user);
+  }
+
+  function buildFormHtml() {
+    const cats = getCategories();
+    const catOpts = Object.entries(cats).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+    return `
+      <form id="mk-form" novalidate>
+        <div class="mk-field">
+          <label class="mk-label" for="f-title" data-en="Title" data-de="Titel" data-ru="Заголовок" data-fr="Titre">Başlık <span class="mk-required">*</span></label>
+          <input class="mk-input" id="f-title" name="title" maxlength="120" required
+            placeholder="Örn. Az kullanılmış şehir bisikleti">
+          <p class="mk-err" data-err="title" data-en="Please enter a title (min 3 chars)." data-de="Bitte Titel eingeben (min. 3 Zeichen)." data-ru="Введите заголовок (мин. 3 симв.)." data-fr="Saisissez un titre (min. 3 car.).">En az 3 karakterlik bir başlık girin.</p>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-category" data-en="Category" data-de="Kategorie" data-ru="Категория" data-fr="Catégorie">Kategori <span class="mk-required">*</span></label>
+            <select class="mk-select" id="f-category" name="category" required>
+              <option value="" data-en="Select…" data-de="Wählen…" data-ru="Выбрать…" data-fr="Choisir…">Seçin…</option>
+              ${catOpts}
+            </select>
+            <p class="mk-err" data-err="category" data-en="Please select a category." data-de="Bitte Kategorie wählen." data-ru="Выберите категорию." data-fr="Choisissez une catégorie.">Bir kategori seçin.</p>
+          </div>
+          <div class="mk-field">
+            <label class="mk-label" data-en="Condition" data-de="Zustand" data-ru="Состояние" data-fr="État">Durum</label>
+            <select class="mk-select" id="f-condition" name="condition">
+              <option value="used" data-en="Used" data-de="Gebraucht" data-ru="Б/у" data-fr="Occasion">İkinci el</option>
+              <option value="new" data-en="New" data-de="Neu" data-ru="Новый" data-fr="Neuf">Yeni</option>
+            </select>
+          </div>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-price" data-en="Price" data-de="Preis" data-ru="Цена" data-fr="Prix">Fiyat</label>
+            <input class="mk-input" id="f-price" name="price" type="number" min="0" step="1" placeholder="0">
+          </div>
+          <div class="mk-field" style="max-width:120px;">
+            <label class="mk-label" data-en="Currency" data-de="Währung" data-ru="Валюта" data-fr="Devise">Para Birimi</label>
+            <select class="mk-select" id="f-currency" name="currency">
+              <option value="TRY">₺ TRY</option>
+              <option value="EUR">€ EUR</option>
+              <option value="USD">$ USD</option>
+            </select>
+          </div>
+        </div>
+        <div class="mk-field">
+          <label class="mk-check">
+            <input type="checkbox" id="f-negotiable" name="isNegotiable">
+            <span data-en="Price is negotiable" data-de="Preis verhandelbar" data-ru="Возможен торг" data-fr="Prix négociable">Pazarlık payı var</span>
+          </label>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-location" data-en="Location" data-de="Ort" data-ru="Местоположение" data-fr="Lieu">Konum</label>
+          <input class="mk-input" id="f-location" name="location" maxlength="120" placeholder="Kalkan Merkez">
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-description" data-en="Description" data-de="Beschreibung" data-ru="Описание" data-fr="Description">Açıklama</label>
+          <textarea class="mk-textarea" id="f-description" name="description" maxlength="4000" placeholder="Ürün/hizmet hakkında detay verin…"></textarea>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" data-en="Photos (max 6)" data-de="Fotos (max. 6)" data-ru="Фото (макс. 6)" data-fr="Photos (max 6)">Fotoğraflar (max 6)</label>
+          <input type="file" id="f-files" accept="image/*" multiple hidden>
+          <div class="mk-photos" id="f-photos">
+            <div class="mk-photo-add" id="f-add-photo" role="button" tabindex="0">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              <span data-en="Add photo" data-de="Foto hinzufügen" data-ru="Добавить фото" data-fr="Ajouter une photo">Fotoğraf ekle</span>
+            </div>
+          </div>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-contact-name" data-en="Contact name" data-de="Kontaktname" data-ru="Имя для связи" data-fr="Nom de contact">İletişim adı</label>
+            <input class="mk-input" id="f-contact-name" name="contactName" maxlength="80" placeholder="Adınız">
+          </div>
+          <div class="mk-field">
+            <label class="mk-label" for="f-contact-phone" data-en="Phone" data-de="Telefon" data-ru="Телефон" data-fr="Téléphone">Telefon</label>
+            <input class="mk-input" id="f-contact-phone" name="contactPhone" maxlength="24" placeholder="+90 5xx xxx xx xx">
+          </div>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-contact-wa" data-en="WhatsApp (number only)" data-de="WhatsApp (nur Nummer)" data-ru="WhatsApp (только номер)" data-fr="WhatsApp (numéro)">WhatsApp (yalnız numara)</label>
+          <input class="mk-input" id="f-contact-wa" name="contactWhatsapp" maxlength="24" placeholder="905xxxxxxxxx">
+        </div>
+        <button type="submit" class="mk-submit" id="f-submit" data-en="PUBLISH LISTING" data-de="ANZEIGE VERÖFFENTLICHEN" data-ru="ОПУБЛИКОВАТЬ" data-fr="PUBLIER L'ANNONCE">İLANI YAYINLA</button>
+      </form>`;
+  }
+
+  function wireForm(user) {
+    const form = modalBody.querySelector('#mk-form');
+    const fileInput = modalBody.querySelector('#f-files');
+    const photosWrap = modalBody.querySelector('#f-photos');
+    const addBtn = modalBody.querySelector('#f-add-photo');
+    const submitBtn = modalBody.querySelector('#f-submit');
+    let files = [];
+
+    function renderPhotos() {
+      photosWrap.querySelectorAll('.mk-photo-thumb').forEach(n => n.remove());
+      files.forEach((file, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'mk-photo-thumb';
+        const url = URL.createObjectURL(file);
+        thumb.innerHTML = `<img src="${url}" alt=""><button type="button" class="mk-photo-remove" data-idx="${i}" aria-label="Kaldır">×</button>`;
+        photosWrap.insertBefore(thumb, addBtn);
+      });
+      addBtn.style.display = files.length >= 6 ? 'none' : '';
+    }
+
+    addBtn.addEventListener('click', () => fileInput.click());
+    addBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+    fileInput.addEventListener('change', () => {
+      const picked = Array.from(fileInput.files || []);
+      for (const f of picked) {
+        if (files.length >= 6) { toast('En fazla 6 fotoğraf ekleyebilirsiniz.', 'err'); break; }
+        if (f.size > 8 * 1024 * 1024) { toast(`"${f.name}" 8 MB'den büyük.`, 'err'); continue; }
+        files.push(f);
+      }
+      fileInput.value = '';
+      renderPhotos();
     });
+    photosWrap.addEventListener('click', (e) => {
+      const rm = e.target.closest('.mk-photo-remove');
+      if (!rm) return;
+      files.splice(Number(rm.dataset.idx), 1);
+      renderPhotos();
+    });
+
+    function showErr(name, show) {
+      const el = form.querySelector(`.mk-err[data-err="${name}"]`);
+      if (el) el.classList.toggle('show', show);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = form.title.value.trim();
+      const category = form.category.value;
+      let valid = true;
+      showErr('title', false); showErr('category', false);
+      if (title.length < 3) { showErr('title', true); valid = false; }
+      if (!category) { showErr('category', true); valid = false; }
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      const originalTxt = submitBtn.textContent;
+      submitBtn.textContent = 'Yayınlanıyor…';
+
+      try {
+        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60) || 'ilan';
+        let imageUrls = [];
+        if (files.length) {
+          submitBtn.textContent = 'Fotoğraflar yükleniyor…';
+          const up = await uploadImages(files, user.id, slug);
+          if (!up.ok) { toast(up.error || 'Fotoğraf yüklenemedi.', 'err'); throw new Error(up.error); }
+          imageUrls = up.urls;
+          submitBtn.textContent = 'Yayınlanıyor…';
+        }
+        const res = await createListing({
+          title, category,
+          condition: form.condition.value,
+          price: form.price.value,
+          currency: form.currency.value,
+          isNegotiable: form.isNegotiable.checked,
+          location: form.location.value.trim(),
+          description: form.description.value.trim(),
+          images: imageUrls,
+          contactName: form.contactName.value.trim(),
+          contactPhone: form.contactPhone.value.trim(),
+          contactWhatsapp: form.contactWhatsapp.value.trim(),
+        }, user.id);
+
+        if (!res.ok) { toast(res.error || 'İlan yayınlanamadı.', 'err'); return; }
+        toast('İlanınız yayınlandı!', 'ok');
+        closeModal();
+        activeCategory = 'all'; searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        chips.forEach(c => c.classList.remove('active'));
+        const allChip = document.querySelector('.chip[data-cat="all"]');
+        if (allChip) allChip.classList.add('active');
+        await loadAndRender();
+      } catch (err) {
+        // toast already shown for known errors
+        if (!/8 MB|yükle/.test(String(err.message))) console.error('[pazar-yeri] submit error:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalTxt;
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-post-listing]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openPostFlow(); });
+  });
+
+  // --- Preload fallback data (so listListings can fall back if DB missing) ---
+  fetch('/data/pazar-yeri.json')
+    .then(r => r.ok ? r.json() : { items: [] })
+    .then(data => setFallbackData((data && data.items) || []))
+    .catch(() => {})
+    .finally(loadAndRender);
 })();
 </script>
 
