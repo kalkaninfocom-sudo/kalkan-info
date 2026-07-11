@@ -115,11 +115,11 @@ nav a:hover{color:var(--gold-l);}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--terra));color:var(--sea);font-weight:600;}
 .btn-ghost{border:1px solid rgba(245,237,216,.4);color:var(--cream);}
 .btn-ghost:hover{background:rgba(245,237,216,.08);}
-.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;}
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .hero .bg{position:absolute;inset:-8% 0;background-size:cover;background-position:center;will-change:transform;}
-.hero .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,19,30,.82) 0%,rgba(7,19,30,.4) 55%,transparent 100%),linear-gradient(0deg,rgba(7,19,30,.9),transparent 55%);}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,19,30,.5) 0%,rgba(7,19,30,.22) 42%,rgba(7,19,30,.78) 100%),radial-gradient(ellipse at center,transparent 34%,rgba(7,19,30,.55) 100%);}
 .hero .grain{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:3px 3px;}
-.hero .in{position:relative;z-index:2;padding:0 clamp(1.4rem,6vw,6rem);max-width:840px;}
+.hero .in{position:relative;z-index:2;padding:0 clamp(1.4rem,6vw,4rem);max-width:760px;margin:0 auto;text-align:center;}
 .badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;background:rgba(200,150,42,.12);border:1px solid rgba(224,180,80,.4);border-radius:999px;padding:.5rem 1rem;font-size:.8rem;}
 .badge .st{color:var(--gold-l);letter-spacing:1px;}
 .sec{padding:clamp(4rem,10vh,8rem) clamp(1.4rem,5vw,5rem);max-width:1280px;margin:0 auto;}
@@ -158,9 +158,9 @@ footer a{color:var(--gold-l);text-decoration:none;}
   <div class="in">
     <div class="eyebrow reveal">${esc(loc.split(',')[0])} · Kaş, Antalya</div>
     <h1 class="title reveal" style="font-size:clamp(2.6rem,7vw,5rem);margin-top:.5rem;">${esc(nameA)}<br><em style="color:var(--gold-l);">${esc(nameB || '')}</em></h1>
-    <p class="reveal" id="heroTagline" style="margin-top:1rem;color:rgba(245,237,216,.8);font-size:1.1rem;max-width:520px;">${esc(content.tagline)}</p>
+    <p class="reveal" id="heroTagline" style="margin:1rem auto 0;color:rgba(245,237,216,.85);font-size:1.1rem;max-width:520px;">${esc(content.tagline)}</p>
     ${v.rating ? `<div class="badge reveal"><span class="st">★★★★★</span> <b>${v.rating}</b> <span style="opacity:.7">· ${esc(reviews)}</span></div>` : ''}
-    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;" id="heroCta"></div>
+    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;" id="heroCta"></div>
   </div>
 </header>
 
