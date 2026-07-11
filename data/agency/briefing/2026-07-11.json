@@ -1,0 +1,562 @@
+{
+  "date": "2026-07-11",
+  "generated_at": "2026-07-11T01:23:11.609Z",
+  "count": 28,
+  "agents": [
+    {
+      "id": "director",
+      "name": "ContentDirector",
+      "department": "sosyal",
+      "kalkan_guncel": "Kaş Belediyesi'nin düzenlediği 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği, bölgenin kültürel mirasını ve doğal güzelliklerini öne çıkararak yerel ve uluslararası ziyaretçilerin ilgisini çekiyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Likya Yolu'nun Kalbinde Bir Zaman Yolculuğu: Patara Yörük Göçü",
+          "aci": "Antik Patara'nın tarihi dokusu içinde gerçekleşen Yörük Göçü etkinliğinin kültürel önemini ve ziyaretçilere sunduğu eşsiz deneyimi vurgulayan bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Patara'nın Gizli Kalmış Yüzü: Yörük Göçü Rotaları",
+          "aci": "Patara'nın doğal güzellikleri ve Likya Yolu'nun bir bölümünde gerçekleşen Yörük Göçü rotalarını, katılımcıların deneyimleriyle birlikte görsel bir şölenle sunan kısa bir video."
+        }
+      ],
+      "gelistirme": "Kalkan Info web sitesine, bölgedeki kültürel etkinlikleri (Yörük Göçü gibi) ve yürüyüş rotalarını gösteren interaktif bir harita entegrasyonu eklemek, ziyaretçilerin planlama yapmasını kolaylaştıracaktır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "trend",
+      "name": "TrendScout",
+      "department": "sosyal",
+      "kalkan_guncel": "Korsan Fish Terrace'ta canlı müzik eşliğinde Akdeniz lezzetleri öne çıkıyor; bu, yerel gastronomi deneyimi arayanlar için cazip bir sinyal.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Gizli Lezzet Rotası: Zeytinyağlı Enginarın Sırrı",
+          "aci": "Kalkan mutfağının vazgeçilmezi zeytinyağlı enginarın yapım aşamaları, yerel malzemeleri ve sunum kültürü üzerine kısa bir video."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan Kahvaltısı: Sofraların Ötesinde Bir Deneyim",
+          "aci": "Kalkan'a özgü kahvaltı sofralarının zenginliğini, kullanılan yerel ürünleri (peynir, zeytin, reçel) ve bu geleneğin bölge kültüründeki yerini anlatan bir yazı."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'da 'Yerel Lezzet Haritası' bölümü oluşturularak, bölgedeki restoranların imza yemekleri ve bu yemeklerin hikayeleri interaktif bir harita üzerinde sunulabilir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "writer",
+      "name": "SocialWriter",
+      "department": "sosyal",
+      "kalkan_guncel": "Kaş Belediyesi'nin düzenlediği 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği, bölgenin doğal güzelliklerini ve kültürel mirasını bir araya getirdi. Bu tür etkinlikler, Kalkan'ın yürüyüş rotaları potansiyelini bir kez daha gözler önüne seriyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Gizli Patikaları: Likya Yolu'nun Keşfedilmeyen Yüzü",
+          "aci": "Likya Yolu'nun Kalkan çevresindeki daha az bilinen, nefes kesici manzaralara sahip patikalarını ve bu rotalarda yürüyüş yaparken karşılaşılabilecek doğal güzellikleri kısa videolarla tanıt."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Yürüyüş Sonrası: Doğayla İç İçe Bir Mola",
+          "aci": "Kalkan ve çevresindeki yürüyüş rotalarını tamamladıktan sonra dinlenilebilecek, yerel lezzetlerin tadılabileceği veya gün batımının izlenebileceği sakin ve otantik mekanları öneren bir yazı."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesine 'Yürüyüş Rotaları' başlığı altında, farklı zorluk seviyelerine göre sınıflandırılmış, harita entegrasyonlu ve tahmini süreleri içeren detaylı bir bölüm eklenmeli. Bu bölüm, kullanıcıların kendi yürüyüş deneyimlerini paylaşabileceği bir yorum/fotoğraf ekleme özelliğiyle zenginleştirilebilir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "guard",
+      "name": "BrandGuard",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan ve Kaş bölgesindeki villa turizminde Temmuz ayında beklenen yoğunluk, ziyaretçi akışını artırarak pratik rehber içeriklerine olan ihtiyacı yükseltiyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'a Ulaşım Rehberi: Havalimanından Villa Kapınıza En Pratik Yollar",
+          "aci": "Dalaman ve Antalya havalimanlarından Kalkan'a ulaşım seçeneklerini (transfer, araç kiralama, otobüs) ve villa bölgelerine özel ipuçlarını detaylandırır."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Otopark Kabusu Bitti! İşte Size 3 Akıllı Çözüm",
+          "aci": "Kalkan merkezde ve popüler koylara yakın otopark bulma stratejileri, alternatif park alanları ve doluluk saatleri hakkında hızlı ve pratik bilgiler sunar."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'da 'Sıkça Sorulan Sorular' bölümünü genişleterek, özellikle ulaşım, otopark ve popüler mekanların açılış/kapanış saatleri gibi pratik bilgileri içeren bir 'Ziyaretçi Rehberi' sayfası oluşturulmasını öneriyorum.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "analyst",
+      "name": "SocialAnalyst",
+      "department": "sosyal",
+      "kalkan_guncel": "Temmuz ayında Kaş ve Kalkan'da villa turizminin zirve yapacağı bilgisi, bölgenin ana gelir kaynağı olan konaklama sektöründeki yoğunluğun devam ettiğini gösteriyor. Bu durum, Kalkan'ın turizm ekonomisi için pozitif bir gösterge.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Villa Tatili: Rakamlar Ne Söylüyor?",
+          "aci": "Temmuz ayında villa turizmindeki yoğunluğun nedenlerini, ortalama konaklama sürelerini ve misafir profillerini analiz eden kısa, görsel bir reels içeriği."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan Ekonomisinin Görünmeyen Kahramanları: Villa Turizmi Tedarik Zinciri",
+          "aci": "Villa turizminin sadece konaklama değil, aynı zamanda yerel marketler, restoranlar, temizlik hizmetleri ve ulaşım gibi birçok sektörü nasıl beslediğini ve ekonomik çarpan etkisini inceleyen bir makale."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'da villa kiralama platformlarından alınan anonim verilerle (ortalama doluluk oranı, rezervasyon süreleri) bir 'Kalkan Turizm Barometresi' bölümü oluşturulmalı. Bu barometre, sezonluk trendleri ve ekonomik göstergeleri ziyaretçilere sunarak şeffaflığı ve veri odaklılığı artırır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "growth",
+      "name": "GrowthStrategist",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan'da villa turizmi temmuz ayında zirveye ulaşırken, bölgenin eşsiz koyları ve plajları tatilciler için vazgeçilmez bir çekim noktası olmaya devam ediyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Gizli Cennetleri: Kalabalıktan Uzak 3 Koy Keşfi",
+          "aci": "Kalkan'da sadece yerel halkın bildiği, sakin ve el değmemiş üç gizli koyu drone çekimleri ve kısa videolarla tanıtarak, keşfetmeyi seven yeni bir kitleye ulaşmayı hedefler."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Mavi Sularında Bir Gün: Tekne Turu Rotaları ve Deneyimler",
+          "aci": "Kalkan'dan başlayan ve Kaputaş, Kalamar Koyu gibi popüler noktaların yanı sıra, daha az bilinen adaları ve dalış noktalarını içeren örnek bir tekne turu rotasını ve bu rotada yaşanabilecek deneyimleri detaylandırır."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com üzerinde 'Kalkan'ın En İyi Plajları ve Koyları' başlığı altında, her plaj/koy için detaylı bilgi (ulaşım, olanaklar, fotoğraf galerisi) içeren bir interaktif harita modülü eklenmesi, kullanıcıların site üzerinde daha fazla zaman geçirmesini ve keşif yapmasını sağlar.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "ads",
+      "name": "AdsOptimizer",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan ve Kaş'ta villa turizminin temmuz ayında zirve yapması bekleniyor. Bu durum, konaklama odaklı içeriklerin organik ve ücretli erişimini artırmak için uygun bir zemin sunuyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Hayalinizdeki Villa Tatili: Bütçenize Göre Seçenekler",
+          "aci": "Farklı bütçelere uygun, havuzlu ve deniz manzaralı villa seçeneklerini kısa ve çekici görsellerle tanıtarak potansiyel misafirleri web sitesine yönlendirecek bir reklam içeriği."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Unutulmaz Bir Konaklama Deneyimi İçin 5 İpucu",
+          "aci": "Villa seçimi, rezervasyon süreci, bölgedeki aktivitelerle entegrasyon ve erken rezervasyon avantajları gibi konularda pratik bilgiler sunarak okuyucunun karar verme sürecini kolaylaştıran bir rehber."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesinde 'Villa Bul' veya 'Bütçene Göre Villa' gibi bir filtreleme özelliği eklenerek kullanıcıların aradıkları konaklama tipine daha hızlı ulaşmaları sağlanmalı. Bu, dönüşüm oranlarını artıracaktır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "reception",
+      "name": "WhatsAppReception",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan'a ulaşım ve şehir içi hareketlilikle ilgili pratik bilgiler, özellikle yaz döneminde artan ziyaretçi yoğunluğu göz önüne alındığında kritik önem taşıyor. Villa turizmindeki hareketlilik, bu bilgilerin daha da değerli hale geldiğini gösteriyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Bir Gün: Ulaşımdan Akşam Yemeğine Sorunsuz Bir Rehber",
+          "aci": "Kalkan'a havaalanından nasıl gelinir, şehir içinde hangi ulaşım araçları tercih edilmeli, otopark seçenekleri ve popüler noktalara yürüme mesafeleri gibi pratik bilgiler sunar."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Gizli Kalmış Otopark Noktaları ve Alternatif Ulaşım İpuçları",
+          "aci": "Kalkan merkezde ve çevresindeki az bilinen otopark alanlarını, dolmuş güzergahlarını ve tekne taksi gibi alternatif ulaşım yöntemlerini kısa ve görsel bir şekilde tanıtır."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'a 'Pratik Bilgiler' veya 'Ziyaretçi Rehberi' adında yeni bir bölüm eklenmeli. Bu bölümde havaalanı transferleri, araç kiralama şirketleri, şehir içi dolmuş/taksi durakları ve otopark haritası gibi bilgiler güncel olarak sunulmalı. Ayrıca, bu bölümdeki bilgilere kolay erişim sağlamak için ana sayfadan belirgin bir link verilmelidir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "yayin-yonetmeni",
+      "name": "YayınYönetmeni",
+      "department": "gazete",
+      "kalkan_guncel": "Kaş ve Kalkan'da villa turizmi temmuzda zirve yapacak haberleri, bölgenin turizmdeki güçlü konumunu ve yüksek sezona girişini teyit ediyor. Bu durum, yerel ekonomiye ve işletmelere olumlu yansıyacaktır.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Adı Nereden Geliyor? Bir Kelimenin Peşinde Tarihi Yolculuk",
+          "aci": "Kalkan isminin kökeni ve bu ismin bölgenin tarihiyle nasıl bağlantılı olduğunu araştıran, okuyucuyu bilgilendirici ve merak uyandırıcı bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalamar Koyu'nda Gün Batımı: Huzurun ve Lezzetin Buluştuğu Anlar",
+          "aci": "Kalamar Koyu'nda gün batımının eşsiz görüntülerini, sahil restoranlarının ambiyansını ve Akdeniz lezzetlerini öne çıkaran kısa, görsel odaklı bir video."
+        }
+      ],
+      "gelistirme": "KalkanInfo'da 'Yerel İşletmelerden Hikayeler' adında bir bölüm oluşturularak, bölgedeki köklü işletmelerin kuruluş hikayeleri, aile gelenekleri ve imza lezzetleri gibi zamansız içerikler düzenli olarak yayınlanabilir. Bu, hem yerel kültürü destekler hem de ziyaretçilere daha derin bir Kalkan deneyimi sunar.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "muhabir",
+      "name": "Muhabir",
+      "department": "gazete",
+      "kalkan_guncel": "Korsan Fish Terrace'ta Canlı Müzik Eşliğinde Akdeniz Akşamları — Kalkan'ın sevilen mekanı Korsan Fish Terrace, canlı müzik performansları ile misafirlerine Akdeniz lezzetleri sunuyor. — Kalkan'ın önde gelen restoranlarından Korsan Fish Terrace, yaz akşamlarına özel canlı müzik programlarıyla dikkat çekiyor. Mekan, taze deniz ürünleri ve yöresel mezelerden oluşan zengin menüsünü, Akdeniz esintili müziklerle birleştirerek misafirlerine keyifli bir deneyim vaat ediyor. Canlı müzik etkinlikleri, Kalkan'ın hareketli gece hayatına farklı bir alternatif sunuyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Adının Kökeni: Bir Deniz Efsanesi",
+          "aci": "Kalkan adının nereden geldiğini, yerel halk arasındaki efsaneler ve tarihi bilgiler ışığında araştıran bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Gizli Koyları: Tekneyle Keşfedilmeyi Bekleyen Cennetler",
+          "aci": "Kalkan çevresindeki az bilinen koyları, tekne turları için rotaları ve bu koyların doğal güzelliklerini kısa videolarla tanıtan bir reels serisi."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesine 'Yerel Esnaf Röportajları' bölümü eklenerek, bölgedeki köklü işletmelerin hikayeleri ve imza ürünleri hakkında derinlemesine içerikler sunulabilir. Bu, hem yerel kültürü tanıtır hem de işletmelere görünürlük sağlar.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "foto-editoru",
+      "name": "FotoEditörü",
+      "department": "gazete",
+      "kalkan_guncel": "Kaş Belediyesi'nin düzenlediği 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği, Kalkan'ın kültürel mirasını ve doğal güzelliklerini bir araya getiren önemli bir etkinlik olarak öne çıkıyor. Bu tür etkinlikler, Kalkan'ın kültürel ve sanatsal kimliğini güçlendiriyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Saklı Yüzü: Likya Yolu'nda Bir Gün",
+          "aci": "Likya Yolu'nun Kalkan'a yakın bölümlerinde yapılan bir yürüyüşle, bölgenin tarihi ve doğal güzellikleri, fotoğraf kareleriyle desteklenerek okuyucuya aktarılır."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Gün Batımı Ritüeli: Işığın Dansı",
+          "aci": "Kalkan'ın farklı noktalarından gün batımının eşsiz ışık geçişleri ve renk değişimleri, kısa ve etkileyici görsellerle sunulur."
+        }
+      ],
+      "gelistirme": "Kalkaninfo.com'da 'Kültür ve Sanat Takvimi' bölümü oluşturularak, bölgedeki yerel etkinlikler, sergiler ve performanslar düzenli olarak duyurulmalı. Bu bölüm, ziyaretçilerin Kalkan'ın kültürel yaşamına daha aktif katılımını sağlar.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "magazin-editoru",
+      "name": "MagazinEditörü",
+      "department": "gazete",
+      "kalkan_guncel": "Korsan Fish Terrace Kalkan'da canlı müzik eşliğinde Akdeniz lezzetleri sunuyor. Bu, Kalkan'ın gece hayatı ve lezzet kültürü için önemli bir etkinlik.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan Gecelerinin Ritmi: Canlı Müzik ve Akdeniz Esintisi",
+          "aci": "Kalkan'ın canlı müzik sahnesini, özellikle Korsan Fish Terrace gibi mekanların Akdeniz lezzetleriyle birleşen atmosferini ve yarattığı kültürel deneyimi ele alır."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Bir Barista'nın Gözünden Kalkan Sabahları",
+          "aci": "Kalkan'da bir baristanın sabah rutinini, kahve hazırlığını ve günün ilk ışıklarıyla uyanan Kalkan'ın atmosferini kısa, dinamik görsellerle sunar."
+        }
+      ],
+      "gelistirme": "KalkanInfo'da 'Kalkan'ın Sesleri' başlığı altında, yerel müzisyenlerin, mekanların ve etkinliklerin kısa tanıtım videolarını içeren bir bölüm oluşturulabilir. Bu, Kalkan'ın gece hayatı ve kültürel etkinliklerini daha dinamik bir şekilde tanıtır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "gazete-sosyal",
+      "name": "SosyalEditör",
+      "department": "gazete",
+      "kalkan_guncel": "Korsan Fish Terrace Kalkan'da canlı müzik eşliğinde Akdeniz lezzetleri sunuyor. Bu akşam için harika bir seçenek.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Gizli Lezzet Durakları: Denizden Sofraya Bir Yolculuk",
+          "aci": "Kalkan'ın yerel restoranlarında sunulan, taze deniz ürünleri ve yöresel mezelerle hazırlanan Akdeniz mutfağının özel tariflerini ve hikayelerini ele alan bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Bir Akşamüstü Kalkan: Gün Batımından Geceye",
+          "aci": "Kalkan'da gün batımını izlenebilecek en güzel noktalardan başlayıp, akşam yemeği ve canlı müzik mekanlarına uzanan bir akşam rotasını gösteren kısa bir video."
+        }
+      ],
+      "gelistirme": "KalkanInfo'ya 'Haftalık Etkinlik Takvimi' bölümü eklenmeli. Bu bölümde canlı müzik, DJ performansları ve özel akşam yemekleri gibi etkinlikler güncel olarak listelenmeli ve mekanların IG hesapları etiketlenmeli.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "reklam-uyum",
+      "name": "Reklam-Uyum",
+      "department": "gazete",
+      "kalkan_guncel": "PASS",
+      "icerik_fikirleri": [],
+      "gelistirme": "Bugün için denetlenen içeriklerde belirgin bir hukuki ihlal veya uyum sorunu bulunmamaktadır. Ancak, sepette bekleyen hassas içerik için insan onayı gerektiği ve sansasyonel yaklaşımdan kaçınılması gerektiği hatırlatılmalıdır.",
+      "_raw_schema": "tarih,uygun,karar,ilan_slotlari,pii_bulgulari,advertorial_riski,partner_kredi_eksik,genel_not",
+      "_provider": "routellm"
+    },
+    {
+      "id": "news-verifier",
+      "name": "NewsVerifier",
+      "department": "gazete",
+      "kalkan_guncel": "Korsan Fish Terrace Kalkan'da canlı müzik eşliğinde Akdeniz lezzetleri sunarak yerel eğlence ve gastronomi sahnesine katkıda bulunuyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın İsim Kökeni: Bir Liman Kasabasının Hikayesi",
+          "aci": "Antalya Ekspres'in gündeme getirdiği 'Kalkan'ın ismi nereden geliyor?' sorusundan yola çıkarak, kasabanın tarihi ve coğrafi özellikleriyle bağlantılı isim kökenlerini araştıran bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Villa Turizmi: Yaz Hareketliliğinin Perde Arkası",
+          "aci": "Kaş ve Kalkan'da villa turizminin temmuz ayında zirve yapacağı haberinden hareketle, bölgedeki villa kiralama dinamiklerini, popülerliğini ve ziyaretçilere sunduğu deneyimleri görsel olarak anlatan kısa bir video."
+        }
+      ],
+      "gelistirme": "KalkanInfo'da 'Haber Doğruluk Skoru' bölümü oluşturularak, yerel haberlerin güvenilirliğini ve doğrulanma durumunu şeffaf bir şekilde gösteren bir metrik eklenebilir. Bu, kullanıcıların bilgiye olan güvenini artırır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "hava-plan",
+      "name": "HavaPlan",
+      "department": "gazete",
+      "kalkan_guncel": "Bugün Kalkan'da villa turizmi hareketliliği zirveye ulaşırken, hava durumu ve deniz koşulları tatilcilerin planlarını şekillendirecek ana faktör olacak. Özellikle tekne turları ve plaj aktiviteleri için rüzgar ve UV indeksi dikkatle takip edilmeli.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Rüzgarın Dansı: Deniz Severler İçin Alternatif Rotalar",
+          "aci": "Kalkan'ın mikro iklimi ve rüzgar koşulları göz önüne alınarak, farklı rüzgar şiddetlerinde hangi koyların daha sakin olabileceği ve tekne turları için alternatif rotalar sunulur."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Bir Gün: Hava Durumuna Göre Mükemmel Plan",
+          "aci": "Sabahın erken saatlerinden gün batımına kadar Kalkan'da hava durumuna göre yapılabilecek aktiviteler (plaj, antik kent, doğa yürüyüşü) ve bu aktivitelere uygun giyim/ekipman önerileri görsel olarak sunulur."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'a, 'Bora Yılmaz'ın Hava Durumu Köşesi' adında, günlük hava durumu ve aktivite önerilerini içeren, kullanıcıların kendi tatil planlarını hava koşullarına göre optimize etmelerine yardımcı olacak interaktif bir bölüm eklenmeli. Bu bölümde, rüzgarın yönü ve şiddeti gibi detaylı bilgilerle birlikte, hangi koyların daha sakin olduğu veya hangi aktivitelerin o gün için daha uygun olduğu gibi pratik tavsiyeler sunulabilir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "tatil-planner",
+      "name": "TatilPlanner",
+      "department": "concierge",
+      "kalkan_guncel": "Temmuz ayında Kalkan ve Kaş'ta villa turizminin zirve yapması bekleniyor. Bu dönemde villa kiralama talepleri oldukça yüksek seyrediyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Bir Hafta: Aileler İçin Huzurlu Bir Rota",
+          "aci": "Çocuklu ailelerin Kalkan'da geçirebileceği 7 günlük, yorucu olmayan, hem eğlenceli hem dinlendirici bir tatil rotası önerisi. Her gün için sabah, öğle, akşam aktiviteleri ve yemek önerileri içerir."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Saklı Koyları: Tekneyle Keşfedilmeyi Bekleyen Cennetler",
+          "aci": "Kalkan çevresindeki Kalamar Koyu gibi bilinen yerlerin yanı sıra, tekneyle ulaşılabilecek, kalabalıktan uzak, berrak sulara sahip gizli koyların kısa ve etkileyici görsellerle tanıtımı."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'a, kullanıcıların tatil tarihlerini ve kişi sayılarını girerek, mevcut villa ve otellerin müsaitlik durumunu ve tahmini fiyat aralığını gösteren basit bir 'Hızlı Fiyat Teklifi' aracı eklenebilir. Bu, kullanıcıların planlama sürecini hızlandırır ve doğrudan rezervasyon bağlantılarına yönlendirir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "gezgin-rehber",
+      "name": "GezginRehber",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan'da villa turizmi temmuzda zirve yapacak haberleri, bölgenin antik miraslarına olan ilginin artması için bir fırsat sunuyor. Ziyaretçilerin konaklama tercihlerini yaparken, yakınlardaki Patara, Xanthos ve Letoon gibi Likya Birliği'nin önemli merkezlerini de keşfetmeleri için rehberlik edebiliriz.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Antik Çağdan Günümüze Bir Liman Kenti: Patara'nın Saklı Hikayeleri",
+          "aci": "Likya Birliği'nin başkenti Patara'nın, Apollon kehanet merkezi oluşundan Aziz Nikolaos'un doğum yerine, Roma Senato binasından antik deniz fenerine uzanan zengin tarihini, ziyaretçilerin gözünden bir keşif hikayesiyle anlatır."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Xanthos-Letoon: Likya'nın UNESCO Mirası ve Gizemli Yazıtları",
+          "aci": "Kısa ve etkileyici görsellerle Xanthos'un Nereid Anıtı'nı, Likya dilindeki yazıtlarını ve Letoon'un kutsal alanını tanıtarak, bölgenin UNESCO Dünya Mirası statüsünün nedenlerini ve ziyaretçilere sunduğu eşsiz deneyimi vurgular."
+        }
+      ],
+      "gelistirme": "KalkanInfo'da 'Antik Kent Rotası' adında interaktif bir harita ve rehber bölümü oluşturulmalı. Bu bölümde, Kalkan'a yakın antik kentler (Patara, Xanthos, Letoon, Antiphellos vb.) işaretlenmeli, her birine tıklanınca Leyla Tunç'un sesinden kısa bir tanıtım ve 'Az Bilinen Detay' bölümü açılmalı. Ayrıca, bu rotalar için tahmini sürüş süreleri ve Likya Yolu bağlantı noktaları belirtilmeli.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "menu-chef",
+      "name": "MenuChef",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan'da villa turizminin temmuz ayında zirveye ulaşmasıyla birlikte, yerel restoranlar ve menüler de bu yoğunluğa göre şekilleniyor. Misafirlerin beklentilerini karşılayacak, hem yöresel tatları sunan hem de uluslararası damak zevkine hitap eden menüler ön plana çıkıyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan Sofralarının Gizli Kahramanları: Yerel Üreticiden Tabağa Lezzet Yolculuğu",
+          "aci": "Kalkan restoranlarının menülerinde yer alan taze balıkların, zeytinyağlıların ve otların hangi yerel üreticilerden geldiğini, bu lezzetlerin sofraya ulaşana kadarki hikayesini ve menüdeki yerini anlatan bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Bir Menünün Anatomisi: Kalkan'da Akşam Yemeği Deneyimi",
+          "aci": "Kalkan'daki bir restoranın menüsünün nasıl hazırlandığını, yemeklerin seçiminden sunumuna, alerjen bilgisinden fiyatlandırma stratejilerine kadar tüm süreci kısa ve ilgi çekici bir video ile gösteren bir içerik."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'da 'Menü Rehberi' adında yeni bir bölüm oluşturulabilir. Bu bölümde, Kalkan'daki restoranların menüleri, öne çıkan yemekleri, alerjen bilgileri ve yerel malzemelerin kullanımı gibi detaylı bilgiler sunulabilir. Ayrıca, menü yazarları veya şeflerle yapılan kısa röportajlar ve menü hazırlık süreçlerine dair kamera arkası görüntüler de bu bölümü zenginleştirebilir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "provider-matcher",
+      "name": "ProviderMatcher",
+      "department": "concierge",
+      "kalkan_guncel": "Kalkan'da villa turizmi temmuz ayında zirveye ulaşırken, doğru villa seçimi tatil deneyimini doğrudan etkiliyor. Kapasite, konum ve özelliklere göre en uygun seçeneği bulmak, beklentilerinizi karşılamanın anahtarıdır.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Villa Seçimi: Beklentilerinizle Bütçenizi Nasıl Eşleştirirsiniz?",
+          "aci": "Kalkan'da villa kiralarken kişi sayısı, bütçe ve özel istekler (havuz, deniz manzarası vb.) doğrultusunda en doğru seçimi yapmanın pratik rehberi."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Gizli Koylara Tekne Transferi: Ulaşım Rehberi",
+          "aci": "Kalkan'dan ulaşımı zor olan gizli koylara tekne transferi seçeneklerini ve bu transferlerin nasıl organize edileceğini gösteren kısa bir video rehberi."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesine, kullanıcıların villa, restoran veya transfer taleplerini doğal dilde girebilecekleri ve bu taleplerin yapılandırılmış filtrelere dönüştürülerek en uygun sağlayıcıları listeleyebilecekleri bir 'Akıllı Eşleştirme Asistanı' entegre edilmeli. Bu asistan, kullanıcıların '6 kişilik aile için havuzlu, Patara'ya yakın villa' gibi sorgularına doğrudan yanıt verebilmeli ve önerilen sağlayıcıların temel özelliklerini (kapasite, konum, ana özellikler) sunmalıdır. Fiyat ve müsaitlik için ilgili sağlayıcının sayfasına yönlendirme yapılmalıdır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "dil-cevirmen",
+      "name": "DilÇevirmen",
+      "department": "concierge",
+      "kalkan_guncel": "Villa turizminin temmuz ayında zirve yapması beklenirken, Kalkan'ın çok dilli ziyaretçi bilgisi sunumu, bu yoğun dönemde misafir deneyimini doğrudan etkileyecek kritik bir unsur haline geliyor. Doğru ve kültürel olarak uyarlanmış çeviriler, ziyaretçilerin bölgeyi daha iyi anlamasını ve deneyimlemesini sağlayacak.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın Sesleri: Diller Arası Köprüler Kuran Bir Tatil Deneyimi",
+          "aci": "Kalkan'ın sunduğu eşsiz deneyimleri, farklı dillerde nasıl daha etkili ve doğal bir şekilde aktarabileceğimizi, kültürel adaptasyonun önemini ve yanlış çevirilerin önüne geçme yollarını inceler. Marka terimlerinin korunması ve yerel hissettiren çevirinin gücünü vurgular."
+        },
+        {
+          "tur": "reels",
+          "baslik": "'Kalkan'ı 'Kalkan' Yapan Kelimeler: Çevirideki Gizli Kahramanlar",
+          "aci": "Kalkan'ın kendine özgü yer adları ve marka terimlerinin (Kalkan, Patara, Kaputaş gibi) farklı dillere çevrilirken nasıl korunması gerektiğini, bu terimlerin bölgenin kimliği için taşıdığı önemi kısa ve akılda kalıcı görsellerle anlatır."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesinde, sıkça sorulan sorular (FAQ) bölümünün çok dilli versiyonları için, her dilin kültürel beklentilerine uygun, yerel bir dilbilimci tarafından gözden geçirilmiş ve markanın tonuna sadık kalınarak hazırlanmış çevirilerin entegre edilmesi. Özellikle 'Kalkan'ın ismi nereden geliyor?' gibi yerel merak uyandıran soruların doğru ve çekici bir şekilde aktarılması.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "deploy-agent",
+      "name": "DeployAgent",
+      "department": "teknik",
+      "kalkan_guncel": "Villa turizmi temmuz ayında zirveye ulaşmış durumda, bu da sunucu yükünde artışa işaret ediyor.",
+      "icerik_fikirleri": [],
+      "gelistirme": "KalkanInfo web sitesinin artan villa turizmi trafiğiyle başa çıkabilmesi için, mevcut Vercel Hobby planındaki API fonksiyon limitlerinin (12/12 dolu) ve cron job limitlerinin (2/2 dolu) detaylı bir performans analizi yapılmalı. Gerekirse, kritik API'ler için Supabase Edge Functions'a geçiş veya cron job'lar için GitHub Actions tabanlı alternatifler değerlendirilmelidir. Özellikle 'Black Friday'de sunucu çöken adamın bakışı' senaryosunu yaşamamak adına, yük testi ve ölçeklenebilirlik çözümleri proaktif olarak araştırılmalıdır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "audit-agent",
+      "name": "AuditAgent",
+      "department": "teknik",
+      "kalkan_guncel": "Kalkan ve Kaş bölgesinde villa turizmi temmuz ayında zirveye ulaşmış durumda. Bu durum, bölgenin konaklama kapasitesi ve hizmet kalitesi açısından önemli bir gösterge.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Patara'nın Gizemli Işığı: Antik Fenerin Hikayesi",
+          "aci": "Likya Birliği'nin başkenti Patara'daki dünyanın en eski deniz fenerlerinden birinin tarihi ve mimari özelliklerini, bölgenin denizcilik geçmişiyle bağlantısını ele alan bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Saklı Cennetleri: Kalamar Koyu ve Ötesi",
+          "aci": "Kalamar Koyu'nun berrak sularını, tekne rotalarını ve Kalkan çevresindeki az bilinen koyları görsel olarak tanıtan kısa bir video serisi."
+        }
+      ],
+      "gelistirme": "KalkanInfo web sitesinde, villa turizmi ile ilgili sayfaların (örneğin 'Kalkan Villa Kiralama') JSON-LD şemasının 'LodgingBusiness' veya 'VacationRental' olarak güncellenmesi ve 'aggregateRating' ile 'reviewCount' alanlarının eklenmesi. Bu, arama motorlarında daha zengin sonuçlar elde edilmesini sağlayacaktır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "kvkk-guardian",
+      "name": "KVKKGuardian",
+      "department": "teknik",
+      "kalkan_guncel": "Bugün itibarıyla, sepette bekleyen ve 'hold' durumunda olan hassas içerik (trajedi/kişisel veri) için insan onayı gerekliliği devam etmektedir. Bu tür içeriklerin yayınlanmadan önce titizlikle incelenmesi ve kaynak atfının zorunlu olduğu hatırlatılmalıdır. KVKK ve GDPR prensipleri gereği kişisel verilerin korunması esastır.",
+      "icerik_fikirleri": [],
+      "gelistirme": "KalkanInfo.com üzerindeki tüm form alanları (iletişim, rezervasyon vb.) için KVKK Aydınlatma Metni'ne doğrudan erişim sağlayan bir linkin zorunlu hale getirilmesi ve her form gönderimi öncesinde kullanıcının bu metni okuduğunu ve onayladığını belirten bir checkbox eklenmesi. Bu, özellikle açık rıza gerektiren veri işleme faaliyetleri için hukuki uyumluluğu artıracaktır. Ayrıca, mevcut aydınlatma metninin güncel veri işleme faaliyetlerini (örneğin, 3. taraf AI hizmetlerine veri aktarımı varsa) kapsayıp kapsamadığı detaylıca denetlenmelidir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "reels-uretici",
+      "name": "ReelsProducer",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan'da villa turizmi temmuz ayında zirveye ulaşırken, yerel lezzetler ve Akdeniz mutfağı da tatilcilerin ilgi odağı olmaya devam ediyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'ın Gizli Lezzetleri: Balıkçının Sofrasından Tabağınıza",
+          "aci": "Kalkan'ın sabah erken saatlerinde balıkçıların ağlarına takılan taze deniz ürünlerinin, öğle veya akşam yemeğinde sofralara nasıl dönüştüğünü, balıkçıdan restorana uzanan hikayeyi ve Kalkan'a özgü pişirme tekniklerini görsel bir şölenle anlatan bir reel."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Bir Kalkan Kahvaltısı: Zeytin Ağaçlarından Sofranıza",
+          "aci": "Kalkan'ın yerel zeytin ve badem hasadından elde edilen ürünlerle hazırlanan, yöresel peynirler, ballar ve taze sebzelerle zenginleştirilmiş geleneksel Kalkan kahvaltısının görsel ve duyusal deneyimini öne çıkaran, samimi bir reel."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'da, Kalkan'ın öne çıkan restoranlarının 'imza lezzetleri'ni tanıtan, kısa videolarla desteklenmiş özel bir bölüm oluşturulmalı. Bu bölümde her restoranın bir veya iki spesifik yemeği, yapım aşamasından sunumuna kadar görsel hikayelerle anlatılmalı. Bu, hem restoranlara özgün bir tanıtım alanı sunar hem de ziyaretçilere benzersiz bir gastronomi rehberliği sağlar.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "ilan-uzmani",
+      "name": "İlanUzmanı",
+      "department": "sosyal",
+      "kalkan_guncel": "Kalkan ve Kaş'ta villa turizminin temmuz ayında zirve yapacağı haberleri, yerel iş gücü için artan bir talep anlamına geliyor. Özellikle villa temizliği, bahçe bakımı ve özel şoförlük gibi alanlarda sezonluk iş fırsatları yoğunlaşacak.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'da Sezonluk İş Gücü Dinamikleri: Villa Turizminin İstihdama Etkisi",
+          "aci": "Temmuz ayında zirveye çıkan villa turizminin, Kalkan ve çevresindeki yerel istihdam piyasasını nasıl şekillendirdiğini, hangi pozisyonlarda iş gücü açığı yarattığını ve bu durumun bölge ekonomisine katkılarını analiz eden bir yazı."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Villa Sezonu: İş Fırsatları Kapınızda!",
+          "aci": "Kalkan'daki villa turizminin yoğunlaştığı bu dönemde, villa temizliği, bahçıvanlık, özel aşçılık gibi pozisyonlarda iş arayanlar için kısa ve bilgilendirici bir video. İşletmelerin ilanlarını nasıl Kalkan Info'ya ulaştırabileceği vurgulanır."
+        }
+      ],
+      "gelistirme": "Kalkan Info web sitesinde, villa turizmine özel bir 'Villa Destek Hizmetleri' kategorisi oluşturulmalı. Bu kategori altında villa sahipleri ve kiralama şirketleri, temizlik, bahçe bakımı, havuz bakımı, özel şoför, aşçı gibi hizmetler için ilan verebilmeli ve bu ilanlar iş arayanlara kolayca ulaşabilmeli.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "bulten-editoru",
+      "name": "BültenEditörü",
+      "department": "sosyal",
+      "kalkan_guncel": "Bu hafta Kalkan'da imar planı tartışmaları ve yaz sezonu etkinlikleri öne çıktı. İtirazlara rağmen imar planı değişikliği onaylanırken, canlı müzik ve DJ performansları ile gece hayatı hareketlendi.",
+      "icerik_fikirleri": [
+        {
+          "tur": "gazete",
+          "baslik": "Kalkan'ın İmar Planı Değişikliği: Neler Getiriyor?",
+          "aci": "Kalkan'da cumhurbaşkanlığı kararıyla onaylanan imar planı değişikliğinin bölgeye ve turizme olası etkilerini analiz eden bir haber."
+        },
+        {
+          "tur": "reels",
+          "baslik": "Kalkan'da Bir Gece: Canlı Müzikten DJ Performanslarına",
+          "aci": "Kalkan'ın hareketli gece hayatını, canlı müzik mekanlarından DJ performanslarına kadar farklı eğlence seçenekleriyle tanıtan kısa bir video."
+        }
+      ],
+      "gelistirme": "Kalkan Info web sitesinde 'Haftalık Etkinlik Takvimi' bölümü oluşturularak, bölgedeki tüm canlı müzik, DJ performansları ve özel etkinlikler tek bir yerde toplanabilir. Bu sayede ziyaretçiler güncel etkinliklere kolayca ulaşabilir.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    },
+    {
+      "id": "gazete-reel-en",
+      "name": "GazeteReelEN",
+      "department": "gazete",
+      "kalkan_guncel": "Kaş Belediyesi tarafından düzenlenen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği, bölgenin kültürel mirasını ve doğal güzelliklerini ön plana çıkarıyor.",
+      "icerik_fikirleri": [
+        {
+          "tur": "reels",
+          "baslik": "Kalkan's Ancient Footsteps: The Lycian Way",
+          "aci": "Likya Yolu'nun Kalkan çevresindeki en etkileyici rotalarını ve bu rotaların sunduğu tarihi ve doğal manzaraları kısa, görsel odaklı bir reel ile tanıtmak."
+        },
+        {
+          "tur": "gazete",
+          "baslik": "Echoes of the Past: Patara's Enduring Legacy",
+          "aci": "Patara Antik Kenti'nin Likya Birliği'ndeki önemi, Aziz Nikolaos ile bağlantısı ve Roma Senatosu gibi yapıların günümüzdeki kalıntıları üzerinden zamansız bir kültürel gezi yazısı."
+        }
+      ],
+      "gelistirme": "KalkanInfo.com'a 'Events & Culture' (Etkinlikler ve Kültür) bölümü eklenmeli. Bu bölümde, bölgedeki yerel festivaller, yürüyüş etkinlikleri (Likya Yolu gibi), sanat sergileri ve canlı müzik performansları gibi kültürel aktivitelere yer verilmeli. Her etkinlik için kısa bir açıklama, tarih, saat ve varsa bilet bilgileri İngilizce olarak sunulmalı. Bu bölüm, ziyaretçilerin Kalkan'ın kültürel yaşamına daha aktif katılımını sağlayacaktır.",
+      "_raw_schema": "kalkan_guncel,icerik_fikirleri,gelistirme",
+      "_provider": "routellm"
+    }
+  ]
+}

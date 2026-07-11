@@ -144,13 +144,107 @@ const KALKAN_PILLARS =
 • PRATİK REHBER: "Kalkan'da bir gün", gün batımı noktaları, aile/çift önerileri.
 • MEVSİM: içinde bulunulan aya özgü açı (yaz geceleri, tekne turu, festival).`;
 
-function parseJson(text) {
+// Her ajana KENDİ uzmanlık alanını zorla → tüm ajanlar aynı temaya (ör. "gizli koylar") gitmesin.
+// Anahtarlar data/agency/agents.json'daki ajan id'leriyle birebir eşleşir (28 ajan).
+const AGENT_FOCUS = {
+  'writer':          'ODAK: Hikaye anlatımı, yerel ses, marka dili. IG/sosyal caption odaklı.',
+  'guard':           'ODAK: Marka güvenliği, ton uyumu, risk tespiti. İçerik önce güvenli olmalı.',
+  'analyst':         'ODAK: Metrik, büyüme, rakam. Hangi içerik türü daha fazla etkileşim getiriyor?',
+  'growth':          'ODAK: Büyüme kanalları, partnership, viral potansiyel. Yeni kitle nasıl çekilir?',
+  'ads':             'ODAK: Reklam açısı, conversion, CTA. Ücretli dağıtım için hangi içerik?',
+  'reception':       'ODAK: Turist soruları, concierge bilgisi, pratik bilgi. Ne soruyorlar?',
+  'reels-uretici':   'ODAK: Video formatı, hook, montaj ritmi. Hangi sahne reel olur?',
+  'ilan-uzmani':     'ODAK: İş ilanları, yerel istihdam, sezonluk fırsatlar.',
+  'bulten-editoru':  'ODAK: Haftalık bülten, özetleme, seçici editöryal.',
+  'director':        'ODAK: Bugün için TEK en yüksek etkili içerik kararı. Hepsini değil, BİRİNİ seç.',
+  'trend':           'ODAK: Trend sinyalleri, hashtag fırsatları, zamanında içerik.',
+  'yayin-yonetmeni': 'ODAK: Sayı kurgusu, manşet hiyerarşisi, gazete yapısı.',
+  'muhabir':         'ODAK: Yerel haber, olay, teyit. Gerçek olgu, kaynak atfı.',
+  'foto-editoru':    'ODAK: Görsel seçimi, kompozisyon, aydınlık/sakin estetik.',
+  'magazin-editoru': 'ODAK: Gece hayatı, kültür, lezzet, magazin tonu.',
+  'gazete-sosyal':   'ODAK: Gazete içeriğini IG/FB\'ye uyarla, kısa ve paylaşılabilir.',
+  'reklam-uyum':     'ODAK: Yasal uyum, ilan etiketleme, KVKK riski.',
+  'news-verifier':   'ODAK: Haber doğrulama, kaynak güvenilirliği, çelişki tespiti.',
+  'hava-plan':       'ODAK: Hava durumu bazlı program önerileri, aktivite planlaması.',
+  'gazete-reel-en':  'ODAK: İngilizce reel script, uluslararası turist dili, BBC tarzı kısalık.',
+  'tatil-planner':   'ODAK: Tatil rotaları, konaklama önerileri, gün planları.',
+  'gezgin-rehber':   'ODAK: Antik kentler, Likya Yolu, tarihi rehberlik.',
+  'menu-chef':       'ODAK: Yöresel lezzetler, restoran menüsü, balık/zeytinyağı mutfağı.',
+  'provider-matcher':'ODAK: Villa/transfer/tekne sağlayıcı eşleştirme, rezervasyon.',
+  'dil-cevirmen':    'ODAK: Çeviri kalitesi, kültürel adaptasyon, çok dilli içerik.',
+  'deploy-agent':    'ODAK: Site teknik sağlığı, performans, deploy sorunları.',
+  'audit-agent':     'ODAK: İçerik kalite denetimi, tutarsızlık, eksik bilgi.',
+  'kvkk-guardian':   'ODAK: KVKK/GDPR uyumu, kişisel veri, hukuki risk.',
+};
+
+// Ham LLM metninden JSON nesnesi ayıkla (kod bloğu/gürültü toleranslı; hafif onarım denemeleri ile).
+function extractJsonObject(text) {
   let t = String(text || '').trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
   const m = t.match(/\{[\s\S]*\}/); if (m) t = m[0];
-  for (const c of [t, t.replace(/\\"/g, '"'), t.replace(/\\\\/g, '\\')]) {
-    try { const j = JSON.parse(c); if (j && (j.kalkan_guncel || j.icerik_fikirleri)) return j; } catch {}
+  const candidates = [t, t.replace(/\\"/g, '"'), t.replace(/\\\\/g, '\\'), t.replace(/,\s*([}\]])/g, '$1')];
+  for (const c of candidates) {
+    try { const j = JSON.parse(c); if (j && typeof j === 'object') return j; } catch {}
   }
   return null;
+}
+
+// Bir "fikir" nesnesini {tur, baslik, aci} biçimine normalize et (rol-şeması ne olursa olsun).
+function normalizeIdea(x, defaultTur = 'gazete') {
+  if (!x) return null;
+  if (typeof x === 'string') return { tur: defaultTur, baslik: x, aci: '' };
+  const baslik = x.baslik || x.konu || x.manset || x.title || x.baslik_tr || x.headline || '';
+  const aci = x.aci || x.acik || x.aciklama || x.spot || x.ozet || x.aci_tr || x.pitch || '';
+  const tur = /reel/i.test(String(x.tur || x.format || x.format_onerisi || '')) ? 'reels' : (x.tur || defaultTur);
+  if (!baslik && !aci) return null;
+  return { tur, baslik: String(baslik), aci: String(aci) };
+}
+
+// Bir metin/nesne alanını tek satırlık string'e indir (kalkan_guncel için).
+function coerceText(v) {
+  if (!v) return '';
+  if (typeof v === 'string') return v;
+  if (typeof v === 'object') {
+    const parts = [v.manset, v.spot, v.ozet, v.acik, v.aciklama, v.govde, v.karar, v.genel_not, v.durum]
+      .filter(x => typeof x === 'string' && x.trim());
+    if (parts.length) return parts.join(' — ');
+    try { return JSON.stringify(v).slice(0, 200); } catch { return ''; }
+  }
+  return String(v);
+}
+
+/**
+ * Herhangi bir geçerli JSON çıktısını birleşik BRIEF_SCHEMA'ya ({kalkan_guncel, icerik_fikirleri, gelistirme})
+ * normalize eder. Ajanlar kendi rol-şemalarıyla (director→secilen_fikir, trend→sinyaller, muhabir→manset/spot,
+ * reklam-uyum→karar/genel_not vb.) dönse bile içerik kaybolmaz — süzülüp ortak yapıya taşınır.
+ */
+function parseJson(text) {
+  const j = extractJsonObject(text);
+  if (!j) return null;
+
+  // 1) kalkan_guncel — string ya da nesne (manşet/spot) olabilir; başka rol alanlarından da türet.
+  let kalkan_guncel = coerceText(
+    j.kalkan_guncel ?? j.manset ?? j.karar ?? j.genel_not ?? j.durum ?? j.ozet ?? '');
+
+  // 2) icerik_fikirleri — birçok rol-şemasından topla.
+  let ideas = [];
+  if (Array.isArray(j.icerik_fikirleri)) ideas = j.icerik_fikirleri;
+  else if (Array.isArray(j.sinyaller)) ideas = j.sinyaller;            // trend
+  else if (Array.isArray(j.fikirler)) ideas = j.fikirler;
+  else if (j.secilen_fikir) ideas = [j.secilen_fikir];                 // director (tek karar)
+  else if (j.manset || j.govde) ideas = [{ baslik: j.manset, aci: j.spot || j.govde }]; // muhabir
+  const icerik_fikirleri = ideas.map(x => normalizeIdea(x)).filter(Boolean);
+
+  // 3) gelistirme — geliştirme önerisi ya da rol karşılığı.
+  const gelistirme = coerceText(
+    j.gelistirme ?? j.oneri ?? j.sonraki_gun_notu ?? j.genel_not ?? '');
+
+  // muhabir gibi kalkan_guncel'i olmayan ama manşeti olan ajanlarda gözlemi doldur.
+  if (!kalkan_guncel && icerik_fikirleri.length) kalkan_guncel = icerik_fikirleri[0].baslik;
+
+  // Hiçbir anlamlı alan yoksa (tamamen alakasız/bozuk) → başarısız say.
+  if (!kalkan_guncel && !icerik_fikirleri.length && !gelistirme) return null;
+
+  return { kalkan_guncel, icerik_fikirleri, gelistirme, _raw_schema: Object.keys(j).slice(0, 8).join(',') };
 }
 
 // Ajans direktifi — VİRAL Instagram içerik emri (data/agency/viral-brief.json). Düzenlenebilir tek kaynak.
@@ -350,21 +444,38 @@ async function main() {
       `Tarih/işletme hikayesi/kültür/lezzet/doğa gibi EVERGREEN'e öncelik ver.\n` +
       `3) gelistirme: KalkanInfo'yu (kalkaninfo.com) geliştirecek 1 somut öneri.\n\n` +
       `ODAK: Kendi uzmanlık alanına EN YAKIN sütundan üret, başka ajanın alanına kayma — ör. lezzet ajanı→yemek/işletme hikayesi, rehber→tarih/antik, magazin→gece hayatı/kültür, provider→villa/konaklama açısı. Aynı klişe başlığı ("Kalkan'da bir gün") tekrarlama.\n` +
+      `SENİN ÖZEL ODAK ALANI (başka ajanın işine kayma): ${AGENT_FOCUS[id] || ''}\n` +
       `KURALLAR: Tarih/efsane için genel bilgiye dayan (Patara/Likya iyi belgeli). İŞLETMEYE ÖZEL rakam/tarih (kaç yıllık, ciro vb.) UYDURMA — ` +
-      `açıyı öner, gerçek detayın işletmeden alınacağını belirt. Klişe/dolgu/övgü yok. Türkçe. SADECE şu JSON: ${BRIEF_SCHEMA}`;
+      `açıyı öner, gerçek detayın işletmeden alınacağını belirt. Klişe/dolgu/övgü yok. Türkçe.\n` +
+      `★ ÇIKTI ŞEMASI ZORUNLU: Karakter tanımındaki kendi çıktı şemanı KULLANMA. YALNIZCA aşağıdaki birleşik şemayı, ` +
+      `başka hiçbir alan eklemeden ve markdown/kod bloğu olmadan döndür. icerik_fikirleri en fazla 2 öğe, her alan kısa tut.\n` +
+      `SADECE şu JSON: ${BRIEF_SCHEMA}`;
 
     if (DRY) { console.log(`  [dry] ${id}`); continue; }
     let out = null;
     for (let attempt = 1; attempt <= 2 && !out; attempt++) {
       try {
         const res = await cheapLLM(task, {
-          system: charSys + know, json: true, maxTokens: 500, temperature: 0.4,
+          system: charSys + know, json: true, maxTokens: 700, temperature: 0.4,
           // Karakter ajanları KALİTE ister → RouteLLM (akıllı güçlü model) önce, ücretsiz fallback sonra.
           order: (process.env.CHEAP_LLM_ORDER || 'routellm,groq,cerebras,nvidia,gemini,claude').split(','), timeoutMs: 60000,
         });
         out = parseJson(res.text);
         if (out) out._provider = res.provider;
-      } catch (e) { /* dene */ }
+        // Ayrıştırma başarısız olduysa (LLM cevabı geldi ama JSON değil) nedeni gör:
+        else if (attempt === 2) {
+          const preview = String(res.text || '').replace(/\s+/g, ' ').slice(0, 160);
+          console.log(`    ⚠ ${id} — JSON ayrıştırılamadı (provider=${res.provider || '?'}): "${preview}"`);
+        }
+      } catch (e) {
+        // Sessiz yutma YOK: son denemede hata mesajını logla (secret basmadan, kısaltarak).
+        if (attempt === 2) {
+          const msg = String(e?.message || e || 'bilinmeyen hata')
+            .replace(/(key|token|secret|bearer|authorization)[=:\s"']+[^\s"']+/gi, '$1=***')
+            .slice(0, 160);
+          console.log(`    ⚠ ${id} — hata: ${msg}`);
+        }
+      }
     }
     if (out) {
       results.push({ id, name: a.name, department: a.department, ...out });
