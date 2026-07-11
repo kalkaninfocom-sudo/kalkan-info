@@ -32,18 +32,21 @@ Berkay: "kardelenfastfood.tr benzeri siteler üretsek yeterki **admin paneli ola
 - ✅ **Admin paneli** (`demo/<slug>/admin.html`): Supabase auth (email/şifre) girişi → slogan/hakkında/saat/telefon/WhatsApp/Instagram + **tam menü editörü** (kategori/ürün ekle-sil, fiyat, açıklama) → `venue_sites.content` upsert (published=true). Mevcut kaydı açılışta yükler.
 - ✅ **4 örnek üretildi + görsel doğrulandı:** Omar's Kokobüs (27 foto, **6 kat/42 ürün tam menü** — yıldız demo), THE VIEW TERRACE, Olala, Luna. (Menüsüz olanlarda admin'den menü eklenebilir.)
 - ✅ **Migration YAZILDI:** `supabase/migrations/20260711110000_venue_sites.sql` (venue_sites: slug, content jsonb, RLS public-read + owner/admin-write, `is_admin()` mevcut).
-- ⛔ **TEK BLOKAJ — `supabase db push` (Berkay çalıştırmalı):** auto-mode classifier "production deploy, açık izin yok" diye reddetti. Migration uygulanana kadar admin **kaydedemez** (site yine baked veriyle çalışır). Komut:
-  ```
-  cd C:\Users\socie\kalkan-info && supabase db push
-  ```
-  Uygulanınca: admin panelinden giriş → düzenle → Kaydet → sitede anında görünür.
+- ✅ **BLOKAJ KALKTI — `supabase db push` UYGULANDI (2026-07-11 22:xx):** migration `20260711110000_venue_sites` Remote'ta (Berkay çalıştırdı). Admin artık kaydedebilir.
+
+## ✅ SATIŞ CEPHANESİ — 20 GROUNDED DEMO ÜRETİLDİ (2026-07-11 devam)
+- `build-venue-site.mjs` batch → üst 20 sıcak lead için `demo/<slug>/` site + admin (commit `b758974`, canlıya push'lu).
+- Zeugma(729 yorum)/Adams/Rose/Luna/Nova/Mussakka/Çakıl/Coast/Kaptan/Kardelen/Antioch/Keske/Leon/The View... hepsi gerçek foto+puan+WhatsApp CTA. Görsel doğrulandı (Zeugma premium).
+- Paylaşılabilir URL: `kalkaninfo.com/demo/<slug>/` (Vercel deploy ~1dk). Aramada "işte siteniz" diye göster.
+- Not: menüsüz mekanlarda menü bölümü JS ile gizli (boşluk yok); admin'den menü eklenince görünür.
 
 ## ⏳ SIRADAKİ NET ADIMLAR (buradan devam)
-1. **Berkay:** `supabase db push` (yukarıdaki komut) → venue_sites canlıya.
-2. **Admin login testi:** Berkay Supabase auth hesabıyla (admin claim'li — `is_admin`) `/demo/omar-.../admin.html` → giriş → menü düzenle → Kaydet → site overlay'i doğrula.
-3. **Müşteriye erişim:** owner_id ataması (sonra) — MVP'de Berkay tüm siteleri düzenler.
-4. **Deploy modeli:** satılınca siteyi kendi domainine (Vercel) deploy — foto bundle dahil (tek komut, sonra kurulacak).
-5. **Tüm hepsi commit edilmeli** (bu oturum uncommitted).
+1. ✅ ~~`supabase db push`~~ — YAPILDI.
+2. **Admin login testi (Berkay):** Supabase auth hesabıyla (admin claim'li — `is_admin`) `/demo/omar-.../admin.html` → giriş → menü düzenle → Kaydet → site overlay'i doğrula.
+3. **Satış outreach:** 20 demo hazır → sıcak lead'leri ara, demo linkini göster, kapat.
+4. **Müşteriye erişim:** owner_id ataması (sonra) — MVP'de Berkay tüm siteleri düzenler.
+5. **Deploy modeli:** satılınca siteyi kendi domainine (Vercel) deploy — foto bundle dahil (tek komut, sonra kurulacak).
+6. ✅ ~~commit~~ — oturum işleri commit'li (`1b7ec70`, `b758974`).
 
 ## 📞 BERKAY'IN AKSİYONLARI (dış — yazılım hazır bekliyor)
 - **Web sitesi satışı:** sıcak lead'leri ara → demoyu göster ("işte siteniz + kendi admin paneliniz, ₺X kurulum + ₺Y/ay") → kapat. Fiyat: kurulum ₺3-8K + aylık ₺300-500 (admin panel aylığı haklı çıkarır).
