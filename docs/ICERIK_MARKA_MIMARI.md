@@ -14,7 +14,10 @@ içeriğini üretsin, hatlar karışmasın. Her reels **5 dilde** üretilip ilgi
 | **Kalkan Info TV** | sokak röportajı, insan hikâyeleri (çekim Berkay) | ⛔ Berkay açacak | ⏳ |
 
 ## Çok-dil (her reels 5 dilde → ilgili dil hesabı)
-- Site zaten **5 dilli** (mevcut switcher). Aynı 5 dili içerik hattına taşı: TR + EN + (RU/DE/FR — site'deki setle hizala).
+- Diller kesinleşti: **TR, EN, DE, FR, RU** (sitenin mevcut i18n seti).
+- ✅ **İLK KANIT ÇALIŞIYOR (2026-07-11):** `scripts/ig-event-card.mjs` artık etkinlik kartını **5 dilde** üretiyor
+  (sabit etiketler elle lokalize, tarih/gün `Intl`, etkinlik alt-başlığı cheap-llm ile ücretsiz çevrilir).
+  Indigo Movie Night 5 dilde üretildi + görsel doğrulandı (`assets/ig-events/<id>.<lang>.jpg`). Pipeline hazır — reels'e genişletilecek.
 - Her dil için AYRI IG hesabı (Berkay açacak) VEYA tek hesapta çok-dil altyazı — **karar gerek**.
 - Reels motoru zaten **EN+TR** üretiyor → cheap-llm çeviri + dil-başına render + dil-başına post ile 5'e çıkar.
 

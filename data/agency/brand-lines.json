@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "note": "Kalkan Info MARKA HATLARI — her hat AYRI yayın kimliği + AYRI kuyruk + AYRI editöryal ton. Ajans her hattın içeriğini ayrı üretir; hatlar KARIŞMAZ. IG hesapları Berkay tarafından açılıp tokenEnv'lere token konunca canlı yayına geçer.",
+    "updated": "2026-07-11",
+    "languages": ["tr", "en", "de", "fr", "ru"],
+    "routing": "Bir içeriğin hattı: item.line (açık) > kategori eşleşmesi > tip eşleşmesi > varsayılan (kalkaninfo)."
+  },
+  "lines": [
+    {
+      "id": "kalkaninfo",
+      "name": "Kalkan Info",
+      "emoji": "◆",
+      "accent": "#f4b53d",
+      "handle": "@kalkan.info",
+      "tokenEnv": "IG_LONG_LIVED_TOKEN",
+      "editorial": "Genel yerel rehber: öne çıkanlar, pratik bilgi, marka sesi. Sıcak, güven veren, seçici ton.",
+      "categories": ["genel", "rehber", "featured", "hizmet", "tur", "villa", "otel", "plaj", "seo"],
+      "types": ["post", "reel", "story"],
+      "queue": "data/agency/lines/kalkaninfo.json",
+      "default": true,
+      "active": true
+    },
+    {
+      "id": "haber",
+      "name": "Kalkan Info Haber",
+      "emoji": "📰",
+      "accent": "#3b82f6",
+      "handle": "@kalkaninfo.haber",
+      "tokenEnv": "IG_TOKEN_HABER",
+      "editorial": "Yerel haber: güncel, TEYİTLİ, kaynak atıflı, sansasyonsuz. KVKK/kişisel veri hassasiyeti. Hız değil doğruluk.",
+      "categories": ["haber", "haberler", "asayis", "asayiş", "belediye", "gundem", "gündem", "turizm", "hava", "duyuru", "ekonomi"],
+      "types": ["post", "reel"],
+      "queue": "data/agency/lines/haber.json",
+      "active": false
+    },
+    {
+      "id": "magazin",
+      "name": "Kalkan Info Magazin",
+      "emoji": "🎭",
+      "accent": "#8b5cf6",
+      "handle": "@kalkaninfo.magazin",
+      "tokenEnv": "IG_TOKEN_MAGAZIN",
+      "editorial": "Gece hayatı, kültür, lezzet, etkinlik, mekan hikâyeleri. Canlı, eğlenceli, magazin tonu — ama zarif.",
+      "categories": ["magazin", "etkinlik", "etkinlikler", "gece", "nightlife", "kultur", "kültür", "lezzet", "yemek", "muzik", "müzik", "parti", "festival", "sinema", "sanat"],
+      "types": ["post", "reel", "story"],
+      "queue": "data/agency/lines/magazin.json",
+      "active": false
+    },
+    {
+      "id": "tv",
+      "name": "Kalkan Info TV",
+      "emoji": "📺",
+      "accent": "#ef4444",
+      "handle": "@kalkaninfo.tv",
+      "tokenEnv": "IG_TOKEN_TV",
+      "editorial": "Sokak röportajları, insan hikâyeleri, kısa dikey video. Samimi, meraklı, insan odaklı. Çekim Berkay; ajans post-prodüksiyon (altyazı/çok-dil/kırpım).",
+      "categories": ["tv", "roportaj", "röportaj", "interview", "sokak", "video", "hikaye", "hikâye", "vox-pop"],
+      "types": ["reel", "video"],
+      "queue": "data/agency/lines/tv.json",
+      "active": false
+    }
+  ]
+}
