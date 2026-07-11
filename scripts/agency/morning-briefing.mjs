@@ -199,6 +199,28 @@ function normalizeIdea(x, defaultTur = 'gazete') {
   return { tur, baslik: String(baslik), aci: String(aci) };
 }
 
+// Bir metin alanının YARIM (truncation) kalıp kalmadığını sezgisel olarak sapta.
+// Kesilme belirtileri: "..."/"…" ile bitme, VEYA cümle-sonu noktalaması (. ! ? : ")") olmadan
+// harf/virgülle bitip yeterince uzun olma (LLM maxToken'da kesildiğinde tipik durum).
+function looksTruncated(s) {
+  const t = String(s || '').trim();
+  if (!t) return false;
+  if (/(\.\.\.|…)$/.test(t)) return true;                    // açık kesilme
+  const last = t.slice(-1);
+  if (/[.!?:)"'»”]/.test(last)) return false;                // düzgün bitiş
+  // Noktalama YOK ve uzunsa → büyük olasılıkla kesilmiş (kısa etiketler serbest).
+  return t.length >= 40;
+}
+
+// Yarım kalmış metni onar: son TAM cümleye kırp; kurtarılamıyorsa null döndür (fikir atılır).
+function repairText(s) {
+  let t = String(s || '').trim().replace(/(\.\.\.|…)+$/g, '').trim();
+  if (!looksTruncated(t)) return t || null;
+  const m = t.match(/^[\s\S]*[.!?](?=\s|$)/);                 // son cümle-sonu noktalamasına kadar
+  if (m && m[0].trim().length >= 20) return m[0].trim();      // kurtarılabilir tam cümle var
+  return null;                                                // kurtarılamaz → at
+}
+
 // Bir metin/nesne alanını tek satırlık string'e indir (kalkan_guncel için).
 function coerceText(v) {
   if (!v) return '';
@@ -440,15 +462,17 @@ async function main() {
       `${dataFeed}\n\n` +
       `ROLÜNE göre üret:\n` +
       `1) kalkan_guncel: alanında bugün işlenebilecek 1 taze VEYA zamansız açı (kısa; yoksa güçlü bir evergreen açı).\n` +
-      `2) icerik_fikirleri: gazete VEYA reels için 1-2 ÖZGÜN içerik — her biri {tur, baslik (çekici başlık), aci (1 cümle: ne anlatır)}. ` +
+      `2) icerik_fikirleri: gazete VEYA reels için 1-2 ÖZGÜN içerik — her biri {tur, baslik (çekici başlık), aci (TEK TAM cümle: ne anlatır, nokta ile biter)}. ` +
       `Tarih/işletme hikayesi/kültür/lezzet/doğa gibi EVERGREEN'e öncelik ver.\n` +
-      `3) gelistirme: KalkanInfo'yu (kalkaninfo.com) geliştirecek 1 somut öneri.\n\n` +
+      `3) gelistirme: KalkanInfo'yu (kalkaninfo.com) geliştirecek 1 somut öneri (tam cümle).\n\n` +
       `ODAK: Kendi uzmanlık alanına EN YAKIN sütundan üret, başka ajanın alanına kayma — ör. lezzet ajanı→yemek/işletme hikayesi, rehber→tarih/antik, magazin→gece hayatı/kültür, provider→villa/konaklama açısı. Aynı klişe başlığı ("Kalkan'da bir gün") tekrarlama.\n` +
       `SENİN ÖZEL ODAK ALANI (başka ajanın işine kayma): ${AGENT_FOCUS[id] || ''}\n` +
       `KURALLAR: Tarih/efsane için genel bilgiye dayan (Patara/Likya iyi belgeli). İŞLETMEYE ÖZEL rakam/tarih (kaç yıllık, ciro vb.) UYDURMA — ` +
       `açıyı öner, gerçek detayın işletmeden alınacağını belirt. Klişe/dolgu/övgü yok. Türkçe.\n` +
       `★ ÇIKTI ŞEMASI ZORUNLU: Karakter tanımındaki kendi çıktı şemanı KULLANMA. YALNIZCA aşağıdaki birleşik şemayı, ` +
       `başka hiçbir alan eklemeden ve markdown/kod bloğu olmadan döndür. icerik_fikirleri en fazla 2 öğe, her alan kısa tut.\n` +
+      `★ CÜMLELERİ MUTLAKA TAMAMLA — hiçbir alanı yarım bırakma, "..." ile bitirme, cümleyi ortada kesme. ` +
+      `Her metin alanı düzgün noktalama (. ! ?) ile bitmeli. Kısa ama TAM yaz.\n` +
       `SADECE şu JSON: ${BRIEF_SCHEMA}`;
 
     if (DRY) { console.log(`  [dry] ${id}`); continue; }
@@ -456,7 +480,7 @@ async function main() {
     for (let attempt = 1; attempt <= 2 && !out; attempt++) {
       try {
         const res = await cheapLLM(task, {
-          system: charSys + know, json: true, maxTokens: 700, temperature: 0.4,
+          system: charSys + know, json: true, maxTokens: 900, temperature: 0.4,
           // Karakter ajanları KALİTE ister → RouteLLM (akıllı güçlü model) önce, ücretsiz fallback sonra.
           order: (process.env.CHEAP_LLM_ORDER || 'routellm,groq,cerebras,nvidia,gemini,claude').split(','), timeoutMs: 60000,
         });
@@ -494,12 +518,17 @@ async function main() {
   const brief = { date, generated_at: new Date().toISOString(), count: results.length, agents: results };
   await writeFile(join(briefDir, `${date}.json`), JSON.stringify(brief, null, 2));
 
-  // İçerik fikirlerini düzleştir → gazete/reels tüketir
-  const rawIdeas = results.flatMap(r => (r.icerik_fikirleri || []).map(i => ({
-    agent: r.id, department: r.department, tur: i.tur || 'gazete',
-    baslik: i.baslik || '', aci: i.aci || i.fikir || '',
-    fikir: [i.baslik, i.aci || i.fikir].filter(Boolean).join(' — '),
-  }))).filter(i => i.fikir);
+  // İçerik fikirlerini düzleştir → gazete/reels tüketir.
+  // Yarım (truncation) kalan alanları onar; başlık kurtarılamıyorsa fikri tamamen at.
+  let truncatedDropped = 0;
+  const rawIdeas = results.flatMap(r => (r.icerik_fikirleri || []).map(i => {
+    const baslik = repairText(i.baslik || '');
+    if (!baslik) { truncatedDropped++; return null; }         // başlık yoksa/yarımsa → at
+    const aci = repairText(i.aci || i.fikir || '') || '';     // açı kurtarılamazsa boş bırak (başlık yeter)
+    const fikir = [baslik, aci].filter(Boolean).join(' — ');
+    return { agent: r.id, department: r.department, tur: i.tur || 'gazete', baslik, aci, fikir };
+  })).filter(i => i && i.fikir);
+  if (truncatedDropped) console.log(`  ✂ ${truncatedDropped} fikir yarım/bozuk başlık nedeniyle atıldı`);
 
   // ─── Düzeltme B: Anti-Slop + Çeşitlilik süzgeci ───
   const history = await readJson('data/agency/topic-history.json', { topics: [] });
@@ -517,6 +546,39 @@ async function main() {
   await sendTelegram(results, ideas);
 }
 
+// Uzun metni Telegram 4096 limitine SATIR SINIRINDA böler (HTML etiketini/satırı ortadan kesmez).
+// Tek bir satır limitten uzunsa (nadiren) sert kesime düşer — yine de tag ortası olmamaya çalışır.
+function chunkForTelegram(text, limit = 4000) {
+  const out = [];
+  let buf = '';
+  for (const line of String(text || '').split('\n')) {
+    if (line.length > limit) {
+      // Aşırı uzun tek satır: önce mevcut tamponu boşalt, sonra satırı sert böl.
+      if (buf) { out.push(buf); buf = ''; }
+      for (let i = 0; i < line.length; i += limit) out.push(line.slice(i, i + limit));
+      continue;
+    }
+    if ((buf + (buf ? '\n' : '') + line).length > limit) { out.push(buf); buf = line; }
+    else buf += (buf ? '\n' : '') + line;
+  }
+  if (buf) out.push(buf);
+  return out;
+}
+
+// Bir metin bloğunu Telegram'a gönder (gerekirse satır sınırında chunk'lara bölerek).
+async function sendTgBlock(text) {
+  for (const c of chunkForTelegram(text)) {
+    try {
+      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT, text: c, parse_mode: 'HTML', disable_web_page_preview: true }),
+        signal: AbortSignal.timeout(15000),
+      });
+    } catch (e) { console.warn('telegram fail:', e.message); }
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
 async function sendTelegram(results, ideas) {
   if (!TG_TOKEN || !TG_CHAT) { console.log('ℹ Telegram env yok — rapor dosyada.'); return; }
   const deptNames = { sosyal: '📱 Sosyal', gazete: '📰 Gazete', concierge: '🧭 Concierge', teknik: '🔧 Teknik' };
@@ -524,39 +586,34 @@ async function sendTelegram(results, ideas) {
   for (const r of results) (byDept[r.department] ||= []).push(r);
 
   const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
-  let body = `<b>☀️ Günlük Ajans Brifingi — ${date}</b>\n${results.length} ajan raporladı.\n`;
 
+  // 1) Başlık mesajı (ayrı gönderilir).
+  await sendTgBlock(`<b>☀️ Günlük Ajans Brifingi — ${date}</b>\n${results.length} ajan raporladı.`);
+
+  // 2) HER DEPARTMAN AYRI MESAJ (4096 limit tek departmanda nadiren aşılır; sendTgBlock yine de böler).
   for (const [dept, list] of Object.entries(byDept)) {
-    body += `\n<b>${deptNames[dept] || dept}</b>\n`;
+    let body = `<b>${deptNames[dept] || dept}</b>\n`;
     for (const r of list) {
-      const guncel = esc(String(r.kalkan_guncel || '').slice(0, 160));
+      const guncel = esc(String(r.kalkan_guncel || '').slice(0, 200));
       body += `• <b>${esc(r.name || r.id)}</b>: ${guncel}\n`;
     }
+    await sendTgBlock(body.trimEnd());
   }
 
-  // En iyi içerik fikirleri (gazete + reels ayrı)
+  // 3) İçerik fikirleri (gazete + reels) — ayrı mesaj.
   const gz = ideas.filter(i => /gazete/i.test(i.tur)).slice(0, 6);
   const rl = ideas.filter(i => /reel/i.test(i.tur)).slice(0, 6);
-  if (gz.length) body += `\n<b>📰 Gazete fikirleri</b>\n` + gz.map(i => `• ${esc(i.fikir)}`).join('\n') + '\n';
-  if (rl.length) body += `\n<b>🎬 Reels fikirleri</b>\n` + rl.map(i => `• ${esc(i.fikir)}`).join('\n') + '\n';
+  let ideasBody = '';
+  if (gz.length) ideasBody += `<b>📰 Gazete fikirleri</b>\n` + gz.map(i => `• ${esc(i.fikir)}`).join('\n') + '\n\n';
+  if (rl.length) ideasBody += `<b>🎬 Reels fikirleri</b>\n` + rl.map(i => `• ${esc(i.fikir)}`).join('\n');
+  if (ideasBody.trim()) await sendTgBlock(ideasBody.trim());
 
-  // KalkanInfo geliştirme önerileri (ilk 6)
+  // 4) KalkanInfo geliştirme önerileri (ilk 6) — ayrı mesaj.
   const dev = results.map(r => r.gelistirme).filter(Boolean).slice(0, 6);
-  if (dev.length) body += `\n<b>🚀 KalkanInfo geliştirme önerileri</b>\n` + dev.map(d => `• ${esc(String(d).slice(0, 140))}`).join('\n');
+  if (dev.length) await sendTgBlock(`<b>🚀 KalkanInfo geliştirme önerileri</b>\n` +
+    dev.map(d => `• ${esc(String(d).slice(0, 180))}`).join('\n'));
 
-  // Telegram mesaj limiti ~4096 → parçala
-  const chunks = [];
-  for (let i = 0; i < body.length; i += 3800) chunks.push(body.slice(i, i + 3800));
-  for (const c of chunks) {
-    try {
-      await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: TG_CHAT, text: c, parse_mode: 'HTML', disable_web_page_preview: true }),
-      });
-    } catch (e) { console.warn('telegram fail:', e.message); }
-    await new Promise(r => setTimeout(r, 400));
-  }
-  console.log('✓ Telegram brifingi gönderildi');
+  console.log('✓ Telegram brifingi gönderildi (departman-bazlı ayrı mesajlar)');
 }
 
 // Yalnızca doğrudan CLI olarak çalıştırıldığında main() koş (import edildiğinde değil — test/yeniden kullanım için).
