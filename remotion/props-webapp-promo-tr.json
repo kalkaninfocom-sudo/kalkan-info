@@ -1,0 +1,88 @@
+{
+  "lang": "tr",
+  "base": "http://localhost:3055/remotion/public/",
+  "music": "audio/bed.mp3",
+  "scenes": [
+    {
+      "key": "hook",
+      "type": "cinematic",
+      "frames": 198,
+      "label": "KALKAN INFO",
+      "headline": "Kalkan artık cebinde",
+      "sub": "Her şey tek uygulamada",
+      "audio": "audio/tr/hook.mp3",
+      "screen": null,
+      "photos": [
+        "cine/01-kaputas.jpg",
+        "cine/02-panorama.jpg",
+        "cine/03-limanagzi.jpg"
+      ]
+    },
+    {
+      "key": "restoranlar",
+      "type": "screen",
+      "frames": 210,
+      "label": "Restoranlar",
+      "headline": "Gerçek Puanlar",
+      "sub": "Sahte yorum yok",
+      "audio": "audio/tr/restoranlar.mp3",
+      "screen": "screens/tr/restoranlar.png",
+      "photos": []
+    },
+    {
+      "key": "plajlar",
+      "type": "screen",
+      "frames": 226,
+      "label": "Plajlar",
+      "headline": "Gizli Koylar",
+      "sub": "Anlık deniz suyu sıcaklığı",
+      "audio": "audio/tr/plajlar.mp3",
+      "screen": "screens/tr/plajlar.png",
+      "photos": []
+    },
+    {
+      "key": "dolmus",
+      "type": "screen",
+      "frames": 166,
+      "label": "Dolmuş Saatleri",
+      "headline": "Dolmuş & Ulaşım",
+      "sub": "Güncel dolmuş saatleri + duraklar",
+      "audio": "audio/tr/dolmus.mp3",
+      "screen": "screens/tr/dolmus.png",
+      "photos": []
+    },
+    {
+      "key": "antik",
+      "type": "screen",
+      "frames": 188,
+      "label": "Antik Kentler",
+      "headline": "Sesli Rehber",
+      "sub": "10 antik kent, Likya hikayeleri",
+      "audio": "audio/tr/antik.mp3",
+      "screen": "screens/tr/antik.png",
+      "photos": []
+    },
+    {
+      "key": "install",
+      "type": "install",
+      "frames": 349,
+      "label": "Nasıl Yüklenir?",
+      "headline": "Telefonuna Ekle",
+      "sub": "iPhone: Paylaş → Ana Ekrana Ekle · Android: Uygulamayı Yükle",
+      "audio": "audio/tr/install.mp3",
+      "screen": null,
+      "photos": []
+    },
+    {
+      "key": "cta",
+      "type": "cta",
+      "frames": 188,
+      "label": "",
+      "headline": "kalkaninfo.com",
+      "sub": "Yerel rehberin",
+      "audio": "audio/tr/cta.mp3",
+      "screen": null,
+      "photos": []
+    }
+  ]
+}

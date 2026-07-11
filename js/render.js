@@ -160,6 +160,7 @@ const KalkanData = (() => {
           ${detailHref ? `<a href="${detailHref}" aria-label="${escape(name||'')} ${escape(detailLabel)}" class="absolute inset-0 z-[1]"></a>` : ''}
           ${safeImage(p.image, name)}
           ${p.featured ? featuredBadge() : ''}
+          ${(p.lat && p.lng) ? `<div class="sea-temp-chip absolute top-2 left-2 z-[2] flex items-center gap-1 bg-white/90 text-sea-800 text-[11px] font-extrabold px-2 py-1 rounded-full shadow-sm opacity-0 transition-opacity duration-500" data-sea-temp="${p.id}" data-lat="${p.lat}" data-lng="${p.lng}" title="Canlı deniz suyu sıcaklığı — kaynak: Open-Meteo Marine"><span aria-hidden="true">🌊</span><span class="st-val">–</span></div>` : ''}
           <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-ink-900/90 to-transparent">
             <div class="flex items-center justify-between gap-2">
               <span class="text-[11px] text-white/80 font-semibold tracking-wide uppercase">${escape(category)}</span>

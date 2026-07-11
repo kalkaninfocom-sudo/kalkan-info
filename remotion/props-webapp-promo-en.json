@@ -1,0 +1,88 @@
+{
+  "lang": "en",
+  "base": "http://localhost:3055/remotion/public/",
+  "music": "audio/bed.mp3",
+  "scenes": [
+    {
+      "key": "hook",
+      "type": "cinematic",
+      "frames": 179,
+      "label": "KALKAN INFO",
+      "headline": "Kalkan, now in your pocket",
+      "sub": "Everything in one app",
+      "audio": "audio/en/hook.mp3",
+      "screen": null,
+      "photos": [
+        "cine/01-kaputas.jpg",
+        "cine/02-panorama.jpg",
+        "cine/03-limanagzi.jpg"
+      ]
+    },
+    {
+      "key": "restoranlar",
+      "type": "screen",
+      "frames": 181,
+      "label": "Restaurants",
+      "headline": "Real Ratings",
+      "sub": "No fake reviews",
+      "audio": "audio/en/restoranlar.mp3",
+      "screen": "screens/en/restoranlar.png",
+      "photos": []
+    },
+    {
+      "key": "plajlar",
+      "type": "screen",
+      "frames": 142,
+      "label": "Beaches",
+      "headline": "Hidden Coves",
+      "sub": "Live sea temperature",
+      "audio": "audio/en/plajlar.mp3",
+      "screen": "screens/en/plajlar.png",
+      "photos": []
+    },
+    {
+      "key": "dolmus",
+      "type": "screen",
+      "frames": 146,
+      "label": "Minibus Times",
+      "headline": "Getting Around",
+      "sub": "Live minibus times + stops",
+      "audio": "audio/en/dolmus.mp3",
+      "screen": "screens/en/dolmus.png",
+      "photos": []
+    },
+    {
+      "key": "antik",
+      "type": "screen",
+      "frames": 146,
+      "label": "Ancient Cities",
+      "headline": "Audio Guide",
+      "sub": "10 ancient sites, Lycian tales",
+      "audio": "audio/en/antik.mp3",
+      "screen": "screens/en/antik.png",
+      "photos": []
+    },
+    {
+      "key": "install",
+      "type": "install",
+      "frames": 280,
+      "label": "How to Install",
+      "headline": "Add to Your Phone",
+      "sub": "iPhone: Share → Add to Home Screen · Android: Install App",
+      "audio": "audio/en/install.mp3",
+      "screen": null,
+      "photos": []
+    },
+    {
+      "key": "cta",
+      "type": "cta",
+      "frames": 156,
+      "label": "",
+      "headline": "kalkaninfo.com",
+      "sub": "Your local guide",
+      "audio": "audio/en/cta.mp3",
+      "screen": null,
+      "photos": []
+    }
+  ]
+}

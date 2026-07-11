@@ -1,0 +1,90 @@
+{
+  "id": "webapp-promo",
+  "note": "kalkaninfo webapp tanıtım + nasıl yüklenir reel. Hibrit: sinematik Kalkan + gerçek app ekranları + install adımları. TR+EN. VO=edge-tts, müzik=telifsiz bed.",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "scenes": [
+    {
+      "key": "hook",
+      "type": "cinematic",
+      "label": { "tr": "KALKAN INFO", "en": "KALKAN INFO" },
+      "headline": { "tr": "Kalkan artık cebinde", "en": "Kalkan, now in your pocket" },
+      "sub": { "tr": "Her şey tek uygulamada", "en": "Everything in one app" },
+      "vo": {
+        "tr": "Kalkan'da tatil mi? Artık her şey tek bir yerde.",
+        "en": "Holiday in Kalkan? Now everything is in one place."
+      }
+    },
+    {
+      "key": "restoranlar",
+      "type": "screen",
+      "label": { "tr": "Restoranlar", "en": "Restaurants" },
+      "headline": { "tr": "Gerçek Puanlar", "en": "Real Ratings" },
+      "sub": { "tr": "Sahte yorum yok", "en": "No fake reviews" },
+      "vo": {
+        "tr": "Gerçek puanlı restoranlar ve barlar. Sahte yorum yok.",
+        "en": "Real-rated restaurants and bars. No fake reviews."
+      }
+    },
+    {
+      "key": "plajlar",
+      "type": "screen",
+      "label": { "tr": "Plajlar", "en": "Beaches" },
+      "headline": { "tr": "Gizli Koylar", "en": "Hidden Coves" },
+      "sub": { "tr": "Anlık deniz suyu sıcaklığı", "en": "Live sea temperature" },
+      "vo": {
+        "tr": "Gizli koylar ve plajlar. Deniz suyu sıcaklığı anlık güncel.",
+        "en": "Hidden coves and beaches, with live sea temperature."
+      }
+    },
+    {
+      "key": "dolmus",
+      "type": "screen",
+      "screen": "dolmus",
+      "label": { "tr": "Dolmuş Saatleri", "en": "Minibus Times" },
+      "headline": { "tr": "Dolmuş & Ulaşım", "en": "Getting Around" },
+      "sub": { "tr": "Güncel dolmuş saatleri + duraklar", "en": "Live minibus times + stops" },
+      "vo": {
+        "tr": "Güncel dolmuş saatleri ve duraklar, hepsi cebinde.",
+        "en": "Live minibus schedules and stops, all in your pocket."
+      }
+    },
+    {
+      "key": "antik",
+      "type": "screen",
+      "label": { "tr": "Antik Kentler", "en": "Ancient Cities" },
+      "headline": { "tr": "Sesli Rehber", "en": "Audio Guide" },
+      "sub": { "tr": "10 antik kent, Likya hikayeleri", "en": "10 ancient sites, Lycian tales" },
+      "vo": {
+        "tr": "Sesli rehberli antik kentler ve yapay zeka tatil planlayıcı.",
+        "en": "Audio-guided ancient cities and an A.I. trip planner."
+      }
+    },
+    {
+      "key": "install",
+      "type": "install",
+      "label": { "tr": "Nasıl Yüklenir?", "en": "How to Install" },
+      "headline": { "tr": "Telefonuna Ekle", "en": "Add to Your Phone" },
+      "sub": {
+        "tr": "iPhone: Paylaş → Ana Ekrana Ekle · Android: Uygulamayı Yükle",
+        "en": "iPhone: Share → Add to Home Screen · Android: Install App"
+      },
+      "vo": {
+        "tr": "Telefonuna eklemek çok kolay. iPhone'da Paylaş, sonra Ana Ekrana Ekle. Android'de Uygulamayı Yükle'ye dokun.",
+        "en": "Adding it is easy. On iPhone tap Share, then Add to Home Screen. On Android, tap Install App."
+      }
+    },
+    {
+      "key": "cta",
+      "type": "cta",
+      "label": { "tr": "", "en": "" },
+      "headline": { "tr": "kalkaninfo.com", "en": "kalkaninfo.com" },
+      "sub": { "tr": "Yerel rehberin", "en": "Your local guide" },
+      "vo": {
+        "tr": "Kalkan İnfo nokta com. Cebinde yerel rehberin.",
+        "en": "Kalkan Info dot com. Your local guide, in your pocket."
+      }
+    }
+  ]
+}

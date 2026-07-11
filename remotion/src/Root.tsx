@@ -8,6 +8,11 @@ import { BultenReel, bultenReelSchema, defaultBultenReelProps } from './BultenRe
 import { VillaReel, villaReelSchema, defaultVillaReelProps } from './VillaReel';
 import { AntikReel, antikReelSchema, defaultAntikReelProps } from './AntikReel';
 import { PlajReel, plajReelSchema, defaultPlajReelProps } from './PlajReel';
+import { WebappPromo, webappPromoSchema } from './WebappPromo';
+import promoTR from '../props-webapp-promo-tr.json';
+import promoEN from '../props-webapp-promo-en.json';
+
+const framesOf = (p: { scenes: { frames: number }[] }) => p.scenes.reduce((n, s) => n + s.frames, 0);
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -101,6 +106,26 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         schema={plajReelSchema}
         defaultProps={defaultPlajReelProps}
+      />
+      <Composition
+        id="WebappPromoTR"
+        component={WebappPromo}
+        durationInFrames={framesOf(promoTR)}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={webappPromoSchema}
+        defaultProps={promoTR as any}
+      />
+      <Composition
+        id="WebappPromoEN"
+        component={WebappPromo}
+        durationInFrames={framesOf(promoEN)}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={webappPromoSchema}
+        defaultProps={promoEN as any}
       />
     </>
   );
