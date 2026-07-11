@@ -29,6 +29,120 @@
   ],
   "items": [
     {
+      "id": "street-munch",
+      "name": "Street Munch",
+      "category": "Sokak Yemeği",
+      "cuisine": "Sokak Yemeği / Paket & Delivery",
+      "priceRange": "₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Kalkan Mahallesi Demokrasi Caddesi No:1, Kaş, Antalya",
+      "phone": "+90 545 527 02 75",
+      "website": "https://www.instagram.com/streetmunchkalkan/",
+      "instagram": "https://www.instagram.com/streetmunchkalkan/",
+      "image": "/assets/img/streetmunch-hero.webp",
+      "gallery": [
+        "/assets/img/streetmunch-hero.webp",
+        "/assets/img/streetmunch-food-burger.webp",
+        "/assets/img/streetmunch-food-beefwrap.webp",
+        "/assets/img/streetmunch-food-wrap.webp",
+        "/assets/img/streetmunch-food-chickenfinger.webp",
+        "/assets/img/streetmunch-food-shrimp.webp",
+        "/assets/img/streetmunch-food-wings.webp",
+        "/assets/img/streetmunch-gallery-1.webp",
+        "/assets/img/streetmunch-gallery-2.webp",
+        "/assets/img/streetmunch-gallery-3.webp",
+        "/assets/img/streetmunch-gallery-4.webp"
+      ],
+      "summary": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+      "specialties": [
+        "Sokak Yemeği",
+        "Paket Servis",
+        "Delivery"
+      ],
+      "hours": null,
+      "reservation": false,
+      "featured": true,
+      "source": "instagram",
+      "detailPath": "restoran/street-munch-premium/",
+      "customSiteUrl": "https://www.kalkaninfo.com/restoran/street-munch-premium/",
+      "place_id": "",
+      "coordinates": {
+        "latitude": 36.2686793,
+        "longitude": 29.4122333
+      },
+      "nameI18n": {
+        "tr": "Street Munch",
+        "en": "Street Munch",
+        "de": "Street Munch",
+        "ru": "Street Munch",
+        "fr": "Street Munch"
+      },
+      "summaryI18n": {
+        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
+        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
+        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
+        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Sokak Yemeği",
+          "Paket Servis",
+          "Delivery"
+        ],
+        "en": [
+          "Street Food",
+          "Takeaway",
+          "Delivery"
+        ],
+        "de": [
+          "Street Food",
+          "Mitnahme",
+          "Lieferung"
+        ],
+        "ru": [
+          "Уличная еда",
+          "Навынос",
+          "Доставка"
+        ],
+        "fr": [
+          "Street Food",
+          "À emporter",
+          "Livraison"
+        ]
+      },
+      "taglineI18n": {
+        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
+        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
+        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
+        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
+      },
+      "aboutTitleI18n": {
+        "tr": "Street Munch",
+        "en": "Street Munch",
+        "de": "Street Munch",
+        "ru": "Street Munch",
+        "fr": "Street Munch"
+      },
+      "aboutP1I18n": {
+        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
+        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
+        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
+        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
+        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
+      },
+      "menuTitleI18n": {
+        "tr": "Menümüz",
+        "en": "Our Menu",
+        "de": "Unser Menü",
+        "ru": "Наше меню",
+        "fr": "Notre Menu"
+      },
+      "priority": 110
+    },
+    {
       "id": "omar-s-kokobus-kokorec-kofte-tavuk-ekmek",
       "name": "Omar's Kokobüs - Kokoreç, Köfte, Tavuk Ekmek",
       "category": "Restoran",
@@ -105,7 +219,7 @@
         "muted": "#e2ab7c",
         "font": "Grandstander"
       },
-      "priority": 100,
+      "priority": 90,
       "menu": {
         "🥖 Yarım Ekmek": [
           "Kokoreç Ekmek — 280 ₺ · İnce kıyılmış kokoreç ile baharat içermektedir. (Ankara usulü)",
@@ -622,109 +736,6 @@
         "fr": "Le nouveau lieu préféré de Kalkan : un café social ouvert toute la journée, du café du matin et du brunch aux déjeuners et cocktails du soir."
       },
       "bespoke": true
-    },
-    {
-      "id": "street-munch",
-      "name": "Street Munch",
-      "category": "Sokak Yemeği",
-      "cuisine": "Sokak Yemeği / Paket & Delivery",
-      "priceRange": "₺",
-      "rating": null,
-      "reviewCount": 0,
-      "location": "Kalkan Mahallesi Demokrasi Caddesi No:1, Kaş, Antalya",
-      "phone": "+90 545 527 02 75",
-      "website": "https://www.instagram.com/streetmunchkalkan/",
-      "instagram": "https://www.instagram.com/streetmunchkalkan/",
-      "image": "/assets/img/streetmunch-hero.jpg",
-      "gallery": [
-        "/assets/img/streetmunch-hero.jpg"
-      ],
-      "summary": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-      "specialties": [
-        "Sokak Yemeği",
-        "Paket Servis",
-        "Delivery"
-      ],
-      "hours": null,
-      "reservation": false,
-      "featured": true,
-      "source": "instagram",
-      "detailPath": "restoran/street-munch-premium/",
-      "customSiteUrl": "https://www.kalkaninfo.com/restoran/street-munch-premium/",
-      "place_id": "",
-      "coordinates": {
-        "latitude": 36.2686793,
-        "longitude": 29.4122333
-      },
-      "nameI18n": {
-        "tr": "Street Munch",
-        "en": "Street Munch",
-        "de": "Street Munch",
-        "ru": "Street Munch",
-        "fr": "Street Munch"
-      },
-      "summaryI18n": {
-        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
-        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
-        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
-        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
-      },
-      "specialtiesI18n": {
-        "tr": [
-          "Sokak Yemeği",
-          "Paket Servis",
-          "Delivery"
-        ],
-        "en": [
-          "Street Food",
-          "Takeaway",
-          "Delivery"
-        ],
-        "de": [
-          "Street Food",
-          "Mitnahme",
-          "Lieferung"
-        ],
-        "ru": [
-          "Уличная еда",
-          "Навынос",
-          "Доставка"
-        ],
-        "fr": [
-          "Street Food",
-          "À emporter",
-          "Livraison"
-        ]
-      },
-      "taglineI18n": {
-        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
-        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
-        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
-        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
-      },
-      "aboutTitleI18n": {
-        "tr": "Street Munch",
-        "en": "Street Munch",
-        "de": "Street Munch",
-        "ru": "Street Munch",
-        "fr": "Street Munch"
-      },
-      "aboutP1I18n": {
-        "tr": "Caddenin başında sizi bekleyen sokak lezzeti. Paket & delivery seçeneğiyle Kalkan'ın en pratik munch durağı.",
-        "en": "The street food waiting for you at the beginning of the street. The most practical munch spot in Kalkan with package & delivery options.",
-        "de": "An den Straßenlecker, der Sie am Anfang erwartet, bietet unsere praktischste Liefer- und Abholoption.",
-        "ru": "Уличный вкус на начале улицы, ждущий вас. Варианты пакета и доставки - самый практичный пункт питания в Кalkan.",
-        "fr": "Au début de la rue, un plaisir de rue vous attend. Avec des options de paket et de livraison, c'est l'arrêt de restauration le plus pratique de Kalkan."
-      },
-      "menuTitleI18n": {
-        "tr": "Menümüz",
-        "en": "Our Menu",
-        "de": "Unser Menü",
-        "ru": "Наше меню",
-        "fr": "Notre Menu"
-      }
     },
     {
       "id": "ehl-i-keyf-kas",
