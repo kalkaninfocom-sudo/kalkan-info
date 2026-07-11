@@ -40,6 +40,9 @@ function promptFor(line, n) {
     `${KALKAN}\n\n"${line.name}" için ${n} adet ÖZGÜN içerik fikri üret. Her biri bu hattın editöryal çizgisine tam uysun.\n` +
     `Her fikir: { "type": (${typeList} içinden biri), "category": (kısa kategori), "title": (çekici başlık), ` +
     `"hook": (1 cümle kanca), "body": (2-3 cümle gövde) }.\n` +
+    `KURAL: İşletmeye özel SPESİFİK rakam/tarih/detay UYDURMA (masa sayısı, "kaç yıllık", ciro, isim vb.) — ` +
+    `editör bunları reddeder. Gerçek/doğrulanabilir bilgiye dayan VEYA evergreen/genel açı üret; ` +
+    `spesifik detayın işletmeden doğrulanacağını ima et, uydurma.\n` +
     `SADECE şu JSON, başka metin yok: {"items":[{"type":"...","category":"...","title":"...","hook":"...","body":"..."}]}`;
   return { system, user };
 }
