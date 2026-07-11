@@ -203,3 +203,33 @@
 - Her parça **tek başına çalışır** halde bırakılır — yarım kalsa bile sistem bütününü bozmaz.
 - "(doğrulanmalı)" etiketli satırlar memory/commit mesajından çıkarıldı, canlı testle teyit edilmedi.
 - İlgili canlı alt-haritalar: `docs/YOL_HARITASI_GAZETE_OTOMASYON.md`, `docs/GAZETE_PROJESI.md`, `docs/SEO_STRATEJI.md`, `docs/INSTAGRAM_AUTOMATION.md`, `MASTER_PLAN.md`, `ROADMAP.md`.
+
+---
+
+## Kalite Motoru v1 — 2026-07-11
+
+### Eklenen Bileşenler
+- lib/image-permission-guard.mjs
+- scripts/agency/content-critic.mjs
+- scripts/agency/ig-weekly-report.mjs
+- data/agency/quality-rubric.json
+- data/agency/content-columns.json
+- data/agency/topic-history.json (runtime, gitignore)
+- data/agency/ig-report.json (runtime, gitignore)
+- data/agency/critic-log.json (runtime, gitignore)
+
+### Değiştirilen Dosyalar
+- scripts/agency/morning-briefing.mjs (+filterAndDiversify, +sütun ataması)
+- scripts/agency/*-reel-approval.mjs (+eleştirmen kapısı, Telegram öncesi)
+- scripts/agency/ig-news-harvest.mjs (+image_permission kontrolü)
+- scripts/ig-news-card.mjs (+izin, -SON DAKİKA hardcode)
+- scripts/agency/build-*-reel.mjs (+image guard)
+
+### Akış Değişmedi
+- basket-publish.mjs (insan onayı — dokunulmadı)
+- Vercel konfigürasyonu (dokunulmadı, yeni api/cron yok)
+- Telegram onay akışı (korundu, eleştirmen ÖNCE eklendi)
+
+### Lane Uyarısı
+Berkay (mimari) bu dosyalara yazmıyor — çakışma önlendi.
+Push için Berkay onayı bekleniyor.

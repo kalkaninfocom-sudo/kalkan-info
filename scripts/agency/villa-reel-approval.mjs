@@ -18,6 +18,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { qualityGate } from './content-critic.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -130,7 +131,15 @@ async function main() {
 
   // 4) Telegram video onayı
   console.log('── Telegram video onayı gönderiliyor ──');
-  const capTg = `🎬 HAFTANIN VİLLASI REEL'İ — ${name}\n${p.category || ''}${p.capacity ? ` · ${p.capacity}` : ''}\n\nOnaylarsan Instagram Reels'e yayınlanır.`;
+  // 3.5) KALİTE KAPISI (Düzeltme C): Telegram'dan ÖNCE eleştirmen değerlendirmesi.
+  //      Yayını engellemez; düşük puanda onay mesajına "DÜŞÜK PUAN" uyarısı eklenir.
+  let kaliteUyari = '';
+  try {
+    const kapi = await qualityGate('villa-reel', { baslik: name, tagline: p.tagline, metin: caption });
+    if (!kapi.pass && kapi.warning) kaliteUyari = kapi.warning + '\n\n';
+  } catch (e) { console.warn('  ℹ kalite kapısı atlandı (hata):', e.message); }
+
+  const capTg = `${kaliteUyari}🎬 HAFTANIN VİLLASI REEL'İ — ${name}\n${p.category || ''}${p.capacity ? ` · ${p.capacity}` : ''}\n\nOnaylarsan Instagram Reels'e yayınlanır.`;
   const msgId = await sendVideoUpload(mp4, capTg, post.id);
   if (msgId) {
     await supa(`/social_posts?id=eq.${post.id}`, {

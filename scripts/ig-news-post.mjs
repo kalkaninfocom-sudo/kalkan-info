@@ -29,6 +29,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateNewsCard } from './ig-news-card.mjs';
 import { cheapLLM } from '../lib/cheap-llm.mjs';
+import { qualityGate } from './agency/content-critic.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -251,10 +252,18 @@ async function main() {
   // DB yoksa test- önekiyle gönder (webhook test modunda yutar, gerçek yayın olmaz).
   const callbackId = postId || `test-news-${Date.now()}`;
 
+  // 3.5) KALİTE KAPISI (Düzeltme C): Telegram'dan ÖNCE haber kartını/caption'ı eleştirmene değerlendir.
+  //      Yayını engellemez; düşük puanda onay mesajına "DÜŞÜK PUAN" uyarısı eklenir.
+  let kaliteUyari = '';
+  try {
+    const kapi = await qualityGate('ig-kart', { baslik: item.title, ozet: item.summary, metin: captionBody });
+    if (!kapi.pass && kapi.warning) kaliteUyari = kapi.warning + '\n\n';
+  } catch (e) { console.warn('  ℹ️  kalite kapısı atlandı (hata):', e.message); }
+
   // 4) Telegram onay mesajı (kart görseli + caption preview + butonlar)
   console.log('📨 Telegram onay mesajı...');
   const preview = mdEscape(
-    `📰 YENİ HABER PAYLAŞIMI\n\n${item.title}\n\nKaynak: ${item.source || 'Kalkan Info'}\n\n` +
+    `${kaliteUyari}📰 YENİ HABER PAYLAŞIMI\n\n${item.title}\n\nKaynak: ${item.source || 'Kalkan Info'}\n\n` +
     `Onaylarsan IG'de yayınlanır. Caption ve kart hazır.`
   );
   const msgId = await sendTelegramCard(card.outPath, preview, callbackId);

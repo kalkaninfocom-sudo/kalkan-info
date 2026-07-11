@@ -171,9 +171,144 @@ function buildViralDirective(vb) {
     `→ icerik_fikirleri üretirken bu direktife UY: Instagram-öncelikli, viral potansiyeli yüksek, gerçek Kalkan görseliyle eşleşen, CTA'lı içerik öner.`;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Düzeltme B — Anti-Slop + Çeşitlilik
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Başlığı karşılaştırma/kota için normalize et (Türkçe küçük harf, noktalama temizliği).
+function normalizeTitle(s) {
+  return String(s || '')
+    .toLocaleLowerCase('tr')
+    .replace(/['’"`]/g, '')
+    .replace(/[^a-zçğıöşü0-9\s]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Klişe/slop kalıpları — bu ifadeleri içeren başlıklar elenir (Düzeltme B).
+const CLICHE_RE = [
+  /s[ıi]rr[ıi]/i,            // "sırrı"
+  /gizli cennet/i,
+  /saklı cennet/i,
+  /ke[sş]fedilmey/i,        // "keşfedilmeyi bekleyen"
+  /fısıltı/i,
+  /efsane[sd]en daha fazlası/i,
+  /zaman yolculuğu/i,
+  /likya'?n[ıi]n kalbi/i,
+  /bir efsane mi/i,
+];
+
+// İki başlık arasındaki örtüşme katsayısı (0-1). 0.70+ → benzer sayılır.
+function titleSimilarity(a, b) {
+  const A = new Set(normalizeTitle(a).split(' ').filter(w => w.length > 2));
+  const B = new Set(normalizeTitle(b).split(' ').filter(w => w.length > 2));
+  if (!A.size || !B.size) return 0;
+  let inter = 0;
+  for (const w of A) if (B.has(w)) inter++;
+  return inter / Math.min(A.size, B.size);
+}
+
+// Bir ajana bugünkü içerik sütununu ata (birden fazla varsa gün bazında döngüsel seç).
+function assignColumn(agentColumns, id, dayNum) {
+  const cols = agentColumns[id];
+  if (!Array.isArray(cols) || cols.length === 0) return null; // teknik ajan → içerik üretmez
+  return cols[dayNum % cols.length];
+}
+
+/**
+ * İçerik fikirlerini klişe/kota/benzerlik/rol açısından süzer ve çeşitlendirir (Düzeltme B).
+ * @param {Array} ideas - düzleştirilmiş fikir listesi ({agent, baslik, aci, tur, ...}).
+ * @param {object} cfg - content-columns.json içeriği.
+ * @param {object} history - topic-history.json içeriği ({topics:[{topic,baslik,date}]}).
+ * @returns {{ kept: Array, dropped: Array, history: object }}
+ */
+export function filterAndDiversify(ideas, cfg, history) {
+  const agentColumns = cfg.agentColumns || {};
+  const quota = cfg.dailyTopicQuota || {};
+  const dropped = [];
+  const kept = [];
+
+  // 7 günlük rolling pencere için tarih eşiği.
+  const now = new Date();
+  const cutoff = new Date(now.getTime() - 7 * 24 * 3600 * 1000);
+  const recent = (history.topics || []).filter(t => {
+    const d = new Date(t.date || 0);
+    return !isNaN(d) && d >= cutoff;
+  });
+
+  // Bir başlığın eşleştiği kota konusunu bul (normalize edilmiş içerme kontrolü).
+  const quotaKeys = Object.keys(quota);
+  function matchedTopic(baslik) {
+    const norm = normalizeTitle(baslik);
+    return quotaKeys.find(k => norm.includes(normalizeTitle(k))) || null;
+  }
+
+  // Bugün her konu için sayaç — geçmiş (7g) + bugün eklenenler.
+  const todayCount = {};
+  for (const t of recent) {
+    if (t.topic) todayCount[t.topic] = (todayCount[t.topic] || 0) + 1;
+  }
+
+  const newHistoryEntries = [];
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
+
+  for (const idea of ideas) {
+    const baslik = idea.baslik || idea.fikir || '';
+
+    // (4) Rol denetimi: teknik ajan (agentColumns boş) fikir ürettiyse ele.
+    const cols = agentColumns[idea.agent];
+    if (Array.isArray(cols) && cols.length === 0) {
+      dropped.push({ ...idea, _neden: 'rol-ihlali (teknik ajan içerik üretemez)' });
+      console.log(`  ⊘ elendi [rol]: ${idea.agent} — "${baslik.slice(0, 60)}"`);
+      continue;
+    }
+
+    // (1) Klişe filtresi.
+    const cliche = CLICHE_RE.find(re => re.test(baslik));
+    if (cliche) {
+      dropped.push({ ...idea, _neden: `klişe (${cliche.source})` });
+      console.log(`  ⊘ elendi [klişe]: "${baslik.slice(0, 60)}"`);
+      continue;
+    }
+
+    // (3) Benzerlik dedup: daha önce KABUL edilenlerden birine %70+ benziyorsa ele.
+    const dup = kept.find(k => titleSimilarity(k.baslik || k.fikir || '', baslik) >= 0.70);
+    if (dup) {
+      dropped.push({ ...idea, _neden: `benzer başlık ("${(dup.baslik || '').slice(0, 40)}")` });
+      console.log(`  ⊘ elendi [benzer]: "${baslik.slice(0, 60)}"`);
+      continue;
+    }
+
+    // (2) Konu kotası.
+    const topic = matchedTopic(baslik);
+    if (topic) {
+      const limit = quota[topic];
+      const used = todayCount[topic] || 0;
+      if (used >= limit) {
+        dropped.push({ ...idea, _neden: `kota aşımı ("${topic}" limit ${limit})` });
+        console.log(`  ⊘ elendi [kota]: "${baslik.slice(0, 60)}" (${topic} ${used}/${limit})`);
+        continue;
+      }
+      todayCount[topic] = used + 1;
+      newHistoryEntries.push({ topic, baslik, date: today });
+    }
+
+    kept.push(idea);
+  }
+
+  // Kalan (klişe olmayan ama kota konusu da olmayan) başlıkları da geçmişe ekleyerek
+  // ileride benzerlik takibi güçlensin.
+  history.topics = [...recent, ...newHistoryEntries];
+  return { kept, dropped, history };
+}
+
 async function main() {
   console.log(`\n════ GÜNLÜK BRİFİNG — ${date} ════`);
   const agents = (await readJson('data/agency/agents.json', { agents: {} })).agents;
+  // Düzeltme B: içerik sütunları + kota yapılandırması (yoksa boş varsayılan).
+  const columnsCfg = await readJson('data/agency/content-columns.json',
+    { columns: {}, agentColumns: {}, dailyTopicQuota: {} });
+  const dayNum = Math.floor(Date.parse(date) / (24 * 3600 * 1000)); // gün bazlı döngüsel atama için
   const viralDirective = buildViralDirective(await readJson('data/agency/viral-brief.json', null));
   if (viralDirective) console.log('★ viral-brief.json yüklendi → tüm ajanlara enjekte edilecek');
   let ids = Object.keys(agents);
@@ -189,11 +324,24 @@ async function main() {
     const know = await agentKnowledge(id);
     const dataFeed = await agentDataFeed(id);
     const charSys = await loadCharacterSystem(id, a.system || ''); // zengin karakter (varsa) → system
+
+    // Düzeltme B — ÖN-ATAMA: her ajana bugünkü içerik sütununu ver.
+    const assignedColumn = assignColumn(columnsCfg.agentColumns || {}, id, dayNum);
+    const isTechnical = Array.isArray((columnsCfg.agentColumns || {})[id]) &&
+      (columnsCfg.agentColumns || {})[id].length === 0;
+    const columnDirective = isTechnical
+      ? `\n★ ROL SINIRI: Sen TEKNİK bir ajansın. İÇERİK FİKRİ ÜRETME (icerik_fikirleri BOŞ dizi olsun). ` +
+        `Yalnızca kendi teknik alanında 'gelistirme' önerisi ver.\n`
+      : assignedColumn
+        ? `\n★ BUGÜNKÜ İÇERİK SÜTUNUN: "${assignedColumn}" — fikirlerini ÖNCELİKLE bu sütuna odakla.\n`
+        : '';
+
     const task =
       `Bugün ${date}. Sen Kalkan turizm markası için içerik üreticisisin. Kalkan hakkında SÜREKLİ yeni haber çıkmaz — ` +
       `görevin taze haberi tekrarlamak DEĞİL; ROLÜNE göre ÖZGÜN, ZAMANSIZ (evergreen), ilgi çekici içerik üretmek.\n\n` +
       `${KALKAN_PILLARS}\n` +
-      `${viralDirective}\n\n` +
+      `${viralDirective}\n` +
+      `${columnDirective}\n` +
       `(Opsiyonel taze sinyaller — YALNIZ gerçekten turistik/ilginç ise kullan; ihale/ÇED/meclis/bürokratik/rutin haberi ASLA kullanma):\n${signals}` +
       `${dataFeed}\n\n` +
       `ROLÜNE göre üret:\n` +
@@ -236,13 +384,22 @@ async function main() {
   await writeFile(join(briefDir, `${date}.json`), JSON.stringify(brief, null, 2));
 
   // İçerik fikirlerini düzleştir → gazete/reels tüketir
-  const ideas = results.flatMap(r => (r.icerik_fikirleri || []).map(i => ({
+  const rawIdeas = results.flatMap(r => (r.icerik_fikirleri || []).map(i => ({
     agent: r.id, department: r.department, tur: i.tur || 'gazete',
     baslik: i.baslik || '', aci: i.aci || i.fikir || '',
     fikir: [i.baslik, i.aci || i.fikir].filter(Boolean).join(' — '),
   }))).filter(i => i.fikir);
+
+  // ─── Düzeltme B: Anti-Slop + Çeşitlilik süzgeci ───
+  const history = await readJson('data/agency/topic-history.json', { topics: [] });
+  const { kept: ideas, dropped, history: newHistory } =
+    filterAndDiversify(rawIdeas, columnsCfg, history);
+  await writeFile(join(ROOT, 'data', 'agency', 'topic-history.json'),
+    JSON.stringify(newHistory, null, 2));
+  console.log(`✓ Çeşitlilik süzgeci: ${rawIdeas.length} ham → ${ideas.length} kaldı · ${dropped.length} elendi`);
+
   await writeFile(join(ROOT, 'data', 'agency', 'content-ideas.json'),
-    JSON.stringify({ date, generated_at: new Date().toISOString(), ideas }, null, 2));
+    JSON.stringify({ date, generated_at: new Date().toISOString(), ideas, dropped }, null, 2));
   console.log(`✓ ${results.length} ajan raporu · ${ideas.length} içerik fikri → briefing/${date}.json + content-ideas.json`);
 
   // ─── Telegram: departman bazlı özet ───
@@ -291,4 +448,7 @@ async function sendTelegram(results, ideas) {
   console.log('✓ Telegram brifingi gönderildi');
 }
 
-main().catch(e => { console.error('[morning-briefing]', e); process.exit(0); });
+// Yalnızca doğrudan CLI olarak çalıştırıldığında main() koş (import edildiğinde değil — test/yeniden kullanım için).
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch(e => { console.error('[morning-briefing]', e); process.exit(0); });
+}

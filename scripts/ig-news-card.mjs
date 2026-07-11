@@ -83,7 +83,7 @@ function headlineSize(title) {
   return 40;
 }
 
-function buildCardHtml({ title, category, dateStr, source, imageDataUrl }) {
+function buildCardHtml({ title, category, dateStr, source, imageDataUrl, isBreaking = false, imageCredit = null }) {
   const catColor = CATEGORY_COLOR[category] || '#d72631';
   const fontPx = headlineSize(title);
   const imgStyle = imageDataUrl
@@ -120,6 +120,10 @@ function buildCardHtml({ title, category, dateStr, source, imageDataUrl }) {
     font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 0.14em;
     text-transform: uppercase; padding: 11px 22px; border-radius: 4px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.45); }
+  /* ── Görsel kredi satırı (Düzeltme A: izinli kaynak fotoğrafı için) ── */
+  .image-credit { position: absolute; bottom: 16px; right: 24px; font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.02em; color: rgba(255,255,255,0.78);
+    background: rgba(10,14,20,0.55); padding: 6px 12px; border-radius: 4px; }
 
   /* ── Alt içerik paneli ── */
   .panel { flex: 1; padding: 44px 48px 40px; display: flex; flex-direction: column; justify-content: space-between;
@@ -144,12 +148,13 @@ function buildCardHtml({ title, category, dateStr, source, imageDataUrl }) {
   <div class="card">
     <div class="topbar">
       <div class="brand"><span class="diamond">◆</span><span class="name">Kalkan Info</span></div>
-      <div class="breaking"><span class="live-dot"></span>Son Dakika</div>
+      ${isBreaking ? '<div class="breaking"><span class="live-dot"></span>Son Dakika</div>' : ''}
     </div>
 
     <div class="media">
       <div class="scrim"></div>
       <div class="cat-badge">${escHtml(category || 'Gündem')}</div>
+      ${imageCredit ? `<div class="image-credit">${escHtml(imageCredit)}</div>` : ''}
     </div>
 
     <div class="panel">
@@ -180,12 +185,21 @@ export async function generateNewsCard({ item, outDir = OUT_DIR_DEFAULT, browser
   await mkdir(outDir, { recursive: true });
   const imageDataUrl = await imageToDataUrl(item.image);
 
+  // "Son Dakika" bandı artık hardcoded değil: yalnızca item.isBreaking veya
+  // kategori "acil" ise gösterilir (Düzeltme A).
+  const isBreaking = item.isBreaking === true ||
+    String(item.category || '').toLowerCase() === 'acil';
+  // Görsel kredisi yalnızca gerçekten bir fotoğraf kullanıldıysa gösterilir.
+  const imageCredit = imageDataUrl ? (item.imageCredit || null) : null;
+
   const html = buildCardHtml({
     title: item.title || '',
     category: item.category || 'Gündem',
     dateStr: formatDateTR(item.date),
     source: item.source || 'Kalkan Info',
     imageDataUrl,
+    isBreaking,
+    imageCredit,
   });
 
   const browser = sharedBrowser || await puppeteer.launch({

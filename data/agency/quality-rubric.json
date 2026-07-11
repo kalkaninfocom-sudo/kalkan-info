@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "note": "Kalkan İnfo içerik kalite rubriği (Düzeltme C). Her ölçüt 0-5 arası puanlanır; ağırlıklı ortalama hesaplanır. weightedAvg < thresholds.pass ise içerik başarısız sayılır → tek revize döngüsü; ikinci başarısızlıkta içerik 'DÜŞÜK PUAN' uyarısıyla insana (Telegram) gönderilir, insan karar verir. Marka sesi: sakin, dürüst, abartısız. Ağırlıklar ig-weekly-report.mjs tarafından ±0.1 micro-adjust edilebilir.",
+  "thresholds": {
+    "pass": 3,
+    "warn": 2
+  },
+  "criteria": [
+    {
+      "id": "dogruluk",
+      "label": "Doğruluk / olgu",
+      "weight": 1.5,
+      "description": "İddialar doğru ve doğrulanabilir mi? Uydurma rakam/tarih/olay yok mu? Kaynak atfı gerekiyorsa var mı?"
+    },
+    {
+      "id": "marka-sesi",
+      "label": "Marka sesi",
+      "weight": 1.2,
+      "description": "Ton sakin, dürüst, abartısız mı? Kalkan İnfo kimliğiyle (güvenilir yerel rehber) uyumlu mu? Sansasyon/klişe/dolgu yok mu?"
+    },
+    {
+      "id": "fayda",
+      "label": "Fayda / okuyucuya değer",
+      "weight": 1,
+      "description": "Okuyucu için somut fayda veya öğrenilecek bir şey var mı? Boş içerik değil mi?"
+    },
+    {
+      "id": "ozgunluk",
+      "label": "Özgünlük",
+      "weight": 1,
+      "description": "Fikir taze ve özgün mü? Aynı kalıbın tekrarı veya genel/jenerik bir metin değil mi?"
+    },
+    {
+      "id": "gorsel-kraft",
+      "label": "Görsel kraft / sunum",
+      "weight": 0.8,
+      "description": "Başlık ve metin görsel/reel formatına uygun mu? Akıcı, net, iyi kurgulanmış mı?"
+    },
+    {
+      "id": "etik",
+      "label": "Etik / hassasiyet",
+      "weight": 1.5,
+      "description": "Trajedi/kişisel veri/telif açısından sorun yok mu? Sansasyon veya zarar riski yok mu? Görsel izni gerekiyorsa uyulmuş mu?"
+    },
+    {
+      "id": "paylasilabilirlik",
+      "label": "Paylaşılabilirlik",
+      "weight": 0.8,
+      "description": "İçerik paylaşılmaya değer mi? İlgi çeker, kaydedilir/paylaşılır bir açısı var mı (yapay viral hilesi olmadan)?"
+    }
+  ]
+}

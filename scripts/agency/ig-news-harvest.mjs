@@ -28,6 +28,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { checkImagePermission } from '../../lib/image-permission-guard.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const ARGS = process.argv.slice(2);
@@ -130,6 +131,14 @@ async function main() {
     const PLACEMENTS = ['haberler', 'etkinlikler', 'mekan', 'pazar', 'magazin', 'ig-only'];
     const placement = PLACEMENTS.includes(g.placement) ? g.placement : 'haberler';
     const sensitive = g.sensitive === true || looksSensitive(s.headline, g.our_summary, g.our_headline);
+    // Görsel İzni Bekçisi (Düzeltme A): kaynak hesabın görseli kullanılabilir mi?
+    // Not: Bu script zaten kendi kartımızı üretir (image:''), başkasının görselini
+    // asla doğrudan koymaz. Yine de izin bilgisini item'e taşıyoruz ki ileride kart
+    // üreten katman (ig-news-card) kredi satırını kullanabilsin ve izin denetlenebilsin.
+    const izin = checkImagePermission(s.username, 'dijital');
+    if (!izin.allowed) {
+      console.log(`    ↳ görsel izni: @${s.username} — ${izin.reason} (kendi kartımız üretilecek)`);
+    }
     const item = {
       id: `${slug(g.our_headline)}-${today}`,
       title: g.our_headline,
@@ -141,6 +150,7 @@ async function main() {
       sensitive,                                   // trajedi/PII/doğrulanamaz → insan onayı zorunlu
       date: today,
       image: '',                                   // KENDİ kartımız üretilir; başkasının görseli KULLANILMAZ
+      imageCredit: izin.allowed ? izin.creditLine : null, // izin varsa kart üzerinde gösterilecek kredi satırı
       summary: g.our_summary,
       content: g.our_summary,
       tags: ['Kalkan İnfo Haber', scope === 'kalkan' ? 'Kalkan' : scope === 'kas' ? 'Kaş' : 'Bölge'],

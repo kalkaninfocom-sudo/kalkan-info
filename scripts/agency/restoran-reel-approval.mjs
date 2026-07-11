@@ -18,6 +18,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { qualityGate } from './content-critic.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -128,9 +129,17 @@ async function main() {
     console.log('✓ social_posts (reels) oluşturuldu:', post.id);
   }
 
+  // 3.5) KALİTE KAPISI (Düzeltme C): Telegram'dan ÖNCE eleştirmen değerlendirmesi.
+  //      Yayını engellemez; düşük puanda onay mesajına "DÜŞÜK PUAN" uyarısı eklenir.
+  let kaliteUyari = '';
+  try {
+    const kapi = await qualityGate('restoran-reel', { baslik: name, tagline: p.tagline, metin: caption });
+    if (!kapi.pass && kapi.warning) kaliteUyari = kapi.warning + '\n\n';
+  } catch (e) { console.warn('  ℹ kalite kapısı atlandı (hata):', e.message); }
+
   // 4) Telegram video onayı
   console.log('── Telegram video onayı gönderiliyor ──');
-  const capTg = `🎬 HAFTANIN MEKÂNI REEL'İ — ${name}\n${p.cuisine || ''}${p.rating ? ` · ${p.rating}★` : ''}\n\nOnaylarsan Instagram Reels'e yayınlanır.`;
+  const capTg = `${kaliteUyari}🎬 HAFTANIN MEKÂNI REEL'İ — ${name}\n${p.cuisine || ''}${p.rating ? ` · ${p.rating}★` : ''}\n\nOnaylarsan Instagram Reels'e yayınlanır.`;
   const msgId = await sendVideoUpload(mp4, capTg, post.id);
   if (msgId) {
     await supa(`/social_posts?id=eq.${post.id}`, {

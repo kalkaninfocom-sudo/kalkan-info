@@ -1,0 +1,75 @@
+{
+  "note": "İçerik sütunları ve konu kotaları (Düzeltme B — Anti-Slop + Çeşitlilik). 'columns' departman bazında olası içerik sütunlarını listeler. 'agentColumns' her ajanı belirli sütun(lar)a atar; teknik ajanların dizisi BOŞtur (içerik üretmezler). 'dailyTopicQuota' bir konunun bir günde kaç kez işlenebileceğini sınırlar (0 = bugün işlenmesin). Bu dosya morning-briefing.mjs tarafından ön-atama ve çeşitlilik filtresinde kullanılır.",
+  "version": "1.0",
+  "columns": {
+    "sosyal": [
+      "Günün Kalkan manzarası",
+      "Yerel esnaf / işletme tanıtımı",
+      "Etkinlik ve festival duyurusu",
+      "Pratik ziyaretçi ipucu (ulaşım, park, saatler)",
+      "Gastronomi ve yerel lezzet",
+      "Plaj ve koy rehberi",
+      "Konaklama ve villa önerisi",
+      "Doğa ve yürüyüş rotası"
+    ],
+    "gazete": [
+      "Yerel haber ve gelişme",
+      "Belediye / kamu duyurusu",
+      "Hava durumu ve deniz koşulları",
+      "Kültür-sanat ve etkinlik",
+      "Ekonomi ve turizm sezonu",
+      "Röportaj / esnaf portresi"
+    ],
+    "concierge": [
+      "Tatil planlama rehberi",
+      "Bölge gezi güzergâhı",
+      "Menü ve restoran eşleştirme",
+      "Hizmet sağlayıcı yönlendirme",
+      "Çok dilli ziyaretçi bilgisi"
+    ],
+    "teknik": []
+  },
+  "agentColumns": {
+    "director": ["Günün Kalkan manzarası", "Etkinlik ve festival duyurusu"],
+    "trend": ["Etkinlik ve festival duyurusu", "Gastronomi ve yerel lezzet"],
+    "writer": ["Yerel esnaf / işletme tanıtımı", "Doğa ve yürüyüş rotası"],
+    "guard": ["Pratik ziyaretçi ipucu (ulaşım, park, saatler)"],
+    "analyst": ["Ekonomi ve turizm sezonu"],
+    "growth": ["Plaj ve koy rehberi"],
+    "ads": ["Konaklama ve villa önerisi"],
+    "reception": ["Pratik ziyaretçi ipucu (ulaşım, park, saatler)"],
+    "reels-uretici": ["Günün Kalkan manzarası", "Gastronomi ve yerel lezzet"],
+    "ilan-uzmani": ["Konaklama ve villa önerisi"],
+    "bulten-editoru": ["Etkinlik ve festival duyurusu"],
+    "yayin-yonetmeni": ["Yerel haber ve gelişme"],
+    "muhabir": ["Yerel haber ve gelişme", "Belediye / kamu duyurusu"],
+    "foto-editoru": ["Kültür-sanat ve etkinlik"],
+    "magazin-editoru": ["Kültür-sanat ve etkinlik"],
+    "gazete-sosyal": ["Etkinlik ve festival duyurusu"],
+    "reklam-uyum": ["Ekonomi ve turizm sezonu"],
+    "news-verifier": ["Yerel haber ve gelişme"],
+    "hava-plan": ["Hava durumu ve deniz koşulları"],
+    "gazete-reel-en": ["Kültür-sanat ve etkinlik"],
+    "tatil-planner": ["Tatil planlama rehberi"],
+    "gezgin-rehber": ["Bölge gezi güzergâhı"],
+    "menu-chef": ["Menü ve restoran eşleştirme"],
+    "provider-matcher": ["Hizmet sağlayıcı yönlendirme"],
+    "dil-cevirmen": ["Çok dilli ziyaretçi bilgisi"],
+    "deploy-agent": [],
+    "audit-agent": [],
+    "kvkk-guardian": []
+  },
+  "dailyTopicQuota": {
+    "Kalkan adı kökeni": 1,
+    "Kalkan adının sırrı": 1,
+    "Patara feneri": 1,
+    "Patara plajı": 1,
+    "gizli koy": 1,
+    "saklı koy": 1,
+    "gizli cennet": 0,
+    "saklı cennet": 0,
+    "Likya'nın kalbi": 0,
+    "keşfedilmeyi bekleyen": 0,
+    "zaman yolculuğu": 0
+  }
+}

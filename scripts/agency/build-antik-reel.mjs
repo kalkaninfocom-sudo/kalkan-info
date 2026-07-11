@@ -16,6 +16,7 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync, existsSync, statSync, copyFileSync, unlinkSync, readFileSync, rmSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { checkImagePermission } from '../../lib/image-permission-guard.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -23,8 +24,22 @@ const arg = process.argv.slice(2).find(a => !/^\d{4}-\d{2}-\d{2}$/.test(a) && !a
 
 const MIN_PHOTOS = 2;
 const isReal = (s) => !!s && !/placehold/i.test(s);
+// Bir foto URL'i Instagram kaynaklı mı? (kendi /assets/ görsellerimiz değil)
+const isIgHosted = (u) => /instagram|cdninstagram|fbcdn/i.test(String(u || ''));
 const photosOf = (r) => [r.image, ...(r.gallery || [])].filter(isReal)
-  .filter((v, i, a) => a.indexOf(v) === i); // benzersiz
+  .filter((v, i, a) => a.indexOf(v) === i) // benzersiz
+  .filter((u) => {
+    // Görsel İzni Bekçisi (Düzeltme A): yalnızca IG kaynaklı görseller denetlenir.
+    // Kendi /assets/ görsellerimiz her zaman serbesttir.
+    if (!isIgHosted(u)) return true;
+    const uname = r.instagram || r.username || r.source;
+    const izin = checkImagePermission(uname, 'dijital');
+    if (!izin.allowed) {
+      console.log(`  ↓ görsel izni: IG kaynaklı foto atlandı (@${uname || '?'}) — ${izin.reason}`);
+      return false;
+    }
+    return true;
+  });
 
 // Kısa "dönem" etiketi: UNESCO gibi genel etiketi atla, ilk anlamlı çağ/uygarlık etiketini seç.
 function periodOf(r) {

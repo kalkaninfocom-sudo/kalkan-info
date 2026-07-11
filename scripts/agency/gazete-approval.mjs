@@ -22,6 +22,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { qualityGate } from './content-critic.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -109,9 +110,26 @@ async function main() {
     console.log(`✓ social_posts oluşturuldu: ${post.id}`);
   }
 
+  // 2.5) KALİTE KAPISI (Düzeltme C): onaydan ÖNCE gazete manşetini eleştirmene değerlendir.
+  //      Yayını engellemez; düşük puanda onay mesajına "DÜŞÜK PUAN" uyarısı eklenir.
+  let kaliteUyari = '';
+  try {
+    // Manşeti kapak HTML'inden çek (defensive; yoksa caption kullanılır).
+    let manset = '';
+    const htmlPath = join(ROOT, 'newspaper', 'archive', date, 'morning.html');
+    if (existsSync(htmlPath)) {
+      const html = readFileSync(htmlPath, 'utf8');
+      const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+      const t = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+      manset = (h1?.[1] || t?.[1] || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+    const kapi = await qualityGate('gazete', { baslik: manset || `Kalkan Today — ${date}`, metin: manset });
+    if (!kapi.pass && kapi.warning) kaliteUyari = kapi.warning + '\n\n';
+  } catch (e) { console.warn('  ℹ kalite kapısı atlandı (hata):', e.message); }
+
   // 3) Kartı FOTO olarak onaya gönder
   const caption =
-    `📰 BUGÜNÜN GAZETESİ — ${date}\n` +
+    `${kaliteUyari}📰 BUGÜNÜN GAZETESİ — ${date}\n` +
     `Ön Sayfa + Magazin hazır. Yayına planlandı: bugün 08:00 (web + Instagram + Facebook).\n` +
     `Aşağıdaki görsel birebir yayınlanacak kapaktır. Onaylıyor musun?`;
   console.log('── Telegram görselli onay gönderiliyor ──');
