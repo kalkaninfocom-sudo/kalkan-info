@@ -1,0 +1,59 @@
+name: IG Hikaye Repost (etiketlenmiş gönderiler → Telegram onay)
+
+# Berkay: @kalkan.info'ya etiketleyen hesapların medyalarını tespit eder,
+# Telegram'a onay bildirimi gönderir. Onay sonrası kendi hikayemize yayınlar.
+# IG_STORY_REPOST_MODE=approve (varsayılan) — HİÇBİR ŞEY otomatik yayınlanmaz.
+
+on:
+  schedule:
+    # Her 30 dakikada bir (off-minute: 13,43)
+    - cron: '13,43 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ig-story-repost
+  cancel-in-progress: true
+
+jobs:
+  repost:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bağımlılıkları yükle
+        run: npm install --ignore-scripts --prefer-offline 2>/dev/null || npm install --ignore-scripts
+
+      - name: Etiketlenmiş medyaları tara → Telegram onay kuyruğuna ekle
+        env:
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          # GÜVENLİ VARSAYILAN: approve = otomatik hiçbir şey yayınlamaz.
+          # auto yapmak için bu satırı değiştirin (dikkatli olun!).
+          IG_STORY_REPOST_MODE: approve
+        run: node scripts/ig-story-repost.mjs
+
+      - name: State değişmişse commit et (dedup için)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/ig-reposted.json
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok — commit atlandı."
+            exit 0
+          fi
+          git commit -m "state(ig-story-repost): dedup güncelle $(TZ=Europe/Istanbul date +%F\ %H:%M) [auto]"
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandı (non-fatal)"

@@ -1,0 +1,64 @@
+name: IG Oto-Cevap (yorum + DM → Telegram onay)
+
+# Berkay: @kalkan.info'nun son medyalarındaki YENİ yorumları ve DM'leri çeker,
+# Claude (Haiku/cheap-llm) ile cevap önerir, Telegram'a onaya gönderir.
+# IG_AUTOREPLY_MODE=approve (varsayılan) — hiçbir şey otomatik yayınlanmaz.
+# auto modu için: workflow_dispatch → env'de IG_AUTOREPLY_MODE=auto set edin
+# VEYA bu dosyada satırı değiştirin.
+
+on:
+  schedule:
+    # Her 15 dakikada bir (off-minute: 7,22,37,52)
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ig-autoreply
+  cancel-in-progress: true   # yeni tetiklenirse eskisi iptal edilsin
+
+jobs:
+  autoreply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bağımlılıkları yükle
+        run: npm install --ignore-scripts --prefer-offline 2>/dev/null || npm install --ignore-scripts
+
+      - name: IG yorum/DM tara → Telegram onay kuyruğuna ekle
+        env:
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # GÜVENLİ VARSAYILAN: approve = otomatik hiçbir şey göndermez, onay ister.
+          # auto yapmak için bu satırı değiştirin (dikkatli olun!).
+          IG_AUTOREPLY_MODE: approve
+        run: node scripts/ig-reply-poll.mjs
+
+      - name: State değişmişse commit et (dedup için)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/ig-replied.json
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok — commit atlandı."
+            exit 0
+          fi
+          git commit -m "state(ig-autoreply): dedup güncelle $(TZ=Europe/Istanbul date +%F\ %H:%M) [auto]"
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandı (non-fatal)"
