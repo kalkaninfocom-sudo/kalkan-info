@@ -45,7 +45,7 @@ if ('IntersectionObserver' in window) {
 const qrContainer = document.getElementById('qrcode');
 if (qrContainer && window.QRCode) {
   new QRCode(qrContainer, {
-    text: new URL('menu.html', window.location.href).href,
+    text: new URL('menu.html', document.baseURI).href,
     width: 128, height: 128,
     colorDark: '#111111', colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.M,
