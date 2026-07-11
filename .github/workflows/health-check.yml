@@ -1,0 +1,30 @@
+# Ajans sağlık nöbeti — günlük. Bozulunca (IG token dolmuş, LLM ölü, ajans üretmiyor) Telegram'dan ALARM.
+# Fix #4: kırılganlık/dadılık yükünü azaltır. Live mantığa dokunmaz (sadece okur + alarm verir).
+name: Health check
+
+on:
+  schedule:
+    - cron: '33 5 * * *' # her gün 05:33 UTC (~08:33 TR)
+  workflow_dispatch: {}
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run health check (alerts Telegram on problems)
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: node scripts/agency/health-check.mjs
