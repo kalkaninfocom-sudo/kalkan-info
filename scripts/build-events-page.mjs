@@ -15,7 +15,7 @@
  *      Yeni api/ veya package bağımlılığı YOK — Leaflet CDN'den (unpkg) gelir.
  */
 
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { eventsForWeek } from './events-lib.mjs';
@@ -40,6 +40,7 @@ const TYPE_STYLE = {
   'Türk Gecesi': { color: '#ef4444', icon: '🪕' },
   Parti:         { color: '#8b5cf6', icon: '🎉' },
   Festival:      { color: '#e89812', icon: '🎪' },
+  'Sinema Gecesi': { color: '#7c3aed', icon: '🎬' },
 };
 const DEFAULT_STYLE = { color: '#0a2e4c', icon: '🎶' };
 const styleFor = (type) => TYPE_STYLE[type] || DEFAULT_STYLE;
@@ -99,6 +100,52 @@ function eventCard(ev) {
         </article>`;
 }
 
+/* ----------------- YAKLAŞAN ÖNE ÇIKAN (bu hafta dışı, tarihli özel etkinlik) ----------------- */
+function featuredCard(ev) {
+  const st = styleFor(ev.type);
+  const d = new Date(ev.date + 'T08:00:00');
+  const dayTR = DAY_ORDER[(d.getDay() + 6) % 7];
+  return `
+        <article class="card-base card-hover rounded-2xl overflow-hidden flex flex-col sm:flex-row" style="border-left:5px solid ${st.color};">
+          <div class="shrink-0 grid place-items-center px-5 py-4 sm:py-0 text-white" style="background:linear-gradient(135deg,${st.color} 0%,${st.color}cc 100%);min-width:112px;">
+            <div class="text-center">
+              <div class="font-display font-extrabold text-3xl leading-none">${d.getDate()}</div>
+              <div class="text-[11px] uppercase tracking-widest mt-1 opacity-90">${MONTHS_TR[d.getMonth()]}</div>
+              <div class="text-[11px] mt-0.5 opacity-80">${dayTR}</div>
+            </div>
+          </div>
+          <div class="p-4 md:p-5 flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:${st.color};background:${st.color}1a;">
+                <span aria-hidden="true">${st.icon}</span> ${esc(ev.type)}
+              </span>
+              <span class="font-display font-extrabold text-sea-900 text-sm">${esc(timeRange(ev))}</span>
+            </div>
+            <div class="mt-2 font-display font-bold text-sea-800 text-lg leading-tight">${esc(ev.venueName)}</div>
+            ${ev.title ? `<p class="text-sm text-sea-700/80 mt-1 leading-snug">${esc(ev.title)}</p>` : ''}
+            <div class="flex items-center gap-1 text-xs text-sea-600 mt-2">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${esc(ev.area || 'Kalkan')}
+            </div>
+          </div>
+        </article>`;
+}
+
+function featuredSection(featured) {
+  if (!featured || !featured.length) return '';
+  const cards = featured.map(featuredCard).join('\n');
+  return `
+  <section class="mb-8">
+    <div class="flex items-baseline gap-3 mb-4">
+      <h2 class="font-display font-extrabold text-xl text-sea-900">🎬 Yaklaşan Öne Çıkanlar</h2>
+      <span class="text-xs text-sea-500">— önümüzdeki günlerin özel etkinlikleri</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      ${cards}
+    </div>
+  </section>`;
+}
+
 /* ----------------------------- GÜN BÖLÜMÜ ----------------------------- */
 function daySection(day, isActive) {
   const dn = day.day;
@@ -120,7 +167,7 @@ function daySection(day, isActive) {
 }
 
 /* ----------------------------- SAYFA ----------------------------- */
-function pageHtml(week, payload) {
+function pageHtml(week, payload, featured) {
   const totalEvents = week.reduce((n, d) => n + d.events.length, 0);
   const weekStart = fmtDateTR(week[0].date);
   const weekEnd = fmtDateTR(week[6].date);
@@ -303,6 +350,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="text-[11px] text-sea-500/80 mt-2">Seçili güne ait mekanlar haritada vurgulanır. Pinler etkinlik tipine göre renklidir.</p>
   </section>
 
+  <!-- YAKLAŞAN ÖNE ÇIKANLAR -->
+  ${featuredSection(featured)}
+
   <!-- GÜN SEKMELERİ -->
   <div class="flex gap-2 overflow-x-auto pb-2 mb-6 -mx-1 px-1" role="tablist" aria-label="Gün seçimi">
     ${tabs}
@@ -476,6 +526,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 const refIso = process.argv[2] || new Date().toISOString().slice(0, 10);
 const week = await eventsForWeek(refIso);
 
+// Yaklaşan öne çıkanlar: bu haftanın DIŞINDA, önümüzdeki 21 gün içindeki DOĞRULANMIŞ tarihli (oneoff) etkinlikler.
+const weekEndIso = week[6].date;
+const horizon = new Date(week[6].date + 'T00:00:00');
+horizon.setDate(horizon.getDate() + 21);
+const cal = JSON.parse(await readFile(join(ROOT, 'data', 'etkinlik-takvimi.json'), 'utf8'));
+const featured = (cal.oneoff || [])
+  .filter((e) => e.verified && e.date > weekEndIso && new Date(e.date + 'T00:00:00') <= horizon)
+  .sort((a, b) => a.date.localeCompare(b.date));
+
 // Statik veri çıktısı (tarayıcı fetch eder)
 const payload = {
   generatedAt: new Date().toISOString(),
@@ -505,7 +564,7 @@ const payload = {
 await writeFile(join(ROOT, 'data', 'etkinlik-haftalik.json'), JSON.stringify(payload, null, 2), 'utf8');
 
 await mkdir(join(ROOT, 'etkinlikler'), { recursive: true });
-await writeFile(join(ROOT, 'etkinlikler', 'index.html'), pageHtml(week, payload), 'utf8');
+await writeFile(join(ROOT, 'etkinlikler', 'index.html'), pageHtml(week, payload, featured), 'utf8');
 
 console.log(`✓ data/etkinlik-haftalik.json  (${payload.total} etkinlik, ${payload.weekStart} → ${payload.weekEnd})`);
-console.log('✓ etkinlikler/index.html');
+console.log(`✓ etkinlikler/index.html  (${featured.length} yaklaşan öne çıkan)`);

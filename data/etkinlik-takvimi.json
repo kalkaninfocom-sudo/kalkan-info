@@ -2,13 +2,13 @@
   "_meta": {
     "title": "Kalkan Etkinlik Takvimi",
     "subtitle": "Gün gün haftalık etkinlik dosyası — canlı müzik, DJ, parti, gece programı",
-    "updated": "2026-06-28",
+    "updated": "2026-07-11",
     "note": "recurring = her hafta tekrarlayan (gün adına göre). oneoff = tek seferlik tarihli etkinlik. verified:false = TASLAK, yayınlanmadan önce onaylanmalı. Otonom katman (SerpApi google_events / Instagram) bu dosyaya oneoff besler.",
     "schema": {
       "recurring": "{ id, venueId, venueName, area, type, day, time, endTime, title, source, confidence, verified }",
       "oneoff": "{ id, venueId, venueName, area, type, date(YYYY-MM-DD), time, endTime, title, source, confidence, verified }"
     },
-    "types": ["Canlı Müzik", "DJ", "Akustik", "Karaoke", "Quiz Gecesi", "Happy Hour", "Türk Gecesi", "Parti", "Festival"],
+    "types": ["Canlı Müzik", "DJ", "Akustik", "Karaoke", "Quiz Gecesi", "Happy Hour", "Türk Gecesi", "Parti", "Festival", "Sinema Gecesi"],
     "days": ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"],
     "sources": ["taslak", "serpapi", "instagram", "manuel", "isletme"]
   },
@@ -25,5 +25,7 @@
     { "id": "rec-blackgold-paz", "venueId": "black-gold-terrace-cocktail-bar", "venueName": "Black & Gold Terrace Cocktail Bar", "area": "Kalkan", "type": "Akustik", "day": "Pazar", "time": "20:00", "endTime": "23:00", "title": "Pazar akustik", "source": "taslak", "confidence": 0.5, "verified": false },
     { "id": "rec-ehlikeyf-paz", "venueId": null, "venueName": "Ehl-i Keyf Meyhanesi", "area": "Kaş", "type": "Türk Gecesi", "day": "Pazar", "time": "21:00", "endTime": "00:30", "title": "Türk gecesi", "source": "taslak", "confidence": 0.5, "verified": false }
   ],
-  "oneoff": []
+  "oneoff": [
+    { "id": "oneoff-indigo-movie-20260716", "venueId": "indigo-beach-club-restaurant", "venueName": "Indigo Beach Club Kalkan", "area": "Kalkan", "type": "Sinema Gecesi", "date": "2026-07-16", "time": "21:00", "endTime": "23:30", "title": "Movie Night: Grease — deniz kenarında, yıldızlar altında açık hava sinema", "source": "instagram", "confidence": 0.95, "verified": true }
+  ]
 }
