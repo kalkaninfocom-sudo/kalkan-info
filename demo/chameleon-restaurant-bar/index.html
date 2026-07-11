@@ -1,0 +1,213 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Chameleon Restaurant &amp; Bar — Kalkan · 4.7★</title>
+<meta name="description" content="Chameleon Restaurant &amp; Bar, Kalkan — 4.7★ (147 yorum). "/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#0E2233;--sea-d:#07131E;--gold:#C8962A;--gold-l:#E0B450;--terra:#B4653A;--cream:#F5EDD8;}
+*{margin:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--sea);color:var(--cream);font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden;}
+.serif{font-family:'Cormorant Garamond',serif;}
+.eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
+.gline{width:44px;height:1px;background:var(--gold);margin:14px 0 20px;opacity:.6;}
+.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,5vw,3.4rem);line-height:1.06;letter-spacing:-.01em;}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(1.2rem,4vw,3rem);transition:background .3s,backdrop-filter .3s;}
+nav.solid{background:rgba(7,19,30,.85);backdrop-filter:blur(10px);}
+nav .wm{font-family:'Cormorant Garamond',serif;font-size:1.15rem;letter-spacing:.18em;color:var(--cream);text-transform:uppercase;text-decoration:none;}
+nav .links{display:flex;gap:26px;align-items:center;}
+nav a{color:rgba(245,237,216,.75);text-decoration:none;font-size:.82rem;letter-spacing:.06em;transition:color .2s;}
+nav a:hover{color:var(--gold-l);}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;padding:.85rem 1.6rem;transition:transform .15s,filter .15s,background .2s;cursor:pointer;}
+.btn:hover{transform:translateY(-1px);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--terra));color:var(--sea);font-weight:600;}
+.btn-ghost{border:1px solid rgba(245,237,216,.4);color:var(--cream);}
+.btn-ghost:hover{background:rgba(245,237,216,.08);}
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero .bg{position:absolute;inset:-8% 0;background-size:cover;background-position:center;will-change:transform;}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,19,30,.5) 0%,rgba(7,19,30,.22) 42%,rgba(7,19,30,.78) 100%),radial-gradient(ellipse at center,transparent 34%,rgba(7,19,30,.55) 100%);}
+.hero .grain{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:3px 3px;}
+.hero .in{position:relative;z-index:2;padding:0 clamp(1.4rem,6vw,4rem);max-width:760px;margin:0 auto;text-align:center;}
+.badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;background:rgba(200,150,42,.12);border:1px solid rgba(224,180,80,.4);border-radius:999px;padding:.5rem 1rem;font-size:.8rem;}
+.badge .st{color:var(--gold-l);letter-spacing:1px;}
+.sec{padding:clamp(4rem,10vh,8rem) clamp(1.4rem,5vw,5rem);max-width:1280px;margin:0 auto;}
+.gal{columns:2;column-gap:14px;}
+@media(min-width:800px){.gal{columns:3;}}
+.gal img{width:100%;margin-bottom:14px;border-radius:3px;display:block;transition:transform .4s,filter .4s;cursor:pointer;filter:saturate(.95);}
+.gal img:hover{transform:scale(1.02);filter:saturate(1.1);}
+.rev{text-align:center;background:rgba(200,150,42,.05);border:1px solid rgba(200,150,42,.15);border-radius:4px;padding:clamp(2rem,5vw,3.5rem);}
+.reserve{background:linear-gradient(135deg,var(--sea-d),var(--sea));text-align:center;padding:clamp(3.5rem,8vh,6rem) 1.4rem;}
+.map{width:100%;height:380px;border:0;border-radius:4px;filter:grayscale(.3) contrast(1.05);}
+footer{background:var(--sea-d);padding:2.5rem clamp(1.4rem,5vw,5rem);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;border-top:1px solid rgba(200,150,42,.12);}
+footer a{color:var(--gold-l);text-decoration:none;}
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.4);}
+.big{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,5.5rem);color:var(--gold-l);line-height:1;}
+.lb{position:fixed;inset:0;z-index:80;background:rgba(4,10,16,.94);display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;}
+.lb.on{display:flex;}.lb img{max-width:94vw;max-height:90vh;border-radius:4px;}
+/* menü */
+.menu-cat{margin-bottom:2.6rem;}
+.menu-cat h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--gold-l);margin-bottom:1rem;letter-spacing:.01em;}
+.menu-item{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px dashed rgba(200,150,42,.14);}
+.menu-item .mi-l{max-width:78%;}
+.menu-item .mi-n{font-weight:600;color:var(--cream);}
+.menu-item .mi-d{font-size:.85rem;color:rgba(245,237,216,.55);margin-top:.15rem;line-height:1.5;}
+.menu-item .mi-p{white-space:nowrap;color:var(--gold-l);font-weight:600;}
+.hours-line{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dashed rgba(200,150,42,.14);max-width:520px;}
+.about-p{max-width:680px;margin-top:1.2rem;color:rgba(245,237,216,.72);font-size:1.05rem;line-height:1.8;}
+</style></head>
+<body>
+<nav id="nav"><a class="wm" href="#">Chameleon Restaurant &amp; Bar</a>
+  <div class="links"><a href="#about">Hakkında</a><a href="#menu">Menü</a><a href="#gallery">Galeri</a><a href="#location">Konum</a><a class="btn btn-gold" href="#reserve">Rezervasyon</a></div>
+</nav>
+
+<header class="hero">
+  <div class="bg" id="heroBg" style="background-image:url('/assets/img/restoran/chameleon-restaurant-bar-g1.jpg')"></div>
+  <div class="ov"></div><div class="grain"></div>
+  <div class="in">
+    <div class="eyebrow reveal">Kalkan · Kaş, Antalya</div>
+    <h1 class="title reveal" style="font-size:clamp(2.6rem,7vw,5rem);margin-top:.5rem;">Chameleon Restaurant<br><em style="color:var(--gold-l);">&amp; Bar</em></h1>
+    <p class="reveal" id="heroTagline" style="margin:1rem auto 0;color:rgba(245,237,216,.85);font-size:1.1rem;max-width:520px;"></p>
+    <div class="badge reveal"><span class="st">★★★★★</span> <b>4.7</b> <span style="opacity:.7">· 147 Google reviews</span></div>
+    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;" id="heroCta"></div>
+  </div>
+</header>
+
+<section class="sec" id="about">
+  <div class="eyebrow reveal">Hakkında</div><div class="gline reveal"></div>
+  <h2 class="title reveal" style="max-width:800px;">Kalkan'ın kalbinde bir restoran.</h2>
+  <div id="aboutBody" class="reveal"></div>
+</section>
+
+<section class="sec" id="menu" style="padding-top:0;">
+  <div class="eyebrow reveal">Menü</div><div class="gline reveal"></div>
+  <h2 class="title reveal" style="margin-bottom:2rem;">Sofradakiler.</h2>
+  <div id="menuBody" class="reveal"></div>
+</section>
+
+<section class="sec" id="gallery" style="padding-top:0;">
+  <div class="eyebrow reveal">Galeri</div><div class="gline reveal"></div>
+  <div class="gal reveal">
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g1.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g1.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g2.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g2.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g3.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g3.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g4.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g4.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g5.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g5.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g6.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g6.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g7.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g7.jpg')"/>
+    <img src="/assets/img/restoran/chameleon-restaurant-bar-g8.jpg" alt="Chameleon Restaurant &amp; Bar" loading="lazy" onclick="lb('/assets/img/restoran/chameleon-restaurant-bar-g8.jpg')"/>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0;"><div class="rev reveal">
+  <p class="serif" style="font-size:clamp(1.4rem,2.4vw,1.9rem);font-style:italic;">Kalkan'ın en sevilen adreslerinden.</p>
+  <p style="margin:.6rem 0 1.9rem;color:rgba(245,237,216,.6);letter-spacing:.06em;">4.7★ average · 147 reviews</p>
+  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Chameleon%20Restaurant%20%26%20Bar%20Kalkan%2C%20Hasan%20Altan%20Cd%2C%2007580%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye" target="_blank" rel="noopener">Google yorumlarını oku →</a>
+</div></section>
+
+<section class="sec" id="hours" style="padding-top:0;">
+  <div class="eyebrow reveal">Çalışma Saatleri</div><div class="gline reveal"></div>
+  <div id="hoursBody" class="reveal"></div>
+</section>
+
+<section class="sec" id="location">
+  <div class="eyebrow reveal">Bizi bulun</div><div class="gline reveal"></div>
+  <p class="reveal" style="color:rgba(245,237,216,.7);margin-bottom:1.5rem;">Kalkan, Hasan Altan Cd, 07580 Kaş/Antalya, Türkiye</p>
+  <iframe class="map reveal" loading="lazy" src="https://maps.google.com/maps?q=Chameleon%20Restaurant%20%26%20Bar%20Kalkan%2C%20Hasan%20Altan%20Cd%2C%2007580%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye&output=embed"></iframe>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="eyebrow reveal" style="color:var(--gold-l);">İletişim & Rezervasyon</div>
+  <h2 class="title reveal" style="margin:.6rem 0 1.5rem;">Yerinizi ayırtın.</h2>
+  <div class="reveal" id="reserveCta" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;"></div>
+</section>
+
+<footer>
+  <div><div class="serif" style="letter-spacing:.14em;text-transform:uppercase;">Chameleon Restaurant &amp; Bar</div>
+    <div style="font-size:.8rem;color:rgba(245,237,216,.5);margin-top:.2rem;">Kalkan, Hasan Altan Cd, 07580 Kaş/Antalya, Türkiye</div></div>
+  <div style="font-size:.78rem;color:rgba(245,237,216,.45);">
+    <a href="admin.html">Yönetici Girişi</a> · Site by <a href="https://kalkaninfo.com" target="_blank" rel="noopener">Kalkan Info</a>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:none;"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 004.65 1.16h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2z"/></svg></a>
+<div class="lb" id="lb" onclick="this.classList.remove('on')"><img id="lbi" src=""/></div>
+
+<script>
+window.__VENUE_SLUG__ = "chameleon-restaurant-bar";
+window.__VENUE_NAME__ = "Chameleon Restaurant & Bar";
+window.__VENUE_BAKED__ = {"tagline":"","about":[],"menu":[],"hours":"Açık · Kapanış saati:  01:00","phone":"+90 544 474 40 00","whatsapp":"905444744000","instagram":""};
+window.__VENUE_PHONE_DISPLAY__ = "+90 544 474 40 00";
+</script>
+<script type="module">
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from '/js/supabase-config.js';
+import { createClient } from '/vendor/supabase.mjs';
+
+const E = (s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $ = (id)=>document.getElementById(id);
+
+function render(c){
+  const phone = window.__VENUE_PHONE_DISPLAY__ || c.phone || '';
+  const waDigits = (c.whatsapp || (phone||'').replace(/[^\d]/g,'')) || '';
+  const wa = waDigits ? 'https://wa.me/'+waDigits : '';
+  const tel = (phone||'').replace(/[^\d]/g,'') ? 'tel:+'+(phone||'').replace(/[^\d]/g,'') : '';
+  if (c.tagline) $('heroTagline').textContent = c.tagline;
+
+  // Hakkında
+  $('aboutBody').innerHTML = (c.about||[]).map(p=>'<p class="about-p">'+E(p)+'</p>').join('') ||
+    '<p class="about-p">Kalkan\'ın sevilen adreslerinden.</p>';
+
+  // Menü
+  const menu = (c.menu||[]).filter(m=>m && (m.cat || (m.items&&m.items.length)));
+  $('menu').style.display = menu.length ? '' : 'none';
+  $('menuBody').innerHTML = menu.map(m=>
+    '<div class="menu-cat"><h3>'+E(m.cat)+'</h3>'+
+    (m.items||[]).map(it=>
+      '<div class="menu-item"><div class="mi-l"><div class="mi-n">'+E(it.name)+'</div>'+
+      (it.desc?'<div class="mi-d">'+E(it.desc)+'</div>':'')+'</div>'+
+      (it.price?'<div class="mi-p">'+E(it.price)+'</div>':'')+'</div>'
+    ).join('')+'</div>'
+  ).join('');
+
+  // Saatler
+  const h = c.hours;
+  let hoursHtml = '';
+  if (Array.isArray(h) && h.length) hoursHtml = h.map(x=>'<div class="hours-line"><span>'+E(x.d||x.day||'')+'</span><span style="color:var(--gold-l)">'+E(x.h||x.hours||'')+'</span></div>').join('');
+  else if (typeof h === 'string' && h.trim()) hoursHtml = '<p class="about-p" style="margin-top:0">'+E(h)+'</p>';
+  $('hours').style.display = hoursHtml ? '' : 'none';
+  $('hoursBody').innerHTML = hoursHtml;
+
+  // CTA'lar
+  const heroCta = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp ile Rezervasyon</a>':'')+
+                  (tel?'<a class="btn btn-ghost" href="'+tel+'">Ara</a>':'');
+  $('heroCta').innerHTML = heroCta;
+  $('reserveCta').innerHTML = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp: '+E(phone)+'</a>':'')+
+                              (tel?'<a class="btn btn-ghost" href="'+tel+'">Hemen ara</a>':'');
+  const waf = $('waFloat');
+  if (wa){ waf.href = wa; waf.style.display='grid'; } else { waf.style.display='none'; }
+}
+
+// 1) Baked GERÇEK veriyle hemen render (SEO/hızlı ilk boya)
+render(window.__VENUE_BAKED__);
+
+// 2) venue_sites'ten canlı içerik varsa üzerine yaz (admin düzenlemeleri)
+(async()=>{
+  try{
+    const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth:{ persistSession:false } });
+    const { data } = await sb.from('venue_sites').select('content,published').eq('slug', window.__VENUE_SLUG__).eq('published', true).maybeSingle();
+    if (data && data.content && Object.keys(data.content).length){
+      render({ ...window.__VENUE_BAKED__, ...data.content });
+    }
+  }catch(e){ /* venue_sites yoksa baked içerik kalır */ }
+})();
+
+// UI: nav solid + parallax + reveal + lightbox
+const nav=$('nav');
+addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>60);
+  const bg=$('heroBg'); if(bg) bg.style.transform='translateY('+(scrollY*0.28)+'px)';});
+const io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+window.lb=function(src){var l=$('lb');$('lbi').src=src;l.classList.add('on');};
+</script>
+</body></html>
