@@ -1082,6 +1082,30 @@
           track('Teklif Paket', { paket: plan ? plan.textContent.trim() : '' });
         });
       });
+
+      // ── CANLI DEMO (build-venue-site.mjs bu işletme için gerçek site ürettiyse) ──
+      // En güçlü kapatma kartı: "after" soyut değil, GERÇEK — tıkla, sitene bak.
+      if (T && T.demoUrl) {
+        var afterCard = document.querySelector('.ba-after');
+        if (afterCard && !afterCard.querySelector('.demo-live-cta')) {
+          var dA = document.createElement('a');
+          dA.className = 'demo-live-cta';
+          dA.href = T.demoUrl; dA.target = '_blank'; dA.rel = 'noopener';
+          dA.innerHTML = '🌐 İşte GERÇEK siteniz — canlı görün →';
+          dA.style.cssText = 'display:block;margin-top:16px;text-align:center;font-weight:700;color:#fff;background:var(--teal,#0a9b8a);border-radius:12px;padding:13px 16px;text-decoration:none;box-shadow:0 8px 22px rgba(10,155,138,.30);';
+          afterCard.appendChild(dA);
+          dA.addEventListener('click', function () { track('Teklif Demo'); });
+        }
+        var heroRow = document.querySelector('.hero-cta-row');
+        if (heroRow && !heroRow.querySelector('.demo-live-hero')) {
+          var dH = document.createElement('a');
+          dH.className = 'btn btn-outline demo-live-hero';
+          dH.href = T.demoUrl; dH.target = '_blank'; dH.rel = 'noopener';
+          dH.textContent = '🌐 Canlı Siteniz';
+          heroRow.appendChild(dH);
+          dH.addEventListener('click', function () { track('Teklif Demo'); });
+        }
+      }
       } // end apply(T)
 
       // ── Kaynak seçimi: gömülü __TEKLIF__ > ?slug= (teklif-data.json) > ?isletme= (sadece isim) ──

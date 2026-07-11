@@ -16,6 +16,7 @@
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -41,6 +42,8 @@ function slugify(s) {
     .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 function norm(s) { return slugify(s).replace(/-/g, ''); }
+// build-venue-site.mjs bu slug için canlı bir demo site ürettiyse teklife bağla (en güçlü satış kartı)
+function demoUrlFor(slug) { return slug && existsSync(join(ROOT, 'demo', slug, 'index.html')) ? `/demo/${slug}/` : null; }
 function esc(s) { return String(s == null ? '' : s).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c])); }
 
 async function loadAll() {
@@ -116,6 +119,8 @@ async function buildDataFile(rows) {
     const slug = slugify(b.name);
     if (!slug || map[slug]) continue;
     map[slug] = { name: b.name, kind: b._kind, facts: buildFacts(b) };
+    const demoUrl = demoUrlFor(slug);
+    if (demoUrl) map[slug].demoUrl = demoUrl;
   }
   await writeFile(join(__dirname, 'teklif-data.json'), JSON.stringify(map), 'utf8');
   return map;
@@ -209,6 +214,8 @@ async function main() {
   const facts = buildFacts(b);
   const slug = slugify(b.name);
   const payload = { name: b.name, kind: b._kind, facts };
+  const demoUrl = demoUrlFor(slug);
+  if (demoUrl) payload.demoUrl = demoUrl;
 
   const tpl = await readFile(TPL, 'utf8');
   const inject = `\n  <script>window.__TEKLIF__ = ${JSON.stringify(payload)};</script>`;
