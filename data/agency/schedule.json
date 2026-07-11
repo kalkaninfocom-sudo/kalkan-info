@@ -17,14 +17,48 @@
       "agent": "director",
       "task": "Bugün Kalkan Info sosyal medyası için TEK en iyi post fikrini seç. Trend sinyallerini ve mevsimi düşün. Çıktı: kısa başlık + 1 cümle açı + hedef platform + güven skoru (0-1)."
     },
-
-    { "id": "gazete-research-0700", "time": "07:00", "type": "agent", "agent": "muhabir",         "task": "Kalkan bölgesel güncel haberleri araştır. 3 ön sayfa haber başlığı + 1 cümle özet üret. Olgusal, abartısız haber-ajansı tonu." },
-    { "id": "gazete-research-0710", "time": "07:10", "type": "agent", "agent": "magazin-editoru", "task": "Kalkan gece hayatı / etkinlik / mekan açısından bugünkü magazin başlıklarını üret. 3 magazin başlığı + kısa açı." },
-    { "id": "gazete-research-0720", "time": "07:20", "type": "agent", "agent": "muhabir",         "task": "Kalkan bölgesel haber taraması (2. tur) — sabah 07:00'dekilerden farklı, yeni gelişme var mı? Varsa 2 başlık, yoksa 'yeni yok' de." },
-    { "id": "gazete-research-0730", "time": "07:30", "type": "agent", "agent": "magazin-editoru", "task": "Magazin taraması (2. tur). Bugünkü etkinlik/rezervasyon/mekan hareketliliğinden 2 taze başlık." },
-    { "id": "gazete-research-0740", "time": "07:40", "type": "agent", "agent": "muhabir",         "task": "Son tur haber kontrolü (07:40). Öne çıkarılacak günün MANŞET adayını seç + gerekçe." },
-    { "id": "gazete-research-0750", "time": "07:50", "type": "agent", "agent": "magazin-editoru", "task": "Son tur magazin (07:50). Arka yüz için günün en güçlü magazin açısını seç." },
-
+    {
+      "id": "gazete-research-0700",
+      "time": "07:00",
+      "type": "agent",
+      "agent": "muhabir",
+      "task": "Kalkan bölgesel güncel haberleri araştır. 3 ön sayfa haber başlığı + 1 cümle özet üret. Olgusal, abartısız haber-ajansı tonu."
+    },
+    {
+      "id": "gazete-research-0710",
+      "time": "07:10",
+      "type": "agent",
+      "agent": "magazin-editoru",
+      "task": "Kalkan gece hayatı / etkinlik / mekan açısından bugünkü magazin başlıklarını üret. 3 magazin başlığı + kısa açı."
+    },
+    {
+      "id": "gazete-research-0720",
+      "time": "07:20",
+      "type": "agent",
+      "agent": "muhabir",
+      "task": "Kalkan bölgesel haber taraması (2. tur) — sabah 07:00'dekilerden farklı, yeni gelişme var mı? Varsa 2 başlık, yoksa 'yeni yok' de."
+    },
+    {
+      "id": "gazete-research-0730",
+      "time": "07:30",
+      "type": "agent",
+      "agent": "magazin-editoru",
+      "task": "Magazin taraması (2. tur). Bugünkü etkinlik/rezervasyon/mekan hareketliliğinden 2 taze başlık."
+    },
+    {
+      "id": "gazete-research-0740",
+      "time": "07:40",
+      "type": "agent",
+      "agent": "muhabir",
+      "task": "Son tur haber kontrolü (07:40). Öne çıkarılacak günün MANŞET adayını seç + gerekçe."
+    },
+    {
+      "id": "gazete-research-0750",
+      "time": "07:50",
+      "type": "agent",
+      "agent": "magazin-editoru",
+      "task": "Son tur magazin (07:50). Arka yüz için günün en güçlü magazin açısını seç."
+    },
     {
       "id": "daily-self-update",
       "time": "09:00",
@@ -32,7 +66,6 @@
       "agent": "director",
       "task": "SELF-UPDATE: Bugün sosyal medya / yerel turizm dünyasında Kalkan Info'yu ilgilendiren ne değişti? 3 madde güncel gelişme + her biri için 1 uygulanabilir fikir."
     },
-
     {
       "id": "daily-ig-post",
       "time": "18:00",
@@ -40,13 +73,43 @@
       "script": "scripts/ig-news-post.mjs",
       "desc": "Günün en yeni haberinden IG gönderi kartı üret → Telegram'a GÖRSELLİ onay (foto + Onayla/Reddet). Onaylanınca IG'de yayınlanır. Görsel kuralına uygun (prompt değil, kart)."
     },
-
-    { "id": "ig-venue-watch-am", "time": "09:30", "type": "script", "script": "scripts/ig-venue-watch.mjs", "desc": "Küratörlü Kalkan mekanlarının public IG gönderilerini business_discovery ile tara → ig-venue-intake + olgusal haber taslağı (ig-venue-news). Gazete/editöryal kaynağı." },
-    { "id": "ig-venue-watch-pm", "time": "15:30", "type": "script", "script": "scripts/ig-venue-watch.mjs", "desc": "IG mekan taraması (2. tur, öğleden sonra hareketliliği)." },
-
-    { "id": "growth-weekly", "dow": "Mon", "time": "07:00", "type": "agent", "agent": "growth",  "task": "Bu haftanın büyüme planı: 6 kaldıraç üzerinden 3 somut aksiyon belirle, sahiplerini ata, ölçülebilir hedef koy." },
-    { "id": "analyst-weekly", "dow": "Mon", "time": "08:00", "type": "agent", "agent": "analyst", "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı." },
-
+    {
+      "id": "ig-venue-watch-am",
+      "time": "09:30",
+      "type": "script",
+      "script": "scripts/ig-venue-watch.mjs",
+      "desc": "Küratörlü Kalkan mekanlarının public IG gönderilerini business_discovery ile tara → ig-venue-intake + olgusal haber taslağı (ig-venue-news). Gazete/editöryal kaynağı."
+    },
+    {
+      "id": "fb-pages-harvest-am",
+      "time": "10:00",
+      "type": "script",
+      "script": "scripts/agency/fb-pages-harvest.mjs",
+      "desc": "FB sayfa gonderilerini topla (FB_PAGE_IDS), news-gate filtrele, sepete yaz. 09:30 IG tarasindan sonra calisir."
+    },
+    {
+      "id": "ig-venue-watch-pm",
+      "time": "15:30",
+      "type": "script",
+      "script": "scripts/ig-venue-watch.mjs",
+      "desc": "IG mekan taraması (2. tur, öğleden sonra hareketliliği)."
+    },
+    {
+      "id": "growth-weekly",
+      "dow": "Mon",
+      "time": "07:00",
+      "type": "agent",
+      "agent": "growth",
+      "task": "Bu haftanın büyüme planı: 6 kaldıraç üzerinden 3 somut aksiyon belirle, sahiplerini ata, ölçülebilir hedef koy."
+    },
+    {
+      "id": "analyst-weekly",
+      "dow": "Mon",
+      "time": "08:00",
+      "type": "agent",
+      "agent": "analyst",
+      "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı."
+    },
     {
       "id": "founder-weekly-report",
       "dow": "Fri",
@@ -55,12 +118,47 @@
       "script": "scripts/agency/weekly-founder-report.mjs",
       "desc": "Hafta boyu tartışmalar + iş sonuçları + metrikleri tek haftalık sunuma derle → kurucuya gönder."
     },
-
-    { "id": "learn-rotation-1000", "time": "10:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu: en eski öğrenen 1-2 agent alanındaki kaynağı okur → knowledge/<id>.json. Kota-güvenli (max 2/tur)." },
-    { "id": "learn-rotation-1200", "time": "12:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
-    { "id": "learn-rotation-1400", "time": "14:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
-    { "id": "learn-rotation-1600", "time": "16:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
-    { "id": "learn-rotation-2000", "time": "20:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." },
-    { "id": "learn-rotation-2200", "time": "22:00", "type": "script", "script": "scripts/agency/learn-rotation.mjs", "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)." }
+    {
+      "id": "learn-rotation-1000",
+      "time": "10:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu: en eski öğrenen 1-2 agent alanındaki kaynağı okur → knowledge/<id>.json. Kota-güvenli (max 2/tur)."
+    },
+    {
+      "id": "learn-rotation-1200",
+      "time": "12:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)."
+    },
+    {
+      "id": "learn-rotation-1400",
+      "time": "14:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)."
+    },
+    {
+      "id": "learn-rotation-1600",
+      "time": "16:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)."
+    },
+    {
+      "id": "learn-rotation-2000",
+      "time": "20:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)."
+    },
+    {
+      "id": "learn-rotation-2200",
+      "time": "22:00",
+      "type": "script",
+      "script": "scripts/agency/learn-rotation.mjs",
+      "desc": "Agent öğrenme rotasyonu (round-robin, en eski önce)."
+    }
   ]
 }

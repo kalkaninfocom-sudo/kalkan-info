@@ -10,8 +10,11 @@ alter table public.jobs
   add column if not exists poster_type text not null default 'isletme'
     check (poster_type in ('kisi', 'isletme'));
 
--- Public view'i yeniden oluştur — poster_type'ı anon okumaya dahil et
-create or replace view public.jobs_public as
+-- Public view'i yeniden oluştur — poster_type'ı anon okumaya dahil et.
+-- DROP+CREATE: CREATE OR REPLACE VIEW mevcut kolon sırasının ortasına yeni kolon
+-- ekleyemez (poster_type'ı view_count'tan önce koyunca 42P16 "rename" hatası verir).
+drop view if exists public.jobs_public;
+create view public.jobs_public as
   select
     id, slug, title, category, type, location, employer_name,
     description, description_html, requirements, languages,

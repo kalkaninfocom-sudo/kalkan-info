@@ -1,0 +1,46 @@
+name: Haftalık Instagram raporu (Pzt 08:00 — @kalkan.info performans → Telegram)
+
+# Berkay: her hafta @kalkan.info canlı performansını çek (erişim, paylaşım, en iyi/zayıf reel),
+# data/agency/ig-report.json'a yaz + Telegram özeti gönder. Ajans bu veriyle viral içerik üretir.
+# Haftalık = CI dakikası çok az (~4dk/ay).
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'   # 05:00 UTC = 08:00 Europe/Istanbul, Pazartesi
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ig-weekly-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: Instagram haftalık raporu
+        env:
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: node scripts/agency/ig-weekly-report.mjs
+
+      - name: Commit rapor çıktısı
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/agency/ig-report.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
+          git commit -m "content(ig): haftalık Instagram performans raporu $(TZ=Europe/Istanbul date +%F) [auto]"
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"

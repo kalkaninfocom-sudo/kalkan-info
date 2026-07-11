@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "note": "AJANS DİREKTİFİ — tüm agent'lar için VIRAL INSTAGRAM içerik emri. morning-briefing.mjs bunu okur ve her ajanın görevine enjekte eder. Reels/gazete/caption üreten her ajan buna uyar. Düzenlenebilir tek kaynak — Berkay burayı değiştirir, tüm ajans anında uyum sağlar.",
+    "updated": "2026-07-11",
+    "kaynak": "Canlı @kalkan.info Instagram verisi (11 Tem 2026) + içerik denetimi bulguları"
+  },
+  "hedef": "Kalkan'ın GERÇEK görsel ve videolarını kullanarak Instagram'da VİRAL olma potansiyeli en yüksek içerikleri üretmek. Öncelik: erişimi takipçi sayısının 10 katına çıkaran, PAYLAŞILAN ve KAYDEDİLEN içerik.",
+  "canli_veri_dersleri": {
+    "ne_ise_yaradi": [
+      "İNSAN + MARKA HİKAYESİ: 27 Haz 'concierge/meet' reeli 1982 erişim + 44 PAYLAŞIM aldı (en iyi). İnsan yüzü ve 'biz kimiz' anlatısı satıyor.",
+      "MERAK/TEASER: 16 May 'Yakında..' 2723 görüntülenme. Kısa, gizemli, hook güçlü.",
+      "PAYLAŞIM BU HESABIN VİRAL KALDIRACI: beğeniden çok paylaşım alıyor → içeriği 'birine göndermelik' tasarla."
+    ],
+    "ne_cokuyor": [
+      "HASHTAG-SPAM + BOŞ MANZARA: 6 Tem 'patara #hashtag' reeli sadece 5 beğeni, 925 erişim (en zayıf). Caption'ı hashtag yığını olan, hikayesiz manzara reeli ölüyor.",
+      "SIFIR YORUM: 6 gönderinin HEPSİ 0 yorum. Erişim var, konuşma yok → CTA eksik."
+    ],
+    "kitle_gercegi": "Takipçinin %87'si Türkiye (TR 148, GB 4, DE 1). Bio İngilizce 'secret concierge' ama kitle Türk. KARAR: caption TR-öncelikli çift dilli — ilk satır Türkçe güçlü hook, altında kısa EN. Yabancı turiste açılmak için görsel evrensel, metin çift dilli."
+  },
+  "viral_formul": {
+    "hook": "İlk 1 saniye + caption ilk satırı İZLETMELİ. Soru, iddia, sayı veya pattern-interrupt ile başla. 'Kalkan'da kimsenin bilmediği...', 'Bunu yapmadan Kalkan'dan gitme', '3 saniyede...' gibi.",
+    "yapi": "3-5 sahne: KANCA (0-2sn) → GELİŞME/PAYOFF (merakı doyur) → CTA. İlk saniyede logo/intro YOK, doğrudan en güçlü kare.",
+    "cta_zorunlu": "Her içerik yorum VEYA paylaşım tetiklesin: 'Kiminle gelirsin? Etiketle', 'Hangisi? Yorumda söyle', 'Kaydet, tatilde lazım olacak', 'Bunu görmesi gereken birine gönder'.",
+    "sharelik_acilar": [
+      "Liste/rehber: 'Kalkan'da gün batımı için 3 gizli nokta', 'Yerlinin gittiği 5 mekan'",
+      "Karşılaştırma/seçim: 'Hangisi? A mı B mi' (yorum çeker)",
+      "Faydalı-kaydetmelik: 'Kalkan'da 1 gün planı', 'İlk kez gidenler için'",
+      "Duygu/an: gün batımı, deniz, gerçek insan tepkisi — sözsüz ama güçlü an",
+      "Sürpriz bilgi: Patara'nın dünyanın en eski fenerlerinden olması gibi doğrulanmış gerçek"
+    ]
+  },
+  "gorsel_kaynak": {
+    "kural": "UYDURMA görsel yok — SADECE diskteki gerçek Kalkan varlıklarını kullan.",
+    "klasorler": {
+      "plaj": "assets/img/plaj — Kaputaş, Kalamar, gizli koylar",
+      "restoran": "assets/img/restoran — mekan/yemek fotoları",
+      "oteller": "assets/img/oteller — villa/otel",
+      "tur": "assets/img/tur — tekne/antik kent/gezi",
+      "business": "assets/img/business — işletme görselleri"
+    },
+    "video": "Videolar Remotion ile bu gerçek fotolardan üretilir (build-*-reel.mjs). Berkay'ın çektiği ham klipler de kaynak olabilir. 9:16 full-bleed, müzik senkron."
+  },
+  "teknik_kurallar": [
+    "9:16 dikey full-bleed, letterbox/siyah bant YOK",
+    "Çerez/install/consent banner ekranda GÖRÜNMEZ (kayıttan önce kapat)",
+    "404/bozuk sayfa YOK, güncel bilgi",
+    "Maks 3-5 HEDEFLİ hashtag (spam değil): #kalkan #patara #kaş + konu etiketi",
+    "Caption: TR ilk satır hook → kısa değer → CTA → altında 1-2 satır EN",
+    "Klişe ('saklı cennet', 'turkuaz koy'), tur-operatörü dili ve boş övgü REDDEDİLİR"
+  ],
+  "haftalik_hedef": "Haftada en az 4 reels: Restoran(Sal) · Antik kent(Çar) · Plaj(Prş) · Villa/İnsan-hikaye(Cmt). Her biri viral_formul'e uygun. Ayrıca haftada 2 'kaydetmelik' carousel/rehber."
+}

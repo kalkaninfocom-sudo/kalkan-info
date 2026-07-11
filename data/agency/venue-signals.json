@@ -1,0 +1,2296 @@
+{
+  "generatedAt": "2026-07-11T06:53:19.480Z",
+  "count": 190,
+  "signals": [
+    {
+      "id": "rallzees-pub",
+      "name": "Rallzees Pub",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "backyardno10",
+      "name": "BackyardNo10",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-proper-kalkan",
+      "name": "The Proper Kalkan",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "deniz-cocktail-bar",
+      "name": "Deniz Cocktail Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "pruva-meyhane",
+      "name": "Pruva Meyhane",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "saki-kokteyl-bar",
+      "name": "Şaki Kokteyl Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "aras-berber",
+      "name": "Aras berber",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "barber-shop",
+      "name": "Barber Shop",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "art-of-hair-kalkan",
+      "name": "Art of Hair Kalkan",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "garabiyik-erkek-kuaforu",
+      "name": "GARABIYIK ERKEK KUAFÖRÜ",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-fade-barbers",
+      "name": "THE FADE BARBERS",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "gulbahar-s-bakery",
+      "name": "Gulbahar's Bakery",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cafe-33",
+      "name": "Cafe 33",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ota-lab",
+      "name": "OTA LAB",
+      "isOpen": false,
+      "closesAt": "00:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalkan-ceross-market-kitchen",
+      "name": "Kalkan Ceross market kitchen",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 71,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sarnic-fastfood-cafe",
+      "name": "Sarnıç FastFood & Cafe",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "gardenia-cafe-bistro",
+      "name": "Gardenia Cafe Bistro",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "panorama-restaurant",
+      "name": "Panorama Restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sarnic-fastfood-cafe",
+      "name": "Sarnıç FastFood & Cafe",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "agora-restaurant-pool-bar",
+      "name": "Agora Restaurant Pool Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "dionysia-restaurant-roof-bar",
+      "name": "Dionysia Restaurant & Roof Bar",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "doyum-restaurant",
+      "name": "Doyum Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "meshur-halil-usta-nin-yeri",
+      "name": "Meşhur Halil Usta'nin Yeri",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "trio-restaurant-lounge",
+      "name": "Trio restaurant lounge",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "black-gold-terrace-cocktail-bar",
+      "name": "Black & Gold Terrace Cocktail Bar",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "taraca-lounge-kitchen",
+      "name": "Taraça Lounge & Kitchen",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "pasha-burgers-fries",
+      "name": "pasha burgers & fries",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "merkez-bar",
+      "name": "Merkez Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kirik-makas-erkek-kuaforu",
+      "name": "Kırık Makas Erkek Kuaförü",
+      "isOpen": false,
+      "closesAt": "08:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "show-barber-s-sac-tasarim-ve",
+      "name": "SHOW BARBER’S saç tasarım ve",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 54,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "woon-coffee-concept",
+      "name": "Woon Coffee & Concept",
+      "isOpen": false,
+      "closesAt": "08:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "olala-cafe-kalkan",
+      "name": "Olala cafe Kalkan",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mimossa-coffee-restaurant",
+      "name": "Mimossa coffee restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 71,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "istanbullu-gelin-cafe-lunch",
+      "name": "Istanbullu Gelin Cafe & Lunch",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "papyon-cafe-fast-food",
+      "name": "Papyon cafe fast food",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-doydoy-kebap-house",
+      "name": "The DoyDoy Kebap House",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-view-terrace-restaurant",
+      "name": "THE VIEW TERRACE RESTAURANT",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mimossa-coffee-restaurant",
+      "name": "Mimossa coffee restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "yesilkoy-kasap-restaurant",
+      "name": "Yeşilköy Kasap & Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "shade-lounge-and-kitchen",
+      "name": "Shade Lounge and Kitchen",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-mezzanine-bar",
+      "name": "The Mezzanine Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "denizim-beach-club",
+      "name": "Denizim Beach Club",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "leon-cafe",
+      "name": "Leon Cafe",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-barber-kalkan",
+      "name": "The Barber Kalkan",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "safter-kuafor",
+      "name": "SAFTER KUAFÖR",
+      "isOpen": false,
+      "closesAt": "08:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zeynep-kuafor",
+      "name": "Zeynep Kuaför",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-cut-collective-barbershop",
+      "name": "The Cut Collective Barbershop",
+      "isOpen": true,
+      "closesAt": "19:00",
+      "occupancy": {
+        "pct": 54,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "allure-beautique-kalkan",
+      "name": "Allure Beautique Kalkan",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "bygokhan-barbers-clup",
+      "name": "Bygökhan barbers clup",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "denizim-beach-club",
+      "name": "Denizim Beach Club",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "greenbeachhotels",
+      "name": "Greenbeachhotels",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "emerald-beach-kalkan",
+      "name": "Emerald Beach Kalkan",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mayda-cafe-bakery",
+      "name": "Mayda Cafe & Bakery",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "rest-cafe-kalkan",
+      "name": "Rest Cafe Kalkan",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "pello-kalkan-cafe-breakfast",
+      "name": "Pello Kalkan Cafe & Breakfast",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "keske-cafe-bar",
+      "name": "Keske Cafe & Bar",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "leon-cafe",
+      "name": "Leon Cafe",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 71,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sini-cafe-restaurant",
+      "name": "Sini cafe & restaurant",
+      "isOpen": false,
+      "closesAt": "00:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "blue-terrace-restaurant-coctail-cafe-bar-lounge",
+      "name": "BLUE TERRACE RESTAURANT COCTAIL CAFE BAR & LOUNGE.",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "akvaryum-cafe-park-resturant",
+      "name": "Akvaryum Cafe Park Resturant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalim-ra-cafe-restaurant",
+      "name": "Kaliméra CAFE Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "alternatif-terrace-restaurant",
+      "name": "Alternatif Terrace Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "blue-terrace-restaurant-coctail-cafe-bar-lounge",
+      "name": "BLUE TERRACE RESTAURANT COCTAIL CAFE BAR & LOUNGE.",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "luna-restaurant-bar",
+      "name": "Luna Restaurant & Bar",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zula-fish-and-mezze",
+      "name": "Zula Fish and Mezze",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sini-cafe-restaurant",
+      "name": "Sini cafe & restaurant",
+      "isOpen": false,
+      "closesAt": "00:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "akdeniz-restorant",
+      "name": "AKDENIZ restorant",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ara-restaurant-kalkan",
+      "name": "ARA RESTAURANT KALKAN",
+      "isOpen": false,
+      "closesAt": "23:55",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "eski-ev-terrace-restaurant",
+      "name": "Eski Ev Terrace Restaurant",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kok-kalkan",
+      "name": "Kök Kalkan",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "antioch-restaurant-lounge",
+      "name": "Antioch Restaurant & Lounge",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "avlu-kalkan-kahvalti-restaurant",
+      "name": "AVLU KALKAN KAHVALTI & RESTAURANT",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "lycian-corner",
+      "name": "Lycian Corner",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "bezira-steak-sandwich-burger-makarna",
+      "name": "Bezira (Steak Sandwich&Burger&Makarna)",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalim-ra-cafe-restaurant",
+      "name": "Kaliméra CAFE Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-fountain-terrace-bar",
+      "name": "The Fountain Terrace Bar",
+      "isOpen": true,
+      "closesAt": "04:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mini-bar-kalkan",
+      "name": "Mini Bar Kalkan",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "my-scissors",
+      "name": "MY SCISSORS",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "best-barber-shop",
+      "name": "Best Barber Shop",
+      "isOpen": true,
+      "closesAt": "19:00",
+      "occupancy": {
+        "pct": 54,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ercan-topcuoglu-berber-shop",
+      "name": "Ercan Topcuoğlu berber shop",
+      "isOpen": false,
+      "closesAt": "08:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "best-barber",
+      "name": "Best Barber",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "lures-hotel-beach-club",
+      "name": "Lures Hotel & Beach Club",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mi-naart-cafe",
+      "name": "MİNAART CAFE",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sweet-dreams",
+      "name": "Sweet Dreams",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cafe-vita-kalkan",
+      "name": "Cafe Vita Kalkan",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 77,
+        "label": "Çok yoğun",
+        "cls": "high"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "i-si-m-var-cafe-bar",
+      "name": "İŞİM VAR CAFE BAR",
+      "isOpen": false,
+      "closesAt": "07:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sade-terrace-restaurant",
+      "name": "Sade Terrace Restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "nova-restaurant-kalkan",
+      "name": "Nova restaurant kalkan",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "chameleon-restaurant-bar",
+      "name": "Chameleon Restaurant & Bar",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ala-restaurant-kalkan",
+      "name": "Ala Restaurant Kalkan",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "tempus-restaurant-bar",
+      "name": "TEMPUS Restaurant & Bar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "aqua-bistro-restaurant",
+      "name": "Aqua Bistro Restaurant",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "porcini-restaurant-kalkan",
+      "name": "Porcini Restaurant Kalkan",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zeugma-restorant",
+      "name": "Zeugma Restorant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "deniz-restaurant",
+      "name": "Deniz Restaurant",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mabeyn-ocakbasi-turkish-grill",
+      "name": "Mabeyn Ocakbaşı /Turkish Grill",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "nokta-bar",
+      "name": "Nokta Bar",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-alley-kalkan",
+      "name": "The Alley Kalkan",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "wella-kuafor",
+      "name": "WELLA KUAFÖR",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "nick-s-barbers",
+      "name": "Nick's Barbers",
+      "isOpen": true,
+      "closesAt": "19:00",
+      "occupancy": {
+        "pct": 54,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "coffee-break-kalkan",
+      "name": "Coffee Break Kalkan",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 71,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "oba-cadir-cafe-restaurant",
+      "name": "OBA Çadır Cafe & Restaurant",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 71,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sea-blue-terrace-restaurant-cafe-bar",
+      "name": "Sea&Blue Terrace Restaurant Cafe Bar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "dervish-cafe",
+      "name": "Dervish Cafe",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sea-blue-terrace-restaurant-cafe-bar",
+      "name": "Sea&Blue Terrace Restaurant Cafe Bar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "rose-restaurant",
+      "name": "Rose Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mantici-guru-guru-s-placee",
+      "name": "Mantıcı Guru Guru's Placee",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "greece-rodos-restaurant",
+      "name": "Greece Rodos Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cinar-restaurant",
+      "name": "Çınar Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "satir-restaurant-kasap",
+      "name": "SATIR RESTAURANT & KASAP",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "dervish-cafe",
+      "name": "Dervish Cafe",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "fidanka-amber-restaurant",
+      "name": "Fidanka Amber Restaurant",
+      "isOpen": false,
+      "closesAt": "12:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "omar-s-kokobus-kokorec-kofte-tavuk-ekmek",
+      "name": "Omar's Kokobüs - Kokoreç, Köfte, Tavuk Ekmek",
+      "isOpen": true,
+      "closesAt": "03:30",
+      "occupancy": {
+        "pct": 28,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "flamingo-bar",
+      "name": "Flamingo Bar",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "yaght-point-bar",
+      "name": "Yaght Point Bar",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zest-beach-club",
+      "name": "ZEST BEACH CLUB",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "bezirgan-pub",
+      "name": "Bezirgan Pub",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "moonlight-cafe-bar",
+      "name": "Moonlight Cafe Bar",
+      "isOpen": true,
+      "closesAt": "04:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mey-terrace-restaurant-cocktail-bar",
+      "name": "Mey Terrace Restaurant & Cocktail Bar",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sweeney-todd-s",
+      "name": "Sweeney Todd's",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zest-beach-club",
+      "name": "ZEST BEACH CLUB",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cakil-beach-club-kalkan",
+      "name": "Çakıl Beach Club Kalkan",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cafe-del-mar",
+      "name": "Cafe Del Mar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "moonlight-cafe-bar",
+      "name": "Moonlight Cafe Bar",
+      "isOpen": true,
+      "closesAt": "04:00",
+      "occupancy": {
+        "pct": 63,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mola-caffe-zeytin-bahcesi",
+      "name": "Mola Caffe Zeytin Bahçesi",
+      "isOpen": false,
+      "closesAt": "07:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "coast-kalkan-tapas-grill-restaurant",
+      "name": "Coast Kalkan - Tapas & Grill Restaurant",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mey-terrace-restaurant-cocktail-bar",
+      "name": "Mey Terrace Restaurant & Cocktail Bar",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mussakka-restaurant",
+      "name": "Mussakka Restaurant",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "adams-restaurant-kalkan",
+      "name": "Adams Restaurant Kalkan",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-palmi-ye-ocakbasi-restauran",
+      "name": "THE PALMİYE OCAKBAŞI RESTAURAN",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kosk-restaurant",
+      "name": "Köşk Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "marina-restaurant-kalkan",
+      "name": "Marina Restaurant Kalkan",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "baharat-steak-house",
+      "name": "Baharat Steak House",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ata-bahce",
+      "name": "Ata Bahçe",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "ozi-pide-salonu",
+      "name": "Ozi Pide Salonu",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "utopia-cafe-bar",
+      "name": "Utopia Cafe Bar",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "smile-i-smail-kuafor-kas-berber-sac-sakal-trasi-hair-cut-barber-kuafor",
+      "name": "Smile İsmail Kuaför | Kaş Berber | Saç Sakal Traşı | Hair Cut | Barber | Kuaför",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "palm-beach",
+      "name": "Palm Beach",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "papatya-cafe",
+      "name": "Papatya Cafe",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kleo-cafe-bar-restaurant",
+      "name": "Kleo Cafe Bar & Restaurant",
+      "isOpen": true,
+      "closesAt": "01:30",
+      "occupancy": {
+        "pct": 63,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "cafe-payava-kalkan",
+      "name": "Cafe Payava Kalkan",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "utopia-cafe-bar",
+      "name": "Utopia Cafe Bar",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 63,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalkan-suites-restaurant-bar-more",
+      "name": "Kalkan Suites Restaurant Bar & More",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "belgin-s-kitchen-restaurant",
+      "name": "Belgin's Kitchen Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "seaport-restaurant",
+      "name": "Seaport Restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sahika-bahce-restaurant-bezirgan-kas",
+      "name": "Şahika Bahçe Restaurant Bezirgan, Kaş",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "oz-adana-restaurant",
+      "name": "Öz Adana Restaurant",
+      "isOpen": true,
+      "closesAt": "04:30",
+      "occupancy": {
+        "pct": 26,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-old-trading-house-restaurant",
+      "name": "The Old Trading House Restaurant",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "aure-restaurant",
+      "name": "Aure Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "blue-marlin-fish-meze",
+      "name": "Blue Marlin Fish & Meze",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "coriander-restoran",
+      "name": "Coriander Restoran",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "fera-restaurant-kalkan",
+      "name": "Fera Restaurant Kalkan",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-lime-restaurant-lounge-bar",
+      "name": "The Lime Restaurant & Lounge Bar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sogutlu-bahce-kahvalti-restaurant",
+      "name": "Söğütlü bahçe kahvaltı Restaurant",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kleo-cafe-bar-restaurant",
+      "name": "Kleo Cafe Bar & Restaurant",
+      "isOpen": true,
+      "closesAt": "01:30",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "likya-gozleme-evi",
+      "name": "Likya Gözleme evi",
+      "isOpen": false,
+      "closesAt": "07:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "gumusun-yeri",
+      "name": "Gümüşün Yeri",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "yemekci-m-lezzeti-l",
+      "name": "YEMEKÇİM LEZZETİ ÂLÂ",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 26,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kofteci-suleyman",
+      "name": "Kofteci Suleyman",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "johnny-s-cafe-bar-restaurant",
+      "name": "Johnny's Cafe Bar Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalkan-halk-plaji",
+      "name": "Kalkan Halk Plajı",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalkan-beach-park-hotel",
+      "name": "Kalkan Beach Park & Hotel",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "salonika-1881",
+      "name": "Salonika 1881",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 26,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-doydoy-restaurant",
+      "name": "The DoyDoy Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-fish-terrace",
+      "name": "The Fish Terrace",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sunset-restaurant-kalkan",
+      "name": "Sunset restaurant kalkan",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalamaki-restaurant-wine-bar",
+      "name": "Kalamaki Restaurant & Wine Bar",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "samphire-restaurant",
+      "name": "Samphire Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "zen-hair-studio",
+      "name": "Zen Hair Studio",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "indigo-beach-club-restaurant",
+      "name": "Indigo Beach Club & Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "indigo-beach-club-restaurant",
+      "name": "Indigo Beach Club & Restaurant",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "the-brothers-cafe-restaurant",
+      "name": "The Brothers Cafe Restaurant",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "trio-restaurant-kalkan",
+      "name": "Trio Restaurant Kalkan",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kalamar-beach-club",
+      "name": "Kalamar Beach Club",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": {
+        "caption": "It’s time for happy hour 🍸\n\n#kalkan #kalamarvibes #afulldaybythesea",
+        "thumbnail": "https://instagram.fayt2-1.fna.fbcdn.net/o1/v/t2/f2/m86/AQMwMtKqkTmwNC1kzDVkRE9KdrBZ27O3L4w7xUlh-8ukpQBiIcCWMnTJM1zRji0WQ1ELBOFtymQZFbdTmABRs4LebzlAnyw2FOeQbtI.mp4?_nc_cat=111&_nc_oc=Adpm7Lupeux6iN3IubSRN4WyMe7DyEbW9v16m_L600ofRf3E_twPWRNcJpyG845DJAs&_nc_sid=5e9851&_nc_ht=instagram.fayt2-1.fna.fbcdn.net&_nc_ohc=lf9dkxFpjfUQ7kNvwHpU1uw&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTU4NjMxMjk3OTg3NjU1NywiYXNzZXRfYWdlX2RheXMiOjIsInZpX3VzZWNhc2VfaWQiOjEwMDk5LCJkdXJhdGlvbl9zIjoxNiwidXJsZ2VuX3NvdXJjZSI6Ind3dyJ9&ccb=17-1&vs=61bb6d4f611812b7&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC81RjREQTlDOUZBN0Y4QjU4MzhBQzIzOTMwQjE2ODg5MF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYUWlnX3hwdl9wbGFjZW1lbnRfcGVybWFuZW50X3YyL0FBNDc2RjdERDkxQTYzQjc0RDhCNDkyQjlDNjQwNzkyX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACaaq9jayK_RBRUCKAJDMywXQDA7peNT988YEmRhc2hfYmFzZWxpbmVfMV92MREAdf4HZeadAQA&_nc_gid=VUkMVWCT1BygoCZ4fjjZSA&edm=AL-3X8kEAAAA&_nc_zt=28&oh=00_AQAQ6A94azU4R4IivjDoeXkK7O5RZr2hzSNaC6xjYGybQg&oe=6A4F6308",
+        "permalink": "https://www.instagram.com/reel/DaaWVYdubsH/",
+        "ageHours": 138
+      }
+    },
+    {
+      "id": "yali-beach-club-restaurant",
+      "name": "Yali Beach Club & Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mahal-beach-club-restaurant",
+      "name": "Mahal Beach Club & Restaurant",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "doner-more-restaurant-no-alcohol-served",
+      "name": "DÖNER & MORE Restaurant – No Alcohol Served",
+      "isOpen": false,
+      "closesAt": "09:30",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "vibes-lounge-club",
+      "name": "Vibes Lounge Club",
+      "isOpen": true,
+      "closesAt": "05:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "vibes-lounge-club",
+      "name": "Vibes Lounge Club",
+      "isOpen": true,
+      "closesAt": "05:00",
+      "occupancy": {
+        "pct": 29,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "lighthouse-cafe-brasserie-fener-cafe",
+      "name": "Lighthouse Cafe & Brasserie - Fener Cafe",
+      "isOpen": false,
+      "closesAt": "00:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kas-belediyesi-sosyal-tesisleri-cafe-bar",
+      "name": "Kaş Belediyesi Sosyal Tesisleri - Cafe Bar",
+      "isOpen": true,
+      "closesAt": "01:00",
+      "occupancy": {
+        "pct": 69,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": {
+        "caption": "🚧 Çavdır Mahallesi’nde Yol Çalışmalarımız Devam Ediyor!\n\nBelediyemiz ekipleri tarafından Çavdır Mahallesi Merkez Mevkii’nde sürdürülen kilit parke taşı ve bordür döşeme çalışmalarımız, planlanan program doğrultusunda aralıksız devam ediyor.\n\nİlçemizin her noktasında daha modern, konforlu ve güvenli bir ulaşım ağı oluşturmak amacıyla çalışmalarımızı kararlılıkla sürdürüyor, hemşehrilerimize daha yaşanabilir bir Kaş için hizmet üretmeye devam ediyoruz.",
+        "thumbnail": "https://scontent-iad6-1.cdninstagram.com/v/t51.82787-15/743763417_18599659978037364_7209090259433044605_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=78EeUC2jNE0Q7kNvwFp26AO&_nc_oc=AdpAhE8v8n4l18Vwe7Y9vpV7eXQXPc19dqVXjhbz2Mljveg8j0Pfl-o0l-yc0wKSdnU&_nc_zt=23&_nc_ht=scontent-iad6-1.cdninstagram.com&edm=AL-3X8kEAAAA&_nc_gid=nlDqi7OvqrCxoyCWLu92Jg&oh=00_AQCaWL1lPDWg0-oxiE5l_HwPUyI4TH6kIBrNwru8Zc3f5g&oe=6A575583",
+        "permalink": "https://www.instagram.com/p/DanKvcNjKYA/",
+        "ageHours": 19
+      }
+    },
+    {
+      "id": "noema-community",
+      "name": "Noema Community",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "kulube-beach",
+      "name": "Kulube Beach",
+      "isOpen": false,
+      "closesAt": "09:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "sandal-bar-lounge",
+      "name": "Sandal Bar & Lounge",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "lady-diana-barber-shop-i-lkan",
+      "name": "Lady Diana Barber Shop İlkan",
+      "isOpen": false,
+      "closesAt": "10:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "my-style-barber",
+      "name": "My style barber",
+      "isOpen": false,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "club-chocolate-kalkan",
+      "name": "Club Chocolate Kalkan",
+      "isOpen": true,
+      "closesAt": "03:00",
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "mojito-lounge-club",
+      "name": "Mojito Lounge & Club",
+      "isOpen": true,
+      "closesAt": null,
+      "occupancy": {
+        "pct": 20,
+        "label": "Sakin",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "dejawu-hairtyle",
+      "name": "dejawu hairtyle",
+      "isOpen": false,
+      "closesAt": "08:00",
+      "occupancy": {
+        "pct": 0,
+        "label": "Kapalı",
+        "cls": "low"
+      },
+      "lastPost": null
+    },
+    {
+      "id": "luzz-cafe-bahce",
+      "name": "Luzz cafe bahçe",
+      "isOpen": true,
+      "closesAt": "02:00",
+      "occupancy": {
+        "pct": 63,
+        "label": "Yoğun",
+        "cls": "mid"
+      },
+      "lastPost": null
+    }
+  ]
+}

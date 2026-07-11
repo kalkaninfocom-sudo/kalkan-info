@@ -1,0 +1,103 @@
+{
+  "line": "tv",
+  "updated": "2026-07-11T06:50:42.234Z",
+  "items": [
+    {
+      "id": "tv-demo-001",
+      "line": "tv",
+      "type": "reel",
+      "category": "roportaj",
+      "title": "40 Yıldır Kalkan'da: Mehmet Bey'in Balık Hikâyesi",
+      "hook": "Kırk yıldır burada, hiç gitmemiş akılından",
+      "plan": {
+        "secilenAnlar": [
+          {
+            "t": 2,
+            "altyazi": "Bu yaz çok iyi geçiyor, yabancılar çok geldi"
+          },
+          {
+            "t": 8,
+            "altyazi": "Lufer çok tutuyoruz, sabah beşte denize çıkıyoruz"
+          },
+          {
+            "t": 15,
+            "altyazi": "Sekizde tezgahta balık satıyoruz, işler çok iyi"
+          },
+          {
+            "t": 25,
+            "altyazi": "Kalkan huzurlu bir yer, kaliteli büyüyor"
+          },
+          {
+            "t": 38,
+            "altyazi": "Kırk yıldır buradayım, gitmeyi hiç düşünmedim"
+          }
+        ],
+        "sonKart": "Kalkan'ı keşfet, yerel hikâyeleri dinle",
+        "sure_sn": 42
+      },
+      "subtitles": {
+        "tr": {
+          "hook": "Kırk yıldır burada, hiç gitmemiş akılından",
+          "moments": [
+            "Bu yaz çok iyi geçiyor, yabancılar çok geldi",
+            "Lufer çok tutuyoruz, sabah beşte denize çıkıyoruz",
+            "Sekizde tezgahta balık satıyoruz, işler çok iyi",
+            "Kalkan huzurlu bir yer, kaliteli büyüyor",
+            "Kırk yıldır buradayım, gitmeyi hiç düşünmedim"
+          ],
+          "sonKart": "Kalkan'ı keşfet, yerel hikâyeleri dinle"
+        },
+        "en": {
+          "hook": "I've been here for forty years, never thought of leaving",
+          "moments": [
+            "This summer is going great, lots of tourists came",
+            "We're catching a lot of lufer, we go out to sea at five in the morning",
+            "We sell fish at the market at eight, business is booming",
+            "Kalkan is a peaceful place, growing in quality",
+            "I've been here for forty years, never thought of leaving"
+          ],
+          "sonKart": "Discover Kalkan, listen to local stories"
+        },
+        "de": {
+          "hook": "Ich bin seit vierzig Jahren hier, habe nie daran gedacht wegzugehen",
+          "moments": [
+            "Dieser Sommer verläuft großartig, viele Touristen kamen",
+            "Wir fangen viele Lufer, gehen morgens um fünf aufs Meer hinaus",
+            "Wir verkaufen Fisch auf dem Markt um acht, das Geschäft boomt",
+            "Kalkan ist ein friedlicher Ort, wächst in Qualität",
+            "Ich bin seit vierzig Jahren hier, habe nie daran gedacht wegzugehen"
+          ],
+          "sonKart": "Entdecken Sie Kalkan, hören Sie lokale Geschichten"
+        },
+        "fr": {
+          "hook": "Je suis ici depuis quarante ans, je n'ai jamais pensé à partir",
+          "moments": [
+            "Cet été se passe très bien, beaucoup de touristes sont venus",
+            "Nous prenons beaucoup de lufer, nous allons en mer à cinq heures du matin",
+            "Nous vendons du poisson sur le marché à huit heures, les affaires marchent bien",
+            "Kalkan est un endroit paisible, qui grandit en qualité",
+            "Je suis ici depuis quarante ans, je n'ai jamais pensé à partir"
+          ],
+          "sonKart": "Découvrez Kalkan, écoutez les histoires locales"
+        },
+        "ru": {
+          "hook": "Я здесь уже сорок лет, никогда не думал уезжать",
+          "moments": [
+            "Этот лето проходит отлично, пришло много туристов",
+            "Мы ловим много луфера, выходим в море в пять утра",
+            "Мы продаем рыбу на рынке в восемь, бизнес идет хорошо",
+            "Калкан - мирное место, растет в качестве",
+            "Я здесь уже сорок лет, никогда не думал уезжать"
+          ],
+          "sonKart": "Откройте для себя Калкан, послушайте местные истории"
+        }
+      },
+      "status": "pending",
+      "source": "tv-producer",
+      "_sourceId": "demo-001",
+      "_provider": "claude",
+      "createdAt": "2026-07-11T06:50:42.233Z",
+      "routedAt": "2026-07-11T06:50:42.234Z"
+    }
+  ]
+}
