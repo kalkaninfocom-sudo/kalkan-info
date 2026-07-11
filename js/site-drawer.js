@@ -97,8 +97,9 @@
             '</ul>' +
           '</div>' +
           '<div>' +
-            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Jobs & Careers" data-de="Jobs & Karriere" data-ru="Работа и карьера" data-fr="Emploi & Carrière">İş & Kariyer</div>' +
+            '<div class="text-[10px] tracking-[0.18em] uppercase font-bold text-sun-400 mb-2" data-en="Marketplace & Jobs" data-de="Marktplatz & Jobs" data-ru="Маркетплейс и работа" data-fr="Place de marché & Emploi">Pazar Yeri & İş</div>' +
             '<ul class="space-y-1.5">' +
+              '<li><a class="block py-1.5 hover:text-sun-400" href="pazar-yeri.html" data-en="🛒 Marketplace" data-de="🛒 Marktplatz" data-ru="🛒 Маркетплейс" data-fr="🛒 Place de marché">🛒 Pazar Yeri</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="ilanlar.html" data-en="💼 Jobs" data-de="💼 Stellenangebote" data-ru="💼 Вакансии" data-fr="💼 Emplois">💼 İş İlanları</a></li>' +
               '<li><a class="block py-1.5 hover:text-sun-400" href="ilan-ver.html" data-en="📝 Post a Listing" data-de="📝 Anzeige aufgeben" data-ru="📝 Разместить объявление" data-fr="📝 Publier une annonce">📝 İlan Ver</a></li>' +
             '</ul>' +
