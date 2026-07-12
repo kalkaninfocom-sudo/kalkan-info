@@ -8,7 +8,7 @@
 //   ✅ Webhook URL: https://www.kalkaninfo.com/api/telegram-webhook
 
 import { answerCallbackQuery, editMessageText, escapeMd, sendMessage, getFileUrl, sendPhotoBuffer } from '../lib/telegram.js';
-import { shopImage, pickRecipe } from '../lib/image-shop.mjs';
+import { shopImage, pickRecipe } from '../lib/image-shop.js';
 import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
 import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
 import { fanoutExtraPlatforms, fanoutSummary } from '../lib/social-fanout.js';
