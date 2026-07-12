@@ -79,7 +79,8 @@
 // ── Yapılandırma ────────────────────────────────────────────
 // Google Maps Platform API key (Map Tiles API açık) — Photorealistic 3D Tiles için ŞART.
 // Oluşturunca buraya (veya /data/config.js) yaz:
-const GOOGLE_MAPS_API_KEY = window.GOOGLE_MAPS_API_KEY || 'REPLACE_WITH_GOOGLE_MAPS_API_KEY';
+// NOT: client-side Maps key (referrer ile kısıtlanmalı → sadece kalkaninfo.com). Map Tiles API açık olmalı.
+const GOOGLE_MAPS_API_KEY = window.GOOGLE_MAPS_API_KEY || 'AIzaSyCInloGCiTFK8UKVQaIpMMBe8iSWdLBrGM';
 const KALKAN = { lng: 29.4130, lat: 36.2650 };
 
 async function boot() {
