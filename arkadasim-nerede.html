@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Where's My Friend? — Kalkan 3D | kalkaninfo</title>
+<meta name="description" content="Kalkan in stunning 3D. Create a group, share live location with friends, see venues' latest stories — bird's-eye over Kalkan." />
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Cesium.js"></script>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.122/Build/Cesium/Widgets/widgets.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root{ --gold:#E8A020; --blue:#4A9EF5; --green:#4ADE80; --purple:#8B5CF6; --bg:#020510; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Open Sans',sans-serif;background:var(--bg);color:#fff;overflow:hidden}
+  #cesium{position:absolute;inset:0}
+  .cesium-viewer-bottom,.cesium-viewer-timelineContainer,.cesium-viewer-animationContainer,
+  .cesium-viewer-fullscreenContainer,.cesium-viewer-toolbar{display:none!important}
+  /* Üst bar */
+  .topbar{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px;background:linear-gradient(180deg,rgba(2,5,16,0.85),transparent);pointer-events:none}
+  .brand{font-family:'Montserrat';font-weight:800;font-size:17px;pointer-events:auto}
+  .brand span{color:var(--gold)}
+  .chip{font-family:'Montserrat';font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    background:rgba(74,158,245,0.18);border:1px solid rgba(74,158,245,0.4);color:#bcdcff;padding:6px 12px;border-radius:99px;pointer-events:auto}
+  /* Grup paneli */
+  .panel{position:absolute;left:14px;bottom:14px;z-index:10;background:rgba(6,12,26,0.85);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:16px;width:270px;max-width:calc(100vw - 28px)}
+  .panel h3{font-family:'Montserrat';font-weight:700;font-size:14px;margin-bottom:4px}
+  .panel .sub{font-size:12px;color:#9db4d4;margin-bottom:12px}
+  .row{display:flex;gap:8px;margin-bottom:8px}
+  .row input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:9px;
+    padding:9px 11px;color:#fff;font-size:13px;font-family:'Open Sans'}
+  .btn{font-family:'Montserrat';font-weight:700;font-size:12.5px;cursor:pointer;border:none;border-radius:9px;padding:10px 14px;color:#fff}
+  .btn-p{background:var(--blue)} .btn-g{background:var(--green)} .btn-o{background:rgba(255,255,255,0.1)}
+  .share{display:flex;align-items:center;gap:9px;margin-top:6px;font-size:13px}
+  .switch{width:42px;height:24px;border-radius:99px;background:#334;position:relative;cursor:pointer;transition:.2s;flex:0 0 auto}
+  .switch.on{background:var(--green)} .switch::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+  .switch.on::after{left:21px}
+  .friends{margin-top:10px;display:flex;flex-direction:column;gap:6px;max-height:130px;overflow:auto}
+  .friend{display:flex;align-items:center;gap:8px;font-size:12.5px}
+  .fdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .privacy{font-size:10.5px;color:#6a86a8;margin-top:10px;line-height:1.4}
+  .overlay-msg{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:var(--bg);padding:30px}
+  .overlay-msg .box{max-width:420px}
+  .overlay-msg h2{font-family:'Montserrat';font-size:20px;margin-bottom:12px}
+  .overlay-msg p{color:#9db4d4;font-size:13.5px;line-height:1.6;margin-bottom:10px}
+  .overlay-msg code{background:#12203a;padding:2px 7px;border-radius:6px;color:#bcdcff;font-size:12px}
+</style>
+</head>
+<body>
+<div id="cesium"></div>
+
+<div class="topbar">
+  <div class="brand">KALKAN<span>INFO</span></div>
+  <div class="chip">🧭 Where's My Friend? · 3D</div>
+</div>
+
+<div class="panel" id="panel">
+  <h3>Your Group</h3>
+  <div class="sub" id="groupSub">Create or join a group to share live location.</div>
+  <div class="row">
+    <input id="groupCode" placeholder="Group code (e.g. KALKAN42)" />
+    <button class="btn btn-g" id="joinBtn">Join</button>
+  </div>
+  <div class="row">
+    <input id="nameInput" placeholder="Your name" />
+    <button class="btn btn-p" id="createBtn">Create</button>
+  </div>
+  <div class="share">
+    <div class="switch" id="shareSwitch"></div>
+    <span>Share my live location (4h)</span>
+  </div>
+  <div class="friends" id="friendsList"></div>
+  <div class="privacy">🔒 Location is shared only with your group, auto-stops after 4h, and you can turn it off anytime. Consent required (KVKK/GDPR).</div>
+</div>
+
+<script>
+// ── Yapılandırma ────────────────────────────────────────────
+// Google Maps Platform API key (Map Tiles API açık) — Photorealistic 3D Tiles için ŞART.
+// Oluşturunca buraya (veya /data/config.js) yaz:
+const GOOGLE_MAPS_API_KEY = window.GOOGLE_MAPS_API_KEY || 'REPLACE_WITH_GOOGLE_MAPS_API_KEY';
+const KALKAN = { lng: 29.4130, lat: 36.2650 };
+
+async function boot() {
+  if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY.startsWith('REPLACE')) { showKeyMsg(); return; }
+
+  Cesium.GoogleMaps.defaultApiKey = GOOGLE_MAPS_API_KEY;
+  const viewer = new Cesium.Viewer('cesium', {
+    baseLayerPicker:false, geocoder:false, homeButton:false, sceneModePicker:false,
+    navigationHelpButton:false, timeline:false, animation:false, infoBox:false, selectionIndicator:false,
+    globe:false,   // 3D tiles kendi zeminini getirir
+  });
+  viewer.scene.skyAtmosphere.show = true;
+
+  // Google Photorealistic 3D Tiles — gerçek 3B Kalkan
+  let tileset;
+  try {
+    tileset = await Cesium.createGooglePhotorealistic3DTileset();
+    viewer.scene.primitives.add(tileset);
+  } catch (e) {
+    showKeyMsg('3D Tiles yüklenemedi — key geçerli mi / Map Tiles API açık mı? (' + e.message + ')'); return;
+  }
+
+  // Kalkan'a kuş bakışı uç
+  viewer.camera.flyTo({
+    destination: Cesium.Cartesian3.fromDegrees(KALKAN.lng, KALKAN.lat, 1400),
+    orientation: { heading: Cesium.Math.toRadians(20), pitch: Cesium.Math.toRadians(-55), roll: 0 },
+    duration: 3,
+  });
+
+  addVenues(viewer);
+  window.__viewer = viewer;
+  window.__friends = new FriendsLayer(viewer);   // canlı konum katmanı (aşağıda)
+  wireUI();
+}
+
+// ── Mekanlar (bizim veriden) ────────────────────────────────
+const VCOLOR = { Restoran: Cesium.Color.fromCssColorString('#E8A020'), Otel: Cesium.Color.fromCssColorString('#4A9EF5'), Villa: Cesium.Color.fromCssColorString('#8B5CF6') };
+async function loadSet(f, kind){ try{ const d=await fetch(f).then(r=>r.json()); const a=Array.isArray(d)?d:(d.items||d.data||Object.values(d).find(Array.isArray)||[]); return a.filter(x=>x&&x.name).map(x=>({...x,_kind:kind})); }catch(e){ return []; } }
+function coordOf(v){ const c=v.coordinates||v.geo; if(c&&c.longitude&&c.latitude) return [c.longitude,c.latitude]; return null; }
+async function addVenues(viewer){
+  const all=[].concat(await loadSet('/data/restoranlar.json','Restoran'), await loadSet('/data/oteller.json','Otel'), await loadSet('/data/villalar.json','Villa'));
+  for(const v of all){ const c=coordOf(v); if(!c) continue;
+    viewer.entities.add({
+      position: Cesium.Cartesian3.fromDegrees(c[0], c[1], 20),
+      point: { pixelSize: 9, color: VCOLOR[v._kind]||Cesium.Color.WHITE, outlineColor: Cesium.Color.WHITE, outlineWidth: 2, disableDepthTestDistance: Number.POSITIVE_INFINITY },
+      label: { text: v.name, font: '12px Montserrat', scale: 0.5, pixelOffset: new Cesium.Cartesian2(0,-14), fillColor: Cesium.Color.WHITE,
+        showBackground: true, backgroundColor: Cesium.Color.fromCssColorString('rgba(6,12,26,0.75)'),
+        distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 900), disableDepthTestDistance: Number.POSITIVE_INFINITY },
+      description: venueCard(v),
+    });
+  }
+}
+function venueCard(v){ const ig=v.instagram?`<p><a href="https://instagram.com/${String(v.instagram).replace(/^@/,'')}" target="_blank">📸 Instagram — son hikayeler</a></p>`:''; return `<div style="font-family:Open Sans"><b>${v.name}</b><br>${v.cuisine||v.category||v._kind}${v.rating?` · ★${v.rating}`:''}${ig}</div>`; }
+
+// ── Canlı konum katmanı (Supabase Realtime bağlanacak) ──────
+class FriendsLayer {
+  constructor(viewer){ this.viewer=viewer; this.ents=new Map(); }
+  // pos: { id, name, lng, lat, color, venue? }
+  upsert(pos){
+    let e=this.ents.get(pos.id);
+    const c=Cesium.Cartesian3.fromDegrees(pos.lng, pos.lat, 30);
+    if(!e){ e=this.viewer.entities.add({ position:c,
+      billboard:{ image:this._pin(pos.color||'#4ADE80', pos.name), verticalOrigin:Cesium.VerticalOrigin.BOTTOM, disableDepthTestDistance:Number.POSITIVE_INFINITY },
+      label:{ text:pos.name, font:'bold 13px Montserrat', pixelOffset:new Cesium.Cartesian2(0,6), fillColor:Cesium.Color.WHITE, showBackground:true, disableDepthTestDistance:Number.POSITIVE_INFINITY } });
+      this.ents.set(pos.id,e);
+    } else { e.position=c; }
+    this._renderList();
+  }
+  remove(id){ const e=this.ents.get(id); if(e){ this.viewer.entities.remove(e); this.ents.delete(id); this._renderList(); } }
+  _pin(color,name){ const c=document.createElement('canvas'); c.width=48;c.height=60; const x=c.getContext('2d');
+    x.fillStyle=color; x.beginPath(); x.arc(24,24,18,0,7); x.fill(); x.moveTo(24,58); x.lineTo(10,34); x.lineTo(38,34); x.fill();
+    x.fillStyle='#fff'; x.font='bold 20px Montserrat'; x.textAlign='center'; x.fillText((name||'?')[0].toUpperCase(),24,31); return c.toDataURL(); }
+  _renderList(){ const el=document.getElementById('friendsList'); el.innerHTML=[...this.ents.values()].map((_,i)=>'').join(''); }
+}
+
+// ── Grup / paylaşım UI (Faz 1 backend: Supabase Realtime + groups + live_positions) ──
+function wireUI(){
+  const sw=document.getElementById('shareSwitch'); let sharing=false, watchId=null;
+  sw.onclick=()=>{ sharing=!sharing; sw.classList.toggle('on',sharing);
+    if(sharing){ watchId=navigator.geolocation.watchPosition(p=>{ /* TODO: Supabase channel'a gönder: {lng:p.coords.longitude, lat:p.coords.latitude} */ }, ()=>{}, {enableHighAccuracy:true, maximumAge:5000}); }
+    else if(watchId!=null){ navigator.geolocation.clearWatch(watchId); watchId=null; /* TODO: paylaşımı durdur */ } };
+  // TODO: joinBtn/createBtn → Supabase groups tablosu + realtime channel subscribe → __friends.upsert(pos)
+}
+
+function showKeyMsg(extra){
+  document.getElementById('panel').style.display='none';
+  const d=document.createElement('div'); d.className='overlay-msg';
+  d.innerHTML=`<div class="box"><h2>🗺️ 3B Kalkan için Google Maps key gerekli</h2>
+    <p>Bu görünüm <b>Google Photorealistic 3D Tiles</b> kullanır — gerçek fotogrametrik 3B Kalkan.</p>
+    <p>Google Cloud → <code>Map Tiles API</code> etkinleştir → API key oluştur → <code>window.GOOGLE_MAPS_API_KEY</code> olarak ekle.</p>
+    ${extra?`<p style="color:#e8a">${extra}</p>`:''}</div>`;
+  document.body.appendChild(d);
+}
+boot();
+</script>
+</body>
+</html>
