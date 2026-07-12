@@ -7,35 +7,43 @@
 
 /* ---------- Değişkenler ---------- */
 :root {
-  --dark:       #111111;
-  --dark-soft:  #1E1E1E;
-  --dark-card:  #242424;
-  --accent:     #C8391A;
-  --accent-h:   #A52D12;
-  --gold:       #D4952A;
+  /* LA MORA — siyah zemin, beyaz, trattoria kırmızısı, zeytin altını (görsel 2 paleti) */
+  --dark:       #000000;
+  --dark-soft:  #0d0d0d;
+  --dark-card:  #161616;
+  --accent:     #C0392B;   /* gingham kırmızısı */
+  --accent-h:   #9c2c20;
+  --gold:       #CBA24C;   /* zeytin altını (logo) */
   --white:      #FFFFFF;
-  --bg:         #F8F5F1;
-  --bg-alt:     #F0EBE3;
-  --card:       #FFFFFF;
-  --text:       #1A1A1A;
-  --text-soft:  #6B6560;
-  --border:     #E5DFD8;
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.08);
-  --shadow:     0 8px 32px rgba(0,0,0,0.12);
-  --shadow-lg:  0 20px 60px rgba(0,0,0,0.15);
+  --bg:         #0a0a0a;   /* SİYAH zemin (eskiden krem) */
+  --bg-alt:     #121212;
+  --card:       #161616;   /* koyu kart */
+  --text:       #F3F1EC;   /* açık metin */
+  --text-soft:  #A6A29B;
+  --border:     rgba(255,255,255,0.10);
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
+  --shadow:     0 8px 32px rgba(0,0,0,0.55);
+  --shadow-lg:  0 20px 60px rgba(0,0,0,0.7);
   --radius:     12px;
   --radius-lg:  20px;
   --maxw:       1160px;
   --ease:       cubic-bezier(.22,.61,.36,1);
 
-  /* Placeholder rengi — görsel eklenene kadar */
-  --ph-bg:      #DDD8D0;
+  /* Kırmızı-beyaz gingham (LA MORA imzası) — dekoratif şerit/aksan */
+  --gingham: repeating-linear-gradient(45deg, #C0392B 0 14px, #fff 14px 28px),
+             repeating-linear-gradient(-45deg, rgba(192,57,43,0.5) 0 14px, transparent 14px 28px);
+
+  --ph-bg:      #1a1a1a;
   --ph-pattern: repeating-linear-gradient(
     45deg,
     transparent 0, transparent 12px,
-    rgba(0,0,0,0.04) 12px, rgba(0,0,0,0.04) 24px
+    rgba(255,255,255,0.03) 12px, rgba(255,255,255,0.03) 24px
   );
 }
+
+/* Gingham şerit yardımcı (bölüm ayırıcı / üst bordür) */
+.gingham-strip { height: 14px; width: 100%;
+  background-image: repeating-linear-gradient(45deg, #C0392B 0 12px, #ffffff 12px 24px); }
 
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -89,7 +97,7 @@ p:last-child { margin-bottom: 0; }
 h2 {
   font-size: clamp(1.9rem, 4vw, 2.8rem);
   font-weight: 800; line-height: 1.1;
-  color: var(--dark);
+  color: var(--text);
 }
 h2 em {
   font-family: 'Playfair Display', serif;
@@ -116,14 +124,14 @@ h2 em {
 .btn-primary:hover { background: var(--accent-h); }
 
 .btn-outline {
-  border-color: var(--dark); color: var(--dark);
+  border-color: var(--text); color: var(--text);
 }
 .btn-outline:hover { background: var(--dark); color: var(--white); }
 
 .btn-ghost { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.45); }
 .btn-ghost:hover { background: rgba(255,255,255,0.15); color: var(--white); border-color: rgba(255,255,255,0.7); }
 
-.btn-ghost-dark { color: var(--dark); border-color: var(--border); background: transparent; }
+.btn-ghost-dark { color: var(--text); border-color: var(--border); background: transparent; }
 .btn-ghost-dark:hover { background: var(--bg-alt); }
 
 /* ---------- Section ortak ---------- */
@@ -238,7 +246,7 @@ section { padding: 88px 0; }
   position: relative; min-height: 100svh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  background-color: var(--dark);
+  background-color: var(--text);
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -333,7 +341,7 @@ section { padding: 88px 0; }
 }
 
 /* ---------- ABOUT / HİKAYE ---------- */
-.about-section { background: var(--white); }
+.about-section { background: var(--bg-alt); color: var(--text); }
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
 }
@@ -427,7 +435,7 @@ section { padding: 88px 0; }
   padding: 14px 16px;
 }
 .cat-label h3 {
-  font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: var(--dark);
+  font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; color: var(--text);
 }
 .cat-hint { font-size: 0.75rem; color: var(--accent); font-weight: 600; }
 
@@ -532,7 +540,7 @@ section { padding: 88px 0; }
 .testimonial .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 2px; }
 .testimonial p {
   font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.08rem;
-  color: var(--dark); flex: 1; line-height: 1.7;
+  color: var(--text); flex: 1; line-height: 1.7;
 }
 .testimonial .who {
   display: flex; align-items: center; gap: 8px;
@@ -581,7 +589,7 @@ section { padding: 88px 0; }
 }
 
 /* ---------- KONUM & İLETİŞİM ---------- */
-.location-section { background: var(--white); }
+.location-section { background: var(--bg-alt); }
 .location-grid {
   display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: stretch;
 }
@@ -682,7 +690,7 @@ section { padding: 88px 0; }
 .mobile-callbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 150;
   display: none; gap: 8px; padding: 10px 14px;
-  background: var(--white); border-top: 1px solid var(--border);
+  background: var(--dark-card); border-top: 1px solid var(--border);
   box-shadow: 0 -4px 16px rgba(0,0,0,0.1);
 }
 @media (max-width: 640px) { .mobile-callbar { display: flex; } }

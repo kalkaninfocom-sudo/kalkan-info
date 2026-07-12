@@ -1,5 +1,5 @@
 // =========================================================
-// LAMORA KALKAN — Çok Dilli Destek (TR / EN / RU)
+// LA MORA KALKAN — Çok Dilli Destek (TR / EN / RU)
 // =========================================================
 const LANGS = ['tr', 'en', 'ru'];
 const LANG_NAMES = { tr: 'TR', en: 'EN', ru: 'RU' };
@@ -24,8 +24,8 @@ const UI = {
     everyday: 'Her gün', reviews_word: 'Yorum', new_open: 'Yeni Açıldı', find_us_google: 'Bizi Google’da bulun', get_directions: 'Yol Tarifi Al',
     view_menu_arrow: 'Menüyü Gör →',
     about_eyebrow: 'Hikayemiz', about_heading: 'Bir aile işletmesinin <em>hikayesi</em>',
-    about_signature: '— Lamora Kalkan ailesi',
-    features_eyebrow: 'Farkımız', features_heading: 'Neden <em>Lamora?</em>',
+    about_signature: '— La Mora Kalkan ailesi',
+    features_eyebrow: 'Farkımız', features_heading: 'Neden <em>La Mora?</em>',
     feature1_title: 'Günlük Taze Malzeme', feature1_desc: 'Her sabah taze alınan et ve sebzelerle hazırlanan lezzetler.',
     feature2_title: 'Özenli Mutfak', feature2_desc: 'Şefimizin elinden çıkan, özenle hazırlanan tabaklar.',
     feature3_title: 'Temizlik & Hijyen', feature3_desc: 'Düzenli temizlenen mutfak ve servis alanı, her zaman hijyenik ortam.',
@@ -53,8 +53,8 @@ const UI = {
     draft_banner: 'Yönetici önizlemesi — bu taslak yalnızca sizin tarayıcınızda görünür.',
     back_to_home: 'Ana Sayfaya Dön', menu_title: 'Menü', menu_categories_label: 'Menü kategorileri',
     empty_menu: 'Henüz menü içeriği eklenmemiş.', order_call: 'Sipariş İçin Ara', back_home_arrow: '← Ana Sayfa',
-    index_title: 'Lamora Kalkan | Kalkan, Kaş — Antalya',
-    menu_page_title: 'Menü & Fiyat Listesi | Lamora Kalkan',
+    index_title: 'La Mora Kalkan | Kalkan, Kaş — Antalya',
+    menu_page_title: 'Menü & Fiyat Listesi | La Mora Kalkan',
   },
   en: {
     skip_link: 'Skip to content',
@@ -64,8 +64,8 @@ const UI = {
     everyday: 'Every day', reviews_word: 'Reviews', new_open: 'Newly Opened', find_us_google: 'Find us on Google', get_directions: 'Get Directions',
     view_menu_arrow: 'View Menu →',
     about_eyebrow: 'Our Story', about_heading: 'The <em>story</em> of a family business',
-    about_signature: '— The Lamora Kalkan family',
-    features_eyebrow: 'What Sets Us Apart', features_heading: 'Why <em>Lamora?</em>',
+    about_signature: '— The La Mora Kalkan family',
+    features_eyebrow: 'What Sets Us Apart', features_heading: 'Why <em>La Mora?</em>',
     feature1_title: 'Fresh Ingredients Daily', feature1_desc: 'Dishes prepared every morning with freshly sourced meat and vegetables.',
     feature2_title: 'Careful Cuisine', feature2_desc: 'Carefully prepared plates from our chef.',
     feature3_title: 'Cleanliness & Hygiene', feature3_desc: 'A regularly cleaned kitchen and service area — always a hygienic environment.',
@@ -93,8 +93,8 @@ const UI = {
     draft_banner: 'Admin preview — this draft is only visible in your browser.',
     back_to_home: 'Back to Home', menu_title: 'Menu', menu_categories_label: 'Menu categories',
     empty_menu: 'No menu content has been added yet.', order_call: 'Call to Order', back_home_arrow: '← Home',
-    index_title: 'Lamora Kalkan | Kalkan, Kaş — Antalya',
-    menu_page_title: 'Menu & Price List | Lamora Kalkan',
+    index_title: 'La Mora Kalkan | Kalkan, Kaş — Antalya',
+    menu_page_title: 'Menu & Price List | La Mora Kalkan',
   },
   ru: {
     skip_link: 'Перейти к содержимому',
@@ -104,8 +104,8 @@ const UI = {
     everyday: 'Каждый день', reviews_word: 'отзывов', new_open: 'Только открылись', find_us_google: 'Найдите нас в Google', get_directions: 'Проложить маршрут',
     view_menu_arrow: 'Смотреть меню →',
     about_eyebrow: 'Наша история', about_heading: '<em>История</em> семейного бизнеса',
-    about_signature: '— Семья Lamora Kalkan',
-    features_eyebrow: 'Наши преимущества', features_heading: 'Почему <em>Lamora?</em>',
+    about_signature: '— Семья La Mora Kalkan',
+    features_eyebrow: 'Наши преимущества', features_heading: 'Почему <em>La Mora?</em>',
     feature1_title: 'Свежие продукты каждый день', feature1_desc: 'Блюда готовятся каждое утро из свежего мяса и овощей.',
     feature2_title: 'Забота на кухне', feature2_desc: 'Тщательно приготовленные блюда от нашего шефа.',
     feature3_title: 'Чистота и гигиена', feature3_desc: 'Регулярно убираемая кухня и зона обслуживания — всегда гигиеничная обстановка.',
@@ -133,8 +133,8 @@ const UI = {
     draft_banner: 'Предпросмотр администратора — черновик виден только в вашем браузере.',
     back_to_home: 'Вернуться на главную', menu_title: 'Меню', menu_categories_label: 'Категории меню',
     empty_menu: 'Меню пока не добавлено.', order_call: 'Позвонить для заказа', back_home_arrow: '← Главная',
-    index_title: 'Lamora Kalkan | Калкан, Каш — Анталья',
-    menu_page_title: 'Меню и цены | Lamora Kalkan',
+    index_title: 'La Mora Kalkan | Калкан, Каш — Анталья',
+    menu_page_title: 'Меню и цены | La Mora Kalkan',
   },
 };
 
@@ -189,8 +189,8 @@ const CONTENT = {
     // Ayar metinleri
     'Yolda en güzel mola, evin sıcaklığında bir lezzet.': 'The best break on the road, a taste with the warmth of home.',
     'Misafirlerimizin memnuniyeti ve evinde hissetmesi, tek amacımız': "Our guests' satisfaction and feeling at home is our only goal",
-    "Lamora Kalkan, Kaş ile Kalkan arasındaki sahil yolunda, Yeşilköy Kavşağı'nda küçük bir aile işletmesi olarak yola çıktı. Mürüvvet Hanım'ın elinden çıkan köfte, tantuni ve kokoreç, yıllardır bu yoldan geçen yerli ve yabancı misafirlere ev sıcaklığında bir mola sunuyor.":
-      "Lamora Kalkan started out as a small family business at Yeşilköy Junction, on the coastal road between Kaş and Kalkan. The meatballs, tantuni and kokoreç made by Mürüvvet Hanım have offered a warm, home-style break to local and international travelers passing this road for years.",
+    "La Mora Kalkan, Kaş ile Kalkan arasındaki sahil yolunda, Yeşilköy Kavşağı'nda küçük bir aile işletmesi olarak yola çıktı. Mürüvvet Hanım'ın elinden çıkan köfte, tantuni ve kokoreç, yıllardır bu yoldan geçen yerli ve yabancı misafirlere ev sıcaklığında bir mola sunuyor.":
+      "La Mora Kalkan started out as a small family business at Yeşilköy Junction, on the coastal road between Kaş and Kalkan. The meatballs, tantuni and kokoreç made by Mürüvvet Hanım have offered a warm, home-style break to local and international travelers passing this road for years.",
     'Kullandığımız malzemelerin tazeliğine ve mekânımızın temizliğine büyük önem veriyoruz. Amacımız sadece karın doyurmak değil; bu yoldan bir daha geçtiğinizde uğramak isteyeceğiniz bir durak olmak.':
       "We place great importance on the freshness of our ingredients and the cleanliness of our place. Our goal isn't just to fill your stomach — it's to be a stop you'll want to visit again next time you pass this way.",
     'Kaş-Fethiye Çevre Yolu Üzeri, Yeşilköy Kavşağı, Antalya': 'Kaş-Fethiye Ring Road, Yeşilköy Junction, Antalya',
@@ -231,8 +231,8 @@ const CONTENT = {
       'Прекрасное заведение! Стоит зайти хотя бы ради приветливой улыбки персонала, а вкус вне всякой критики. Одно из самых известных мест в Каше, Анталья — искренне рекомендую.',
     'Yolda en güzel mola, evin sıcaklığında bir lezzet.': 'Лучшая остановка в пути — вкус с домашним теплом.',
     'Misafirlerimizin memnuniyeti ve evinde hissetmesi, tek amacımız': 'Удовлетворённость наших гостей и ощущение дома — наша единственная цель',
-    "Lamora Kalkan, Kaş ile Kalkan arasındaki sahil yolunda, Yeşilköy Kavşağı'nda küçük bir aile işletmesi olarak yola çıktı. Mürüvvet Hanım'ın elinden çıkan köfte, tantuni ve kokoreç, yıllardır bu yoldan geçen yerli ve yabancı misafirlere ev sıcaklığında bir mola sunuyor.":
-      'Lamora Kalkan начал свой путь как небольшой семейный бизнес на перекрёстке Йешилькёй, на прибрежной дороге между Кашем и Калканом. Котлеты, тантуни и кокореч, приготовленные Мюрюввет-ханым, годами дарят тёплую, по-домашнему уютную остановку местным и иностранным гостям, проезжающим по этой дороге.',
+    "La Mora Kalkan, Kaş ile Kalkan arasındaki sahil yolunda, Yeşilköy Kavşağı'nda küçük bir aile işletmesi olarak yola çıktı. Mürüvvet Hanım'ın elinden çıkan köfte, tantuni ve kokoreç, yıllardır bu yoldan geçen yerli ve yabancı misafirlere ev sıcaklığında bir mola sunuyor.":
+      'La Mora Kalkan начал свой путь как небольшой семейный бизнес на перекрёстке Йешилькёй, на прибрежной дороге между Кашем и Калканом. Котлеты, тантуни и кокореч, приготовленные Мюрюввет-ханым, годами дарят тёплую, по-домашнему уютную остановку местным и иностранным гостям, проезжающим по этой дороге.',
     'Kullandığımız malzemelerin tazeliğine ve mekânımızın temizliğine büyük önem veriyoruz. Amacımız sadece karın doyurmak değil; bu yoldan bir daha geçtiğinizde uğramak isteyeceğiniz bir durak olmak.':
       'Мы придаём большое значение свежести продуктов и чистоте нашего заведения. Наша цель — не просто накормить, а стать остановкой, куда вы захотите заглянуть снова, проезжая этой дорогой в следующий раз.',
     'Kaş-Fethiye Çevre Yolu Üzeri, Yeşilköy Kavşağı, Antalya': 'Кольцевая дорога Каш-Фетхие, перекрёсток Йешилькёй, Анталья',
