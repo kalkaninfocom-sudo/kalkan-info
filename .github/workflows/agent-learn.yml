@@ -1,0 +1,52 @@
+name: Ajan öğrenme rotasyonu (round-robin — knowledge güncelle)
+
+# Öğrenme döngüsü: her gün en eski öğrenen 2 ajan kaynak okuyup knowledge/<id>.json'a
+# ders ekler. 28 ajan → ~14 günde tam tur. Kota-güvenli (2/gün). Vercel cron dolu → Actions.
+# Berkay denetimi (2026-07-12): brifing taze ama öğrenme 07-08'de donmuştu → yeniden aktive.
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 05:00 UTC = 08:00 Europe/Istanbul (brifing 07:00'den sonra)
+  workflow_dispatch:
+    inputs:
+      count:
+        description: 'Bu turda kaç ajan öğrensin (1-2)'
+        default: '2'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agent-learn
+  cancel-in-progress: false
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: Öğrenme rotasyonu (en eski 2 ajan)
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/agency/learn-rotation.mjs "${{ github.event.inputs.count || '2' }}"
+
+      - name: Knowledge çıktısını commit'le
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/agency/knowledge 2>/dev/null || true
+          if git diff --cached --quiet; then echo "yeni ders yok"; exit 0; fi
+          git commit -m "learn(knowledge): ajan öğrenme rotasyonu $(TZ=Europe/Istanbul date +%F) [auto]"
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"
