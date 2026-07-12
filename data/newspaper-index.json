@@ -1,8 +1,25 @@
 {
-  "generatedAt": "2026-07-11T06:58:12.261Z",
-  "total": 13,
-  "latest": "2026-07-11",
+  "generatedAt": "2026-07-12T06:09:50.253Z",
+  "total": 14,
+  "latest": "2026-07-12",
   "issues": [
+    {
+      "date": "2026-07-12",
+      "day": "Pazar",
+      "long": "12 Temmuz 2026",
+      "editions": {
+        "morning": {
+          "html": "/newspaper/archive/2026-07-12/morning",
+          "pdf": null,
+          "card": null
+        },
+        "magazine": {
+          "html": "/newspaper/archive/2026-07-12/magazine",
+          "pdf": null,
+          "card": null
+        }
+      }
+    },
     {
       "date": "2026-07-11",
       "day": "Cumartesi",
@@ -10,7 +27,7 @@
       "editions": {
         "morning": {
           "html": "/newspaper/archive/2026-07-11/morning",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-11/morning.pdf",
           "card": null
         },
         "magazine": {
