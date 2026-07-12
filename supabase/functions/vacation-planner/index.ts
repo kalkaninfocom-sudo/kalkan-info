@@ -352,6 +352,39 @@ async function callAnthropic(systemPrompt: string, userMessage: string, apiKey: 
 }
 
 // ---------------------------------------------------------------------------
+// NVIDIA NIM (ücretsiz, OpenAI-uyumlu) — varsayılan LLM (Anthropic yerine)
+// ---------------------------------------------------------------------------
+const PLAN_JSON_INSTRUCTION = `
+
+ÇIKTI KURALI: Yanıtı SADECE geçerli JSON ver (markdown/kod bloğu/açıklama YOK). Şema:
+{"days":[{"date":"YYYY-MM-DD","dayLabel":"...","items":[{"type":"flight|transfer|accommodation|activity|meal","title":"...","description":"ops","time":"ops HH:MM","price":sayı_ops,"priceNote":"ops","refId":"katalogdaki gerçek işletme id'si ops"}]}],"rationale":"kısa gerekçe; fiyatlar tahmini, işletmece belirlenir"}
+Her gün gerçekçi item üret; katalogdaki GERÇEK Kalkan işletmelerini kullan. Türkçe yaz.`;
+
+async function callNvidia(systemPrompt: string, userMessage: string, apiKey: string, model: string) {
+  const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({
+      model,
+      max_tokens: 4096,
+      temperature: 0.6,
+      response_format: { type: 'json_object' },
+      messages: [
+        { role: 'system', content: systemPrompt + PLAN_JSON_INSTRUCTION },
+        { role: 'user',   content: userMessage },
+      ],
+    }),
+  });
+  if (!res.ok) throw new Error(`NVIDIA ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  const json = await res.json();
+  let content = String(json.choices?.[0]?.message?.content ?? '');
+  content = content.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/i, '').trim();
+  const parsed = JSON.parse(content);
+  if (!Array.isArray(parsed.days) || parsed.days.length === 0) throw new Error('NVIDIA plan boş/geçersiz');
+  return { result: parsed, requestId: json.id ?? `nvidia_${Date.now()}`, usage: json.usage };
+}
+
+// ---------------------------------------------------------------------------
 // Rate limit — vacation_requests tablosundan son 24h kayıt sayısı
 // ---------------------------------------------------------------------------
 async function checkRateLimit(supabase: ReturnType<typeof createClient>, userId: string | null) {
@@ -388,6 +421,48 @@ async function checkRateLimit(supabase: ReturnType<typeof createClient>, userId:
 }
 
 // ---------------------------------------------------------------------------
+// Telegram bildirimi — yeni tatil talebi admin'e düşsün (non-fatal, yanıtı bloklamaz)
+// ---------------------------------------------------------------------------
+async function notifyTelegram(
+  formData: Record<string, unknown>,
+  meta: { nights: number; totalPeople: number },
+  isStub: boolean,
+) {
+  const token  = Deno.env.get('TELEGRAM_BOT_TOKEN');
+  const chatId = Deno.env.get('TELEGRAM_ADMIN_CHAT_ID');
+  if (!token || !chatId) return;
+
+  const p = formData;
+  const prefs = [p.cuisine, p.activities, p.food]
+    .flat().filter(Boolean).map(String).slice(0, 6).join(', ');
+  const kids = Number(p.children ?? 0);
+  const lines = [
+    '🏖️ Yeni Tatil Talebi — kalkaninfo tatil asistanı',
+    `📅 ${p.dateStart} → ${p.dateEnd} (${meta.nights} gece)`,
+    `👥 ${p.adults ?? 2} yetişkin${kids ? ` + ${kids} çocuk` : ''}`,
+    `💰 Bütçe: ${p.budget ?? '-'} ${p.currency ?? 'TRY'}`,
+    p.accommodationType ? `🏨 ${p.accommodationType}` : '',
+    prefs ? `🎯 ${prefs}` : '',
+    p.specialRequests ? `📝 ${String(p.specialRequests).slice(0, 200)}` : '',
+    isStub ? '⚠️ STUB plan (gerçek AI key yok)' : '✅ AI planı üretildi',
+  ].filter(Boolean);
+
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: lines.join('\n'),
+        disable_web_page_preview: true,
+      }),
+    });
+  } catch (e) {
+    console.warn('[vacation-planner] telegram notify failed (non-fatal):', (e as Error).message);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Main handler
 // ---------------------------------------------------------------------------
 Deno.serve(async (req: Request) => {
@@ -412,6 +487,8 @@ Deno.serve(async (req: Request) => {
     const supabaseKey      = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const anthropicApiKey  = Deno.env.get('ANTHROPIC_API_KEY') ?? '';
     const model            = Deno.env.get('AGENT_TATIL_PLANNER_MODEL') ?? 'claude-sonnet-4-6';
+    const nvidiaApiKey     = Deno.env.get('NVIDIA_API_KEY') ?? '';        // ücretsiz, öncelikli
+    const nvidiaModel      = Deno.env.get('AGENT_TATIL_NVIDIA_MODEL') ?? 'meta/llama-3.3-70b-instruct';
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -433,8 +510,8 @@ Deno.serve(async (req: Request) => {
     // Rate limit
     await checkRateLimit(supabase, userId);
 
-    // Stub mode
-    const isStub = !anthropicApiKey;
+    // LLM seçimi: NVIDIA (ücretsiz) → Anthropic → stub. LLM hata verirse stub'a düş (render bozulmasın).
+    let isStub = !nvidiaApiKey && !anthropicApiKey;
     let plan: Record<string, unknown>;
     let requestId = `stub_${Date.now()}`;
     let inputTokens  = 0;
@@ -446,12 +523,25 @@ Deno.serve(async (req: Request) => {
       const catalog      = buildCatalogSummary(formData);
       const systemPrompt = buildSystemPrompt();
       const userMessage  = buildUserPrompt(formData, meta, catalog);
-
-      const claudeResult = await callAnthropic(systemPrompt, userMessage, anthropicApiKey, model);
-      plan         = claudeResult.result as Record<string, unknown>;
-      requestId    = claudeResult.requestId as string;
-      inputTokens  = claudeResult.usage?.input_tokens  ?? 0;
-      outputTokens = claudeResult.usage?.output_tokens ?? 0;
+      try {
+        if (nvidiaApiKey) {
+          const r = await callNvidia(systemPrompt, userMessage, nvidiaApiKey, nvidiaModel);
+          plan         = r.result as Record<string, unknown>;
+          requestId    = r.requestId as string;
+          inputTokens  = r.usage?.prompt_tokens     ?? 0;
+          outputTokens = r.usage?.completion_tokens ?? 0;
+        } else {
+          const claudeResult = await callAnthropic(systemPrompt, userMessage, anthropicApiKey, model);
+          plan         = claudeResult.result as Record<string, unknown>;
+          requestId    = claudeResult.requestId as string;
+          inputTokens  = claudeResult.usage?.input_tokens  ?? 0;
+          outputTokens = claudeResult.usage?.output_tokens ?? 0;
+        }
+      } catch (llmErr) {
+        console.warn('[vacation-planner] LLM başarısız, stub fallback:', (llmErr as Error).message);
+        plan = buildStubPlan(formData, meta);
+        isStub = true;
+      }
     }
 
     const latencyMs = Date.now() - startMs;
@@ -490,6 +580,9 @@ Deno.serve(async (req: Request) => {
     if (saveError) {
       console.warn('[vacation-planner] DB save failed (non-fatal):', saveError.message);
     }
+
+    // Admin'e Telegram bildirimi (yanıtı bloklamaz)
+    notifyTelegram(formData, meta, isStub).catch(() => {});
 
     return new Response(
       JSON.stringify({
