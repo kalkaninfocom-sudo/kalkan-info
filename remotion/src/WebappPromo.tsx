@@ -208,8 +208,8 @@ const AppIcon: React.FC<{ size?: number }> = ({ size = 150 }) => (
   </div>
 );
 
-const InstallScene: React.FC<{ label: string; headline: string; sub: string; duration: number }> = ({
-  label, headline, sub, duration,
+const InstallScene: React.FC<{ label: string; headline: string; sub: string; duration: number; en?: boolean }> = ({
+  label, headline, sub, duration, en,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -223,9 +223,9 @@ const InstallScene: React.FC<{ label: string; headline: string; sub: string; dur
   const phoneW = 700, phoneH = 1420, radius = 60;
 
   const rows = [
-    { icon: '⧉', label: 'Kopyala', hot: false },
-    { icon: '＋', label: label || 'Ana Ekrana Ekle', hot: true },
-    { icon: '☆', label: 'Yer İşareti', hot: false },
+    { icon: '⧉', label: en ? 'Copy' : 'Kopyala', hot: false },
+    { icon: '＋', label: label || (en ? 'Add to Home Screen' : 'Ana Ekrana Ekle'), hot: true },
+    { icon: '☆', label: en ? 'Bookmark' : 'Yer İşareti', hot: false },
   ];
 
   return (
@@ -285,7 +285,7 @@ const InstallScene: React.FC<{ label: string; headline: string; sub: string; dur
                   <div style={{ transform: `scale(${iconPop})` }}><AppIcon size={128} /></div>
                 </div>
                 <div style={{ position: 'absolute', bottom: 60, left: 0, right: 0, textAlign: 'center', fontFamily: FONT_BODY, fontWeight: 700, fontSize: 30, color: C.green, opacity: iconPop }}>
-                  ✓ Ana ekranına eklendi
+                  ✓ {en ? 'Added to home screen' : 'Ana ekranına eklendi'}
                 </div>
               </AbsoluteFill>
             )}
@@ -354,7 +354,7 @@ export const WebappPromo: React.FC<WebappPromoProps> = ({ scenes, music, base })
           <Sequence key={s.key} from={from} durationInFrames={s.frames}>
             {s.type === 'cinematic' && <Cinematic photos={s.photos} headline={s.headline} sub={s.sub} duration={s.frames} />}
             {s.type === 'screen' && s.screen && <ScreenScene src={s.screen} label={s.label} headline={s.headline} sub={s.sub} duration={s.frames} tiltDeg={tilt} />}
-            {s.type === 'install' && <InstallScene label={s.label === 'Nasıl Yüklenir?' || s.label === 'How to Install' ? 'Ana Ekrana Ekle' : s.label} headline={s.headline} sub={s.sub} duration={s.frames} />}
+            {s.type === 'install' && <InstallScene en={s.label === 'How to Install'} label={s.label === 'How to Install' ? 'Add to Home Screen' : (s.label === 'Nasıl Yüklenir?' ? 'Ana Ekrana Ekle' : s.label)} headline={s.headline} sub={s.sub} duration={s.frames} />}
             {s.type === 'cta' && <CtaScene headline={s.headline} sub={s.sub} />}
             {s.audio && <Audio src={asset(s.audio)} volume={1} />}
           </Sequence>
