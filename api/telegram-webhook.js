@@ -7,7 +7,8 @@
 //   ✅ TELEGRAM_ADMIN_CHAT_ID (Vercel env)
 //   ✅ Webhook URL: https://www.kalkaninfo.com/api/telegram-webhook
 
-import { answerCallbackQuery, editMessageText, escapeMd, sendMessage } from '../lib/telegram.js';
+import { answerCallbackQuery, editMessageText, escapeMd, sendMessage, getFileUrl, sendPhotoBuffer } from '../lib/telegram.js';
+import { shopImage, pickRecipe } from '../lib/image-shop.mjs';
 import { publishCarousel, publishSingleImage, publishReels } from '../lib/instagram-publish.js';
 import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publish.js';
 import { fanoutExtraPlatforms, fanoutSummary } from '../lib/social-fanout.js';
@@ -216,6 +217,35 @@ async function publishNow(post) {
   }
 }
 
+// ── PHOTO-SHOP: telefon fotosu → yayına-hazır görsel (nano-banana) ──
+// PC gerekmez (Vercel). Reçete caption'dan: enhance/removebg/relight/menu/social (vars: menu).
+async function handleShopPhoto(chatId, msg) {
+  const recipe = pickRecipe(msg.caption || '');
+  await sendMessage(chatId, `📸 Fotoğrafı aldım — _${escapeMd(recipe)}_ ile işliyorum\\.\\.\\. (birkaç sn)`);
+  try {
+    const photo = msg.photo[msg.photo.length - 1]; // en yüksek çözünürlük
+    const url = await getFileUrl(photo.file_id);
+    const resp = await fetch(url, { signal: AbortSignal.timeout(15000) });
+    const inBuf = Buffer.from(await resp.arrayBuffer());
+    const { outBuffer, provenance } = await shopImage({ buffer: inBuf, recipe });
+    await sendPhotoBuffer(chatId, outBuffer, `✅ Hazır (${recipe}) · ajansAI`);
+    // provenance → Supabase audit (varsa); yoksa sessiz
+    if (SUPA_URL && SUPA_KEY) {
+      await supa('/image_audit', { method: 'POST', body: JSON.stringify({
+        chat_id: String(chatId), recipe, input_sha: provenance.inputSha,
+        output_sha: provenance.outputSha, engine: provenance.engine, ts: provenance.ts,
+      }) }).catch(() => {});
+    }
+  } catch (e) {
+    const is429 = e.status === 429 || /quota|billing|429/i.test(String(e.message));
+    if (is429) {
+      await sendMessage(chatId, '⚠️ Görsel motoru için *billing* açılmalı \\(Gemini free\\-tier kota=0\\)\\. Açılınca foto\\-shop anında çalışır\\.');
+    } else {
+      await sendMessage(chatId, `⚠️ İşlenemedi: ${escapeMd(String(e.message || e).slice(0, 200))}`);
+    }
+  }
+}
+
 export default async function handler(req, res) {
   const secret = req.headers['x-telegram-bot-api-secret-token'];
   const expected = process.env.TELEGRAM_WEBHOOK_SECRET;
@@ -232,9 +262,15 @@ export default async function handler(req, res) {
       const chatId = msg.chat.id;
       const text = (msg.text || '').trim();
 
+      // ── Foto geldi → Photo-Shop (nano-banana) ──
+      if (Array.isArray(msg.photo) && msg.photo.length) {
+        await handleShopPhoto(chatId, msg);
+        return res.status(200).json({ ok: true });
+      }
+
       if (text === '/start' || text === '/id') {
         await sendMessage(chatId,
-          `Merhaba Berkay\\! ✅\n\nChat ID: \`${chatId}\`\n\nBu ID Vercel env \`TELEGRAM_ADMIN_CHAT_ID\` olarak eklendi\\. Onay flow aktif\\.\n\nKomutlar:\n/plan — bu haftaki planı göster\n/pending — onay bekleyenleri listele\n/agents — agent organizma durumu`);
+          `Merhaba Berkay\\! ✅\n\nChat ID: \`${chatId}\`\n\nBu ID Vercel env \`TELEGRAM_ADMIN_CHAT_ID\` olarak eklendi\\. Onay flow aktif\\.\n\nKomutlar:\n/plan — bu haftaki planı göster\n/pending — onay bekleyenleri listele\n/agents — agent organizma durumu\n\n📸 *Foto\\-Shop:* bir fotoğraf yolla → yayına\\-hazır hale getireyim\\. Caption ile reçete: _enhance · removebg · relight · menu · social_`);
       } else if (text === '/agents') {
         try {
           const rows = await fetchAgentStatus(200);
