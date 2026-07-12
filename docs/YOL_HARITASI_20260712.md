@@ -5,6 +5,39 @@
 
 ---
 
+## 🆕 2026-07-12 AKŞAM GÜNCELLEMESİ (bu oturum — buradan devam)
+
+### 🧭 Arkadaşım Nerede — 3 sorun çözüldü + CANLI KONUM ÇALIŞIYOR
+- ✅ **Render crash çözüldü** — Cesium Viewer fullscreen widget'ı CSP'de `unsafe-eval` olmadığı için Knockout'ta patlıyordu → `fullscreenButton:false, vrButton:false, baseLayer:false` eklendi.
+- ✅ **Pinler gerçek konumda** — sabit 20/30m elipsoid yerine `CLAMP_TO_GROUND` (Kalkan zemini 48-111m; artık binaların üstünde).
+- ✅ **Sadece Kalkan MERKEZ** — veriye Kaş/çevre köy mekanları karışmıştı (31 mekan >1.5km). `AREA` kutu filtresi: 152→104 pin + kamera kutuya kilitli + `requestRenderMode` (kasma bitti).
+- ✅ **Başlangıç kamerası tepeden** (pitch -90, 1650m) — Berkay'ın istediği harita görünümü.
+- ✅ **Grup + canlı konum UÇTAN UCA TEST EDİLDİ** — Supabase Realtime Presence çalışıyor (grup KLK oluştur → track → arkadaşlar haritada belirir, 0 hata). `wireUI/joinGroup/renderPresence/startShare` zaten bağlıymış — stub DEĞİL, çalışıyor. (Eski roadmap notu "Faz 1 backend stub" GÜNCEL DEĞİL.)
+- ⛔ **BERKAY:** hâlâ Google Cloud Map Tiles API **kota cap** + referrer kısıtı koy (yukarıdaki nota bak).
+
+### 🏢 kalkaninfo.com/office — AJANS VİTRİNİ (YENİ, CANLI)
+- ✅ Kök `office.html` → `cleanUrls` → **kalkaninfo.com/office**. CSP uyumlu (fonts + placehold + `self` görseller).
+- ✅ **Premium kalkaninfo dili**: gerçek Kalkan körfezi fotosu (`assets/img/da72f67377f7.webp`) + lacivert duotone + altın scrim (homepage'in birebir reçetesi), Montserrat/Inter, altın gradient CTA, stats (170+/137/5/20+).
+- ✅ **CANLI PORTFÖY** = en güçlü satış kozu: 3 gerçek iş (Çakıl Beach, Coast Kalkan, Çiku) demoya tıklanabilir kartlar + "● CANLI" rozeti. Screenshot'lar `assets/office/port-*.jpeg`.
+- ✅ Hizmet kartları (Web / İçerik-Reels / AI-Otomasyon) + CTA band + iletişim formu + dev KALKANINFO footer.
+- 📌 **DERS (Berkay uyardı):** İlk versiyon Mittelco'nun flat çizim dükkanının rengini değiştirmişti — konsept markaya uymuyordu. Ajansın kendi sitesi = en güçlü satış kanıtı → premium + GERÇEK portföyle baştan kuruldu.
+- 🔨 **SIRADAKİ (Berkay "sonra devam" dedi):**
+  - Daha çok portföy (3→6: 3B arkadasim-nerede, gazete, +demolar). 3D screenshot ayrı yöntemle (Cesium render kilidi var).
+  - Gerçek testimonial / sonuç rakamı ("X işletme rezervasyonu %Y arttı").
+  - Teklif formunu Resend'e gerçek gönderime bağla (Berkay key).
+  - Ana site header/footer'ına "Studio/Ajans" linki ekle.
+
+### 📄 Bölgesel Süper-App one-pager (yatırımcı/satış)
+- ✅ `docs/pitch/bolgesel-superapp.html` — problem/çözüm, "neden biz değil Google", 4 gelir kanalı, traction, ölçek merdiveni. Açık premium tema, PDF alınabilir.
+- 💡 Strateji tezi: Google'a **rehin olma** (map-agnostik kal), moat = grounding + marka + çok-bölge şablonu. Berkay onayladı (Google'da kal ama bağımlı olma).
+
+### 🔒 AgentShield (güvenlik denetimi) — YARIM KALDI
+- ⏳ `npx ecc-agentshield@1.4.0 scan` harness/repo güvenlik taraması. Auto-classifier dış npm çalıştırmayı engelledi.
+- ⛔ **BERKAY:** çalıştırmak istersen prompt'a yapıştır: `!npx -y ecc-agentshield@1.4.0 scan --path .claude --format text --min-severity low` (veya `--path kalkan-info`). Sonra bulguları analiz ederim.
+- Not: ECC framework'ü KURMADIK (OMC ile %80 çakışır + hook güvenlik riski). Sadece izole scanner öneriliyor.
+
+---
+
 ## 🔥 EN ÖNEMLİ — 3B Kalkan "Arkadaşım Nerede"
 - ✅ **Google Photorealistic 3D Tiles ÇALIŞIYOR** — Kalkan'ın gerçek 3B kapsamı VAR (test edildi, render oldu: evler/sokaklar/tepeler + mekan pinleri).
 - ✅ Sayfa: `arkadasim-nerede.html` (kalkaninfo.com/arkadasim-nerede) — Cesium + Google 3D + mekan katmanı + grup UI (Join/Create + canlı konum toggle + gizlilik notu).
