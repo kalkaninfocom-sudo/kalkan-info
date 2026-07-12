@@ -91,8 +91,9 @@ async function boot() {
   const viewer = new Cesium.Viewer('cesium', {
     baseLayerPicker:false, geocoder:false, homeButton:false, sceneModePicker:false,
     navigationHelpButton:false, timeline:false, animation:false, infoBox:false, selectionIndicator:false,
-    globe:false,   // 3D tiles kendi zeminini getirir
   });
+  // Globe'u gizle (obje kalır → 3D tiles kendi zeminini getirir, render crash yok)
+  viewer.scene.globe.show = false;
   viewer.scene.skyAtmosphere.show = true;
 
   // Google Photorealistic 3D Tiles — gerçek 3B Kalkan
