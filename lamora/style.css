@@ -273,6 +273,21 @@ section { padding: 88px 0; }
 .hero-content--signage .hero-tagline { color: rgba(255,255,255,0.92); font-weight: 600;
   text-shadow: 0 2px 12px rgba(0,0,0,0.7); margin-bottom: 22px; }
 
+/* MOBİL: yatay tabela dik ekranda kırpılmasın → blok düzen (tabela üstte tam, içerik altta) */
+@media (max-width: 720px) {
+  .hero { display: block; min-height: 0; align-items: initial; background: #000; }
+  .hero-bg { position: relative; inset: auto; width: 100%; height: 63vw; transform: none;
+    background-size: contain; background-position: center; background-color: #000; }
+  .hero-overlay { display: none; }
+  .hero-content--signage { position: relative; z-index: 2; background: #0a0a0a;
+    padding: 22px 16px 30px; text-align: center; }
+  .hero-badges { gap: 8px; }
+  .hero-badges .badge { font-size: 12px; padding: 8px 12px; }
+  .hero-actions { flex-direction: column; width: 100%; margin-top: 4px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  section { padding: 56px 0; }
+}
+
 .hero-content {
   position: relative; z-index: 2;
   text-align: center; padding: 80px 24px 120px;
