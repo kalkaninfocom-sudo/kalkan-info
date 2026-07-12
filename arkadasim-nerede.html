@@ -89,8 +89,10 @@ async function boot() {
 
   Cesium.GoogleMaps.defaultApiKey = GOOGLE_MAPS_API_KEY;
   const viewer = new Cesium.Viewer('cesium', {
+    baseLayer:false,            // varsayılan Cesium ion görüntüsünü isteme (api.cesium.com CSP'de kapalı, globe zaten gizli)
     baseLayerPicker:false, geocoder:false, homeButton:false, sceneModePicker:false,
     navigationHelpButton:false, timeline:false, animation:false, infoBox:false, selectionIndicator:false,
+    fullscreenButton:false, vrButton:false,   // ← bu widget'lar Knockout eval kullanır; CSP'de unsafe-eval yok → Viewer yarım kurulur → _onTick crash
   });
   // Globe'u gizle (obje kalır → 3D tiles kendi zeminini getirir, render crash yok)
   viewer.scene.globe.show = false;
