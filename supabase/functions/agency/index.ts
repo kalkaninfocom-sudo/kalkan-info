@@ -20,6 +20,12 @@ const SUPABASE_URL   = Deno.env.get('SUPABASE_URL')!;
 const SERVICE_ROLE   = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 const NVIDIA_API_KEY = Deno.env.get('NVIDIA_API_KEY') ?? '';
 const NVIDIA_MODEL   = Deno.env.get('NVIDIA_MODEL') ?? 'meta/llama-3.3-70b-instruct';
+const GROQ_API_KEY     = Deno.env.get('GROQ_API_KEY') ?? '';
+const GROQ_MODEL       = Deno.env.get('GROQ_MODEL') ?? 'llama-3.3-70b-versatile';
+const CEREBRAS_API_KEY = Deno.env.get('CEREBRAS_API_KEY') ?? '';
+const CEREBRAS_MODEL   = Deno.env.get('CEREBRAS_MODEL') ?? 'gpt-oss-120b';
+// Sağlayıcı başına hızlı-başarısızlık süresi (ms). Biri asılırsa zincir diğerine düşer.
+const PROVIDER_TIMEOUT_MS = Number(Deno.env.get('PROVIDER_TIMEOUT_MS') ?? '18000');
 const AGENTS_URL     = Deno.env.get('AGENTS_URL') ?? 'https://kalkaninfo.com/data/agency/agents.json';
 // Öğrenme bilgi tabanı (agent-learn.mjs üretir, statik deploy edilir). <id> ile doldurulur.
 const KNOWLEDGE_URL  = Deno.env.get('KNOWLEDGE_URL') ?? 'https://kalkaninfo.com/data/agency/knowledge/{id}.json';
@@ -78,24 +84,47 @@ async function getKnowledge(agentId: string): Promise<string[]> {
   } catch { return []; } // knowledge yoksa/erişilemezse normal çalış
 }
 
-// ---- NVIDIA NIM (OpenAI-uyumlu) — cheap-llm ile aynı ----
-async function runLLM(system: string, task: string): Promise<{ text: string; provider: string }> {
-  if (!NVIDIA_API_KEY) throw new Error('NVIDIA_API_KEY yok (secret set edilmeli)');
-  const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+// ---- LLM sağlayıcı zinciri (OpenAI-uyumlu, cheap-llm mantığı) ----
+// Groq/Cerebras/NVIDIA hepsi OpenAI /chat/completions uyumlu → tek yardımcı.
+// Fail-fast: her sağlayıcıya PROVIDER_TIMEOUT_MS, biri asılırsa/hata verirse zincir devam eder.
+// Sıra bilinçli: Groq (US, çok hızlı) → Cerebras (çok hızlı) → NVIDIA (Sydney edge'den yavaş, son çare).
+const LLM_PROVIDERS = [
+  { name: 'groq',     url: 'https://api.groq.com/openai/v1/chat/completions',        key: GROQ_API_KEY,     model: GROQ_MODEL },
+  { name: 'cerebras', url: 'https://api.cerebras.ai/v1/chat/completions',            key: CEREBRAS_API_KEY, model: CEREBRAS_MODEL },
+  { name: 'nvidia',   url: 'https://integrate.api.nvidia.com/v1/chat/completions',   key: NVIDIA_API_KEY,   model: NVIDIA_MODEL },
+];
+
+async function callOpenAICompat(p: { name: string; url: string; key: string; model: string }, system: string, task: string): Promise<string> {
+  const res = await fetch(p.url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${NVIDIA_API_KEY}` },
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${p.key}` },
     body: JSON.stringify({
-      model: NVIDIA_MODEL,
+      model: p.model,
       messages: [...(system ? [{ role: 'system', content: system }] : []), { role: 'user', content: task }],
       temperature: 0.4, max_tokens: 700,
     }),
-    signal: AbortSignal.timeout(60000),
+    signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   });
-  if (!res.ok) throw new Error(`nvidia ${res.status} ${(await res.text()).slice(0, 160)}`);
+  if (!res.ok) throw new Error(`${p.name} ${res.status} ${(await res.text()).slice(0, 160)}`);
   const d = await res.json();
   const text = d.choices?.[0]?.message?.content?.trim() ?? '';
-  if (!text) throw new Error('nvidia boş yanıt');
-  return { text, provider: 'nvidia' };
+  if (!text) throw new Error(`${p.name} boş yanıt`);
+  return text;
+}
+
+async function runLLM(system: string, task: string): Promise<{ text: string; provider: string }> {
+  const usable = LLM_PROVIDERS.filter((p) => p.key);
+  if (!usable.length) throw new Error('Hiç LLM anahtarı yok (GROQ/CEREBRAS/NVIDIA secret set edilmeli)');
+  const errors: string[] = [];
+  for (const p of usable) {
+    try {
+      const text = await callOpenAICompat(p, system, task);
+      return { text, provider: p.name };
+    } catch (e) {
+      errors.push(`${p.name}: ${short(String((e as Error).message), 80)}`);
+    }
+  }
+  throw new Error('tüm sağlayıcılar başarısız — ' + errors.join(' | '));
 }
 
 // ---- state upsert ----

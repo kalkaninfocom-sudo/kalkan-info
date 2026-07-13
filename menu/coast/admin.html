@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Coast · Menü Yönetimi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--sage:#9caf9f;--sage-d:#6f8574;--sage-dd:#54685a;--cream:#f3efe4;--paper:#fffdf8;
+    --ink:#2b302b;--muted:#7c7d70;--gold:#b08a46;--gold-d:#977536;--line:rgba(111,133,116,.24);--red:#c0553f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .wrap{max-width:820px;margin:0 auto;padding:20px 16px 90px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .logo{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--sage-dd);line-height:.9}
+  .brand small{display:block;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);padding-left:.34em}
+  .muted{color:var(--muted);font-size:13px}
+  .btn{display:inline-flex;align-items:center;gap:7px;border:0;border-radius:9px;padding:10px 18px;font:inherit;font-weight:700;
+    cursor:pointer;transition:transform .12s,filter .12s;text-decoration:none}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#fff;box-shadow:0 4px 14px rgba(176,138,70,.3)}
+  .btn-ghost{background:var(--paper);border:1px solid var(--line);color:var(--sage-dd)}
+  .btn-sm{padding:6px 12px;font-size:13px;border-radius:8px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:14px;box-shadow:0 2px 12px rgba(84,104,90,.05)}
+  label{display:block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--sage-dd);font-weight:700;margin:0 0 5px}
+  input,textarea{width:100%;background:var(--cream);border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:9px 11px;font:inherit}
+  input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  textarea{resize:vertical;min-height:44px;font-size:12.5px}
+  .hidden{display:none!important}
+
+  /* login */
+  #loginCard{max-width:400px;margin:8vh auto 0}
+  #loginCard h1{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--sage-dd);text-align:center}
+  #loginCard .lg{margin-top:12px}
+
+  /* editor */
+  .toolbar{position:sticky;top:0;z-index:10;background:var(--cream);padding:12px 0;margin-bottom:4px;
+    display:flex;gap:10px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .search{flex:1;max-width:280px}
+  .cat-block{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px;background:var(--paper)}
+  .cat-head{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .cat-head .cn{flex:1;min-width:120px;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17px;color:var(--sage-dd)}
+  .cat-head .ce{flex:1;min-width:120px}
+  .item{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:var(--cream)}
+  .item .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .item .pk{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;margin-top:8px}
+  .price-wrap input{border:1.5px solid var(--gold);font-weight:700;color:var(--gold-d)}
+  .item .desc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .idel{background:transparent;border:1px solid var(--line);color:var(--red);border-radius:8px;padding:9px 12px;cursor:pointer;font-weight:700;height:40px}
+  .idel:hover{background:rgba(192,85,63,.08)}
+  .cat-actions{display:flex;gap:8px;margin-top:4px}
+  @media(max-width:560px){.item .grid,.item .desc{grid-template-columns:1fr}.item .pk{grid-template-columns:1fr 1fr auto}}
+
+  /* save bar */
+  .savebar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(243,239,228,.94);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:center}
+  .savebar .inner{width:100%;max-width:820px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+  #toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--sage-dd);color:#fff;padding:11px 20px;
+    border-radius:10px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:40;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+  #toast.on{opacity:1}
+  #toast.err{background:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div><div class="logo serif">Coast</div><small>Tapas &amp; Grill</small></div></div>
+    <a class="btn btn-ghost btn-sm" href="./" target="_blank">Menüyü Gör ↗</a>
+  </header>
+  <p class="muted">Menü Yönetim Paneli — fiyat ve içerik değişiklikleri anında canlı menüye yansır.</p>
+
+  <!-- LOGIN -->
+  <div class="card" id="loginCard">
+    <h1>Yönetici Girişi</h1>
+    <div class="lg"><label>E-posta</label><input id="email" type="email" autocomplete="username" placeholder="ornek@mail.com"/></div>
+    <div class="lg"><label>Şifre</label><input id="pwd" type="password" autocomplete="current-password"/></div>
+    <div class="lg"><button class="btn btn-gold" id="loginBtn" style="width:100%;justify-content:center">Giriş Yap</button></div>
+    <p class="muted" id="loginMsg" style="margin-top:10px;text-align:center"></p>
+    <p class="muted" style="margin-top:6px;text-align:center;font-size:11.5px">Giriş bilgileriniz kalkaninfo.com tarafından verilir.</p>
+  </div>
+
+  <!-- EDITOR -->
+  <div id="editor" class="hidden">
+    <div class="toolbar">
+      <input class="search" id="search" placeholder="Ürün ara…" />
+      <div class="muted" style="display:flex;gap:10px;align-items:center">
+        <span id="who"></span>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn">Çıkış</button>
+      </div>
+    </div>
+    <div id="cats"></div>
+    <div class="cat-actions"><button class="btn btn-ghost btn-sm" id="addCat">+ Kategori Ekle</button></div>
+  </div>
+</div>
+
+<div class="savebar hidden" id="savebar">
+  <div class="inner">
+    <span class="muted" id="saveMsg">Değişiklikleri kaydetmeyi unutmayın.</span>
+    <button class="btn btn-gold" id="saveBtn">Kaydet ve Yayınla</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script src="menu-data.js"></script>
+<script type="module">
+const cfg = await import('/js/supabase-config.js');
+const { createClient } = await import('/vendor/supabase.mjs');
+const sb = createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, { auth:{ persistSession:true, autoRefreshToken:true } });
+
+const SLUG = window.COAST_SLUG || 'coast-menu';
+const NAME = window.COAST_NAME || 'Coast Tapas & Grill';
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/"/g,'&quot;');
+let toastT;
+function toast(m,err){ const t=$('toast'); t.textContent=m; t.className='on'+(err?' err':''); clearTimeout(toastT); toastT=setTimeout(()=>t.className='',2400); }
+
+/* ---------- editor render ---------- */
+function itemEl(it){
+  const el=document.createElement('div'); el.className='item';
+  const tr=it.tr||{}, en=it.en||{};
+  el.innerHTML =
+    `<div class="grid">
+       <div><label>Ürün (TR)</label><input class="i-tn" value="${esc(tr.n)}" placeholder="Ürün adı"/></div>
+       <div><label>Item (EN)</label><input class="i-en" value="${esc(en.n)}" placeholder="Item name"/></div>
+     </div>
+     <div class="pk">
+       <div class="price-wrap"><label>Fiyat (₺)</label><input class="i-p" inputmode="decimal" value="${esc(it.p)}" placeholder="0"/></div>
+       <div><label>kcal</label><input class="i-k" inputmode="numeric" value="${esc(it.k)}" placeholder=""/></div>
+       <button class="idel" title="Ürünü sil">Sil</button>
+     </div>
+     <div class="desc">
+       <div><label>Açıklama (TR)</label><textarea class="i-td" placeholder="Açıklama">${esc(tr.d)}</textarea></div>
+       <div><label>Description (EN)</label><textarea class="i-ed" placeholder="Description">${esc(en.d)}</textarea></div>
+     </div>`;
+  el.querySelector('.idel').onclick=()=>{ if(confirm('Bu ürün silinsin mi?')) el.remove(); };
+  return el;
+}
+function catEl(cat){
+  const el=document.createElement('div'); el.className='cat-block'; el.dataset.id=cat.id||('c'+Date.now()+Math.floor(Math.random()*1000));
+  el.innerHTML =
+    `<div class="cat-head">
+       <input class="cn" value="${esc(cat.tr)}" placeholder="Kategori (TR)"/>
+       <input class="ce" value="${esc(cat.en)}" placeholder="Category (EN)"/>
+       <button class="btn btn-ghost btn-sm cadd">+ Ürün</button>
+       <button class="btn btn-ghost btn-sm cdel" style="color:var(--red)">Kategori Sil</button>
+     </div>
+     <div class="items"></div>`;
+  const items=el.querySelector('.items');
+  (cat.items||[]).forEach(it=>items.appendChild(itemEl(it)));
+  el.querySelector('.cadd').onclick=()=>{ const n=itemEl({tr:{},en:{}}); items.appendChild(n); n.scrollIntoView({behavior:'smooth',block:'center'}); };
+  el.querySelector('.cdel').onclick=()=>{ if(confirm('Kategori ve içindeki tüm ürünler silinsin mi?')) el.remove(); };
+  return el;
+}
+function fill(menu){
+  const c=$('cats'); c.innerHTML='';
+  (menu||[]).forEach(cat=>c.appendChild(catEl(cat)));
+}
+function collect(){
+  return [...$('cats').querySelectorAll('.cat-block')].map(b=>{
+    const items=[...b.querySelectorAll('.item')].map(r=>{
+      const g=s=>r.querySelector(s).value.trim();
+      const pRaw=g('.i-p'); const p = pRaw==='' ? '' : (isNaN(+pRaw.replace(',','.')) ? pRaw : +pRaw.replace(',','.'));
+      const kRaw=g('.i-k'); const k = kRaw===''? null : (+kRaw||null);
+      return { tr:{n:g('.i-tn'),d:g('.i-td')}, en:{n:g('.i-en'),d:g('.i-ed')}, p, k };
+    }).filter(i=>i.tr.n||i.en.n);
+    return { id:b.dataset.id, tr:b.querySelector('.cn').value.trim(), en:b.querySelector('.ce').value.trim(), items };
+  }).filter(c=>c.tr||c.en||c.items.length);
+}
+
+$('addCat').onclick=()=>{ const el=catEl({tr:'',en:'',items:[{tr:{},en:{}}]}); $('cats').appendChild(el); el.scrollIntoView({behavior:'smooth',block:'center'}); };
+
+// arama filtresi (görsel gizleme)
+$('search').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.cat-block').forEach(b=>{
+    let any=false;
+    b.querySelectorAll('.item').forEach(it=>{
+      const t=(it.querySelector('.i-tn').value+' '+it.querySelector('.i-en').value).toLowerCase();
+      const show=!q||t.includes(q); it.style.display=show?'':'none'; if(show)any=true;
+    });
+    b.style.display=(!q||any)?'':'none';
+  });
+});
+
+/* ---------- auth flow ---------- */
+async function showEditor(user){
+  $('loginCard').classList.add('hidden');
+  $('editor').classList.remove('hidden');
+  $('savebar').classList.remove('hidden');
+  $('who').textContent=user.email;
+  let menu = window.COAST_MENU;
+  try{
+    const { data } = await sb.from('venue_sites').select('content').eq('slug',SLUG).maybeSingle();
+    if(data && data.content && Array.isArray(data.content.menu) && data.content.menu.length) menu = data.content.menu;
+  }catch(e){}
+  fill(menu);
+}
+function showLogin(){ $('editor').classList.add('hidden'); $('savebar').classList.add('hidden'); $('loginCard').classList.remove('hidden'); }
+
+$('loginBtn').onclick=async()=>{
+  const email=$('email').value.trim(), password=$('pwd').value;
+  if(!email||!password){ $('loginMsg').textContent='E-posta ve şifre gerekli.'; return; }
+  $('loginMsg').textContent='Giriş yapılıyor…';
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if(error){ $('loginMsg').textContent='Giriş başarısız: '+error.message; return; }
+  $('loginMsg').textContent=''; showEditor(data.user);
+};
+$('pwd').addEventListener('keydown',e=>{ if(e.key==='Enter') $('loginBtn').click(); });
+$('logoutBtn').onclick=async()=>{ await sb.auth.signOut(); showLogin(); };
+
+$('saveBtn').onclick=async()=>{
+  const { data:{ user } } = await sb.auth.getUser();
+  if(!user){ toast('Oturum yok, tekrar giriş yapın',true); showLogin(); return; }
+  const menu=collect();
+  if(!menu.length){ toast('Menü boş olamaz',true); return; }
+  $('saveMsg').textContent='Kaydediliyor…';
+  const { error } = await sb.from('venue_sites').upsert({
+    slug:SLUG, name:NAME, owner_id:user.id, content:{ menu }, published:true, updated_at:new Date().toISOString()
+  }, { onConflict:'slug' });
+  if(error){ $('saveMsg').textContent='Hata: '+error.message; toast('Kaydedilemedi: '+error.message,true); return; }
+  $('saveMsg').textContent='✓ Yayınlandı — '+new Date().toLocaleTimeString('tr-TR');
+  toast('Kaydedildi ve canlı menüye yayınlandı ✓');
+};
+
+(async()=>{
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session && session.user) showEditor(session.user); else showLogin();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>Coast Tapas & Grill — Menü</title>
+<meta name="description" content="Coast Tapas & Grill Kalkan — dijital menü / digital menu" />
+<meta name="theme-color" content="#9caf9f" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sage:#9caf9f; --sage-d:#6f8574; --sage-dd:#54685a;
+    --cream:#f3efe4; --cream-2:#faf7ef; --paper:#fffdf8;
+    --ink:#2b302b; --muted:#7c7d70; --gold:#b08a46; --gold-d:#977536;
+    --line:rgba(111,133,116,0.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Cormorant Garamond',serif}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+  #app{position:relative;z-index:1;max-width:720px;margin:0 auto;min-height:100vh;background:var(--cream);box-shadow:0 0 60px rgba(84,104,90,.08)}
+  header{background:linear-gradient(180deg,var(--sage) 0%,#93a796 100%);color:#fff;padding:26px 20px 20px;text-align:center;position:relative;overflow:hidden}
+  header::after{content:'';position:absolute;left:-5%;right:-5%;bottom:14px;height:40px;background:radial-gradient(60% 100% at 50% 0,rgba(255,255,255,.16),transparent 70%)}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;letter-spacing:.01em;line-height:.9;color:#fbfaf4}
+  .logo-sub{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:6px;padding-left:.42em}
+  .swoosh{width:150px;height:14px;margin:7px auto 0;display:block;opacity:.9}
+  .lang{position:absolute;top:16px;right:16px;display:flex;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:3px;backdrop-filter:blur(4px)}
+  .lang button{border:0;background:transparent;color:rgba(255,255,255,.85);font-family:'Inter';font-weight:700;font-size:12px;letter-spacing:.05em;padding:5px 12px;border-radius:99px;cursor:pointer;transition:.2s}
+  .lang button.on{background:#fff;color:var(--sage-dd)}
+  nav{position:sticky;top:0;z-index:20;background:var(--cream-2);border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(84,104,90,.06)}
+  .nav-scroll{display:flex;gap:6px;overflow-x:auto;padding:11px 14px;scrollbar-width:none;-ms-overflow-style:none}
+  .nav-scroll::-webkit-scrollbar{display:none}
+  .nav-scroll button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--sage-dd);font-family:'Inter';font-weight:600;font-size:12.5px;letter-spacing:.02em;padding:7px 14px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:.18s}
+  .nav-scroll button.on{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}
+  .allergy{display:flex;gap:10px;align-items:flex-start;margin:16px 16px 4px;padding:11px 14px;background:rgba(176,138,70,.08);border:1px solid rgba(176,138,70,.22);border-radius:12px;font-size:11.5px;color:#7a6234;line-height:1.45}
+  .allergy svg{flex-shrink:0;margin-top:1px}
+  main{padding:8px 16px 40px}
+  .cat{padding-top:26px;scroll-margin-top:64px}
+  .cat-head{text-align:center;margin-bottom:16px}
+  .cat-title{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--sage-dd);letter-spacing:.01em;line-height:1.1}
+  .cat-rule{width:52px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto 0}
+  .item{display:flex;gap:14px;padding:15px 4px;border-bottom:1px dashed var(--line)}
+  .item:last-child{border-bottom:0}
+  .item-body{flex:1;min-width:0}
+  .item-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink);line-height:1.15;letter-spacing:.005em}
+  .item-kcal{font-family:'Inter';font-size:10px;font-weight:600;color:var(--sage-d);letter-spacing:.03em;vertical-align:middle;margin-left:7px;background:rgba(156,175,159,.16);padding:1px 7px;border-radius:99px}
+  .item-desc{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:4px;max-width:52ch}
+  .item-price{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--gold-d);white-space:nowrap;padding-top:2px}
+  .item-price .cur{font-size:14px;font-weight:600;margin-right:1px}
+  .madewith{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--sage-d);padding:30px 20px 8px}
+  .madewith span{color:#c0553f}
+  footer{background:var(--sage-dd);color:rgba(255,255,255,.8);text-align:center;padding:26px 20px 30px}
+  footer .fl{font-family:'Cormorant Garamond',serif;font-size:30px;color:#fff;line-height:.9}
+  footer .fs{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:5px;padding-left:.34em}
+  .legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;margin:18px auto 14px;max-width:460px;font-size:10.5px;color:rgba(255,255,255,.75)}
+  .flinks{display:flex;gap:18px;justify-content:center;margin-top:14px;font-size:12.5px}
+  .flinks a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px}
+  .fnote{font-size:10.5px;color:rgba(255,255,255,.5);margin-top:16px}
+  @media (max-width:420px){.logo{font-size:40px}.cat-title{font-size:26px}.item-name{font-size:18px}.item-price{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="lang" id="lang"><button data-l="tr">TR</button><button data-l="en">EN</button></div>
+    <div class="logo serif">Coast</div>
+    <svg class="swoosh" viewBox="0 0 150 14" fill="none"><path d="M2 11 C40 2, 110 2, 148 6" stroke="rgba(255,255,255,.85)" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="logo-sub">Tapas &amp; Grill</div>
+  </header>
+  <nav><div class="nav-scroll" id="nav"></div></nav>
+  <div class="allergy">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01M10.3 3.6 2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0Z" stroke="#b08a46" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span id="allergyText"></span>
+  </div>
+  <main id="menu"></main>
+  <div class="madewith serif" id="madeWith"></div>
+  <footer>
+    <div class="fl serif">Coast</div>
+    <div class="fs">Tapas &amp; Grill</div>
+    <div class="legend" id="legend"></div>
+    <div class="flinks">
+      <a href="https://instagram.com/coasttapas" target="_blank" rel="noopener">@coasttapas</a>
+      <a href="https://www.coasttapas.com" target="_blank" rel="noopener">coasttapas.com</a>
+    </div>
+    <div class="fnote">Dijital menü · <a href="https://kalkaninfo.com" style="color:rgba(255,255,255,.6)">kalkaninfo.com</a></div>
+  </footer>
+</div>
+
+<script src="menu-data.js"></script>
+<script>
+const UI = window.COAST_UI;
+let MENU = window.COAST_MENU;
+let lang = localStorage.getItem('coast_lang') || (navigator.language && navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en');
+
+function money(p){ const n = (typeof p==='number') ? p : parseFloat(String(p).replace(/[^\d.,]/g,'').replace(',','.'));
+  return '<span class="cur">₺</span>' + (isFinite(n) ? n.toLocaleString('tr-TR') : p); }
+
+function render(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on', b.dataset.l===lang));
+  document.getElementById('nav').innerHTML = MENU.map((c,i)=>`<button data-cat="${c.id}" class="${i===0?'on':''}">${c[lang]||c.tr||''}</button>`).join('');
+  document.getElementById('allergyText').textContent = UI[lang].allergy;
+  document.getElementById('madeWith').innerHTML = UI[lang].made + ' <span>♥</span>';
+  document.getElementById('legend').innerHTML = UI[lang].legend.map(x=>'<span>'+x+'</span>').join(' · ');
+  document.getElementById('menu').innerHTML = MENU.map(c=>`
+    <section class="cat" id="cat-${c.id}">
+      <div class="cat-head"><h2 class="cat-title">${c[lang]||c.tr||''}</h2><div class="cat-rule"></div></div>
+      ${(c.items||[]).map(it=>{ const L=it[lang]||it.tr||{}; return `
+        <div class="item">
+          <div class="item-body">
+            <div class="item-name">${L.n||''}${it.k?`<span class="item-kcal">${it.k} kcal</span>`:''}</div>
+            ${L.d?`<div class="item-desc">${L.d}</div>`:''}
+          </div>
+          <div class="item-price">${money(it.p)}</div>
+        </div>`; }).join('')}
+    </section>`).join('');
+}
+
+document.getElementById('lang').addEventListener('click', e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  lang=b.dataset.l; localStorage.setItem('coast_lang',lang); render(); bindNav();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+function bindNav(){
+  document.querySelectorAll('#nav button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const el=document.getElementById('cat-'+b.dataset.cat); if(!el) return;
+      const y=el.getBoundingClientRect().top+window.scrollY-58;
+      window.scrollTo({top:y,behavior:'smooth'});
+    });
+  });
+}
+function onScroll(){
+  const nav=document.getElementById('nav'); let cur=MENU[0] && MENU[0].id;
+  for(const c of MENU){ const el=document.getElementById('cat-'+c.id); if(el && el.getBoundingClientRect().top<=80) cur=c.id; }
+  nav.querySelectorAll('button').forEach(b=>{ const on=b.dataset.cat===cur; b.classList.toggle('on',on); if(on) b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'}); });
+}
+
+// baked içeriği anında göster
+render(); bindNav();
+window.addEventListener('scroll', ()=>window.requestAnimationFrame(onScroll), {passive:true});
+
+// admin panelinden gelen canlı menüyü uygula (Supabase modülünden çağrılır)
+window.__applyLiveMenu = function(m){ if(Array.isArray(m)&&m.length){ MENU=m; render(); bindNav(); } };
+</script>
+
+<!-- Canlı menü: admin panelindeki fiyat/menü değişiklikleri Supabase venue_sites'ten okunur -->
+<script type="module">
+  try{
+    const cfg = await import('/js/supabase-config.js');
+    const { createClient } = await import('/vendor/supabase.mjs');
+    const sb = createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, { auth:{ persistSession:false } });
+    const { data } = await sb.from('venue_sites').select('content,published').eq('slug', window.COAST_SLUG).eq('published', true).maybeSingle();
+    if (data && data.content && Array.isArray(data.content.menu) && data.content.menu.length) {
+      window.__applyLiveMenu(data.content.menu);
+    }
+  }catch(e){ /* Supabase yoksa baked menü kalır */ }
+</script>
+</body>
+</html>
