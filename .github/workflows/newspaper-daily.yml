@@ -1,9 +1,9 @@
 name: Newspaper daily (Kalkan Today)
 
 on:
-  schedule:
-    # Her gün 03:00 UTC = 06:00 Europe/Istanbul
-    - cron: '0 3 * * *'
+  # GÜNLÜK CRON KALDIRILDI: gazete-approval.yml (04:45 UTC) tek authoritative günlük akış.
+  # İkisi de aynı sayıyı basıp commit ediyordu → günde 3× "günlük sayı" commit'i + tekrar hissi.
+  # Bu workflow artık yalnız MANUEL (web-only tekrar üretim / test) için: workflow_dispatch.
   workflow_dispatch:
     inputs:
       date:
@@ -61,7 +61,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add newspaper/archive data/newspaper-index.json data/gazete-archive
+          git add newspaper/archive data/newspaper-index.json data/gazete-archive data/gazete-history.json
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0

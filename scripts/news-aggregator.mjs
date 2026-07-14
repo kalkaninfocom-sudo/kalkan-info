@@ -6,6 +6,7 @@ import { writeFile, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { parseKasBel } from './scrapers/kasbel.mjs';
+import { pickNewsPhoto, isGenericStock } from '../lib/news-photos.mjs';
 
 // Trim all env vars (same pattern as api/welcome-email.js)
 for (const k of Object.keys(process.env)) {
@@ -135,18 +136,9 @@ function inferCategory(text) {
   return 'Gündem';
 }
 
-// Fallback image per category (Unsplash topical)
-const FALLBACK_IMAGES = {
-  Plaj: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-  Restoran: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-  Belediye: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
-  Kültür: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80',
-  Hava: 'https://images.unsplash.com/photo-1501691223387-dd0500403074?auto=format&fit=crop&w=1200&q=80',
-  Etkinlik: 'https://images.unsplash.com/photo-1534531409860-9c8e2fe40b97?auto=format&fit=crop&w=1200&q=80',
-  Asayiş: 'https://images.unsplash.com/photo-1453873531674-2151bcd01707?auto=format&fit=crop&w=1200&q=80',
-  Turizm: 'https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=1200&q=80',
-  Gündem: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
-};
+// Görsel grounding: RSS'te GERÇEK foto yoksa generic Unsplash yerine KENDİ Kalkan
+// fotolarımızdan (lib/news-photos.mjs) yer-farkında + story-hash rotasyonlu seçilir.
+// Böylece foto başlıkla alakalı olur ve her gün aynı olmaz. (Unsplash tablosu kaldırıldı.)
 
 // Minimal XML extraction: unwrap CDATA, decode entities, strip tags
 function stripCdata(s) {
@@ -295,9 +287,12 @@ async function fetchSource(src) {
 
 function normalize(item) {
   const category = inferCategory(item._matchText);
-  const image = item.image || FALLBACK_IMAGES[category];
   const date = parseDate(item.pubDate);
   const id = `${slugify(item.title)}-${date}`.slice(0, 100);
+  // RSS gerçek fotosu varsa ve generic stok değilse koru; değilse gerçek Kalkan fotosuna düş.
+  const image = (item.image && !isGenericStock(item.image))
+    ? item.image
+    : pickNewsPhoto({ id, title: item.title, category, matchText: item._matchText });
   const tags = [];
   if (/kalkan/i.test(item._matchText)) tags.push('Kalkan');
   if (/(kaş|kas)\b/i.test(item._matchText)) tags.push('Kaş');
