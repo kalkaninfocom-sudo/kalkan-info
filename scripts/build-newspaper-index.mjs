@@ -17,6 +17,15 @@ const isDate = s => /^\d{4}-\d{2}-\d{2}$/.test(s);
 
 async function has(p) { try { await access(p); return true; } catch { return false; } }
 
+// Kapak önizlemesi: A4-oranlı cover (tercih) → sosyal kart → eski png. İlk VAR olanı döndür.
+// Önceki bug: yalnız '-card.png' aranıyordu ama kartlar '-card.jpg' → önizleme HEP boştu.
+async function coverFor(base, date, t) {
+  for (const f of [`${t}-cover.jpg`, `${t}-cover.png`, `${t}-card.jpg`, `${t}-card.png`]) {
+    if (await has(join(base, f))) return `/newspaper/archive/${date}/${f}`;
+  }
+  return null;
+}
+
 function longDate(iso) {
   const d = new Date(iso + 'T08:00:00');
   return { day: DAY_TR[d.getDay()], long: `${d.getDate()} ${MONTH_TR[d.getMonth()]} ${d.getFullYear()}` };
@@ -39,7 +48,7 @@ async function main() {
       editions[t] = {
         html: `/newspaper/archive/${date}/${t}`,
         pdf: (await has(join(base, `${t}.pdf`))) ? `/newspaper/archive/${date}/${t}.pdf` : null,
-        card: (await has(join(base, `${t}-card.png`))) ? `/newspaper/archive/${date}/${t}-card.png` : null,
+        card: await coverFor(base, date, t),
       };
     }
     if (Object.keys(editions).length) {
