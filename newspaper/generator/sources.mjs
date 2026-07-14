@@ -446,7 +446,9 @@ export async function getFrontExtras(iso) {
   // ── Haftanın Restoranları (top-5 foto+puan, rotasyonlu havuz) ──
   const rdata = await readJson('restoranlar.json');
   const ritems = rdata?.items || [];
-  const photoOf = (r) => (r.gallery && r.gallery[0]) || r.image || '';
+  // MUTLAK URL şart: kart puppeteer'da file:// ile render ediliyor; göreli 'assets/img/...' yolları
+  // file:///…/archive/<date>/assets/img/… olarak çözülüp KIRILIYOR (boş gri kutular). absPhoto → https.
+  const photoOf = (r) => absPhoto((r.gallery && r.gallery[0]) || r.image || '') || '';
   const ratedPhoto = ritems
     .filter(r => r.rating && r.reviewCount >= 25 && photoOf(r))
     .sort((a, b) => b.rating - a.rating || (b.reviewCount || 0) - (a.reviewCount || 0));
@@ -574,6 +576,37 @@ function venuePhoto(v) {
   return absPhoto(v.image || (v.gallery && v.gallery[0]) || null);
 }
 
+// ── IG MEKAN FOTOLARI (ig-venue-watch taze URL'den indirdi → kalıcı lokal) ──
+// Berkay: "IG görsellerini gazetede kullanın". Magazin/mekan slotları için GERÇEK, GÜNCEL foto.
+// Yalnız 'image' (indirilmiş, kalıcı) olanlar; süreli media_url KULLANILMAZ. maxDays ile tazelik.
+const igNorm = (s) => String(s || '').toLocaleLowerCase('tr').replace(/[^a-z0-9çğıöşü]+/gi, '');
+async function loadIgVenuePhotos(maxDays = 14) {
+  const d = await readJson('ig-venue-news.json');
+  const items = (d?.items || []).filter(x => x.image);
+  const now = Date.now();
+  const map = new Map();
+  const list = [];
+  for (const it of items) {
+    const ts = Date.parse(it.timestamp || '') || 0;
+    const age = ts ? (now - ts) / 86400000 : 999;
+    if (age > maxDays) continue;
+    const entry = { image: it.image, headline: it.headline, ts, venueName: it.venueName, username: it.username, category: it.category };
+    list.push(entry);
+    for (const k of [igNorm(it.venueName), igNorm(it.username)].filter(Boolean))
+      if (!map.has(k) || map.get(k).ts < ts) map.set(k, entry);
+  }
+  list.sort((a, b) => b.ts - a.ts);
+  return { map, list };
+}
+// Bir restoran/mekan öğesi için taze IG fotosu (ad veya IG handle eşleşmesi).
+function igPhotoFor(ig, v) {
+  if (!v || !ig) return null;
+  const cand = ig.map.get(igNorm(v.name)) ||
+    (v.instagram && ig.map.get(igNorm(v.instagram))) ||
+    (v.ig && ig.map.get(igNorm(v.ig)));
+  return cand?.image || null;
+}
+
 // Manşet havuzları — kategori/etkinlik tipine göre (deterministik, index ile seçilir)
 const HEADLINES = {
   dj: ['{v} dün geceyi salladı', '{v}’ta sabaha kadar dans', '{v} gecesi alev aldı', '{v}’ta ritim hiç durmadı'],
@@ -607,6 +640,7 @@ export async function buildMagazineData(iso, demo) {
   };
   const data = await readJson('restoranlar.json');
   const items = data?.items || [];
+  const ig = await loadIgVenuePhotos(14); // taze IG mekan fotoları (varsa magazin görselini gerçek+güncel yapar)
 
   // Gece hayatı mekanları — fotoğraflı olanlar öne
   const night = items.filter(v =>
@@ -646,7 +680,7 @@ export async function buildMagazineData(iso, demo) {
 
   if (heroVenue) {
     const ev = evFor(heroVenue);
-    const photo = venuePhoto(heroVenue);
+    const photo = igPhotoFor(ig, heroVenue) || venuePhoto(heroVenue); // taze IG fotosu öncelik
     out.hero_venue = `${heroVenue.name}${heroVenue.location ? ' · ' + heroVenue.location : ' · Kalkan'}`;
     out.hero_headline = magEd ? magEd.magazine_lead_headline : headlineFor(heroVenue, ev, 0, daySeed);
     out.hero_deck = magEd && magEd.magazine_lead_body
@@ -668,7 +702,7 @@ export async function buildMagazineData(iso, demo) {
   for (const cv of cardVenues) await recordHistory('mag_card', cv.id, iso);
   out.cards = cardVenues.map((v, i) => {
     const ev = evFor(v);
-    const photo = venuePhoto(v);
+    const photo = igPhotoFor(ig, v) || venuePhoto(v); // taze IG fotosu öncelik
     const ph = photo
       ? `<div class="ph"><img src="${esc(photo)}" alt="${esc(v.name)}" onerror="this.style.display='none'"><span class="badge">${esc(ev?.type || v.category || 'Gece')}</span></div>`
       : `<div class="ph noimg"><span class="badge">${esc(ev?.type || v.category || 'Gece')}</span></div>`;
