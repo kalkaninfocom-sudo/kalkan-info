@@ -56,10 +56,52 @@ async function renderCards(chromePath) {
       const htmlPath = join(ROOT, 'newspaper', 'archive', date, `${type}.html`);
       if (!existsSync(htmlPath)) continue;
       const page = await browser.newPage();
+      // CORP FIX: vercel.json 'Cross-Origin-Resource-Policy: same-site' → file:// render'ından
+      // kalkaninfo.com fotoları ERR_BLOCKED_BY_RESPONSE.NotSameSite ile BLOKLANIYOR (boş kutular).
+      // Kendi asset'lerimizi LOKAL DİSKTEN servis et (CORP'u atlar, offline da çalışır, hızlı).
+      const CT = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', svg: 'image/svg+xml', avif: 'image/avif', ico: 'image/x-icon' };
+      await page.setRequestInterception(true);
+      page.on('request', (req) => {
+        const m = req.url().match(/^https?:\/\/(?:www\.)?kalkaninfo\.com\/([^?#]+)/i);
+        if (m) {
+          const local = join(ROOT, decodeURIComponent(m[1]));
+          if (existsSync(local)) {
+            const ext = (local.split('.').pop() || '').toLowerCase();
+            try { return req.respond({ status: 200, headers: { 'content-type': CT[ext] || 'application/octet-stream', 'access-control-allow-origin': '*' }, body: readFileSync(local) }); } catch {}
+          }
+        }
+        req.continue();
+      });
       // A4 sayfayı çek
       await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 2 });
       await page.goto(pathToFileURL(htmlPath).href, { waitUntil: 'networkidle0', timeout: 60000 });
+      // TÜM görselleri (img + CSS background-image) yüklenene kadar bekle. networkidle0 arka-plan
+      // fotolarını (restoran thumbnail'leri, ikincil foto) beklemeden çekiyordu → boş gri kutular.
+      // Berkay'ın kartındaki boş restoran kutularının GERÇEK sebebi buydu (path değil, zamanlama).
+      try {
+        await page.evaluate(async () => {
+          const urls = new Set();
+          document.querySelectorAll('img[src]').forEach(i => { if (/^https?:/.test(i.src)) urls.add(i.src); });
+          document.querySelectorAll('*').forEach(el => {
+            const bg = getComputedStyle(el).backgroundImage || '';
+            const m = bg.match(/url\((['"]?)(https?:\/\/[^'")]+)\1\)/);
+            if (m) urls.add(m[2]);
+          });
+          await Promise.all([...urls].map(u => new Promise(res => {
+            const im = new Image(); im.onload = im.onerror = () => res(); im.src = u;
+            setTimeout(res, 8000); // takılırsa sonsuz bekleme
+          })));
+        });
+        await new Promise(r => setTimeout(r, 400)); // boya/yerleşim otursun
+      } catch { /* non-fatal: yine de çek */ }
       const shot = await page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: 794, height: 1123 } });
+      // A4-ORANLI KAPAK ÖNİZLEMESİ (/gazete landing kartı bunu kullanır — 9:16 sosyal karttan farklı).
+      // Sayfa hâlâ A4 içeriğini gösteriyor → doğrudan çek. build-newspaper-index bunu 'card' yapar.
+      try {
+        await page.screenshot({ path: join(ROOT, 'newspaper', 'archive', date, `${type}-cover.jpg`),
+          type: 'jpeg', quality: 88, clip: { x: 0, y: 0, width: 794, height: 1123 } });
+        console.log(`  ✓ newspaper/archive/${date}/${type}-cover.jpg (A4 önizleme)`);
+      } catch (e) { console.warn(`  ⚠ ${type}-cover.jpg atlandı: ${e.message}`); }
       // 9:16 (1080x1920) Instagram HİKAYE — markalı navy zemin, gazete sayfası ortalı
       const label = type === 'morning' ? 'GÜNLÜK GAZETE · ÖN SAYFA' : 'GÜNLÜK GAZETE · MAGAZİN';
       const dTR = new Date(date + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -158,14 +200,21 @@ async function main() {
   }
   run(['newspaper/generator/build.mjs', 'morning', date], 'Ön Sayfa (morning) üret');
   run(['newspaper/generator/build.mjs', 'magazine', date], 'Arka Yüz (magazine) üret');
-  run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle');
 
-  if (NO_SOCIAL) { console.log('\n--no-social: sosyal adımlar atlandı. Web hazır.'); return; }
+  if (NO_SOCIAL) {
+    // Web-only: index'i şimdi üret (kapak render yok → önizleme boş olabilir, manuel mod).
+    run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle');
+    console.log('\n--no-social: sosyal adımlar atlandı. Web hazır.'); return;
+  }
 
-  console.log('\n── Sosyal kart (4:5) render ──');
+  console.log('\n── Sosyal kart + A4 kapak önizleme render ──');
   const chrome = process.env.PUPPETEER_EXECUTABLE_PATH ||
     'C:/Users/socie/.cache/puppeteer/chrome/win64-149.0.7827.22/chrome-win64/chrome.exe';
   const cards = await renderCards(existsSync(chrome) ? chrome : null);
+
+  // SIRA ÖNEMLİ: index'i kapak/kart render'INDAN SONRA üret → /gazete kart önizlemesi DOLU olur.
+  // (Önceki bug: index kartlardan önce çalışıyordu → card:null → landing kartları boştu.)
+  run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle (kapaklarla)');
 
   console.log('\n── Onay kuyruğu (IG/FB) ──');
   await queueSocial(cards);
