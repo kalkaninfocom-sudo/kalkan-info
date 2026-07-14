@@ -1,30 +1,77 @@
 {
   "date": "2026-07-14",
-  "generated_at": "2026-07-14T06:57:17.911Z",
+  "generated_at": "2026-07-14T09:58:21.605Z",
   "provider": "cerebras",
   "source_ids": [
-    "kas-ve-kalkan-da-villa-turizmi-zirveye-cikiyor-yeni-alanya-2026-06-26",
-    "demre-kas-kalkan-otoban-projesi-antik-kentleri-tehdit-ediyor-arkeofili-2025-07-11",
-    "kas-ve-kalkan-da-villa-turizmi-temmuzda-zirve-yapacak-yeni-alanya-2026-06-26",
-    "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdeniz-ge-2026-04-25"
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-14",
+    "gombe-mahallesi-muhteli-f-parselleri-n-i-mar-uygulamasi-2026-07-13",
+    "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-2026-06-26",
+    "kas-ve-kalkan-da-villa-turizmi-temmuzda-zirve-yapacak-yeni-alanya-2026-06-26"
   ],
-  "lead_headline": "Kaş ve Kalkan'da Villa Turizmi Zirveye Çıkıyor",
-  "lead_deck": "Bölgedeki villa konaklamaları yeni sezonda en yüksek seviyeye ulaşıyor.",
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu ve Yörük Göçü Yapıldı",
+  "lead_deck": "Kaş Belediyesi tarafından düzenlenen etkinlikte Likya Su Yolu yürüyüşü ve Patara Yörük Göçü gerçekleştirildi.",
   "lead_body": [
-    "Kaş ve Kalkan bölgelerinde villa turizmi yükselişini sürdürerek zirve noktasına ulaştı.",
-    "Sektör temsilcileri, konaklama taleplerinin özellikle Temmuz ayında en üst seviyeye çıkmasını bekliyor."
+    "Kaş'ta geleneksel hale gelen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği tamamlandı.",
+    "Kültürel mirası yaşatmayı hedefleyen organizasyon, bölgenin tarihi rotaları üzerinde gerçekleştirildi."
   ],
-  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
-  "lead_image": "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=1200&q=80",
-  "lead_caption": "Foto: Google News — Kalkan/Kaş · Turizm",
-  "col1_title": "Otoban Projesi Antik Kentleri Tehdit Ediyor",
-  "col1_byline": "Bülten · Kültür",
-  "col1_body": "Demre, Kaş ve Kalkan hattındaki proje arkeolojik alanları riske sokuyor.",
-  "col3_title": "Villa Turizminde Temmuz Zirvesi",
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Shade Lounge'da Akustik Gece",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kalkan Shade Lounge and Kitchen saat 20:30'da akustik performans sunacak.",
+  "col3_title": "Villa Turizminde Yaz Hareketliliği",
   "col3_byline": "Sahil · Turizm",
-  "col3_body": "Kaş ve Kalkan'daki villa dolulukları Temmuz ayında tavan yapacak.",
-  "magazine_lead_headline": "Kalkan'da İmar Planı Değişikliği Onaylandı",
+  "col3_body": "Kaş ve Kalkan bölgelerinde villa konaklamaları yaz sezonunda yoğunluk yaşıyor.",
+  "magazine_lead_headline": "Villa Turizmi Temmuzda Zirve Yapacak",
   "magazine_lead_body": [
-    "Cumhurbaşkanı Erdoğan'ın imzasıyla Kalkan'daki imar planı itirazları reddedildi."
-  ]
+    "Kaş ve Kalkan'daki villa konaklamalarının temmuz ayında en yüksek seviyeye ulaşması bekleniyor."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-14T09:58:27.359Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 89
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 20,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "needs-source",
+        "credibility": 68
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1 işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı",
+      "col3 işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı",
+      "magazine işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead"
+    ]
+  }
 }
