@@ -1,6 +1,6 @@
 {
   "date": "2026-07-14",
-  "generated_at": "2026-07-14T09:58:21.605Z",
+  "generated_at": "2026-07-14T10:54:09.963Z",
   "provider": "cerebras",
   "source_ids": [
     "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-14",
@@ -12,23 +12,23 @@
   "lead_deck": "Kaş Belediyesi tarafından düzenlenen etkinlikte Likya Su Yolu yürüyüşü ve Patara Yörük Göçü gerçekleştirildi.",
   "lead_body": [
     "Kaş'ta geleneksel hale gelen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği tamamlandı.",
-    "Kültürel mirası yaşatmayı hedefleyen organizasyon, bölgenin tarihi rotaları üzerinde gerçekleştirildi."
+    "Kültürel mirası yaşatmayı hedefleyen organizasyon, bölgenin tarihi rotalarında yürüyüşçüleri ve katılımcıları buluşturdu."
   ],
   "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
   "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
   "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
   "col1_title": "Shade Lounge'da Akustik Gece",
   "col1_byline": "Bülten · Belediye",
-  "col1_body": "Kalkan Shade Lounge and Kitchen saat 20:30'da akustik performans sunacak.",
+  "col1_body": "Kalkan'daki mekan 20:30'da canlı akustik performans ev sahipliği yapacak.",
   "col3_title": "Villa Turizminde Yaz Hareketliliği",
   "col3_byline": "Sahil · Turizm",
-  "col3_body": "Kaş ve Kalkan bölgelerinde villa konaklamaları yaz sezonunda yoğunluk yaşıyor.",
-  "magazine_lead_headline": "Villa Turizmi Temmuzda Zirve Yapacak",
+  "col3_body": "Kaş ve Kalkan bölgelerindeki villa konaklamalarında yoğunluk artış gösterdi.",
+  "magazine_lead_headline": "Villa Turizmi Temmuz'da Zirveye Çıkacak",
   "magazine_lead_body": [
-    "Kaş ve Kalkan'daki villa konaklamalarının temmuz ayında en yüksek seviyeye ulaşması bekleniyor."
+    "Kaş ve Kalkan'daki villa taleplerinin temmuz ayında en yüksek seviyeye ulaşması bekleniyor."
   ],
   "editorial_review": {
-    "reviewed_at": "2026-07-14T09:58:27.359Z",
+    "reviewed_at": "2026-07-14T10:54:11.609Z",
     "roles": {
       "muhabir": "cerebras",
       "editor": "editor-gate",
@@ -38,16 +38,16 @@
       {
         "slot": "lead",
         "editor": "approved",
-        "editor_score": 80,
+        "editor_score": 60,
         "verifier": "ok",
-        "credibility": 89
+        "credibility": 80
       },
       {
         "slot": "col1",
-        "editor": "reject",
-        "editor_score": 20,
+        "editor": "approved",
+        "editor_score": 80,
         "verifier": "ok",
-        "credibility": 86
+        "credibility": 56
       },
       {
         "slot": "col3",
@@ -59,19 +59,19 @@
       {
         "slot": "magazine",
         "editor": "reject",
-        "editor_score": 60,
-        "verifier": "needs-source",
-        "credibility": 68
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 80
       }
     ],
     "decisions": [
       "MANŞET editöryal denetimden geçti",
-      "col1 işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı",
-      "col3 işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı",
-      "magazine işaretlendi (editör: uydurma/teyitsiz iddia riski — yayınlanamaz) — insan onayı"
+      "col3 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "magazine YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı"
     ],
     "approved_slots": [
-      "lead"
+      "lead",
+      "col1"
     ]
   }
 }
