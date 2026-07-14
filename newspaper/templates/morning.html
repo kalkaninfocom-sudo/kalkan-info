@@ -51,6 +51,9 @@
   .lead-deck { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 11pt; line-height: 1.25; color: #2b2a26; text-transform: uppercase; letter-spacing: 0.01em; }
   .lead-image { width: 100%; aspect-ratio: 16/10; background: #d8cfba center/cover no-repeat; border: 1px solid #16171a; margin: 3mm 0 1.5mm; }
   .lead-caption { font-size: 6.8pt; font-style: italic; color: #6a6256; }
+  .lead-source { font-size: 7pt; color: #6a6256; margin-top: 0.5mm; }
+  .lead-source .src-link, .rail-list a { color: #0a5c9c; text-decoration: none; border-bottom: 1px solid rgba(10,92,156,.35); }
+  .lead-source .src-link:hover, .rail-list a:hover { color: #073e6b; border-bottom-color: #073e6b; }
   .feature { margin-top: 3mm; padding-top: 3mm; border-top: 1px solid #cbc1ab; }
   .feature h2 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 13pt; line-height: 1.1; margin-bottom: 1.5mm; }
   .feature p { text-align: justify; hyphens: auto; font-size: 8.2pt; line-height: 1.5; }
@@ -154,6 +157,7 @@
       <p class="lead-deck">{{lead_deck}}</p>
       <div class="lead-image" style="background-image:url('{{lead_image}}')"></div>
       <p class="lead-caption">{{lead_caption}}</p>
+      <p class="lead-source">{{lead_source_cite}}</p>
       <div class="feature">
         <h2>{{feature_title}}</h2>
         <p>{{feature_body}}</p>
