@@ -15,10 +15,11 @@
  *
  * Kullanım: node scripts/agency/gazete-editorial.mjs [YYYY-MM-DD]
  */
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { groundPhoto } from '../../lib/news-photos.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -52,6 +53,78 @@ function score(it) {
   if (/kalkan/i.test(src)) s += 3; else if (/körfez|antalya/i.test(src)) s += 1; else s -= 4;
   s += CATS[it.category] ?? 0;
   return s;
+}
+
+// ── TAZELİK GUARD ──
+// Rotasyon "son 6 günde yayınlanmadı"yı önceler; ama haberler.json'da 4-7 ay eski (yüksek yerel
+// alaka nedeniyle top-30'a giren) haberler de var. Tatilci gazetesine Temmuz'da Aralık haberi
+// düşmesin diye tarihe göre ağırlık: taze +, eski büyük −. Böylece rotasyon TAZE arasında döner.
+function freshBonus(iso) {
+  if (!iso) return 0; // scrape (tarihsiz) → nötr (güncel liste sayılır)
+  const d = Date.parse(iso + 'T00:00:00');
+  if (isNaN(d)) return 0;
+  const ageDays = (Date.parse(date + 'T00:00:00') - d) / 86400000;
+  if (ageDays <= 2) return 4;
+  if (ageDays <= 7) return 2;
+  if (ageDays <= 21) return 0;
+  if (ageDays <= 45) return -4;
+  return -12;                    // >45 gün: manşet/sütun adayı olmaktan pratikte çıkar
+}
+
+// ── TEKRAR KIRICI 1: son N günün gazetesinde kullanılan haber id'leri ──
+// Berkay: "her gün aynı haber yapılıp duruyor". gazete-history.json CI'da commit edilmiyordu,
+// bu yüzden rotasyon her gün sıfırlanıyordu. Bunun yerine COMMIT'LENEN arşiv dosyalarından
+// (data/gazete-archive/<date>.json → source_ids) son N günün kullanılmış haberlerini türetiyoruz.
+async function recentlyUsedIds(days = 6) {
+  const used = new Set();
+  try {
+    const dir = join(ROOT, 'data', 'gazete-archive');
+    const files = (await readdir(dir))
+      .filter(f => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f !== `${date}.json`) // bugünün kendi arşivini sayma (idempotent)
+      .sort().reverse().slice(0, days);
+    for (const f of files) {
+      try {
+        const j = JSON.parse(await readFile(join(dir, f), 'utf8'));
+        for (const id of (j.source_ids || [])) used.add(id);
+      } catch {}
+    }
+  } catch {}
+  return used;
+}
+
+// ── TEKRAR KIRICI 2: near-duplicate haber çökertme ──
+// haberler.json'da "villa turizmi zirveye" / "villa turizmi temmuzda zirve" gibi 3 varyant
+// aynı hikaye → hepsi yüksek skorlu → manşet hep villa. Token-set Jaccard ile aynı hikayeyi
+// TEK'e indir (en yüksek skorluyu tut), rotasyon gerçekten farklı haber bulabilsin.
+const STOP = new Set(['ve','ile','da','de','ta','te','bir','bu','icin','için','olan','oldu','yeni','son','en','the','a','of','in','on']);
+function tokenSet(title) {
+  return new Set(String(title || '').toLocaleLowerCase('tr')
+    .replace(/[^a-zçğıöşü0-9\s]/gi, ' ').split(/\s+/)
+    .filter(w => w.length > 2 && !STOP.has(w)));
+}
+function jaccard(a, b) {
+  if (!a.size || !b.size) return 0;
+  let inter = 0; for (const x of a) if (b.has(x)) inter++;
+  return inter / (a.size + b.size - inter);
+}
+function collapseDupes(ranked) {
+  const kept = [];
+  const sigs = [];
+  for (const it of ranked) {
+    const sig = tokenSet(it.title);
+    if (sigs.some(s => jaccard(sig, s) >= 0.5)) continue; // aynı hikaye — atla (yüksek skorlu zaten tutuldu)
+    kept.push(it); sigs.push(sig);
+  }
+  return kept;
+}
+
+// Aday listesinden son-kullanılmayanı önceleyerek seç (rotasyon). filter opsiyonel kategori filtresi.
+function pickFresh(pool, usedIds, taken, filter) {
+  const avail = pool.filter(it => !taken.has(it.id) && (!filter || filter(it)));
+  const fresh = avail.filter(it => !usedIds.has(it.id));
+  const chosen = (fresh[0] || avail[0]) || null;
+  if (chosen) taken.add(chosen.id);
+  return chosen;
 }
 
 // ── AGENT EĞİTİMİ (system prompt) — docs/YAZI_ISLERI_KILAVUZU.md özeti ──
@@ -124,14 +197,28 @@ async function main() {
   const items = (data.items || []).filter(it => it.title);
   if (!items.length) { console.warn('⚠ Haber yok — editöryal atlandı.'); return; }
 
-  const ranked = items.map(it => ({ it, s: score(it) }))
+  const rankedRaw = items.map(it => ({ it, s: score(it) + freshBonus(it.date) }))
     .sort((a, b) => b.s - a.s || (b.it.date || '').localeCompare(a.it.date || ''))
     .map(r => r.it);
+  const collapsed = collapseDupes(rankedRaw);       // near-duplicate hikayeleri tek'e indir
+  // Zamanlılık tabanı: 45 günden eski haberi adaylıktan TAMAMEN ele (Temmuz'da Aralık haberi olmasın).
+  // Ama havuz çok küçülürse (<3) eskiye de izin ver — boş sütundansa eski-ama-yerel haber yeğdir.
+  const isTimely = (it) => freshBonus(it.date) > -12;
+  const timely = collapsed.filter(isTimely);
+  const ranked = timely.length >= 3 ? timely : collapsed;
+  if (timely.length < 3) console.log(`  ⚠ taze-zamanında haber az (${timely.length}) — RSS arzı ince, havuz genişletildi`);
 
-  const lead = ranked[0];
-  const col1 = ranked.find(it => it !== lead && ['Etkinlik', 'Kültür', 'Belediye', 'Gündem'].includes(it.category)) || ranked[1];
-  const col3 = ranked.find(it => it !== lead && it !== col1 && ['Plaj', 'Turizm', 'Hava'].includes(it.category)) || ranked[2] || ranked[1];
-  const mag  = ranked.find(it => it !== lead && it !== col1 && it !== col3) || ranked[1];
+  // Rotasyon: son 6 günde kullanılan haber id'lerini önceleme (her gün farklı manşet).
+  const usedIds = await recentlyUsedIds(6);
+  const taken = new Set();
+  const lead = pickFresh(ranked, usedIds, taken) || ranked[0];
+  const col1 = pickFresh(ranked, usedIds, taken, it => ['Etkinlik', 'Kültür', 'Belediye', 'Gündem'].includes(it.category))
+            || pickFresh(ranked, usedIds, taken) || ranked[1];
+  const col3 = pickFresh(ranked, usedIds, taken, it => ['Plaj', 'Turizm', 'Hava'].includes(it.category))
+            || pickFresh(ranked, usedIds, taken) || ranked[2] || ranked[1];
+  const mag  = pickFresh(ranked, usedIds, taken) || ranked[1];
+  if (usedIds.has(lead?.id)) console.log('  ↳ rotasyon: taze haber tükendi, en yüksek skorluya dönüldü');
+  else console.log(`  ↳ rotasyon: manşet "${lead?.title?.slice(0, 50)}" (son 6 günde kullanılmadı)`);
 
   // Editöryal grounding (paralel çek): agent araştırması + etkinlik + IG sinyali + brifing fikirleri
   const [agentResearch, todayEvents, igVenueNews, briefingIdeas] = await Promise.all([
@@ -198,7 +285,8 @@ async function main() {
     lead_deck: ed.lead.deck || '',
     lead_body: toParas(ed.lead.body),
     lead_byline: `Kalkan Today Editör · ${lead.source || 'derleme'}`,
-    ...(lead.image ? { lead_image: lead.image } : {}),
+    // Foto grounding: RSS gerçek fotosu grounded ise koru; generic/boşsa yer-farkında gerçek Kalkan fotosu.
+    lead_image: groundPhoto(lead.image, { id: lead.id, title: lead.title, category: lead.category, matchText: `${lead.title} ${lead.summary || ''}` }),
     lead_caption: `Foto: ${lead.source || 'Kalkan Today arşivi'} · ${lead.category || ''}`.trim(),
     col1_title: ed.col1?.title || col1?.title,
     col1_byline: `Bülten · ${col1?.category || ''}`,

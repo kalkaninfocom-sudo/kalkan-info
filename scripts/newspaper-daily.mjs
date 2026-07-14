@@ -140,11 +140,22 @@ async function queueSocial(cards) {
 
 async function main() {
   console.log(`\n════ Kalkan Today — ${date} ════`);
-  // AJANS ↔ GAZETE köprüsü: editöryal katmanı build'den ÖNCE üret (data/gazete-today.json).
-  // sources.mjs.getNews() bugünün dosyasını bulursa agent metnini kullanır; yoksa/başarısızsa
-  // ham RSS'e düşer (graceful). Bu yüzden non-fatal — hata build'i durdurmaz.
-  const edOk = run(['scripts/agency/gazete-editorial.mjs', date], 'Editöryal katman (ajans → gazete)');
-  if (!edOk) console.warn('  ⚠ Editöryal agent başarısız — gazete ham RSS fallback ile üretilecek.');
+  // AJANS ↔ GAZETE köprüsü (Tier 2 HABER ODASI): muhabir → editör → doğrulayıcı → şef zinciri
+  // build'den ÖNCE data/gazete-today.json'u üretir. sources.mjs.getNews() bugünün dosyasını bulursa
+  // kullanır; yoksa/başarısızsa ham RSS'e düşer (graceful) — non-fatal, build'i durdurmaz.
+  // İDEMPOTENT: bugünün dosyası zaten haber odasından geçmişse (editorial_review var) tekrar üretme
+  // (workflow'da ayrı adım çalıştıysa çift LLM maliyeti olmasın).
+  let alreadyReviewed = false;
+  try {
+    const f = JSON.parse(readFileSync(join(ROOT, 'data', 'gazete-today.json'), 'utf8'));
+    alreadyReviewed = f.date === date && !!f.editorial_review;
+  } catch {}
+  if (alreadyReviewed) {
+    console.log('\n── Haber odası: bugünün sayısı zaten denetlenmiş (editorial_review var) — tekrar üretilmiyor ──');
+  } else {
+    const edOk = run(['scripts/agency/gazete-newsroom.mjs', date], 'Haber odası (muhabir→editör→doğrulayıcı→şef)');
+    if (!edOk) console.warn('  ⚠ Haber odası başarısız — gazete ham RSS fallback ile üretilecek.');
+  }
   run(['newspaper/generator/build.mjs', 'morning', date], 'Ön Sayfa (morning) üret');
   run(['newspaper/generator/build.mjs', 'magazine', date], 'Arka Yüz (magazine) üret');
   run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle');

@@ -16,6 +16,7 @@ import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { eventsForDate } from '../../scripts/events-lib.mjs';
+import { groundPhoto, pickNewsPhoto } from '../../lib/news-photos.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = join(__dirname, '..', '..');
@@ -242,7 +243,8 @@ export async function getNews() {
     out.lead_deck = norm(deck).startsWith(norm(out.lead_headline).slice(0, 40)) ? '' : deck;
     out.lead_byline = `${lead.source || 'Kalkan Today'} · ${formatDateLong(lead.date)}`;
     out.lead_body = toParagraphs(lead.content || lead.summary);
-    if (lead.image) out.lead_image = lead.image;
+    // Foto grounding: RSS gerçek fotosu grounded ise koru; generic/boşsa yer-farkında gerçek Kalkan fotosu.
+    out.lead_image = groundPhoto(lead.image, { id: lead.id, title: lead.title, category: lead.category, matchText: `${lead.title} ${lead.summary || ''}` });
     out.lead_caption = `Foto: ${lead.source || 'Kalkan Today arşivi'} · ${lead.category || ''}`.trim();
   }
   if (c1) {
@@ -524,8 +526,14 @@ export async function buildData(iso, demo) {
   ]);
   delete ads._magSponsor; // magazin-özel alan, sabahta kullanılmaz
 
-  // Hero foto: haberde görsel yoksa restoran fotosuna düş (referans: hero hep dolu)
-  if (!news.lead_image && front.front_hero_fallback) news.lead_image = front.front_hero_fallback;
+  // Hero foto: haberde görsel yoksa RESTORAN fotosuna DÜŞÜRME (foto-başlık uyumsuzluğu kaynağıydı) —
+  // bunun yerine manşetin konusuna/yerine göre gerçek Kalkan fotosu seç. Hero yine hep dolu, ama alakalı.
+  if (!news.lead_image) {
+    news.lead_image = pickNewsPhoto({
+      title: news.lead_headline || '', category: news.lead_category || 'Turizm',
+      matchText: `${news.lead_headline || ''} ${news.lead_deck || ''}`,
+    });
+  }
 
   // col2 "Mekan & Yaşam": her zaman Şefin Önerisi (restoran) — on-brand, daima yerel
   const chef = resto._chef;
