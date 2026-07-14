@@ -446,7 +446,9 @@ export async function getFrontExtras(iso) {
   // ── Haftanın Restoranları (top-5 foto+puan, rotasyonlu havuz) ──
   const rdata = await readJson('restoranlar.json');
   const ritems = rdata?.items || [];
-  const photoOf = (r) => (r.gallery && r.gallery[0]) || r.image || '';
+  // MUTLAK URL şart: kart puppeteer'da file:// ile render ediliyor; göreli 'assets/img/...' yolları
+  // file:///…/archive/<date>/assets/img/… olarak çözülüp KIRILIYOR (boş gri kutular). absPhoto → https.
+  const photoOf = (r) => absPhoto((r.gallery && r.gallery[0]) || r.image || '') || '';
   const ratedPhoto = ritems
     .filter(r => r.rating && r.reviewCount >= 25 && photoOf(r))
     .sort((a, b) => b.rating - a.rating || (b.reviewCount || 0) - (a.reviewCount || 0));

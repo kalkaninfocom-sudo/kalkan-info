@@ -120,13 +120,20 @@ async function main() {
     let editor = null, verifier = null;
     try { editor = await reviewItem(item, line); } catch (e) { editor = { verdict: 'error', reasons: [String(e.message).slice(0, 80)], score: null }; }
     try { verifier = await verifyItem(item); } catch (e) { verifier = { verdict: 'error', credibility: null, flags: [String(e.message).slice(0, 80)] }; }
-    const hardReject = editor?.verdict === 'reject' || verifier?.verdict === 'reject';
+    // YAYIN-ENGELLEYİCİ ayrımı (dürüstlük): olgu/kaynak kararı DOĞRULAYICININDIR.
+    //  - Doğrulayıcı 'reject' (sansasyon/güvenilmez kaynak) → gerçek blok.
+    //  - Editör 'reject' SADECE SANSASYON (ton) ise blok — editörün tek başına "uydurma" flag'i
+    //    (doğrulayıcı kaynağı OK derken) yayını ENGELLEMEZ: editör metni kaynaksız görüp yanılır.
+    const eReasons = (editor?.reasons || []).join(' ');
+    const editorSansasyon = /sansasyon|klişe/i.test(eReasons);
+    const hardReject = verifier?.verdict === 'reject' || editorSansasyon;
+    const editorConcern = (editor?.verdict === 'reject' || editor?.verdict === 'hold') && !hardReject; // yumuşak: ek kaynak/revizyon
     const pass = !hardReject && editor?.verdict !== 'error';
     return {
       slot: d.slot, title: d.title,
       editor: { verdict: editor?.verdict, score: editor?.score ?? null, reasons: (editor?.reasons || []).slice(0, 2) },
       verifier: { verdict: verifier?.verdict, credibility: verifier?.credibility ?? null, flags: (verifier?.flags || []).slice(0, 3) },
-      pass, hardReject,
+      pass, hardReject, editorSansasyon, editorConcern,
       rank: (editor?.score ?? 50) + (verifier?.credibility ?? 50), // şef sıralaması
     };
   }));
@@ -159,10 +166,11 @@ async function main() {
     console.log('  ✓ manşet denetimden geçti');
   }
 
-  // Sütun hard-reject → içeriği boşaltma; bayrakla (insan onayı görür, prod'da nadir).
+  // Sütun kararları: gerçek blok (hardReject) ile editörün yumuşak notunu AYIR (dürüst etiket).
   for (const j of judged) {
     if (j.slot === 'lead') continue;
-    if (j.hardReject) decisions.push(`${j.slot} işaretlendi (${verdictReason(j)}) — insan onayı`);
+    if (j.hardReject) decisions.push(`${j.slot} YAYINLANMAZ (${verdictReason(j)}) — insan onayı`);
+    else if (j.editorConcern) decisions.push(`${j.slot}: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir`);
   }
 
   front.editorial_review = {
@@ -180,8 +188,8 @@ async function main() {
 
 function verdictReason(j) {
   const bits = [];
-  if (j.editor.verdict === 'reject') bits.push('editör: ' + (j.editor.reasons[0] || 'reddetti'));
-  if (j.verifier.verdict === 'reject') bits.push('doğrulayıcı: ' + (j.verifier.flags[0] || 'sansasyon/güvenilmez'));
+  if (j.verifier?.verdict === 'reject') bits.push('doğrulayıcı: ' + (j.verifier.flags[0] || 'güvenilmez kaynak'));
+  if (j.editorSansasyon) bits.push('editör: sansasyonel/klişe ton');
   return bits.join('; ') || 'denetim';
 }
 
