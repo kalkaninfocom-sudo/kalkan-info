@@ -82,7 +82,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json data/agency/sepet 2>/dev/null || true
+          git add data/agency/briefing data/agency/content-ideas.json data/haberler.json data/ig-venue-intake.json data/ig-venue-news.json data/agency/sepet assets/img/ig-venue 2>/dev/null || true
           if git diff --cached --quiet; then echo "değişiklik yok"; exit 0; fi
           git commit -m "content(brifing): günlük ajans brifingi $(TZ=Europe/Istanbul date +%F) [auto]"
           git pull --rebase --autostash origin main || true

@@ -25,13 +25,43 @@
  *   node scripts/ig-venue-watch.mjs --probe user1,user2   # listeyi atla, bu hesapları test et (JSON'a yazmadan)
  *   node scripts/ig-venue-watch.mjs --limit 4       # hesap başına gönderi limiti (varsayılan 6)
  */
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+
+// ── IG foto İNDİRİCİ (Berkay: "IG görsellerini gazetede kullanın") ──
+// IG CDN media_url'leri SÜRELİ (token birkaç saatte patlar) → gazetede doğrudan kullanılamaz.
+// Bu yüzden URL TAZE iken (fetch anında) indirip kendi assets'imize koyuyoruz; gazete lokal
+// (kalıcı, mutlak) yolu kullanır. Yalnız FOTO (image/carousel); video atlanır. Non-fatal.
+const IG_PHOTO_REL = 'assets/img/ig-venue';
+function igPhotoName(username, permalink) {
+  let h = 0; const s = String(permalink || username || '');
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return `${String(username || 'venue').replace(/[^a-z0-9]/gi, '').slice(0, 24)}-${Math.abs(h).toString(36)}.jpg`;
+}
+async function downloadIgPhoto(url, username, permalink, mediaType) {
+  if (!url) return null;
+  if (!/image|carousel/i.test(String(mediaType || ''))) return null; // video/other → atla
+  const name = igPhotoName(username, permalink);
+  const rel = `${IG_PHOTO_REL}/${name}`;
+  const abs = join(ROOT, rel);
+  const publicUrl = `https://kalkaninfo.com/${rel}`;
+  try {
+    if (existsSync(abs)) return publicUrl;                    // idempotent
+    const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+    if (!res.ok) return null;
+    if (!/image\//.test(res.headers.get('content-type') || '')) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (buf.length < 1200) return null;                      // bozuk/çok küçük → atla
+    await mkdir(join(ROOT, IG_PHOTO_REL), { recursive: true });
+    await writeFile(abs, buf);
+    return publicUrl;
+  } catch { return null; }
+}
 
 // ── .env.local yükle (yerel çalıştırma; CI'da env zaten dolu) ──
 try {
@@ -130,12 +160,15 @@ async function main() {
     for (const m of r.media) {
       if (!m.permalink || seen.has(m.permalink)) continue;
       seen.add(m.permalink);
+      // Foto TAZE URL iken indir → kalıcı lokal yol (gazete bunu kullanır). Video → null.
+      const image = await downloadIgPhoto(m.media_url, acc.username, m.permalink, m.media_type);
       const item = {
         username: acc.username,
         venueName: acc.name || acc.username,
         category: acc.category || null,
         caption: m.caption || '',
         media_url: m.media_url || null,
+        image, // kalıcı lokal foto (https://kalkaninfo.com/assets/img/ig-venue/...) veya null
         permalink: m.permalink,
         timestamp: m.timestamp || null,
         media_type: m.media_type || null,
@@ -219,6 +252,7 @@ async function draftNews(items) {
         category: it.category || null,
         permalink: it.permalink,
         media_url: it.media_url,
+        image: it.image || null, // kalıcı lokal foto → gazete/magazin bunu kullanır
         timestamp: it.timestamp,
         provider,
         draftedAt: new Date().toISOString(),
