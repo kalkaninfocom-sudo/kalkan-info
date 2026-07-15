@@ -1,0 +1,77 @@
+{
+  "date": "2026-07-15",
+  "generated_at": "2026-07-15T06:59:17.615Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-15",
+    "kalkan-in-ismi-nerede-geliyor-antalya-ekspres-2026-02-02",
+    "finike-demre-kas-kalkan-yolu-projesinde-dogru-bilinen-yanlislar-akdeniz-gercek-2025-12-15",
+    "kalkan-da-luks-tekne-kul-oldu-haber-denizde-2025-12-03"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü Yapıldı",
+  "lead_deck": "Patara Yörük Göçü etkinliği ile birlikte Kaş'ta gerçekleştirildi.",
+  "lead_body": [
+    "Kaş Belediyesi tarafından düzenlenen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği tamamlandı.",
+    "Kültürel mirasın tanıtıldığı etkinlik, bölgedeki yürüyüş rotaları ve geleneksel göç ritüellerini kapsadı."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'ın İsim Kökeni",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Antalya Ekspres, Kalkan isminin nereden geldiğini inceledi.",
+  "col3_title": "Kalkan Yolu Projesi Tartışılıyor",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Akdeniz Gerçek, Finike-Demre-Kaş-Kalkan yolu projesindeki yanlış bilgileri ele aldı.",
+  "magazine_lead_headline": "Kalkan'da Lüks Tekne Yandı",
+  "magazine_lead_body": [
+    "Haber Denizde'ye göre Kalkan'da lüks bir tekne tamamen kül oldu."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-15T06:59:36.114Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 89
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 30,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "hold",
+        "editor_score": 40,
+        "verifier": "reject",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "col3 YAYINLANMAZ (doğrulayıcı: hassas — insan onayı) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "magazine"
+    ]
+  }
+}
