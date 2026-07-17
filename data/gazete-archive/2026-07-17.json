@@ -1,0 +1,78 @@
+{
+  "date": "2026-07-17",
+  "generated_at": "2026-07-17T07:02:38.992Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-17",
+    "kas-ve-kalkan-da-villa-turizmi-zirveye-cikiyor-yeni-alanya-2026-06-26",
+    "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-2026-06-12",
+    "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-2026-06-12"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü Yapıldı",
+  "lead_deck": "Patara Yörük Göçü etkinliği ile birlikte bölgede gerçekleştirildi.",
+  "lead_body": [
+    "Kaş Belediyesi tarafından düzenlenen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinlikleri tamamlandı.",
+    "Doğa ve kültür odaklı etkinlikler, bölgenin tarihi rotaları üzerinde yürüyüşçüleri buluşturdu."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Villa Turizminde Yükseliş Sürüyor",
+  "col1_byline": "Bülten · Turizm",
+  "col1_body": "Kaş ve Kalkan bölgelerinde villa konaklamaları zirve noktasına ulaştı.",
+  "col3_title": "Bölgenin En İyi Otelleri Belirlendi",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kalkan, Kaş, Kekova ve Olimpos'un güncel otel listeleri yayınlandı.",
+  "magazine_lead_headline": "Kalamar Beach Club'da Akşam Yemeği",
+  "magazine_lead_body": [
+    "Kalamar Beach Club, ziyaretçilerine akşam yemeği hizmeti sunmaya devam ediyor."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-17T07:02:40.872Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 89
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 30,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 20,
+        "verifier": "ok",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "col3 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "magazine YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1"
+    ]
+  }
+}
