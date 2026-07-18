@@ -45,9 +45,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          # GÜVENLİ VARSAYILAN: approve = otomatik hiçbir şey göndermez, onay ister.
-          # auto yapmak için bu satırı değiştirin (dikkatli olun!).
-          IG_AUTOREPLY_MODE: approve
+          # Berkay kararı (2026-07-18): yorum cevapları AUTO — Telegram onayı olmadan
+          # doğrudan yanıtlanır. DM'ler Meta izni (instagram_manage_messages) olmadığı için
+          # yine atlanır. Kalite: lib/ig-reply.mjs marka-uyumlu + dil-algılayan cevap üretir.
+          IG_AUTOREPLY_MODE: auto
         run: node scripts/ig-reply-poll.mjs
 
       - name: State değişmişse commit et (dedup için)

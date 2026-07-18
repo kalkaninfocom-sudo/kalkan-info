@@ -67,6 +67,21 @@ if (!posts.length) {
   process.exit(1);
 }
 
+// ---- Rebase schedule to start today (or --start=YYYY-MM-DD); keep day gaps + time-of-day ----
+const startArg = (process.argv.find(a => a.startsWith('--start=')) || '').split('=')[1];
+const startDate = startArg ? new Date(`${startArg}T00:00:00+03:00`) : new Date();
+const anchor = new Date([...posts].sort((a, b) => new Date(a.scheduled_at) - new Date(b.scheduled_at))[0].scheduled_at);
+const DAY = 86400000;
+const dayShift = Math.round((startDate - anchor) / DAY);
+if (dayShift !== 0) {
+  for (const p of posts) {
+    const d = new Date(p.scheduled_at);
+    d.setDate(d.getDate() + dayShift);
+    p.scheduled_at = d.toISOString();
+  }
+  console.log(`Rebased ${posts.length} posts by ${dayShift} days → first: ${posts[0].scheduled_at}, last: ${posts[posts.length - 1].scheduled_at}`);
+}
+
 // ---- Map plan post -> social_posts row ----
 function toRow(p) {
   return {
