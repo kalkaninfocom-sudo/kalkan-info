@@ -100,7 +100,7 @@ window.__kalkan_install_mounted = true;
       'left:12px',
       'right:12px',
       'z-index:9999',
-      'background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 100%)',
+      'background:linear-gradient(135deg,#1E2B3C 0%,#16243A 100%)',
       'border:1.5px solid rgba(74,158,245,0.35)',
       'border-radius:14px',
       'padding:14px 16px',
@@ -119,7 +119,7 @@ window.__kalkan_install_mounted = true;
           to   { opacity:1; transform:translateY(0); }
         }
       </style>
-      <div style="flex-shrink:0;width:42px;height:42px;background:rgba(74,158,245,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+      <div style="flex-shrink:0;width:42px;height:42px;background:rgba(232,152,18,0.14);border-radius:10px;display:flex;align-items:center;justify-content:center;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A9EF5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2L12 15M12 15L8 11M12 15L16 11"/><rect x="3" y="17" width="18" height="4" rx="2"/>
         </svg>
@@ -129,7 +129,7 @@ window.__kalkan_install_mounted = true;
         <p style="margin:2px 0 0;color:rgba(220,230,239,0.75);font-size:11px;line-height:1.4;">Ana ekrana ekle, daha hızlı aç</p>
       </div>
       <button id="kalkan-install-btn" style="
-        flex-shrink:0;background:#4A9EF5;color:#fff;font-family:Montserrat,system-ui,sans-serif;
+        flex-shrink:0;background:#c97b09;color:#fff;font-family:Montserrat,system-ui,sans-serif;
         font-weight:700;font-size:12px;padding:8px 14px;border:none;border-radius:8px;
         cursor:pointer;transition:background 0.15s,transform 0.12s;white-space:nowrap;
       ">Yükle</button>
@@ -178,7 +178,7 @@ window.__kalkan_install_mounted = true;
       'left:12px',
       'right:12px',
       'z-index:9999',
-      'background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 100%)',
+      'background:linear-gradient(135deg,#1E2B3C 0%,#16243A 100%)',
       'border:1.5px solid rgba(74,158,245,0.35)',
       'border-radius:14px',
       'padding:14px 16px',
@@ -242,7 +242,7 @@ window.__kalkan_install_mounted = true;
       'bottom:20px',
       'left:20px',
       'z-index:9998',
-      'background:#0a2e4c',
+      'background:#16243A',
       'color:white',
       'padding:12px 16px',
       'border-radius:10px',

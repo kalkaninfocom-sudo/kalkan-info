@@ -64,11 +64,14 @@ function freshBonus(iso) {
   const d = Date.parse(iso + 'T00:00:00');
   if (isNaN(d)) return 0;
   const ageDays = (Date.parse(date + 'T00:00:00') - d) / 86400000;
-  if (ageDays <= 2) return 4;
-  if (ageDays <= 7) return 2;
-  if (ageDays <= 21) return 0;
-  if (ageDays <= 45) return -4;
-  return -12;                    // >45 gün: manşet/sütun adayı olmaktan pratikte çıkar
+  // Berkay: "güncel haber kullanalım" → tazelik sıkılaştırıldı. 14 günden eski haber
+  // hızla adaylıktan düşer; 18 günlük "villa turizmi" tekrarı manşet/sütun olmasın.
+  if (ageDays <= 2) return 6;
+  if (ageDays <= 5) return 4;
+  if (ageDays <= 10) return 1;
+  if (ageDays <= 14) return -2;
+  if (ageDays <= 30) return -8;
+  return -16;                    // >30 gün: pratikte aday değil
 }
 
 // ── TEKRAR KIRICI 1: son N günün gazetesinde kullanılan haber id'leri ──
@@ -203,7 +206,7 @@ async function main() {
   const collapsed = collapseDupes(rankedRaw);       // near-duplicate hikayeleri tek'e indir
   // Zamanlılık tabanı: 45 günden eski haberi adaylıktan TAMAMEN ele (Temmuz'da Aralık haberi olmasın).
   // Ama havuz çok küçülürse (<3) eskiye de izin ver — boş sütundansa eski-ama-yerel haber yeğdir.
-  const isTimely = (it) => freshBonus(it.date) > -12;
+  const isTimely = (it) => freshBonus(it.date) > -8; // ≤14 gün (güncel); eskiler ancak havuz <3 ise
   const timely = collapsed.filter(isTimely);
   const ranked = timely.length >= 3 ? timely : collapsed;
   if (timely.length < 3) console.log(`  ⚠ taze-zamanında haber az (${timely.length}) — RSS arzı ince, havuz genişletildi`);
@@ -285,6 +288,10 @@ async function main() {
     lead_deck: ed.lead.deck || '',
     lead_body: toParas(ed.lead.body),
     lead_byline: `Kalkan Today Editör · ${lead.source || 'derleme'}`,
+    // Kaynak şeffaflığı (Berkay): manşet KAYNAĞINA tıklanabilir + outlet adı görünür.
+    lead_source: lead.source || '',
+    lead_source_url: lead.sourceUrl || '',
+    lead_date: lead.date || '',
     // Foto grounding: RSS gerçek fotosu grounded ise koru; generic/boşsa yer-farkında gerçek Kalkan fotosu.
     lead_image: groundPhoto(lead.image, { id: lead.id, title: lead.title, category: lead.category, matchText: `${lead.title} ${lead.summary || ''}` }),
     lead_caption: `Foto: ${lead.source || 'Kalkan Today arşivi'} · ${lead.category || ''}`.trim(),

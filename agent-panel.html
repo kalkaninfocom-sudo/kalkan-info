@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="tr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Agent Panosu — Kalkan Info Multiverse</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--linen:#FAF6EF;--linen2:#EFE7D8;--ink:#16243A;--muted:#6A6558;--gold:#E8A020;--line:#e4dbca}
+  body{font-family:'Manrope',sans-serif;background:var(--linen);color:var(--ink);line-height:1.6;
+    background-image:radial-gradient(1100px 500px at 90% -10%,rgba(232,160,32,.10),transparent 60%),radial-gradient(900px 600px at -5% 110%,rgba(31,168,168,.08),transparent 60%)}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;letter-spacing:-.02em;line-height:1.1}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 22px 60px}
+  header.top{margin-bottom:8px}
+  .kick{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:800}
+  h1{font-size:clamp(2rem,5vw,3.2rem);margin:6px 0}
+  h1 em{font-style:italic;color:var(--gold)}
+  .sub{color:var(--muted);max-width:640px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0 6px}
+  .stat{background:#fff;border:1px solid var(--linen2);border-radius:14px;padding:12px 18px;box-shadow:0 8px 22px -16px rgba(107,68,38,.4)}
+  .stat b{font-family:'Fraunces',serif;font-size:26px;display:block;color:var(--ink)}
+  .stat span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .health{display:inline-flex;align-items:center;gap:7px;background:#8da7501f;color:#5f7a2f;font-weight:700;font-size:12px;padding:6px 13px;border-radius:99px;margin-top:14px}
+  .health .live{width:8px;height:8px;border-radius:50%;background:#5f7a2f;box-shadow:0 0 0 0 rgba(95,122,47,.5);animation:p 2s infinite}
+  @keyframes p{70%{box-shadow:0 0 0 8px rgba(95,122,47,0)}100%{box-shadow:0 0 0 0 rgba(95,122,47,0)}}
+  .dept{margin-top:34px}
+  .dept-head{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--dc);margin-bottom:16px}
+  .dept-icon{width:34px;height:34px;display:grid;place-items:center;background:var(--dc);color:#fff;border-radius:9px;font-size:16px}
+  .dept-head h2{font-size:22px;flex:1}
+  .dept-count{font-size:12px;color:var(--muted);font-weight:700;background:#fff;border:1px solid var(--linen2);padding:4px 11px;border-radius:99px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+  .card{background:#fff;border:1px solid var(--linen2);border-radius:16px;padding:16px 17px;box-shadow:0 10px 26px -20px rgba(107,68,38,.5);transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(107,68,38,.6)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+  .card-top h3{font-size:17px}
+  .role{font-size:12.5px;color:var(--ink);font-weight:600;margin-bottom:5px}
+  .char{font-size:11.5px;color:var(--muted);margin-bottom:11px;min-height:32px}
+  .meta{display:flex;gap:6px;flex-wrap:wrap}
+  .pill{font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px}
+  .pill.trig{background:#E8A0201f;color:#c97b09}
+  .pill.sched{background:#1fa8a81f;color:#178a8a}
+  .pill.role-pill{background:#16243a12;color:#16243a}
+  .activity{margin-top:36px;background:#fff;border:1px solid var(--linen2);border-radius:18px;padding:20px 22px;box-shadow:0 10px 26px -20px rgba(107,68,38,.5)}
+  .activity h2{font-size:20px;margin-bottom:12px}
+  .activity ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .activity li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);padding-bottom:9px;border-bottom:1px solid var(--linen2)}
+  .activity li:last-child{border:0}
+  .activity .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex:none}
+  .activity em{color:#c97b09;font-style:normal;font-weight:700;font-size:11px}
+  .activity time{margin-left:auto;color:var(--muted);font-size:11px}
+  .activity .muted{color:var(--muted)}
+  footer{margin-top:40px;text-align:center;color:var(--muted);font-size:11px}
+  .note{margin-top:10px;font-size:11.5px;color:var(--muted);max-width:720px}
+</style></head>
+<body><div class="wrap">
+  <header class="top">
+    <div class="kick">Kalkan Info · Multiverse</div>
+    <h1>28 Agent <em>Panosu</em></h1>
+    <p class="sub">Tüm departmanların yapay zekâ kadrosu — karakter, model, zamanlama ve son üretimler tek ekranda.</p>
+    <div class="health"><span class="live"></span>Motor 7/24 aktif — GitHub Actions her 10 dk</div>
+    <div class="stats">
+      <div class="stat"><b>28</b><span>Agent</span></div>
+      <div class="stat"><b>4</b><span>Departman</span></div>
+      <div class="stat"><b>11</b><span>Zamanlı görev</span></div>
+      <div class="stat"><b>13</b><span>Tetikleyici</span></div>
+    </div>
+  </header>
+  
+    <section class="dept">
+      <div class="dept-head" style="--dc:#E8A020">
+        <span class="dept-icon">◆</span>
+        <h2>Sosyal Medya</h2>
+        <span class="dept-count">11 agent</span>
+      </div>
+      <div class="grid">
+      <div class="card">
+        <div class="card-top">
+          <h3>ContentDirector</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Günün içerik kararını verir: 'Bugün ne post atalım?'</p>
+        <p class="char">bir yayın grubunun editöryal karar merciisi gibi düşünürsün</p>
+        <div class="meta">
+          <span class="pill sched">⏱ 06:00 · 09:00</span>
+          <span class="pill role-pill">decide</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>TrendScout</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Google Trends + IG hashtag sinyali toplar, Kalkan alakasını skorlar</p>
+        <p class="char">turizm içeriğinde trend avcısı, veri okuryazarı bir keşif editörü</p>
+        <div class="meta">
+          <span class="pill sched">⏱ 05:00</span>
+          <span class="pill role-pill">signals</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>SocialWriter</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">IG/X/FB/TikTok caption + hashtag + CTA — 5 dilde</p>
+        <p class="char">marka sesi kusursuz oturmuş bir sosyal içerik yazarı</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Karar onayı sonrası</span>
+          <span class="pill role-pill">write</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>BrandGuard</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Yayın öncesi ton/marka/risk denetimi (hard block + soft öneri)</p>
+        <p class="char">Kalkan Info'nun marka kapı bekçisi, yayın standardını koruyan editöryal denetçi</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Her caption</span>
+          <span class="pill role-pill">review</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>SocialAnalyst</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Plausible + IG Insights + Clarity + Ads → haftalık digest</p>
+        <p class="char">vanity metric'e kanmayan, dönüşüm odaklı bir analitik editörü</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Mon 08:00</span>
+          <span class="pill role-pill">analyze</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>GrowthStrategist</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Haftalık büyüme planı — 6 kaldıraç</p>
+        <p class="char">AARRR hunisi ve kaldıraç mantığıyla düşünen bir büyüme stratejisti</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Mon 07:00</span>
+          <span class="pill role-pill">strategy</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>AdsOptimizer</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Meta/TikTok/Google Ads ROAS optimizasyonu (lean $300-500/ay)</p>
+        <p class="char">lean bütçeyi ($300-500/ay) her kuruşu ölçen bir performans pazarlamacısı gibi yönetirsin</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">ads</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>WhatsAppReception</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Gelen WhatsApp triage — rezervasyon/soru/şikayet</p>
+        <p class="char">Kalkan Info'nun ilk temas noktası, sıcak ama profesyonel bir karşılama uzmanı</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Anlık (her mesaj)</span>
+          <span class="pill role-pill">triage</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>ReelsProducer</h3>
+          <span style="background:#6A65581f;color:#6A6558;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">remotion+cheap-llm</span>
+        </div>
+        <p class="role">Flagship reels: restoran (Sal), antik kent (Çar), plaj (Prş), villa (Cmt) — Remotion render + müzik + Telegram onayı</p>
+        <p class="char">Kalkan Info'nun amiral reels yönetmeni</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">produce</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>İlanUzmanı</h3>
+          <span style="background:#6A65581f;color:#6A6558;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">puppeteer+cheap-llm</span>
+        </div>
+        <p class="role">Haftalık iş ilanları kartı — çift-mod: ilan varsa &quot;Kalkan'da İş Var&quot; dijesti, yoksa &quot;İş var mı?&quot; tanıtımı → Telegram onayı</p>
+        <p class="char">Kalkan/Kaş/Patara iş panosunun içerik editörü, yerel istihdamı ciddiye alan bir topluluk sesi</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">produce</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>BültenEditörü</h3>
+          <span style="background:#6A65581f;color:#6A6558;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">remotion+cheap-llm</span>
+        </div>
+        <p class="role">Haftalık bülten reel — son 7 gün gazete arşivinden haftanın en iyi haberleri + magazin → Telegram onayı</p>
+        <p class="char">Kalkan Info'nun haftalık bülten reel editörü; haftanın hikâyesini bir editör gözüyle kurarsın</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">produce</span>
+        </div>
+      </div></div>
+    </section>
+    <section class="dept">
+      <div class="dept-head" style="--dc:#1fa8a8">
+        <span class="dept-icon">▤</span>
+        <h2>Kalkan Today Gazete</h2>
+        <span class="dept-count">9 agent</span>
+      </div>
+      <div class="grid">
+      <div class="card">
+        <div class="card-top">
+          <h3>YayınYönetmeni</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Kalkan Today Genel Yayın Yönetmeni — günlük sayıyı kurar, kadroyu koordine eder</p>
+        <p class="char">haber değeri, denge ve okur güvenini kollayan deneyimli bir editör</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">edit-lead</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>Muhabir</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Yerel haber + etkinlik derler; manşet ve spot yazar</p>
+        <p class="char">ters piramit ve 5N1K'yı içselleştirmiş bir yerel haberci</p>
+        <div class="meta">
+          <span class="pill sched">⏱ 07:00 · 07:20 · 07:40</span>
+          <span class="pill role-pill">report</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>FotoEditörü</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Kapak ve görselleri seçer, ton/kalite kararı verir, altyazı yazar</p>
+        <p class="char">kompozisyon, ışık ve haber-görsel uyumunu bilen bir görsel yönetmen</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Sayı kurgusunda</span>
+          <span class="pill role-pill">photo</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>MagazinEditörü</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Arka yüz magazin ekini hazırlar — gece hayatı, kültür, lezzet</p>
+        <p class="char">yaşam, kültür, lezzet ve gece hayatını hikâyeleştiren bir kültür-sanat editörü</p>
+        <div class="meta">
+          <span class="pill sched">⏱ 07:10 · 07:30 · 07:50</span>
+          <span class="pill role-pill">magazine</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>SosyalEditör</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Onaylı sayıyı Instagram &amp; Facebook için paylaşıma hazırlar</p>
+        <p class="char">gazete diliyle sosyal dilin farkını bilen bir dağıtım editörü</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Sayı onayından sonra</span>
+          <span class="pill role-pill">publish-prep</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>Reklam-Uyum</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">İlan slotlarını yerleştirir/denetler, KVKK &amp; Basın uyumu</p>
+        <p class="char">basın etiği ve KVKK'yı bilen bir yayın denetçisi</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Yayın öncesi</span>
+          <span class="pill role-pill">compliance</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>NewsVerifier</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">RSS aggregator çıktısını filtreler — alakasız/riskli haberi eler</p>
+        <p class="char">Kalkan Today'in haber doğrulama süzgeci, kaynak eleştirisi yapan bir editör</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">verify</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>HavaPlan</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Günlük hava tahmini bazlı program/etkinlik revizyonu</p>
+        <p class="char">hava durumunu Kalkan/Kaş turist deneyimine çeviren pratik bir planlama editörü</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">weather</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>GazeteReelEN</h3>
+          <span style="background:#6A65581f;color:#6A6558;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">remotion+cheap-llm</span>
+        </div>
+        <p class="role">İngilizce Kalkan Today gazete reel'i — editöryal çeviri (cheap-llm) + Remotion → Telegram onayı</p>
+        <p class="char">Kalkan Today'in İngilizce reel editörü, İngiliz/uluslararası kitleye yazarsın</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">produce</span>
+        </div>
+      </div></div>
+    </section>
+    <section class="dept">
+      <div class="dept-head" style="--dc:#c97b09">
+        <span class="dept-icon">✦</span>
+        <h2>Concierge & Rehber</h2>
+        <span class="dept-count">5 agent</span>
+      </div>
+      <div class="grid">
+      <div class="card">
+        <div class="card-top">
+          <h3>TatilPlanner</h3>
+          <span style="background:#E8A0201f;color:#E8A020;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">sonnet</span>
+        </div>
+        <p class="role">Tercihlere göre 3-14 günlük Kalkan/Kaş tatil rotası</p>
+        <p class="char">Kalkan/Kaş/Patara'yı avucunun içi gibi bilen dürüst bir seyahat planlayıcısı</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Talep üzerine</span>
+          <span class="pill role-pill">plan</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>GezginRehber</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Likya antik kentleri sesli/yazılı rehberlik</p>
+        <p class="char">Likya uygarlığını ve antik kentleri (Patara, Xanthos, Letoon, Tlos, Pınara) tutkuyla bilen bir kültür rehberi</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Talep üzerine</span>
+          <span class="pill role-pill">guide</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>MenuChef</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Restoran sahiplerine menü oluşturma asistanı</p>
+        <p class="char">restoran sahiplerine yardımcı olan, iştah açıcı ama dürüst bir menü yazarı</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Talep üzerine</span>
+          <span class="pill role-pill">menu</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>ProviderMatcher</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Villa/restoran/transfer/tekne sağlayıcı eşleştirme</p>
+        <p class="char">misafir talebini doğru sağlayıcıyla eşleştiren dürüst bir concierge</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Talep üzerine</span>
+          <span class="pill role-pill">match</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>DilÇevirmen</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">İçerik TR→EN/DE/RU/AR çeviri</p>
+        <p class="char">turizm metinlerinde ustalaşmış çok dilli bir yerelleştirme uzmanı</p>
+        <div class="meta">
+          <span class="pill trig">⚡ İçerik üretiminde</span>
+          <span class="pill role-pill">translate</span>
+        </div>
+      </div></div>
+    </section>
+    <section class="dept">
+      <div class="dept-head" style="--dc:#16243A">
+        <span class="dept-icon">⚙</span>
+        <h2>Teknik & Uyum</h2>
+        <span class="dept-count">3 agent</span>
+      </div>
+      <div class="grid">
+      <div class="card">
+        <div class="card-top">
+          <h3>DeployAgent</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Dağıtım ve build sağlığı</p>
+        <p class="char">dağıtım ve build sağlığını okuyan pratik bir DevOps mühendisi</p>
+        <div class="meta">
+          <span class="pill trig">⚡ Deploy sonrası</span>
+          <span class="pill role-pill">deploy</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>AuditAgent</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">Site sağlığı ve içerik denetimi</p>
+        <p class="char">site sağlığı ve içerik kalitesini tarayan titiz bir denetçi</p>
+        <div class="meta">
+          <span class="pill sched">⏱ Pipeline</span>
+          <span class="pill role-pill">audit</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top">
+          <h3>KVKKGuardian</h3>
+          <span style="background:#8da7501f;color:#8da750;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;white-space:nowrap">haiku</span>
+        </div>
+        <p class="role">KVKK/GDPR ve hukuki uyum bekçisi</p>
+        <p class="char">KVKK/GDPR'ı içselleştirmiş, veri mahremiyetini koruyan hukuki uyum bekçisi</p>
+        <div class="meta">
+          <span class="pill trig">⚡ İçerik/veri işleminde</span>
+          <span class="pill role-pill">legal</span>
+        </div>
+      </div></div>
+    </section>
+  <div class="activity">
+    <h2>Son üretimler (Supabase)</h2>
+    <ul><li><span class="dot"></span><b>kalkan-2026w25-d04</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li><li><span class="dot"></span><b>kalkan-2026w25-d05</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li><li><span class="dot"></span><b>kalkan-2026w25-d03</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li><li><span class="dot"></span><b>kalkan-2026w25-d01</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li><li><span class="dot"></span><b>kalkan-2026w25-d02</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li><li><span class="dot"></span><b>kalkan-2026w25-d06</b> <em>pending_approval</em> <time>2026-07-18 02:12</time></li></ul>
+  </div>
+  <p class="note">Not: WhatsApp / DM / Ads agent'ları Meta App Review onayından sonra tam aktif olur. Diğer tüm kadro çalışıyor.</p>
+  <footer>Kalkan Info Agent Multiverse · otomatik üretildi · 2026-07-18</footer>
+</div></body></html>

@@ -246,6 +246,9 @@ export async function getNews() {
     // Foto grounding: RSS gerçek fotosu grounded ise koru; generic/boşsa yer-farkında gerçek Kalkan fotosu.
     out.lead_image = groundPhoto(lead.image, { id: lead.id, title: lead.title, category: lead.category, matchText: `${lead.title} ${lead.summary || ''}` });
     out.lead_caption = `Foto: ${lead.source || 'Kalkan Today arşivi'} · ${lead.category || ''}`.trim();
+    out.lead_source = lead.source || '';
+    out.lead_source_url = lead.sourceUrl || '';
+    out.lead_date = lead.date || '';
   }
   if (c1) {
     out.col1_title = c1.title;
@@ -425,14 +428,26 @@ export async function getFrontExtras(iso) {
   const seed = Number(issueOf(day));
 
   // ── Günün Başlıkları: haber başlıklarından kısa liste ──
+  // Günün Başlıkları — her başlık KAYNAĞINA tıklanabilir (Berkay: "habere tıklanınca kaynağı göster").
+  // {title, url, source} taşınır; url varsa <a>, yoksa düz metin (evergreen fallback).
   const news = await readJson('haberler.json');
   const heads = [];
   if (news?.items?.length) {
-    const ranked = [...news.items].map(it => ({ it, s: newsScore(it) })).sort((a, b) => b.s - a.s);
-    for (const { it, s } of ranked) { if (s > -3 && it.title) heads.push(cleanHeadline(trimWords(it.title, 74))); if (heads.length >= 6) break; }
+    const ranked = [...news.items].map(it => ({ it, s: newsScore(it) }))
+      .sort((a, b) => b.s - a.s || (b.it.date || '').localeCompare(a.it.date || '')); // skor eşitse taze önce
+    for (const { it, s } of ranked) {
+      if (s > -3 && it.title) heads.push({ title: cleanHeadline(trimWords(it.title, 74)), url: it.sourceUrl || '', source: it.source || '' });
+      if (heads.length >= 6) break;
+    }
   }
-  while (heads.length < 5) heads.push(['Yaz sezonu hareketlendi', 'Likya yürüyüş rotaları ilgi görüyor', 'Kalkan pazarında taze ürünler tezgâhta', 'Tekne turlarına yoğun ilgi', 'Antik kentler ziyaretçi akınına uğruyor'][heads.length] || 'Kalkan’da bugün');
-  out.headlines_list = heads.slice(0, 6).map(h => `<li>${esc(h)}</li>`).join('\n');
+  const fallbackHeads = ['Yaz sezonu hareketlendi', 'Likya yürüyüş rotaları ilgi görüyor', 'Kalkan pazarında taze ürünler tezgâhta', 'Tekne turlarına yoğun ilgi', 'Antik kentler ziyaretçi akınına uğruyor'];
+  while (heads.length < 5) heads.push({ title: fallbackHeads[heads.length] || 'Kalkan’da bugün', url: '', source: '' });
+  out.headlines_list = heads.slice(0, 6).map(h => {
+    const t = esc(h.title);
+    return h.url
+      ? `<li><a href="${esc(h.url)}" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: ${esc(h.source || 'haber')}">${t}</a></li>`
+      : `<li>${t}</li>`;
+  }).join('\n');
 
   // ── Gezilecek Yerler (gerçek, curated) ──
   const spots = ['Kalkan Halk Plajı', 'Kaputaş Plajı', 'Patara Antik Kenti', 'Saklıkent Kanyonu', 'İslamlar Köyü'];
@@ -557,6 +572,14 @@ export async function buildData(iso, demo) {
   // col1 önceliği: bugünün etkinlik takvimi > haber
   // Reklam slotu precedence (soldan sağa ezilir): oto restoran < Kalimera (ücretsiz partner) < ads (ücretli İLAN, en öncelikli)
   const merged = { ...fallback, ...base, ...staticBus, ...clean(front), ...clean(weather), ...clean(news), ...clean(eventsCol), ...clean(resto), ...clean(chefOverlay), ...clean(pharmacy), ...clean(kalimera), ...clean(ads) };
+
+  // Manşet KAYNAK ATFI (Berkay: "habere tıklanınca kaynağı göster") — tıklanabilir + doğrulanabilir.
+  // Google News redirect'i yerine outlet adını göster; link yeni sekmede açılır.
+  const srcName = merged.lead_source && !/google news/i.test(merged.lead_source) ? merged.lead_source : (merged.lead_source || 'Kalkan Today');
+  merged.lead_source_cite = merged.lead_source_url
+    ? `<a class="src-link" href="${esc(merged.lead_source_url)}" target="_blank" rel="noopener noreferrer nofollow">Kaynak: ${esc(srcName)} ↗</a>`
+    : (merged.lead_source ? `Kaynak: ${esc(merged.lead_source)}` : '');
+
   return merged;
 }
 
