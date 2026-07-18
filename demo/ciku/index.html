@@ -11,7 +11,7 @@
 <meta name="keywords" content="Çiku, çikolata, kuruyemiş, Samsun, Madlen, Dubai çikolatası, hediyelik çikolata, Elvan Çikolata, ithal çikolata" />
 <meta name="author" content="Çiku Çikolata ve Kuruyemiş" />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#150b06" />
+<meta name="theme-color" content="#faf6ef" />
 <link rel="canonical" href="https://kalkaninfo.com/demo/ciku/" />
 <link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/demo/ciku/?lang=tr" />
 <link rel="alternate" hreflang="en" href="https://kalkaninfo.com/demo/ciku/?lang=en" />
@@ -91,15 +91,15 @@
 </script>
 <style>
   html { scroll-behavior: smooth; }
-  body { background:#150b06; }
+  body { background:#FAF6EF; }
   .grain:before{
-    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .tracking-tightest{ letter-spacing:-0.04em; }
   .lift{ transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s cubic-bezier(.16,1,.3,1); }
   .lift:hover{ transform: translateY(-6px); }
-  .shadow-warm{ box-shadow: 0 20px 40px -18px rgba(212,160,23,.25), 0 8px 20px -12px rgba(0,0,0,.6); }
+  .shadow-warm{ box-shadow: 0 24px 50px -24px rgba(107,68,38,.22), 0 8px 22px -14px rgba(107,68,38,.14); }
   .reveal{ opacity:0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
   .reveal.in{ opacity:1; transform:none; }
   @keyframes floaty{ 0%,100%{ transform:translateY(0) rotate(-3deg);} 50%{ transform:translateY(-14px) rotate(2deg);} }
@@ -118,12 +118,12 @@
   .wa-pulse{ animation: pulse-ring 2.4s infinite; }
 </style>
 </head>
-<body class="grain font-sans text-cream-100 antialiased selection:bg-gold-500 selection:text-cocoa-900">
+<body class="grain font-sans text-cocoa-900 antialiased selection:bg-gold-500 selection:text-cocoa-900">
 
 <!-- backdrop gradients -->
 <div class="fixed inset-0 -z-10 overflow-hidden">
-  <div class="absolute -top-40 -left-40 w-[55rem] h-[55rem] rounded-full blur-[120px] opacity-40" style="background:radial-gradient(circle,#5c3a21,transparent 65%)"></div>
-  <div class="absolute top-[30%] -right-52 w-[50rem] h-[50rem] rounded-full blur-[120px] opacity-30" style="background:radial-gradient(circle,#d4a017,transparent 60%)"></div>
+  <div class="absolute -top-40 -left-40 w-[55rem] h-[55rem] rounded-full blur-[120px] opacity-25" style="background:radial-gradient(circle,#e4cdb0,transparent 65%)"></div>
+  <div class="absolute top-[30%] -right-52 w-[50rem] h-[50rem] rounded-full blur-[120px] opacity-25" style="background:radial-gradient(circle,#d4a017,transparent 60%)"></div>
   <div class="absolute bottom-0 left-1/3 w-[40rem] h-[40rem] rounded-full blur-[120px] opacity-20" style="background:radial-gradient(circle,#8da750,transparent 60%)"></div>
 </div>
 
@@ -140,12 +140,12 @@
 </div>
 
 <!-- nav -->
-<header class="sticky top-0 z-20 backdrop-blur-xl bg-cocoa-950/70 border-b border-cream-300/10">
+<header class="sticky top-0 z-20 backdrop-blur-xl bg-cream-50/85 border-b border-cocoa-900/10">
   <nav class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between gap-4">
     <a href="#" class="flex items-center group shrink-0" aria-label="Çiku">
       <img src="img/logo.png" alt="Çiku Çikolata ve Kuruyemiş" class="h-12 w-auto drop-shadow-[0_4px_12px_rgba(212,160,23,.25)] group-hover:scale-105 transition-transform" />
     </a>
-    <ul class="hidden lg:flex items-center gap-9 text-sm font-medium text-cream-200">
+    <ul class="hidden lg:flex items-center gap-9 text-sm font-medium text-cocoa-600">
       <li><a href="#kategoriler" class="gold-link" data-i18n="nav_cat">Kategoriler</a></li>
       <li><a href="#yeni" class="gold-link" data-i18n="nav_new">Yeni Ürünler</a></li>
       <li><a href="#spesiyal" class="gold-link" data-i18n="nav_special">Spesiyal</a></li>
@@ -155,21 +155,21 @@
     <div class="flex items-center gap-2.5">
       <!-- lang switcher -->
       <div class="relative">
-        <button id="lang-btn" class="flex items-center gap-1.5 text-sm font-semibold text-cream-200 hover:text-gold-400 transition px-2.5 py-2 rounded-lg hover:bg-cream-100/5" aria-haspopup="true" aria-expanded="false">
+        <button id="lang-btn" class="flex items-center gap-1.5 text-sm font-semibold text-cocoa-600 hover:text-gold-400 transition px-2.5 py-2 rounded-lg hover:bg-cream-100/5" aria-haspopup="true" aria-expanded="false">
           <span id="lang-flag">🇹🇷</span><span id="lang-code" class="hidden sm:inline">TR</span>
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg>
         </button>
-        <div id="lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-cocoa-800 border border-cream-300/15 shadow-warm overflow-hidden z-30">
+        <div id="lang-menu" class="hidden absolute right-0 mt-2 w-36 rounded-xl bg-white border border-cocoa-900/10 shadow-warm overflow-hidden z-30">
           <button data-lang="tr" class="lang-opt w-full flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-gold-500/15 transition text-left">🇹🇷 Türkçe</button>
           <button data-lang="en" class="lang-opt w-full flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-gold-500/15 transition text-left">🇬🇧 English</button>
           <button data-lang="ru" class="lang-opt w-full flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-gold-500/15 transition text-left">🇷🇺 Русский</button>
         </div>
       </div>
       <!-- cart -->
-      <button id="cart-btn" class="group relative inline-flex items-center gap-2 rounded-full bg-cream-100 text-cocoa-900 text-sm font-bold pl-4 pr-4 py-2.5 hover:bg-gold-400 transition-colors">
+      <button id="cart-btn" class="group relative inline-flex items-center gap-2 rounded-full bg-cocoa-900 text-cream-50 text-sm font-bold pl-4 pr-4 py-2.5 hover:bg-gold-400 transition-colors">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293A1 1 0 005.414 17H17M17 17a2 2 0 100 4 2 2 0 000-4zM9 19a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         <span class="hidden sm:inline" data-i18n="cart">Sepet</span>
-        <span id="cart-count" class="grid place-items-center w-5 h-5 rounded-full bg-cocoa-900 text-cream-100 text-[11px] font-bold group-hover:bg-cocoa-800">0</span>
+        <span id="cart-count" class="grid place-items-center w-5 h-5 rounded-full bg-gold-400 text-cocoa-900 text-[11px] font-bold group-hover:bg-gold-500">0</span>
       </button>
     </div>
   </nav>
@@ -185,7 +185,7 @@
       <h1 class="font-display font-semibold tracking-tightest leading-[0.95] text-[clamp(2.8rem,7vw,5.5rem)] reveal" style="transition-delay:.05s" data-i18n-html="hero_title">
         Her ısırıkta<br><span class="italic text-gold-400">el yapımı</span> bir<br>lezzet hikayesi.
       </h1>
-      <p class="mt-7 max-w-xl text-lg text-cream-200/80 leading-[1.7] reveal" style="transition-delay:.12s" data-i18n="hero_sub">
+      <p class="mt-7 max-w-xl text-lg text-cocoa-600 leading-[1.7] reveal" style="transition-delay:.12s" data-i18n="hero_sub">
         Madlen çikolatadan Dubai fıstıklı kadayıfa, spesiyal hediyeliklerden ithal lezzetlere — Çiku'da seçtiğimiz her ürün özenle masaya geliyor.
       </p>
       <div class="mt-9 flex flex-wrap items-center gap-4 reveal" style="transition-delay:.18s">
@@ -201,31 +201,31 @@
       <div class="mt-12 grid grid-cols-3 max-w-lg gap-6 reveal" style="transition-delay:.24s">
         <div>
           <div class="font-display text-3xl font-semibold text-gold-400">7</div>
-          <div class="text-sm text-cream-200/60 mt-1" data-i18n="stat1">ürün kategorisi</div>
+          <div class="text-sm text-cocoa-500 mt-1" data-i18n="stat1">ürün kategorisi</div>
         </div>
-        <div class="border-l border-cream-300/15 pl-6">
+        <div class="border-l border-cocoa-900/10 pl-6">
           <div class="font-display text-3xl font-semibold text-gold-400">1500₺</div>
-          <div class="text-sm text-cream-200/60 mt-1" data-i18n="stat2">üzeri kargo bedava</div>
+          <div class="text-sm text-cocoa-500 mt-1" data-i18n="stat2">üzeri kargo bedava</div>
         </div>
-        <div class="border-l border-cream-300/15 pl-6">
+        <div class="border-l border-cocoa-900/10 pl-6">
           <div class="font-display text-3xl font-semibold text-gold-400">100%</div>
-          <div class="text-sm text-cream-200/60 mt-1" data-i18n="stat3">taze & özenli</div>
+          <div class="text-sm text-cocoa-500 mt-1" data-i18n="stat3">taze & özenli</div>
         </div>
       </div>
     </div>
 
     <div class="lg:col-span-5 relative reveal" style="transition-delay:.1s">
-      <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-warm ring-1 ring-cream-300/10 bg-cream-50">
+      <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-warm ring-1 ring-cocoa-900/8 bg-cream-50">
         <img src="img/p13.jpg" alt="Çiku saten hediye çikolata kutusu" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-cocoa-950/70 via-transparent to-transparent"></div>
         <div class="absolute inset-0 mix-blend-multiply bg-gradient-to-tr from-gold-600/10 to-transparent"></div>
       </div>
-      <div class="floaty absolute -left-6 bottom-12 w-52 rounded-2xl bg-cocoa-800/90 backdrop-blur-md border border-cream-300/10 p-4 shadow-warm">
+      <div class="floaty absolute -left-6 bottom-12 w-52 rounded-2xl bg-white/95 backdrop-blur-md border border-cocoa-900/10 p-4 shadow-warm">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-xl overflow-hidden bg-cream-50 shrink-0"><img src="img/p15.jpg" alt="" class="w-full h-full object-contain"></div>
           <div>
             <div class="text-sm font-semibold leading-tight">Dubai Çikolatası</div>
-            <div class="text-xs text-cream-200/60" data-i18n="float_sub">Fıstıklı Kadayıf 65g</div>
+            <div class="text-xs text-cocoa-500" data-i18n="float_sub">Fıstıklı Kadayıf 65g</div>
           </div>
         </div>
         <div class="mt-3 flex items-center justify-between">
@@ -248,47 +248,47 @@
       <span class="text-gold-400 text-sm font-semibold tracking-widest" data-i18n="cat_kicker">KOLEKSİYON</span>
       <h2 class="font-display text-4xl md:text-5xl font-semibold tracking-tightest mt-2" data-i18n="cat_title">Tat kategorileri</h2>
     </div>
-    <p class="max-w-sm text-cream-200/70" data-i18n="cat_sub">Çikolatadan sağlıklı atıştırmalıklara, yedi dünyada gezinin.</p>
+    <p class="max-w-sm text-cocoa-600" data-i18n="cat_sub">Çikolatadan sağlıklı atıştırmalıklara, yedi dünyada gezinin.</p>
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    <a href="#yeni" class="lift group relative col-span-2 lg:row-span-2 rounded-3xl overflow-hidden ring-1 ring-cream-300/10 min-h-[300px] reveal">
+    <a href="#yeni" class="lift group relative col-span-2 lg:row-span-2 rounded-3xl overflow-hidden ring-1 ring-cocoa-900/8 min-h-[300px] reveal">
       <img src="img/p11.jpg" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="">
       <div class="absolute inset-0 bg-gradient-to-t from-cocoa-950 via-cocoa-950/40 to-transparent"></div>
       <div class="absolute inset-0 mix-blend-multiply bg-gold-600/15"></div>
       <div class="absolute bottom-0 p-7">
         <span class="text-xs font-semibold text-gold-400" data-i18n="cat_pop">EN ÇOK SEVİLEN</span>
         <h3 class="font-display text-3xl font-semibold mt-1" data-i18n="cat1_t">Çikolatalar</h3>
-        <p class="text-cream-200/70 mt-2 max-w-xs" data-i18n="cat1_d">Tablet, madlen, dolgulu, hediyelik ve çocuklar için.</p>
+        <p class="text-cocoa-600 mt-2 max-w-xs" data-i18n="cat1_d">Tablet, madlen, dolgulu, hediyelik ve çocuklar için.</p>
       </div>
     </a>
-    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cream-300/10 p-6 min-h-[200px] flex flex-col justify-end bg-cocoa-800/60 reveal">
+    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cocoa-900/8 p-6 min-h-[200px] flex flex-col justify-end bg-gradient-to-br from-white to-cream-100 shadow-warm reveal">
       <div class="text-4xl mb-3">🍬</div>
       <h3 class="font-display text-2xl font-semibold" data-i18n="cat2_t">Şekerlemeler</h3>
-      <p class="text-cream-200/60 text-sm mt-1" data-i18n="cat2_d">Yumuşak, jöle, lokum, sakız</p>
+      <p class="text-cocoa-500 text-sm mt-1" data-i18n="cat2_d">Yumuşak, jöle, lokum, sakız</p>
     </a>
-    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cream-300/10 p-6 min-h-[200px] flex flex-col justify-end bg-cocoa-800/60 reveal">
+    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cocoa-900/8 p-6 min-h-[200px] flex flex-col justify-end bg-gradient-to-br from-white to-cream-100 shadow-warm reveal">
       <div class="text-4xl mb-3">🥐</div>
       <h3 class="font-display text-2xl font-semibold" data-i18n="cat3_t">Unlu Mamüller</h3>
-      <p class="text-cream-200/60 text-sm mt-1" data-i18n="cat3_d">Kruvasan, kek, kurabiye, gofret</p>
+      <p class="text-cocoa-500 text-sm mt-1" data-i18n="cat3_d">Kruvasan, kek, kurabiye, gofret</p>
     </a>
-    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cream-300/10 p-6 min-h-[200px] flex flex-col justify-end bg-cocoa-800/60 reveal">
+    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cocoa-900/8 p-6 min-h-[200px] flex flex-col justify-end bg-gradient-to-br from-white to-cream-100 shadow-warm reveal">
       <div class="text-4xl mb-3">🥤</div>
       <h3 class="font-display text-2xl font-semibold" data-i18n="cat4_t">İçecekler</h3>
-      <p class="text-cream-200/60 text-sm mt-1" data-i18n="cat4_d">Soda, ice tea, milkshake, kahve</p>
+      <p class="text-cocoa-500 text-sm mt-1" data-i18n="cat4_d">Soda, ice tea, milkshake, kahve</p>
     </a>
-    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cream-300/10 p-6 min-h-[200px] flex flex-col justify-end bg-cocoa-800/60 reveal">
+    <a href="#yeni" class="lift group relative rounded-3xl overflow-hidden ring-1 ring-cocoa-900/8 p-6 min-h-[200px] flex flex-col justify-end bg-gradient-to-br from-white to-cream-100 shadow-warm reveal">
       <div class="text-4xl mb-3">🌱</div>
       <h3 class="font-display text-2xl font-semibold" data-i18n="cat5_t">Sağlıklı Yaşam</h3>
-      <p class="text-cream-200/60 text-sm mt-1" data-i18n="cat5_d">Bar, glutensiz, kahvaltılık</p>
+      <p class="text-cocoa-500 text-sm mt-1" data-i18n="cat5_d">Bar, glutensiz, kahvaltılık</p>
     </a>
   </div>
   <div class="grid sm:grid-cols-2 gap-5 mt-5">
-    <a href="#yeni" class="lift group relative rounded-3xl ring-1 ring-cream-300/10 p-6 min-h-[150px] flex items-end justify-between bg-gradient-to-br from-pist-600/30 to-cocoa-800/60 reveal">
-      <div><div class="text-3xl mb-2">🌍</div><h3 class="font-display text-2xl font-semibold" data-i18n="cat6_t">İthal Ürünler</h3><p class="text-cream-200/60 text-sm mt-1" data-i18n="cat6_d">Dünyanın seçkin lezzetleri</p></div>
+    <a href="#yeni" class="lift group relative rounded-3xl ring-1 ring-cocoa-900/8 p-6 min-h-[150px] flex items-end justify-between bg-gradient-to-br from-pist-500/45 via-pist-400/20 to-cream-100 shadow-warm reveal">
+      <div><div class="text-3xl mb-2">🌍</div><h3 class="font-display text-2xl font-semibold" data-i18n="cat6_t">İthal Ürünler</h3><p class="text-cocoa-500 text-sm mt-1" data-i18n="cat6_d">Dünyanın seçkin lezzetleri</p></div>
     </a>
-    <a href="#yeni" class="lift group relative rounded-3xl ring-1 ring-cream-300/10 p-6 min-h-[150px] flex items-end justify-between bg-gradient-to-br from-gold-600/30 to-cocoa-800/60 reveal">
-      <div><div class="text-3xl mb-2">🎁</div><h3 class="font-display text-2xl font-semibold" data-i18n="cat7_t">Fırsatlar</h3><p class="text-cream-200/60 text-sm mt-1" data-i18n="cat7_d">Paket & ikili kampanyalar</p></div>
+    <a href="#yeni" class="lift group relative rounded-3xl ring-1 ring-cocoa-900/8 p-6 min-h-[150px] flex items-end justify-between bg-gradient-to-br from-gold-500/45 via-gold-400/20 to-cream-100 shadow-warm reveal">
+      <div><div class="text-3xl mb-2">🎁</div><h3 class="font-display text-2xl font-semibold" data-i18n="cat7_t">Fırsatlar</h3><p class="text-cocoa-500 text-sm mt-1" data-i18n="cat7_d">Paket & ikili kampanyalar</p></div>
     </a>
   </div>
 </section>
@@ -300,21 +300,21 @@
       <span class="text-gold-400 text-sm font-semibold tracking-widest" data-i18n="new_kicker">TÜM KATALOG</span>
       <h2 class="font-display text-4xl md:text-5xl font-semibold tracking-tightest mt-2" data-i18n="new_title">Tüm ürünler</h2>
     </div>
-    <span class="text-cream-200/50 text-sm" id="product-total"></span>
+    <span class="text-cocoa-500/80 text-sm" id="product-total"></span>
   </div>
 
   <!-- search + filters -->
   <div class="mb-8 reveal">
     <div class="relative max-w-md mb-5">
-      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-cream-200/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></svg>
-      <input id="search" type="text" data-i18n-ph="search_ph" placeholder="Ürün ara…" class="w-full rounded-full bg-cocoa-800/60 border border-cream-300/15 pl-12 pr-5 py-3.5 text-cream-100 placeholder:text-cream-200/40 focus:outline-none focus:border-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400/30 transition">
+      <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-cocoa-500/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="text" data-i18n-ph="search_ph" placeholder="Ürün ara…" class="w-full rounded-full bg-white border border-cocoa-900/10 pl-12 pr-5 py-3.5 text-cocoa-900 placeholder:text-cocoa-500/60 focus:outline-none focus:border-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400/30 transition">
     </div>
     <div id="cat-chips" class="flex flex-wrap gap-2.5"></div>
   </div>
 
   <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-5"></div>
 
-  <div id="no-result" class="hidden text-center py-16 text-cream-200/50">
+  <div id="no-result" class="hidden text-center py-16 text-cocoa-500/80">
     <div class="text-5xl mb-3 opacity-40">🔍</div>
     <p data-i18n="no_result">Sonuç bulunamadı.</p>
   </div>
@@ -329,22 +329,22 @@
 <!-- SPESIYAL -->
 <section id="spesiyal" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
   <div class="relative rounded-[2.5rem] overflow-hidden ring-1 ring-gold-500/20 reveal">
-    <div class="absolute inset-0 bg-gradient-to-br from-cocoa-800 via-cocoa-900 to-cocoa-950"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-cream-100 via-cream-50 to-cream-100"></div>
     <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full blur-[100px] bg-gold-500/20"></div>
     <div class="relative grid lg:grid-cols-2 gap-8 items-center p-9 md:p-14">
       <div>
         <span class="text-pist-400 text-sm font-semibold tracking-widest" data-i18n="sp_kicker">SPESIYAL KOLEKSİYON</span>
         <h2 class="font-display text-4xl md:text-5xl font-semibold tracking-tightest mt-3 leading-tight" data-i18n-html="sp_title">Hediyelik<br>çikolatanın zirvesi</h2>
-        <p class="mt-5 text-cream-200/75 max-w-md leading-[1.7]" data-i18n="sp_sub">Saten kutularda Madlen baloten, deniz ürünleri spesiyal ve Beyoğlu çikolataları — sevdiklerinize unutulmaz bir sürpriz.</p>
-        <a href="#yeni" class="mt-7 inline-flex items-center gap-2 rounded-full bg-cream-100 text-cocoa-900 font-bold px-7 py-4 hover:bg-gold-400 transition-colors" data-i18n="sp_cta">Spesiyalleri İncele</a>
+        <p class="mt-5 text-cocoa-600 max-w-md leading-[1.7]" data-i18n="sp_sub">Saten kutularda Madlen baloten, deniz ürünleri spesiyal ve Beyoğlu çikolataları — sevdiklerinize unutulmaz bir sürpriz.</p>
+        <a href="#yeni" class="mt-7 inline-flex items-center gap-2 rounded-full bg-cocoa-900 text-cream-50 font-bold px-7 py-4 hover:bg-gold-400 transition-colors" data-i18n="sp_cta">Spesiyalleri İncele</a>
       </div>
       <div class="grid grid-cols-2 gap-4">
-        <div class="rounded-2xl bg-cocoa-950/50 ring-1 ring-cream-300/10 p-5 lift">
+        <div class="rounded-2xl bg-cocoa-900/6 ring-1 ring-cocoa-900/8 p-5 lift">
           <div class="aspect-square rounded-xl overflow-hidden bg-cream-50 mb-4"><img src="img/p13.jpg" alt="Saten Hediye Çikolata" class="w-full h-full object-contain p-1"></div>
           <div class="text-sm font-semibold">Saten Hediye Çikolata 500g</div>
           <div class="font-display text-xl text-gold-400 mt-1">1.025,68 ₺</div>
         </div>
-        <div class="rounded-2xl bg-cocoa-950/50 ring-1 ring-cream-300/10 p-5 lift mt-8">
+        <div class="rounded-2xl bg-cocoa-900/6 ring-1 ring-cocoa-900/8 p-5 lift mt-8">
           <div class="aspect-square rounded-xl overflow-hidden bg-cream-50 mb-4"><img src="img/p12.jpg" alt="Deniz Ürünleri Spesiyal" class="w-full h-full object-contain p-1"></div>
           <div class="text-sm font-semibold">Deniz Ürünleri Spesiyal 400g</div>
           <div class="font-display text-xl text-gold-400 mt-1">659,63 ₺</div>
@@ -358,7 +358,7 @@
 <section id="hikaye" class="relative z-10 max-w-7xl mx-auto px-6 py-20">
   <div class="grid lg:grid-cols-2 gap-14 items-center">
     <div class="relative reveal">
-      <div class="aspect-[5/4] rounded-[2rem] overflow-hidden ring-1 ring-cream-300/10 shadow-warm bg-cream-50">
+      <div class="aspect-[5/4] rounded-[2rem] overflow-hidden ring-1 ring-cocoa-900/8 shadow-warm bg-cream-50">
         <img src="img/p1.jpg" class="w-full h-full object-cover" alt="Çiku ürünleri">
       </div>
       <div class="absolute -bottom-6 -right-6 bg-gold-400 text-cocoa-900 rounded-2xl p-5 shadow-warm">
@@ -369,13 +369,13 @@
     <div class="reveal">
       <span class="text-gold-400 text-sm font-semibold tracking-widest" data-i18n="st_kicker">HİKAYEMİZ</span>
       <h2 class="font-display text-4xl md:text-5xl font-semibold tracking-tightest mt-3 leading-tight" data-i18n-html="st_title">Tutkuyla seçilmiş<br>tatlar, tek adreste.</h2>
-      <p class="mt-6 text-cream-200/75 leading-[1.8]" data-i18n="st_body">
+      <p class="mt-6 text-cocoa-600 leading-[1.8]" data-i18n="st_body">
         Çiku — Elvan Çikolata, Samsun İlkadım'da kurulan, çikolata ve kuruyemişin en seçkin örneklerini bir araya getiren tatlı bir buluşma noktası. El yapımı madlenlerden ithal lezzetlere, her ürünü özenle seçiyor; aynı titizlikle kapınıza ulaştırıyoruz.
       </p>
       <ul class="mt-8 space-y-4">
-        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f1t">Taze & özenli</div><div class="text-sm text-cream-200/60" data-i18n="st_f1d">Her sipariş günlük hazırlanır.</div></div></li>
-        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f2t">1500 TL üzeri kargo bedava</div><div class="text-sm text-cream-200/60" data-i18n="st_f2d">Türkiye geneli hızlı teslimat.</div></div></li>
-        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f3t">Seçkin ithal koleksiyon</div><div class="text-sm text-cream-200/60" data-i18n="st_f3d">Dünyanın dört bir yanından lezzetler.</div></div></li>
+        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f1t">Taze & özenli</div><div class="text-sm text-cocoa-500" data-i18n="st_f1d">Her sipariş günlük hazırlanır.</div></div></li>
+        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f2t">1500 TL üzeri kargo bedava</div><div class="text-sm text-cocoa-500" data-i18n="st_f2d">Türkiye geneli hızlı teslimat.</div></div></li>
+        <li class="flex items-start gap-4"><span class="grid place-items-center w-9 h-9 rounded-full bg-gold-500/15 text-gold-400 shrink-0">✓</span><div><div class="font-semibold" data-i18n="st_f3t">Seçkin ithal koleksiyon</div><div class="text-sm text-cocoa-500" data-i18n="st_f3d">Dünyanın dört bir yanından lezzetler.</div></div></li>
       </ul>
     </div>
   </div>
@@ -383,14 +383,14 @@
 
 <!-- CONTACT -->
 <section id="iletisim" class="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-  <div class="relative rounded-[2.5rem] overflow-hidden ring-1 ring-cream-300/10 p-9 md:p-16 text-center reveal" style="background:radial-gradient(120% 120% at 50% 0%,#3b2417,#150b06)">
+  <div class="relative rounded-[2.5rem] overflow-hidden ring-1 ring-cocoa-900/8 p-9 md:p-16 text-center reveal" style="background:radial-gradient(120% 120% at 50% 0%,#f6ede1,#e4cdb0)">
     <h2 class="font-display text-4xl md:text-6xl font-semibold tracking-tightest" data-i18n-html="ct_title">Tatlı bir<br class="sm:hidden"> mola zamanı</h2>
-    <p class="mt-5 text-cream-200/75 max-w-xl mx-auto text-lg" data-i18n="ct_sub">Yeni ürünler, kampanyalar ve spesiyal koleksiyonlardan ilk siz haberdar olun.</p>
+    <p class="mt-5 text-cocoa-600 max-w-xl mx-auto text-lg" data-i18n="ct_sub">Yeni ürünler, kampanyalar ve spesiyal koleksiyonlardan ilk siz haberdar olun.</p>
     <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return false;">
-      <input type="email" data-i18n-ph="ct_ph" placeholder="E-posta adresiniz" class="flex-1 rounded-full bg-cocoa-950/60 border border-cream-300/15 px-5 py-3.5 text-cream-100 placeholder:text-cream-200/40 focus:outline-none focus:border-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400/40 transition">
+      <input type="email" data-i18n-ph="ct_ph" placeholder="E-posta adresiniz" class="flex-1 rounded-full bg-cocoa-900/8 border border-cocoa-900/10 px-5 py-3.5 text-cocoa-900 placeholder:text-cocoa-500/60 focus:outline-none focus:border-gold-400 focus-visible:ring-2 focus-visible:ring-gold-400/40 transition">
       <button class="rounded-full bg-gradient-to-r from-gold-400 to-gold-600 text-cocoa-900 font-bold px-7 py-3.5 hover:shadow-warm active:scale-95 transition" data-i18n="ct_btn">Abone Ol</button>
     </form>
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-8 text-sm text-cream-200/70">
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-8 text-sm text-cocoa-600">
       <a href="tel:+905417742524" class="flex items-center gap-2 gold-link"><span class="text-gold-400">📞</span> +90 541 774 25 24</a>
       <span class="flex items-center gap-2"><span class="text-gold-400">📍</span> 100. Yıl Blv. 77, İlkadım / Samsun</span>
     </div>
@@ -398,20 +398,20 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="relative z-10 border-t border-cream-300/10 bg-cocoa-950/60">
+<footer class="relative z-10 border-t border-cocoa-900/10 bg-cocoa-900/8">
   <div class="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
     <div class="md:col-span-1">
       <div class="mb-4"><img src="img/logo.png" alt="Çiku" class="h-14 w-auto" /></div>
-      <p class="text-sm text-cream-200/60 leading-relaxed" data-i18n-html="ft_tag">Çikolata ve Kuruyemiş.<br>Elvan Çikolata — Samsun.</p>
+      <p class="text-sm text-cocoa-500 leading-relaxed" data-i18n-html="ft_tag">Çikolata ve Kuruyemiş.<br>Elvan Çikolata — Samsun.</p>
       <div class="flex gap-3 mt-5">
-        <a href="https://instagram.com/ciku.tr" target="_blank" rel="noopener" aria-label="Instagram" class="grid place-items-center w-9 h-9 rounded-full border border-cream-300/15 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">in</a>
-        <a href="#" aria-label="Facebook" class="grid place-items-center w-9 h-9 rounded-full border border-cream-300/15 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">f</a>
-        <a href="#" aria-label="Twitter" class="grid place-items-center w-9 h-9 rounded-full border border-cream-300/15 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">x</a>
+        <a href="https://instagram.com/ciku.tr" target="_blank" rel="noopener" aria-label="Instagram" class="grid place-items-center w-9 h-9 rounded-full border border-cocoa-900/10 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">in</a>
+        <a href="#" aria-label="Facebook" class="grid place-items-center w-9 h-9 rounded-full border border-cocoa-900/10 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">f</a>
+        <a href="#" aria-label="Twitter" class="grid place-items-center w-9 h-9 rounded-full border border-cocoa-900/10 hover:bg-gold-400 hover:text-cocoa-900 hover:border-gold-400 transition">x</a>
       </div>
     </div>
     <div>
-      <h4 class="font-semibold text-cream-100 mb-4" data-i18n="ft_cat">Kategoriler</h4>
-      <ul class="space-y-2.5 text-sm text-cream-200/60">
+      <h4 class="font-semibold text-cocoa-900 mb-4" data-i18n="ft_cat">Kategoriler</h4>
+      <ul class="space-y-2.5 text-sm text-cocoa-500">
         <li><a href="#kategoriler" class="hover:text-gold-400 transition" data-i18n="cat1_t">Çikolatalar</a></li>
         <li><a href="#kategoriler" class="hover:text-gold-400 transition" data-i18n="cat2_t">Şekerlemeler</a></li>
         <li><a href="#kategoriler" class="hover:text-gold-400 transition" data-i18n="cat3_t">Unlu Mamüller</a></li>
@@ -419,8 +419,8 @@
       </ul>
     </div>
     <div>
-      <h4 class="font-semibold text-cream-100 mb-4" data-i18n="ft_corp">Kurumsal</h4>
-      <ul class="space-y-2.5 text-sm text-cream-200/60">
+      <h4 class="font-semibold text-cocoa-900 mb-4" data-i18n="ft_corp">Kurumsal</h4>
+      <ul class="space-y-2.5 text-sm text-cocoa-500">
         <li><a href="#" class="hover:text-gold-400 transition">KVKK</a></li>
         <li><a href="#" class="hover:text-gold-400 transition" data-i18n="ft_terms">Kullanım Koşulları</a></li>
         <li><a href="#iletisim" class="hover:text-gold-400 transition" data-i18n="nav_contact">İletişim</a></li>
@@ -428,15 +428,15 @@
       </ul>
     </div>
     <div>
-      <h4 class="font-semibold text-cream-100 mb-4" data-i18n="nav_contact">İletişim</h4>
-      <ul class="space-y-2.5 text-sm text-cream-200/60">
+      <h4 class="font-semibold text-cocoa-900 mb-4" data-i18n="nav_contact">İletişim</h4>
+      <ul class="space-y-2.5 text-sm text-cocoa-500">
         <li>📞 +90 541 774 25 24</li>
         <li>📍 100. Yıl Blv. 77<br>55020 İlkadım / Samsun</li>
       </ul>
     </div>
   </div>
-  <div class="border-t border-cream-300/10">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-200/40">
+  <div class="border-t border-cocoa-900/10">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cocoa-500/60">
       <span>© 2026 Çiku Çikolata ve Kuruyemiş — Elvan Çikolata.</span>
       <span data-i18n="ft_made">Sevgiyle hazırlandı 🍫 Samsun</span>
     </div>
@@ -451,9 +451,9 @@
 </a>
 
 <!-- CART DRAWER -->
-<div id="cart-overlay" class="fixed inset-0 z-40 bg-cocoa-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
-<aside id="cart-drawer" class="drawer fixed top-0 right-0 z-50 h-full w-full max-w-md bg-cocoa-900 border-l border-cream-300/10 flex flex-col shadow-2xl">
-  <div class="flex items-center justify-between p-5 border-b border-cream-300/10">
+<div id="cart-overlay" class="fixed inset-0 z-40 bg-cocoa-900/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<aside id="cart-drawer" class="drawer fixed top-0 right-0 z-50 h-full w-full max-w-md bg-cream-50 border-l border-cocoa-900/10 flex flex-col shadow-2xl">
+  <div class="flex items-center justify-between p-5 border-b border-cocoa-900/10">
     <h3 class="font-display text-2xl font-semibold flex items-center gap-2"><span data-i18n="cart_title">Sepetim</span> <span id="cart-count2" class="text-sm bg-gold-500/20 text-gold-400 px-2 py-0.5 rounded-full">0</span></h3>
     <button id="cart-close" aria-label="Kapat" class="w-9 h-9 grid place-items-center rounded-full hover:bg-cream-100/10 transition text-2xl leading-none">×</button>
   </div>
@@ -461,19 +461,19 @@
   <div id="cart-empty" class="flex-1 grid place-items-center text-center p-8">
     <div>
       <div class="text-6xl mb-4 opacity-40">🛒</div>
-      <p class="text-cream-200/60" data-i18n="cart_empty">Sepetiniz henüz boş.</p>
+      <p class="text-cocoa-500" data-i18n="cart_empty">Sepetiniz henüz boş.</p>
     </div>
   </div>
-  <div class="p-5 border-t border-cream-300/10 bg-cocoa-950/40">
+  <div class="p-5 border-t border-cocoa-900/10 bg-cocoa-900/5">
     <div class="flex items-center justify-between mb-4">
-      <span class="text-cream-200/70" data-i18n="cart_total">Toplam</span>
+      <span class="text-cocoa-600" data-i18n="cart_total">Toplam</span>
       <span id="cart-total" class="font-display text-2xl font-semibold text-gold-400">0,00 ₺</span>
     </div>
     <button id="cart-order" class="w-full flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold py-4 rounded-full hover:brightness-110 active:scale-95 transition disabled:opacity-40 disabled:cursor-not-allowed">
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
       <span data-i18n="cart_order">WhatsApp ile Sipariş Ver</span>
     </button>
-    <p class="text-center text-xs text-cream-200/40 mt-3" data-i18n="cart_note">Siparişiniz WhatsApp üzerinden iletilir.</p>
+    <p class="text-center text-xs text-cocoa-500/60 mt-3" data-i18n="cart_note">Siparişiniz WhatsApp üzerinden iletilir.</p>
   </div>
 </aside>
 
@@ -639,7 +639,7 @@ function renderChips(){
   const wrap=document.getElementById('cat-chips');
   const counts={}; PRODUCTS.forEach(p=>counts[p.cat]=(counts[p.cat]||0)+1);
   const cats=CAT_ORDER.filter(c=>counts[c]);
-  const chip=(label,val,n)=>`<button data-cat="${esc(val)}" class="cat-chip text-sm font-semibold px-4 py-2 rounded-full border transition ${val===activeCat?'bg-gold-500 text-cocoa-900 border-gold-500':'border-cream-300/20 text-cream-200 hover:border-gold-400/50'}">${esc(label)} <span class="opacity-60">${n}</span></button>`;
+  const chip=(label,val,n)=>`<button data-cat="${esc(val)}" class="cat-chip text-sm font-semibold px-4 py-2 rounded-full border transition ${val===activeCat?'bg-gold-500 text-cocoa-900 border-gold-500':'border-cocoa-900/12 text-cocoa-600 hover:border-gold-400/50'}">${esc(label)} <span class="opacity-60">${n}</span></button>`;
   wrap.innerHTML = chip(t('cat_all'),'',PRODUCTS.length) + cats.map(c=>chip(c,c,counts[c])).join('');
   wrap.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>{ activeCat=b.dataset.cat; shown=PAGE_SIZE; renderChips(); renderProducts(); }));
 }
@@ -654,18 +654,18 @@ function renderProducts(){
   noRes.classList.add('hidden');
   const slice=VIEW.slice(0,shown);
   grid.innerHTML = slice.map((p,i)=>`
-    <div class="lift group rounded-3xl bg-cocoa-800/50 ring-1 ring-cream-300/10 overflow-hidden reveal in">
+    <div class="lift group rounded-3xl bg-white ring-1 ring-cocoa-900/8 overflow-hidden reveal in">
       <div class="relative aspect-square bg-cream-50 overflow-hidden">
         <img src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500" onerror="this.style.opacity=0" />
-        ${p.tag?`<span class="absolute top-3 left-3 text-[10px] font-bold tracking-wide bg-cocoa-950/85 backdrop-blur text-gold-400 px-2.5 py-1 rounded-full">${esc(p.tag)}</span>`:''}
-        <button data-fav class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-cocoa-950/55 backdrop-blur text-cream-100 hover:text-gold-400 hover:scale-110 transition" aria-label="favorite">♡</button>
+        ${p.tag?`<span class="absolute top-3 left-3 text-[10px] font-bold tracking-wide bg-cocoa-900/80 backdrop-blur text-gold-400 px-2.5 py-1 rounded-full">${esc(p.tag)}</span>`:''}
+        <button data-fav class="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-full bg-white/85 backdrop-blur text-cocoa-900 hover:text-gold-400 hover:scale-110 transition" aria-label="favorite">♡</button>
       </div>
       <div class="p-4">
-        <div class="text-[11px] text-cream-200/40 mb-1">${esc(p.cat||'')}</div>
+        <div class="text-[11px] text-cocoa-500/60 mb-1">${esc(p.cat||'')}</div>
         <h3 class="text-sm font-semibold leading-snug min-h-[2.5rem] line-clamp-2">${esc(p.n)}</h3>
         <div class="mt-3 flex items-center justify-between">
           <span class="font-display text-lg font-semibold text-gold-400">${esc(p.p)} ₺</span>
-          <button data-add="${i}" title="${esc(t('add'))}" class="grid place-items-center w-9 h-9 rounded-full bg-cream-100 text-cocoa-900 font-bold hover:bg-gold-400 active:scale-90 transition" aria-label="${esc(t('add'))}">+</button>
+          <button data-add="${i}" title="${esc(t('add'))}" class="grid place-items-center w-9 h-9 rounded-full bg-cocoa-900 text-cream-50 font-bold hover:bg-gold-400 active:scale-90 transition" aria-label="${esc(t('add'))}">+</button>
         </div>
       </div>
     </div>`).join('');
@@ -702,16 +702,16 @@ function renderCart(){
   if(!items.length){ wrap.innerHTML=''; wrap.classList.add('hidden'); empty.classList.remove('hidden'); orderBtn.disabled=true; return; }
   wrap.classList.remove('hidden'); empty.classList.add('hidden'); orderBtn.disabled=false;
   wrap.innerHTML=items.map(([key,it])=>`
-    <div class="flex items-center gap-3 bg-cocoa-800/50 rounded-2xl p-3 ring-1 ring-cream-300/10">
+    <div class="flex items-center gap-3 bg-white rounded-2xl p-3 ring-1 ring-cocoa-900/8">
       <div class="w-14 h-14 rounded-xl overflow-hidden bg-cream-50 shrink-0"><img src="${esc(it.img)}" alt="" class="w-full h-full object-contain p-1"></div>
       <div class="flex-1 min-w-0">
         <div class="text-sm font-semibold leading-tight line-clamp-2">${esc(it.n)}</div>
         <div class="text-gold-400 font-display font-semibold mt-0.5">${esc(it.p)} ₺</div>
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <button data-dec="${esc(key)}" class="w-7 h-7 grid place-items-center rounded-full bg-cocoa-950/60 hover:bg-cocoa-700 transition">−</button>
+        <button data-dec="${esc(key)}" class="w-7 h-7 grid place-items-center rounded-full bg-cocoa-900/8 hover:bg-cocoa-900/15 transition">−</button>
         <span class="w-5 text-center text-sm font-bold">${it.q}</span>
-        <button data-inc="${esc(key)}" class="w-7 h-7 grid place-items-center rounded-full bg-cocoa-950/60 hover:bg-cocoa-700 transition">+</button>
+        <button data-inc="${esc(key)}" class="w-7 h-7 grid place-items-center rounded-full bg-cocoa-900/8 hover:bg-cocoa-900/15 transition">+</button>
       </div>
     </div>`).join('');
   wrap.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',()=>removeFromCart(b.dataset.dec)));
