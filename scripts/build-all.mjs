@@ -13,6 +13,7 @@ const steps = [
   { name: 'fetch-eczane',    cmd: 'node', args: ['scripts/fetch-eczane.mjs'],          required: false },
   { name: 'build-ads',       cmd: 'node', args: ['scripts/build-ads.mjs'],             required: false },
   { name: 'newspaper-index',  cmd: 'node', args: ['scripts/build-newspaper-index.mjs'], required: false },
+  { name: 'agent-panel',     cmd: 'node', args: ['scripts/build-agent-panel.mjs'],     required: false },
 ];
 
 let hardFail = false;
