@@ -1,0 +1,81 @@
+{
+  "date": "2026-07-19",
+  "generated_at": "2026-07-19T07:14:00.794Z",
+  "provider": "groq",
+  "source_ids": [
+    "finike-kalkan-bolunmus-yol-projesine-ced-olumlu-karari-yapi-com-tr-2026-07-17",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-19",
+    "kas-kalkan-da-dev-arazide-i-mar-degisikligi-ozellestirmeye-acildi-akdeniz-gercek-2026-01-24",
+    "antalya-kas-ta-8-mart-etkinligi-kalkan-da-basladi-alanya-postasi-2026-03-08"
+  ],
+  "lead_headline": "Kalkan'a Yeni Yol Projesi",
+  "lead_deck": "Finike-Kalkan bölünmüş yol projesine 'ÇED Olumlu' kararı verildi",
+  "lead_body": [
+    "Finike-Kalkan bölünmüş yol projesi için 'ÇED Olumlu' kararı çıktı. Proje, bölgenin ulaşımını kolaylaştıracak. Kalkan ve Kaş'ta yaşayanlar ve tatilciler, yeni yol projesinin bölgeye katkılarını merak ediyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPSUhIWTlBWVNfWnFVajJUQWF5Ui1nUXdmTk1UU3ZvRHRCM3BPWEZLSHJLanEwZzg4Mlplb3ZJZkxvS1lLSHFQMHlCOTNGdTB5VUpnN3hjQkFhczFzNnNPYWdmc3JodnJnOEFkQ085RFZFMFNaYXBzNWRCVGdZWUI2UzV4QUppcVFEMlpBekVXUTR2ZjhYekdpSTl5OEs3cEFoTkE?oc=5",
+  "lead_date": "2026-07-17",
+  "lead_image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Belediye",
+  "col1_title": "Kaş'ta Etkinlik",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği yapıldı",
+  "col3_title": "Kalkan'da İmar Değişikliği",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Kaş Kalkan'da dev arazide imar değişikliği ve özelleştirmeye açıldı",
+  "magazine_lead_headline": "Kalkan'da 8 Mart Etkinliği",
+  "magazine_lead_body": [
+    "Antalya Kaş'ta 8 Mart etkinliği Kalkan'da başladı"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-19T07:14:02.612Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 85,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col1",
+        "editor": "hold",
+        "editor_score": 40,
+        "verifier": "needs-source",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 30,
+        "verifier": "reject",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "hold",
+        "editor_score": 30,
+        "verifier": "needs-source",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "col3 YAYINLANMAZ (doğrulayıcı: sansasyonel dil; editör: sansasyonel/klişe ton) — insan onayı",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "magazine"
+    ]
+  }
+}
