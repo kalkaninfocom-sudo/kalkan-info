@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-21",
+  "generated_at": "2026-07-21T07:18:27.727Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-21",
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-07-05",
+    "kas-ve-kalkan-da-villa-turizmi-temmuzda-zirve-yapacak-yeni-alanya-2026-06-26",
+    "finike-kalkan-bolunmus-yol-projesi-icin-verilen-ced-olumlu-karari-iptal-edildi-6-2025-12-09"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü Yapıldı",
+  "lead_deck": "Patara Yörük Göçü etkinliği ile birlikte bölge kültürü tanıtıldı.",
+  "lead_body": [
+    "Kaş Belediyesi tarafından düzenlenen 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+    "Etkinlik kapsamında bölgenin tarihi rotaları ve geleneksel göç kültürü katılımcılarla buluşturuldu."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-07-21",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'da ASAT Veznesi Açıldı",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Belediye bünyesinde hizmete giren vezne ödeme işlemlerini kolaylaştıracak.",
+  "col3_title": "Villa Turizmi Temmuzda Zirveye Çıkıyor",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kaş ve Kalkan bölgelerinde konaklama taleplerinin Temmuz ayında artması bekleniyor.",
+  "magazine_lead_headline": "Kalkan Bölünmüş Yol ÇED Kararı İptal Edildi",
+  "magazine_lead_body": [
+    "66 bin 73 ağacın kesileceği proje için verilen olumlu karar iptal edildi."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-21T07:18:31.211Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 89
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 90,
+        "verifier": "ok",
+        "credibility": 83
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
