@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-23",
+  "generated_at": "2026-07-23T07:16:29.631Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ve-kalkan-daki-villalara-emsal-vergi-iptali-karari-yeni-alanya-2026-07-22",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-23",
+    "finike-kalkan-bolunmus-yol-projesine-ced-olumlu-karari-yapi-com-tr-2026-07-17",
+    "finike-kalkan-bolunmus-yol-projesine-ced-olumlu-karari-yapi-com-tr-2026-07-17"
+  ],
+  "lead_headline": "Kalkan'da Emsal Vergi İptali",
+  "lead_deck": "Kaş ve Kalkan'daki villalara emsal vergi iptali kararı verildi.",
+  "lead_body": [
+    "Kaş ve Kalkan'da bulunan villalara ilişkin emsal vergi iptali kararı alındı. Bu karar, bölgedeki mülk sahiplerini etkileyebilecek önemli bir gelişme olarak görülüyor. Kalkan ve Kaş, turizm açısından önemli bölgeler arasında yer alıyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONlRxeUR1dE5pa29iR2NpNUFqRmQzQUlnaUowQTNXbnpBUXhoSEo1XzdRa2RseGk3bk5hc3d6VmJBLWxlRDNiYVVEblp6MWpWRm80RGVlZVhSS210ZFJ4NWJMU204UWgzQ1EwdldaNi1kNzBvWnJ2TW1GSzY1SGpFLUZlYS05aE0?oc=5",
+  "lead_date": "2026-07-22",
+  "lead_image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Hava",
+  "col1_title": "Likya Su Yolu Yürüyüşü",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "col3_title": "Finike-Kalkan Yol Projesi",
+  "col3_byline": "Sahil · Belediye",
+  "col3_body": "Finike-Kalkan Bölünmüş Yol Projesine 'ÇED Olumlu' kararı verildi.",
+  "magazine_lead_headline": "Kalkan'ın Gizli Bahçeleri",
+  "magazine_lead_body": [
+    "Kalkan ve Kaş'ta yaz mevsimiyle birlikte, şehrin gizli bahçeleri ve şirin mekanları yeniden keşfedilmeye başlandı."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-23T07:16:30.540Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
