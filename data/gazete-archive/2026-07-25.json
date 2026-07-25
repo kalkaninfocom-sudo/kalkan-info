@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-25",
+  "generated_at": "2026-07-25T07:01:34.564Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-25",
+    "finike-kalkan-bolunmus-yol-projesi-icin-verilen-ced-olumlu-karari-iptal-edildi-d-2025-12-09",
+    "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-2026-06-26",
+    "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-2026-06-12"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Likya Su Yolu'nun güzergahını takip etti."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-07-25",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Finike-Kalkan Yol Projesi",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Finike-Kalkan bölünmüş yol projesi için verilen 'ÇED olumlu' kararı iptal edildi",
+  "col3_title": "Villa Turizmi Hareketliliği",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kaş ve Kalkan'da villa turizminde yaz hareketliliği yaşanıyor",
+  "magazine_lead_headline": "Kalkan, Kekova Olimpos ve Kaş Otelleri",
+  "magazine_lead_body": [
+    "Kalkan, Kekova Olimpos ve Kaş'ta en iyi oteller 2026 güncelendi"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-25T07:01:35.860Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 90,
+        "verifier": "ok",
+        "credibility": 83
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
