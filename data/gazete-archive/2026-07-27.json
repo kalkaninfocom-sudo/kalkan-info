@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-27",
+  "generated_at": "2026-07-27T05:10:08.206Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-27",
+    "demre-kas-kalkan-otoban-projesi-antik-kentleri-tehdit-ediyor-arkeofili-2025-07-11",
+    "kas-ta-ve-kalkan-da-villa-turizmi-hareketlendi-dolulukta-yuzde-100-hedef-akdeniz-2026-06-26",
+    "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-com-2026-06-26"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Kaş ve Patara'yı bir araya getirdi."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-07-27",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Canlı Müzik Etkinliği",
+  "col1_byline": "Bülten · Kültür",
+  "col1_body": "Kaş'ta 21:00'de Ehl-i Keyf Meyhanesi'nde canlı müzik etkinliği düzenlenecek",
+  "col3_title": "Villa Turizmi Hareketlendi",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Kaş'ta ve Kalkan'da villa turizmi hareketlendi, dolulukta yüzde 100 hedefleniyor",
+  "magazine_lead_headline": "Kaş ve Kalkan'da Villa Turizmi",
+  "magazine_lead_body": [
+    "Kaş ve Kalkan'da villa turizminde yaz hareketliliği yaşanıyor"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-27T05:10:09.204Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "hold",
+        "editor_score": 60,
+        "verifier": "needs-source",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
