@@ -1,6 +1,6 @@
 {
   "date": "2026-07-27",
-  "generated_at": "2026-07-27T05:10:08.206Z",
+  "generated_at": "2026-07-27T08:06:06.804Z",
   "provider": "groq",
   "source_ids": [
     "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-27",
@@ -9,9 +9,9 @@
     "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-com-2026-06-26"
   ],
   "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
-  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği",
   "lead_body": [
-    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Kaş ve Patara'yı bir araya getirdi."
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlikte Likya Su Yolu'nun güzelliği ve Patara Yörük Göçü'nün önemine dikkat çekildi."
   ],
   "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
   "lead_source": "Kaş Belediyesi Haber",
@@ -24,13 +24,13 @@
   "col1_body": "Kaş'ta 21:00'de Ehl-i Keyf Meyhanesi'nde canlı müzik etkinliği düzenlenecek",
   "col3_title": "Villa Turizmi Hareketlendi",
   "col3_byline": "Sahil · Plaj",
-  "col3_body": "Kaş'ta ve Kalkan'da villa turizmi hareketlendi, dolulukta yüzde 100 hedefleniyor",
+  "col3_body": "Kaş ve Kalkan'da villa turizmi hareketlendi, dolulukta yüzde 100 hedefleniyor",
   "magazine_lead_headline": "Kaş ve Kalkan'da Villa Turizmi",
   "magazine_lead_body": [
-    "Kaş ve Kalkan'da villa turizminde yaz hareketliliği yaşanıyor"
+    "Kaş ve Kalkan'da villa turizminde yaz hareketliliği yaşanıyor, tatilciler villa tercih ediyor"
   ],
   "editorial_review": {
-    "reviewed_at": "2026-07-27T05:10:09.204Z",
+    "reviewed_at": "2026-07-27T08:06:07.770Z",
     "roles": {
       "muhabir": "groq",
       "editor": "editor-gate",
@@ -39,8 +39,8 @@
     "slots": [
       {
         "slot": "lead",
-        "editor": "reject",
-        "editor_score": 60,
+        "editor": "approved",
+        "editor_score": 80,
         "verifier": "ok",
         "credibility": 77
       },
@@ -60,15 +60,16 @@
       },
       {
         "slot": "magazine",
-        "editor": "approved",
-        "editor_score": 80,
+        "editor": "reject",
+        "editor_score": 60,
         "verifier": "ok",
         "credibility": 80
       }
     ],
     "decisions": [
       "MANŞET editöryal denetimden geçti",
-      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
     ],
     "approved_slots": [
       "lead",
