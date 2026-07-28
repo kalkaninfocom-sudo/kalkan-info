@@ -19,6 +19,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
+import { withAiDisclosure } from '../../lib/reklam-uyum.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -106,10 +107,12 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu reel için onay zaten gönderilmiş, tekrar gönderilmiyor.'); return; }
 
   const cta = p.cta || 'kalkaninfo.com/antik-kentler.html';
-  const caption = `🏛️ HAFTANIN ANTİK KENTİ · ${name}\n\n${p.tagline || ''}\n\nDetay & ziyaret: ${cta}
+  const rawCaption = `🏛️ HAFTANIN ANTİK KENTİ · ${name}\n\n${p.tagline || ''}\n\nDetay & ziyaret: ${cta}
 
 🇬🇧 This week’s featured ancient city near Kalkan — ${name}. Guide: ${cta}`;
-  const hashtags = ['#kalkan', '#kalkaninfo', '#likya', '#kaş', '#antikkent'].slice(0, 5);
+  const rawHashtags = ['#kalkan', '#kalkaninfo', '#likya', '#kaş', '#antikkent'];
+  // Yapay zeka ile üretilen reel → şeffaflık ibaresi (Reklam Yönetmeliği md.1). Bkz docs/ICERIK_UYUM_REKLAM_YONETMELIGI.md
+  const { caption, hashtags } = withAiDisclosure(rawCaption, { hashtags: rawHashtags, lang: 'tr' });
 
   if (!post) {
     const row = {

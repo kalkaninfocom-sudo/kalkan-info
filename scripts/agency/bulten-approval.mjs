@@ -15,6 +15,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { withAiDisclosure } from '../../lib/reklam-uyum.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -94,10 +95,12 @@ async function main() {
   if (post?.telegram_message_id) { console.log('ℹ Bu bülten için onay zaten gönderilmiş.'); return; }
 
   const topTitles = (p.items || []).slice(0, 3).map(i => `• ${i.title}`).join('\n');
-  const caption = `🗞️ HAFTANIN BÜLTENİ${range ? ` · ${range}` : ''}\n\n${topTitles}\n\nHaftanın tüm haberleri: ${SITE_BASE}/gazete
+  const rawCaption = `🗞️ HAFTANIN BÜLTENİ${range ? ` · ${range}` : ''}\n\n${topTitles}\n\nHaftanın tüm haberleri: ${SITE_BASE}/gazete
 
 🇬🇧 Kalkan’s weekly roundup. All news: ${SITE_BASE}/gazete`;
-  const hashtags = ['#kalkan', '#kalkaninfo', '#haftanınbülteni', '#kaş', '#antalya'];
+  const rawHashtags = ['#kalkan', '#kalkaninfo', '#haftanınbülteni', '#kaş', '#antalya'];
+  // Yapay zeka ile üretilen reel → şeffaflık ibaresi (Reklam Yönetmeliği md.1).
+  const { caption, hashtags } = withAiDisclosure(rawCaption, { hashtags: rawHashtags, lang: 'tr' });
 
   if (!post) {
     const row = {

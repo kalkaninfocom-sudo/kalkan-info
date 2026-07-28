@@ -21,6 +21,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { scanReklamUyum } from '../../lib/reklam-uyum.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -93,6 +94,8 @@ export async function runCritic(tip, icerik, opts = {}) {
   const criteria = rubric.criteria || [];
   const passThreshold = rubric?.thresholds?.pass ?? 3.0;
   const metin = contentToText(icerik);
+  // Yönetmelik uyum taraması (deterministik — LLM'den bağımsız güvenlik ağı). Bkz docs/ICERIK_UYUM_REKLAM_YONETMELIGI.md
+  const uyum = scanReklamUyum(metin);
 
   const kriterListesi = criteria.map(c =>
     `- "${c.id}" (${c.label}, ağırlık ${c.weight}): ${c.description}`).join('\n');
@@ -155,16 +158,21 @@ export async function runCritic(tip, icerik, opts = {}) {
   const weightedAvg = wTot ? +(wSum / wTot).toFixed(2) : 0;
   // HARD VETO: doğruluk veya etik 3'ün altındaysa — ağırlıklı ortalamadan BAĞIMSIZ olarak
   // kalır VE yayını sert bloklar (hardBlock). Uydurma/etik ihlali telafi edilemez.
-  const vetoFail = (scores.dogruluk != null && scores.dogruluk < 3) ||
+  // Yönetmelik ihlali (madde 2/6 sahte deneyim/uydurma yorum) → LLM puanından BAĞIMSIZ hard veto.
+  const uyumHard = uyum.hard.length > 0;
+  const vetoFail = uyumHard ||
+                   (scores.dogruluk != null && scores.dogruluk < 3) ||
                    (scores.etik != null && scores.etik < 3);
   const pass = weightedAvg >= passThreshold && !vetoFail;
 
   const issues = Array.isArray(parsed.issues) ? parsed.issues : [];
+  for (const s of uyum.soft) issues.push(`⚠ REKLAM UYUM: ${s}`);
   if (vetoFail) {
     const dusuk = [];
     if (scores.dogruluk != null && scores.dogruluk < 3) dusuk.push(`doğruluk ${scores.dogruluk}/5`);
     if (scores.etik != null && scores.etik < 3) dusuk.push(`etik ${scores.etik}/5`);
-    issues.unshift(`⛔ HARD VETO (${dusuk.join(', ')}) — uydurma/etik riski, yayın bloklandı`);
+    if (dusuk.length) issues.unshift(`⛔ HARD VETO (${dusuk.join(', ')}) — uydurma/etik riski, yayın bloklandı`);
+    for (const h of uyum.hard) issues.unshift(`⛔ REKLAM YÖNETMELİĞİ İHLALİ — ${h}`);
   }
 
   const sonuc = {
