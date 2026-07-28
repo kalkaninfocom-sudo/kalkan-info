@@ -42,7 +42,17 @@
       "paid": false,
       "featured": true,
       "lat": 36.1936,
-      "lng": 29.4472
+      "lng": 29.4472,
+      "pricing": {
+        "sunbed": "200 TL",
+        "umbrella": "200 TL",
+        "entry": "60 TL",
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Şezlong ve şemsiye ayrı ücretlendirilir",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "patara",
@@ -198,7 +208,17 @@
       "paid": false,
       "featured": false,
       "lat": 36.2555,
-      "lng": 29.3805
+      "lng": 29.3805,
+      "pricing": {
+        "sunbed": "200 TL",
+        "umbrella": "200 TL",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Şezlong/şemsiye almak zorunlu değil",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "indigo-beach",
@@ -237,7 +257,17 @@
       "featured": true,
       "instagram": "https://www.instagram.com/indigobeachkalkan/",
       "lat": 36.2622,
-      "lng": 29.4085
+      "lng": 29.4085,
+      "pricing": {
+        "sunbed": "300 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "yali-beach",
@@ -384,7 +414,17 @@
       "paid": false,
       "featured": true,
       "lat": 36.1958,
-      "lng": 29.6467
+      "lng": 29.6467,
+      "pricing": {
+        "sunbed": "500 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Kişi başı fiyat",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "hidayet-koyu",
@@ -420,7 +460,17 @@
       "paid": true,
       "featured": false,
       "lat": 36.1952,
-      "lng": 29.6105
+      "lng": 29.6105,
+      "pricing": {
+        "sunbed": "750 TL",
+        "umbrella": "100 TL",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Blanca Beach koyu",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "limanagzi",
@@ -456,7 +506,17 @@
       "paid": true,
       "featured": false,
       "lat": 36.1902,
-      "lng": 29.6448
+      "lng": 29.6448,
+      "pricing": {
+        "sunbed": null,
+        "umbrella": null,
+        "entry": null,
+        "minSpend": "1500 TL",
+        "mandatory": false,
+        "note": "Bilals Beach; tekne ücretiyle birlikte 2000 TL olabilir",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "kalamar-beach-club",
@@ -495,7 +555,17 @@
       "featured": false,
       "instagram": "https://www.instagram.com/kalamarbeachclub/",
       "lat": 36.26,
-      "lng": 29.402
+      "lng": 29.402,
+      "pricing": {
+        "sunbed": "600 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "kulube-beach",
@@ -532,7 +602,17 @@
       "paid": true,
       "featured": false,
       "lat": 36.2582,
-      "lng": 29.3952
+      "lng": 29.3952,
+      "pricing": {
+        "sunbed": "400 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Kulübe Otel & Beach",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      }
     },
     {
       "id": "tas-ocak",
@@ -568,6 +648,269 @@
       "featured": false,
       "lat": 36.2592,
       "lng": 29.3905
+    },
+    {
+      "id": "derya-beach",
+      "name": "Derya Beach",
+      "category": "Beach Club",
+      "region": "Kaş",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kaş bölgesi",
+      "drive": null,
+      "summary": "Kaş bölgesinde giriş ücreti olmayan, harcama bazlı bir plaj kulübü.",
+      "paid": false,
+      "instagram": null,
+      "pricing": {
+        "sunbed": null,
+        "umbrella": null,
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Giriş ücreti yok; içeride yaptığınız harcama üzerinden ödeme (fiyatlandırma revize edilecek)",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "leymona-beach",
+      "name": "Leymona Beach",
+      "category": "Beach Club",
+      "region": "Kaş",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kaş bölgesi",
+      "drive": null,
+      "summary": "Kaş bölgesinde harcama limitli bir plaj kulübü.",
+      "paid": true,
+      "instagram": null,
+      "pricing": {
+        "sunbed": null,
+        "umbrella": null,
+        "entry": null,
+        "minSpend": "1500 TL",
+        "mandatory": false,
+        "note": "",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "kas-kamping",
+      "name": "Kaş Kamping",
+      "category": "Kamp & Plaj",
+      "region": "Kaş",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kaş bölgesi",
+      "drive": null,
+      "summary": "Kaş merkeze yakın, çam ağaçları altında kamp ve deniz imkânı sunan tarihi plaj alanı.",
+      "paid": true,
+      "instagram": null,
+      "pricing": {
+        "sunbed": "dahil",
+        "umbrella": "dahil",
+        "entry": "500 TL",
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Şezlong ve şemsiye giriş ücretine dahil",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "doria-beach",
+      "name": "Doria Beach",
+      "category": "Beach Club",
+      "region": "Kaş",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kaş bölgesi",
+      "drive": null,
+      "summary": "Kaş bölgesinde giriş ücretli premium bir plaj kulübü.",
+      "paid": true,
+      "instagram": null,
+      "pricing": {
+        "sunbed": null,
+        "umbrella": null,
+        "entry": "1500 TL",
+        "minSpend": null,
+        "mandatory": true,
+        "note": "",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "denizim-beach",
+      "name": "Denizim Beach",
+      "category": "Beach Club",
+      "region": "Kalkan",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kalkan bölgesi",
+      "drive": null,
+      "summary": "Kalkan'da şezlong-şemsiye ve tekne turu imkânı sunan plaj kulübü.",
+      "paid": false,
+      "instagram": "https://www.instagram.com/denizim_beach_speedboat_tour",
+      "pricing": {
+        "sunbed": "500 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Tekne turu imkânı da var",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "palm-beach-kalkan",
+      "name": "Palm Beach Club",
+      "category": "Beach Club",
+      "region": "Kalkan",
+      "tags": [],
+      "image": "/assets/img/plaj-ig/palmbeachclubkalkan-vlc4a3.jpg",
+      "gallery": [
+        "/assets/img/plaj-ig/palmbeachclubkalkan-vlc4a3.jpg",
+        "/assets/img/plaj-ig/palmbeachclubkalkan-yg7zij.jpg"
+      ],
+      "rating": null,
+      "distance": "Kalkan bölgesi",
+      "drive": null,
+      "summary": "Kalkan'da palmiyeler eşliğinde deniz keyfi sunan plaj kulübü.",
+      "paid": false,
+      "instagram": "https://www.instagram.com/palmbeachclubkalkan",
+      "pricing": {
+        "sunbed": "600 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "cakil-beach-club",
+      "name": "Çakıl Beach Club",
+      "category": "Beach Club",
+      "region": "Kalkan",
+      "tags": [],
+      "image": "/assets/img/plaj-ig/cakilbeachkalkan-ebwy4t.jpg",
+      "gallery": [
+        "/assets/img/plaj-ig/cakilbeachkalkan-ebwy4t.jpg",
+        "/assets/img/plaj-ig/cakilbeachkalkan-1auv48.jpg",
+        "/assets/img/plaj-ig/cakilbeachkalkan-fb8ffj.jpg",
+        "/assets/img/plaj-ig/cakilbeachkalkan-r768ec.jpg"
+      ],
+      "rating": null,
+      "distance": "Kalkan bölgesi",
+      "drive": null,
+      "summary": "Kalkan Küçük Çakıl koyunda konumlanan ticari plaj kulübü — şezlong, şemsiye ve bar hizmeti.",
+      "paid": false,
+      "instagram": "https://www.instagram.com/cakilbeach_kalkan",
+      "pricing": {
+        "sunbed": "500 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Küçük Çakıl koyundaki ticari plaj kulübü",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "kalkan-beach-park",
+      "name": "Kalkan Beach Park",
+      "category": "Beach Club",
+      "region": "Kalkan",
+      "tags": [],
+      "image": "/assets/img/plaj-ig/kalkanbeachpark-cnlgm5.jpg",
+      "gallery": [
+        "/assets/img/plaj-ig/kalkanbeachpark-cnlgm5.jpg",
+        "/assets/img/plaj-ig/kalkanbeachpark-qv8ms7.jpg"
+      ],
+      "rating": null,
+      "distance": "Kalkan bölgesi",
+      "drive": null,
+      "summary": "Kalkan'da şezlong-şemsiye ve haftalık DJ/canlı müzik (One & Only Beach) programı sunan plaj kulübü.",
+      "paid": false,
+      "instagram": "https://www.instagram.com/kalkanbeachpark",
+      "pricing": {
+        "sunbed": "750 TL",
+        "umbrella": "dahil",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Haftalık DJ / canlı müzik (One & Only Beach) programı var",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
+    },
+    {
+      "id": "kalkan-halk-plaji",
+      "name": "Kalkan Halk Plajı",
+      "category": "Halk plajı",
+      "region": "Kalkan",
+      "tags": [],
+      "image": null,
+      "gallery": [],
+      "rating": null,
+      "distance": "Kalkan bölgesi",
+      "drive": null,
+      "summary": "Kalkan merkezde herkese açık halk plajı; şezlong ve şemsiye ücretli ama zorunlu değil.",
+      "paid": false,
+      "instagram": null,
+      "pricing": {
+        "sunbed": "200 TL",
+        "umbrella": "200 TL",
+        "entry": null,
+        "minSpend": null,
+        "mandatory": false,
+        "note": "Şezlong/şemsiye almak zorunlu değil",
+        "source": "yoldakikiki (IG) · Berkay",
+        "updated": "2026-07-28"
+      },
+      "source": "berkay-fiyat-listesi",
+      "needsReview": true,
+      "addedAt": "2026-07-28"
     }
   ]
 }

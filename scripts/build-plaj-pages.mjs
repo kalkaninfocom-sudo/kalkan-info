@@ -154,12 +154,27 @@ const CUSTOM = {
 function buildFAQs(r, c) {
   const free = !r.paid;
   const facilityList = (r.facilities || []).join(', ');
+  // Gerçek fiyat verisi (data/plajlar.json → pricing) varsa olgusal cümleye çevir.
+  const pr = r.pricing;
+  const priceSentence = pr ? (() => {
+    const parts = [];
+    if (pr.entry) parts.push(`giriş ${pr.entry}`);
+    if (pr.sunbed) parts.push(`şezlong ${pr.sunbed}`);
+    if (pr.umbrella) parts.push(pr.umbrella === 'dahil' ? 'şemsiye dahil' : `şemsiye ${pr.umbrella}`);
+    if (pr.minSpend) parts.push(`minimum harcama ${pr.minSpend}`);
+    let s = parts.length ? `${r.name} güncel fiyatları: ${parts.join(', ')}.` : `${r.name}: ${pr.note || ''}`;
+    if (pr.note && parts.length) s += ` ${pr.note}.`;
+    if (pr.updated) s += ` (Güncelleme: ${pr.updated}${pr.source ? ', kaynak: ' + pr.source : ''}. Fiyatlar mevsime göre değişebilir.)`;
+    return s.replace(/\s+/g, ' ').trim();
+  })() : null;
   return [
     {
-      q: 'Plaja giriş ücretli mi?',
-      a: free
-        ? `${r.name} ücretsiz halk plajıdır. Şezlong, şemsiye veya yiyecek-içecek hizmetleri ücretli olabilir.`
-        : `${r.name} ücretli bir alandır. Şezlong, şemsiye veya minimum harcama uygulaması olabilir — güncel fiyatlar için işletme ile iletişime geçin.`
+      q: 'Plaja giriş ücretli mi? Fiyatlar ne kadar?',
+      a: priceSentence
+        ? priceSentence
+        : free
+          ? `${r.name} ücretsiz halk plajıdır. Şezlong, şemsiye veya yiyecek-içecek hizmetleri ücretli olabilir.`
+          : `${r.name} ücretli bir alandır. Şezlong, şemsiye veya minimum harcama uygulaması olabilir — güncel fiyatlar için işletme ile iletişime geçin.`
     },
     {
       q: 'En iyi gitme zamanı ne?',

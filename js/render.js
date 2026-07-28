@@ -140,6 +140,14 @@ const KalkanData = (() => {
 
   // ============== Card templates ==============
   // Plaj card
+  function plajPriceLabel(pr) {
+    if (!pr) return '';
+    if (pr.sunbed) return `Şezlong ${escape(pr.sunbed)}${pr.umbrella === 'dahil' ? ' · şemsiye dahil' : pr.umbrella ? ` · şemsiye ${escape(pr.umbrella)}` : ''}`;
+    if (pr.entry) return `Giriş ${escape(pr.entry)}`;
+    if (pr.minSpend) return `Min. harcama ${escape(pr.minSpend)}`;
+    return escape(pr.note || '');
+  }
+
   function plajCard(p) {
     const name = t(p, 'name');
     const summary = t(p, 'summary');
@@ -172,6 +180,7 @@ const KalkanData = (() => {
           <h3 class="font-display font-extrabold text-ink-900 text-lg leading-tight">${detailHref ? `<a href="${detailHref}" class="hover:text-sea-700 transition-colors">${escape(name)}</a>` : escape(name)}</h3>
           <div class="text-xs text-ink-700/60 mt-1">${escape(distance)}${drive?` · ${escape(drive)}`:''}</div>
           <p class="text-sm text-ink-700/80 mt-2 line-clamp-2">${escape(summary)}</p>
+          ${p.pricing ? `<div class="mt-2 inline-flex items-center gap-1.5 text-[11px] font-bold px-2 py-1 rounded-md" style="background:#FEF3C7;color:#92400E;" title="Kaynak: ${escape(p.pricing.source||'')} · ${escape(p.pricing.updated||'')}"><span aria-hidden="true">🏖️</span> ${plajPriceLabel(p.pricing)}</div>` : ''}
           <div class="flex flex-wrap gap-1 mt-3">${tags}</div>
           <div class="flex items-center gap-2 mt-3">
             ${detailHref ? `<a href="${detailHref}" class="flex-1 inline-flex items-center justify-center gap-1.5 bg-sea-800 hover:bg-sea-900 text-white text-[11px] font-bold px-3 py-2 rounded-md transition" aria-label="${escape(name||'')} ${escape(detailLabel)}">
