@@ -2,7 +2,7 @@
   "_meta": {
     "title": "Hizmet Sağlayıcıları",
     "subtitle": "Kalkan'da yerel hizmet sağlayıcılar — telefonu olmayan sağlayıcılar için Kalkan Info concierge'i WhatsApp'ta yönlendirir",
-    "updated": "2026-05-18",
+    "updated": "2026-07-28",
     "conciergeNote": "Telefon bilgisi henüz onaylanmamış sağlayıcılarda WhatsApp +90 530 665 07 94 (Kalkan Info concierge) üzerinden ulaşım sağlanır."
   },
   "services": {
@@ -856,6 +856,60 @@
           "featured": false,
           "contactVia": "concierge",
           "defaultMessage": "Merhaba! Kalkan Info üzerinden ulaşıyorum, Nirvana Boat Kalkan ile günübirlik / özel tekne turu için bilgi istiyorum. Müsait tarihler için yardım eder misiniz?"
+        },
+        {
+          "id": "tekne-emir-boat",
+          "name": "Emir Boat — Kalkan",
+          "type": "İşletme",
+          "rating": null,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Daily Private Cruises, Sunset Tours ve Kalkan Private Yacht Experience.",
+          "specialties": [
+            "Günlük tekne turu",
+            "Koy gezisi",
+            "Gün batımı"
+          ],
+          "phone": "+90 532 611 30 44",
+          "phoneRaw": "905326113044",
+          "mobile": null,
+          "mobileRaw": null,
+          "whatsapp": "+90 532 611 30 44",
+          "whatsappRaw": "905326113044",
+          "website": null,
+          "instagram": "https://www.instagram.com/emirboatkalkan/",
+          "location": "Kalkan",
+          "mapsUrl": null,
+          "verified": false,
+          "featured": false,
+          "contactVia": "phone"
+        },
+        {
+          "id": "tekne-muti-diving",
+          "name": "Muti Diving Center — Kalkan",
+          "type": "İşletme",
+          "rating": null,
+          "reviewCount": 0,
+          "image": null,
+          "summary": "Derin Mavide Buluşalım, dalışe engel herhangi bir rahatsızlığı olmayan herkes sualtının büyülü dünyası ile tanışabilir.",
+          "specialties": [
+            "Dalış turu",
+            "Tüplü dalış",
+            "Su sporları"
+          ],
+          "phone": "+90 507 023 59 39",
+          "phoneRaw": "905070235939",
+          "mobile": null,
+          "mobileRaw": null,
+          "whatsapp": "+90 507 023 59 39",
+          "whatsappRaw": "905070235939",
+          "website": "https://mutidiving.com/",
+          "instagram": "https://www.instagram.com/mutidivingcenter/",
+          "location": "Andifli mahallesi liman sokak Kaş/Antalya",
+          "mapsUrl": null,
+          "verified": false,
+          "featured": false,
+          "contactVia": "phone"
         }
       ]
     },
