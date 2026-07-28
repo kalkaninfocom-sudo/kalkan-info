@@ -25,7 +25,7 @@ const REPO = join(__dirname, '..', '..');
 
 const AGENT_ID = process.env.LYRA_AGENT_ID || 'agent_0401kxt9cheme869ydvcq0akw342';
 const NAME = 'Kalkan Info — Lyra (Sesli Konsiyerj)';
-const FIRST_MESSAGE = 'Merhaba, ben Lyra — Kalkan dijital konsiyerjiniz. Restoran, plaj, tekne turu ya da bugün ne yapılır, ne merak ediyorsanız sorun.';
+const FIRST_MESSAGE = 'Merhaba, ben Lyra — Kalkan’ın yapay zeka konsiyerjiyim. Restoran, plaj, tekne turu ya da bugün ne yapılır, ne merak ediyorsanız sorun.';
 const DRY = process.argv.includes('--dry');
 
 function loadKey() {
@@ -63,6 +63,8 @@ async function main() {
   // 2) Sadece kimlik alanlarını değiştir
   cc.agent.first_message = FIRST_MESSAGE;
   cc.agent.prompt.prompt = prompt;
+  // API "tools" (çözümlenmiş) + "tool_ids" ikisini birden kabul etmez → tool_ids'i koru, tools'u at.
+  if (cc.agent.prompt.tool_ids?.length) delete cc.agent.prompt.tools;
 
   console.log('ÖNCE :', JSON.stringify(before, null, 1));
   console.log('SONRA: name=%o first_message=%o promptLen=%d (voice/KB korunuyor)', NAME, FIRST_MESSAGE, prompt.length);

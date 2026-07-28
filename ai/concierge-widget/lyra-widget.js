@@ -132,7 +132,7 @@
     '<div id="lyra-panel" role="dialog" aria-label="Lyra konsiyerj sohbeti">'
     + '<div class="lyra-head">'
     +   '<div class="lyra-av">L</div>'
-    +   '<div><div class="lyra-title">Lyra</div><div class="lyra-sub"><span class="lyra-dot"></span>Kalkan konsiyerjin · çevrimiçi</div></div>'
+    +   '<div><div class="lyra-title">Lyra</div><div class="lyra-sub"><span class="lyra-dot"></span>Yapay zeka konsiyerj · çevrimiçi</div></div>'
     +   '<button class="lyra-human" aria-label="İnsana bağlan" title="İnsana bağlan">👤</button>'
     +   '<button class="lyra-x" aria-label="Kapat">&times;</button>'
     + '</div>'
@@ -175,7 +175,7 @@
 
   function offlineReply(text) {
     var t = text.toLowerCase();
-    if (/(merhaba|selam|hello|hi)/.test(t)) return 'Merhaba! Ben Lyra, Kalkan konsiyerjin. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
+    if (/(merhaba|selam|hello|hi)/.test(t)) return 'Merhaba! Ben Lyra, Kalkan\'ın yapay zeka konsiyerji. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
     if (/(yemek|restoran|akşam|aksam)/.test(t)) return 'Deniz manzarası seversen Zeugma\'nın terası akşamüstü çok güzel; daha samimi bir şey istersen The Proper\'ı öneririm. Kaç kişilik bakayım?';
     if (/(plaj|beach|kumsal)/.test(t)) return 'Kalamar sakin ve berrak; hareketli bir gün istersen Kaputaş nefes kesici. Yürüyüş mesafesi mi olsun, arabayla mı?';
     if (/(tekne|boat|tur)/.test(t)) return 'Günlük 12 koy turu klasik favori; daha sakini için gün batımı cruise\'u öneririm. Kaç kişi olacaksınız?';
@@ -217,7 +217,7 @@
     root.classList.add('open');
     if (!greeted) {
       greeted = true;
-      setTimeout(function () { addMsg('Merhaba, ben Lyra 👋 Kalkan\'da sana rehberlik etmek için buradayım. Ne planlıyorsun?', 'bot'); renderChips(); }, 200);
+      setTimeout(function () { addMsg('Merhaba, ben Lyra 👋 Kalkan\'ın yapay zeka konsiyerjiyim, sana rehberlik etmek için buradayım. Ne planlıyorsun?', 'bot'); renderChips(); }, 200);
     }
     setTimeout(function () { ta.focus(); }, 320);
   }

@@ -1,4 +1,12 @@
-# Deniz — Sesli Görüntülü Rehber · Canlı Durum
+# Deniz → LYRA — Sesli Konsiyerj · Canlı Durum
+
+> **⚡ GÜNCELLEME 2026-07-28 (akşam) — DENİZ = LYRA birleştirildi + CANLI VERİ araçları eklendi**
+> Berkay kararı: tek AI kimliği **Lyra** (Deniz ismi emekli). ElevenLabs ajanı (`agent_0401kxt9cheme869ydvcq0akw342`) artık:
+> - **Adı "Kalkan Info — Lyra (Sesli Konsiyerj)"**, açılış "Ben Lyra", persona `ai/prompts/lyra-voice.md` (ses `5MSp7yE6...` + KB korundu).
+> - **2 canlı araç bağlı** (webhook → Supabase `lyra-live` edge fn): `nobetci_eczane` (Antalya Eczacı Odası bölge 9 → Kaş/Kalkan bugünkü nöbetçi, Kalkan adresli öne) + `bugun_etkinlikler` (kalkaninfo.com/data/etkinlik-takvimi.json → bugün). Lyra artık "siteyi ziyaret et" demeden CANLI cevap verir.
+> - Kuran scriptler (idempotent, repo): `ai/scripts/sync-voice-agent.mjs` (kimlik/persona), `ai/scripts/setup-voice-tools.mjs` (araçlar). Edge fn: `supabase/functions/lyra-live/index.ts` (deploy: `supabase functions deploy lyra-live`).
+> - **Doğrulandı:** endpoint canlı doğru veri (DİCLE ECZANESİ–Kalkan; bugün 3 etkinlik), araç webhook config geçerli. **Kalan:** Berkay uçtan uca canlı çağrı testi (araç gerçekten tetikleniyor mu — transcript'ten teyit). ElevenLabs `simulate_conversation` şu an 500 veriyor (kendi tarafı).
+> - Sıradaki (ops): KB dosya adı hâlâ "Deniz Bilgi Tabanı" (kozmetik), web widget'a da aynı canlı grounding (eczane/etkinlik) eklenebilir, `rehber.html` başlıkları Deniz→Lyra.
 
 **Vizyon (Berkay):** kalkaninfo.com'da gerçek yüzlü, mikrofonla anlık sesli konuşulabilen dijital rehber. Referans: profesyonel/güleryüzlü kadın concierge, kurumsal mavi hava.
 
