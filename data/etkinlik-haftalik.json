@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-11T07:28:21.451Z",
-  "weekStart": "2026-07-06",
-  "weekEnd": "2026-07-12",
+  "generatedAt": "2026-07-28T11:26:30.478Z",
+  "weekStart": "2026-07-27",
+  "weekEnd": "2026-08-02",
   "center": {
     "lat": 36.2658,
     "lng": 29.4118
   },
-  "total": 11,
+  "total": 15,
   "days": [
     {
-      "date": "2026-07-06",
+      "date": "2026-07-27",
       "day": "Pazartesi",
       "events": [
         {
@@ -28,9 +28,22 @@
       ]
     },
     {
-      "date": "2026-07-07",
+      "date": "2026-07-28",
       "day": "Salı",
       "events": [
+        {
+          "id": "rec-korsanfish-sal",
+          "type": "Canlı Müzik",
+          "time": "20:00",
+          "endTime": "23:00",
+          "venueName": "Korsan Fish Terrace",
+          "area": "Kalkan",
+          "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
         {
           "id": "rec-shade-sal",
           "type": "Akustik",
@@ -50,7 +63,7 @@
       ]
     },
     {
-      "date": "2026-07-08",
+      "date": "2026-07-29",
       "day": "Çarşamba",
       "events": [
         {
@@ -72,9 +85,22 @@
       ]
     },
     {
-      "date": "2026-07-09",
+      "date": "2026-07-30",
       "day": "Perşembe",
       "events": [
+        {
+          "id": "rec-korsanfish-per",
+          "type": "Canlı Müzik",
+          "time": "20:00",
+          "endTime": "23:00",
+          "venueName": "Korsan Fish Terrace",
+          "area": "Kalkan",
+          "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
         {
           "id": "rec-blackgold-per",
           "type": "Canlı Müzik",
@@ -94,9 +120,22 @@
       ]
     },
     {
-      "date": "2026-07-10",
+      "date": "2026-07-31",
       "day": "Cuma",
       "events": [
+        {
+          "id": "rec-saltpepper-cum",
+          "type": "DJ",
+          "time": "12:00",
+          "endTime": "18:00",
+          "venueName": "Salt & Pepper",
+          "area": "Kalkan",
+          "title": "Good Vibes — gün boyu chill müzik seti (akşam 18:00'e kadar)",
+          "coordinates": null,
+          "detailUrl": "https://www.instagram.com/saltandpepper_kalkan/",
+          "verified": true,
+          "recurring": true
+        },
         {
           "id": "rec-fountain-cum",
           "type": "Canlı Müzik",
@@ -132,7 +171,7 @@
       ]
     },
     {
-      "date": "2026-07-11",
+      "date": "2026-08-01",
       "day": "Cumartesi",
       "events": [
         {
@@ -186,7 +225,7 @@
       ]
     },
     {
-      "date": "2026-07-12",
+      "date": "2026-08-02",
       "day": "Pazar",
       "events": [
         {
@@ -203,6 +242,19 @@
           },
           "detailUrl": "https://www.blackandgoldterracebar.com/",
           "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-korsanfish-paz",
+          "type": "Canlı Müzik",
+          "time": "20:00",
+          "endTime": "23:00",
+          "venueName": "Korsan Fish Terrace",
+          "area": "Kalkan",
+          "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
           "recurring": true
         },
         {

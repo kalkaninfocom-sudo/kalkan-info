@@ -2,7 +2,7 @@
   "_meta": {
     "title": "Kalkan Etkinlik Takvimi",
     "subtitle": "Gün gün haftalık etkinlik dosyası — canlı müzik, DJ, parti, gece programı",
-    "updated": "2026-07-11",
+    "updated": "2026-07-28",
     "note": "recurring = her hafta tekrarlayan (gün adına göre). oneoff = tek seferlik tarihli etkinlik. verified:false = TASLAK, yayınlanmadan önce onaylanmalı. Otonom katman (SerpApi google_events / Instagram) bu dosyaya oneoff besler.",
     "schema": {
       "recurring": "{ id, venueId, venueName, area, type, day, time, endTime, title, source, confidence, verified }",
@@ -23,7 +23,11 @@
     { "id": "rec-vibes-cmt", "venueId": "vibes-lounge-club", "venueName": "Vibes Lounge Club", "area": "Kalkan", "type": "DJ", "day": "Cumartesi", "time": "22:00", "endTime": "02:00", "title": "DJ performans", "source": "taslak", "confidence": 0.5, "verified": false },
     { "id": "rec-noema-cmt", "venueId": null, "venueName": "Noema Community", "area": "Kalkan", "type": "Parti", "day": "Cumartesi", "time": "23:30", "endTime": "04:00", "title": "Hafta sonu partisi", "source": "taslak", "confidence": 0.5, "verified": false },
     { "id": "rec-blackgold-paz", "venueId": "black-gold-terrace-cocktail-bar", "venueName": "Black & Gold Terrace Cocktail Bar", "area": "Kalkan", "type": "Akustik", "day": "Pazar", "time": "20:00", "endTime": "23:00", "title": "Pazar akustik", "source": "taslak", "confidence": 0.5, "verified": false },
-    { "id": "rec-ehlikeyf-paz", "venueId": null, "venueName": "Ehl-i Keyf Meyhanesi", "area": "Kaş", "type": "Türk Gecesi", "day": "Pazar", "time": "21:00", "endTime": "00:30", "title": "Türk gecesi", "source": "taslak", "confidence": 0.5, "verified": false }
+    { "id": "rec-ehlikeyf-paz", "venueId": null, "venueName": "Ehl-i Keyf Meyhanesi", "area": "Kaş", "type": "Türk Gecesi", "day": "Pazar", "time": "21:00", "endTime": "00:30", "title": "Türk gecesi", "source": "taslak", "confidence": 0.5, "verified": false },
+    { "id": "rec-korsanfish-sal", "venueId": null, "venueName": "Korsan Fish Terrace", "area": "Kalkan", "type": "Canlı Müzik", "day": "Salı", "time": "20:00", "endTime": "23:00", "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı", "source": "manuel", "confidence": 0.9, "verified": true },
+    { "id": "rec-korsanfish-per", "venueId": null, "venueName": "Korsan Fish Terrace", "area": "Kalkan", "type": "Canlı Müzik", "day": "Perşembe", "time": "20:00", "endTime": "23:00", "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı", "source": "manuel", "confidence": 0.9, "verified": true },
+    { "id": "rec-korsanfish-paz", "venueId": null, "venueName": "Korsan Fish Terrace", "area": "Kalkan", "type": "Canlı Müzik", "day": "Pazar", "time": "20:00", "endTime": "23:00", "title": "Canlı müzik — klarnet & saksafon eşliğinde teras akşamı", "source": "manuel", "confidence": 0.9, "verified": true },
+    { "id": "rec-saltpepper-cum", "venueId": "salt-pepper", "venueName": "Salt & Pepper", "area": "Kalkan", "type": "DJ", "day": "Cuma", "time": "12:00", "endTime": "18:00", "title": "Good Vibes — gün boyu chill müzik seti (akşam 18:00'e kadar)", "source": "manuel", "confidence": 0.9, "verified": true }
   ],
   "oneoff": [
     { "id": "oneoff-indigo-movie-20260716", "venueId": "indigo-beach-club-restaurant", "venueName": "Indigo Beach Club Kalkan", "area": "Kalkan", "type": "Sinema Gecesi", "date": "2026-07-16", "time": "21:00", "endTime": "23:30", "title": "Movie Night: Grease — deniz kenarında, yıldızlar altında açık hava sinema", "source": "instagram", "confidence": 0.95, "verified": true }
