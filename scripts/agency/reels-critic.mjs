@@ -86,6 +86,14 @@ console.log('\nGÖRSEL CHECKLIST (kareleri denetle — hepsi HAYIR olmalı):');
  'İçerik kareyi doldurmuyor, küçük/letterbox mı?',
  'Metin kesik/okunmaz mı?'].forEach(q => console.log('  [ ]', q));
 
+// ---- AI ŞEFFAFLIK (Ticari Reklam Yönetmeliği, yürürlük 2026-08-01) ----
+// AI seslendirme / AI kurgu / AI görsel içeren tanıtım içeriği, "insandan ayırt edilemeyen
+// dijital karakter" veya "AI kullanımı" bakımından AÇIKÇA etiketlenmelidir. Bu POZİTİF kontrol:
+console.log('\nAI ŞEFFAFLIK CHECKLIST (yönetmelik — EVET olmalı):');
+['AI seslendirme/kurgu/görsel varsa görünür "AI destekli / Yapay zeka" ibaresi VAR mı?',
+ 'Gerçek bir kişinin AI kopyasıyla "bizzat denedim/tavsiye ederim" izlenimi YOK mu? (olmamalı)',
+ 'Tanıtım/sponsorlu ise "reklam/işbirliği" etiketi VAR mı?'].forEach(q => console.log('  [ ]', q));
+
 const detFail = issues.some(i => i.startsWith('❌'));
 console.log('\nDETERMİNİSTİK SONUÇ:', detFail ? '❌ KALDI — onaya ÇIKMAZ' : '✓ geçti (görsel denetim ayrıca şart)');
 if (framesDir) console.log('Kareler:', framesDir);

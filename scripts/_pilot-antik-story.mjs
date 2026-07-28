@@ -151,6 +151,8 @@ const oStart = NARR + 0.35;
 assEvents.push(`Dialogue: 0,${cs(oStart)},${cs(MDUR)},Title,,0,0,0,,{\\fad(350,0)\\an5\\pos(540,760)\\fs104}KALKAN İNFO`);
 assEvents.push(`Dialogue: 0,${cs(oStart + 0.2)},${cs(MDUR)},Kicker,,0,0,0,,{\\fad(400,0)\\an5\\pos(540,900)}LİKYA REHBERİ  ·  ANTİK ANADOLU`);
 assEvents.push(`Dialogue: 0,${cs(oStart + 0.4)},${cs(MDUR)},CTA,,0,0,0,,{\\fad(450,0)\\an5\\pos(540,1080)}${cta}`);
+// AI şeffaflık (Ticari Reklam Yönetmeliği 2026-08-01): AI seslendirme = insandan ayırt edilemeyen dijital ses → açık ibare.
+assEvents.push(`Dialogue: 0,${cs(oStart + 0.6)},${cs(MDUR)},Kicker,,0,0,0,,{\\fad(500,0)\\an5\\pos(540,1190)\\fs24\\alpha&H55&}Yapay zeka destekli anlatım`);
 
 const ass = `[Script Info]
 ScriptType: v4.00+
