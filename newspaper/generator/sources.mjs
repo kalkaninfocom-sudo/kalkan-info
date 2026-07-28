@@ -718,8 +718,9 @@ export async function buildMagazineData(iso, demo) {
       : (heroVenue.source === 'client' ? '<div class="sponsor">Sponsor İçerik · İLAN</div>' : '');
   }
 
-  // 3 kart: hero dışı gece mekanları — son 3 günde kullanılmayanlar önce (kart tekrarını da kır).
-  const recentCards = recentIds(history, 'mag_card', 3, iso);
+  // 3 kart: hero dışı gece mekanları — son 8 günde kullanılmayanlar önce (kart tekrarını da kır).
+  // Pencere 3→8: 3 gün çok dardı; kleo/rallzees/sherlock 6 gün arayla tekrar ediyordu.
+  const recentCards = recentIds(history, 'mag_card', 8, iso);
   const cardBase = ranked.filter(v => v.id !== heroVenue?.id);
   const cardVenues = [...cardBase.filter(v => !recentCards.has(v.id)), ...cardBase.filter(v => recentCards.has(v.id))].slice(0, 3);
   for (const cv of cardVenues) await recordHistory('mag_card', cv.id, iso);
