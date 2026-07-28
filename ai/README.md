@@ -7,7 +7,7 @@ Lyra konsiyerj OS. Tam mimari: [`../docs/KALKANINFO_AI_ARCHITECTURE.md`](../docs
 |-----|-------|
 | 0 · Temel (metin Lyra) | ✅ **CANLI + doğrulandı** (backend). |
 | 1a · Grounding (gerçek mekan) | ✅ **CANLI + doğrulandı** — 220 mekan seed, Lyra artık gerçek isim/puan veriyor, uydurma YOK. Homepage'e HAZIR. |
-| 1c · Site entegrasyonu (Lyra = ana konsiyerj) | ✅ **kod hazır + lokal doğrulandı**, DEPLOY (git push) bekliyor |
+| 1c · Site entegrasyonu (Lyra = ana konsiyerj) | ✅ **CANLI** — kalkaninfo.com'da doğrulandı (deploy c92a53d → main, Vercel READY) |
 | 1b · Semantik bellek (pgvector) + ses | ⏳ (rafine katman) |
 | 2 · Rezervasyon+Telefon (konsiyerj arama) ⭐ | ⏳ |
 | 3 · Admin · 4 · Çoklu-ajan+Ödeme · 5 · Ölçek | ⏳ |
