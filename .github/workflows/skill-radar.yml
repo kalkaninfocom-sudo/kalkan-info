@@ -1,0 +1,57 @@
+name: Skill Radar (haftalık araç keşfi)
+
+# Kendini geliştiren sistem: her hafta GitHub'da yeni çıkan claude-code skill /
+# plugin / MCP / agent araçlarını tarar, kalkaninfo'ya alaka puanlar, SADECE yeni
+# olanları Telegram'a rapor eder (seen.json dedup). Hiçbir şey kurulmaz — keşif +
+# öneri; kurulum Berkay onayıyla. GitHub Actions ücretsiz dakika (public repo).
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'      # Pazartesi 09:00 TR (06:00 UTC)
+  workflow_dispatch:          # manuel tetik (test)
+
+permissions:
+  contents: write            # seen.json commit
+
+concurrency:
+  group: skill-radar
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Tara + Telegram raporu
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: |
+          set +e
+          OUT=$(node scripts/skill-radar.mjs --fmt telegram --limit 12 2>/dev/null)
+          echo "$OUT" | head -40
+          # Sadece yeni sonuç varsa gönder (boş/sadece başlık ise atla)
+          LINES=$(echo "$OUT" | grep -c '^|')
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ "$LINES" -gt 1 ]; then
+            curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TELEGRAM_ADMIN_CHAT_ID}" \
+              --data-urlencode "text=${OUT:0:3900}" \
+              --data-urlencode "parse_mode=Markdown" \
+              --data-urlencode "disable_web_page_preview=true" > /dev/null
+            echo "→ Telegram'a gönderildi ($LINES araç)"
+          else
+            echo "Yeni araç yok — Telegram atlandı"
+          fi
+
+      - name: seen.json güncelle (dedup için)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add skill-radar-seen.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "state(skill-radar): seen güncelle [auto]" && git push; }
