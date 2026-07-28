@@ -118,8 +118,9 @@ export async function runCritic(tip, icerik, opts = {}) {
     try {
       const res = await cheapLLM(prompt, {
         system, json: true, maxTokens: 600, temperature: 0.2,
-        // Kalite değerlendirmesi → RouteLLM (akıllı güçlü model) önce, ücretsiz fallback sonra.
-        order: (process.env.CRITIC_LLM_ORDER || 'routellm,claude,gemini,groq,cerebras,nvidia').split(','),
+        // Kalite değerlendirmesi → GÜÇLÜ hakem önce (üretici≠hakem). Claude ilk sırada;
+        // ucuz içeriği ucuz model onaylamasın (kör nokta). Ücretsiz fallback en sonda.
+        order: (process.env.CRITIC_LLM_ORDER || 'claude,routellm,gemini,groq,cerebras,nvidia').split(','),
         timeoutMs: 60000, verbose: opts.verbose,
       });
       parsed = parseJson(res.text);
@@ -152,11 +153,23 @@ export async function runCritic(tip, icerik, opts = {}) {
     wTot += c.weight;
   }
   const weightedAvg = wTot ? +(wSum / wTot).toFixed(2) : 0;
-  const pass = weightedAvg >= passThreshold;
+  // HARD VETO: doğruluk veya etik 3'ün altındaysa — ağırlıklı ortalamadan BAĞIMSIZ olarak
+  // kalır VE yayını sert bloklar (hardBlock). Uydurma/etik ihlali telafi edilemez.
+  const vetoFail = (scores.dogruluk != null && scores.dogruluk < 3) ||
+                   (scores.etik != null && scores.etik < 3);
+  const pass = weightedAvg >= passThreshold && !vetoFail;
+
+  const issues = Array.isArray(parsed.issues) ? parsed.issues : [];
+  if (vetoFail) {
+    const dusuk = [];
+    if (scores.dogruluk != null && scores.dogruluk < 3) dusuk.push(`doğruluk ${scores.dogruluk}/5`);
+    if (scores.etik != null && scores.etik < 3) dusuk.push(`etik ${scores.etik}/5`);
+    issues.unshift(`⛔ HARD VETO (${dusuk.join(', ')}) — uydurma/etik riski, yayın bloklandı`);
+  }
 
   const sonuc = {
-    tip, scores, weightedAvg, pass,
-    issues: Array.isArray(parsed.issues) ? parsed.issues : [],
+    tip, scores, weightedAvg, pass, hardBlock: vetoFail,
+    issues,
     revisionNote: parsed.revisionNote || '',
     _provider: provider, at: new Date().toISOString(),
   };
@@ -250,6 +263,6 @@ async function cli() {
   process.exit(sonuc.pass ? 0 : 2);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   cli().catch(e => { console.error('[content-critic]', e); process.exit(1); });
 }
