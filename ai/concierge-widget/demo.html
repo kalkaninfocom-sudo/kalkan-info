@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lyra Widget — Demo</title>
+<style>
+  body{margin:0;min-height:100vh;font-family:Inter,system-ui,sans-serif;color:#0a2e4c;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 10%, rgba(232,160,32,.14), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 10% 90%, rgba(74,158,245,.12), transparent 60%),
+      linear-gradient(180deg,#eef3f8 0%,#dce6ef 100%);}
+  .wrap{max-width:720px;margin:0 auto;padding:80px 24px;}
+  h1{font-family:Montserrat,sans-serif;font-weight:800;letter-spacing:-.03em;font-size:38px;margin:0 0 10px;}
+  p{font-size:17px;line-height:1.7;color:#2c4a63;max-width:52ch;}
+  .badge{display:inline-block;background:#0a2338;color:#f4ede0;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="badge">KalkanInfo AI · Faz 0</span>
+    <h1>Lyra konsiyerj widget'ı</h1>
+    <p>Sağ alttaki altın rozete tıkla — Lyra açılır. Bu demo <strong>çevrimdışı zarif mod</strong>da (endpoint bağlı değil), yerel örnek yanıt verir. Canlıda <code>lyra-chat</code> edge fonksiyonuna bağlanır.</p>
+  </div>
+
+  <!-- Çevrimdışı demo: endpoint YOK → yerel örnek yanıt. Canlıda LYRA_CONFIG doldurulur. -->
+  <script>window.LYRA_CONFIG = { endpoint: '', anonKey: '' };</script>
+  <script src="./lyra-widget.js" defer></script>
+</body>
+</html>
