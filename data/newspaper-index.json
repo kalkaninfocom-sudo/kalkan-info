@@ -1,8 +1,25 @@
 {
-  "generatedAt": "2026-07-28T07:22:56.645Z",
-  "total": 30,
-  "latest": "2026-07-28",
+  "generatedAt": "2026-07-29T07:30:33.909Z",
+  "total": 31,
+  "latest": "2026-07-29",
   "issues": [
+    {
+      "date": "2026-07-29",
+      "day": "Çarşamba",
+      "long": "29 Temmuz 2026",
+      "editions": {
+        "morning": {
+          "html": "/newspaper/archive/2026-07-29/morning",
+          "pdf": null,
+          "card": "/newspaper/archive/2026-07-29/morning-cover.jpg"
+        },
+        "magazine": {
+          "html": "/newspaper/archive/2026-07-29/magazine",
+          "pdf": null,
+          "card": "/newspaper/archive/2026-07-29/magazine-cover.jpg"
+        }
+      }
+    },
     {
       "date": "2026-07-28",
       "day": "Salı",
@@ -180,12 +197,12 @@
       "editions": {
         "morning": {
           "html": "/newspaper/archive/2026-07-18/morning",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-18/morning.pdf",
           "card": "/newspaper/archive/2026-07-18/morning-cover.jpg"
         },
         "magazine": {
           "html": "/newspaper/archive/2026-07-18/magazine",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-18/magazine.pdf",
           "card": "/newspaper/archive/2026-07-18/magazine-cover.jpg"
         }
       }
@@ -248,12 +265,12 @@
       "editions": {
         "morning": {
           "html": "/newspaper/archive/2026-07-14/morning",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-14/morning.pdf",
           "card": "/newspaper/archive/2026-07-14/morning-cover.jpg"
         },
         "magazine": {
           "html": "/newspaper/archive/2026-07-14/magazine",
-          "pdf": null,
+          "pdf": "/newspaper/archive/2026-07-14/magazine.pdf",
           "card": "/newspaper/archive/2026-07-14/magazine-cover.jpg"
         }
       }

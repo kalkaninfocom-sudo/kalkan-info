@@ -1,0 +1,81 @@
+{
+  "date": "2026-07-29",
+  "generated_at": "2026-07-29T07:30:21.112Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-kalkan-uzumlu-de-orman-yanginina-karadan-ve-havadan-yogun-mudahale-aksiyo-2026-07-28",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-29",
+    "kalkan-da-orman-yangini-mucadelesi-kemer-gozcu-gazetesi-2026-07-29",
+    "kas-ta-kalkan-uzumlu-de-yanginin-enerjisi-dusuruldu-sondurme-ekipleri-calisiyor--2026-07-28"
+  ],
+  "lead_headline": "Kalkan'da Orman Yangınına Müdahale",
+  "lead_deck": "Kaş'ta Kalkan Üzümlü'de orman yangınına karadan ve havadan müdahale ediliyor",
+  "lead_body": [
+    "Kaş'ta Kalkan Üzümlü'de meydana gelen orman yangınına karşı karadan ve havadan yoğun müdahale devam ediyor. Yangınla mücadele eden ekipler, yangının yayılmasını önlemek için çalışıyor. Kalkan ve Kaş'ta yaşayanlar ve tatilciler, yangın mücadelesini yakından takip ediyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbHhGamNvT0NZck1kbF9ia09fbnI4Y2laaG0ta3c2T1VYLW1QRlNfaDlqcUxfWXBpMkVTWDdJQmV3YjBMZ0V6OF9KTVJLanJFbWlGaUV1dVo5WDJsbzVBczZBNlo1em92b3ZhVVY5Y2VmWFBSU1BHSEYxZVg0SGdPUkdhWkh5Qlh2LWUxbV8wSHVCR3Z3RzRaY2xKNW8wVjhSdVNKb0hnVDVtMnfSAbABQVVfeXFMTXdiNktBZmo5eEwxaTUxMV9ETjlEOHBLQk5ZaVFyX3RfRmdtWGtHZFd6TmVmaFFucUJCamtjR1ljRFc2OHhWeGpjYW4zZURLQWI0MUhreVlzU2lVUUxQV0d3Yi12UUZQd0ZLUUg2anBjQ3hNUFY3bi1kaFg5QXFKYWJIZjRhTWlrWTRob0toalBUMXNXTW4yaGlIOGJ4Mi1QMXFGejhUWTdzVFJWSkJOZWE?oc=5",
+  "lead_date": "2026-07-28",
+  "lead_image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Hava",
+  "col1_title": "Likya Su Yolu Yürüyüşü",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "col3_title": "Kalkan'da Etkinlik",
+  "col3_byline": "Sahil · Asayiş",
+  "col3_body": "The Mezzanine Bar'da 21:00'de Quiz Gecesi düzenleniyor",
+  "magazine_lead_headline": "Kalkan'ın Yaz Akşamları",
+  "magazine_lead_body": [
+    "Kalkan'ın eşsiz manzarasına karşı, günün son ışıklarını izlerken keyif yapanlar için Sunset Lounge, bu sezonun en çok konuşulan mekanlarından biri haline geldi"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-29T07:30:22.151Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col3: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
