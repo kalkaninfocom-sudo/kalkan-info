@@ -546,22 +546,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <style>
       .hafta-grid{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;}
-      @media(max-width:900px){.hafta-grid{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(160px,72vw);}}
-      .hafta-day{display:flex;flex-direction:column;background:#fff;border:1px solid #dce8f0;border-radius:14px;overflow:hidden;text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:0 1px 3px rgba(7,33,54,.05);}
-      .hafta-day:hover{transform:translateY(-3px);box-shadow:0 10px 28px -10px rgba(7,33,54,.25);border-color:#c9dcea;}
-      .hafta-day.is-today{border-color:#e89812;box-shadow:0 6px 22px -8px rgba(232,152,18,.4);}
-      .hafta-head{padding:12px 12px 10px;text-align:center;background:linear-gradient(180deg,#f4f9fd,#eaf2f8);border-bottom:1px solid #e3edf4;}
-      .hafta-day.is-today .hafta-head{background:linear-gradient(180deg,#0c3858,#0a2e4c);}
+      @media(max-width:900px){.hafta-grid{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(158px,74vw);}}
+      .hafta-day{display:flex;flex-direction:column;background:#fff;border:1px solid #e0ebf3;border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:0 1px 3px rgba(7,33,54,.05),0 8px 22px -12px rgba(7,33,54,.16);}
+      .hafta-day:hover{transform:translateY(-3px);box-shadow:0 14px 32px -10px rgba(7,33,54,.28);border-color:#c9dcea;}
+      .hafta-day.is-today{border-color:#e89812;box-shadow:0 8px 26px -8px rgba(232,152,18,.42);}
+      .hafta-head{padding:11px 12px 9px;text-align:center;background:linear-gradient(180deg,#f5faff,#e9f2f9);border-bottom:1px solid #e6f0f6;position:relative;}
+      .hafta-day.is-today .hafta-head{background:linear-gradient(155deg,#0c3858,#0a2e4c);}
       .hafta-head .dn{display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0a2e4c;letter-spacing:.02em;}
       .hafta-head .dd{display:block;font-size:11px;color:#5a7893;margin-top:1px;}
-      .hafta-day.is-today .hafta-head .dn,.hafta-day.is-today .hafta-head .dd{color:#fff;}
+      .hafta-day.is-today .hafta-head .dn{color:#fff;}
       .hafta-day.is-today .hafta-head .dd{color:#f4b53d;}
-      .hafta-body{padding:10px;display:flex;flex-direction:column;gap:8px;flex:1;min-height:96px;}
-      .hafta-ev{border-left:3px solid #e89812;background:#f7fafc;border-radius:8px;padding:7px 9px;}
-      .hafta-ev .t{font-size:11px;font-weight:700;color:#0a2e4c;display:flex;align-items:center;gap:5px;}
-      .hafta-ev .v{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;color:#0a2e4c;line-height:1.25;margin-top:2px;}
-      .hafta-ev .ty{font-size:10.5px;color:#5a7893;}
-      .hafta-more{font-size:11px;color:#0c5a8a;font-weight:700;text-align:center;padding-top:2px;}
+      .hafta-today-tag{position:absolute;top:8px;right:8px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:#f4b53d;color:#062136;border-radius:999px;padding:1px 7px;}
+      .hafta-body{padding:9px;display:flex;flex-direction:column;gap:7px;flex:1;min-height:96px;}
+      .hafta-ev{position:relative;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eaf1f7;border-left:3px solid var(--ev-c,#e89812);border-radius:10px;padding:7px 9px;transition:transform .15s,box-shadow .15s;}
+      .hafta-ev:hover{transform:translateX(2px);box-shadow:0 5px 14px -5px rgba(7,33,54,.18);}
+      .hafta-ev .t{font-size:10.5px;font-weight:700;color:#3a5872;display:flex;align-items:center;gap:6px;}
+      .hafta-ev .ic{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:11px;flex:none;background:color-mix(in srgb,var(--ev-c,#e89812) 15%,#fff);}
+      .hafta-ev .v{font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;color:#0a2e4c;line-height:1.22;margin-top:3px;}
+      .hafta-ev .ty{font-size:10px;color:#5a7893;margin-top:1px;}
+      .hafta-more{font-size:11px;color:#0c5a8a;font-weight:700;text-align:center;padding-top:3px;}
       .hafta-empty{flex:1;display:grid;place-items:center;color:#9db3c5;font-size:12px;}
     </style>
     <div id="hafta-program" class="hafta-grid" aria-label="Haftalık etkinlik programı"></div>
@@ -580,12 +583,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var evs=d.events||[];
           var shown=evs.slice(0,2).map(function(e){
             var st=T[e.type]||['#0a2e4c','🎶'];var tm=(e.time||'')+(e.endTime?'–'+e.endTime:'');
-            return '<div class="hafta-ev" style="border-left-color:'+st[0]+'"><div class="t">'+st[1]+' '+esc(tm)+'</div><div class="v">'+esc(e.venueName||'')+'</div><div class="ty">'+esc(e.type||'')+'</div></div>';
+            return '<div class="hafta-ev" style="--ev-c:'+st[0]+'"><div class="t"><span class="ic">'+st[1]+'</span>'+esc(tm)+'</div><div class="v">'+esc(e.venueName||'')+'</div><div class="ty">'+esc(e.type||'')+'</div></div>';
           }).join('');
           var more=evs.length>2?'<div class="hafta-more">+'+(evs.length-2)+' daha</div>':'';
           var body=evs.length?shown+more:'<div class="hafta-empty">—</div>';
           var isToday=d.date===today?' is-today':'';
-          return '<a href="/etkinlikler" class="hafta-day'+isToday+'"><div class="hafta-head"><span class="dn">'+esc(SHORT[d.day]||d.day)+'</span><span class="dd">'+esc(fmtD(d.date))+'</span></div><div class="hafta-body">'+body+'</div></a>';
+          var tag=d.date===today?'<span class="hafta-today-tag">bugün</span>':'';
+          return '<a href="/etkinlikler" class="hafta-day'+isToday+'"><div class="hafta-head">'+tag+'<span class="dn">'+esc(SHORT[d.day]||d.day)+'</span><span class="dd">'+esc(fmtD(d.date))+'</span></div><div class="hafta-body">'+body+'</div></a>';
         }).join('');
       }).catch(function(){ host.innerHTML='<div class="text-sm text-sea-600 p-4">Program yüklenemedi. <a href="/etkinlikler" class="text-sea-800 underline">Etkinlikler sayfası →</a></div>'; });
     })();
