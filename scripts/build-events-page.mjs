@@ -85,31 +85,31 @@ function eventCard(ev) {
     ? `<a href="${esc(ev.detailUrl)}" target="_blank" rel="noopener" class="font-display font-bold text-sea-800 hover:text-sun-600 underline-grow">${esc(ev.venueName)}</a>`
     : `<span class="font-display font-bold text-sea-800">${esc(ev.venueName)}</span>`;
 
-  const draftBadge = ev.verified
-    ? ''
-    : `<span class="ml-2 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-2 py-0.5" title="Taslak — Kalkan Info ekibi tarafından henüz doğrulanmadı">Taslak</span>`;
+  const isDaily = /^her\s*g[üu]n$/i.test(String(ev.day || ''));
+  const badges = [];
+  if (isDaily) badges.push('<span class="evt-chip-daily">Her gün</span>');
+  if (!ev.verified) badges.push('<span class="evt-chip-draft" title="Henüz doğrulanmadı">Taslak</span>');
 
-  const titleHtml = ev.title
-    ? `<p class="text-sm text-sea-700/80 mt-1 leading-snug">${esc(ev.title)}</p>`
+  const media = ev.photo
+    ? `<img src="${esc(ev.photo)}" alt="" loading="lazy" class="evt-media-img" onerror="this.remove()">`
     : '';
 
   return `
-        <article class="card-base card-hover rounded-xl overflow-hidden flex flex-col" style="border-left:4px solid ${st.color};">
-          <div class="p-4 md:p-5 flex-1">
-            <div class="flex items-center justify-between gap-3">
-              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-1" style="color:${st.color};background:${st.color}1a;">
-                <span aria-hidden="true">${st.icon}</span> ${esc(ev.type)}
-              </span>
-              <span class="font-display font-extrabold text-sea-900 text-sm md:text-base whitespace-nowrap">${esc(timeRange(ev))}</span>
-            </div>
-            <div class="mt-3 flex items-start flex-wrap gap-x-1 gap-y-1">
-              ${venueHtml}${draftBadge}
-            </div>
-            <div class="flex items-center gap-1 text-xs text-sea-600 mt-1">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <article class="evt-card card-hover" data-type="${esc(ev.type)}">
+          <div class="evt-media" style="--evt-c:${st.color};">
+            ${media}<div class="evt-media-grad"></div>
+            <span class="evt-media-icon" aria-hidden="true">${st.icon}</span>
+            <span class="evt-type-badge"><span aria-hidden="true">${st.icon}</span> ${esc(ev.type)}</span>
+            ${badges.length ? `<div class="evt-badges">${badges.join('')}</div>` : ''}
+            <span class="evt-time-badge">${esc(timeRange(ev))}</span>
+          </div>
+          <div class="evt-body">
+            <div class="evt-venue">${venueHtml}</div>
+            ${ev.title ? `<p class="evt-title">${esc(ev.title)}</p>` : ''}
+            <div class="evt-area">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               ${esc(ev.area || 'Kalkan')}
             </div>
-            ${titleHtml}
             ${metaHtml(ev)}
           </div>
         </article>`;
@@ -176,7 +176,7 @@ function daySection(day, isActive) {
           <span class="text-sm text-sea-600">${esc(fmtDateTR(day.date))}</span>
           <span class="ml-auto text-xs font-semibold text-sea-500">${day.events.length} etkinlik</span>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="evt-grid">
           ${cards}
         </div>
       </section>`;
@@ -200,19 +200,23 @@ function pageHtml(week, payload, featured) {
 
   const sections = week.map((d, i) => daySection(d, i === activeIdx)).join('\n');
 
-  // Sol dikey "haftalık program" rayı — gün seç, sağda o günün açıklamalı programı gelir.
-  const railTabs = week.map((d, i) => {
+  // Yatay gün pill'i — mobilde kaydırmalı, kompakt. Bugün aktif.
+  const dayPills = week.map((d, i) => {
     const active = i === activeIdx;
-    const isToday = i === activeIdx;
-    return `<button type="button" class="evt-tab evt-rail w-full text-left rounded-xl border transition flex items-center gap-3 px-4 py-3 ${active ? 'bg-sea-800 text-white border-sea-800' : 'bg-white text-sea-700 border-sea-200 hover:border-sea-400'}" data-day="${esc(d.day)}" aria-pressed="${active}">
-        <span class="evt-rail-bar"></span>
-        <span class="flex-1 min-w-0">
-          <span class="block font-display font-bold text-base leading-tight">${esc(d.day)}${isToday ? ' <span class="evt-today">bugün</span>' : ''}</span>
-          <span class="block text-xs opacity-70">${esc(fmtDateTR(d.date))}</span>
-        </span>
-        <span class="evt-rail-count text-xs font-bold rounded-full px-2.5 py-1 shrink-0">${d.events.length}</span>
+    return `<button type="button" class="evt-daypill" data-day="${esc(d.day)}" aria-pressed="${active}">
+        <span class="dp-day">${esc(d.day)}${i === activeIdx ? ' <span class="dp-today">bugün</span>' : ''}</span>
+        <span class="dp-date">${esc(fmtDateTR(d.date))}</span>
+        <span class="dp-count">${d.events.length} etkinlik</span>
       </button>`;
   }).join('\n');
+
+  // Tip filtre çipleri — haftadaki benzersiz etkinlik tipleri.
+  const allTypes = [...new Set(week.flatMap((d) => d.events.map((e) => e.type)))];
+  const typeChips = ['<button type="button" class="evt-fchip" data-filter="all" aria-pressed="true">Tümü</button>']
+    .concat(allTypes.map((t) => {
+      const st = styleFor(t);
+      return `<button type="button" class="evt-fchip" data-filter="${esc(t)}" aria-pressed="false"><span class="fdot" style="background:${st.color}"></span>${esc(t)}</button>`;
+    })).join('\n');
 
   const inlineData = JSON.stringify(payload).replace(/</g, '\\u003c');
 
@@ -269,6 +273,47 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 .evt-today{font-family:'Inter',sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;vertical-align:middle;margin-left:6px;background:#e89812;color:#fff;border-radius:999px;padding:1px 7px;}
 .evt-program{display:grid;gap:1.5rem;align-items:start;}
 @media(min-width:1024px){.evt-program{grid-template-columns:300px minmax(0,1fr);gap:2rem;}}
+/* ---- Yenilenmiş etkinlik kartı (görsel header + cila) ---- */
+.evt-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+@media(min-width:640px){.evt-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.evt-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+.evt-card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(7,33,54,.07),0 10px 28px -10px rgba(7,33,54,.20);}
+.evt-media{position:relative;height:130px;overflow:hidden;background:linear-gradient(135deg,var(--evt-c) 0%,color-mix(in srgb,var(--evt-c) 52%,#04141f) 100%);}
+.evt-media-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.evt-media-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,33,54,.12) 0%,rgba(7,33,54,.60) 100%);}
+.evt-media-icon{position:absolute;right:12px;bottom:6px;font-size:46px;line-height:1;opacity:.92;filter:drop-shadow(0 3px 10px rgba(0,0,0,.4));}
+.evt-type-badge{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:4px;font-family:'Montserrat';font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:rgba(7,33,54,.40);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 10px;}
+.evt-time-badge{position:absolute;left:13px;bottom:11px;font-family:'Montserrat';font-weight:800;font-size:15px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55);}
+.evt-badges{position:absolute;right:11px;top:11px;display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+.evt-chip-daily{font-family:'Montserrat';font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#062136;background:#f4b53d;border-radius:999px;padding:3px 9px;box-shadow:0 2px 10px rgba(244,181,61,.55);}
+.evt-chip-draft{font-family:'Montserrat';font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:rgba(150,100,8,.82);border-radius:999px;padding:3px 8px;}
+.evt-body{padding:13px 15px 15px;display:flex;flex-direction:column;flex:1;}
+.evt-venue{font-family:'Montserrat';font-weight:700;font-size:15.5px;color:#0a2e4c;line-height:1.18;}
+.evt-title{font-size:12.5px;color:rgba(10,46,76,.72);line-height:1.4;margin-top:3px;}
+.evt-area{display:flex;align-items:center;gap:4px;font-size:11.5px;color:rgba(10,46,76,.52);margin-top:7px;}
+/* ---- Tip filtre çipleri ---- */
+.evt-filter{display:flex;flex-wrap:wrap;gap:8px;}
+.evt-fchip{cursor:pointer;font-family:'Montserrat';font-size:12.5px;font-weight:600;color:#0a2e4c;background:#fff;border:1px solid rgba(10,46,76,.14);border-radius:999px;padding:6px 13px;transition:transform .16s,border-color .18s,background .18s,color .18s;display:inline-flex;align-items:center;gap:6px;}
+.evt-fchip:hover{border-color:#e89812;transform:translateY(-1px);}
+.evt-fchip[aria-pressed="true"]{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+.evt-fchip .fdot{width:8px;height:8px;border-radius:50%;}
+/* ---- Yatay gün pill ---- */
+.evt-days{display:flex;gap:8px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.evt-days::-webkit-scrollbar{display:none;}
+.evt-daypill{flex:0 0 auto;cursor:pointer;text-align:center;border-radius:14px;border:1px solid rgba(10,46,76,.13);background:#fff;padding:9px 15px;transition:transform .16s,border-color .18s,background .18s,color .18s;box-shadow:0 1px 3px rgba(7,33,54,.05);}
+.evt-daypill:hover{border-color:#f4b53d;transform:translateY(-1px);}
+.evt-daypill[aria-pressed="true"]{background:#0a2e4c;border-color:#0a2e4c;color:#fff;box-shadow:0 6px 16px -6px rgba(10,46,76,.5);}
+.evt-daypill .dp-day{font-family:'Montserrat';font-weight:700;font-size:13.5px;display:block;line-height:1.1;}
+.evt-daypill .dp-date{font-size:10.5px;opacity:.68;display:block;margin-top:2px;}
+.evt-daypill .dp-count{font-size:10px;font-weight:700;display:inline-block;margin-top:3px;opacity:.62;}
+.evt-daypill[aria-pressed="true"] .dp-today{background:#f4b53d;color:#062136;border-radius:999px;padding:0 6px;font-size:9px;font-weight:800;text-transform:uppercase;margin-left:3px;}
+/* katlanır harita */
+.evt-map-toggle{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat';font-weight:700;font-size:14px;color:#0a2e4c;background:#fff;border:1px solid rgba(10,46,76,.13);border-radius:12px;padding:10px 16px;transition:border-color .18s;}
+.evt-map-toggle:hover{border-color:#e89812;}
+.evt-map-toggle::-webkit-details-marker{display:none;}
+.evt-map-wrap[open] .evt-map-toggle{border-bottom-left-radius:0;border-bottom-right-radius:0;}
+.evt-map-caret{transition:transform .2s;}
+.evt-map-wrap[open] .evt-map-caret{transform:rotate(180deg);}
 </style>
 <!-- SEO -->
 <meta name="description" content="Kalkan'da bu hafta: gün gün canlı müzik, DJ, parti ve gece programı. ${esc(weekStart)} – ${esc(weekEnd)} haftası ${totalEvents} etkinlik, mekan ve saat bilgisiyle.">
@@ -378,42 +423,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="max-w-7xl mx-auto px-4 py-8 md:py-12">
 
-  <!-- HARİTA -->
-  <section class="mb-8">
-    <div class="flex items-center gap-2 mb-3">
-      <h2 class="font-display font-extrabold text-xl text-sea-900">Mekan Haritası</h2>
-      <span class="text-xs text-sea-500">— pinlere tıklayın</span>
-    </div>
-    <div id="evt-map" role="img" aria-label="Kalkan etkinlik mekanları haritası"></div>
-    <p class="text-[11px] text-sea-500/80 mt-2">Seçili güne ait mekanlar haritada vurgulanır. Pinler etkinlik tipine göre renklidir.</p>
-  </section>
-
   <!-- YAKLAŞAN ÖNE ÇIKANLAR -->
   ${featuredSection(featured)}
 
-  <!-- HAFTALIK PROGRAM: sol gün rayı + sağ seçilen günün detayı -->
-  <div class="evt-program">
+  <!-- HAFTALIK PROGRAM -->
+  <section>
+    <div class="flex items-baseline gap-2 mb-4">
+      <h2 class="font-display font-extrabold text-xl md:text-2xl text-sea-900">Haftalık Program</h2>
+      <span class="text-xs text-sea-500">— gün seç</span>
+    </div>
 
-    <!-- SOL: haftalık program (gün seçici) -->
-    <aside class="lg:sticky lg:top-24">
-      <div class="flex items-center gap-2 mb-3">
-        <h2 class="font-display font-extrabold text-lg text-sea-900">Haftalık Program</h2>
-        <span class="text-xs text-sea-500">— gün seç</span>
-      </div>
-      <div class="flex flex-col gap-2" role="tablist" aria-label="Gün seçimi">
-        ${railTabs}
-      </div>
-      <p class="text-[11px] text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-4 flex items-start gap-2">
-        <span class="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-1.5 py-0.5 shrink-0">Taslak</span>
-        rozetli etkinlikler henüz doğrulanmadı; saat/mekan değişebilir.
-      </p>
-    </aside>
+    <!-- yatay gün seçici -->
+    <div class="evt-days" role="tablist" aria-label="Gün seçimi">
+      ${dayPills}
+    </div>
 
-    <!-- SAĞ: seçilen günün açıklamalı programı -->
+    <!-- tip filtresi -->
+    <div class="evt-filter mt-4 mb-6" role="group" aria-label="Etkinlik tipi filtresi">
+      ${typeChips}
+    </div>
+
+    <!-- seçilen günün kartları -->
     <div class="min-w-0">
       ${sections}
     </div>
-  </div>
+
+    <p class="text-[11px] text-sea-600/80 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-6 inline-flex items-start gap-2">
+      <span class="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-1.5 py-0.5 shrink-0">Taslak</span>
+      rozetli etkinlikler henüz doğrulanmadı; saat/mekan değişebilir.
+    </p>
+  </section>
+
+  <!-- MEKAN HARİTASI (katlanır, ikincil) -->
+  <details class="evt-map-wrap mt-10">
+    <summary class="evt-map-toggle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Mekanları haritada gör
+      <svg class="evt-map-caret" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+    </summary>
+    <div class="mt-3">
+      <div id="evt-map" role="img" aria-label="Kalkan etkinlik mekanları haritası"></div>
+      <p class="text-[11px] text-sea-500/80 mt-2">Seçili güne ait mekanlar haritada vurgulanır. Pinler etkinlik tipine göre renklidir.</p>
+    </div>
+  </details>
 
   <!-- CONCIERGE CTA -->
   <section class="mt-12 rounded-2xl section-dark text-white p-6 md:p-8 text-center" style="background:#0d3a5f;">
@@ -538,30 +590,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     } else if (map){ map.setView(KALKAN, 15); }
   }
 
-  // Sekme filtresi (gün panelleri + harita)
+  var currentFilter = 'all';
+  // Aktif günün kartlarını seçili tipe göre göster/gizle
+  function applyFilter(){
+    var panel = document.querySelector('.day-panel[data-day="'+currentDay+'"]');
+    if(!panel) return;
+    var shown = 0;
+    panel.querySelectorAll('.evt-card').forEach(function(c){
+      var on = currentFilter === 'all' || c.getAttribute('data-type') === currentFilter;
+      c.style.display = on ? '' : 'none';
+      if(on) shown++;
+    });
+    var empty = panel.querySelector('.evt-filter-empty');
+    if(empty) empty.style.display = shown ? 'none' : '';
+  }
+
+  // Gün seçici (panel + harita + filtre)
   function showDay(day){
     currentDay = day;
     document.querySelectorAll('.day-panel').forEach(function(p){
       p.hidden = p.getAttribute('data-day') !== day;
     });
-    document.querySelectorAll('.evt-tab').forEach(function(b){
-      var on = b.getAttribute('data-day') === day;
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.classList.toggle('bg-sea-800', on);
-      b.classList.toggle('text-white', on);
-      b.classList.toggle('border-sea-800', on);
-      b.classList.toggle('bg-white', !on);
-      b.classList.toggle('text-sea-700', !on);
-      b.classList.toggle('border-sea-200', !on);
+    document.querySelectorAll('.evt-daypill').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-day') === day ? 'true' : 'false');
     });
+    applyFilter();
     if (markers.length) filterMarkers(day);
   }
-  document.querySelectorAll('.evt-tab').forEach(function(b){
+  document.querySelectorAll('.evt-daypill').forEach(function(b){
     b.addEventListener('click', function(){ showDay(b.getAttribute('data-day')); });
   });
 
-  if (window.L) {
-    loadData().then(function(data){ if (data) initMap(data); });
+  // Tip filtre çipleri
+  document.querySelectorAll('.evt-fchip').forEach(function(b){
+    b.addEventListener('click', function(){
+      currentFilter = b.getAttribute('data-filter');
+      document.querySelectorAll('.evt-fchip').forEach(function(x){
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      applyFilter();
+    });
+  });
+
+  // Harita: katlanır panel ilk açıldığında lazy başlat + boyut düzelt
+  var mapReady = false;
+  var mapWrap = document.querySelector('.evt-map-wrap');
+  function ensureMap(){
+    if (!window.L) return;
+    loadData().then(function(data){
+      if (!data) return;
+      if (!mapReady){ initMap(data); mapReady = true; }
+      setTimeout(function(){ try { map.invalidateSize(); filterMarkers(currentDay); } catch(e){} }, 80);
+    });
+  }
+  if (mapWrap){
+    mapWrap.addEventListener('toggle', function(){ if (mapWrap.open) ensureMap(); });
   }
 })();
 </script>
