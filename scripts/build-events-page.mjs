@@ -64,6 +64,20 @@ function timeRange(ev) {
   return ev.time || '';
 }
 
+/* Opsiyonel açıklama + fiyat/bilet linki (ücretli etkinlikler için) */
+function metaHtml(ev) {
+  const parts = [];
+  if (ev.note) parts.push(`<p class="text-xs text-sea-600/90 mt-1.5 leading-snug">${esc(ev.note)}</p>`);
+  if (ev.price || ev.ticketUrl) {
+    const price = ev.price ? `<span class="font-display font-bold text-sea-800 text-sm">${esc(ev.price)}</span>` : '';
+    const btn = ev.ticketUrl
+      ? `<a href="${esc(ev.ticketUrl)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-xs font-bold text-white bg-sun-600 hover:bg-sun-700 rounded-full px-3 py-1 transition">🎟️ Bilet al</a>`
+      : '';
+    parts.push(`<div class="flex items-center gap-2 flex-wrap mt-2">${price}${btn}</div>`);
+  }
+  return parts.join('');
+}
+
 /* ----------------------------- KART (SSR) ----------------------------- */
 function eventCard(ev) {
   const st = styleFor(ev.type);
@@ -96,6 +110,7 @@ function eventCard(ev) {
               ${esc(ev.area || 'Kalkan')}
             </div>
             ${titleHtml}
+            ${metaHtml(ev)}
           </div>
         </article>`;
 }
@@ -123,6 +138,7 @@ function featuredCard(ev) {
             </div>
             <div class="mt-2 font-display font-bold text-sea-800 text-lg leading-tight">${esc(ev.venueName)}</div>
             ${ev.title ? `<p class="text-sm text-sea-700/80 mt-1 leading-snug">${esc(ev.title)}</p>` : ''}
+            ${metaHtml(ev)}
             <div class="flex items-center gap-1 text-xs text-sea-600 mt-2">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               ${esc(ev.area || 'Kalkan')}

@@ -1,28 +1,60 @@
 {
-  "generatedAt": "2026-07-28T14:42:32.098Z",
+  "generatedAt": "2026-07-29T07:21:43.841Z",
   "weekStart": "2026-07-27",
   "weekEnd": "2026-08-02",
   "center": {
     "lat": 36.2658,
     "lng": 29.4118
   },
-  "total": 22,
+  "total": 40,
   "days": [
     {
       "date": "2026-07-27",
       "day": "Pazartesi",
       "events": [
         {
-          "id": "rec-ehlikeyf-pzt",
-          "type": "Canlı Müzik",
-          "time": "21:00",
-          "endTime": "00:30",
-          "venueName": "Ehl-i Keyf Meyhanesi",
-          "area": "Kaş",
-          "title": "Fasıl & canlı müzik gecesi",
+          "id": "rec-chocolate-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
           "coordinates": null,
           "detailUrl": null,
-          "verified": false,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
           "recurring": true
         }
       ]
@@ -88,6 +120,51 @@
           "detailUrl": null,
           "verified": false,
           "recurring": true
+        },
+        {
+          "id": "rec-chocolate-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
+          "recurring": true
         }
       ]
     },
@@ -109,6 +186,51 @@
           },
           "detailUrl": null,
           "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-chocolate-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
           "recurring": true
         }
       ]
@@ -177,6 +299,51 @@
           "detailUrl": "https://www.blackandgoldterracebar.com/",
           "verified": false,
           "recurring": true
+        },
+        {
+          "id": "rec-chocolate-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
+          "recurring": true
         }
       ]
     },
@@ -227,19 +394,48 @@
           "recurring": true
         },
         {
-          "id": "rec-chocolate-cum",
+          "id": "rec-chocolate-hergun",
           "type": "DJ",
           "time": "23:00",
           "endTime": "04:00",
           "venueName": "Chocolate Club Kalkan",
           "area": "Kalkan",
-          "title": "Resident DJ — Cuma partisi",
+          "title": "Canlı DJ performansı",
           "coordinates": {
             "lat": 36.2647212,
             "lng": 29.4142591
           },
           "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
-          "verified": false,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
           "recurring": true
         }
       ]
@@ -278,6 +474,19 @@
           "recurring": true
         },
         {
+          "id": "rec-lures-djsunset-cmt",
+          "type": "DJ",
+          "time": "16:00",
+          "endTime": "19:00",
+          "venueName": "Lures Beach Club",
+          "area": "Kalkan",
+          "title": "DJ Sunset Party",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
           "id": "rec-vibes-cmt",
           "type": "DJ",
           "time": "22:00",
@@ -294,35 +503,48 @@
           "recurring": true
         },
         {
-          "id": "rec-chocolate-cmt",
+          "id": "rec-chocolate-hergun",
           "type": "DJ",
           "time": "23:00",
           "endTime": "04:00",
           "venueName": "Chocolate Club Kalkan",
           "area": "Kalkan",
-          "title": "Cumartesi gece partisi",
+          "title": "Canlı DJ performansı",
           "coordinates": {
             "lat": 36.2647212,
             "lng": 29.4142591
           },
           "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
-          "verified": false,
+          "verified": true,
           "recurring": true
         },
         {
-          "id": "rec-noema-cmt",
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
           "type": "Parti",
           "time": "23:30",
           "endTime": "04:00",
           "venueName": "Noema Community",
           "area": "Kalkan",
-          "title": "Hafta sonu partisi",
+          "title": "Canlı DJ performansı",
           "coordinates": {
             "lat": 36.2632603,
             "lng": 29.4155065
           },
           "detailUrl": "https://www.instagram.com/noemacommunity/",
-          "verified": false,
+          "verified": true,
           "recurring": true
         }
       ]
@@ -371,6 +593,51 @@
           "coordinates": null,
           "detailUrl": null,
           "verified": false,
+          "recurring": true
+        },
+        {
+          "id": "rec-chocolate-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Chocolate Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2647212,
+            "lng": 29.4142591
+          },
+          "detailUrl": "https://www.instagram.com/clubchocolatekalkan/",
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-mojito-hergun",
+          "type": "DJ",
+          "time": "23:00",
+          "endTime": "04:00",
+          "venueName": "Mojito Club Kalkan",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": null,
+          "detailUrl": null,
+          "verified": true,
+          "recurring": true
+        },
+        {
+          "id": "rec-noema-hergun",
+          "type": "Parti",
+          "time": "23:30",
+          "endTime": "04:00",
+          "venueName": "Noema Community",
+          "area": "Kalkan",
+          "title": "Canlı DJ performansı",
+          "coordinates": {
+            "lat": 36.2632603,
+            "lng": 29.4155065
+          },
+          "detailUrl": "https://www.instagram.com/noemacommunity/",
+          "verified": true,
           "recurring": true
         }
       ]

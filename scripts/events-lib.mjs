@@ -93,7 +93,7 @@ export async function eventsForDate(iso, opts = {}) {
   const dn = dayNameTR(iso);
 
   const recurring = (tk.recurring || [])
-    .filter(e => normalizeDay(e.day) === dn)
+    .filter(e => { const d = normalizeDay(e.day); return d === dn || /^her\s*g[üu]n$/i.test(d); })
     .map(e => ({ ...e, recurring: true, date: iso }));
   const oneoff = (tk.oneoff || [])
     .filter(e => e.date === iso)

@@ -40,20 +40,6 @@
   },
   "recurring": [
     {
-      "id": "rec-ehlikeyf-pzt",
-      "venueId": null,
-      "venueName": "Ehl-i Keyf Meyhanesi",
-      "area": "Kaş",
-      "type": "Canlı Müzik",
-      "day": "Pazartesi",
-      "time": "21:00",
-      "endTime": "00:30",
-      "title": "Fasıl & canlı müzik gecesi",
-      "source": "taslak",
-      "confidence": 0.5,
-      "verified": false
-    },
-    {
       "id": "rec-shade-sal",
       "venueId": "shade-lounge-and-kitchen",
       "venueName": "Shade Lounge and Kitchen",
@@ -110,32 +96,18 @@
       "verified": false
     },
     {
-      "id": "rec-chocolate-cum",
+      "id": "rec-chocolate-hergun",
       "venueId": "club-chocolate-kalkan",
       "venueName": "Chocolate Club Kalkan",
       "area": "Kalkan",
       "type": "DJ",
-      "day": "Cuma",
+      "day": "Her gün",
       "time": "23:00",
       "endTime": "04:00",
-      "title": "Resident DJ — Cuma partisi",
-      "source": "taslak",
-      "confidence": 0.5,
-      "verified": false
-    },
-    {
-      "id": "rec-chocolate-cmt",
-      "venueId": "club-chocolate-kalkan",
-      "venueName": "Chocolate Club Kalkan",
-      "area": "Kalkan",
-      "type": "DJ",
-      "day": "Cumartesi",
-      "time": "23:00",
-      "endTime": "04:00",
-      "title": "Cumartesi gece partisi",
-      "source": "taslak",
-      "confidence": 0.5,
-      "verified": false
+      "title": "Canlı DJ performansı",
+      "source": "isletme",
+      "confidence": 0.9,
+      "verified": true
     },
     {
       "id": "rec-vibes-cmt",
@@ -152,18 +124,18 @@
       "verified": false
     },
     {
-      "id": "rec-noema-cmt",
+      "id": "rec-noema-hergun",
       "venueId": null,
       "venueName": "Noema Community",
       "area": "Kalkan",
       "type": "Parti",
-      "day": "Cumartesi",
+      "day": "Her gün",
       "time": "23:30",
       "endTime": "04:00",
-      "title": "Hafta sonu partisi",
-      "source": "taslak",
-      "confidence": 0.5,
-      "verified": false
+      "title": "Canlı DJ performansı",
+      "source": "isletme",
+      "confidence": 0.9,
+      "verified": true
     },
     {
       "id": "rec-blackgold-paz",
@@ -346,6 +318,35 @@
       "source": "isletme",
       "confidence": 0.9,
       "verified": true
+    },
+    {
+      "id": "rec-mojito-hergun",
+      "venueId": null,
+      "venueName": "Mojito Club Kalkan",
+      "area": "Kalkan",
+      "type": "DJ",
+      "day": "Her gün",
+      "time": "23:00",
+      "endTime": "04:00",
+      "title": "Canlı DJ performansı",
+      "source": "isletme",
+      "confidence": 0.9,
+      "verified": true
+    },
+    {
+      "id": "rec-lures-djsunset-cmt",
+      "venueId": "lures-beach",
+      "venueName": "Lures Beach Club",
+      "area": "Kalkan",
+      "type": "DJ",
+      "day": "Cumartesi",
+      "time": "16:00",
+      "endTime": "19:00",
+      "title": "DJ Sunset Party",
+      "note": "Beach club ve dışarıdan gelen misafirlere açık; ilave giriş ücreti alınmaz.",
+      "source": "isletme",
+      "confidence": 0.95,
+      "verified": true
     }
   ],
   "oneoff": [
@@ -361,6 +362,22 @@
       "title": "Movie Night: Grease — deniz kenarında, yıldızlar altında açık hava sinema",
       "source": "instagram",
       "confidence": 0.95,
+      "verified": true
+    },
+    {
+      "id": "oneoff-lures-santi-tugce-20260808",
+      "venueId": "lures-beach",
+      "venueName": "Lures Beach Club",
+      "area": "Kalkan",
+      "type": "Konser",
+      "date": "2026-08-08",
+      "time": "18:00",
+      "title": "Santi ve Tuğçe Konseri",
+      "note": "Bistro masa düzeni ve ayakta konser. Biletler Biletix ve Lures Hotel'den alınabilir.",
+      "price": "Kişi başı 1.500₺",
+      "ticketUrl": "https://www.biletix.com/performance/5KVD0/001/TURKIYE/tr",
+      "source": "isletme",
+      "confidence": 0.98,
       "verified": true
     }
   ]
