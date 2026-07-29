@@ -550,8 +550,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       .tdy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
       .tdy-card{position:relative;display:flex;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;text-decoration:none;box-shadow:0 1px 3px rgba(7,33,54,.07),0 10px 28px -10px rgba(7,33,54,.18);transition:transform .2s,box-shadow .2s;}
       .tdy-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px -12px rgba(7,33,54,.30);}
-      .tdy-media{position:relative;height:100px;background:linear-gradient(135deg,var(--c,#e89812) 0%,color-mix(in srgb,var(--c,#e89812) 50%,#04141f) 100%);}
-      .tdy-media .tdy-icon{position:absolute;right:12px;bottom:4px;font-size:42px;line-height:1;opacity:.92;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));}
+      .tdy-media{position:relative;height:118px;overflow:hidden;background:linear-gradient(135deg,var(--c,#e89812) 0%,color-mix(in srgb,var(--c,#e89812) 50%,#04141f) 100%);}
+      .tdy-media .tdy-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+      .tdy-media .tdy-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,33,54,.14) 0%,rgba(7,33,54,.60) 100%);}
+      .tdy-media .tdy-icon{position:absolute;right:12px;bottom:4px;font-size:42px;line-height:1;opacity:.92;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4));z-index:1;}
+      .tdy-media .tdy-badge,.tdy-media .tdy-time{z-index:1;}
       .tdy-badge{position:absolute;left:12px;top:11px;display:inline-flex;align-items:center;gap:4px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:rgba(7,33,54,.40);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 10px;}
       .tdy-time{position:absolute;left:13px;bottom:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:14px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.55);}
       .tdy-body{padding:11px 14px 14px;}
@@ -590,8 +593,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if(evs.length){
           host.innerHTML=evs.map(function(e){
             var st=T[e.type]||['#0a2e4c','🎶'];var tm=(e.time||'')+(e.endTime?' – '+e.endTime:'');
+            var media=e.photo?'<img src="'+esc(e.photo)+'" alt="" loading="lazy" class="tdy-img" onerror="this.remove()"><div class="tdy-grad"></div>':'';
             return '<a href="/etkinlikler" class="tdy-card" style="--c:'+st[0]+'">'
-              +'<div class="tdy-media"><span class="tdy-badge">'+st[1]+' '+esc(e.type||'')+'</span><span class="tdy-icon">'+st[1]+'</span><span class="tdy-time">'+esc(tm)+'</span></div>'
+              +'<div class="tdy-media">'+media+'<span class="tdy-badge">'+st[1]+' '+esc(e.type||'')+'</span><span class="tdy-icon">'+st[1]+'</span><span class="tdy-time">'+esc(tm)+'</span></div>'
               +'<div class="tdy-body"><div class="tdy-v">'+esc(e.venueName||'')+'</div>'+(e.title?'<div class="tdy-t">'+esc(e.title)+'</div>':'')+'</div></a>';
           }).join('');
         } else {

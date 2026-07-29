@@ -684,6 +684,7 @@ const payload = {
       venueName: e.venueName,
       area: e.area || 'Kalkan',
       title: e.title || null,
+      photo: e.photo || null,
       coordinates: e.coordinates || null,
       detailUrl: e.detailUrl || null,
       verified: !!e.verified,

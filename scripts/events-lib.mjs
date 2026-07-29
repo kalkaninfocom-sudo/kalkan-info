@@ -59,8 +59,15 @@ function siteUrl(path) {
 // Mekan bilgisiyle zenginleştir (koordinat / foto / detay / kategori)
 async function enrich(ev) {
   const { byId, byName } = await venueIndex();
-  const v = (ev.venueId && byId.get(ev.venueId)) ||
-            (ev.venueName && byName.get(ev.venueName.toLowerCase().trim())) || null;
+  let v = (ev.venueId && byId.get(ev.venueId)) ||
+          (ev.venueName && byName.get(ev.venueName.toLowerCase().trim())) || null;
+  // Tam eşleşme yoksa: isim başlangıç örtüşmesi ("Kalkan Beach Park" ↔ "Kalkan Beach Park & Hotel")
+  if (!v && ev.venueName) {
+    const key = ev.venueName.toLowerCase().trim().replace(/\s+kalkan$/, '').trim();
+    for (const [name, vv] of byName) {
+      if (key.length >= 5 && (name.startsWith(key) || key.startsWith(name))) { v = vv; break; }
+    }
+  }
   const coordinates = v?.coordinates
     ? { lat: v.coordinates.latitude ?? v.coordinates.lat, lng: v.coordinates.longitude ?? v.coordinates.lng }
     : (ev.coordinates || null);
@@ -71,7 +78,7 @@ async function enrich(ev) {
     venueName: ev.venueName || v?.name || '',
     venueCategory: v?.category || ev.venueCategory || '',
     coordinates,
-    photo: siteUrl(photo),
+    photo: photo ? (/^https?:/i.test(photo) ? photo : '/' + String(photo).replace(/^\//, '')) : null,
     detailUrl: siteUrl(v?.detailPath) || v?.customSiteUrl || v?.website || null,
     phone: v?.phone || ev.phone || null,
     instagram: v?.instagram || ev.instagram || null,
