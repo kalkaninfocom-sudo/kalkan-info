@@ -1,0 +1,80 @@
+{
+  "date": "2026-07-31",
+  "generated_at": "2026-07-31T07:32:58.376Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-07-31",
+    "kalkan-in-ismi-nerede-geliyor-antalya-ekspres-2026-02-02",
+    "finike-demre-kas-kalkan-yolu-projesinde-dogru-bilinen-yanlislar-akdeniz-gercek-2025-12-15",
+    "finike-kalkan-bolunmus-yol-projesine-mahkeme-freni-yapi-com-tr-2025-12-11"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Bu etkinlik, Likya Su Yolu'nun güzelliğini ve Patara'nın tarihi önemini vurguladı."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-07-31",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'ın İsmi",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Kalkan'ın ismi nereden geliyor?",
+  "col3_title": "Finike-Kalkan Yolu",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Finike-Demre-Kaş-Kalkan Yolu Projesinde doğru bilinen yanlışlar",
+  "magazine_lead_headline": "Kalkan'ın Gizli Bahçeleri",
+  "magazine_lead_body": [
+    "Kalkan ve Kaş'ta bulunan küçük, şirin ve gizli bahçeleri keşfedeceğimiz bu kapak konusu, okuyucuları bu mekanların güzelliği ve lezzeti ile baş başa bırakacak."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-07-31T07:32:59.901Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "needs-source",
+        "credibility": 62
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "magazine YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3"
+    ]
+  }
+}
