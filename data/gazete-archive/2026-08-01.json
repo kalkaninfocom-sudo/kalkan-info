@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-01",
+  "generated_at": "2026-08-01T07:13:11.516Z",
+  "provider": "groq",
+  "source_ids": [
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-01",
+    "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-2026-06-26",
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-07-05"
+  ],
+  "lead_headline": "Kalkan'da Araziler Satışa Çıkarıldı",
+  "lead_deck": "Antalya'da yeni özelleştirme ihalesi başladı",
+  "lead_body": [
+    "Antalya'da Side ve Kalkan'da araziler satışa çıkarıldı. Özelleştirme ihalesi kapsamında satılan araziler turizm yatırımları için önemli bir adım olarak görülüyor. Kalkan ve Side'de turizm faaliyetleri artarken, bölgenin ekonomisine de olumlu etkileri bekleniyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNTUhzX19CdU1QbzdKaTVWM3VSYlFYZEtTMlhvRDY3RHVtVngwTFJVYnk0aS1FZTlNaGkwTUg3RHVQY1FGaGZsTE0yY21TOFJlVWRQWDc1UlROazRUNDVmSmZ6RlM4Wmd5SU5UcXZ0MFJPT1lOUnNURjBGcE9IeWs3blA3M2FJRzlvNVRuQXR3d1R2U2RMSXAyWjdSTFRhWlBtOGlzSUxBQV9jbzlSNUN0UXFKcG5XQ2V0TnpDLXhUZGgwNWVI?oc=5",
+  "lead_date": "2026-07-31",
+  "lead_image": "https://kalkaninfo.com/assets/img/incirli-real.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Plaj",
+  "col1_title": "Kaş'ta Etkinlikler",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "col3_title": "Villa Turizmi",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kaş ve Kalkan'da villa turizminde yaz hareketliliği yaşanıyor",
+  "magazine_lead_headline": "Kalkan'da Asat Veznesi",
+  "magazine_lead_body": [
+    "Kalkan'da Asat Veznesi açıldı ve bölgenin turizm faaliyetlerine katkıda bulunmaya başladı"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-01T07:13:12.418Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
