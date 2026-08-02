@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-02",
+  "generated_at": "2026-08-02T04:43:20.293Z",
+  "provider": "groq",
+  "source_ids": [
+    "yemen-de-suikasta-ugrayan-ust-duzey-askeri-komutan-hayatini-kaybetti-2026-08-01",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-02",
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "yemen-de-suikasta-ugrayan-ust-duzey-askeri-komutan-hayatini-kaybetti-2026-08-01"
+  ],
+  "lead_headline": "Yemen'de Suikast",
+  "lead_deck": "Üst düzey askeri komutan hayatını kaybetti",
+  "lead_body": [
+    "Yemen hükümetine bağlı 'Vatan Kalkanı' güçleri, 4. Tugay Komutanı Tuğgeneral Usame er-Radfani'nin Hadramut vilayetinde düzenlenen saldırıda hayatını kaybettiğini duyurdu. Bu olay Yemen'de güvenlik durumunu daha da germiş görünüyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Anadolu Ajansı",
+  "lead_source": "Anadolu Ajansı",
+  "lead_source_url": "https://www.aa.com.tr/tr/dunya/yemende-suikasta-ugrayan-ust-duzey-askeri-komutan-hayatini-kaybetti/4015904",
+  "lead_date": "2026-08-01",
+  "lead_image": "https://cdnuploads.aa.com.tr/uploads/Contents/2026/08/01/thumbs_b_c_1dba0ec0db9ac9fa4545d63ffdc69fa6.jpg",
+  "lead_caption": "Foto: Anadolu Ajansı · Gündem",
+  "col1_title": "Kaş'ta Etkinlik",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü gerçekleştirildi",
+  "col3_title": "Kalkan'da Özelleştirme",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Side ve Kalkan’da araziler satışa çıkarıldı",
+  "magazine_lead_headline": "Akşam Etkinlikleri",
+  "magazine_lead_body": [
+    "Kalkan'da 20:00'da Akustik müzik ve 23:00'da DJ performansları olacak"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-02T04:43:21.046Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 56
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
