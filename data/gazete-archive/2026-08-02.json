@@ -1,6 +1,6 @@
 {
   "date": "2026-08-02",
-  "generated_at": "2026-08-02T04:43:20.293Z",
+  "generated_at": "2026-08-02T07:16:42.239Z",
   "provider": "groq",
   "source_ids": [
     "yemen-de-suikasta-ugrayan-ust-duzey-askeri-komutan-hayatini-kaybetti-2026-08-01",
@@ -9,9 +9,9 @@
     "yemen-de-suikasta-ugrayan-ust-duzey-askeri-komutan-hayatini-kaybetti-2026-08-01"
   ],
   "lead_headline": "Yemen'de Suikast",
-  "lead_deck": "Üst düzey askeri komutan hayatını kaybetti",
+  "lead_deck": "Üst düzey komutan hayatını kaybetti",
   "lead_body": [
-    "Yemen hükümetine bağlı 'Vatan Kalkanı' güçleri, 4. Tugay Komutanı Tuğgeneral Usame er-Radfani'nin Hadramut vilayetinde düzenlenen saldırıda hayatını kaybettiğini duyurdu. Bu olay Yemen'de güvenlik durumunu daha da germiş görünüyor."
+    "Yemen hükümetine bağlı 'Vatan Kalkanı' güçleri, 4. Tugay Komutanı Tuğgeneral Usame er-Radfani'nin Hadramut vilayetinde düzenlenen saldırıda hayatını kaybettiğini duyurdu. Bu olay Yemen'de güvenlik durumunu etkileyebilir."
   ],
   "lead_byline": "Kalkan Today Editör · Anadolu Ajansı",
   "lead_source": "Anadolu Ajansı",
@@ -22,15 +22,15 @@
   "col1_title": "Kaş'ta Etkinlik",
   "col1_byline": "Bülten · Belediye",
   "col1_body": "23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü gerçekleştirildi",
-  "col3_title": "Kalkan'da Özelleştirme",
+  "col3_title": "Kalkan'da Araziler",
   "col3_byline": "Sahil · Plaj",
-  "col3_body": "Side ve Kalkan’da araziler satışa çıkarıldı",
-  "magazine_lead_headline": "Akşam Etkinlikleri",
+  "col3_body": "Side ve Kalkan'da araziler satışa çıkarıldı",
+  "magazine_lead_headline": "Kalkan'da Akşam",
   "magazine_lead_body": [
-    "Kalkan'da 20:00'da Akustik müzik ve 23:00'da DJ performansları olacak"
+    "20:00'de Black & Gold Terrace Cocktail Bar'da akustik müzik etkinliği düzenlenecek"
   ],
   "editorial_review": {
-    "reviewed_at": "2026-08-02T04:43:21.046Z",
+    "reviewed_at": "2026-08-02T07:16:43.259Z",
     "roles": {
       "muhabir": "groq",
       "editor": "editor-gate",
@@ -42,7 +42,7 @@
         "editor": "hold",
         "editor_score": 0,
         "verifier": "needs-source",
-        "credibility": 77
+        "credibility": 83
       },
       {
         "slot": "col1",
@@ -53,9 +53,9 @@
       },
       {
         "slot": "col3",
-        "editor": "approved",
-        "editor_score": 80,
-        "verifier": "ok",
+        "editor": "hold",
+        "editor_score": 60,
+        "verifier": "needs-source",
         "credibility": 77
       },
       {
@@ -63,11 +63,12 @@
         "editor": "hold",
         "editor_score": 0,
         "verifier": "needs-source",
-        "credibility": 56
+        "credibility": 62
       }
     ],
     "decisions": [
       "MANŞET editöryal denetimden geçti",
+      "col3: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
       "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
     ],
     "approved_slots": [
