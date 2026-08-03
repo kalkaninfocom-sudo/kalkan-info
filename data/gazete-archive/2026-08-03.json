@@ -1,17 +1,17 @@
 {
   "date": "2026-08-03",
-  "generated_at": "2026-08-03T04:51:37.496Z",
+  "generated_at": "2026-08-03T08:02:19.124Z",
   "provider": "groq",
   "source_ids": [
     "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-03",
-    "demre-kas-kalkan-otoban-projesi-antik-kentleri-tehdit-ediyor-arkeofili-2025-07-11",
-    "kas-ta-ve-kalkan-da-villa-turizmi-hareketlendi-dolulukta-yuzde-100-hedef-akdeniz-2026-06-26",
-    "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-2026-06-12"
+    "33-uluslararasi-aspendos-opera-ve-bale-festi-vali-2026-08-03",
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-03"
   ],
-  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü Gerçekleştirildi",
-  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği yapıldı",
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi",
   "lead_body": [
-    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Bu etkinlik, bölgenin turizm ve kültürel zenginliğini ön plana çıkardı. Kalkan ve Kaş, Likya Su Yolu Yürüyüşü'nün önemli durakları arasında yer alıyor."
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlikte birçok katılımcı yer aldı. Likya Su Yolu Yürüyüşü, Patara Yörük Göçü ile birlikte Kaş'ın turizm ve kültürel etkinliklerine katkıda bulundu."
   ],
   "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
   "lead_source": "Kaş Belediyesi Haber",
@@ -19,18 +19,18 @@
   "lead_date": "2026-08-03",
   "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
   "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
-  "col1_title": "Kalkan'da Villa Turizmi",
-  "col1_byline": "Bülten · Kültür",
-  "col1_body": "Kalkan'da villa turizmi hareketlendi, doluluk oranı yüzde 100 hedefleniyor",
-  "col3_title": "Kalkan'da Etkinlikler",
+  "col1_title": "Aspendos Festivali",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "33. Uluslararası Aspendos Opera ve Bale Festivali devam ediyor",
+  "col3_title": "Kalkan'da Araziler",
   "col3_byline": "Sahil · Plaj",
-  "col3_body": "Bu gece Kalkan'da DJ ve parti etkinlikleri yapılacak",
-  "magazine_lead_headline": "Kalkan'ın En İyi Otelleri",
+  "col3_body": "Side ve Kalkan'da araziler satışa çıkarıldı",
+  "magazine_lead_headline": "Kalkan'ın Gizli Bahçeleri",
   "magazine_lead_body": [
-    "Kalkan, Kekova, Olimpos ve Kaş'taki en iyi oteller 2026 güncelendi"
+    "Kalkan ve Kaş, Türkiye'nin en güzel sahil kasabaları arasında yer alıyor ve gizli bahçeleri keşfetmeye değer"
   ],
   "editorial_review": {
-    "reviewed_at": "2026-08-03T04:51:38.720Z",
+    "reviewed_at": "2026-08-03T08:02:20.061Z",
     "roles": {
       "muhabir": "groq",
       "editor": "editor-gate",
@@ -39,22 +39,22 @@
     "slots": [
       {
         "slot": "lead",
-        "editor": "approved",
-        "editor_score": 80,
+        "editor": "reject",
+        "editor_score": 60,
         "verifier": "ok",
         "credibility": 77
       },
       {
         "slot": "col1",
-        "editor": "reject",
-        "editor_score": 60,
+        "editor": "approved",
+        "editor_score": 80,
         "verifier": "ok",
         "credibility": 80
       },
       {
         "slot": "col3",
         "editor": "reject",
-        "editor_score": 40,
+        "editor_score": 60,
         "verifier": "ok",
         "credibility": 77
       },
@@ -63,12 +63,11 @@
         "editor": "reject",
         "editor_score": 40,
         "verifier": "ok",
-        "credibility": 80
+        "credibility": 77
       }
     ],
     "decisions": [
       "MANŞET editöryal denetimden geçti",
-      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
       "col3: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
       "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
     ],
