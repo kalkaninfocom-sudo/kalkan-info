@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T06:56:42.823Z",
+  "generatedAt": "2026-08-03T06:53:14.018Z",
   "proposals": [
     {
       "key": "restoranlar",
@@ -27,7 +27,7 @@
         }
       ],
       "suggestion": "Restoranlar: 40 kayıt fotoğrafsız; 3 kaydın galerisi zayıf (<3 foto); 144/177 kaydın çevirisi (summaryI18n) eksik.",
-      "action": "Bu hafta, fotoğrafsız 40 kaydın fotoğraflarını eklemeye öncelik vererek, en az 10 kayıt için fotoğrafı güncellemek üzere bir plan oluşturabiliriz."
+      "action": "Bu hafta, fotoğrafsız 40 kayıttan öncelikle 10 tanesine en az bir fotoğraf eklemeye odaklanarak başlamak en somut ve uygulanabilir adım olacaktır."
     },
     {
       "key": "villalar",
@@ -50,7 +50,7 @@
         }
       ],
       "suggestion": "Villalar: 2 kaydın galerisi zayıf (<3 foto); Sadece 3 villa — katalog genişletilebilir.",
-      "action": "Bu hafta, en az 2 yeni villa kaydı ekleyerek katalogu genişletmek ve mevcut kayıtların galerilerini güçlendirmek için gerekli fotoğrafları toplamak ve yüklemek öncelikli adım olmalıdır."
+      "action": "Bu hafta, mevcut villalara daha fazla fotoğraf ekleyerek galerilerini güçlendirmeye ve aynı zamanda yeni villa kayıtları ekleyerek kataloğu genişletmeye odaklanmak en somut adım olabilir."
     },
     {
       "key": "oteller",
@@ -68,7 +68,7 @@
         }
       ],
       "suggestion": "Oteller: 1 kaydın galerisi zayıf (<3 foto).",
-      "action": "Bu hafta, \"Oteller\" bölümünde galerisi zayıf olan 1 kaydın fotoğrafını güncellemek için ilgili otel yönetimini arayarak veya e-posta göndererek ek fotoğraf teminini talep edeceğim."
+      "action": "Bu hafta, galerisi zayıf olan otelin sahipleriyle iletişime geçerek daha fazla ve kaliteli fotoğraf temin etmelerini talep edebiliriz."
     },
     {
       "key": "antik",
@@ -91,7 +91,7 @@
         }
       ],
       "suggestion": "Antik Kentler: 1 kaydın galerisi zayıf (<3 foto); 7/17 kentin 5-dil çevirisi eksik.",
-      "action": "Bu hafta, öncelikle galerisi zayıf olan 1 kaydın fotoğrafik içeriğini zenginleştirmek ve ardından 5-dil çevirisi eksik olan 7 antik kentin çevirisini tamamlayarak, bölümün içerik kalitesini artırmak için bir plan oluşturup, ilk olarak zayıf galerili kayda 2-3 yeni fotoğraf ek"
+      "action": "Bu hafta, öncelikle galerisi zayıf olan 1 kaydın fotoğrafik içeriğini zenginleştirmek ve ardından 5-dil çevirisi eksik olan 7 antik kentin çevirisini tamamlamak için bir plan oluşturup, en az bir antik kentin çevirisini eksiksiz olarak güncellemek üzere bir çalışma programı hazı"
     },
     {
       "key": "turlar",
@@ -109,7 +109,7 @@
         }
       ],
       "suggestion": "Turlar: 10 kaydın galerisi zayıf (<3 foto).",
-      "action": "Bu hafta, öncelikle zayıf galeri olan 10 tur kaydının fotoğraflarını güncellemek ve her birine en az 3 yüksek kaliteli fotoğraf eklemek için bir plan oluşturup uygulamaya koyacağım."
+      "action": "Bu hafta, öncelikle 10 kaydın galerisini güncellemek için ilgili turların fotoğrafçılarla iletişime geçerek en az 3 fotoğrafın temin edilmesini sağlayacağım."
     },
     {
       "key": "plajlar",
@@ -117,22 +117,27 @@
       "url": "/plajlar",
       "agent": "gezgin-rehber",
       "agentPerson": "Leyla Tunç",
-      "total": 15,
+      "total": 24,
       "score": 0,
       "issues": [
         {
+          "type": "foto",
+          "count": 6,
+          "text": "6 kayıt fotoğrafsız"
+        },
+        {
           "type": "galeri",
-          "count": 11,
-          "text": "11 kaydın galerisi zayıf (<3 foto)"
+          "count": 13,
+          "text": "13 kaydın galerisi zayıf (<3 foto)"
         },
         {
           "type": "i18n",
-          "count": 15,
-          "text": "15/15 kaydın çevirisi (summaryI18n) eksik"
+          "count": 24,
+          "text": "24/24 kaydın çevirisi (summaryI18n) eksik"
         }
       ],
-      "suggestion": "Plajlar: 11 kaydın galerisi zayıf (<3 foto); 15/15 kaydın çevirisi (summaryI18n) eksik.",
-      "action": "Bu hafta, \"Plajlar\" bölümündeki 11 kaydın galerilerini güçlendirmek için her birine en az 3 yeni fotoğraf eklemeye odaklanılmalıdır."
+      "suggestion": "Plajlar: 6 kayıt fotoğrafsız; 13 kaydın galerisi zayıf (<3 foto); 24/24 kaydın çevirisi (summaryI18n) eksik.",
+      "action": "Bu hafta, öncelikle fotoğrafsız 6 kayda en az birer fotoğraf ekleyerek Plajlar bölümünün görsel içeriğini güçlendirmeye odaklanılabilir."
     },
     {
       "key": "haberler",
