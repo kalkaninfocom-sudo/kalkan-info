@@ -1,0 +1,81 @@
+{
+  "date": "2026-08-04",
+  "generated_at": "2026-08-04T07:21:52.353Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-04",
+    "33-uluslararasi-aspendos-opera-ve-bale-festi-vali-2026-08-03",
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-04"
+  ],
+  "lead_headline": "Kalkan'da Turizm Hareketleniyor",
+  "lead_deck": "Kalkan'da otel ve restoranlar sezon hazırlıklarını tamamladı",
+  "lead_body": [
+    "Kalkan'da turizm sezonunun yavaş yavaş hareketlenmesi ile birlikte, otel ve restoran işletmeleri sezon hazırlıklarını tamamladı. Yerel işletmeler, bu sezon daha fazla turist ağırlamaya hazırlandıklarını belirttiler. Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-04",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Bugünkü Etkinlikler",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kalkan'da yoga, canlı müzik ve DJ performansları var",
+  "col3_title": "Kalkan'da Araziler Satışa Çıkarıldı",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Side ve Kalkan'da araziler özelleştirme ihalesine çıkarıldı",
+  "magazine_lead_headline": "Kalkan'ın Gizli Koyları",
+  "magazine_lead_body": [
+    "Kalkan'ın en güzel ve saklı koylarını keşfedin"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-04T07:21:53.350Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
