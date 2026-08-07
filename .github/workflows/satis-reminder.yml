@@ -1,0 +1,21 @@
+name: Satış hatırlatıcı (kimi ara / kimi takip et → Telegram)
+# Vercel'e dokunmaz — GitHub Actions cron. Durum: data/satis-takip.json
+on:
+  schedule:
+    - cron: '0 6 * * *'    # 06:00 UTC = 09:00 Europe/Istanbul (sabah — bugün ara)
+    - cron: '0 13 * * *'   # 13:00 UTC = 16:00 Europe/Istanbul (öğleden sonra — takip)
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Satış hatırlatıcı gönder
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: node scripts/agency/satis-reminder.mjs
