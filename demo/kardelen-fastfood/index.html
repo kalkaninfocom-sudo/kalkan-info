@@ -1,93 +1,144 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Kardelen Fastfood — Kalkan · 4.6★</title>
 <meta name="description" content="Kardelen Fastfood, Kalkan — 4.6★ (185 yorum). Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzet"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--sea:#0E2233;--sea-d:#07131E;--gold:#C8962A;--gold-l:#E0B450;--terra:#B4653A;--cream:#F5EDD8;}
+:root{--bg:#FAF6EF;--ink:#0E1A24;--muted:#5a6570;--gold:#E8A020;--gold-d:#C8801A;--teal:#1E7878;--card:#fff;--line:rgba(14,26,36,.10);}
 *{margin:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{background:var(--sea);color:var(--cream);font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden;}
-.serif{font-family:'Cormorant Garamond',serif;}
-.eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);}
-.gline{width:44px;height:1px;background:var(--gold);margin:14px 0 20px;opacity:.6;}
-.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,5vw,3.4rem);line-height:1.06;letter-spacing:-.01em;}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
-.reveal.in{opacity:1;transform:none;}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(1.2rem,4vw,3rem);transition:background .3s,backdrop-filter .3s;}
-nav.solid{background:rgba(7,19,30,.85);backdrop-filter:blur(10px);}
-nav .wm{font-family:'Cormorant Garamond',serif;font-size:1.15rem;letter-spacing:.18em;color:var(--cream);text-transform:uppercase;text-decoration:none;}
-nav .links{display:flex;gap:26px;align-items:center;}
-nav a{color:rgba(245,237,216,.75);text-decoration:none;font-size:.82rem;letter-spacing:.06em;transition:color .2s;}
-nav a:hover{color:var(--gold-l);}
-.btn{display:inline-flex;align-items:center;gap:.55rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;padding:.85rem 1.6rem;transition:transform .15s,filter .15s,background .2s;cursor:pointer;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:64px;}
+.serif{font-family:'Fraunces',Georgia,serif;}
+.eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-d);font-weight:600;}
+.gline{width:42px;height:2px;background:var(--gold);margin:12px 0 18px;border-radius:2px;}
+.title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.9rem,5vw,3.2rem);line-height:1.05;letter-spacing:-.02em;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.reveal.vis{opacity:1;transform:none;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:14px clamp(1rem,4vw,3rem);transition:background .3s,box-shadow .3s;}
+nav.solid{background:rgba(250,246,239,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);}
+nav .wm{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;letter-spacing:.02em;color:var(--ink);text-decoration:none;opacity:0;transition:opacity .3s;}
+nav.solid .wm{opacity:1;}
+.langs{display:flex;gap:2px;background:rgba(14,26,36,.06);border-radius:999px;padding:3px;margin-left:auto;}
+.lp{border:0;background:transparent;color:var(--muted);font:inherit;font-size:.72rem;font-weight:600;letter-spacing:.04em;padding:.32rem .55rem;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+.lp[aria-current="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(14,26,36,.12);}
+nav .nav-res{display:none;}
+@media(min-width:860px){nav .nav-res{display:inline-flex;}}
+/* HERO */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;}
+.hero .bg{position:absolute;inset:-6% 0;background-size:cover;background-position:center;will-change:transform;}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,36,.34) 0%,rgba(14,26,36,.06) 26%,rgba(14,26,36,.44) 56%,rgba(14,26,36,.86) 100%);}
+.hero .in{position:relative;z-index:2;padding:0 clamp(1.4rem,6vw,4.5rem) clamp(2.4rem,7vh,4rem);max-width:900px;color:#FBF7EF;}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2.6rem,8vw,5.4rem);line-height:.98;letter-spacing:-.03em;text-shadow:0 2px 30px rgba(0,0,0,.35);}
+.hero .tag{margin-top:.9rem;font-size:clamp(1rem,2vw,1.2rem);max-width:520px;color:rgba(251,247,239,.9);}
+.hero .badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;background:rgba(232,160,32,.2);border:1px solid rgba(232,160,32,.55);border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;color:#FBF7EF;backdrop-filter:blur(4px);}
+.hero .eyebrow{color:var(--gold);text-shadow:0 1px 14px rgba(0,0,0,.6);}
+.hero .tag{text-shadow:0 1px 16px rgba(0,0,0,.5);}
+/* metin hero (marka renginde temiz kart — foto yoksa/iyi değilse) */
+.hero.text{align-items:center;background:linear-gradient(152deg,var(--acc,#14212C) 0%,var(--acc2,#0A1219) 82%);}
+.hero.text .in{text-align:center;max-width:860px;margin:0 auto;padding:0 clamp(1.4rem,6vw,4rem) clamp(2rem,7vh,4rem);}
+.hero.text .hero-tex{position:absolute;inset:0;opacity:.05;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px;pointer-events:none;}
+.hero.text .hero-frame{position:absolute;inset:clamp(14px,2.4vw,26px);border:1px solid rgba(232,160,32,.32);border-radius:12px;pointer-events:none;}
+.hero.text h1{text-shadow:none;}
+.hero.text .tag{text-shadow:none;margin-left:auto;margin-right:auto;}
+.hero.text #heroCta{justify-content:center;}
+.hero.text .badge{background:rgba(9,11,15,.34);border-color:rgba(232,160,32,.55);}
+/* banner hero (yemek fotosu + marka rengi duotone — zengin) */
+.hero.banner{align-items:center;}
+.hero.banner .duo{position:absolute;inset:0;background:linear-gradient(155deg,var(--acc,#8E2420) 0%,var(--acc2,#3A0E0C) 92%);opacity:.8;mix-blend-mode:multiply;}
+.hero.banner .ov{background:linear-gradient(180deg,rgba(6,10,14,.42),rgba(6,10,14,.12) 42%,rgba(6,10,14,.66));}
+.hero.banner .in{text-align:center;max-width:860px;margin:0 auto;padding:0 clamp(1.4rem,6vw,4rem) clamp(2rem,7vh,4rem);}
+.hero.banner .hero-tex{position:absolute;inset:0;opacity:.05;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px;pointer-events:none;}
+.hero.banner .hero-frame{position:absolute;inset:clamp(14px,2.4vw,26px);border:1px solid rgba(232,160,32,.42);border-radius:12px;pointer-events:none;}
+.hero.banner .eyebrow{color:var(--gold);}
+.hero.banner #heroCta{justify-content:center;}
+.hero.banner .badge{background:rgba(9,11,15,.4);border-color:rgba(232,160,32,.6);}
+/* SECTIONS */
+.sec{padding:clamp(3rem,8vh,6.5rem) clamp(1.4rem,5vw,5rem);max-width:1180px;margin:0 auto;}
+.about-p{max-width:660px;margin-top:1.1rem;color:var(--muted);font-size:1.06rem;line-height:1.75;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 40px -26px rgba(14,26,36,.4);}
+/* MENU */
+.menu-cat{margin-bottom:2.4rem;}
+.menu-cat h3{font-family:'Fraunces',serif;font-size:clamp(1.3rem,3vw,1.7rem);color:var(--gold-d);margin-bottom:.8rem;}
+.menu-item{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);}
+.menu-item .mi-n{font-weight:600;}
+.menu-item .mi-d{font-size:.86rem;color:var(--muted);margin-top:.15rem;line-height:1.5;max-width:80%;}
+.menu-item .mi-p{white-space:nowrap;color:var(--gold-d);font-weight:600;}
+.menu-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+@media(min-width:760px){.menu-grid{grid-template-columns:1fr 1fr;}}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 40px -28px rgba(14,26,36,.42);}
+.mcard .ph{height:150px;background-size:cover;background-position:center;}
+.mcard .bd{padding:1.1rem 1.3rem 1.4rem;}
+.mcard h3{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--gold-d);margin-bottom:.15rem;}
+.mcard .cnt{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;}
+.menu-cta{background:linear-gradient(135deg,#fff,#FBF3E4);border:1px solid var(--line);border-radius:20px;padding:clamp(2rem,5vw,3.2rem);text-align:center;box-shadow:0 14px 40px -28px rgba(14,26,36,.4);}
+.menu-cta .mh{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.6vw,1.8rem);}
+.menu-cta p{color:var(--muted);margin:.6rem auto 1.4rem;max-width:440px;}
+.hours-wrap{display:grid;grid-template-columns:1fr;gap:20px;align-items:stretch;}
+@media(min-width:760px){.hours-wrap{grid-template-columns:1.05fr .95fr;}}
+.hours-photo{min-height:220px;border-radius:16px;background-size:cover;background-position:center;box-shadow:0 14px 38px -24px rgba(14,26,36,.5);}
+/* GALLERY */
+.gal{columns:2;column-gap:12px;}@media(min-width:800px){.gal{columns:3;}}
+.gal img{width:100%;margin-bottom:12px;border-radius:12px;display:block;cursor:pointer;transition:transform .4s;box-shadow:0 8px 24px -18px rgba(14,26,36,.5);}
+.gal img:hover{transform:scale(1.02);}
+/* REVIEWS */
+.rev{text-align:center;background:linear-gradient(180deg,#fff,#FBF3E4);border:1px solid var(--line);border-radius:20px;padding:clamp(2rem,5vw,3.2rem);}
+.rev .q{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.3rem,2.4vw,1.8rem);}
+.hours-line{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--line);max-width:520px;}
+.map{width:100%;height:360px;border:0;border-radius:16px;filter:saturate(1.05);}
+/* RESERVE */
+.reserve{background:linear-gradient(135deg,#0E1A24,#14212c);color:#FBF7EF;text-align:center;padding:clamp(3rem,8vh,5.5rem) 1.4rem;border-radius:0;}
+.reserve .eyebrow{color:var(--gold);}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-size:.82rem;font-weight:600;letter-spacing:.02em;text-decoration:none;border-radius:999px;padding:.85rem 1.5rem;transition:transform .15s,filter .15s;cursor:pointer;border:0;}
 .btn:hover{transform:translateY(-1px);}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--terra));color:var(--sea);font-weight:600;}
-.btn-ghost{border:1px solid rgba(245,237,216,.4);color:var(--cream);}
-.btn-ghost:hover{background:rgba(245,237,216,.08);}
-.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.hero .bg{position:absolute;inset:-8% 0;background-size:cover;background-position:center;will-change:transform;}
-.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,19,30,.5) 0%,rgba(7,19,30,.22) 42%,rgba(7,19,30,.78) 100%),radial-gradient(ellipse at center,transparent 34%,rgba(7,19,30,.55) 100%);}
-.hero .grain{position:absolute;inset:0;opacity:.04;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:3px 3px;}
-.hero .in{position:relative;z-index:2;padding:0 clamp(1.4rem,6vw,4rem);max-width:760px;margin:0 auto;text-align:center;}
-.badge{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;background:rgba(200,150,42,.12);border:1px solid rgba(224,180,80,.4);border-radius:999px;padding:.5rem 1rem;font-size:.8rem;}
-.badge .st{color:var(--gold-l);letter-spacing:1px;}
-.sec{padding:clamp(4rem,10vh,8rem) clamp(1.4rem,5vw,5rem);max-width:1280px;margin:0 auto;}
-.gal{columns:2;column-gap:14px;}
-@media(min-width:800px){.gal{columns:3;}}
-.gal img{width:100%;margin-bottom:14px;border-radius:3px;display:block;transition:transform .4s,filter .4s;cursor:pointer;filter:saturate(.95);}
-.gal img:hover{transform:scale(1.02);filter:saturate(1.1);}
-.rev{text-align:center;background:rgba(200,150,42,.05);border:1px solid rgba(200,150,42,.15);border-radius:4px;padding:clamp(2rem,5vw,3.5rem);}
-.reserve{background:linear-gradient(135deg,var(--sea-d),var(--sea));text-align:center;padding:clamp(3.5rem,8vh,6rem) 1.4rem;}
-.map{width:100%;height:380px;border:0;border-radius:4px;filter:grayscale(.3) contrast(1.05);}
-footer{background:var(--sea-d);padding:2.5rem clamp(1.4rem,5vw,5rem);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;border-top:1px solid rgba(200,150,42,.12);}
-footer a{color:var(--gold-l);text-decoration:none;}
-.wa-float{position:fixed;bottom:22px;right:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.4);}
-.big{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,5.5rem);color:var(--gold-l);line-height:1;}
-.lb{position:fixed;inset:0;z-index:80;background:rgba(4,10,16,.94);display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;}
-.lb.on{display:flex;}.lb img{max-width:94vw;max-height:90vh;border-radius:4px;}
-/* menü */
-.menu-cat{margin-bottom:2.6rem;}
-.menu-cat h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--gold-l);margin-bottom:1rem;letter-spacing:.01em;}
-.menu-item{display:flex;justify-content:space-between;gap:1rem;padding:.75rem 0;border-bottom:1px dashed rgba(200,150,42,.14);}
-.menu-item .mi-l{max-width:78%;}
-.menu-item .mi-n{font-weight:600;color:var(--cream);}
-.menu-item .mi-d{font-size:.85rem;color:rgba(245,237,216,.55);margin-top:.15rem;line-height:1.5;}
-.menu-item .mi-p{white-space:nowrap;color:var(--gold-l);font-weight:600;}
-.hours-line{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dashed rgba(200,150,42,.14);max-width:520px;}
-.about-p{max-width:680px;margin-top:1.2rem;color:rgba(245,237,216,.72);font-size:1.05rem;line-height:1.8;}
+.btn:active{transform:translateY(0);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#22160a;box-shadow:0 10px 24px -12px rgba(232,160,32,.7);}
+.btn-ink{background:var(--ink);color:#FBF7EF;}
+.btn-ghost{border:1px solid rgba(251,247,239,.4);color:#FBF7EF;background:transparent;}
+.btn-outline{border:1px solid var(--line);color:var(--ink);background:#fff;}
+/* STICKY MOBILE ACTION BAR (phone-first) */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;gap:8px;padding:10px clamp(.7rem,3vw,1.2rem) calc(10px + env(safe-area-inset-bottom));background:rgba(250,246,239,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);}
+.dock a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;font-size:.66rem;font-weight:600;letter-spacing:.02em;padding:.5rem .3rem;border-radius:12px;color:var(--ink);}
+.dock a svg{width:20px;height:20px;}
+.dock a.d-wa{background:#25D366;color:#fff;}
+.dock a.d-call{background:var(--ink);color:#FBF7EF;}
+.dock a.d-dir{background:#fff;border:1px solid var(--line);}
+@media(min-width:860px){.dock{display:none;}body{padding-bottom:0;}}
+footer{background:#F1E9DA;padding:2.4rem clamp(1.4rem,5vw,5rem);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center;border-top:1px solid var(--line);}
+footer a{color:var(--gold-d);text-decoration:none;}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(14,26,36,.92);display:none;align-items:center;justify-content:center;padding:2rem;cursor:zoom-out;}
+.lb.on{display:flex;}.lb img{max-width:94vw;max-height:90vh;border-radius:10px;}
+[data-hide]{display:none;}
 </style></head>
 <body>
-<nav id="nav"><a class="wm" href="#">Kardelen Fastfood</a>
-  <div class="links"><a href="#about">Hakkında</a><a href="#menu">Menü</a><a href="#gallery">Galeri</a><a href="#location">Konum</a><a class="btn btn-gold" href="#reserve">Rezervasyon</a></div>
+<nav id="nav">
+  <a class="wm" href="#">Kardelen Fastfood</a>
+  <div class="langs" id="langs"><button class="lp" data-lang="tr" aria-current="true">TR</button><button class="lp" data-lang="en">EN</button><button class="lp" data-lang="de">DE</button><button class="lp" data-lang="ru">RU</button><button class="lp" data-lang="fr">FR</button></div>
+  <a class="btn btn-gold nav-res" href="#reserve" data-i="reserve" style="padding:.6rem 1.2rem;font-size:.76rem;">Rezervasyon</a>
 </nav>
 
-<header class="hero">
-  <div class="bg" id="heroBg" style="background-image:url('/assets/img/restoran/kardelen-fastfood-1.jpg')"></div>
-  <div class="ov"></div><div class="grain"></div>
-  <div class="in">
+<header class="hero text" style="--acc:#14212C;--acc2:#0A1219"><div class="hero-tex"></div><div class="hero-frame"></div><div class="in">
     <div class="eyebrow reveal">Yeşilköy Beldesi · Kaş, Antalya</div>
-    <h1 class="title reveal" style="font-size:clamp(2.6rem,7vw,5rem);margin-top:.5rem;">Kardelen<br><em style="color:var(--gold-l);">Fastfood</em></h1>
-    <p class="reveal" id="heroTagline" style="margin:1rem auto 0;color:rgba(245,237,216,.85);font-size:1.1rem;max-width:520px;"></p>
-    <div class="badge reveal"><span class="st">★★★★★</span> <b>4.6</b> <span style="opacity:.7">· 185 Google reviews</span></div>
-    <div class="reveal" style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;" id="heroCta"></div>
-  </div>
-</header>
+    <h1 class="reveal">Kardelen Fastfood</h1>
+    <p class="tag reveal" id="heroTagline"></p>
+    <div class="badge reveal">★ <b>4.6</b> · 185 Google</div>
+    <div class="reveal" style="margin-top:1.6rem;display:flex;gap:.7rem;flex-wrap:wrap;" id="heroCta"></div></div></header>
 
 <section class="sec" id="about">
-  <div class="eyebrow reveal">Hakkında</div><div class="gline reveal"></div>
-  <h2 class="title reveal" style="max-width:800px;">Kalkan'ın kalbinde bir restoran · köfte · tantuni · kokoreç · kuzu · fast food.</h2>
+  <div class="eyebrow reveal" data-i="about">Hakkında</div><div class="gline reveal"></div>
+  <h2 class="title reveal" id="aboutTitle"></h2>
   <div id="aboutBody" class="reveal"></div>
 </section>
 
 <section class="sec" id="menu" style="padding-top:0;">
-  <div class="eyebrow reveal">Menü</div><div class="gline reveal"></div>
-  <h2 class="title reveal" style="margin-bottom:2rem;">Sofradakiler.</h2>
+  <div class="eyebrow reveal" data-i="menu">Menü</div><div class="gline reveal"></div>
+  <h2 class="title reveal" id="menuTitle" style="margin-bottom:1.8rem;"></h2>
   <div id="menuBody" class="reveal"></div>
 </section>
 
 <section class="sec" id="gallery" style="padding-top:0;">
-  <div class="eyebrow reveal">Galeri</div><div class="gline reveal"></div>
+  <div class="eyebrow reveal" data-i="gallery">Galeri</div><div class="gline reveal"></div>
   <div class="gal reveal">
     <img src="/assets/img/restoran/kardelen-fastfood-1.jpg" alt="Kardelen Fastfood" loading="lazy" onclick="lb('/assets/img/restoran/kardelen-fastfood-1.jpg')"/>
     <img src="/assets/img/restoran/kardelen-fastfood-2.jpg" alt="Kardelen Fastfood" loading="lazy" onclick="lb('/assets/img/restoran/kardelen-fastfood-2.jpg')"/>
@@ -101,40 +152,46 @@ footer a{color:var(--gold-l);text-decoration:none;}
 </section>
 
 <section class="sec" style="padding-top:0;"><div class="rev reveal">
-  <p class="serif" style="font-size:clamp(1.4rem,2.4vw,1.9rem);font-style:italic;">Kalkan'ın en sevilen adreslerinden.</p>
-  <p style="margin:.6rem 0 1.9rem;color:rgba(245,237,216,.6);letter-spacing:.06em;">4.6★ average · 185 reviews</p>
-  <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Kardelen%20Fastfood%20Ye%C5%9Filk%C3%B6y%20Beldesi%2C%2007965%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye" target="_blank" rel="noopener">Google yorumlarını oku →</a>
+  <p class="q" id="revQuote"></p>
+  <p style="margin:.6rem 0 1.6rem;color:var(--muted);letter-spacing:.04em;">4.6★ · 185 · Google</p>
+  <a class="btn btn-outline" id="revLink" href="https://www.google.com/maps/search/?api=1&query=Kardelen%20Fastfood%20Ye%C5%9Filk%C3%B6y%20Beldesi%2C%2007965%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye" target="_blank" rel="noopener"></a>
 </div></section>
 
 <section class="sec" id="hours" style="padding-top:0;">
-  <div class="eyebrow reveal">Çalışma Saatleri</div><div class="gline reveal"></div>
-  <div id="hoursBody" class="reveal"></div>
+  <div class="eyebrow reveal" data-i="hours">Çalışma Saatleri</div><div class="gline reveal"></div>
+  <div class="hours-wrap reveal"><div id="hoursBody"></div><div class="hours-photo" id="hoursPhoto"></div></div>
 </section>
 
 <section class="sec" id="location">
-  <div class="eyebrow reveal">Bizi bulun</div><div class="gline reveal"></div>
-  <p class="reveal" style="color:rgba(245,237,216,.7);margin-bottom:1.5rem;">Yeşilköy Beldesi, 07965 Kaş/Antalya, Türkiye</p>
+  <div class="eyebrow reveal" data-i="findUs">Bizi bulun</div><div class="gline reveal"></div>
+  <p class="reveal" style="color:var(--muted);margin-bottom:1.3rem;">Yeşilköy Beldesi, 07965 Kaş/Antalya, Türkiye</p>
   <iframe class="map reveal" loading="lazy" src="https://maps.google.com/maps?q=Kardelen%20Fastfood%20Ye%C5%9Filk%C3%B6y%20Beldesi%2C%2007965%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye&output=embed"></iframe>
 </section>
 
 <section class="reserve" id="reserve">
-  <div class="eyebrow reveal" style="color:var(--gold-l);">İletişim & Rezervasyon</div>
-  <h2 class="title reveal" style="margin:.6rem 0 1.5rem;">Yerinizi ayırtın.</h2>
+  <div class="eyebrow reveal" data-i="reserveEye">İletişim & Rezervasyon</div>
+  <h2 class="title reveal" id="reserveTitle" style="margin:.6rem 0 1.5rem;"></h2>
   <div class="reveal" id="reserveCta" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;"></div>
 </section>
 
 <footer>
-  <div><div class="serif" style="letter-spacing:.14em;text-transform:uppercase;">Kardelen Fastfood</div>
-    <div style="font-size:.8rem;color:rgba(245,237,216,.5);margin-top:.2rem;">Yeşilköy Beldesi, 07965 Kaş/Antalya, Türkiye</div></div>
-  <div style="font-size:.78rem;color:rgba(245,237,216,.45);">
-    <a href="admin.html">Yönetici Girişi</a> · Site by <a href="https://kalkaninfo.com" target="_blank" rel="noopener">Kalkan Info</a>
+  <div><div class="serif" style="font-weight:700;">Kardelen Fastfood</div>
+    <div style="font-size:.82rem;color:var(--muted);margin-top:.2rem;">Yeşilköy Beldesi, 07965 Kaş/Antalya, Türkiye</div></div>
+  <div style="font-size:.8rem;color:var(--muted);">
+    <a href="admin.html" data-i="admin">Yönetici Girişi</a> · <span data-i="by">Site:</span> <a href="https://kalkaninfo.com" target="_blank" rel="noopener">Kalkan Info</a>
   </div>
 </footer>
 
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:none;"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 004.65 1.16h.01c5.46 0 9.9-4.45 9.9-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2z"/></svg></a>
+<div class="dock" id="dock"></div>
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><img id="lbi" src=""/></div>
 
 <script>
+window.__I18N__ = {"tr":{"about":"Hakkında","menu":"Menü","gallery":"Galeri","location":"Konum","hours":"Çalışma Saatleri","reserve":"Rezervasyon","aboutTitle":"Kalkan’ın kalbinde bir {cat}.","menuTitle":"Sofradakiler.","reserveTitle":"Yerinizi ayırtın.","reserveEye":"İletişim & Rezervasyon","reviewsQuote":"Kalkan’ın en sevilen adreslerinden.","readReviews":"Google yorumlarını oku","call":"Ara","directions":"Yol tarifi","wa":"WhatsApp","waReserve":"WhatsApp ile Rezervasyon","findUs":"Bizi bulun","admin":"Yönetici Girişi","by":"Site:"},"en":{"about":"About","menu":"Menu","gallery":"Gallery","location":"Location","hours":"Opening Hours","reserve":"Reserve","aboutTitle":"A {cat} in the heart of Kalkan.","menuTitle":"On the table.","reserveTitle":"Reserve your table.","reserveEye":"Contact & Reservations","reviewsQuote":"One of Kalkan’s most-loved addresses.","readReviews":"Read Google reviews","call":"Call","directions":"Directions","wa":"WhatsApp","waReserve":"Reserve on WhatsApp","findUs":"Find us","admin":"Admin Login","by":"Site by"},"de":{"about":"Über uns","menu":"Speisekarte","gallery":"Galerie","location":"Lage","hours":"Öffnungszeiten","reserve":"Reservieren","aboutTitle":"Ein {cat} im Herzen von Kalkan.","menuTitle":"Auf dem Tisch.","reserveTitle":"Reservieren Sie Ihren Tisch.","reserveEye":"Kontakt & Reservierung","reviewsQuote":"Eine der beliebtesten Adressen Kalkans.","readReviews":"Google-Bewertungen lesen","call":"Anrufen","directions":"Route","wa":"WhatsApp","waReserve":"Per WhatsApp reservieren","findUs":"Finden Sie uns","admin":"Admin-Login","by":"Website:"},"ru":{"about":"О нас","menu":"Меню","gallery":"Галерея","location":"Расположение","hours":"Часы работы","reserve":"Бронировать","aboutTitle":"{cat} в сердце Калкана.","menuTitle":"На столе.","reserveTitle":"Забронируйте столик.","reserveEye":"Контакты и бронирование","reviewsQuote":"Одно из самых любимых мест Калкана.","readReviews":"Читать отзывы Google","call":"Позвонить","directions":"Маршрут","wa":"WhatsApp","waReserve":"Бронь в WhatsApp","findUs":"Найти нас","admin":"Вход для админа","by":"Сайт:"},"fr":{"about":"À propos","menu":"Menu","gallery":"Galerie","location":"Emplacement","hours":"Horaires","reserve":"Réserver","aboutTitle":"Un {cat} au cœur de Kalkan.","menuTitle":"À table.","reserveTitle":"Réservez votre table.","reserveEye":"Contact & Réservations","reviewsQuote":"L’une des adresses les plus appréciées de Kalkan.","readReviews":"Lire les avis Google","call":"Appeler","directions":"Itinéraire","wa":"WhatsApp","waReserve":"Réserver sur WhatsApp","findUs":"Nous trouver","admin":"Connexion admin","by":"Site :"}};
+window.__CI18N__ = {"tr":{"tagline":"","about":["Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan’da köfte ve tantuni denince ilk akla gelen adreslerden."]},"en":{"tagline":"","about":["Kardelen Fastfood — Yeşilköy'de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan'da köfte ve tantuni denince ilk akla gelen adreslerden."]},"de":{"tagline":"","about":["Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan’da köfte ve tantuni denince ilk akla gelen adreslerden."]},"ru":{"tagline":"","about":["Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan’da köfte ve tantuni denince ilk akla gelen adreslerden."]},"fr":{"tagline":"","about":["Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan’da köfte ve tantuni denince ilk akla gelen adreslerden."]}};
+window.__MENUHINT__ = {"tr":"Güncel menümüz için bize bir mesaj atın — hemen iletelim.","en":"Message us for our current menu — we’ll send it right over.","de":"Schreiben Sie uns für unsere aktuelle Speisekarte — wir senden sie sofort.","ru":"Напишите нам — пришлём актуальное меню сразу.","fr":"Écrivez-nous pour notre menu actuel — nous vous l’envoyons aussitôt."};
+window.__GALLERY__ = ["/assets/img/restoran/kardelen-fastfood-1.jpg","/assets/img/restoran/kardelen-fastfood-2.jpg","/assets/img/restoran/kardelen-fastfood-3.jpg","/assets/img/restoran/kardelen-fastfood-4.jpg","/assets/img/restoran/kardelen-fastfood-5.jpg","/assets/img/restoran/kardelen-fastfood-6.jpg","/assets/img/restoran/kardelen-fastfood-7.jpg","/assets/img/restoran/kardelen-fastfood-8.jpg"];
+window.__CAT__ = "restoran";
+window.__MAPSQ__ = "Kardelen%20Fastfood%20Ye%C5%9Filk%C3%B6y%20Beldesi%2C%2007965%20Ka%C5%9F%2FAntalya%2C%20T%C3%BCrkiye";
 window.__VENUE_SLUG__ = "kardelen-fastfood";
 window.__VENUE_NAME__ = "Kardelen Fastfood";
 window.__VENUE_BAKED__ = {"tagline":"","about":["Kardelen Fastfood — Yeşilköy’de (Kalkan–Kaş) köfte, tantuni, kokoreç ve kuzu tandırın en lezzetlisini sunan sokak lezzeti durağı. Öğle vaktinden gece yarısına kadar açık; taze ızgara köfte, közde tantuni, bol malzemeli kokoreç, et & tavuk döner, hamburger, tost ve çıtır patates. Uygun fiyat, hızlı servis; 4.6 Google puanıyla Kalkan’da köfte ve tantuni denince ilk akla gelen adreslerden."],"menu":[],"hours":"Açık · Her gün 12:00 – 01:00","phone":"+90 535 328 10 47","whatsapp":"905353281047","instagram":""};
@@ -143,71 +200,76 @@ window.__VENUE_PHONE_DISPLAY__ = "+90 535 328 10 47";
 <script type="module">
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '/js/supabase-config.js';
 import { createClient } from '/vendor/supabase.mjs';
+const E=(s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=(id)=>document.getElementById(id);
+let LANG='tr', BAKED=window.__VENUE_BAKED__, CI=window.__CI18N__;
 
-const E = (s)=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const $ = (id)=>document.getElementById(id);
-
-function render(c){
-  const phone = window.__VENUE_PHONE_DISPLAY__ || c.phone || '';
-  const waDigits = (c.whatsapp || (phone||'').replace(/[^\d]/g,'')) || '';
-  const wa = waDigits ? 'https://wa.me/'+waDigits : '';
-  const tel = (phone||'').replace(/[^\d]/g,'') ? 'tel:+'+(phone||'').replace(/[^\d]/g,'') : '';
-  if (c.tagline) $('heroTagline').textContent = c.tagline;
-
-  // Hakkında
-  $('aboutBody').innerHTML = (c.about||[]).map(p=>'<p class="about-p">'+E(p)+'</p>').join('') ||
-    '<p class="about-p">Kalkan\'ın sevilen adreslerinden.</p>';
-
-  // Menü
-  const menu = (c.menu||[]).filter(m=>m && (m.cat || (m.items&&m.items.length)));
-  $('menu').style.display = menu.length ? '' : 'none';
-  $('menuBody').innerHTML = menu.map(m=>
-    '<div class="menu-cat"><h3>'+E(m.cat)+'</h3>'+
-    (m.items||[]).map(it=>
-      '<div class="menu-item"><div class="mi-l"><div class="mi-n">'+E(it.name)+'</div>'+
-      (it.desc?'<div class="mi-d">'+E(it.desc)+'</div>':'')+'</div>'+
-      (it.price?'<div class="mi-p">'+E(it.price)+'</div>':'')+'</div>'
-    ).join('')+'</div>'
-  ).join('');
-
-  // Saatler
-  const h = c.hours;
-  let hoursHtml = '';
-  if (Array.isArray(h) && h.length) hoursHtml = h.map(x=>'<div class="hours-line"><span>'+E(x.d||x.day||'')+'</span><span style="color:var(--gold-l)">'+E(x.h||x.hours||'')+'</span></div>').join('');
-  else if (typeof h === 'string' && h.trim()) hoursHtml = '<p class="about-p" style="margin-top:0">'+E(h)+'</p>';
-  $('hours').style.display = hoursHtml ? '' : 'none';
-  $('hoursBody').innerHTML = hoursHtml;
-
-  // CTA'lar
-  const heroCta = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp ile Rezervasyon</a>':'')+
-                  (tel?'<a class="btn btn-ghost" href="'+tel+'">Ara</a>':'');
-  $('heroCta').innerHTML = heroCta;
-  $('reserveCta').innerHTML = (wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp: '+E(phone)+'</a>':'')+
-                              (tel?'<a class="btn btn-ghost" href="'+tel+'">Hemen ara</a>':'');
-  const waf = $('waFloat');
-  if (wa){ waf.href = wa; waf.style.display='grid'; } else { waf.style.display='none'; }
+function labels(){return window.__I18N__[LANG]||window.__I18N__.tr;}
+function applyLabels(){
+  const t=labels();
+  document.querySelectorAll('[data-i]').forEach(el=>{const k=el.getAttribute('data-i'); if(t[k]!=null) el.textContent=t[k];});
+  const aT=$('aboutTitle'); if(aT) aT.textContent=t.aboutTitle.replace('{cat}',window.__CAT__);
+  const mT=$('menuTitle'); if(mT) mT.textContent=t.menuTitle;
+  const rQ=$('revQuote'); if(rQ) rQ.textContent=t.reviewsQuote;
+  const rL=$('revLink'); if(rL) rL.textContent=t.readReviews+' →';
+  const rT=$('reserveTitle'); if(rT) rT.textContent=t.reserveTitle;
+  document.documentElement.lang=LANG;
 }
+function content(){ // aktif dildeki mekan içeriği + admin (baked) verisi
+  const c=(CI&&CI[LANG])||{}; return { ...BAKED, tagline:c.tagline!=null?c.tagline:BAKED.tagline, about:(c.about&&c.about.length)?c.about:BAKED.about };
+}
+function render(){
+  const t=labels(), c=content();
+  const phone=window.__VENUE_PHONE_DISPLAY__||c.phone||'';
+  const waDigits=(c.whatsapp||(phone||'').replace(/[^\d]/g,''))||'';
+  const wa=waDigits?'https://wa.me/'+waDigits:'';
+  const tel=(phone||'').replace(/[^\d]/g,'')?'tel:+'+(phone||'').replace(/[^\d]/g,''):'';
+  const dir='https://www.google.com/maps/search/?api=1&query='+window.__MAPSQ__;
+  $('heroTagline').textContent=c.tagline||'';
+  $('aboutBody').innerHTML=(c.about||[]).map(p=>'<p class="about-p">'+E(p)+'</p>').join('');
+  const G=window.__GALLERY__||[];
+  const menu=(BAKED.menu||[]).filter(m=>m&&(m.cat||(m.items&&m.items.length)));
+  $('menu').style.display='';
+  if(menu.length){
+    $('menuBody').innerHTML='<div class="menu-grid">'+menu.map((m,i)=>
+      '<div class="mcard">'+(G.length?'<div class="ph" style="background-image:url('+G[i%G.length]+')"></div>':'')+
+      '<div class="bd"><h3>'+E(m.cat)+'</h3><div class="cnt">'+(((m.items&&m.items.length)||0))+' '+E(t.menu)+'</div>'+
+      (m.items||[]).map(it=>'<div class="menu-item"><div><div class="mi-n">'+E(it.name)+'</div>'+(it.desc?'<div class="mi-d">'+E(it.desc)+'</div>':'')+'</div>'+(it.price?'<div class="mi-p">'+E(it.price)+'</div>':'')+'</div>').join('')+
+      '</div></div>').join('')+'</div>';
+  } else {
+    const mh=(window.__MENUHINT__&&window.__MENUHINT__[LANG])||'';
+    $('menuBody').innerHTML='<div class="menu-cta"><div class="mh">'+E(window.__VENUE_NAME__)+'</div><p>'+E(mh)+'</p>'+(wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">'+E(t.wa)+'</a>':(tel?'<a class="btn btn-outline" href="'+tel+'">'+E(t.call)+'</a>':''))+'</div>';
+  }
+  const h=BAKED.hours; let hh='';
+  if(Array.isArray(h)&&h.length) hh=h.map(x=>'<div class="hours-line"><span>'+E(x.d||x.day||'')+'</span><span style="color:var(--gold-d)">'+E(x.h||x.hours||'')+'</span></div>').join('');
+  else if(typeof h==='string'&&h.trim()) hh='<p class="about-p" style="margin-top:0">'+E(h)+'</p>';
+  $('hours').style.display=hh?'':'none'; $('hoursBody').innerHTML=hh;
+  const hp=$('hoursPhoto'); if(hp){ if(hh&&G.length){ hp.style.backgroundImage="url('"+(G[1]||G[0])+"')"; hp.style.display=''; } else hp.style.display='none'; }
+  // CTA'lar
+  $('heroCta').innerHTML=(wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">'+E(t.waReserve)+'</a>':'')+(tel?'<a class="btn btn-ghost" href="'+tel+'">'+E(t.call)+'</a>':'');
+  $('reserveCta').innerHTML=(wa?'<a class="btn btn-gold" href="'+wa+'" target="_blank" rel="noopener">WhatsApp · '+E(phone)+'</a>':'')+(tel?'<a class="btn btn-ghost" href="'+tel+'">'+E(t.call)+'</a>':'');
+  // yapışkan mobil bar
+  $('dock').innerHTML=(tel?'<a class="d-call" href="'+tel+'"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11 11 0 00.56 3.5 1 1 0 01-.24 1z"/></svg>'+E(t.call)+'</a>':'')+
+    (wa?'<a class="d-wa" href="'+wa+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.9-1.4A10 10 0 1012 2z"/></svg>'+E(t.wa)+'</a>':'')+
+    '<a class="d-dir" href="'+dir+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>'+E(t.directions)+'</a>';
+}
+function setLang(l){ LANG=l; document.querySelectorAll('.lp').forEach(b=>b.setAttribute('aria-current', b.dataset.lang===l?'true':'false')); applyLabels(); render(); }
 
-// 1) Baked GERÇEK veriyle hemen render (SEO/hızlı ilk boya)
-render(window.__VENUE_BAKED__);
+document.getElementById('langs').addEventListener('click',e=>{const b=e.target.closest('.lp'); if(b) setLang(b.dataset.lang);});
+applyLabels(); render();
 
-// 2) venue_sites'ten canlı içerik varsa üzerine yaz (admin düzenlemeleri)
-(async()=>{
-  try{
-    const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth:{ persistSession:false } });
-    const { data } = await sb.from('venue_sites').select('content,published').eq('slug', window.__VENUE_SLUG__).eq('published', true).maybeSingle();
-    if (data && data.content && Object.keys(data.content).length){
-      render({ ...window.__VENUE_BAKED__, ...data.content });
-    }
-  }catch(e){ /* venue_sites yoksa baked içerik kalır */ }
-})();
+// venue_sites canlı içerik (admin düzenlemeleri) — baked'in üzerine
+(async()=>{ try{
+  const sb=createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{auth:{persistSession:false}});
+  const {data}=await sb.from('venue_sites').select('content,published').eq('slug',window.__VENUE_SLUG__).eq('published',true).maybeSingle();
+  if(data&&data.content&&Object.keys(data.content).length){ BAKED={...BAKED,...data.content}; render(); }
+}catch(e){} })();
 
-// UI: nav solid + parallax + reveal + lightbox
+// nav solid + parallax + reveal + lightbox
 const nav=$('nav');
-addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>60);
-  const bg=$('heroBg'); if(bg) bg.style.transform='translateY('+(scrollY*0.28)+'px)';});
-const io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-window.lb=function(src){var l=$('lb');$('lbi').src=src;l.classList.add('on');};
+addEventListener('scroll',()=>{nav.classList.toggle('solid',scrollY>60);const bg=$('heroBg');if(bg)bg.style.transform='translateY('+(scrollY*0.22)+'px)';});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+window.lb=(src)=>{$('lbi').src=src;$('lb').classList.add('on');};
 </script>
 </body></html>
