@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-07",
+  "generated_at": "2026-08-07T06:00:25.748Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-07",
+    "demre-kas-kalkan-otoban-projesi-antik-kentleri-tehdit-ediyor-arkeofili-com-2025-07-11",
+    "kalkan-villalarinda-haftalik-ucret-500-bin-tl-kemergozcu-com-2026-06-23",
+    "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdeniz-ge-2026-04-25"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Likya Su Yolu'nun güzergahını takip etti. Patara Yörük Göçü, bölgenin kültürel zenginliğini gösterdi."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-07",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'da Villa Turizmi",
+  "col1_byline": "Bülten · Kültür",
+  "col1_body": "Kalkan'da villa turizmi hareketleniyor, haftalık ücret 500 bin TL'ye ulaştı",
+  "col3_title": "Antik Kentleri Tehdit",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Demre, Kaş, Kalkan Otoban Projesi antik kentleri tehdit ediyor",
+  "magazine_lead_headline": "Kalkan İmar Planı Değişti",
+  "magazine_lead_body": [
+    "İtiraz reddedildi, Erdoğan imzayı attı: Kalkan'da imar planı değişti"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-07T06:00:27.272Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "col3 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "magazine"
+    ]
+  }
+}
