@@ -87,6 +87,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
+          # Kalite kapısı (content-critic → cheap-llm) LLM ister; yoksa her içerik 0/5 "DÜŞÜK PUAN".
+          # Ücretsiz hakemler önce (token tasarrufu), claude son çare.
+          CRITIC_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
 
       # Faz 1.5: Reel için bayat onay satırını temizle (gazete-reel-<tarih>).
@@ -114,6 +122,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
+          # Kalite kapısı LLM ister (yoksa 0/5). Ücretsiz hakemler önce, claude son çare.
+          CRITIC_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/agency/reel-approval.mjs || echo "reel adımı atlandı (gazete akışı etkilenmez)"
 
       # Faz 1.5-EN: EN reel bayat onay satırını temizle (gazete-reel-en-<tarih>) → taze onay.
