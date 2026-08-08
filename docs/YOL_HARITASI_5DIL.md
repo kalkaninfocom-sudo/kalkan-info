@@ -23,8 +23,8 @@
 - [x] ✅ **Web build 5 dil (`build.mjs --lang=xx`):** her dile ayrı statik sayfa (`morning.<lang>.html`), TR base + render-öncesi çeviri (alan-alan paralel → küçük JSON, güvenilir), `hreflang` 5 cross-link + sabit dil switcher + locale tarih. **Test:** `morning.de.html` üretildi, 19/20 içerik alanı DE, lang/hreflang/switcher doğru. Template'lere `{{lang}}/{{hreflang_links}}/{{lang_switcher}}` eklendi (morning+magazine).
 - [x] ✅ **Template sabit UI etiketleri i18n** — morning (13 etiket) + magazine (8 etiket) `{{ui_*}}` yapıldı; `build.mjs` UI_TR sözlüğü çeviri havuzuna katılıyor (manuel dil sözlüğü yok). **Test:** DE morning UI ("Schlagzeile", "Restaurants der Woche"...) + magazine UI ("Nachtleben", "MAGAZIN", "Heutiges Abendprogramm") Almanca. TR bozulmadı.
 - [x] ✅ **`newspaper-daily.mjs` entegrasyonu** — morning+magazine × en/de/ru/fr otomatik build (non-fatal). Sistem her gün 10 sayfa üretir (TR + 4 dil × 2 tip). Syntax OK.
-- [ ] `gazete/index.html` (ana liste sayfası) dil switcher — KALAN (küçük).
-- **Bilinen iyileştirme:** groq bazen marka adını çeviriyor ("Kalkan Today"→"Kalkan Heute") / deyim zayıf → kalite turunda daha güçlü model + "marka adı koru" prompt sıkılaştırma.
+- [x] ✅ `gazete/index.html` dil switcher — TR/EN/DE/RU/FR butonları (localStorage), gazete kart linkleri seçili dile gider (`morning`→`morning.de`), PDF sadece TR. JS syntax doğrulandı.
+- [x] ✅ **Kalite turu:** i18n-translate prompt sıkılaştırıldı — marka adları ("Kalkan Today/İnfo") korunuyor (test: DE/FR/RU'da "Kalkan Today" aynen kaldı), HTML tag koruma kuralı eklendi.
 - **Çıktı ölçütü:** kalkaninfo.com gazete 5 dilde ayrı URL + hreflang + tam çeviri (içerik+UI). ✅ build hattı hazır; canlıya PR + deploy ile çıkar.
 
 ## Not: canlı akışa bağlama
