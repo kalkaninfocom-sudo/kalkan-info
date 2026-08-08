@@ -18,6 +18,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
+import { publishReelTranslations } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -140,6 +141,23 @@ async function main() {
     }).catch(() => {});
     console.log(`✅ Reel onayı gönderildi (message_id ${msgId}). Onaylanınca IG Reels.`);
   }
+
+  // 5) ÇOK-DİL (P2): DE/RU/FR gazete reel caption+onay (EN zaten reel-approval-en.mjs'de).
+  // Manşet varsa dile-özel editöryal çeviriden (gazete-editorial-i18n) alınır; yoksa TR manşet çevrilir.
+  const CTAL = { de: 'Ganze Ausgabe', ru: 'Полный выпуск', fr: 'Édition complète' };
+  const localeSeg = { de: '/de', ru: '/ru', fr: '/fr' };
+  const localHeadline = {};
+  for (const lang of ['de', 'ru', 'fr']) {
+    try { localHeadline[lang] = JSON.parse(await readFile(join(ROOT, 'data', `gazete-today.${lang}.json`), 'utf8')).lead_headline || ''; } catch {}
+  }
+  await publishReelTranslations({
+    typeKey: 'gazete', mp4Path: mp4, videoUrl, packIdBase: packId,
+    scheduledAt: `${date}T08:00:00+03:00`, hashtags, isAI: false, langs: ['de', 'ru', 'fr'],
+    // headline hazırsa çeviri gerekmesin diye alan olarak veriyoruz; yoksa TR manşet çevrilir.
+    captionFields: { headline },
+    buildCaption: (f, lang) => `📰 ${localHeadline[lang] || f.headline}\n\n${CTAL[lang]}: ${SITE_BASE}${localeSeg[lang]}`,
+    context: "Günlük gazete manşeti Instagram reel caption (Kalkan Today)",
+  }).catch(e => console.warn('  ℹ çok-dil gazete reel atlandı (non-fatal):', e.message));
 }
 
 main().catch(e => { console.error('[reel-approval]', e); process.exit(1); });

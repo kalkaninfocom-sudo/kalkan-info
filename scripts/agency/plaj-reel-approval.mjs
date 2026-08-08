@@ -19,6 +19,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
+import { publishReelTranslations } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -147,6 +148,17 @@ async function main() {
     }).catch(() => {});
     console.log(`✅ Reel onayı gönderildi (message_id ${msgId}). Onaylanınca IG Reels.`);
   }
+
+  // 5) ÇOK-DİL (P2): aynı mp4'ü paylaşarak DE/RU/FR/EN caption+onay üret (non-fatal; TR akışını bozmaz).
+  const HDR = { en: 'BEACH OF THE WEEK', de: 'STRAND DER WOCHE', ru: 'ПЛЯЖ НЕДЕЛИ', fr: 'PLAGE DE LA SEMAINE' };
+  const CTAL = { en: 'Guide & access', de: 'Guide & Anfahrt', ru: 'Гид и как добраться', fr: 'Guide & accès' };
+  await publishReelTranslations({
+    typeKey: 'plaj', mp4Path: mp4, videoUrl, packIdBase: packId,
+    scheduledAt: `${date}T20:00:00+03:00`, hashtags, isAI: false,
+    captionFields: { name, tagline: p.tagline || '' },
+    buildCaption: (f, lang) => `🏖️ ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
+    context: 'Haftanın plajı Instagram reel caption (Kalkan/Kaş çevresi plajı)',
+  }).catch(e => console.warn('  ℹ çok-dil plaj reel atlandı (non-fatal):', e.message));
 }
 
 main().catch(e => { console.error('[plaj-reel-approval]', e); process.exit(1); });

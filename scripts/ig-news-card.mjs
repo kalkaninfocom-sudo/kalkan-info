@@ -42,10 +42,20 @@ function escHtml(s) {
   }[c]));
 }
 
-// Tarihi "27 HAZİRAN 2026" formatına çevir
-function formatDateTR(dateStr) {
-  const months = ['OCAK', 'ŞUBAT', 'MART', 'NİSAN', 'MAYIS', 'HAZİRAN',
-    'TEMMUZ', 'AĞUSTOS', 'EYLÜL', 'EKİM', 'KASIM', 'ARALIK'];
+// Ay adları (kart tarih satırı). TR varsayılan; 5-dil kartı için lokalize edilir.
+const MONTHS = {
+  tr: ['OCAK', 'ŞUBAT', 'MART', 'NİSAN', 'MAYIS', 'HAZİRAN', 'TEMMUZ', 'AĞUSTOS', 'EYLÜL', 'EKİM', 'KASIM', 'ARALIK'],
+  en: ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'],
+  de: ['JANUAR', 'FEBRUAR', 'MÄRZ', 'APRIL', 'MAI', 'JUNI', 'JULI', 'AUGUST', 'SEPTEMBER', 'OKTOBER', 'NOVEMBER', 'DEZEMBER'],
+  ru: ['ЯНВАРЯ', 'ФЕВРАЛЯ', 'МАРТА', 'АПРЕЛЯ', 'МАЯ', 'ИЮНЯ', 'ИЮЛЯ', 'АВГУСТА', 'СЕНТЯБРЯ', 'ОКТЯБРЯ', 'НОЯБРЯ', 'ДЕКАБРЯ'],
+  fr: ['JANVIER', 'FÉVRIER', 'MARS', 'AVRIL', 'MAI', 'JUIN', 'JUILLET', 'AOÛT', 'SEPTEMBRE', 'OCTOBRE', 'NOVEMBRE', 'DÉCEMBRE'],
+};
+// "Kaynak:" etiketi (kart alt bilgi) dile göre.
+const SOURCE_LABEL = { tr: 'Kaynak:', en: 'Source:', de: 'Quelle:', ru: 'Источник:', fr: 'Source :' };
+
+// Tarihi "27 HAZİRAN 2026" formatına çevir (lang varsayılan tr → mevcut davranış korunur).
+function formatDate(dateStr, lang = 'tr') {
+  const months = MONTHS[lang] || MONTHS.tr;
   const d = dateStr ? new Date(dateStr) : new Date();
   if (isNaN(d.getTime())) return '';
   return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
@@ -83,8 +93,10 @@ function headlineSize(title) {
   return 40;
 }
 
-function buildCardHtml({ title, category, dateStr, source, imageDataUrl, isBreaking = false, imageCredit = null }) {
-  const catColor = CATEGORY_COLOR[category] || '#d72631';
+function buildCardHtml({ title, category, dateStr, source, imageDataUrl, isBreaking = false, imageCredit = null, lang = 'tr', catColorKey = null }) {
+  // Rozet rengi TR kategori adına göre çözülür (çeviri kategori adını değiştirebilir).
+  const catColor = CATEGORY_COLOR[catColorKey || category] || '#d72631';
+  const srcLabel = SOURCE_LABEL[lang] || SOURCE_LABEL.tr;
   const fontPx = headlineSize(title);
   const imgStyle = imageDataUrl
     ? `background-image: url('${imageDataUrl}'); background-size: cover; background-position: center;`
@@ -164,7 +176,7 @@ function buildCardHtml({ title, category, dateStr, source, imageDataUrl, isBreak
       </div>
       <div class="meta">
         <div class="source">
-          <span class="label">Kaynak:</span>
+          <span class="label">${escHtml(srcLabel)}</span>
           <span class="src-name">${escHtml(source || 'Kalkan Info')}</span>
         </div>
         <div class="date">${escHtml(dateStr)} · kalkaninfo.com</div>
@@ -179,7 +191,7 @@ function buildCardHtml({ title, category, dateStr, source, imageDataUrl, isBreak
  * Tek bir haber öğesinden kart PNG üretir.
  * @returns {{ outPath: string, publicPath: string, kb: number }}
  */
-export async function generateNewsCard({ item, outDir = OUT_DIR_DEFAULT, browser: sharedBrowser } = {}) {
+export async function generateNewsCard({ item, outDir = OUT_DIR_DEFAULT, browser: sharedBrowser, lang = 'tr', catColorKey = null } = {}) {
   if (!item || !item.id) throw new Error('generateNewsCard: geçerli bir haber item gerekli');
 
   await mkdir(outDir, { recursive: true });
@@ -195,11 +207,13 @@ export async function generateNewsCard({ item, outDir = OUT_DIR_DEFAULT, browser
   const html = buildCardHtml({
     title: item.title || '',
     category: item.category || 'Gündem',
-    dateStr: formatDateTR(item.date),
+    dateStr: formatDate(item.date, lang),
     source: item.source || 'Kalkan Info',
     imageDataUrl,
     isBreaking,
     imageCredit,
+    lang,
+    catColorKey,
   });
 
   const browser = sharedBrowser || await puppeteer.launch({
