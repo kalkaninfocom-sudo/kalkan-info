@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="tr">
+<html lang="{{lang}}">
 <head>
+{{hreflang_links}}
 <meta charset="utf-8">
 <title>Kalkan Info Gazetesi — {{date_long}}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -124,35 +125,36 @@
 </style>
 </head>
 <body>
+{{lang_switcher}}
 
   <!-- ═══ MASTHEAD ═══ -->
   <header class="masthead">
-    <div class="tag-box">Kalkan’ın nabzı, bir sayfada.</div>
+    <div class="tag-box">{{ui_masthead_tag}}</div>
     <div class="nameplate">
       <div class="np-main">KALKAN INFO</div>
-      <div class="np-sub">GAZETESİ</div>
+      <div class="np-sub">{{ui_gazette_sub}}</div>
     </div>
     <div class="weather-card">
-      <div class="wc-lbl">Kalkan Hava Durumu</div>
+      <div class="wc-lbl">{{ui_weather_label}}</div>
       <div class="wc-row"><span class="wc-sun">☀️</span><span class="wc-temp">{{weather_air}}<span class="wc-deg">°C</span></span></div>
       <div class="wc-desc">Güneşli</div>
-      <div class="wc-wind">Rüzgar: {{weather_wind}}</div>
+      <div class="wc-wind">{{ui_wind_label}}: {{weather_wind}}</div>
     </div>
   </header>
 
   <!-- ═══ META BAR ═══ -->
   <div class="meta-bar">
-    <span>YIL: {{vol}} &nbsp; SAYI: {{issue}}</span>
+    <span>{{ui_year}}: {{vol}} &nbsp; {{ui_issue}}: {{issue}}</span>
     <span>kalkaninfo.com</span>
     <span class="mb-date">{{date_long}} {{day}}</span>
     <span>kalkaninfo@gmail.com</span>
-    <span>FİYAT: 10 TL</span>
+    <span>{{ui_price}}</span>
   </div>
 
   <!-- ═══ LEAD + RAIL ═══ -->
   <section class="top">
     <div class="lead">
-      <div class="lead-kicker">Manşet</div>
+      <div class="lead-kicker">{{ui_kicker}}</div>
       <h1 class="lead-headline">{{lead_headline}}</h1>
       <p class="lead-deck">{{lead_deck}}</p>
       <div class="lead-image" style="background-image:url('{{lead_image}}')"></div>
@@ -164,12 +166,12 @@
       </div>
     </div>
     <aside class="rail">
-      <div class="rail-h">Günün Başlıkları</div>
+      <div class="rail-h">{{ui_headlines}}</div>
       <ul class="rail-list">
         {{headlines_list}}
       </ul>
       <div class="rail-photo" style="background-image:url('{{secondary_photo}}')"></div>
-      <div class="rail-sub-h">Bugün Kalkan’da Gezilecek Yerler</div>
+      <div class="rail-sub-h">{{ui_visit}}</div>
       <ul class="rail-list">
         {{gezilecek_list}}
       </ul>
@@ -179,13 +181,13 @@
   <!-- ═══ MID: RESTORANLAR | YORUMLAR | NEOMA ═══ -->
   <section class="mid">
     <div>
-      <div class="sec-h">Haftanın Restoranları</div>
+      <div class="sec-h">{{ui_restaurants}}</div>
       <ol class="resto-list">
         {{resto_list}}
       </ol>
     </div>
     <div>
-      <div class="sec-h">Google Puanları</div>
+      <div class="sec-h">{{ui_reviews}}</div>
       {{reviews_list}}
     </div>
     <div class="neoma">
@@ -205,13 +207,13 @@
   <!-- ═══ BOTTOM: ETKİNLİK | YARIN | DALIŞ ═══ -->
   <section class="bottom">
     <div>
-      <div class="sec-h">Canlı Etkinlikler</div>
+      <div class="sec-h">{{ui_events}}</div>
       <ul class="ev-list">
         {{events_list}}
       </ul>
     </div>
     <div>
-      <div class="sec-h">Yarın İçin Yapılacaklar</div>
+      <div class="sec-h">{{ui_tomorrow}}</div>
       <ul class="plan-list">
         {{tomorrow_list}}
       </ul>

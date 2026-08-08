@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="tr">
+<html lang="{{lang}}">
 <head>
+{{hreflang_links}}
 <meta charset="utf-8">
 <title>Kalkan Today Magazin — {{date}}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,17 +138,18 @@
 </style>
 </head>
 <body>
+{{lang_switcher}}
 
   <!-- ═══ MASTHEAD ═══ -->
   <header class="mag-head">
     <div class="row">
       <div>
-        <div class="mag-kicker">Kalkan Today · Gece Hayatı Eki</div>
-        <div class="mag-title"><b>MAGAZİN</b></div>
+        <div class="mag-kicker">{{ui_mag_kicker}}</div>
+        <div class="mag-title"><b>{{ui_mag_title}}</b></div>
       </div>
       <div class="mag-meta">
         <div class="big">{{date_long}}</div>
-        <div>{{day}} · Sayı № {{issue}}</div>
+        <div>{{day}} · {{ui_issue_no}} № {{issue}}</div>
         <div>kalkaninfo.com/etkinlikler</div>
       </div>
     </div>
@@ -174,8 +176,8 @@
   <!-- ═══ BU AKŞAM PROGRAM ═══ -->
   <section class="program">
     <div class="bar">
-      <div class="t">Bu Akşam <b>Program</b></div>
-      <div class="sub">{{program_count}} Etkinlik · {{day}}</div>
+      <div class="t"><b>{{ui_tonight_program}}</b></div>
+      <div class="sub">{{program_count}} {{ui_events_word}} · {{day}}</div>
     </div>
     <table>
       {{program_rows}}
@@ -187,11 +189,11 @@
     <div class="social">
       <span>📷 <b>@kalkaninfo</b></span>
       <span>📘 <b>kalkaninfo</b></span>
-      <span>İLAN içeriklerinde sponsor etiketi zorunludur</span>
-      <span>Yapay zeka destekli hazırlanmıştır</span>
+      <span>{{ui_sponsor_note}}</span>
+      <span>{{ui_ai_disclosure}}</span>
     </div>
     <div class="qr">
-      <span>Tüm program</span>
+      <span>{{ui_full_program}}</span>
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https://kalkaninfo.com/etkinlikler" alt="etkinlikler">
     </div>
   </footer>

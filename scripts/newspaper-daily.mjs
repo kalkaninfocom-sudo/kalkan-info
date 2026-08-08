@@ -201,6 +201,14 @@ async function main() {
   run(['newspaper/generator/build.mjs', 'morning', date], 'Ön Sayfa (morning) üret');
   run(['newspaper/generator/build.mjs', 'magazine', date], 'Arka Yüz (magazine) üret');
 
+  // ─── 5 DİL: her hedef dile ayrı statik sayfa (morning/magazine.<lang>.html) ───
+  // TR base + render-öncesi çeviri (lib/i18n-translate, ücretsiz LLM). hreflang + dil switcher gömülü.
+  // Non-fatal: bir dil/çeviri patlarsa TR gazete akışı ETKİLENMEZ (run bool döndürür, exception yok).
+  for (const l of ['en', 'de', 'ru', 'fr']) {
+    run(['newspaper/generator/build.mjs', 'morning', date, `--lang=${l}`], `Ön Sayfa ${l.toUpperCase()} (5-dil)`);
+    run(['newspaper/generator/build.mjs', 'magazine', date, `--lang=${l}`], `Magazin ${l.toUpperCase()} (5-dil)`);
+  }
+
   if (NO_SOCIAL) {
     // Web-only: index'i şimdi üret (kapak render yok → önizleme boş olabilir, manuel mod).
     run(['scripts/build-newspaper-index.mjs'], 'Arşiv index güncelle');
