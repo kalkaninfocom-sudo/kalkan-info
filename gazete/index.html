@@ -194,11 +194,40 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
 
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+  // ─── 5 DİL: gazete sayfalarını seçili dilde aç (morning → morning.de) ───
+  var LANGS_UI = [['tr','TR'],['en','EN'],['de','DE'],['ru','RU'],['fr','FR']];
+  var LANG = (function(){ try { return localStorage.getItem('gazete_lang') || 'tr'; } catch(e){ return 'tr'; } })();
+  var _lastData = null;
+  function langHref(h){ return (LANG==='tr' || !h) ? h : h + '.' + LANG; }
+  function langSwitcherHtml(){
+    return '<div class="flex items-center justify-center flex-wrap gap-1.5 mb-6">'
+      + '<span class="text-sea-700/60 text-xs mr-1">Dil / Language:</span>'
+      + LANGS_UI.map(function(l){
+          var on = l[0]===LANG;
+          return '<button type="button" data-lang="'+l[0]+'" class="lang-btn px-2.5 py-1 rounded-full text-xs font-display font-semibold border transition '
+            + (on ? 'bg-sea-800 text-white border-sea-800' : 'border-sea-200 text-sea-700 hover:border-sun-500 hover:text-sun-600') + '">'+l[1]+'</button>';
+        }).join('')
+      + '</div>';
+  }
+  function mountSwitcher(){
+    var grid = document.getElementById('today-grid'); if(!grid) return;
+    var ex = document.getElementById('lang-switch-bar'); if(ex) ex.remove();
+    var bar = document.createElement('div'); bar.id = 'lang-switch-bar'; bar.innerHTML = langSwitcherHtml();
+    grid.parentNode.insertBefore(bar, grid);
+    bar.querySelectorAll('.lang-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        LANG = b.getAttribute('data-lang');
+        try { localStorage.setItem('gazete_lang', LANG); } catch(e){}
+        if(_lastData) render(_lastData);
+      });
+    });
+  }
+
   function editionCard(iso, type, ed){
     var m = EDITIONS[type];
     var preview = ed.card
-      ? '<a href="'+esc(ed.html)+'" class="block paper-cover" aria-label="'+esc(m.tag)+' oku"><img loading="lazy" src="'+esc(ed.card)+'" alt="'+esc(m.tag)+' kapak" style="width:100%;display:block"></a>'
-      : '<a href="'+esc(ed.html)+'" class="paper-cover paper-ph" aria-label="'+esc(m.tag)+' oku">'
+      ? '<a href="'+esc(langHref(ed.html))+'" class="block paper-cover" aria-label="'+esc(m.tag)+' oku"><img loading="lazy" src="'+esc(ed.card)+'" alt="'+esc(m.tag)+' kapak" style="width:100%;display:block"></a>'
+      : '<a href="'+esc(langHref(ed.html))+'" class="paper-cover paper-ph" aria-label="'+esc(m.tag)+' oku">'
         + '<span class="serif" style="font-size:26px;color:'+m.accent+'">'+esc(m.tag)+'</span>'
         + '<span class="edition-badge mt-2" style="color:#6b7280">Önizleme için oku →</span></a>';
     return '<article class="card-base card-hover rounded-2xl overflow-hidden flex flex-col">'
@@ -208,12 +237,13 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
       + '<span class="font-display font-extrabold text-lg text-sea-900">'+esc(m.tag)+'</span></div>'
       + '<p class="text-sm text-sea-700/70 mt-1">'+esc(m.sub)+'</p>'
       + '<div class="flex gap-2 mt-4">'
-      + '<a href="'+esc(ed.html)+'" class="flex-1 text-center bg-sea-800 hover:bg-sea-900 text-white rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition">Çevrimiçi Oku</a>'
-      + (ed.pdf ? '<a href="'+esc(ed.pdf)+'" class="text-center border border-sea-300 hover:border-sun-500 text-sea-800 rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition" download>PDF</a>' : '')
+      + '<a href="'+esc(langHref(ed.html))+'" class="flex-1 text-center bg-sea-800 hover:bg-sea-900 text-white rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition">Çevrimiçi Oku</a>'
+      + (ed.pdf && LANG==='tr' ? '<a href="'+esc(ed.pdf)+'" class="text-center border border-sea-300 hover:border-sun-500 text-sea-800 rounded-lg px-4 py-2.5 font-display font-semibold text-sm transition" download>PDF</a>' : '')
       + '</div></div></article>';
   }
 
   function render(data){
+    _lastData = data;
     var issues = (data && data.issues) || [];
     var today = issues[0];
     var grid = document.getElementById('today-grid');
@@ -226,6 +256,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     } else {
       grid.innerHTML = '<p class="text-sea-700/70">Henüz yayınlanmış sayı yok.</p>';
     }
+    mountSwitcher();
 
     // Ekip
     document.getElementById('team-grid').innerHTML = TEAM.map(function(t){
@@ -242,7 +273,7 @@ h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-s
     al.innerHTML = rest.map(function(it){
       var chips = ['morning','magazine'].filter(function(t){return it.editions[t];}).map(function(t){
         var m = EDITIONS[t];
-        return '<a href="'+esc(it.editions[t].html)+'" class="edition-badge px-2.5 py-1 rounded-full border border-sea-200 hover:border-sun-500 hover:text-sun-600 transition" style="color:'+m.accent+'">'+esc(m.name)+' · '+esc(m.tag)+'</a>';
+        return '<a href="'+esc(langHref(it.editions[t].html))+'" class="edition-badge px-2.5 py-1 rounded-full border border-sea-200 hover:border-sun-500 hover:text-sun-600 transition" style="color:'+m.accent+'">'+esc(m.name)+' · '+esc(m.tag)+'</a>';
       }).join('');
       return '<div class="card-base card-hover rounded-xl px-5 py-4 flex items-center justify-between flex-wrap gap-3">'
         + '<div><span class="font-display font-bold text-sea-900">'+esc(it.long)+'</span> <span class="text-sea-700/60 text-sm">· '+esc(it.day)+'</span></div>'
