@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Gazete Editörü — Yarınki Sayıya Katkı | Kalkan Info</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    /* Golden-hour editorial palette — mirrors the real newspaper templates */
+    --paper:#f6f1e7;        /* newspaper stock */
+    --paper-2:#fbf7ee;      /* elevated surface */
+    --shell:#efe6d4;        /* workspace desk */
+    --shell-2:#e8dcc4;      /* deeper desk */
+    --ink:#16171a;          /* body ink */
+    --ink-soft:#4a463d;
+    --muted:#7a7263;
+    --line:#d8cdb4;         /* hairline rules */
+    --line-strong:#c7b795;
+    --gold:#b47f1e;         /* primary accent — masthead gold */
+    --gold-bright:#d99b1c;
+    --gold-glow:rgba(180,127,30,0.16);
+    --coral:#c05a3e;        /* warm secondary accent */
+    --sea:#1a3a52;          /* deep teal — buttons/links */
+    --sea-bright:#276286;
+    --green:#3f8a5b;
+    --wine:#b5314f;
+    --shadow-sm:0 1px 2px rgba(58,42,12,0.08);
+    --shadow-md:0 2px 6px rgba(58,42,12,0.10),0 12px 30px -12px rgba(58,42,12,0.28);
+    --shadow-lg:0 4px 10px rgba(58,42,12,0.12),0 30px 70px -24px rgba(58,42,12,0.40);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--shell);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  body{
+    min-height:100vh;
+    /* layered golden-hour light + faint paper grain */
+    background:
+      radial-gradient(1100px 620px at 82% -8%, rgba(217,155,28,0.20) 0%, transparent 62%),
+      radial-gradient(900px 700px at -6% 8%, rgba(38,98,134,0.10) 0%, transparent 55%),
+      radial-gradient(1200px 900px at 50% 118%, rgba(192,90,62,0.10) 0%, transparent 60%),
+      linear-gradient(180deg, var(--shell) 0%, var(--shell-2) 100%);
+    background-attachment:fixed;
+  }
+  .serif{font-family:'Playfair Display',Georgia,serif;}
+  .display{font-family:'Fraunces',Georgia,serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+
+  /* SVG grain overlay for tactile paper feel */
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.5;mix-blend-mode:multiply;}
+
+  /* ─── TOP BAR ─── */
+  .topbar{
+    position:sticky;top:0;z-index:30;
+    background:linear-gradient(180deg, rgba(246,241,231,0.92), rgba(246,241,231,0.78));
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .topbar-inner{max-width:1240px;margin:0 auto;padding:0.7rem 1.15rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+  .brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none;min-width:0;}
+  .brand .mark{
+    font-family:'Playfair Display',serif;font-weight:900;font-size:1.35rem;letter-spacing:0.01em;
+    line-height:1;white-space:nowrap;
+  }
+  .brand .mark .g{color:var(--gold);}
+  .brand .kick{
+    font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--muted);border-left:1px solid var(--line-strong);padding-left:0.7rem;margin-left:0.15rem;
+  }
+  @media(max-width:640px){.brand .kick{display:none;}}
+  .topbar-actions{display:flex;align-items:center;gap:0.6rem;flex-shrink:0;}
+  .user-chip{
+    display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:0.32rem 0.7rem;
+    max-width:210px;
+  }
+  .user-chip .avatar{
+    width:1.5rem;height:1.5rem;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.72rem;
+    background:linear-gradient(135deg,var(--gold),var(--coral));
+  }
+  .user-chip .email{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  @media(max-width:520px){.user-chip .email{display:none;}}
+
+  /* ─── BUTTONS ─── */
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:0.875rem;
+    border:none;border-radius:10px;padding:0.6rem 1.1rem;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+    transition:transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease,color .2s ease;
+    text-decoration:none;line-height:1.2;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold-glow);outline-offset:2px;}
+  .btn-primary{background:var(--sea);color:#fbf7ee;box-shadow:0 2px 8px rgba(26,58,82,0.28);}
+  .btn-primary:hover{background:var(--sea-bright);transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,58,82,0.34);}
+  .btn-primary:active{transform:translateY(0);}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:#fffaf0;box-shadow:0 2px 10px var(--gold-glow);}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(180,127,30,0.34);}
+  .btn-gold:active{transform:translateY(0);}
+  .btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line-strong);}
+  .btn-ghost:hover{background:var(--paper-2);border-color:var(--gold);color:var(--ink);transform:translateY(-1px);}
+  .btn-sm{padding:0.42rem 0.8rem;font-size:0.8rem;border-radius:9px;}
+
+  /* ─── LAYOUT ─── */
+  .wrap{max-width:1240px;margin:0 auto;padding:1.6rem 1.15rem 4rem;position:relative;z-index:1;}
+  .page-head{margin:0.4rem 0 1.4rem;max-width:760px;}
+  .page-head .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;
+    color:var(--gold);display:inline-flex;align-items:center;gap:0.55rem;margin-bottom:0.7rem;
+  }
+  .page-head .eyebrow::before{content:'';width:1.8rem;height:1px;background:var(--gold);display:inline-block;}
+  .page-head h1{
+    font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.9rem,5vw,2.9rem);
+    line-height:1.02;letter-spacing:-0.02em;color:var(--ink);
+  }
+  .page-head h1 em{font-style:italic;color:var(--coral);}
+  .page-head p{margin-top:0.7rem;font-size:1rem;line-height:1.65;color:var(--ink-soft);max-width:620px;}
+
+  /* info banner */
+  .notice{
+    display:flex;gap:0.75rem;align-items:flex-start;
+    background:linear-gradient(180deg,var(--paper-2),var(--paper));
+    border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:12px;padding:0.85rem 1rem;margin-bottom:1.5rem;
+    box-shadow:var(--shadow-sm);
+  }
+  .notice .ic{font-size:1.15rem;line-height:1.4;flex-shrink:0;}
+  .notice p{font-size:0.86rem;line-height:1.55;color:var(--ink-soft);}
+  .notice p b{color:var(--ink);}
+
+  /* ─── EDITION TABS ─── */
+  .edition-tabs{display:flex;gap:0.4rem;background:var(--shell-2);border:1px solid var(--line);
+    border-radius:12px;padding:0.3rem;margin-bottom:1.3rem;width:fit-content;box-shadow:inset 0 1px 2px rgba(58,42,12,0.06);}
+  .edition-tab{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:500;color:var(--muted);background:transparent;border:none;cursor:pointer;
+    padding:0.5rem 1.05rem;border-radius:9px;transition:all .2s ease;display:flex;align-items:center;gap:0.5rem;
+  }
+  .edition-tab:hover{color:var(--ink);}
+  .edition-tab[aria-selected="true"]{background:var(--paper-2);color:var(--ink);box-shadow:var(--shadow-sm);}
+  .edition-tab[aria-selected="true"] .dot{background:var(--gold);}
+  .edition-tab .dot{width:0.5rem;height:0.5rem;border-radius:50%;background:var(--line-strong);transition:background .2s;}
+
+  /* ─── MAIN GRID ─── */
+  .main-grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(280px,0.9fr);gap:1.6rem;align-items:start;}
+  @media(max-width:960px){.main-grid{grid-template-columns:1fr;}}
+
+  /* ─── A4 PREVIEW SHELL ─── */
+  .a4-stage{position:relative;}
+  .a4-caption{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.7rem;gap:0.6rem;flex-wrap:wrap;}
+  .a4-caption .lbl{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+  .a4-caption .date{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--gold);letter-spacing:0.08em;}
+
+  .a4{
+    position:relative;width:100%;aspect-ratio:1 / 1.41421356; /* true A4 */
+    background:var(--paper);
+    border:1px solid var(--line-strong);
+    border-radius:6px;
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+    padding:4.2% 4.6%;
+    color:#16171a;
+    container-type:inline-size;
+  }
+  /* subtle top glow of golden light on the sheet */
+  .a4::after{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 40% at 78% -6%, rgba(217,155,28,0.10), transparent 60%);}
+
+  /* Editable slot overlay */
+  .slot{position:relative;cursor:pointer;transition:box-shadow .2s ease,background .2s ease;border-radius:3px;}
+  .slot::before{
+    content:'';position:absolute;inset:-4px;border:1.5px dashed transparent;border-radius:5px;
+    transition:border-color .2s ease,background .2s ease;pointer-events:none;
+  }
+  .slot:hover::before,.slot:focus-visible::before{border-color:var(--gold);background:var(--gold-glow);}
+  .slot:focus-visible{outline:none;}
+  .slot .slot-hint{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    opacity:0;transition:opacity .2s ease;pointer-events:none;z-index:3;
+  }
+  .slot:hover .slot-hint,.slot:focus-visible .slot-hint{opacity:1;}
+  .slot .slot-hint span{
+    font-family:'Inter',sans-serif;font-weight:700;font-size:min(2.6cqw,0.72rem);letter-spacing:0.02em;
+    background:var(--sea);color:#fffaf0;padding:0.35em 0.7em;border-radius:7px;
+    box-shadow:0 3px 12px rgba(26,58,82,0.4);white-space:nowrap;display:flex;align-items:center;gap:0.4em;
+  }
+  /* filled state ribbon */
+  .slot.is-filled::after{
+    content:'✓';position:absolute;top:-6px;right:-6px;z-index:4;
+    width:min(4.4cqw,1.15rem);height:min(4.4cqw,1.15rem);border-radius:50%;
+    background:var(--green);color:#fff;font-size:min(2.6cqw,0.7rem);font-weight:800;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(63,138,91,0.5);
+  }
+  .slot.is-filled{background:rgba(63,138,91,0.06);}
+  .slot.is-filled .slot-hint span{background:var(--green);box-shadow:0 3px 12px rgba(63,138,91,0.4);}
+
+  /* pending badge (awaiting review) uses gold */
+  .slot.is-pending{background:rgba(180,127,30,0.07);}
+  .slot.is-pending::after{content:'⏳';background:var(--gold);box-shadow:0 2px 6px var(--gold-glow);}
+  .slot.is-pending .slot-hint span{background:var(--gold);}
+  /* rejected — needs re-work, wine indicator */
+  .slot.is-rejected{background:rgba(181,49,79,0.06);}
+  .slot.is-rejected::after{content:'↻';background:var(--wine);box-shadow:0 2px 6px rgba(181,49,79,0.4);}
+  .slot.is-rejected .slot-hint span{background:var(--wine);}
+
+  /* ─── MINIATURE NEWSPAPER (scales via container queries) ─── */
+  .mini-masthead{text-align:center;border-bottom:2px solid #16171a;padding-bottom:2cqw;margin-bottom:2cqw;}
+  .mini-masthead .np{font-family:'Playfair Display',serif;font-weight:900;font-size:9cqw;line-height:0.9;letter-spacing:0.01em;}
+  .mini-masthead .np-sub{font-family:'Playfair Display',serif;font-weight:700;font-size:2.6cqw;letter-spacing:0.42em;padding-left:0.42em;margin-top:1cqw;}
+  .mini-metabar{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:1.8cqw;
+    letter-spacing:0.05em;color:#4a463d;border-bottom:1px solid #16171a;padding-bottom:1.2cqw;margin-bottom:2.4cqw;text-transform:uppercase;}
+
+  .mini-top{display:grid;grid-template-columns:1.62fr 1fr;gap:3.4cqw;padding-bottom:2.4cqw;border-bottom:1px solid #16171a;}
+  .mini-kicker{font-family:'IBM Plex Mono',monospace;font-size:1.9cqw;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+  .mini-headline{font-family:'Playfair Display',serif;font-weight:900;font-size:6.6cqw;line-height:1.0;letter-spacing:-0.01em;text-transform:uppercase;margin:1cqw 0 1.4cqw;min-height:1em;}
+  .mini-deck{font-family:'Playfair Display',serif;font-weight:700;font-size:3cqw;line-height:1.25;color:#2b2a26;text-transform:uppercase;min-height:1em;}
+  .mini-img{width:100%;aspect-ratio:16/10;background:#e2d9c4 center/cover no-repeat;border:1px solid #16171a;margin:2.4cqw 0 1.2cqw;
+    display:flex;align-items:center;justify-content:center;color:#a99a78;font-family:'IBM Plex Mono',monospace;font-size:2.6cqw;}
+  .mini-caption{font-size:1.9cqw;font-style:italic;color:#7a7263;min-height:1em;}
+  .mini-body{font-size:2.3cqw;line-height:1.5;text-align:justify;color:#2b2a26;margin-top:1.4cqw;
+    display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;min-height:1em;}
+  .mini-rail-h{font-family:'IBM Plex Mono',monospace;font-size:2.1cqw;letter-spacing:0.14em;text-transform:uppercase;
+    border-bottom:2px solid #16171a;padding-bottom:1cqw;margin-bottom:1.8cqw;font-weight:500;}
+  .mini-col-title{font-family:'Playfair Display',serif;font-weight:800;font-size:3.4cqw;line-height:1.1;margin-bottom:1.2cqw;min-height:1em;}
+  .mini-col-body{font-size:2.2cqw;line-height:1.5;color:#2b2a26;
+    display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden;min-height:1em;}
+  .mini-col-body.short{-webkit-line-clamp:4;}
+
+  .mini-mid{display:grid;grid-template-columns:1fr 1fr;gap:3.4cqw;padding-top:2.4cqw;}
+  .mini-sec-h{font-family:'Playfair Display',serif;font-weight:800;font-size:3.6cqw;text-transform:uppercase;
+    border-bottom:2px solid #16171a;padding-bottom:1cqw;margin-bottom:2cqw;}
+  .mini-placeholder-list{list-style:none;}
+  .mini-placeholder-list li{font-size:2.2cqw;padding:1.1cqw 0;border-bottom:1px dotted var(--line-strong);color:#6a6256;display:flex;gap:1.6cqw;}
+  .mini-placeholder-list li::before{content:'•';color:var(--gold);}
+  .mini-band{padding-top:2.4cqw;margin-top:2.4cqw;border-top:1px solid #16171a;}
+  .mini-foot{margin-top:2.8cqw;padding-top:1.6cqw;border-top:2px solid #16171a;
+    font-family:'IBM Plex Mono',monospace;font-size:1.8cqw;letter-spacing:0.06em;color:#4a463d;text-align:center;}
+
+  /* magazine miniature */
+  .mini-mag-head{border-bottom:3px solid #16171a;padding-bottom:2cqw;margin-bottom:3cqw;display:flex;justify-content:space-between;align-items:flex-end;}
+  .mini-mag-kicker{font-family:'IBM Plex Mono',monospace;font-size:1.9cqw;letter-spacing:0.24em;text-transform:uppercase;color:var(--wine);font-weight:600;margin-bottom:0.6cqw;}
+  .mini-mag-title{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:8.4cqw;line-height:0.9;letter-spacing:-0.02em;color:var(--wine);}
+  .mini-mag-meta{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:1.9cqw;color:#2a313a;line-height:1.6;}
+  .mini-hero{position:relative;width:100%;aspect-ratio:16/9;border:1px solid #16171a;overflow:hidden;
+    background:linear-gradient(140deg,#16202b 0%,#1a3a52 55%,#b5314f 130%);display:flex;flex-direction:column;justify-content:flex-end;padding:3cqw;color:#fff;}
+  .mini-hero .venue{font-family:'IBM Plex Mono',monospace;font-size:2cqw;letter-spacing:0.16em;text-transform:uppercase;color:#f4d27a;margin-bottom:1cqw;}
+  .mini-hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:6.4cqw;line-height:0.98;letter-spacing:-0.015em;text-shadow:0 2px 12px rgba(0,0,0,0.5);min-height:1em;}
+  .mini-hero p{font-size:2.4cqw;line-height:1.4;margin-top:1.4cqw;color:#ede7da;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:1em;}
+  .mini-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.6cqw;margin-top:3cqw;}
+  .mini-card{border:1px solid #16171a;background:#fff;padding:2.2cqw;min-height:16cqw;}
+  .mini-card .ph{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,var(--sea),var(--wine));margin-bottom:1.6cqw;}
+  .mini-card h3{font-family:'Playfair Display',serif;font-weight:800;font-size:3cqw;line-height:1.08;color:#16171a;}
+  .mini-mag-program{border:2px solid #16171a;margin-top:3cqw;}
+  .mini-mag-program .bar{background:#16171a;color:var(--paper);padding:1.6cqw 3cqw;font-family:'Playfair Display',serif;font-weight:800;font-size:3.2cqw;}
+  .mini-mag-program .bar b{color:#f4d27a;}
+  .mini-mag-program .rows{padding:1cqw 3cqw 2cqw;}
+  .mini-mag-program .rows div{font-size:2.2cqw;padding:1cqw 0;border-bottom:1px solid var(--line);color:#5a6675;}
+
+  .edition-panel{display:none;}
+  .edition-panel.active{display:block;}
+
+  /* ─── SIDEBAR: MY SUBMISSIONS ─── */
+  .sidebar{position:sticky;top:5rem;display:flex;flex-direction:column;gap:1.1rem;}
+  @media(max-width:960px){.sidebar{position:static;}}
+  .panel{
+    background:linear-gradient(180deg,var(--paper-2),var(--paper));
+    border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow-md);overflow:hidden;
+  }
+  .panel-head{padding:1rem 1.1rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:0.5rem;}
+  .panel-head h2{font-family:'Playfair Display',serif;font-weight:800;font-size:1.15rem;letter-spacing:-0.01em;}
+  .panel-head .count{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);
+    background:var(--shell-2);border:1px solid var(--line);border-radius:999px;padding:0.15rem 0.6rem;}
+  .panel-body{padding:0.4rem 0.6rem 0.7rem;max-height:60vh;overflow-y:auto;}
+
+  .sub-item{display:block;width:100%;text-align:left;background:transparent;border:none;cursor:pointer;
+    padding:0.85rem 0.6rem;border-bottom:1px solid var(--line);transition:background .18s ease;border-radius:8px;}
+  .sub-item:last-child{border-bottom:none;}
+  .sub-item:hover{background:var(--shell);}
+  .sub-item:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;}
+  .sub-item .row1{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-bottom:0.3rem;}
+  .sub-item .slot-name{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  .sub-item .title{font-family:'Playfair Display',serif;font-weight:700;font-size:0.98rem;line-height:1.15;color:var(--ink);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .sub-item .meta{font-size:0.72rem;color:var(--muted);margin-top:0.35rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+
+  .badge{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+    padding:0.18rem 0.5rem;border-radius:999px;display:inline-flex;align-items:center;gap:0.3rem;white-space:nowrap;}
+  .badge::before{content:'';width:0.42rem;height:0.42rem;border-radius:50%;}
+  .badge-pending{background:rgba(180,127,30,0.12);color:#8a611a;}
+  .badge-pending::before{background:var(--gold);}
+  .badge-approved{background:rgba(63,138,91,0.14);color:#2f6a44;}
+  .badge-approved::before{background:var(--green);}
+  .badge-rejected{background:rgba(181,49,79,0.12);color:#963047;}
+  .badge-rejected::before{background:var(--wine);}
+
+  .empty-state{padding:2rem 1.1rem;text-align:center;color:var(--muted);}
+  .empty-state .em{font-size:2rem;display:block;margin-bottom:0.6rem;opacity:0.6;}
+  .empty-state p{font-size:0.86rem;line-height:1.5;}
+
+  /* helper card in sidebar */
+  .tip-card{background:linear-gradient(140deg, var(--sea) 0%, #12293b 100%);color:#e9f0f4;border-radius:var(--radius);
+    padding:1.1rem 1.15rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;}
+  .tip-card::before{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 100% 0%, rgba(217,155,28,0.24), transparent 55%);}
+  .tip-card > *{position:relative;}
+  .tip-card h3{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;margin-bottom:0.5rem;}
+  .tip-card ul{list-style:none;font-size:0.82rem;line-height:1.55;color:#cfdde6;}
+  .tip-card li{padding-left:1.1rem;position:relative;margin-bottom:0.3rem;}
+  .tip-card li::before{content:'→';position:absolute;left:0;color:#f4d27a;}
+
+  /* ─── MODAL ─── */
+  .modal-backdrop{position:fixed;inset:0;z-index:60;background:rgba(30,22,8,0.5);backdrop-filter:blur(4px);
+    display:flex;align-items:flex-start;justify-content:center;padding:3vh 1rem;overflow-y:auto;
+    opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}
+  .modal-backdrop.open{opacity:1;visibility:visible;}
+  .modal{
+    background:var(--paper);border:1px solid var(--line-strong);border-radius:16px;
+    box-shadow:var(--shadow-lg);width:100%;max-width:560px;margin:auto;
+    transform:translateY(16px) scale(0.98);transition:transform .28s cubic-bezier(.34,1.56,.64,1);
+    overflow:hidden;
+  }
+  .modal-backdrop.open .modal{transform:translateY(0) scale(1);}
+  .modal-head{padding:1.3rem 1.4rem 1rem;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,var(--paper-2),var(--paper));position:relative;}
+  .modal-head .kick{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+  .modal-head h2{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;line-height:1.05;letter-spacing:-0.01em;}
+  .modal-head p{font-size:0.82rem;color:var(--muted);margin-top:0.35rem;}
+  .modal-close{position:absolute;top:1rem;right:1rem;width:2rem;height:2rem;border-radius:8px;border:1px solid var(--line);
+    background:var(--paper-2);cursor:pointer;font-size:1.1rem;color:var(--ink-soft);line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:all .18s ease;}
+  .modal-close:hover{background:var(--wine);color:#fff;border-color:var(--wine);transform:rotate(90deg);}
+  .modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .modal-body{padding:1.2rem 1.4rem;}
+  .modal-foot{padding:1rem 1.4rem 1.3rem;display:flex;gap:0.7rem;justify-content:flex-end;flex-wrap:wrap;
+    border-top:1px solid var(--line);background:var(--paper-2);}
+
+  .field{margin-bottom:1rem;}
+  .field label{display:block;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:600;margin-bottom:0.4rem;}
+  .field label .opt{color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;}
+  .field .hint{font-size:0.74rem;color:var(--muted);margin-top:0.3rem;line-height:1.4;}
+  .field .count-hint{float:right;font-family:'IBM Plex Mono',monospace;color:var(--muted);}
+  .input,.textarea{
+    width:100%;background:var(--paper-2);border:1.5px solid var(--line-strong);border-radius:9px;
+    padding:0.6rem 0.75rem;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--ink);
+    transition:border-color .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+  .textarea{resize:vertical;min-height:6.5rem;line-height:1.55;font-family:'Fraunces',Georgia,serif;font-size:0.98rem;}
+  .input:focus,.textarea:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px var(--gold-glow);}
+  .input::placeholder,.textarea::placeholder{color:#b3a988;}
+  .headline-input{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;}
+
+  .form-msg{font-size:0.82rem;margin-top:0.2rem;padding:0.6rem 0.8rem;border-radius:8px;display:none;line-height:1.45;}
+  .form-msg.err{display:block;background:rgba(181,49,79,0.1);color:#963047;border:1px solid rgba(181,49,79,0.25);}
+  .form-msg.ok{display:block;background:rgba(63,138,91,0.12);color:#2f6a44;border:1px solid rgba(63,138,91,0.25);}
+
+  /* review-note callout inside modal (rejected) */
+  .admin-note{background:rgba(181,49,79,0.08);border:1px solid rgba(181,49,79,0.22);border-radius:9px;
+    padding:0.7rem 0.85rem;margin-bottom:1rem;font-size:0.84rem;line-height:1.5;color:#8a2e42;}
+  .admin-note b{display:block;font-family:'IBM Plex Mono',monospace;font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.3rem;}
+
+  /* ─── GATE (auth / contributor states) ─── */
+  .gate{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;position:relative;z-index:1;}
+  .gate-card{background:linear-gradient(180deg,var(--paper-2),var(--paper));border:1px solid var(--line-strong);
+    border-radius:18px;box-shadow:var(--shadow-lg);max-width:480px;width:100%;padding:2.4rem 2rem;text-align:center;overflow:hidden;position:relative;}
+  .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--coral),var(--wine));}
+  .gate-emblem{width:4.5rem;height:4.5rem;margin:0 auto 1.2rem;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:2rem;
+    background:linear-gradient(135deg,var(--gold-glow),rgba(192,90,62,0.14));border:1px solid var(--line-strong);}
+  .gate-card .kick{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.7rem;}
+  .gate-card h1{font-family:'Playfair Display',serif;font-weight:900;font-size:1.75rem;line-height:1.1;letter-spacing:-0.01em;margin-bottom:0.7rem;}
+  .gate-card p{font-size:0.94rem;line-height:1.65;color:var(--ink-soft);margin-bottom:1.5rem;}
+  .gate-card .actions{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;}
+
+  /* loader */
+  .loader{position:fixed;inset:0;z-index:80;background:var(--shell);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:1rem;}
+  .loader .ring{width:2.6rem;height:2.6rem;border:3px solid var(--line-strong);border-top-color:var(--gold);
+    border-radius:50%;animation:spin .8s linear infinite;}
+  .loader p{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* entrance reveal */
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .reveal{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;}
+  .reveal.d1{animation-delay:.05s;}
+  .reveal.d2{animation-delay:.12s;}
+  .reveal.d3{animation-delay:.2s;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal,.btn,.slot,.modal,.modal-backdrop{animation:none!important;transition:none!important;}
+  }
+
+  /* toast */
+  .toast{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%) translateY(140%);z-index:90;
+    background:var(--sea);color:#fbf7ee;padding:0.8rem 1.3rem;border-radius:12px;box-shadow:var(--shadow-lg);
+    font-size:0.88rem;font-weight:600;display:flex;align-items:center;gap:0.6rem;transition:transform .35s cubic-bezier(.34,1.56,.64,1);max-width:90vw;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast.success{background:linear-gradient(135deg,var(--green),#2f6a44);}
+  .toast:not(.show){transform:translateX(-50%) translateY(calc(100% + 3rem));pointer-events:none;opacity:0;visibility:hidden;}
+  .toast{opacity:1;visibility:visible;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s ease,visibility .3s ease;}
+  .hidden{display:none!important;}
+  [hidden]{display:none!important;}
+</style>
+</head>
+<body>
+<svg class="grain"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainf)" opacity="0.35"/></svg>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="ring"></div>
+  <p>Editör yükleniyor</p>
+</div>
+
+<!-- ═══ TOP BAR ═══ -->
+<header class="topbar hidden" id="topbar">
+  <div class="topbar-inner">
+    <a href="/gazete/" class="brand">
+      <span class="mark">KALKAN <span class="g">INFO</span></span>
+      <span class="kick">Topluluk Editörü</span>
+    </a>
+    <div class="topbar-actions">
+      <div class="user-chip" id="userChip" hidden>
+        <span class="avatar" id="userAvatar">?</span>
+        <span class="email" id="userEmail"></span>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="signOutBtn" hidden>Çıkış</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ GATE (auth / contributor application) — filled by JS ═══ -->
+<div id="gate" class="hidden"></div>
+
+<!-- ═══ EDITOR APP ═══ -->
+<main id="app" class="wrap hidden">
+
+  <div class="page-head reveal">
+    <span class="eyebrow">Yarınki Sayı · <span id="tomorrowLabel"></span></span>
+    <h1>Gazetenin <em>bir sonraki sayısına</em> sen yaz.</h1>
+    <p>Aşağıdaki A4 gazete taslağında düzenlemek istediğin bölüme tıkla, içeriğini öner. Editör ekibimiz onayladığında yarınki Kalkan Today sayısında yayımlanır.</p>
+  </div>
+
+  <div class="notice reveal d1">
+    <span class="ic">📝</span>
+    <p><b>Nasıl çalışır?</b> Bir slota tıkla → içeriğini yaz → "Yarınki sayı için öner". Önerin <b>editör onayından</b> sonra yayımlanır. Onaya kadar düzenlemeye devam edebilirsin.</p>
+  </div>
+
+  <!-- edition tabs -->
+  <div class="edition-tabs reveal d1" role="tablist" aria-label="Sayı türü">
+    <button class="edition-tab" role="tab" aria-selected="true" data-edition="morning" id="tab-morning">
+      <span class="dot"></span> Sabah Gazetesi
+    </button>
+    <button class="edition-tab" role="tab" aria-selected="false" data-edition="magazine" id="tab-magazine">
+      <span class="dot"></span> Magazin
+    </button>
+  </div>
+
+  <div class="main-grid reveal d2">
+    <!-- ── A4 PREVIEW ── -->
+    <div class="a4-stage">
+      <div class="a4-caption">
+        <span class="lbl" id="editionLabel">Sabah Gazetesi — Ön Sayfa</span>
+        <span class="date" id="a4Date"></span>
+      </div>
+
+      <div class="a4">
+        <!-- MORNING -->
+        <div class="edition-panel active" id="panel-morning">
+          <div class="mini-masthead">
+            <div class="np">KALKAN INFO</div>
+            <div class="np-sub">GAZETESİ</div>
+          </div>
+          <div class="mini-metabar">
+            <span>Yıl: XV · Sayı: 001</span>
+            <span id="metaDate1"></span>
+            <span>kalkaninfo.com</span>
+          </div>
+
+          <div class="mini-top">
+            <div>
+              <!-- LEAD slot -->
+              <div class="slot" tabindex="0" role="button" data-edition="morning" data-slot="lead"
+                   aria-label="Manşet haberi öner">
+                <div class="mini-kicker">GÜNÜN MANŞETİ</div>
+                <h2 class="mini-headline" data-field-preview="lead.headline">Manşet başlığı buraya</h2>
+                <p class="mini-deck" data-field-preview="lead.deck">Manşet spotu / alt başlık</p>
+                <div class="mini-img" data-field-img="lead.image">FOTOĞRAF</div>
+                <p class="mini-caption" data-field-preview="lead.caption">Fotoğraf açıklaması</p>
+                <p class="mini-body" data-field-preview="lead.body">Manşet haberinin gövde metni bu alanda görünecek. Slota tıklayarak yarınki sayı için kendi haberini önerebilirsin.</p>
+                <div class="slot-hint"><span>＋ Manşet öner</span></div>
+              </div>
+            </div>
+            <aside>
+              <div class="mini-rail-h">BAŞLIKLAR</div>
+              <ul class="mini-placeholder-list">
+                <li>Editör seçkisi başlıkları</li>
+                <li>Günün diğer haberleri</li>
+                <li>Kısa notlar</li>
+              </ul>
+              <div class="mini-img" style="aspect-ratio:16/9;margin:2.4cqw 0;">GÖRSEL</div>
+              <div class="mini-rail-h">GEZİLECEK</div>
+              <ul class="mini-placeholder-list">
+                <li>Öne çıkan mekânlar</li>
+                <li>Plaj & koylar</li>
+              </ul>
+            </aside>
+          </div>
+
+          <div class="mini-mid">
+            <!-- COL1 slot -->
+            <div class="slot" tabindex="0" role="button" data-edition="morning" data-slot="col1"
+                 aria-label="Sol köşe yazısı öner">
+              <div class="mini-sec-h" data-field-preview="col1.title" data-default="KÖŞE YAZISI">KÖŞE YAZISI</div>
+              <p class="mini-col-body" data-field-preview="col1.body">Sol kolon köşe yazısı içeriği. Kalkan'la ilgili bir gözlem, öneri ya da kısa bir yazı önerebilirsin.</p>
+              <div class="slot-hint"><span>＋ Köşe yazısı öner</span></div>
+            </div>
+            <!-- COL3 slot -->
+            <div class="slot" tabindex="0" role="button" data-edition="morning" data-slot="col3"
+                 aria-label="Sağ köşe yazısı öner">
+              <div class="mini-sec-h" data-field-preview="col3.title" data-default="BUGÜN KALKAN'DA">BUGÜN KALKAN'DA</div>
+              <p class="mini-col-body short" data-field-preview="col3.body">Sağ kolon içeriği. Bugün Kalkan'da olan bir şey, bir ipucu veya kısa bilgi.</p>
+              <div class="slot-hint"><span>＋ İçerik öner</span></div>
+            </div>
+          </div>
+
+          <div class="mini-band" aria-hidden="true">
+            <div class="mini-sec-h">EN İYİ RESTORANLAR</div>
+            <ul class="mini-placeholder-list">
+              <li>Editör derlemesi · puan sıralı</li>
+              <li>Günün yorumları</li>
+              <li>Etkinlik takvimi &amp; yarınki plan</li>
+            </ul>
+          </div>
+          <div class="mini-foot">KALKAN INFO GAZETESİ · KALKAN'IN SESİ, BİLGİNİN KAYNAĞI · kalkaninfo.com</div>
+        </div>
+
+        <!-- MAGAZINE -->
+        <div class="edition-panel" id="panel-magazine">
+          <div class="mini-mag-head">
+            <div>
+              <div class="mini-mag-kicker">KALKAN'IN GECE HAYATI</div>
+              <div class="mini-mag-title">Kalkan Today</div>
+            </div>
+            <div class="mini-mag-meta">
+              <div id="metaDate2"></div>
+              <div>Sayı № 001</div>
+            </div>
+          </div>
+
+          <!-- MAGAZINE LEAD slot -->
+          <div class="slot" tabindex="0" role="button" data-edition="magazine" data-slot="magazine_lead"
+               aria-label="Magazin manşeti öner">
+            <div class="mini-hero" data-field-img="magazine_lead.image">
+              <div class="venue">KALKAN MAGAZİN</div>
+              <h1 data-field-preview="magazine_lead.headline">Magazin manşeti buraya</h1>
+              <p data-field-preview="magazine_lead.body">Gece hayatı, etkinlik ya da mekân üzerine magazin girişi. Slota tıkla, önerini yaz.</p>
+            </div>
+            <div class="slot-hint"><span>＋ Magazin manşeti öner</span></div>
+          </div>
+
+          <div class="mini-cards" aria-hidden="true">
+            <div class="mini-card"><div class="ph"></div><h3>Mekân notu</h3></div>
+            <div class="mini-card"><div class="ph"></div><h3>Sahne &amp; müzik</h3></div>
+            <div class="mini-card"><div class="ph"></div><h3>Gece rehberi</h3></div>
+          </div>
+
+          <div class="mini-mag-program" aria-hidden="true">
+            <div class="bar"><b>BU AKŞAM</b> PROGRAM</div>
+            <div class="rows">
+              <div>21:00 · Canlı müzik · mekân</div>
+              <div>23:00 · DJ performans · mekân</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SIDEBAR ── -->
+    <div class="sidebar">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Önerilerim</h2>
+          <span class="count" id="subCount">0</span>
+        </div>
+        <div class="panel-body" id="subList">
+          <div class="empty-state">
+            <span class="em">🗞️</span>
+            <p>Henüz önerin yok. Soldaki gazete taslağından bir bölüme tıklayarak başla.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="tip-card">
+        <h3>İyi bir öneri için</h3>
+        <ul>
+          <li>Başlık kısa ve net olsun</li>
+          <li>Kalkan'a dair, güncel ve doğru bilgi ver</li>
+          <li>Fotoğraf eklersen bağlantısı herkese açık olsun</li>
+          <li>Reklam/uydurma yorum ekleme — editör reddeder</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<!-- ═══ SLOT MODAL ═══ -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <div class="kick" id="modalKick">SABAH GAZETESİ · MANŞET</div>
+      <button class="modal-close" id="modalClose" aria-label="Kapat">✕</button>
+      <h2 id="modalTitle">Manşet öner</h2>
+      <p id="modalSub">Bu bölüm yarınki sayının manşeti olarak değerlendirilecek.</p>
+    </div>
+    <div class="modal-body">
+      <div class="admin-note" id="adminNote" hidden><b>Editör notu</b><span id="adminNoteText"></span></div>
+      <form id="slotForm">
+        <div id="formFields"></div>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="modalCancel" type="button">Vazgeç</button>
+      <button class="btn btn-gold" id="modalSubmit" type="submit" form="slotForm">Yarınki sayı için öner</button>
+    </div>
+  </div>
+</div>
+
+<!-- toast -->
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script type="module">
+import { supabase } from '/js/supabase-client.js';
+
+/* ══════════════════════════════════════════════════════════════════
+   Gazete Topluluk Editörü — client logic
+   - Auth guard: contributor VEYA admin (app_metadata.role)
+   - Slot form → gazete_submissions insert (target_date=yarın, status pending)
+   - Önerilerim listesi (kendi pending/approved/rejected)
+   - Giriş yok → login redirect · giriş var/rol yok → katkıcı başvuru
+═══════════════════════════════════════════════════════════════════ */
+
+const el = (id) => document.getElementById(id);
+const loader   = el('loader');
+const gate     = el('gate');
+const app      = el('app');
+const topbar   = el('topbar');
+
+/* ── Slot şeması: hangi edition/slot hangi alanları ister ── */
+const SLOT_SCHEMA = {
+  morning: {
+    lead: {
+      kick: 'Sabah Gazetesi · Manşet',
+      title: 'Manşet öner',
+      sub: 'Yarınki sayının ön sayfa manşeti olarak değerlendirilir.',
+      fields: [
+        { key:'headline', label:'Manşet başlığı', type:'text', required:true, max:90, placeholder:'Kalkan\'da bugün...', display:true },
+        { key:'deck', label:'Spot / alt başlık', type:'text', required:false, max:140, placeholder:'Haberi bir cümlede özetle', opt:true },
+        { key:'body', label:'Haber metni', type:'textarea', required:true, max:1200, placeholder:'Haberin detayı...', rows:7 },
+        { key:'image', label:'Fotoğraf bağlantısı (URL)', type:'url', required:false, placeholder:'https://...', opt:true },
+        { key:'caption', label:'Fotoğraf açıklaması', type:'text', required:false, max:120, placeholder:'Fotoğrafta ne var?', opt:true },
+      ],
+    },
+    col1: {
+      kick: 'Sabah Gazetesi · Köşe',
+      title: 'Köşe yazısı öner',
+      sub: 'Ön sayfa sol kolonda yer alan köşe yazısı.',
+      fields: [
+        { key:'title', label:'Köşe başlığı', type:'text', required:true, max:60, placeholder:'Köşenin başlığı', display:true },
+        { key:'body', label:'Yazı metni', type:'textarea', required:true, max:900, placeholder:'Kalkan üzerine kısa bir yazı...', rows:6 },
+      ],
+    },
+    col3: {
+      kick: 'Sabah Gazetesi · Kolon',
+      title: 'İçerik öner',
+      sub: 'Ön sayfa sağ kolonda yer alan kısa içerik.',
+      fields: [
+        { key:'title', label:'Başlık', type:'text', required:true, max:60, placeholder:'Bölümün başlığı', display:true },
+        { key:'body', label:'Metin', type:'textarea', required:true, max:700, placeholder:'Kısa bir bilgi ya da not...', rows:5 },
+      ],
+    },
+  },
+  magazine: {
+    magazine_lead: {
+      kick: 'Magazin · Manşet',
+      title: 'Magazin manşeti öner',
+      sub: 'Arka yüz magazin sayfasının kapak girişi.',
+      fields: [
+        { key:'headline', label:'Manşet başlığı', type:'text', required:true, max:80, placeholder:'Bu gece Kalkan\'da...', display:true },
+        { key:'body', label:'Giriş metni', type:'textarea', required:true, max:900, placeholder:'Gece hayatı / mekân / etkinlik girişi...', rows:6 },
+        { key:'image', label:'Fotoğraf bağlantısı (URL)', type:'url', required:false, placeholder:'https://...', opt:true },
+      ],
+    },
+  },
+};
+
+const EDITION_LABEL = {
+  morning: 'Sabah Gazetesi — Ön Sayfa',
+  magazine: 'Magazin — Arka Yüz',
+};
+
+/* yarın YYYY-MM-DD (yerel) */
+function tomorrowISO(){
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+const TARGET_DATE = tomorrowISO();
+
+function fmtLong(iso){
+  try{
+    return new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{ day:'numeric', month:'long', year:'numeric' });
+  }catch{ return iso; }
+}
+function fmtShort(iso){
+  try{
+    return new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{ day:'2-digit', month:'2-digit', year:'numeric' });
+  }catch{ return iso; }
+}
+function escapeHTML(s){
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ── Toast ── */
+let toastTimer;
+function toast(msg, kind){
+  const t = el('toast');
+  el('toastMsg').textContent = msg;
+  t.className = 'toast show' + (kind ? ' '+kind : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>{ t.className = 'toast' + (kind ? ' '+kind : ''); }, 3400);
+}
+
+/* ══ AUTH GATE ══ */
+function renderLoginGate(){
+  const next = encodeURIComponent(location.pathname + location.search);
+  gate.innerHTML = `
+    <div class="gate">
+      <div class="gate-card reveal">
+        <div class="gate-emblem">🔑</div>
+        <div class="kick">Topluluk Editörü</div>
+        <h1>Katkıda bulunmak için giriş yap</h1>
+        <p>Gazetenin yarınki sayısına içerik önermek için Kalkan Info hesabınla giriş yapmalısın.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/login.html?next=${next}">Giriş Yap</a>
+          <a class="btn btn-ghost" href="/register.html">Hesap Oluştur</a>
+        </div>
+      </div>
+    </div>`;
+  gate.classList.remove('hidden');
+}
+
+async function renderContributorGate(user){
+  // Mevcut başvuru var mı?
+  let application = null;
+  try{
+    const { data } = await supabase.from('gazete_contributors')
+      .select('status').eq('user_id', user.id).maybeSingle();
+    application = data;
+  }catch{ /* tablo/RLS — pending say */ }
+
+  const pending = application && application.status === 'pending';
+  const blocked = application && application.status === 'blocked';
+
+  gate.innerHTML = `
+    <div class="gate">
+      <div class="gate-card reveal">
+        <div class="gate-emblem">${blocked ? '🚫' : pending ? '⏳' : '✍️'}</div>
+        <div class="kick">Topluluk Editörü</div>
+        <h1>${blocked ? 'Başvurun kapatıldı' : pending ? 'Başvurun onay bekliyor' : 'Katkıcı ol'}</h1>
+        <p>${
+          blocked
+            ? 'Bu hesap şu an katkı için uygun değil. Sorunuz varsa bize ulaşın.'
+            : pending
+              ? 'Katkıcı başvurunu aldık. Editör ekibimiz onayladığında bu sayfadan gazeteye içerik önermeye başlayabileceksin.'
+              : 'Gazeteye içerik önerebilmek için katkıcı olman gerekiyor. Başvurun editör onayından sonra aktifleşir.'
+        }</p>
+        <div class="actions">
+          ${(!application) ? '<button class="btn btn-gold" id="applyBtn">Katkıcı Olmak İçin Başvur</button>' : ''}
+          <a class="btn btn-ghost" href="/gazete/">Gazeteye Dön</a>
+        </div>
+      </div>
+    </div>`;
+  gate.classList.remove('hidden');
+
+  const applyBtn = el('applyBtn');
+  if (applyBtn){
+    applyBtn.addEventListener('click', async () => {
+      applyBtn.disabled = true;
+      applyBtn.textContent = 'Gönderiliyor...';
+      try{
+        const { error } = await supabase.from('gazete_contributors').insert({
+          user_id: user.id,
+          email: user.email,
+          display_name: user.user_metadata?.full_name || user.email,
+          status: 'pending',
+        });
+        if (error) throw error;
+        toast('Başvurun alındı — onay bekleniyor', 'success');
+        renderContributorGate(user); // refresh → pending state
+      }catch(err){
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Katkıcı Olmak İçin Başvur';
+        toast('Başvuru gönderilemedi: ' + (err?.message || 'hata'));
+      }
+    });
+  }
+}
+
+/* ══ SUBMISSIONS ══ */
+let SESSION_USER = null;
+let MY_SUBS = {};   // key `${edition}:${slot}` → latest submission row
+
+function subKey(edition, slot){ return `${edition}:${slot}`; }
+
+async function loadMySubmissions(){
+  try{
+    const { data, error } = await supabase
+      .from('gazete_submissions')
+      .select('id,edition,slot,fields,status,admin_note,target_date,created_at')
+      .eq('user_id', SESSION_USER.id)
+      .order('created_at', { ascending:false });
+    if (error) throw error;
+
+    MY_SUBS = {};
+    for (const row of (data || [])){
+      // sadece yarınki sayı, slot başına en yeni kayıt (edit takibi)
+      if (row.target_date !== TARGET_DATE) continue;
+      const k = subKey(row.edition, row.slot);
+      if (!MY_SUBS[k]) MY_SUBS[k] = row;
+    }
+    renderSubList(data || []);
+    applySlotStates();
+  }catch(err){
+    console.warn('[editor] öneriler yüklenemedi');
+    renderSubList([]);
+  }
+}
+
+function renderSubList(rows){
+  const list = el('subList');
+  const tomorrowRows = rows.filter(r => r.target_date === TARGET_DATE);
+  el('subCount').textContent = String(tomorrowRows.length);
+
+  if (!tomorrowRows.length){
+    list.innerHTML = `<div class="empty-state"><span class="em">🗞️</span>
+      <p>Henüz önerin yok. Soldaki gazete taslağından bir bölüme tıklayarak başla.</p></div>`;
+    return;
+  }
+
+  const badgeFor = (s) => {
+    const map = { pending:['badge-pending','Onay bekliyor'], approved:['badge-approved','Onaylandı'], rejected:['badge-rejected','Reddedildi'] };
+    const [cls,txt] = map[s] || map.pending;
+    return `<span class="badge ${cls}">${txt}</span>`;
+  };
+  const slotName = (edition, slot) => (SLOT_SCHEMA[edition]?.[slot]?.title) || slot;
+
+  list.innerHTML = tomorrowRows.map(r => {
+    const title = r.fields?.headline || r.fields?.title || '(başlıksız)';
+    return `<button class="sub-item" data-edition="${escapeHTML(r.edition)}" data-slot="${escapeHTML(r.slot)}">
+      <div class="row1">
+        <span class="slot-name">${escapeHTML(slotName(r.edition, r.slot))}</span>
+        ${badgeFor(r.status)}
+      </div>
+      <div class="title">${escapeHTML(title)}</div>
+      <div class="meta">${escapeHTML(r.edition === 'magazine' ? 'Magazin' : 'Sabah')} · ${escapeHTML(fmtShort(r.target_date))}</div>
+    </button>`;
+  }).join('');
+
+  list.querySelectorAll('.sub-item').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.edition, btn.dataset.slot));
+  });
+}
+
+/* slotların dolu/pending durumunu A4 önizlemede işaretle + önizleme metnini bas */
+function applySlotStates(){
+  document.querySelectorAll('.slot[data-slot]').forEach(slotEl => {
+    const edition = slotEl.dataset.edition;
+    const slot = slotEl.dataset.slot;
+    const sub = MY_SUBS[subKey(edition, slot)];
+    slotEl.classList.remove('is-filled','is-pending','is-rejected');
+    if (sub){
+      const stateCls = sub.status === 'pending' ? 'is-pending'
+        : sub.status === 'rejected' ? 'is-rejected' : 'is-filled';
+      slotEl.classList.add(stateCls);
+      // önizleme alanlarını doldur
+      slotEl.querySelectorAll('[data-field-preview]').forEach(p => {
+        const [, fkey] = p.dataset.fieldPreview.split('.');
+        const val = sub.fields?.[fkey];
+        if (val) p.textContent = val;
+        else if (p.dataset.default) p.textContent = p.dataset.default;
+      });
+      slotEl.querySelectorAll('[data-field-img]').forEach(imgEl => {
+        const [, fkey] = imgEl.dataset.fieldImg.split('.');
+        const url = sub.fields?.[fkey];
+        if (url){ imgEl.style.backgroundImage = `url('${CSS.escape ? url.replace(/'/g,"%27") : url}')`; imgEl.style.color='transparent'; }
+      });
+    }
+  });
+}
+
+/* ══ MODAL / FORM ══ */
+let ACTIVE = { edition:null, slot:null };
+let lastFocus = null;
+
+function buildFields(schema, existing){
+  return schema.fields.map(f => {
+    const val = escapeHTML(existing?.fields?.[f.key] ?? '');
+    const optLbl = f.opt ? ' <span class="opt">(opsiyonel)</span>' : '';
+    const counter = f.max ? `<span class="count-hint" data-counter-for="${f.key}">0/${f.max}</span>` : '';
+    if (f.type === 'textarea'){
+      return `<div class="field">
+        <label for="f_${f.key}">${f.label}${optLbl}${counter}</label>
+        <textarea class="textarea" id="f_${f.key}" name="${f.key}" rows="${f.rows||5}" ${f.max?`maxlength="${f.max}"`:''} ${f.required?'required':''} placeholder="${escapeHTML(f.placeholder||'')}">${val}</textarea>
+      </div>`;
+    }
+    const type = f.type === 'url' ? 'url' : 'text';
+    const cls = 'input' + (f.key==='headline' ? ' headline-input' : '');
+    return `<div class="field">
+      <label for="f_${f.key}">${f.label}${optLbl}${counter}</label>
+      <input class="${cls}" id="f_${f.key}" name="${f.key}" type="${type}" ${f.max?`maxlength="${f.max}"`:''} ${f.required?'required':''} value="${val}" placeholder="${escapeHTML(f.placeholder||'')}">
+      ${f.type==='url' ? '<div class="hint">Herkese açık, doğrudan görsele giden bir bağlantı olmalı.</div>' : ''}
+    </div>`;
+  }).join('');
+}
+
+function wireCounters(){
+  el('formFields').querySelectorAll('[maxlength]').forEach(inp => {
+    const c = el('formFields').querySelector(`[data-counter-for="${inp.name}"]`);
+    if (!c) return;
+    const max = inp.getAttribute('maxlength');
+    const upd = () => { c.textContent = `${inp.value.length}/${max}`; };
+    inp.addEventListener('input', upd); upd();
+  });
+}
+
+function openModal(edition, slot){
+  const schema = SLOT_SCHEMA[edition]?.[slot];
+  if (!schema) return;
+  ACTIVE = { edition, slot };
+  lastFocus = document.activeElement;
+
+  const existing = MY_SUBS[subKey(edition, slot)];
+  const locked = existing && existing.status !== 'pending'; // onaylanmış/reddedilmiş → salt okunur değil ama yeni öneri sayılır
+
+  el('modalKick').textContent = schema.kick.toUpperCase();
+  el('modalTitle').textContent = existing ? schema.title.replace('öner','düzenle') : schema.title;
+  el('modalSub').textContent = schema.sub;
+  el('formFields').innerHTML = buildFields(schema, existing);
+  wireCounters();
+
+  // editör notu (reddedilmişse göster)
+  const noteBox = el('adminNote');
+  if (existing && existing.status === 'rejected' && existing.admin_note){
+    el('adminNoteText').textContent = existing.admin_note;
+    noteBox.hidden = false;
+  } else noteBox.hidden = true;
+
+  const submitBtn = el('modalSubmit');
+  if (existing && existing.status === 'pending'){
+    submitBtn.textContent = 'Öneriyi güncelle';
+  } else if (existing){
+    submitBtn.textContent = 'Yeniden öner';
+  } else {
+    submitBtn.textContent = 'Yarınki sayı için öner';
+  }
+
+  const msg = el('formMsg'); msg.className = 'form-msg'; msg.textContent = '';
+
+  const bd = el('modalBackdrop');
+  bd.hidden = false;
+  requestAnimationFrame(()=> bd.classList.add('open'));
+  setTimeout(()=> el('formFields').querySelector('input,textarea')?.focus(), 60);
+}
+
+function closeModal(){
+  const bd = el('modalBackdrop');
+  bd.classList.remove('open');
+  setTimeout(()=>{ bd.hidden = true; }, 260);
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+
+async function submitSlot(e){
+  e.preventDefault();
+  const { edition, slot } = ACTIVE;
+  const schema = SLOT_SCHEMA[edition]?.[slot];
+  if (!schema) return;
+
+  const form = el('slotForm');
+  const msg = el('formMsg'); msg.className='form-msg'; msg.textContent='';
+
+  // topla + doğrula
+  const fields = {};
+  for (const f of schema.fields){
+    const v = (form.elements[f.key]?.value || '').trim();
+    if (f.required && !v){
+      msg.className='form-msg err'; msg.textContent = `"${f.label}" alanı zorunlu.`;
+      form.elements[f.key]?.focus();
+      return;
+    }
+    if (f.type==='url' && v && !/^https?:\/\/.+/i.test(v)){
+      msg.className='form-msg err'; msg.textContent = 'Fotoğraf bağlantısı http(s) ile başlamalı.';
+      form.elements[f.key]?.focus();
+      return;
+    }
+    if (v) fields[f.key] = v;
+  }
+
+  const submitBtn = el('modalSubmit');
+  submitBtn.disabled = true;
+  const prevTxt = submitBtn.textContent;
+  submitBtn.textContent = 'Gönderiliyor...';
+
+  const existing = MY_SUBS[subKey(edition, slot)];
+
+  try{
+    let error;
+    if (existing && existing.status === 'pending'){
+      // pending öneriyi güncelle (RLS: kendi pending kaydını update edebilir)
+      ({ error } = await supabase.from('gazete_submissions')
+        .update({ fields }).eq('id', existing.id));
+    } else {
+      // yeni öneri (yeni + reddedilen sonrası yeniden öneri)
+      ({ error } = await supabase.from('gazete_submissions').insert({
+        user_id: SESSION_USER.id,
+        user_email: SESSION_USER.email,
+        target_date: TARGET_DATE,
+        edition,
+        slot,
+        fields,
+        status: 'pending',
+      }));
+    }
+    if (error) throw error;
+
+    closeModal();
+    toast(existing?.status==='pending' ? 'Önerin güncellendi' : 'Önerin editör onayına gönderildi', 'success');
+    await loadMySubmissions();
+  }catch(err){
+    submitBtn.disabled = false;
+    submitBtn.textContent = prevTxt;
+    msg.className='form-msg err';
+    msg.textContent = 'Kaydedilemedi: ' + (err?.message || 'bilinmeyen hata');
+  }
+}
+
+/* ══ EDITION TABS ══ */
+function switchEdition(edition){
+  document.querySelectorAll('.edition-tab').forEach(t => {
+    t.setAttribute('aria-selected', String(t.dataset.edition === edition));
+  });
+  el('panel-morning').classList.toggle('active', edition==='morning');
+  el('panel-magazine').classList.toggle('active', edition==='magazine');
+  el('editionLabel').textContent = EDITION_LABEL[edition];
+}
+
+/* ══ SLOT CLICK WIRING ══ */
+function wireSlots(){
+  document.querySelectorAll('.slot[data-slot]').forEach(slotEl => {
+    const open = () => openModal(slotEl.dataset.edition, slotEl.dataset.slot);
+    slotEl.addEventListener('click', open);
+    slotEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); }
+    });
+  });
+  document.querySelectorAll('.edition-tab').forEach(t => {
+    t.addEventListener('click', () => switchEdition(t.dataset.edition));
+  });
+}
+
+/* ══ BOOT ══ */
+async function boot(){
+  // tarih etiketleri
+  const longD = fmtLong(TARGET_DATE);
+  el('tomorrowLabel').textContent = longD;
+  el('a4Date').textContent = longD;
+  el('metaDate1') && (el('metaDate1').textContent = longD);
+  el('metaDate2') && (el('metaDate2').textContent = longD);
+
+  // oturum
+  let user = null;
+  try{
+    const { data } = await supabase.auth.getUser();
+    user = data?.user || null;
+  }catch{ user = null; }
+
+  loader.classList.add('hidden');
+  topbar.classList.remove('hidden');
+
+  if (!user){
+    renderLoginGate();
+    return;
+  }
+
+  // rol kontrolü — SADECE app_metadata (güvenli). contributor VEYA admin.
+  const role = user.app_metadata?.role;
+  if (role !== 'contributor' && role !== 'admin'){
+    // user chip yine de göster
+    setupUserChip(user);
+    await renderContributorGate(user);
+    return;
+  }
+
+  // yetkili → editörü aç
+  SESSION_USER = user;
+  setupUserChip(user);
+  app.classList.remove('hidden');
+  switchEdition('morning');
+  wireSlots();
+  await loadMySubmissions();
+}
+
+function setupUserChip(user){
+  const chip = el('userChip');
+  const initial = (user.email || '?').trim().charAt(0).toUpperCase();
+  el('userAvatar').textContent = initial;
+  el('userEmail').textContent = user.email || '';
+  chip.hidden = false;
+  const so = el('signOutBtn');
+  so.hidden = false;
+  so.addEventListener('click', async () => {
+    try{ await supabase.auth.signOut(); }catch{}
+    location.href = '/login.html';
+  });
+}
+
+/* modal event wiring */
+el('modalClose').addEventListener('click', closeModal);
+el('modalCancel').addEventListener('click', closeModal);
+el('modalBackdrop').addEventListener('click', (e)=>{ if (e.target === el('modalBackdrop')) closeModal(); });
+el('slotForm').addEventListener('submit', submitSlot);
+document.addEventListener('keydown', (e)=>{ if (e.key==='Escape' && el('modalBackdrop').classList.contains('open')) closeModal(); });
+
+boot();
+</script>
+</body>
+</html>
