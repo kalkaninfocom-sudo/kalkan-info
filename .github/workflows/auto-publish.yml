@@ -44,6 +44,11 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           IG_CRON_SECRET: ${{ secrets.IG_CRON_SECRET }}
           SITE_BASE: https://www.kalkaninfo.com
+          # BrandGuard (cheap-llm) sağlayıcı sırası. Varsayılan 'ollama' ilk → CI'da ollama
+          # yok, her çağrı localhost'a takılıp SOFT dönüyordu (içerik hiç otomatik onaylanmıyor).
+          # Ücretsiz bulut hakemleri önce → CI'da güvenilir PASS/BLOCK.
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
