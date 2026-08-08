@@ -1,17 +1,17 @@
 {
   "date": "2026-08-08",
-  "generated_at": "2026-08-08T04:42:39.148Z",
+  "generated_at": "2026-08-08T05:24:44.030Z",
   "provider": "groq",
   "source_ids": [
     "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-08",
-    "kalkan-da-asat-veznesi-acildi-antalyasonhaber-com-2026-07-05",
-    "kas-kalkan-da-dev-arazide-i-mar-degisikligi-ozellestirmeye-acildi-akdeniz-gercek-2026-01-24",
-    "finike-demre-kas-kalkan-yolu-projesinde-dogru-bilinen-yanlislar-akdeniz-gercek-2025-12-15"
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-07-05",
+    "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-com-2026-06-12",
+    "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdenizger-2026-04-25"
   ],
-  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü Gerçekleştirildi",
-  "lead_deck": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği yapıldı",
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği Kaş'ta gerçekleştirildi.",
   "lead_body": [
-    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Likya Su Yolu'nun güzergahını takip etti. Katılımcılar, Patara Yörük Göçü'nü deneyimledi."
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlik, Likya Birliği'nin başkenti Patara'nın tarihi ve kültürel mirasını ön plana çıkardı. Kalkan ve Kaş'tan birçok turisti ve yerel halkı bir araya getiren etkinlik, bölgenin turizm potansiyelini gösterdi."
   ],
   "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
   "lead_source": "Kaş Belediyesi Haber",
@@ -19,18 +19,18 @@
   "lead_date": "2026-08-08",
   "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
   "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
-  "col1_title": "Kalkan'da Asat Veznesi Açıldı",
+  "col1_title": "Kalkan'da Asat Veznesi",
   "col1_byline": "Bülten · Gündem",
-  "col1_body": "Kalkan'da Asat Veznesi hizmete açıldı",
-  "col3_title": "Kaş Kalkan'da Dev Arazide İmar Değişikliği",
-  "col3_byline": "Sahil · Plaj",
-  "col3_body": "Kaş Kalkan'da büyük bir arazide imar değişikliği yapıldı",
-  "magazine_lead_headline": "Finike-Demre-Kaş-Kalkan Yolu Projesi",
+  "col1_body": "Kalkan'da Asat Veznesi açıldı.",
+  "col3_title": "En İyi Kalkan Otelleri",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kalkan, Kekova, Olimpos ve Kaş'taki en iyi oteller 2026 güncellemesiyle açıklandı.",
+  "magazine_lead_headline": "Kalkan İmar Planı Değişti",
   "magazine_lead_body": [
-    "Finike-Demre-Kaş-Kalkan Yolu Projesi hakkında doğru bilinen yanlışlar ortaya çıktı"
+    "İtiraz reddedildi, Erdoğan imzayı attı: Kalkan'da imar planı değişti."
   ],
   "editorial_review": {
-    "reviewed_at": "2026-08-08T04:42:40.313Z",
+    "reviewed_at": "2026-08-08T05:24:44.989Z",
     "roles": {
       "muhabir": "groq",
       "editor": "editor-gate",
@@ -42,7 +42,7 @@
         "editor": "approved",
         "editor_score": 80,
         "verifier": "ok",
-        "credibility": 77
+        "credibility": 80
       },
       {
         "slot": "col1",
@@ -63,17 +63,18 @@
         "editor": "approved",
         "editor_score": 80,
         "verifier": "ok",
-        "credibility": 77
+        "credibility": 80
       }
     ],
     "decisions": [
       "MANŞET editöryal denetimden geçti",
       "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
-      "col3 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı"
+      "col3: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
     ],
     "approved_slots": [
       "lead",
       "col1",
+      "col3",
       "magazine"
     ]
   }
