@@ -10,18 +10,116 @@
  */
 
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildData as buildRealData, buildMagazineData } from './sources.mjs';
+import { translateFields, LANGS } from '../../lib/i18n-translate.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+
+// .env.local yükle (yerel çalıştırma; CI'da env zaten dolu). Çeviri (cheap-llm) için.
+try {
+  const envp = join(__dirname, '..', '..', '.env.local');
+  if (existsSync(envp)) for (const line of readFileSync(envp, 'utf8').split(/\r?\n/)) {
+    const m = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim().replace(/^['"]|['"]$/g, '');
+  }
+} catch {}
 
 const argv = process.argv.slice(2);
 const useDemo = argv.includes('--demo');
 const positional = argv.filter(a => !a.startsWith('--'));
 const type = positional[0] || 'morning';
 const today = positional[1] || new Date().toISOString().slice(0, 10);
+// 5 DİL: --lang=de → morning.de.html üret (TR base + çeviri). Varsayılan tr (mevcut akış, bozulmaz).
+const lang = (argv.find(a => a.startsWith('--lang=')) || '').split('=')[1] || 'tr';
+
+// Tüm diller (tr kaynak + hedefler) — hreflang cross-link + dil switcher için.
+const ALL_LANGS = ['tr', ...LANGS]; // tr, en, de, ru, fr
+const LOCALE = { tr: 'tr-TR', en: 'en-GB', de: 'de-DE', ru: 'ru-RU', fr: 'fr-FR' };
+const LANG_LABEL = { tr: 'TR', en: 'EN', de: 'DE', ru: 'RU', fr: 'FR' };
+// Template'in SABİT UI etiketleri (bölüm başlıkları vb.) — TR kaynak; çeviri havuzuna katılır.
+// Böylece manuel 5-dil sözlüğü tutmaya gerek yok: tek çeviri motoru hepsini çevirir.
+const UI_TR = {
+  ui_masthead_tag: 'Kalkan’ın nabzı, bir sayfada.',
+  ui_gazette_sub: 'GAZETESİ',
+  ui_weather_label: 'Kalkan Hava Durumu',
+  ui_wind_label: 'Rüzgar',
+  ui_year: 'YIL', ui_issue: 'SAYI', ui_price: 'FİYAT: 10 TL',
+  ui_kicker: 'Manşet',
+  ui_headlines: 'Günün Başlıkları',
+  ui_visit: 'Bugün Kalkan’da Gezilecek Yerler',
+  ui_restaurants: 'Haftanın Restoranları',
+  ui_reviews: 'Google Puanları',
+  ui_events: 'Canlı Etkinlikler',
+  ui_tomorrow: 'Yarın İçin Yapılacaklar',
+  // magazine.html
+  ui_mag_kicker: 'Kalkan Today · Gece Hayatı Eki',
+  ui_mag_title: 'MAGAZİN',
+  ui_issue_no: 'Sayı',
+  ui_tonight_program: 'Bu Akşam Programı',
+  ui_events_word: 'Etkinlik',
+  ui_sponsor_note: 'İLAN içeriklerinde sponsor etiketi zorunludur',
+  ui_ai_disclosure: 'Yapay zeka destekli hazırlanmıştır',
+  ui_full_program: 'Tüm program',
+};
+
+// Web sayfasında çevrilecek metin alanları (düz metin + HTML-liste; yapı LLM'de korunur).
+// URL/foto/hava/eczane/otobüs/tarih ÇEVRİLMEZ (dile bağlı değil ya da ayrı işlenir).
+const TRANSLATABLE = [
+  'lead_headline', 'lead_deck', 'lead_caption', 'feature_title', 'feature_body',
+  'headlines_list', 'gezilecek_list', 'resto_list', 'reviews_list', 'events_list', 'tomorrow_list',
+  'ad_title', 'ad_body', 'ad_cta', 'col1_title', 'col1_body', 'col2_title', 'col2_body',
+  'col3_title', 'col3_body',
+  ...Object.keys(UI_TR), // sabit UI etiketleri de çevrilir
+];
+
+const fileFor = (t, l) => (l === 'tr' ? `${t}.html` : `${t}.${l}.html`);
+
+function hreflangLinks(t) {
+  return ALL_LANGS
+    .map((l) => `<link rel="alternate" hreflang="${l}" href="./${fileFor(t, l)}">`)
+    .join('\n');
+}
+
+function langSwitcher(t, cur) {
+  const items = ALL_LANGS.map((l) => l === cur
+    ? `<span class="cur" aria-current="true">${LANG_LABEL[l]}</span>`
+    : `<a href="./${fileFor(t, l)}">${LANG_LABEL[l]}</a>`).join(' · ');
+  return `<nav class="lang-switch" style="position:fixed;top:8px;right:10px;z-index:99;font:600 12px/1 system-ui,sans-serif;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.15)">${items}</nav>`;
+}
+
+function formatDateLongLocale(iso, l) {
+  if (l === 'tr') return formatDateLong(iso);
+  try { return new Date(iso + 'T08:00:00').toLocaleDateString(LOCALE[l] || 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  catch { return formatDateLong(iso); }
+}
+
+function dayLocale(iso, l) {
+  if (l === 'tr') return dayOf(iso);
+  try { return new Date(iso + 'T08:00:00').toLocaleDateString(LOCALE[l] || 'en-GB', { weekday: 'long' }); }
+  catch { return dayOf(iso); }
+}
+
+// TR data'nın çevrilebilir alanlarını hedef dile çevir.
+// Her alan AYRI + PARALEL çevrilir (tek dev JSON batch'i groq json-mode'u 400'e düşürüyor;
+// HTML-liste'ler uzun → maxTokens taşıyor). Küçük tek-alan JSON'ları güvenilir. Başarısız alan TR kalır.
+async function translateWebData(data, l) {
+  const keys = TRANSLATABLE.filter((k) => data[k] && String(data[k]).trim());
+  if (!keys.length) return data;
+  let ok = 0;
+  const results = await Promise.all(keys.map(async (k) => {
+    const t = await translateFields({ [k]: data[k] }, l, {
+      context: 'Günlük gazete web bölümü — HTML etiketlerini AYNEN koru, sadece metni çevir', maxTokens: 1400,
+    });
+    if (t && typeof t[k] === 'string' && t[k].trim()) { ok++; return [k, t[k]]; }
+    return [k, data[k]]; // başarısız → TR (graceful)
+  }));
+  console.log(`   ${l}: ${ok}/${keys.length} alan çevrildi`);
+  return { ...data, ...Object.fromEntries(results) };
+}
 
 const DAY_TR = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 const MONTH_TR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
@@ -133,16 +231,32 @@ async function main() {
       data = demo;
     }
   }
+  // Sabit UI etiketleri (TR) — data'ya kat (lang=tr'de aynen kalır, diğer dilde çevrilir)
+  data = { ...UI_TR, ...data };
+
+  // ─── 5 DİL: hedef dile çevir + locale tarih (lang=tr ise dokunulmaz) ───
+  if (lang !== 'tr') {
+    console.log(`🌍 ${lang} çevirisi yapılıyor...`);
+    data = await translateWebData(data, lang);
+    data.date_long = formatDateLongLocale(today, lang);
+    data.day = dayLocale(today, lang);
+  }
+  // Dil meta (her dilde): html lang attr + hreflang cross-link + dil switcher
+  data.lang = lang;
+  data.hreflang_links = hreflangLinks(type);
+  data.lang_switcher = langSwitcher(type, lang);
+
   const html = render(tpl, data);
 
   const outDir = join(ROOT, 'archive', today);
   await ensureDir(outDir);
 
-  const htmlOut = join(outDir, `${type}.html`);
+  const htmlOut = join(outDir, fileFor(type, lang));
   await writeFile(htmlOut, html, 'utf8');
   console.log(`✓ HTML  → ${htmlOut}`);
 
-  // ─── Puppeteer ile PDF render ───
+  // ─── Puppeteer ile PDF render (yalnız TR — PDF dile bağlı değil, maliyet) ───
+  if (lang !== 'tr') { console.log(`ℹ ${lang}: PDF atlandı (TR PDF yeterli)`); return; }
   const puppeteer = await import('puppeteer').catch(() => null);
   if (!puppeteer) {
     console.log('ℹ Puppeteer yok — sadece HTML üretildi. PDF için: npm i -D puppeteer');
