@@ -221,15 +221,25 @@ async function callAnthropic(system: string, messages: Msg[], apiKey: string, mo
   return { text, tokens: d.usage?.output_tokens ?? 0 };
 }
 
-function stubReply(userText: string): string {
-  const t = userText.toLowerCase();
-  if (/(merhaba|selam|hello|hi|hey)/.test(t))
-    return 'Merhaba! Ben Lyra, Kalkan konsiyerjin. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
-  if (/(yemek|restoran|restaurant|aksam|akşam|dinner)/.test(t))
-    return 'Deniz manzarası seversen Zeugma terası akşamüstü çok güzel; daha samimi bir şey istersen The Proper iyi olur. Kaç kişilik bakayım?';
-  if (/(plaj|beach|kumsal)/.test(t))
-    return 'Kalamar sakin ve berrak; hareketli bir gün istersen Kaputaş inanılmaz. Yürüyüş mesafesi mi, arabayla mı olsun?';
-  return 'Şu an sesli beynim bağlanmayı bekliyor ama buradayım — Kalkan\'da yemek, plaj ya da tekne için ne istersin?';
+// Dil-duyarlı stub — tüm LLM sağlayıcı düşerse kullanıcı KENDİ dilinde yanıt alsın (asla yabancıya Türkçe atma)
+const STUB_GENERIC: Record<string, string> = {
+  tr: 'Buradayım! Kalkan\'da yemek, plaj, tekne turu ya da villa için ne istersin?',
+  en: 'I\'m here! Looking for a restaurant, beach, boat tour, or a villa in Kalkan?',
+  de: 'Ich bin da! Suchen Sie ein Restaurant, einen Strand, eine Bootstour oder eine Villa in Kalkan?',
+  ru: 'Я здесь! Что вас интересует в Калкане — ресторан, пляж, морская прогулка или вилла?',
+  fr: 'Je suis là ! Cherchez-vous un restaurant, une plage, une excursion en bateau ou une villa à Kalkan ?',
+};
+function stubReply(userText: string, lang: string): string {
+  if (lang === 'tr') {
+    const t = userText.toLowerCase();
+    if (/(merhaba|selam)/.test(t))
+      return 'Merhaba! Ben Lyra, Kalkan konsiyerjin. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
+    if (/(yemek|restoran|aksam|akşam)/.test(t))
+      return 'Deniz manzarası seversen Zeugma terası akşamüstü çok güzel; daha samimi bir şey istersen The Proper iyi olur. Kaç kişilik bakayım?';
+    if (/(plaj|kumsal)/.test(t))
+      return 'Kalamar sakin ve berrak; hareketli bir gün istersen Kaputaş inanılmaz. Yürüyüş mesafesi mi, arabayla mı olsun?';
+  }
+  return STUB_GENERIC[lang] ?? STUB_GENERIC.tr;
 }
 
 // ---------------------------------------------------------------------------
@@ -313,7 +323,7 @@ Deno.serve(async (req: Request) => {
       try { const r = await callAnthropic(systemPrompt, priorMsgs, anthropicKey, anthropicModel); reply = r.text; tokens = r.tokens; provider = 'anthropic'; }
       catch (e) { errs.push((e as Error).message); }
     }
-    if (!reply) { reply = stubReply(userText); provider = 'stub'; }
+    if (!reply) { reply = stubReply(userText, replyLang); provider = 'stub'; }
     if (provider === 'stub' && errs.length) console.warn('[lyra-chat] tüm LLM başarısız:', errs.join(' | '));
 
     // Asistan yanıtını yaz + konuşmayı güncelle
