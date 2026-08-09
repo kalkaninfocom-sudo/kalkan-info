@@ -4,7 +4,7 @@
  * Eski 2-profil WhatsApp modali yerine AI konsiyerj **Lyra**'yı yükler.
  *  - Mevcut #concierge yüzen butonu gizlenir; Lyra'nın kendi altın FAB'ı gelir.
  *  - Tüm [data-concierge-trigger] linkleri Lyra'yı açar.
- *  - İnsan devri (Berkay/Sezin WhatsApp) Lyra içindeki 👤 ile korunur; WhatsApp-niyetli
+ *  - İnsan devri (Berkay WhatsApp) Lyra içindeki 👤 ile korunur; WhatsApp-niyetli
  *    linkler doğrudan insan devrini açar.
  * Widget kaynağı: ai/concierge-widget/lyra-widget.js → js/lyra-widget.js (deploy kopyası).
  */
