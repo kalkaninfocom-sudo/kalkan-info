@@ -30,10 +30,11 @@ const VILLAS = [
 const only = process.argv[2]; // opsiyonel: 'poyraz' gibi
 const villas = only ? VILLAS.filter(v => v.slug.includes(only)) : VILLAS;
 
+// Site konvansiyonu: trailingSlash:false + cleanUrls → URL'ler slash'sız (200; slash → 308 redirect)
 function langUrl(slug, lang) {
   return lang === 'tr'
-    ? `${ORIGIN}/villa/${slug}/`
-    : `${ORIGIN}/villa/${slug}/${lang}/`;
+    ? `${ORIGIN}/villa/${slug}`
+    : `${ORIGIN}/villa/${slug}/${lang}`;
 }
 
 // Head meta'yı puppeteer'da o dilde render edip değerleri döndürür
@@ -130,7 +131,7 @@ function transform(html, slug, lang, meta) {
 (function(){var LANGS=['tr','en','de','ru','fr'];
 window.__STATIC_LANG__=(document.documentElement.getAttribute('lang')||'').toLowerCase();
 var BASE='/villa/${slug}/';
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE:BASE+l+'/';var cur=location.pathname.replace(/index\\.html$/,'');if(cur!==dest)location.href=dest;},true);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE.replace(/\\/$/,''):BASE+l;var cur=location.pathname.replace(/\\/(index\\.html)?$/,'');if(cur!==dest)location.href=dest;},true);
 })();</script>
 `;
   html = html.replace(/<head(\s[^>]*)?>/i, m => m + '\n' + inject);

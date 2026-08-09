@@ -5,8 +5,10 @@
 (function(){var LANGS=['tr','en','de','ru','fr'];
 window.__STATIC_LANG__=(document.documentElement.getAttribute('lang')||'').toLowerCase();
 var BASE='/villa/villa-seascape/';
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE:BASE+l+'/';var cur=location.pathname.replace(/index\.html$/,'');if(cur!==dest)location.href=dest;},true);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE.replace(/\/$/,''):BASE+l;var cur=location.pathname.replace(/\/(index\.html)?$/,'');if(cur!==dest)location.href=dest;},true);
 })();</script>
+
+
 
 
 <meta charset="UTF-8" />
@@ -15,16 +17,16 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 <!-- ============ SEO BASELINE ============ -->
 <title>Villa Seascape Kalkan · Private Infinity Pool, 4 Suites & 400 m to the Sea</title>
 <meta name="description" content="In Kalamar, Kalkan, 400 m to the sea, a 10 m × 4 m × 1.6 m private infinity pool + kids' pool, 4 sea-view suites and a Jacuzzi room. Right next to Villa Ship Ahoy — ideal for large families wanting to rent two villas side by side. Sleeps 8." />
-<link rel="canonical" href="https://kalkaninfo.com/villa/villa-seascape/en/" />
+<link rel="canonical" href="https://kalkaninfo.com/villa/villa-seascape/en" />
 <meta name="theme-color" content="#f7efe2" />
 
 <!-- hreflang alternates -->
-<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villa/villa-seascape/" />
-<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/villa/villa-seascape/en/" />
-<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/villa/villa-seascape/de/" />
-<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/villa/villa-seascape/ru/" />
-<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/villa/villa-seascape/fr/" />
-<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villa/villa-seascape/" />
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villa/villa-seascape" />
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/villa/villa-seascape/en" />
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/villa/villa-seascape/de" />
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/villa/villa-seascape/ru" />
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/villa/villa-seascape/fr" />
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villa/villa-seascape" />
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
@@ -32,7 +34,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 <meta property="og:title" content="Villa Seascape Kalkan · Private Infinity Pool, 4 Suites & 400 m to the Sea" />
 <meta property="og:description" content="In Kalamar, Kalkan, 400 m to the sea, a 10 m × 4 m × 1.6 m private infinity pool + kids' pool, 4 sea-view suites and a Jacuzzi room. Right next to Villa Ship Ahoy — ideal for large families wanting to rent two villas side by side. Sleeps 8." />
 <meta property="og:image" content="https://kalkaninfo.com/assets/img/villa-seascape-gallery/v05.webp" />
-<meta property="og:url" content="https://kalkaninfo.com/villa/villa-seascape/en/" />
+<meta property="og:url" content="https://kalkaninfo.com/villa/villa-seascape/en" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />

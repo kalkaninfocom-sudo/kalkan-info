@@ -5,20 +5,22 @@
 (function(){var LANGS=['tr','en','de','ru','fr'];
 window.__STATIC_LANG__=(document.documentElement.getAttribute('lang')||'').toLowerCase();
 var BASE='/villa/villa-poyraz/';
-document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE:BASE+l+'/';var cur=location.pathname.replace(/index\.html$/,'');if(cur!==dest)location.href=dest;},true);
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-lang]');if(!b)return;var l=b.getAttribute('data-lang');if(LANGS.indexOf(l)<0)return;e.preventDefault();e.stopImmediatePropagation();var dest=(l==='tr')?BASE.replace(/\/$/,''):BASE+l;var cur=location.pathname.replace(/\/(index\.html)?$/,'');if(cur!==dest)location.href=dest;},true);
 })();</script>
+
+
 
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Villa Poyraz · Kalkan Kalamar — Meerblick-Villa mit 4 Schlafzimmern / 8 Gästen und privatem Pool</title>
-<link rel="canonical" href="https://kalkaninfo.com/villa/villa-poyraz/de/" />
-<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villa/villa-poyraz/" />
-<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/villa/villa-poyraz/en/" />
-<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/villa/villa-poyraz/de/" />
-<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/villa/villa-poyraz/ru/" />
-<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/villa/villa-poyraz/fr/" />
-<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villa/villa-poyraz/" />
+<link rel="canonical" href="https://kalkaninfo.com/villa/villa-poyraz/de" />
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villa/villa-poyraz" />
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/villa/villa-poyraz/en" />
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/villa/villa-poyraz/de" />
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/villa/villa-poyraz/ru" />
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/villa/villa-poyraz/fr" />
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villa/villa-poyraz" />
 <link rel="icon" type="image/png" href="/assets/img/villa-logos/favicon-poyraz.png" />
 <link rel="apple-touch-icon" href="/assets/img/villa-logos/favicon-poyraz.png" />
 <meta name="description" content="Villa Poyraz — eine 2017 erbaute Luxus-Mietvilla mit 4 Schlafzimmern und Platz für 8 Gäste in Kalamar, Kalkan, mit privatem Pool mit Meerblick (13 m). 2 Whirlpool-Suiten und eine Aussichtsterrasse zum Sonnenuntergang. Echte Preise und WhatsApp-Buchung." />
@@ -29,7 +31,7 @@ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.c
 <meta property="og:site_name" content="Villa Poyraz · Kalkan Info" />
 <meta property="og:title" content="Villa Poyraz · Kalkan Kalamar — Meerblick-Villa mit 4 Schlafzimmern / 8 Gästen und privatem Pool" />
 <meta property="og:description" content="Villa Poyraz — eine 2017 erbaute Luxus-Mietvilla mit 4 Schlafzimmern und Platz für 8 Gäste in Kalamar, Kalkan, mit privatem Pool mit Meerblick (13 m). 2 Whirlpool-Suiten und eine Aussichtsterrasse zum Sonnenuntergang. Echte Preise und WhatsApp-Buchung." />
-<meta property="og:url" content="https://kalkaninfo.com/villa/villa-poyraz/de/" />
+<meta property="og:url" content="https://kalkaninfo.com/villa/villa-poyraz/de" />
 <meta property="og:image" content="https://kalkaninfo.com/assets/img/villa-poyraz-gallery/p16.webp" />
 
 <!-- Twitter -->
