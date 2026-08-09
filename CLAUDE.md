@@ -31,5 +31,7 @@ Berkay'ın kuralı: basit/angarya LLM işlerini **otomatik** ücretsiz modellere
 - Gazete: `newspaper/generator/build.mjs` (morning + magazine), `sources.mjs` (gerçek veri), `templates/`.
 - Etkinlik: `data/etkinlik-takvimi.json` + `scripts/events-lib.mjs` + `scripts/build-events-page.mjs` + `scripts/discover-events.mjs`.
 - Sosyal: `scripts/ig-news-card.mjs` / `ig-news-post.mjs` (haber→IG), `lib/ig-reply.mjs` + `scripts/ig-reply-poll.mjs` (oto-cevap), `scripts/fb-lead-responder.mjs` (FB öneri).
+- Hook motoru: `scripts/agency/review-mining.mjs` (gerçek Google yorumları → müşterinin kendi diliyle 10 hook; groq/cerebras, çıktı `content/hooks/<slug>.json`; reel/caption girdisi).
+- Huni: `scripts/agency/comment-dm-funnel.mjs` (yorum-kelime → otomatik DM; `private_replies`, kampanyalar `data/dm-funnel.json`, DRY-RUN varsayılan, `--live` ile gönderir).
 - Haber: `scripts/news-aggregator.mjs` (RSS, bölgesel kaynaklı).
 - Rapor: `scripts/daily-status-report.mjs` (günlük Telegram durum).
