@@ -170,6 +170,14 @@
       b.onclick = function () { send(SUGGEST_FULL[label] || label); };
       chips.appendChild(b);
     });
+    // Sabit aksiyon butonları (deterministik — LLM'e bağlı değil)
+    var mapBtn = document.createElement('button'); mapBtn.className = 'lyra-chip'; mapBtn.textContent = '🗺️ Haritada Keşfet';
+    mapBtn.style.borderColor = 'rgba(232,160,32,.55)'; mapBtn.style.background = 'rgba(232,160,32,.10)';
+    mapBtn.onclick = function () { window.open('/harita-3d', '_blank', 'noopener'); };
+    chips.appendChild(mapBtn);
+    var waBtn = document.createElement('button'); waBtn.className = 'lyra-chip'; waBtn.textContent = '💬 WhatsApp';
+    waBtn.onclick = function () { renderHumans(); };
+    chips.appendChild(waBtn);
   }
 
   function offlineReply(text) {
