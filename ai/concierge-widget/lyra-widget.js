@@ -48,6 +48,7 @@
   // ---- Stiller (SVG grain, katmanlı gölge, spring animasyon; yalnız transform/opacity) ----
   var css = ''
     + '#lyra-root{position:fixed;bottom:24px;right:24px;z-index:2147483000;font-family:Inter,system-ui,sans-serif;}'
+    + '@media(max-width:600px){#lyra-root{bottom:84px;right:16px;}}'
     + '#lyra-fab{position:relative;width:64px;height:64px;border-radius:50%;border:0;cursor:pointer;'
     +   'background:radial-gradient(120% 120% at 30% 20%,' + C.gold + ' 0%,' + C.goldDeep + ' 70%);'
     +   'box-shadow:0 2px 6px rgba(214,138,16,.35),0 16px 34px -10px rgba(214,138,16,.6),inset 0 1px 0 rgba(255,255,255,.35);'

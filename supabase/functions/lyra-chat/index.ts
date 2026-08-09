@@ -81,7 +81,30 @@ function detectCategory(t: string): string | null {
   return null;
 }
 
+// Kullanıcı mesajından dil sez (5 dil). Kısa/belirsizse null → LLM son mesaja göre karar verir.
+const LANG_NAMES: Record<string, string> = { tr: 'Türkçe', en: 'English', de: 'Deutsch', ru: 'Русский', fr: 'Français' };
+function detectLang(t: string): string | null {
+  if (/[Ѐ-ӿ]/.test(t)) return 'ru';                                   // Kiril
+  if (/[ğışĞİŞ]/.test(t) || /\b(merhaba|selam|nerede|villa|için|nasıl|var mı|müsait|fiyat|kaç|teşekkür|iyi günler)\b/i.test(t)) return 'tr';
+  if (/\b(bonjour|merci|quelle?|où|disponible|nous|votre|réserv|plage|bonsoir|s'?il vous)\b/i.test(t)) return 'fr';
+  if (/\b(hallo|welche|verfügbar|wir|ich|wo|möchten|guten tag|strand|buchen|preis)\b/i.test(t)) return 'de';
+  if (/\b(hello|hi|which|available|we are|your|please|beach|book|price|villa|thanks|good)\b/i.test(t)) return 'en';
+  return null;
+}
+
 const SITE = 'https://kalkaninfo.com';
+
+// KENDİ VİLLALARIMIZ — misafir villa/konaklama sorunca ÖNCE bunları pazarla (kaynak: data/villa-facts-official.md)
+const OWN_VILLAS = [
+  'Villa Seascape — denize EN YAKIN (400 m), sonsuzluk havuzu + çocuk havuzu, 8 kişi/4 suit, Villa Ship Ahoy ile TAM YAN YANA (ikisi birlikte = kalabalık aile)',
+  'Villa Ship Ahoy — 10×4 m özel havuz + terasta jakuzi, 8 kişi/4 suit, deniz+doğa manzarası, Villa Seascape\'in yanında',
+  'Villa Poyraz — merkeze ve denize 10 dk yürüyüş, 13 m deniz manzaralı havuz, masa tenisi, 2 odada jakuzi, 8 kişi/4 suit',
+];
+const OWN_VILLAS_BLOCK =
+  '🏖️ KENDİ VİLLALARIMIZ (misafir villa/kiralık/konaklama sorunca ÖNCE bu 3\'ünü öner — hepsi Kalkan Kalamar, özel havuzlu, 8 kişilik; başka villa uydurma):\n' +
+  OWN_VILLAS.map((v) => '- ' + v).join('\n') +
+  '\nRezervasyon ve uygun tarih için WhatsApp +90 530 665 07 94 (kesin tarihi teyit ettir).';
+
 async function fetchJson(path: string): Promise<any | null> {
   try { const r = await fetch(SITE + path, { signal: AbortSignal.timeout(6000) }); return r.ok ? await r.json() : null; }
   catch (_) { return null; }
@@ -104,21 +127,23 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
     }
   }
 
-  // ── Villa doluluk (villa + müsaitlik niyeti → data/villa-availability.json) ──
-  if (cat === 'villa' && /m[üu]sait|musait|bo[şs]|uygun|tarih|available|free|ne zaman|hangi villa|dolu/i.test(userText)) {
+  // ── Villa: her zaman KENDİ villalarımızı pazarla + doluluk (villa niyetinde) ──
+  if (cat === 'villa') {
+    parts.push(OWN_VILLAS_BLOCK);
     const av = await fetchJson('/data/villa-availability.json');
     if (av && typeof av === 'object') {
       const lines = Object.entries(av).map(([id, v]: [string, any]) => {
         const ranges = ((v?.ranges as any[]) || []).map((r) => `${r.start}→${r.end}`).join(', ');
         const nm = id.replace(/^villa-/, 'Villa ').replace(/\b\w/g, (c) => c.toUpperCase());
-        return `- ${nm}: dolu ${ranges || 'kayıt yok (uygun görünüyor)'}`;
+        return `- ${nm}: dolu ${ranges || 'kayıt yok (şu an uygun görünüyor)'}`;
       });
       if (lines.length) parts.push('VİLLA DOLULUK DURUMU (gerçek+güncel — kesin rezervasyon için tarih teyidi iste):\n' + lines.join('\n'));
     }
   }
 
-  // ── Mekanlar (ai_businesses) — event dışı kategoriler ──
-  const bizCat = cat && cat !== 'event' ? cat : null;
+  // ── Mekanlar (ai_businesses) — event/villa dışı kategoriler (villa=kendi villalarımız yukarıda) ──
+  const bizCat = cat && cat !== 'event' && cat !== 'villa' ? cat : null;
+  if (cat !== 'villa') {
   let q = supabase.from('ai_businesses').select('name,type,cuisine,area,price,rating,summary').eq('active', true);
   if (bizCat) q = q.eq('type', bizCat);
   q = q.order('featured', { ascending: false }).order('rating', { ascending: false, nullsFirst: false }).limit(bizCat ? 14 : 10);
@@ -132,6 +157,14 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
     const label = bizCat ? `GERÇEK KALKAN ${bizCat.toUpperCase()} SEÇENEKLERİ` : 'GERÇEK KALKAN MEKANLARI';
     parts.push(`${label} (SADECE bunlardan öner, adları AYNEN buradan kullan; uygun yoksa "sana uygun bir yer bulup teyit edeyim" de — İSİM UYDURMA):\n${lines}`);
   }
+  }
+
+  // ── Her zaman: dil + Instagram davranışı (grounding Türkçe olsa da yanıt kullanıcının dilinde) ──
+  parts.push(
+    'DİL: 5 dilde akıcısın — Türkçe, İngilizce (English), Almanca (Deutsch), Rusça (Русский), Fransızca (Français). ' +
+    'Kullanıcı hangi dilde yazdıysa TAM o dilde yanıtla; yukarıdaki bilgiler Türkçe olsa bile mekan/villa adlarını koru ama açıklamayı kullanıcının diline çevir.\n' +
+    'INSTAGRAM: Kalkan\'ın restoranlarına, plajlarına ve aktivitelerine dair görseller ve videolar için Instagram @kalkan.info (https://instagram.com/kalkan.info) sayfamızı öner — uygun bağlamda doğal biçimde "Instagram\'ımız @kalkan.info\'da Kalkan\'a dair videolar/görseller bulabilirsin" de (her mesajda değil).'
+  );
 
   return parts.filter(Boolean).join('\n\n');
 }
@@ -262,7 +295,11 @@ Deno.serve(async (req: Request) => {
       .map(m => ({ role: m.role, content: m.content }));
 
     const grounding = await buildGrounding(supabase, userText);
-    const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}, dil=${lang}. Bugün Kalkan, Türkiye.]`;
+    // Dil: mesajdan sez → yoksa istemci lang → yoksa tr. Yanıt dili kullanıcının SON mesajına göre.
+    const replyLang = detectLang(userText) ?? (LANG_NAMES[lang] ? lang : 'tr');
+    const langName = LANG_NAMES[replyLang] ?? 'Türkçe';
+    const langRule = `\n\n⚠️ DİL KURALI (EN ÖNEMLİ): Kullanıcının son mesajının dili = ${langName}. Yanıtını SADECE ${langName} dilinde yaz — tek kelime bile başka dilden karıştırma. "Varsayılan Türkçe" kuralı kullanıcı başka dilde yazınca GEÇERSİZDİR. Yukarıdaki bilgiler Türkçe olsa da açıklamayı ${langName} diline çevir (özel isimleri koru).`;
+    const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}. Bugün Kalkan, Türkiye.]${langRule}`;
     const llmMessages: Msg[] = [{ role: 'system', content: systemPrompt }, ...priorMsgs];
 
     // LLM zinciri: Groq → Cerebras → NVIDIA → Anthropic → stub. İlk başarılı kazanır.
