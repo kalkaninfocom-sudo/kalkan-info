@@ -73,26 +73,66 @@ const CATEGORY_KEYWORDS: Array<[string, RegExp]> = [
   ['villa',      /villa|kiral[ıi]k|konaklama|kalacak|nerede kal|\bstay\b|accommodation/i],
   ['hotel',      /otel|hotel|\boda\b|\broom\b|pansiyon/i],
   ['restaurant', /restoran|restaurant|yemek|ak[şs]am yeme|[öo][ğg]le|kahvalt|dinner|lunch|\beat\b|meze|bal[ıi]k|kebap|pizza|burger|caf[eé]|kahve|breakfast|lokanta|ocakba[şs]/i],
+  ['event',      /etkinlik|konser|festival|program|bu hafta|bu ak[şs]am|bu gece|ne var|nereye git|gece hayat|parti|canl[ıi] m[üu]zik|sinema gece|dj\b|event|what'?s on/i],
 ];
 function detectCategory(t: string): string | null {
   for (const [cat, re] of CATEGORY_KEYWORDS) if (re.test(t)) return cat;
   return null;
 }
 
+const SITE = 'https://kalkaninfo.com';
+async function fetchJson(path: string): Promise<any | null> {
+  try { const r = await fetch(SITE + path, { signal: AbortSignal.timeout(6000) }); return r.ok ? await r.json() : null; }
+  catch (_) { return null; }
+}
+
 async function buildGrounding(supabase: ReturnType<typeof createClient>, userText: string): Promise<string> {
   const cat = detectCategory(userText);
+  const parts: string[] = [];
+
+  // ── Canlı etkinlik takvimi (data/etkinlik-takvimi.json → oneoff) ──
+  if (cat === 'event') {
+    const ev = await fetchJson('/data/etkinlik-takvimi.json');
+    const today = new Date().toISOString().slice(0, 10);
+    const soon = ((ev?.oneoff as any[]) || [])
+      .filter((e) => e && e.date && e.date >= today)
+      .sort((a, b) => String(a.date).localeCompare(String(b.date))).slice(0, 10);
+    if (soon.length) {
+      parts.push('YAKLAŞAN KALKAN ETKİNLİKLERİ (gerçek takvim — SADECE bunlar, tarih/mekan UYDURMA):\n' +
+        soon.map((e) => `- ${e.date}${e.time ? ' ' + e.time : ''} · ${e.title} · ${e.venueName || e.area || ''}${e.type ? ' (' + e.type + ')' : ''}`).join('\n'));
+    }
+  }
+
+  // ── Villa doluluk (villa + müsaitlik niyeti → data/villa-availability.json) ──
+  if (cat === 'villa' && /m[üu]sait|musait|bo[şs]|uygun|tarih|available|free|ne zaman|hangi villa|dolu/i.test(userText)) {
+    const av = await fetchJson('/data/villa-availability.json');
+    if (av && typeof av === 'object') {
+      const lines = Object.entries(av).map(([id, v]: [string, any]) => {
+        const ranges = ((v?.ranges as any[]) || []).map((r) => `${r.start}→${r.end}`).join(', ');
+        const nm = id.replace(/^villa-/, 'Villa ').replace(/\b\w/g, (c) => c.toUpperCase());
+        return `- ${nm}: dolu ${ranges || 'kayıt yok (uygun görünüyor)'}`;
+      });
+      if (lines.length) parts.push('VİLLA DOLULUK DURUMU (gerçek+güncel — kesin rezervasyon için tarih teyidi iste):\n' + lines.join('\n'));
+    }
+  }
+
+  // ── Mekanlar (ai_businesses) — event dışı kategoriler ──
+  const bizCat = cat && cat !== 'event' ? cat : null;
   let q = supabase.from('ai_businesses').select('name,type,cuisine,area,price,rating,summary').eq('active', true);
-  if (cat) q = q.eq('type', cat);
-  q = q.order('featured', { ascending: false }).order('rating', { ascending: false, nullsFirst: false }).limit(cat ? 14 : 10);
+  if (bizCat) q = q.eq('type', bizCat);
+  q = q.order('featured', { ascending: false }).order('rating', { ascending: false, nullsFirst: false }).limit(bizCat ? 14 : 10);
   const { data, error } = await q;
-  if (error) { console.warn('[lyra-chat] grounding sorgu hatası:', error.message); return ''; }
-  if (!data || !data.length) return '';
-  const lines = (data as Array<Record<string, unknown>>).map((v) => {
-    const bits = [v.cuisine || v.type, v.area, v.price, v.rating ? `⭐${v.rating}` : null].filter(Boolean).join(' · ');
-    return `- ${v.name}${bits ? ' — ' + bits : ''}`;
-  }).join('\n');
-  const label = cat ? `GERÇEK KALKAN ${cat.toUpperCase()} SEÇENEKLERİ` : 'GERÇEK KALKAN MEKANLARI';
-  return `${label} (SADECE bunlardan öner, adları AYNEN buradan kullan; uygun yoksa "sana uygun bir yer bulup teyit edeyim" de — İSİM UYDURMA):\n${lines}`;
+  if (error) console.warn('[lyra-chat] grounding sorgu hatası:', error.message);
+  else if (data && data.length) {
+    const lines = (data as Array<Record<string, unknown>>).map((v) => {
+      const bits = [v.cuisine || v.type, v.area, v.price, v.rating ? `⭐${v.rating}` : null].filter(Boolean).join(' · ');
+      return `- ${v.name}${bits ? ' — ' + bits : ''}`;
+    }).join('\n');
+    const label = bizCat ? `GERÇEK KALKAN ${bizCat.toUpperCase()} SEÇENEKLERİ` : 'GERÇEK KALKAN MEKANLARI';
+    parts.push(`${label} (SADECE bunlardan öner, adları AYNEN buradan kullan; uygun yoksa "sana uygun bir yer bulup teyit edeyim" de — İSİM UYDURMA):\n${lines}`);
+  }
+
+  return parts.filter(Boolean).join('\n\n');
 }
 
 // ---------------------------------------------------------------------------
