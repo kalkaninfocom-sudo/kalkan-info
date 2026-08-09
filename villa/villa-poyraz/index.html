@@ -1683,6 +1683,134 @@ header.scrolled .langsw button.active{color:#fff}
     }
   };
 
+  /* --- i18n fragment supplement: split headings (<em>/<br>), link-split paragraphs (<a>), image alt text --- */
+  (function(EX){ for(var l in EX){ I18N[l]=I18N[l]||{}; for(var k in EX[l]) I18N[l][k]=EX[l][k]; } })({
+    en:{
+      "Kalamar koyunda,":"In Kalamar Bay,","sadeliğin lüksü.":"the luxury of simplicity.",
+      "Poyraz'ın üç":"Poyraz’s three","imza anı.":"signature moments.",
+      "Her detay":"Every detail","düşünüldü.":"considered.",
+      "Havuzdan Akdeniz'e":"From the pool to the Mediterranean —","uzanan bir gün.":"a day that unfolds.",
+      "Kırk bir kare,":"Forty-one frames,","tek bir villa.":"one villa.",
+      "Dört suite,":"Four suites,","sekiz misafir.":"eight guests.",
+      "Kalamar'da,":"In Kalamar,","her şeye yakın.":"close to everything.",
+      "Şeffaf, sezonluk":"Transparent, seasonal","fiyatlandırma.":"pricing.",
+      "Villa Poyraz'ı sizin için":"Let us reserve Villa Poyraz","ayıralım.":"for you.",
+      "Deniz Manzarası":"Sea View","10 dk":"10 min",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"The nearest ancient cities, bays and tables to your location —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":"’s genuine, local-savvy guide compiled these.",
+      "Bölge rehberi":"Regional guide by","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· distances are approximate straight-line values from the villa’s location.",
+      "Villa Poyraz — Alacakaranlıkta havuz":"Villa Poyraz — Pool at twilight",
+      "Villa Poyraz — Villa & teras":"Villa Poyraz — Villa & terrace",
+      "Villa Poyraz — Villa dış cephe":"Villa Poyraz — Villa exterior",
+      "Villa Poyraz — Havuz & deniz manzarası":"Villa Poyraz — Pool & sea view",
+      "Villa Poyraz — Ferah salon":"Villa Poyraz — Spacious lounge",
+      "Villa Poyraz — Jakuzili ana suite":"Villa Poyraz — Master suite with jacuzzi",
+      "Villa Poyraz — Gün batımı sofrası":"Villa Poyraz — Sunset dining",
+      "Villa Poyraz — Amerikan mutfak":"Villa Poyraz — Open-plan kitchen",
+      "Villa Poyraz — Manzara terası":"Villa Poyraz — Viewing terrace",
+      "Villa Poyraz — Havuz başı":"Villa Poyraz — Poolside",
+      "Villa Poyraz — King-size jakuzi suite":"Villa Poyraz — King-size jacuzzi suite",
+      "Villa Poyraz — Balkon manzarası":"Villa Poyraz — Balcony view",
+      "Villa Poyraz — Teras & havuz":"Villa Poyraz — Terrace & pool",
+      "Villa Poyraz — LCD TV'li oda":"Villa Poyraz — Room with LCD TV",
+      "Villa Poyraz — iç mekân":"Villa Poyraz — Interior",
+      "Villa Poyraz — Kalamar havadan":"Villa Poyraz — Kalamar from above"
+    },
+    de:{
+      "Kalamar koyunda,":"In der Kalamar-Bucht:","sadeliğin lüksü.":"der Luxus der Schlichtheit.",
+      "Poyraz'ın üç":"Drei","imza anı.":"Signature-Momente.",
+      "Her detay":"An jedes Detail","düşünüldü.":"gedacht.",
+      "Havuzdan Akdeniz'e":"Vom Pool bis zum Mittelmeer —","uzanan bir gün.":"ein Tag, der sich entfaltet.",
+      "Kırk bir kare,":"Einundvierzig Aufnahmen,","tek bir villa.":"eine Villa.",
+      "Dört suite,":"Vier Suiten,","sekiz misafir.":"acht Gäste.",
+      "Kalamar'da,":"In Kalamar,","her şeye yakın.":"nah an allem.",
+      "Şeffaf, sezonluk":"Transparente, saisonale","fiyatlandırma.":"Preise.",
+      "Villa Poyraz'ı sizin için":"Reservieren wir die Villa Poyraz","ayıralım.":"für Sie.",
+      "Deniz Manzarası":"Meerblick","10 dk":"10 Min.",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Die nächstgelegenen antiken Städte, Buchten und Restaurants zu Ihrem Standort —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":"s echter, ortskundiger Guide hat sie zusammengestellt.",
+      "Bölge rehberi":"Regionalführer von","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· die Entfernungen sind ungefähre Luftlinienwerte ab dem Standort der Villa.",
+      "Villa Poyraz — Alacakaranlıkta havuz":"Villa Poyraz — Pool in der Dämmerung",
+      "Villa Poyraz — Villa & teras":"Villa Poyraz — Villa & Terrasse",
+      "Villa Poyraz — Villa dış cephe":"Villa Poyraz — Villa-Außenansicht",
+      "Villa Poyraz — Havuz & deniz manzarası":"Villa Poyraz — Pool & Meerblick",
+      "Villa Poyraz — Ferah salon":"Villa Poyraz — Geräumiger Wohnbereich",
+      "Villa Poyraz — Jakuzili ana suite":"Villa Poyraz — Hauptsuite mit Whirlpool",
+      "Villa Poyraz — Gün batımı sofrası":"Villa Poyraz — Dinner bei Sonnenuntergang",
+      "Villa Poyraz — Amerikan mutfak":"Villa Poyraz — Offene Küche",
+      "Villa Poyraz — Manzara terası":"Villa Poyraz — Aussichtsterrasse",
+      "Villa Poyraz — Havuz başı":"Villa Poyraz — Am Pool",
+      "Villa Poyraz — King-size jakuzi suite":"Villa Poyraz — Kingsize-Whirlpool-Suite",
+      "Villa Poyraz — Balkon manzarası":"Villa Poyraz — Balkonausblick",
+      "Villa Poyraz — Teras & havuz":"Villa Poyraz — Terrasse & Pool",
+      "Villa Poyraz — LCD TV'li oda":"Villa Poyraz — Zimmer mit LCD-TV",
+      "Villa Poyraz — iç mekân":"Villa Poyraz — Innenraum",
+      "Villa Poyraz — Kalamar havadan":"Villa Poyraz — Kalamar von oben"
+    },
+    ru:{
+      "Kalamar koyunda,":"В бухте Каламар —","sadeliğin lüksü.":"роскошь простоты.",
+      "Poyraz'ın üç":"Три знаковых","imza anı.":"момента.",
+      "Her detay":"Продумана каждая","düşünüldü.":"деталь.",
+      "Havuzdan Akdeniz'e":"От бассейна до Средиземного моря —","uzanan bir gün.":"целый день.",
+      "Kırk bir kare,":"Сорок один кадр,","tek bir villa.":"одна вилла.",
+      "Dört suite,":"Четыре сьюта,","sekiz misafir.":"восемь гостей.",
+      "Kalamar'da,":"В Каламаре,","her şeye yakın.":"рядом со всем.",
+      "Şeffaf, sezonluk":"Прозрачные, сезонные","fiyatlandırma.":"цены.",
+      "Villa Poyraz'ı sizin için":"Давайте забронируем Villa Poyraz","ayıralım.":"для вас.",
+      "Deniz Manzarası":"Вид на море","10 dk":"10 мин",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Ближайшие к вам античные города, бухты и рестораны —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":" и его настоящий местный гид собрали их для вас.",
+      "Bölge rehberi":"Региональный гид от","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· расстояния указаны приблизительно по прямой от местоположения виллы.",
+      "Villa Poyraz — Alacakaranlıkta havuz":"Villa Poyraz — Бассейн в сумерках",
+      "Villa Poyraz — Villa & teras":"Villa Poyraz — Вилла и терраса",
+      "Villa Poyraz — Villa dış cephe":"Villa Poyraz — Фасад виллы",
+      "Villa Poyraz — Havuz & deniz manzarası":"Villa Poyraz — Бассейн и вид на море",
+      "Villa Poyraz — Ferah salon":"Villa Poyraz — Просторная гостиная",
+      "Villa Poyraz — Jakuzili ana suite":"Villa Poyraz — Главный сьют с джакузи",
+      "Villa Poyraz — Gün batımı sofrası":"Villa Poyraz — Ужин на закате",
+      "Villa Poyraz — Amerikan mutfak":"Villa Poyraz — Кухня-студия",
+      "Villa Poyraz — Manzara terası":"Villa Poyraz — Смотровая терраса",
+      "Villa Poyraz — Havuz başı":"Villa Poyraz — У бассейна",
+      "Villa Poyraz — King-size jakuzi suite":"Villa Poyraz — Сьют с джакузи и кроватью king-size",
+      "Villa Poyraz — Balkon manzarası":"Villa Poyraz — Вид с балкона",
+      "Villa Poyraz — Teras & havuz":"Villa Poyraz — Терраса и бассейн",
+      "Villa Poyraz — LCD TV'li oda":"Villa Poyraz — Комната с ЖК-телевизором",
+      "Villa Poyraz — iç mekân":"Villa Poyraz — Интерьер",
+      "Villa Poyraz — Kalamar havadan":"Villa Poyraz — Каламар с высоты"
+    },
+    fr:{
+      "Kalamar koyunda,":"Dans la baie de Kalamar,","sadeliğin lüksü.":"le luxe de la simplicité.",
+      "Poyraz'ın üç":"Les trois moments","imza anı.":"signature.",
+      "Her detay":"Chaque détail","düşünüldü.":"pensé.",
+      "Havuzdan Akdeniz'e":"De la piscine à la Méditerranée —","uzanan bir gün.":"une journée qui s’étire.",
+      "Kırk bir kare,":"Quarante et un clichés,","tek bir villa.":"une seule villa.",
+      "Dört suite,":"Quatre suites,","sekiz misafir.":"huit personnes.",
+      "Kalamar'da,":"À Kalamar,","her şeye yakın.":"proche de tout.",
+      "Şeffaf, sezonluk":"Une tarification transparente","fiyatlandırma.":"et saisonnière.",
+      "Villa Poyraz'ı sizin için":"Réservons la Villa Poyraz","ayıralım.":"pour vous.",
+      "Deniz Manzarası":"Vue mer","10 dk":"10 min",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Les cités antiques, criques et tables les plus proches de votre emplacement —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":" et son véritable guide local les ont réunies.",
+      "Bölge rehberi":"Guide régional par","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· les distances sont des valeurs approximatives à vol d’oiseau depuis l’emplacement de la villa.",
+      "Villa Poyraz — Alacakaranlıkta havuz":"Villa Poyraz — La piscine au crépuscule",
+      "Villa Poyraz — Villa & teras":"Villa Poyraz — Villa & terrasse",
+      "Villa Poyraz — Villa dış cephe":"Villa Poyraz — Façade de la villa",
+      "Villa Poyraz — Havuz & deniz manzarası":"Villa Poyraz — Piscine & vue mer",
+      "Villa Poyraz — Ferah salon":"Villa Poyraz — Salon spacieux",
+      "Villa Poyraz — Jakuzili ana suite":"Villa Poyraz — Suite principale avec jacuzzi",
+      "Villa Poyraz — Gün batımı sofrası":"Villa Poyraz — Dîner au coucher du soleil",
+      "Villa Poyraz — Amerikan mutfak":"Villa Poyraz — Cuisine ouverte",
+      "Villa Poyraz — Manzara terası":"Villa Poyraz — Terrasse panoramique",
+      "Villa Poyraz — Havuz başı":"Villa Poyraz — Au bord de la piscine",
+      "Villa Poyraz — King-size jakuzi suite":"Villa Poyraz — Suite jacuzzi king-size",
+      "Villa Poyraz — Balkon manzarası":"Villa Poyraz — Vue depuis le balcon",
+      "Villa Poyraz — Teras & havuz":"Villa Poyraz — Terrasse & piscine",
+      "Villa Poyraz — LCD TV'li oda":"Villa Poyraz — Chambre avec téléviseur LCD",
+      "Villa Poyraz — iç mekân":"Villa Poyraz — Intérieur",
+      "Villa Poyraz — Kalamar havadan":"Villa Poyraz — Kalamar vue du ciel"
+    }
+  });
+
   /* Meta (title/description) per language */
   var META={
     tr:{title:document.title,desc:"Villa Poyraz — Kalkan Kalamar'da 2017 yapımı, 4 yatak odalı, 8 kişilik, deniz manzaralı özel havuzlu (13 m) lüks kiralık villa. 2 jakuzili suite, gün batımına bakan seyir terası. Gerçek fiyatlar ve WhatsApp rezervasyon."},
@@ -1773,7 +1901,8 @@ header.scrolled .langsw button.active{color:#fff}
       if(!rec.node||!rec.node.parentNode)continue;
       if(!d){ rec.node.nodeValue=rec.raw; continue; }
       var t=d[rec.tr];
-      rec.node.nodeValue=(t!=null)?t:rec.raw;
+      if(t!=null){ var lead=(rec.raw.match(/^\s*/)||[''])[0]; var trail=(rec.raw.match(/\s*$/)||[''])[0]; rec.node.nodeValue=lead+t+trail; }
+      else { rec.node.nodeValue=rec.raw; }
     }
     for(i=0;i<ATTR_STORE.length;i++){
       rec=ATTR_STORE[i];

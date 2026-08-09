@@ -1924,6 +1924,38 @@
     }
   };
 
+  /* --- i18n fragment supplement: split notes (<strong>/<span>), link-split paragraphs (<a>) --- */
+  (function(EX){ for(var l in EX){ I18N[l]=I18N[l]||{}; for(var k in EX[l]) I18N[l][k]=EX[l][k]; } })({
+    en:{
+      "Villa Seascape'in tam yanında":"Right next to Villa Seascape","— yan yana iki villa kiralamak isteyen geniş aileler için ideal.":"— ideal for large families who wish to rent two villas side by side.",
+      "İlkbahar ve Mayıs fiyatları için lütfen concierge'e danışın. Ödemeler":"For spring and May rates, please consult the concierge. Payments","olarak da kabul edilir. Güncel müsaitlik ve kişiye özel teklif için bize yazın.":"are also accepted. Write to us for current availability and a tailored quote.",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"The nearest ancient cities, coves and tables to your location —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":"’s genuine, area-savvy guide compiled these.",
+      "Bölge rehberi":"Regional guide by","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· distances are approximate straight-line values from the villa’s location."
+    },
+    de:{
+      "Villa Seascape'in tam yanında":"Direkt neben der Villa Seascape","— yan yana iki villa kiralamak isteyen geniş aileler için ideal.":"— ideal für große Familien, die zwei Villen nebeneinander mieten möchten.",
+      "İlkbahar ve Mayıs fiyatları için lütfen concierge'e danışın. Ödemeler":"Für Preise im Frühjahr und im Mai wenden Sie sich bitte an den Concierge. Zahlungen werden auch in","olarak da kabul edilir. Güncel müsaitlik ve kişiye özel teklif için bize yazın.":"akzeptiert. Schreiben Sie uns für aktuelle Verfügbarkeit und ein persönliches Angebot.",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Die nächstgelegenen antiken Städte, Buchten und Restaurants zu Ihrem Standort —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":"s echter, ortskundiger Guide hat sie zusammengestellt.",
+      "Bölge rehberi":"Regionalführer von","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· die Entfernungen sind ungefähre Luftlinienwerte ab dem Standort der Villa."
+    },
+    ru:{
+      "Villa Seascape'in tam yanında":"Прямо рядом с виллой Seascape","— yan yana iki villa kiralamak isteyen geniş aileler için ideal.":"— идеально для больших семей, желающих арендовать две виллы бок о бок.",
+      "İlkbahar ve Mayıs fiyatları için lütfen concierge'e danışın. Ödemeler":"Цены на весну и май уточняйте у консьержа. Оплата","olarak da kabul edilir. Güncel müsaitlik ve kişiye özel teklif için bize yazın.":"также принимается. Напишите нам, чтобы узнать актуальную доступность и получить индивидуальное предложение.",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Ближайшие к вам античные города, бухты и рестораны —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":" и его настоящий местный гид собрали их для вас.",
+      "Bölge rehberi":"Региональный гид от","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· расстояния указаны приблизительно по прямой от местоположения виллы."
+    },
+    fr:{
+      "Villa Seascape'in tam yanında":"Juste à côté de la Villa Seascape","— yan yana iki villa kiralamak isteyen geniş aileler için ideal.":"— idéal pour les grandes familles qui souhaitent louer deux villas côte à côte.",
+      "İlkbahar ve Mayıs fiyatları için lütfen concierge'e danışın. Ödemeler":"Pour les tarifs du printemps et de mai, veuillez consulter la conciergerie. Les paiements sont","olarak da kabul edilir. Güncel müsaitlik ve kişiye özel teklif için bize yazın.":"également acceptés. Écrivez-nous pour connaître les disponibilités actuelles et obtenir une offre personnalisée.",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —":"Les cités antiques, criques et tables les plus proches de votre emplacement —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.":" et son véritable guide local les ont réunies.",
+      "Bölge rehberi":"Guide régional par","tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.":"· les distances sont des valeurs approximatives à vol d’oiseau depuis l’emplacement de la villa."
+    }
+  });
+
   /* ---- capture original TR from DOM once ---- */
   var captured = false;
   var textNodes = []; // {node, tr}

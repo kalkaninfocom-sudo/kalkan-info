@@ -1192,7 +1192,11 @@
 
   var SLUG = 'villa-seascape';
   var LOCALES = { tr: 'tr-TR', en: 'en-US', de: 'de-DE', ru: 'ru-RU', fr: 'fr-FR' };
-  var DOW = ['P', 'S', 'Ç', 'P', 'C', 'C', 'P']; // Mon-Sun initials (TR, neutral-ish)
+  var DOWS = {
+    tr: ['P', 'S', 'Ç', 'P', 'C', 'C', 'P'], en: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+    de: ['M', 'D', 'M', 'D', 'F', 'S', 'S'], ru: ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'],
+    fr: ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+  }; // Mon-Sun initials, per language (relabeled on lang switch)
   var monthDates = []; // Date objects for the rendered months (relabeled on lang switch)
   var updatedRaw = null; // raw updatedAt string (re-formatted on lang switch)
 
@@ -1213,7 +1217,7 @@
     var grid = document.createElement('div');
     grid.className = 'cal-grid';
 
-    DOW.forEach(function (d) {
+    (DOWS[window.__LANG__] || DOWS.tr).forEach(function (d) {
       var h = document.createElement('div');
       h.className = 'cal-dow';
       h.textContent = d;
@@ -1258,6 +1262,9 @@
       var s = monthDates[i].toLocaleDateString(loc, { month: 'long', year: 'numeric' });
       t.textContent = s.charAt(0).toUpperCase() + s.slice(1);
     });
+    var dows = DOWS[lang] || DOWS.tr;
+    var dowEls = document.querySelectorAll('#availCalMonths .cal-dow');
+    Array.prototype.forEach.call(dowEls, function (el, i) { el.textContent = dows[i % 7]; });
     var upd = document.getElementById('availCalUpdated');
     if (upd && updatedRaw) {
       var du = new Date(updatedRaw);
@@ -2363,6 +2370,77 @@
     "Русский": "Russe",
     "Français": "Français"
   };
+
+  /* --- i18n fragment supplement: hero/story paragraphs split by inline <span>, link-split widget, alt --- */
+  (function (EX) { for (var l in EX) { I18N[l] = I18N[l] || {}; for (var k in EX[l]) I18N[l][k] = EX[l][k]; } })({
+    en: {
+      "10 m × 4 m × 1,6 m özel sonsuzluk havuzu, ayrı çocuk havuzu, jakuzili suit ve 4 deniz manzaralı oda — denize yalnızca": "A 10 m × 4 m × 1.6 m private infinity pool, a separate kids’ pool, a Jacuzzi suite and 4 sea-view rooms — just",
+      ". Kalamar'ın en sakin köşesinde,": " from the sea. In Kalamar’s most peaceful corner,",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için ideal.": "— ideal for large families who wish to rent two villas side by side.",
+      "Villa Seascape, koleksiyonumuzun": "Villa Seascape, the villa in our collection",
+      "denize en yakın": "closest to the sea",
+      "villası — plaja yürüme mesafesinde, yalnızca 400 metre. Özel": "— within walking distance of the beach, just 400 metres away. A private",
+      ", çocuklar için ayrı çocuk havuzu, 4 suite odanın tamamında deniz manzarası ve balkon, BR4'te özel jakuzi.": ", a separate kids’ pool, sea views and a balcony in all 4 suites, and a private Jacuzzi in BR4 —",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için Kalamar'ın en güçlü seçeneği.": "— the strongest choice in Kalamar for large families wishing to rent two villas side by side.",
+      "Ufukla birleşen suyun kenarında, sabah kahvenizden gece yıldızlarına kadar yalnızca sizin. Küçükler için hemen yanında ayrı bir": "At the edge of water that meets the horizon, yours alone from your morning coffee to the night’s stars. For the little ones, right beside it, a separate",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —": "The nearest ancient cities, coves and tables to your location —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.": "’s genuine, local-savvy guide compiled these.",
+      "Bölge rehberi": "Regional guide by",
+      "tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.": "· distances are approximate straight-line values from the villa’s location.",
+      "Villa Seascape balkonundan Kalkan deniz manzarası ve gün batımı": "Kalkan sea view and sunset from the Villa Seascape balcony"
+    },
+    de: {
+      "10 m × 4 m × 1,6 m özel sonsuzluk havuzu, ayrı çocuk havuzu, jakuzili suit ve 4 deniz manzaralı oda — denize yalnızca": "Ein privater 10 m × 4 m × 1,6 m Infinity-Pool, ein separater Kinderpool, eine Whirlpool-Suite und 4 Zimmer mit Meerblick — nur",
+      ". Kalamar'ın en sakin köşesinde,": " vom Meer entfernt. In Kalamars ruhigster Ecke,",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için ideal.": "— ideal für große Familien, die zwei Villen nebeneinander mieten möchten.",
+      "Villa Seascape, koleksiyonumuzun": "Villa Seascape, die",
+      "denize en yakın": "dem Meer am nächsten",
+      "villası — plaja yürüme mesafesinde, yalnızca 400 metre. Özel": "gelegene Villa unserer Kollektion — in Gehweite zum Strand, nur 400 Meter entfernt. Ein privater",
+      ", çocuklar için ayrı çocuk havuzu, 4 suite odanın tamamında deniz manzarası ve balkon, BR4'te özel jakuzi.": ", ein separater Kinderpool, Meerblick und ein Balkon in allen 4 Suiten und ein privater Whirlpool in BR4.",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için Kalamar'ın en güçlü seçeneği.": "— die stärkste Wahl in Kalamar für große Familien, die zwei Villen nebeneinander mieten möchten.",
+      "Ufukla birleşen suyun kenarında, sabah kahvenizden gece yıldızlarına kadar yalnızca sizin. Küçükler için hemen yanında ayrı bir": "Am Rand des Wassers, das mit dem Horizont verschmilzt — vom Morgenkaffee bis zu den Sternen der Nacht ganz allein Ihres. Für die Kleinen gleich daneben ein separater",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —": "Die nächstgelegenen antiken Städte, Buchten und Restaurants zu Ihrem Standort —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.": "s echter, ortskundiger Guide hat sie zusammengestellt.",
+      "Bölge rehberi": "Regionalführer von",
+      "tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.": "· die Entfernungen sind ungefähre Luftlinienwerte ab dem Standort der Villa.",
+      "Villa Seascape balkonundan Kalkan deniz manzarası ve gün batımı": "Kalkan-Meerblick und Sonnenuntergang vom Balkon der Villa Seascape",
+      "400 metre": "400 Meter"
+    },
+    ru: {
+      "10 m × 4 m × 1,6 m özel sonsuzluk havuzu, ayrı çocuk havuzu, jakuzili suit ve 4 deniz manzaralı oda — denize yalnızca": "Частный бассейн-инфинити 10 м × 4 м × 1,6 м, отдельный детский бассейн, сьют с джакузи и 4 комнаты с видом на море — всего в",
+      ". Kalamar'ın en sakin köşesinde,": " от моря. В самом спокойном уголке Каламара,",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için ideal.": "— идеально для больших семей, желающих арендовать две виллы бок о бок.",
+      "Villa Seascape, koleksiyonumuzun": "Villa Seascape — самая",
+      "denize en yakın": "близкая к морю",
+      "villası — plaja yürüme mesafesinde, yalnızca 400 metre. Özel": "вилла нашей коллекции — в пешей доступности от пляжа, всего 400 метров. Частный",
+      ", çocuklar için ayrı çocuk havuzu, 4 suite odanın tamamında deniz manzarası ve balkon, BR4'te özel jakuzi.": ", отдельный детский бассейн, вид на море и балкон во всех 4 сьютах и частное джакузи в BR4.",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için Kalamar'ın en güçlü seçeneği.": "— сильнейший выбор в Каламаре для больших семей, желающих арендовать две виллы бок о бок.",
+      "Ufukla birleşen suyun kenarında, sabah kahvenizden gece yıldızlarına kadar yalnızca sizin. Küçükler için hemen yanında ayrı bir": "У кромки воды, сливающейся с горизонтом, — только ваши, от утреннего кофе до ночных звёзд. Для малышей рядом отдельный",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —": "Ближайшие к вам античные города, бухты и рестораны —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.": " и его настоящий местный гид собрали их для вас.",
+      "Bölge rehberi": "Региональный гид от",
+      "tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.": "· расстояния указаны приблизительно по прямой от местоположения виллы.",
+      "Villa Seascape balkonundan Kalkan deniz manzarası ve gün batımı": "Вид на море Калкана и закат с балкона Villa Seascape",
+      "400 metre": "400 метров"
+    },
+    fr: {
+      "10 m × 4 m × 1,6 m özel sonsuzluk havuzu, ayrı çocuk havuzu, jakuzili suit ve 4 deniz manzaralı oda — denize yalnızca": "Une piscine à débordement privée de 10 m × 4 m × 1,6 m, une pataugeoire séparée, une suite avec jacuzzi et 4 chambres vue mer — à seulement",
+      ". Kalamar'ın en sakin köşesinde,": " de la mer. Dans le coin le plus paisible de Kalamar,",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için ideal.": "— idéal pour les grandes familles qui souhaitent louer deux villas côte à côte.",
+      "Villa Seascape, koleksiyonumuzun": "Villa Seascape, la villa",
+      "denize en yakın": "la plus proche de la mer",
+      "villası — plaja yürüme mesafesinde, yalnızca 400 metre. Özel": "de notre collection — à distance de marche de la plage, à seulement 400 mètres. Une",
+      ", çocuklar için ayrı çocuk havuzu, 4 suite odanın tamamında deniz manzarası ve balkon, BR4'te özel jakuzi.": ", une pataugeoire séparée, vue mer et balcon dans les 4 suites, et un jacuzzi privé dans la BR4.",
+      "— yan yana iki villa kiralamak isteyen geniş aileler için Kalamar'ın en güçlü seçeneği.": "— le meilleur choix à Kalamar pour les grandes familles qui souhaitent louer deux villas côte à côte.",
+      "Ufukla birleşen suyun kenarında, sabah kahvenizden gece yıldızlarına kadar yalnızca sizin. Küçükler için hemen yanında ayrı bir": "Au bord de l’eau qui se confond avec l’horizon, rien qu’à vous, de votre café du matin aux étoiles de la nuit. Pour les petits, juste à côté, une",
+      "Konumunuza göre en yakın antik kentler, koylar ve sofralar —": "Les cités antiques, criques et tables les plus proches de votre emplacement —",
+      "'nun bölgeyi bilen gerçek rehberiyle derlendi.": " et son véritable guide local les ont réunies.",
+      "Bölge rehberi": "Guide régional par",
+      "tarafından sağlanır · mesafeler villa konumundan kuş uçuşu yaklaşık değerlerdir.": "· les distances sont des valeurs approximatives à vol d’oiseau depuis l’emplacement de la villa.",
+      "Villa Seascape balkonundan Kalkan deniz manzarası ve gün batımı": "Vue mer de Kalkan et coucher de soleil depuis le balcon de la Villa Seascape",
+      "400 metre": "400 mètres"
+    }
+  });
 
   /* ============ Runtime ============ */
   var store = [];          // captured [{node,type,attr,tr}] entries
