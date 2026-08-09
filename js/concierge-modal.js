@@ -23,7 +23,7 @@
   // 2) Lyra widget'ını yükle
   if (!document.querySelector('script[data-lyra-widget]')) {
     var s = document.createElement('script');
-    s.src = '/js/lyra-widget.js';
+    s.src = '/js/lyra-widget.js?v=20260809b';
     s.defer = true;
     s.setAttribute('data-lyra-widget', '1');
     document.head.appendChild(s);
