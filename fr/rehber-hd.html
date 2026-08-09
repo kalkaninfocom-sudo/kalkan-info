@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Lyra HD — Gerçekçi Sesli Rehber | Kalkan Info</title>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;background:#061a2c;color:#fff;margin:0;}
+  .stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;
+    background:radial-gradient(ellipse 70% 55% at 50% 30%,rgba(26,94,147,0.5),transparent 65%),linear-gradient(180deg,#08243c,#061a2c);}
+  .frame{position:relative;width:420px;max-width:88vw;aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:#0a2338;
+    box-shadow:0 24px 70px -12px rgba(4,16,28,.85),0 0 0 1px rgba(255,255,255,.07);}
+  .frame video{width:100%;height:100%;object-fit:cover;display:block;background:#0a2338;}
+  .idle{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:14px;}
+  .btn{margin-top:22px;padding:15px 32px;border:0;border-radius:999px;cursor:pointer;font-weight:700;font-size:16px;color:#fff;
+    background:linear-gradient(180deg,#e8a020,#d68a10);box-shadow:0 12px 28px -8px rgba(214,138,16,.6);font-family:'Montserrat',sans-serif;}
+  .btn:disabled{filter:grayscale(.5) opacity(.7);cursor:default;}
+  .pill{margin-top:16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8fc4ff;font-weight:600;}
+  h1{font-family:'Montserrat',sans-serif;font-size:30px;font-weight:800;margin:0 0 6px;letter-spacing:-.02em;}
+  .sub{color:rgba(255,255,255,.65);margin:0 0 24px;font-size:15px;}
+  .badge{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#4ADE80;border:1px solid rgba(74,222,128,.3);
+    background:rgba(74,222,128,.08);padding:5px 12px;border-radius:999px;margin-bottom:14px;}
+</style>
+
+<link rel="canonical" href="https://kalkaninfo.com/fr/rehber-hd">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/rehber-hd">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/rehber-hd">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/rehber-hd">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/rehber-hd">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/rehber-hd">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/rehber-hd"></head>
+<body>
+<div class="stage">
+  <div style="text-align:center;max-width:520px;">
+    <span class="badge">● HD Gerçekçi Avatar</span>
+    <h1>Lyra — Gerçekçi Sesli Rehber</h1>
+    <p class="sub">Foto-gerçekçi yüz, canlı konuşma. Kalkan'ın dijital rehberi.</p>
+  </div>
+  <div class="frame">
+    <video id="v" playsinline="" autoplay=""></video>
+    <div class="idle" id="idle">Lyra yükleniyor…</div>
+  </div>
+  <div class="pill" id="status">Hazırlanıyor</div>
+  <button class="btn" id="startBtn" disabled="">Chargement…</button>
+  <div id="err" style="margin-top:12px;color:#fca5a5;font-size:13px;"></div>
+</div>
+
+<script type="module">
+import { LiveAvatarSession, SessionEvent } from "https://esm.sh/@heygen/liveavatar-web-sdk@0.0.18";
+
+// NOT: localhost demo — LiveAvatar client anahtarı burada. Prod'da token server-side (Supabase edge fn) mint edilir.
+const CONFIG = {
+  laApiKey: "95fe61e1-7d5a-43b3-b512-a51cd9adac36",
+  avatarId: "567e8371-f69f-49ec-9f2d-054083431165", // Ann Doctor Standing (profesyonel kadın)
+  apiUrl: "https://api.liveavatar.com",
+  greet: "Merhaba, ben Lyra. Kalkan Info'nun dijital rehberiyim. Size nasıl yardımcı olabilirim?",
+};
+
+const $ = id => document.getElementById(id);
+let session = null;
+
+async function mintToken(){
+  const r = await fetch(`${CONFIG.apiUrl}/v1/sessions/token`, {
+    method:"POST", headers:{ "X-API-KEY":CONFIG.laApiKey, "Content-Type":"application/json" },
+    body: JSON.stringify({ mode:"LITE", avatar_id:CONFIG.avatarId }),
+  });
+  const j = await r.json();
+  if(!j.data?.session_token) throw new Error(j.message || "token alınamadı");
+  return j.data.session_token;
+}
+
+async function begin(){
+  $("startBtn").disabled = true; $("status").textContent = "Bağlanıyor…"; $("err").textContent = "";
+  try{
+    const token = await mintToken();
+    session = new LiveAvatarSession(token, { voiceChat: false, apiUrl: CONFIG.apiUrl });
+    session.on(SessionEvent.SESSION_STREAM_READY, () => {
+      $("idle").style.display = "none";
+      session.attach($("v"));
+      $("status").textContent = "Lyra hazır";
+      try { session.repeat(CONFIG.greet); } catch(e){}
+    });
+    await session.start();
+  }catch(e){
+    $("err").textContent = "Hata: " + (e?.message || e);
+    $("status").textContent = "Hata"; $("startBtn").disabled = false;
+  }
+}
+
+$("startBtn").addEventListener("click", begin);
+$("startBtn").disabled = false; $("startBtn").textContent = "Lyra'yı Başlat";
+$("status").textContent = "Hazır";
+// otomatik başlat (demo/screenshot için)
+begin();
+</script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="fr";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/rehber-hd.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

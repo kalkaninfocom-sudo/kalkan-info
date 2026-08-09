@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkan'da Modern Villalar — Kalkan Info</title>
+<meta name="description" content="Kalkan Kalamar'da özel havuzlu, deniz manzaralı lüks kiralık villalar. Villa Poyraz, Villa Ship Ahoy ve Villa Seascape — concierge hizmeti dahil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@400;450;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1EBE3;
+  --bg-2:#F6F1EA;
+  --ink:#17130D;
+  --ink-soft:#4A423A;
+  --muted:#8C8272;
+  --line:rgba(23,19,13,.10);
+  --card:#FFFFFF;
+  --gold:#C98A2B;
+  --gold-deep:#A96F1C;
+  --sea:#3E6E63;
+  --radius-lg:30px;
+  --radius-md:20px;
+  --shadow-soft:0 2px 4px rgba(60,44,20,.04), 0 14px 30px -12px rgba(60,44,20,.14);
+  --shadow-lift:0 4px 8px rgba(60,44,20,.06), 0 30px 60px -20px rgba(60,44,20,.28);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.6;
+  overflow-x:hidden;
+  position:relative;
+}
+/* grain / texture overlay */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9999;
+  opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* warm ambient light */
+.ambient{
+  position:absolute;inset:0 0 auto 0;height:900px;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 82% 8%, rgba(201,138,43,.16), transparent 70%),
+    radial-gradient(50% 45% at 12% 0%, rgba(62,110,99,.10), transparent 70%);
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+
+/* ---------- NAV ---------- */
+header{position:sticky;top:0;z-index:50;padding:20px 0 8px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand-mark{
+  width:42px;height:42px;border-radius:13px;background:var(--ink);
+  display:grid;place-items:center;color:var(--bg-2);flex-shrink:0;
+  box-shadow:var(--shadow-soft);
+}
+.brand-mark svg{width:22px;height:22px}
+.brand-name{font-family:'Bricolage Grotesque';font-weight:700;font-size:19px;letter-spacing:-.02em;line-height:1}
+.brand-name small{display:block;font-family:'Inter';font-weight:450;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.pill-nav{
+  display:flex;align-items:center;gap:2px;
+  background:rgba(255,255,255,.55);border:1px solid var(--line);
+  padding:6px;border-radius:999px;backdrop-filter:blur(14px);
+  box-shadow:var(--shadow-soft);
+}
+.pill-nav a{
+  text-decoration:none;color:var(--ink-soft);font-size:14.5px;font-weight:500;
+  padding:10px 20px;border-radius:999px;transition:.35s var(--ease);
+  position:relative;
+}
+.pill-nav a:hover{color:var(--ink)}
+.pill-nav a.active{background:var(--ink);color:var(--bg-2);box-shadow:0 6px 16px -6px rgba(23,19,13,.5)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.toggle{
+  display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);font-weight:500;
+}
+.toggle .sw{width:42px;height:23px;border-radius:999px;background:var(--ink);position:relative;transition:.4s var(--ease);cursor:pointer;border:none}
+.toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:var(--gold);transition:.4s var(--ease)}
+.toggle .sw.on::after{left:22px;background:var(--bg-2)}
+.icon-btn{
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.55);
+  display:grid;place-items:center;cursor:pointer;transition:.35s var(--ease);color:var(--ink);
+}
+.icon-btn:hover{background:var(--ink);color:var(--bg-2);transform:translateY(-2px)}
+
+/* ---------- HERO ---------- */
+.hero{padding:38px 0 0}
+.hero-top{display:grid;grid-template-columns:1.55fr 1fr;gap:40px;align-items:end;margin-bottom:34px}
+.eyebrow{font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold)}
+h1{
+  font-family:'Bricolage Grotesque';font-weight:600;
+  font-size:clamp(44px,6.4vw,92px);line-height:.96;letter-spacing:-.035em;color:var(--ink);
+}
+h1 .it{font-style:normal;color:var(--gold-deep)}
+.hero-side{padding-bottom:8px}
+.hero-side p{font-size:15.5px;color:var(--ink-soft);max-width:340px;margin-bottom:22px}
+.btn-pill{
+  display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg-2);
+  text-decoration:none;font-weight:500;font-size:15px;padding:15px 15px 15px 26px;border-radius:999px;
+  transition:.4s var(--ease);box-shadow:var(--shadow-soft);
+}
+.btn-pill .arw{width:34px;height:34px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:var(--ink);transition:.4s var(--ease)}
+.btn-pill:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.btn-pill:hover .arw{transform:rotate(-45deg)}
+.heroblock{position:relative}
+.scroll-cue{position:absolute;right:-6px;top:60%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;z-index:5}
+.scroll-cue::after{content:"";width:1px;height:46px;background:linear-gradient(var(--gold),transparent)}
+
+/* ---------- HERO IMAGE + PANEL ---------- */
+.stage{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lift);isolation:isolate}
+.stage img{width:100%;height:min(66vh,640px);object-fit:cover;display:block;transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+.stage img.abs{position:absolute;inset:0;height:100%;opacity:0}
+.stage:hover img{transform:scale(1.04)}
+.stage::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(20,14,6,.28) 0%,transparent 42%);z-index:1}
+.stage-badge{
+  position:absolute;top:22px;left:22px;z-index:3;display:flex;align-items:center;gap:10px;
+  background:rgba(23,19,13,.42);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);
+  color:#fff;padding:9px 16px 9px 12px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:.02em;
+}
+.stage-badge .dot{width:8px;height:8px;border-radius:50%;background:#7CE0B0;box-shadow:0 0 0 4px rgba(124,224,176,.25)}
+.stage-dots{position:absolute;bottom:26px;left:26px;z-index:3;display:flex;gap:8px}
+.stage-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45)}
+.stage-dots span.on{width:26px;border-radius:999px;background:#fff}
+
+.panel{
+  position:absolute;right:22px;bottom:22px;z-index:4;width:min(430px,68%);
+  background:rgba(255,255,255,.86);backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.7);border-radius:22px;padding:20px 20px 18px;
+  box-shadow:0 20px 50px -18px rgba(20,14,6,.5);
+}
+.panel h3{font-family:'Bricolage Grotesque';font-weight:600;font-size:17px;letter-spacing:-.01em;display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.panel h3 svg{width:18px;height:18px;color:var(--gold-deep)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.field label{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;font-weight:500}
+.field select{
+  width:100%;appearance:none;border:1px solid var(--line);background:#fff;
+  border-radius:11px;padding:10px 30px 10px 12px;font-family:inherit;font-size:13px;color:var(--ink);cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238C8272' stroke-width='2'%3E%3Cpath d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center;transition:.3s var(--ease);
+}
+.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,138,43,.15)}
+.psearch{grid-column:1 / -1;margin-top:3px}
+.btn-search{
+  width:100%;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;color:#fff;
+  background:linear-gradient(180deg,var(--gold) 0%,var(--gold-deep) 100%);
+  padding:13px;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:9px;
+  box-shadow:0 8px 18px -6px rgba(169,111,28,.6);transition:.35s var(--ease);
+}
+.btn-search:hover{transform:translateY(-2px);box-shadow:0 12px 24px -6px rgba(169,111,28,.7)}
+
+/* ---------- STATS STRIP ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 0}
+.stat{flex:1;min-width:150px;background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:var(--radius-md);padding:18px 20px}
+.stat b{font-family:'Bricolage Grotesque';font-weight:700;font-size:26px;letter-spacing:-.02em;display:block}
+.stat span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- PORTFOLIO ---------- */
+.section{padding:96px 0 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:38px}
+.section-head h2{font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(30px,4vw,46px);letter-spacing:-.03em;line-height:1.02}
+.section-head p{font-size:15px;color:var(--ink-soft);max-width:360px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-soft);transition:.5s var(--ease);display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lift)}
+.card-img{position:relative;overflow:hidden;aspect-ratio:4/3.4}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card:hover .card-img img{transform:scale(1.07)}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,6,.5),transparent 45%)}
+.cat{position:absolute;top:14px;left:14px;z-index:2;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);color:var(--ink);font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:6px 13px;border-radius:999px}
+.card-img .loc{position:absolute;bottom:14px;left:14px;z-index:2;color:#fff;font-size:12.5px;font-weight:500;display:flex;align-items:center;gap:6px}
+.card-body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.card-body h3{font-family:'Bricolage Grotesque';font-weight:600;font-size:23px;letter-spacing:-.02em;margin-bottom:6px}
+.card-meta{display:flex;gap:16px;color:var(--ink-soft);font-size:13px;margin-bottom:14px}
+.card-meta span{display:flex;align-items:center;gap:6px}
+.card-meta svg{width:15px;height:15px;color:var(--gold-deep)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.tag{font-size:11.5px;color:var(--ink-soft);background:var(--bg-2);border:1px solid var(--line);padding:5px 11px;border-radius:999px}
+.card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line)}
+.card-foot .price{font-size:12.5px;color:var(--muted)}
+.card-foot .price b{font-family:'Bricolage Grotesque';font-weight:700;font-size:16px;color:var(--ink);display:block;letter-spacing:-.01em}
+.card-cta{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:13.5px;
+  color:var(--ink);background:transparent;border:1px solid var(--ink);padding:11px 18px;border-radius:999px;transition:.35s var(--ease);
+}
+.card-cta:hover{background:var(--ink);color:var(--bg-2);gap:11px}
+
+/* ---------- CTA BANNER ---------- */
+.banner{margin-top:96px;position:relative;border-radius:var(--radius-lg);overflow:hidden;padding:64px 56px;color:#fff;box-shadow:var(--shadow-lift)}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,11,5,.82),rgba(15,11,5,.35));z-index:1}
+.banner-in{position:relative;z-index:2;max-width:560px}
+.banner h2{font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;line-height:1.03;margin-bottom:16px}
+.banner p{font-size:15.5px;color:rgba(255,255,255,.82);margin-bottom:28px}
+.banner .btn-pill{background:#fff;color:var(--ink)}
+.banner .btn-pill .arw{background:var(--gold)}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:96px;padding:56px 0 40px;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px}
+.foot p{font-size:13.5px;color:var(--muted);max-width:280px;margin-top:14px}
+.foot-links{display:flex;gap:48px;flex-wrap:wrap}
+.foot-links h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;font-weight:500}
+.foot-links a{display:block;text-decoration:none;color:var(--ink-soft);font-size:14px;margin-bottom:9px;transition:.3s var(--ease)}
+.foot-links a:hover{color:var(--gold-deep)}
+.foot-bottom{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:.9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .pill-nav,.toggle{display:none}
+  .hero-top{grid-template-columns:1fr;gap:22px;align-items:start}
+  .cards{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .scroll-cue{display:none}
+  .panel{position:static;width:100%;margin-top:14px;right:auto;bottom:auto}
+  .stage{border-radius:var(--radius-md)}
+  .stage img{height:52vh}
+  .wrap{padding:0 20px}
+  .banner{padding:44px 28px}
+  .section-head{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+<link rel="canonical" href="https://kalkaninfo.com/ru/villalar-yeni">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villalar-yeni">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/villalar-yeni">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/villalar-yeni">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/villalar-yeni">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/villalar-yeni">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villalar-yeni"></head>
+<body>
+<div class="ambient"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/ru/">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 20L12 5l8 15M9 20l3-6 3 6" stroke="currentColor" stroke-width="2" stroke-linjoin="round" stroke-linecap="round"></path></svg>
+      </span>
+      <span class="brand-name">Kalkan Villas<small>Kalamar Collection</small></span>
+    </a>
+    <nav class="pill-nav">
+      <a href="#" class="active">Главная</a>
+      <a href="#portfoy">Виллы</a>
+      <a href="#konum">Расположение</a>
+      <a href="#hakkinda">Об</a>
+      <a href="#iletisim">Контакты</a>
+    </nav>
+    <div class="nav-right">
+      <div class="toggle"><span>Aydınlık</span><button class="sw" id="sw" aria-label="tema"></button></div>
+      <button class="icon-btn" aria-label="ara">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap hero">
+  <div class="heroblock">
+  <div class="hero-top">
+    <div>
+      <div class="eyebrow">Kalkan · Kalamar · Kiralık Villa</div>
+      <h1>Doğanın içinde<br><span class="it">modern villalar.</span></h1>
+    </div>
+    <div class="hero-side">
+      <p>Kalkan'ın gözde Kalamar mevkiinde, özel havuzlu ve deniz manzaralı seçkin villalar. Concierge hizmeti, haftalık temizlik ve 7/24 destek dahil.</p>
+      <a class="btn-pill" href="#portfoy">Villaları Keşfet <span class="arw"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Kaydır</div>
+
+  <section class="stage" id="stage">
+    <div class="stage-badge"><span class="dot"></span> <span id="badgeLabel">Villa Poyraz · Öne Çıkan</span></div>
+    <img id="stageImg" src="/assets/img/villa-poyraz.webp" alt="Villa Poyraz - Kalkan Kalamar lüks kiralık villa">
+    <img id="stageImg2" class="abs" alt="" aria-hidden="true">
+    <div class="stage-dots">
+      <span class="on"></span><span></span><span></span>
+    </div>
+
+    <form class="panel" onsubmit="return applyPrefs(event)">
+      <h3>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg>
+        Tercihlerini belirle
+      </h3>
+      <div class="pgrid">
+        <div class="field">
+          <label>Villa Tipi</label>
+          <select id="f-tip"><option>Все</option><option>Premium</option><option>Люкс</option><option>Aile dostu</option></select>
+        </div>
+        <div class="field">
+          <label>Вместимость</label>
+          <select><option>4+ kişi</option><option selected="">8 kişi</option><option>10+ kişi</option></select>
+        </div>
+        <div class="field">
+          <label>Расположение</label>
+          <select><option selected="">Kalamar</option><option>Kalkan Merkez</option><option>Kışla</option></select>
+        </div>
+        <div class="field">
+          <label>Havuz</label>
+          <select><option>Все</option><option>Özel ısıtmalı</option><option>Sonsuzluk havuzu</option></select>
+        </div>
+        <div class="psearch">
+          <button class="btn-search" type="submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4-4"></path></svg>
+            Villa Ara
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+  </div><!-- /heroblock -->
+
+  <div class="stats">
+    <div class="stat"><b>3</b><span>Seçkin özel villa</span></div>
+    <div class="stat"><b>400m</b><span>Denize en yakın mesafe</span></div>
+    <div class="stat"><b>8</b><span>Kişiye kadar kapasite</span></div>
+    <div class="stat"><b>7/24</b><span>Concierge desteği</span></div>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfoy">
+    <div class="section-head reveal">
+      <h2>Kalamar Portföyü.</h2>
+      <p>Her biri özenle seçilmiş, özel havuzlu ve tam donanımlı üç lüks villa.</p>
+    </div>
+    <div class="cards" id="cardGrid">
+
+      <!-- Villa Poyraz -->
+      <article class="card reveal" data-tip="Premium">
+        <div class="card-img">
+          <span class="cat">Premium</span>
+          <img src="/assets/img/villa-poyraz.webp" alt="Вилла Пойраз">
+          <span class="loc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg> Kalamar, Kalkan</span>
+        </div>
+        <div class="card-body">
+          <h3>Вилла Пойраз</h3>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"></path></svg> 8 kişi</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M3 9v10a1 1 0 001 1h16a1 1 0 001-1V9M6 9V6a2 2 0 012-2h8a2 2 0 012 2v3"></path></svg> 4 yatak</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4 4 8 10 8s10-4 10-8M6 12V6a2 2 0 114 0"></path></svg> Isıtmalı havuz</span>
+          </div>
+          <div class="tags">
+            <span class="tag">Jakuzili suite</span><span class="tag">Бильярдный стол</span><span class="tag">Наблюдательная терраса</span><span class="tag">Deniz manzarası</span>
+          </div>
+          <div class="card-foot">
+            <div class="price"><span>Premium · Kalamar</span><b>С видом на море</b></div>
+            <a class="card-cta" href="/ru/villa/villa-poyraz/">Detay Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Villa Ship Ahoy -->
+      <article class="card reveal" data-tip="Lüks">
+        <div class="card-img">
+          <span class="cat">Люкс</span>
+          <img src="/assets/img/villa-ship-ahoy.webp" alt="Villa Ship Ahoy">
+          <span class="loc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg> Kalamar, Kalkan</span>
+        </div>
+        <div class="card-body">
+          <h3>Villa Ship Ahoy</h3>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"></path></svg> 8 kişi</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M3 9v10a1 1 0 001 1h16a1 1 0 001-1V9M6 9V6a2 2 0 012-2h8a2 2 0 012 2v3"></path></svg> 4 yatak</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4 4 8 10 8s10-4 10-8M6 12V6a2 2 0 114 0"></path></svg> Özel havuz</span>
+          </div>
+          <div class="tags">
+            <span class="tag">Salıncaklı bahçe</span><span class="tag">Üst kat jakuzi</span><span class="tag">Şömine</span><span class="tag">Denize 1 km</span>
+          </div>
+          <div class="card-foot">
+            <div class="price"><span>Lüks · Kalamar</span><b>Denize 1 km</b></div>
+            <a class="card-cta" href="/ru/villa/villa-ship-ahoy/">Detay Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Villa Seascape -->
+      <article class="card reveal" data-tip="Lüks">
+        <div class="card-img">
+          <span class="cat">Люкс</span>
+          <img src="/assets/img/villa-seascape.webp" alt="Villa Seascape">
+          <span class="loc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg> Kalamar, Kalkan</span>
+        </div>
+        <div class="card-body">
+          <h3>Villa Seascape</h3>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"></path></svg> 8 kişi</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18M3 9v10a1 1 0 001 1h16a1 1 0 001-1V9M6 9V6a2 2 0 012-2h8a2 2 0 012 2v3"></path></svg> 4 yatak</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4 4 8 10 8s10-4 10-8M6 12V6a2 2 0 114 0"></path></svg> Sonsuzluk havuzu</span>
+          </div>
+          <div class="tags">
+            <span class="tag">Sonsuzluk havuzu</span><span class="tag">Çocuk havuzu</span><span class="tag">Denize 400 m</span><span class="tag">Akşam jakuzi</span>
+          </div>
+          <div class="card-foot">
+            <div class="price"><span>Lüks · Kalamar</span><b>Denize 400 m</b></div>
+            <a class="card-cta" href="/ru/villa/villa-seascape/">Detay Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="banner reveal" id="iletisim">
+    <img src="/assets/img/villa-ship-ahoy-2.webp" alt="Kalkan villa">
+    <div class="banner-in">
+      <h2>Hayalinizdeki Kalkan tatili<br>bir mesaj uzağınızda.</h2>
+      <p>Concierge ekibimiz size en uygun villayı bulur, tarihleri ayarlar ve transferden özel şefe kadar her detayı planlar.</p>
+      <a class="btn-pill" href="https://wa.me/905306650794?text=Merhaba%2C%20Kalkan%20villalar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">Написать в WhatsApp <span class="arw"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+    </div>
+  </section>
+</main>
+
+<footer id="hakkinda">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="/ru/">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20L12 5l8 15M9 20l3-6 3 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <span class="brand-name">Kalkan Villas<small>Kalamar Collection</small></span>
+        </a>
+        <p>Kalkan Kalamar'da özel havuzlu, deniz manzaralı lüks kiralık villalar. Kalkan Info güvencesiyle.</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>Виллы</h4>
+          <a href="#portfoy">Вилла Пойраз</a>
+          <a href="#portfoy">Villa Ship Ahoy</a>
+          <a href="#portfoy">Villa Seascape</a>
+        </div>
+        <div>
+          <h4>Kurumsal</h4>
+          <a href="/ru/hakkimizda.html">О нас</a>
+          <a href="/ru/hizmetler.html">Услуги</a>
+          <a href="#iletisim">Контакты</a>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <a href="https://wa.me/905306650794" target="_blank" rel="noopener">+90 530 665 07 94</a>
+          <a href="https://kalkaninfo.com">kalkaninfo.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Kalkan Info · Kalamar Collection</span>
+      <span>Deniz manzarası · Özel havuz · Concierge</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// theme toggle (decorative)
+document.getElementById('sw').addEventListener('click',e=>e.currentTarget.classList.toggle('on'));
+
+// hero crossfade gallery (two-layer, never blanks)
+const heroImgs=['/assets/img/villa-poyraz.webp','/assets/img/villa-ship-ahoy.webp','/assets/img/villa-seascape.webp'];
+const heroNames=['Villa Poyraz · Öne Çıkan','Villa Ship Ahoy · Lüks','Villa Seascape · Lüks'];
+const stageImg=document.getElementById('stageImg');
+const stageImg2=document.getElementById('stageImg2');
+const badgeLabel=document.getElementById('badgeLabel');
+let hi=0, flip=false;
+heroImgs.forEach(s=>{const p=new Image();p.src=s;}); // preload
+setInterval(()=>{
+  hi=(hi+1)%heroImgs.length;
+  const incoming=flip?stageImg:stageImg2;
+  const outgoing=flip?stageImg2:stageImg;
+  incoming.src=heroImgs[hi];
+  incoming.style.opacity='1'; outgoing.style.opacity='0';
+  flip=!flip;
+  badgeLabel.textContent=heroNames[hi];
+  document.querySelectorAll('.stage-dots span').forEach((d,i)=>d.classList.toggle('on',i===hi));
+},4600);
+
+// preferences filter
+function applyPrefs(e){
+  e.preventDefault();
+  const tip=document.getElementById('f-tip').value;
+  document.querySelectorAll('#cardGrid .card').forEach(c=>{
+    const show=(tip==='Tümü'||c.dataset.tip===tip);
+    c.style.display=show?'flex':'none';
+  });
+  document.getElementById('portfoy').scrollIntoView({behavior:'smooth'});
+  return false;
+}
+
+// scroll reveal (with safety fallback so nothing stays hidden if IO never fires)
+const revealEls=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.1});
+revealEls.forEach(el=>io.observe(el));
+// reveal anything already in view immediately, and force-reveal all after a short delay
+requestAnimationFrame(()=>revealEls.forEach(el=>{if(el.getBoundingClientRect().top<innerHeight*0.95)el.classList.add('in')}));
+setTimeout(()=>revealEls.forEach(el=>el.classList.add('in')),1400);
+</script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="ru";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/villalar-yeni.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html><html lang="ru" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<title>İlan Ver — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .ob-label{display:block;font-size:0.8125rem;font-weight:600;color:#0d3a5f;margin-bottom:0.375rem;font-family:'Montserrat',sans-serif;letter-spacing:-0.01em;}
+  .ob-input,.ob-textarea,.ob-select{width:100%;border:1.5px solid #9cc0dd;border-radius:0.5rem;padding:0.625rem 0.875rem;font-size:0.9375rem;color:#0a2e4c;background:#fff;outline:none;transition:border-color .18s, box-shadow .18s;font-family:'Inter',sans-serif;}
+  .ob-input:focus,.ob-textarea:focus,.ob-select:focus{border-color:#1a5e93;box-shadow:0 0 0 3px rgba(26,94,147,0.12);}
+  .ob-textarea{min-height:120px;resize:vertical;}
+  .ob-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230d3a5f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.75rem center;padding-right:2.25rem;}
+  .ob-help{font-size:0.7rem;color:#5d97c4;margin-top:0.25rem;font-style:italic;}
+  .ob-err{color:#c0392b;font-size:0.75rem;margin-top:0.25rem;font-weight:600;}
+
+  /* Step progress */
+  .step-dot{width:30px;height:30px;border-radius:9999px;background:#cfdfee;color:#5d97c4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.875rem;transition:background .25s, color .25s, transform .25s;}
+  .step-dot.active{background:#e89812;color:#fff;transform:scale(1.08);box-shadow:0 0 0 4px rgba(232,152,18,0.18);}
+  .step-dot.done{background:#1a5e93;color:#fff;}
+  .step-line{flex:1;height:2px;background:#cfdfee;}
+  .step-line.done{background:#1a5e93;}
+  .checkbox-label{display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;font-size:0.875rem;color:#134c79;line-height:1.5;}
+  .checkbox-label input[type="checkbox"]{width:1.0625rem;height:1.0625rem;margin-top:0.1875rem;flex-shrink:0;accent-color:#1a5e93;cursor:pointer;}
+
+  /* Lang chip */
+  .lang-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1.5px solid #9cc0dd;border-radius:9999px;font-weight:600;font-size:0.8125rem;color:#0d3a5f;background:#fff;cursor:pointer;transition:all .18s;user-select:none;}
+  .lang-chip:hover{border-color:#1a5e93;background:#eaf2f9;}
+  .lang-chip.active{background:#0a2e4c;border-color:#0a2e4c;color:#fff;}
+
+  /* Type card */
+  .type-card{padding:14px 16px;border:2px solid #cfdfee;border-radius:0.75rem;background:#fff;cursor:pointer;transition:all .2s;text-align:center;}
+  .type-card:hover{border-color:#1a5e93;background:#eaf2f9;}
+  .type-card.active{border-color:#e89812;background:linear-gradient(135deg,#fff 0%,#fef6e6 100%);box-shadow:0 0 0 3px rgba(232,152,18,0.15);}
+  .type-card.active .type-icon{color:#e89812;}
+</style>
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Kalkan'da çalışacak ekibini bul. İlan ver, 24-48 saatte yayında, ücretsiz.">
+<link rel="canonical" href="https://kalkaninfo.com/ru/ilan-ver">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/ilan-ver">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/ilan-ver">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/ilan-ver">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/ilan-ver">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/ilan-ver">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/ilan-ver">
+
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+<meta property="og:title" content="İlan Ver — Kalkan Info">
+<meta property="og:description" content="Kalkan'da çalışacak ekibini bul. İlan ver, 24-48 saatte yayında, ücretsiz.">
+<meta property="og:url" content="https://kalkaninfo.com/ru/ilan-ver">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="İlan Ver — Kalkan Info">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
+<script src="/js/analytics.js" defer=""></script>
+<script src="/js/utm-tracker.js" defer=""></script>
+<script src="/js/engagement-tracker.js" defer=""></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer=""></script>
+<script src="/js/i18n.js?v=20260519a" defer=""></script>
+    <script src="/js/cookie-banner.js" defer=""></script>
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- ============== NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="/ru/ilanlar.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8 -ml-3 transition">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+      <span class="font-display font-semibold tracking-wide text-sm hidden sm:inline" data-en="Back to Listings" data-de="Zurück zur Übersicht" data-ru="Вернуться к списку" data-fr="Retour aux annonces">Вернуться к списку</span>
+    </a>
+    <a href="/ru/index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <div class="w-9 h-9 rounded-full bg-sea-600 border-2 border-white/20 overflow-hidden grid place-items-center" id="nav-avatar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white/60"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HEADER ============== -->
+<header style="background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 60%,#134c79 100%);" class="relative overflow-hidden">
+  <div class="absolute inset-0 opacity-15" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#e89812 0%,transparent 70%);"></div>
+  <div class="relative max-w-4xl mx-auto px-4 py-10 md:py-14 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold mb-4">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Employer Panel" data-de="Arbeitgeber-Panel" data-ru="Панель работодателя" data-fr="Espace Employeur">Панель работодателя</span>
+    </div>
+    <h1 class="font-display text-3xl md:text-4xl font-extrabold leading-tight" data-en="Post a Job" data-de="Stelle ausschreiben" data-ru="Опубликовать вакансию" data-fr="Publier une offre">Опубликовать вакансию</h1>
+    <p class="mt-2 text-white/70 text-sm md:text-base max-w-xl leading-relaxed" data-en="Looking for a team for your restaurant, villa, boat or service? You're in the right place. Live within 24–48 hours after admin approval." data-de="Suchen Sie ein Team für Ihr Restaurant, Ihre Villa, Ihr Boot oder Ihren Service? Sie sind hier richtig. Live innerhalb von 24–48 Stunden nach Admin-Genehmigung." data-ru="Ищете команду для вашего ресторана, виллы, лодки или услуги? Вы в нужном месте. Публикация в течение 24–48 часов после одобрения администратором." data-fr="Vous cherchez une équipe pour votre restaurant, villa, bateau ou service ? Vous êtes au bon endroit. En ligne sous 24–48 heures après approbation de l'administrateur.">Ищете команду для вашего ресторана, виллы, лодки или услуги? Вы в нужном месте. Публикация в течение 24–48 часов после одобрения администратором.</p>
+  </div>
+</header>
+
+<!-- ============== STEP PROGRESS ============== -->
+<div class="bg-white border-b border-sea-100 sticky top-[57px] z-30 shadow-sm">
+  <div class="max-w-4xl mx-auto px-4 py-4">
+    <div class="flex items-center gap-2">
+      <div class="step-dot active" data-step="1">1</div>
+      <div class="step-line" data-line="1"></div>
+      <div class="step-dot" data-step="2">2</div>
+      <div class="step-line" data-line="2"></div>
+      <div class="step-dot" data-step="3">3</div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 mt-2 text-[11px] uppercase tracking-wider font-display font-semibold text-sea-500">
+      <div class="text-left" data-en="Position" data-de="Position" data-ru="Должность" data-fr="Poste">Должность</div>
+      <div class="text-center" data-en="Details &amp; Requirements" data-de="Details &amp; Anforderungen" data-ru="Детали и требования" data-fr="Détails et exigences">Детали и требования</div>
+      <div class="text-right" data-en="Contact &amp; Preview" data-de="Kontakt &amp; Vorschau" data-ru="Контакт и предпросмотр" data-fr="Contact et aperçu">Контакт и предпросмотр</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== MAIN ============== -->
+<main class="max-w-4xl mx-auto px-4 py-8 md:py-10">
+
+  <!-- Auth uyarı -->
+  <div id="auth-warning" class="hidden bg-sun-400/10 border border-sun-400/40 rounded-xl p-4 mb-6">
+    <div class="flex items-start gap-3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e89812" stroke-width="2" class="flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      <div>
+        <p class="font-display font-bold text-sea-800 text-sm" data-en="You must be logged in to post a job" data-de="Sie müssen angemeldet sein, um eine Stelle auszuschreiben" data-ru="Вы должны быть авторизованы для публикации вакансии" data-fr="Vous devez être connecté pour publier une offre">Вы должны быть авторизованы для публикации вакансии</p>
+        <p class="text-sea-600 text-xs mt-1" data-en="A profile is required to manage listings, track applications and make edits." data-de="Ein Profil ist erforderlich, um Angebote zu verwalten, Bewerbungen zu verfolgen und Änderungen vorzunehmen." data-ru="Профиль необходим для управления объявлениями, отслеживания откликов и редактирования." data-fr="Un profil est nécessaire pour gérer les annonces, suivre les candidatures et apporter des modifications.">Профиль необходим для управления объявлениями, отслеживания откликов и редактирования.</p>
+        <a href="/ru/login.html?next=ilan-ver.html" class="inline-block mt-2 bg-sea-800 text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-sea-700" data-en="LOG IN" data-de="ANMELDEN" data-ru="ВОЙТИ" data-fr="SE CONNECTER">ВОЙТИ</a>
+      </div>
+    </div>
+  </div>
+
+  <form id="job-form" class="bg-white rounded-2xl shadow-deep border border-sea-100 p-6 md:p-8">
+
+    <!-- ============ STEP 1: POSITION ============ -->
+    <fieldset id="step-1" class="step-fieldset space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Position Details" data-de="Positionsdetails" data-ru="Детали должности" data-fr="Détails du poste">Детали должности</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="The title and general information for your listing." data-de="Der Titel und allgemeine Informationen zu Ihrem Angebot." data-ru="Название и общая информация вашего объявления." data-fr="Le titre et les informations générales de votre annonce.">Название и общая информация вашего объявления.</p>
+
+      <div>
+        <label class="ob-label" data-en="Who is posting? *" data-de="Wer inseriert? *" data-ru="Кто размещает? *" data-fr="Qui publie ? *">Кто размещает? *</label>
+        <div class="grid grid-cols-2 gap-2.5 max-w-md">
+          <label class="type-card poster-card active">
+            <input type="radio" name="posterType" value="isletme" class="hidden poster-radio" checked="">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><path d="M3 21h18M6 21V7l6-4 6 4v14"></path><path d="M9 9h.01M9 12h.01M9 15h.01M15 9h.01M15 12h.01M15 15h.01"></path></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Business" data-de="Unternehmen" data-ru="Компания" data-fr="Entreprise">Компания</div>
+          </label>
+          <label class="type-card poster-card">
+            <input type="radio" name="posterType" value="kisi" class="hidden poster-radio">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Individual" data-de="Privatperson" data-ru="Частное лицо" data-fr="Particulier">Частное лицо</div>
+          </label>
+        </div>
+        <div class="ob-help" data-en="Business (restaurant, villa, agency…) or an individual hiring privately." data-de="Unternehmen (Restaurant, Villa, Agentur…) oder eine Privatperson." data-ru="Компания (ресторан, вилла, агентство…) или частное лицо." data-fr="Entreprise (restaurant, villa, agence…) ou un particulier.">Компания (ресторан, вилла, агентство…) или частное лицо.</div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="title" data-en="Position Title *" data-de="Positionstitel *" data-ru="Название должности *" data-fr="Titre du poste *">Название должности *</label>
+        <input id="title" name="title" required="" maxlength="100" class="ob-input" placeholder="например: Официант ресторана — Сезонная работа" data-en-placeholder="e.g. Restaurant Waiter — Seasonal" data-de-placeholder="z. B. Restaurant-Kellner — Saisonal" data-ru-placeholder="например: Официант ресторана — Сезонная работа" data-fr-placeholder="p. ex. Serveur de restaurant — Saisonnier">
+        <div class="ob-help" data-en="Keep it clear and searchable. Position + type (seasonal, full-time, etc.)." data-de="Halten Sie es klar und suchbar. Position + Typ (saisonal, Vollzeit, usw.)." data-ru="Делайте ясно и поддающимся поиску. Должность + тип (сезонная, полная занятость и т. д.)." data-fr="Restez clair et recherchable. Poste + type (saisonnier, temps plein, etc.).">Делайте ясно и поддающимся поиску. Должность + тип (сезонная, полная занятость и т. д.).</div>
+      </div>
+
+      <div>
+        <label class="ob-label" data-en="Category *" data-de="Kategorie *" data-ru="Категория *" data-fr="Catégorie *">Категория *</label>
+        <select id="category" name="category" required="" class="ob-select">
+          <option value="" data-en="Select..." data-de="Auswählen..." data-ru="Выбрать..." data-fr="Sélectionner...">Выбрать...</option>
+          <option value="restoran">Restoran &amp; Cafe</option>
+          <option value="villa" data-en="Villa &amp; Accommodation" data-de="Villa &amp; Unterkunft" data-ru="Вилла и размещение" data-fr="Villa et hébergement">Вилла и размещение</option>
+          <option value="otel" data-en="Hotel &amp; Guesthouse" data-de="Hotel &amp; Gästehaus" data-ru="Отель и гостевой дом" data-fr="Hôtel et guesthouse">Отель и гостевой дом</option>
+          <option value="tur" data-en="Boat &amp; Tours" data-de="Boot &amp; Touren" data-ru="Лодка и туры" data-fr="Bateau et excursions">Лодка и туры</option>
+          <option value="hizmet" data-en="Services &amp; Maintenance" data-de="Services &amp; Wartung" data-ru="Услуги и обслуживание" data-fr="Services et maintenance">Услуги и обслуживание</option>
+          <option value="ofis" data-en="Office &amp; Management" data-de="Büro &amp; Management" data-ru="Офис и управление" data-fr="Bureau et gestion">Офис и управление</option>
+          <option value="diger" data-en="Other" data-de="Sonstiges" data-ru="Прочее" data-fr="Autre">Прочее</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="ob-label" data-en="Employment Type *" data-de="Beschäftigungstyp *" data-ru="Тип занятости *" data-fr="Type d'emploi *">Тип занятости *</label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+          <label class="type-card">
+            <input type="radio" name="type" value="full" class="hidden type-radio">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Full-time" data-de="Vollzeit" data-ru="Полная занятость" data-fr="Temps plein">Полная занятость</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="part" class="hidden type-radio">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Part-time" data-de="Teilzeit" data-ru="Неполная занятость" data-fr="Temps partiel">Неполная занятость</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="seasonal" class="hidden type-radio">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Seasonal" data-de="Saisonal" data-ru="Сезонная работа" data-fr="Saisonnier">Сезонная работа</div>
+          </label>
+          <label class="type-card">
+            <input type="radio" name="type" value="freelance" class="hidden type-radio">
+            <div class="type-icon mb-1.5">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <div class="font-display font-bold text-xs text-sea-800" data-en="Freelance" data-de="Freiberuflich" data-ru="Фриланс" data-fr="Freelance">Фриланс</div>
+          </label>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="ob-label" for="location" data-en="Location *" data-de="Standort *" data-ru="Местоположение *" data-fr="Localisation *">Местоположение *</label>
+          <input id="location" name="location" required="" maxlength="80" class="ob-input" placeholder="например: Центр Kalkan" data-en-placeholder="e.g. Kalkan Centre" data-de-placeholder="z. B. Kalkan Zentrum" data-ru-placeholder="например: Центр Kalkan" data-fr-placeholder="p. ex. Centre de Kalkan">
+        </div>
+        <div>
+          <label class="ob-label" for="employerName" data-en="Employer / Company Name *" data-de="Arbeitgeber / Unternehmensname *" data-ru="Имя работодателя / компании *" data-fr="Nom de l'employeur / Entreprise *">Имя работодателя / компании *</label>
+          <input id="employerName" name="employerName" required="" maxlength="80" class="ob-input" placeholder="например: Ресторан Aubergine" data-en-placeholder="e.g. Aubergine Restaurant" data-de-placeholder="z. B. Aubergine Restaurant" data-ru-placeholder="например: Ресторан Aubergine" data-fr-placeholder="p. ex. Restaurant Aubergine">
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button type="button" data-next="2" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
+          <span data-en="Continue" data-de="Weiter" data-ru="Продолжить" data-fr="Continuer">Продолжить</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </fieldset>
+
+    <!-- ============ STEP 2: DETAILS ============ -->
+    <fieldset id="step-2" class="step-fieldset hidden space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Details &amp; Requirements" data-de="Details &amp; Anforderungen" data-ru="Детали и требования" data-fr="Détails et exigences">Детали и требования</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="Position description, requirements and salary range." data-de="Stellenbeschreibung, Anforderungen und Gehaltsspanne." data-ru="Описание должности, требования и диапазон зарплаты." data-fr="Description du poste, exigences et gamme salariale.">Описание должности, требования и диапазон зарплаты.</p>
+
+      <div>
+        <label class="ob-label" for="description" data-en="Position Description *" data-de="Stellenbeschreibung *" data-ru="Описание должности *" data-fr="Description du poste *">Описание должности *</label>
+        <textarea id="description" name="description" required="" rows="6" maxlength="2500" class="ob-textarea" placeholder="Описание должности, рабочее время, детали местоположения..." data-en-placeholder="What the role involves, working hours, location details..." data-de-placeholder="Was die Rolle beinhaltet, Arbeitszeiten, Standortdetails..." data-ru-placeholder="Описание должности, рабочее время, детали местоположения..." data-fr-placeholder="Description du poste, horaires de travail, détails de localisation..."></textarea>
+        <div class="ob-help" data-en="Up to 2500 characters. Plain text, paragraphs are formatted automatically." data-de="Bis zu 2500 Zeichen. Nur Text, Absätze werden automatisch formatiert." data-ru="До 2500 символов. Обычный текст, абзацы форматируются автоматически." data-fr="Jusqu'à 2500 caractères. Texte brut, les paragraphes sont formatés automatiquement.">До 2500 символов. Обычный текст, абзацы форматируются автоматически.</div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="requirements" data-en="Requirements" data-de="Anforderungen" data-ru="Требования" data-fr="Exigences">Требования</label>
+        <textarea id="requirements" name="requirements" rows="4" maxlength="1000" class="ob-textarea" placeholder="По одному требованию в строке:
+Минимум 1 год опыта работы в ресторане
+Английский язык
+Смены с понедельника по воскресенье по графику" data-en-placeholder="One requirement per line:
+Min. 1 year restaurant experience
+English communication
+Monday–Sunday rotating shifts" data-de-placeholder="Eine Anforderung pro Zeile:
+Mind. 1 Jahr Restauranterfahrung
+Englische Kommunikation
+Montag–Sonntag rotierende Schichten" data-ru-placeholder="По одному требованию в строке:
+Минимум 1 год опыта работы в ресторане
+Английский язык
+Смены с понедельника по воскресенье по графику" data-fr-placeholder="Une exigence par ligne :
+Min. 1 an d'expérience en restauration
+Communication en anglais
+Équipes rotatives lundi–dimanche"></textarea>
+        <div class="ob-help" data-en="One item per line. Leave blank to show 'No requirements specified'." data-de="Ein Punkt pro Zeile. Leer lassen, um „Keine Anforderungen angegeben&quot; anzuzeigen." data-ru="Один элемент на строку. Оставьте пустым, чтобы отобразить «Требования не указаны»." data-fr="Un élément par ligne. Laissez vide pour afficher « Aucune exigence spécifiée ».">Один элемент на строку. Оставьте пустым, чтобы отобразить «Требования не указаны».</div>
+      </div>
+
+      <div>
+        <label class="ob-label" data-en="Languages Required" data-de="Erforderliche Sprachen" data-ru="Требуемые языки" data-fr="Langues requises">Требуемые языки</label>
+        <div class="flex flex-wrap gap-2" id="lang-chips">
+          <span class="lang-chip" data-lang="en" data-en="English" data-de="Englisch" data-ru="Английский" data-fr="Anglais">Английский</span>
+          <span class="lang-chip" data-lang="de" data-en="German" data-de="Deutsch" data-ru="Немецкий" data-fr="Allemand">Немецкий</span>
+          <span class="lang-chip" data-lang="ru" data-en="Russian" data-de="Russisch" data-ru="Русский" data-fr="Russe">Русский</span>
+          <span class="lang-chip" data-lang="ar" data-en="Arabic" data-de="Arabisch" data-ru="Арабский" data-fr="Arabe">Арабский</span>
+          <span class="lang-chip" data-lang="fr" data-en="French" data-de="Französisch" data-ru="Французский" data-fr="Français">Французский</span>
+        </div>
+        <div class="ob-help" data-en="You can select multiple languages. Turkish is assumed by default." data-de="Sie können mehrere Sprachen auswählen. Türkisch wird standardmäßig angenommen." data-ru="Вы можете выбрать несколько языков. Турецкий язык выбран по умолчанию." data-fr="Vous pouvez sélectionner plusieurs langues. Le turc est supposé par défaut.">Вы можете выбрать несколько языков. Турецкий язык выбран по умолчанию.</div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <div>
+          <label class="ob-label" for="experience" data-en="Experience" data-de="Berufserfahrung" data-ru="Опыт" data-fr="Expérience">Опыт</label>
+          <input id="experience" name="experience" maxlength="40" class="ob-input" placeholder="например: 1 год+, Недавний выпускник" data-en-placeholder="e.g. 1 year+, Recent graduate" data-de-placeholder="z. B. 1 Jahr+, Jüngster Absolvent" data-ru-placeholder="например: 1 год+, Недавний выпускник" data-fr-placeholder="p. ex. 1 an+, Diplômé récent">
+        </div>
+        <div>
+          <label class="ob-label" for="salaryMin" data-en="Salary — Min" data-de="Gehalt — Minimum" data-ru="Зарплата — минимум" data-fr="Salaire — Minimum">Зарплата — минимум</label>
+          <input id="salaryMin" name="salaryMin" type="number" min="0" class="ob-input" placeholder="25000">
+        </div>
+        <div>
+          <label class="ob-label" for="salaryMax" data-en="Salary — Max" data-de="Gehalt — Maximum" data-ru="Зарплата — максимум" data-fr="Salaire — Maximum">Зарплата — максимум</label>
+          <input id="salaryMax" name="salaryMax" type="number" min="0" class="ob-input" placeholder="35000">
+        </div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="currency" data-en="Currency" data-de="Währung" data-ru="Валюта" data-fr="Devise">Валюта</label>
+        <select id="currency" name="currency" class="ob-select max-w-[200px]">
+          <option value="TRY" data-en="₺ Turkish Lira" data-de="₺ Türkische Lira" data-ru="₺ Турецкая лира" data-fr="₺ Livre turque">₺ Турецкая лира</option>
+          <option value="USD">$ USD</option>
+          <option value="EUR">€ EUR</option>
+        </select>
+        <div class="ob-help" data-en="Specify gross monthly. Leave blank to show 'To be discussed'." data-de="Geben Sie Brutto monatlich an. Leer lassen, um „Wird vereinbart&quot; anzuzeigen." data-ru="Укажите валовой ежемесячный доход. Оставьте пустым, чтобы отобразить «Обсуждается»." data-fr="Spécifiez le brut mensuel. Laissez vide pour afficher « À discuter ».">Укажите валовой ежемесячный доход. Оставьте пустым, чтобы отобразить «Обсуждается».</div>
+      </div>
+
+      <div class="flex justify-between gap-3">
+        <button type="button" data-prev="1" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition" data-en="Back" data-de="Zurück" data-ru="Назад" data-fr="Retour">Назад</button>
+        <button type="button" data-next="3" class="btn-next bg-sea-800 text-white font-display font-bold px-5 py-2.5 rounded-lg hover:bg-sea-700 transition flex items-center gap-2">
+          <span data-en="Continue" data-de="Weiter" data-ru="Продолжить" data-fr="Continuer">Продолжить</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </fieldset>
+
+    <!-- ============ STEP 3: CONTACT & PREVIEW ============ -->
+    <fieldset id="step-3" class="step-fieldset hidden space-y-5">
+      <h2 class="font-display font-extrabold text-xl text-sea-800 mb-1" data-en="Contact &amp; Preview" data-de="Kontakt &amp; Vorschau" data-ru="Контакт и предпросмотр" data-fr="Contact et aperçu">Контакт и предпросмотр</h2>
+      <p class="text-sea-600 text-sm mb-4" data-en="Where should applications be sent? Review your listing in the final step." data-de="Wohin sollten Bewerbungen gesendet werden? Überprüfen Sie Ihr Angebot im letzten Schritt." data-ru="Куда следует отправлять заявки? Просмотрите ваше объявление на последнем этапе." data-fr="Où les candidatures doivent-elles être envoyées ? Vérifiez votre annonce à l'étape finale.">Куда следует отправлять заявки? Просмотрите ваше объявление на последнем этапе.</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label class="ob-label" for="contactEmail" data-en="Contact Email *" data-de="Kontakt-E-Mail *" data-ru="Контактный email *" data-fr="Email de contact *">Контактный email *</label>
+          <input id="contactEmail" name="contactEmail" required="" type="email" class="ob-input" placeholder="info@yourbusiness.com" data-en-placeholder="info@yourbusiness.com" data-de-placeholder="info@yourbusiness.com" data-ru-placeholder="info@yourbusiness.com" data-fr-placeholder="info@votreentreprise.com">
+        </div>
+        <div>
+          <label class="ob-label" for="contactPhone" data-en="Phone (optional)" data-de="Telefon (optional)" data-ru="Телефон (опционально)" data-fr="Téléphone (facultatif)">Телефон (опционально)</label>
+          <input id="contactPhone" name="contactPhone" type="tel" class="ob-input" placeholder="+90 5XX XXX XX XX" pattern="^\+?9?0?[\s\-]?\(?5[0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$" title="Geçerli bir Türk cep numarası girin (örn: 5XX XXX XX XX veya +90 5XX...)" inputmode="tel" autocomplete="tel">
+        </div>
+      </div>
+
+      <div>
+        <label class="ob-label" for="expiresAt" data-en="Application Deadline (optional)" data-de="Bewerbungsfrist (optional)" data-ru="Крайний срок подачи заявок (опционально)" data-fr="Date limite de candidature (facultatif)">Крайний срок подачи заявок (опционально)</label>
+        <input id="expiresAt" name="expiresAt" type="date" class="ob-input max-w-[260px]">
+      </div>
+
+      <!-- Preview -->
+      <div class="bg-sea-50 border border-sea-200 rounded-xl p-5 mt-6">
+        <div class="text-[10px] uppercase tracking-wider font-bold text-sea-500 mb-2" data-en="LISTING PREVIEW" data-de="ANGEBOTS-VORSCHAU" data-ru="ПРЕДПРОСМОТР ОБЪЯВЛЕНИЯ" data-fr="APERÇU DE L'ANNONCE">ПРЕДПРОСМОТР ОБЪЯВЛЕНИЯ</div>
+        <div id="preview"></div>
+      </div>
+
+      <div class="bg-sun-400/10 border border-sun-400/40 rounded-lg p-3 text-xs text-sea-800 leading-relaxed" data-en="Publication process: Your listing is sent for admin review. Listings that do not contain spam, GDPR violations or discriminatory content go live within 24–48 hours. You will be notified by email once approved." data-de="Veröffentlichungsprozess: Ihr Angebot wird zur Admin-Überprüfung eingereicht. Angebote ohne Spam, GDPR-Verstöße oder diskriminierende Inhalte werden innerhalb von 24–48 Stunden live geschaltet. Sie werden per E-Mail benachrichtigt, sobald es genehmigt ist." data-ru="Процесс публикации: ваше объявление отправляется на проверку администратору. Объявления без спама, нарушений GDPR и дискриминационного содержания публикуются в течение 24–48 часов. Вы получите уведомление по электронной почте после одобрения." data-fr="Processus de publication : Votre annonce est envoyée pour examen administratif. Les annonces ne contenant pas de spam, de violations du RGPD ou de contenu discriminatoire sont publiées dans les 24 à 48 heures. Vous serez notifié par email une fois approuvé.">Процесс публикации: ваше объявление отправляется на проверку администратору. Объявления без спама, нарушений GDPR и дискриминационного содержания публикуются в течение 24–48 часов. Вы получите уведомление по электронной почте после одобрения.</div>
+
+      <!-- KVKK onay — zorunlu -->
+      <div class="pt-2 space-y-3">
+        <label class="checkbox-label">
+          <input type="checkbox" name="kvkk" id="kvkk" required="">
+          <span>
+            <a href="/ru/kvkk.html" target="_blank" class="text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2" data-en-html="<a href=&quot;kvkk.html&quot; target=&quot;_blank&quot; class=&quot;text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2&quot;>KVKK Notice</a> read and I consent to processing of my personal data."><a href="/ru/kvkk.html" target="_blank" class="text-sea-500 font-semibold hover:text-sea-700 underline underline-offset-2">KVKK Notice</a> read and I consent to processing of my personal data.</a>'ni
+            <span>okudum ve kişisel verilerimin işlenmesini kabul ediyorum.</span>
+            <span class="text-coral-500 font-bold ml-0.5">*</span>
+          </span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="marketing" id="marketing">
+          <span data-en="I would like to receive job suggestions and announcement emails from Kalkan Info. (Optional)" data-de="Ich möchte Job-Vorschläge und Ankündigungs-E-Mails von Kalkan Info erhalten. (Optional)" data-ru="Я хотел бы получать предложения работы и рассылку новостей от Kalkan Info. (Опционально)" data-fr="Je souhaite recevoir des suggestions d'emploi et des emails d'annonces de Kalkan Info. (Facultatif)">Я хотел бы получать предложения работы и рассылку новостей от Kalkan Info. (Опционально)</span>
+        </label>
+      </div>
+
+      <div id="submit-error" class="hidden text-coral-500 text-sm font-semibold"></div>
+      <div id="submit-success" class="hidden bg-sea-50 border border-sea-200 text-sea-800 rounded-lg p-4 text-sm">
+        <div class="flex items-start gap-3">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <div>
+            <div class="font-display font-bold text-sea-900" data-en="Your listing has been submitted!" data-de="Ihr Angebot wurde eingereicht!" data-ru="Ваше объявление отправлено!" data-fr="Votre annonce a été soumise !">Ваше объявление отправлено!</div>
+            <div class="text-xs mt-1" data-en="Admin review will be completed within 24–48 hours. You will be notified by email once approved." data-de="Die Admin-Überprüfung wird innerhalb von 24–48 Stunden abgeschlossen. Sie werden per E-Mail benachrichtigt, sobald es genehmigt ist." data-ru="Проверка администратором будет завершена в течение 24–48 часов. Вы получите уведомление по электронной почте после одобрения." data-fr="L'examen administratif sera complété dans les 24 à 48 heures. Vous serez notifié par email une fois approuvé.">Проверка администратором будет завершена в течение 24–48 часов. Вы получите уведомление по электронной почте после одобрения.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between gap-3 pt-2">
+        <button type="button" data-prev="2" class="btn-prev bg-white border-2 border-sea-200 text-sea-700 font-display font-bold px-5 py-2.5 rounded-lg hover:border-sea-500 transition" data-en="Back" data-de="Zurück" data-ru="Назад" data-fr="Retour">Назад</button>
+        <button type="submit" class="bg-gradient-to-br from-sun-400 to-sun-500 text-sea-900 font-display font-extrabold px-6 py-3 rounded-xl shadow-deep hover:from-sun-500 hover:to-sun-600 transition flex items-center gap-2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+          <span data-en="SUBMIT LISTING" data-de="ANGEBOT ABSENDEN" data-ru="ОПУБЛИКОВАТЬ ОБЪЯВЛЕНИЕ" data-fr="SOUMETTRE L'ANNONCE">ОПУБЛИКОВАТЬ ОБЪЯВЛЕНИЕ</span>
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="mt-12" style="background:#072136;">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-white/50 text-xs">
+      <div class="font-display font-bold text-white/80 flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN INFO
+      </div>
+      <div class="flex gap-4">
+        <a href="/ru/ilanlar.html" class="hover:text-white transition" data-en="All Listings" data-de="Alle Angebote" data-ru="Все объявления" data-fr="Toutes les annonces">Все объявления</a>
+        <a href="/ru/kvkk.html" class="hover:text-white transition" data-en="GDPR" data-de="GDPR" data-ru="GDPR" data-fr="RGPD">GDPR</a>
+        <a href="/ru/privacy.html" class="hover:text-white transition" data-en="Privacy" data-de="Datenschutz" data-ru="Конфиденциальность" data-fr="Confidentialité">Конфиденциальность</a>
+      </div>
+      <div data-en="© 2026 Kalkan Info" data-de="© 2026 Kalkan Info" data-ru="© 2026 Kalkan Info" data-fr="© 2026 Kalkan Info">© 2026 Kalkan Info</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== SCRIPTS ============== -->
+<script type="module">
+import { createJob, updateJob, getJob, renderJobCard } from './js/jobs.js';
+
+const form = document.getElementById('job-form');
+const steps = [...document.querySelectorAll('.step-fieldset')];
+const dots = [...document.querySelectorAll('.step-dot')];
+const lines = [...document.querySelectorAll('.step-line')];
+const langChips = [...document.querySelectorAll('.lang-chip')];
+const typeCards = [...document.querySelectorAll('.type-card:not(.poster-card)')];
+const posterCards = [...document.querySelectorAll('.poster-card')];
+const authWarning = document.getElementById('auth-warning');
+const submitErr = document.getElementById('submit-error');
+const submitOk = document.getElementById('submit-success');
+
+let _currentStep = 1;
+let _selectedLangs = new Set();
+let _user = null;
+
+// ----- Düzenleme modu: ?edit=<id>
+const _editId = new URLSearchParams(location.search).get('edit');
+let _editJob = null;      // yüklenen mevcut ilan (edit modunda)
+let _prefilled = false;   // form bir kez dolduruldu mu
+
+// ----- Auth check
+try {
+  const { auth, onAuthStateChanged } = await import('./js/auth.js');
+  onAuthStateChanged(auth, u => {
+    _user = u;
+    if (!u) authWarning.classList.remove('hidden');
+    else authWarning.classList.add('hidden');
+    // Kullanıcı hazır olunca edit ilanını yükle (ownership kontrolü için user gerek)
+    if (u && _editId && !_prefilled) loadEditJob();
+  });
+} catch {
+  // Supabase yapılandırılmamış — demo mod
+  authWarning.classList.remove('hidden');
+}
+
+// ----- Edit modu: başlık/CTA'yı düzenlemeye çevir + formu doldur
+function applyEditChrome() {
+  const h1 = document.querySelector('header h1');
+  if (h1) { h1.textContent = 'İlanı Düzenle'; h1.removeAttribute('data-en'); h1.removeAttribute('data-de'); h1.removeAttribute('data-ru'); h1.removeAttribute('data-fr'); }
+  document.title = 'İlanı Düzenle — Kalkan Info';
+  const submitLabel = form.querySelector('button[type=submit] span');
+  if (submitLabel) { submitLabel.textContent = 'DEĞİŞİKLİKLERİ KAYDET'; submitLabel.removeAttribute('data-en'); submitLabel.removeAttribute('data-de'); submitLabel.removeAttribute('data-ru'); submitLabel.removeAttribute('data-fr'); }
+}
+
+async function loadEditJob() {
+  if (_prefilled) return;
+  const job = await getJob(_editId);
+  if (!job) {
+    submitErr.textContent = 'Düzenlenecek ilan bulunamadı.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+  // Sadece owner düzenleyebilir
+  if (_user && job.owner_id && job.owner_id !== _user.id) {
+    authWarning.classList.remove('hidden');
+    authWarning.querySelector('p').textContent = 'Bu ilanı yalnızca sahibi düzenleyebilir.';
+    form.classList.add('hidden');
+    return;
+  }
+  _editJob = job;
+  _prefilled = true;
+  applyEditChrome();
+  prefillForm(job);
+}
+
+function prefillForm(job) {
+  if (form.title) form.title.value = job.title || '';
+  if (form.category) form.category.value = job.category || '';
+  // İlan veren tipi (radio + poster-card görseli)
+  const posterVal = job.poster_type || 'isletme';
+  const posterRadio = form.querySelector(`input[name=posterType][value="${posterVal}"]`);
+  if (posterRadio) {
+    posterRadio.checked = true;
+    posterCards.forEach(c => c.classList.remove('active'));
+    posterRadio.closest('.poster-card')?.classList.add('active');
+  }
+  if (form.location) form.location.value = job.location || '';
+  if (form.employerName) form.employerName.value = job.employer_name || '';
+  // İstihdam tipi (radio + type-card görseli)
+  const typeRadio = form.querySelector(`input[name=type][value="${job.type}"]`);
+  if (typeRadio) {
+    typeRadio.checked = true;
+    typeCards.forEach(c => c.classList.remove('active'));
+    typeRadio.closest('.type-card')?.classList.add('active');
+  }
+  // Açıklama: description_html → düz metin (paragrafları geri aç)
+  if (form.description) {
+    const html = job.description_html || '';
+    const plain = html
+      .replace(/<\/p>\s*<p>/gi, '\n\n')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/?p>/gi, '')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+      .trim();
+    form.description.value = plain;
+  }
+  if (form.requirements) form.requirements.value = (job.requirements || []).join('\n');
+  // Diller (tr varsayılan, chip'leri işaretle)
+  _selectedLangs = new Set((job.languages || []).filter(l => l !== 'tr'));
+  langChips.forEach(c => c.classList.toggle('active', _selectedLangs.has(c.dataset.lang)));
+  if (form.experience) form.experience.value = job.experience || '';
+  if (form.salaryMin) form.salaryMin.value = job.salary_min ?? '';
+  if (form.salaryMax) form.salaryMax.value = job.salary_max ?? '';
+  if (form.currency) form.currency.value = job.currency || 'TRY';
+  if (form.contactEmail) form.contactEmail.value = job.contact_email || '';
+  if (job.expires_at && form.expiresAt) {
+    try { form.expiresAt.value = new Date(job.expires_at).toISOString().slice(0, 10); } catch {}
+  }
+}
+
+// ----- Step navigation
+function goToStep(n) {
+  _currentStep = n;
+  steps.forEach(s => s.classList.toggle('hidden', s.id !== `step-${n}`));
+  dots.forEach((d, i) => {
+    const num = i + 1;
+    d.classList.toggle('active', num === n);
+    d.classList.toggle('done', num < n);
+    if (num < n) d.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+    else d.textContent = num;
+  });
+  lines.forEach((l, i) => l.classList.toggle('done', i + 1 < n));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (n === 3) updatePreview();
+}
+
+document.querySelectorAll('[data-next]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (validateStep(_currentStep)) goToStep(parseInt(btn.dataset.next));
+  });
+});
+document.querySelectorAll('[data-prev]').forEach(btn => {
+  btn.addEventListener('click', () => goToStep(parseInt(btn.dataset.prev)));
+});
+
+function validateStep(n) {
+  if (n === 1) {
+    const title = form.title.value.trim();
+    const cat = form.category.value;
+    const type = form.querySelector('input[name=type]:checked')?.value;
+    const loc = form.location.value.trim();
+    const emp = form.employerName.value.trim();
+    if (!title || !cat || !type || !loc || !emp) {
+      alert('Lütfen tüm zorunlu alanları doldur.');
+      return false;
+    }
+  }
+  if (n === 2) {
+    if (!form.description.value.trim()) {
+      alert('Pozisyon açıklaması zorunlu.');
+      return false;
+    }
+  }
+  return true;
+}
+
+// ----- Lang chips
+langChips.forEach(c => {
+  c.addEventListener('click', () => {
+    const code = c.dataset.lang;
+    if (_selectedLangs.has(code)) {
+      _selectedLangs.delete(code);
+      c.classList.remove('active');
+    } else {
+      _selectedLangs.add(code);
+      c.classList.add('active');
+    }
+  });
+});
+
+// ----- Type cards
+typeCards.forEach(card => {
+  const radio = card.querySelector('.type-radio');
+  card.addEventListener('click', () => {
+    typeCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    radio.checked = true;
+  });
+});
+
+// ----- Poster type cards (kişi / işletme)
+posterCards.forEach(card => {
+  const radio = card.querySelector('.poster-radio');
+  card.addEventListener('click', () => {
+    posterCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    radio.checked = true;
+  });
+});
+
+// ----- Preview
+function buildJobObject() {
+  const fd = new FormData(form);
+  const reqs = (fd.get('requirements') || '').split('\n').map(r => r.trim()).filter(Boolean);
+  const min = parseInt(fd.get('salaryMin')) || null;
+  const max = parseInt(fd.get('salaryMax')) || null;
+  const expires = fd.get('expiresAt') ? new Date(fd.get('expiresAt')) : null;
+  const desc = (fd.get('description') || '').trim();
+  const descHtml = desc.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>').replace(/[<>]/g, c => ({ '<':'&lt;','>':'&gt;'}[c]))}</p>`).join('');
+
+  return {
+    title: fd.get('title')?.trim(),
+    category: fd.get('category'),
+    type: fd.get('type'),
+    posterType: fd.get('posterType') || 'isletme',
+    location: fd.get('location')?.trim(),
+    employerName: fd.get('employerName')?.trim(),
+    descriptionHtml: descHtml,
+    requirements: reqs,
+    languages: [...['tr'], ..._selectedLangs],
+    experience: fd.get('experience')?.trim() || null,
+    salaryMin: min, salaryMax: max,
+    currency: fd.get('currency') || 'TRY',
+    contactEmail: fd.get('contactEmail')?.trim(),
+    contactPhone: fd.get('contactPhone')?.trim() || null,
+    expiresAt: expires,
+  };
+}
+
+function updatePreview() {
+  const job = { ...buildJobObject(), id: 'preview', publishedAt: new Date() };
+  document.getElementById('preview').innerHTML = renderJobCard(job);
+}
+
+// ----- Submit
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  submitErr.classList.add('hidden');
+  if (!_user) {
+    submitErr.textContent = 'İlan vermek için giriş yapmalısın.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+  if (!validateStep(1) || !validateStep(2)) return;
+
+  const kvkkBox = document.getElementById('kvkk');
+  if (!kvkkBox.checked) {
+    submitErr.textContent = 'Devam etmek için KVKK Aydınlatma Metni\'ni kabul etmelisiniz.';
+    submitErr.classList.remove('hidden');
+    kvkkBox.closest('label').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  const data = buildJobObject();
+  const marketingBox = document.getElementById('marketing');
+  if (marketingBox.checked) data.marketing_opt_in = true;
+
+  if (!data.contactEmail) {
+    submitErr.textContent = 'İletişim e-postası zorunlu.';
+    submitErr.classList.remove('hidden');
+    return;
+  }
+
+  const submitBtn = form.querySelector('button[type=submit]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = _editId ? 'KAYDEDİLİYOR...' : 'GÖNDERİLİYOR...';
+
+  let result;
+  if (_editId && _editJob) {
+    // Düzenleme: sadece değişebilir alanları gönder (slug/owner_id korunur, status jobs.js'te 'pending'e döner)
+    const patch = {
+      title:            data.title,
+      category:         data.category,
+      type:             data.type,
+      poster_type:      data.posterType,
+      location:         data.location,
+      employer_name:    data.employerName,
+      contact_email:    data.contactEmail,
+      description_html: data.descriptionHtml,
+      requirements:     data.requirements,
+      languages:        data.languages,
+      experience:       data.experience,
+      salary_min:       data.salaryMin,
+      salary_max:       data.salaryMax,
+      currency:         data.currency,
+      expires_at:       data.expiresAt ? data.expiresAt.toISOString() : null,
+    };
+    result = await updateJob(_editJob.id, patch, _user.id);
+  } else {
+    result = await createJob(data, _user.id);
+  }
+
+  if (result.ok) {
+    submitOk.classList.remove('hidden');
+    if (_editId) {
+      const okTitle = submitOk.querySelector('.font-display');
+      if (okTitle) okTitle.textContent = 'İlanın güncellendi!';
+    }
+    submitBtn.classList.add('hidden');
+    setTimeout(() => { window.location.href = 'profil.html#ilanlarim'; }, 2500);
+  } else {
+    submitErr.textContent = result.error || 'İlan gönderilemedi.';
+    submitErr.classList.remove('hidden');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> ' + (_editId ? 'DEĞİŞİKLİKLERİ KAYDET' : 'İLANI GÖNDER');
+  }
+});
+
+// init
+if (_editId) applyEditChrome();   // edit modunda başlığı/CTA'yı hemen değiştir (veri auth sonrası dolar)
+goToStep(1);
+</script>
+<script src="/js/pwa.js?v=20260516c" defer=""></script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="ru";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/ilan-ver.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

@@ -1,0 +1,1105 @@
+<!DOCTYPE html><html lang="en" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Tatil Asistanı — Hayalinizdeki Tatili Tasarlayalım | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+  .nav-primary{background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);}
+
+  /* Step progress */
+  .step-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;transition:background .25s ease, color .25s ease, box-shadow .25s ease;}
+  .step-dot.active{background:#e89812;color:#fff;box-shadow:0 0 0 4px rgba(232,152,18,0.22);}
+  .step-dot.done{background:#1a5e93;color:#fff;}
+  .step-dot.pending{background:#e2eaf2;color:#5d97c4;}
+  .step-connector{flex:1;height:2px;transition:background .3s ease;}
+  .step-connector.done{background:#1a5e93;}
+  .step-connector.pending{background:#e2eaf2;}
+
+  /* Form controls */
+  .form-input{width:100%;border:1.5px solid #c8d8e8;border-radius:10px;padding:10px 14px;font-size:15px;color:#0a2e4c;background:#fff;outline:none;transition:border-color .2s ease,box-shadow .2s ease;}
+  .form-input:focus{border-color:#2f74a8;box-shadow:0 0 0 3px rgba(47,116,168,0.12);}
+  .form-label{font-weight:600;font-size:13px;color:#134c79;margin-bottom:6px;display:block;letter-spacing:0.01em;}
+
+  /* Counter button */
+  .counter-btn{width:34px;height:34px;border-radius:8px;border:1.5px solid #c8d8e8;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:700;color:#1a5e93;transition:background .18s ease,border-color .18s ease;}
+  .counter-btn:hover{background:#eef4f9;border-color:#2f74a8;}
+  .counter-val{min-width:36px;text-align:center;font-weight:700;font-size:16px;color:#0a2e4c;}
+
+  /* Checkbox/Radio cards */
+  .option-card{border:1.5px solid #c8d8e8;border-radius:12px;padding:12px 16px;cursor:pointer;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;display:flex;align-items:center;gap:10px;}
+  .option-card:hover{border-color:#2f74a8;background:#f0f6fb;}
+  .option-card.selected{border-color:#e89812;background:#fffbf0;box-shadow:0 0 0 3px rgba(232,152,18,0.14);}
+  .option-card input{display:none;}
+
+  /* Slider */
+  input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:#c8d8e8;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#e89812;cursor:pointer;box-shadow:0 2px 8px rgba(232,152,18,0.35);}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#e89812;cursor:pointer;border:none;box-shadow:0 2px 8px rgba(232,152,18,0.35);}
+
+  /* Loading spinner */
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner{width:40px;height:40px;border:3px solid #c8d8e8;border-top-color:#e89812;border-radius:50%;animation:spin .8s linear infinite;}
+
+  /* Timeline */
+  .timeline-day{border-left:3px solid #2f74a8;padding-left:20px;position:relative;}
+  .timeline-day::before{content:'';position:absolute;left:-8px;top:4px;width:13px;height:13px;border-radius:50%;background:#e89812;border:2px solid #fff;box-shadow:0 0 0 2px #e89812;}
+  .timeline-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #eef4f9;}
+  .timeline-item:last-child{border-bottom:none;}
+  .timeline-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+
+  /* Button */
+  .btn-primary{background:#e89812;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;padding:13px 28px;border-radius:12px;border:none;cursor:pointer;transition:background .18s ease,transform .18s ease,box-shadow .18s ease;letter-spacing:0.02em;}
+  .btn-primary:hover{background:#c97c08;transform:translateY(-1px);box-shadow:0 6px 20px -4px rgba(232,152,18,0.5);}
+  .btn-primary:active{transform:translateY(0);}
+  .btn-primary:disabled{background:#c8d8e8;color:#5d97c4;cursor:not-allowed;transform:none;box-shadow:none;}
+  .btn-secondary{background:#eef4f9;color:#1a5e93;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;padding:11px 22px;border-radius:12px;border:1.5px solid #c8d8e8;cursor:pointer;transition:background .18s ease,border-color .18s ease;}
+  .btn-secondary:hover{background:#dce6ef;border-color:#2f74a8;}
+
+  /* Print */
+  @media print{nav,footer,.no-print{display:none!important;}.print-only{display:block!important;}}
+</style>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<meta name="description" content="Hayalinizdeki Kalkan tatilini birlikte tasarlayalım. Uçak, transfer, villa, evde aşçı ve aktiviteleri tek formla planlayın.">
+<link rel="canonical" href="https://kalkaninfo.com/en/tatil-asistani">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/tatil-asistani">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/tatil-asistani">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/tatil-asistani">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/tatil-asistani">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/tatil-asistani">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/tatil-asistani">
+
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+<meta property="og:title" content="Tatil Asistanı — Hayalinizdeki Tatili Tasarlayalım | Kalkan Info">
+<meta property="og:description" content="Hayalinizdeki Kalkan tatilini birlikte tasarlayalım. Uçak, transfer, villa, evde aşçı ve aktiviteleri tek formla planlayın.">
+<meta property="og:url" content="https://kalkaninfo.com/en/tatil-asistani">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tatil Asistanı — Hayalinizdeki Tatili Tasarlayalım | Kalkan Info">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
+<script src="/js/auth-pill.js" defer=""></script>
+<script src="/js/site-drawer.js?v=20260516b" defer=""></script>
+<script src="/js/supabase-window.js"></script>
+<script src="/js/i18n.js?v=20260519a" defer=""></script>
+    <script src="/js/cookie-banner.js" defer=""></script>
+<script src="/js/header-search.js" defer=""></script>
+<script src="/js/bottom-nav.js?v=20260516b" defer=""></script>
+<script src="/js/analytics.js" defer=""></script>
+<script src="/js/utm-tracker.js" defer=""></script>
+<script src="/js/engagement-tracker.js" defer=""></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer=""></script>
+<link rel="preload" as="image" href="/assets/img/2b52ee5776a7.webp" fetchpriority="high">
+</head>
+<body class="bg-[#dce6ef]">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- ============== NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="/en/index.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg>
+      <span class="font-display font-semibold tracking-[0.08em] text-sm" data-en="BACK" data-de="ZURÜCK" data-ru="НАЗАД" data-fr="RETOUR">BACK</span>
+    </a>
+    <a href="/en/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <a href="#" data-concierge-trigger="" class="w-10 h-10 grid place-items-center transition-colors hover:bg-white/10" aria-label="Concierge WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"></path></svg>
+    </a>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/haberler.html">News</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/villalar.html">Villas</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/restoranlar.html">Restoran &amp; Bar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/plajlar.html">Beaches</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/pazarlar.html" data-en="Markets" data-de="Märkte" data-ru="Рынки" data-fr="Marchés">Markets</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/turlar.html">Tours</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/antik-kentler.html">Ancient Cities</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/hizmetler.html">Services</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2 nav-active" href="/en/tatil-asistani.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"></path></svg>
+        <span data-en="Vacation Assistant" data-de="Urlaubsassistent" data-ru="Помощник отпуска" data-fr="Assistant de Vacances">Vacation Assistant</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="relative overflow-hidden" style="background:#072136;min-height:280px;">
+  <div class="absolute inset-0 z-0">
+    <img width="1200" height="798" loading="eager" decoding="async" src="/assets/img/2b52ee5776a7.webp" class="w-full h-full object-cover opacity-30" alt="Kalkan tatil" style="filter:saturate(1.4) contrast(1.1);" fetchpriority="high">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.5) 0%,transparent 70%),linear-gradient(180deg,rgba(7,33,54,0.5) 0%,rgba(7,33,54,0.85) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4 pt-14 pb-16 text-white text-center">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold mb-4" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400 animate-pulse"></span> <span data-en="Plan together with your Concierge" data-de="Planen Sie zusammen mit Ihrem Concierge" data-ru="Планируйте вместе с вашим консьержем" data-fr="Planifiez avec votre Concierge">Plan together with your Concierge</span>
+    </div>
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-tight" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);">
+      <span data-en="Let's Design Your Dream Vacation" data-de="Gestalten Sie Ihren Traumurlaub" data-ru="Давайте спроектируем ваш идеальный отпуск" data-fr="Concevons Vos Vacances de Rêve">Let's Design Your Dream Vacation</span><br><span class="text-sun-400" data-en="Together" data-de="Zusammen" data-ru="Вместе" data-fr="Ensemble">Together</span>
+    </h1>
+    <p class="mt-4 text-white/80 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+      <span data-en="Everything from flights to a private chef — one form." data-de="Von Flügen bis zum privaten Koch — ein Formular." data-ru="От авиабилетов до личного шефа — в одну форму." data-fr="De vols à chef privé — un seul formulaire.">Everything from flights to a private chef — one form.</span><br>
+      <span class="text-sun-400 font-semibold" data-en="Our local Kalkan experts" data-de="Unsere lokalen Kalkan-Experten" data-ru="Наши местные эксперты Kalkan" data-fr="Nos experts locaux de Kalkan">Our local Kalkan experts</span> <span data-en="prepare a personalized vacation plan just for you." data-de="erstellen einen personalisierten Urlaubsplan speziell für Sie." data-ru="подготовят персонализированный план отпуска специально для вас." data-fr="préparent un plan de vacances personnalisé pour vous.">prepare a personalized vacation plan just for you.</span>
+    </p>
+  </div>
+</header>
+
+<!-- ============== MAIN ============== -->
+<main class="max-w-3xl mx-auto px-4 py-10">
+
+  <!-- ===== FORM CONTAINER ===== -->
+  <div id="planner-form-container" class="card-base rounded-2xl overflow-hidden">
+
+    <!-- Progress Bar -->
+    <div class="px-6 pt-6 pb-4" style="background:#f8fbff;border-bottom:1px solid #e2eaf2;">
+      <div class="flex items-center gap-0" id="step-progress">
+        <!-- JS renders dots -->
+      </div>
+      <div class="mt-3 flex justify-between text-xs font-semibold text-sea-400 font-display tracking-wide uppercase">
+        <span data-en="Date &amp; Group" data-de="Datum &amp; Gruppe" data-ru="Дата и группа" data-fr="Date &amp; Groupe">Date &amp; Group</span>
+        <span data-en="Flight" data-de="Flug" data-ru="Рейс" data-fr="Vol">Flight</span>
+        <span data-en="Accommodation" data-de="Unterkunft" data-ru="Проживание" data-fr="Hébergement">Accommodation</span>
+        <span data-en="Food" data-de="Verpflegung" data-ru="Питание" data-fr="Nourriture">Food</span>
+        <span data-en="Activity" data-de="Aktivität" data-ru="Развлечения" data-fr="Activité">Activity</span>
+      </div>
+    </div>
+
+    <!-- Step Panels -->
+    <form id="planner-form" novalidate="">
+
+      <!-- ADIM 1 — Tarih, Grup, Bütçe -->
+      <div class="step-panel px-6 py-7" id="step-1">
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Date, Group &amp; Budget" data-de="Datum, Gruppe &amp; Budget" data-ru="Дата, группа и бюджет" data-fr="Date, Groupe &amp; Budget">Date, Group &amp; Budget</h2>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label class="form-label" for="date-start" data-en="Check-in date" data-de="Anreisedatum" data-ru="Дата заезда" data-fr="Date d'arrivée">Check-in date</label>
+            <input class="form-input" type="date" id="date-start" name="dateStart" required="">
+          </div>
+          <div>
+            <label class="form-label" for="date-end" data-en="Check-out date" data-de="Abreisedatum" data-ru="Дата выезда" data-fr="Date de départ">Check-out date</label>
+            <input class="form-input" type="date" id="date-end" name="dateEnd" required="">
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <label class="form-label" data-en="Group size" data-de="Gruppengröße" data-ru="Размер группы" data-fr="Taille du groupe">Group size</label>
+          <div class="grid grid-cols-2 gap-4 mt-1">
+            <div class="flex items-center gap-3 bg-sea-50 rounded-xl p-3">
+              <div class="flex-1">
+                <div class="text-sm font-semibold text-sea-700" data-en="Adults" data-de="Erwachsene" data-ru="Взрослые" data-fr="Adultes">Adults</div>
+                <div class="text-xs text-sea-400" data-en="Age 12+" data-de="Ab 12 Jahren" data-ru="От 12 лет" data-fr="12 ans et plus">Age 12+</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="counter-btn" onclick="adjustCounter('adults',-1)">−</button>
+                <span class="counter-val" id="adults-val">2</span>
+                <input type="hidden" name="adults" id="adults-input" value="2">
+                <button type="button" class="counter-btn" onclick="adjustCounter('adults',1)">+</button>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 bg-sea-50 rounded-xl p-3">
+              <div class="flex-1">
+                <div class="text-sm font-semibold text-sea-700" data-en="Children" data-de="Kinder" data-ru="Дети" data-fr="Enfants">Children</div>
+                <div class="text-xs text-sea-400" data-en="Age 0–11" data-de="0–11 Jahre" data-ru="От 0–11 лет" data-fr="0-11 ans">Age 0–11</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="counter-btn" onclick="adjustCounter('children',-1)">−</button>
+                <span class="counter-val" id="children-val">0</span>
+                <input type="hidden" name="children" id="children-input" value="0">
+                <button type="button" class="counter-btn" onclick="adjustCounter('children',1)">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <label class="form-label" data-en="Total budget" data-de="Gesamtbudget" data-ru="Общий бюджет" data-fr="Budget total">Total budget</label>
+          <div class="flex items-center gap-3 mt-1">
+            <select class="form-input" style="width:90px;flex-shrink:0;" name="currency" id="currency">
+              <option value="TRY">₺</option>
+              <option value="EUR">€</option>
+              <option value="USD">$</option>
+            </select>
+            <div class="flex-1">
+              <input type="range" min="5000" max="200000" step="5000" value="50000" id="budget-slider" name="budget" class="w-full" oninput="updateBudgetDisplay(this.value)">
+              <div class="flex justify-between text-xs text-sea-400 mt-1">
+                <span>5K</span><span>50K</span><span>100K</span><span>200K</span>
+              </div>
+            </div>
+            <div class="text-right min-w-[80px]">
+              <span id="budget-display" class="font-display font-bold text-lg text-sea-800">50.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADIM 2 — Uçuş -->
+      <div class="step-panel px-6 py-7 hidden" id="step-2">
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Departure &amp; Flight Preference" data-de="Abflug &amp; Flugpräferenz" data-ru="Вылет и предпочтения рейса" data-fr="Préférence de Départ &amp; Vol">Departure &amp; Flight Preference</h2>
+        <div>
+          <label class="form-label" for="departure-airport" data-en="Departure airport" data-de="Abflughafen" data-ru="Аэропорт вылета" data-fr="Aéroport de départ">Departure airport</label>
+          <input class="form-input" type="text" id="departure-airport" name="departureAirport" placeholder="Type city or airport name..." data-en-placeholder="Type city or airport name..." list="airport-suggestions" autocomplete="off" data-de-placeholder="Stadt- oder Flughafennamen eingeben..." data-ru-placeholder="Введите название города или аэропорта..." data-fr-placeholder="Tapez le nom de la ville ou de l'aéroport...">
+          <datalist id="airport-suggestions">
+            <!-- TÜRKİYE -->
+            <option value="İstanbul (IST — İstanbul Havalimanı)">
+            </option><option value="İstanbul (SAW — Sabiha Gökçen)">
+            </option><option value="Ankara (ESB — Esenboğa)">
+            </option><option value="İzmir (ADB — Adnan Menderes)">
+            </option><option value="Antalya (AYT — Antalya)">
+            </option><option value="Antalya / Alanya (GZP — Gazipaşa)">
+            </option><option value="Bodrum (BJV — Milas-Bodrum)">
+            </option><option value="Dalaman (DLM)">
+            </option><option value="Trabzon (TZX)">
+            </option><option value="Adana (ADA — Şakirpaşa)">
+            </option><option value="Gaziantep (GZT — Oğuzeli)">
+            </option><option value="Diyarbakır (DIY)">
+            </option><option value="Konya (KYA)">
+            </option><option value="Kayseri (ASR — Erkilet)">
+            </option><option value="Samsun (SZF — Çarşamba)">
+            </option><option value="Erzurum (ERZ)">
+            </option><option value="Sivas (VAS — Nuri Demirağ)">
+            </option><option value="Şanlıurfa (GNY — GAP)">
+            </option><option value="Van (VAN — Ferit Melen)">
+            </option><option value="Hatay (HTY)">
+            </option><option value="Malatya (MLX — Erhaç)">
+            </option><option value="Elazığ (EZS)">
+            </option><option value="Mardin (MQM)">
+            </option><option value="Batman (BAL)">
+            </option><option value="Şırnak (NKT — Şerafettin Elçi)">
+            </option><option value="Iğdır (IGD)">
+            </option><option value="Ağrı (AJI — Ahmed-i Hâni)">
+            </option><option value="Kars (KSY — Harakani)">
+            </option><option value="Erzincan (ERC)">
+            </option><option value="Tokat (TJK)">
+            </option><option value="Sinop (NOP)">
+            </option><option value="Çanakkale (CKZ)">
+            </option><option value="Tekirdağ (TEQ — Çorlu)">
+            </option><option value="Balıkesir / Edremit (EDO — Koca Seyit)">
+            </option><option value="Denizli (DNZ — Çardak)">
+            </option><option value="Isparta (ISE — Süleyman Demirel)">
+            </option><option value="Kahramanmaraş (KCM)">
+            </option><option value="Adıyaman (ADF)">
+            </option><option value="Bursa (YEI — Yenişehir)">
+            </option><option value="Zonguldak (ONQ — Çaycuma)">
+            </option><option value="Yüksekova / Hakkari (YKO — Selahaddin Eyyubi)">
+            </option><option value="Muş (MSR — Sultan Alparslan)">
+            </option><option value="Nevşehir (NAV — Kapadokya)">
+            </option><option value="Kastamonu (KFS)">
+            </option><option value="Bingöl (BGG)">
+            </option><option value="Siirt (SXZ)">
+            </option><option value="Eskişehir (AOE — Anadolu)">
+            </option><option value="Tekirdağ / Çorlu Atatürk (TEQ)">
+            </option><option value="Ordu / Giresun (OGU)">
+
+            <!-- AVRUPA - Almanya -->
+            </option><option value="Berlin (BER — Brandenburg)">
+            </option><option value="Frankfurt (FRA)">
+            </option><option value="München (MUC)">
+            </option><option value="Hamburg (HAM)">
+            </option><option value="Düsseldorf (DUS)">
+            </option><option value="Köln (CGN — Köln/Bonn)">
+            </option><option value="Stuttgart (STR)">
+            </option><option value="Hannover (HAJ)">
+            </option><option value="Nürnberg (NUE)">
+            </option><option value="Leipzig (LEJ)">
+            </option><option value="Dortmund (DTM)">
+            </option><option value="Bremen (BRE)">
+
+            <!-- Birleşik Krallık -->
+            </option><option value="London (LHR — Heathrow)">
+            </option><option value="London (LGW — Gatwick)">
+            </option><option value="London (STN — Stansted)">
+            </option><option value="London (LTN — Luton)">
+            </option><option value="Manchester (MAN)">
+            </option><option value="Birmingham (BHX)">
+            </option><option value="Edinburgh (EDI)">
+            </option><option value="Glasgow (GLA)">
+            </option><option value="Bristol (BRS)">
+
+            <!-- Fransa -->
+            </option><option value="Paris (CDG — Charles de Gaulle)">
+            </option><option value="Paris (ORY — Orly)">
+            </option><option value="Lyon (LYS)">
+            </option><option value="Marseille (MRS)">
+            </option><option value="Nice (NCE)">
+            </option><option value="Toulouse (TLS)">
+            </option><option value="Bordeaux (BOD)">
+
+            <!-- Hollanda / Belçika / Lüksemburg -->
+            </option><option value="Amsterdam (AMS — Schiphol)">
+            </option><option value="Brussels (BRU)">
+            </option><option value="Brussels Charleroi (CRL)">
+            </option><option value="Eindhoven (EIN)">
+            </option><option value="Rotterdam (RTM)">
+            </option><option value="Luxembourg (LUX)">
+
+            <!-- İspanya / Portekiz -->
+            </option><option value="Madrid (MAD — Barajas)">
+            </option><option value="Barcelona (BCN)">
+            </option><option value="Málaga (AGP)">
+            </option><option value="Sevilla (SVQ)">
+            </option><option value="Valencia (VLC)">
+            </option><option value="Bilbao (BIO)">
+            </option><option value="Palma de Mallorca (PMI)">
+            </option><option value="Alicante (ALC)">
+            </option><option value="Lisbon (LIS)">
+            </option><option value="Porto (OPO)">
+            </option><option value="Faro (FAO)">
+
+            <!-- İtalya -->
+            </option><option value="Rome (FCO — Fiumicino)">
+            </option><option value="Rome (CIA — Ciampino)">
+            </option><option value="Milan (MXP — Malpensa)">
+            </option><option value="Milan (LIN — Linate)">
+            </option><option value="Milan (BGY — Bergamo)">
+            </option><option value="Venice (VCE)">
+            </option><option value="Naples (NAP)">
+            </option><option value="Bologna (BLQ)">
+            </option><option value="Florence (FLR)">
+            </option><option value="Pisa (PSA)">
+            </option><option value="Catania (CTA)">
+
+            <!-- Yunanistan / Kıbrıs -->
+            </option><option value="Athens (ATH)">
+            </option><option value="Thessaloniki (SKG)">
+            </option><option value="Heraklion (HER — Girit)">
+            </option><option value="Rhodes (RHO)">
+            </option><option value="Larnaca (LCA)">
+            </option><option value="Paphos (PFO)">
+            </option><option value="Ercan (ECN — KKTC)">
+
+            <!-- Avusturya / İsviçre -->
+            </option><option value="Vienna (VIE)">
+            </option><option value="Salzburg (SZG)">
+            </option><option value="Innsbruck (INN)">
+            </option><option value="Zurich (ZRH)">
+            </option><option value="Geneva (GVA)">
+            </option><option value="Basel (BSL)">
+
+            <!-- Doğu Avrupa -->
+            </option><option value="Prague (PRG)">
+            </option><option value="Warsaw (WAW)">
+            </option><option value="Krakow (KRK)">
+            </option><option value="Gdansk (GDN)">
+            </option><option value="Budapest (BUD)">
+            </option><option value="Bucharest (OTP)">
+            </option><option value="Sofia (SOF)">
+            </option><option value="Belgrade (BEG)">
+            </option><option value="Zagreb (ZAG)">
+            </option><option value="Ljubljana (LJU)">
+            </option><option value="Sarajevo (SJJ)">
+            </option><option value="Skopje (SKP)">
+            </option><option value="Tirana (TIA)">
+            </option><option value="Pristina (PRN)">
+
+            <!-- İskandinavya -->
+            </option><option value="Stockholm (ARN — Arlanda)">
+            </option><option value="Gothenburg (GOT)">
+            </option><option value="Copenhagen (CPH)">
+            </option><option value="Oslo (OSL)">
+            </option><option value="Bergen (BGO)">
+            </option><option value="Helsinki (HEL)">
+            </option><option value="Reykjavik (KEF)">
+
+            <!-- İrlanda -->
+            </option><option value="Dublin (DUB)">
+            </option><option value="Cork (ORK)">
+
+            <!-- RUSYA & BDT -->
+            </option><option value="Moscow (SVO — Sheremetyevo)">
+            </option><option value="Moscow (DME — Domodedovo)">
+            </option><option value="Moscow (VKO — Vnukovo)">
+            </option><option value="Saint Petersburg (LED — Pulkovo)">
+            </option><option value="Kazan (KZN)">
+            </option><option value="Sochi (AER)">
+            </option><option value="Ekaterinburg (SVX — Koltsovo)">
+            </option><option value="Novosibirsk (OVB — Tolmachevo)">
+            </option><option value="Krasnodar (KRR)">
+            </option><option value="Mineralnye Vody (MRV)">
+            </option><option value="Rostov-on-Don (ROV — Platov)">
+            </option><option value="Ufa (UFA)">
+            </option><option value="Samara (KUF)">
+            </option><option value="Vladivostok (VVO)">
+            </option><option value="Kaliningrad (KGD)">
+            </option><option value="Kyiv (KBP — Boryspil)">
+            </option><option value="Kyiv (IEV — Zhuliany)">
+            </option><option value="Odesa (ODS)">
+            </option><option value="Lviv (LWO)">
+            </option><option value="Minsk (MSQ)">
+            </option><option value="Almaty (ALA)">
+            </option><option value="Astana / Nur-Sultan (NQZ)">
+            </option><option value="Tashkent (TAS)">
+            </option><option value="Baku (GYD — Heydar Aliyev)">
+            </option><option value="Yerevan (EVN — Zvartnots)">
+            </option><option value="Tbilisi (TBS)">
+            </option><option value="Bishkek (FRU — Manas)">
+            </option><option value="Dushanbe (DYU)">
+            </option><option value="Ashgabat (ASB)">
+
+            <!-- ORTA DOĞU -->
+            </option><option value="Dubai (DXB)">
+            </option><option value="Dubai (DWC — Al Maktoum)">
+            </option><option value="Abu Dhabi (AUH)">
+            </option><option value="Sharjah (SHJ)">
+            </option><option value="Doha (DOH — Hamad)">
+            </option><option value="Kuwait (KWI)">
+            </option><option value="Bahrain (BAH)">
+            </option><option value="Muscat (MCT)">
+            </option><option value="Riyadh (RUH)">
+            </option><option value="Jeddah (JED)">
+            </option><option value="Tel Aviv (TLV — Ben Gurion)">
+            </option><option value="Beirut (BEY — Rafic Hariri)">
+            </option><option value="Amman (AMM — Queen Alia)">
+            </option><option value="Cairo (CAI)">
+            </option><option value="Hurghada (HRG)">
+            </option><option value="Sharm El Sheikh (SSH)">
+            </option><option value="Casablanca (CMN)">
+            </option><option value="Marrakech (RAK)">
+            </option><option value="Tunis (TUN)">
+            </option><option value="Algiers (ALG)">
+
+            <!-- ASYA -->
+            </option><option value="Tokyo (NRT — Narita)">
+            </option><option value="Tokyo (HND — Haneda)">
+            </option><option value="Osaka (KIX — Kansai)">
+            </option><option value="Seoul (ICN — Incheon)">
+            </option><option value="Beijing (PEK)">
+            </option><option value="Beijing (PKX — Daxing)">
+            </option><option value="Shanghai (PVG — Pudong)">
+            </option><option value="Guangzhou (CAN)">
+            </option><option value="Hong Kong (HKG)">
+            </option><option value="Taipei (TPE — Taoyuan)">
+            </option><option value="Singapore (SIN — Changi)">
+            </option><option value="Kuala Lumpur (KUL)">
+            </option><option value="Bangkok (BKK — Suvarnabhumi)">
+            </option><option value="Bangkok (DMK — Don Mueang)">
+            </option><option value="Phuket (HKT)">
+            </option><option value="Hanoi (HAN)">
+            </option><option value="Ho Chi Minh City (SGN)">
+            </option><option value="Manila (MNL)">
+            </option><option value="Jakarta (CGK)">
+            </option><option value="Bali / Denpasar (DPS)">
+            </option><option value="Mumbai (BOM)">
+            </option><option value="Delhi (DEL)">
+            </option><option value="Bengaluru (BLR)">
+            </option><option value="Karachi (KHI)">
+            </option><option value="Lahore (LHE)">
+            </option><option value="Islamabad (ISB)">
+            </option><option value="Dhaka (DAC)">
+            </option><option value="Colombo (CMB)">
+            </option><option value="Kabul (KBL)">
+            </option><option value="Tehran (IKA — Imam Khomeini)">
+
+            <!-- AFRİKA -->
+            </option><option value="Johannesburg (JNB)">
+            </option><option value="Cape Town (CPT)">
+            </option><option value="Nairobi (NBO)">
+            </option><option value="Addis Ababa (ADD)">
+            </option><option value="Lagos (LOS)">
+            </option><option value="Accra (ACC)">
+
+            <!-- AMERİKA -->
+            </option><option value="New York (JFK)">
+            </option><option value="New York (EWR — Newark)">
+            </option><option value="New York (LGA — LaGuardia)">
+            </option><option value="Los Angeles (LAX)">
+            </option><option value="Chicago (ORD — O'Hare)">
+            </option><option value="Miami (MIA)">
+            </option><option value="San Francisco (SFO)">
+            </option><option value="Boston (BOS)">
+            </option><option value="Washington (IAD — Dulles)">
+            </option><option value="Atlanta (ATL)">
+            </option><option value="Dallas (DFW)">
+            </option><option value="Houston (IAH)">
+            </option><option value="Toronto (YYZ — Pearson)">
+            </option><option value="Montreal (YUL)">
+            </option><option value="Vancouver (YVR)">
+            </option><option value="Mexico City (MEX)">
+            </option><option value="São Paulo (GRU)">
+            </option><option value="Rio de Janeiro (GIG)">
+            </option><option value="Buenos Aires (EZE)">
+
+            <!-- AVUSTRALYA / OKYANUSYA -->
+            </option><option value="Sydney (SYD)">
+            </option><option value="Melbourne (MEL)">
+            </option><option value="Brisbane (BNE)">
+            </option><option value="Perth (PER)">
+            </option><option value="Auckland (AKL)">
+          </option></datalist>
+          <p class="text-xs text-sea-400 mt-1.5" data-en="200+ airports listed — start typing for autocomplete. Arrival: Dalaman (DLM) or Antalya (AYT)." data-de="200+ Flughäfen aufgelistet — tippen Sie zum Autocomplete. Ankunft: Dalaman (DLM) oder Antalya (AYT)." data-ru="200+ аэропортов — начните вводить для автозаполнения. Прибытие: Даламан (DLM) или Antalya (AYT)." data-fr="200+ aéroports répertoriés — commencez à taper pour l'autocomplétion. Arrivée : Dalaman (DLM) ou Antalya (AYT).">200+ airports listed — start typing for autocomplete. Arrival: Dalaman (DLM) or Antalya (AYT).</p>
+        </div>
+
+        <div class="mt-5">
+          <label class="form-label"><span data-en="Preferred airline" data-de="Bevorzugte Fluggesellschaft" data-ru="Предпочитаемая авиакомпания" data-fr="Compagnie aérienne préférée">Preferred airline</span> <span class="text-sea-300 font-normal" data-en="(optional)" data-de="(optional)" data-ru="(опционально)" data-fr="(optionnel)">(optional)</span></label>
+          <div class="grid grid-cols-2 gap-3 mt-1" id="airline-options">
+            <label class="option-card" onclick="toggleOption(this,'airline')">
+              <input type="checkbox" name="airlines" value="THY">
+              <span class="text-base">✈️</span>
+              <span class="font-semibold text-sm">Türk Hava Yolları</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'airline')">
+              <input type="checkbox" name="airlines" value="PC">
+              <span class="text-base">✈️</span>
+              <span class="font-semibold text-sm">Pegasus</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'airline')">
+              <input type="checkbox" name="airlines" value="LH">
+              <span class="text-base">✈️</span>
+              <span class="font-semibold text-sm">Lufthansa</span>
+            </label>
+            <label class="option-card selected" onclick="toggleOption(this,'airline')" id="airline-any">
+              <input type="checkbox" name="airlines" value="any" checked="">
+              <span class="text-base">🌐</span>
+              <span class="font-semibold text-sm" data-en="No preference" data-de="Keine Präferenz" data-ru="Нет предпочтений" data-fr="Pas de préférence">No preference</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADIM 3 — Konaklama -->
+      <div class="step-panel px-6 py-7 hidden" id="step-3">
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Accommodation Preference" data-de="Unterkunftspräferenz" data-ru="Предпочтения проживания" data-fr="Préférence d'Hébergement">Accommodation Preference</h2>
+
+        <div>
+          <label class="form-label" data-en="Accommodation type" data-de="Unterkunftstyp" data-ru="Тип проживания" data-fr="Type d'hébergement">Accommodation type</label>
+          <div class="grid grid-cols-3 gap-3 mt-1" id="accom-type-options">
+            <label class="option-card flex-col text-center" onclick="selectRadio(this,'accom-type-options')">
+              <input type="radio" name="accommodationType" value="villa">
+              <span class="text-2xl mb-1">🏡</span>
+              <span class="font-semibold text-sm">Villa</span>
+              <span class="text-xs text-sea-400 mt-0.5" data-en="Private &amp; peaceful" data-de="Privat &amp; ruhig" data-ru="Частное и спокойное место" data-fr="Privé &amp; paisible">Private &amp; peaceful</span>
+            </label>
+            <label class="option-card flex-col text-center" onclick="selectRadio(this,'accom-type-options')">
+              <input type="radio" name="accommodationType" value="otel">
+              <span class="text-2xl mb-1">🏨</span>
+              <span class="font-semibold text-sm" data-en="Hotel" data-de="Hotel" data-ru="Отель" data-fr="Hôtel">Hotel</span>
+              <span class="text-xs text-sea-400 mt-0.5" data-en="Full service" data-de="Vollservice" data-ru="Полный сервис" data-fr="Service complet">Full service</span>
+            </label>
+            <label class="option-card flex-col text-center" onclick="selectRadio(this,'accom-type-options')">
+              <input type="radio" name="accommodationType" value="bb">
+              <span class="text-2xl mb-1">🛏️</span>
+              <span class="font-semibold text-sm">B&amp;B</span>
+              <span class="text-xs text-sea-400 mt-0.5" data-en="Boutique &amp; cozy" data-de="Boutique &amp; gemütlich" data-ru="Бутик и уютный" data-fr="Boutique &amp; confortable">Boutique &amp; cozy</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <label class="form-label" data-en="Number of rooms / bedrooms" data-de="Anzahl der Zimmer / Schlafzimmer" data-ru="Количество номеров / спален" data-fr="Nombre de chambres">Number of rooms / bedrooms</label>
+          <div class="flex items-center gap-3 mt-1">
+            <button type="button" class="counter-btn" onclick="adjustCounter('rooms',-1)">−</button>
+            <span class="counter-val" id="rooms-val">2</span>
+            <input type="hidden" name="rooms" id="rooms-input" value="2">
+            <button type="button" class="counter-btn" onclick="adjustCounter('rooms',1)">+</button>
+            <span class="text-sm text-sea-400 ml-2" data-en="rooms" data-de="Zimmer" data-ru="номеров" data-fr="chambres">rooms</span>
+          </div>
+        </div>
+
+        <div class="mt-5 grid grid-cols-3 gap-3">
+          <div>
+            <label class="form-label mb-2" data-en="Sea view" data-de="Meerblick" data-ru="Вид на море" data-fr="Vue sur la mer">Sea view</label>
+            <div class="flex gap-2" id="sea-view-opts">
+              <label class="option-card flex-1 justify-center text-sm" onclick="selectRadio(this,'sea-view-opts')">
+                <input type="radio" name="seaView" value="yes">✅ <span data-en="Yes" data-de="Ja" data-ru="Да" data-fr="Oui">Yes</span>
+              </label>
+              <label class="option-card flex-1 justify-center text-sm selected" onclick="selectRadio(this,'sea-view-opts')">
+                <input type="radio" name="seaView" value="no" checked="">🙅 <span data-en="No preference" data-de="Keine Präferenz" data-ru="Нет предпочтений" data-fr="Pas de préférence">No preference</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="form-label mb-2" data-en="Pool" data-de="Pool" data-ru="Бассейн" data-fr="Piscine">Pool</label>
+            <div class="flex gap-2" id="pool-opts">
+              <label class="option-card flex-1 justify-center text-sm" onclick="selectRadio(this,'pool-opts')">
+                <input type="radio" name="pool" value="yes">✅ <span data-en="Yes" data-de="Ja" data-ru="Да" data-fr="Oui">Yes</span>
+              </label>
+              <label class="option-card flex-1 justify-center text-sm selected" onclick="selectRadio(this,'pool-opts')">
+                <input type="radio" name="pool" value="no" checked="">🙅 <span data-en="No preference" data-de="Keine Präferenz" data-ru="Нет предпочтений" data-fr="Pas de préférence">No preference</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label class="form-label mb-2" data-en="Pets" data-de="Haustiere" data-ru="Домашние животные" data-fr="Animaux de compagnie">Pets</label>
+            <div class="flex gap-2" id="pet-opts">
+              <label class="option-card flex-1 justify-center text-sm" onclick="selectRadio(this,'pet-opts')">
+                <input type="radio" name="petFriendly" value="yes">🐾 <span data-en="Yes" data-de="Ja" data-ru="Да" data-fr="Oui">Yes</span>
+              </label>
+              <label class="option-card flex-1 justify-center text-sm selected" onclick="selectRadio(this,'pet-opts')">
+                <input type="radio" name="petFriendly" value="no" checked="">❌ <span data-en="No" data-de="Nein" data-ru="Нет" data-fr="Non">No</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADIM 4 — Yemek -->
+      <div class="step-panel px-6 py-7 hidden" id="step-4">
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Food &amp; Cuisine Preference" data-de="Verpflegung &amp; Küchenpräferenz" data-ru="Предпочтения питания и кухни" data-fr="Préférence Nourriture &amp; Cuisine">Food &amp; Cuisine Preference</h2>
+
+        <div>
+          <label class="form-label">Yemek seçenekleri <span class="text-sea-300 font-normal" data-en="(multiple choices allowed)" data-de="(Mehrfachauswahl möglich)" data-ru="(несколько вариантов разрешены)" data-fr="(plusieurs choix autorisés)">(multiple choices allowed)</span></label>
+          <div class="space-y-3 mt-2" id="food-options">
+            <label class="option-card" onclick="toggleOption(this,'food')">
+              <input type="checkbox" name="food" value="chef">
+              <span class="text-xl">👨‍🍳</span>
+              <div>
+                <div class="font-semibold text-sm" data-en="Private chef (catering)" data-de="Privatkoch (Catering)" data-ru="Личный шеф-повар (кейтеринг)" data-fr="Chef privé (restauration)">Private chef (catering)</div>
+                <div class="text-xs text-sea-400" data-en="Comes to your villa, prepares a daily menu" data-de="Kommt zu Ihrer Villa, bereitet täglich ein Menü" data-ru="Приходит на виллу, готовит ежедневное меню" data-fr="Vient à votre villa, prépare un menu quotidien">Comes to your villa, prepares a daily menu</div>
+              </div>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'food')">
+              <input type="checkbox" name="food" value="restaurant">
+              <span class="text-xl">🍽️</span>
+              <div>
+                <div class="font-semibold text-sm" data-en="Restaurant reservation assistance" data-de="Restaurantreservierungshilfe" data-ru="Помощь с резервированием в ресторане" data-fr="Assistance pour réservation de restaurant">Restaurant reservation assistance</div>
+                <div class="text-xs text-sea-400" data-en="Tables at Kalkan's finest restaurants" data-de="Tische in Kalkans besten Restaurants" data-ru="Столы в лучших ресторанах Kalkan" data-fr="Tables dans les meilleurs restaurants de Kalkan">Tables at Kalkan's finest restaurants</div>
+              </div>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'food')">
+              <input type="checkbox" name="food" value="self">
+              <span class="text-xl">🛒</span>
+              <div>
+                <div class="font-semibold text-sm" data-en="We'll manage on our own" data-de="Wir kümmern uns selbst darum" data-ru="Мы справимся сами" data-fr="Nous nous débrouillerons seuls">We'll manage on our own</div>
+                <div class="text-xs text-sea-400" data-en="Supermarket, grocery &amp; market recommendations" data-de="Supermarkt-, Lebensmittel- und Marktempfehlungen" data-ru="Рекомендации супермаркетов, продуктовых магазинов и рынков" data-fr="Recommandations supermarché, épicerie &amp; marché">Supermarket, grocery &amp; market recommendations</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-6 hidden" id="cuisine-section">
+          <label class="form-label" data-en="Cuisine preference (for chef)" data-de="Küchenpräferenz (für den Chef)" data-ru="Предпочтения кухни (для шефа)" data-fr="Préférence culinaire (pour le chef)">Cuisine preference (for chef)</label>
+          <div class="grid grid-cols-2 gap-3 mt-2" id="cuisine-options">
+            <label class="option-card" onclick="toggleOption(this,'cuisine')">
+              <input type="checkbox" name="cuisine" value="turkish">
+              <span class="text-xl">🥙</span>
+              <span class="font-semibold text-sm" data-en="Turkish Cuisine" data-de="Türkische Küche" data-ru="Турецкая кухня" data-fr="Cuisine turque">Turkish Cuisine</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'cuisine')">
+              <input type="checkbox" name="cuisine" value="mediterranean">
+              <span class="text-xl">🫒</span>
+              <span class="font-semibold text-sm" data-en="Mediterranean" data-de="Mediterran" data-ru="Средиземноморская" data-fr="Méditerranéenne">Mediterranean</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'cuisine')">
+              <input type="checkbox" name="cuisine" value="asian">
+              <span class="text-xl">🍜</span>
+              <span class="font-semibold text-sm" data-en="Asian" data-de="Asiatisch" data-ru="Азиатская" data-fr="Asiatique">Asian</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'cuisine')">
+              <input type="checkbox" name="cuisine" value="vegan">
+              <span class="text-xl">🥗</span>
+              <span class="font-semibold text-sm" data-en="Vegan / Vegetarian" data-de="Vegan / Vegetarisch" data-ru="Веган / Вегетарианская" data-fr="Végétalien / Végétarien">Vegan / Vegetarian</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADIM 5 — Aktiviteler -->
+      <div class="step-panel px-6 py-7 hidden" id="step-5">
+        <h2 class="font-display font-bold text-xl text-sea-800 mb-5" data-en="Activities &amp; Special Requests" data-de="Aktivitäten &amp; spezielle Wünsche" data-ru="Мероприятия и специальные пожелания" data-fr="Activités &amp; Demandes spéciales">Activities &amp; Special Requests</h2>
+
+        <div>
+          <label class="form-label">Aktivite tercihleri <span class="text-sea-300 font-normal" data-en="(multiple choices allowed)" data-de="(Mehrfachauswahl möglich)" data-ru="(разрешен выбор нескольких вариантов)" data-fr="(plusieurs choix autorisés)">(multiple choices allowed)</span></label>
+          <div class="grid grid-cols-2 gap-3 mt-2" id="activity-options">
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="boat_tour">
+              <span class="text-xl">⛵</span>
+              <span class="font-semibold text-sm" data-en="Boat tour" data-de="Bootstour" data-ru="Морская прогулка" data-fr="Excursion en bateau">Boat tour</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="ancient_cities">
+              <span class="text-xl">🏛️</span>
+              <span class="font-semibold text-sm" data-en="Ancient cities" data-de="Antike Städte" data-ru="Древние города" data-fr="Villes antiques">Ancient cities</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="beach">
+              <span class="text-xl">🏖️</span>
+              <span class="font-semibold text-sm" data-en="Beach" data-de="Strand" data-ru="Пляж" data-fr="Plage">Beach</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="diving">
+              <span class="text-xl">🤿</span>
+              <span class="font-semibold text-sm" data-en="Diving" data-de="Tauchen" data-ru="Дайвинг" data-fr="Plongée">Diving</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="hiking">
+              <span class="text-xl">🥾</span>
+              <span class="font-semibold text-sm" data-en="Hiking" data-de="Wandern" data-ru="Пешие прогулки" data-fr="Randonnée">Hiking</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="spa">
+              <span class="text-xl">💆</span>
+              <span class="font-semibold text-sm" data-en="Spa" data-de="Spa" data-ru="Спа" data-fr="Spa">Spa</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="kids">
+              <span class="text-xl">👨‍👩‍👧</span>
+              <span class="font-semibold text-sm" data-en="Kids activities" data-de="Kinderaktivitäten" data-ru="Детские развлечения" data-fr="Activités pour enfants">Kids activities</span>
+            </label>
+            <label class="option-card" onclick="toggleOption(this,'activity')">
+              <input type="checkbox" name="activities" value="nightlife">
+              <span class="text-xl">🌙</span>
+              <span class="font-semibold text-sm" data-en="Nightlife" data-de="Nachtleben" data-ru="Ночная жизнь" data-fr="Vie nocturne">Nightlife</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <label class="form-label" for="special-requests">Özel istekler <span class="text-sea-300 font-normal" data-en="(optional)" data-de="(optional)" data-ru="(необязательно)" data-fr="(facultatif)">(optional)</span></label>
+          <textarea class="form-input" id="special-requests" name="specialRequests" rows="3" placeholder="E.g.: birthday surprise, accessibility needs, special diet, specific activity requests..." data-en-placeholder="E.g.: birthday surprise, accessibility needs, special diet, specific activity requests..." data-de-placeholder="Z.B.: Geburtstagsüberraschung, Barrierefreiheit, spezielle Diät, spezifische Aktivitätswünsche..." data-ru-placeholder="Например: сюрприз на день рождения, потребности в доступности, специальная диета, запросы на конкретные мероприятия..." data-fr-placeholder="Ex : surprise anniversaire, besoins d'accessibilité, régime alimentaire spécial, demandes d'activités spécifiques..."></textarea>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="px-6 pb-7 flex items-center justify-between" id="form-nav">
+        <button type="button" class="btn-secondary" id="btn-prev" onclick="prevStep()" style="display:none;" data-en="← Previous" data-de="← Zurück" data-ru="← Назад" data-fr="← Précédent">← Previous</button>
+        <div class="flex-1"></div>
+        <button type="button" class="btn-primary" id="btn-next" onclick="nextStep()" data-en="Continue →" data-de="Weiter →" data-ru="Далее →" data-fr="Continuer →">Continue →</button>
+        <button type="button" class="btn-primary" id="btn-submit" onclick="submitPlan()" style="display:none;" data-en="✨ Create My Plan" data-de="✨ Meinen Plan erstellen" data-ru="✨ Создать мой план" data-fr="✨ Créer Mon Plan">✨ Create My Plan</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== LOADING STATE ===== -->
+  <div id="loading-container" class="hidden card-base rounded-2xl px-8 py-16 text-center">
+    <div class="flex justify-center mb-6">
+      <div class="spinner"></div>
+    </div>
+    <h2 class="font-display font-bold text-2xl text-sea-800 mb-3" data-en="Your vacation plan is being prepared..." data-de="Ihr Urlaubsplan wird vorbereitet..." data-ru="Ваш план отпуска готовится..." data-fr="Votre plan de vacances est en préparation...">Your vacation plan is being prepared...</h2>
+    <p class="text-sea-400 mb-2" data-en="Calculating flights, transfers, accommodation and activities." data-de="Flüge, Transfers, Unterkunft und Aktivitäten werden berechnet." data-ru="Расчет перелетов, трансфертов, размещения и мероприятий." data-fr="Calcul des vols, transferts, hébergement et activités.">Calculating flights, transfers, accommodation and activities.</p>
+    <p class="text-sm text-sea-300" data-en="~30 seconds" data-de="~30 Sekunden" data-ru="~30 секунд" data-fr="~30 secondes">~30 seconds</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-2 text-xs text-sea-400">
+      <span class="bg-sea-50 px-3 py-1 rounded-full" data-en="✈️ Searching flight options" data-de="✈️ Flugoptionen werden gesucht" data-ru="✈️ Поиск вариантов авиабилетов" data-fr="✈️ Recherche d'options de vols">✈️ Searching flight options</span>
+      <span class="bg-sea-50 px-3 py-1 rounded-full" data-en="🏡 Filtering villa catalogue" data-de="🏡 Villenkatalog wird gefiltert" data-ru="🏡 Фильтрация каталога вилл" data-fr="🏡 Filtrage du catalogue de villas">🏡 Filtering villa catalogue</span>
+      <span class="bg-sea-50 px-3 py-1 rounded-full" data-en="🗺️ Planning activities" data-de="🗺️ Aktivitäten werden geplant" data-ru="🗺️ Планирование мероприятий" data-fr="🗺️ Planification des activités">🗺️ Planning activities</span>
+      <span class="bg-sea-50 px-3 py-1 rounded-full" data-en="💰 Optimising budget" data-de="💰 Budget wird optimiert" data-ru="💰 Оптимизация бюджета" data-fr="💰 Optimisation du budget">💰 Optimising budget</span>
+    </div>
+  </div>
+
+  <!-- ===== RESULT ===== -->
+  <div id="result-container" class="hidden">
+
+    <!-- Summary Bar -->
+    <div class="card-base rounded-2xl overflow-hidden mb-5">
+      <div class="px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4" style="background:linear-gradient(135deg,#072136 0%,#0d3a5f 100%);">
+        <div class="text-white">
+          <div class="text-xs text-sun-400 font-display font-bold tracking-widest uppercase mb-1" data-en="Your Vacation Plan Is Ready" data-de="Ihr Urlaubsplan ist fertig" data-ru="Ваш план отпуска готов" data-fr="Votre Plan de Vacances Est Prêt">Your Vacation Plan Is Ready</div>
+          <div class="font-display font-extrabold text-2xl" id="result-title">Kalkan Tatili</div>
+          <div class="text-white/70 text-sm mt-1" id="result-subtitle"></div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs text-white/60 uppercase tracking-wide font-display" data-en="Estimated Total" data-de="Geschätztes Gesamtbudget" data-ru="Ориентировочная сумма" data-fr="Total estimé">Estimated Total</div>
+          <div class="font-display font-extrabold text-3xl text-sun-400" id="result-total">—</div>
+          <div class="text-xs text-white/50 mt-0.5" data-en="all components included" data-de="alle Komponenten enthalten" data-ru="все компоненты включены" data-fr="tous les éléments inclus">all components included</div>
+        </div>
+      </div>
+      <div class="px-6 py-4 flex flex-wrap gap-2 bg-sea-50 no-print">
+        <button onclick="downloadPDF()" class="btn-secondary text-sm flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span data-en="Download PDF" data-de="PDF herunterladen" data-ru="Скачать PDF" data-fr="Télécharger PDF">Download PDF</span>
+        </button>
+        <button onclick="savePlan()" class="btn-secondary text-sm flex items-center gap-2" id="btn-save">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span data-en="Save Plan" data-de="Plan speichern" data-ru="Сохранить план" data-fr="Enregistrer le plan">Save Plan</span>
+        </button>
+        <button onclick="emailPlan()" class="btn-secondary text-sm flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span data-en="Send by Email" data-de="Per E-Mail versenden" data-ru="Отправить по электронной почте" data-fr="Envoyer par email">Send by Email</span>
+        </button>
+        <button onclick="regeneratePlan()" class="btn-primary text-sm flex items-center gap-2 ml-auto">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+          <span data-en="Regenerate" data-de="Neu generieren" data-ru="Создать заново" data-fr="Régénérer">Regenerate</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card-base rounded-2xl px-6 py-6 mb-5">
+      <h3 class="font-display font-bold text-lg text-sea-800 mb-6" data-en="Day by Day Plan" data-de="Tagesplan" data-ru="План по дням" data-fr="Plan Jour par Jour">Day by Day Plan</h3>
+      <div id="timeline-content" class="space-y-8">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Rationale -->
+    <div class="card-base rounded-2xl px-6 py-6 mb-5">
+      <h3 class="font-display font-bold text-lg text-sea-800 mb-3" data-en="About This Plan" data-de="Über diesen Plan" data-ru="Об этом плане" data-fr="À propos de ce plan">About This Plan</h3>
+      <p id="result-rationale" class="text-sea-600 leading-relaxed"></p>
+    </div>
+
+    <!-- Start Over -->
+    <div class="text-center pb-4">
+      <button onclick="startOver()" class="btn-secondary" data-en="← Create New Plan" data-de="← Neuen Plan erstellen" data-ru="← Создать новый план" data-fr="← Créer un nouveau plan">← Create New Plan</button>
+    </div>
+  </div>
+
+  <!-- ===== ERROR STATE ===== -->
+  <div id="error-container" class="hidden card-base rounded-2xl px-8 py-12 text-center">
+    <div class="text-5xl mb-4">😔</div>
+    <h2 class="font-display font-bold text-xl text-sea-800 mb-3" data-en="An error occurred" data-de="Ein Fehler ist aufgetreten" data-ru="Произошла ошибка" data-fr="Une erreur s'est produite">An error occurred</h2>
+    <p class="text-sea-400 mb-6" id="error-message" data-en="An error occurred while creating the plan." data-de="Beim Erstellen des Plans ist ein Fehler aufgetreten." data-ru="Произошла ошибка при создании плана." data-fr="Une erreur s'est produite lors de la création du plan.">An error occurred while creating the plan.</p>
+    <button onclick="retryPlan()" class="btn-primary" data-en="Try Again" data-de="Erneut versuchen" data-ru="Попробовать снова" data-fr="Réessayer">Try Again</button>
+    <button onclick="startOver()" class="btn-secondary ml-3" data-en="Start Over" data-de="Von vorne beginnen" data-ru="Начать сначала" data-fr="Recommencer">Start Over</button>
+  </div>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white mt-16">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1">Bülten</div>
+        <h3 class="font-display font-extrabold text-xl text-white">Kalkan'dan haber alın</h3>
+        <p class="text-white/65 text-sm mt-1">Yeni rehber içerikler, sezonluk fırsatlar ve etkinlikler — ayda iki kez, kısa.</p>
+      </div>
+      <div data-newsletter-mount=""></div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="/en/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Explore</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/en/villalar.html">Villas</a></li>
+        <li><a class="hover:text-sun-400" href="/en/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a></li>
+        <li><a class="hover:text-sun-400" href="/en/restoranlar.html">Restoran &amp; Bar</a></li>
+        <li><a class="hover:text-sun-400" href="/en/plajlar.html">Beaches</a></li>
+        <li><a class="hover:text-sun-400" href="/en/turlar.html">Tours</a></li>
+        <li><a class="hover:text-sun-400" href="/en/hizmetler.html">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Araçlar</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400 text-sun-400" href="/en/tatil-asistani.html">Tatil Asistanı</a></li>
+        <li><a class="hover:text-sun-400" href="#nobetci">Nöbetçi Eczane</a></li>
+        <li><a class="hover:text-sun-400" href="#acil">Acil Numaralar</a></li>
+        <li><a class="hover:text-sun-400" href="/en/haberler.html">News</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Contact</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger="">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="/en/hakkimizda.html">About Us</a></li>
+        <li><a class="hover:text-sun-400" href="/en/kvkk.html">Gizlilik &amp; KVKK</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div class="text-white/40">Tatil planları yapay zeka tarafından oluşturulur — bilgi amaçlıdır, fiyatlar değişebilir.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Firebase SDK -->
+<script type="module" src="/js/vacation-planner.js"></script>
+
+<!-- Inline UI helpers (no Firebase dependency) -->
+<script>
+// ---- Counter controls ----
+const counters = { adults: { val: 2, min: 1, max: 12 }, children: { val: 0, min: 0, max: 10 }, rooms: { val: 2, min: 1, max: 8 } };
+function adjustCounter(name, delta) {
+  const c = counters[name];
+  c.val = Math.min(c.max, Math.max(c.min, c.val + delta));
+  document.getElementById(name + '-val').textContent = c.val;
+  document.getElementById(name + '-input').value = c.val;
+}
+
+// ---- Budget display ----
+function updateBudgetDisplay(v) {
+  document.getElementById('budget-display').textContent = Number(v).toLocaleString('tr-TR');
+}
+
+// ---- Option card toggle (checkbox) ----
+function toggleOption(card, group) {
+  const input = card.querySelector('input[type="checkbox"], input[type="radio"]');
+  if (!input) return;
+  // 'any' Fark etmez seçilirse, diğer airline seçimlerini temizle
+  if (group === 'airline') {
+    if (input.value === 'any') {
+      card.parentElement.querySelectorAll('input[name="airlines"]').forEach(i => {
+        if (i.value !== 'any') { i.checked = false; i.closest('.option-card')?.classList.remove('selected'); }
+      });
+    } else {
+      const anyCard = document.getElementById('airline-any');
+      if (anyCard) {
+        anyCard.classList.remove('selected');
+        const anyInput = anyCard.querySelector('input');
+        if (anyInput) anyInput.checked = false;
+      }
+    }
+  }
+  input.checked = !input.checked;
+  card.classList.toggle('selected', input.checked);
+  input.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+// ---- Option card radio ----
+function selectRadio(card, groupId) {
+  const container = document.getElementById(groupId) || card.closest('[id]');
+  if (!container) return;
+  container.querySelectorAll('.option-card').forEach(c => {
+    c.classList.remove('selected');
+    const i = c.querySelector('input[type="radio"]');
+    if (i) i.checked = false;
+  });
+  card.classList.add('selected');
+  const input = card.querySelector('input[type="radio"]');
+  if (input) {
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+}
+
+// ---- Food chef visibility ----
+document.addEventListener('change', function(e) {
+  if (e.target && e.target.name === 'food' && e.target.value === 'chef') {
+    document.getElementById('cuisine-section').classList.toggle('hidden', !e.target.checked);
+  }
+});
+
+// ---- Default selections sync (DOMContentLoaded) ----
+document.addEventListener('DOMContentLoaded', () => {
+  // Pre-checked input'ları .selected class ile senkronla
+  document.querySelectorAll('.option-card input:checked').forEach(input => {
+    input.closest('.option-card')?.classList.add('selected');
+  });
+});
+
+// ---- Step machine ----
+let currentStep = 1;
+const totalSteps = 5;
+
+function renderProgress() {
+  const container = document.getElementById('step-progress');
+  container.innerHTML = '';
+  for (let i = 1; i <= totalSteps; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'step-dot ' + (i < currentStep ? 'done' : i === currentStep ? 'active' : 'pending');
+    dot.textContent = i < currentStep ? '✓' : i;
+    container.appendChild(dot);
+    if (i < totalSteps) {
+      const conn = document.createElement('div');
+      conn.className = 'step-connector ' + (i < currentStep ? 'done' : 'pending');
+      container.appendChild(conn);
+    }
+  }
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.add('hidden'));
+  document.getElementById('step-' + n).classList.remove('hidden');
+  document.getElementById('btn-prev').style.display = n > 1 ? '' : 'none';
+  document.getElementById('btn-next').style.display = n < totalSteps ? '' : 'none';
+  document.getElementById('btn-submit').style.display = n === totalSteps ? '' : 'none';
+  renderProgress();
+}
+
+function validateStep(n) {
+  if (n === 1) {
+    const s = document.getElementById('date-start').value;
+    const e = document.getElementById('date-end').value;
+    if (!s || !e) { alert('Lütfen giriş ve çıkış tarihlerini seçin.'); return false; }
+    if (new Date(s) >= new Date(e)) { alert('Çıkış tarihi giriş tarihinden sonra olmalıdır.'); return false; }
+    const diff = (new Date(e) - new Date(s)) / 86400000;
+    if (diff > 30) { alert('Tatil süresi en fazla 30 gün olabilir.'); return false; }
+    if (new Date(s) <= new Date()) { alert('Giriş tarihi gelecekte olmalıdır.'); return false; }
+  }
+  return true;
+}
+
+function nextStep() {
+  if (!validateStep(currentStep)) return;
+  if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
+}
+
+function prevStep() {
+  if (currentStep > 1) { currentStep--; showStep(currentStep); }
+}
+
+// Init
+renderProgress();
+</script>
+<script src="/js/newsletter.js" defer=""></script>
+<script src="/js/pwa.js?v=20260516c" defer=""></script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="en";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/tatil-asistani.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

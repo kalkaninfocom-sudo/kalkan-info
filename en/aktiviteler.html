@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="en" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Kalkan'da Yapılacak Şeyler — Aktiviteler, Doğa, Tarih | Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+  .marquee{animation:marquee 35s linear infinite;}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tile-icon{transition:transform .28s cubic-bezier(.34,1.56,.64,1), background .22s ease;}
+  .group:hover .tile-icon{transform:translateY(-4px);}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+  .breaking::before{content:'';display:inline-block;width:6px;height:6px;border-radius:9999px;background:#fff;margin-right:8px;animation:pulse 1.4s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .card-base{background:#fff;box-shadow:0 1px 3px rgba(7,33,54,0.07),0 6px 20px -6px rgba(7,33,54,0.14);}
+  .card-hover{transition:box-shadow .22s ease, transform .22s ease;}
+  .card-hover:hover{box-shadow:0 4px 8px rgba(7,33,54,0.09),0 16px 40px -8px rgba(7,33,54,0.24);transform:translateY(-2px);}
+  .photo-treatment::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,58,95,0.3) 0%,transparent 60%);mix-blend-mode:multiply;}
+  .section-alt{background:#eef4f9;}
+  .section-dark{background:#0d3a5f;}
+  .nav-primary{background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);}
+  .nav-secondary{background:#072136;}
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;}
+  .section-label::before{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:2px;}
+  :target{animation:target-ring 2s ease forwards;}
+  @keyframes target-ring{0%{outline:3px solid #f4b53d;outline-offset:3px;box-shadow:0 0 0 6px rgba(244,181,61,0.25);}80%{outline:3px solid #f4b53d;}100%{outline:none;box-shadow:none;}}
+  .nav-active{color:#f4b53d!important;}
+  .nav-active::after{transform:scaleX(1)!important;}
+  .price-badge{font-family:'Montserrat',system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;}
+  .filter-btn{transition:background .18s ease, color .18s ease, border-color .18s ease;}
+  .filter-btn:hover{background:#0a2e4c;color:#fff;border-color:#0a2e4c;}
+  .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  /* Modal */
+  #activity-modal{position:fixed;inset:0;z-index:9000;background:rgba(7,33,54,0.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;}
+  #activity-modal-content{background:#fff;border-radius:1rem;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px -16px rgba(7,33,54,0.6);}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+<!-- SEO -->
+<meta name="description" content="Kalkan, Kaş ve Patara çevresinde yapılacak şeyler. Plaj, yürüyüş, dalış, tekne turu, antik kentler, wellness ve mevsimsel etkinlikler.">
+<meta name="keywords" content="Kalkan aktiviteler, Kaş gezilecek yerler, Patara plajı, Kekova turu, Likya yolu, Saklıkent, yamaç paraşütü, dalış, caretta caretta">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/en/aktiviteler">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/aktiviteler">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/aktiviteler">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/aktiviteler">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/aktiviteler">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/aktiviteler">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/aktiviteler">
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+<meta property="og:title" content="Kalkan'da Yapılacak Şeyler — Aktiviteler, Doğa, Tarih | Kalkan Info">
+<meta property="og:description" content="Kalkan, Kaş ve Patara çevresinde yapılacak şeyler. Plaj, yürüyüş, dalış, tekne turu, antik kentler, wellness ve mevsimsel etkinlikler.">
+<meta property="og:url" content="https://kalkaninfo.com/en/aktiviteler">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan'da Yapılacak Şeyler — Aktiviteler, Doğa, Tarih | Kalkan Info">
+<meta name="twitter:description" content="Kalkan, Kaş ve Patara çevresinde yapılacak şeyler. Plaj, yürüyüş, dalış, tekne turu, antik kentler, wellness ve mevsimsel etkinlikler.">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2655;29.4138">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kalkan Info","url":"https://kalkaninfo.com","logo":"https://kalkaninfo.com/icons/icon-512.png","alternateName":["kalkaninfo","kalkaninfo.com","Kalkaninfo","kalkan info","Kalkan Bilgi"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Aktiviteler","item":"https://kalkaninfo.com/aktiviteler.html"}]}</script>
+<!-- /SEO -->
+<script type="module" src="/js/map.js"></script>
+<script src="/js/auth-pill.js" defer=""></script>
+<script src="/js/site-drawer.js?v=20260516b" defer=""></script>
+<script src="/js/supabase-window.js"></script>
+<script src="/js/i18n.js?v=20260519a" defer=""></script>
+    <script src="/js/cookie-banner.js" defer=""></script>
+<script src="/js/header-search.js" defer=""></script>
+<script src="/js/bottom-nav.js?v=20260516b" defer=""></script>
+<script src="/js/analytics.js" defer=""></script>
+<script src="/js/utm-tracker.js" defer=""></script>
+<script src="/js/engagement-tracker.js" defer=""></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer=""></script>
+<link rel="preload" as="image" href="/assets/img/19c73f523505.webp" fetchpriority="high">
+</head>
+<body class="bg-[#dce6ef]">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- ============== HERO HEADER ============== -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img width="1452" height="1000" loading="eager" decoding="async" src="/assets/img/19c73f523505.webp" class="w-full h-full object-cover opacity-45" alt="Activities around Kalkan" data-en-alt="Activities around Kalkan" style="filter:saturate(1.5) contrast(1.1);" onerror="this.src='/assets/img/d9990fcc5354.webp'" data-de-alt="Aktivitäten rund um Kalkan" data-ru-alt="Мероприятия вокруг Kalkan" data-fr-alt="Activités autour de Kalkan" fetchpriority="high">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menu" data-en-aria="Menu" data-de-aria="Menü" data-ru-aria="Меню" data-fr-aria="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today" data-de="Heute" data-ru="Сегодня" data-fr="Aujourd'hui">Today</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date">30 Nisan 2026</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Search" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-14 md:pt-20 pb-14 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> Kalkan · Kaş · Patara
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Things to Do" data-de="Aktivitäten" data-ru="Чем занятся" data-fr="Choses à faire">Things to Do</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en-html="From beaches to ancient cities, from adventure to wellness — the region's best <span id='activity-count' class='font-bold text-sun-400'>25</span>+ activities.">From beaches to ancient cities, from adventure to wellness — the region's best <span id="activity-count" class="font-bold text-sun-400">25</span>+ activities.</p>
+    <!-- Season quick filter buttons -->
+    <div class="mt-8 flex flex-wrap gap-3">
+      <button data-season-btn="" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌐 All" data-de="🌐 Alle" data-ru="🌐 Все" data-fr="🌐 Tous">🌐 All</button>
+      <button data-season-btn="summer" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="☀ Summer" data-de="☀ Sommer" data-ru="☀ Лето" data-fr="☀ Été">☀ Summer</button>
+      <button data-season-btn="spring" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌸 Spring" data-de="🌸 Frühling" data-ru="🌸 Весна" data-fr="🌸 Printemps">🌸 Spring</button>
+      <button data-season-btn="autumn" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🍂 Autumn" data-de="🍂 Herbst" data-ru="🍂 Осень" data-fr="🍂 Automne">🍂 Autumn</button>
+      <button data-season-btn="winter" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="❄ Winter" data-de="❄ Winter" data-ru="❄ Зима" data-fr="❄ Hiver">❄ Winter</button>
+      <button data-season-btn="year-round" class="flex items-center gap-2 px-4 py-2.5 rounded-full font-display font-semibold text-sm bg-white text-sea-700 hover:bg-sea-700 hover:text-white transition" style="box-shadow:0 2px 12px rgba(7,33,54,0.25);" data-en="🌊 Year-Round" data-de="🌊 Ganzjährig" data-ru="🌊 Круглый год" data-fr="🌊 Toute l'année">🌊 Year-Round</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STICKY NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <div class="flex items-center -ml-3">
+      <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU" data-de="MENÜ" data-ru="МЕНЮ" data-fr="MENU">MENU</span>
+      </button>
+      <a href="/en/index.html" aria-label="Home" title="Home" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil" data-de-aria="Startseite" data-ru-aria="Главная" data-fr-aria="Accueil">&gt;&gt;&gt;
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg>
+      </a>
+    </div>
+    <a href="/en/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center transition-colors hover:bg-white/10" aria-label="Search" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">News</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villas</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/restoranlar.html" data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restaurants</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Beaches</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/pazarlar.html" data-en="Markets" data-de="Märkte" data-ru="Рынки" data-fr="Marchés">Markets</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/turlar.html" data-en="Tours" data-de="Touren" data-ru="Экскурсии" data-fr="Excursions">Tours</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/antik-kentler.html" data-en="Ancient Sites" data-de="Antike Stätten" data-ru="Исторические памятники" data-fr="Sites archéologiques">Ancient Sites</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="/en/aktiviteler.html" data-en="Activities" data-de="Aktivitäten" data-ru="Развлечения" data-fr="Activités">Activities</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/en/hizmetler.html" data-en="Services" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Services</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="#" data-concierge-trigger="">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4h-3.2A4 4 0 0 0 13 1h-2a4 4 0 0 0-3.8 3H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-9-1h2a2 2 0 0 1 2 2h-6a2 2 0 0 1 2-2Z"></path></svg>
+        Concierge
+      </a>
+      <a class="px-4 py-3 hover:bg-sea-700 flex items-center gap-2" href="/en/index.html#isletme-ekle" data-en="Add Business" data-de="Geschäft hinzufügen" data-ru="Добавить заведение" data-fr="Ajouter une entreprise">Add Business</a>
+      <span class="px-2 text-white/40">·</span>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700" href="#" title="Turkish (active)" data-en-title="Turkish (active)" data-de-title="Türkisch (aktiv)" data-ru-title="Турецкий (активный)" data-fr-title="Turc (actif)">TR</a>
+      <a class="px-3 py-3 text-xs hover:bg-sea-700 text-white/60" href="#" title="English">EN</a>
+    </div>
+  </div>
+  <div class="ribbon-bg grain text-[12px]">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3 text-white/90 overflow-hidden">
+      <span class="breaking inline-flex items-center bg-coral-500/90 text-white text-[11px] font-bold px-2 py-0.5 rounded" data-en="NOTICE" data-de="MITTEILUNG" data-ru="ОБЪЯВЛЕНИЯ" data-fr="AVIS">NOTICE</span>
+      <div class="flex-1 overflow-hidden">
+        <div class="marquee whitespace-nowrap">
+          <span class="mr-10" data-en="🌊 Caretta caretta nesting season begins — Patara beach night tours in May" data-de="🌊 Caretta-caretta-Brutzeit beginnt — Patara-Strand Nachttouren im Mai" data-ru="🌊 Сезон гнездования морских черепах Caretta caretta начинается — ночные экскурсии на пляж Патара в мае" data-fr="🌊 Saison de nidification des tortues Caretta caretta — Visites nocturnes à la plage de Patara en mai">🌊 Caretta caretta nesting season begins — Patara beach night tours in May</span>
+          <span class="mr-10" data-en="⛵ Kekova boat tours — Contact the business directly" data-de="⛵ Kekova-Bootstouren — Kontaktieren Sie den Anbieter direkt" data-ru="⛵ Лодочные туры Кекова — свяжитесь напрямую с компанией" data-fr="⛵ Excursions en bateau à Kekova — Contactez directement l'établissement">⛵ Kekova boat tours — Contact the business directly</span>
+          <span class="mr-10" data-en="🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions" data-de="🌸 Lykischer Weg Frühjahrssaison eröffnet — Strecke Kalkan–Kaş in idealen Bedingungen" data-ru="🌸 Любительский путь весенний сезон открыт — участок Калкан–Каш в идеальном состоянии" data-fr="🌸 Sentier lycien ouvert au printemps — Section Kalkan–Kaş en conditions idéales">🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions</span>
+          <span class="mr-10" data-en="🏖️ Kaputaş beach open daily 08:00–20:00" data-de="🏖️ Kaputaş-Strand täglich 08:00–20:00 Uhr geöffnet" data-ru="🏖️ Пляж Капуташ открыт ежедневно 08:00–20:00" data-fr="🏖️ Plage de Kaputaş ouverte quotidiennement 08:00–20:00">🏖️ Kaputaş beach open daily 08:00–20:00</span>
+          <span class="mr-10" data-en="🌊 Caretta caretta nesting season begins — Patara beach night tours in May" data-de="🌊 Caretta-caretta-Brutzeit beginnt — Patara-Strand Nachttouren im Mai" data-ru="🌊 Сезон гнездования морских черепах Caretta caretta начинается — ночные экскурсии на пляж Патара в мае" data-fr="🌊 Saison de nidification des tortues Caretta caretta — Visites nocturnes à la plage de Patara en mai">🌊 Caretta caretta nesting season begins — Patara beach night tours in May</span>
+          <span class="mr-10" data-en="⛵ Kekova boat tours — Contact the business directly" data-de="⛵ Kekova-Bootstouren — Kontaktieren Sie den Anbieter direkt" data-ru="⛵ Лодочные туры Кекова — свяжитесь напрямую с компанией" data-fr="⛵ Excursions en bateau à Kekova — Contactez directement l'établissement">⛵ Kekova boat tours — Contact the business directly</span>
+          <span class="mr-10" data-en="🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions" data-de="🌸 Lykischer Weg Frühjahrssaison eröffnet — Strecke Kalkan–Kaş in idealen Bedingungen" data-ru="🌸 Любительский путь весенний сезон открыт — участок Калкан–Каш в идеальном состоянии" data-fr="🌸 Sentier lycien ouvert au printemps — Section Kalkan–Kaş en conditions idéales">🌸 Lycian Way spring season open — Kalkan–Kaş section in ideal conditions</span>
+          <span class="mr-10" data-en="🏖️ Kaputaş beach open daily 08:00–20:00" data-de="🏖️ Kaputaş-Strand täglich 08:00–20:00 Uhr geöffnet" data-ru="🏖️ Пляж Капуташ открыт ежедневно 08:00–20:00" data-fr="🏖️ Plage de Kaputaş ouverte quotidiennement 08:00–20:00">🏖️ Kaputaş beach open daily 08:00–20:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== FILTER BAR ============== -->
+<section style="background:#0a2e4c;">
+  <div class="max-w-7xl mx-auto px-4 py-5">
+    <div class="bg-white rounded-xl p-4 flex flex-wrap gap-3 items-center" style="box-shadow:0 2px 8px rgba(7,33,54,0.12),0 20px 60px -16px rgba(7,33,54,0.4);">
+      <div class="flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"></path></svg>
+        <span class="text-xs font-display font-bold uppercase tracking-widest text-sea-700" data-en="Filter" data-de="Filter" data-ru="Фильтр" data-fr="Filtrer">Filter</span>
+      </div>
+      <div class="h-4 w-px bg-sea-100 hidden md:block"></div>
+
+      <!-- Season -->
+      <div class="relative">
+        <select id="filter-season" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
+          <option value="" data-en="All Seasons" data-de="Alle Jahreszeiten" data-ru="Все сезоны" data-fr="Toutes les saisons">All Seasons</option>
+          <option value="summer" data-en="☀ Summer" data-de="☀ Sommer" data-ru="☀ Лето" data-fr="☀ Été">☀ Summer</option>
+          <option value="spring" data-en="🌸 Spring" data-de="🌸 Frühling" data-ru="🌸 Весна" data-fr="🌸 Printemps">🌸 Spring</option>
+          <option value="autumn" data-en="🍂 Autumn" data-de="🍂 Herbst" data-ru="🍂 Осень" data-fr="🍂 Automne">🍂 Autumn</option>
+          <option value="winter" data-en="❄ Winter" data-de="❄ Winter" data-ru="❄ Зима" data-fr="❄ Hiver">❄ Winter</option>
+          <option value="year-round" data-en="🌊 Year-Round" data-de="🌊 Ganzjährig" data-ru="🌊 Круглый год" data-fr="🌊 Toute l'année">🌊 Year-Round</option>
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+
+      <!-- Category/Tag -->
+      <div class="relative">
+        <select id="filter-tag" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
+          <option value="" data-en="All Categories" data-de="Alle Kategorien" data-ru="Все категории" data-fr="Toutes les catégories">All Categories</option>
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+
+      <!-- Difficulty -->
+      <div class="relative">
+        <select id="filter-difficulty" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
+          <option value="" data-en="All Difficulties" data-de="Alle Schwierigkeitsgrade" data-ru="Все уровни сложности" data-fr="Tous les niveaux de difficulté">All Difficulties</option>
+          <option value="kolay" data-en="Easy" data-de="Leicht" data-ru="Легко" data-fr="Facile">Easy</option>
+          <option value="orta" data-en="Moderate" data-de="Mittel" data-ru="Средне" data-fr="Moyen">Moderate</option>
+          <option value="zor" data-en="Hard" data-de="Schwer" data-ru="Сложно" data-fr="Difficile">Hard</option>
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+
+      <!-- Price -->
+      <div class="relative">
+        <select id="filter-price" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
+          <option value="" data-en="All Prices" data-de="Alle Preise" data-ru="Все цены" data-fr="Tous les tarifs">All Prices</option>
+          <option value="ücretsiz" data-en="Free" data-de="Kostenlos" data-ru="Бесплатно" data-fr="Gratuit">Free</option>
+          <option value="$" data-en="$ — Budget" data-de="$ — Budget" data-ru="$ — Бюджет" data-fr="$ — Petit budget">$ — Budget</option>
+          <option value="$$" data-en="$$ — Mid-range" data-de="$ — Mittleres Preissegment" data-ru="$ — Средний уровень" data-fr="$ — Gamme moyenne">$$ — Mid-range</option>
+          <option value="$$$" data-en="$$$ — Premium" data-de="$$ — Premium" data-ru="$$ — Премиум" data-fr="$$ — Premium">$$$ — Premium</option>
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+
+      <!-- Booking -->
+      <div class="relative">
+        <select id="filter-booking" class="filter-btn appearance-none border border-sea-200 rounded-md px-4 py-2 pr-8 text-sm font-semibold text-sea-800 bg-sea-50 cursor-pointer focus:outline-none focus:border-sea-500">
+          <option value="" data-en="Booking" data-de="Buchung" data-ru="Бронирование" data-fr="Réservation">Booking</option>
+          <option value="false" data-en="No Booking Required" data-de="Keine Buchung erforderlich" data-ru="Бронирование не требуется" data-fr="Aucune réservation requise">No Booking Required</option>
+          <option value="true" data-en="Booking Required" data-de="Buchung erforderlich" data-ru="Требуется бронирование" data-fr="Réservation requise">Booking Required</option>
+        </select>
+        <svg class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
+      </div>
+
+      <div class="ml-auto flex items-center gap-2">
+        <button id="btn-clear-filters" class="text-xs text-sea-400 hover:text-sea-700 font-semibold transition px-3 py-2" data-en="Clear" data-de="Löschen" data-ru="Очистить" data-fr="Effacer">Clear</button>
+        <button id="btn-calendar-toggle" class="flex items-center gap-2 bg-sea-800 hover:bg-sea-700 text-white text-xs font-display font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition" data-en="📅 Calendar" data-de="📅 Kalender" data-ru="📅 Календарь" data-fr="📅 Calendrier">📅 Calendar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MAIN CONTENT ============== -->
+<main class="max-w-7xl mx-auto px-4 py-10">
+
+  <!-- Grid View -->
+  <div id="grid-view">
+    <div id="activity-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- JS renders cards here -->
+      <div class="col-span-full flex justify-center py-16">
+        <div class="flex flex-col items-center gap-3 text-sea-400">
+          <svg class="animate-spin" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+          <span class="text-sm font-semibold" data-en="Loading…" data-de="Wird geladen…" data-ru="Загрузка…" data-fr="Chargement…">Loading…</span>
+        </div>
+      </div>
+    </div>
+    <div id="activity-empty" class="hidden col-span-full text-center py-16">
+      <p class="text-sea-500 font-semibold text-lg" data-en="No activities found matching these criteria." data-de="Keine Aktivitäten gefunden, die diesen Kriterien entsprechen." data-ru="Не найдено мероприятий, соответствующих этим критериям." data-fr="Aucune activité trouvée correspondant à ces critères.">No activities found matching these criteria.</p>
+      <button id="btn-clear-filters-empty" onclick="document.getElementById('btn-clear-filters').click()" class="mt-4 px-5 py-2 bg-sea-800 text-white rounded-lg text-sm font-semibold hover:bg-sea-700 transition" data-en="Clear Filters" data-de="Filter löschen" data-ru="Очистить фильтры" data-fr="Effacer les filtres">Clear Filters</button>
+    </div>
+  </div>
+
+  <!-- Calendar View -->
+  <div id="calendar-view" class="hidden">
+    <!-- JS renders calendar here -->
+  </div>
+
+</main>
+
+<!-- ============== ACTIVITY MODAL ============== -->
+<div id="activity-modal" class="hidden" role="dialog" aria-modal="true" aria-label="Activity Detail" data-en-aria="Activity Detail" data-de-aria="Aktivitätsdetails" data-ru-aria="Детали мероприятия" data-fr-aria="Détails de l'activité">
+  <div id="activity-modal-content">
+    <!-- JS renders content here -->
+  </div>
+</div>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter" data-de="Newsletter" data-ru="Рассылка новостей" data-fr="Infolettre">Newsletter</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay updated from Kalkan" data-de="Bleiben Sie von Kalkan auf dem Laufenden" data-ru="Будьте в курсе из Kalkan" data-fr="Restez informé depuis Kalkan">Stay updated from Kalkan</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals and events — twice a month, brief." data-de="Neue Reiseführer, saisonale Angebote und Veranstaltungen — zweimal im Monat, kompakt." data-ru="Новые гайды, сезонные предложения и события — дважды в месяц, кратко." data-fr="Nouveaux guides, offres saisonnières et événements — deux fois par mois, en bref.">New guides, seasonal deals and events — twice a month, brief.</p>
+      </div>
+      <div data-newsletter-mount=""></div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="/en/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quiet but powerful — local knowledge, curated recommendations, professional service. The go-to source for Kalkan, Kaş, Patara and surroundings." data-de="Ruhig aber kraftvoll — lokales Wissen, kuratierte Empfehlungen, professioneller Service. Die erste Anlaufstelle für Kalkan, Kaş, Patara und Umgebung." data-ru="Тихо, но мощно — местные знания, подобранные рекомендации, профессиональное обслуживание. Главный источник информации о Kalkan, Kaş, Patara и окрестностях." data-fr="Discret mais puissant — connaissance locale, recommandations sélectionnées, service professionnel. La source incontournable pour Kalkan, Kaş, Patara et ses environs.">Quiet but powerful — local knowledge, curated recommendations, professional service. The go-to source for Kalkan, Kaş, Patara and surroundings.</p>
+      <div class="flex items-center gap-3 mt-5">
+        <a href="https://instagram.com/kalkan.info" target="_blank" rel="noopener" aria-label="Instagram" data-en-aria="Instagram" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-500 transition" data-de-aria="Instagram" data-ru-aria="Instagram" data-fr-aria="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41a3.7 3.7 0 0 1 1.37.9c.43.42.7.83.9 1.36.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.7 3.7 0 0 1-.9 1.37c-.42.43-.83.7-1.36.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.37-.9c-.43-.42-.7-.83-.9-1.36-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.2-.53.47-.94.9-1.37.43-.43.84-.7 1.37-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Z"></path></svg>
+        </a>
+        <a href="#" data-concierge-trigger="" aria-label="WhatsApp" data-en-aria="WhatsApp" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 hover:bg-sun-600 transition" data-de-aria="WhatsApp" data-ru-aria="WhatsApp" data-fr-aria="WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"></path></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore" data-de="Erkunden" data-ru="Исследовать" data-fr="Explorer">Explore</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/en/villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villas</a></li>
+        <li><a class="hover:text-sun-400" href="/en/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a></li>
+        <li><a class="hover:text-sun-400" href="/en/restoranlar.html" data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restaurants</a></li>
+        <li><a class="hover:text-sun-400" href="/en/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Beaches</a></li>
+        <li><a class="hover:text-sun-400" href="/en/turlar.html" data-en="Tours" data-de="Touren" data-ru="Экскурсии" data-fr="Tours">Tours</a></li>
+        <li><a class="hover:text-sun-400 text-sun-400" href="/en/aktiviteler.html" data-en="Activities" data-de="Aktivitäten" data-ru="Мероприятия" data-fr="Activités">Activities</a></li>
+        <li><a class="hover:text-sun-400" href="/en/hizmetler.html" data-en="Services" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Services</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Local" data-de="Lokal" data-ru="Местное" data-fr="Local">Local</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/en/index.html#nobetci" data-en="On-Duty Pharmacy" data-de="Apotheke im Dienst" data-ru="Дежурная аптека" data-fr="Pharmacie de garde">On-Duty Pharmacy</a></li>
+        <li><a class="hover:text-sun-400" href="/en/index.html#acil" data-en="Emergency Numbers" data-de="Notfallnummern" data-ru="Номера экстренных служб" data-fr="Numéros d'urgence">Emergency Numbers</a></li>
+        <li><a class="hover:text-sun-400" href="/en/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">News</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Contact" data-de="Kontakt" data-ru="Контакты" data-fr="Contact">Contact</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="mailto:info@kalkan.info">info@kalkan.info</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger="" data-en="Concierge WhatsApp" data-de="Concierge WhatsApp" data-ru="Консьерж WhatsApp" data-fr="Concierge WhatsApp">Concierge WhatsApp</a></li>
+        <li><a class="hover:text-sun-400" href="/en/index.html#isletme-ekle" data-en="Add Business" data-de="Unternehmen hinzufügen" data-ru="Добавить бизнес" data-fr="Ajouter une entreprise">Add Business</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 pt-4 pb-1 text-xs text-white/45 leading-relaxed" data-en="kalkaninfo.com is an information and listing platform, not a travel agency. All bookings, sales and payments are made directly with the listed businesses. Suggestions are for guidance only." data-de="kalkaninfo.com ist eine Informations- und Verzeichnisplattform, kein Reisebüro. Buchungen, Verkäufe und Zahlungen erfolgen direkt mit den gelisteten Anbietern. Empfehlungen dienen nur zur Orientierung." data-ru="kalkaninfo.com — информационная и справочная платформа, а не турагентство. Бронирование, продажи и оплата производятся напрямую с компаниями. Рекомендации носят справочный характер." data-fr="kalkaninfo.com est une plateforme d'information et d'annuaire, pas une agence de voyages. Les réservations, ventes et paiements se font directement avec les établissements. Les suggestions sont fournies à titre indicatif.">kalkaninfo.com is an information and listing platform, not a travel agency. All bookings, sales and payments are made directly with the listed businesses. Suggestions are for guidance only.</div>
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div data-en="© 2026 Kalkan Info — All rights reserved." data-de="© 2026 Kalkan Info — Alle Rechte vorbehalten." data-ru="© 2026 Kalkan Info — Все права защищены." data-fr="© 2026 Kalkan Info — Tous droits réservés.">© 2026 Kalkan Info — All rights reserved.</div>
+      <div class="flex items-center gap-3">
+        <span aria-disabled="true" title="Coming soon" data-en-title="Coming soon" class="opacity-60 cursor-not-allowed" style="pointer-events:none;" data-de-title="Demnächst verfügbar" data-ru-title="Скоро" data-fr-title="Bientôt disponible">App Store</span>
+        <span class="opacity-30">·</span>
+        <span aria-disabled="true" title="Coming soon" data-en-title="Coming soon" class="opacity-60 cursor-not-allowed" style="pointer-events:none;" data-de-title="Demnächst verfügbar" data-ru-title="Скоро" data-fr-title="Bientôt disponible">Google Play</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Concierge -->
+<a href="#" data-concierge-trigger="" class="fixed bottom-5 right-5 z-50 group bg-sun-600 hover:bg-sun-700 text-white rounded-full shadow-deep flex items-center gap-2 pl-4 pr-5 py-3 transition">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"></path></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+
+<script type="module" src="/js/activities.js"></script>
+<script src="/js/pwa.js?v=20260516c" defer=""></script>
+<script src="/js/newsletter.js" defer=""></script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="en";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/aktiviteler.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

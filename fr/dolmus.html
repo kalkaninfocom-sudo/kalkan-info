@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="fr" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dolmuş Sefer Saatleri — Kalkan · Kaş · Patara | Kalkan Info</title>
+<meta name="description" content="Kalkan Kaş Patara dolmuş &amp; otobüs sefer saatleri. Kalkan'dan Kaş'a, Patara'ya; Kaş'tan Kalkan'a; Patara'dan Kalkan ve Kaş'a. Sıradaki dolmuşu anında gör, durakta nerede bekleyeceğini haritada bul.">
+<meta name="keywords" content="kalkan kaş dolmuş, kalkan patara dolmuş, kaş kalkan otobüs, patara kalkan minibüs, kalkan dolmuş saatleri, kalkan bus times, kalkan to kas bus, kalkan to patara bus, patara to kalkan, kalkan minibus schedule, dolmus kalkan kas patara">
+<link rel="canonical" href="https://kalkaninfo.com/fr/dolmus">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/dolmus">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/dolmus">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/dolmus">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/dolmus">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/dolmus">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/dolmus">
+
+
+
+
+
+
+<meta property="og:title" content="Dolmuş Sefer Saatleri — Kalkan · Kaş · Patara | Kalkan Info">
+<meta property="og:description" content="Kalkan Kaş Patara dolmuş &amp; otobüs sefer saatleri. Kalkan'dan Kaş'a, Patara'ya; Kaş'tan Kalkan'a; Patara'dan Kalkan ve Kaş'a. Sıradaki dolmuşu anında gör, durakta nerede bekleyeceğini haritada bul.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kalkaninfo.com/fr/dolmus">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script>
+  // JSON-LD: BusStation + hreflang niyeti (dolmuş durağı)
+  window.__DOLMUS_LD = {
+    "@context":"https://schema.org","@type":"BusStation",
+    "name":"Kalkan Dolmuş Durağı (Migros Jet önü)",
+    "description":"Kalkan merkez dolmuş durağı — Kaş, Patara, Kaputaş yönleri.",
+    "address":{"@type":"PostalAddress","streetAddress":"Şehitler Cd., Migros Jet önü","addressLocality":"Kalkan","addressRegion":"Antalya","postalCode":"07580","addressCountry":"TR"},
+    "geo":{"@type":"GeoCoordinates","latitude":36.2660826,"longitude":29.4140577},
+    "areaServed":["Kalkan","Kaş","Patara","Kaputaş","Kınık","Çavdır"],
+    "url":"https://kalkaninfo.com/dolmus"
+  };
+</script>
+<style>
+  :root{
+    --navy-900:#072136; --navy-800:#0a2e4c; --navy-700:#0c3858; --blue:#1a5e93;
+    --gold:#f4b53d; --gold-600:#e89812; --surface:#eef4f9; --line:#dce8f0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--navy-800);background:#dce6ef;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.disp{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px;}
+
+  /* Header */
+  .topbar{background:linear-gradient(180deg,var(--navy-700),var(--navy-800));color:#fff;position:sticky;top:0;z-index:30;box-shadow:0 4px 20px -6px rgba(7,33,54,.5);}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;height:58px;gap:10px;}
+  .logo{font-family:'Montserrat';font-weight:800;font-size:18px;letter-spacing:.02em;display:flex;align-items:center;gap:8px;}
+  .logo .diamond{width:14px;height:14px;background:var(--gold);transform:rotate(45deg);border-radius:2px;}
+  .logo .info{color:var(--gold);}
+  .tb-right{display:flex;align-items:center;gap:8px;}
+  .back{font-size:13px;color:rgba(255,255,255,.85);display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:9999px;transition:background .2s;}
+  .back:hover{background:rgba(255,255,255,.1);}
+  .back:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  /* Lang switcher */
+  .langs{display:flex;gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9999px;padding:3px;}
+  .langs button{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:12px;font-weight:700;padding:5px 9px;border-radius:9999px;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter';}
+  .langs button:hover{color:#fff;}
+  .langs button.on{background:var(--gold);color:var(--navy-900);}
+  .langs button:focus-visible{outline:2px solid var(--gold);outline-offset:1px;}
+
+  /* Hero */
+  .hero{background:var(--navy-900);color:#fff;padding:26px 0 20px;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+  .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 90% 0%,rgba(26,94,147,.35),transparent 60%);pointer-events:none;}
+  .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);display:inline-flex;align-items:center;gap:8px;}
+  .kicker::before{content:'';width:22px;height:2px;background:var(--gold);border-radius:2px;}
+  .hero h1{font-size:clamp(26px,6vw,40px);font-weight:900;margin:.35em 0 .15em;line-height:1.05;}
+  .hero p{color:rgba(255,255,255,.75);font-size:14px;max-width:64ch;margin:0;}
+  .clock{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9999px;padding:8px 14px;font-weight:600;font-size:14px;}
+  .clock b{font-variant-numeric:tabular-nums;color:var(--gold);}
+
+  /* Stop + map */
+  .stop{display:grid;grid-template-columns:1fr;gap:16px;margin:20px 0 4px;}
+  @media(min-width:820px){.stop{grid-template-columns:0.9fr 1.1fr;}}
+  .stop-info{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;box-shadow:0 1px 3px rgba(7,33,54,.07),0 8px 26px -12px rgba(7,33,54,.2);}
+  .stop-info h2{font-size:18px;margin:0 0 4px;color:var(--navy-900);}
+  .stop-info .pin{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--navy-800);font-size:15px;margin:8px 0;}
+  .stop-info .addr{color:#5a6f85;font-size:13.5px;line-height:1.6;margin:4px 0 12px;}
+  .stop-info .dirs{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;}
+  .stop-info .dirs li{font-size:13px;color:var(--navy-800);display:flex;gap:8px;align-items:center;}
+  .stop-info .dirs .arw{color:var(--gold-600);font-weight:800;}
+  .maps-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--navy-800);color:#fff;font-weight:700;font-size:13px;padding:10px 16px;border-radius:9999px;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .2s;}
+  .maps-link:hover{transform:translateY(-1px);background:var(--blue);}
+  .maps-link:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  #map{height:340px;border-radius:16px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(7,33,54,.07),0 8px 26px -12px rgba(7,33,54,.2);z-index:1;}
+
+  /* Filter chips */
+  .filters{display:flex;gap:8px;overflow-x:auto;padding:16px 0 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .filters::-webkit-scrollbar{display:none;}
+  .chip{flex:none;border:1px solid var(--line);background:#fff;color:var(--navy-800);border-radius:9999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1),background .2s,border-color .2s,color .2s;white-space:nowrap;}
+  .chip:hover{transform:translateY(-1px);}
+  .chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .chip.active{background:var(--navy-800);color:#fff;border-color:var(--navy-800);}
+
+  /* Route grid */
+  .sec-title{font-size:15px;font-weight:800;color:var(--navy-900);margin:22px 0 2px;letter-spacing:-.01em;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:12px 0 40px;}
+  .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(7,33,54,.07),0 8px 26px -10px rgba(7,33,54,.22);border:1px solid var(--line);display:flex;flex-direction:column;transition:box-shadow .22s,transform .22s;}
+  .card:hover{box-shadow:0 6px 14px rgba(7,33,54,.1),0 20px 46px -12px rgba(7,33,54,.3);transform:translateY(-2px);}
+  .card .head{padding:14px 16px;color:#fff;position:relative;}
+  .card .head .from{font-family:'Montserrat';font-weight:800;font-size:17px;display:flex;align-items:center;gap:8px;}
+  .card .head .route{font-size:12px;font-weight:600;opacity:.92;margin-top:4px;line-height:1.5;}
+  .card .head .route .arw{opacity:.6;margin:0 3px;}
+  .next{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--line);font-size:13px;}
+  .next .lbl{color:#5a6f85;font-weight:600;}
+  .next .val{font-family:'Montserrat';font-weight:800;font-size:16px;color:var(--navy-900);font-variant-numeric:tabular-nums;}
+  .next .in{margin-left:auto;background:var(--gold);color:var(--navy-900);font-weight:700;font-size:12px;padding:4px 10px;border-radius:9999px;}
+  .next.done .val{color:#94a3b8;}
+  .next.done .in{background:#e2e8f0;color:#64748b;}
+  .times{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px;padding:14px 16px 16px;}
+  .t{font-variant-numeric:tabular-nums;text-align:center;font-size:13px;font-weight:600;padding:7px 4px;border-radius:8px;background:var(--surface);color:var(--navy-800);}
+  .t.past{color:#b3bfcc;background:#f4f7fa;text-decoration:line-through;}
+  .t.next{background:var(--gold);color:var(--navy-900);box-shadow:0 4px 12px -3px rgba(232,152,18,.55);animation:pop .5s cubic-bezier(.34,1.56,.64,1);}
+  @keyframes pop{0%{transform:scale(.85)}100%{transform:scale(1)}}
+
+  .note{background:#fff8e8;border:1px solid #f3dca0;color:#7a5a10;border-radius:12px;padding:12px 16px;font-size:13px;margin:8px 0 32px;display:flex;gap:10px;align-items:flex-start;}
+  .foot{background:var(--navy-900);color:rgba(255,255,255,.6);font-size:12px;text-align:center;padding:20px 16px;}
+  .foot a{color:var(--gold);}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="topbar"><div class="wrap row">
+    <a class="logo" href="/fr/">Kalkan <span class="info">Info</span></a>
+    <div class="tb-right">
+      <div class="langs" id="langs" role="group" aria-label="Language">
+        <button data-lang="tr">TR</button><button data-lang="en">EN</button><button data-lang="de">DE</button><button data-lang="ru">RU</button><button data-lang="fr">FR</button>
+      </div>
+      <a class="back" href="/fr/"><span data-i="back">← Anasayfa</span></a>
+    </div>
+  </div></div>
+
+  <header class="hero"><div class="wrap">
+    <span class="kicker" data-i="kicker">Ulaşım · Bölge Dolmuşları</span>
+    <h1 data-i="h1">Dolmuş Sefer Saatleri</h1>
+    <p data-i="lead">Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır hatları. Kalkan'dan Kaş'a ve Patara'ya, Kaş'tan Kalkan'a, Patara'dan Kalkan ve Kaş'a — her kartta <b style="color:#fff">sıradaki dolmuş</b> otomatik işaretlenir.</p>
+    <div class="clock">🕐 <span data-i="now">Şu an</span>: <b id="now">--:--</b></div>
+  </div></header>
+
+  <main class="wrap">
+    <!-- Durak & Harita -->
+    <section class="stop" aria-label="Dolmuş durağı">
+      <div class="stop-info">
+        <h2 data-i="stopTitle">Durak — Nerede Beklenir?</h2>
+        <div class="pin">📍 <span data-i="stopName">Kalkan Merkez — Migros Jet önü ve karşısı</span></div>
+        <p class="addr" data-i="stopAddr">Dolmuşlar Kalkan merkezde Migros Jet'in önündeki ve karşısındaki duraktan kalkar. Kaş, Patara ve Kaputaş yönü için burada bekleyin.</p>
+        <ul class="dirs">
+          <li><span class="arw">›</span><span data-i="dir1">Kalkan → Kaş / Patara / Kaputaş</span></li>
+          <li><span class="arw">›</span><span data-i="dir2">Kaş → Kalkan</span></li>
+          <li><span class="arw">›</span><span data-i="dir3">Patara → Kalkan / Kaş</span></li>
+        </ul>
+        <a class="maps-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=36.2660826,29.4140577">🗺️ <span data-i="openMap">Haritada Aç</span></a>
+      </div>
+      <div id="map" role="img" aria-label="Kalkan dolmuş durağı haritası"></div>
+    </section>
+
+    <div class="sec-title" data-i="linesTitle">Hatlar &amp; Saatler</div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="grid"></div>
+    <div class="note">
+      <span>ℹ️</span>
+      <span data-i="note"><b>Saatler yaz sezonu tarifesine göredir ve değişebilir.</b> Yola çıkmadan durak veya operatörle teyit etmenizi öneririz. Bir hata görürseniz <a href="/fr/" style="color:#7a5a10;text-decoration:underline">nous le faire savoir</a>.</span>
+    </div>
+  </main>
+
+  <footer class="foot"><span data-i="foot">© 2026 Kalkan Info · Bölge ulaşım rehberi</span> · <a href="/fr/">kalkaninfo.com</a></footer>
+
+<script>
+/* ===== i18n (self-contained, 5 dil) ===== */
+var I18N={
+  tr:{title:"Dolmuş Sefer Saatleri — Kalkan · Kaş · Patara | Kalkan Info",desc:"Kalkan Kaş Patara dolmuş & otobüs sefer saatleri. Sıradaki dolmuşu anında gör, durakta nerede bekleyeceğini haritada bul.",
+    back:"← Anasayfa",kicker:"Ulaşım · Bölge Dolmuşları",h1:"Dolmuş Sefer Saatleri",
+    lead:"Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır hatları. Kalkan'dan Kaş'a ve Patara'ya, Kaş'tan Kalkan'a, Patara'dan Kalkan ve Kaş'a — her kartta <b style='color:#fff'>sıradaki dolmuş</b> otomatik işaretlenir.",
+    now:"Şu an",stopTitle:"Durak — Nerede Beklenir?",stopName:"Kalkan Merkez — Migros Jet önü ve karşısı",
+    stopAddr:"Dolmuşlar Kalkan merkezde Migros Jet'in önündeki ve karşısındaki duraktan kalkar. Kaş, Patara ve Kaputaş yönü için burada bekleyin.",
+    dir1:"Kalkan → Kaş / Patara / Kaputaş",dir2:"Kaş → Kalkan",dir3:"Patara → Kalkan / Kaş",openMap:"Haritada Aç",
+    linesTitle:"Hatlar & Saatler",note:"<b>Saatler yaz sezonu tarifesine göredir ve değişebilir.</b> Yola çıkmadan durak veya operatörle teyit etmenizi öneririz. Bir hata görürseniz <a href='/' style='color:#7a5a10;text-decoration:underline'>bize bildirin</a>.",
+    foot:"© 2026 Kalkan Info · Bölge ulaşım rehberi",all:"Tüm Hatlar",nextL:"Sıradaki",today:"Bugün",ended:"Seferler bitti",tomorrow:"yarın 🌅",soon:"şimdi",inMin:"dk sonra",hr:"sa",popup:"Dolmuş Durağı · Migros Jet önü"},
+  en:{title:"Dolmuş (Minibus) & Bus Times — Kalkan · Kaş · Patara | Kalkan Info",desc:"Kalkan Kaş Patara dolmuş & bus timetable. Kalkan to Kaş & Patara, Kaş to Kalkan, Patara to Kalkan & Kaş. See the next departure and where to wait on the map.",
+    back:"← Home",kicker:"Transport · Regional Minibuses",h1:"Dolmuş (Minibus) & Bus Times",
+    lead:"Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır lines. Kalkan to Kaş and Patara, Kaş to Kalkan, Patara to Kalkan and Kaş — the <b style='color:#fff'>next departure</b> is highlighted automatically on each card.",
+    now:"Now",stopTitle:"Stop — Where to Wait?",stopName:"Kalkan Centre — in front of & across from Migros Jet",
+    stopAddr:"Minibuses (dolmuş) depart from the stop in front of and across from Migros Jet in central Kalkan. Wait here for Kaş, Patara and Kaputaş.",
+    dir1:"Kalkan → Kaş / Patara / Kaputaş",dir2:"Kaş → Kalkan",dir3:"Patara → Kalkan / Kaş",openMap:"Open in Maps",
+    linesTitle:"Lines & Times",note:"<b>Times follow the summer timetable and may change.</b> Please confirm at the stop or with the operator before travelling. Spotted an error? <a href='/' style='color:#7a5a10;text-decoration:underline'>Let us know</a>.",
+    foot:"© 2026 Kalkan Info · Regional transport guide",all:"All Lines",nextL:"Next",today:"Today",ended:"Service ended",tomorrow:"tomorrow 🌅",soon:"now",inMin:"min",hr:"h",popup:"Dolmuş Stop · in front of Migros Jet"},
+  de:{title:"Dolmuş- & Busfahrplan — Kalkan · Kaş · Patara | Kalkan Info",desc:"Dolmuş- & Busfahrplan für Kalkan, Kaş, Patara. Kalkan nach Kaş & Patara, Kaş nach Kalkan, Patara nach Kalkan & Kaş. Nächste Abfahrt und Haltestelle auf der Karte.",
+    back:"← Startseite",kicker:"Verkehr · Regionale Minibusse",h1:"Dolmuş- & Busfahrplan",
+    lead:"Linien Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır. Kalkan nach Kaş und Patara, Kaş nach Kalkan, Patara nach Kalkan und Kaş — die <b style='color:#fff'>nächste Abfahrt</b> wird auf jeder Karte automatisch markiert.",
+    now:"Jetzt",stopTitle:"Haltestelle — Wo warten?",stopName:"Kalkan Zentrum — vor und gegenüber Migros Jet",
+    stopAddr:"Die Dolmuş (Minibusse) fahren von der Haltestelle vor und gegenüber dem Migros Jet im Zentrum von Kalkan ab. Warten Sie hier für Kaş, Patara und Kaputaş.",
+    dir1:"Kalkan → Kaş / Patara / Kaputaş",dir2:"Kaş → Kalkan",dir3:"Patara → Kalkan / Kaş",openMap:"In Karte öffnen",
+    linesTitle:"Linien & Zeiten",note:"<b>Die Zeiten gelten für den Sommerfahrplan und können sich ändern.</b> Bitte an der Haltestelle oder beim Betreiber bestätigen. Fehler entdeckt? <a href='/' style='color:#7a5a10;text-decoration:underline'>Sagen Sie uns Bescheid</a>.",
+    foot:"© 2026 Kalkan Info · Regionaler Verkehrsführer",all:"Alle Linien",nextL:"Nächste",today:"Heute",ended:"Fahrten beendet",tomorrow:"morgen 🌅",soon:"jetzt",inMin:"Min",hr:"Std",popup:"Dolmuş-Haltestelle · vor Migros Jet"},
+  ru:{title:"Расписание маршруток (Dolmuş) и автобусов — Kalkan · Kaş · Patara | Kalkan Info",desc:"Расписание маршруток и автобусов Калкан–Каш–Патара. Из Калкана в Каш и Патару, из Каша в Калкан, из Патары в Калкан и Каш. Ближайший рейс и остановка на карте.",
+    back:"← Главная",kicker:"Транспорт · Региональные маршрутки",h1:"Расписание маршруток (Dolmuş) и автобусов",
+    lead:"Линии Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır. Из Калкана в Каш и Патару, из Каша в Калкан, из Патары в Калкан и Каш — <b style='color:#fff'>ближайший рейс</b> отмечается автоматически на каждой карточке.",
+    now:"Сейчас",stopTitle:"Остановка — где ждать?",stopName:"Центр Калкана — перед и напротив Migros Jet",
+    stopAddr:"Маршрутки (dolmuş) отправляются от остановки перед и напротив Migros Jet в центре Калкана. Ждите здесь в сторону Каша, Патары и Капуташа.",
+    dir1:"Калкан → Каш / Патара / Капуташ",dir2:"Каш → Калкан",dir3:"Патара → Калкан / Каш",openMap:"Открыть на карте",
+    linesTitle:"Линии и время",note:"<b>Время указано по летнему расписанию и может меняться.</b> Уточняйте на остановке или у водителя перед поездкой. Заметили ошибку? <a href='/' style='color:#7a5a10;text-decoration:underline'>Сообщите нам</a>.",
+    foot:"© 2026 Kalkan Info · Путеводитель по транспорту",all:"Все линии",nextL:"Ближайший",today:"Сегодня",ended:"Рейсы окончены",tomorrow:"завтра 🌅",soon:"сейчас",inMin:"мин",hr:"ч",popup:"Остановка маршруток · у Migros Jet"},
+  fr:{title:"Horaires Dolmuş (minibus) & bus — Kalkan · Kaş · Patara | Kalkan Info",desc:"Horaires des dolmuş & bus Kalkan–Kaş–Patara. Kalkan vers Kaş & Patara, Kaş vers Kalkan, Patara vers Kalkan & Kaş. Prochain départ et arrêt sur la carte.",
+    back:"← Accueil",kicker:"Transport · Minibus régionaux",h1:"Horaires Dolmuş (minibus) & bus",
+    lead:"Lignes Kalkan · Kaş · Patara · Kaputaş · Kınık · Çavdır. Kalkan vers Kaş et Patara, Kaş vers Kalkan, Patara vers Kalkan et Kaş — le <b style='color:#fff'>prochain départ</b> est mis en évidence automatiquement sur chaque carte.",
+    now:"Maintenant",stopTitle:"Arrêt — Où attendre ?",stopName:"Centre de Kalkan — devant et en face de Migros Jet",
+    stopAddr:"Les dolmuş (minibus) partent de l'arrêt situé devant et en face de Migros Jet, au centre de Kalkan. Attendez ici pour Kaş, Patara et Kaputaş.",
+    dir1:"Kalkan → Kaş / Patara / Kaputaş",dir2:"Kaş → Kalkan",dir3:"Patara → Kalkan / Kaş",openMap:"Ouvrir dans Maps",
+    linesTitle:"Lignes & horaires",note:"<b>Les horaires suivent la grille d'été et peuvent changer.</b> Merci de confirmer à l'arrêt ou auprès de l'opérateur avant de partir. Une erreur ? <a href='/' style='color:#7a5a10;text-decoration:underline'>Dites-le nous</a>.",
+    foot:"© 2026 Kalkan Info · Guide des transports régionaux",all:"Toutes les lignes",nextL:"Prochain",today:"Aujourd'hui",ended:"Service terminé",tomorrow:"demain 🌅",soon:"maintenant",inMin:"min",hr:"h",popup:"Arrêt Dolmuş · devant Migros Jet"}
+};
+var LANG=(function(){try{var q=new URLSearchParams(location.search).get('lang');if(q&&I18N[q])return q;var s=localStorage.getItem('lang');if(s&&I18N[s])return s;}catch(e){}return 'tr';})();
+function T(k){return (I18N[LANG]&&I18N[LANG][k])||I18N.tr[k]||'';}
+function applyLang(){
+  var d=I18N[LANG]||I18N.tr;
+  document.documentElement.lang=LANG;
+  document.title=d.title;
+  var md=document.querySelector('meta[name=description]'); if(md)md.setAttribute('content',d.desc);
+  document.querySelectorAll('[data-i]').forEach(function(el){var k=el.getAttribute('data-i');if(d[k]!=null)el.innerHTML=d[k];});
+  document.querySelectorAll('#langs button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-lang')===LANG);});
+  try{localStorage.setItem('lang',LANG);}catch(e){}
+  if(window.__renderDolmus)window.__renderDolmus();
+  if(window.__mapPopup)window.__mapPopup();
+}
+document.getElementById('langs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;LANG=b.getAttribute('data-lang');applyLang();});
+
+/* ===== JSON-LD inject ===== */
+try{var ld=document.createElement('script');ld.type='application/ld+json';ld.textContent=JSON.stringify(window.__DOLMUS_LD);document.head.appendChild(ld);}catch(e){}
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+/* ===== Harita (Leaflet) — durak: Migros Jet önü ===== */
+(function(){
+  if(typeof L==='undefined')return;
+  var STOP=[36.2660826,29.4140577];
+  var map=L.map('map',{scrollWheelZoom:false,attributionControl:true}).setView(STOP,15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+  var icon=L.divIcon({className:'',html:'<div style="width:26px;height:26px;background:#f4b53d;border:3px solid #0a2e4c;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 4px 12px rgba(7,33,54,.5)"></div>',iconSize:[26,26],iconAnchor:[13,26]});
+  var marker=L.marker(STOP,{icon:icon}).addTo(map);
+  window.__mapPopup=function(){marker.bindPopup('<b>🚐 '+T('popup')+'</b>').openPopup();};
+  window.__mapPopup();
+  setTimeout(function(){map.invalidateSize();},250);
+})();
+</script>
+
+<script>
+/* ===== Dolmuş saatleri (i18n'li) ===== */
+(function(){
+  var FALLBACK={hatlar:[]};
+  var grid=document.getElementById('grid'), filters=document.getElementById('filters');
+  var activeDest=null, DATA=null;
+  function pad(n){return (n<10?'0':'')+n;}
+  function nowMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
+  function toMin(hhmm){var p=hhmm.split(':');var h=+p[0],m=+p[1];var t=h*60+m;if(h<4)t+=24*60;return t;}
+  function tick(){var d=new Date();document.getElementById('now').textContent=pad(d.getHours())+':'+pad(d.getMinutes());}
+  function nextIdx(saatler){var cur=nowMin(); if(new Date().getHours()<4)cur+=24*60; for(var i=0;i<saatler.length;i++){ if(toMin(saatler[i])>=cur) return i; } return -1;}
+  function humanIn(mins){ if(mins<=0) return T('soon'); if(mins<60) return mins+' '+T('inMin'); var h=Math.floor(mins/60), m=mins%60; return h+' '+T('hr')+' '+(m?m+' '+T('inMin'):'').trim(); }
+  function render(){
+    grid.innerHTML='';
+    (DATA.hatlar||[]).forEach(function(h){
+      if(activeDest && h.guzergah.indexOf(activeDest)===-1) return;
+      var ni=nextIdx(h.saatler);
+      var card=document.createElement('div'); card.className='card';
+      var routeHtml=h.guzergah.map(function(s,i){return (i?'<span class="arw">›</span>':'')+s;}).join('');
+      var nextBlock;
+      if(ni>=0){var cur=nowMin(); if(new Date().getHours()<4)cur+=24*60; var inMin=toMin(h.saatler[ni])-cur;
+        nextBlock='<div class="next"><span class="lbl">'+T('nextL')+'</span><span class="val">'+h.saatler[ni]+'</span><span class="in">'+humanIn(inMin)+'</span></div>';
+      } else { nextBlock='<div class="next done"><span class="lbl">'+T('today')+'</span><span class="val">'+T('ended')+'</span><span class="in">'+T('tomorrow')+'</span></div>'; }
+      var timesHtml=h.saatler.map(function(t,i){var cls='t'; if(ni<0||i<ni)cls+=' past'; if(i===ni)cls+=' next'; return '<div class="'+cls+'">'+t+'</div>';}).join('');
+      card.innerHTML='<div class="head" style="background:linear-gradient(135deg,'+h.renk+',rgba(0,0,0,.28))"><div class="from">🚐 '+h.kalkis+'</div><div class="route">'+routeHtml+'</div></div>'+ nextBlock +'<div class="times">'+timesHtml+'</div>';
+      grid.appendChild(card);
+    });
+  }
+  window.__renderDolmus=render;
+  function buildFilters(){
+    var dests={}; (DATA.hatlar||[]).forEach(function(h){h.guzergah.forEach(function(s){dests[s]=1;});});
+    var list=Object.keys(dests).sort();
+    var mk=function(label,val){var b=document.createElement('button');b.className='chip'+(val===activeDest?' active':'');b.textContent=label;
+      b.onclick=function(){activeDest=val;[].forEach.call(filters.children,function(c){c.classList.remove('active');});b.classList.add('active');render();};return b;};
+    filters.innerHTML=''; filters.appendChild(mk(T('all'),null)); list.forEach(function(s){filters.appendChild(mk(s,s));});
+  }
+  function boot(d){DATA=d; buildFilters(); render(); tick(); setInterval(tick,1000); setInterval(render,30000);}
+  fetch('/data/dolmus-saatleri.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():FALLBACK;}).then(boot).catch(function(){boot(FALLBACK);});
+})();
+applyLang();
+</script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="fr";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/dolmus.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html><html lang="fr"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkan Info Dijital Ajans — İşletmenizi 3 Günde Yayına Alıyoruz</title>
+<meta name="description" content="Kalkan'daki işletmeniz için profesyonel web sitesi, gerçek fotoğraf çekimi ve Google görünürlüğü. 3 günde yayında.">
+<meta name="theme-color" content="#faf6ef">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          night:  { 950:'#0b1219', 900:'#0e1a24', 800:'#162130', 700:'#1e2e3e', 600:'#2d4155', 500:'#4a6070' },
+          cream:  { 50:'#fdfaf4', 100:'#faf6ef', 200:'#f5eddc', 300:'#eadfc5' },
+          gold:   { 300:'#f3c96a', 400:'#e8a020', 500:'#c98a18', 600:'#a86e0f' },
+          teal:   { 400:'#2abfbf', 500:'#1fa8a8', 600:'#178a8a' },
+          coral:  { 400:'#e07250', 500:'#c95c38' },
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans:    ['Manrope', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #FAF6EF; }
+
+  /* grain overlay */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* typography */
+  .tracking-tightest { letter-spacing: -0.04em; }
+
+  /* warm shadow system */
+  .shadow-warm    { box-shadow: 0 24px 50px -24px rgba(14,26,36,.15), 0 8px 22px -14px rgba(14,26,36,.09); }
+  .shadow-warm-lg { box-shadow: 0 40px 80px -30px rgba(14,26,36,.18), 0 12px 32px -18px rgba(14,26,36,.12); }
+  .shadow-gold    { box-shadow: 0 20px 50px -18px rgba(232,160,32,.35), 0 6px 18px -10px rgba(232,160,32,.2); }
+
+  /* lift cards */
+  .lift {
+    transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s cubic-bezier(.16,1,.3,1);
+  }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 40px 80px -30px rgba(14,26,36,.22), 0 12px 32px -18px rgba(14,26,36,.14); }
+
+  /* scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* underline link */
+  .gold-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size .4s cubic-bezier(.16,1,.3,1);
+  }
+  .gold-link:hover { background-size: 100% 1px; }
+
+  /* marquee ticker */
+  .marquee { animation: scroll 36s linear infinite; }
+  @keyframes scroll { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+  /* float badge */
+  @keyframes floaty { 0%,100%{ transform:translateY(0) rotate(-2deg);} 50%{ transform:translateY(-10px) rotate(1.5deg);} }
+  .floaty { animation: floaty 8s ease-in-out infinite; }
+
+  /* wa pulse */
+  @keyframes pulse-ring { 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5) } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0) } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0) } }
+  .wa-pulse { animation: pulse-ring 2.4s infinite; }
+
+  /* step connector line */
+  .step-line::after {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    left: calc(50% + 2rem);
+    width: calc(100% - 4rem);
+    height: 1px;
+    background: linear-gradient(to right, #e8a020, transparent);
+  }
+</style>
+
+<link rel="canonical" href="https://kalkaninfo.com/fr/ajans">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/ajans">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/ajans">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/ajans">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/ajans">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/ajans">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/ajans"></head>
+
+<body class="grain font-sans text-night-900 antialiased selection:bg-gold-400 selection:text-night-900">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- ambient gradients -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -top-40 -left-40 w-[60rem] h-[60rem] rounded-full blur-[130px] opacity-20" style="background:radial-gradient(circle,#eadfc5,transparent 65%)"></div>
+  <div class="absolute top-[35%] -right-52 w-[50rem] h-[50rem] rounded-full blur-[120px] opacity-15" style="background:radial-gradient(circle,#e8a020,transparent 60%)"></div>
+  <div class="absolute bottom-0 left-1/3 w-[45rem] h-[45rem] rounded-full blur-[120px] opacity-12" style="background:radial-gradient(circle,#2abfbf,transparent 60%)"></div>
+</div>
+
+<!-- TICKER -->
+<div class="relative z-30 overflow-hidden" style="background:linear-gradient(to right,#c98a18,#e8a020,#c98a18)">
+  <div class="flex whitespace-nowrap py-2 marquee text-night-900 text-[13px] font-bold tracking-wide">
+    <span class="flex shrink-0">
+      <span class="px-8">★ 137 doğrulanmış Kalkan işletmesi</span>
+      <span class="px-8">★ Gerçek fotoğraflarınızla, 3 günde yayında</span>
+      <span class="px-8">★ Türkçe · İngilizce · Rusça · Almanca</span>
+      <span class="px-8">★ Google Maps &amp; SEO dahil</span>
+    </span>
+    <span class="flex shrink-0" aria-hidden="true">
+      <span class="px-8">★ 137 doğrulanmış Kalkan işletmesi</span>
+      <span class="px-8">★ Gerçek fotoğraflarınızla, 3 günde yayında</span>
+      <span class="px-8">★ Türkçe · İngilizce · Rusça · Almanca</span>
+      <span class="px-8">★ Google Maps &amp; SEO dahil</span>
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="sticky top-0 z-20 backdrop-blur-xl border-b border-night-900/8" style="background:rgba(250,246,239,0.88)">
+  <nav class="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+    <a href="/fr/" class="flex items-center gap-2.5 group" aria-label="Kalkan Info">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(135deg,#e8a020,#c98a18)">
+        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+      </div>
+      <span class="font-display font-semibold text-lg text-night-900 group-hover:text-gold-400 transition-colors">Kalkan Info</span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8 text-sm font-medium text-night-600">
+      <li><a href="#sorun" class="gold-link hover:text-gold-400 transition-colors">Sorun</a></li>
+      <li><a href="#demolar" class="gold-link hover:text-gold-400 transition-colors">Demolar</a></li>
+      <li><a href="#paketler" class="gold-link hover:text-gold-400 transition-colors">Paketler</a></li>
+      <li><a href="#surec" class="gold-link hover:text-gold-400 transition-colors">Süreç</a></li>
+    </ul>
+
+    <!-- CTA -->
+    <!-- BERKAY: wa.me numarasını güncelle -->
+    <a href="https://wa.me/905306650794?text=Merhaba%2C%20i%C5%9Fletmem%20i%C3%A7in%20site%20yapt%C4%B1rmak%20istiyorum." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full font-bold px-5 py-2.5 text-sm transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-95" style="background:linear-gradient(135deg,#e8a020,#c98a18); color:#0e1a24; box-shadow:0 8px 24px -8px rgba(232,160,32,.4)">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.044z"></path></svg>
+      WhatsApp
+    </a>
+  </nav>
+</header>
+
+
+<!-- ═══════════════════════════════════════════
+     1. HERO
+═══════════════════════════════════════════ -->
+<section class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-24 lg:pt-24 lg:pb-32">
+  <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+    <!-- left: copy -->
+    <div class="lg:col-span-7">
+      <span class="inline-flex items-center gap-2 rounded-full border text-xs font-semibold px-4 py-1.5 mb-7 reveal" style="border-color:rgba(232,160,32,.35); background:rgba(232,160,32,.08); color:#c98a18">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+        DİJİTAL AJANS — KALKAN'A ÖZEL
+      </span>
+
+      <h1 class="font-display font-semibold tracking-tightest leading-[0.95] text-night-900 reveal" style="font-size:clamp(2.8rem,6.5vw,5rem); transition-delay:.05s">
+        Kalkan'da<br>
+        <span class="italic" style="color:#e8a020">bulunur olun.</span>
+      </h1>
+
+      <p class="mt-6 max-w-lg text-lg text-night-600 reveal" style="line-height:1.7; transition-delay:.12s">
+        Gerçek fotoğraflarınızla, 3 günde yayında. Kalkan'ı tanıyanlar tarafından, Kalkan için yapılıyor.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-4 reveal" style="transition-delay:.18s">
+        <a href="#demolar" class="group inline-flex items-center gap-2 rounded-full font-bold px-7 py-4 transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-95" style="background:linear-gradient(135deg,#e8a020,#c98a18); color:#0e1a24; box-shadow:0 16px 40px -14px rgba(232,160,32,.45)">
+          Canlı Demo Gör
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+        </a>
+        <a href="https://wa.me/905306650794?text=Merhaba%2C%20i%C5%9Fletmem%20i%C3%A7in%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full border font-semibold px-7 py-4 transition-colors hover:bg-night-900/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 active:scale-95" style="border-color:rgba(42,191,191,.4); color:#1fa8a8">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.044z"></path></svg>
+          WhatsApp'tan Yaz
+        </a>
+      </div>
+
+      <div class="mt-12 grid grid-cols-3 max-w-md gap-6 reveal" style="transition-delay:.25s">
+        <div>
+          <div class="font-display text-3xl font-semibold" style="color:#e8a020">137</div>
+          <div class="text-sm text-night-500 mt-1">doğrulanmış işletme</div>
+        </div>
+        <div class="border-l border-night-900/10 pl-6">
+          <div class="font-display text-3xl font-semibold" style="color:#e8a020">3</div>
+          <div class="text-sm text-night-500 mt-1">günde yayında</div>
+        </div>
+        <div class="border-l border-night-900/10 pl-6">
+          <div class="font-display text-3xl font-semibold" style="color:#e8a020">4</div>
+          <div class="text-sm text-night-500 mt-1">dil desteği</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: hero visual -->
+    <div class="lg:col-span-5 relative reveal" style="transition-delay:.1s">
+      <!-- main card -->
+      <div class="relative rounded-[2rem] overflow-hidden shadow-warm-lg ring-1 ring-night-900/8" style="background:#1e2e3e; aspect-ratio:4/5">
+        <!-- mock browser chrome -->
+        <div class="absolute top-0 inset-x-0 h-10 flex items-center gap-1.5 px-4 z-10" style="background:rgba(255,255,255,0.07); border-bottom:1px solid rgba(255,255,255,0.08)">
+          <span class="w-2.5 h-2.5 rounded-full" style="background:#e07250"></span>
+          <span class="w-2.5 h-2.5 rounded-full" style="background:#e8a020"></span>
+          <span class="w-2.5 h-2.5 rounded-full" style="background:#2abfbf"></span>
+          <div class="ml-3 flex-1 h-5 rounded-md text-[10px] font-mono flex items-center px-2.5 text-white/40" style="background:rgba(255,255,255,0.07)">
+            lamorakalkan.com
+          </div>
+        </div>
+        <!-- mock site preview -->
+        <div class="absolute inset-0 pt-10 flex flex-col">
+          <div class="flex-1" style="background:linear-gradient(to bottom,#0e1a24 0%,#162130 100%)">
+            <!-- hero bar -->
+            <div class="h-16 flex items-center justify-between px-6 border-b border-white/5">
+              <div class="h-4 w-20 rounded-full" style="background:rgba(232,160,32,0.7)"></div>
+              <div class="flex gap-3">
+                <div class="h-2.5 w-10 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+                <div class="h-2.5 w-10 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+                <div class="h-2.5 w-10 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+              </div>
+            </div>
+            <!-- hero image area -->
+            <div class="relative h-40 overflow-hidden">
+              <div class="absolute inset-0" style="background:linear-gradient(135deg,#1a3a2e 0%,#2d5a3a 50%,#1e3830 100%)"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="font-display italic font-semibold text-xl" style="color:#e8a020; letter-spacing:-0.02em">La Mora</div>
+                  <div class="text-white/50 text-[10px] mt-1 tracking-widest">KALKAN · RESTAURANT</div>
+                </div>
+              </div>
+              <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,rgba(14,26,36,1))"></div>
+            </div>
+            <!-- content blocks -->
+            <div class="px-5 py-4 space-y-3">
+              <div class="h-3 w-3/4 rounded-full" style="background:rgba(255,255,255,0.12)"></div>
+              <div class="h-2.5 w-1/2 rounded-full" style="background:rgba(255,255,255,0.07)"></div>
+              <div class="mt-4 grid grid-cols-3 gap-2">
+                <div class="aspect-square rounded-lg" style="background:rgba(255,255,255,0.06)"></div>
+                <div class="aspect-square rounded-lg" style="background:rgba(255,255,255,0.06)"></div>
+                <div class="aspect-square rounded-lg" style="background:rgba(255,255,255,0.06)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- gradient veil -->
+        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top,rgba(30,46,62,0.5) 0%,transparent 50%)"></div>
+      </div>
+
+      <!-- floating badge: yayında -->
+      <div class="floaty absolute -left-6 bottom-16 rounded-2xl bg-white/95 backdrop-blur-md border border-night-900/10 p-4 shadow-warm" style="min-width:10rem">
+        <div class="flex items-center gap-2.5">
+          <span class="flex w-8 h-8 rounded-full items-center justify-center shrink-0" style="background:rgba(42,191,191,.15)">
+            <svg class="w-4 h-4" style="color:#1fa8a8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+          </span>
+          <div>
+            <div class="text-sm font-semibold text-night-900 leading-tight">Yayında</div>
+            <div class="text-xs text-night-500">lamorakalkan.com</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- floating badge: 3 gün -->
+      <div class="absolute -right-4 top-16 rounded-xl px-4 py-3 shadow-gold rotate-2" style="background:linear-gradient(135deg,#e8a020,#c98a18); color:#0e1a24">
+        <div class="text-[11px] font-bold leading-none tracking-wider">YAYINDAKİ</div>
+        <div class="font-display text-2xl font-bold leading-none mt-1">3. gün</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     2. SORUN AYNASI
+═══════════════════════════════════════════ -->
+<section id="sorun" class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28">
+  <div class="reveal">
+    <span class="text-gold-400 text-sm font-semibold tracking-widest">GERÇEK DURUM</span>
+    <h2 class="font-display font-semibold tracking-tightest mt-2 text-night-900" style="font-size:clamp(2rem,4.5vw,3.5rem)">
+      Kalkan'ın büyük bölümü<br class="hidden md:block">
+      <span class="italic" style="color:#e8a020">considéré comme inexistant sur le numérique.</span>
+    </h2>
+    <p class="mt-4 max-w-xl text-night-600" style="line-height:1.7">
+      Lorsqu'un invité arrive à Kalkan, il regarde d'abord sur son téléphone. S'il ne vous trouve pas, il trouve votre concurrent.
+    </p>
+  </div>
+
+  <div class="mt-14 grid md:grid-cols-3 gap-6">
+    <!-- Kart 1 -->
+    <div class="reveal lift rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm" style="background:#fff; transition-delay:.05s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(224,114,80,.1)">
+        <svg class="w-6 h-6" style="color:#e07250" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+      </div>
+      <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Vous n'avez pas de site ou il est obsolète</h3>
+      <p class="text-night-600 text-sm" style="line-height:1.7">
+        Plus de la moitié des entreprises de Kalkan n'ont pas de site web à jour. Lorsqu'un invité recherche "restaurant Kalkan", il a de la chance de vous trouver.
+      </p>
+    </div>
+
+    <!-- Kart 2 -->
+    <div class="reveal lift rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm" style="background:#fff; transition-delay:.1s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(232,160,32,.1)">
+        <svg class="w-6 h-6 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" stroke-linecap="round"></circle><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35"></path>
+        </svg>
+      </div>
+      <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Vous n'êtes pas visible sur Google</h3>
+      <p class="text-night-600 text-sm" style="line-height:1.7">
+        La plupart des entreprises sont répertoriées sur Google Maps avec des informations incomplètes. Heures incorrectes, photos manquantes, menus obsolètes — les invités ne peuvent pas vous faire confiance et passent à autre chose.
+      </p>
+    </div>
+
+    <!-- Kart 3 -->
+    <div class="reveal lift rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm" style="background:#fff; transition-delay:.15s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(42,191,191,.1)">
+        <svg class="w-6 h-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+      </div>
+      <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Vos photos ne font pas honneur à votre entreprise</h3>
+      <p class="text-night-600 text-sm" style="line-height:1.7">
+        Il est impossible de se démarquer avec des photos prises avec un téléphone ou sans visuel. La première impression se fait sur le numérique — et pour l'instant, c'est vide.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     3. GROUNDED KANIT — CANLI DEMOLAR
+═══════════════════════════════════════════ -->
+<section id="demolar" class="relative z-10 py-20 lg:py-28" style="background:linear-gradient(to bottom,#FAF6EF,#f5eddc,#FAF6EF)">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal">
+      <span class="text-gold-400 text-sm font-semibold tracking-widest">AVEC DES DONNÉES RÉELLES DE KALKAN</span>
+      <h2 class="font-display font-semibold tracking-tightest mt-2 text-night-900" style="font-size:clamp(2rem,4.5vw,3.5rem)">
+        Ce sont des sites réels.<br>
+        <span class="italic" style="color:#e8a020">Actuellement en ligne.</span>
+      </h2>
+      <p class="mt-4 max-w-lg text-night-600" style="line-height:1.7">
+        Pas de photos de stock, pas de promesses de modèles. Ouvrez les sites ci-dessous et explorez-les vous-même.
+      </p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-8">
+
+      <!-- Demo 1: La Mora -->
+      <a href="https://lamorakalkan.com" target="_blank" rel="noopener" class="group reveal lift rounded-2xl overflow-hidden ring-1 ring-night-900/8 shadow-warm block" style="transition-delay:.05s">
+        <!-- mockup header -->
+        <div class="relative h-56 overflow-hidden" style="background:#0e1a24">
+          <div class="absolute top-3 inset-x-3 h-7 rounded-lg flex items-center gap-1.5 px-3 z-10" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.08)">
+            <span class="w-2 h-2 rounded-full" style="background:#e07250; opacity:.8"></span>
+            <span class="w-2 h-2 rounded-full" style="background:#e8a020; opacity:.8"></span>
+            <span class="w-2 h-2 rounded-full" style="background:#2abfbf; opacity:.8"></span>
+            <span class="ml-2 text-white/35 text-[9px] font-mono">lamorakalkan.com</span>
+          </div>
+          <!-- visual -->
+          <div class="absolute inset-0 pt-10" style="background:linear-gradient(135deg,#0d2018 0%,#1a3828 60%,#0d2018 100%)">
+            <div class="flex items-center justify-center h-full">
+              <div class="text-center px-8">
+                <div class="font-display italic text-2xl font-semibold mb-2" style="color:#e8a020">La Mora</div>
+                <div class="text-white/40 text-[11px] tracking-widest">RESTAURANT · KALKAN</div>
+                <div class="mt-4 flex justify-center gap-2">
+                  <div class="h-1.5 w-16 rounded-full" style="background:rgba(232,160,32,0.5)"></div>
+                  <div class="h-1.5 w-10 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+                  <div class="h-1.5 w-14 rounded-full" style="background:rgba(255,255,255,0.15)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 50%,rgba(255,255,255,1))"></div>
+        </div>
+
+        <div class="p-7 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="font-display font-semibold text-xl text-night-900">La Mora Restaurant</div>
+              <div class="text-night-500 text-sm mt-1">Centre de Kalkan, rue de Çukurca</div>
+            </div>
+            <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold" style="border-color:rgba(42,191,191,.35); color:#1fa8a8; background:rgba(42,191,191,.07)">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span> EN DIRECT
+            </span>
+          </div>
+          <p class="mt-4 text-night-600 text-sm" style="line-height:1.7">
+            Carte fixe avec coordonnées réelles, histoire de l'entreprise, formulaire de réservation et prise en charge de 4 langues.
+          </p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-semibold group-hover:text-gold-400 transition-colors" style="color:#c98a18">
+            Ouvrir le site
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Demo 2: Çiku -->
+      <a href="/fr/demo/ciku/" target="_blank" rel="noopener" class="group reveal lift rounded-2xl overflow-hidden ring-1 ring-night-900/8 shadow-warm block" style="transition-delay:.1s">
+        <!-- mockup header -->
+        <div class="relative h-56 overflow-hidden" style="background:#FAF6EF">
+          <div class="absolute top-3 inset-x-3 h-7 rounded-lg flex items-center gap-1.5 px-3 z-10" style="background:rgba(14,26,36,0.06); border:1px solid rgba(14,26,36,0.08)">
+            <span class="w-2 h-2 rounded-full" style="background:#e07250; opacity:.8"></span>
+            <span class="w-2 h-2 rounded-full" style="background:#e8a020; opacity:.8"></span>
+            <span class="w-2 h-2 rounded-full" style="background:#2abfbf; opacity:.8"></span>
+            <span class="ml-2 text-night-900/30 text-[9px] font-mono">kalkaninfo.com/demo/ciku</span>
+          </div>
+          <div class="absolute inset-0 pt-10 flex items-center justify-center">
+            <div class="text-center px-8">
+              <div class="font-display font-semibold text-2xl mb-2" style="color:#4f3220; letter-spacing:-0.02em">Çiku</div>
+              <div class="text-[11px] tracking-widest text-night-600/60">CHOCOLAT &amp; FRUITS SECS</div>
+              <div class="mt-4 grid grid-cols-4 gap-1.5 justify-center">
+                <div class="h-10 w-10 rounded-lg" style="background:rgba(212,160,23,.2)"></div>
+                <div class="h-10 w-10 rounded-lg" style="background:rgba(107,68,38,.15)"></div>
+                <div class="h-10 w-10 rounded-lg" style="background:rgba(212,160,23,.2)"></div>
+                <div class="h-10 w-10 rounded-lg" style="background:rgba(107,68,38,.15)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute inset-0" style="background:linear-gradient(to bottom,transparent 40%,#fff)"></div>
+        </div>
+
+        <div class="p-7 bg-white">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="font-display font-semibold text-xl text-night-900">Çiku Chocolat &amp; Fruits secs</div>
+              <div class="text-night-500 text-sm mt-1">Commerce électronique + commande WhatsApp</div>
+            </div>
+            <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold" style="border-color:rgba(42,191,191,.35); color:#1fa8a8; background:rgba(42,191,191,.07)">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse"></span> EN DIRECT
+            </span>
+          </div>
+          <p class="mt-4 text-night-600 text-sm" style="line-height:1.7">
+            205 produits, multilingue, intégration WhatsApp et système de panier sur une seule page.
+          </p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-semibold group-hover:text-gold-400 transition-colors" style="color:#c98a18">
+            Ouvrir la démo
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- trust badge -->
+    <div class="mt-12 reveal flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-night-500 text-sm" style="transition-delay:.2s">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+        Base de données de 137 entreprises de Kalkan vérifiées
+      </span>
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+        Carte avec coordonnées réelles
+      </span>
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+        Pas de photos de stock
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     4. NE VERİYORUZ
+═══════════════════════════════════════════ -->
+<section id="hizmetler" class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28">
+  <div class="reveal">
+    <span class="text-gold-400 text-sm font-semibold tracking-widest">SERVICES</span>
+    <h2 class="font-display font-semibold tracking-tightest mt-2 text-night-900" style="font-size:clamp(2rem,4.5vw,3.5rem)">
+      Nous offrons quatre choses.<br>
+      <span class="italic" style="color:#e8a020">Tout en un.</span>
+    </h2>
+  </div>
+
+  <div class="mt-14 grid sm:grid-cols-2 gap-6">
+    <!-- 1 -->
+    <div class="reveal flex gap-6 rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.05s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mt-1" style="background:linear-gradient(135deg,rgba(232,160,32,.15),rgba(201,138,24,.1))">
+        <svg class="w-6 h-6 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-semibold text-lg text-night-900 mb-2">Site premium</h3>
+        <p class="text-night-600 text-sm" style="line-height:1.7">
+          Rapide, prioritaire pour les appareils mobiles, avec réservation et intégration WhatsApp. Votre logo, vos couleurs. Qui ne vieillit pas en une semaine.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="reveal flex gap-6 rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.1s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mt-1" style="background:linear-gradient(135deg,rgba(42,191,191,.15),rgba(31,168,168,.1))">
+        <svg class="w-6 h-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-semibold text-lg text-night-900 mb-2">Photos professionnelles</h3>
+        <p class="text-night-600 text-sm" style="line-height:1.7">
+          Des prises de vues réelles ajoutées à la base de données de 137 entreprises. Pas de photos de stock ; si aucune nouvelle prise de vue n'est disponible, nous utilisons les meilleures images de votre inventaire.
+        </p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="reveal flex gap-6 rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.15s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mt-1" style="background:linear-gradient(135deg,rgba(224,114,80,.15),rgba(201,92,56,.1))">
+        <svg class="w-6 h-6 text-coral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-semibold text-lg text-night-900 mb-2">Contenu IA — 4 langues</h3>
+        <p class="text-night-600 text-sm" style="line-height:1.7">
+          Turc, anglais, russe, allemand. Un contenu qui parle la langue de vos invités à Kalkan, sans coût d'agence de traduction.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="reveal flex gap-6 rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.2s">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mt-1" style="background:linear-gradient(135deg,rgba(232,160,32,.15),rgba(42,191,191,.1))">
+        <svg class="w-6 h-6 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-display font-semibold text-lg text-night-900 mb-2">Visibilité Google</h3>
+        <p class="text-night-600 text-sm" style="line-height:1.7">
+          Mise à jour du profil Google Business, coordonnées exactes, heures d'ouverture et téléchargement de photos. Inclus dans la base de données Kalkan Info.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     5. FİYAT / PAKET
+═══════════════════════════════════════════ -->
+<section id="paketler" class="relative z-10 py-20 lg:py-28" style="background:linear-gradient(to bottom,#FAF6EF,#eadfc5 40%,#FAF6EF)">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal text-center mb-14">
+      <span class="text-gold-400 text-sm font-semibold tracking-widest">PAQUETS</span>
+      <h2 class="font-display font-semibold tracking-tightest mt-2 text-night-900" style="font-size:clamp(2rem,4.5vw,3.5rem)">
+        Solution personnalisée pour votre entreprise.
+      </h2>
+      <p class="mt-4 max-w-md mx-auto text-night-600" style="line-height:1.7">
+        Chaque entreprise a des besoins différents — nous déterminons ensemble le paquet et le budget.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 items-stretch">
+
+      <!-- Başlangıç -->
+      <div class="reveal lift rounded-2xl p-8 ring-1 ring-night-900/10 shadow-warm bg-white flex flex-col" style="transition-delay:.05s">
+        <div class="mb-6">
+          <div class="text-gold-400 text-xs font-bold tracking-widest mb-3">DÉBUT</div>
+          <div class="font-display tracking-tightest text-night-900" style="font-size:1.7rem; line-height:1.15">
+            Selon la communication
+          </div>
+          <div class="text-night-500 text-sm mt-2">offre personnalisée pour votre entreprise</div>
+        </div>
+        <ul class="space-y-3 text-sm text-night-600 flex-1 mb-8" style="line-height:1.6">
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Site d'une seule page (5 sections)
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Contenu avec des photos existantes
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Turc + Anglais
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Mise à jour de Google Maps
+          </li>
+          <li class="flex gap-2.5 text-night-400">
+            <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" viewBox="0 0 20 20" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            La prise de photos n'est pas incluse
+          </li>
+        </ul>
+        <a href="https://wa.me/905306650794?text=Ba%C5%9Flang%C4%B1%C3%A7%20paketi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="block text-center rounded-full border font-semibold py-3.5 text-sm transition-colors hover:bg-night-900/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-95" style="border-color:rgba(232,160,32,.5); color:#c98a18">
+          Bilgi Al
+        </a>
+      </div>
+
+      <!-- Profesyonel (featured) -->
+      <div class="reveal lift rounded-2xl overflow-hidden shadow-gold flex flex-col" style="background:#0e1a24; transition-delay:.1s">
+        <div class="px-2 py-2">
+          <div class="text-center text-[11px] font-bold tracking-widest py-1.5 rounded-lg" style="color:#0e1a24; background:#e8a020">
+            EN ÇOK TERCİH EDİLEN
+          </div>
+        </div>
+        <div class="px-8 pb-8 flex flex-col flex-1">
+          <div class="mb-6 pt-2">
+            <div class="text-gold-400 text-xs font-bold tracking-widest mb-3">PROFESYONEL</div>
+            <div class="font-display tracking-tightest text-white" style="font-size:1.7rem; line-height:1.15">
+              Selon la communication
+            </div>
+            <div class="text-white/50 text-sm mt-2">offre personnalisée pour votre entreprise</div>
+          </div>
+          <ul class="space-y-3 text-sm text-white/70 flex-1 mb-8" style="line-height:1.6">
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Çok sayfalı site (8–12 bölüm)
+            </li>
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Profesyonel fotoğraf çekimi
+            </li>
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              4 dil (TR/EN/RU/DE)
+            </li>
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Google Maps + SEO kurulumu
+            </li>
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              WhatsApp + rezervasyon formu
+            </li>
+            <li class="flex gap-2.5 text-white">
+              <svg class="w-4 h-4 text-gold-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Kalkan Info veritabanına ekleme
+            </li>
+          </ul>
+            <a href="https://wa.me/905306650794?text=Profesyonel%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="block text-center rounded-full font-bold py-3.5 text-sm transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 active:scale-95" style="background:linear-gradient(135deg,#e8a020,#c98a18); color:#0e1a24; box-shadow:0 8px 24px -8px rgba(232,160,32,.5)">
+            Profesyonel Paketi Seç
+          </a>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="reveal lift rounded-2xl p-8 ring-1 ring-night-900/10 shadow-warm bg-white flex flex-col" style="transition-delay:.15s">
+        <div class="mb-6">
+          <div class="text-teal-400 text-xs font-bold tracking-widest mb-3">PREMİUM</div>
+          <div class="font-display tracking-tightest text-night-900" style="font-size:1.7rem; line-height:1.15">
+            Selon la communication
+          </div>
+          <div class="text-night-500 text-sm mt-2">yıllık bakım dahil</div>
+        </div>
+        <ul class="space-y-3 text-sm text-night-600 flex-1 mb-8" style="line-height:1.6">
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-teal-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Profesyonel paket — tam içerik
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-teal-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Sezon başı fotoğraf güncelleme
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-teal-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Sosyal medya içerik desteği
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-teal-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Öncelikli güncelleme ve destek
+          </li>
+          <li class="flex gap-2.5">
+            <svg class="w-4 h-4 text-teal-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            Kalkan Info ana sayfasında öne çıkarma
+          </li>
+        </ul>
+        <a href="https://wa.me/905306650794?text=Premium%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="block text-center rounded-full border font-semibold py-3.5 text-sm transition-colors hover:bg-night-900/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 active:scale-95" style="border-color:rgba(42,191,191,.5); color:#1fa8a8">
+          Premium Hakkında Konuşalım
+        </a>
+      </div>
+
+    </div>
+
+    <p class="mt-8 text-center text-night-400 text-sm reveal" style="transition-delay:.2s">
+      Alan adı ve barındırma ayrı ücretlendirilir. <!-- BERKAY: fiyat netleştir -->
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     6. VAKA / SOSYAL KANIT
+═══════════════════════════════════════════ -->
+<section id="vaka" class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-24">
+  <!-- trust rozeti -->
+  <div class="reveal mb-16 flex justify-center">
+    <div class="inline-flex flex-wrap items-center justify-center gap-6 md:gap-10 rounded-2xl px-8 py-6 ring-1 ring-night-900/8 shadow-warm bg-white">
+      <div class="text-center">
+        <div class="font-display font-semibold text-3xl" style="color:#e8a020">137</div>
+        <div class="text-night-500 text-xs mt-1">doğrulanmış işletme</div>
+      </div>
+      <div class="w-px h-10 bg-night-900/10 hidden md:block"></div>
+      <div class="text-center">
+        <div class="font-display font-semibold text-3xl" style="color:#e8a020">%100</div>
+        <div class="text-night-500 text-xs mt-1">gerçek Kalkan fotoğrafı</div>
+      </div>
+      <div class="w-px h-10 bg-night-900/10 hidden md:block"></div>
+      <div class="text-center">
+        <div class="font-display font-semibold text-3xl" style="color:#e8a020">4</div>
+        <div class="text-night-500 text-xs mt-1">yabancı dil</div>
+      </div>
+      <div class="w-px h-10 bg-night-900/10 hidden md:block"></div>
+      <div class="text-center">
+        <div class="font-display font-semibold text-3xl" style="color:#e8a020">3 gün</div>
+        <div class="text-night-500 text-xs mt-1">ortalama yayına çıkış</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- mini vakalar -->
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- vaka 1 -->
+    <div class="reveal rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.05s">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:linear-gradient(135deg,#1a3828,#0d2018)">
+          <span class="font-display italic font-semibold text-sm" style="color:#e8a020">LM</span>
+        </div>
+        <div>
+          <div class="font-semibold text-night-900 text-sm">La Mora Restaurant</div>
+          <div class="text-night-500 text-xs">Kalkan Merkez</div>
+        </div>
+      </div>
+      <p class="text-night-600 text-sm italic" style="line-height:1.7">
+        "Yıllardır yabancı müşteriler bizi Google'da bulamıyordu. Artık İngilizce ve Rusça sayfalarımız var, rezervasyon formu çalışıyor."
+      </p>
+      <div class="mt-4 pt-4 border-t border-night-900/8 flex items-center gap-2">
+        <a href="https://lamorakalkan.com" target="_blank" rel="noopener" class="text-xs font-semibold hover:underline" style="color:#e8a020">lamorakalkan.com</a>
+        <span class="text-night-300">·</span>
+        <span class="inline-flex items-center gap-1 text-xs" style="color:#1fa8a8">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse inline-block"></span> Canlı
+        </span>
+      </div>
+    </div>
+
+    <!-- vaka 2 -->
+    <div class="reveal rounded-2xl p-8 ring-1 ring-night-900/8 shadow-warm bg-white" style="transition-delay:.1s">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:linear-gradient(135deg,#faf6ef,#f5eddc); border:1px solid rgba(107,68,38,0.15)">
+          <span class="font-display font-semibold text-sm" style="color:#4f3220">Ç</span>
+        </div>
+        <div>
+          <div class="font-semibold text-night-900 text-sm">Çiku Chocolat &amp; Fruits secs</div>
+          <div class="text-night-500 text-xs">Samsun İlkadım (ajansAI demosu)</div>
+        </div>
+      </div>
+      <p class="text-night-600 text-sm italic" style="line-height:1.7">
+        "205 ürünü listeledik, WhatsApp sipariş aldık. Müşteriler artık kataloğumuzu fiyatıyla birlikte görüyor."
+      </p>
+      <div class="mt-4 pt-4 border-t border-night-900/8 flex items-center gap-2">
+        <a href="/fr/demo/ciku/" target="_blank" rel="noopener" class="text-xs font-semibold hover:underline" style="color:#e8a020">Demo: kalkaninfo.com/demo/ciku</a>
+        <span class="text-night-300">·</span>
+        <span class="inline-flex items-center gap-1 text-xs" style="color:#1fa8a8">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse inline-block"></span> Canlı
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     7. SÜREÇ
+═══════════════════════════════════════════ -->
+<section id="surec" class="relative z-10 py-20 lg:py-28" style="background:linear-gradient(to bottom,#FAF6EF,#f5eddc,#FAF6EF)">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="reveal text-center mb-16">
+      <span class="text-gold-400 text-sm font-semibold tracking-widest">NASIL ÇALIŞIR</span>
+      <h2 class="font-display font-semibold tracking-tightest mt-2 text-night-900" style="font-size:clamp(2rem,4.5vw,3.5rem)">
+        3 adımda yayında.
+      </h2>
+      <p class="mt-4 max-w-md mx-auto text-night-600" style="line-height:1.7">
+        Baştan sona biz yönetiyoruz. Sizin tek işiniz onay vermek.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 relative">
+      <!-- connector lines (desktop only) -->
+      <div class="hidden md:block absolute top-10 left-1/3 right-1/3 h-px" style="background:linear-gradient(to right,rgba(232,160,32,.4),rgba(232,160,32,.4)); z-index:0"></div>
+
+      <!-- Adım 1 -->
+      <div class="reveal relative text-center" style="transition-delay:.05s">
+        <div class="relative z-10 inline-flex w-20 h-20 items-center justify-center rounded-2xl shadow-warm mb-6" style="background:linear-gradient(135deg,#e8a020,#c98a18)">
+          <span class="font-display font-semibold text-2xl" style="color:#0e1a24">1</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Görüşme</h3>
+        <p class="text-night-600 text-sm mx-auto max-w-xs" style="line-height:1.7">
+          WhatsApp'tan yazın. İşletmenizi, ihtiyaçlarınızı ve hedeflediğiniz paketi konuşuyoruz. 30 dakika.
+        </p>
+      </div>
+
+      <!-- Adım 2 -->
+      <div class="reveal relative text-center" style="transition-delay:.12s">
+        <div class="relative z-10 inline-flex w-20 h-20 items-center justify-center rounded-2xl shadow-warm mb-6" style="background:linear-gradient(135deg,#2abfbf,#178a8a)">
+          <span class="font-display font-semibold text-2xl text-white">2</span>
+        </div>
+        <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Tasarım + Fotoğraf</h3>
+        <p class="text-night-600 text-sm mx-auto max-w-xs" style="line-height:1.7">
+          Fotoğraf çekimini yapıyoruz, içerikleri hazırlıyoruz. Demoyu size gösteriyoruz, değişiklikleri uyguluyoruz.
+        </p>
+      </div>
+
+      <!-- Adım 3 -->
+      <div class="reveal relative text-center" style="transition-delay:.18s">
+        <div class="relative z-10 inline-flex w-20 h-20 items-center justify-center rounded-2xl shadow-warm mb-6" style="background:linear-gradient(135deg,#1e2e3e,#0e1a24)">
+          <svg class="w-8 h-8" style="color:#e8a020" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl text-night-900 mb-3">Yayın</h3>
+        <p class="text-night-600 text-sm mx-auto max-w-xs" style="line-height:1.7">
+          Domain ayarları, Google Maps kaydı ve Kalkan Info veritabanı dahil. 3 günde canlı.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     8. KAPANIŞ CTA
+═══════════════════════════════════════════ -->
+<section id="iletisim" class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-32">
+  <div class="reveal max-w-2xl mx-auto text-center">
+    <span class="text-gold-400 text-sm font-semibold tracking-widest">BAŞLAMAK İSTİYORSANIZ</span>
+    <h2 class="font-display font-semibold tracking-tightest mt-4 text-night-900" style="font-size:clamp(2.2rem,5vw,4rem); line-height:0.95">
+      Kalkan'da<br>
+      <span class="italic" style="color:#e8a020">bulunur olun.</span>
+    </h2>
+    <p class="mt-6 text-night-600" style="line-height:1.7">
+      WhatsApp'tan yazın. Hangi paketi seçtiğinizden emin olmasanız da olur — önce işletmenizi dinliyoruz.
+    </p>
+
+    <!-- BERKAY: wa.me numarasını güncelle -->
+    <a href="https://wa.me/905306650794?text=Merhaba%2C%20Kalkan%20Info%20Dijital%20Ajans%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="wa-pulse mt-10 inline-flex items-center gap-3 rounded-full font-bold px-9 py-5 text-lg transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 active:scale-95" style="background:linear-gradient(135deg,#25d366,#1aa851); color:#fff; box-shadow:0 16px 48px -12px rgba(37,211,102,.45)">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.044z"></path></svg>
+      WhatsApp'tan Yazın
+    </a>
+
+    <p class="mt-6 text-night-400 text-sm">
+      Mesai saati: her gün 09:00–20:00
+    </p>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="relative z-10 border-t border-night-900/8" style="background:#0e1a24">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#e8a020,#c98a18)">
+          <svg class="w-3.5 h-3.5 text-night-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <span class="font-display font-semibold text-white">Kalkan Info</span>
+        <span class="text-white/20 text-sm ml-1">Dijital Ajans</span>
+      </div>
+
+      <nav class="flex flex-wrap justify-center gap-6 text-sm text-white/40">
+        <a href="/fr/" class="hover:text-white/70 transition-colors">Portal</a>
+        <a href="#demolar" class="hover:text-white/70 transition-colors">Demolar</a>
+        <a href="#paketler" class="hover:text-white/70 transition-colors">Paketler</a>
+        <a href="#iletisim" class="hover:text-white/70 transition-colors">Contact</a>
+      </nav>
+
+      <p class="text-white/25 text-sm">
+        © 2026 Kalkan Info
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══ SCROLL REVEAL ═══ -->
+<script>
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    els.forEach(el => io.observe(el));
+    setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); }, 650);
+  })();
+</script>
+
+
+
+
+<script>window.KALKAN_PAGE_LANG="fr";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/ajans.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>
