@@ -105,6 +105,8 @@ const OWN_VILLAS = [
 const OWN_VILLAS_BLOCK =
   '🏖️ KENDİ VİLLALARIMIZ (misafir villa/kiralık/konaklama sorunca ÖNCE bu 3\'ünü öner — hepsi Kalkan Kalamar, özel havuzlu, 8 kişilik; başka villa uydurma):\n' +
   OWN_VILLAS.map((v) => '- ' + v).join('\n') +
+  '\nÖNEMLİ GERÇEKLER (yukarıda YAZMAYAN özelliği UYDURMA): Çocuk havuzu SADECE Villa Seascape\'te var (Ship Ahoy ve Poyraz\'da çocuk havuzu YOK). ' +
+  'Masa tenisi SADECE Villa Poyraz\'da. Sorulan özellik listede yoksa "onu teyit edeyim" de, uydurma.' +
   '\nRezervasyon ve uygun tarih için WhatsApp +90 530 665 07 94 (kesin tarihi teyit ettir).';
 
 async function fetchJson(path: string): Promise<any | null> {
@@ -127,8 +129,9 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
       parts.push('YAKLAŞAN KALKAN ETKİNLİKLERİ (gerçek takvim — SADECE bunlar, tarih/mekan UYDURMA):\n' +
         soon.map((e) => `- ${e.date}${e.time ? ' ' + e.time : ''} · ${e.title} · ${e.venueName || e.area || ''}${e.type ? ' (' + e.type + ')' : ''}`).join('\n'));
     } else {
-      parts.push('ETKİNLİK DURUMU: Takvimde yaklaşan kayıtlı etkinlik YOK. Etkinlik/konser/canlı müzik UYDURMA — ' +
-        '"şu an takvimimizde planlı bir etkinlik görünmüyor" de, sonra dilersen canlı müzikli/keyifli mekanlar önerebileceğini ekle.');
+      parts.push('ETKİNLİK DURUMU: Takvimde yaklaşan kayıtlı etkinlik YOK. Etkinlik/konser UYDURMA ve ' +
+        'HANGİ mekanda canlı müzik olduğunu UYDURMA (belirli bir mekan için "canlı müzik çalıyor" DEME) — ' +
+        '"şu an takvimimizde planlı bir etkinlik görünmüyor, istersen sana keyifli mekanlar önerebilirim veya güncel programı işletmeye teyit ettirebilirim" de.');
     }
   }
 
