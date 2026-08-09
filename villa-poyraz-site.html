@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Villa Poyraz · Kalkan Kalamar'da Deniz Manzaralı Lüks Kiralık Villa</title>
+<meta name="description" content="Villa Poyraz — Kalkan Kalamar koyunda 4 yatak odalı, 8 kişilik, özel ısıtmalı havuzlu, jakuzili deniz manzaralı lüks kiralık villa. 3D sanal tur, gerçek fiyatlar ve online rezervasyon." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F4EFE8;
+  --bg-2:#FBF8F3;
+  --ink:#161009;
+  --ink-soft:#4C4238;
+  --muted:#948877;
+  --line:rgba(22,16,9,.10);
+  --card:#FFFFFF;
+  --gold:#C0872F;
+  --gold-deep:#9E6C1B;
+  --sea:#356B62;
+  --r-lg:26px;--r-md:16px;
+  --sh-soft:0 2px 5px rgba(60,42,16,.05),0 18px 40px -16px rgba(60,42,16,.18);
+  --sh-lift:0 6px 12px rgba(60,42,16,.08),0 40px 80px -24px rgba(60,42,16,.34);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1220px;margin:0 auto;padding:0 30px}
+h1,h2,h3,.disp{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.02em;line-height:1.05}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:11px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:500;font-size:15px;border-radius:999px;padding:14px 26px;transition:.4s var(--ease);cursor:pointer;border:none;font-family:inherit}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-deep));color:#fff;box-shadow:0 10px 24px -8px rgba(158,108,27,.6)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 30px -8px rgba(158,108,27,.7)}
+.btn-ink{background:var(--ink);color:var(--bg-2)}
+.btn-ink:hover{transform:translateY(-3px)}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg-2);border-color:var(--ink)}
+.btn-light{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;backdrop-filter:blur(8px)}
+.btn-light:hover{background:#fff;color:var(--ink)}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s var(--ease)}
+header.scrolled{background:rgba(244,239,232,.82);backdrop-filter:blur(18px) saturate(1.3);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;transition:color .4s}
+header.scrolled .logo{color:var(--ink)}
+.logo .mk{width:40px;height:40px;border-radius:11px;background:var(--gold);display:grid;place-items:center;color:#fff;flex-shrink:0;font-family:'Fraunces';font-weight:600;font-size:20px}
+.logo b{font-family:'Fraunces';font-weight:600;font-size:19px;letter-spacing:-.01em;line-height:1;display:block}
+.logo small{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;font-weight:450}
+.navlinks{display:flex;gap:4px}
+.navlinks a{text-decoration:none;color:rgba(255,255,255,.9);font-size:14.5px;font-weight:450;padding:9px 15px;border-radius:999px;transition:.3s;position:relative}
+header.scrolled .navlinks a{color:var(--ink-soft)}
+.navlinks a:hover{color:#fff}
+header.scrolled .navlinks a:hover{color:var(--gold-deep)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.lang{display:flex;gap:2px;font-size:12.5px}
+.lang a{color:rgba(255,255,255,.75);text-decoration:none;padding:4px 6px;border-radius:6px}
+header.scrolled .lang a{color:var(--muted)}
+.lang a.on{color:#fff;font-weight:600}
+header.scrolled .lang a.on{color:var(--ink)}
+.nav .btn{padding:11px 22px;font-size:14px}
+.burger{display:none}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:kb 20s var(--ease) forwards}
+@keyframes kb{to{transform:scale(1.12)}}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,3,.82) 0%,rgba(10,7,3,.15) 45%,rgba(10,7,3,.35) 100%)}
+.hero-in{position:relative;z-index:2;width:100%;padding-bottom:52px}
+.hero .eyebrow{color:#E9C88A}
+.hero .eyebrow::before{background:#E9C88A}
+.hero h1{font-size:clamp(52px,9vw,132px);font-weight:500;margin:16px 0 10px;letter-spacing:-.03em}
+.hero-tag{font-size:clamp(16px,2vw,21px);color:rgba(255,255,255,.9);max-width:560px;font-weight:400;margin-bottom:30px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:0;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.2);border-bottom:1px solid rgba(255,255,255,.2)}
+.hstat{padding:18px 32px 18px 0;margin-right:32px;border-right:1px solid rgba(255,255,255,.2)}
+.hstat:last-child{border-right:none}
+.hstat b{font-family:'Fraunces';font-size:26px;font-weight:600;display:block;line-height:1}
+.hstat span{font-size:12.5px;letter-spacing:.04em;color:rgba(255,255,255,.75)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.scroll-ind{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;font-size:10.5px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;flex-direction:column;align-items:center;gap:9px}
+.scroll-ind .ln{width:1px;height:38px;background:linear-gradient(#E9C88A,transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+section{position:relative}
+.pad{padding:110px 0}
+.pad-t{padding-top:110px}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-head.center .eyebrow{justify-content:center}
+.sec-head h2{font-size:clamp(32px,4.6vw,54px);margin:18px 0 0;font-weight:500}
+.sec-head p{font-size:16.5px;color:var(--ink-soft);margin-top:18px}
+
+/* OVERVIEW */
+.overview{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.ov-text p{color:var(--ink-soft);margin-bottom:18px;font-size:16px}
+.ov-text p:first-of-type{font-size:19px;color:var(--ink);font-family:'Fraunces';font-weight:400;line-height:1.5}
+.ov-media{position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lift);aspect-ratio:4/4.6}
+.ov-media img{width:100%;height:100%;object-fit:cover}
+.ov-badge{position:absolute;left:22px;bottom:22px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-radius:14px;padding:14px 18px;box-shadow:var(--sh-soft)}
+.ov-badge b{font-family:'Fraunces';font-size:20px;font-weight:600;display:block}
+.ov-badge span{font-size:12px;color:var(--muted)}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.mini-stats .m{border-left:2px solid var(--gold);padding-left:14px}
+.mini-stats b{font-family:'Fraunces';font-size:24px;font-weight:600;display:block;line-height:1.1}
+.mini-stats span{font-size:12.5px;color:var(--muted)}
+
+/* 3D TOUR */
+.tour{background:linear-gradient(160deg,#171009,#241a0e);color:#fff;border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--sh-lift)}
+.tour-grid{display:grid;grid-template-columns:1fr 1fr}
+.tour-viz{position:relative;min-height:440px;overflow:hidden}
+#tourCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}
+#tourCanvas:active{cursor:grabbing}
+.tour-fallback{position:absolute;inset:0}
+.tour-fallback img{width:100%;height:100%;object-fit:cover}
+.tour-hint{position:absolute;bottom:16px;left:16px;z-index:5;display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);padding:9px 15px;border-radius:999px;font-size:12.5px;border:1px solid rgba(255,255,255,.15)}
+.tour-rooms{position:absolute;top:16px;left:16px;right:16px;z-index:5;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(to right,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
+.tour-rooms::-webkit-scrollbar{display:none}
+.tour-rooms button{flex:0 0 auto;white-space:nowrap;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:inherit;font-size:12.5px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.3s}
+.tour-rooms button.on,.tour-rooms button:hover{background:var(--gold);border-color:var(--gold)}
+.tour-copy{padding:56px 50px;display:flex;flex-direction:column;justify-content:center}
+.tour-copy .eyebrow{color:#E9C88A}.tour-copy .eyebrow::before{background:#E9C88A}
+.tour-copy h2{font-size:clamp(30px,3.6vw,46px);margin:18px 0 16px;color:#fff;font-weight:500}
+.tour-copy p{color:rgba(255,255,255,.72);font-size:16px;margin-bottom:26px}
+.tour-copy ul{list-style:none;margin-bottom:30px}
+.tour-copy li{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14.5px;color:rgba(255,255,255,.85)}
+.tour-copy li svg{color:#E9C88A;flex-shrink:0}
+
+/* AMENITIES */
+.amen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.amen{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:24px 22px;transition:.4s var(--ease)}
+.amen:hover{transform:translateY(-5px);box-shadow:var(--sh-soft);border-color:transparent}
+.amen .ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(150deg,#F6ECD9,#EAD9B8);display:grid;place-items:center;color:var(--gold-deep);margin-bottom:16px}
+.amen b{font-family:'Fraunces';font-size:17px;font-weight:600;display:block;margin-bottom:5px}
+.amen span{font-size:13.5px;color:var(--ink-soft)}
+
+/* GALLERY */
+.gal{columns:3;column-gap:14px}
+.gal figure{break-inside:avoid;margin-bottom:14px;border-radius:var(--r-md);overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--sh-soft)}
+.gal img{width:100%;display:block;transition:transform .9s var(--ease)}
+.gal figure::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,3,.4),transparent 55%);opacity:0;transition:.4s}
+.gal figure:hover img{transform:scale(1.06)}
+.gal figure:hover::after{opacity:1}
+.gal figcaption{position:absolute;bottom:12px;left:14px;color:#fff;font-size:13px;font-weight:500;z-index:2;opacity:0;transform:translateY(6px);transition:.4s}
+.gal figure:hover figcaption{opacity:1;transform:none}
+.gal-more{text-align:center;margin-top:36px}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:2000;background:rgba(12,8,4,.94);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center}
+.lb.on{display:flex}
+.lb img{max-width:92vw;max-height:86vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-close,.lb-nav{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;width:52px;height:52px;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:.3s}
+.lb-close:hover,.lb-nav:hover{background:var(--gold)}
+.lb-close{top:26px;right:26px}
+.lb-nav.prev{left:26px;top:50%;transform:translateY(-50%)}
+.lb-nav.next{right:26px;top:50%;transform:translateY(-50%)}
+.lb-count{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:13px;letter-spacing:.1em}
+
+/* ROOMS */
+.rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.room{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;box-shadow:var(--sh-soft);transition:.4s var(--ease)}
+.room:hover{box-shadow:var(--sh-lift);transform:translateY(-4px)}
+.room-img{width:44%;flex-shrink:0;position:relative;overflow:hidden}
+.room-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.room:hover .room-img img{transform:scale(1.07)}
+.room-body{padding:24px 24px 22px}
+.room-body .n{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.room-body h3{font-size:22px;margin:6px 0 4px;font-weight:600}
+.room-body .beds{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+.room-body .hl{display:flex;flex-wrap:wrap;gap:6px}
+.room-body .hl span{font-size:11.5px;background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ink-soft)}
+
+/* SPLIT FEATURE (pool) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split-media{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lift);aspect-ratio:5/4}
+.split-media img{width:100%;height:100%;object-fit:cover}
+.split ul{list-style:none;margin-top:22px}
+.split li{display:flex;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.split li svg{color:var(--gold-deep);flex-shrink:0;margin-top:3px}
+.split li b{font-family:'Fraunces';font-weight:600}
+
+/* LOCATION */
+.loc{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:stretch}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.dist{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 20px}
+.dist b{font-family:'Fraunces';font-size:22px;font-weight:600;display:block}
+.dist span{font-size:13px;color:var(--muted)}
+.map-wrap{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lift);min-height:400px;position:relative}
+.map-wrap iframe{width:100%;height:100%;min-height:400px;border:0;filter:grayscale(.2) contrast(1.05)}
+
+/* PRICING */
+.price-wrap{display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:start}
+.ptable{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-soft)}
+.ptable table{width:100%;border-collapse:collapse}
+.ptable th{background:var(--ink);color:var(--bg-2);font-family:'Fraunces';font-weight:500;font-size:14px;text-align:left;padding:16px 22px}
+.ptable td{padding:15px 22px;border-bottom:1px solid var(--line);font-size:14.5px}
+.ptable tr:last-child td{border-bottom:none}
+.ptable tr.peak td{background:linear-gradient(90deg,rgba(192,135,47,.08),transparent)}
+.ptable .season{font-weight:500}
+.ptable .tag-peak{font-size:10px;background:var(--gold);color:#fff;padding:2px 8px;border-radius:999px;margin-left:8px;letter-spacing:.05em}
+.ptable .night{font-family:'Fraunces';font-weight:600;font-size:16px}
+.pnote{font-size:12.5px;color:var(--muted);padding:16px 22px;background:var(--bg-2)}
+.pcard{background:linear-gradient(165deg,#1c140b,#2a1e10);color:#fff;border-radius:var(--r-lg);padding:30px 28px;box-shadow:var(--sh-lift);position:sticky;top:90px}
+.pcard h3{color:#fff;font-size:22px;margin-bottom:4px}
+.pcard .from{color:rgba(255,255,255,.6);font-size:13px}
+.pcard .big{font-family:'Fraunces';font-size:40px;font-weight:600;margin:14px 0 2px;color:#fff}
+.pcard .big small{font-size:15px;color:rgba(255,255,255,.6);font-weight:400}
+.pcard .pol{list-style:none;margin:22px 0}
+.pcard .pol li{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13.5px;color:rgba(255,255,255,.85)}
+.pcard .pol li b{color:#fff;font-weight:500}
+.pcard .btn{width:100%;justify-content:center;margin-top:6px}
+
+/* AVAILABILITY */
+.cal-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-soft)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-head b{font-family:'Fraunces';font-size:19px;font-weight:600}
+.cal-nav{display:flex;gap:8px}
+.cal-nav button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--bg);cursor:pointer;display:grid;place-items:center;transition:.3s}
+.cal-nav button:hover{background:var(--ink);color:#fff}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal-dow{font-size:11px;text-align:center;color:var(--muted);padding:4px 0;font-weight:500}
+.cal-day{aspect-ratio:1;display:grid;place-items:center;border-radius:9px;font-size:13px;position:relative;cursor:default}
+.cal-day.empty{visibility:hidden}
+.cal-day.avail{background:rgba(53,107,98,.1);color:var(--sea);font-weight:500}
+.cal-day.peak{background:rgba(192,135,47,.14);color:var(--gold-deep)}
+.cal-day.past{color:#ccc4b8}
+.cal-legend{display:flex;gap:20px;margin-top:20px;font-size:12.5px;color:var(--ink-soft);flex-wrap:wrap}
+.cal-legend span{display:flex;align-items:center;gap:7px}
+.cal-legend i{width:13px;height:13px;border-radius:4px;display:inline-block}
+
+/* RESERVATION */
+.resv{background:var(--ink);color:#fff;border-radius:var(--r-lg);overflow:hidden;position:relative}
+.resv-bg{position:absolute;inset:0;z-index:0;opacity:.28}
+.resv-bg img{width:100%;height:100%;object-fit:cover}
+.resv-in{position:relative;z-index:2;padding:60px 56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.resv h2{color:#fff;font-size:clamp(30px,3.6vw,46px);font-weight:500}
+.resv p{color:rgba(255,255,255,.75);margin:16px 0 26px;font-size:16px}
+.resv-contact{display:flex;gap:14px;flex-wrap:wrap}
+.rform{background:var(--bg-2);color:var(--ink);border-radius:var(--r-md);padding:28px}
+.rform .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.rform label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;font-weight:500}
+.rform input,.rform select{width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 13px;font-family:inherit;font-size:14px;color:var(--ink)}
+.rform input:focus,.rform select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(192,135,47,.15)}
+.rform .full{grid-column:1/-1}
+.rform .btn{width:100%;justify-content:center;margin-top:6px}
+
+/* FOOTER */
+footer{background:#12100c;color:rgba(255,255,255,.7);padding:70px 0 34px;margin-top:0}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot .logo{color:#fff;margin-bottom:16px}
+.foot p{font-size:13.5px;max-width:260px}
+.foot h4{color:#fff;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;font-weight:600;font-family:'Inter'}
+.foot a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;margin-bottom:10px;transition:.3s}
+.foot a:hover{color:var(--gold)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(255,255,255,.45)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:.9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* MOBILE */
+@media(max-width:960px){
+  .navlinks,.nav .lang{display:none}
+  .overview,.split,.loc,.price-wrap,.tour-grid,.resv-in,.cal-wrap{grid-template-columns:1fr}
+  .rooms,.amen-grid{grid-template-columns:1fr}
+  .amen-grid{grid-template-columns:1fr 1fr}
+  .gal{columns:2}
+  .hero h1{font-size:clamp(46px,15vw,80px)}
+  .hstat{padding:14px 20px 14px 0;margin-right:20px}
+  .pad{padding:72px 0}
+  .wrap{padding:0 20px}
+  .tour-copy,.resv-in{padding:36px 26px}
+  .room{flex-direction:column}.room-img{width:100%;aspect-ratio:16/10}
+  .pcard{position:static}
+  .burger{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;cursor:pointer}
+  header.scrolled .burger{color:var(--ink);background:rgba(0,0,0,.05);border-color:var(--line)}
+}
+@media(max-width:560px){.amen-grid{grid-template-columns:1fr}.gal{columns:1}.mini-stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="mk">P</span><span><b>Villa Poyraz</b><small>Kalkan · Kalamar</small></span></a>
+    <nav class="navlinks">
+      <a href="#overview">Genel Bakış</a>
+      <a href="#tour">3D Tur</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#rooms">Odalar</a>
+      <a href="#location">Konum</a>
+      <a href="#pricing">Fiyatlar</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang"><a href="#" class="on">TR</a><a href="#">EN</a></div>
+      <a href="#reserve" class="btn btn-gold">Rezervasyon</a>
+      <button class="burger" aria-label="menu"><svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img src="/assets/img/villa-poyraz-gallery/hero.webp" alt="Villa Poyraz - Kalkan Kalamar deniz manzaralı lüks villa, alacakaranlıkta havuz" /></div>
+  <div class="wrap hero-in">
+    <div class="eyebrow">Kalkan · Kalamar Koyu · Özel Kiralık</div>
+    <h1>Villa Poyraz</h1>
+    <p class="hero-tag">Deniz ufkuyla buluşan modern mimari. Özel ısıtmalı havuz, iki jakuzili suite ve gün batımına bakan seyir terası ile 8 misafire özel bir Akdeniz kaçışı.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>4</b><span>Yatak Odası</span></div>
+      <div class="hstat"><b>8</b><span>Misafir</span></div>
+      <div class="hstat"><b>4</b><span>Banyo</span></div>
+      <div class="hstat"><b>9.5m</b><span>Özel Havuz</span></div>
+      <div class="hstat"><b>1&nbsp;km</b><span>Denize</span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#reserve" class="btn btn-gold">Rezervasyon Talebi <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#tour" class="btn btn-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg> 3D Sanal Turu Başlat</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>Keşfet</span><span class="ln"></span></div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="pad" id="overview">
+  <div class="wrap overview">
+    <div class="ov-text reveal">
+      <div class="eyebrow">Villa Hakkında</div>
+      <h2 style="font-size:clamp(30px,4vw,48px);margin:18px 0 24px;">Kalamar koyunda,<br>sadeliğin lüksü.</h2>
+      <p>2017'de inşa edilen Villa Poyraz, Kalkan'ın en gözde mevkii Kalamar'da modern mimari ile Akdeniz manzarasını buluşturur. Her odası koya bakan villa, aileler ve arkadaş grupları için ferah bir konaklama sunar.</p>
+      <p>Üst kat seyir terası gün batımı yemekleri için tasarlandı; plaj, restoranlar ve market yürüme mesafesinde. En özel detayı ise iki yatak odasındaki özel jakuziler — king-size yataklı ana suite ile premium bir deneyim.</p>
+      <p>Bilardo masası akşamları villanın ruhu olurken, tam donanımlı Amerikan mutfak ve havuz terasına açılan salon, aile sofralarının merkezidir.</p>
+      <div class="mini-stats">
+        <div class="m"><b>2017</b><span>İnşa yılı</span></div>
+        <div class="m"><b>2&nbsp;×</b><span>Jakuzili suite</span></div>
+        <div class="m"><b>7/24</b><span>Concierge</span></div>
+      </div>
+    </div>
+    <div class="ov-media reveal">
+      <img src="/assets/img/villa-poyraz-gallery/p24.webp" alt="Villa Poyraz seyir terası gün batımı yemek alanı" />
+      <div class="ov-badge"><b>Kalamar, Kalkan</b><span>Deniz & doğa manzarası · Antalya</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D TOUR -->
+<section class="pad-t" id="tour">
+  <div class="wrap">
+    <div class="tour reveal">
+      <div class="tour-grid">
+        <div class="tour-viz">
+          <div class="tour-rooms" id="tourRooms"></div>
+          <canvas id="tourCanvas"></canvas>
+          <div class="tour-fallback" id="tourFallback"><img src="/assets/img/villa-poyraz-gallery/p29.webp" alt="Villa Poyraz 3D sanal tur" /></div>
+          <div class="tour-hint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg> Sürükleyerek villada gezin</div>
+        </div>
+        <div class="tour-copy">
+          <div class="eyebrow">3D Sanal Tur</div>
+          <h2>Gelmeden önce içeride dolaşın.</h2>
+          <p>Fotoğraflardan üretilen derinlikli 3D sahnelerle Villa Poyraz'ın içinde serbestçe gezinin. Fareyle sürükleyin, odadan odaya geçin — sanki oradaymışsınız gibi.</p>
+          <ul>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Salon, mutfak, yatak odaları ve havuz sahneleri</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Fare / dokunmatik ile gerçek zamanlı 3D hareket</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Kurulum yok — doğrudan tarayıcıda</li>
+          </ul>
+          <a href="#gallery" class="btn btn-light" style="align-self:flex-start;">Tüm Galeriyi Gör</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="pad" id="amenities">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="eyebrow">Öne Çıkanlar</div>
+      <h2>Her detay düşünüldü.</h2>
+      <p>Konfor ve lüksün bir arada olduğu, tam donanımlı bir tatil evi.</p>
+    </div>
+    <div class="amen-grid reveal" id="amenGrid"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="pad-t" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Galeri</div>
+      <h2>41 kare, tek bir villa.</h2>
+      <p>Villa Poyraz'ın gerçek fotoğrafları — mimari, iç mekân, havuz ve manzara.</p>
+    </div>
+    <div class="gal reveal" id="galGrid"></div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="pad" id="rooms">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Yatak Odaları</div>
+      <h2>Dört suite, sekiz misafir.</h2>
+    </div>
+    <div class="rooms reveal">
+      <div class="room">
+        <div class="room-img"><img src="/assets/img/villa-poyraz-gallery/p00.webp" alt="Ana yatak odası jakuzili"></div>
+        <div class="room-body"><span class="n">Oda 01 · Ana Suite</span><h3>Jakuzili Ana Yatak Odası</h3><p class="beds">1 çift kişilik yatak</p><div class="hl"><span>Özel jakuzi</span><span>Balkon</span><span>Banyo + WC</span><span>Klima</span></div></div>
+      </div>
+      <div class="room">
+        <div class="room-img"><img src="/assets/img/villa-poyraz-gallery/p11.webp" alt="Yatak odası LCD TV"></div>
+        <div class="room-body"><span class="n">Oda 02</span><h3>Yatak Odası · LCD TV</h3><p class="beds">1 çift kişilik yatak</p><div class="hl"><span>LCD TV</span><span>Balkon</span><span>Banyo + WC</span><span>Klima</span></div></div>
+      </div>
+      <div class="room">
+        <div class="room-img"><img src="/assets/img/villa-poyraz-gallery/p06.webp" alt="Yatak odası konfor yatak"></div>
+        <div class="room-body"><span class="n">Oda 03</span><h3>Konfor Yatak Odası</h3><p class="beds">2 tek kişilik konfor yatak</p><div class="hl"><span>Balkon</span><span>Banyo + WC</span><span>Klima</span><span>Deniz manzarası</span></div></div>
+      </div>
+      <div class="room">
+        <div class="room-img"><img src="/assets/img/villa-poyraz-gallery/p27.webp" alt="King-size jakuzili suite"></div>
+        <div class="room-body"><span class="n">Oda 04 · Premium Suite</span><h3>King-Size & Jakuzi Suite</h3><p class="beds">King-size yatak</p><div class="hl"><span>King-Size</span><span>Özel jakuzi</span><span>LCD TV</span><span>Balkon</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POOL SPLIT -->
+<section class="pad">
+  <div class="wrap split">
+    <div class="split-media reveal"><img src="/assets/img/villa-poyraz-gallery/p10.webp" alt="Villa Poyraz özel ısıtmalı havuz ve deniz manzarası"></div>
+    <div class="reveal">
+      <div class="eyebrow">Havuz & Bahçe</div>
+      <h2 style="font-size:clamp(30px,4vw,46px);margin:18px 0 8px;">Havuzdan Akdeniz'e uzanan bir gün.</h2>
+      <ul>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4 4 8 10 8s10-4 10-8"/></svg><div><b>Özel ısıtmalı havuz</b> — 9.5m × 3.5m × 1.70m derinlik</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg><div><b>Üst kat seyir terası</b> — gün batımı yemekleri için</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg><div><b>Açık hava jakuzisi</b> — yıldızların altında</div></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V8l8-5 8 5v12"/></svg><div><b>Barbekü & açık hava mobilyaları</b> — şezlonglar, yemek masası</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="pad" id="location">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Konum</div>
+      <h2>Kalamar'da, her şeye yakın.</h2>
+      <p>Plaj, restoranlar ve Kalkan merkez yürüme mesafesinde. En yakın havalimanı Dalaman.</p>
+    </div>
+    <div class="loc reveal">
+      <div>
+        <div class="dist-grid">
+          <div class="dist"><b>1 km</b><span>Plaj</span></div>
+          <div class="dist"><b>1 km</b><span>Restoran & Market</span></div>
+          <div class="dist"><b>2 km</b><span>Kalkan Merkez</span></div>
+          <div class="dist"><b>2 km</b><span>Toplu taşıma</span></div>
+          <div class="dist"><b>125 km</b><span>Dalaman Havalimanı</span></div>
+          <div class="dist"><b>10 dk</b><span>Merkeze yürüyüş</span></div>
+        </div>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:20px;">Bölgede toplu taşıma sınırlıdır; concierge ekibimiz özel transfer veya araç kiralama düzenleyebilir.</p>
+      </div>
+      <a class="map-wrap" href="https://www.google.com/maps/search/?api=1&query=Kalamar%2C+Kalkan%2C+Ka%C5%9F%2C+Antalya" target="_blank" rel="noopener" aria-label="Villa Poyraz konumunu Google Haritalar'da aç">
+        <img src="/assets/img/villa-poyraz-gallery/p18.webp" alt="Kalamar, Kalkan havadan görünüm" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(1.05)">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,11,5,.55),transparent 60%)"></div>
+        <div class="map-pin" style="position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:#fff;">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid #fff;box-shadow:0 0 0 8px rgba(192,135,47,.3),0 6px 16px rgba(0,0,0,.4)"></span>
+          <span style="background:rgba(22,16,9,.72);backdrop-filter:blur(6px);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;white-space:nowrap">Villa Poyraz · Kalamar Koyu</span>
+        </div>
+        <span style="position:absolute;bottom:18px;right:18px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);padding:11px 18px;border-radius:999px;font-size:13.5px;font-weight:500;box-shadow:var(--sh-soft)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Google Haritalar'da Aç
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pad" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Fiyatlar · 2026 Sezonu</div>
+      <h2>Şeffaf, sezonluk fiyatlandırma.</h2>
+      <p>Aşağıdaki gecelik ücretler minimum 4 gece konaklama içindir. Kesin fiyat tarihlere göre concierge tarafından teyit edilir.</p>
+    </div>
+    <div class="price-wrap reveal">
+      <div class="ptable">
+        <table>
+          <thead><tr><th>Dönem</th><th>Gecelik</th><th>Haftalık</th></tr></thead>
+          <tbody>
+            <tr><td class="season">Mayıs</td><td class="night">₺17.142</td><td>₺119.994</td></tr>
+            <tr><td class="season">1 – 14 Haziran</td><td class="night">₺24.286</td><td>₺170.002</td></tr>
+            <tr class="peak"><td class="season">15 Haziran – 14 Eylül<span class="tag-peak">YÜKSEK SEZON</span></td><td class="night">₺30.000</td><td>₺210.000</td></tr>
+            <tr><td class="season">15 – 30 Eylül</td><td class="night">₺21.430</td><td>₺150.010</td></tr>
+            <tr><td class="season">Ekim</td><td class="night">₺18.572</td><td>₺130.004</td></tr>
+            <tr><td class="season">Kasım</td><td class="night">₺15.715</td><td>₺110.005</td></tr>
+          </tbody>
+        </table>
+        <div class="pnote">Fiyatlar TL üzerinden olup USD / EUR / GBP karşılığı ödenebilir. Minimum konaklama 4 gecedir.</div>
+      </div>
+      <div class="pcard">
+        <div class="from">Başlangıç · düşük sezon</div>
+        <h3>Villa Poyraz</h3>
+        <div class="big">₺15.715<small> / gece</small></div>
+        <div class="from">Tüm villa · 8 misafire kadar</div>
+        <ul class="pol">
+          <li><span>Depozito</span><b>₺20.000 (iade)</b></li>
+          <li><span>Min. konaklama</span><b>4 gece</b></li>
+          <li><span>Temizlik (&lt;5 gece)</span><b>₺10.000</b></li>
+          <li><span>Evcil hayvan</span><b>₺15.000</b></li>
+          <li><span>Giriş / Çıkış</span><b>16:00 / 10:00</b></li>
+          <li><span>İptal</span><b>Giriş -3 hafta</b></li>
+        </ul>
+        <a href="#reserve" class="btn btn-gold">Rezervasyon Talebi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVAILABILITY -->
+<section class="pad-t" id="availability">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Müsaitlik Takvimi</div>
+      <h2>Tarihlerinizi planlayın.</h2>
+      <p>Güncel sezon durumu aşağıdadır. Kesin doluluk anlık olarak concierge ekibimizce teyit edilir.</p>
+    </div>
+    <div class="reveal">
+      <div class="cal-wrap" id="calWrap"></div>
+      <div class="cal-legend">
+        <span><i style="background:rgba(53,107,98,.35)"></i> Müsait (normal sezon)</span>
+        <span><i style="background:rgba(192,135,47,.4)"></i> Yüksek sezon</span>
+        <span><i style="background:#e6e0d6"></i> Geçmiş</span>
+        <span style="color:var(--muted)">* Kesin müsaitlik concierge ile teyit edilir</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="pad" id="reserve">
+  <div class="wrap">
+    <div class="resv reveal">
+      <div class="resv-bg"><img src="/assets/img/villa-poyraz-gallery/p16.webp" alt=""></div>
+      <div class="resv-in">
+        <div>
+          <div class="eyebrow" style="color:#E9C88A;">Rezervasyon</div>
+          <h2>Villa Poyraz'ı sizin için ayıralım.</h2>
+          <p>Formu doldurun, concierge ekibimiz müsaitliği ve kesin fiyatı 24 saat içinde WhatsApp'tan iletsin. Transfer, özel şef ve tekne turu gibi ek hizmetleri de planlayabiliriz.</p>
+          <div class="resv-contact">
+            <a href="https://wa.me/905306650794?text=Merhaba%2C%20Villa%20Poyraz%20i%C3%A7in%20rezervasyon%20bilgisi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-light"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-2.8.7.7-2.7-.2-.3A8 8 0 0112 4z"/></svg> WhatsApp</a>
+            <a href="tel:+905306650794" class="btn btn-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.4 2.1L8.1 9.9a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.4c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg> +90 530 665 07 94</a>
+          </div>
+        </div>
+        <form class="rform" onsubmit="return sendResv(event)">
+          <div class="row">
+            <div><label>Giriş</label><input type="date" id="rIn" required></div>
+            <div><label>Çıkış</label><input type="date" id="rOut" required></div>
+          </div>
+          <div class="row">
+            <div><label>Misafir</label><select id="rGuests"><option>2</option><option>4</option><option>6</option><option selected>8</option></select></div>
+            <div><label>Ad Soyad</label><input type="text" id="rName" placeholder="Adınız" required></div>
+          </div>
+          <div class="full" style="margin-bottom:12px;"><label>Telefon / E-posta</label><input type="text" id="rContact" placeholder="Size nasıl ulaşalım?" required></div>
+          <button type="submit" class="btn btn-gold">WhatsApp ile Talep Gönder <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#top"><span class="mk">P</span><span><b>Villa Poyraz</b><small style="opacity:.7">Kalkan · Kalamar</small></span></a>
+        <p>Kalkan Kalamar koyunda deniz manzaralı, özel havuzlu lüks kiralık villa. Kalkan Info güvencesiyle.</p>
+      </div>
+      <div><h4>Keşfet</h4><a href="#overview">Genel Bakış</a><a href="#tour">3D Sanal Tur</a><a href="#gallery">Galeri</a><a href="#rooms">Odalar</a></div>
+      <div><h4>Bilgi</h4><a href="#pricing">Fiyatlar</a><a href="#availability">Müsaitlik</a><a href="#location">Konum</a><a href="#reserve">Rezervasyon</a></div>
+      <div><h4>İletişim</h4><a href="https://wa.me/905306650794" target="_blank" rel="noopener">+90 530 665 07 94</a><a href="https://kalkaninfo.com">kalkaninfo.com</a><a href="https://instagram.com/kalkanvillapoyraz" target="_blank" rel="noopener">@kalkanvillapoyraz</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Villa Poyraz · Kalkan Info</span>
+      <span>Deniz manzarası · Özel havuz · Concierge · 3D Sanal Tur</span>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose"><svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-nav prev" id="lbPrev"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-nav next" id="lbNext"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<script>
+// nav scroll state
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>60));
+
+// amenities
+const AMEN=[
+  ['Özel Isıtmalı Havuz','9.5m × 3.5m, açık hava jakuzisi','pool'],
+  ['2 Jakuzili Suite','Ana suite + king-size suite','spa'],
+  ['Deniz Manzarası','Tüm odalar Kalamar koyuna bakar','view'],
+  ['Bilardo Masası','Aile içi turnuva keyfi','game'],
+  ['Amerikan Mutfak','Tam donanımlı, havuza açılan','kitchen'],
+  ['Seyir Terası','Üst katta gün batımı alanı','deck'],
+  ['Klima & WiFi','Ücretsiz internet, her odada klima','wifi'],
+  ['Concierge Dahil','7/24 destek, haftalık temizlik','bell'],
+];
+const IC={
+  pool:'<path d="M2 12h20M2 12c0 4 4 8 10 8s10-4 10-8M6 12V7a2 2 0 114 0"/>',
+  spa:'<path d="M12 22c4-4 8-7 8-12a4 4 0 00-8 0 4 4 0 00-8 0c0 5 4 8 8 12z"/>',
+  view:'<circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/>',
+  game:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/>',
+  kitchen:'<path d="M6 2v7M9 2v7M6 9h3v13H6zM15 2c-2 0-3 2-3 5s1 5 3 5V2zM15 12v10"/>',
+  deck:'<path d="M3 21h18M5 21V10l7-5 7 5v11"/>',
+  wifi:'<path d="M5 12a10 10 0 0114 0M8.5 15.5a5 5 0 017 0M12 19h.01"/>',
+  bell:'<path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/>',
+};
+document.getElementById('amenGrid').innerHTML=AMEN.map(a=>`
+  <div class="amen"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${IC[a[2]]}</svg></div><b>${a[0]}</b><span>${a[1]}</span></div>`).join('');
+
+// gallery (all 41) with captions
+const CAPS={0:'Jakuzili suite',2:'Açık mutfak & salon',3:'Amerikan mutfak',9:'Teras & havuz',10:'Havuz & deniz manzarası',13:'Manzara terası',16:'Alacakaranlıkta havuz',24:'Gün batımı sofrası',26:'Salon',29:'Villa & teras',30:'Ferah salon',33:'Balkon manzarası',37:'Havuz başı',40:'Villa dış cephe'};
+const gal=document.getElementById('galGrid');
+const order=[16,29,40,10,26,0,9,24,3,30,13,37,2,27,33,6,23,4,11,19,36,25,14,38,17,31,12,28,21,32,20,35,5,22,1,34,39,8,15,18,7];
+gal.innerHTML=order.map(i=>{const n=String(i).padStart(2,'0');const c=CAPS[i]?`<figcaption>${CAPS[i]}</figcaption>`:'';return `<figure data-i="${i}"><img loading="lazy" src="/assets/img/villa-poyraz-gallery/p${n}.webp" alt="Villa Poyraz ${CAPS[i]||'iç mekan'}">${c}</figure>`}).join('');
+
+// lightbox
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCount=document.getElementById('lbCount');
+let lbList=order,lbIdx=0;
+function openLb(i){lbIdx=i;showLb();lb.classList.add('on')}
+function showLb(){const n=String(lbList[lbIdx]).padStart(2,'0');lbImg.src=`/assets/img/villa-poyraz-gallery/p${n}.webp`;lbCount.textContent=`${lbIdx+1} / ${lbList.length}`}
+gal.addEventListener('click',e=>{const f=e.target.closest('figure');if(f)openLb(order.indexOf(+f.dataset.i))});
+document.getElementById('lbClose').onclick=()=>lb.classList.remove('on');
+document.getElementById('lbNext').onclick=()=>{lbIdx=(lbIdx+1)%lbList.length;showLb()};
+document.getElementById('lbPrev').onclick=()=>{lbIdx=(lbIdx-1+lbList.length)%lbList.length;showLb()};
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('on')});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowRight')document.getElementById('lbNext').click();if(e.key==='ArrowLeft')document.getElementById('lbPrev').click()});
+
+// availability calendar
+const MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const DOW=['Pt','Sa','Ça','Pe','Cu','Ct','Pz'];
+const REF=new Date(2026,7,1); // referans: Ağustos 2026 (site tarihi)
+let calBase=new Date(REF.getFullYear(),REF.getMonth(),1);
+function isPeak(d){const m=d.getMonth(),day=d.getDate();return (m>5&&m<8)||(m===5&&day>=15)||(m===8&&day<=14)}
+function inSeason(d){const m=d.getMonth();return m>=4&&m<=10} // May-Nov
+function renderCal(){
+  const wrap=document.getElementById('calWrap');wrap.innerHTML='';
+  for(let k=0;k<2;k++){
+    const base=new Date(calBase.getFullYear(),calBase.getMonth()+k,1);
+    const y=base.getFullYear(),m=base.getMonth();
+    const first=(new Date(y,m,1).getDay()+6)%7; // Pzt=0
+    const days=new Date(y,m+1,0).getDate();
+    let cells='';
+    DOW.forEach(d=>cells+=`<div class="cal-dow">${d}</div>`);
+    for(let i=0;i<first;i++)cells+=`<div class="cal-day empty"></div>`;
+    for(let d=1;d<=days;d++){
+      const date=new Date(y,m,d);
+      let cls='cal-day';
+      if(date<REF)cls+=' past';
+      else if(!inSeason(date))cls+='';
+      else cls+=isPeak(date)?' peak':' avail';
+      cells+=`<div class="${cls}">${d}</div>`;
+    }
+    wrap.innerHTML+=`<div class="cal"><div class="cal-head"><b>${MONTHS[m]} ${y}</b>${k===0?`<div class="cal-nav"><button onclick="calShift(-1)">‹</button><button onclick="calShift(1)">›</button></div>`:''}</div><div class="cal-grid">${cells}</div></div>`;
+  }
+}
+function calShift(n){calBase=new Date(calBase.getFullYear(),calBase.getMonth()+n,1);if(calBase<new Date(REF.getFullYear(),REF.getMonth(),1))calBase=new Date(REF.getFullYear(),REF.getMonth(),1);renderCal()}
+renderCal();
+
+// reservation -> whatsapp
+function sendResv(e){
+  e.preventDefault();
+  const i=document.getElementById('rIn').value,o=document.getElementById('rOut').value,g=document.getElementById('rGuests').value,n=document.getElementById('rName').value,c=document.getElementById('rContact').value;
+  const msg=`Merhaba, Villa Poyraz için rezervasyon talebim:%0A- Giriş: ${i}%0A- Çıkış: ${o}%0A- Misafir: ${g}%0A- Ad: ${n}%0A- İletişim: ${c}`;
+  window.open(`https://wa.me/905306650794?text=${msg}`,'_blank');
+  return false;
+}
+
+// reveal
+const rev=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.08});
+rev.forEach(el=>io.observe(el));
+requestAnimationFrame(()=>rev.forEach(el=>{if(el.getBoundingClientRect().top<innerHeight*0.95)el.classList.add('in')}));
+setTimeout(()=>rev.forEach(el=>el.classList.add('in')),1600);
+</script>
+<!-- 3D TOUR VIEWER -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+<script>
+(function(){
+  const SCENES=[
+    {key:'salon',name:'Salon',img:'p26'},
+    {key:'oturma',name:'Oturma',img:'p30'},
+    {key:'mutfak',name:'Mutfak',img:'p03'},
+    {key:'yemek',name:'Yemek Alanı',img:'p36'},
+    {key:'anasuite',name:'Ana Suite',img:'p00'},
+    {key:'suite',name:'King Suite',img:'p27'},
+    {key:'yatak',name:'Yatak Odası',img:'p11'},
+    {key:'banyo',name:'Banyo',img:'p25'},
+    {key:'teras',name:'Teras',img:'p24'},
+    {key:'havuz',name:'Havuz · Akşam',img:'p16'},
+    {key:'havuzgun',name:'Havuz · Gündüz',img:'p10'},
+    {key:'manzara',name:'Manzara',img:'p33'},
+  ];
+  const BASE='/assets/img/villa-poyraz-gallery/';
+  const canvas=document.getElementById('tourCanvas');
+  const fallback=document.getElementById('tourFallback');
+  const roomsEl=document.getElementById('tourRooms');
+  if(!canvas||typeof THREE==='undefined'){return;}
+
+  // room buttons
+  SCENES.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.name;b.dataset.i=i;if(i===0)b.classList.add('on');b.onclick=()=>go(i);roomsEl.appendChild(b);});
+
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const loader=new THREE.TextureLoader();
+
+  const uniforms={
+    uColor:{value:null}, uDepth:{value:null},
+    uColor2:{value:null}, uDepth2:{value:null},
+    uMix:{value:0.0},
+    uMouse:{value:new THREE.Vector2(0,0)},
+    uInt:{value:0.032},
+    uImgAspect:{value:1.5}, uImgAspect2:{value:1.5},
+    uViewAspect:{value:1.5},
+  };
+  const mat=new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}`,
+    fragmentShader:`
+      precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D uColor,uDepth,uColor2,uDepth2;
+      uniform float uMix,uInt,uImgAspect,uImgAspect2,uViewAspect;
+      uniform vec2 uMouse;
+      vec2 coverUv(vec2 uv,float ia){
+        float r=ia/uViewAspect;vec2 c=uv-0.5;
+        if(r>1.0){c.x/=r;}else{c.y*=r;}
+        c*=0.93; // inset margin so parallax offsets stay in-bounds (no edge smear)
+        return c+0.5;
+      }
+      vec4 sampleScene(sampler2D col,sampler2D dep,float ia){
+        vec2 uv=coverUv(vUv,ia);
+        float d=texture2D(dep,uv).r;
+        vec2 off=uMouse*uInt*(d-0.45);
+        vec2 uv2=uv+off;
+        return texture2D(col,uv2);
+      }
+      void main(){
+        vec4 a=sampleScene(uColor,uDepth,uImgAspect);
+        vec4 b=sampleScene(uColor2,uDepth2,uImgAspect2);
+        vec4 col=mix(a,b,uMix);
+        // subtle vignette
+        vec2 q=vUv-0.5;float v=1.0-dot(q,q)*0.5;
+        gl_FragColor=vec4(col.rgb*v,1.0);
+      }`,
+  });
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+
+  function resize(){
+    const r=canvas.parentElement.getBoundingClientRect();
+    renderer.setSize(r.width,r.height,false);
+    uniforms.uViewAspect.value=r.width/r.height;
+  }
+  addEventListener('resize',resize);
+
+  function loadTex(img){return new Promise(res=>{loader.load(BASE+img+'.webp',t=>{t.colorSpace=THREE.SRGBColorSpace;res(t);});});}
+  function loadDepth(key){return new Promise(res=>{loader.load(BASE+'depth/'+key+'.png',t=>res(t),undefined,()=>res(null));});}
+
+  let cur=0, ready=false, texCache={};
+  async function getScene(i){
+    if(texCache[i])return texCache[i];
+    const s=SCENES[i];
+    const [c,d]=await Promise.all([loadTex(s.img),loadDepth(s.key)]);
+    const asp=c.image.width/c.image.height;
+    texCache[i]={c,d,asp};
+    return texCache[i];
+  }
+
+  async function init(){
+    const s=await getScene(0);
+    if(!s.d){ // no depth map -> keep photo fallback, abort 3D
+      return;
+    }
+    uniforms.uColor.value=s.c;uniforms.uDepth.value=s.d;uniforms.uImgAspect.value=s.asp;
+    uniforms.uColor2.value=s.c;uniforms.uDepth2.value=s.d;uniforms.uImgAspect2.value=s.asp;
+    resize();ready=true;
+    fallback.style.transition='opacity .6s ease';fallback.style.opacity='0';
+    setTimeout(()=>fallback.style.display='none',600);
+    animate();
+  }
+
+  let swapping=false;
+  async function go(i){
+    if(!ready||swapping||i===cur)return;
+    swapping=true;
+    roomsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+    const s=await getScene(i);
+    uniforms.uColor2.value=s.c;uniforms.uDepth2.value=s.d;uniforms.uImgAspect2.value=s.asp;
+    const t0=performance.now();
+    (function fade(){
+      const p=Math.min((performance.now()-t0)/700,1);
+      uniforms.uMix.value=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+      if(p<1){requestAnimationFrame(fade);}
+      else{uniforms.uColor.value=s.c;uniforms.uDepth.value=s.d;uniforms.uImgAspect.value=s.asp;uniforms.uMix.value=0;cur=i;swapping=false;}
+    })();
+  }
+
+  // mouse / touch parallax + idle drift
+  const tgt=new THREE.Vector2(0,0);let idle=0;
+  function setFromEvent(cx,cy){
+    const r=canvas.getBoundingClientRect();
+    tgt.x=((cx-r.left)/r.width-0.5)*2;
+    tgt.y=((cy-r.top)/r.height-0.5)*2;
+    idle=0;
+  }
+  canvas.addEventListener('mousemove',e=>setFromEvent(e.clientX,e.clientY));
+  canvas.addEventListener('touchmove',e=>{if(e.touches[0])setFromEvent(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+  canvas.addEventListener('mouseleave',()=>{tgt.set(0,0);});
+
+  function animate(){
+    requestAnimationFrame(animate);
+    idle+=0.016;
+    // gentle auto drift when idle
+    const drift=new THREE.Vector2(Math.sin(idle*0.5)*0.5,Math.cos(idle*0.35)*0.3);
+    const aim=idle>2? drift : tgt;
+    uniforms.uMouse.value.lerp(aim,0.06);
+    renderer.render(scene,camera);
+  }
+
+  // start when tour section is near
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){obs.disconnect();init();}});},{rootMargin:'200px'});
+  obs.observe(document.getElementById('tour'));
+})();
+</script>
+</body>
+</html>

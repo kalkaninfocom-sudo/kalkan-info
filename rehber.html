@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="dist/tw.css">
-<title>Deniz — Kalkan'ın Sesli Dijital Rehberi | Kalkan Info</title>
-<meta name="description" content="Mikrofonunu aç, Kalkan'ın dijital rehberi Deniz ile canlı konuş. Restoran, plaj, otel ve gezilecek yerler hakkında anlık, sesli ve yüz yüze rehberlik.">
+<title>Lyra — Kalkan'ın Sesli Dijital Rehberi | Kalkan Info</title>
+<meta name="description" content="Mikrofonunu aç, Kalkan'ın dijital rehberi Lyra ile canlı konuş. Restoran, plaj, otel ve gezilecek yerler hakkında anlık, sesli ve yüz yüze rehberlik.">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -126,7 +126,7 @@
     </div>
 
     <h1 class="font-display text-4xl md:text-5xl font-extrabold text-white leading-tight" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(4,16,28,0.7);">
-      Deniz ile <span class="text-sun-400">tanışın</span>
+      Lyra ile <span class="text-sun-400">tanışın</span>
     </h1>
     <p class="mt-4 text-white/75 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
       Kalkan'ın dijital rehberi. Mikrofonunu aç, sanki karşındaymış gibi konuş —
@@ -144,7 +144,7 @@
           <div class="pulse-ring" style="position:relative;">
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#4A9EF5" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></svg>
           </div>
-          <div class="text-sm font-semibold text-white/70 font-display tracking-wide">Deniz seni bekliyor</div>
+          <div class="text-sm font-semibold text-white/70 font-display tracking-wide">Lyra seni bekliyor</div>
         </div>
       </div>
 
@@ -210,7 +210,7 @@
     <div>
       <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Araçlar</div>
       <ul class="space-y-2 text-white/80">
-        <li><a class="hover:text-sun-400 text-sun-400" href="rehber.html">Sesli Rehber (Deniz)</a></li>
+        <li><a class="hover:text-sun-400 text-sun-400" href="rehber.html">Sesli Rehber (Lyra)</a></li>
         <li><a class="hover:text-sun-400" href="tatil-asistani.html">Tatil Asistanı</a></li>
         <li><a class="hover:text-sun-400" href="haberler.html">Haberler</a></li>
       </ul>
@@ -234,7 +234,7 @@ import { SimliClient, generateSimliSessionToken, LogLevel } from "https://esm.sh
 const CONFIG = {
   simliApiKey: "6k0bj1vjj1kcs3e8snbrz7",
   faceId: "d2a5c7c6-fed9-4f55-bcb3-062f7cd20103", // Kate — profesyonel kadın (hazır yüz). Birebir referans yüz için app.simli.com'a portre yüklenip özel faceId üretilecek.
-  agentId: "agent_0401kxt9cheme869ydvcq0akw342",   // ElevenLabs "Deniz" ajanı (public)
+  agentId: "agent_0401kxt9cheme869ydvcq0akw342",   // ElevenLabs "Lyra" ajanı (public)
 };
 // ─────────────────────────────────────────────────────────
 
@@ -247,12 +247,13 @@ const errorBox = el("errorBox"), captionsWrap = el("captionsWrap"), captions = e
 
 let simliClient = null, ws = null, active = false, loading = false;
 let audioContext = null, processor = null, source = null, micStream = null;
+let simliReady = false, pendingAudio = [];  // ⚡ ses Simli'den önce gelirse kuyruğa al (paralel başlatma)
 
 const STATUS = {
   ready:      { t: "Hazır",        dot: "#7c9cb5", bg: "rgba(255,255,255,0.08)", fg: "rgba(255,255,255,0.7)" },
   connecting: { t: "Bağlanıyor…",  dot: "#e8a020", bg: "rgba(232,152,18,0.16)",  fg: "#f5c15e", blink: true },
   listening:  { t: "Dinliyorum",   dot: "#4A9EF5", bg: "rgba(74,158,245,0.18)",  fg: "#8fc4ff" },
-  speaking:   { t: "Deniz konuşuyor", dot: "#e8a020", bg: "rgba(232,152,18,0.18)", fg: "#f5c15e" },
+  speaking:   { t: "Lyra konuşuyor", dot: "#e8a020", bg: "rgba(232,152,18,0.18)", fg: "#f5c15e" },
 };
 function setStatus(k){
   const s = STATUS[k]; if(!s) return;
@@ -270,8 +271,8 @@ function addCaption(who, text){
   captionsWrap.classList.remove("hidden");
   const row = document.createElement("div");
   row.className = "caption-line";
-  const isDeniz = who === "Deniz";
-  row.innerHTML = `<span style="font-weight:700;color:${isDeniz ? '#f5c15e' : '#8fc4ff'};">${who}:</span>
+  const isLyra = who === "Lyra";
+  row.innerHTML = `<span style="font-weight:700;color:${isLyra ? '#f5c15e' : '#8fc4ff'};">${who}:</span>
                    <span style="color:rgba(255,255,255,0.85);"> ${text}</span>`;
   captions.appendChild(row);
   captions.scrollTop = captions.scrollHeight;
@@ -318,7 +319,7 @@ function stopMic(){
 function connectElevenLabs(){
   if(!CONFIG.agentId){
     setStatus("listening");
-    addCaption("Deniz", "Merhaba! Şu an sesli beynim (ElevenLabs) bağlanmayı bekliyor. Yüzüm hazır — ajan kurulunca seninle konuşacağım.");
+    addCaption("Lyra", "Merhaba! Şu an sesli beynim (ElevenLabs) bağlanmayı bekliyor. Yüzüm hazır — ajan kurulunca seninle konuşacağım.");
     return; // Simli avatar renders idle; EL agent not yet provisioned
   }
   const url = `wss://api.elevenlabs.io/v1/convai/conversation?agent_id=${encodeURIComponent(CONFIG.agentId)}`;
@@ -333,8 +334,8 @@ function connectElevenLabs(){
     const data = JSON.parse(evt.data);
     if(data.type === "ping"){ setTimeout(()=>ws.readyState===1 && ws.send(JSON.stringify({type:"pong",event_id:data.ping_event.event_id})), data.ping_event.ping_ms||0); }
     if(data.type === "user_transcript"){ const t=data.user_transcription_event.user_transcript; t && addCaption("Sen", t); setStatus("listening"); }
-    if(data.type === "agent_response"){ const t=data.agent_response_event.agent_response; t && addCaption("Deniz", t); }
-    if(data.type === "audio"){ simliClient?.sendAudioData(base64ToUint8Array(data.audio_event.audio_base_64)); setStatus("speaking"); }
+    if(data.type === "agent_response"){ const t=data.agent_response_event.agent_response; t && addCaption("Lyra", t); }
+    if(data.type === "audio"){ const _b = base64ToUint8Array(data.audio_event.audio_base_64); if(simliReady){ simliClient?.sendAudioData(_b); } else { pendingAudio.push(_b); } setStatus("speaking"); }
     if(data.type === "interruption"){ simliClient?.ClearBuffer(); setStatus("listening"); }
   };
   ws.onclose = () => { if(active) stop(); };
@@ -344,33 +345,42 @@ function connectElevenLabs(){
 async function start(){
   if(loading || active) return;
   loading = true; clearError();
+  simliReady = false; pendingAudio = [];
   micBtn.disabled = true;
   micIcon.outerHTML = '<span id="micIcon" class="spin"></span>';
   micLabel.textContent = "Bağlanıyor…";
   setStatus("connecting");
   try{
+    // ⚡ HIZ: sesi + mikrofonu HEMEN başlat — Simli video avatarını BEKLEME.
+    // Kullanıcı 1-2 sn'de konuşmaya başlar; foto-gerçekçi yüz arka planda yüklenir,
+    // hazır olunca gelen ses parçaları (pendingAudio) ona akıtılır.
+    connectElevenLabs();
+    active = true; loading = false;
+    micBtn.disabled = false; micBtn.classList.add("stop");
+    const ic = el("micIcon"); if(ic) ic.outerHTML = '<svg id="micIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+    micLabel.textContent = "Konuşmayı Bitir";
+    el("hintText").textContent = "Konuş — Lyra dinliyor. Bitirmek için butona bas.";
+
+    // Video avatarı ARKA PLANDA bağla.
     const { session_token } = await generateSimliSessionToken({
       apiKey: CONFIG.simliApiKey,
       config: { faceId: CONFIG.faceId, maxIdleTime:600, maxSessionLength:600, handleSilence:true }
     });
     simliClient = new SimliClient(session_token, videoEl, audioEl, null, LogLevel.WARN, "livekit");
     simliClient.on("start", () => {
+      simliReady = true;
       idle.style.opacity = "0";
-      simliClient.sendAudioData(new Uint8Array(6000).fill(0)); // kick connection
-      connectElevenLabs();
-      active = true; loading = false;
-      micBtn.disabled = false; micBtn.classList.add("stop");
-      const ic = el("micIcon"); if(ic) ic.outerHTML = '<svg id="micIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
-      micLabel.textContent = "Konuşmayı Bitir";
-      el("hintText").textContent = "Konuş — Deniz dinliyor. Bitirmek için butona bas.";
+      simliClient.sendAudioData(new Uint8Array(6000).fill(0)); // bağlantıyı tetikle
+      for(const b of pendingAudio){ try{ simliClient.sendAudioData(b); }catch(e){} }  // bekleyen sesi akıt
+      pendingAudio = [];
     });
-    simliClient.on("error", (e) => { console.error("Simli error", e); showError("Görüntü akışı hatası. Sayfayı yenileyip tekrar dene."); reset(); });
-    simliClient.on("startup_error", () => { showError("Avatar başlatılamadı — Simli anahtarı/kotası kontrol edilmeli."); reset(); });
+    simliClient.on("error", (e) => { console.error("Simli error", e); showError("Görüntü akışı hatası. Sayfayı yenileyip tekrar dene."); stop(); });
+    simliClient.on("startup_error", () => { showError("Avatar başlatılamadı — Simli anahtarı/kotası kontrol edilmeli."); stop(); });
     await simliClient.start();
   }catch(err){
     console.error(err);
     showError("Bağlantı kurulamadı: " + (err?.message || err));
-    reset();
+    stop();
   }
 }
 
@@ -384,6 +394,7 @@ function stop(){
 }
 function reset(){
   loading = false; active = false;
+  simliReady = false; pendingAudio = [];
   micBtn.disabled = false; micBtn.classList.remove("stop");
   const ic = el("micIcon"); if(ic) ic.outerHTML = '<svg id="micIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></svg>';
   micLabel.textContent = "Konuşmaya Başla";

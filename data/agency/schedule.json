@@ -111,14 +111,6 @@
       "task": "Geçen haftanın analitik digest'i: reach/etkileşim trendi + 3 aksiyon önerisi. Sakin, sinyal odaklı."
     },
     {
-      "id": "founder-weekly-report",
-      "dow": "Fri",
-      "time": "16:00",
-      "type": "script",
-      "script": "scripts/agency/weekly-founder-report.mjs",
-      "desc": "Hafta boyu tartışmalar + iş sonuçları + metrikleri tek haftalık sunuma derle → kurucuya gönder."
-    },
-    {
       "id": "learn-rotation-1000",
       "time": "10:00",
       "type": "script",

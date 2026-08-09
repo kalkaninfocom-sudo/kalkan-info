@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <link rel="stylesheet" href="dist/tw.css">
-<title>Deniz HD — Gerçekçi Sesli Rehber | Kalkan Info</title>
+<title>Lyra HD — Gerçekçi Sesli Rehber | Kalkan Info</title>
 <style>
   html,body{font-family:'Inter',system-ui,sans-serif;background:#061a2c;color:#fff;margin:0;}
   .stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;
@@ -27,12 +27,12 @@
 <div class="stage">
   <div style="text-align:center;max-width:520px;">
     <span class="badge">● HD Gerçekçi Avatar</span>
-    <h1>Deniz — Gerçekçi Sesli Rehber</h1>
+    <h1>Lyra — Gerçekçi Sesli Rehber</h1>
     <p class="sub">Foto-gerçekçi yüz, canlı konuşma. Kalkan'ın dijital rehberi.</p>
   </div>
   <div class="frame">
     <video id="v" playsinline autoplay></video>
-    <div class="idle" id="idle">Deniz yükleniyor…</div>
+    <div class="idle" id="idle">Lyra yükleniyor…</div>
   </div>
   <div class="pill" id="status">Hazırlanıyor</div>
   <button class="btn" id="startBtn" disabled>Yükleniyor…</button>
@@ -47,7 +47,7 @@ const CONFIG = {
   laApiKey: "95fe61e1-7d5a-43b3-b512-a51cd9adac36",
   avatarId: "567e8371-f69f-49ec-9f2d-054083431165", // Ann Doctor Standing (profesyonel kadın)
   apiUrl: "https://api.liveavatar.com",
-  greet: "Merhaba, ben Deniz. Kalkan Info'nun dijital rehberiyim. Size nasıl yardımcı olabilirim?",
+  greet: "Merhaba, ben Lyra. Kalkan Info'nun dijital rehberiyim. Size nasıl yardımcı olabilirim?",
 };
 
 const $ = id => document.getElementById(id);
@@ -71,7 +71,7 @@ async function begin(){
     session.on(SessionEvent.SESSION_STREAM_READY, () => {
       $("idle").style.display = "none";
       session.attach($("v"));
-      $("status").textContent = "Deniz hazır";
+      $("status").textContent = "Lyra hazır";
       try { session.repeat(CONFIG.greet); } catch(e){}
     });
     await session.start();
@@ -82,7 +82,7 @@ async function begin(){
 }
 
 $("startBtn").addEventListener("click", begin);
-$("startBtn").disabled = false; $("startBtn").textContent = "Deniz'i Başlat";
+$("startBtn").disabled = false; $("startBtn").textContent = "Lyra'yı Başlat";
 $("status").textContent = "Hazır";
 // otomatik başlat (demo/screenshot için)
 begin();

@@ -28,6 +28,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateNewsCard } from './ig-news-card.mjs';
+import { translateNewsItem, finalizeCaption, generateNewsCardsAllLangs } from './ig-news-i18n.mjs';
 import { cheapLLM } from '../lib/cheap-llm.mjs';
 import { qualityGate } from './agency/content-critic.mjs';
 
@@ -54,6 +55,8 @@ const SITE_BASE = 'https://www.kalkaninfo.com';
 const ARG = process.argv.find((a) => !a.startsWith('--') && a !== process.argv[0] && a !== process.argv[1]);
 const DRY = process.argv.includes('--dry-run');
 const FORCE = process.argv.includes('--force');
+// --i18n: TR akışına EK olarak EN/DE/RU/FR kart+caption üret (P3, non-fatal).
+const I18N = process.argv.includes('--i18n');
 
 const POSTED_PATH = join(ROOT, 'data', 'ig-posted-news.json');
 
@@ -237,6 +240,32 @@ async function main() {
   const fullCaption = `${captionBody}\n\n${hashtags.join(' ')}`;
   console.log(`   ✅ Caption (${fullCaption.length} karakter), ${hashtags.length} hashtag`);
   console.log('   ──────\n   ' + fullCaption.split('\n').join('\n   ') + '\n   ──────');
+
+  // 2.5) 5-DİL (P3): TR akışına EK olarak EN/DE/RU/FR kart+caption üret. Non-fatal.
+  //      TR onay/yayın akışı DEĞİŞMEZ; diğer diller assets/ig-news/<id>.<lang>.jpg olarak diske yazılır.
+  if (I18N) {
+    console.log('\n🌐 5-dil kart+caption (EK, non-fatal)...');
+    try {
+      const { cardText, captions } = await translateNewsItem(item, { captionBodyTR: captionBody, verbose: true });
+      const targetLangs = Object.keys(cardText).filter((l) => l !== 'tr'); // TR zaten üretildi
+      // Caption'ları dile göre finalize et (AI ibaresi + hashtag) ve logla.
+      for (const lang of targetLangs) {
+        const capLang = await finalizeCaption(captions[lang], { lang, source: item.source, hashtags });
+        console.log(`   [${lang}] caption (${capLang.length} kr): ${capLang.split('\n')[0]}`);
+      }
+      // Kartları her dil için ayrı JPEG render et (TR hariç — zaten var).
+      const langCards = Object.fromEntries(Object.entries(cardText).filter(([l]) => l !== 'tr'));
+      if (Object.keys(langCards).length) {
+        const cards = await generateNewsCardsAllLangs({ item, cardText: langCards });
+        for (const [lang, c] of Object.entries(cards)) {
+          console.log(`   ✅ ${lang}: ${c.publicPath} (${c.kb} KB)`);
+        }
+      }
+      console.log(`   🌐 ${targetLangs.length} dil eklendi: ${targetLangs.join(', ')}`);
+    } catch (e) {
+      console.warn('   ⚠️  5-dil üretimi atlandı (non-fatal):', e.message);
+    }
+  }
 
   if (DRY) {
     console.log('\n🧪 --dry-run: DB/Telegram atlandı. Kart ve caption hazır.');

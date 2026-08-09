@@ -20,7 +20,20 @@ import { cheapLLM } from '../lib/cheap-llm.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = join(ROOT, 'assets', 'ig-events');
+const STATE_PATH = join(ROOT, 'data', 'ig-event-card-state.json');
 const LANGS = ['tr', 'en', 'de', 'fr', 'ru'];
+
+// Tekrar-dedup durumu (4 reel üreticisindeki *-reel-state.json deseniyle aynı):
+// id'siz çalıştırıldığında hep AYNI en-yakın etkinliği basmayı önler.
+async function loadUsedIds() {
+  try { const s = JSON.parse(await readFile(STATE_PATH, 'utf8')); return Array.isArray(s.used) ? s.used : []; }
+  catch { return []; }
+}
+async function recordUsedId(id) {
+  const used = await loadUsedIds();
+  const next = [...used.filter((x) => x !== id), id].slice(-30); // son 30, tekrarsız
+  try { await writeFile(STATE_PATH, JSON.stringify({ used: next }, null, 2) + '\n'); } catch {}
+}
 
 const esc = (s) => String(s || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -138,7 +151,11 @@ async function loadEvent(id) {
   const all = cal.oneoff || [];
   if (id) return all.find((e) => e.id === id) || null;
   const today = new Date().toISOString().slice(0, 10);
-  return all.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date))[0] || null;
+  const upcoming = all.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+  if (!upcoming.length) return null;
+  // Kullanılmamış ilk yaklaşan etkinliği seç; hepsi kullanıldıysa havuzu sıfırla (ilk yaklaşan).
+  const used = await loadUsedIds();
+  return upcoming.find((e) => !used.includes(e.id)) || upcoming[0];
 }
 
 export async function generateEventCard({ id, langs = ['tr'], outDir = OUT_DIR } = {}) {
@@ -166,6 +183,7 @@ export async function generateEventCard({ id, langs = ['tr'], outDir = OUT_DIR }
   } finally {
     await browser.close();
   }
+  await recordUsedId(ev.id); // rotasyon: sonraki id'siz çalıştırmada bu etkinlik atlanır
   return { ev, results };
 }
 

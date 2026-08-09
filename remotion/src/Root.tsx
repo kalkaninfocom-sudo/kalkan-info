@@ -8,6 +8,7 @@ import { BultenReel, bultenReelSchema, defaultBultenReelProps } from './BultenRe
 import { VillaReel, villaReelSchema, defaultVillaReelProps } from './VillaReel';
 import { AntikReel, antikReelSchema, defaultAntikReelProps } from './AntikReel';
 import { PlajReel, plajReelSchema, defaultPlajReelProps } from './PlajReel';
+import { EtkinlikReel, etkinlikReelSchema, defaultEtkinlikReelProps } from './EtkinlikReel';
 import { WebappPromo, webappPromoSchema } from './WebappPromo';
 import promoTR from '../props-webapp-promo-tr.json';
 import promoEN from '../props-webapp-promo-en.json';
@@ -106,6 +107,19 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         schema={plajReelSchema}
         defaultProps={defaultPlajReelProps}
+      />
+      <Composition
+        id="EtkinlikReel"
+        component={EtkinlikReel}
+        durationInFrames={550}
+        fps={30}
+        width={1080}
+        height={1920}
+        schema={etkinlikReelSchema}
+        defaultProps={defaultEtkinlikReelProps}
+        calculateMetadata={({ props }) => ({
+          durationInFrames: 50 + Math.min(5, (props.events || []).length) * 72 + 60 + 80,
+        })}
       />
       <Composition
         id="WebappPromoTR"

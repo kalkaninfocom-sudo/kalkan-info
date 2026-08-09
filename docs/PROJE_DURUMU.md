@@ -3,12 +3,43 @@
 > **Amaç:** Tüm kalkaninfo işlerinin "ne yaptık · nerede kaldık · sıradaki ne"sini tek canlı dosyada toplamak.
 > Parça parça çalışıyoruz, çok iş yarım kalıyor — bu dosya kayıp thread bırakmamak için var.
 >
-> **Son güncelleme:** 2026-07-10
+> **Son güncelleme:** 2026-08-07
 > **Durum kodları:** ✅ bitti & canlı · 🔨 sürüyor · ⏳ bekliyor (sıraya alındı) · ⛔ bloke (canlıya bir şey lazım — ne lazımı yazılı)
 >
 > Bu dosya **CANLI**'dır: her oturumda güncellenir. Her parça **tek başına çalışır** halde bırakılır; yarım kalsa bile birleşince bütün tamamlanır.
 
 ---
+
+## ⚡ 2026-08-07 OTURUM — Faz 0 otomasyon temizliği (disk-doğrulamalı denetim sonrası)
+
+Branch `fix/faz0-otomasyon` (main-deploy'a merge = canlı → Berkay onayı bekliyor). Disk-doğrulamalı denetim 2 gerçek kırık + tekrar/çakışma riski buldu; düzeltildi:
+
+1. **🔴→✅ `lyra-live` edge fn yeniden yazıldı + DEPLOY EDİLDİ** — kaynağı repoda YOKTU (Lyra canlı-veri araçları fiilen çalışmıyordu). `supabase/functions/lyra-live/index.ts` yazıldı, deploy edildi, production endpoint doğrulandı (eczane+etkinlik HTTP 200 canlı veri). ⏳ KALAN: Berkay canlı çağrı testi.
+2. **🟡 Çift-post kapatıldı** — `auto-publish-stale.mjs` artık YALNIZCA onaylar; yayını tek yayıncı `publish-approved.mjs` yapar (`published_at=is.null` guard). Aynı postu iki kod yolu yayınlayamaz.
+3. **🔴 Ölü scheduler görevi silindi** — `schedule.json` `founder-weekly-report` (hedef script yok, her Cuma 16:00 sessiz fail) kaldırıldı.
+4. **🟡 Etkinlik kartı tekrar-dedup** — `ig-event-card.mjs` id'siz çalışınca hep aynı etkinliği basıyordu → `data/ig-event-card-state.json` rotasyonu eklendi.
+5. **🟢 Doküman gerçeğe çekildi** — `lyra-live` "deploy'lu/doğrulandı" yalanı düzeltildi (bu dosya + REHBER_LYRA_DURUM).
+
+**Ertelendi (risk/karar):** ikiz scriptler (`fb-page*`/`basket-publish*` çağrı-haritası gerekli), `scheduler.mjs:43` hardcoded publishable key (public tier), Faz 1 fiyat/tahsilat (ticari karar).
+
+---
+
+## ⚡ 2026-07-29 OTURUM — nerede kaldık
+
+**1) 🎙️ LYRA SESLİ KONSİYERJ — ✅ CANLI (Deniz→Lyra birleşti + canlı veri):**
+- ElevenLabs ajanı (`agent_0401kxt9cheme869ydvcq0akw342`, Twilio giden numara `phnum_6301kxtcd0pve31v20h5cdgb4k6z`) artık **Lyra**: ad + "Ben Lyra, Kalkan'ın yapay zeka konsiyerji" açılış + persona `ai/prompts/lyra-voice.md` (ses/KB korundu).
+- **Canlı veri araçları** (webhook → Supabase `lyra-live` edge fn): `nobetci_eczane` + `bugun_etkinlikler`. ⚠️ **2026-08-07 DÜZELTME:** `lyra-live` kaynağı repoda **YOKTU** → araçlar fiilen çalışmıyordu (doküman yanlış "deploy'lu" diyordu). Yeniden yazıldı: `supabase/functions/lyra-live/index.ts` (kalkaninfo.com/data/eczane.json + etkinlik-takvimi.json okur; eczane bayatsa antalyaeo.org.tr canlı scrape). ✅ **DEPLOY EDİLDİ + production endpoint doğrulandı (2026-08-07):** `?topic=eczane` → HTTP 200 "Buket Eczanesi–Kalkan"; `?topic=etkinlik` → HTTP 200 bugünün 3 etkinliği. Lyra'nın araçları artık gerçekten canlı. ⏳ **KALAN:** Berkay uçtan uca canlı çağrı testi (araç transcript'te tetikleniyor mu). Scriptler: `ai/scripts/sync-voice-agent.mjs`, `ai/scripts/setup-voice-tools.mjs`.
+- Web widget "Yapay zeka konsiyerj" ibaresi eklendi (deploy: git push). Detay: `docs/REHBER_LYRA_DURUM.md`.
+- ⏳ **Kalan:** Berkay uçtan uca canlı çağrı testi (araç tetikleniyor mu — transcript'ten teyit). Aratma: MCP `make_outbound_call`. Gelen arama Lyra'ya değil "Lyra Ops"a gidiyor (+90 numara Faz 2).
+
+**2) ⚖️ REKLAM YÖNETMELİĞİ UYUMU (yür. 1 Ağustos 2026) — ✅ CANLI:**
+- `lib/reklam-uyum.mjs` (tek kaynak): `withAiDisclosure` (caption'a "🤖 yapay zeka" + #yapayzeka), `scanReklamUyum` (sahte deneyim/uydurma yorum = hard veto, greenwashing/indirim = soft), `hedefliReklamNotu`.
+- `content-critic.mjs`'e bağlı (deterministik hard veto), AI reel caption'larına ibare. Politika: `docs/ICERIK_UYUM_REKLAM_YONETMELIGI.md`. Yeni üretici yazınca bu lib'i kullan.
+
+**3) 🎬 ETKİNLİK TANITIM REEL'İ (kalkaninfo.com/etkinlikler) — 🔨 v2 RENDER'LANDI, Berkay onayı bekliyor:**
+- Motor: `remotion/src/EtkinlikReel.tsx` + `scripts/agency/build-etkinlik-reel.mjs`. Çalıştır: `node scripts/agency/build-etkinlik-reel.mjs` → `dist/social/etkinlik/etkinlik-reel.mp4` + `caption.txt`.
+- Berkay ilk sürümü beğenmedi (emoji/tempo/foto-müzik). **v2 düzeltildi:** EMOJİSİZ (temiz tipografi + tür aksan renkleri), hızlı 15.9s, her kart GERÇEK mekan fotosu (kesin eşleşme — plajlar.json'daki üstü-yazılı promo grafik elendi, her mekandan tek kart), fotolar parlaklık/doygunluk grade, müzik **ElevenLabs'te üretilmiş enerjik deep-house** (`assets/audio/etkinlik-bed.mp3`). 4 mekan: Chocolate DJ, Noema Parti, Indigo Yoga, Salt&Pepper DJ.
+- ⏳ **Kalan:** Berkay v2 kararı → beğenirse yayın (IG/onay akışı). Sonraki fikir: gerçek video b-roll (mekan izni gerekli). DERS: mekan "görselleri" bazen üstü-yazılı promo grafiği; foto seçiminde restoranlar.json gerçek çekimlerini kullan.
 
 ## 📁 DOKÜMAN REHBERİ (hangisine güven)
 
@@ -17,13 +48,34 @@
 | Doküman | Durum | Not |
 |---------|-------|-----|
 | `docs/PROJE_DURUMU.md` | 🟢 **CANLI — buna güven** | Tüm işlerin tek bakış master durumu |
+| `docs/YOL_HARITASI_MONETIZASYON.md` | 🟢 **CANLI ileri plan** | Paraya-dönüş yol haritası (Faz 0 bitti → Faz 1 fiyat/tahsilat/ilk müşteri). Baseline = disk-doğrulamalı gerçek durum. |
 | `docs/YOL_HARITASI_GAZETE_OTOMASYON.md` · `YOL_HARITASI_KALIMERA_ILAN.md` | 🟢 CANLI alt-harita | Gazete/otomasyon + Kalimera/İlan detayı |
 | `docs/AJANSAI_ACIK_REPO_YOL_HARITASI.md` · `AJANS_MIMARI_VE_YOL_HARITASI.md` | 🔷 İLERİ VİZYON | AjansAI ürünleşme + çok-kiracılı genişleme (stratejik karar) |
 | `ROADMAP.md` · `AGENT_SIRKETI_YOL_HARITASI.md` · `MASTER_PLAN.md` | 🗄️ **ARŞİV — güvenme** | Eski Firebase-devri plan; `- [ ]` kutuların çoğu ya yapıldı ya offline iş/hukuk. Açık-iş listesi olarak kullanma. |
 
 ---
 
-## 🗓️ SON OTURUM — 2026-07-08 (Publish fix + Gazete kalite + Öğrenme + IG izleme)
+## 🗓️ SON OTURUM — 2026-07-29 (visitkalkan.online envanter entegrasyonu)
+
+**Kaynak:** `https://www.visitkalkan.online` (Wix rehber sitesi) derinlemesine tarandı — ~90 işletme çıkarıldı. **Dedup sonrası 25 GERÇEKTEN YENİ işletme** kalkaninfo envanterine eklendi (çoğu kategoride kalkaninfo zaten daha zengin çıktı).
+
+**✅ Eklenenler (25) — script: `scripts/import-visitkalkan.mjs` (idempotent, dedup normalize-isim):**
+- 🏖️ **6 plaj kulübü** → `data/plajlar.json` (24→30): Mahal, Zest, Likya, Green Beach, Patara Prince, Caretta (fiyat+telefon+web+IG).
+- 🚐 **7 transfer** → `hizmet-saglayicilari.json` `transfer-havalimani` (2→9): Volume, Lukka, Kalkan Sun, Unlimited, Gümüş, Define, Alper.
+- 💆 **3 hamam/spa** → *yeni kategori* `hamam-spa`: Atlantis, Arcadia, Nur&Hakan.
+- 🏋️ **5 spor/fitness** → *yeni kategori* `spor-fitness`: Kalkan Gym, Sportline, Shape Up, Soothe, Yüzme Kulübü.
+- 📦 **4 market teslimat** → *yeni kategori* `market-teslimat`: Karagül, Yali Express, Bring Everything, Can Can.
+- Hepsi `source:"visitkalkan.online"` + `needsReview:true` + (plajlar) `needsPhoto:true` etiketli.
+
+**Doğrulama (kanıtlı):** JSON geçerli · script tekrar çalıştırıldı → +0 (idempotent) · `page-hizmetler.js` `Object.entries` ile yeni kategorileri otomatik render eder · fotosuz plajlar `render.js` `safeImage()` placeholder ile temiz görünür.
+
+**Bilinçli ALINMAYANLAR:** Tekne turları (3'ü de mevcut 17 operatörde var) · Oteller (~10, sadece isim+web — küratörlü `oteller.json`'u bozardı, ayrı zenginleştirme işi) · Marketler (47, hepsi tek ortak WhatsApp = bireysel değer yok) · Restoranlar (visitkalkan listelemiyor; 137-fotolu `restoranlar.json` üstün).
+
+**⏳ Sıradaki (opsiyonel):** (1) Yeni 25 kaydın canlı görsel doğrulaması (serve.mjs + screenshot). (2) 6 plaj kulübü + transfer/spa/gym için gerçek foto çekimi (`needsPhoto` etiketli). (3) İstenirse otelleri ayrı zenginleştirme.
+
+---
+
+## 🗓️ ÖNCEKİ OTURUM — 2026-07-08 (Publish fix + Gazete kalite + Öğrenme + IG izleme)
 
 **5 commit push'landı, canlıda.** 4 faz:
 

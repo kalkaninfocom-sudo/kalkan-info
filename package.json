@@ -9,7 +9,9 @@
     "img:all": "npm run img:download && npm run img:replace"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.0"
+    "@huggingface/transformers": "^4.2.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "cheerio": "^1.2.0"
   },
   "devDependencies": {
     "@remotion/bundler": "^4.0.462",

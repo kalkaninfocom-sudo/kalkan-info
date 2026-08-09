@@ -1,0 +1,44 @@
+name: Villa Doluluk Senkronu
+
+# villacim.com.tr takviminden gercek dolu tarihleri cekip data/villa-availability.json'i gunceller.
+# Her gun calisir; degisiklik varsa main'e commit eder -> Vercel otomatik deploy -> villa takvimleri guncellenir.
+
+on:
+  schedule:
+    - cron: "0 1 * * *"   # her gun 04:00 Istanbul (UTC+3)
+  workflow_dispatch: {}    # elle tetikleme
+
+permissions:
+  contents: write
+
+concurrency:
+  group: villa-availability
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install puppeteer (+ Chromium)
+        run: npm i puppeteer@23
+
+      - name: Scrape availability
+        run: node scripts/sync-villa-availability.mjs data/villa-availability.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name "villa-availability-bot"
+          git config user.email "bot@kalkaninfo.com"
+          if ! git diff --quiet -- data/villa-availability.json; then
+            git add data/villa-availability.json
+            git commit -m "chore(villa): doluluk takvimi guncellendi [skip ci]"
+            git push
+          else
+            echo "Degisiklik yok."
+          fi

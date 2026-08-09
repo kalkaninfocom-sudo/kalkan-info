@@ -7,15 +7,16 @@
  *   1. social_posts'ta status=pending_approval, published_at=null, scheduled_at > 6 saat önce olanları bul.
  *   2. Her biri için BrandGuard denetimi (cheap-llm, guard system prompt) → PASS/SOFT/BLOCK.
  *   3. PASS → status=approved (scheduled_at=now). SOFT/BLOCK → beklemede bırak (elle onay ister).
- *   4. Onaylananları yayına ver: social-publish-queue endpoint'ini tetikle (IG yayın).
- *   5. Telegram'a özet bildir (neyin otomatik gittiği / neyin marka denetimine takıldığı).
+ *   4. Telegram'a özet bildir (neyin otomatik onaylandığı / neyin marka denetimine takıldığı).
  *
- * Zamanlama: .github/workflows/auto-publish.yml (saatlik, Vercel cron dolu olduğu için GitHub Actions).
+ * ⚠️ YALNIZCA ONAYLAR — YAYINLAMAZ. Fiili IG/FB yayınını TEK yayıncı olan
+ *    publish-approved.mjs (publish-approved.yml, saat :20) yapar (published_at=is.null guard'ıyla).
+ *    Böylece aynı postu iki farklı kod yolu yayınlayamaz (çift-post riski kapandı).
+ *
+ * Zamanlama: .github/workflows/auto-publish.yml (saatlik :00, Vercel cron dolu olduğu için GitHub Actions).
  *
  * Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, (cheap-llm anahtarları),
- *      IG_CRON_SECRET + SITE_BASE (yayın endpoint), TELEGRAM_BOT_TOKEN + TELEGRAM_ADMIN_CHAT_ID (bildirim).
- *
- * ⚠️ IG yayını IG_LONG_LIVED_TOKEN ister (süresi dolabilir → yenile). Token yoksa approve olur, publish atlanır.
+ *      TELEGRAM_BOT_TOKEN + TELEGRAM_ADMIN_CHAT_ID (bildirim).
  *
  * Kullanım: node scripts/agency/auto-publish-stale.mjs [--dry-run] [--hours=6]
  */
@@ -38,8 +39,6 @@ const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TG_CHAT = process.env.TELEGRAM_ADMIN_CHAT_ID;
-const SITE_BASE = process.env.SITE_BASE || 'https://www.kalkaninfo.com';
-const IG_CRON_SECRET = process.env.IG_CRON_SECRET;
 
 const DRY = process.argv.includes('--dry-run');
 const HOURS = Number((process.argv.find((a) => a.startsWith('--hours=')) || '').split('=')[1]) || 6;
@@ -104,25 +103,15 @@ async function main() {
     } else held.push({ ...p, g });
   }
 
-  // Onaylananları yayına ver (mevcut publish-queue endpoint'i)
-  let publishNote = '';
-  if (approved.length && !DRY) {
-    if (IG_CRON_SECRET) {
-      try {
-        const pr = await fetch(`${SITE_BASE}/api/social-publish-queue?secret=${encodeURIComponent(IG_CRON_SECRET)}`, { cache: 'no-store' });
-        publishNote = pr.ok ? '✅ yayın kuyruğu tetiklendi' : `⚠ yayın endpoint ${pr.status} (IG_LONG_LIVED_TOKEN dolmuş olabilir)`;
-      } catch (e) { publishNote = '⚠ yayın tetikleme hatası: ' + e.message; }
-    } else publishNote = '⚠ IG_CRON_SECRET yok — approve edildi ama publish tetiklenmedi';
-  }
-
-  const lines = [`🤖 Otomatik yayın (onay ${HOURS}h gelmedi)`,
-    `✅ PASS → yayınlandı: ${approved.length}`,
+  // NOT: Burada YAYIN tetiklenmez. Onaylananları tek yayıncı publish-approved.mjs
+  // (publish-approved.yml, :20) published_at=is.null guard'ıyla yayınlar → çift-post yok.
+  const lines = [`🤖 Otomatik onay (onay ${HOURS}h gelmedi)`,
+    `✅ PASS → onaylandı (yayın :20 turunda gidecek): ${approved.length}`,
     ...approved.slice(0, 8).map((p) => `   • ${p.content_pack_id}`),
     held.length ? `⏸ marka denetimi (SOFT/BLOCK) → beklemede: ${held.length}` : '',
-    ...held.slice(0, 6).map((p) => `   • ${p.content_pack_id} (${p.g.verdict})`),
-    publishNote].filter(Boolean);
+    ...held.slice(0, 6).map((p) => `   • ${p.content_pack_id} (${p.g.verdict})`)].filter(Boolean);
   console.log('\n' + lines.join('\n'));
   if (!DRY) await tg(lines.join('\n'));
-  console.log(`\n✅ Bitti. ${approved.length} otomatik yayın, ${held.length} beklemede.`);
+  console.log(`\n✅ Bitti. ${approved.length} otomatik onaylandı, ${held.length} beklemede.`);
 }
 main().catch((e) => { console.error('[auto-publish] fatal:', e); process.exit(1); });

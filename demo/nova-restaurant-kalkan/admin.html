@@ -1,32 +1,33 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Yönetici · Nova restaurant kalkan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--sea:#0E2233;--sea-d:#07131E;--gold:#C8962A;--gold-l:#E0B450;--cream:#F5EDD8;--line:rgba(200,150,42,.2);}
+:root{--bg:#FAF6EF;--ink:#0E1A24;--muted:#5a6570;--gold:#E8A020;--gold-d:#C8801A;--card:#fff;--line:rgba(14,26,36,.12);}
 *{box-sizing:border-box;margin:0;}
-body{background:var(--sea);color:var(--cream);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.5;}
 .wrap{max-width:820px;margin:0 auto;padding:2rem 1.2rem 5rem;}
-h1{font-size:1.4rem;letter-spacing:.02em;}
-.muted{color:rgba(245,237,216,.6);font-size:.9rem;}
-.card{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;padding:1.4rem;margin-top:1.2rem;}
-label{display:block;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-l);margin:.9rem 0 .35rem;}
-input,textarea{width:100%;background:rgba(7,19,30,.6);border:1px solid var(--line);border-radius:7px;color:var(--cream);padding:.7rem .85rem;font:inherit;}
+h1{font-size:1.4rem;letter-spacing:-.01em;}
+.muted{color:var(--muted);font-size:.9rem;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;margin-top:1.2rem;box-shadow:0 12px 34px -24px rgba(14,26,36,.4);}
+label{display:block;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-d);font-weight:600;margin:.9rem 0 .35rem;}
+input,textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:.7rem .85rem;font:inherit;}
 input:focus,textarea:focus{outline:none;border-color:var(--gold);}
 textarea{resize:vertical;min-height:70px;}
-.btn{display:inline-flex;align-items:center;gap:.5rem;border:0;border-radius:7px;padding:.75rem 1.4rem;font:inherit;font-weight:600;cursor:pointer;letter-spacing:.03em;transition:transform .12s,filter .12s;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;border:0;border-radius:999px;padding:.75rem 1.4rem;font:inherit;font-weight:600;cursor:pointer;transition:transform .12s;}
 .btn:hover{transform:translateY(-1px);}
-.btn-gold{background:linear-gradient(135deg,var(--gold),#B4653A);color:var(--sea);}
-.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--cream);}
-.btn-sm{padding:.45rem .8rem;font-size:.82rem;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#22160a;}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink);}
+.btn-sm{padding:.45rem .9rem;font-size:.82rem;}
 .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;}
 .mi{display:grid;grid-template-columns:1.4fr .7fr 2fr auto;gap:.5rem;margin-bottom:.5rem;}
-.cat-block{border:1px dashed var(--line);border-radius:8px;padding:.9rem;margin-bottom:1rem;}
+.cat-block{border:1px dashed var(--line);border-radius:10px;padding:.9rem;margin-bottom:1rem;}
 .cat-head{display:flex;gap:.6rem;align-items:center;margin-bottom:.7rem;}
 .cat-head input{font-weight:700;}
 .hidden{display:none;}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--sea);padding:.7rem 1.3rem;border-radius:8px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:#22160a;padding:.7rem 1.3rem;border-radius:10px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;}
 #toast.on{opacity:1;}
-a{color:var(--gold-l);}
+a{color:var(--gold-d);}
 @media(max-width:640px){.mi{grid-template-columns:1fr 1fr;}}
 </style></head>
 <body>
@@ -35,165 +36,49 @@ a{color:var(--gold-l);}
     <div><h1>Nova restaurant kalkan — Yönetim</h1><div class="muted">Kalkan Info · mini-CMS</div></div>
     <a class="btn btn-ghost btn-sm" href="index.html" target="_blank">Siteyi gör ↗</a>
   </div>
-
-  <!-- GİRİŞ -->
   <div class="card" id="loginCard">
     <label>E-posta</label><input id="email" type="email" autocomplete="username" placeholder="ornek@mail.com"/>
     <label>Şifre</label><input id="pwd" type="password" autocomplete="current-password"/>
     <div class="row" style="margin-top:1rem;"><button class="btn btn-gold" id="loginBtn">Giriş</button><span class="muted" id="loginMsg"></span></div>
     <p class="muted" style="margin-top:.8rem;">Giriş bilgileriniz Kalkan Info tarafından verilir.</p>
   </div>
-
-  <!-- EDİTÖR -->
   <div id="editor" class="hidden">
+    <div class="card"><div class="row" style="justify-content:space-between;"><span class="muted">Giriş: <b id="who"></b></span><button class="btn btn-ghost btn-sm" id="logoutBtn">Çıkış</button></div></div>
     <div class="card">
-      <div class="row" style="justify-content:space-between;">
-        <span class="muted">Giriş: <b id="who"></b></span>
-        <button class="btn btn-ghost btn-sm" id="logoutBtn">Çıkış</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <label>Slogan (hero altı)</label>
-      <input id="f_tagline" placeholder="Kısa çarpıcı bir cümle"/>
-      <label>Hakkında (her paragraf ayrı satır)</label>
-      <textarea id="f_about" style="min-height:120px" placeholder="İşletmenizi anlatın..."></textarea>
-      <label>Çalışma Saatleri</label>
-      <input id="f_hours" placeholder="Her gün 09:00–23:00"/>
-      <div class="row">
-        <div style="flex:1;min-width:180px"><label>Telefon</label><input id="f_phone" placeholder="+90 5xx xxx xx xx"/></div>
-        <div style="flex:1;min-width:180px"><label>WhatsApp (sadece rakam)</label><input id="f_whatsapp" placeholder="905xxxxxxxxx"/></div>
-      </div>
+      <label>Slogan (hero altı)</label><input id="f_tagline" placeholder="Kısa çarpıcı bir cümle"/>
+      <label>Hakkında (her paragraf ayrı satır)</label><textarea id="f_about" style="min-height:120px" placeholder="İşletmenizi anlatın..."></textarea>
+      <label>Çalışma Saatleri</label><input id="f_hours" placeholder="Her gün 09:00–23:00"/>
+      <div class="row"><div style="flex:1;min-width:180px"><label>Telefon</label><input id="f_phone" placeholder="+90 5xx xxx xx xx"/></div><div style="flex:1;min-width:180px"><label>WhatsApp (sadece rakam)</label><input id="f_whatsapp" placeholder="905xxxxxxxxx"/></div></div>
       <label>Instagram</label><input id="f_instagram" placeholder="https://instagram.com/..."/>
     </div>
-
-    <div class="card">
-      <div class="row" style="justify-content:space-between;">
-        <label style="margin:0">Menü</label>
-        <button class="btn btn-ghost btn-sm" id="addCat">+ Kategori</button>
-      </div>
-      <div id="menuEditor" style="margin-top:1rem;"></div>
-    </div>
-
-    <div class="row" style="margin-top:1.4rem;">
-      <button class="btn btn-gold" id="saveBtn">Kaydet ve Yayınla</button>
-      <span class="muted" id="saveMsg"></span>
-    </div>
+    <div class="card"><div class="row" style="justify-content:space-between;"><label style="margin:0">Menü</label><button class="btn btn-ghost btn-sm" id="addCat">+ Kategori</button></div><div id="menuEditor" style="margin-top:1rem;"></div></div>
+    <div class="row" style="margin-top:1.4rem;"><button class="btn btn-gold" id="saveBtn">Kaydet ve Yayınla</button><span class="muted" id="saveMsg"></span></div>
   </div>
 </div>
 <div id="toast"></div>
-
 <script type="module">
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '/js/supabase-config.js';
 import { createClient } from '/vendor/supabase.mjs';
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth:{ persistSession:true, autoRefreshToken:true } });
-
-const SLUG = "nova-restaurant-kalkan";
-const NAME = "Nova restaurant kalkan";
-const BAKED = {"tagline":"","about":[],"menu":[],"hours":"24 saat açık","phone":"+90 534 496 80 64","whatsapp":"905344968064","instagram":""};
-const $ = (id)=>document.getElementById(id);
-const toast = (m)=>{ const t=$('toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2200); };
-
-// ---- Menü editörü ----
-function catBlock(cat){
-  const el = document.createElement('div'); el.className='cat-block';
-  el.innerHTML =
-    '<div class="cat-head"><input class="c-name" placeholder="Kategori adı" value="'+(cat.cat||'').replace(/"/g,'&quot;')+'"/>'+
-    '<button class="btn btn-ghost btn-sm c-add">+ Ürün</button>'+
-    '<button class="btn btn-ghost btn-sm c-del">Sil</button></div>'+
-    '<div class="items"></div>';
-  const items = el.querySelector('.items');
-  (cat.items||[]).forEach(it=>items.appendChild(itemRow(it)));
-  el.querySelector('.c-add').onclick=()=>items.appendChild(itemRow({}));
-  el.querySelector('.c-del').onclick=()=>el.remove();
-  return el;
-}
-function itemRow(it){
-  const r = document.createElement('div'); r.className='mi';
-  r.innerHTML =
-    '<input class="i-name" placeholder="Ürün" value="'+(it.name||'').replace(/"/g,'&quot;')+'"/>'+
-    '<input class="i-price" placeholder="Fiyat" value="'+(it.price||'').replace(/"/g,'&quot;')+'"/>'+
-    '<input class="i-desc" placeholder="Açıklama" value="'+(it.desc||'').replace(/"/g,'&quot;')+'"/>'+
-    '<button class="btn btn-ghost btn-sm i-del">×</button>';
-  r.querySelector('.i-del').onclick=()=>r.remove();
-  return r;
-}
-function readMenu(){
-  return [...$('menuEditor').querySelectorAll('.cat-block')].map(b=>({
-    cat: b.querySelector('.c-name').value.trim(),
-    items: [...b.querySelectorAll('.mi')].map(r=>({
-      name: r.querySelector('.i-name').value.trim(),
-      price: r.querySelector('.i-price').value.trim(),
-      desc: r.querySelector('.i-desc').value.trim(),
-    })).filter(i=>i.name)
-  })).filter(c=>c.cat || c.items.length);
-}
-
-function fill(c){
-  $('f_tagline').value = c.tagline||'';
-  $('f_about').value = (c.about||[]).join('\n');
-  $('f_hours').value = typeof c.hours==='string' ? c.hours : (Array.isArray(c.hours)? c.hours.map(x=>(x.d||'')+' '+(x.h||'')).join('; '):'');
-  $('f_phone').value = c.phone||'';
-  $('f_whatsapp').value = c.whatsapp||'';
-  $('f_instagram').value = c.instagram||'';
-  const me = $('menuEditor'); me.innerHTML='';
-  (c.menu||[]).forEach(cat=>me.appendChild(catBlock(cat)));
-}
-function collect(){
-  return {
-    tagline: $('f_tagline').value.trim(),
-    about: $('f_about').value.split('\n').map(s=>s.trim()).filter(Boolean),
-    hours: $('f_hours').value.trim(),
-    phone: $('f_phone').value.trim(),
-    whatsapp: $('f_whatsapp').value.replace(/[^\d]/g,''),
-    instagram: $('f_instagram').value.trim(),
-    menu: readMenu(),
-  };
-}
-
+const SLUG="nova-restaurant-kalkan", NAME="Nova restaurant kalkan", BAKED={"tagline":"","about":[],"menu":[],"hours":"24 saat açık","phone":"+90 534 496 80 64","whatsapp":"905344968064","instagram":""};
+const $=(id)=>document.getElementById(id);
+const toast=(m)=>{const t=$('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200);};
+function catBlock(cat){const el=document.createElement('div');el.className='cat-block';
+  el.innerHTML='<div class="cat-head"><input class="c-name" placeholder="Kategori adı" value="'+(cat.cat||'').replace(/"/g,'&quot;')+'"/><button class="btn btn-ghost btn-sm c-add">+ Ürün</button><button class="btn btn-ghost btn-sm c-del">Sil</button></div><div class="items"></div>';
+  const items=el.querySelector('.items');(cat.items||[]).forEach(it=>items.appendChild(itemRow(it)));
+  el.querySelector('.c-add').onclick=()=>items.appendChild(itemRow({}));el.querySelector('.c-del').onclick=()=>el.remove();return el;}
+function itemRow(it){const r=document.createElement('div');r.className='mi';
+  r.innerHTML='<input class="i-name" placeholder="Ürün" value="'+(it.name||'').replace(/"/g,'&quot;')+'"/><input class="i-price" placeholder="Fiyat" value="'+(it.price||'').replace(/"/g,'&quot;')+'"/><input class="i-desc" placeholder="Açıklama" value="'+(it.desc||'').replace(/"/g,'&quot;')+'"/><button class="btn btn-ghost btn-sm i-del">×</button>';
+  r.querySelector('.i-del').onclick=()=>r.remove();return r;}
+function readMenu(){return [...$('menuEditor').querySelectorAll('.cat-block')].map(b=>({cat:b.querySelector('.c-name').value.trim(),items:[...b.querySelectorAll('.mi')].map(r=>({name:r.querySelector('.i-name').value.trim(),price:r.querySelector('.i-price').value.trim(),desc:r.querySelector('.i-desc').value.trim()})).filter(i=>i.name)})).filter(c=>c.cat||c.items.length);}
+function fill(c){$('f_tagline').value=c.tagline||'';$('f_about').value=(c.about||[]).join('\n');$('f_hours').value=typeof c.hours==='string'?c.hours:(Array.isArray(c.hours)?c.hours.map(x=>(x.d||'')+' '+(x.h||'')).join('; '):'');$('f_phone').value=c.phone||'';$('f_whatsapp').value=c.whatsapp||'';$('f_instagram').value=c.instagram||'';const me=$('menuEditor');me.innerHTML='';(c.menu||[]).forEach(cat=>me.appendChild(catBlock(cat)));}
+function collect(){return {tagline:$('f_tagline').value.trim(),about:$('f_about').value.split('\n').map(s=>s.trim()).filter(Boolean),hours:$('f_hours').value.trim(),phone:$('f_phone').value.trim(),whatsapp:$('f_whatsapp').value.replace(/[^\d]/g,''),instagram:$('f_instagram').value.trim(),menu:readMenu()};}
 $('addCat').onclick=()=>$('menuEditor').appendChild(catBlock({cat:'',items:[{}]}));
-
-// ---- Auth akışı ----
-async function showEditor(user){
-  $('loginCard').classList.add('hidden');
-  $('editor').classList.remove('hidden');
-  $('who').textContent = user.email;
-  // Mevcut kaydı çek; yoksa baked ile başlat
-  const { data } = await sb.from('venue_sites').select('content').eq('slug', SLUG).maybeSingle();
-  fill(data && data.content && Object.keys(data.content).length ? { ...BAKED, ...data.content } : BAKED);
-}
-function showLogin(){
-  $('editor').classList.add('hidden');
-  $('loginCard').classList.remove('hidden');
-}
-
-$('loginBtn').onclick=async()=>{
-  const email=$('email').value.trim(), password=$('pwd').value;
-  $('loginMsg').textContent='...';
-  const { data, error } = await sb.auth.signInWithPassword({ email, password });
-  if (error){ $('loginMsg').textContent = 'Giriş başarısız: '+error.message; return; }
-  $('loginMsg').textContent='';
-  showEditor(data.user);
-};
-$('logoutBtn').onclick=async()=>{ await sb.auth.signOut(); showLogin(); };
-
-$('saveBtn').onclick=async()=>{
-  const { data:{ user } } = await sb.auth.getUser();
-  if (!user){ toast('Oturum yok, tekrar giriş yapın'); showLogin(); return; }
-  $('saveMsg').textContent='Kaydediliyor...';
-  const content = collect();
-  const { error } = await sb.from('venue_sites').upsert({
-    slug: SLUG, name: NAME, owner_id: user.id, content, published: true, updated_at: new Date().toISOString(),
-  }, { onConflict: 'slug' });
-  if (error){ $('saveMsg').textContent='Hata: '+error.message; toast('Kaydedilemedi'); return; }
-  $('saveMsg').textContent='✓ Yayınlandı';
-  toast('Kaydedildi ve yayınlandı');
-};
-
-// Açılışta oturum var mı?
-(async()=>{
-  const { data:{ session } } = await sb.auth.getSession();
-  if (session && session.user) showEditor(session.user); else showLogin();
-})();
+async function showEditor(user){$('loginCard').classList.add('hidden');$('editor').classList.remove('hidden');$('who').textContent=user.email;const {data}=await sb.from('venue_sites').select('content').eq('slug',SLUG).maybeSingle();fill(data&&data.content&&Object.keys(data.content).length?{...BAKED,...data.content}:BAKED);}
+function showLogin(){$('editor').classList.add('hidden');$('loginCard').classList.remove('hidden');}
+$('loginBtn').onclick=async()=>{const email=$('email').value.trim(),password=$('pwd').value;$('loginMsg').textContent='...';const {data,error}=await sb.auth.signInWithPassword({email,password});if(error){$('loginMsg').textContent='Giriş başarısız: '+error.message;return;}$('loginMsg').textContent='';showEditor(data.user);};
+$('logoutBtn').onclick=async()=>{await sb.auth.signOut();showLogin();};
+$('saveBtn').onclick=async()=>{const {data:{user}}=await sb.auth.getUser();if(!user){toast('Oturum yok, tekrar giriş yapın');showLogin();return;}$('saveMsg').textContent='Kaydediliyor...';const content=collect();const {error}=await sb.from('venue_sites').upsert({slug:SLUG,name:NAME,owner_id:user.id,content,published:true,updated_at:new Date().toISOString()},{onConflict:'slug'});if(error){$('saveMsg').textContent='Hata: '+error.message;toast('Kaydedilemedi');return;}$('saveMsg').textContent='✓ Yayınlandı';toast('Kaydedildi ve yayınlandı');};
+(async()=>{const {data:{session}}=await sb.auth.getSession();if(session&&session.user)showEditor(session.user);else showLogin();})();
 </script>
 </body></html>
