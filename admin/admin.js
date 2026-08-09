@@ -172,7 +172,8 @@ function navigate(page) {
     kayip:'Kayıp & Bulunan Eşya',
     export:'Yedekle / İndir',
     import:'Geri Yükle',
-    onaylar:'Kullanıcı Başvuruları'
+    onaylar:'Kullanıcı Başvuruları',
+    'gazete-oneriler':'Gazete Önerileri'
   };
   document.getElementById('page-title').textContent = titles[page] || page;
   document.getElementById('page-subtitle').textContent = pageSubtitle(page);
@@ -195,7 +196,8 @@ function pageSubtitle(p) {
     kayip: 'Kayıp / bulunan eşya kayıtları.',
     export: 'Tüm verileri JSON olarak indir.',
     import: 'Daha önce indirilmiş JSON dosyalarını içe aktar.',
-    onaylar:'Kullanıcıların gönderdiği işletme/hizmet kayıtlarını incele, onayla veya reddet.'
+    onaylar:'Kullanıcıların gönderdiği işletme/hizmet kayıtlarını incele, onayla veya reddet.',
+    'gazete-oneriler':'Topluluğun gazeteye önerdiği içerikleri incele/onayla; katkıcı başvurularını yönet.'
   };
   return m[p] || '';
 }
@@ -217,6 +219,7 @@ function renderPage(page) {
     case 'taksi':       body.innerHTML = renderTaksi(); bindTaksi(); break;
     case 'kayip':       body.innerHTML = renderKayip(); bindKayip(); break;
     case 'onaylar':     body.innerHTML = renderOnaylar(); bindOnaylar(); break;
+    case 'gazete-oneriler': body.innerHTML = renderGazeteOneriler(); bindGazeteOneriler(); break;
     case 'export':      body.innerHTML = renderExport(); bindExport(); break;
     case 'import':      body.innerHTML = renderImport(); bindImport(); break;
     default: body.innerHTML = '<div class="text-ink-700/60">Sayfa bulunamadı.</div>';
@@ -1986,6 +1989,361 @@ function _backfillApprovedToPublic() {
     console.info(`[admin] Backfill: ${count} onaylı kayıt yayına alındı.`);
     if (typeof toast === 'function') toast(`${count} onaylı başvuru sitede yayına alındı.`);
   }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+//  GAZETE ÖNERİLERİ (Topluluk Editörü) — Supabase tabanlı (localStorage DEĞİL)
+//  gazete_submissions (içerik önerileri) + gazete_contributors (katkıcı başvuru).
+//  Admin JWT ile RLS gsub_admin_all / gc_admin izin verir → doğrudan supabase update.
+//  Katkıcı rol atama app_metadata gerektirir → set-contributor-role Edge Fn.
+// ══════════════════════════════════════════════════════════════════════════
+
+// Supabase client admin.html modül gate'inde window.__SUPABASE__'e köprülendi.
+function _gzSupa() { return window.__SUPABASE__ || null; }
+
+// editor.html SLOT_SCHEMA ile hizalı okunabilir slot etiketleri
+const GZ_SLOT_LABELS = {
+  lead:          'Sabah · Manşet',
+  col1:          'Sabah · Sol Köşe',
+  col3:          'Sabah · Sağ Kolon',
+  magazine_lead: 'Magazin · Manşet',
+};
+const GZ_EDITION_LABELS = { morning: 'Sabah Gazetesi', magazine: 'Magazin' };
+const GZ_STATUS_LABELS = {
+  pending:  { txt:'Onay Bekliyor', cls:'bg-amber-100 text-amber-700 border border-amber-200' },
+  approved: { txt:'Onaylandı',     cls:'bg-emerald-100 text-emerald-700 border border-emerald-200' },
+  rejected: { txt:'Reddedildi',    cls:'bg-rose-100 text-rose-700 border border-rose-200' },
+};
+const GZ_CONTRIB_STATUS = {
+  pending:  { txt:'Başvurdu', cls:'bg-amber-100 text-amber-700 border border-amber-200' },
+  approved: { txt:'Katkıcı',  cls:'bg-emerald-100 text-emerald-700 border border-emerald-200' },
+  blocked:  { txt:'Engelli',  cls:'bg-rose-100 text-rose-700 border border-rose-200' },
+};
+
+// Bellek içi durum (tekrar fetch etmeden render + tab geçişi)
+const _gzState = { tab: 'submissions', submissions: [], contributors: [], loaded: false, loading: false, error: '' };
+
+function _gzFmtDate(iso) {
+  if (!iso) return '';
+  try { return new Date(iso).toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric' }); }
+  catch { return String(iso); }
+}
+function _gzFmtDateTime(iso) {
+  if (!iso) return '';
+  try { return new Date(iso).toLocaleString('tr-TR'); } catch { return String(iso); }
+}
+
+function renderGazeteOneriler() {
+  const supa = _gzSupa();
+  if (!supa) {
+    return `<div class="card p-8 text-center text-ink-700/70">
+      <div class="text-4xl mb-3">⚠️</div>
+      <p class="font-semibold">Supabase bağlantısı yok.</p>
+      <p class="text-sm mt-1">Bu bölüm canlı Supabase gerektirir. Sayfayı yenileyip tekrar deneyin.</p>
+    </div>`;
+  }
+  const subPending = _gzState.submissions.filter(s => (s.status || 'pending') === 'pending').length;
+  const contribPending = _gzState.contributors.filter(c => (c.status || 'pending') === 'pending').length;
+  const tabs = `
+    <div class="flex flex-wrap items-center gap-2 mb-4">
+      <button class="btn btn-ghost text-xs gz-tab ${_gzState.tab==='submissions'?'active':''}" data-gz-tab="submissions">
+        🗞️ Öneriler${subPending?` <span class="ml-1 bg-amber-500 text-white text-[10px] font-bold px-1.5 rounded-full">${subPending}</span>`:''}
+      </button>
+      <button class="btn btn-ghost text-xs gz-tab ${_gzState.tab==='contributors'?'active':''}" data-gz-tab="contributors">
+        ✍️ Katkıcı Başvuruları${contribPending?` <span class="ml-1 bg-amber-500 text-white text-[10px] font-bold px-1.5 rounded-full">${contribPending}</span>`:''}
+      </button>
+      <button class="btn btn-ghost text-xs ml-auto" id="gz-refresh">🔄 Yenile</button>
+    </div>`;
+
+  let inner;
+  if (_gzState.loading && !_gzState.loaded) {
+    inner = `<div class="card p-12 text-center text-ink-700/60"><div class="text-4xl mb-3">⏳</div><p>Yükleniyor…</p></div>`;
+  } else if (_gzState.error) {
+    inner = `<div class="card p-8 text-center text-rose-700"><div class="text-4xl mb-3">⚠️</div>
+      <p class="font-semibold">Veri yüklenemedi.</p>
+      <p class="text-sm mt-1 font-mono">${escapeHtml(_gzState.error)}</p></div>`;
+  } else if (_gzState.tab === 'submissions') {
+    inner = _gzRenderSubmissions();
+  } else {
+    inner = _gzRenderContributors();
+  }
+  return tabs + `<div id="gz-body">${inner}</div>`;
+}
+
+function _gzRenderSubmissions() {
+  const rows = _gzState.submissions.slice().sort((a,b) =>
+    (b.created_at || '').localeCompare(a.created_at || ''));
+  if (!rows.length) {
+    return `<div class="card p-12 text-center text-ink-700/60">
+      <div class="text-5xl mb-3">📭</div>
+      <p class="font-semibold">Henüz gazete önerisi yok.</p>
+      <p class="text-sm mt-1">Katkıcılar /gazete/editor.html üzerinden öneri gönderdiğinde burada görünür.</p>
+    </div>`;
+  }
+  return `<div id="gz-sub-list" class="space-y-3">${rows.map(_gzSubmissionRow).join('')}</div>`;
+}
+
+function _gzSubmissionRow(s) {
+  const status = s.status || 'pending';
+  const lbl = GZ_STATUS_LABELS[status] || GZ_STATUS_LABELS.pending;
+  const f = s.fields || {};
+  const title = f.headline || f.title || '(başlıksız)';
+  const preview = f.deck || f.body || f.caption || '';
+  const img = f.image || '';
+  const slot = GZ_SLOT_LABELS[s.slot] || s.slot || '';
+  return `
+    <article class="card p-4 flex gap-4" data-gz-status="${status}" data-gz-id="${escapeHtml(s.id || '')}">
+      <div class="w-24 h-24 rounded-lg bg-ink-700/10 grid place-items-center overflow-hidden flex-shrink-0 text-3xl">
+        ${img ? `<img src="${escapeHtml(img)}" alt="" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.textContent='🖼️'" />` : '📝'}
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-start justify-between gap-3 flex-wrap">
+          <div class="min-w-0">
+            <h3 class="font-display font-bold text-ink-900 leading-tight">${escapeHtml(title)}</h3>
+            <div class="text-xs text-ink-700/70 mt-0.5">${escapeHtml(slot)} · ${escapeHtml(GZ_EDITION_LABELS[s.edition] || s.edition || '')} · 🗓️ ${escapeHtml(_gzFmtDate(s.target_date))}</div>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-wide ${lbl.cls} px-2 py-0.5 rounded-full whitespace-nowrap">${lbl.txt}</span>
+        </div>
+        ${preview ? `<p class="text-xs text-ink-700/80 mt-2 line-clamp-2">${escapeHtml(preview)}</p>` : ''}
+        <div class="flex items-center justify-between gap-3 mt-3 flex-wrap">
+          <div class="text-[11px] text-ink-700/60">
+            <span>📧 ${escapeHtml(s.user_email || '—')}</span>
+            ${s.created_at ? `<span class="ml-2">🕒 ${escapeHtml(_gzFmtDateTime(s.created_at))}</span>` : ''}
+            ${status === 'rejected' && s.admin_note ? `<span class="ml-2 text-rose-600">📝 ${escapeHtml(s.admin_note)}</span>` : ''}
+          </div>
+          <div class="flex gap-1">
+            <button class="btn btn-ghost text-xs" data-gz-sub-action="view" data-id="${escapeHtml(s.id || '')}">Detay</button>
+            ${status !== 'approved' ? `<button class="btn text-xs" style="background:#10b981;color:#fff;" data-gz-sub-action="approve" data-id="${escapeHtml(s.id || '')}">✓ Onayla</button>` : ''}
+            ${status !== 'rejected' ? `<button class="btn text-xs" style="background:#f59e0b;color:#fff;" data-gz-sub-action="reject" data-id="${escapeHtml(s.id || '')}">✕ Reddet</button>` : ''}
+          </div>
+        </div>
+      </div>
+    </article>`;
+}
+
+function _gzSubmissionDetail(s) {
+  const status = s.status || 'pending';
+  const lbl = GZ_STATUS_LABELS[status] || GZ_STATUS_LABELS.pending;
+  const f = s.fields || {};
+  const fieldRow = (label, val) => val ? `<div><div class="text-xs font-bold uppercase text-ink-700/60 mb-1">${escapeHtml(label)}</div><p class="whitespace-pre-wrap">${escapeHtml(val)}</p></div>` : '';
+  return `
+    <div class="px-6 py-4 border-b border-ink-700/8 flex items-center justify-between">
+      <div>
+        <div class="font-semibold text-ink-900">${escapeHtml(f.headline || f.title || '(başlıksız)')}</div>
+        <div class="text-xs text-ink-700/60 mt-0.5">${escapeHtml(GZ_SLOT_LABELS[s.slot] || s.slot || '')} · <span class="${lbl.cls} px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">${lbl.txt}</span></div>
+      </div>
+      <button class="text-ink-700/60 hover:text-bad-500 text-xl" onclick="closeModal()">×</button>
+    </div>
+    <div class="p-6 space-y-4 text-sm overflow-y-auto" style="max-height:70vh;">
+      ${f.image ? `<img src="${escapeHtml(f.image)}" class="w-full h-48 object-cover rounded" alt="" onerror="this.style.display='none'" />` : ''}
+      ${fieldRow('Başlık', f.headline || f.title)}
+      ${fieldRow('Spot / Alt başlık', f.deck)}
+      ${fieldRow('Metin', f.body)}
+      ${fieldRow('Fotoğraf açıklaması', f.caption)}
+      ${f.image ? `<div><div class="text-xs font-bold uppercase text-ink-700/60 mb-1">Fotoğraf bağlantısı</div><a href="${escapeHtml(f.image)}" target="_blank" class="text-sea-500 underline break-all">${escapeHtml(f.image)}</a></div>` : ''}
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div><div class="text-xs font-bold uppercase text-ink-700/60 mb-1">Sayı</div><div>${escapeHtml(GZ_EDITION_LABELS[s.edition] || s.edition || '')} · 🗓️ ${escapeHtml(_gzFmtDate(s.target_date))}</div></div>
+        <div><div class="text-xs font-bold uppercase text-ink-700/60 mb-1">Gönderen</div><div>📧 ${escapeHtml(s.user_email || '—')}</div></div>
+      </div>
+      ${status === 'rejected' && s.admin_note ? `<div class="bg-rose-50 border border-rose-200 rounded-lg p-3"><div class="text-[11px] font-bold uppercase text-rose-700 mb-1">Editör Notu (Red)</div><p>${escapeHtml(s.admin_note)}</p></div>` : ''}
+      <div class="text-[11px] text-ink-700/50 border-t border-ink-700/8 pt-3">
+        Öneri ID: <code>${escapeHtml(s.id || '')}</code>${s.created_at ? ` · ${escapeHtml(_gzFmtDateTime(s.created_at))}` : ''}
+      </div>
+    </div>
+    <div class="px-6 py-4 border-t border-ink-700/8 flex justify-end gap-2">
+      <button class="btn btn-ghost" onclick="closeModal()">Kapat</button>
+      ${status !== 'approved' ? `<button class="btn" style="background:#10b981;color:#fff;" data-gz-sub-action="approve" data-id="${escapeHtml(s.id || '')}" data-close-after="1">✓ Onayla</button>` : ''}
+      ${status !== 'rejected' ? `<button class="btn" style="background:#f59e0b;color:#fff;" data-gz-sub-action="reject" data-id="${escapeHtml(s.id || '')}" data-close-after="1">✕ Reddet</button>` : ''}
+    </div>`;
+}
+
+function _gzRenderContributors() {
+  const rows = _gzState.contributors.slice().sort((a,b) =>
+    (b.applied_at || '').localeCompare(a.applied_at || ''));
+  if (!rows.length) {
+    return `<div class="card p-12 text-center text-ink-700/60">
+      <div class="text-5xl mb-3">📭</div>
+      <p class="font-semibold">Henüz katkıcı başvurusu yok.</p>
+      <p class="text-sm mt-1">Kullanıcılar /gazete/editor.html üzerinden "Katkıcı ol" başvurusu yaptığında burada görünür.</p>
+    </div>`;
+  }
+  return `<div id="gz-contrib-list" class="space-y-3">${rows.map(_gzContributorRow).join('')}</div>`;
+}
+
+function _gzContributorRow(c) {
+  const status = c.status || 'pending';
+  const lbl = GZ_CONTRIB_STATUS[status] || GZ_CONTRIB_STATUS.pending;
+  return `
+    <article class="card p-4 flex items-center gap-4" data-gz-contrib-status="${status}" data-gz-uid="${escapeHtml(c.user_id || '')}">
+      <div class="w-12 h-12 rounded-full bg-sea-100 text-sea-700 grid place-items-center text-lg font-bold flex-shrink-0">
+        ${escapeHtml((c.email || '?').trim().charAt(0).toUpperCase())}
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="font-display font-bold text-ink-900 leading-tight truncate">${escapeHtml(c.display_name || c.email || '—')}</div>
+        <div class="text-xs text-ink-700/70 mt-0.5">📧 ${escapeHtml(c.email || '—')}${c.applied_at ? ` · 🕒 ${escapeHtml(_gzFmtDateTime(c.applied_at))}` : ''}</div>
+      </div>
+      <span class="text-[10px] font-bold uppercase tracking-wide ${lbl.cls} px-2 py-0.5 rounded-full whitespace-nowrap">${lbl.txt}</span>
+      <div class="flex gap-1 flex-shrink-0">
+        ${status !== 'approved' ? `<button class="btn text-xs" style="background:#10b981;color:#fff;" data-gz-contrib-action="approve" data-uid="${escapeHtml(c.user_id || '')}">✓ Onayla</button>` : ''}
+        ${status !== 'blocked' ? `<button class="btn text-xs" style="background:#ef4444;color:#fff;" data-gz-contrib-action="block" data-uid="${escapeHtml(c.user_id || '')}">🚫 Engelle</button>` : ''}
+      </div>
+    </article>`;
+}
+
+async function _gzLoadData() {
+  const supa = _gzSupa();
+  if (!supa) return;
+  _gzState.loading = true;
+  _gzState.error = '';
+  try {
+    const [subRes, contribRes] = await Promise.all([
+      supa.from('gazete_submissions')
+        .select('id,user_id,user_email,target_date,edition,slot,fields,status,admin_note,reviewed_by,reviewed_at,created_at')
+        .order('created_at', { ascending: false }).limit(200),
+      supa.from('gazete_contributors')
+        .select('user_id,email,display_name,status,applied_at,approved_by,approved_at')
+        .order('applied_at', { ascending: false }).limit(200),
+    ]);
+    if (subRes.error) throw subRes.error;
+    if (contribRes.error) throw contribRes.error;
+    _gzState.submissions = subRes.data || [];
+    _gzState.contributors = contribRes.data || [];
+    _gzState.loaded = true;
+  } catch (err) {
+    _gzState.error = err?.message || 'bilinmeyen hata';
+    console.error('[admin gazete] veri yüklenemedi', err);
+  } finally {
+    _gzState.loading = false;
+  }
+  _gzRefreshBadge();
+  if (state.page === 'gazete-oneriler') renderPage('gazete-oneriler');
+}
+
+function _gzRefreshBadge() {
+  const badge = document.getElementById('gazete-pending-badge');
+  if (!badge) return;
+  const cnt = _gzState.submissions.filter(s => (s.status || 'pending') === 'pending').length +
+              _gzState.contributors.filter(c => (c.status || 'pending') === 'pending').length;
+  if (cnt > 0) { badge.textContent = String(cnt); badge.classList.remove('hidden'); }
+  else badge.classList.add('hidden');
+}
+
+function bindGazeteOneriler() {
+  // İlk açılışta veri yükle (sonraki render'larda bellekten)
+  if (!_gzState.loaded && !_gzState.loading) {
+    _gzState.loading = true;
+    renderPage('gazete-oneriler'); // "Yükleniyor" göster
+    _gzLoadData();
+    return;
+  }
+  // Tab geçiş
+  document.querySelectorAll('.gz-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _gzState.tab = btn.dataset.gzTab;
+      renderPage('gazete-oneriler');
+    });
+  });
+  document.getElementById('gz-refresh')?.addEventListener('click', () => {
+    _gzState.loaded = false;
+    _gzState.loading = true;
+    renderPage('gazete-oneriler');
+    _gzLoadData();
+  });
+  // Aksiyon delegasyonu (idempotent)
+  if (!_gzHandlerBound) {
+    document.addEventListener('click', _gzClickHandler);
+    _gzHandlerBound = true;
+  }
+}
+
+let _gzHandlerBound = false;
+async function _gzClickHandler(e) {
+  const subBtn = e.target.closest('[data-gz-sub-action]');
+  const contribBtn = e.target.closest('[data-gz-contrib-action]');
+  if (subBtn) return _gzHandleSubmissionAction(subBtn);
+  if (contribBtn) return _gzHandleContributorAction(contribBtn);
+}
+
+async function _gzHandleSubmissionAction(btn) {
+  const action = btn.dataset.gzSubAction;
+  const id = btn.dataset.id;
+  if (!id) return;
+  const supa = _gzSupa();
+  if (!supa) { toast('Supabase bağlantısı yok.', 'bad'); return; }
+  const sub = _gzState.submissions.find(s => s.id === id);
+  if (!sub && action !== 'view') return;
+
+  if (action === 'view') {
+    if (!sub) return;
+    document.getElementById('modal-inner').innerHTML = _gzSubmissionDetail(sub);
+    document.getElementById('modal').classList.remove('hidden');
+    return;
+  }
+
+  const admin = window.__ADMIN_USER__ || null;
+  try {
+    if (action === 'approve') {
+      const { error } = await supa.from('gazete_submissions').update({
+        status: 'approved',
+        reviewed_by: admin?.id || null,
+        reviewed_at: new Date().toISOString(),
+        admin_note: null,
+      }).eq('id', id);
+      if (error) throw error;
+      sub.status = 'approved'; sub.reviewed_at = new Date().toISOString();
+      toast('Öneri onaylandı — yarınki sayıya işlenecek.');
+    } else if (action === 'reject') {
+      const reason = prompt('Red sebebi (opsiyonel — katkıcıya editör notu olarak gösterilir):');
+      if (reason === null) return; // iptal
+      const { error } = await supa.from('gazete_submissions').update({
+        status: 'rejected',
+        reviewed_by: admin?.id || null,
+        reviewed_at: new Date().toISOString(),
+        admin_note: reason || null,
+      }).eq('id', id);
+      if (error) throw error;
+      sub.status = 'rejected'; sub.admin_note = reason || null;
+      toast('Öneri reddedildi.', 'bad');
+    } else { return; }
+  } catch (err) {
+    toast('İşlem başarısız: ' + (err?.message || 'hata'), 'bad');
+    return;
+  }
+  if (btn.dataset.closeAfter) closeModal();
+  _gzRefreshBadge();
+  if (state.page === 'gazete-oneriler') renderPage('gazete-oneriler');
+}
+
+async function _gzHandleContributorAction(btn) {
+  const action = btn.dataset.gzContribAction; // 'approve' | 'block'
+  const uid = btn.dataset.uid;
+  if (!uid || (action !== 'approve' && action !== 'block')) return;
+  const supa = _gzSupa();
+  if (!supa) { toast('Supabase bağlantısı yok.', 'bad'); return; }
+  const contrib = _gzState.contributors.find(c => c.user_id === uid);
+
+  if (action === 'block' && !confirm('Bu kullanıcının gazete katkıcılığı engellensin mi?')) return;
+
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = '…';
+  try {
+    // app_metadata.role değişikliği service_role gerektirir → Edge Fn
+    const { data: { session } } = await supa.auth.getSession();
+    const { data, error } = await supa.functions.invoke('set-contributor-role', {
+      body: { user_id: uid, action },
+      headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
+    });
+    if (error) throw error;
+    if (!data?.ok) throw new Error(data?.detail || data?.error || 'beklenmeyen yanıt');
+    if (contrib) contrib.status = action === 'approve' ? 'approved' : 'blocked';
+    toast(action === 'approve' ? 'Katkıcı onaylandı.' : 'Katkıcı engellendi.', action === 'approve' ? 'ok' : 'bad');
+  } catch (err) {
+    btn.disabled = false; btn.textContent = label;
+    toast('İşlem başarısız: ' + (err?.message || 'hata'), 'bad');
+    return;
+  }
+  _gzRefreshBadge();
+  if (state.page === 'gazete-oneriler') renderPage('gazete-oneriler');
 }
 
 _enhancedBootstrap();

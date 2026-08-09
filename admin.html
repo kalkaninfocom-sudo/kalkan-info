@@ -135,6 +135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="turlar"><span>⛵</span><span data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Turlar</span></a>
       <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="restoranlar"><span>🍽️</span><span data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restoran & Bar</span></a>
       <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="haberler"><span>📰</span><span data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Haberler</span></a>
+      <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="gazete-oneriler"><span>🗞️</span><span data-en="Newspaper Contributions" class="flex-1" data-de="Zeitungsbeiträge" data-ru="Материалы газеты" data-fr="Contributions au journal">Gazete Önerileri</span><span id="gazete-pending-badge" class="hidden bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full"></span></a>
 
       <div data-en="Services" class="px-5 text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2 mt-4" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Hizmetler</div>
       <a class="sidebar-link flex items-center gap-3 px-5 py-2.5 text-sm" data-page="hizmetler"><span>🛠️</span><span data-en="Service List" data-de="Dienstleistungsliste" data-ru="Список услуг" data-fr="Liste des services">Hizmet Listesi</span></a>
@@ -196,6 +197,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('auth-guard').style.display = 'none';
       window.__ADMIN_USER__   = user;
       window.__ADMIN_SIGNOUT__ = adminSignOut;
+      // Supabase client'ı legacy (non-module) admin.js'e köprüle — gazete önerileri
+      // Supabase'de yaşıyor (localStorage değil), admin.js modül olmadığı için import edemez.
+      try {
+        const { supabase } = await import('./js/supabase-client.js');
+        window.__SUPABASE__ = supabase;
+      } catch (e) { console.warn('[admin] supabase client köprülenemedi', e); }
       // Load the legacy admin.js panel script after auth is confirmed
       const s = document.createElement('script');
       s.src = 'admin/admin.js';
