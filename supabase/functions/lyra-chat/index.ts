@@ -81,6 +81,17 @@ function detectCategory(t: string): string | null {
   return null;
 }
 
+// Kullanıcı mesajından dil sez (5 dil). Kısa/belirsizse null → LLM son mesaja göre karar verir.
+const LANG_NAMES: Record<string, string> = { tr: 'Türkçe', en: 'English', de: 'Deutsch', ru: 'Русский', fr: 'Français' };
+function detectLang(t: string): string | null {
+  if (/[Ѐ-ӿ]/.test(t)) return 'ru';                                   // Kiril
+  if (/[ğışĞİŞ]/.test(t) || /\b(merhaba|selam|nerede|villa|için|nasıl|var mı|müsait|fiyat|kaç|teşekkür|iyi günler)\b/i.test(t)) return 'tr';
+  if (/\b(bonjour|merci|quelle?|où|disponible|nous|votre|réserv|plage|bonsoir|s'?il vous)\b/i.test(t)) return 'fr';
+  if (/\b(hallo|welche|verfügbar|wir|ich|wo|möchten|guten tag|strand|buchen|preis)\b/i.test(t)) return 'de';
+  if (/\b(hello|hi|which|available|we are|your|please|beach|book|price|villa|thanks|good)\b/i.test(t)) return 'en';
+  return null;
+}
+
 const SITE = 'https://kalkaninfo.com';
 
 // KENDİ VİLLALARIMIZ — misafir villa/konaklama sorunca ÖNCE bunları pazarla (kaynak: data/villa-facts-official.md)
@@ -284,7 +295,11 @@ Deno.serve(async (req: Request) => {
       .map(m => ({ role: m.role, content: m.content }));
 
     const grounding = await buildGrounding(supabase, userText);
-    const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}, dil=${lang}. Bugün Kalkan, Türkiye.]`;
+    // Dil: mesajdan sez → yoksa istemci lang → yoksa tr. Yanıt dili kullanıcının SON mesajına göre.
+    const replyLang = detectLang(userText) ?? (LANG_NAMES[lang] ? lang : 'tr');
+    const langName = LANG_NAMES[replyLang] ?? 'Türkçe';
+    const langRule = `\n\n⚠️ DİL KURALI (EN ÖNEMLİ): Kullanıcının son mesajının dili = ${langName}. Yanıtını SADECE ${langName} dilinde yaz — tek kelime bile başka dilden karıştırma. "Varsayılan Türkçe" kuralı kullanıcı başka dilde yazınca GEÇERSİZDİR. Yukarıdaki bilgiler Türkçe olsa da açıklamayı ${langName} diline çevir (özel isimleri koru).`;
+    const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}. Bugün Kalkan, Türkiye.]${langRule}`;
     const llmMessages: Msg[] = [{ role: 'system', content: systemPrompt }, ...priorMsgs];
 
     // LLM zinciri: Groq → Cerebras → NVIDIA → Anthropic → stub. İlk başarılı kazanır.
