@@ -1,0 +1,40 @@
+name: IG Token Yenileme (aylık)
+
+# Instagram IG_LONG_LIVED_TOKEN 60 günde bir dolar. Vercel 2-cron limiti dolu
+# olduğu için bu yenileme GitHub Actions cron ile tetiklenir (Vercel endpoint'i çağırır).
+# Endpoint (api/cron-refresh-ig-token.js) token'ı fb_exchange_token ile 60 gün daha uzatır
+# ve durum/expire uyarısını Telegram'a gönderir.
+#
+# Gerekli GitHub repo secret: IG_CRON_SECRET (Vercel env'deki ile aynı).
+#   Ayarlanmamışsa endpoint auth'u atlar (kod: expected && ... kontrolü) ama secret önerilir.
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"   # her ayın 1'i 04:00 UTC (Vercel token'ı 60 günde dolar; aylık yenileme güvenli marj)
+    - cron: "0 4 15 * *"  # ayın 15'i tekrar (kaçırılan/expire riskine karşı ikinci deneme)
+  workflow_dispatch: {}    # elle tetikleme
+
+concurrency:
+  group: ig-token-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: IG token yenileme endpoint'ini tetikle
+        run: |
+          echo "IG token yenileme çağrısı gönderiliyor…"
+          code=$(curl -s -o /tmp/resp.json -w "%{http_code}" -X POST \
+            "https://kalkaninfo.com/api/cron-refresh-ig-token" \
+            -H "Authorization: Bearer ${{ secrets.IG_CRON_SECRET }}" \
+            -H "Content-Type: application/json" || echo "000")
+          echo "HTTP $code"
+          cat /tmp/resp.json 2>/dev/null || true
+          if [ "$code" = "200" ]; then
+            echo "✓ IG token yenileme başarılı"
+          elif [ "$code" = "401" ]; then
+            echo "::warning::IG_CRON_SECRET eşleşmedi (GitHub repo secret'ı Vercel env ile aynı olmalı)"
+          else
+            echo "::warning::IG token yenileme beklenmedik yanıt: $code (endpoint/env kontrol edilmeli)"
+          fi
