@@ -1,0 +1,518 @@
+<!DOCTYPE html><html lang="fr" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Villes antiques — Patara, Xanthos, Tlos | Kalkan Info</title>
+<meta name="description" content="Guide des 10 villes antiques autour de Kalkan. Patara, Xanthos, Letoon, Tlos, Pinara, Simena et autres. Histoire, photos, informations de visite et carte interactive.">
+<link rel="canonical" href="https://kalkaninfo.com/fr/antik-kentler">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/antik-kentler">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/antik-kentler">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/antik-kentler">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/antik-kentler">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/antik-kentler">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/antik-kentler">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="Patara, Xanthos, Tlos, Letoon, Pinara, Simena, Lycie, villes antiques d'Antalya, histoire de Kalkan, UNESCO">
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kalkan Info">
+
+<!-- OG -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Villes antiques — Patara, Xanthos, Tlos | Kalkan Info">
+<meta property="og:description" content="Guide des 10 villes antiques autour de Kalkan. Patara, Xanthos, Letoon, Tlos, Pinara, Simena et autres. Histoire, photos, informations de visite et carte interactive.">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+<!-- Leaflet (open-street-map) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+.ribbon-bg{background:repeating-linear-gradient(90deg,#072136 0 12px,#0d3a5f 12px 24px);}
+.grain{background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:3px 3px;}
+.marquee{animation:marquee 35s linear infinite;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.underline-grow{position:relative;}
+.underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+.underline-grow:hover::after{transform:scaleX(1);}
+.nav-active{color:#f4b53d!important;}
+.nav-active::after{transform:scaleX(1)!important;}
+.line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+#map{height:520px;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px -8px rgba(13,58,95,0.35);z-index:1;}
+.leaflet-popup-content-wrapper{border-radius:12px;}
+.leaflet-popup-content{margin:0;width:280px!important;}
+.popup-card{padding:0;}
+.popup-card img{width:100%;height:140px;object-fit:cover;}
+.popup-card-body{padding:12px 14px;}
+.kent-marker{
+  background:#e89812;width:32px;height:32px;border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;
+  border:3px solid #fff;box-shadow:0 4px 12px rgba(7,33,54,0.4);
+}
+.kent-marker.unesco{background:#1a5e93;}
+.kent-marker.denizden{background:#10b981;}
+.kent-marker span{transform:rotate(45deg);font-size:14px;}
+.detail-modal{position:fixed;inset:0;z-index:60;background:rgba(7,22,38,0.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem;}
+.detail-modal.active{display:flex;}
+.detail-card{background:white;border-radius:16px;max-width:1024px;width:100%;box-shadow:0 24px 60px -12px rgba(7,22,38,0.5);overflow:hidden;}
+.tab-btn.active{background:#0a2e4c;color:white;border-color:#0a2e4c;}
+</style>
+<script src="/js/auth-pill.js" defer=""></script>
+<script src="/js/site-drawer.js?v=20260516b" defer=""></script>
+<script src="/js/supabase-window.js"></script>
+<script src="/js/i18n.js?v=20260519a" defer=""></script>
+    <script src="/js/cookie-banner.js" defer=""></script>
+<script src="/js/header-search.js" defer=""></script>
+<script src="/js/bottom-nav.js?v=20260516b" defer=""></script>
+<script src="/js/analytics.js" defer=""></script>
+<script src="/js/utm-tracker.js" defer=""></script>
+<script src="/js/engagement-tracker.js" defer=""></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer=""></script>
+<!-- SEO: Structured Data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Antik Kentler","item":"https://kalkaninfo.com/antik-kentler"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Kalkan ve Çevresi Antik Kentleri","description":"Kalkan, Kaş ve Demre çevresindeki Likya medeniyetinin öne çıkan 10 antik kent rehberi","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"TouristAttraction","name":"Patara Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/d018efe8f905.webp","description":"UNESCO Dünya Mirası listesinde. Likya Birliği'nin başkenti, Apollo'nun doğum yeri ve Aziz Nikolas'ın memleketi. Dünyanın bilinen ilk demokratik meclis binası burada.","geo":{"@type":"GeoCoordinates","latitude":36.2640,"longitude":29.3147},"address":{"@type":"PostalAddress","addressLocality":"Kalkan","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 09:00-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":2,"item":{"@type":"TouristAttraction","name":"Xanthos Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/0a51fdbbfe75.webp","description":"UNESCO Dünya Mirası. Letoon ile birlikte Likya'nın baş başkenti. Dramatik bir tepe üzerinde, Eşen Çayı manzarası eşsiz. Harpya Anıtı ile ünlü.","geo":{"@type":"GeoCoordinates","latitude":36.3556,"longitude":29.3203},"address":{"@type":"PostalAddress","addressLocality":"Kınık","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:00-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":3,"item":{"@type":"TouristAttraction","name":"Letoon Kutsal Alanı","image":"https://www.kalkaninfo.com/assets/img/fead0388ecb7.webp","description":"UNESCO Dünya Mirası — Xanthos ile birlikte. Likya'nın dini merkezi, Leto–Apollo–Artemis üçlüsüne adanmış üç tapınağıyla benzersiz.","geo":{"@type":"GeoCoordinates","latitude":36.3303,"longitude":29.3079},"address":{"@type":"PostalAddress","addressLocality":"Kumluova","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:00-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":4,"item":{"@type":"TouristAttraction","name":"Tlos Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/5840f8559f9f.webp","description":"Likya'nın en eski şehirlerinden biri. Hitit kayıtlarında 'Dalawa' olarak geçer. Bellerophon ve Pegasus mitosunun yurdu. Türk kalesi antik kalıntıların üzerinde yükseliyor.","geo":{"@type":"GeoCoordinates","latitude":36.5530,"longitude":29.4288},"address":{"@type":"PostalAddress","addressLocality":"Seydikemer","addressRegion":"Muğla","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:30-18:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":5,"item":{"@type":"TouristAttraction","name":"Pinara Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/b19d43c80614.webp","description":"Likya'nın 6 büyük kentinden biri ama bugün en az ziyaret edilen, en otantik olanı. Eşsiz 'petekli kayalık mezarları' ile ünlü — kayanın içine yüzlerce küçük oyuk açılmış.","geo":{"@type":"GeoCoordinates","latitude":36.4847,"longitude":29.2607},"address":{"@type":"PostalAddress","addressLocality":"Minare","addressRegion":"Muğla","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:30-17:30","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":6,"item":{"@type":"TouristAttraction","name":"Simena (Kaleköy) Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/df3e06163d3b.webp","description":"Kekova batık şehrinin karşısında, denizin içinden çıkan antik kent ve onun üzerinde yükselen Türk kalesi. Karaya araçla ulaşılamıyor — sadece tekne veya yürüyüş.","geo":{"@type":"GeoCoordinates","latitude":36.1900,"longitude":29.8625},"address":{"@type":"PostalAddress","addressLocality":"Üçağız","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:00-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":7,"item":{"@type":"TouristAttraction","name":"Antiphellos (Kaş) Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/87755c57b719.webp","description":"Kaş'ın eski adı. Phellos antik kentinin liman kenti. Bugün Kaş merkezindeki 4.000 kişilik tiyatro ve dağılmış antik kalıntılar gezilebilir, tüm giriş ücretsiz.","geo":{"@type":"GeoCoordinates","latitude":36.2014,"longitude":29.6394},"address":{"@type":"PostalAddress","addressLocality":"Kaş","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":true,"openingHours":"Mo-Su 00:00-23:59","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":8,"item":{"@type":"TouristAttraction","name":"Phellos Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/7aafd4ed796d.webp","description":"Çukurbağ Yarımadası'nda dağ tepesindeki antik Likya kenti. Antiphellos'un (Kaş) ana yerleşim merkeziydi. Gerçek bir yürüyüş hedefi; panoramik Kaş ve Meis Adası manzarası sunar.","geo":{"@type":"GeoCoordinates","latitude":36.2683,"longitude":29.6917},"address":{"@type":"PostalAddress","addressLocality":"Çukurbağ","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":true,"openingHours":"Mo-Su 00:00-23:59","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":9,"item":{"@type":"TouristAttraction","name":"Myra Antik Kenti","image":"https://www.kalkaninfo.com/assets/img/7555d0fc15e2.webp","description":"Likya'nın en büyük ve en gösterişli antik kentlerinden biri. 12.000 kişilik Roma tiyatrosu ve kayanın içine oyulmuş muhteşem ev tipi mezarlarıyla ünlü. Aziz Nikolas burada episkoposluk yaptı.","geo":{"@type":"GeoCoordinates","latitude":36.2580,"longitude":29.9854},"address":{"@type":"PostalAddress","addressLocality":"Demre","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:30-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}},{"@type":"ListItem","position":10,"item":{"@type":"TouristAttraction","name":"Andriake Antik Limanı","image":"https://www.kalkaninfo.com/assets/img/2f8d46e7b4a7.webp","description":"Myra'nın liman kenti — Akdeniz'in en iyi korunmuş Roma tahıl ambarına ev sahipliği yapıyor. 2014'te açılan Likya Uygarlıkları Müzesi bölgenin en kapsamlı Likya koleksiyonunu barındırıyor.","geo":{"@type":"GeoCoordinates","latitude":36.2233,"longitude":29.9433},"address":{"@type":"PostalAddress","addressLocality":"Demre","addressRegion":"Antalya","addressCountry":"TR"},"isAccessibleForFree":false,"openingHours":"Mo-Su 08:30-19:00","touristType":"Tarih ve Kültür Turizmi","url":"https://www.kalkaninfo.com/antik-kentler"}}]}</script>
+<!-- /SEO -->
+<link rel="preload" as="image" href="/assets/img/bc6b20356572.webp" fetchpriority="high">
+</head>
+<body class="bg-[#dce6ef]">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- HERO -->
+<header class="relative overflow-hidden" style="background:#072136;">
+  <div class="absolute inset-0 z-0">
+    <img width="1200" height="733" loading="eager" decoding="async" src="/assets/img/bc6b20356572.webp" class="w-full h-full object-cover opacity-50" data-en-alt="Ancient Cities" alt="Villes anciennes" style="filter:saturate(1.5) contrast(1.1);" data-de-alt="Antike Städte" data-ru-alt="Древние города" data-fr-alt="Villes anciennes" fetchpriority="high">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(26,94,147,0.45) 0%,transparent 70%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(232,152,18,0.12) 0%,transparent 60%),linear-gradient(180deg,rgba(7,33,54,0.55) 0%,rgba(7,33,54,0.3) 40%,rgba(7,33,54,0.92) 100%);"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <a href="/fr/index.html" class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Retour" data-en-aria="Back" data-de-aria="Zurück" data-ru-aria="Назад" data-fr-aria="Retour">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"></path></svg>
+    </a>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today" data-de="Heute" data-ru="Сегодня" data-fr="Aujourd'hui">Aujourd'hui</span>
+      <span id="today-date" class="opacity-95 font-semibold tracking-wide">—</span>
+      <span class="hidden md:inline opacity-40 mx-1">·</span>
+      <span data-weather="" class="hidden md:inline opacity-80">—</span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Rechercher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-14 md:pt-20 pb-14 md:pb-18 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Lycian Civilisation · UNESCO Heritage" data-de="Lykische Zivilisation · UNESCO-Welterbe" data-ru="Ликийская цивилизация · Всемирное наследие ЮНЕСКО" data-fr="Civilisation lycienne · Patrimoine UNESCO">Civilisation lycienne · Patrimoine UNESCO</span>
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.6);" data-en="Ancient Cities" data-de="Antike Städte" data-ru="Древние города" data-fr="Villes antiques">Villes antiques</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en="10 ancient cities around Kalkan — 3000 years of history from Patara to Xanthos, Tlos to Simena." data-de="10 antike Städte rund um Kalkan — 3000 Jahre Geschichte von Patara bis Xanthos, Tlos bis Simena." data-ru="10 древних городов вокруг Калкана — 3000 лет истории от Патары до Ксанфа, от Тлоса до Симены." data-fr="10 villes antiques autour de Kalkan — 3000 ans d'histoire de Patara à Xanthos, de Tlos à Simena.">10 villes antiques autour de Kalkan — 3000 ans d'histoire de Patara à Xanthos, de Tlos à Simena.</p>
+    <div class="mt-4 inline-flex items-center gap-3 text-xs text-white/85 bg-white/8 border border-white/15 px-3 py-2 rounded-full" style="backdrop-filter:blur(4px);">
+      <span class="font-bold text-sun-400" data-en="10 detail pages live">10 detail pages live</span>
+      <span class="opacity-50">·</span>
+      <span data-en="17 cities catalogued">17 cities catalogued</span>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="/fr/index.html" data-en-aria="Home" aria-label="Accueil" data-en-title="Home" title="Accueil" class="grid place-items-center w-11 h-11 hover:bg-white/10 -ml-1 rounded-md" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil" data-de-aria="Startseite" data-ru-aria="Главная" data-fr-aria="Accueil">&gt;&gt;&gt;
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg>
+    </a>
+    <a href="/fr/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2 py-3.5">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <div class="w-11 h-11"></div>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Actualités</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villas</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hôtels</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/restoranlar.html" data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restaurants</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Plages</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/pazarlar.html" data-en="Markets" data-de="Märkte" data-ru="Рынки" data-fr="Marchés">Marchés</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Tours">Tours</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow nav-active" href="/fr/antik-kentler.html" data-en="Ancient Cities" data-de="Antike Städte" data-ru="Древние города" data-fr="Villes antiques">Villes antiques</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/fr/hizmetler.html" data-en="Services" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Services</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700" href="#" data-concierge-trigger="">Concierge</a>
+    </div>
+  </div>
+</nav>
+
+<!-- LIKYA HARİTASI SECTION -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+  <div class="text-center mb-6">
+    <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Interactive Map" data-de="Interaktive Karte" data-ru="Интерактивная карта" data-fr="Carte interactive">Carte interactive</span>
+    </div>
+    <h2 class="font-display text-3xl md:text-4xl font-extrabold text-sea-800" data-en="Map of Lycian Civilisation" data-de="Karte der Lykischen Zivilisation" data-ru="Карта ликийской цивилизации" data-fr="Carte de la civilisation lycienne">Carte de la civilisation lycienne</h2>
+    <p class="text-sea-700/70 mt-2 max-w-2xl mx-auto" data-en="17 ancient cities + 540 km Lycian Way. Click to view details." data-de="17 antike Städte + 540 km Lykischer Weg. Klicken Sie für Details." data-ru="17 древних городов + 540 км Ликийский путь. Нажмите для просмотра деталей." data-fr="17 villes antiques + 540 km de Lycian Way. Cliquez pour voir les détails.">17 villes antiques + 540 km de Lycian Way. Cliquez pour voir les détails.</p>
+  </div>
+  <!-- Filter tabs (uygulanan filtre hem haritayı hem aşağıdaki kart listesini etkiler) -->
+  <div class="flex flex-wrap justify-center gap-2 mb-5">
+    <button class="tab-btn active px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="" data-en="All" data-de="Alle" data-ru="Все" data-fr="Tous">Tous</button>
+    <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="UNESCO Mirası">UNESCO</button>
+    <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="Likya">Lycie</button>
+    <button class="tab-btn px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border-2 border-sea-200 text-sea-800 bg-white" data-filter="Denizden" data-en="By Sea" data-de="Auf dem Seeweg" data-ru="По морю" data-fr="Par mer">Par mer</button>
+  </div>
+  <div id="likya-map" style="height:600px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px -8px rgba(13,58,95,0.35);"></div>
+  <div class="mt-4 flex flex-wrap justify-center gap-6 text-sm text-sea-700">
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> <span data-en="UNESCO Heritage" data-de="UNESCO-Welterbe" data-ru="Всемирное наследие ЮНЕСКО" data-fr="Patrimoine UNESCO">Patrimoine UNESCO</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sea-500 border-2 border-white inline-block"></span> <span data-en="Lycian / Roman City" data-de="Lykische/Römische Stadt" data-ru="Ликийско-римский город" data-fr="Ville lycienne / romaine">Ville lycienne / romaine</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-sun-500 border-2 border-white inline-block"></span> <span data-en="Accessible by Sea" data-de="Mit dem Schiff erreichbar" data-ru="Доступно по морю" data-fr="Accessible par mer">Accessible par mer</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="inline-block w-6 border-t-2 border-dashed border-coral-500"></span> <span data-en="Lycian Way Route" data-de="Lykischer-Weg-Route" data-ru="Маршрут Ликийского пути" data-fr="Route du Lycian Way">Route du Lycian Way</span></span>
+    <span class="inline-flex items-center gap-1.5"><span class="text-sun-500 font-bold">★</span> <span data-en="Featured = large marker" data-de="Hervorgehoben = großer Marker" data-ru="Избранное = большой маркер" data-fr="En vedette = grand marqueur">En vedette = grand marqueur</span></span>
+  </div>
+</section>
+
+<!-- BÖLGEYİ TANIYIN SECTION -->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Metin -->
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Lycian Civilisation" data-de="Lykische Zivilisation" data-ru="Ликийская цивилизация" data-fr="Civilisation lycienne">Civilisation lycienne</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold text-sea-800 leading-tight" data-en="Discover the Region" data-de="Entdecken Sie die Region" data-ru="Откройте для себя регион" data-fr="Découvrez la région">Découvrez la région</h2>
+        <p class="text-sea-700 text-base md:text-lg mt-5 leading-relaxed" data-en="The Lycian civilisation flourished along the coasts of present-day Antalya and Muğla from 2000 BC to AD 1200. The Lycian League, one of the first civilisations in the world to establish a democratic system of government, is considered the forerunner of modern federalism. The League's major cities — Xanthos, Patara, Tlos, Pinara, Myra and Olympos — held three votes each, while smaller cities held one." data-de="Die lykische Zivilisation blühte von 2000 v. Chr. bis 1200 n. Chr. an den Küsten des heutigen Antalya und Muğla. Der Lykische Bund, eine der ersten Zivilisationen der Welt, die ein demokratisches Regierungssystem etablierte, gilt als Vorläufer des modernen Föderalismus. Die wichtigsten Städte des Bundes — Xanthos, Patara, Tlos, Pinara, Myra und Olympos — hatten je drei Stimmen, kleinere Städte je eine." data-ru="Ликийская цивилизация процветала на побережье современной Antalya и Muğla с 2000 г. до н.э. по 1200 г. н.э. Ликийская лига, одна из первых цивилизаций в мире, установившая демократическую систему правления, считается предшественницей современного федерализма. Крупные города лиги — Ксанф, Патара, Тлос, Пинара, Мира и Олимпос — имели по три голоса, тогда как меньшие города имели по одному." data-fr="La civilisation lycienne a prospéré le long des côtes de l'actuelle Antalya et Muğla de 2000 av. J.-C. à 1200 apr. J.-C. La Ligue lycienne, l'une des premières civilisations au monde à établir un système de gouvernement démocratique, est considérée comme la précurseure du fédéralisme moderne. Les grandes villes de la Ligue — Xanthos, Patara, Tlos, Pinara, Myra et Olympos — disposaient chacune de trois votes, tandis que les villes plus petites en avaient un.">La civilisation lycienne a prospéré le long des côtes de l'actuelle Antalya et Muğla de 2000 av. J.-C. à 1200 apr. J.-C. La Ligue lycienne, l'une des premières civilisations au monde à établir un système de gouvernement démocratique, est considérée comme la précurseure du fédéralisme moderne. Les grandes villes de la Ligue — Xanthos, Patara, Tlos, Pinara, Myra et Olympos — disposaient chacune de trois votes, tandis que les villes plus petites en avaient un.</p>
+        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed" data-en="The Lycians developed their own unique alphabet and language, and left their mark on art history with house-shaped tomb architecture carved into rock faces. Their passion for freedom was so strong that when Xanthos was besieged by the Persians, its people set fire to the city twice rather than surrender. This distinctive spirit is still felt in the world's first democratic assembly building at Patara and in inscriptions that have survived to this day." data-de="Die Lykier entwickelten ihr eigenes einzigartiges Alphabet und ihre Sprache und hinterließen ihre Spuren in der Kunstgeschichte durch hausförmige Grabtempel, die in Felswände gemeißelt wurden. Ihre Leidenschaft für Freiheit war so stark, dass die Menschen von Xanthos die Stadt zweimal in Brand setzten, als sie von den Persern belagert wurde, anstatt sich zu ergeben. Dieser charakteristische Geist ist immer noch im weltweit ersten demokratischen Versammlungsgebäude in Patara und in bis heute erhaltenen Inschriften spürbar." data-ru="Ликийцы разработали свой собственный уникальный алфавит и язык, оставили свой след в истории искусства архитектурой домовидных гробниц, высеченных в скальных лицах. Их страсть к свободе была столь сильна, что когда Ксанф был осажден персами, его жители дважды подожгли город, чтобы не сдаться. Этот особый дух все еще ощущается в здании первого в мире демократического собрания в Патаре и в сохранившихся до наших дней надписях." data-fr="Les Lyciens ont développé leur propre alphabet et langue unique, et ont marqué l'histoire de l'art avec leur architecture de tombes en forme de maison gravées dans les falaises rocheuses. Leur passion pour la liberté était si forte que lorsque Xanthos a été assiégée par les Perses, ses habitants ont incendié la ville à deux reprises plutôt que de se rendre. Cet esprit distinctif se fait encore sentir dans le premier bâtiment d'assemblée démocratique au monde à Patara et dans les inscriptions qui ont survécu jusqu'à aujourd'hui.">Les Lyciens ont développé leur propre alphabet et langue unique, et ont marqué l'histoire de l'art avec leur architecture de tombes en forme de maison gravées dans les falaises rocheuses. Leur passion pour la liberté était si forte que lorsque Xanthos a été assiégée par les Perses, ses habitants ont incendié la ville à deux reprises plutôt que de se rendre. Cet esprit distinctif se fait encore sentir dans le premier bâtiment d'assemblée démocratique au monde à Patara et dans les inscriptions qui ont survécu jusqu'à aujourd'hui.</p>
+        <p class="text-sea-700/80 text-sm md:text-base mt-4 leading-relaxed" data-en="The Xanthos-Letoon double site has been on the UNESCO World Heritage List since 1988. Patara and Myra continue their candidacy on the UNESCO tentative list. The 540 km Lycian Way is the legendary hiking trail that connects the traces of this civilisation." data-de="Die Doppelstätte Xanthos-Letoon steht seit 1988 auf der UNESCO-Welterbeliste. Patara und Myra sind weiterhin auf der UNESCO-Tentativliste vertreten. Der 540 km lange Lykische Weg ist der legendäre Wanderweg, der die Spuren dieser Zivilisation verbindet." data-ru="Двойной объект Ксанф-Летоон включен в Список всемирного наследия ЮНЕСКО с 1988 года. Патара и Мира продолжают свою кандидатуру в предварительном списке ЮНЕСКО. Ликийский путь протяженностью 540 км — это легендарный пешеходный маршрут, соединяющий следы этой цивилизации." data-fr="Le site double Xanthos-Létôon figure sur la Liste du patrimoine mondial de l'UNESCO depuis 1988. Patara et Myra poursuivent leur candidature sur la liste indicative de l'UNESCO. Le Lycian Way de 540 km est le sentier de randonnée légendaire qui relie les traces de cette civilisation.">Le site double Xanthos-Létôon figure sur la Liste du patrimoine mondial de l'UNESCO depuis 1988. Patara et Myra poursuivent leur candidature sur la liste indicative de l'UNESCO. Le Lycian Way de 540 km est le sentier de randonnée légendaire qui relie les traces de cette civilisation.</p>
+        <!-- 6 büyük kent vurgusu -->
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Xanthos</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Patara</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Tlos</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Pinara</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Myra</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sun-400/12 text-sun-700 border border-sun-400/30">Olympos</span>
+          <span class="px-3 py-1.5 rounded-full text-xs font-bold bg-sea-600/10 text-sea-600 border border-sea-200 flex items-center gap-1">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="m9 12 2 2 4-4"></path></svg>
+            <span data-en="UNESCO Heritage" data-de="UNESCO-Welterbe" data-ru="Всемирное наследие ЮНЕСКО" data-fr="Patrimoine UNESCO">Patrimoine UNESCO</span>
+          </span>
+        </div>
+        <!-- İstatistik kutuları -->
+        <div class="grid grid-cols-3 gap-3 mt-6">
+          <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
+            <div class="font-display font-extrabold text-2xl text-sun-500">3200+</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="Years of History" data-de="Jahre Geschichte" data-ru="Лет истории" data-fr="Années d'histoire">Années d'histoire</div>
+          </div>
+          <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
+            <div class="font-display font-extrabold text-2xl text-sun-500">16</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="Ancient Cities" data-de="Antike Städte" data-ru="Древние города" data-fr="Villes antiques">Villes antiques</div>
+          </div>
+          <div class="bg-sea-50 rounded-xl p-3 text-center border border-sea-100">
+            <div class="font-display font-extrabold text-2xl text-sun-500">2</div>
+            <div class="text-[11px] text-sea-700/60 uppercase tracking-wide mt-0.5" data-en="UNESCO Sites" data-de="UNESCO-Stätten" data-ru="Объекты ЮНЕСКО" data-fr="Sites UNESCO">Sites UNESCO</div>
+          </div>
+        </div>
+      </div>
+      <!-- Görsel -->
+      <div class="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_-8px_rgba(13,58,95,0.4)]" style="aspect-ratio:3/4;">
+        <img width="1280" height="853" loading="lazy" decoding="async" src="/assets/img/d018efe8f905.webp" data-en-alt="Patara Ancient City — Lycian Civilisation" alt="Cité antique de Patara — Civilisation lycienne" class="w-full h-full object-cover" onerror="this.src='/assets/img/0a51fdbbfe75.webp'" data-de-alt="Antike Stadt Patara – Lykische Zivilisation" data-ru-alt="Древний город Патара — ликийская цивилизация" data-fr-alt="Cité antique de Patara — Civilisation lycienne">
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/75 via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 text-white">
+          <div class="text-xs uppercase tracking-widest opacity-70 font-semibold mb-1" data-en="Patara Ancient City" data-de="Antike Stadt Patara" data-ru="Древний город Патара" data-fr="Patara, ville antique">Patara, ville antique</div>
+          <div class="font-display font-extrabold text-xl leading-tight" data-en="The world's first democratic assembly building" data-de="Das weltweit erste demokratische Versammlungsgebäude" data-ru="Здание первого в мире демократического собрания" data-fr="Le premier bâtiment d'assemblée démocratique au monde">Le premier bâtiment d'assemblée démocratique au monde</div>
+          <div class="mt-2 inline-flex items-center gap-1 bg-sun-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" data-en="★ UNESCO World Heritage" data-de="★ UNESCO-Welterbe" data-ru="★ Всемирное наследие ЮНЕСКО" data-fr="★ Patrimoine mondial UNESCO">★ Patrimoine mondial UNESCO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÜM ANTİK KENTLER — Likya Mirası (16 kentin tamamı) -->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Lycian Heritage" data-de="Lykisches Erbe" data-ru="Ликийское наследие" data-fr="Patrimoine lycien">Patrimoine lycien</span>
+      </div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold text-sea-800" data-en="All Ancient Cities" data-de="Alle Antiken Städte" data-ru="Все древние города" data-fr="Toutes les villes antiques">Toutes les villes antiques</h2>
+      <p class="text-sea-700/70 mt-2 max-w-2xl mx-auto" data-en="All 16 ancient cities around Kalkan, Kaş and Demre — from little-known village sites to UNESCO World Heritage areas." data-de="Alle 16 antiken Städte rund um Kalkan, Kaş und Demre — von weniger bekannten Dorfstätten bis zu UNESCO-Welterbestätten." data-ru="Все 16 древних городов вокруг Калкана, Каша и Демре — от малоизвестных поселений до объектов Всемирного наследия ЮНЕСКО." data-fr="Les 16 villes antiques autour de Kalkan, Kaş et Demre — des petits sites villages méconnus aux zones du patrimoine mondial de l'UNESCO.">Les 16 villes antiques autour de Kalkan, Kaş et Demre — des petits sites villages méconnus aux zones du patrimoine mondial de l'UNESCO.</p>
+    </div>
+    <div id="all-kents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div class="col-span-full text-center py-8 text-sea-700/50 text-sm">Chargement...</div>
+    </div>
+  </div>
+</section>
+
+<!-- HANGİ ANTİK KENTE GİTMELİ — Bilgi Kutusu -->
+<section class="bg-[#dce6ef] py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="bg-white rounded-2xl shadow-sm border border-sea-100 overflow-hidden">
+      <!-- Başlık -->
+      <div class="bg-sea-800 text-white px-8 py-7">
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-400 font-bold mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-400"></span> <span data-en="Visitor Guide" data-de="Besucherführer" data-ru="Путеводитель для посетителей" data-fr="Guide du visiteur">Guide du visiteur</span>
+        </div>
+        <h2 class="font-display text-2xl md:text-3xl font-extrabold" data-en="Which Ancient City Should I Visit?" data-de="Welche antike Stadt sollte ich besuchen?" data-ru="Какой древний город мне посетить?" data-fr="Quelle ville antique devrais-je visiter ?">Quelle ville antique devrais-je visiter ?</h2>
+        <p class="text-white/70 mt-1 text-sm" data-en="A comparative guide by ease of access, visit duration and budget." data-de="Ein Vergleichsleitfaden nach Zugänglichkeit, Besuchsdauer und Budget." data-ru="Сравнительный путеводитель по удобству доступа, продолжительности визита и бюджету." data-fr="Un guide comparatif selon la facilité d'accès, la durée de la visite et le budget.">Un guide comparatif selon la facilité d'accès, la durée de la visite et le budget.</p>
+      </div>
+      <!-- Tablo -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-sea-50 text-left">
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="City" data-de="Stadt" data-ru="Город" data-fr="Ville">Ville</th>
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="Distance" data-de="Entfernung" data-ru="Расстояние" data-fr="Distance">Distance</th>
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="Visit Duration" data-de="Besuchsdauer" data-ru="Продолжительность визита" data-fr="Durée de la visite">Durée de la visite</th>
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="Access" data-de="Zugang" data-ru="Доступ" data-fr="Accès">Accès</th>
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="Best For?" data-de="Am besten für?" data-ru="Лучше всего подходит для?" data-fr="Idéal pour ?">Idéal pour ?</th>
+              <th class="px-4 py-3 font-display font-bold text-sea-800 tracking-wide" data-en="Entry" data-de="Eintrittspreis" data-ru="Вход" data-fr="Entrée">Entrée</th>
+            </tr>
+          </thead>
+          <tbody id="guide-tbody">
+            <tr><td colspan="6" class="px-4 py-6 text-center text-sea-700/50">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Alt not -->
+      <div class="px-8 py-5 border-t border-sea-100 bg-sea-50/50 flex flex-wrap gap-4 text-xs text-sea-700/70">
+        <span class="flex items-center gap-1.5"><span style="background:#dcfce7;color:#15803d;padding:2px 8px;border-radius:9999px;font-weight:600;" data-en="Easy" data-de="Leicht" data-ru="Легкий" data-fr="Facile">Facile</span> <span data-en="Direct by car, parking available" data-de="Direkt mit dem Auto, Parkplatz vorhanden" data-ru="Прямой доступ на машине, парковка доступна" data-fr="Directement en voiture, parking disponible">Directement en voiture, parking disponible</span></span>
+        <span class="flex items-center gap-1.5"><span style="background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:9999px;font-weight:600;" data-en="Medium" data-de="Mittel" data-ru="Средний" data-fr="Moyen">Moyen</span> <span data-en="1+ hour or mountain road" data-de="1+ Stunde oder Bergstraße" data-ru="1+ час или горная дорога" data-fr="1+ heure ou route de montagne">1+ heure ou route de montagne</span></span>
+        <span class="flex items-center gap-1.5"><span style="background:#fee2e2;color:#b91c1c;padding:2px 8px;border-radius:9999px;font-weight:600;" data-en="Hard" data-de="Schwierig" data-ru="Сложный" data-fr="Difficile">Difficile</span> <span data-en="Boat or long hike required" data-de="Boot oder lange Wanderung erforderlich" data-ru="Требуется лодка или длительный поход" data-fr="Bateau ou longue randonnée requise">Bateau ou longue randonnée requise</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL MODAL -->
+<div id="detail-modal" class="detail-modal" onclick="if(event.target.id==='detail-modal') closeDetail()">
+  <div class="detail-card" id="detail-content"></div>
+</div>
+
+<!-- LİKYA YOLU BİLGİ SECTION -->
+<section class="bg-gradient-to-b from-sea-50 to-white py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Başlık + Fotoğraf -->
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Turkey's First Long-Distance Trail" data-de="Türkeis erster Weitwanderweg" data-ru="Первый в Турции маршрут дальних расстояний" data-fr="Le premier sentier de longue distance de Turquie">Le premier sentier de longue distance de Turquie</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-5xl font-extrabold text-sea-800 leading-tight" data-en="Lycian Way" data-de="Lykischer Weg" data-ru="Ликийский путь" data-fr="Lycian Way">Lycian Way</h2>
+        <p class="text-sea-700 text-lg mt-4 leading-relaxed" data-en="540 km legendary hiking trail from Fethiye to Antalya, passing through traces of ancient civilisation. Founded by Kate Clow in 1999, voted <strong>&quot;One of the 10 most beautiful walking routes in the world&quot;</strong> by the Sunday Times.">540 km legendary hiking trail from Fethiye to Antalya, passing through traces of ancient civilisation. Founded by Kate Clow in 1999, voted &lt;strong&gt;"One of the 10 most beautiful walking routes in the world"&lt;/strong&gt; by the Sunday Times.</p>
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <div class="bg-white rounded-xl p-4 border border-sea-100 shadow-sm">
+            <div class="text-3xl font-extrabold font-display text-sun-500">540 km</div>
+            <div class="text-xs text-sea-700/70 uppercase tracking-wider mt-1" data-en="Total Distance" data-de="Gesamtstrecke" data-ru="Общее расстояние" data-fr="Distance totale">Distance totale</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 border border-sea-100 shadow-sm">
+            <div class="text-3xl font-extrabold font-display text-sun-500">19</div>
+            <div class="text-xs text-sea-700/70 uppercase tracking-wider mt-1" data-en="Main Stages" data-de="Hauptetappen" data-ru="Основные этапы" data-fr="Étapes principales">Étapes principales</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 border border-sea-100 shadow-sm">
+            <div class="text-3xl font-extrabold font-display text-sun-500">25-30</div>
+            <div class="text-xs text-sea-700/70 uppercase tracking-wider mt-1" data-en="Days to Complete" data-de="Tage zum Abschließen" data-ru="Дней на прохождение" data-fr="Jours pour compléter">Jours pour compléter</div>
+          </div>
+          <div class="bg-white rounded-xl p-4 border border-sea-100 shadow-sm">
+            <div class="text-3xl font-extrabold font-display text-sun-500" data-en="Feb–May" data-de="Feb.–Mai" data-ru="Февраль–май" data-fr="Février–Mai">Février–Mai</div>
+            <div class="text-xs text-sea-700/70 uppercase tracking-wider mt-1" data-en="Best Season" data-de="Beste Jahreszeit" data-ru="Лучший сезон" data-fr="Meilleure saison">Meilleure saison</div>
+          </div>
+        </div>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden shadow-[0_8px_40px_-8px_rgba(13,58,95,0.4)]" style="aspect-ratio:4/3;">
+        <img width="1280" height="853" loading="lazy" decoding="async" src="/assets/img/d018efe8f905.webp" alt="La Voie de Lycie" class="w-full h-full object-cover" onerror="this.src='/assets/img/0c248266235a.webp'">
+        <div class="absolute inset-0 bg-gradient-to-t from-sea-900/60 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 text-white">
+          <div class="text-xs uppercase tracking-widest opacity-80" data-en="Lycian Way" data-de="Lykischer Weg" data-ru="Ликийский путь" data-fr="Lycian Way">Lycian Way</div>
+          <div class="font-display font-extrabold text-2xl" data-en="Patara — Kalkan stage" data-de="Etappe Patara — Kalkan" data-ru="Этап Патара — Калкан" data-fr="Étape Patara — Kalkan">Étape Patara — Kalkan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 bilgi kutusu -->
+    <div class="grid md:grid-cols-4 gap-6 mt-12">
+      <div class="bg-white rounded-xl p-5 border border-sea-100">
+        <div class="text-2xl mb-2">📅</div>
+        <h3 class="font-display font-bold text-sea-800 mb-2" data-en="Best Time" data-de="Beste Zeit" data-ru="Лучшее время" data-fr="Meilleur moment">Meilleur moment</h3>
+        <p class="text-sm text-sea-700/80" data-en="February–May and September–November. Summer months are very hot; not recommended except on mountain stages." data-de="Februar–Mai und September–November. Die Sommermonate sind sehr heiß; nicht empfohlen außer auf Bergetappen." data-ru="Февраль–май и сентябрь–ноябрь. Летние месяцы очень жаркие; не рекомендуются, кроме горных этапов." data-fr="Février–Mai et septembre–novembre. Les mois d'été sont très chauds ; non recommandé sauf sur les étapes de montagne.">Février–Mai et septembre–novembre. Les mois d'été sont très chauds ; non recommandé sauf sur les étapes de montagne.</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-sea-100">
+        <div class="text-2xl mb-2">🥾</div>
+        <h3 class="font-display font-bold text-sea-800 mb-2" data-en="Difficulty" data-de="Schwierigkeitsgrad" data-ru="Сложность" data-fr="Difficulté">Difficulté</h3>
+        <p class="text-sm text-sea-700/80" data-en="Mixed. From flat coastal stages to mountain ascents. Generally moderate-to-hard overall." data-de="Gemischt. Von flachen Küstenetappen bis zu Berganstiegen. Insgesamt moderat bis schwierig." data-ru="Смешанная. От плоских прибрежных этапов к горным подъемам. В целом средне-высокой сложности." data-fr="Mixte. Des étapes côtières plates aux ascensions de montagne. Globalement modéré à difficile.">Mixte. Des étapes côtières plates aux ascensions de montagne. Globalement modéré à difficile.</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-sea-100">
+        <div class="text-2xl mb-2">💧</div>
+        <h3 class="font-display font-bold text-sea-800 mb-2" data-en="Water" data-de="Wasser" data-ru="Вода" data-fr="Eau">Eau</h3>
+        <p class="text-sm text-sea-700/80" data-en="Carry at least 3 litres. On some stages there is no spring or village for 6–8 hours." data-de="Mindestens 3 Liter mitnehmen. Auf einigen Etappen gibt es 6–8 Stunden lang keine Quelle oder kein Dorf." data-ru="Берите с собой минимум 3 литра. На некоторых этапах нет источника или поселения в течение 6–8 часов." data-fr="Portez au moins 3 litres. Sur certaines étapes, il n'y a aucune source ou village pendant 6–8 heures.">Portez au moins 3 litres. Sur certaines étapes, il n'y a aucune source ou village pendant 6–8 heures.</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-sea-100">
+        <div class="text-2xl mb-2">🏛️</div>
+        <h3 class="font-display font-bold text-sea-800 mb-2" data-en="Waymarking" data-de="Markierung" data-ru="Маркировка маршрута" data-fr="Balisage">Balisage</h3>
+        <p class="text-sm text-sea-700/80" data-en="White-red GR (Grande Randonnée) waymarks throughout the entire route." data-de="Weiß-rote GR-Markierungen (Grande Randonnée) entlang der gesamten Route." data-ru="Красно-белые метки GR (Grande Randonnée) на всем протяжении маршрута." data-fr="Marques de sentier blanc-rouge GR (Grande Randonnée) sur tout l'itinéraire.">Marques de sentier blanc-rouge GR (Grande Randonnée) sur tout l'itinéraire.</p>
+      </div>
+    </div>
+
+    <!-- Kalkan-Kaş bölgesi etapları -->
+    <div class="mt-16">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Regional Guide" data-de="Regionalführer" data-ru="Региональный гид" data-fr="Guide régional">Guide régional</span>
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl font-extrabold text-sea-800" data-en="Kalkan &amp; Kaş Region Stages" data-de="Etappen in der Region Kalkan &amp; Kaş" data-ru="Этапы региона Калкан и Каш" data-fr="Étapes région Kalkan &amp; Kaş">Étapes région Kalkan &amp; Kaş</h3>
+        <p class="text-sea-700/70 mt-1" data-en="The most beautiful stages of the Lycian Way are in this region. Half-day to full-day walks." data-de="Die schönsten Etappen des Lykischen Wegs befinden sich in dieser Region. Halbtags- bis Ganztageswanderungen." data-ru="Самые красивые этапы Ликийского пути находятся в этом регионе. Прогулки на полдня и на полный день." data-fr="Les plus belles étapes de la Lycian Way se trouvent dans cette région. Randonnées de demi-journée à journée complète.">Les plus belles étapes de la Lycian Way se trouvent dans cette région. Randonnées de demi-journée à journée complète.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="lycian-stages">
+        <!-- JS ile dinamik yüklenir -->
+        <div class="col-span-full text-center py-8 text-sea-700/50 text-sm">Les étapes sont en cours de chargement...</div>
+      </div>
+    </div>
+
+    <!-- Tüm 19 Etap listesi -->
+    <div class="mt-16">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-sun-500 font-bold mb-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-sun-500"></span> <span data-en="Full Route" data-de="Vollständige Route" data-ru="Полный маршрут" data-fr="Itinéraire complet">Itinéraire complet</span>
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl font-extrabold text-sea-800" data-en="Fethiye → Antalya: 19 Stages" data-de="Fethiye → Antalya: 19 Etappen" data-ru="Фетхие → Анталья: 19 этапов" data-fr="Fethiye → Antalya : 19 étapes">Fethiye → Antalya : 19 étapes</h3>
+        <p class="text-sea-700/70 mt-1" data-en="The complete route from start to finish — for your energy and time planning." data-de="Die komplette Route von Anfang bis Ende – zur Planung Ihrer Energie und Zeit." data-ru="Полный маршрут от начала до конца — для планирования вашей энергии и времени." data-fr="L'itinéraire complet du début à la fin — pour la planification de votre énergie et votre temps.">L'itinéraire complet du début à la fin — pour la planification de votre énergie et votre temps.</p>
+      </div>
+      <div class="overflow-x-auto rounded-xl border border-sea-100 bg-white shadow-sm">
+        <table class="w-full text-sm" id="all-stages-table">
+          <thead>
+            <tr class="bg-sea-800 text-white text-left">
+              <th class="px-4 py-3 font-display font-bold tracking-wide">#</th>
+              <th class="px-4 py-3 font-display font-bold tracking-wide" data-en="Start" data-de="Start" data-ru="Начало" data-fr="Départ">Départ</th>
+              <th class="px-4 py-3 font-display font-bold tracking-wide" data-en="End" data-de="Ende" data-ru="Конец" data-fr="Arrivée">Arrivée</th>
+              <th class="px-4 py-3 font-display font-bold tracking-wide" data-en="Distance" data-de="Entfernung" data-ru="Расстояние" data-fr="Distance">Distance</th>
+              <th class="px-4 py-3 font-display font-bold tracking-wide" data-en="Duration" data-de="Dauer" data-ru="Продолжительность" data-fr="Durée">Durée</th>
+              <th class="px-4 py-3 font-display font-bold tracking-wide" data-en="Difficulty" data-de="Schwierigkeitsgrad" data-ru="Сложность" data-fr="Difficulté">Difficulté</th>
+            </tr>
+          </thead>
+          <tbody id="all-stages-tbody">
+            <tr><td colspan="6" class="px-4 py-6 text-center text-sea-700/50">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Kaynaklar -->
+    <div class="mt-16 bg-sea-800 text-white rounded-2xl p-8">
+      <h3 class="font-display text-2xl font-extrabold mb-6" data-en="Useful Resources" data-de="Nützliche Ressourcen" data-ru="Полезные ресурсы" data-fr="Ressources utiles">Ressources utiles</h3>
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div>
+          <div class="text-sun-400 font-bold mb-2" data-en="📕 Official Book" data-de="📕 Offizielles Buch" data-ru="📕 Официальная книга" data-fr="📕 Guide officiel">📕 Guide officiel</div>
+          <p class="opacity-80" data-en="Kate Clow — <em>&quot;The Lycian Way&quot;</em> (Upcountry Books). The most comprehensive and up-to-date trail guide. GPS coordinates included.">Kate Clow — &lt;em&gt;"The Lycian Way"&lt;/em&gt; (Upcountry Books). The most comprehensive and up-to-date trail guide. GPS coordinates included.</p>
+        </div>
+        <div>
+          <div class="text-sun-400 font-bold mb-2" data-en="🌐 Official Website" data-de="🌐 Offizielle Website" data-ru="🌐 Официальный сайт" data-fr="🌐 Site officiel">🌐 Site officiel</div>
+          <p class="opacity-80" data-en="<a href=&quot;https://cultureroutesinturkey.com&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; class=&quot;hover:text-sun-400 underline underline-offset-2&quot;>cultureroutesinturkey.com</a> — current routes, GPS track downloads, accommodation list.">&lt;a href="https://cultureroutesinturkey.com" target="_blank" rel="noopener" class="hover:text-sun-400 underline underline-offset-2"&gt;cultureroutesinturkey.com&lt;/a&gt; — current routes, GPS track downloads, accommodation list.</p>
+        </div>
+        <div>
+          <div class="text-sun-400 font-bold mb-2" data-en="📱 GPS Apps" data-de="📱 GPS-Apps" data-ru="📱 GPS-приложения" data-fr="📱 Applications GPS">📱 Applications GPS</div>
+          <p class="opacity-80" data-en="Maps.me or Komoot — offline map support + GR waypoints. Download in advance; signal is weak in rural areas." data-de="Maps.me oder Komoot – Offline-Kartensupport + GR-Wegpunkte. Vorab herunterladen; das Signal ist in ländlichen Gebieten schwach." data-ru="Maps.me или Komoot — поддержка офлайн-карт + точки маршрута GR. Загрузите заранее; сигнал слабый в сельских районах." data-fr="Maps.me ou Komoot — support de cartes hors ligne + points de passage GR. Téléchargez à l'avance ; le signal est faible dans les zones rurales.">Maps.me ou Komoot — support de cartes hors ligne + points de passage GR. Téléchargez à l'avance ; le signal est faible dans les zones rurales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter" data-de="Newsletter" data-ru="Рассылка новостей" data-fr="Infolettre">Infolettre</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Get news from Kalkan" data-de="Nachrichten aus Kalkan" data-ru="Новости из Калкана" data-fr="Recevez les actualités de Kalkan">Recevez les actualités de Kalkan</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guide content, seasonal deals and events — twice a month, brief." data-de="Neue Führungsinhalte, saisonale Angebote und Veranstaltungen – zweimal monatlich, kurz gefasst." data-ru="Новый контент гайдов, сезонные предложения и события — два раза в месяц, кратко." data-fr="Nouveau contenu de guide, offres saisonnières et événements — deux fois par mois, court.">Nouveau contenu de guide, offres saisonnières et événements — deux fois par mois, court.</p>
+      </div>
+      <div data-newsletter-mount=""></div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+    <div class="col-span-2">
+      <a href="/fr/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quiet but powerful — local knowledge, curated recommendations, professional service." data-de="Ruhig aber kraftvoll – lokales Wissen, kuratierte Empfehlungen, professioneller Service." data-ru="Тихо, но мощно — местные знания, тщательно подобранные рекомендации, профессиональный сервис." data-fr="Tranquille mais puissant — connaissance locale, recommandations curées, service professionnel.">Tranquille mais puissant — connaissance locale, recommandations curées, service professionnel.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore" data-de="Erkunden" data-ru="Исследовать" data-fr="Explorer">Explorer</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/fr/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Plages</a></li>
+        <li><a class="hover:text-sun-400" href="/fr/restoranlar.html" data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restaurants</a></li>
+        <li><a class="hover:text-sun-400" href="/fr/turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Tours">Tours</a></li>
+        <li><a class="hover:text-sun-400" href="/fr/antik-kentler.html" data-en="Ancient Cities" data-de="Antike Städte" data-ru="Древние города" data-fr="Villes anciennes">Villes anciennes</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Support" data-de="Unterstützung" data-ru="Поддержка" data-fr="Support">Support</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/fr/hizmetler.html" data-en="Services" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Services</a></li>
+        <li><a class="hover:text-sun-400" href="/fr/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Actualités</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger="">Concierge</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
+    <div data-en="© 2026 Kalkan Info — All rights reserved." data-de="© 2026 Kalkan Info – Alle Rechte vorbehalten." data-ru="© 2026 Kalkan Info — все права защищены." data-fr="© 2026 Kalkan Info — Tous droits réservés.">© 2026 Kalkan Info — Tous droits réservés.</div>
+  </div>
+</footer>
+
+<script src="/js/render.js?v=20260517a"></script>
+<script src="/js/pwa.js?v=20260516c" defer=""></script>
+<script src="/js/page-antik-kentler.js?v=20260519a" defer=""></script>
+<script src="/js/newsletter.js" defer=""></script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="fr";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/antik-kentler.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

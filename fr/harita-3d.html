@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkan'ı Yukarıdan İzle — 3B Canlı Harita | kalkaninfo.com</title>
+<meta name="description" content="Kalkan'ın kuş bakışı 3B canlı haritası: mekanların konumları, restoranlar, oteller ve Instagram bağlantıları. Kalkan'ı yukarıdan keşfet.">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#E8A020; --blue:#4A9EF5; --green:#4ADE80; --purple:#8B5CF6; --bg:#020510; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Open Sans',sans-serif;background:var(--bg);color:#fff;overflow:hidden}
+  #map{position:absolute;inset:0}
+  /* Üst başlık */
+  .topbar{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;background:linear-gradient(180deg,rgba(2,5,16,0.85),transparent);pointer-events:none}
+  .brand{font-family:'Montserrat';font-weight:800;font-size:18px;letter-spacing:.02em;pointer-events:auto}
+  .brand span{color:var(--gold)}
+  .title-chip{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    background:rgba(74,158,245,0.18);border:1px solid rgba(74,158,245,0.4);color:#bcdcff;padding:7px 14px;border-radius:99px;pointer-events:auto}
+  /* Kontrol paneli */
+  .panel{position:absolute;left:16px;bottom:16px;z-index:10;background:rgba(6,12,26,0.82);backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 16px;max-width:280px}
+  .panel h3{font-family:'Montserrat';font-weight:700;font-size:13px;margin-bottom:8px}
+  .legend{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
+  .legend .row{display:flex;align-items:center;gap:8px}
+  .dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+  .btns{display:flex;gap:8px;margin-top:12px}
+  .btn{flex:1;font-family:'Montserrat';font-weight:700;font-size:12px;cursor:pointer;border:1px solid rgba(255,255,255,0.18);
+    background:rgba(255,255,255,0.06);color:#fff;padding:9px;border-radius:9px;transition:.2s}
+  .btn:hover{background:rgba(255,255,255,0.14)}
+  .btn.active{background:var(--blue);border-color:var(--blue)}
+  .count{font-size:11px;color:#7fa;margin-top:8px}
+  /* Popup kart */
+  .maplibregl-popup-content{background:#0a1428;color:#fff;border-radius:14px;padding:0;overflow:hidden;
+    border:1px solid rgba(255,255,255,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.6);width:260px;font-family:'Open Sans'}
+  .maplibregl-popup-close-button{color:#fff;font-size:20px;padding:2px 8px}
+  .maplibregl-popup-tip{border-top-color:#0a1428!important;border-bottom-color:#0a1428!important}
+  .card-img{height:120px;background-size:cover;background-position:center;background-color:#12203a}
+  .card-body{padding:12px 14px}
+  .card-body h4{font-family:'Montserrat';font-weight:700;font-size:15px;margin-bottom:3px}
+  .card-meta{font-size:12px;color:#9db4d4;margin-bottom:8px}
+  .card-rating{color:var(--gold);font-weight:700}
+  .card-actions{display:flex;gap:8px;margin-top:8px}
+  .card-actions a{flex:1;text-align:center;text-decoration:none;font-family:'Montserrat';font-weight:700;font-size:11.5px;
+    padding:8px;border-radius:8px}
+  .a-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
+  .a-map{background:rgba(255,255,255,0.1);color:#fff}
+  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:20;
+    background:var(--bg);font-family:'Montserrat';font-weight:700;letter-spacing:.1em;color:#8ab}
+  @media(max-width:600px){.panel{max-width:200px;padding:11px 12px}.title-chip{display:none}}
+</style>
+
+<link rel="canonical" href="https://kalkaninfo.com/fr/harita-3d">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/harita-3d">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/harita-3d">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/harita-3d">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/harita-3d">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/harita-3d">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/harita-3d"></head>
+<body>
+<div id="map"></div>
+<div class="loading" id="loading">KALKAN 3B YÜKLENİYOR…</div>
+
+<div class="topbar">
+  <div class="brand">KALKAN<span>INFO</span></div>
+  <div class="title-chip">🛰️ Kalkan'ı Yukarıdan İzle</div>
+</div>
+
+<div class="panel">
+  <h3>Mekanlar</h3>
+  <div class="legend">
+    <div class="row"><span class="dot" style="color:#E8A020;background:#E8A020"></span> Restaurant</div>
+    <div class="row"><span class="dot" style="color:#4A9EF5;background:#4A9EF5"></span> Otel</div>
+    <div class="row"><span class="dot" style="color:#8B5CF6;background:#8B5CF6"></span> Villa</div>
+  </div>
+  <div class="btns">
+    <button class="btn active" id="spinBtn">⟲ Döndür</button>
+    <button class="btn" id="resetBtn">↺ Kalkan</button>
+  </div>
+  <div class="count" id="count"></div>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const KALKAN = { center: [29.4130, 36.2650], zoom: 14.4, pitch: 66, bearing: -22 };
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    sources: {
+      sat: { type:'raster', tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], tileSize:256, maxzoom:19, attribution:'Esri, Maxar' },
+      dem: { type:'raster-dem', tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'], encoding:'terrarium', tileSize:256, maxzoom:15 }
+    },
+    layers: [ { id:'sat', type:'raster', source:'sat' } ]
+  },
+  center: KALKAN.center, zoom: KALKAN.zoom, pitch: KALKAN.pitch, bearing: KALKAN.bearing,
+  maxPitch: 80, attributionControl: true
+});
+map.addControl(new maplibregl.NavigationControl({ visualizePitch:true }), 'top-right');
+
+// ── otomatik döndürme ("canlı yukarıdan izle") ──
+let spinning = true;
+function spin(){ if(!spinning) return; map.setBearing((map.getBearing()+0.06)); requestAnimationFrame(spin); }
+document.getElementById('spinBtn').onclick = (e)=>{ spinning=!spinning; e.target.classList.toggle('active',spinning); if(spinning) spin(); };
+document.getElementById('resetBtn').onclick = ()=> map.flyTo({ ...KALKAN, duration:2000 });
+
+// ── mekanları yükle ──
+const COLORS = { Restoran:'#E8A020', Otel:'#4A9EF5', Villa:'#8B5CF6' };
+const esc = s => String(s==null?'':s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+function coordOf(v){ const c=v.coordinates||v.geo; if(c&&c.longitude&&c.latitude) return [c.longitude,c.latitude]; if(v.lng&&v.lat) return [v.lng,v.lat]; return null; }
+
+async function loadSet(file, kind){
+  try{ const d = await fetch(file).then(r=>r.json()); const a = Array.isArray(d)?d:(d.items||d.data||Object.values(d).find(Array.isArray)||[]);
+    return a.filter(x=>x&&x.name).map(x=>({...x,_kind:kind})); }catch(e){ return []; }
+}
+function cardHTML(v){
+  const photo = (Array.isArray(v.gallery)&&v.gallery[0]) || v.image || '';
+  const rating = v.rating ? `<span class="card-rating">★ ${esc(v.rating)}</span>${v.reviewCount?` · ${esc(v.reviewCount)} yorum`:''}` : '';
+  const ig = v.instagram ? `<a class="a-ig" href="https://instagram.com/${esc(String(v.instagram).replace(/^@/,''))}" target="_blank" rel="noopener">📸 Instagram</a>` : '';
+  const detail = v.detailPath ? `<a class="a-map" href="${esc(v.detailPath)}" target="_blank">Detay</a>` : `<a class="a-map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name+' Kalkan')}" target="_blank">Haritada</a>`;
+  return `${photo?`<div class="card-img" style="background-image:url('${esc(photo)}')"></div>`:''}
+    <div class="card-body"><h4>${esc(v.name)}</h4>
+      <div class="card-meta">${esc(v.cuisine||v.category||v._kind)}${v.location?` · ${esc(v.location)}`:''}</div>
+      <div>${rating}</div>
+      <div class="card-actions">${ig}${detail}</div></div>`;
+}
+
+// güvenlik: 7sn içinde load olmazsa loading ekranını gizle (harita yine de kullanılabilir)
+setTimeout(()=>{ const l=document.getElementById('loading'); if(l) l.style.display='none'; }, 7000);
+
+map.on('load', async ()=>{
+  document.getElementById('loading').style.display='none';
+  // Terrain + sky'ı load SONRASI ekle (bloke etmesin) — hata olursa düz eğik uydu kalır
+  try { map.setTerrain({ source:'dem', exaggeration:1.5 }); } catch(e){}
+  try { map.setSky({ 'sky-color':'#0a1a3a','sky-horizon-blend':0.5,'horizon-color':'#88aadd','horizon-fog-blend':0.6,'fog-color':'#0a1428','fog-ground-blend':0.4 }); } catch(e){}
+  spin();
+  const all = [].concat(
+    await loadSet('/data/restoranlar.json','Restoran'),
+    await loadSet('/data/oteller.json','Otel'),
+    await loadSet('/data/villalar.json','Villa'),
+  );
+  let n=0;
+  for(const v of all){
+    const c = coordOf(v); if(!c) continue; n++;
+    const el = document.createElement('div');
+    el.style.cssText = `width:14px;height:14px;border-radius:50%;cursor:pointer;background:${COLORS[v._kind]||'#fff'};border:2px solid #fff;box-shadow:0 0 10px ${COLORS[v._kind]||'#fff'},0 2px 6px rgba(0,0,0,.6)`;
+    el.onmouseenter=()=>el.style.transform='scale(1.4)'; el.onmouseleave=()=>el.style.transform='scale(1)';
+    new maplibregl.Marker({element:el})
+      .setLngLat(c)
+      .setPopup(new maplibregl.Popup({offset:16,closeButton:true,maxWidth:'260px'}).setHTML(cardHTML(v)))
+      .addTo(map);
+  }
+  document.getElementById('count').textContent = `${n} mekan haritada · Kalkan'ı yukarıdan keşfet`;
+});
+</script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="fr";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/harita-3d.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

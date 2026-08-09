@@ -84,11 +84,13 @@ function detectCategory(t: string): string | null {
 // Kullanıcı mesajından dil sez (5 dil). Kısa/belirsizse null → LLM son mesaja göre karar verir.
 const LANG_NAMES: Record<string, string> = { tr: 'Türkçe', en: 'English', de: 'Deutsch', ru: 'Русский', fr: 'Français' };
 function detectLang(t: string): string | null {
+  // Türkçe-DIŞI ayırt edici sözcükleri ÖNCE kontrol et ("villa/otel" gibi uluslararası kelimeler TR'ye kaymasın)
   if (/[Ѐ-ӿ]/.test(t)) return 'ru';                                   // Kiril
-  if (/[ğışĞİŞ]/.test(t) || /\b(merhaba|selam|nerede|villa|için|nasıl|var mı|müsait|fiyat|kaç|teşekkür|iyi günler)\b/i.test(t)) return 'tr';
-  if (/\b(bonjour|merci|quelle?|où|disponible|nous|votre|réserv|plage|bonsoir|s'?il vous)\b/i.test(t)) return 'fr';
-  if (/\b(hallo|welche|verfügbar|wir|ich|wo|möchten|guten tag|strand|buchen|preis)\b/i.test(t)) return 'de';
-  if (/\b(hello|hi|which|available|we are|your|please|beach|book|price|villa|thanks|good)\b/i.test(t)) return 'en';
+  if (/\b(bonjour|bonsoir|merci|quelles?|où|disponible|nous|votre|réserv|plage|personnes|s'?il vous|c'?est)\b/i.test(t)) return 'fr';
+  if (/\b(hallo|welche|verfügbar|möchten|guten tag|strand|buchen|preis|wir|freie?|verf)\b/i.test(t)) return 'de';
+  if (/\b(hello|which|available|we are|your|please|book|thanks|recommend|free in|for \d+ people)\b/i.test(t)) return 'en';
+  // Türkçe: yalnız TR'ye özgü karakter/sözcükler (uluslararası "villa/otel" YOK)
+  if (/[ğışĞİŞ]/.test(t) || /\b(merhaba|selam|nerede|için|nasıl|var mı|müsait|teşekkür|iyi günler|öner|akşam|yemek)\b/i.test(t)) return 'tr';
   return null;
 }
 
@@ -221,15 +223,25 @@ async function callAnthropic(system: string, messages: Msg[], apiKey: string, mo
   return { text, tokens: d.usage?.output_tokens ?? 0 };
 }
 
-function stubReply(userText: string): string {
-  const t = userText.toLowerCase();
-  if (/(merhaba|selam|hello|hi|hey)/.test(t))
-    return 'Merhaba! Ben Lyra, Kalkan konsiyerjin. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
-  if (/(yemek|restoran|restaurant|aksam|akşam|dinner)/.test(t))
-    return 'Deniz manzarası seversen Zeugma terası akşamüstü çok güzel; daha samimi bir şey istersen The Proper iyi olur. Kaç kişilik bakayım?';
-  if (/(plaj|beach|kumsal)/.test(t))
-    return 'Kalamar sakin ve berrak; hareketli bir gün istersen Kaputaş inanılmaz. Yürüyüş mesafesi mi, arabayla mı olsun?';
-  return 'Şu an sesli beynim bağlanmayı bekliyor ama buradayım — Kalkan\'da yemek, plaj ya da tekne için ne istersin?';
+// Dil-duyarlı stub — tüm LLM sağlayıcı düşerse kullanıcı KENDİ dilinde yanıt alsın (asla yabancıya Türkçe atma)
+const STUB_GENERIC: Record<string, string> = {
+  tr: 'Buradayım! Kalkan\'da yemek, plaj, tekne turu ya da villa için ne istersin?',
+  en: 'I\'m here! Looking for a restaurant, beach, boat tour, or a villa in Kalkan?',
+  de: 'Ich bin da! Suchen Sie ein Restaurant, einen Strand, eine Bootstour oder eine Villa in Kalkan?',
+  ru: 'Я здесь! Что вас интересует в Калкане — ресторан, пляж, морская прогулка или вилла?',
+  fr: 'Je suis là ! Cherchez-vous un restaurant, une plage, une excursion en bateau ou une villa à Kalkan ?',
+};
+function stubReply(userText: string, lang: string): string {
+  if (lang === 'tr') {
+    const t = userText.toLowerCase();
+    if (/(merhaba|selam)/.test(t))
+      return 'Merhaba! Ben Lyra, Kalkan konsiyerjin. Bugün ne planlıyorsun — yemek, plaj, tekne turu?';
+    if (/(yemek|restoran|aksam|akşam)/.test(t))
+      return 'Deniz manzarası seversen Zeugma terası akşamüstü çok güzel; daha samimi bir şey istersen The Proper iyi olur. Kaç kişilik bakayım?';
+    if (/(plaj|kumsal)/.test(t))
+      return 'Kalamar sakin ve berrak; hareketli bir gün istersen Kaputaş inanılmaz. Yürüyüş mesafesi mi, arabayla mı olsun?';
+  }
+  return STUB_GENERIC[lang] ?? STUB_GENERIC.tr;
 }
 
 // ---------------------------------------------------------------------------
@@ -295,10 +307,11 @@ Deno.serve(async (req: Request) => {
       .map(m => ({ role: m.role, content: m.content }));
 
     const grounding = await buildGrounding(supabase, userText);
-    // Dil: mesajdan sez → yoksa istemci lang → yoksa tr. Yanıt dili kullanıcının SON mesajına göre.
-    const replyLang = detectLang(userText) ?? (LANG_NAMES[lang] ? lang : 'tr');
-    const langName = LANG_NAMES[replyLang] ?? 'Türkçe';
-    const langRule = `\n\n⚠️ DİL KURALI (EN ÖNEMLİ): Kullanıcının son mesajının dili = ${langName}. Yanıtını SADECE ${langName} dilinde yaz — tek kelime bile başka dilden karıştırma. "Varsayılan Türkçe" kuralı kullanıcı başka dilde yazınca GEÇERSİZDİR. Yukarıdaki bilgiler Türkçe olsa da açıklamayı ${langName} diline çevir (özel isimleri koru).`;
+    // Dil: BİRİNCİL kural = kullanıcının son mesajının dili (LLM sezer). detectLang yalnız ipucu + stub içindir.
+    const detected = detectLang(userText);
+    const replyLang = detected ?? (LANG_NAMES[lang] ? lang : 'tr'); // stub fallback dili
+    const hint = detected ? ` (kullanıcı büyük olasılıkla ${LANG_NAMES[detected]} yazıyor)` : '';
+    const langRule = `\n\n⚠️ DİL KURALI (EN ÖNEMLİ): Yanıtını kullanıcının EN SON mesajıyla AYNI dilde yaz${hint}. İngilizce yazdıysa İngilizce, Almanca ise Almanca, Rusça ise Rusça, Fransızca ise Fransızca, Türkçe ise Türkçe. "Varsayılan Türkçe" kuralı kullanıcı Türkçe DIŞINDA yazınca GEÇERSİZDİR — asla Türkçe'ye düşme. Tek kelime bile başka dil karıştırma. Bilgiler Türkçe olsa da açıklamayı kullanıcının diline çevir (özel isimleri koru).`;
     const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}. Bugün Kalkan, Türkiye.]${langRule}`;
     const llmMessages: Msg[] = [{ role: 'system', content: systemPrompt }, ...priorMsgs];
 
@@ -313,7 +326,7 @@ Deno.serve(async (req: Request) => {
       try { const r = await callAnthropic(systemPrompt, priorMsgs, anthropicKey, anthropicModel); reply = r.text; tokens = r.tokens; provider = 'anthropic'; }
       catch (e) { errs.push((e as Error).message); }
     }
-    if (!reply) { reply = stubReply(userText); provider = 'stub'; }
+    if (!reply) { reply = stubReply(userText, replyLang); provider = 'stub'; }
     if (provider === 'stub' && errs.length) console.warn('[lyra-chat] tüm LLM başarısız:', errs.join(' | '));
 
     // Asistan yanıtını yaz + konuşmayı güncelle

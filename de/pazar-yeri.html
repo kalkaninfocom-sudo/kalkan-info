@@ -1,0 +1,1221 @@
+<!DOCTYPE html><html lang="de" style="scroll-behavior:smooth;"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<!-- GTM Events -->
+<script src="/js/gtm-events.js" defer=""></script>
+<!-- End GTM Events -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Kalkan Pazar Yeri — İkinci El, Yerel Ürün &amp; Fırsatlar | Kalkan Info</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+<style>
+html, body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0a2e4c;
+  background: #f2f7f4;
+}
+h1, h2, h3, h4, .font-display {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Nav underline effect */
+.underline-grow { position: relative; }
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 3px;
+  background: #e89812;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.underline-grow:hover::after { transform: scaleX(1); }
+.nav-active { color: #f4b53d !important; }
+.nav-active::after { transform: scaleX(1) !important; }
+
+/* Category chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1.5px solid #c8dce8;
+  background: #fff;
+  color: #0a2e4c;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .15s ease, box-shadow .18s ease;
+  white-space: nowrap;
+  user-select: none;
+}
+.chip:hover {
+  background: #0a2e4c;
+  color: #fff;
+  border-color: #0a2e4c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(10, 46, 76, 0.18);
+}
+.chip:focus-visible {
+  outline: 2px solid #0ea5a4;
+  outline-offset: 2px;
+}
+.chip.active {
+  background: #0a2e4c;
+  color: #fff;
+  border-color: #0a2e4c;
+  box-shadow: 0 4px 12px rgba(10, 46, 76, 0.22);
+}
+.chip.active:hover {
+  background: #0d3a5f;
+  border-color: #0d3a5f;
+}
+
+/* Listing cards */
+.listing-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid #dde8f0;
+  box-shadow: 0 2px 8px rgba(10,46,76,0.06), 0 8px 24px -8px rgba(10,46,76,0.10);
+  transition: box-shadow .22s ease, transform .22s ease, border-color .22s ease;
+  display: flex;
+  flex-direction: column;
+}
+.listing-card:hover {
+  box-shadow: 0 4px 16px rgba(10,46,76,0.10), 0 20px 48px -12px rgba(10,46,76,0.22);
+  transform: translateY(-3px);
+  border-color: #9cc0dd;
+}
+.listing-card:focus-within {
+  outline: 2px solid #0ea5a4;
+  outline-offset: 2px;
+}
+
+/* Card image wrapper */
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: #dce6ef;
+}
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.listing-card:hover .card-img-wrap img {
+  transform: scale(1.04);
+}
+.card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,46,76,0.55) 0%, rgba(10,46,76,0.10) 45%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Demo badge */
+.demo-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.88);
+  color: #0a2e4c;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+
+/* Category badge on image */
+.cat-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.92);
+  color: #0a2e4c;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* Card body */
+.card-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0a2e4c;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+.card-desc {
+  font-size: 13px;
+  color: #5d7a8c;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #7a9ab0;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+}
+.card-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0a2e4c;
+  letter-spacing: -0.02em;
+}
+.card-price span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a9ab0;
+  margin-left: 2px;
+}
+
+/* Contact button */
+.btn-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0ea5a4;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .18s ease, transform .15s ease, box-shadow .18s ease;
+  box-shadow: 0 2px 8px rgba(14,165,164,0.22);
+  white-space: nowrap;
+}
+.btn-contact:hover {
+  background: #0891b0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(14,165,164,0.32);
+}
+.btn-contact:focus-visible {
+  outline: 2px solid #0a2e4c;
+  outline-offset: 2px;
+}
+.btn-contact:active {
+  transform: translateY(0);
+}
+
+/* Hero */
+.hero-bg {
+  background: linear-gradient(135deg, #0a2e4c 0%, #0d3d60 40%, #0e4a72 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 70% 30%, rgba(14,165,164,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 80% at 10% 90%, rgba(232,152,18,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* CTA band */
+.cta-band {
+  background: linear-gradient(135deg, #0a2e4c 0%, #0d3a5f 60%, #113d5f 100%);
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 120% at 80% 50%, rgba(232,152,18,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Primary CTA button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #e89812 0%, #f4b53d 100%);
+  color: #0a2e4c;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 13px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(232,152,18,0.35);
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #d4860a 0%, #e89812 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232,152,18,0.42);
+}
+.btn-primary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Empty state */
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: 64px 24px;
+}
+
+/* Result count */
+#result-count {
+  font-size: 13px;
+  color: #7a9ab0;
+  font-weight: 500;
+}
+
+/* Scrollable chip strip on mobile */
+.chip-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.chip-strip::-webkit-scrollbar { display: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-appear {
+  animation: fadeUp .3s ease forwards;
+}
+
+/* Page-load subtle entrance for hero content */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-content { animation: heroIn .5s ease .1s both; }
+
+/* ===== Modal (overlay) ===== */
+.mk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  background: rgba(7, 24, 40, 0.62);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+.mk-overlay.open { display: flex; animation: mkFade .2s ease; }
+@keyframes mkFade { from { opacity: 0; } to { opacity: 1; } }
+.mk-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: 0 24px 80px -12px rgba(7, 24, 40, 0.55);
+  margin: auto;
+  animation: mkPop .28s cubic-bezier(.2,.9,.3,1);
+  overflow: hidden;
+}
+.mk-modal.mk-modal-wide { max-width: 860px; }
+@keyframes mkPop { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+.mk-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; border-bottom: 1px solid #e4edf3;
+  position: sticky; top: 0; background: #fff; z-index: 2;
+}
+.mk-modal-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #0a2e4c; letter-spacing: -0.02em; }
+.mk-close {
+  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+  background: #eef4f8; color: #0a2e4c; border: none; cursor: pointer; transition: background .18s;
+}
+.mk-close:hover { background: #dce6ef; }
+.mk-close:focus-visible { outline: 2px solid #0ea5a4; outline-offset: 2px; }
+.mk-modal-body { padding: 22px; max-height: calc(100vh - 160px); overflow-y: auto; }
+
+/* Gate */
+.mk-gate { text-align: center; padding: 22px 8px; }
+.mk-gate svg { margin: 0 auto 14px; }
+.mk-gate h3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; color: #0a2e4c; }
+.mk-gate p { color: #5d7a8c; font-size: 14px; margin-top: 8px; line-height: 1.6; }
+.mk-gate .btn-primary { margin-top: 18px; }
+
+/* Form */
+.mk-field { margin-bottom: 16px; }
+.mk-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #0d3a5f; margin-bottom: 6px; }
+.mk-input, .mk-textarea, .mk-select {
+  width: 100%; border: 1.5px solid #c8dce8; border-radius: 10px; padding: 10px 12px;
+  font-size: 14px; color: #0a2e4c; background: #fff; outline: none; font-family: 'Inter', sans-serif;
+  transition: border-color .18s, box-shadow .18s;
+}
+.mk-input:focus, .mk-textarea:focus, .mk-select:focus { border-color: #0ea5a4; box-shadow: 0 0 0 3px rgba(14,165,164,0.14); }
+.mk-textarea { min-height: 96px; resize: vertical; }
+.mk-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.mk-row > .mk-field { flex: 1; min-width: 140px; }
+.mk-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #134c79; cursor: pointer; }
+.mk-check input { width: 17px; height: 17px; accent-color: #0ea5a4; cursor: pointer; }
+.mk-required { color: #e0533b; }
+.mk-err { color: #c0392b; font-size: 12px; margin-top: 4px; font-weight: 600; display: none; }
+.mk-err.show { display: block; }
+
+/* Photo uploader */
+.mk-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.mk-photo-thumb { position: relative; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: #dce6ef; border: 1px solid #c8dce8; }
+.mk-photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mk-photo-remove {
+  position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(10,46,76,0.82); color: #fff; border: none; cursor: pointer; font-size: 14px; line-height: 1; display: grid; place-items: center;
+}
+.mk-photo-add {
+  aspect-ratio: 4/3; border: 2px dashed #9cc0dd; border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px; color: #5d97c4; cursor: pointer; background: #f5faff;
+  font-size: 12px; font-weight: 600; text-align: center; transition: border-color .18s, background .18s;
+}
+.mk-photo-add:hover { border-color: #0ea5a4; background: #eefaf9; }
+
+.mk-submit {
+  width: 100%; margin-top: 8px; background: linear-gradient(135deg, #e89812 0%, #f4b53d 100%);
+  color: #0a2e4c; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 15px;
+  padding: 13px; border-radius: 12px; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(232,152,18,0.32);
+  transition: transform .15s, box-shadow .2s; letter-spacing: 0.02em;
+}
+.mk-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,152,18,0.42); }
+.mk-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+/* Detail modal */
+.mk-detail { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 720px) { .mk-detail { grid-template-columns: 1.1fr 1fr; } }
+.mk-gallery { background: #dce6ef; }
+.mk-gallery-main { position: relative; aspect-ratio: 4/3; background: #dce6ef; }
+.mk-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.mk-thumbs { display: flex; gap: 6px; padding: 8px; overflow-x: auto; background: #eef4f8; }
+.mk-thumb { flex: 0 0 auto; width: 62px; height: 48px; border-radius: 7px; overflow: hidden; border: 2px solid transparent; cursor: pointer; padding: 0; background: none; }
+.mk-thumb.active { border-color: #0ea5a4; }
+.mk-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.mk-detail-body { padding: 22px; }
+.mk-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.mk-badge { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 10px; border-radius: 100px; background: #eef4f8; color: #0a2e4c; }
+.mk-badge-alt { background: rgba(14,165,164,0.12); color: #0891b0; }
+.mk-detail-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: #0a2e4c; line-height: 1.3; letter-spacing: -0.02em; }
+.mk-detail-price { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 26px; color: #0a2e4c; margin: 8px 0 14px; }
+.mk-price-ask { font-size: 15px; font-weight: 600; color: #7a9ab0; }
+.mk-detail-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.mk-meta-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5d7a8c; }
+.mk-meta-row svg { color: #7a9ab0; flex-shrink: 0; }
+.mk-detail-desc { font-size: 14px; color: #3a5568; line-height: 1.65; margin-bottom: 18px; white-space: normal; }
+.mk-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.mk-contact-btn {
+  flex: 1; min-width: 180px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: #0ea5a4; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  padding: 12px 18px; border-radius: 12px; text-decoration: none; transition: background .18s, transform .15s; box-shadow: 0 2px 10px rgba(14,165,164,0.28);
+}
+.mk-contact-btn:hover { background: #0891b0; transform: translateY(-1px); }
+.mk-report-btn { background: none; border: 1.5px solid #dce6ef; color: #7a9ab0; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; padding: 12px 16px; border-radius: 12px; cursor: pointer; transition: border-color .18s, color .18s; }
+.mk-report-btn:hover { border-color: #e0533b; color: #e0533b; }
+
+/* Toast */
+.mk-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+  z-index: 90; background: #0a2e4c; color: #fff; padding: 13px 22px; border-radius: 12px;
+  font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 12px 40px -8px rgba(7,24,40,0.6);
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; max-width: 90vw; text-align: center;
+}
+.mk-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.mk-toast.err { background: #b23a26; }
+.mk-toast.ok { background: #0d7a5f; }
+</style>
+
+<!-- SEO -->
+<meta name="description" content="Kalkan &amp; Kaş'ta ikinci el eşya, yerel ürün ve fırsatlar. Al, sat, keşfet — ev eşyası, elektronik, araç, yerel tarım ürünleri ve hizmetler.">
+<meta name="keywords" content="Kalkan ikinci el, Kalkan pazar yeri, Kaş satılık, Kalkan yerel ürün, zeytinyağı Kalkan, ikinci el bisiklet Kaş">
+<meta name="author" content="Kalkan Info">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/de/pazar-yeri">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/pazar-yeri">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/pazar-yeri">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/pazar-yeri">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/pazar-yeri">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/pazar-yeri">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/pazar-yeri">
+
+
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+<meta property="og:title" content="Kalkan Pazar Yeri — İkinci El, Yerel Ürün &amp; Fırsatlar | Kalkan Info">
+<meta property="og:description" content="Kalkan &amp; Kaş'ta ikinci el eşya, yerel ürün ve fırsatlar. Al, sat, keşfet — ev eşyası, elektronik, araç, yerel tarım ürünleri ve hizmetler.">
+<meta property="og:url" content="https://kalkaninfo.com/de/pazar-yeri">
+<meta property="og:image" content="https://kalkaninfo.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kalkan Pazar Yeri — İkinci El, Yerel Ürün &amp; Fırsatlar | Kalkan Info">
+<meta name="twitter:description" content="Kalkan &amp; Kaş'ta ikinci el eşya, yerel ürün ve fırsatlar. Al, sat, keşfet — ev eşyası, elektronik, araç, yerel tarım ürünleri ve hizmetler.">
+<meta name="twitter:image" content="https://kalkaninfo.com/assets/og-default.png">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+<meta name="geo.position" content="36.2655;29.4138">
+<meta name="ICBM" content="36.2655, 29.4138">
+
+<!-- Structured data -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Kalkan Info","url":"https://kalkaninfo.com","alternateName":["kalkaninfo","kalkaninfo.com","Kalkaninfo","kalkan info","Kalkan Bilgi"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Anasayfa","item":"https://kalkaninfo.com"},{"@type":"ListItem","position":2,"name":"Pazar Yeri","item":"https://kalkaninfo.com/pazar-yeri"}]}</script>
+
+<script src="/js/auth-pill.js" defer=""></script>
+<script src="/js/site-drawer.js?v=20260516b" defer=""></script>
+<script src="/js/supabase-window.js"></script>
+<script src="/js/i18n.js?v=20260519a" defer=""></script>
+<script src="/js/cookie-banner.js" defer=""></script>
+<script src="/js/header-search.js" defer=""></script>
+<script src="/js/bottom-nav.js?v=20260516b" defer=""></script>
+<script src="/js/analytics.js" defer=""></script>
+<script src="/js/utm-tracker.js" defer=""></script>
+<script src="/js/engagement-tracker.js" defer=""></script>
+<script src="/js/concierge-modal.js?v=20260517b" defer=""></script>
+</head>
+<body class="min-h-screen" style="background:#f2f7f4;">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ============== HERO ============== -->
+<header class="hero-bg">
+  <div class="hero-grain"></div>
+  <!-- top bar (mirrors restoranlar.html) -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 pt-6 pb-3 flex items-center justify-between text-white">
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Menü" data-en-aria="Menu" data-de-aria="Menü" data-ru-aria="Меню" data-fr-aria="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+    <div class="flex items-center gap-2 text-xs md:text-sm">
+      <span class="hidden md:inline opacity-70 tracking-wide" data-en="Today" data-de="Heute" data-ru="Сегодня" data-fr="Aujourd'hui">Heute</span>
+      <span class="opacity-95 font-semibold tracking-wide" id="today-date"></span>
+    </div>
+    <button class="w-9 h-9 grid place-items-center rounded-md bg-white/10 backdrop-blur hover:bg-white/20 transition" aria-label="Suche" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+
+  <!-- hero content -->
+  <div class="hero-content relative z-10 max-w-7xl mx-auto px-4 pt-12 md:pt-20 pb-14 md:pb-20 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full" style="background:#f4b53d;"></span>
+      <span data-en="Buy · Sell · Discover" data-de="Kaufen · Verkaufen · Entdecken" data-ru="Купить · Продать · Открыть" data-fr="Acheter · Vendre · Découvrir">Kaufen · Verkaufen · Entdecken</span>
+    </div>
+    <h1 class="font-display text-5xl md:text-7xl font-extrabold mt-4 max-w-3xl leading-[1.0]" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(7,33,54,0.5);" data-en="Kalkan Marketplace" data-de="Kalkan Marktplatz" data-ru="Рынок Калкана" data-fr="Marché de Kalkan">Kalkan Marktplatz</h1>
+    <p class="mt-3 text-white/80 max-w-xl text-base md:text-lg leading-relaxed" data-en="Kalkan &amp; Kaş — buy, sell, discover: second-hand items, local products, services and deals." data-de="Kalkan &amp; Kaş — kaufen, verkaufen, entdecken: Gebrauchtwaren, lokale Produkte, Dienstleistungen und Angebote." data-ru="Калкан &amp; Kaş — покупайте, продавайте, открывайте: подержанные товары, местные продукты, услуги и выгодные предложения." data-fr="Kalkan &amp; Kaş — achetez, vendez, découvrez : articles d'occasion, produits locaux, services et bonnes affaires.">Kalkan &amp; Kaş — kaufen, verkaufen, entdecken: Gebrauchtwaren, lokale Produkte, Dienstleistungen und Angebote.</p>
+    <p class="mt-2 text-white/50 text-sm" data-en="Community listings — submitted by locals and residents." data-de="Community-Anzeigen — von Einwohnern eingereicht." data-ru="Объявления от сообщества — размещены местными жителями." data-fr="Annonces communautaires — publiées par des habitants.">Community-Anzeigen — von Einwohnern eingereicht.</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <button type="button" data-post-listing="" class="btn-primary" aria-label="İlan ver">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span data-en="POST A LISTING" data-de="ANZEIGE AUFGEBEN" data-ru="РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ" data-fr="PUBLIER UNE ANNONCE">ANZEIGE AUFGEBEN</span>
+      </button>
+      <a href="#ilanlar" class="inline-flex items-center gap-2 border-2 border-white/25 text-white font-display font-bold px-5 py-3 rounded-xl hover:bg-white/10 transition text-sm" data-en="Browse Listings" data-de="Anzeigen durchsuchen" data-ru="Смотреть объявления" data-fr="Parcourir les annonces">Anzeigen durchsuchen</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STICKY NAV (exact clone of restoranlar.html) ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <div class="flex items-center -ml-3">
+      <button class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+        <span class="font-display font-semibold tracking-[0.12em] text-sm" data-en="MENU" data-de="MENÜ" data-ru="МЕНЮ" data-fr="MENU">MENÜ</span>
+      </button>
+      <a href="/de/index.html" aria-label="Startseite" title="Startseite" data-en-aria="Home" data-en-title="Home" class="grid place-items-center w-11 h-11 hover:bg-white/10 rounded-md ml-1" style="transition:background .18s ease;" data-de-title="Startseite" data-ru-title="Главная" data-fr-title="Accueil" data-de-aria="Startseite" data-ru-aria="Главная" data-fr-aria="Accueil">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg>
+      </a>
+    </div>
+    <a href="/de/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <button class="w-10 h-10 grid place-items-center" aria-label="Suche" data-en-aria="Search" data-de-aria="Suche" data-ru-aria="Поиск" data-fr-aria="Rechercher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Nachrichten</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villen</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/restoranlar.html" data-en="Restaurants" data-de="Restaurants" data-ru="Рестораны" data-fr="Restaurants">Restaurants</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Strände</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/pazarlar.html" data-en="Markets" data-de="Märkte" data-ru="Рынки" data-fr="Marchés">Märkte</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Touren</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/antik-kentler.html" data-en="Ancient Sites" data-de="Antike Stätten" data-ru="Древние памятники" data-fr="Sites antiques">Antike Stätten</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/de/hizmetler.html" data-en="Services" data-de="Dienstleistungen" data-ru="Услуги" data-fr="Services">Dienstleistungen</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 nav-active font-bold underline-grow" href="/de/pazar-yeri.html" data-en="Marketplace" data-de="Marktplatz" data-ru="Рынок" data-fr="Marché">Marktplatz</a>
+      <a class="px-4 py-3 hover:bg-sea-700" href="#" data-concierge-trigger="" data-en="Concierge" data-de="Concierge" data-ru="Консьерж" data-fr="Conciergerie">Concierge</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== CATEGORY FILTER SECTION ============== -->
+<section id="ilanlar" style="background:#0a2e4c;">
+  <div class="max-w-7xl mx-auto px-4 py-5">
+    <div class="bg-white rounded-2xl p-4 md:p-5" style="box-shadow:0 2px 8px rgba(10,46,76,0.10),0 20px 60px -16px rgba(10,46,76,0.32);">
+      <!-- Search row -->
+      <div class="flex gap-3 mb-4 items-center flex-wrap">
+        <div class="relative flex-1 min-w-[200px]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a9ab0" stroke-width="2" class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input id="search-input" type="search" placeholder="Artikel, Dienste oder Ort suchen..." data-en-placeholder="Search items, services or location..." data-de-placeholder="Artikel, Dienste oder Ort suchen..." data-ru-placeholder="Поиск товаров, услуг или места..." data-fr-placeholder="Rechercher articles, services ou lieu..." class="w-full pl-9 pr-4 py-2.5 border border-sea-200 rounded-xl text-sm text-sea-800 bg-sea-50 focus:outline-none focus:border-teal-400 transition" style="--tw-ring-color:#0ea5a4;" aria-label="İlanlarda ara">
+        </div>
+        <span id="result-count" class="text-xs text-sea-500 font-semibold whitespace-nowrap hidden sm:block"></span>
+      </div>
+      <!-- Category chips -->
+      <div class="chip-strip" role="group" aria-label="Kategori filtresi">
+        <button class="chip active" data-cat="all" data-en="All" data-de="Alle" data-ru="Все" data-fr="Tout">Alle</button>
+        <button class="chip" data-cat="ev-esyasi" data-en="🪑 Furniture" data-de="🪑 Möbel" data-ru="🪑 Мебель" data-fr="🪑 Mobilier">🪑 Möbel</button>
+        <button class="chip" data-cat="elektronik" data-en="💻 Electronics" data-de="💻 Elektronik" data-ru="💻 Электроника" data-fr="💻 Électronique">💻 Elektronik</button>
+        <button class="chip" data-cat="arac-bisiklet" data-en="🚲 Vehicle &amp; Bike" data-de="🚲 Fahrzeug &amp; Fahrrad" data-ru="🚲 Транспорт" data-fr="🚲 Véhicule &amp; Vélo">🚲 Fahrzeug &amp; Fahrrad</button>
+        <button class="chip" data-cat="yerel-urun" data-en="🫒 Local Product" data-de="🫒 Lokales Produkt" data-ru="🫒 Местный продукт" data-fr="🫒 Produit local">🫒 Lokales Produkt</button>
+        <button class="chip" data-cat="bahce-yapi" data-en="🌿 Garden &amp; Build" data-de="🌿 Garten &amp; Bau" data-ru="🌿 Сад &amp; Строй" data-fr="🌿 Jardin &amp; Construction">🌿 Garten &amp; Bau</button>
+        <button class="chip" data-cat="giyim" data-en="👗 Clothing" data-de="👗 Kleidung" data-ru="👗 Одежда" data-fr="👗 Vêtements">👗 Kleidung</button>
+        <button class="chip" data-cat="hizmet" data-en="🛠 Service" data-de="🛠 Dienstleistung" data-ru="🛠 Услуга" data-fr="🛠 Service">🛠 Dienstleistung</button>
+        <button class="chip" data-cat="diger" data-en="📦 Other" data-de="📦 Sonstiges" data-ru="📦 Другое" data-fr="📦 Autre">📦 Sonstiges</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LISTINGS GRID ============== -->
+<main class="max-w-7xl mx-auto px-4 py-8 md:py-10">
+
+  <!-- Loading skeleton -->
+  <div id="loading-state" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div class="listing-card" aria-hidden="true" style="opacity:.5;">
+      <div class="card-img-wrap" style="background:#dce6ef;"></div>
+      <div class="card-body gap-3">
+        <div style="height:14px;background:#dce6ef;border-radius:6px;width:75%;"></div>
+        <div style="height:12px;background:#dce6ef;border-radius:6px;width:90%;"></div>
+        <div style="height:12px;background:#dce6ef;border-radius:6px;width:60%;"></div>
+      </div>
+    </div>
+    <div class="listing-card hidden sm:flex" aria-hidden="true" style="opacity:.35;">
+      <div class="card-img-wrap" style="background:#dce6ef;"></div>
+      <div class="card-body"></div>
+    </div>
+    <div class="listing-card hidden lg:flex" aria-hidden="true" style="opacity:.2;">
+      <div class="card-img-wrap" style="background:#dce6ef;"></div>
+      <div class="card-body"></div>
+    </div>
+  </div>
+
+  <!-- Cards grid -->
+  <div id="listings-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+  <!-- Empty state -->
+  <div id="empty-state" class="empty-state">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5" class="mx-auto mb-4"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    <h3 class="font-display font-bold text-sea-700 text-lg" data-en="No listings match your search" data-de="Keine Anzeigen entsprechen Ihrer Suche" data-ru="Нет объявлений, соответствующих поиску" data-fr="Aucune annonce ne correspond à votre recherche">Keine Anzeigen entsprechen Ihrer Suche</h3>
+    <p class="text-sea-500 text-sm mt-2" data-en="Try a different category or search term." data-de="Versuchen Sie eine andere Kategorie oder einen anderen Suchbegriff." data-ru="Попробуйте другую категорию или поисковый запрос." data-fr="Essayez une autre catégorie ou un autre terme de recherche.">Versuchen Sie eine andere Kategorie oder einen anderen Suchbegriff.</p>
+    <button id="reset-btn" class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-bold text-sm text-white transition hover:opacity-90" style="background:#0a2e4c;" data-en="Show All Listings" data-de="Alle Anzeigen anzeigen" data-ru="Показать все объявления" data-fr="Afficher toutes les annonces">Alle Anzeigen anzeigen</button>
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state" class="hidden text-center py-16">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#e89812" stroke-width="1.5" class="mx-auto mb-4"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+    <h3 class="font-display font-bold text-sea-700 text-lg" data-en="Could not load listings" data-de="Anzeigen konnten nicht geladen werden" data-ru="Не удалось загрузить объявления" data-fr="Impossible de charger les annonces">Anzeigen konnten nicht geladen werden</h3>
+    <p class="text-sea-500 text-sm mt-2" data-en="Please try again shortly." data-de="Bitte versuchen Sie es in Kürze erneut." data-ru="Пожалуйста, повторите попытку через некоторое время." data-fr="Veuillez réessayer dans un moment.">Bitte versuchen Sie es in Kürze erneut.</p>
+  </div>
+</main>
+
+<!-- ============== CTA BAND ============== -->
+<section class="cta-band py-14 md:py-16">
+  <div class="relative max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-8 items-center text-white">
+      <div>
+        <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase px-3 py-1.5 rounded-full font-semibold mb-4" style="background:rgba(244,181,61,0.15);border:1px solid rgba(244,181,61,0.4);color:#f4b53d;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:#f4b53d;"></span>
+          <span data-en="Sell something?" data-de="Etwas verkaufen?" data-ru="Продаёте что-то?" data-fr="Vous vendez quelque chose ?">Etwas verkaufen?</span>
+        </div>
+        <h2 class="font-display font-extrabold text-3xl md:text-4xl leading-tight">
+          <span data-en="Reach the whole Kalkan &amp; Kaş community" data-de="Die gesamte Kalkan &amp; Kaş-Community erreichen" data-ru="Охватите всё сообщество Kalkan &amp; Kaş" data-fr="Atteignez toute la communauté Kalkan &amp; Kaş">Die gesamte Kalkan &amp; Kaş-Community erreichen</span>
+          <span style="color:#f4b53d;" data-en="for free." data-de="— kostenlos." data-ru="— бесплатно." data-fr="— gratuitement.">— kostenlos.</span>
+        </h2>
+        <p class="mt-3 text-white/70 text-sm leading-relaxed max-w-md" data-en="Post your listing in minutes. Local buyers, honest community, no commissions." data-de="Veröffentlichen Sie Ihre Anzeige in Minuten. Lokale Käufer, ehrliche Community, keine Provisionen." data-ru="Разместите объявление за несколько минут. Местные покупатели, честное сообщество, без комиссий." data-fr="Publiez votre annonce en quelques minutes. Acheteurs locaux, communauté honnête, sans commissions.">Veröffentlichen Sie Ihre Anzeige in Minuten. Lokale Käufer, ehrliche Community, keine Provisionen.</p>
+      </div>
+      <div class="flex md:justify-end">
+        <button type="button" data-post-listing="" class="btn-primary text-base">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span data-en="POST A LISTING — FREE" data-de="KOSTENLOS ANZEIGE AUFGEBEN" data-ru="РАЗМЕСТИТЬ ОБЪЯВЛЕНИЕ — БЕСПЛАТНО" data-fr="PUBLIER UNE ANNONCE — GRATUIT">KOSTENLOS ANZEIGE AUFGEBEN</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER (exact clone of restoranlar.html) ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-1" data-en="Newsletter" data-de="Newsletter" data-ru="Рассылка" data-fr="Infolettre">Newsletter</div>
+        <h3 class="font-display font-extrabold text-xl text-white" data-en="Stay updated from Kalkan" data-de="Bleiben Sie informiert aus Kalkan" data-ru="Будьте в курсе событий Kalkan" data-fr="Restez informé depuis Kalkan">Bleiben Sie informiert aus Kalkan</h3>
+        <p class="text-white/65 text-sm mt-1" data-en="New guides, seasonal deals and events — twice a month, concise." data-de="Neue Guides, saisonale Angebote und Events — zweimal monatlich, prägnant." data-ru="Новые гайды, сезонные предложения и события — два раза в месяц, лаконично." data-fr="Nouveaux guides, offres saisonnières et événements — deux fois par mois, concis.">Neue Guides, saisonale Angebote und Events — zweimal monatlich, prägnant.</p>
+      </div>
+      <div data-newsletter-mount=""></div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
+    <div class="col-span-2 lg:col-span-2">
+      <a href="/de/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm" data-en="Quietly powerful — local knowledge, curated recommendations, professional service." data-de="Ruhig kraftvoll — lokales Wissen, kuratierte Empfehlungen, professioneller Service." data-ru="Тихое влияние — местные знания, куратированные рекомендации, профессиональный сервис." data-fr="Discrètement puissant — savoir-faire local, recommandations curatoriales, service professionnel.">Ruhig kraftvoll — lokales Wissen, kuratierte Empfehlungen, professioneller Service.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Explore" data-de="Erkunden" data-ru="Исследовать" data-fr="Explorer">Erkunden</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/de/villalar.html" data-en="Villas" data-de="Villen" data-ru="Виллы" data-fr="Villas">Villen</a></li>
+        <li><a class="hover:text-sun-400" href="/de/oteller.html" data-en="Hotels" data-de="Hotels" data-ru="Отели" data-fr="Hôtels">Hotels</a></li>
+        <li><a class="hover:text-sun-400" href="/de/restoranlar.html" data-en="Restaurants &amp; Bars" data-de="Restaurants &amp; Bars" data-ru="Рестораны и бары" data-fr="Restaurants &amp; Bars">Restaurants &amp; Bars</a></li>
+        <li><a class="hover:text-sun-400" href="/de/plajlar.html" data-en="Beaches" data-de="Strände" data-ru="Пляжи" data-fr="Plages">Strände</a></li>
+        <li><a class="hover:text-sun-400" href="/de/turlar.html" data-en="Tours" data-de="Touren" data-ru="Туры" data-fr="Excursions">Touren</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Support" data-de="Unterstützung" data-ru="Поддержка" data-fr="Assistance">Unterstützung</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/de/hizmetler.html" data-en="Services" data-de="Services" data-ru="Услуги" data-fr="Services">Services</a></li>
+        <li><a class="hover:text-sun-400" href="/de/haberler.html" data-en="News" data-de="Nachrichten" data-ru="Новости" data-fr="Actualités">Nachrichten</a></li>
+        <li><a class="hover:text-sun-400 transition" href="/de/pazar-yeri.html" data-en="Marketplace" data-de="Marktplatz" data-ru="Рынок" data-fr="Marché">Marktplatz</a></li>
+        <li><a class="hover:text-sun-400" href="#" data-concierge-trigger="">Concierge</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3" data-en="Contact" data-de="Kontakt" data-ru="Контакты" data-fr="Contact">Kontakt</div>
+      <p class="text-white/70 text-xs leading-relaxed">Atatürk Cad. No:1<br>Kalkan / Kaş / Antalya<br><a href="mailto:info@kalkaninfo.com" class="hover:text-sun-400">info@kalkaninfo.com</a></p>
+    </div>
+  </div>
+  <div class="border-t border-white/10 max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between text-xs text-white/60">
+    <div data-en="© 2026 Kalkan Info — All rights reserved." data-de="© 2026 Kalkan Info — Alle Rechte vorbehalten." data-ru="© 2026 Kalkan Info — Все права защищены." data-fr="© 2026 Kalkan Info — Tous droits réservés.">© 2026 Kalkan Info — Alle Rechte vorbehalten.</div>
+    <div class="flex items-center gap-3 mt-3 md:mt-0">
+      <a class="hover:text-sun-400" href="/de/hakkimizda.html" data-en="About" data-de="Über uns" data-ru="О нас" data-fr="À propos">Über uns</a>
+      <a class="hover:text-sun-400" href="/de/privacy.html" data-en="Privacy" data-de="Datenschutz" data-ru="Приватность" data-fr="Confidentialité">Datenschutz</a>
+      <a class="hover:text-sun-400" href="/de/kvkk.html">KVKK</a>
+      <a class="hover:text-sun-400" href="mailto:info@kalkaninfo.com" data-en="Contact" data-de="Kontakt" data-ru="Контакты" data-fr="Contact">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Concierge FAB -->
+<a href="#" data-concierge-trigger="" class="fixed bottom-5 right-5 z-50 text-white rounded-full shadow-lg flex items-center gap-2 pl-4 pr-5 py-3 transition" style="background:#e89812;">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.92c0 1.92.55 3.78 1.6 5.39L2 22l4.86-1.7a9.93 9.93 0 0 0 5.18 1.45c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Z"></path></svg>
+  <span class="font-display font-bold text-sm">Concierge</span>
+</a>
+
+<!-- ============== MODAL HOST + TOAST ============== -->
+<div class="mk-overlay" id="mk-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mk-modal" id="mk-modal">
+    <div class="mk-modal-head">
+      <span class="mk-modal-title" id="mk-modal-title">İlan</span>
+      <button class="mk-close" id="mk-close" aria-label="Close" data-en-aria="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="mk-modal-body" id="mk-modal-body"></div>
+  </div>
+</div>
+<div class="mk-toast" id="mk-toast" role="status" aria-live="polite"></div>
+
+<!-- ============== PAGE SCRIPT (marketplace module) ============== -->
+<script type="module">
+import {
+  listListings, getListing, createListing, uploadImages,
+  incrementView, reportListing, renderCard, renderDetail,
+  getCategories, getConditions, setFallbackData
+} from '/js/marketplace.js';
+import { supabase } from '/js/supabase-client.js';
+
+(function () {
+  'use strict';
+
+  let activeCategory = 'all';
+  let searchQuery = '';
+  let searchTimer = null;
+
+  const grid = document.getElementById('listings-grid');
+  const loadingState = document.getElementById('loading-state');
+  const emptyState = document.getElementById('empty-state');
+  const errorState = document.getElementById('error-state');
+  const searchInput = document.getElementById('search-input');
+  const resultCount = document.getElementById('result-count');
+  const chips = document.querySelectorAll('.chip[data-cat]');
+  const resetBtn = document.getElementById('reset-btn');
+
+  const overlay = document.getElementById('mk-overlay');
+  const modal = document.getElementById('mk-modal');
+  const modalTitle = document.getElementById('mk-modal-title');
+  const modalBody = document.getElementById('mk-modal-body');
+  const closeBtn = document.getElementById('mk-close');
+  const toastEl = document.getElementById('mk-toast');
+
+  // --- Date ---
+  const dateEl = document.getElementById('today-date');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // --- Toast ---
+  let toastTimer = null;
+  function toast(msg, kind = '') {
+    toastEl.textContent = msg;
+    toastEl.className = 'mk-toast show ' + kind;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toastEl.className = 'mk-toast ' + kind; }, 3200);
+  }
+
+  // --- i18n re-apply after dynamic render (best-effort) ---
+  function applyI18n(root) {
+    try { if (window.__applyI18n) window.__applyI18n(root || document); } catch (_) {}
+  }
+
+  // --- Modal open/close ---
+  function openModal(title, wide = false) {
+    modalTitle.textContent = title;
+    modal.classList.toggle('mk-modal-wide', !!wide);
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalBody.innerHTML = '';
+  }
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  // --- Render listings ---
+  async function loadAndRender() {
+    grid.innerHTML = '';
+    loadingState.style.display = '';
+    errorState.classList.add('hidden');
+    emptyState.style.display = 'none';
+
+    let items = [];
+    try {
+      items = await listListings({ category: activeCategory, search: searchQuery });
+    } catch (err) {
+      console.error('[pazar-yeri] listListings failed:', err);
+      loadingState.style.display = 'none';
+      errorState.classList.remove('hidden');
+      return;
+    }
+    loadingState.style.display = 'none';
+
+    if (!items.length) {
+      grid.classList.add('hidden');
+      emptyState.style.display = 'block';
+      if (resultCount) resultCount.textContent = '0 ilan';
+      return;
+    }
+    grid.classList.remove('hidden');
+    emptyState.style.display = 'none';
+    grid.innerHTML = items.map((it, i) => renderCard(it)).join('');
+    // stagger animation
+    Array.from(grid.children).forEach((el, i) => { el.style.animationDelay = (i * 40) + 'ms'; });
+    if (resultCount) resultCount.textContent = items.length + ' ilan';
+    applyI18n(grid);
+  }
+
+  // --- Chip filter ---
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCategory = chip.dataset.cat;
+      loadAndRender();
+    });
+  });
+
+  // --- Debounced search ---
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { searchQuery = searchInput.value.trim(); loadAndRender(); }, 260);
+    });
+  }
+
+  // --- Reset ---
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      activeCategory = 'all'; searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      chips.forEach(c => c.classList.remove('active'));
+      const allChip = document.querySelector('.chip[data-cat="all"]');
+      if (allChip) allChip.classList.add('active');
+      loadAndRender();
+    });
+  }
+
+  // --- Card click → detail modal ---
+  grid.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-listing-id]');
+    if (!card) return;
+    openDetail(card.getAttribute('data-listing-id'));
+  });
+  grid.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('[data-listing-id]');
+    if (!card) return;
+    e.preventDefault();
+    openDetail(card.getAttribute('data-listing-id'));
+  });
+
+  async function openDetail(idOrSlug) {
+    const item = await getListing(idOrSlug);
+    if (!item) { toast('İlan bulunamadı.', 'err'); return; }
+    openModal(item.title, true);
+    modalBody.innerHTML = renderDetail(item);
+    applyI18n(modalBody);
+    if (!item.demo) incrementView(item.id);
+
+    // gallery thumbs
+    const thumbs = modalBody.querySelector('#mk-thumbs');
+    const mainImg = modalBody.querySelector('#mk-gallery-img');
+    if (thumbs && mainImg) {
+      thumbs.addEventListener('click', (e) => {
+        const btn = e.target.closest('.mk-thumb');
+        if (!btn) return;
+        thumbs.querySelectorAll('.mk-thumb').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        const img = btn.querySelector('img');
+        if (img) mainImg.src = img.src;
+      });
+    }
+    // report
+    const reportBtn = modalBody.querySelector('#mk-report-btn');
+    if (reportBtn) {
+      reportBtn.addEventListener('click', async () => {
+        if (item.demo) { toast('Örnek ilan — bildirim uygulanmaz.'); return; }
+        const res = await reportListing(item.id);
+        toast(res.ok ? 'Bildiriminiz alındı. Teşekkürler.' : 'Bildirim gönderilemedi.', res.ok ? 'ok' : 'err');
+      });
+    }
+  }
+
+  // --- Post listing (İlan Ver) → gate or form ---
+  async function openPostFlow() {
+    let user = null;
+    try { const { data } = await supabase.auth.getUser(); user = data?.user ?? null; } catch (_) {}
+    const verified = user && (user.email_confirmed_at || user.user_metadata?.email_verified);
+
+    if (!user || !verified) {
+      openModal('İlan Ver', false);
+      const nextUrl = encodeURIComponent('/pazar-yeri');
+      const reason = !user
+        ? { en: 'Log in to post a listing', de: 'Zum Anzeigen aufgeben anmelden', ru: 'Войдите, чтобы разместить объявление', fr: 'Connectez-vous pour publier une annonce', tr: 'İlan vermek için giriş yapın' }
+        : { en: 'Verify your email to post a listing', de: 'Bestätigen Sie Ihre E-Mail, um zu inserieren', ru: 'Подтвердите e-mail, чтобы разместить объявление', fr: 'Vérifiez votre e-mail pour publier', tr: 'İlan vermek için e-postanızı doğrulayın' };
+      modalBody.innerHTML = `
+        <div class="mk-gate">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#0ea5a4" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h3 data-en="${reason.en}" data-de="${reason.de}" data-ru="${reason.ru}" data-fr="${reason.fr}">${reason.tr}</h3>
+          <p data-en="Posting is free — you only need a verified Kalkan Info account."
+             data-de="Das Inserieren ist kostenlos — Sie benötigen nur ein bestätigtes Kalkan-Info-Konto."
+             data-ru="Размещение бесплатно — нужен только подтверждённый аккаунт Kalkan Info."
+             data-fr="La publication est gratuite — il vous faut juste un compte Kalkan Info vérifié.">İlan vermek ücretsizdir — yalnızca doğrulanmış bir Kalkan Info hesabı gerekir.</p>
+          <a class="btn-primary" href="/login.html?next=${nextUrl}" data-en="LOG IN / SIGN UP" data-de="ANMELDEN / REGISTRIEREN" data-ru="ВОЙТИ / РЕГИСТРАЦИЯ" data-fr="CONNEXION / INSCRIPTION">GİRİŞ YAP / KAYIT OL</a>
+        </div>`;
+      applyI18n(modalBody);
+      return;
+    }
+
+    openModal('İlan Ver', false);
+    modalBody.innerHTML = buildFormHtml();
+    applyI18n(modalBody);
+    wireForm(user);
+  }
+
+  function buildFormHtml() {
+    const cats = getCategories();
+    const catOpts = Object.entries(cats).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+    return `
+      <form id="mk-form" novalidate>
+        <div class="mk-field">
+          <label class="mk-label" for="f-title" data-en="Title" data-de="Titel" data-ru="Заголовок" data-fr="Titre">Başlık <span class="mk-required">*</span></label>
+          <input class="mk-input" id="f-title" name="title" maxlength="120" required
+            placeholder="Örn. Az kullanılmış şehir bisikleti">
+          <p class="mk-err" data-err="title" data-en="Please enter a title (min 3 chars)." data-de="Bitte Titel eingeben (min. 3 Zeichen)." data-ru="Введите заголовок (мин. 3 симв.)." data-fr="Saisissez un titre (min. 3 car.).">En az 3 karakterlik bir başlık girin.</p>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-category" data-en="Category" data-de="Kategorie" data-ru="Категория" data-fr="Catégorie">Kategori <span class="mk-required">*</span></label>
+            <select class="mk-select" id="f-category" name="category" required>
+              <option value="" data-en="Select…" data-de="Wählen…" data-ru="Выбрать…" data-fr="Choisir…">Seçin…</option>
+              ${catOpts}
+            </select>
+            <p class="mk-err" data-err="category" data-en="Please select a category." data-de="Bitte Kategorie wählen." data-ru="Выберите категорию." data-fr="Choisissez une catégorie.">Bir kategori seçin.</p>
+          </div>
+          <div class="mk-field">
+            <label class="mk-label" data-en="Condition" data-de="Zustand" data-ru="Состояние" data-fr="État">Durum</label>
+            <select class="mk-select" id="f-condition" name="condition">
+              <option value="used" data-en="Used" data-de="Gebraucht" data-ru="Б/у" data-fr="Occasion">İkinci el</option>
+              <option value="new" data-en="New" data-de="Neu" data-ru="Новый" data-fr="Neuf">Yeni</option>
+            </select>
+          </div>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-price" data-en="Price" data-de="Preis" data-ru="Цена" data-fr="Prix">Fiyat</label>
+            <input class="mk-input" id="f-price" name="price" type="number" min="0" step="1" placeholder="0">
+          </div>
+          <div class="mk-field" style="max-width:120px;">
+            <label class="mk-label" data-en="Currency" data-de="Währung" data-ru="Валюта" data-fr="Devise">Para Birimi</label>
+            <select class="mk-select" id="f-currency" name="currency">
+              <option value="TRY">₺ TRY</option>
+              <option value="EUR">€ EUR</option>
+              <option value="USD">$ USD</option>
+            </select>
+          </div>
+        </div>
+        <div class="mk-field">
+          <label class="mk-check">
+            <input type="checkbox" id="f-negotiable" name="isNegotiable">
+            <span data-en="Price is negotiable" data-de="Preis verhandelbar" data-ru="Возможен торг" data-fr="Prix négociable">Pazarlık payı var</span>
+          </label>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-location" data-en="Location" data-de="Ort" data-ru="Местоположение" data-fr="Lieu">Konum</label>
+          <input class="mk-input" id="f-location" name="location" maxlength="120" placeholder="Kalkan Merkez">
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-description" data-en="Description" data-de="Beschreibung" data-ru="Описание" data-fr="Description">Açıklama</label>
+          <textarea class="mk-textarea" id="f-description" name="description" maxlength="4000" placeholder="Ürün/hizmet hakkında detay verin…"></textarea>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" data-en="Photos (max 6)" data-de="Fotos (max. 6)" data-ru="Фото (макс. 6)" data-fr="Photos (max 6)">Fotoğraflar (max 6)</label>
+          <input type="file" id="f-files" accept="image/*" multiple hidden>
+          <div class="mk-photos" id="f-photos">
+            <div class="mk-photo-add" id="f-add-photo" role="button" tabindex="0">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              <span data-en="Add photo" data-de="Foto hinzufügen" data-ru="Добавить фото" data-fr="Ajouter une photo">Fotoğraf ekle</span>
+            </div>
+          </div>
+        </div>
+        <div class="mk-row">
+          <div class="mk-field">
+            <label class="mk-label" for="f-contact-name" data-en="Contact name" data-de="Kontaktname" data-ru="Имя для связи" data-fr="Nom de contact">İletişim adı</label>
+            <input class="mk-input" id="f-contact-name" name="contactName" maxlength="80" placeholder="Adınız">
+          </div>
+          <div class="mk-field">
+            <label class="mk-label" for="f-contact-phone" data-en="Phone" data-de="Telefon" data-ru="Телефон" data-fr="Téléphone">Telefon</label>
+            <input class="mk-input" id="f-contact-phone" name="contactPhone" maxlength="24" placeholder="+90 5xx xxx xx xx">
+          </div>
+        </div>
+        <div class="mk-field">
+          <label class="mk-label" for="f-contact-wa" data-en="WhatsApp (number only)" data-de="WhatsApp (nur Nummer)" data-ru="WhatsApp (только номер)" data-fr="WhatsApp (numéro)">WhatsApp (yalnız numara)</label>
+          <input class="mk-input" id="f-contact-wa" name="contactWhatsapp" maxlength="24" placeholder="905xxxxxxxxx">
+        </div>
+        <button type="submit" class="mk-submit" id="f-submit" data-en="PUBLISH LISTING" data-de="ANZEIGE VERÖFFENTLICHEN" data-ru="ОПУБЛИКОВАТЬ" data-fr="PUBLIER L'ANNONCE">İLANI YAYINLA</button>
+      </form>`;
+  }
+
+  function wireForm(user) {
+    const form = modalBody.querySelector('#mk-form');
+    const fileInput = modalBody.querySelector('#f-files');
+    const photosWrap = modalBody.querySelector('#f-photos');
+    const addBtn = modalBody.querySelector('#f-add-photo');
+    const submitBtn = modalBody.querySelector('#f-submit');
+    let files = [];
+
+    function renderPhotos() {
+      photosWrap.querySelectorAll('.mk-photo-thumb').forEach(n => n.remove());
+      files.forEach((file, i) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'mk-photo-thumb';
+        const url = URL.createObjectURL(file);
+        thumb.innerHTML = `<img src="${url}" alt=""><button type="button" class="mk-photo-remove" data-idx="${i}" aria-label="Kaldır">×</button>`;
+        photosWrap.insertBefore(thumb, addBtn);
+      });
+      addBtn.style.display = files.length >= 6 ? 'none' : '';
+    }
+
+    addBtn.addEventListener('click', () => fileInput.click());
+    addBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+    fileInput.addEventListener('change', () => {
+      const picked = Array.from(fileInput.files || []);
+      for (const f of picked) {
+        if (files.length >= 6) { toast('En fazla 6 fotoğraf ekleyebilirsiniz.', 'err'); break; }
+        if (f.size > 8 * 1024 * 1024) { toast(`"${f.name}" 8 MB'den büyük.`, 'err'); continue; }
+        files.push(f);
+      }
+      fileInput.value = '';
+      renderPhotos();
+    });
+    photosWrap.addEventListener('click', (e) => {
+      const rm = e.target.closest('.mk-photo-remove');
+      if (!rm) return;
+      files.splice(Number(rm.dataset.idx), 1);
+      renderPhotos();
+    });
+
+    function showErr(name, show) {
+      const el = form.querySelector(`.mk-err[data-err="${name}"]`);
+      if (el) el.classList.toggle('show', show);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = form.title.value.trim();
+      const category = form.category.value;
+      let valid = true;
+      showErr('title', false); showErr('category', false);
+      if (title.length < 3) { showErr('title', true); valid = false; }
+      if (!category) { showErr('category', true); valid = false; }
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      const originalTxt = submitBtn.textContent;
+      submitBtn.textContent = 'Yayınlanıyor…';
+
+      try {
+        const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60) || 'ilan';
+        let imageUrls = [];
+        if (files.length) {
+          submitBtn.textContent = 'Fotoğraflar yükleniyor…';
+          const up = await uploadImages(files, user.id, slug);
+          if (!up.ok) { toast(up.error || 'Fotoğraf yüklenemedi.', 'err'); throw new Error(up.error); }
+          imageUrls = up.urls;
+          submitBtn.textContent = 'Yayınlanıyor…';
+        }
+        const res = await createListing({
+          title, category,
+          condition: form.condition.value,
+          price: form.price.value,
+          currency: form.currency.value,
+          isNegotiable: form.isNegotiable.checked,
+          location: form.location.value.trim(),
+          description: form.description.value.trim(),
+          images: imageUrls,
+          contactName: form.contactName.value.trim(),
+          contactPhone: form.contactPhone.value.trim(),
+          contactWhatsapp: form.contactWhatsapp.value.trim(),
+        }, user.id);
+
+        if (!res.ok) { toast(res.error || 'İlan yayınlanamadı.', 'err'); return; }
+        toast('İlanınız yayınlandı!', 'ok');
+        closeModal();
+        activeCategory = 'all'; searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        chips.forEach(c => c.classList.remove('active'));
+        const allChip = document.querySelector('.chip[data-cat="all"]');
+        if (allChip) allChip.classList.add('active');
+        await loadAndRender();
+      } catch (err) {
+        // toast already shown for known errors
+        if (!/8 MB|yükle/.test(String(err.message))) console.error('[pazar-yeri] submit error:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalTxt;
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-post-listing]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); openPostFlow(); });
+  });
+
+  // --- Preload fallback data (so listListings can fall back if DB missing) ---
+  fetch('/data/pazar-yeri.json')
+    .then(r => r.ok ? r.json() : { items: [] })
+    .then(data => setFallbackData((data && data.items) || []))
+    .catch(() => {})
+    .finally(loadAndRender);
+})();
+</script>
+
+<script src="/js/render.js?v=20260517a"></script>
+<script src="/js/pwa.js?v=20260516c" defer=""></script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="de";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/pazar-yeri.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

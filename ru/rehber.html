@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="ru" style="scroll-behavior:smooth;"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/dist/tw.css">
+<title>Lyra — Kalkan'ın Sesli Dijital Rehberi | Kalkan Info</title>
+<meta name="description" content="Mikrofonunu aç, Kalkan'ın dijital rehberi Lyra ile canlı konuş. Restoran, plaj, otel ve gezilecek yerler hakkında anlık, sesli ve yüz yüze rehberlik.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="/js/site-drawer.js?v=20260516b" defer=""></script>
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,h4,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+  .underline-grow{position:relative;}
+  .underline-grow::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:3px;background:#e89812;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+  .underline-grow:hover::after{transform:scaleX(1);}
+
+  /* ===== Avatar stage ===== */
+  .stage-bg{
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 30%, rgba(26,94,147,0.55) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 50% at 80% 90%, rgba(232,152,18,0.16) 0%, transparent 60%),
+      linear-gradient(180deg,#08243c 0%,#061a2c 100%);
+  }
+  .grain{background-image:radial-gradient(rgba(255,255,255,0.045) 1px,transparent 1px);background-size:3px 3px;}
+  .avatar-frame{
+    position:relative;width:340px;max-width:82vw;aspect-ratio:1/1;border-radius:28px;overflow:hidden;
+    background:#0a2338;
+    box-shadow:0 2px 4px rgba(0,0,0,0.4), 0 24px 60px -12px rgba(4,16,28,0.8), 0 0 0 1px rgba(255,255,255,0.06);
+    transition:box-shadow .4s ease, transform .4s ease;
+  }
+  .avatar-frame.speaking{
+    box-shadow:0 2px 4px rgba(0,0,0,0.4), 0 24px 70px -10px rgba(232,152,18,0.35), 0 0 0 2px rgba(232,152,18,0.55), 0 0 60px -6px rgba(232,152,18,0.4);
+  }
+  .avatar-frame.listening{
+    box-shadow:0 2px 4px rgba(0,0,0,0.4), 0 24px 70px -10px rgba(74,158,245,0.35), 0 0 0 2px rgba(74,158,245,0.55), 0 0 50px -8px rgba(74,158,245,0.35);
+  }
+  .avatar-frame video{width:100%;height:100%;object-fit:cover;display:block;background:#0a2338;}
+  .avatar-idle{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    color:rgba(255,255,255,0.5);text-align:center;padding:24px;transition:opacity .4s ease;
+  }
+  .pulse-ring{width:84px;height:84px;border-radius:50%;background:rgba(74,158,245,0.14);display:grid;place-items:center;}
+  .pulse-ring::before{content:'';position:absolute;width:84px;height:84px;border-radius:50%;border:2px solid rgba(74,158,245,0.4);animation:ring 2.4s ease-out infinite;}
+  @keyframes ring{0%{transform:scale(0.8);opacity:0.9}100%{transform:scale(1.9);opacity:0}}
+
+  /* status pill */
+  .status-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:999px;font-family:'Montserrat',sans-serif;transition:all .3s ease;}
+  .dot{width:8px;height:8px;border-radius:50%;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+  /* mic button */
+  .mic-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:12px;
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;letter-spacing:.01em;
+    padding:16px 34px;border-radius:999px;border:0;cursor:pointer;color:#fff;
+    background:linear-gradient(180deg,#e8a020 0%,#d68a10 100%);
+    box-shadow:0 2px 6px rgba(214,138,16,0.35),0 12px 28px -8px rgba(214,138,16,0.6);
+    transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, filter .2s ease;
+  }
+  .mic-btn:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(214,138,16,0.4),0 18px 40px -8px rgba(214,138,16,0.7);}
+  .mic-btn:active{transform:translateY(0) scale(.98);}
+  .mic-btn:focus-visible{outline:3px solid rgba(232,152,18,0.5);outline-offset:3px;}
+  .mic-btn:disabled{filter:grayscale(.5) opacity(.7);cursor:default;transform:none;box-shadow:none;}
+  .mic-btn.stop{background:linear-gradient(180deg,#e0524a 0%,#c93b34 100%);box-shadow:0 12px 28px -8px rgba(201,59,52,0.6);}
+
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;cursor:pointer;
+    background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.86);
+    font-size:13px;font-weight:500;transition:background .2s ease,border-color .2s ease,transform .2s ease;
+  }
+  .chip:hover{background:rgba(232,152,18,0.16);border-color:rgba(232,152,18,0.5);transform:translateY(-1px);}
+
+  /* captions */
+  .caption-line{opacity:0;transform:translateY(6px);animation:fadein .3s ease forwards;}
+  @keyframes fadein{to{opacity:1;transform:none}}
+  .spin{width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+
+<link rel="canonical" href="https://kalkaninfo.com/ru/rehber">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/rehber">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/rehber">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/rehber">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/rehber">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/rehber">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/rehber"></head>
+<body class="bg-[#dce6ef]">
+
+<!-- ============== NAV ============== -->
+<nav class="text-white sticky top-0 z-40" style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,0.55);">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="/ru/index.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/8" style="transition:background .18s ease;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg>
+      <span class="font-display font-semibold tracking-[0.08em] text-sm">GERİ</span>
+    </a>
+    <a href="/ru/index.html" class="font-display font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2">
+      <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+    </a>
+    <a href="/ru/tatil-asistani.html" class="w-10 h-10 grid place-items-center transition-colors hover:bg-white/10" aria-label="Tatil Asistanı">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"></path></svg>
+    </a>
+  </div>
+  <div style="background:#072136;">
+    <div class="max-w-7xl mx-auto px-4 hidden md:flex items-center gap-0 text-[12px] uppercase tracking-[0.1em] font-display font-semibold">
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/haberler.html">Новости</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/villalar.html">Виллы</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/oteller.html">Отели</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/restoranlar.html">Restoran &amp; Bar</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/plajlar.html">Пляжи</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/turlar.html">Туры</a>
+      <a class="px-4 py-3 hover:bg-sea-700 underline-grow" href="/ru/antik-kentler.html">Древние города</a>
+      <span class="ml-auto"></span>
+      <a class="px-4 py-3 text-sun-400 hover:bg-sea-700 flex items-center gap-2" href="/ru/rehber.html" aria-current="page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"></path></svg>
+        <span>Sesli Rehber</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== MAIN ============== -->
+<main class="stage-bg relative overflow-hidden">
+  <div class="absolute inset-0 grain opacity-60 pointer-events-none"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 pt-12 pb-16 text-center">
+    <!-- badge -->
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.14em] uppercase bg-white/10 border border-white/20 text-sun-400 px-3 py-1.5 rounded-full font-semibold mb-5" style="backdrop-filter:blur(4px);">
+      <span class="w-1.5 h-1.5 rounded-full bg-sun-400" style="animation:blink 1.6s ease-in-out infinite;"></span>
+      Canlı · Sesli · Yüz yüze
+    </div>
+
+    <h1 class="font-display text-4xl md:text-5xl font-extrabold text-white leading-tight" style="letter-spacing:-0.03em;text-shadow:0 2px 32px rgba(4,16,28,0.7);">
+      Lyra ile <span class="text-sun-400">tanışın</span>
+    </h1>
+    <p class="mt-4 text-white/75 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+      Kalkan'ın dijital rehberi. Mikrofonunu aç, sanki karşındaymış gibi konuş —
+      restoran, plaj, otel, gezilecek yerler; ne merak ediyorsan sor.
+    </p>
+
+    <!-- ===== Avatar stage ===== -->
+    <div class="mt-9 flex flex-col items-center">
+
+      <div id="avatarFrame" class="avatar-frame">
+        <video id="avatarVideo" playsinline="" autoplay=""></video>
+        <audio id="avatarAudio" autoplay=""></audio>
+        <!-- idle overlay -->
+        <div id="avatarIdle" class="avatar-idle">
+          <div class="pulse-ring" style="position:relative;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#4A9EF5" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"></path></svg>
+          </div>
+          <div class="text-sm font-semibold text-white/70 font-display tracking-wide">Lyra seni bekliyor</div>
+        </div>
+      </div>
+
+      <!-- status -->
+      <div class="mt-5 h-7">
+        <span id="statusPill" class="status-pill" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);">
+          <span id="statusDot" class="dot" style="background:#7c9cb5;"></span>
+          <span id="statusText">Hazır</span>
+        </span>
+      </div>
+
+      <!-- control -->
+      <div class="mt-5">
+        <button id="micBtn" class="mic-btn">
+          <svg id="micIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"></path></svg>
+          <span id="micLabel">Konuşmaya Başla</span>
+        </button>
+      </div>
+      <p id="hintText" class="mt-3 text-white/45 text-xs">Mikrofon izni istenecek · İstediğin an durdurabilirsin</p>
+      <div id="errorBox" class="mt-3 text-sm text-red-200 bg-red-900/40 border border-red-400/30 rounded-lg px-4 py-2 hidden"></div>
+    </div>
+
+    <!-- ===== Suggested prompts ===== -->
+    <div class="mt-9">
+      <div class="text-white/40 text-[11px] uppercase tracking-[0.14em] font-semibold mb-3">Örnek sorular</div>
+      <div class="flex flex-wrap items-center justify-center gap-2.5">
+        <span class="chip">🍽️ En iyi deniz manzaralı restoran?</span>
+        <span class="chip">🏖️ Kaputaş Plajı'na nasıl giderim?</span>
+        <span class="chip">🌅 Gün batımını nerede izlemeliyim?</span>
+        <span class="chip">🏛️ Yakında hangi antik kentler var?</span>
+      </div>
+    </div>
+
+    <!-- ===== Live captions ===== -->
+    <div id="captionsWrap" class="mt-9 max-w-xl mx-auto text-left hidden">
+      <div class="rounded-2xl p-5" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(6px);">
+        <div class="text-white/40 text-[11px] uppercase tracking-[0.14em] font-semibold mb-3">Konuşma</div>
+        <div id="captions" class="space-y-3 text-sm max-h-52 overflow-y-auto"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="bg-gradient-to-b from-sea-800 to-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 pt-12 pb-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+    <div class="col-span-2">
+      <a href="/ru/index.html" class="font-display font-extrabold text-2xl tracking-tight flex items-center gap-2">
+        <span class="text-sun-500">◆</span> KALKAN <span class="text-sun-500">INFO</span>
+      </a>
+      <p class="text-white/70 mt-3 max-w-sm">Sessiz ama güçlü — yerel bilgi, seçili tavsiyeler, kurumsal hizmet. Kalkan, Kaş, Patara ve çevresi için tek başvuru noktası.</p>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Открыть</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400" href="/ru/restoranlar.html">Restoran &amp; Bar</a></li>
+        <li><a class="hover:text-sun-400" href="/ru/plajlar.html">Пляжи</a></li>
+        <li><a class="hover:text-sun-400" href="/ru/oteller.html">Отели</a></li>
+        <li><a class="hover:text-sun-400" href="/ru/turlar.html">Туры</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-sun-400 font-bold mb-3">Araçlar</div>
+      <ul class="space-y-2 text-white/80">
+        <li><a class="hover:text-sun-400 text-sun-400" href="/ru/rehber.html">Sesli Rehber (Lyra)</a></li>
+        <li><a class="hover:text-sun-400" href="/ru/tatil-asistani.html">Tatil Asistanı</a></li>
+        <li><a class="hover:text-sun-400" href="/ru/haberler.html">Новости</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
+      <div>© 2026 Kalkan Info — Tüm hakları saklıdır.</div>
+      <div class="text-white/40">Sesli rehber yapay zeka tabanlıdır — bilgi amaçlıdır, fiyat/saat teyit ediniz.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== APP ============== -->
+<script type="module">
+import { SimliClient, generateSimliSessionToken, LogLevel } from "https://esm.sh/simli-client@3.0.1";
+
+// ── CONFIG ───────────────────────────────────────────────
+// NOT: Simli client anahtarı Simli tasarımı gereği tarayıcıya açıktır (publishable).
+// Prod'da Simli panelinden domain/oran kısıtı uygulanmalı; ileride Supabase edge fn ile proxy'lenebilir.
+const CONFIG = {
+  simliApiKey: "6k0bj1vjj1kcs3e8snbrz7",
+  faceId: "d2a5c7c6-fed9-4f55-bcb3-062f7cd20103", // Kate — profesyonel kadın (hazır yüz). Birebir referans yüz için app.simli.com'a portre yüklenip özel faceId üretilecek.
+  agentId: "agent_0401kxt9cheme869ydvcq0akw342",   // ElevenLabs "Lyra" ajanı (public)
+};
+// ─────────────────────────────────────────────────────────
+
+const el = (id) => document.getElementById(id);
+const videoEl = el("avatarVideo"), audioEl = el("avatarAudio");
+const frame = el("avatarFrame"), idle = el("avatarIdle");
+const micBtn = el("micBtn"), micLabel = el("micLabel"), micIcon = el("micIcon");
+const statusPill = el("statusPill"), statusDot = el("statusDot"), statusText = el("statusText");
+const errorBox = el("errorBox"), captionsWrap = el("captionsWrap"), captions = el("captions");
+
+let simliClient = null, ws = null, active = false, loading = false;
+let audioContext = null, processor = null, source = null, micStream = null;
+let simliReady = false, pendingAudio = [];  // ⚡ ses Simli'den önce gelirse kuyruğa al (paralel başlatma)
+
+const STATUS = {
+  ready:      { t: "Hazır",        dot: "#7c9cb5", bg: "rgba(255,255,255,0.08)", fg: "rgba(255,255,255,0.7)" },
+  connecting: { t: "Bağlanıyor…",  dot: "#e8a020", bg: "rgba(232,152,18,0.16)",  fg: "#f5c15e", blink: true },
+  listening:  { t: "Dinliyorum",   dot: "#4A9EF5", bg: "rgba(74,158,245,0.18)",  fg: "#8fc4ff" },
+  speaking:   { t: "Lyra konuşuyor", dot: "#e8a020", bg: "rgba(232,152,18,0.18)", fg: "#f5c15e" },
+};
+function setStatus(k){
+  const s = STATUS[k]; if(!s) return;
+  statusText.textContent = s.t;
+  statusDot.style.background = s.dot;
+  statusDot.style.animation = s.blink ? "blink 1s ease-in-out infinite" : "none";
+  statusPill.style.background = s.bg;
+  statusPill.style.color = s.fg;
+  frame.classList.toggle("speaking", k === "speaking");
+  frame.classList.toggle("listening", k === "listening");
+}
+function showError(msg){ errorBox.textContent = msg; errorBox.classList.remove("hidden"); }
+function clearError(){ errorBox.classList.add("hidden"); }
+function addCaption(who, text){
+  captionsWrap.classList.remove("hidden");
+  const row = document.createElement("div");
+  row.className = "caption-line";
+  const isLyra = who === "Lyra";
+  row.innerHTML = `<span style="font-weight:700;color:${isLyra ? '#f5c15e' : '#8fc4ff'};">${who}:</span>
+                   <span style="color:rgba(255,255,255,0.85);"> ${text}</span>`;
+  captions.appendChild(row);
+  captions.scrollTop = captions.scrollHeight;
+}
+
+// ── audio helpers (from Simli×ElevenLabs reference) ──
+const base64ToUint8Array = (b64) => { const s = atob(b64); const a = new Uint8Array(s.length); for(let i=0;i<s.length;i++) a[i]=s.charCodeAt(i); return a; };
+function float32ToBase64PCM(f32){
+  const pcm = new Int16Array(f32.length);
+  for(let i=0;i<f32.length;i++){ const c = Math.max(-1, Math.min(1, f32[i])); pcm[i] = Math.floor(c*32767); }
+  const u8 = new Uint8Array(pcm.buffer); let bin=""; const chunk=8192;
+  for(let i=0;i<u8.length;i+=chunk) bin += String.fromCharCode.apply(null, Array.from(u8.subarray(i,i+chunk)));
+  return btoa(bin);
+}
+
+async function setupMic(){
+  micStream = await navigator.mediaDevices.getUserMedia({
+    audio: { sampleRate:16000, channelCount:1, echoCancellation:true, noiseSuppression:true, autoGainControl:true }
+  });
+  audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate:16000 });
+  source = audioContext.createMediaStreamSource(micStream);
+  processor = audioContext.createScriptProcessor(4096, 1, 1);
+  let busy = false;
+  processor.onaudioprocess = (e) => {
+    if(busy || !ws || ws.readyState !== WebSocket.OPEN) return;
+    busy = true;
+    try{
+      const input = e.inputBuffer.getChannelData(0);
+      if(input.some(s => Math.abs(s) > 0.01)){
+        ws.send(JSON.stringify({ user_audio_chunk: float32ToBase64PCM(input) }));
+      }
+    }catch(err){ console.error(err); } finally { busy = false; }
+  };
+  source.connect(processor); processor.connect(audioContext.destination);
+}
+function stopMic(){
+  try{ processor && (processor.disconnect(), processor.onaudioprocess=null); }catch(e){}
+  try{ source && source.disconnect(); }catch(e){}
+  try{ audioContext && audioContext.close(); }catch(e){}
+  try{ micStream && micStream.getTracks().forEach(t=>t.stop()); }catch(e){}
+  processor = source = audioContext = micStream = null;
+}
+
+function connectElevenLabs(){
+  if(!CONFIG.agentId){
+    setStatus("listening");
+    addCaption("Lyra", "Merhaba! Şu an sesli beynim (ElevenLabs) bağlanmayı bekliyor. Yüzüm hazır — ajan kurulunca seninle konuşacağım.");
+    return; // Simli avatar renders idle; EL agent not yet provisioned
+  }
+  const url = `wss://api.elevenlabs.io/v1/convai/conversation?agent_id=${encodeURIComponent(CONFIG.agentId)}`;
+  ws = new WebSocket(url);
+  ws.onopen = async () => {
+    ws.send(JSON.stringify({ type:"conversation_initiation_client_data", conversation_initiation_client_data:{ custom_llm_extra_body:{} } }));
+    simliClient?.ClearBuffer();
+    try{ await setupMic(); }catch(err){ showError("Mikrofona erişilemedi. Tarayıcı izinlerini kontrol et."); return; }
+    setStatus("listening");
+  };
+  ws.onmessage = (evt) => {
+    const data = JSON.parse(evt.data);
+    if(data.type === "ping"){ setTimeout(()=>ws.readyState===1 && ws.send(JSON.stringify({type:"pong",event_id:data.ping_event.event_id})), data.ping_event.ping_ms||0); }
+    if(data.type === "user_transcript"){ const t=data.user_transcription_event.user_transcript; t && addCaption("Sen", t); setStatus("listening"); }
+    if(data.type === "agent_response"){ const t=data.agent_response_event.agent_response; t && addCaption("Lyra", t); }
+    if(data.type === "audio"){ const _b = base64ToUint8Array(data.audio_event.audio_base_64); if(simliReady){ simliClient?.sendAudioData(_b); } else { pendingAudio.push(_b); } setStatus("speaking"); }
+    if(data.type === "interruption"){ simliClient?.ClearBuffer(); setStatus("listening"); }
+  };
+  ws.onclose = () => { if(active) stop(); };
+  ws.onerror = () => showError("Sesli beyne bağlanılamadı. Birazdan tekrar dene.");
+}
+
+async function start(){
+  if(loading || active) return;
+  loading = true; clearError();
+  simliReady = false; pendingAudio = [];
+  micBtn.disabled = true;
+  micIcon.outerHTML = '<span id="micIcon" class="spin"></span>';
+  micLabel.textContent = "Bağlanıyor…";
+  setStatus("connecting");
+  try{
+    // ⚡ HIZ: sesi + mikrofonu HEMEN başlat — Simli video avatarını BEKLEME.
+    // Kullanıcı 1-2 sn'de konuşmaya başlar; foto-gerçekçi yüz arka planda yüklenir,
+    // hazır olunca gelen ses parçaları (pendingAudio) ona akıtılır.
+    connectElevenLabs();
+    active = true; loading = false;
+    micBtn.disabled = false; micBtn.classList.add("stop");
+    const ic = el("micIcon"); if(ic) ic.outerHTML = '<svg id="micIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+    micLabel.textContent = "Konuşmayı Bitir";
+    el("hintText").textContent = "Konuş — Lyra dinliyor. Bitirmek için butona bas.";
+
+    // Video avatarı ARKA PLANDA bağla.
+    const { session_token } = await generateSimliSessionToken({
+      apiKey: CONFIG.simliApiKey,
+      config: { faceId: CONFIG.faceId, maxIdleTime:600, maxSessionLength:600, handleSilence:true }
+    });
+    simliClient = new SimliClient(session_token, videoEl, audioEl, null, LogLevel.WARN, "livekit");
+    simliClient.on("start", () => {
+      simliReady = true;
+      idle.style.opacity = "0";
+      simliClient.sendAudioData(new Uint8Array(6000).fill(0)); // bağlantıyı tetikle
+      for(const b of pendingAudio){ try{ simliClient.sendAudioData(b); }catch(e){} }  // bekleyen sesi akıt
+      pendingAudio = [];
+    });
+    simliClient.on("error", (e) => { console.error("Simli error", e); showError("Görüntü akışı hatası. Sayfayı yenileyip tekrar dene."); stop(); });
+    simliClient.on("startup_error", () => { showError("Avatar başlatılamadı — Simli anahtarı/kotası kontrol edilmeli."); stop(); });
+    await simliClient.start();
+  }catch(err){
+    console.error(err);
+    showError("Bağlantı kurulamadı: " + (err?.message || err));
+    stop();
+  }
+}
+
+function stop(){
+  active = false;
+  try{ ws && ws.close(); }catch(e){} ws = null;
+  stopMic();
+  try{ simliClient && simliClient.close ? simliClient.close() : simliClient?.stop?.(); }catch(e){}
+  simliClient = null;
+  reset();
+}
+function reset(){
+  loading = false; active = false;
+  simliReady = false; pendingAudio = [];
+  micBtn.disabled = false; micBtn.classList.remove("stop");
+  const ic = el("micIcon"); if(ic) ic.outerHTML = '<svg id="micIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8"/></svg>';
+  micLabel.textContent = "Konuşmaya Başla";
+  idle.style.opacity = "1";
+  setStatus("ready");
+  el("hintText").textContent = "Mikrofon izni istenecek · İstediğin an durdurabilirsin";
+}
+
+micBtn.addEventListener("click", () => active || loading ? stop() : start());
+setStatus("ready");
+</script>
+
+
+
+<script>window.KALKAN_PAGE_LANG="ru";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/rehber.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>

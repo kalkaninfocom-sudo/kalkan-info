@@ -1,0 +1,793 @@
+<!DOCTYPE html><html lang="ru" data-theme="{{THEME_CODE}}"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{NAME}} — Kalkan Kiralık Villa | kalkaninfo.com</title>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '872659329210680');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=872659329210680&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- SEO -->
+<meta name="description" content="{{SUMMARY}}">
+<meta name="keywords" content="{{NAME}}, Kalkan kiralık villa, {{LOCATION}} villa, havuzlu villa, deniz manzaralı villa, jakuzili villa, Kalkan Info">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://kalkaninfo.com/ru/villa/_template/">
+<link rel="alternate" hreflang="tr" href="https://kalkaninfo.com/villa/_template/">
+<link rel="alternate" hreflang="en" href="https://kalkaninfo.com/en/villa/_template/">
+<link rel="alternate" hreflang="de" href="https://kalkaninfo.com/de/villa/_template/">
+<link rel="alternate" hreflang="ru" href="https://kalkaninfo.com/ru/villa/_template/">
+<link rel="alternate" hreflang="fr" href="https://kalkaninfo.com/fr/villa/_template/">
+<link rel="alternate" hreflang="x-default" href="https://kalkaninfo.com/villa/_template/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{NAME}} — Kalkan Kiralık Villa | kalkaninfo.com">
+<meta property="og:description" content="{{SUMMARY}}">
+<meta property="og:url" content="https://kalkaninfo.com/ru/villa/_template/">
+<meta property="og:image" content="{{OG_IMAGE_FULL}}">
+<meta property="og:site_name" content="Kalkan Info">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="tr_TR">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{NAME}} — Kalkan Kiralık Villa | kalkaninfo.com">
+<meta name="twitter:description" content="{{SUMMARY}}">
+<meta name="twitter:image" content="{{OG_IMAGE_FULL}}">
+
+<!-- Geo -->
+<meta name="geo.region" content="TR-07">
+<meta name="geo.placename" content="Kalkan, Antalya">
+
+<!-- Schema.org LodgingBusiness -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LodgingBusiness",
+  "name":"{{NAME}}",
+  "image":"{{HERO_IMAGE_FULL}}",
+  "url":"https://kalkaninfo.com/villa/{{SLUG}}/",
+  "telephone":"{{PHONE}}",
+  "priceRange":"₺₺₺",
+  "description":"{{SUMMARY}}",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"{{LOCATION}}",
+    "addressLocality":"Kalkan",
+    "addressRegion":"Antalya",
+    "postalCode":"07580",
+    "addressCountry":"TR"
+  },
+  {{GEO_BLOCK}}"numberOfRooms":{{BEDROOMS}},
+  "petsAllowed":true,
+  "checkinTime":"{{CHECK_IN}}",
+  "checkoutTime":"{{CHECK_OUT}}",
+  "amenityFeature":{{AMENITY_FEATURE_JSON}},
+  "starRating":{"@type":"Rating","ratingValue":"5"},
+  "paymentAccepted":{{PAYMENT_METHODS_JSON}},
+  "currenciesAccepted":"TRY, USD, EUR, GBP",
+  "sameAs":{{SAME_AS_JSON}}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Kalkan Info","item":"https://kalkaninfo.com"},
+    {"@type":"ListItem","position":2,"name":"Villalar","item":"https://kalkaninfo.com/villalar.html"},
+    {"@type":"ListItem","position":3,"name":"{{NAME}}","item":"https://kalkaninfo.com/villa/{{SLUG}}/"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{{FAQ_JSON_LD}}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family={{THEME_GOOGLE_FONT}}&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{
+  --theme-bg:{{THEME_BG}};
+  --theme-bg-2:{{THEME_BG_2}};
+  --theme-accent:{{THEME_ACCENT}};
+  --theme-accent-2:{{THEME_ACCENT_2}};
+  --theme-text:{{THEME_TEXT}};
+  --theme-muted:{{THEME_MUTED}};
+  --theme-border:{{THEME_BORDER}};
+  --theme-border-strong:{{THEME_BORDER_STRONG}};
+  --theme-accent-soft:{{THEME_ACCENT_SOFT}};
+  --theme-font-display: {{THEME_FONT_DISPLAY}};
+}
+*{ -webkit-font-smoothing:antialiased; }
+html{ scroll-behavior:smooth; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--theme-bg); color:var(--theme-text); }
+h1,h2,h3,h4,.font-display{ font-family:var(--theme-font-display); letter-spacing:-0.02em; line-height:1.05; font-weight:600; }
+
+.nav-glass{ background:{{THEME_NAV_BG}}; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--theme-border); }
+.nav-link{ position:relative; padding:6px 2px; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.78); transition:color .2s; }
+.nav-link:hover{ color:var(--theme-accent); }
+.nav-link::after{ content:''; position:absolute; left:0; right:0; bottom:-3px; height:2px; background:var(--theme-accent); transform:scaleX(0); transform-origin:left; transition:transform .25s ease; }
+.nav-link:hover::after{ transform:scaleX(1); }
+
+.hero-img{ filter:saturate(1.08) contrast(1.04); }
+.hero-overlay{ background:{{THEME_HERO_OVERLAY}}; }
+
+.section-label{ display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; color:var(--theme-accent); }
+.section-label::before{ content:''; display:block; width:32px; height:1px; background:var(--theme-accent); }
+
+.btn-primary{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; background:var(--theme-accent); color:var(--theme-bg); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; border:1px solid var(--theme-accent); }
+.btn-primary:hover{ background:transparent; color:var(--theme-accent); }
+.btn-ghost{ display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:0; border:1px solid var(--theme-accent); color:var(--theme-accent); font-weight:700; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; transition:all .25s; background:transparent; }
+.btn-ghost:hover{ background:var(--theme-accent); color:var(--theme-bg); }
+
+.gallery-item{ position:relative; overflow:hidden; cursor:pointer; }
+.gallery-item img{ transition:transform .6s ease; }
+.gallery-item:hover img{ transform:scale(1.06); }
+.gallery-item::after{ content:''; position:absolute; inset:0; background:linear-gradient(160deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35)); opacity:0; transition:opacity .3s; }
+.gallery-item:hover::after{ opacity:1; }
+
+.amenity-card{ background:rgba(255,255,255,0.025); border:1px solid var(--theme-border); padding:18px 16px; transition:border-color .2s, transform .2s; }
+.amenity-card:hover{ border-color:var(--theme-accent); transform:translateY(-2px); }
+.amenity-icon{ color:var(--theme-accent); margin-bottom:10px; }
+
+/* ====== ROOM CARDS (4 KART) ====== */
+.room-card{ background:rgba(255,255,255,0.03); border:1px solid var(--theme-border); padding:28px; position:relative; transition:border-color .2s, transform .2s; }
+.room-card:hover{ border-color:var(--theme-accent); transform:translateY(-2px); }
+.room-card-head{ display:flex; align-items:flex-start; gap:16px; margin-bottom:16px; }
+.room-card-eyebrow{ font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--theme-accent); margin-bottom:4px; font-weight:700; }
+.room-num{ display:flex; flex-shrink:0; width:44px; height:44px; align-items:center; justify-content:center; border:1px solid var(--theme-accent); color:var(--theme-accent); font-family:var(--theme-font-display); font-weight:700; font-size:22px; }
+.room-beds{ font-size:14px; color:var(--theme-muted); margin-bottom:12px; font-style:italic; }
+.room-highlights{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.room-items{ list-style:none; padding:0; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:8px 12px; }
+.room-item{ display:flex; align-items:center; gap:8px; font-size:13px; color:var(--theme-text); }
+.room-item-icon{ color:var(--theme-accent); flex-shrink:0; opacity:0.85; display:inline-flex; }
+.room-item-icon svg{ width:16px; height:16px; }
+.room-item-text{ line-height:1.3; }
+
+.feature-pill{ display:inline-flex; align-items:center; gap:5px; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; padding:4px 10px; border:1px solid var(--theme-border-strong); color:var(--theme-accent); }
+.feature-pill.on{ background:var(--theme-accent-soft); }
+.feature-pill.star{ background:var(--theme-accent); color:var(--theme-bg); border-color:var(--theme-accent); }
+
+/* ====== KITCHEN / SALON DETAIL CARDS ====== */
+.detail-card{ display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.025); border:1px solid var(--theme-border); padding:14px 16px; transition:border-color .2s; }
+.detail-card:hover{ border-color:var(--theme-accent); }
+.detail-icon{ color:var(--theme-accent); flex-shrink:0; display:inline-flex; }
+.detail-icon svg{ width:18px; height:18px; }
+.detail-text{ font-size:14px; color:var(--theme-text); }
+
+/* ====== GARDEN CARDS ====== */
+.garden-card{ background:rgba(255,255,255,0.03); border:1px solid var(--theme-border); padding:22px 20px; text-align:left; transition:border-color .2s, transform .2s; }
+.garden-card:hover{ border-color:var(--theme-accent); transform:translateY(-2px); }
+.garden-icon{ color:var(--theme-accent); margin-bottom:12px; display:inline-flex; }
+.garden-icon svg{ width:26px; height:26px; }
+.garden-label{ font-family:var(--theme-font-display); font-size:18px; font-weight:700; color:var(--theme-text); margin-bottom:4px; }
+.garden-value{ font-size:13px; color:var(--theme-muted); line-height:1.5; }
+
+.metric-card{ text-align:center; padding:20px 12px; border:1px solid var(--theme-border); background:rgba(255,255,255,0.02); }
+.metric-icon{ color:var(--theme-accent); margin-bottom:8px; }
+.metric-value{ font-family:var(--theme-font-display); font-weight:700; font-size:22px; color:var(--theme-text); }
+.metric-label{ font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--theme-muted); margin-top:4px; }
+
+.price-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:20px; padding:24px; border-bottom:1px solid var(--theme-border); }
+.price-row:last-child{ border-bottom:0; }
+.price-amt{ font-family:var(--theme-font-display); font-weight:700; font-size:28px; color:var(--theme-accent); white-space:nowrap; }
+
+.deposit-note{ margin-top:24px; padding:24px; border:1px dashed var(--theme-border-strong); background:var(--theme-accent-soft); }
+.deposit-note-title{ font-family:var(--theme-font-display); font-size:18px; font-weight:700; color:var(--theme-accent); margin-bottom:10px; letter-spacing:0.04em; }
+.deposit-note-body{ font-size:14px; line-height:1.7; color:var(--theme-muted); }
+
+.faq-item{ border-bottom:1px solid var(--theme-border); }
+.faq-q{ padding:22px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:var(--theme-font-display); font-weight:600; font-size:20px; color:var(--theme-text); }
+.faq-q::after{ content:'+'; color:var(--theme-accent); font-size:24px; font-weight:300; transition:transform .25s; }
+.faq-item.open .faq-q::after{ transform:rotate(45deg); }
+.faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.faq-item.open .faq-a{ max-height:600px; }
+.faq-a-inner{ padding:0 0 22px; color:var(--theme-muted); line-height:1.7; font-size:15px; }
+
+.input{ width:100%; background:transparent; border:0; border-bottom:1px solid var(--theme-border-strong); padding:14px 0; color:var(--theme-text); font-size:14px; transition:border-color .2s; }
+.input:focus{ outline:none; border-bottom-color:var(--theme-accent); }
+.input::placeholder{ color:var(--theme-muted); text-transform:uppercase; letter-spacing:0.12em; font-size:11px; }
+
+.lang-pill{ font-size:11px; letter-spacing:0.14em; font-weight:700; padding:4px 8px; color:rgba(255,255,255,0.55); cursor:pointer; }
+.lang-pill.active{ color:var(--theme-accent); }
+
+.wa-float{ position:fixed; bottom:20px; right:20px; z-index:60; width:56px; height:56px; border-radius:9999px; background:#25D366; color:#fff; display:grid; place-items:center; box-shadow:0 8px 24px -6px rgba(37,211,102,0.55); transition:transform .25s; }
+.wa-float:hover{ transform:scale(1.08); }
+
+.kif-footer{ background:rgba(0,0,0,0.4); border-top:1px solid var(--theme-border); }
+
+.tag-chip{ display:inline-flex; align-items:center; padding:6px 12px; border:1px solid var(--theme-accent); color:var(--theme-accent); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; }
+
+@media (max-width:640px){
+  .room-items{ grid-template-columns:1fr; }
+}
+.related-card{ border-radius:6px; }
+.related-card:hover{ border-color:var(--theme-accent)!important; background:rgba(255,255,255,0.05)!important; transform:translateY(-2px); }
+</style>
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ============ NAV ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="font-display text-xl font-extrabold tracking-tight" style="color:var(--theme-accent);">{{NAME}}</a>
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#about" class="nav-link" data-i="about">О нас</a>
+      <a href="#amenities" class="nav-link" data-i="amenities">Возможности</a>
+      <a href="#rooms" class="nav-link" data-i="rooms">Спальни</a>
+      <a href="#kitchen" class="nav-link" data-i="kitchen">Кухня</a>
+      <a href="#garden" class="nav-link" data-i="garden">Сад</a>
+      <a href="#gallery" class="nav-link" data-i="gallery">Галерея</a>
+      <a href="#reserve" class="nav-link" data-i="reserve">Бронирование</a>
+    </div>
+    <div class="flex items-center gap-1">
+      <span class="lang-pill active" data-lang="tr">TR</span>
+      <span class="lang-pill" data-lang="en">EN</span>
+      <span class="lang-pill" data-lang="de">DE</span>
+      <span class="lang-pill" data-lang="ru">RU</span>
+      <span class="lang-pill" data-lang="fr">FR</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="relative h-screen min-h-[640px] flex items-center justify-center text-center overflow-hidden">
+  <img src="/{{HERO_IMAGE}}" alt="{{NAME}}" class="absolute inset-0 w-full h-full object-cover hero-img" onerror="this.style.background='var(--theme-bg-2)';this.style.display='none';">
+  <div class="absolute inset-0 hero-overlay"></div>
+  <div class="relative z-10 px-6 max-w-3xl">
+    <div class="section-label justify-center mb-6">{{CATEGORY}} · {{LOCATION}}</div>
+    <h1 class="font-display text-6xl md:text-8xl font-extrabold mb-6" style="color:var(--theme-text); text-shadow:0 4px 32px rgba(0,0,0,0.55);">{{NAME}}</h1>
+    <p class="text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-8" style="color:rgba(255,255,255,0.88);" data-i="hero_sub" {{tagline_i18n_attrs}}="">{{TAGLINE}}</p>
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      {{HERO_TAGS}}
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="#reserve" class="btn-primary" data-i="cta_reserve">Запрос на бронирование</a>
+      <a href="#amenities" class="btn-ghost" data-i="cta_amenities">Посмотреть возможности</a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-xs tracking-[0.3em]" style="color:rgba(255,255,255,0.55);">ПРОКРУТИТЕ</div>
+</header>
+
+<!-- ============ HAKKIMIZDA ============ -->
+<section id="about" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="section-label mb-6" data-i="about_label">О нас</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-8" data-i="about_title" {{about_title_i18n_attrs}}="">{{ABOUT_TITLE}}</h2>
+      {{ABOUT_PARAS}}
+      <div class="grid grid-cols-3 gap-4 mt-10">
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{BEDROOMS}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_bedrooms">Спальная комната</div>
+        </div>
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{CAPACITY_NUMBER}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_guests">Человек</div>
+        </div>
+        <div>
+          <div class="font-display text-4xl font-bold" style="color:var(--theme-accent);">{{BATHROOMS}}</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:var(--theme-muted);" data-i="stat_baths">Ванная комната</div>
+        </div>
+      </div>
+    </div>
+    <div class="aspect-[4/5] overflow-hidden">
+      <img src="/{{ABOUT_IMAGE}}" alt="Атмосфера {{NAME}}" class="w-full h-full object-cover hero-img">
+    </div>
+  </div>
+</section>
+
+<!-- ============ OLANAKLAR (TAM DONANIM) ============ -->
+<section id="amenities" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="amenities_label">Возможности</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="amenities_title">Полное оснащение виллы</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="amenities_sub">Всё необходимое для комфорта уже готово — от кухни до технологий, от открытого воздуха до внутреннего пространства.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {{AMENITIES_GRID}}
+    </div>
+    <div class="mt-14 pt-10 border-t" style="border-color:var(--theme-border);">
+      <div class="section-label mb-6 justify-center text-center" data-i="included_label">Внутренние услуги</div>
+      <div class="flex flex-wrap justify-center gap-2">
+        {{INCLUDED_PILLS}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YATAK ODALARI (4 AYRI KART) ============ -->
+<section id="rooms" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="rooms_label">Спальни</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="rooms_title">4 спальни · 8 человек</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="rooms_sub">Каждая комната спроектирована как отдельный сюит — со своей собственной ванной комнатой, кондиционером и личными деталями.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {{ROOMS_GRID}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ MUTFAK DETAY ============ -->
+<section id="kitchen" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="section-label mb-6" data-i="kitchen_label">Кухня</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" {{kitchen_title_i18n_attrs}}="">{{KITCHEN_TITLE}}</h2>
+      <p class="text-base md:text-lg leading-relaxed mb-8" style="color:var(--theme-muted);" {{kitchen_intro_i18n_attrs}}="">{{KITCHEN_INTRO}}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {{KITCHEN_ITEMS_GRID}}
+      </div>
+    </div>
+    <div class="aspect-square overflow-hidden order-first md:order-last">
+      <img src="/{{KITCHEN_IMAGE}}" alt="{{NAME}} mutfak" class="w-full h-full object-cover hero-img">
+    </div>
+  </div>
+</section>
+
+<!-- ============ SALON DETAY ============ -->
+<section id="salon" class="py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div class="aspect-square overflow-hidden">
+      <img src="/{{SALON_IMAGE}}" alt="{{NAME}} salon" class="w-full h-full object-cover hero-img">
+    </div>
+    <div>
+      <div class="section-label mb-6" data-i="salon_label">Гостинная</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" {{salon_title_i18n_attrs}}="">{{SALON_TITLE}}</h2>
+      <p class="text-base md:text-lg leading-relaxed mb-8" style="color:var(--theme-muted);" {{salon_intro_i18n_attrs}}="">{{SALON_INTRO}}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {{SALON_ITEMS_GRID}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BAHCE / HAVUZ / UST KAT ============ -->
+<section id="garden" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="garden_label">Сад и бассейн</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" {{garden_title_i18n_attrs}}="">{{GARDEN_TITLE}}</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" {{garden_intro_i18n_attrs}}="">{{GARDEN_INTRO}}</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14">
+      {{GARDEN_ITEMS_GRID}}
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 items-center pt-10 border-t" style="border-color:var(--theme-border);">
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="/{{POOL_IMAGE}}" alt="{{NAME}} havuz" class="w-full h-full object-cover hero-img">
+      </div>
+      <div>
+        <h3 class="font-display text-3xl md:text-4xl font-extrabold mb-6" data-i="pool_title">{{POOL_TITLE}}</h3>
+        <p class="text-base leading-relaxed mb-6" style="color:var(--theme-muted);" data-i="pool_desc">{{POOL_DESC}}</p>
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          <div>
+            <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="pool_dim_label">Размеры бассейна</div>
+            <div class="font-display text-xl font-bold leading-snug">{{POOL_DIMENSIONS}}</div>
+          </div>
+          <div>
+            <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="pool_view_label">Вид</div>
+            <div class="font-display text-xl font-bold" data-i="pool_view_val">На море / природу</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERI ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="section-label justify-center mb-6" data-i="gallery_label">Галерея</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="gallery_title">Фотографии виллы</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      {{GALLERY_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ MESAFELER ============ -->
+<section id="distances" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="distances_label">Расстояния</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="distances_title">Основные достопримечательности поблизости</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      {{DISTANCES_GRID}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIYAT & DEPOZITO (FULL TEXT) ============ -->
+<section id="pricing" class="py-24 md:py-32 px-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="pricing_label">Цена и депозит</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-4" data-i="pricing_title">Условия бронирования</h2>
+      <p class="max-w-2xl mx-auto text-base" style="color:var(--theme-muted);" data-i="pricing_sub">Напишите нашей команде консьержей для получения цен на период — специальное предложение за 60 секунд.</p>
+    </div>
+    <div class="border" style="border-color:var(--theme-border-strong);">
+      <div class="price-row">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_deposit_title">Депозит (возвращаемый)</div>
+          <div class="text-sm" style="color:var(--theme-muted);">Принимаются эквиваленты в USD / EUR / GBP.</div>
+        </div>
+        <div class="price-amt">{{DEPOSIT_TL}} TL</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_short_title">Краткосрочное проживание (менее 7 ночей)</div>
+          <div class="text-sm" style="color:var(--theme-muted);">Плата за дополнительные услуги при бронировании на срок менее 7 ночей.</div>
+        </div>
+        <div class="price-amt">+{{SHORT_STAY_TL}} TL</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="font-display text-2xl font-bold mb-1" data-i="price_pet_title">Плата за домашних животных</div>
+          <div class="text-sm" style="color:var(--theme-muted);">Принимается максимум 1 небольшое или среднее домашнее животное.</div>
+        </div>
+        <div class="price-amt">{{PET_FEE_TL}} TL</div>
+      </div>
+    </div>
+    <div class="deposit-note">
+      <div class="deposit-note-title">Описание депозита</div>
+      <div class="deposit-note-body">{{DEPOSIT_FULL_TEXT}}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIRIS-CIKIS & ULASIM ============ -->
+<section id="logistics" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+    <div>
+      <div class="section-label mb-6" data-i="logistics_label">Заезд и выезд</div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-8" data-i="logistics_title">Время и правила</h2>
+      <div class="space-y-6">
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="check_in_label">Регистрация заезда</div>
+          <div class="font-display text-3xl font-bold">{{CHECK_IN}}</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="check_out_label">Регистрация выезда</div>
+          <div class="font-display text-3xl font-bold">{{CHECK_OUT}}</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="checkin_note_label">Важное примечание</div>
+          <div class="text-sm leading-relaxed" style="color:var(--theme-muted);">{{CHECKIN_FULL_TEXT}}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label mb-6" data-i="transport_label">Транспорт</div>
+      <h2 class="font-display text-3xl md:text-4xl font-extrabold mb-8" data-i="transport_title">Аэропорт и трансфер</h2>
+      <div class="space-y-6">
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="transport_airport_label">Ближайший аэропорт</div>
+          <div class="font-display text-2xl font-bold" data-i="transport_airport_val">Даламан (DLM) — 125 км</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-widest mb-1" style="color:var(--theme-accent);" data-i="transport_transit_label">Общественный транспорт</div>
+          <div class="text-base" style="color:var(--theme-muted);" data-i="transport_transit_val">Нет. Наша команда консьержей может организовать платный частный трансфер.</div>
+        </div>
+        <div>
+          <a href="https://wa.me/{{WA_RAW}}?text={{TRANSFER_MSG}}" target="_blank" rel="noopener" class="btn-ghost" data-i="transport_cta">Запрос трансфера (WhatsApp)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SSS ============ -->
+<section id="faq" class="py-24 md:py-32 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="section-label justify-center mb-6" data-i="faq_label">Часто задаваемые вопросы</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold" data-i="faq_title">Ответили на ваши вопросы</h2>
+    </div>
+    <div>
+      {{FAQ_ITEMS}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ 360° SANAL TUR ============ -->
+{{TOUR_SECTION}}
+
+<!-- ============ REZERVASYON ============ -->
+<style>
+  .avail-legend{display:flex;justify-content:center;gap:22px;margin-bottom:18px;font-size:13px;color:var(--theme-muted);}
+  .avail-legend-item{display:inline-flex;align-items:center;gap:7px;}
+  .avail-dot{width:12px;height:12px;border-radius:4px;display:inline-block;}
+  .avail-dot.free{background:var(--theme-accent);}
+  .avail-dot.booked{background:#c0392b;}
+  .avail-cal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:820px;margin:0 auto;}
+  .avail-month{border:1px solid var(--theme-border);border-radius:14px;padding:16px 14px;background:rgba(255,255,255,0.02);}
+  .avail-month-name{font-family:var(--theme-font-display,serif);font-weight:700;font-size:15px;letter-spacing:0.02em;margin-bottom:12px;color:var(--theme-text);text-align:center;}
+  .avail-week{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+  .avail-wd{font-size:9px;text-transform:uppercase;letter-spacing:0.04em;color:var(--theme-muted);text-align:center;padding-bottom:5px;opacity:0.65;}
+  .avail-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:11.5px;border-radius:6px;color:var(--theme-text);background:var(--theme-accent-soft);}
+  .avail-day.blank{background:transparent;}
+  .avail-day.past{opacity:0.25;background:transparent;}
+  .avail-day.booked{background:#c0392b;color:#fff;font-weight:600;text-decoration:line-through;}
+  .avail-status{border-radius:12px;padding:16px 18px;font-size:14.5px;line-height:1.55;text-align:left;}
+  .avail-status.ok{background:rgba(39,174,96,0.12);border:1px solid rgba(39,174,96,0.4);color:#8ee6ab;}
+  .avail-status.bad{background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.42);color:#f0a89f;}
+  .avail-status .alt-title{font-weight:600;margin:12px 0 8px;color:var(--theme-text);}
+  .avail-alts{display:flex;flex-wrap:wrap;gap:10px;}
+  .avail-alt{display:inline-flex;flex-direction:column;gap:2px;border:1px solid var(--theme-border-strong);border-radius:10px;padding:9px 14px;text-decoration:none;background:rgba(255,255,255,0.03);transition:transform .18s ease,border-color .18s ease;}
+  .avail-alt:hover{transform:translateY(-2px);border-color:var(--theme-accent);}
+  .avail-alt .an{font-family:var(--theme-font-display,serif);font-weight:700;color:var(--theme-text);font-size:14px;}
+  .avail-alt .as{font-size:11px;color:var(--theme-accent);text-transform:uppercase;letter-spacing:0.08em;}
+</style>
+<section id="reserve" class="py-24 md:py-32 px-6" style="background:var(--theme-bg-2);">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="section-label justify-center mb-6" data-i="reserve_label">Запрос на бронирование</div>
+    <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-6" data-i="reserve_title">Спланируйте свой отдых</h2>
+    <p class="max-w-xl mx-auto mb-10 text-base" style="color:var(--theme-muted);" data-i="reserve_sub">Сделайте быстрое бронирование напрямую через WhatsApp или заполните форму — наша команда консьержей ответит вам в течение 60 секунд.</p>
+
+    <!-- Müsaitlik takvimi -->
+    <div class="avail-wrap mb-10">
+      <div class="avail-legend">
+        <span class="avail-legend-item"><span class="avail-dot free"></span><span data-i="avail_free">Доступно</span></span>
+        <span class="avail-legend-item"><span class="avail-dot booked"></span><span data-i="avail_booked">Dolu</span></span>
+      </div>
+      <div id="avail-cal" class="avail-cal"></div>
+    </div>
+
+    <form class="grid md:grid-cols-2 gap-6 text-left" onsubmit="event.preventDefault();sendReservation();">
+      <input class="input md:col-span-2" type="text" name="name" placeholder="Ваше имя и фамилия" required="">
+      <input class="input" type="tel" name="phone" placeholder="Телефон" required="">
+      <input class="input" type="text" name="people" placeholder="Количество человек" required="">
+      <input id="ci" class="input" type="date" name="checkin" onchange="checkAvail()" required="">
+      <input id="co" class="input" type="date" name="checkout" onchange="checkAvail()" required="">
+      <div id="avail-status" class="avail-status md:col-span-2" hidden=""></div>
+      <textarea class="input md:col-span-2" name="note" placeholder="Примечание (трансфер, домашние животные, специальные запросы)"></textarea>
+      <div class="md:col-span-2 flex flex-wrap justify-center gap-3 mt-4">
+        <button type="submit" class="btn-primary" data-i="cta_reserve_send">Отправить запрос</button>
+        <a href="https://wa.me/{{WA_RAW}}?text={{HELLO_MSG}}" target="_blank" rel="noopener" class="btn-ghost">Написать в WhatsApp</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ ILETISIM ============ -->
+<section id="contact" class="py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+    <div>
+      <div class="section-label mb-6" data-i="contact_label">Контакты</div>
+      <h2 class="font-display text-4xl md:text-5xl font-extrabold mb-10" data-i="contact_title">Свяжитесь с нами</h2>
+
+      <div class="space-y-8">
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_addr">Расположение</div>
+          <div class="text-base">{{LOCATION}}, Kalkan / Antalya</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_phone">Телефон консьержа</div>
+          <a href="tel:{{PHONE_RAW}}" class="text-base hover:underline">{{PHONE}}</a>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_concierge">Concierge</div>
+          <div class="text-base">Kalkan Info · 7/24 помощь</div>
+        </div>
+        <div>
+          <div class="text-xs tracking-[0.18em] uppercase mb-2" style="color:var(--theme-accent);" data-i="contact_social">Соцсети</div>
+          <div class="flex gap-4 mt-2">
+            {{SOCIAL_LINKS}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="aspect-square md:aspect-auto md:h-full min-h-[400px]">
+      <iframe src="https://www.google.com/maps?q={{MAPS_QUERY}}&amp;output=embed" class="w-full h-full" style="border:0;filter:grayscale(0.4) contrast(1.05);" loading="lazy" allowfullscreen=""></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENZER MEKANLAR (İÇ LİNKLEME / SEO) ============ -->
+{{RELATED_SECTION}}
+
+<!-- ============ FOOTER ============ -->
+<footer class="kif-footer py-14 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+    <div style="color:var(--theme-muted);">© 2026 {{NAME}} · Все права защищены.</div>
+    <a href="https://kalkaninfo.com" target="_blank" rel="noopener" class="flex items-center gap-2 hover:opacity-80 transition" style="color:var(--theme-muted);">
+      <span style="font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;">Разработано</span>
+      <span class="font-display font-extrabold text-lg" style="color:var(--theme-accent);">◆ KALKAN INFO</span>
+    </a>
+  </div>
+</footer>
+
+<a href="https://wa.me/{{WA_RAW}}?text={{HELLO_MSG}}" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"></path></svg>
+</a>
+
+<script src="/js/gtm-events.js" defer=""></script>
+
+<script>
+// i18n - 5 dil: UI etiketleri (data-i + I18N) + ICERIK (data-en/de/ru/fr) + title/meta
+const I18N = {{I18N_JSON}};
+const META_I18N = {{META_I18N_JSON}}; // { tr:{title,desc}, en:{...}, ... }
+const SUPPORTED = ['tr','en','de','ru','fr'];
+
+// data-en/de/ru/fr icin deger sec: hedef -> en -> tr(orijinal). '' bos deger = ceviri yok say.
+function contentVal(el, lang){
+  if (lang === 'tr') return el.dataset.tr != null ? el.dataset.tr : null;
+  const pick = el.dataset[lang] || el.dataset.en || (el.dataset.tr != null ? el.dataset.tr : '');
+  return pick !== '' ? pick : null;
+}
+
+function setLang(lang){
+  if (!SUPPORTED.includes(lang)) lang = 'tr';
+  document.documentElement.lang = lang;
+
+  // 1) UI etiketleri (data-i sozlugu). Bulunmazsa TR tabanina don.
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const key = el.dataset.i;
+    if (I18N[lang] && I18N[lang][key] != null) el.textContent = I18N[lang][key];
+    else if (I18N.tr && I18N.tr[key] != null) el.textContent = I18N.tr[key];
+  });
+
+  // 2) Icerik: data-en/de/ru/fr (tagline, hakkimizda paragraflari, mutfak/salon/bahce)
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if (el.dataset.tr == null) el.dataset.tr = el.textContent.trim();
+    const v = contentVal(el, lang);
+    if (v != null) el.textContent = v;
+  });
+
+  // 3) Title + meta description (SEO — TR taban korunur, dil degisince guncellenir)
+  try {
+    const m = META_I18N && META_I18N[lang];
+    if (m){
+      if (m.title) document.title = m.title;
+      const md = document.querySelector('meta[name="description"]');
+      if (md && m.desc) md.setAttribute('content', m.desc);
+    }
+  } catch(e){}
+
+  document.querySelectorAll('.lang-pill').forEach(p=>p.classList.toggle('active', p.dataset.lang===lang));
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click', ()=>setLang(p.dataset.lang)));
+try { const saved = localStorage.getItem('lang'); if (saved) setLang(saved); } catch(e){}
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+// ====== MÜSAİTLİK (Availability) ======
+const AVAIL = {{AVAIL_JSON}};  // { current:{id,name,url,booked:[{from,to}]}, all:[...] }
+const AVAIL_I18N = {
+  tr:{wd:['Pt','Sa','Ça','Pe','Cu','Ct','Pz'],mo:['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],ok:'Seçtiğiniz tarihler müsait — talebinizi gönderin.',bad:'Seçtiğiniz tarihler dolu.',alt:'Bu tarihlerde müsait diğer villalar:',none:'Bu tarihler diğer villalarda da dolu. Farklı tarih deneyin veya bize yazın.',order:'Lütfen çıkış tarihini girişten sonra seçin.',free:'Müsait'},
+  en:{wd:['Mo','Tu','We','Th','Fr','Sa','Su'],mo:['January','February','March','April','May','June','July','August','September','October','November','December'],ok:'Your dates are available — send your request.',bad:'Selected dates are booked.',alt:'Other villas available for these dates:',none:'These dates are booked across all our villas. Try different dates or message us.',order:'Please pick a check-out date after check-in.',free:'Available'},
+  de:{wd:['Mo','Di','Mi','Do','Fr','Sa','So'],mo:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],ok:'Ihre Daten sind verfügbar — senden Sie Ihre Anfrage.',bad:'Ausgewählte Daten sind belegt.',alt:'Andere verfügbare Villen für diese Daten:',none:'Diese Daten sind in allen Villen belegt. Andere Daten versuchen oder uns schreiben.',order:'Bitte Check-out nach Check-in wählen.',free:'Verfügbar'},
+  ru:{wd:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],mo:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],ok:'Ваши даты свободны — отправьте запрос.',bad:'Выбранные даты заняты.',alt:'Другие виллы, свободные на эти даты:',none:'Эти даты заняты на всех виллах. Выберите другие даты или напишите нам.',order:'Выберите дату выезда после заезда.',free:'Свободно'},
+  fr:{wd:['Lu','Ma','Me','Je','Ve','Sa','Di'],mo:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],ok:'Vos dates sont disponibles — envoyez votre demande.',bad:'Les dates choisies sont réservées.',alt:'Autres villas disponibles pour ces dates :',none:'Ces dates sont réservées dans toutes nos villas. Essayez d\'autres dates ou écrivez-nous.',order:'Choisissez une date de départ après l\'arrivée.',free:'Disponible'}
+};
+function _d(s){const p=String(s).split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function _iso(dt){return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');}
+function _today(){const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());}
+function _lang(){return AVAIL_I18N[document.documentElement.lang]?document.documentElement.lang:'tr';}
+// booked aralik [from,to): gece from..to-1 dolu, cikis gunu (to) bos
+function dayBooked(dt,booked){for(const b of booked){if(dt>=_d(b.from)&&dt<_d(b.to))return true;}return false;}
+function rangeConflicts(ci,co,booked){for(const b of booked){if(ci<_d(b.to)&&co>_d(b.from))return true;}return false;}
+
+function renderAvailCal(){
+  const el=document.getElementById('avail-cal'); if(!el) return;
+  const L=AVAIL_I18N[_lang()]; const today=_today(); const booked=AVAIL.current.booked||[];
+  let out='';
+  for(let m=0;m<4;m++){
+    const base=new Date(today.getFullYear(),today.getMonth()+m,1);
+    const y=base.getFullYear(), mo=base.getMonth();
+    const startWd=(new Date(y,mo,1).getDay()+6)%7; // Pazartesi=0
+    const days=new Date(y,mo+1,0).getDate();
+    let cells=L.wd.map(w=>'<div class="avail-wd">'+w+'</div>').join('');
+    for(let i=0;i<startWd;i++) cells+='<div class="avail-day blank"></div>';
+    for(let d=1;d<=days;d++){ const dt=new Date(y,mo,d); let cls='avail-day';
+      if(dt<today) cls+=' past'; else if(dayBooked(dt,booked)) cls+=' booked';
+      cells+='<div class="'+cls+'">'+d+'</div>';
+    }
+    out+='<div class="avail-month"><div class="avail-month-name">'+L.mo[mo]+' '+y+'</div><div class="avail-week">'+cells+'</div></div>';
+  }
+  el.innerHTML=out;
+}
+
+function checkAvail(){
+  const L=AVAIL_I18N[_lang()];
+  const ciV=document.getElementById('ci').value, coV=document.getElementById('co').value;
+  const box=document.getElementById('avail-status');
+  if(!ciV||!coV){ box.hidden=true; return; }
+  const ci=_d(ciV), co=_d(coV);
+  box.hidden=false;
+  if(co<=ci){ box.className='avail-status bad'; box.textContent='⚠️ '+L.order; return; }
+  if(!rangeConflicts(ci,co,AVAIL.current.booked||[])){ box.className='avail-status ok'; box.textContent='✅ '+L.ok; return; }
+  const alts=(AVAIL.all||[]).filter(x=>x.id!==AVAIL.current.id && !rangeConflicts(ci,co,x.booked||[]));
+  box.className='avail-status bad';
+  let html='⚠️ '+L.bad;
+  if(alts.length) html+='<div class="alt-title">'+L.alt+'</div><div class="avail-alts">'+alts.map(a=>'<a class="avail-alt" href="'+a.url+'"><span class="an">'+a.name+'</span><span class="as">'+L.free+'</span></a>').join('')+'</div>';
+  else html+='<div class="alt-title">'+L.none+'</div>';
+  box.innerHTML=html;
+}
+
+// Rezervasyon -> WhatsApp (musaitlik durumu dahil)
+function sendReservation(){
+  const f = document.querySelector('#reserve form');
+  const fd = new FormData(f);
+  const ci=fd.get('checkin')||'', co=fd.get('checkout')||'';
+  let durum='';
+  if(ci&&co){ durum = rangeConflicts(_d(ci),_d(co),AVAIL.current.booked||[]) ? 'DURUM: Talep edilen tarih DOLU (bekleme/alternatif)\n' : 'DURUM: Talep edilen tarih MUSAIT\n'; }
+  const msg = encodeURIComponent(
+    'Merhaba {{NAME}}, rezervasyon talebim:\n'+ durum +
+    'Ad Soyad: ' + (fd.get('name')||'') + '\n'+
+    'Telefon: ' + (fd.get('phone')||'') + '\n'+
+    'Kisi sayisi: ' + (fd.get('people')||'') + '\n'+
+    'Giris: ' + ci + '\n'+
+    'Cikis: ' + co + '\n'+
+    (fd.get('note') ? 'Not: ' + fd.get('note') : '')
+  );
+  window.open('https://wa.me/{{WA_RAW}}?text=' + msg, '_blank');
+}
+
+// init: bugunden onceki tarih secilemez + takvim ciz + dil degisince yeniden ciz
+(function(){
+  const t=_iso(_today());
+  const ci=document.getElementById('ci'), co=document.getElementById('co');
+  if(ci) ci.min=t; if(co) co.min=t;
+  renderAvailCal();
+  document.querySelectorAll('.lang-pill').forEach(p=>p.addEventListener('click',()=>setTimeout(()=>{renderAvailCal();checkAvail();},0)));
+})();
+
+// Hero scroll fade nav background
+window.addEventListener('scroll', ()=>{
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? '{{THEME_NAV_BG_SCROLL}}' : '{{THEME_NAV_BG}}';
+});
+</script>
+
+
+
+
+<script>window.KALKAN_PAGE_LANG="ru";window.setLang=function(l){var langs=['tr','en','de','ru','fr'];if(langs.indexOf(l)<0)return;var base="/villa/_template/index.html";location.href=(l==='tr'?base:'/'+l+base);};</script></body></html>
