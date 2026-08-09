@@ -49,8 +49,31 @@ function shortLoc(loc) {
   return (pick || 'Kalkan').replace(/\s+/g, ' ').slice(0, 40);
 }
 
+// Gerçek-yorum hook havuzundan (review-mining.mjs çıktısı) rastgele güçlü bir açılış seç.
+// Müşterinin KENDİ sözü = uydurma editöryal satırdan çok daha güçlü hook.
+function pickReviewHook(slug) {
+  if (!slug) return null;
+  const p = join(ROOT, 'content', 'hooks', `${slug}.json`);
+  if (!existsSync(p)) return null;
+  // Tanıtım reel'i POZİTİF açılmalı — şikayet/negatif işaretli hook'ları ele.
+  const NEG = /\b(ama|fakat|ancak|maalesef|yüksek ses|gürült|pahal|sorun|kötü|berbat|eksik|hayal kırık|yavaş|kaba|ilgisiz|soğuk servis|beklet|kirli)\b/i;
+  try {
+    const d = JSON.parse(readFileSync(p, 'utf8'));
+    const all = (Array.isArray(d.hooks) ? d.hooks : [])
+      .filter((h) => typeof h === 'string' && h.trim().length >= 15 && h.trim().length <= 120)
+      .map((h) => h.trim());
+    if (!all.length) return null;
+    const positive = all.filter((h) => !NEG.test(h));
+    const pool = positive.length ? positive : all; // hepsi negatifse mecburen havuzun tamamı
+    return pool[Math.floor(Math.random() * pool.length)]; // her build'de farklı → varyasyon
+  } catch { return null; }
+}
+
 async function tagline(r) {
-  // Kısa editöryal satır — angarya iş → cheap-llm (ollama/nvidia). Başarısızsa şablon.
+  // 1) Gerçek-yorum hook havuzu varsa ONU kullan (en güçlü, müşterinin kendi dili).
+  const hook = pickReviewHook(r.id);
+  if (hook) { console.log(`✓ Hook (gerçek yorumdan): "${hook}"`); return hook; }
+  // 2) Havuz yoksa: kısa editöryal satır — cheap-llm. Başarısızsa şablon.
   const fallback = `${r.cuisine || 'Kalkan'} lezzetleriyle ${shortLoc(r.location)} mevkiinde öne çıkan bir adres.`;
   try {
     const { cheapLLM } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
