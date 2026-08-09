@@ -20,6 +20,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
 import { withAiDisclosure } from '../../lib/reklam-uyum.mjs';
+import { publishReelTranslations } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -150,6 +151,18 @@ async function main() {
     }).catch(() => {});
     console.log(`✅ Reel onayı gönderildi (message_id ${msgId}). Onaylanınca IG Reels.`);
   }
+
+  // 5) ÇOK-DİL (P2): aynı mp4'ü paylaşarak DE/RU/FR/EN caption+onay üret (non-fatal; TR akışını bozmaz).
+  // isAI:true → helper her dile kendi AI şeffaflık ibaresini ekler (rawHashtags temel; #yapayzeka helper'da eklenir).
+  const HDR = { en: 'ANCIENT CITY OF THE WEEK', de: 'ANTIKE STADT DER WOCHE', ru: 'ДРЕВНИЙ ГОРОД НЕДЕЛИ', fr: 'CITÉ ANTIQUE DE LA SEMAINE' };
+  const CTAL = { en: 'Guide & visit', de: 'Guide & Besuch', ru: 'Гид и посещение', fr: 'Guide & visite' };
+  await publishReelTranslations({
+    typeKey: 'antik', mp4Path: mp4, videoUrl, packIdBase: packId,
+    scheduledAt: `${date}T20:00:00+03:00`, hashtags: rawHashtags, isAI: true,
+    captionFields: { name, tagline: p.tagline || '' },
+    buildCaption: (f, lang) => `🏛️ ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
+    context: 'Haftanın antik kenti Instagram reel caption (Kalkan çevresi Likya antik kenti)',
+  }).catch(e => console.warn('  ℹ çok-dil antik reel atlandı (non-fatal):', e.message));
 }
 
 main().catch(e => { console.error('[antik-reel-approval]', e); process.exit(1); });
