@@ -3,81 +3,122 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kalkan'ı Yukarıdan İzle — 3B Canlı Harita | kalkaninfo.com</title>
-<meta name="description" content="Kalkan'ın kuş bakışı 3B canlı haritası: mekanların konumları, restoranlar, oteller ve Instagram bağlantıları. Kalkan'ı yukarıdan keşfet." />
+<title>Keşfet — Kalkan 3B İnteraktif Harita | kalkaninfo.com</title>
+<meta name="description" content="Kalkan'ın 3B interaktif haritası: restoranlar, oteller, villalar ve plajlar tek haritada. Filtrele, keşfet, yol tarifi al. Gerçek konum verisiyle." />
+<link rel="canonical" href="https://kalkaninfo.com/harita-3d" />
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
-  :root{ --gold:#E8A020; --blue:#4A9EF5; --green:#4ADE80; --purple:#8B5CF6; --bg:#020510; }
+  :root{
+    --gold:#E8A020; --gold-d:#C6851A; --teal:#2FA6A0; --coral:#F0785A;
+    --purple:#8B5CF6; --green:#3FA34D; --blue:#4A9EF5;
+    --cream:#FAF6EF; --ink:#2A2320; --muted:#7A6E63;
+    --panel:rgba(255,255,255,0.92); --line:rgba(42,35,32,0.10);
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;font-family:'Open Sans',sans-serif;background:var(--bg);color:#fff;overflow:hidden}
+  html,body{height:100%;font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);overflow:hidden}
   #map{position:absolute;inset:0}
-  /* Üst başlık */
+
+  /* ── Üst bar (açık, marka + geri) ── */
   .topbar{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
-    padding:14px 20px;background:linear-gradient(180deg,rgba(2,5,16,0.85),transparent);pointer-events:none}
-  .brand{font-family:'Montserrat';font-weight:800;font-size:18px;letter-spacing:.02em;pointer-events:auto}
-  .brand span{color:var(--gold)}
-  .title-chip{font-family:'Montserrat';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    background:rgba(74,158,245,0.18);border:1px solid rgba(74,158,245,0.4);color:#bcdcff;padding:7px 14px;border-radius:99px;pointer-events:auto}
-  /* Kontrol paneli */
-  .panel{position:absolute;left:16px;bottom:16px;z-index:10;background:rgba(6,12,26,0.82);backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:14px 16px;max-width:280px}
-  .panel h3{font-family:'Montserrat';font-weight:700;font-size:13px;margin-bottom:8px}
-  .legend{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
-  .legend .row{display:flex;align-items:center;gap:8px}
-  .dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
-  .btns{display:flex;gap:8px;margin-top:12px}
-  .btn{flex:1;font-family:'Montserrat';font-weight:700;font-size:12px;cursor:pointer;border:1px solid rgba(255,255,255,0.18);
-    background:rgba(255,255,255,0.06);color:#fff;padding:9px;border-radius:9px;transition:.2s}
-  .btn:hover{background:rgba(255,255,255,0.14)}
-  .btn.active{background:var(--blue);border-color:var(--blue)}
-  .count{font-size:11px;color:#7fa;margin-top:8px}
-  /* Popup kart */
-  .maplibregl-popup-content{background:#0a1428;color:#fff;border-radius:14px;padding:0;overflow:hidden;
-    border:1px solid rgba(255,255,255,0.12);box-shadow:0 12px 40px rgba(0,0,0,0.6);width:260px;font-family:'Open Sans'}
-  .maplibregl-popup-close-button{color:#fff;font-size:20px;padding:2px 8px}
-  .maplibregl-popup-tip{border-top-color:#0a1428!important;border-bottom-color:#0a1428!important}
-  .card-img{height:120px;background-size:cover;background-position:center;background-color:#12203a}
-  .card-body{padding:12px 14px}
-  .card-body h4{font-family:'Montserrat';font-weight:700;font-size:15px;margin-bottom:3px}
-  .card-meta{font-size:12px;color:#9db4d4;margin-bottom:8px}
-  .card-rating{color:var(--gold);font-weight:700}
-  .card-actions{display:flex;gap:8px;margin-top:8px}
-  .card-actions a{flex:1;text-align:center;text-decoration:none;font-family:'Montserrat';font-weight:700;font-size:11.5px;
-    padding:8px;border-radius:8px}
-  .a-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff}
-  .a-map{background:rgba(255,255,255,0.1);color:#fff}
-  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:20;
-    background:var(--bg);font-family:'Montserrat';font-weight:700;letter-spacing:.1em;color:#8ab}
-  @media(max-width:600px){.panel{max-width:200px;padding:11px 12px}.title-chip{display:none}}
+    padding:12px 18px;background:linear-gradient(180deg,rgba(250,246,239,0.96),rgba(250,246,239,0.55) 70%,transparent);pointer-events:none}
+  .topbar > *{pointer-events:auto}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Fraunces';font-weight:700;font-size:17px;color:var(--ink);text-decoration:none}
+  .brand b{color:var(--gold-d)}
+  .back-link{font-family:'Inter';font-weight:600;font-size:13px;color:var(--ink);text-decoration:none;
+    background:var(--panel);border:1px solid var(--line);padding:8px 14px;border-radius:99px;box-shadow:0 4px 14px rgba(42,35,32,0.08);transition:.2s}
+  .back-link:hover{background:#fff;transform:translateY(-1px)}
+
+  /* ── Filtre çubuğu (üst, açık pill'ler) ── */
+  .filters{position:absolute;top:58px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:7px;flex-wrap:wrap;justify-content:center;
+    max-width:94vw;padding:0 8px}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:'Inter';font-weight:600;font-size:12.5px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:8px 13px;border-radius:99px;
+    box-shadow:0 4px 14px rgba(42,35,32,0.07);transition:.18s;user-select:none}
+  .chip:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(42,35,32,0.12)}
+  .chip .cdot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .chip.off{opacity:.42;filter:grayscale(.5)}
+  .chip.off .cdot{box-shadow:none}
+
+  /* ── Alt kontrol paneli ── */
+  .panel{position:absolute;left:16px;bottom:16px;z-index:10;background:var(--panel);backdrop-filter:blur(8px);
+    border:1px solid var(--line);border-radius:16px;padding:13px 15px;max-width:230px;box-shadow:0 10px 30px rgba(42,35,32,0.13)}
+  .panel h3{font-family:'Fraunces';font-weight:700;font-size:14px;margin-bottom:4px;color:var(--ink)}
+  .panel .sub{font-size:11.5px;color:var(--muted);margin-bottom:10px}
+  .btns{display:flex;gap:7px}
+  .btn{flex:1;font-family:'Inter';font-weight:700;font-size:12px;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);padding:9px;border-radius:10px;transition:.18s}
+  .btn:hover{background:var(--cream)}
+  .btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
+  .count{font-size:11.5px;color:var(--teal);font-weight:600;margin-top:10px}
+
+  /* ── Popup kart (açık) ── */
+  .maplibregl-popup-content{background:#fff;color:var(--ink);border-radius:16px;padding:0;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 16px 46px rgba(42,35,32,0.22);width:264px;font-family:'Inter'}
+  .maplibregl-popup-close-button{color:#fff;font-size:22px;padding:0 9px;right:2px;top:2px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  .maplibregl-popup-tip{border-top-color:#fff!important;border-bottom-color:#fff!important}
+  .card-img{height:124px;background-size:cover;background-position:center;background-color:#e8ded0;position:relative}
+  .card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,0.35))}
+  .card-kind{position:absolute;left:10px;top:10px;z-index:2;font-family:'Inter';font-weight:700;font-size:10.5px;letter-spacing:.04em;
+    text-transform:uppercase;color:#fff;padding:4px 9px;border-radius:99px;backdrop-filter:blur(4px)}
+  .card-body{padding:12px 14px 14px}
+  .card-body h4{font-family:'Fraunces';font-weight:700;font-size:16px;margin-bottom:3px;line-height:1.15}
+  .card-meta{font-size:12px;color:var(--muted);margin-bottom:7px}
+  .card-rating{color:var(--gold-d);font-weight:700;font-size:12.5px}
+  .card-actions{display:flex;gap:7px;margin-top:10px}
+  .card-actions a{flex:1;text-align:center;text-decoration:none;font-family:'Inter';font-weight:700;font-size:11.5px;
+    padding:8px 6px;border-radius:9px;transition:.15s;border:1px solid transparent}
+  .a-detay{background:var(--gold);color:#fff}
+  .a-detay:hover{background:var(--gold-d)}
+  .a-wa{background:#25D366;color:#fff}
+  .a-yol{background:var(--cream);color:var(--ink);border-color:var(--line)}
+
+  .loading{position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;z-index:20;
+    background:var(--cream);font-family:'Fraunces';font-weight:700;font-size:15px;letter-spacing:.02em;color:var(--gold-d)}
+  .spin{width:34px;height:34px;border:3px solid rgba(232,160,32,0.25);border-top-color:var(--gold);border-radius:50%;animation:sp 0.8s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  @media(max-width:600px){
+    .panel{max-width:44vw;padding:11px 12px;left:12px;bottom:12px}
+    .filters{top:54px;gap:6px}
+    .chip{font-size:11.5px;padding:7px 11px}
+    .brand{font-size:15px}
+  }
 </style>
 </head>
 <body>
 <div id="map"></div>
-<div class="loading" id="loading">KALKAN 3B YÜKLENİYOR…</div>
+<div class="loading" id="loading"><div class="spin"></div>Kalkan 3B harita yükleniyor…</div>
 
 <div class="topbar">
-  <div class="brand">KALKAN<span>INFO</span></div>
-  <div class="title-chip">🛰️ Kalkan'ı Yukarıdan İzle</div>
+  <a class="brand" href="/">Kalkan<b>Info</b></a>
+  <a class="back-link" href="/">← Ana sayfa</a>
 </div>
 
+<div class="filters" id="filters"></div>
+
 <div class="panel">
-  <h3>Mekanlar</h3>
-  <div class="legend">
-    <div class="row"><span class="dot" style="color:#E8A020;background:#E8A020"></span> Restoran</div>
-    <div class="row"><span class="dot" style="color:#4A9EF5;background:#4A9EF5"></span> Otel</div>
-    <div class="row"><span class="dot" style="color:#8B5CF6;background:#8B5CF6"></span> Villa</div>
-  </div>
+  <h3>Kalkan'ı Keşfet</h3>
+  <div class="sub">Gerçek konumlarıyla mekanlar</div>
   <div class="btns">
     <button class="btn active" id="spinBtn">⟲ Döndür</button>
-    <button class="btn" id="resetBtn">↺ Kalkan</button>
+    <button class="btn" id="resetBtn">↺ Merkez</button>
   </div>
-  <div class="count" id="count"></div>
+  <div class="count" id="count">Yükleniyor…</div>
 </div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
-const KALKAN = { center: [29.4130, 36.2650], zoom: 14.4, pitch: 66, bearing: -22 };
+const KALKAN = { center: [29.4130, 36.2650], zoom: 14.2, pitch: 62, bearing: -20 };
+
+// Kategori tanımı (renk + ikon + veri kaynağı)
+const CATS = [
+  { key:'Restoran', color:'#E8A020', file:'/data/restoranlar.json' },
+  { key:'Otel',     color:'#4A9EF5', file:'/data/oteller.json' },
+  { key:'Villa',    color:'#8B5CF6', file:'/data/villalar.json' },
+  { key:'Plaj',     color:'#2FA6A0', file:'/data/plajlar.json' },
+];
+const COLOR = Object.fromEntries(CATS.map(c=>[c.key,c.color]));
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -94,59 +135,115 @@ const map = new maplibregl.Map({
 });
 map.addControl(new maplibregl.NavigationControl({ visualizePitch:true }), 'top-right');
 
-// ── otomatik döndürme ("canlı yukarıdan izle") ──
+// otomatik sinematik döndürme
 let spinning = true;
-function spin(){ if(!spinning) return; map.setBearing((map.getBearing()+0.06)); requestAnimationFrame(spin); }
-document.getElementById('spinBtn').onclick = (e)=>{ spinning=!spinning; e.target.classList.toggle('active',spinning); if(spinning) spin(); };
-document.getElementById('resetBtn').onclick = ()=> map.flyTo({ ...KALKAN, duration:2000 });
+function spin(){ if(!spinning) return; map.setBearing(map.getBearing()+0.05); requestAnimationFrame(spin); }
+document.getElementById('spinBtn').onclick = (e)=>{ spinning=!spinning; e.currentTarget.classList.toggle('active',spinning); if(spinning) spin(); };
+document.getElementById('resetBtn').onclick = ()=>{ spinning=false; document.getElementById('spinBtn').classList.remove('active'); map.flyTo({ ...KALKAN, duration:2200, essential:true }); };
 
-// ── mekanları yükle ──
-const COLORS = { Restoran:'#E8A020', Otel:'#4A9EF5', Villa:'#8B5CF6' };
 const esc = s => String(s==null?'':s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
-function coordOf(v){ const c=v.coordinates||v.geo; if(c&&c.longitude&&c.latitude) return [c.longitude,c.latitude]; if(v.lng&&v.lat) return [v.lng,v.lat]; return null; }
-
+// Villa yaklaşık Kalamar konumları (villalar.json'da koordinat yok; F2'de villacim gerçeğiyle güncellenecek)
+const VILLA_COORDS = { 'villa-poyraz':[29.4092,36.2628], 'villa-ship-ahoy':[29.4082,36.2636], 'villa-seascape':[29.4079,36.2639] };
+function coordOf(v){
+  const c=v.coordinates||v.geo||v.coords;
+  if(c&&(c.longitude||c.lng)&&(c.latitude||c.lat)) return [c.longitude||c.lng, c.latitude||c.lat];
+  if(v.lng!=null&&v.lat!=null) return [v.lng, v.lat];
+  if(v.longitude!=null&&v.latitude!=null) return [v.longitude, v.latitude];
+  if(v.id && VILLA_COORDS[v.id]) return VILLA_COORDS[v.id];
+  return null;
+}
 async function loadSet(file, kind){
-  try{ const d = await fetch(file).then(r=>r.json()); const a = Array.isArray(d)?d:(d.items||d.data||Object.values(d).find(Array.isArray)||[]);
-    return a.filter(x=>x&&x.name).map(x=>({...x,_kind:kind})); }catch(e){ return []; }
+  try{
+    const d = await fetch(file).then(r=>r.json());
+    const a = Array.isArray(d)?d:(d.items||d.data||Object.values(d).find(Array.isArray)||[]);
+    return a.filter(x=>x&&x.name).map(x=>({...x,_kind:kind}));
+  }catch(e){ return []; }
+}
+function waLink(v){
+  const msg = encodeURIComponent(`Merhaba, ${v.name} hakkında bilgi almak istiyorum (kalkaninfo.com haritasından).`);
+  return `https://wa.me/905306650794?text=${msg}`;
 }
 function cardHTML(v){
   const photo = (Array.isArray(v.gallery)&&v.gallery[0]) || v.image || '';
-  const rating = v.rating ? `<span class="card-rating">★ ${esc(v.rating)}</span>${v.reviewCount?` · ${esc(v.reviewCount)} yorum`:''}` : '';
-  const ig = v.instagram ? `<a class="a-ig" href="https://instagram.com/${esc(String(v.instagram).replace(/^@/,''))}" target="_blank" rel="noopener">📸 Instagram</a>` : '';
-  const detail = v.detailPath ? `<a class="a-map" href="${esc(v.detailPath)}" target="_blank">Detay</a>` : `<a class="a-map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name+' Kalkan')}" target="_blank">Haritada</a>`;
-  return `${photo?`<div class="card-img" style="background-image:url('${esc(photo)}')"></div>`:''}
-    <div class="card-body"><h4>${esc(v.name)}</h4>
+  const rating = v.rating ? `<span class="card-rating">★ ${esc(v.rating)}</span>${v.reviewCount?` <span style="color:#9a8f83">· ${esc(v.reviewCount)} yorum</span>`:''}` : '';
+  const c = coordOf(v);
+  const yol = c ? `https://www.google.com/maps/dir/?api=1&destination=${c[1]},${c[0]}` : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name+' Kalkan')}`;
+  const detay = v.detailPath ? `<a class="a-detay" href="${esc(v.detailPath)}" target="_blank" rel="noopener">Detay</a>` : '';
+  return `${photo?`<div class="card-img" style="background-image:url('${esc(photo)}')"><span class="card-kind" style="background:${COLOR[v._kind]||'#888'}cc">${esc(v._kind)}</span></div>`
+      :`<div class="card-img" style="display:flex;align-items:center;justify-content:center"><span class="card-kind" style="background:${COLOR[v._kind]||'#888'}cc">${esc(v._kind)}</span></div>`}
+    <div class="card-body">
+      <h4>${esc(v.name)}</h4>
       <div class="card-meta">${esc(v.cuisine||v.category||v._kind)}${v.location?` · ${esc(v.location)}`:''}</div>
       <div>${rating}</div>
-      <div class="card-actions">${ig}${detail}</div></div>`;
+      <div class="card-actions">
+        ${detay}
+        <a class="a-wa" href="${waLink(v)}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="a-yol" href="${yol}" target="_blank" rel="noopener">Yol tarifi</a>
+      </div>
+    </div>`;
 }
 
-// güvenlik: 7sn içinde load olmazsa loading ekranını gizle (harita yine de kullanılabilir)
-setTimeout(()=>{ const l=document.getElementById('loading'); if(l) l.style.display='none'; }, 7000);
+// güvenlik: 8sn içinde load olmazsa loading gizle
+setTimeout(()=>{ const l=document.getElementById('loading'); if(l) l.style.display='none'; }, 8000);
+
+const markers = []; // {marker, kind}
+const active = new Set(CATS.map(c=>c.key)); // hepsi açık
+
+function renderFilters(counts){
+  const wrap = document.getElementById('filters');
+  wrap.innerHTML = CATS.map(c=>`
+    <div class="chip" data-kind="${c.key}">
+      <span class="cdot" style="background:${c.color};box-shadow:0 0 8px ${c.color}"></span>
+      ${c.key}<span style="color:#9a8f83;font-weight:500"> ${counts[c.key]||0}</span>
+    </div>`).join('');
+  wrap.querySelectorAll('.chip').forEach(chip=>{
+    chip.onclick = ()=>{
+      const k = chip.dataset.kind;
+      if(active.has(k)){ active.delete(k); chip.classList.add('off'); }
+      else { active.add(k); chip.classList.remove('off'); }
+      applyFilter();
+    };
+  });
+}
+function applyFilter(){
+  let vis=0;
+  markers.forEach(m=>{
+    const on = active.has(m.kind);
+    m.marker.getElement().style.display = on ? '' : 'none';
+    if(on) vis++;
+  });
+  document.getElementById('count').textContent = `${vis} mekan görünüyor`;
+}
 
 map.on('load', async ()=>{
   document.getElementById('loading').style.display='none';
-  // Terrain + sky'ı load SONRASI ekle (bloke etmesin) — hata olursa düz eğik uydu kalır
-  try { map.setTerrain({ source:'dem', exaggeration:1.5 }); } catch(e){}
-  try { map.setSky({ 'sky-color':'#0a1a3a','sky-horizon-blend':0.5,'horizon-color':'#88aadd','horizon-fog-blend':0.6,'fog-color':'#0a1428','fog-ground-blend':0.4 }); } catch(e){}
+  try { map.setTerrain({ source:'dem', exaggeration:1.4 }); } catch(e){}
+  try { map.setSky({ 'sky-color':'#bcd9ff','sky-horizon-blend':0.55,'horizon-color':'#eaf3ff','horizon-fog-blend':0.55,'fog-color':'#f3ece0','fog-ground-blend':0.35 }); } catch(e){}
   spin();
-  const all = [].concat(
-    await loadSet('/data/restoranlar.json','Restoran'),
-    await loadSet('/data/oteller.json','Otel'),
-    await loadSet('/data/villalar.json','Villa'),
-  );
-  let n=0;
-  for(const v of all){
-    const c = coordOf(v); if(!c) continue; n++;
-    const el = document.createElement('div');
-    el.style.cssText = `width:14px;height:14px;border-radius:50%;cursor:pointer;background:${COLORS[v._kind]||'#fff'};border:2px solid #fff;box-shadow:0 0 10px ${COLORS[v._kind]||'#fff'},0 2px 6px rgba(0,0,0,.6)`;
-    el.onmouseenter=()=>el.style.transform='scale(1.4)'; el.onmouseleave=()=>el.style.transform='scale(1)';
-    new maplibregl.Marker({element:el})
-      .setLngLat(c)
-      .setPopup(new maplibregl.Popup({offset:16,closeButton:true,maxWidth:'260px'}).setHTML(cardHTML(v)))
-      .addTo(map);
+
+  const counts = {};
+  for(const cat of CATS){
+    const items = await loadSet(cat.file, cat.key);
+    let n=0;
+    for(const v of items){
+      const c = coordOf(v); if(!c) continue; n++;
+      const el = document.createElement('div');
+      el.style.cssText = `width:15px;height:15px;border-radius:50%;cursor:pointer;background:${cat.color};border:2.5px solid #fff;box-shadow:0 0 10px ${cat.color},0 2px 7px rgba(0,0,0,.5);transition:transform .15s`;
+      el.onmouseenter=()=>el.style.transform='scale(1.45)'; el.onmouseleave=()=>el.style.transform='scale(1)';
+      const marker = new maplibregl.Marker({element:el})
+        .setLngLat(c)
+        .setPopup(new maplibregl.Popup({offset:18,closeButton:true,maxWidth:'264px'}).setHTML(cardHTML(v)))
+        .addTo(map);
+      markers.push({marker, kind:cat.key});
+    }
+    counts[cat.key] = n;
   }
-  document.getElementById('count').textContent = `${n} mekan haritada · Kalkan'ı yukarıdan keşfet`;
+  renderFilters(counts);
+  const total = markers.length;
+  document.getElementById('count').textContent = `${total} mekan haritada`;
+
+  // sinematik açılış: hafif zoom-in
+  map.flyTo({ ...KALKAN, zoom:14.6, duration:3200, essential:true });
 });
 </script>
 </body>
