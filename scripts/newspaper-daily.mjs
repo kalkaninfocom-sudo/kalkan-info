@@ -198,6 +198,12 @@ async function main() {
     const edOk = run(['scripts/agency/gazete-newsroom.mjs', date], 'Haber odası (muhabir→editör→doğrulayıcı→şef)');
     if (!edOk) console.warn('  ⚠ Haber odası başarısız — gazete ham RSS fallback ile üretilecek.');
   }
+  // TOPLULUK EDİTÖRÜ köprüsü (P3): admin'in onayladığı katkıcı önerilerini (gazete_submissions,
+  // status=approved, target_date=date) bu sayının ilgili slot'larına işle. Haber odasından SONRA,
+  // build'den ÖNCE koşar → gazete-today.json'a yazdığı topluluk içeriği doğrudan yayına girer.
+  // Non-fatal: Supabase env yoksa/öneri yoksa/uyum ihlaliyse atlanır, build normal devam eder.
+  run(['scripts/agency/gazete-community-merge.mjs', date], 'Topluluk editörü önerileri (onaylı → gazete)');
+
   run(['newspaper/generator/build.mjs', 'morning', date], 'Ön Sayfa (morning) üret');
   run(['newspaper/generator/build.mjs', 'magazine', date], 'Arka Yüz (magazine) üret');
 
