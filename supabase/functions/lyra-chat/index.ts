@@ -126,6 +126,9 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
     if (soon.length) {
       parts.push('YAKLAŞAN KALKAN ETKİNLİKLERİ (gerçek takvim — SADECE bunlar, tarih/mekan UYDURMA):\n' +
         soon.map((e) => `- ${e.date}${e.time ? ' ' + e.time : ''} · ${e.title} · ${e.venueName || e.area || ''}${e.type ? ' (' + e.type + ')' : ''}`).join('\n'));
+    } else {
+      parts.push('ETKİNLİK DURUMU: Takvimde yaklaşan kayıtlı etkinlik YOK. Etkinlik/konser/canlı müzik UYDURMA — ' +
+        '"şu an takvimimizde planlı bir etkinlik görünmüyor" de, sonra dilersen canlı müzikli/keyifli mekanlar önerebileceğini ekle.');
     }
   }
 
@@ -139,7 +142,11 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
         const nm = id.replace(/^villa-/, 'Villa ').replace(/\b\w/g, (c) => c.toUpperCase());
         return `- ${nm}: dolu ${ranges || 'kayıt yok (şu an uygun görünüyor)'}`;
       });
-      if (lines.length) parts.push('VİLLA DOLULUK DURUMU (gerçek+güncel — kesin rezervasyon için tarih teyidi iste):\n' + lines.join('\n'));
+      if (lines.length) parts.push(
+        'VİLLA DOLULUK — SADECE DOLU tarihler (gerçek veri):\n' + lines.join('\n') +
+        '\n⚠️ KURAL: SADECE yukarıdaki DOLU tarihleri söyleyebilirsin. BOŞ/müsait tarih HESAPLAMA, ÇIKARIM YAPMA, UYDURMA ' +
+        '(dolu bir villayı yanlışlıkla boş gösterirsen çifte rezervasyon olur). Müşteri tarih verirse "o tarih dolu/dolu değil" diye yalnız listeye bakarak söyle; ' +
+        'kesin müsaitlik ve rezervasyon için WhatsApp +90 530 665 07 94\'e yönlendir.');
     }
   }
 
@@ -161,7 +168,11 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
   }
   }
 
-  // ── Her zaman: dil + Instagram davranışı (grounding Türkçe olsa da yanıt kullanıcının dilinde) ──
+  // ── Her zaman: format + dil + Instagram davranışı ──
+  parts.push(
+    'FORMAT (ÇOK ÖNEMLİ): Sohbet balonu DÜZ METİN gösterir — markdown ÇALIŞMAZ. Yıldız (**kalın**), tablo (| ... |), ' +
+    'başlık (#), madde işareti (-, *) KULLANMA; kullanırsan kullanıcı çöp karakter görür. Kısa, doğal cümlelerle konuş (en fazla 3-4 cümle). ' +
+    'Birden fazla seçenek verirken düz cümle içinde say (ör. "Kaptan Restaurant ve The Proper öne çıkıyor").');
   parts.push(
     'DİL: 5 dilde akıcısın — Türkçe, İngilizce (English), Almanca (Deutsch), Rusça (Русский), Fransızca (Français). ' +
     'Kullanıcı hangi dilde yazdıysa TAM o dilde yanıtla; yukarıdaki bilgiler Türkçe olsa bile mekan/villa adlarını koru ama açıklamayı kullanıcının diline çevir.\n' +
