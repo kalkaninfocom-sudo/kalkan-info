@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
+    "dev": "node serve.mjs",
+    "start": "node serve.mjs",
+    "build": "node scripts/build-all.mjs",
     "img:download": "node scripts/download-unsplash.mjs",
     "img:replace": "node scripts/replace-unsplash.mjs",
     "img:all": "npm run img:download && npm run img:replace"

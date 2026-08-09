@@ -28,7 +28,6 @@
   // İnsana bağlan (WhatsApp devri) — mevcut concierge ekibi. Fetch başarısızsa fallback.
   var HUMANS_FALLBACK = [
     { name: 'Berkay Elmastaş', role: 'Türkçe destek', flags: '🇹🇷', wa: '905306650794', msg: 'Merhaba Berkay, Kalkan Info üzerinden ulaştım.' },
-    { name: 'Sezin Çetiner', role: 'English & Deutsch', flags: '🇬🇧🇩🇪', wa: '905412359675', msg: 'Hi Sezin, I reached out via Kalkan Info.' },
   ];
   var humans = null;
 

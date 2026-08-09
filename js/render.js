@@ -409,7 +409,7 @@ const KalkanData = (() => {
         </a>
       `;
     }
-    // Profilli kart (ör. çocuk bakımı → Sezin): tıklayınca kişinin sayfasına gider, LinkedIn rozeti gösterir.
+    // Profilli kart (hizmet sağlayıcı profili): tıklayınca kişinin sayfasına gider, LinkedIn rozeti gösterir.
     if (h.providerUrl && h.providerName) {
       const li = h.providerLinkedin ? escape(h.providerLinkedin) : '';
       const avatar = h.providerAvatar
