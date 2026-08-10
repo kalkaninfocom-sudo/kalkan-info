@@ -160,7 +160,15 @@
   var SUGGEST_FULL = { 'Akşam yemeği ön-': 'Akşam yemeği için güzel bir yer önerir misin?', 'En iyi plaj?': 'Kalkan\'da en iyi plaj hangisi?', 'Tekne turu': 'Tekne turu hakkında bilgi verir misin?', 'Villa öner': 'Deniz manzaralı villa önerir misin?' };
 
   function scroll() { body.scrollTop = body.scrollHeight; }
-  function addMsg(text, who) { var d = document.createElement('div'); d.className = 'lyra-msg ' + (who === 'me' ? 'me' : 'bot'); d.textContent = text; body.appendChild(d); scroll(); return d; }
+  function stripMd(t) {
+    return String(t == null ? '' : t)
+      .replace(/\*\*(.*?)\*\*/g, '$1').replace(/(^|\s)\*(\S.*?\S)\*(\s|$)/g, '$1$2$3')
+      .replace(/^#{1,6}\s*/gm, '')
+      .replace(/^\s*\|.*\|\s*$/gm, '').replace(/^\s*[|:\- ]{3,}\s*$/gm, '')
+      .replace(/^\s*[-*]\s+/gm, '• ')
+      .replace(/\n{3,}/g, '\n\n').trim();
+  }
+  function addMsg(text, who) { var d = document.createElement('div'); d.className = 'lyra-msg ' + (who === 'me' ? 'me' : 'bot'); d.textContent = who === 'me' ? text : stripMd(text); body.appendChild(d); scroll(); return d; }
   function showTyping() { var t = document.createElement('div'); t.className = 'lyra-typing'; t.id = 'lyra-typing'; t.innerHTML = '<span></span><span></span><span></span>'; body.appendChild(t); scroll(); return t; }
   function hideTyping() { var t = document.getElementById('lyra-typing'); if (t) t.remove(); }
 

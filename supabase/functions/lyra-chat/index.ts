@@ -105,6 +105,8 @@ const OWN_VILLAS = [
 const OWN_VILLAS_BLOCK =
   '🏖️ KENDİ VİLLALARIMIZ (misafir villa/kiralık/konaklama sorunca ÖNCE bu 3\'ünü öner — hepsi Kalkan Kalamar, özel havuzlu, 8 kişilik; başka villa uydurma):\n' +
   OWN_VILLAS.map((v) => '- ' + v).join('\n') +
+  '\nÖNEMLİ GERÇEKLER (yukarıda YAZMAYAN özelliği UYDURMA): Çocuk havuzu SADECE Villa Seascape\'te var (Ship Ahoy ve Poyraz\'da çocuk havuzu YOK). ' +
+  'Masa tenisi SADECE Villa Poyraz\'da. Sorulan özellik listede yoksa "onu teyit edeyim" de, uydurma.' +
   '\nRezervasyon ve uygun tarih için WhatsApp +90 530 665 07 94 (kesin tarihi teyit ettir).';
 
 async function fetchJson(path: string): Promise<any | null> {
@@ -126,6 +128,10 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
     if (soon.length) {
       parts.push('YAKLAŞAN KALKAN ETKİNLİKLERİ (gerçek takvim — SADECE bunlar, tarih/mekan UYDURMA):\n' +
         soon.map((e) => `- ${e.date}${e.time ? ' ' + e.time : ''} · ${e.title} · ${e.venueName || e.area || ''}${e.type ? ' (' + e.type + ')' : ''}`).join('\n'));
+    } else {
+      parts.push('ETKİNLİK DURUMU: Takvimde yaklaşan kayıtlı etkinlik YOK. Etkinlik/konser UYDURMA ve ' +
+        'HANGİ mekanda canlı müzik olduğunu UYDURMA (belirli bir mekan için "canlı müzik çalıyor" DEME) — ' +
+        '"şu an takvimimizde planlı bir etkinlik görünmüyor, istersen sana keyifli mekanlar önerebilirim veya güncel programı işletmeye teyit ettirebilirim" de.');
     }
   }
 
@@ -139,7 +145,11 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
         const nm = id.replace(/^villa-/, 'Villa ').replace(/\b\w/g, (c) => c.toUpperCase());
         return `- ${nm}: dolu ${ranges || 'kayıt yok (şu an uygun görünüyor)'}`;
       });
-      if (lines.length) parts.push('VİLLA DOLULUK DURUMU (gerçek+güncel — kesin rezervasyon için tarih teyidi iste):\n' + lines.join('\n'));
+      if (lines.length) parts.push(
+        'VİLLA DOLULUK — SADECE DOLU tarihler (gerçek veri):\n' + lines.join('\n') +
+        '\n⚠️ KURAL: SADECE yukarıdaki DOLU tarihleri söyleyebilirsin. BOŞ/müsait tarih HESAPLAMA, ÇIKARIM YAPMA, UYDURMA ' +
+        '(dolu bir villayı yanlışlıkla boş gösterirsen çifte rezervasyon olur). Müşteri tarih verirse "o tarih dolu/dolu değil" diye yalnız listeye bakarak söyle; ' +
+        'kesin müsaitlik ve rezervasyon için WhatsApp +90 530 665 07 94\'e yönlendir.');
     }
   }
 
@@ -161,7 +171,15 @@ async function buildGrounding(supabase: ReturnType<typeof createClient>, userTex
   }
   }
 
-  // ── Her zaman: dil + Instagram davranışı (grounding Türkçe olsa da yanıt kullanıcının dilinde) ──
+  // ── Her zaman: format + dil + Instagram davranışı ──
+  parts.push(
+    'FORMAT (ÇOK ÖNEMLİ): Sohbet balonu DÜZ METİN gösterir — markdown ÇALIŞMAZ. Yıldız (**kalın**), tablo (| ... |), ' +
+    'başlık (#), madde işareti (-, *) KULLANMA; kullanırsan kullanıcı çöp karakter görür. Kısa, doğal cümlelerle konuş (en fazla 3-4 cümle). ' +
+    'Birden fazla seçenek verirken düz cümle içinde say (ör. "Kaptan Restaurant ve The Proper öne çıkıyor").');
+  parts.push(
+    'GERÇEKLİK (UYDURMA YASAK): Sana yukarıda VERİLMEYEN somut bilgiyi asla uydurma — açılış/kapanış saati, ' +
+    'fiyat, menü içeriği, telefon, adres, müsaitlik, özel gün/etkinlik dahil. Bilmiyorsan net söyle: ' +
+    '"bunu bilmiyorum ama işletmeye teyit ettirebilirim" de. Tahmini bir sayı/saat bile UYDURMA (ör. "genellikle 12:00" DEME).');
   parts.push(
     'DİL: 5 dilde akıcısın — Türkçe, İngilizce (English), Almanca (Deutsch), Rusça (Русский), Fransızca (Français). ' +
     'Kullanıcı hangi dilde yazdıysa TAM o dilde yanıtla; yukarıdaki bilgiler Türkçe olsa bile mekan/villa adlarını koru ama açıklamayı kullanıcının diline çevir.\n' +
@@ -231,7 +249,16 @@ const STUB_GENERIC: Record<string, string> = {
   ru: 'Я здесь! Что вас интересует в Калкане — ресторан, пляж, морская прогулка или вилла?',
   fr: 'Je suis là ! Cherchez-vous un restaurant, une plage, une excursion en bateau ou une villa à Kalkan ?',
 };
-function stubReply(userText: string, lang: string): string {
+// Konuşma ORTASINDA çökerse "baştan başla" demek yerine bağlamı koruyan özür + tekrar iste
+const STUB_RECONNECT: Record<string, string> = {
+  tr: 'Pardon, bağlantımda bir saniyelik sorun oldu 🙏 Az önce yazdığını tekrar iletir misin, kaldığımız yerden devam edeyim.',
+  en: 'Sorry, I had a brief connection hiccup 🙏 Could you resend your last message so I can pick up where we left off?',
+  de: 'Entschuldigung, kurze Verbindungsstörung 🙏 Könnten Sie Ihre letzte Nachricht noch einmal senden, damit ich fortfahren kann?',
+  ru: 'Извините, была секундная заминка со связью 🙏 Повторите, пожалуйста, последнее сообщение, и я продолжу.',
+  fr: 'Désolée, une petite coupure de connexion 🙏 Pouvez-vous renvoyer votre dernier message pour que je reprenne ?',
+};
+function stubReply(userText: string, lang: string, isFollowup = false): string {
+  if (isFollowup) return STUB_RECONNECT[lang] ?? STUB_RECONNECT.tr;
   if (lang === 'tr') {
     const t = userText.toLowerCase();
     if (/(merhaba|selam)/.test(t))
@@ -315,18 +342,25 @@ Deno.serve(async (req: Request) => {
     const systemPrompt = `${persona}${grounding ? `\n\n${grounding}` : ''}\n\n[Bağlam: kanal=${channel}. Bugün Kalkan, Türkiye.]${langRule}`;
     const llmMessages: Msg[] = [{ role: 'system', content: systemPrompt }, ...priorMsgs];
 
-    // LLM zinciri: Groq → Cerebras → NVIDIA → Anthropic → stub. İlk başarılı kazanır.
+    // LLM zinciri: Groq → Cerebras → NVIDIA. Toplam çökerse 1 kez retry (rate-limit <1sn açılır) → Anthropic → stub.
     let reply = '', provider = 'stub', tokens = 0;
     const errs: string[] = [];
-    for (const p of providerChain()) {
-      try { const r = await callOpenAICompat(p, llmMessages); reply = r.text; tokens = r.tokens; provider = p.name; break; }
-      catch (e) { errs.push((e as Error).message); }
-    }
+    const runChain = async () => {
+      for (const p of providerChain()) {
+        try { const r = await callOpenAICompat(p, llmMessages); return { text: r.text, tokens: r.tokens, name: p.name }; }
+        catch (e) { errs.push((e as Error).message); }
+      }
+      return null;
+    };
+    let r = await runChain();
+    if (!r) { await new Promise((res) => setTimeout(res, 600)); r = await runChain(); } // tek retry
+    if (r) { reply = r.text; tokens = r.tokens; provider = r.name; }
     if (!reply && anthropicKey) {
-      try { const r = await callAnthropic(systemPrompt, priorMsgs, anthropicKey, anthropicModel); reply = r.text; tokens = r.tokens; provider = 'anthropic'; }
+      try { const a = await callAnthropic(systemPrompt, priorMsgs, anthropicKey, anthropicModel); reply = a.text; tokens = a.tokens; provider = 'anthropic'; }
       catch (e) { errs.push((e as Error).message); }
     }
-    if (!reply) { reply = stubReply(userText, replyLang); provider = 'stub'; }
+    // Stub: konuşma ortasındaysa (priorMsgs>1) bağlamı koruyan "tekrar yaz" mesajı
+    if (!reply) { reply = stubReply(userText, replyLang, priorMsgs.length > 1); provider = 'stub'; }
     if (provider === 'stub' && errs.length) console.warn('[lyra-chat] tüm LLM başarısız:', errs.join(' | '));
 
     // Asistan yanıtını yaz + konuşmayı güncelle
