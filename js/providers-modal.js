@@ -427,7 +427,16 @@
       return list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
     if (currentSort === 'newest') {
-      return list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
+      // Yeni eklenen önce: addedAt varsa tarihe göre, yoksa dizide sonda olan (son eklenen) önce
+      return list
+        .map((p, i) => ({ p, i }))
+        .sort((a, b) => {
+          const da = a.p.addedAt ? Date.parse(a.p.addedAt) || 0 : 0;
+          const db = b.p.addedAt ? Date.parse(b.p.addedAt) || 0 : 0;
+          if (da !== db) return db - da;
+          return b.i - a.i;
+        })
+        .map((x) => x.p);
     }
     return list;
   }
