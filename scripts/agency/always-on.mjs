@@ -56,6 +56,9 @@ if (existsSync(envPath)) for (const l of readFileSync(envPath, 'utf8').split(/\r
 
 const HARVEST_MS = (Number(process.env.HARVEST_INTERVAL_MIN) || 30) * 60_000;
 const BRIEFING_MS = (Number(process.env.BRIEFING_INTERVAL_HR) || 12) * 3_600_000;
+const ENGAGEMENT_MS = (Number(process.env.ENGAGEMENT_INTERVAL_HR) || 12) * 3_600_000; // ölç
+const STRATEGY_MS = (Number(process.env.STRATEGY_INTERVAL_HR) || 24) * 3_600_000;    // öğren
+const ORCHESTRATE_MS = (Number(process.env.ORCHESTRATE_INTERVAL_HR) || 24) * 3_600_000; // uygula
 const TICK_MS = (Number(process.env.TICK_MIN) || 5) * 60_000;
 process.env.CHEAP_LLM_ORDER = process.env.CHEAP_LLM_ORDER || 'routellm,groq,cerebras,nvidia,gemini,claude';
 
@@ -113,20 +116,44 @@ async function doSiteEdits() {
   catch (e) { log('⚠ site-edit hata (devam):', e.message?.slice(0, 120)); }
 }
 
+// ── 2. BEYİN GERİ-BESLEME DÖNGÜSÜ (ölç → öğren) ──
+async function doEngagement() {
+  log('▶ ENGAGEMENT ölçümü (yayınlanan postların gerçek sonucu → hafıza)...');
+  try { run('scripts/agency/engagement-harvest.mjs', ['--days=14']); log('✔ engagement ölçüldü.'); }
+  catch (e) { log('⚠ engagement hata (devam):', e.message?.slice(0, 120)); }
+}
+async function doStrategy() {
+  log('▶ STRATEJİST (hafıza → korelasyon → yarının planı)...');
+  try { run('scripts/agency/strategist.mjs', ['--days=21']); log('✔ strateji güncellendi (data/agency/strategy.json).'); }
+  catch (e) { log('⚠ strateji hata (devam):', e.message?.slice(0, 120)); }
+}
+async function doOrchestrate() {
+  // Stratejiyi üretime UYGULA. Varsayılan ÖNİZLEME (öneri + Telegram); gerçek üretim
+  // ORCHESTRATOR_RUN=1 ile (orkestratör script'i env'i kendi okur → burada arg gerekmez).
+  const modeLbl = process.env.ORCHESTRATOR_RUN === '1' ? 'ÜRETİM' : 'önizleme';
+  log(`▶ ORKESTRATÖR (strateji → bugün ne üretelim · ${modeLbl})...`);
+  try { run('scripts/agency/daily-orchestrator.mjs'); log('✔ orkestratör bitti (data/agency/today-plan.json).'); }
+  catch (e) { log('⚠ orkestratör hata (devam):', e.message?.slice(0, 120)); }
+}
+
 async function main() {
   if (!ONCE) acquireLock();  // tek-instance garanti (çift çalışma = tekrar eden mesaj)
   log('═══ AJANS MOTORU AÇILDI (always-on) ═══');
-  log(`hasat/${HARVEST_MS / 60000}dk · brifing/${BRIEFING_MS / 3600000}sa · tick/${TICK_MS / 60000}dk · model-order: ${process.env.CHEAP_LLM_ORDER}`);
+  log(`hasat/${HARVEST_MS / 60000}dk · brifing/${BRIEFING_MS / 3600000}sa · [beyin] ölç/${ENGAGEMENT_MS / 3600000}sa→öğren/${STRATEGY_MS / 3600000}sa→uygula/${ORCHESTRATE_MS / 3600000}sa(${process.env.ORCHESTRATOR_RUN === '1' ? 'üretim' : 'önizleme'}) · tick/${TICK_MS / 60000}dk · model-order: ${process.env.CHEAP_LLM_ORDER}`);
   await tg('🟢 Kalkan İnfo ajans motoru AÇILDI (7/24 always-on).');
 
-  if (ONCE) { await doHarvest(); await doSiteEdits(); await doBriefing(); log('--once: tek tur bitti.'); return; }
+  if (ONCE) { await doHarvest(); await doSiteEdits(); await doBriefing(); await doEngagement(); await doStrategy(); await doOrchestrate(); log('--once: tek tur bitti.'); return; }
 
-  let lastHarvest = 0, lastBriefing = 0;
+  let lastHarvest = 0, lastBriefing = 0, lastEngagement = 0, lastStrategy = 0, lastOrchestrate = 0;
   for (;;) {
     const t = Date.now();
     await doSiteEdits();  // her tick: Telegram'dan gelen site düzenlemelerini işle (hızlı yanıt)
     if (t - lastHarvest >= HARVEST_MS) { lastHarvest = t; await doHarvest(); }
     if (t - lastBriefing >= BRIEFING_MS) { lastBriefing = t; await doBriefing(); }
+    // Geri-besleme döngüsü: ölç (engagement) → öğren (strateji) → uygula (orkestratör). Sıra önemli.
+    if (t - lastEngagement >= ENGAGEMENT_MS) { lastEngagement = t; await doEngagement(); }
+    if (t - lastStrategy >= STRATEGY_MS) { lastStrategy = t; await doStrategy(); }
+    if (t - lastOrchestrate >= ORCHESTRATE_MS) { lastOrchestrate = t; await doOrchestrate(); }
     await sleep(TICK_MS);
   }
 }

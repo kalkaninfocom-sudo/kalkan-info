@@ -18,14 +18,27 @@ Bir sistemi "otomasyon"dan **"beyin/ajan"a** çeviren şey daha iyi LLM değil:
 - **VPS deploy kit hazır:** `deploy/setup-vps.sh` + systemd (env-guard commit'i blokladı → sanitize edilecek). Hetzner CX22 (4GB, ~€5) önerildi. Şimdilik PC, sonra VPS = tam bağımsız.
 - **Günlük içerik parçaları HAZIR:** reel builder'lar (restoran/plaj/antik/villa/etkinlik), `reel-i18n` (5 dil), `reels-critic`/`content-critic` (kalite kapısı), review-mining hook motoru, IG/FB publish, gerçek Kalkan fotoları.
 
-## 🚀 SONRAKİ OTURUM — "GERİ-BESLEME BEYNİ" (asıl iş)
-Beyni öğrenen hale getirecek 4 katman (hepsi bedava stack):
-1. **HAFIZA katmanı** — Supabase `brain_memory` (yapılan her iş + sonucu) + Kalkan bilgi tabanı (semantik). Beyin ne yaptığını + neyin tuttuğunu hatırlar.
-2. **ENGAGEMENT DUYUSU** — IG/FB insights harvester: hangi post kaç takipçi/erişim/kaydetme getirdi (Graph API insights). Sonuçları hafızaya yazar.
-3. **STRATEJİST** — hafızayı okur, korelasyon çıkarır (içerik-tipi × hook × dil × saat → takipçi kazanımı), yarını planlar.
-4. **GÜNLÜK 5-DİL İÇERİK ORKESTRATÖRÜ** — stratejiste bağlı: her gün Kalkan konusu seç → markalı reel+post 5 dilde üret → `reels-critic` kapısı (çöpse at, sormaz) → **güvenli içerikte OTOMATİK IG+FB yayın** (Berkay: "bana sormadan"). Öğrenerek: "Rusça plaj reels sabah 8 → +40 takipçi → daha fazla yap".
+## 🚀 GERİ-BESLEME BEYNİ — KATMAN 1-3 KURULDU (2026-08-10)
+Beyni öğrenen hale getiren 4 katman (hepsi bedava stack). **"Ölç → öğren" yarısı canlı:**
 
-**Trust ladder:** güvenli/kendi-içerik = otomatik yayın; yeni 3.taraf işletme/belirsiz = Telegram onay (Hera/Hadrian tipi yanlış-yayını önler).
+1. **✅ HAFIZA katmanı** — `lib/brain-memory.mjs`. YEREL-ÖNCELİKLİ append-only JSONL (`data/agency/brain-memory.jsonl`, migration beklemez, hep çalışır) + opsiyonel Supabase (`brain_memory` tablosu, `BRAIN_MEMORY_REMOTE=1`). API: `record(kind,data,tags)` / `query({kind,since,tag,limit})` / `stats()`. kind: action·outcome·insight·plan. Smoke test ✓.
+2. **✅ ENGAGEMENT DUYUSU** — `scripts/agency/engagement-harvest.mjs`. Supabase `social_posts`'tan yayınlanan (ig_media_id) postları alır → IG Graph node (like/comment) + `/insights` (reach/saved/shares) → hafızaya `outcome` + `data/agency/engagement.json` snapshot. İzin yoksa temel sayaçlarla devam (kör kalmaz). Uçtan uca test ✓ (0 post → graceful).
+3. **✅ STRATEJİST** — `scripts/agency/strategist.mjs`. Hafızayı okur, **DETERMİNİSTİK** korelasyon çıkarır (tür × dil × yayın-saati → avg reach/saved/likes; matematik kodda, LLM'e bırakılmaz), sonra cheapLLM ile yarının planını yazar → `data/agency/strategy.json` + hafızaya `insight`+`plan`. 5+ ölçüm yoksa dürüst "soğuk başlangıç" planı. Test: 6 sentetik ölçümde ru+sabah+reels'i doğru en-iyi seçti ✓.
+   - **Bağlandı:** `always-on.mjs` tick — engagement/12sa (ölç), strateji/24sa (öğren), ölçüm stratejiden önce. Env: `ENGAGEMENT_INTERVAL_HR`, `STRATEGY_INTERVAL_HR`.
+4. **✅ GÜNLÜK İÇERİK ORKESTRATÖRÜ** — döngünün "uygula" yarısı KAPANDI. `lib/strategy-advisor.mjs` (strategy.json → deterministik öneri: topLang/topFormat/topHour/avoid) + `scripts/agency/daily-orchestrator.mjs` (öneriye göre bugün hangi temayı üretelim: plaj/restoran/antik → **mevcut reel-approval builder'ı çalıştırır**, o zaten qualityGate + 5-dil + social_posts pending + Telegram yapar). **Villa BİLEREK YOK (yasal).** Dedup (son 3 gün hafızadan), bütçe cap (günde 1 tema), foto-bekleyen tema hariç.
+   - **KEŞİF: builder'lar zaten VAR ve kendi cron'larında** (plaj-reel.yml, restoran-reel.yml...). "Üret" + "yayınla" (auto-publish-stale = gate→approved) yarıları çalışıyordu; eksik olan tek şey **stratejiyi üretime bağlamaktı** — bu orkestratör onu yapar, medyayı yeniden yazmaz.
+   - **GÜVENLİK: varsayılan ÖNİZLEME** (karar + Telegram öneri, üretim YOK → mevcut cron'ları çift-üretmez). Gerçek üretim `ORCHESTRATOR_RUN=1` (Berkay bilinçli açar). always-on tick'e bağlı: uygula/24sa. Test: cold-start→plaj rotasyonu, veri-güdümlü→ru+restoran, dedup→plaj'a düşme ✓.
+   - **⏳ Kalan (Berkay kararı):** `ORCHESTRATOR_RUN=1` açılınca 6 sabit builder-cron'u orkestratöre konsolide et (yoksa çift üretim). O zaman tam otonom: öğrenerek "Rusça reels sabah → daha fazla".
+
+**Trust ladder:** güvenli/kendi-içerik = otomatik yayın; yeni 3.taraf işletme/belirsiz = Telegram onay (Hera/Hadrian tipi yanlış-yayını önler). **Not:** oto-yayın dışa-dönük — kör açılmadı; orkestratör önizleme varsayılan, üretim+auto-approve Berkay'ın `ORCHESTRATOR_RUN=1` kararıyla.
+
+## 🔄 GERİ-BESLEME DÖNGÜSÜ — TAM ŞEMA (kuruldu)
+```
+üret (reel builder) → yayınla (publish-approved) → ÖLÇ (engagement-harvest → hafıza)
+   ↑                                                          ↓
+UYGULA (daily-orchestrator ← strategy-advisor) ← ÖĞREN (strategist: korelasyon → strategy.json)
+```
+Hepsi `always-on.mjs` tick'inde: ölç/12sa → öğren/24sa → uygula/24sa. Hafıza `lib/brain-memory.mjs` (yerel JSONL). Bedava stack, Claude'dan bağımsız.
 
 ## 📌 BEKLEYEN AKTİVASYONLAR (Berkay aksiyonu)
 - **PR #42 merge** (su-sporlari +12, WhatsApp webhook, site-edit kodu) → canlı
