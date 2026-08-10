@@ -19,12 +19,34 @@
  *                GROQ_API_KEY (fallback), TELEGRAM_BOT_TOKEN, TELEGRAM_ADMIN_CHAT_ID
  */
 import { execFileSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync, unlinkSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { runSiteEditQueue } from './site-edit-worker.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const ONCE = process.argv.includes('--once');
+
+// ── TEK-INSTANCE KİLİDİ — çift çalışmayı engeller (tekrar eden mesajların kök nedeni) ──
+const LOCK = join(tmpdir(), 'kalkan-always-on.lock');
+function acquireLock() {
+  try {
+    if (existsSync(LOCK)) {
+      const pid = Number(readFileSync(LOCK, 'utf8').trim());
+      let alive = false;
+      try { process.kill(pid, 0); alive = true; } catch { alive = false; }  // 0 = sinyal yok, sadece varlık kontrolü
+      if (alive && pid !== process.pid) {
+        console.error(`[always-on] ZATEN ÇALIŞIYOR (pid ${pid}) — bu instance çıkıyor (çift çalışma engellendi).`);
+        process.exit(0);
+      }
+    }
+    writeFileSync(LOCK, String(process.pid));
+    const release = () => { try { unlinkSync(LOCK); } catch {} };
+    process.on('exit', release); process.on('SIGINT', () => { release(); process.exit(0); });
+    process.on('SIGTERM', () => { release(); process.exit(0); });
+  } catch (e) { console.warn('[always-on] kilit uyarısı:', e.message); }
+}
 
 // .env.local yükle (SuperComputer'da env zaten dolu olabilir; ikisi de çalışır)
 const envPath = join(ROOT, '.env.local');
@@ -86,16 +108,23 @@ async function doBriefing() {
   catch (e) { log('⚠ brifing hata (devam):', e.message?.slice(0, 120)); }
 }
 
+async function doSiteEdits() {
+  try { const n = await runSiteEditQueue(); if (n) log(`✔ ${n} site-düzenleme işlendi.`); }
+  catch (e) { log('⚠ site-edit hata (devam):', e.message?.slice(0, 120)); }
+}
+
 async function main() {
+  if (!ONCE) acquireLock();  // tek-instance garanti (çift çalışma = tekrar eden mesaj)
   log('═══ AJANS MOTORU AÇILDI (always-on) ═══');
   log(`hasat/${HARVEST_MS / 60000}dk · brifing/${BRIEFING_MS / 3600000}sa · tick/${TICK_MS / 60000}dk · model-order: ${process.env.CHEAP_LLM_ORDER}`);
   await tg('🟢 Kalkan İnfo ajans motoru AÇILDI (7/24 always-on).');
 
-  if (ONCE) { await doHarvest(); await doBriefing(); log('--once: tek tur bitti.'); return; }
+  if (ONCE) { await doHarvest(); await doSiteEdits(); await doBriefing(); log('--once: tek tur bitti.'); return; }
 
   let lastHarvest = 0, lastBriefing = 0;
   for (;;) {
     const t = Date.now();
+    await doSiteEdits();  // her tick: Telegram'dan gelen site düzenlemelerini işle (hızlı yanıt)
     if (t - lastHarvest >= HARVEST_MS) { lastHarvest = t; await doHarvest(); }
     if (t - lastBriefing >= BRIEFING_MS) { lastBriefing = t; await doBriefing(); }
     await sleep(TICK_MS);
