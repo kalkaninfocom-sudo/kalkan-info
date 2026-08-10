@@ -43,7 +43,7 @@ const tokens = s => new Set(norm(s).replace(NOISE,' ').split(/\s+/).filter(t => 
 const compact = s => norm(s).replace(/[^a-z0-9]/g,'');
 
 // ayırt edici marka kelimeleri: ada özgü, jenerik olmayan, >=5 karakter
-const GENERIC = new Set(['restaurant','restoran','restorant','restauran','restorani','restaurantt','cafe','kafe','coffee','the','and','lounge','kitchen','kalkan','antalya','antalyada','antalyanin','kaş','kas','ocakbasi','ocakbası','coctail','cocktail','coctails','cocktails','terrace','beach','club','wine','hotel','otel','pansiyon','fast','food','alcohol','served','pizza','burger','burgers','fries','doner','kebap','kebab','house','meyhane','lezzeti','bezirgan','tavuk','ekmek','kofte','fastfood','bistro','deniz','manzara']);
+const GENERIC = new Set(['restaurant','restoran','restorant','restauran','restorani','restaurantt','cafe','kafe','coffee','the','and','lounge','kitchen','kalkan','antalya','antalyada','antalyanin','kaş','kas','ocakbasi','ocakbası','coctail','cocktail','coctails','cocktails','terrace','beach','club','wine','hotel','otel','pansiyon','fast','food','alcohol','served','pizza','burger','burgers','fries','doner','kebap','kebab','house','meyhane','lezzeti','bezirgan','tavuk','ekmek','kofte','fastfood','bistro','deniz','manzara','villa','villas','villalari','likya','tekne','boat','boats','tekneturlari','turlari','turu','turlar','watersports','yachting','suites','suite','hotels','plaji','plajı','beachclub']);
 function brandWords(name) {
   return norm(name).split(/\s+/).filter(w => w.length >= 5 && !GENERIC.has(w));
 }
