@@ -1,0 +1,81 @@
+{
+  "date": "2026-08-10",
+  "generated_at": "2026-08-10T04:41:22.285Z",
+  "provider": "groq",
+  "source_ids": [
+    "hesap-guvenliginin-gizli-kalkani-mobil-onay-kodu-nasil-calisiyor-2026-08-09",
+    "i-cisleri-bakani-ciftci-cocuk-koruma-kanunu-evlatlarimiza-kalkan-oluyor-2026-08-09",
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-10"
+  ],
+  "lead_headline": "Mobil Onay Kodu Nasıl Çalışıyor?",
+  "lead_deck": "Dijital platformlarda kişisel verilerin korunması kritik",
+  "lead_body": [
+    "Günümüzde dijital platformların kullanımının yaygınlaşmasıyla birlikte kişisel verilerin korunması her zamankinden daha kritik bir boyut kazandı. Mobil onay kodu, hesap güvenliğini sağlayan önemli bir araçtır. Kullanıcıların kişisel bilgilerini korumak için mobil onay kodu nasıl çalışır ve neden önemlidir?"
+  ],
+  "lead_byline": "Kalkan Today Editör · Antalya Haber (antalyahakkinda)",
+  "lead_source": "Antalya Haber (antalyahakkinda)",
+  "lead_source_url": "https://www.antalyahakkinda.com/hesap-guvenliginin-gizli-kalkani-mobil-onay-kodu-nasil-calisiyor",
+  "lead_date": "2026-08-09",
+  "lead_image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/08/hes-1.jpg",
+  "lead_caption": "Foto: Antalya Haber (antalyahakkinda) · Asayiş",
+  "col1_title": "Çocuk Koruma Kanunu",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "İçişleri Bakanı: Yasa evlatlarımıza kalkan oluyor",
+  "col3_title": "Kalkan'da Araziler",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Side ve Kalkan’da araziler satışa çıkarıldı",
+  "magazine_lead_headline": "Kaş'ta Likya Su Yolu Yürüyüşü",
+  "magazine_lead_body": [
+    "Kaş’ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-10T04:41:23.331Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "hold",
+        "editor_score": 0,
+        "verifier": "needs-source",
+        "credibility": 83
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "col3: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
