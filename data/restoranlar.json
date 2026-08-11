@@ -11618,6 +11618,91 @@
         "ru": "Меню",
         "fr": "Menu"
       }
+    },
+    {
+      "id": "pasaport-pizza-kalkan",
+      "name": "Pasaport Pizza Kalkan",
+      "category": "Pizza",
+      "cuisine": "Pizza / Fast Food",
+      "priceRange": "₺₺",
+      "rating": null,
+      "reviewCount": 0,
+      "location": "Şehitler Cad. 24, Kalkan Mahallesi, Kaş, Antalya",
+      "phone": "+90 530 684 48 44",
+      "website": "https://www.instagram.com/pasaportpizzakalkan/",
+      "instagram": "https://www.instagram.com/pasaportpizzakalkan/",
+      "image": "/restoran/pasaport-pizza-kalkan/data/web-img/pasaport-pizza/official/genc.png",
+      "gallery": [
+        "/restoran/pasaport-pizza-kalkan/data/web-img/pasaport-pizza/official/genc.png",
+        "/restoran/pasaport-pizza-kalkan/data/web-img/pasaport-pizza/official/taraftar.png",
+        "/restoran/pasaport-pizza-kalkan/data/web-img/pasaport-pizza/official/aile.png"
+      ],
+      "summary": "Pasaport Pizza'nın Kalkan şubesi — online sipariş + QR menü, 5 dil. Boy seçimli pizzalar, kampanya menüleri, WhatsApp sipariş.",
+      "specialties": [
+        "Pizza",
+        "Kampanya Menüleri",
+        "Paket Servis"
+      ],
+      "hours": "11:00-23:00",
+      "reservation": false,
+      "featured": true,
+      "source": "kalkan-siparis",
+      "detailPath": "restoran/pasaport-pizza-kalkan/",
+      "customSiteUrl": "https://www.kalkaninfo.com/restoran/pasaport-pizza-kalkan/",
+      "place_id": "",
+      "coordinates": {
+        "latitude": 36.2652,
+        "longitude": 29.4136
+      },
+      "nameI18n": {
+        "tr": "Pasaport Pizza Kalkan",
+        "en": "Pasaport Pizza Kalkan",
+        "de": "Pasaport Pizza Kalkan",
+        "ru": "Pasaport Pizza Kalkan",
+        "fr": "Pasaport Pizza Kalkan"
+      },
+      "summaryI18n": {
+        "tr": "Pasaport Pizza'nın Kalkan şubesi — online sipariş + QR menü, 5 dil.",
+        "en": "Pasaport Pizza's Kalkan branch — online ordering + QR menu, 5 languages.",
+        "de": "Die Kalkan-Filiale von Pasaport Pizza — Online-Bestellung + QR-Menü, 5 Sprachen.",
+        "ru": "Филиал Pasaport Pizza в Калкане — онлайн-заказ + QR-меню, 5 языков.",
+        "fr": "L'agence de Kalkan de Pasaport Pizza — commande en ligne + menu QR, 5 langues."
+      },
+      "specialtiesI18n": {
+        "tr": [
+          "Pizza",
+          "Kampanya Menüleri",
+          "Paket Servis"
+        ],
+        "en": [
+          "Pizza",
+          "Combo Meals",
+          "Takeaway"
+        ],
+        "de": [
+          "Pizza",
+          "Kombi-Menüs",
+          "Zum Mitnehmen"
+        ],
+        "ru": [
+          "Пицца",
+          "Комбо-меню",
+          "На вынос"
+        ],
+        "fr": [
+          "Pizza",
+          "Menus combo",
+          "À emporter"
+        ]
+      },
+      "taglineI18n": {
+        "tr": "Kalkan'da sıcacık pizzanın adresi",
+        "en": "Kalkan's home of hot, fresh pizza",
+        "de": "Die Adresse für heiße Pizza in Kalkan",
+        "ru": "Адрес горячей пиццы в Калкане",
+        "fr": "La maison de la pizza chaude à Kalkan"
+      },
+      "priority": 5
     }
   ]
 }
