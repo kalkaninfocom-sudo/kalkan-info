@@ -44,8 +44,10 @@
     const sub = item.category || item.cuisine || item.summary || '';
     const cover = item.image || (Array.isArray(item.images) && item.images[0]) || (Array.isArray(item.gallery) && (item.gallery[0]?.url || item.gallery[0])) || '';
     const linkHash = item.id ? `#${item.id}` : '';
+    const _href = item.customSiteUrl ? _esc(item.customSiteUrl) : (_esc(item.__page)+linkHash);
+    const _ext = item.customSiteUrl ? ' target="_blank" rel="noopener"' : '';
     return `
-      <a href="${_esc(item.__page)}${linkHash}" class="flex items-center gap-3 p-3 rounded-lg hover:bg-sea-50 transition border border-transparent hover:border-sea-200">
+      <a href="${_href}"${_ext} class="flex items-center gap-3 p-3 rounded-lg hover:bg-sea-50 transition border border-transparent hover:border-sea-200">
         <div class="w-12 h-12 rounded bg-sea-100 grid place-items-center overflow-hidden flex-shrink-0 text-xl">
           ${cover ? `<img src="${_esc(cover)}" alt="" class="w-full h-full object-cover" />` : item.__icon || '📍'}
         </div>
