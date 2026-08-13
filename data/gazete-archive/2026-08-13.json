@@ -1,0 +1,81 @@
+{
+  "date": "2026-08-13",
+  "generated_at": "2026-08-13T06:06:22.996Z",
+  "provider": "groq",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-13",
+    "iii-derece-arkeoloji-k-si-t-alani-karari-i-ptali-2026-08-12",
+    "antalya-da-yeni-ozellestirme-i-halesi-side-ve-kalkan-da-araziler-satisa-cikarild-2026-07-31",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-13"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "Patara Yörük Göçü etkinliği gerçekleştirildi",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Etkinlikte birçok katılımcı yer aldı. Kalkan ve Kaş'ta turizm faaliyetleri devam ediyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-13",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Yoga Etkinliği",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kalkan'da Indigo Beach Club'da yoga etkinliği düzenlendi",
+  "col3_title": "Araziler Satışa Çıkarıldı",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Side ve Kalkan'da araziler özelleştirme ihalesine çıkarıldı",
+  "magazine_lead_headline": "Kalkan'ın Gizli Bahçeleri",
+  "magazine_lead_body": [
+    "Kalkan ve Kaş'ta yaz mevsiminin sıcaklığını atlatmak için en ideal yerler, şehrin gizli bahçeleri ve şirin kahve ve çay bahçeleri"
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-13T06:06:23.842Z",
+    "roles": {
+      "muhabir": "groq",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 77
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir",
+      "magazine: editör revizyon önerdi ama doğrulayıcı kaynağı ONAYLADI — yayınlanabilir"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
