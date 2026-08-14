@@ -95,10 +95,19 @@ async function processOne(row) {
   console.log(`[site-edit] #${row.id} ${a.type} → ${status}: ${result}`);
 }
 
+let _queueMissingWarned = false;
 export async function runSiteEditQueue() {
   if (!SUPA_URL || !SUPA_KEY) { console.warn('[site-edit] SUPABASE env yok'); return 0; }
   const r = await supa(`/site_edit_queue?status=eq.pending&order=created_at.asc&limit=10`);
-  if (!r.ok) { console.warn('[site-edit] kuyruk okunamadı', r.status); return 0; }
+  if (!r.ok) {
+    // 404 = tablo henüz provision edilmedi (site_edit_queue migration push edilmemiş).
+    // Her tick'te log basmak yerine bir kez uyar, sonra sessizce atla.
+    if (r.status === 404) {
+      if (!_queueMissingWarned) { console.warn('[site-edit] site_edit_queue tablosu yok (migration bekliyor) — sessizce atlanıyor'); _queueMissingWarned = true; }
+      return 0;
+    }
+    console.warn('[site-edit] kuyruk okunamadı', r.status); return 0;
+  }
   const rows = await r.json();
   for (const row of rows) await processOne(row);
   return rows.length;
