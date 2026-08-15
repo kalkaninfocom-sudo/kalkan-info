@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-15",
+  "generated_at": "2026-08-15T05:09:59.081Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-15",
+    "kas-kalkan-antalya-antalya-07580-house-for-sale-realestate-com-au-2026-04-05",
+    "kas-ve-kalkan-da-villa-turizminde-yaz-hareketliligi-sondakika-com-2026-06-26",
+    "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdeniz-ge-2026-04-25"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu ve Yörük Göçü Yapıldı",
+  "lead_deck": "Kaş'ta geleneksel Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "lead_body": [
+    "Belediye tarafından düzenlenen etkinlikte katılımcılar Likya Su Yolu üzerinde yürüyüş yaptı. Program kapsamında Patara Yörük Göçü gelenekleri sergilendi.",
+    "Bölgenin kültürel mirasını yaşatan etkinlik, yerel halk ve ziyaretçilerin katılımıyla tamamlandı."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-15",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'da Satılık Ev İlanı",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Kalkan bölgesinde 07580 posta kodlu bir konut satışa sunuldu.",
+  "col3_title": "Villa Turizminde Yaz Hareketliliği",
+  "col3_byline": "Sahil · Turizm",
+  "col3_body": "Kaş ve Kalkan bölgelerinde villa kiralama talepleri yaz sezonunda arttı.",
+  "magazine_lead_headline": "Kalkan'da İmar Planı Değişti",
+  "magazine_lead_body": [
+    "Cumhurbaşkanı Erdoğan'ın imzasıyla Kalkan'daki imar planı değişikliği onaylandı."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-15T05:10:00.364Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col1",
+        "editor": "reject",
+        "editor_score": 10,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "reject",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col1 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "col3 YAYINLANMAZ (editör: sansasyonel/klişe ton) — insan onayı",
+      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil; editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead"
+    ]
+  }
+}
