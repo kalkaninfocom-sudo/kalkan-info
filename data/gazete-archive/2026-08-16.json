@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-16",
+  "generated_at": "2026-08-16T05:02:02.878Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-16",
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-07-05",
+    "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdenizger-2026-04-25",
+    "kas-kalkan-da-dev-arazide-i-mar-degisikligi-ozellestirmeye-acildi-akdenizgercek--2026-01-24"
+  ],
+  "lead_headline": "Kaş'ta 23. Likya Su Yolu ve Yörük Göçü",
+  "lead_deck": "Kaş'ta geleneksel Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "lead_body": [
+    "Belediye tarafından organize edilen etkinlikte, bölgenin kültürel mirasını yansıtan yürüyüş ve göç faaliyetleri yapıldı.",
+    "Katılımcılar Likya Su Yolu güzergahında yürüyerek Patara Yörük Göçü geleneğini yeniden yaşattı."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-16",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Kalkan'da ASAT Veznesi Açıldı",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Antalya Su ve Kanalizasyon İdaresi Kalkan'da yeni veznesini hizmete açtı.",
+  "col3_title": "Kalkan'da İmar Planı Değişti",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Cumhurbaşkanı Erdoğan'ın imzasıyla Kalkan'daki imar planı değişikliği onaylandı.",
+  "magazine_lead_headline": "Kalkan'da Dev Arazi Özelleştirmeye Açıldı",
+  "magazine_lead_body": [
+    "Kalkan'da imar değişikliği yapılan geniş arazi özelleştirme kapsamına alındı."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-16T05:02:08.105Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 60,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 83
+      },
+      {
+        "slot": "magazine",
+        "editor": "reject",
+        "editor_score": 40,
+        "verifier": "reject",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil; editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3"
+    ]
+  }
+}
