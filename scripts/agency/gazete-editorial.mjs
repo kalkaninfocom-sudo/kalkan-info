@@ -214,7 +214,24 @@ async function main() {
   // Rotasyon: son 6 günde kullanılan haber id'lerini önceleme (her gün farklı manşet).
   const usedIds = await recentlyUsedIds(6);
   const taken = new Set();
-  const lead = pickFresh(ranked, usedIds, taken) || ranked[0];
+  // MANŞET Kalkan-alaka filtresi: gerçekten Kalkan/Kaş/Patara ekseni haberi olsun.
+  // "Biyolojik kalkan", "kalkan nedir" gibi başlıkta geçen ama Antalya-geneli haberleri dışla:
+  // Kalkan ekseni sayılmak için (a) kaynak Kalkan/Kaş yerel veya (b) title+summary'de Kalkan dışı
+  // bir CORE_RX terimi eşleşmeli (Kaş/Patara/Likya vb.) veya (c) kaynak Antalya-geneli DEĞİL.
+  const CORE_RX_NO_KALKAN = CORE_RX.filter(rx => !String(rx).includes('kalkan'));
+  function isReallyLocal(it) {
+    const txt = `${it.title || ''} ${it.summary || ''}`;
+    const src = it.source || '';
+    // Kalkan-dışı CORE terim eşleşmesi var mı? (Kaş, Patara, Likya vb.)
+    if (CORE_RX_NO_KALKAN.some(rx => rx.test(txt))) return true;
+    // Kaynak gerçekten Kalkan/Kaş yerel mi?
+    if (/kalkan|kaş|kas\.bel|kalkantimes/i.test(src)) return true;
+    // "kalkan" sadece başlıkta geçiyor ama kaynak Antalya-geneli → yanlış pozitif
+    return false;
+  }
+  const kalkanAlaka = ranked.filter(it => score(it) + freshBonus(it.date) >= 0 && isReallyLocal(it));
+  const leadPool = kalkanAlaka.length >= 1 ? kalkanAlaka : ranked;
+  const lead = pickFresh(leadPool, usedIds, taken) || leadPool[0] || ranked[0];
   const col1 = pickFresh(ranked, usedIds, taken, it => ['Etkinlik', 'Kültür', 'Belediye', 'Gündem'].includes(it.category))
             || pickFresh(ranked, usedIds, taken) || ranked[1];
   const col3 = pickFresh(ranked, usedIds, taken, it => ['Plaj', 'Turizm', 'Hava'].includes(it.category))
@@ -282,7 +299,7 @@ async function main() {
     date,
     generated_at: new Date().toISOString(),
     provider: provider || 'unknown',
-    source_ids: [lead, col1, col3, mag].filter(Boolean).map(i => i.id),
+    source_ids: [...new Set([lead, col1, col3, mag].filter(Boolean).map(i => i.id))],
     // getNews() ile aynı alan adları — doğrudan spread edilir. Görsel/tarih ham kaynaktan.
     lead_headline: ed.lead.headline,
     lead_deck: ed.lead.deck || '',
