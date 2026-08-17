@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-17",
+  "generated_at": "2026-08-17T05:21:40.747Z",
+  "provider": "cerebras",
+  "source_ids": [
+    "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-17",
+    "kas-kalkan-da-dev-arazide-i-mar-degisikligi-ozellestirmeye-acildi-akdeniz-gercek-2026-01-24",
+    "finike-demre-kas-kalkan-yolu-projesinde-dogru-bilinen-yanlislar-akdeniz-gercek-2025-12-15"
+  ],
+  "lead_headline": "Ege ve Akdeniz Kıyıları Mavi Kalkanla Korunuyor",
+  "lead_deck": "Deniz ekosistemini korumak amacıyla Ege ve Akdeniz'e mavi kalkan uygulaması getirildi.",
+  "lead_body": [
+    "Kıyı şeridindeki biyolojik çeşitliliği korumayı hedefleyen proje, Ege ve Akdeniz bölgelerinde hayata geçirildi.",
+    "Uygulama ile deniz altı yaşam alanlarının korunması ve sürdürülebilir turizm hedefleniyor."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4tZFZSQlEyN25PYjVmUUY2S2VOa1I2ZVc0OVBPZXR5bkY2Y3JLYmpqVXZzVUlDU1Ixd0JqUGFXaHVLb2pRMDFPN1lTbEo2WDB4T2MtRkE3VkZrOWNMQXJOMjJvVFBuSFA5bjRTZU1SRXJKQ0F1?oc=5",
+  "lead_date": "2026-08-17",
+  "lead_image": "https://kalkaninfo.com/assets/img/yali-beach-real.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Plaj",
+  "col1_title": "Kaş'ta Likya ve Yörük Etkinliği",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü gerçekleştirildi.",
+  "col3_title": "Kalkan'da Dev Arazide İmar Değişikliği",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Kalkan'daki geniş bir arazi imar değişikliğiyle özelleştirmeye açıldı.",
+  "magazine_lead_headline": "Finike-Demre-Kaş-Kalkan Yolu Projesi İncelendi",
+  "magazine_lead_body": [
+    "Bölgedeki yol projesine dair doğru bilinen yanlışlar gündeme geldi."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-17T05:21:41.709Z",
+    "roles": {
+      "muhabir": "cerebras",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 83
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 89
+      },
+      {
+        "slot": "col3",
+        "editor": "reject",
+        "editor_score": 60,
+        "verifier": "reject",
+        "credibility": 56
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 83
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col3 YAYINLANMAZ (doğrulayıcı: sansasyonel dil; editör: sansasyonel/klişe ton) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "magazine"
+    ]
+  }
+}
