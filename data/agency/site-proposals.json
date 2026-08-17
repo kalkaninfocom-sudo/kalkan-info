@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T05:18:38.853Z",
+  "generatedAt": "2026-08-17T04:53:11.692Z",
   "proposals": [
     {
       "key": "restoranlar",
@@ -7,7 +7,7 @@
       "url": "/restoranlar",
       "agent": "menu-chef",
       "agentPerson": "Kerem Bulut",
-      "total": 177,
+      "total": 178,
       "score": 0,
       "issues": [
         {
@@ -23,11 +23,11 @@
         {
           "type": "i18n",
           "count": 144,
-          "text": "144/177 kaydın çevirisi (summaryI18n) eksik"
+          "text": "144/178 kaydın çevirisi (summaryI18n) eksik"
         }
       ],
-      "suggestion": "Restoranlar: 40 kayıt fotoğrafsız; 3 kaydın galerisi zayıf (<3 foto); 144/177 kaydın çevirisi (summaryI18n) eksik.",
-      "action": "Bu hafta, fotoğrafsız 40 kayıt için en az bir fotoğraf eklenmesi öncelikli hedef olarak belirlenmeli ve editörler bu kayıtları öncelikli olarak güncellemelidir."
+      "suggestion": "Restoranlar: 40 kayıt fotoğrafsız; 3 kaydın galerisi zayıf (<3 foto); 144/178 kaydın çevirisi (summaryI18n) eksik.",
+      "action": "Bu hafta, fotoğrafsız 40 kayıt için öncelikle en popüler ve yüksek talep gören 10 restoranın fotoğraflarını eklemeye odaklanarak başlamalıyım."
     },
     {
       "key": "villalar",
@@ -50,7 +50,7 @@
         }
       ],
       "suggestion": "Villalar: 2 kaydın galerisi zayıf (<3 foto); Sadece 3 villa — katalog genişletilebilir.",
-      "action": "Bu hafta, mevcut villaların galerilerini güçlendirmek ve yeni villa kayıtları eklemek amacıyla, en az 5 yeni villa sahibiyle iletişim kurup, yüksek kaliteli fotoğraflarını ve detaylı bilgilerini talep etmek en somut adım olacaktır."
+      "action": "Bu hafta, en az 5 yeni villa kaydı ekleyerek ve mevcut kayıtların galerilerini güçlendirerek toplam fotoğraf sayısını 3'ün üzerine çıkararak katalogu genişletmek ve zenginleştirmek için somut adımlar atılabilir."
     },
     {
       "key": "oteller",
@@ -58,8 +58,8 @@
       "url": "/oteller",
       "agent": "provider-matcher",
       "agentPerson": "Nazlı Ekin",
-      "total": 17,
-      "score": 94,
+      "total": 15,
+      "score": 93,
       "issues": [
         {
           "type": "galeri",
@@ -68,7 +68,7 @@
         }
       ],
       "suggestion": "Oteller: 1 kaydın galerisi zayıf (<3 foto).",
-      "action": "Bu hafta, eksik galeri fotoğrafı olan otele ait en az 3 adet yeni fotoğraf ekleyerek galerisini güçlendireceğim."
+      "action": "Bu hafta, galerisi zayıf olan otele ait en az 3 yeni fotoğraf ekleyerek galerisini güçlendireceğim."
     },
     {
       "key": "antik",
@@ -90,8 +90,7 @@
           "text": "7/17 kentin 5-dil çevirisi eksik"
         }
       ],
-      "suggestion": "Antik Kentler: 1 kaydın galerisi zayıf (<3 foto); 7/17 kentin 5-dil çevirisi eksik.",
-      "action": "Bu hafta, öncelikle galerisi zayıf olan 1 kaydın fotoğrafik içeriğini zenginleştirmek için ekstra fotoğraflar eklemeye odaklanılmalıdır."
+      "suggestion": "Antik Kentler: 1 kaydın galerisi zayıf (<3 foto); 7/17 kentin 5-dil çevirisi eksik."
     },
     {
       "key": "turlar",
@@ -108,8 +107,7 @@
           "text": "10 kaydın galerisi zayıf (<3 foto)"
         }
       ],
-      "suggestion": "Turlar: 10 kaydın galerisi zayıf (<3 foto).",
-      "action": "Bu hafta, öncelikle galerisi zayıf olan 10 kaydı belirleyerek, her birine en az 3 fotoğraf eklenmesi için gerekli düzenlemeleri yapmak üzere bir plan oluşturacağım."
+      "suggestion": "Turlar: 10 kaydın galerisi zayıf (<3 foto)."
     },
     {
       "key": "plajlar",
@@ -136,8 +134,7 @@
           "text": "24/24 kaydın çevirisi (summaryI18n) eksik"
         }
       ],
-      "suggestion": "Plajlar: 6 kayıt fotoğrafsız; 13 kaydın galerisi zayıf (<3 foto); 24/24 kaydın çevirisi (summaryI18n) eksik.",
-      "action": "Bu hafta, öncelikle fotoğrafsız 6 kayda en az birer fotoğraf ekleyerek başlamak en somut ve uygulanabilir adım olabilir."
+      "suggestion": "Plajlar: 6 kayıt fotoğrafsız; 13 kaydın galerisi zayıf (<3 foto); 24/24 kaydın çevirisi (summaryI18n) eksik."
     },
     {
       "key": "haberler",
