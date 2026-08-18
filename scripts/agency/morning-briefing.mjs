@@ -580,6 +580,12 @@ async function sendTgBlock(text) {
 }
 
 async function sendTelegram(results, ideas) {
+  // Control Tower devrede: ham departman-bazlı brifing mesajlarını sustur (gürültü↓).
+  // Varsayılan (unset) = eski davranış korunur; yalnız BRIEFING_RAW_TELEGRAM=0 ile kapanır.
+  if (process.env.BRIEFING_RAW_TELEGRAM === '0') {
+    console.log('ℹ Ham brifing Telegram susturuldu (BRIEFING_RAW_TELEGRAM=0) — Control Tower devrede.');
+    return;
+  }
   if (!TG_TOKEN || !TG_CHAT) { console.log('ℹ Telegram env yok — rapor dosyada.'); return; }
   const deptNames = { sosyal: '📱 Sosyal', gazete: '📰 Gazete', concierge: '🧭 Concierge', teknik: '🔧 Teknik' };
   const byDept = {};

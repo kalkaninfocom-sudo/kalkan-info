@@ -33,7 +33,7 @@ function contentAgeDays(rel, fields = ['generated_at', 'date', 'updated']) {
   return Infinity;
 }
 
-async function checkIgToken() {
+export async function checkIgToken() {
   const tok = process.env.IG_LONG_LIVED_TOKEN, id = process.env.IG_BUSINESS_ID;
   if (!tok || !id) return { ok: false, critical: false, detail: 'IG token/business_id env yok (IG otomasyonları pasif)' };
   try {
@@ -45,7 +45,7 @@ async function checkIgToken() {
   } catch (e) { return { ok: false, critical: true, detail: `IG token kontrolü hata: ${e.message}` }; }
 }
 
-async function checkLLM() {
+export async function checkLLM() {
   const provs = availableProviders();
   if (!provs.length) return { ok: false, critical: true, detail: 'HİÇ LLM sağlayıcı anahtarı yok (içerik üretilemez)' };
   try {
@@ -54,7 +54,7 @@ async function checkLLM() {
   } catch (e) { return { ok: false, critical: true, detail: `LLM sağlayıcı yanıt vermiyor: ${String(e.message).slice(0, 70)}` }; }
 }
 
-function checkActivity() {
+export function checkActivity() {
   // Ajans son 4 günde üretim yaptı mı? (içerik tarih alanından — mtime değil)
   const age = Math.min(
     contentAgeDays('data/agency/content-ideas.json'),
@@ -66,10 +66,23 @@ function checkActivity() {
   return { ok: true, critical: true, detail: `Ajans aktif (son üretim ${age.toFixed(1)} gün önce)` };
 }
 
-function checkData() {
+export function checkData() {
   const missing = ['data/restoranlar.json', 'data/etkinlik-takvimi.json'].filter(p => !existsSync(join(ROOT, p)));
   if (missing.length) return { ok: false, critical: true, detail: `Kritik veri eksik: ${missing.join(', ')}` };
   return { ok: true, critical: false, detail: 'Veri dosyaları yerinde' };
+}
+
+/**
+ * Tüm sağlık kontrollerini çalıştır → [{ name, ok, critical, detail }]. Control Tower bunu import eder.
+ * main() de bunu kullanır — davranış aynı, sadece dışarıdan çağrılabilir.
+ */
+export async function runHealthChecks() {
+  return [
+    { name: 'IG Token', ...(await checkIgToken()) },
+    { name: 'LLM', ...(await checkLLM()) },
+    { name: 'Aktivite', ...checkActivity() },
+    { name: 'Veri', ...checkData() },
+  ];
 }
 
 async function sendTelegram(text) {
@@ -85,14 +98,9 @@ async function sendTelegram(text) {
 
 async function main() {
   const always = process.argv.includes('--always');
-  const checks = [
-    ['IG Token', await checkIgToken()],
-    ['LLM', await checkLLM()],
-    ['Aktivite', checkActivity()],
-    ['Veri', checkData()],
-  ];
-  const lines = checks.map(([n, c]) => `${c.ok ? '✅' : (c.critical ? '🔴' : '🟡')} ${n}: ${c.detail}`);
-  const problems = checks.filter(([, c]) => !c.ok && c.critical);
+  const results = await runHealthChecks();
+  const lines = results.map((c) => `${c.ok ? '✅' : (c.critical ? '🔴' : '🟡')} ${c.name}: ${c.detail}`);
+  const problems = results.filter((c) => !c.ok && c.critical);
   console.log('── AJANS SAĞLIK ──\n' + lines.join('\n'));
 
   if (problems.length) {
