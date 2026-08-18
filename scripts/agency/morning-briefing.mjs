@@ -312,6 +312,23 @@ const CLICHE_RE = [
   /zaman yolculuğu/i,
   /likya'?n[ıi]n kalbi/i,
   /bir efsane mi/i,
+  // 2026-08-18 canlı brifing dersi: en sık tekrarlanan slop kalıpları eklendi.
+  /gizli koy/i,             // "gizli koylar" — 08-16'da ~11 ajan aynı konuya gitti
+  /gizli nokta/i,           // "gün batımı için 3 gizli nokta"
+  /kimsenin bilmedi/i,      // "Kimsenin Bilmediği 3 Gizli Koy"
+  /tatil sezonu ba[şs]l[ıi]yor/i,  // jenerik mevsim dolgusu (~7 ajan tekrarı)
+];
+
+// Doğrulanmamış GÜÇLÜ iddia kalıpları — imar/ihale/mutlak oran/siyasi imza.
+// Bu ajanlar beyin-fırtınası üretir; regülasyon/politik OLGU UYDURMAMALI.
+// Gerçek/teyitli haber ZATEN ayrı hattan gelir (news-verifier + gazete pipeline).
+// 08-16 kanıtı: AdsOptimizer/Reklam-Uyum "yeni imar planı / özelleştirme ihalesi" uydurdu → yayına sızmasın.
+const FACT_RISK_RE = [
+  /imar plan/i,
+  /özelle[şs]tirme/i,
+  /\bihale\b/i,
+  /(y[üu]zde ?100|%\s?100)[^.!?]{0,30}dolu/i,  // "%100 doluluk" iddiası (%100 doğal/organik'i ELEME)
+  /erdo[ğg]an|imza(y[ıi])? att/i,     // siyasi figür/imza iddiası
 ];
 
 // İki başlık arasındaki örtüşme katsayısı (0-1). 0.70+ → benzer sayılır.
@@ -322,6 +339,27 @@ function titleSimilarity(a, b) {
   let inter = 0;
   for (const w of A) if (B.has(w)) inter++;
   return inter / Math.min(A.size, B.size);
+}
+
+/**
+ * Ajanların kalkan_guncel sinyallerini benzerliğe göre kümeler (tekrarları TEK satıra birleştirir).
+ * "11 ajan → gizli koylar" gürültüsünü tek sinyal + ajan sayısına indirir.
+ * @param {Array} results - {name,id,kalkan_guncel}
+ * @param {number} threshold - 0-1 benzerlik eşiği (guncel cümleler için ~0.5)
+ * @returns [{ repr, agents:[isim], count }] — en kalabalık küme önce.
+ */
+export function clusterSignals(results, threshold = 0.5) {
+  const clusters = [];
+  for (const r of results || []) {
+    const text = String(r.kalkan_guncel || '').trim();
+    if (!text) continue;
+    const name = r.name || r.id;
+    const hit = clusters.find(c => titleSimilarity(c.repr, text) >= threshold);
+    if (hit) { hit.agents.push(name); hit.count++; }
+    else clusters.push({ repr: text, agents: [name], count: 1 });
+  }
+  clusters.sort((a, b) => b.count - a.count);
+  return clusters;
 }
 
 // Bir ajana bugünkü içerik sütununu ata (birden fazla varsa gün bazında döngüsel seç).
@@ -384,6 +422,16 @@ export function filterAndDiversify(ideas, cfg, history) {
     if (cliche) {
       dropped.push({ ...idea, _neden: `klişe (${cliche.source})` });
       console.log(`  ⊘ elendi [klişe]: "${baslik.slice(0, 60)}"`);
+      continue;
+    }
+
+    // (1b) Fact-risk: doğrulanmamış imar/ihale/mutlak-oran/siyasi iddia → ele.
+    // Başlık VE açı taranır (iddia genelde açıda). Uydurma regülasyon/politik olgu yayına girmesin.
+    const claimText = `${baslik} ${idea.aci || ''}`;
+    const risk = FACT_RISK_RE.find(re => re.test(claimText));
+    if (risk) {
+      dropped.push({ ...idea, _neden: `fact-risk (${risk.source} — doğrulanmamış iddia)` });
+      console.log(`  ⊘ elendi [fact-risk]: "${baslik.slice(0, 60)}"`);
       continue;
     }
 
@@ -587,24 +635,26 @@ async function sendTelegram(results, ideas) {
     return;
   }
   if (!TG_TOKEN || !TG_CHAT) { console.log('ℹ Telegram env yok — rapor dosyada.'); return; }
-  const deptNames = { sosyal: '📱 Sosyal', gazete: '📰 Gazete', concierge: '🧭 Concierge', teknik: '🔧 Teknik' };
-  const byDept = {};
-  for (const r of results) (byDept[r.department] ||= []).push(r);
-
   const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
   // 1) Başlık mesajı (ayrı gönderilir).
-  await sendTgBlock(`<b>☀️ Günlük Ajans Brifingi — ${date}</b>\n${results.length} ajan raporladı.`);
+  const clusters = clusterSignals(results);
+  const dupCollapsed = clusters.reduce((n, c) => n + (c.count - 1), 0);
+  await sendTgBlock(`<b>☀️ Günlük Ajans Brifingi — ${date}</b>\n` +
+    `${results.length} ajan · ${clusters.length} benzersiz sinyal` +
+    (dupCollapsed ? ` · ${dupCollapsed} tekrar birleştirildi` : ''));
 
-  // 2) HER DEPARTMAN AYRI MESAJ (4096 limit tek departmanda nadiren aşılır; sendTgBlock yine de böler).
-  for (const [dept, list] of Object.entries(byDept)) {
-    let body = `<b>${deptNames[dept] || dept}</b>\n`;
-    for (const r of list) {
-      const guncel = esc(String(r.kalkan_guncel || '').slice(0, 200));
-      body += `• <b>${esc(r.name || r.id)}</b>: ${guncel}\n`;
-    }
-    await sendTgBlock(body.trimEnd());
+  // 2) GÜNÜN SİNYALLERİ — benzer kalkan_guncel'ler TEK satıra birleştirilir (tekrar gürültüsü↓).
+  //    "11 ajan → gizli koylar" yerine tek satır + ajan sayısı. (Düzeltme 2026-08-18)
+  let sig = `<b>🔎 Günün sinyalleri (benzersiz — tekrarlar birleştirildi)</b>\n`;
+  for (const c of clusters.slice(0, 12)) {
+    const who = c.count > 1
+      ? ` — <b>${c.count} ajan</b> (${esc(c.agents.slice(0, 4).join(', '))}${c.agents.length > 4 ? ', +' + (c.agents.length - 4) : ''})`
+      : ` — ${esc(c.agents[0])}`;
+    sig += `• ${esc(c.repr.slice(0, 160))}${who}\n`;
   }
+  if (dupCollapsed > 0) sig += `\n<i>♻️ ${dupCollapsed} tekrar sinyal birleştirildi (aynı konuya giden ajanlar tek satırda).</i>`;
+  await sendTgBlock(sig.trimEnd());
 
   // 3) İçerik fikirleri (gazete + reels) — ayrı mesaj.
   const gz = ideas.filter(i => /gazete/i.test(i.tur)).slice(0, 6);
