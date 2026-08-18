@@ -78,6 +78,25 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
         run: node scripts/agency/morning-briefing.mjs
 
+      # Control Tower: mevcut brifing + health + kalite + satış çıktılarını TEK "karar ekranı" mesajında birleştirir.
+      # SALT-OKUMA aggregation — hiçbir builder/pipeline TETİKLEMEZ, hiçbir üretim mantığına dokunmaz.
+      # Veri yok/bayat → sahte "temiz" DEĞİL, açık DATA_UNAVAILABLE. Non-fatal.
+      # NOT: ham departman brifingi bu ilk sürümde AÇIK kalır (karşılaştırma); doğrulanınca
+      #      morning-briefing.mjs'e BRIEFING_RAW_TELEGRAM=0 env eklenerek susturulur.
+      - name: Control Tower (tek karar ekranı)
+        env:
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini
+          NVIDIA_MODEL: meta/llama-3.1-8b-instruct
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: node scripts/agency/control-tower.mjs || echo "control-tower atlandı (non-fatal)"
+
       - name: Commit brifing çıktısı (gazete akışı tüketsin)
         run: |
           git config user.name "kalkan-info-bot"
