@@ -1,0 +1,78 @@
+{
+  "date": "2026-08-19",
+  "generated_at": "2026-08-19T05:22:03.495Z",
+  "provider": "nvidia",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-19",
+    "mavi-vatan-a-kalkan-cekildi-yunanistan-da-meis-panigi-star-haberler-2026-08-18",
+    "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
+    "mavi-vatan-a-kalkan-cekildi-yunanistan-da-meis-panigi-star-haberler-2026-08-18"
+  ],
+  "lead_headline": "23. Likya Su Yolu Yürüyüşü",
+  "lead_deck": "",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOVE5EeUdRZC1lcTV2Q0pfRHNfdVNORnIwcENlYkV3XzZtWE1PZDhOVDkwQ3BrU3VMRDZIODhVWEgwbHNaaTllRkxEcURFQ3dKUnNrbHRla0IxbDlPblVybVJsbVJSMDZ5YzFlQmh5UTcxTHpIUngtZ3NZRTk1THlvVmIxaVFON1BUTy1iS25zN2ZwWExnckYwVkNFdGEyRnfSAaIBQVVfeXFMTXJTaHRtN3NMeDRWcVVBdDlEOE9zbDFXX1QtSlFuZ3FFZmVxM3QyX2lUQ2hNM1JZemJKZGFNOGFXdjNSbmFscFk4NHVJOFZxQ2libTVGMmdqQzh1ZGF1Wm85M3RKOTdRZ0FKaG12ajlNUG56b0x2RGxCeFM5eUZyeVE0RFhVWDdJcXdfR3JqTVpxSy1hclhvUlFqejI5ZFhIa1Nn?oc=5",
+  "lead_date": "2026-08-18",
+  "lead_image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Gündem",
+  "col1_title": "23. Likya Su Yolu Yürüyüşü",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "col3_title": "Ege ve Akdeniz'e Mavi Kalkan",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Ege ve Akdeniz'e mavi kalkan serpiliyor.",
+  "magazine_lead_headline": "Kalkan'da Tatil",
+  "magazine_lead_body": [
+    "Kalkan'da tatil için birçok seçenek var. Pasaport Pizza Kalkan, Kalkan'ın en lezzetli pizzalarını sunuyor."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-19T05:22:09.776Z",
+    "roles": {
+      "muhabir": "nvidia",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET reddedildi (doğrulayıcı: sansasyonel dil) → \"col1\" manşete alındı (şef kararı)",
+      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı"
+    ],
+    "approved_slots": [
+      "col1",
+      "col3"
+    ]
+  }
+}
