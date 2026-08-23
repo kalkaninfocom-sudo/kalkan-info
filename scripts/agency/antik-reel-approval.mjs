@@ -20,7 +20,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
 import { withAiDisclosure } from '../../lib/reklam-uyum.mjs';
-import { publishReelTranslations } from './reel-i18n.mjs';
+import { publishReelTranslations, renderAndUploadLang } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -162,6 +162,13 @@ async function main() {
     captionFields: { name, tagline: p.tagline || '' },
     buildCaption: (f, lang) => `🏛️ ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
     context: 'Haftanın antik kenti Instagram reel caption (Kalkan çevresi Likya antik kenti)',
+    // PER-DİL GERÇEK VİDEO: overlay yazıları (kategori/dönem/süre/tagline...) o dilde render.
+    renderLang: (lang) => renderAndUploadLang({
+      typeKey: 'antik', compositionId: 'AntikReel', baseProps: p,
+      translatableKeys: ['kicker', 'category', 'period', 'entryFee', 'hours', 'duration', 'distance', 'tagline'], lang,
+      objectPath: `antik-reel/antik-reel-${date}${slug ? '-' + slug : ''}-${lang}.mp4`,
+      context: 'Likya antik kenti reel ekran yazıları',
+    }),
   }).catch(e => console.warn('  ℹ çok-dil antik reel atlandı (non-fatal):', e.message));
 }
 

@@ -19,7 +19,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
-import { publishReelTranslations } from './reel-i18n.mjs';
+import { publishReelTranslations, renderAndUploadLang } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -158,6 +158,15 @@ async function main() {
     captionFields: { name, tagline: p.tagline || '' },
     buildCaption: (f, lang) => `🍽️ ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
     context: 'Haftanın mekânı restoran Instagram reel caption (Kalkan restoranı)',
+    // PER-DİL GERÇEK VİDEO: overlay yazıları (kicker/mutfak/tagline) o dilde render + upload.
+    renderLang: (lang) => renderAndUploadLang({
+      typeKey: 'restoran', compositionId: 'RestoranReel', baseProps: p,
+      translatableKeys: ['kicker', 'cuisine', 'tagline'], lang,
+      objectPath: `restoran-reel/restoran-reel-${date}${slug ? '-' + slug : ''}-${lang}.mp4`,
+      musicCandidates: ['assets/audio/reel-bed.mp3', 'dist/audio/relaxing.mp3', 'dist/audio/newdawn.mp3', 'dist/audio/track1.mp3'],
+      musicFilter: '[1:a]volume=0.28,afade=in:st=0:d=1.5,afade=out:st=21:d=3[m]',
+      context: 'Kalkan restoranı reel ekran yazıları (kicker/mutfak türü/tagline)',
+    }),
   }).catch(e => console.warn('  ℹ çok-dil restoran reel atlandı (non-fatal):', e.message));
 }
 

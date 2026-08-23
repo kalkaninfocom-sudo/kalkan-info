@@ -28,9 +28,10 @@
  *   });
  */
 import { readFile } from 'node:fs/promises';
-import { readFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { readFileSync, existsSync, writeFileSync, statSync, copyFileSync, unlinkSync } from 'node:fs';
+import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 import { translateFields, LANGS } from '../../lib/i18n-translate.mjs';
 import { withAiDisclosure } from '../../lib/reklam-uyum.mjs';
 
@@ -81,6 +82,89 @@ async function sendVideoUpload(mp4Buf, filename, caption, postId) {
   return j.result?.message_id || null;
 }
 
+/** mp4'ü Supabase storage (social-media bucket) → public URL. Başarısızsa null. */
+async function uploadVideo(mp4Path, objectPath) {
+  try {
+    const buf = await readFile(mp4Path);
+    const up = await fetch(`${SUPA_URL}/storage/v1/object/social-media/${objectPath}`, {
+      method: 'POST',
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'video/mp4', 'x-upsert': 'true' },
+      body: buf,
+    });
+    if (!up.ok) { console.warn(`  ⚠ storage upload fail (${up.status}): ${(await up.text()).slice(0, 120)}`); return null; }
+    return `${SUPA_URL}/storage/v1/object/public/social-media/${objectPath}`;
+  } catch (e) { console.warn(`  ⚠ upload hata: ${e.message}`); return null; }
+}
+
+/**
+ * PER-DİL GERÇEK VİDEO — çevrilmiş overlay props ile Remotion'u o dil için render eder,
+ * müzik mixler, Supabase'e yükler. Tüm reel tiplerinin ortak render-i18n katmanı.
+ * Başarısız olursa null → çağıran TR videoya güvenli düşer (asla sessiz TR sızmaz: SESLİ uyarı).
+ *
+ * @param {object} o
+ * @param {string} o.typeKey          'restoran'|'plaj'|'antik'|... (dizin + dosya adı)
+ * @param {string} o.compositionId    Remotion composition (RestoranReel, PlajReel, ...)
+ * @param {object} o.baseProps        TR video props (Remotion'a giden tam props)
+ * @param {string[]} o.translatableKeys  baseProps'ta çevrilecek metin alanları (name hariç)
+ * @param {string} o.lang             hedef dil
+ * @param {string} o.objectPath       storage yolu (<type>-reel/<type>-reel-<date>-<lang>.mp4)
+ * @param {string[]} [o.musicCandidates]  müzik yolu adayları (dil-bağımsız; ilk bulunan)
+ * @param {string} [o.musicFilter]    ffmpeg -filter_complex (varsayılan yumuşak bed)
+ * @param {string} [o.context]        çeviri bağlamı
+ * @returns {Promise<{mp4Path:string, videoUrl:string}|null>}
+ */
+export async function renderAndUploadLang(o) {
+  const {
+    typeKey, compositionId, baseProps, translatableKeys = [], lang, objectPath,
+    musicCandidates = ['assets/audio/reel-bed.mp3', 'dist/audio/relaxing.mp3', 'dist/audio/newdawn.mp3', 'dist/audio/track1.mp3'],
+    musicFilter = '[1:a]volume=0.28,afade=in:st=0:d=1.5[m]',
+    context,
+  } = o;
+  if (!SUPA_URL || !SUPA_KEY) return null;
+  try {
+    // 1) Çevrilebilir overlay alanlarını çevir (küçük JSON → güvenilir). name/CTA-URL çevrilmez.
+    const src = {};
+    for (const k of translatableKeys) if (baseProps[k] != null && baseProps[k] !== '') src[k] = baseProps[k];
+    let props = { ...baseProps };
+    if (Object.keys(src).length) {
+      const tr = await translateFields(src, lang, { context: context || `${typeKey} reel video ekran yazıları`, maxTokens: 800, verbose: false });
+      if (!tr) { console.warn(`  ⚠ ${lang}: video overlay çevirisi alınamadı`); return null; }
+      props = { ...baseProps, ...tr };
+    }
+    // 2) props → json
+    const propsPath = resolve(ROOT, 'remotion', `props-${typeKey}-${lang}.json`);
+    writeFileSync(propsPath, JSON.stringify(props));
+    // 3) Remotion render (sessiz)
+    const outDir = resolve(ROOT, 'dist', 'social', typeKey);
+    const { mkdirSync } = await import('node:fs');
+    mkdirSync(outDir, { recursive: true });
+    const silent = join(outDir, `${typeKey}-reel-${lang}-silent.mp4`);
+    const rr = spawnSync('npx', ['remotion', 'render', 'src/index.tsx', compositionId, silent, `--props=${propsPath}`, '--log=error'],
+      { cwd: resolve(ROOT, 'remotion'), stdio: 'inherit', shell: true });
+    if (rr.status !== 0 || !existsSync(silent)) { console.warn(`  ⚠ ${lang}: Remotion render başarısız`); return null; }
+    // 4) Müzik mix (dil-bağımsız; TR ile aynı bed)
+    const outMp4 = join(outDir, `${typeKey}-reel-${lang}.mp4`);
+    const music = musicCandidates.map(p => resolve(ROOT, p)).find(p => existsSync(p) && statSync(p).size > 1000);
+    let musicOk = false;
+    if (music) {
+      const ff = spawnSync('ffmpeg', ['-y', '-i', silent, '-i', music,
+        '-filter_complex', musicFilter, '-map', '0:v', '-map', '[m]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-shortest', outMp4],
+        { stdio: 'ignore' });
+      musicOk = ff.status === 0 && existsSync(outMp4);
+    }
+    if (!musicOk) copyFileSync(silent, outMp4);
+    try { unlinkSync(silent); } catch {}
+    // 5) Upload
+    const videoUrl = await uploadVideo(outMp4, objectPath);
+    if (!videoUrl) return null;
+    console.log(`  🎬 ${lang}: per-dil video hazır → ${objectPath}`);
+    return { mp4Path: outMp4, videoUrl };
+  } catch (e) {
+    console.warn(`  ⚠ ${lang}: per-dil render hata (TR videoya düşülecek): ${e.message}`);
+    return null;
+  }
+}
+
 /**
  * Bir dil için: çeviri → social_posts satırı (idempotent) → Telegram video onayı.
  * Her adım non-fatal; hata o dili atlar, diğerlerini/TR'yi etkilemez.
@@ -101,6 +185,24 @@ async function publishOne(ctx, lang, mp4Buf) {
   const translated = await translateFields(captionFields, lang, { context, maxTokens: 700, verbose: true });
   if (!translated) { console.warn(`  ⚠ ${lang}: çeviri alınamadı — atlandı`); return; }
 
+  // 1.5) PER-DİL GERÇEK VİDEO: renderLang callback varsa o dilin videosunu üret (overlay yazılar
+  //      o dilde). Başarısızsa TR videoya düş — ama SESSİZ DEĞİL: uyar (yanlışlıkla TR sızmasın).
+  let langVideoUrl = videoUrl;
+  let langMp4Buf = mp4Buf;
+  if (typeof ctx.renderLang === 'function') {
+    try {
+      const r = await ctx.renderLang(lang, translated);
+      if (r?.videoUrl) {
+        langVideoUrl = r.videoUrl;
+        if (r.mp4Path) { try { langMp4Buf = await readFile(r.mp4Path); } catch {} }
+      } else {
+        console.warn(`  ⚠ ${lang}: per-dil video üretilemedi → TR videoya düşülüyor (overlay TR kalır!)`);
+      }
+    } catch (e) {
+      console.warn(`  ⚠ ${lang}: renderLang hata → TR videoya düşülüyor: ${e.message}`);
+    }
+  }
+
   // 2) Caption'ı çevrilmiş alanlardan kur + (AI ise) dile-özel şeffaflık ibaresi.
   let caption = buildCaption(translated, lang);
   let tags = Array.isArray(hashtags) ? [...hashtags] : [];
@@ -119,7 +221,7 @@ async function publishOne(ctx, lang, mp4Buf) {
       language: lang,
       caption,
       hashtags: tags,
-      local_assets: [videoUrl],
+      local_assets: [langVideoUrl],
       status: 'pending_approval',
       scheduled_at: scheduledAt,
       telegram_chat_id: TG_CHAT ? Number(TG_CHAT) : null,
@@ -133,7 +235,7 @@ async function publishOne(ctx, lang, mp4Buf) {
   // 4) Telegram video onayı (TR ekip başlığı + çevrilmiş caption önizleme).
   const title = translated.name || translated.headline || headline || packIdBase;
   const capTg = `${LANG_FLAG[lang] || ''} ${LANG_TR[lang] || lang.toUpperCase()} REEL — ${typeKey}\n${title}\n\nOnaylarsan Instagram Reels'e (${LANG_TR[lang] || lang}) yayınlanır.`;
-  const msgId = await sendVideoUpload(mp4Buf, `${typeKey}-reel-${lang}.mp4`, capTg, post.id);
+  const msgId = await sendVideoUpload(langMp4Buf, `${typeKey}-reel-${lang}.mp4`, capTg, post.id);
   if (msgId) {
     await supa(`/social_posts?id=eq.${post.id}`, {
       method: 'PATCH', body: JSON.stringify({ telegram_message_id: msgId }),
@@ -176,4 +278,4 @@ export async function publishReelTranslations(ctx) {
   }
 }
 
-export default { publishReelTranslations };
+export default { publishReelTranslations, renderAndUploadLang };
