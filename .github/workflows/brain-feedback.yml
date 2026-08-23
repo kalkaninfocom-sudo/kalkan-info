@@ -1,0 +1,62 @@
+name: 2. Beyin geri-besleme (ölç → öğren)
+
+# 2. beyinin ÖĞRENEN kalbi. Yayınlanan postların GERÇEK sonucunu ölçer (engagement),
+# hafızaya (Supabase brain_memory, REMOTE) yazar, sonra korelasyon çıkarıp strateji üretir.
+# Döngü: ÜRET (reel cron'ları) → YAYINLA (publish cron) → ÖLÇ (bu) → ÖĞREN (bu) → UYGULA (strateji).
+#
+# NEDEN REMOTE ŞART: Actions runner'ı ephemeral — yerel brain-memory.jsonl her run'da boş.
+# BRAIN_MEMORY_REMOTE=1 → hafıza Supabase'te kalıcı; recall() buluttan okur (yoksa beyin
+# sonsuza dek cold-start kalırdı). brain_memory tablosu migration'ı prod'a uygulanmış OLMALI.
+#
+# UYGULA adımı (daily-orchestrator) BİLEREK burada YOK — mevcut reel cron'larıyla çift-üretim
+# riski var (ORCHESTRATOR_RUN). Önce ölç+öğren güvenle birikece; uygula ayrı/kontrollü açılır.
+
+on:
+  schedule:
+    - cron: '30 5 * * *'   # her gün 05:30 UTC (~08:30 TR) — bir önceki günün engagement'ı olgunlaşmış olur
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Engagement lookback gün sayısı'
+        required: false
+        default: '14'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: brain-feedback
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Ölç (engagement-harvest) + Öğren (strategist)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          IG_LONG_LIVED_TOKEN: ${{ secrets.IG_LONG_LIVED_TOKEN }}
+          BRAIN_MEMORY_REMOTE: '1'
+          # CI'da yerel Ollama yok → ücretsiz bulut hakemleri önce, claude son çare.
+          CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: |
+          DAYS="${{ github.event.inputs.days }}"; DAYS="${DAYS:-14}"
+          echo "── ÖLÇ: engagement-harvest (son $DAYS gün) ──"
+          node scripts/agency/engagement-harvest.mjs --days=$DAYS || echo "engagement-harvest hata (non-fatal, strateji yine çalışır)"
+          echo "── ÖĞREN: strategist ──"
+          node scripts/agency/strategist.mjs
