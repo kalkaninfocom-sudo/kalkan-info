@@ -19,7 +19,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
-import { publishReelTranslations } from './reel-i18n.mjs';
+import { publishReelTranslations, renderAndUploadLang } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -158,6 +158,13 @@ async function main() {
     captionFields: { name, tagline: p.tagline || '' },
     buildCaption: (f, lang) => `🏖️ ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
     context: 'Haftanın plajı Instagram reel caption (Kalkan/Kaş çevresi plajı)',
+    // PER-DİL GERÇEK VİDEO: overlay yazıları (kategori/özellikler/tagline...) o dilde render.
+    renderLang: (lang) => renderAndUploadLang({
+      typeKey: 'plaj', compositionId: 'PlajReel', baseProps: p,
+      translatableKeys: ['kicker', 'category', 'features', 'facilities', 'fee', 'best', 'distance', 'tagline'], lang,
+      objectPath: `plaj-reel/plaj-reel-${date}${slug ? '-' + slug : ''}-${lang}.mp4`,
+      context: 'Kalkan/Kaş plajı reel ekran yazıları',
+    }),
   }).catch(e => console.warn('  ℹ çok-dil plaj reel atlandı (non-fatal):', e.message));
 }
 

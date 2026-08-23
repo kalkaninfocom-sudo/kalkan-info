@@ -19,7 +19,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
-import { publishReelTranslations } from './reel-i18n.mjs';
+import { publishReelTranslations, renderAndUploadLang } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -159,6 +159,13 @@ async function main() {
     captionFields: { name, tagline: p.tagline || '' },
     buildCaption: (f, lang) => `🏡 ${HDR[lang]} · ${f.name}\n\n${f.tagline || ''}\n\n${CTAL[lang]}: ${cta}`,
     context: 'Haftanın villası Instagram reel caption (Kalkan lüks kiralık villa)',
+    // PER-DİL GERÇEK VİDEO: overlay yazıları (kategori/kapasite/oda/havuz/tagline...) o dilde render.
+    renderLang: (lang) => renderAndUploadLang({
+      typeKey: 'villa', compositionId: 'VillaReel', baseProps: p,
+      translatableKeys: ['kicker', 'category', 'capacity', 'bedrooms', 'pool', 'seaView', 'tagline'], lang,
+      objectPath: `villa-reel/villa-reel-${date}${slug ? '-' + slug : ''}-${lang}.mp4`,
+      context: 'Kalkan kiralık villa reel ekran yazıları',
+    }),
   }).catch(e => console.warn('  ℹ çok-dil villa reel atlandı (non-fatal):', e.message));
 }
 
