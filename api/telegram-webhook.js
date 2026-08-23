@@ -14,6 +14,7 @@ import { publishFacebookReel, publishFacebookPhoto } from '../lib/facebook-publi
 import { fanoutExtraPlatforms, fanoutSummary } from '../lib/social-fanout.js';
 import { fetchAgentStatus, summarizeByAgent } from '../lib/agent-logger.js';
 import { cheapLLM } from '../lib/cheap-llm.mjs';
+import { detectSiteEdit } from '../lib/site-edit-intent.mjs';
 
 const SUPA_URL = process.env.SUPABASE_URL;
 const SUPA_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -321,6 +322,17 @@ export default async function handler(req, res) {
           'Belirli ajanı zorla: `@muhabir <mesaj>` veya `/ajan muhabir <mesaj>`\n\n' +
           'Örn: _"kaputaş için reels fikri"_ → reels ajanı\\. _"patara tarihi"_ → rehber ajanı\\.');
       } else if (text.startsWith('@') || text.startsWith('/ajan ') || (text && !text.startsWith('/'))) {
+        // ── Site düzenleme niyeti mi? (etkinlik/sağlayıcı ekle) → kuyruğa al (worker git push eder)
+        if (!text.startsWith('@') && !text.startsWith('/ajan ')) {
+          try {
+            const editAction = await detectSiteEdit(text, { today: new Date().toISOString().slice(0, 10) });
+            if (editAction) {
+              await supa('/site_edit_queue', { method: 'POST', body: JSON.stringify({ chat_id: String(chatId), raw_text: text, action: editAction }) });
+              await sendMessage(chatId, `⏳ Anladım — *${escapeMd(editAction.type)}* işlemini kuyruğa aldım\\. ~1 dk içinde canlıya yansıyacak, bitince haber vereceğim\\.`);
+              return res.status(200).json({ ok: true });
+            }
+          } catch (e) { /* düzenleme değilse normal ajana düş */ }
+        }
         // ── Serbest metin → ilgili ajana yönlendir, çalıştır, yanıtla (PC gerekmez, serverless)
         let agentId = null, task = text;
         const mAt = text.match(/^@([a-z][a-z-]+)\s+([\s\S]+)/i);
