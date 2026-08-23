@@ -18,7 +18,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { qualityGate } from './content-critic.mjs';
-import { publishReelTranslations } from './reel-i18n.mjs';
+import { publishReelTranslations, renderAndUploadLang } from './reel-i18n.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -157,6 +157,20 @@ async function main() {
     captionFields: { headline },
     buildCaption: (f, lang) => `📰 ${localHeadline[lang] || f.headline}\n\n${CTAL[lang]}: ${SITE_BASE}${localeSeg[lang]}`,
     context: "Günlük gazete manşeti Instagram reel caption (Kalkan Today)",
+    // PER-DİL GERÇEK VİDEO (DE/RU/FR): props-gazete.json'daki haber alanlarını o dile çevirip
+    // GazeteReel'i o dil için render eder. EN ayrı olgun hatta (build-gazete-reel-en) — dokunulmaz.
+    // Marka "Kalkan Today" translateFields prompt'unda korunur.
+    renderLang: async (lang) => {
+      let gp = {};
+      try { gp = JSON.parse(await readFile(join(ROOT, 'remotion', 'props-gazete.json'), 'utf8')); } catch { return null; }
+      return renderAndUploadLang({
+        typeKey: 'gazete', compositionId: 'GazeteReel', baseProps: gp,
+        translatableKeys: ['lead_headline', 'lead_deck', 'col1_label', 'col1_title', 'col1_summary', 'col3_label', 'col3_title', 'col3_summary'],
+        lang, objectPath: `gazete-reel/gazete-reel-${date}-${lang}.mp4`,
+        musicCandidates: ['assets/audio/reel-bed.mp3', 'dist/audio/news-bed.mp3', 'dist/audio/track1.mp3'],
+        context: 'Kalkan Today günlük gazete reel ekran yazıları (haber manşet/özet)',
+      });
+    },
   }).catch(e => console.warn('  ℹ çok-dil gazete reel atlandı (non-fatal):', e.message));
 }
 
