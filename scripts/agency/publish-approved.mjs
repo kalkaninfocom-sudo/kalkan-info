@@ -126,7 +126,7 @@ async function main() {
       failed++;
       await supa(`/social_posts?id=eq.${post.id}`, {
         method: 'PATCH', headers: { Prefer: 'return=minimal' },
-        body: JSON.stringify({ status: 'failed', engagement_metrics: { error: String(err.message || err) } }),
+        body: JSON.stringify({ status: 'failed', reject_reason: String(err.message || err).slice(0, 300), engagement_metrics: { error: String(err.message || err) } }),
       });
       console.error(`  ❌ ${label} → ${err.message}`);
       await notify(`❌ Yayın başarısız: <b>${label}</b>\n${String(err.message || err).slice(0, 200)}`);

@@ -43,7 +43,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           IG_CRON_SECRET: ${{ secrets.IG_CRON_SECRET }}
-          SITE_BASE: https://www.kalkaninfo.com
+          # non-www: www 308 redirect Meta'nın görsel çekmesini (image_url fetch) bozar.
+          SITE_BASE: https://kalkaninfo.com
           # BrandGuard (cheap-llm) sağlayıcı sırası. Varsayılan 'ollama' ilk → CI'da ollama
           # yok, her çağrı localhost'a takılıp SOFT dönüyordu (içerik hiç otomatik onaylanmıyor).
           # Ücretsiz bulut hakemleri önce → CI'da güvenilir PASS/BLOCK.
