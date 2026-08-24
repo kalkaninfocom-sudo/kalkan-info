@@ -34,7 +34,7 @@ const argv = process.argv.slice(2);
 const useDemo = argv.includes('--demo');
 const positional = argv.filter(a => !a.startsWith('--'));
 const type = positional[0] || 'morning';
-const today = positional[1] || new Date().toISOString().slice(0, 10);
+const today = positional[1] || new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' }); // İstanbul TZ — heartbeat ile aynı gün (gece UTC kayması yanlış alarm veriyordu)
 // 5 DİL: --lang=de → morning.de.html üret (TR base + çeviri). Varsayılan tr (mevcut akış, bozulmaz).
 const lang = (argv.find(a => a.startsWith('--lang=')) || '').split('=')[1] || 'tr';
 
@@ -115,7 +115,11 @@ const I18N_CRITICAL = new Set(['lead_headline', 'lead_deck', 'feature_title', 'f
 // Bir alanı çevir (opsiyonel sağlayıcı sırası = eskalasyon). Echo/boş → null (başarısız).
 async function translateOne(k, data, l, order) {
   const t = await translateFields({ [k]: data[k] }, l, { context: I18N_CTX, maxTokens: 1400, ...(order ? { order } : {}) }).catch(() => null);
-  return (t && typeof t[k] === 'string' && t[k].trim() && t[k] !== data[k]) ? t[k] : null;
+  // Echo (kaynağı aynen döndürme) yalnız KRİTİK düz-metin alanlarında başarısızlık sayılır.
+  // Özel-isim alanları (mekan/marka adı) doğru çeviride kaynakla AYNI kalabilir → onları echo sayma
+  // (yoksa asla cache'lenmez, her gün yeniden çevrilir + heartbeat yanlış "çevrilmemiş" alarmı verir).
+  const echoOk = I18N_CRITICAL.has(k) ? (t && t[k] !== data[k]) : true;
+  return (t && typeof t[k] === 'string' && t[k].trim() && echoOk) ? t[k] : null;
 }
 
 // SAĞLAM 5-dil çeviri: KALICI CACHE → throttle → sıralı retry → kritik eskalasyon.
