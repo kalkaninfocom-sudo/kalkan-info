@@ -2,7 +2,7 @@
 
 > **Bu dosya CANLI haritadır.** İş parça parça gidiyor; yarım kalırsa buradan "ne yaptık, nerede kaldık, sıradaki ne" görülür. Her büyük adımda güncellenir.
 >
-> **Son güncelleme:** 2026-06-28
+> **Son güncelleme:** 2026-08-24
 > **Durum kodları:** ✅ bitti · 🔨 sürüyor · ⏳ bekliyor · ⛔ bloke (canlıya bir şey lazım)
 
 ---
@@ -26,9 +26,12 @@ Kalkan'ın günlük medya ekosistemi: **gerçek veriyle dolan günlük gazete (�
 | 8 | Bölgesel haber RSS genişletme | ✅ canlı | `scripts/news-aggregator.mjs` (+4 RSS, 7/7) | — |
 | 9 | Otonom etkinlik toplama | ✅ kod (dry-run) | `scripts/discover-events.mjs` | ⛔ SerpApi quota + IG scraper kararı |
 | 10 | FB "Friends of Kalkan" güvenli responder | ✅ kod (test geçti) | `scripts/fb-lead-responder.mjs`, `docs/FB_RESPONDER.md` | ⛔ FB okuma (Apify ~$30-49/ay) + onay |
-| 11 | Ucuz LLM router (token tasarrufu) | ✅ CANLI+BAĞLI | `lib/cheap-llm.mjs` | nvidia+ollama(llama3.2:3b)+gemini hazır. 4 script bağlandı (discover-events/fb-responder/ig-news-post/ig-reply) → angarya Claude token'ı = 0 |
+| 11 | Ucuz LLM router (token tasarrufu) | ✅ CANLI+BAĞLI | `lib/cheap-llm.mjs` | nvidia+ollama(llama3.2:3b)+gemini hazır. 4 script bağlandı. `CHEAP_LLM_TIMEOUT_MS` knob eklendi (2026-08-24) |
 | 12 | Proje geneli durum haritası | ✅ | `docs/PROJE_DURUMU.md` | — (master "nerede kaldık") |
 | 13 | Günlük 00:00 Telegram raporu | ✅ kod (dry-run) | `scripts/daily-status-report.mjs`, `docs/GUNLUK_RAPOR.md` | Telegram token/chat ID + cron wiring |
+| 14 | **Gazete güvenilirlik katmanı** | ✅ **2026-08-24** | `gazete-approval.yml`, `gazete-heartbeat.mjs`, `data/i18n-cache/` | Commit+heartbeat reel'den ÖNCE; job 60dk cap; `I18N_LLM_ORDER: gemini,groq`; reel continue-on-error+10dk timeout; i18n-cache kalıcı |
+| 15 | **Hat nöbeti (line-heartbeat)** | ✅ **2026-08-24** | `line-heartbeat.yml`, `scripts/agency/line-heartbeat.mjs` | 12:30 TR'de tüm hatlar prova; bayat hat → Telegram + `LINES_HEALTHCHECK_URL` dead-man's-switch |
+| 16 | **Healthchecks.io dead-man's-switch** | ✅ **2026-08-24** | `GAZETE_HEALTHCHECK_URL` secret | Her sabah heartbeat ping; 2 gün sessizlik → harici alarm |
 
 ---
 
@@ -43,17 +46,20 @@ Kalkan'ın günlük medya ekosistemi: **gerçek veriyle dolan günlük gazete (�
 ## ⛔ BLOKE / KARAR BEKLEYEN (Berkay)
 - **SerpApi quota DOLU** → otonom Google etkinlik (#9) çalışmaz. Çözüm: saat başı reset bekle ya da plan upgrade ($75/ay → 5K query).
 - **IG/FB scraper (sahip olunmayan profil/sayfa)** → #9 (IG caption), #10 (FB okuma). Karar: Apify (~$30-49/ay, ToS gri) mı, manuel mı, atla mı?
-- **IG token canlı mı?** → #6, #7 için. env'de `IG_LONG_LIVED_TOKEN` var ama local'de invalid olabilir; prod'da doğrula. `api/cron-refresh-ig-token.js` mevcut.
+- ~~**IG token**~~ → ✅ ÇÖZÜLDÜ (2026-07-08). Secret'lar eklendi, publish workflow success.
 - **api/ 12/12 DOLU** (Vercel Hobby) → yeni webhook eklenemez; otomasyonlar script/cron olarak çalışır.
+- **PR #55 beklemeye alındı** → gazete yayını 2026-08-24 sabahı doğrulanınca merge edilecek.
+- **`LINES_HEALTHCHECK_URL` secret eksik olabilir** → line-heartbeat için harici dead-man's-switch (Healthchecks.io).
 
 ## ▶️ SIRADAKİ NET ADIM
-1. 6 agent bitsin → çıktıları doğrula, bu haritayı güncelle.
-2. Hepsini **tek commit grubu** halinde commit et (henüz commit edilmedi).
-3. Berkay kararı: IG token doğrula (en güvenli/yüksek değer #6-7'yi canlıya al) + scraper kararı (#9-10).
+1. **2026-08-25 sabah 07:45+ GitHub Actions log kontrolü** — commit adımı reel'den önce tamamlandı mı? Heartbeat Telegram mesajı geldi mi?
+2. **Gazete yayını doğrulanınca PR #55 merge.**
+3. **`LINES_HEALTHCHECK_URL` secret ekle** (Healthchecks.io'da yeni check → URL'yi secret'a yaz).
+4. IG hesap adlarını (`data/ig-watch-accounts.json`) güncelle — 11 hesap hâlâ pasif.
 
 ## 📌 NOTLAR
-- Hiçbir şey henüz **commit edilmedi** — oturum sonunda commit grubu lazım.
 - Her parça tek başına çalışır/test edilmiş halde; yarım kalsa bile birleşince bütün tamamlanır.
+- **2026-08-22..24 sessiz kesinti kök neden:** reel timeout → commit SKIP → gazete 3 gün yayınlanmadı. Düzeltme bu oturumda uygulandı.
 
 ## ✅ SOSYAL ONAY ZİNCİRİ — 3 BOŞLUK KAPATILDI (2026-07-01)
 n8n/VPS spec'i geldi ama sistemin %85'i zaten canlıydı (Supabase `social_posts` + `weekly-content-planner` + `telegram-webhook` onay + `social-publish-queue` yayın). n8n kurulmadı; 3 gerçek boşluk mevcut sisteme script/dal olarak eklendi:

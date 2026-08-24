@@ -3,7 +3,7 @@
 > **Amaç:** Tüm kalkaninfo işlerinin "ne yaptık · nerede kaldık · sıradaki ne"sini tek canlı dosyada toplamak.
 > Parça parça çalışıyoruz, çok iş yarım kalıyor — bu dosya kayıp thread bırakmamak için var.
 >
-> **Son güncelleme:** 2026-07-10
+> **Son güncelleme:** 2026-08-24
 > **Durum kodları:** ✅ bitti & canlı · 🔨 sürüyor · ⏳ bekliyor (sıraya alındı) · ⛔ bloke (canlıya bir şey lazım — ne lazımı yazılı)
 >
 > Bu dosya **CANLI**'dır: her oturumda güncellenir. Her parça **tek başına çalışır** halde bırakılır; yarım kalsa bile birleşince bütün tamamlanır.
@@ -23,18 +23,27 @@
 
 ---
 
-## 🗓️ SON OTURUM — 2026-07-08 (Publish fix + Gazete kalite + Öğrenme + IG izleme)
+## 🗓️ SON OTURUM — 2026-08-24 (Gazete güvenilirlik sertleştirme — kök neden düzeltmesi)
 
-**5 commit push'landı, canlıda.** 4 faz:
+**Kök neden bulundu ve düzeltildi:** `gazete-approval.yml` iş akışında reel adımı timeout olunca commit adımı SKIP ediliyordu → gazete üretilmesine rağmen **3 gün (08-22..24) yayınlanmadı** (sessiz kesinti). Ikinci kök neden: i18n çevirisi her alan için her sağlayıcıda 60 saniye deniyordu; ölü sağlayıcılarla cold-cache çalışmasında 30+ dakika harcayıp job'ı timeout ettiriyordu.
 
-- **Phase 0 — Publish bug ÇÖZÜLDÜ (kök neden):** Onaylı postlar `approved`'da çürüyordu — onları yayınlayacak tetikleyici yoktu. Ayrıca "korumalı endpoint'i `IG_CRON_SECRET` ile curl'le" deseni repo genelinde KIRIK (prod secret dış çağrılarla eşleşmiyor → 401; `auto-publish.yml` de sessizce fail ediyormuş). Çözüm: self-contained `scripts/agency/publish-approved.mjs` (Supabase + IG/FB doğrudan, secret-eşleştirme yok) + `.github/workflows/publish-approved.yml` (saatlik). IG env toleransı + tazelik guard'ı (12h). IG/FB token canlı geçerli+kalıcı doğrulandı.
-  - ✅ **ÇÖZÜLDÜ (2026-07-08 17:01):** `IG_BUSINESS_ID` + `IG_LONG_LIVED_TOKEN` GitHub Actions secret'larına eklendi. Doğrulama: "Onaylı postları yayınla" workflow'u 17:01'de **success** (17:01 öncesi 16:49 schedule fail idi). Otonom yayın hattı artık uçtan uca çalışıyor.
-- **Phase 1 — Gazete kalite ✅:** `sources.mjs`/`build.mjs` — restoran/magazin deterministik seçimi rotasyon+dedup'a çevrildi (`data/gazete-history.json`; 7 gün=7 farklı mekan). Antalya-merkez düzeltildi (`news-aggregator.mjs` REGION_RX + skorlamadan `antalya` çıkarıldı, Antalya-only negatif). Demo "Kaptan" hardcode kaldırıldı. **Agent→gazete köprüsü:** `gazete-editorial.mjs` artık `agency_jobs` (sabah ajan araştırması) + site etkinlik + IG mekan sinyalini kaynak alıyor.
-- **Phase 2 — Saatlik öğrenme ✅:** `scripts/agency/agent-learn.mjs` + `learn-rotation.mjs` + `data/agency/reading-list.json` + `knowledge/<id>.json`. Muhabir Poynter/Reuters Institute'tan gazetecilik dersi çıkardı (doğrulandı). Edge Function `runAgent` öğrendikleri prompt'a enjekte ediyor. `schedule.json` 6 kota-güvenli slot (10-22).
-- **Phase 3 — IG mekan izleme ✅:** `scripts/ig-venue-watch.mjs` + `data/ig-watch-accounts.json` + business_discovery (canlı test 18 gönderi). Editöryale bağlandı.
-  - ⏳ **Berkay:** `ig-watch-accounts.json` — sadece 3 hesap doğrulandı aktif (kalamarbeachclub/kalkanregency/korsankalkan). 11 tahmini ad "Invalid user id" (pasif). Gerçek Kalkan mekan IG adlarını ekle → `active:true`.
+**Bu oturumda yapılanlar (`.github/workflows/gazete-approval.yml`):**
 
-**Sıradaki:** (1) ✅ 2 GitHub secret eklendi → otomatik yayın uçtan uca doğrulandı (workflow success). (2) IG hesap adlarını doldur. (3) Sabah gazete akışında rotasyon+editöryal çıktısını canlı gözlemle.
+- ✅ **Commit + heartbeat adımları reel'lerden ÖNCE taşındı** — reel ne olursa olsun gazete web'e çıkar.
+- ✅ **Job timeout 60 dakikaya yükseltildi** (eskiden varsayılan 6 saat ama etkin limit yoktu; özel cap eklendi).
+- ✅ **i18n sağlayıcı sırası `gemini,groq` ile sınırlandı** (`I18N_LLM_ORDER: gemini,groq`) — ölü/ücretsiz-tier tükenmiş sağlayıcılarda 60s×ölü bekleme artık oluşmaz.
+- ✅ **Reel adımları `continue-on-error: true` + `timeout-minutes: 10`** — asılı Remotion render job'ı cancel ettiremez.
+- ✅ **`data/i18n-cache` arşivde commit'leniyor** — cold-cache çalışmalarında çeviri yeniden yapılmaz.
+- ✅ **`gazete-heartbeat.mjs`** — her sabah "sayı çıktı mı?" baskı provası; boş sayı/TR-as-lang/placeholder durumunda Telegram alarm + `GAZETE_HEALTHCHECK_URL` dead-man's-switch ping.
+- ✅ **`line-heartbeat.yml`** — 12:30 TR'de TÜM üretim hatlarını (gazete/haber/brifing/reel/bülten/ilan) prova eder; bayat hat → Telegram alarm, `LINES_HEALTHCHECK_URL` ile Healthchecks.io dead-man's-switch.
+- ✅ **`cheap-llm.mjs` `CHEAP_LLM_TIMEOUT_MS` knob** — angarya LLM çağrısı için dışarıdan timeout ayarlanabilir.
+
+**Nerede kaldık:** `gazete-approval.yml` güncellemesi bu branch'te (feat/parallel-improve-2). Bir sonraki sabah çalışmasında (04:45 UTC) doğrulama: commit adımının reel'den önce tamamlandığını GitHub Actions logunda gör.
+
+**Sıradaki:**
+- ⏳ **PR #55** (G7 sıralama + G6 yerel yeniyazım + denetim temizliği + envanter tasarımı) gazete yayını onaylanana kadar beklemeye alındı.
+- IG hesap adlarını (`ig-watch-accounts.json`) güncelle — 11 tanesi hâlâ "Invalid user id" (pasif).
+- Control Tower dashboard'da üretim hattı bölümünü canlı izle (sabah 07:45 sonrası).
 
 ---
 
@@ -56,7 +65,9 @@
 | Gazete DB (editions/articles/ads/placements/qr_events, KVKK IP-hash + RLS) | ✅ | `supabase/` migration (`newspaper qr_slug pgcrypto`) | Migration yazıldı + commit'lendi | `supabase db push` (doğrulanmalı) |
 | Magazin arka yüz (gece hayatı) | ✅ | `newspaper/templates/magazine.html` | "Chocolate Club" hero + 3 kart + "Bu Akşam Program". Foto `file://` PDF-garanti | — (commit bekliyor) |
 | Gazete reklam satışı (gece hayatı sponsor) | ⏳ | `docs/GAZETE_PROJESI.md` | Planlandı, satış akışı kurulmadı | İş modeli kararı (Berkay) |
-| **Ajans → gazete editöryal köprüsü** | ✅ **FIX 2026-07-10** | `scripts/agency/gazete-editorial.mjs`, `scripts/newspaper-daily.mjs`, `.github/workflows/newspaper-daily.yml` | KÖK SORUN: daily pipeline editöryal agent'ı hiç çağırmıyordu → `gazete-today.json` bayat kalıp gazete her gün ham RSS'e düşüyordu. Fix: build'den önce editorial adımı (non-fatal) + workflow'a LLM secret'ları (GROQ/CEREBRAS/NVIDIA/GEMINI, hepsi mevcuttu). Local doğrulandı (groq, editöryal byline) | — (push sonrası bir sonraki 06:00 çalışmasında veya manuel `workflow_dispatch` ile canlı) |
+| **Ajans → gazete editöryal köprüsü** | ✅ | `scripts/agency/gazete-editorial.mjs`, `scripts/newspaper-daily.mjs`, `gazete-approval.yml` | Köprü canlı; gazete-approval içinde haber odası zinciri (muhabir/editör/doğrulayıcı/şef) → `data/gazete-today.json` → build → commit | — |
+| **Gazete güvenilirlik katmanı** | ✅ **YENİ 2026-08-24** | `gazete-approval.yml`, `scripts/agency/gazete-heartbeat.mjs`, `data/i18n-cache/` | Commit+heartbeat reel'lerden ÖNCE; job timeout 60dk; `I18N_LLM_ORDER: gemini,groq` (cold-cache timeout giderildi); reel `continue-on-error+timeout-minutes:10`; i18n-cache kalıcı | — (bu oturum uygulandı) |
+| **Hat nöbeti (line-heartbeat)** | ✅ **YENİ 2026-08-24** | `.github/workflows/line-heartbeat.yml`, `scripts/agency/line-heartbeat.mjs` | 12:30 TR'de tüm üretim hatlarını prova eder; bayat hat → Telegram alarm + `LINES_HEALTHCHECK_URL` dead-man's-switch | — |
 | RSS haber motoru (saatlik refresh) | ✅ | `scripts/news-aggregator.mjs`, `data/haberler.json` | Otomatik `chore(news)` commit'leri akıyor | — (çalışıyor) |
 | Bölgesel haber RSS genişletme | 🔨 | `scripts/news-aggregator.mjs` | Agent çalışıyor; RSS'i olan kaynaklar | — |
 
@@ -164,6 +175,8 @@
 | Vercel cron (2 aktif) | ✅ | `api/cron-rebuild.js`, `api/cron-refresh-ig-token.js`, `api/cron-weekly-plan.js` | Cron sayısı 2'ye düşürüldü (Hobby limiti) | — |
 | Supabase (DB + Auth + Edge Functions + RLS) | ✅ | `supabase/` | Migration'lar yazıldı | Yeni migration'lar için `supabase db push` (doğrulanmalı) |
 | Repo güvenliği | ✅ | — | PRIVATE, security commit'leri canlı | Secret rotate listesi (Twilio/Resend/Supabase PAT) — Resend hâlâ açık |
+| **Gazete dead-man's-switch** | ✅ **YENİ 2026-08-24** | `GAZETE_HEALTHCHECK_URL` secret, `gazete-heartbeat.mjs` | Healthchecks.io'ya her sabah ping; 2 gün sessizlik → harici alarm | `GAZETE_HEALTHCHECK_URL` secret eklendi mi doğrula |
+| **cheap-llm timeout knob** | ✅ **YENİ 2026-08-24** | `lib/cheap-llm.mjs` | `CHEAP_LLM_TIMEOUT_MS` env ile angarya LLM timeout ayarlanabilir | — |
 | Agent şirketi iskeleti | 🔨 | `COMPANY/`, `lib/*` personalar | 13 persona + Capacitor iskelet | Üretim entegrasyonu |
 | Mobil (Capacitor) | ⏳ | `mobile/` | İskelet | — |
 | Test/CI (ESLint + Prettier + Vitest + CI) | 🔨 | repo kökü | İskelet kuruldu | devDeps install (doğrulanmalı) |
@@ -182,18 +195,19 @@
 | ~~B6~~ | ✅ **ÇÖZÜLDÜ (2026-07-08, sıfır-maliyet)** — TR native ses = edge-tts (`scripts/lib/tts-free.mjs`), müzik = telifsiz `assets/audio/ambient-bed.mp3`. ElevenLabs/plan upgrade GEREKMİYOR | ~~Antik reels batch~~ | Kalan: Berkay kent fotoğrafları verecek. Ayrıca sızmış EL anahtarı ROTATE edilmeli (koddan temizlendi, git geçmişinde) |
 | B7 | **Anthropic local key geride** | Yeni içerik çeviri/AI işleri local'de | Prod'da geçerli; local manuel test için key güncelle (opsiyonel) |
 | B8 | **api/ 12/12 dolu** | Yeni Vercel webhook | Otomasyonları script/cron olarak yaz (mimari karar, çözüldü) |
+| B9 | **PR #55 beklemeye alındı** | G7 sıralama + G6 yerel yeniyazım + denetim temizliği + envanter tasarımı | Gazete yayını 2026-08-24 sabahı doğrulanınca merge et |
 
 ---
 
 ## ▶️ SIRADAKİ NET ADIMLAR (öncelik sırası)
 
-1. **COMMIT GRUBU:** Bu oturumun gazete+etkinlik+otomasyon çıktıları **henüz commit edilmedi** (`git status`: `newspaper/generator/sources.mjs`, `magazine.html`, `etkinlikler/index.html`, `data/etkinlik-*.json`, `lib/ig-reply.mjs`, `content/reel-*`, `docs/*` untracked). Tek mantıklı commit grubu halinde commit et.
-2. **Web `/etkinlikler` deploy** — sayfa hazır, sadece deploy (#5).
-3. ~~**B1 IG token doğrula**~~ → ✅ ÇÖZÜLDÜ (2026-07-08): secret'lar eklendi, publish workflow success. Reels + IG otomasyon kilidi açık.
-4. **B3 Resend key rotate** → newsletter hattı çalışır hale gelir (1 değişken).
-5. **B2 SerpApi kararı** → Google Maps verisi + otonom etkinlik tamamlanır.
-6. **Google Search Console'a sitemap submit** (SEO Faz 2 kapanışı).
-7. **B4/B6 karar** → FB responder + antik reels batch'i için (para/ToS kararı).
+1. **Gazete yayın doğrulama (2026-08-25 sabah 07:45+):** GitHub Actions logunda commit adımının reel'den önce tamamlandığını gör. Heartbeat Telegram mesajı geldi mi kontrol et.
+2. **PR #55 merge** (B9) — gazete yayını doğrulandıktan sonra (G7 sıralama + G6 + denetim + envanter tasarımı).
+3. **`GAZETE_HEALTHCHECK_URL` secret doğrula** — Healthchecks.io dead-man's-switch aktif mi kontrol et.
+4. **`LINES_HEALTHCHECK_URL` secret ekle** — line-heartbeat için harici dead-man's-switch.
+5. **B3 Resend key rotate** → newsletter hattı çalışır hale gelir.
+6. **B2 SerpApi kararı** → Google Maps verisi + otonom etkinlik tamamlanır.
+7. ~~**B1 IG token**~~ → ✅ ÇÖZÜLDÜ (2026-07-08). ~~**B6 TR ses**~~ → ✅ ÇÖZÜLDÜ (edge-tts).
 
 ---
 

@@ -48,10 +48,31 @@ export async function checkIgToken() {
 export async function checkLLM() {
   const provs = availableProviders();
   if (!provs.length) return { ok: false, critical: true, detail: 'HİÇ LLM sağlayıcı anahtarı yok (içerik üretilemez)' };
+
+  // Tercih sırası: gemini ve groq öne al (en güvenilir ücretsiz tier), sonra kalan sağlayıcılar.
+  const PREFERRED = ['gemini', 'groq'];
+  const order = [
+    ...PREFERRED.filter(p => provs.includes(p)),
+    ...provs.filter(p => !PREFERRED.includes(p) && p !== 'ollama'),
+  ];
+
+  async function attempt() {
+    return cheapLLM('OK de.', { maxTokens: 5, timeoutMs: 30000, order });
+  }
+
   try {
-    const r = await cheapLLM('OK de.', { maxTokens: 5, timeoutMs: 30000, order: provs.filter(p => p !== 'ollama') });
+    const r = await attempt();
     return { ok: true, critical: true, detail: `LLM çalışıyor (${r.provider}); mevcut: ${provs.join(',')}` };
-  } catch (e) { return { ok: false, critical: true, detail: `LLM sağlayıcı yanıt vermiyor: ${String(e.message).slice(0, 70)}` }; }
+  } catch (firstErr) {
+    // Geçici blip olabilir — 3 saniye bekle, bir kez daha dene.
+    await new Promise(res => setTimeout(res, 3000));
+    try {
+      const r = await attempt();
+      return { ok: true, critical: true, detail: `LLM çalışıyor (${r.provider}, retry sonrası); mevcut: ${provs.join(',')}` };
+    } catch (secondErr) {
+      return { ok: false, critical: true, detail: `LLM sağlayıcı yanıt vermiyor: ${String(secondErr.message).slice(0, 70)}` };
+    }
+  }
 }
 
 export function checkActivity() {
