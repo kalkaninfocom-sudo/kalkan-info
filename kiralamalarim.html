@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="dist/tw.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Kiralamalarım — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<meta name="robots" content="noindex, follow">
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-.02em;}
+
+  /* Tabs */
+  .tab-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.625rem 1.25rem;border-radius:.625rem;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.875rem;border:2px solid transparent;cursor:pointer;transition:all .18s;background:transparent;color:#5d7a8c;}
+  .tab-btn:hover{background:#fff;color:#0a2e4c;border-color:#d8e8f4;}
+  .tab-btn.active{background:#fff;color:#0a2e4c;border-color:#c47d0e;box-shadow:0 2px 8px -2px rgba(196,125,14,.22);}
+  .tab-btn:focus-visible{outline:2px solid #c47d0e;outline-offset:2px;}
+
+  /* Cards */
+  .card{background:#fff;border-radius:1rem;border:1px solid #d8e8f4;box-shadow:0 2px 12px -4px rgba(10,46,76,.08),0 8px 28px -8px rgba(10,46,76,.05);overflow:hidden;}
+  .card-header{padding:.875rem 1.25rem;border-bottom:1px solid #edf4fb;display:flex;align-items:center;justify-content:space-between;gap:.75rem;}
+  .card-body{padding:1rem 1.25rem;}
+
+  /* Status badges */
+  .badge{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .65rem;border-radius:9999px;font-size:.7rem;font-weight:700;font-family:'Montserrat',sans-serif;letter-spacing:.03em;}
+  .badge-requested{background:#fef3c7;color:#92400e;}
+  .badge-confirmed{background:#dcfce7;color:#166534;}
+  .badge-rejected{background:#fee2e2;color:#991b1b;}
+  .badge-cancelled{background:#f3f4f6;color:#6b7280;}
+  .badge-completed{background:#dbeafe;color:#1e40af;}
+  .badge-active{background:#dcfce7;color:#166534;}
+  .badge-paused{background:#fef9c3;color:#713f12;}
+  .badge-pending{background:#fef3c7;color:#92400e;}
+  .badge-removed{background:#fee2e2;color:#991b1b;}
+
+  /* Action buttons */
+  .btn-confirm{display:inline-flex;align-items:center;gap:.375rem;background:linear-gradient(135deg,#166534 0%,#15803d 100%);color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8125rem;padding:.5rem 1rem;border-radius:.5rem;border:none;cursor:pointer;transition:filter .15s,box-shadow .15s;box-shadow:0 2px 8px -2px rgba(22,101,52,.35);}
+  .btn-confirm:hover{filter:brightness(1.1);}
+  .btn-confirm:active{filter:brightness(.92);}
+  .btn-confirm:focus-visible{outline:2px solid #166534;outline-offset:2px;}
+  .btn-confirm:disabled{opacity:.5;cursor:not-allowed;filter:none;}
+
+  .btn-reject{display:inline-flex;align-items:center;gap:.375rem;background:#fff;color:#991b1b;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8125rem;padding:.5rem 1rem;border-radius:.5rem;border:2px solid #fca5a5;cursor:pointer;transition:background .15s,border-color .15s;}
+  .btn-reject:hover{background:#fee2e2;border-color:#f87171;}
+  .btn-reject:active{background:#fecaca;}
+  .btn-reject:focus-visible{outline:2px solid #991b1b;outline-offset:2px;}
+  .btn-reject:disabled{opacity:.5;cursor:not-allowed;}
+
+  .btn-cancel{display:inline-flex;align-items:center;gap:.375rem;background:#fff;color:#6b7280;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8125rem;padding:.5rem 1rem;border-radius:.5rem;border:2px solid #d1d5db;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+  .btn-cancel:hover{background:#f3f4f6;border-color:#9ca3af;color:#374151;}
+  .btn-cancel:focus-visible{outline:2px solid #6b7280;outline-offset:2px;}
+  .btn-cancel:disabled{opacity:.5;cursor:not-allowed;}
+
+  .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#c47d0e 0%,#a86000 100%);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.875rem;padding:.625rem 1.25rem;border-radius:.625rem;border:none;cursor:pointer;transition:filter .18s,box-shadow .18s;box-shadow:0 4px 14px -2px rgba(196,125,14,.4);}
+  .btn-primary:hover{filter:brightness(1.08);}
+  .btn-primary:active{filter:brightness(.95);}
+  .btn-primary:focus-visible{outline:2px solid #c47d0e;outline-offset:3px;}
+  .btn-edit{display:inline-flex;align-items:center;gap:.375rem;background:#fff;color:#0d3a5f;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8125rem;padding:.5rem 1rem;border-radius:.5rem;border:2px solid #9cc0dd;cursor:pointer;text-decoration:none;transition:border-color .15s,background .15s;}
+  .btn-edit:hover{border-color:#c47d0e;background:#fef6e6;}
+  .btn-edit:focus-visible{outline:2px solid #c47d0e;outline-offset:2px;}
+
+  /* Stay listing row */
+  .stay-row{display:flex;gap:1rem;align-items:flex-start;}
+  .stay-thumb{width:72px;height:56px;object-fit:cover;border-radius:.5rem;flex-shrink:0;border:1.5px solid #d8e8f4;}
+
+  /* Blocked date row */
+  .blocked-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem .75rem;background:#f8fbff;border-radius:.5rem;border:1px solid #d8e8f4;}
+  .btn-unblock{background:none;border:none;color:#991b1b;cursor:pointer;font-size:.75rem;font-weight:700;padding:.25rem .5rem;border-radius:.375rem;transition:background .13s;}
+  .btn-unblock:hover{background:#fee2e2;}
+  .btn-unblock:focus-visible{outline:2px solid #991b1b;outline-offset:2px;}
+
+  /* Empty state */
+  .empty-state{text-align:center;padding:3rem 1rem;}
+  .empty-state svg{margin:0 auto 1rem;opacity:.3;}
+  .empty-state p{color:#7a9ab5;font-size:.9375rem;}
+
+  /* Spinner */
+  .spinner{animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* Inline blocked-date form */
+  .ob-input-sm{border:1.5px solid #9cc0dd;border-radius:.5rem;padding:.4rem .7rem;font-size:.875rem;color:#0a2e4c;background:#fff;outline:none;transition:border-color .15s;}
+  .ob-input-sm:focus{border-color:#c47d0e;box-shadow:0 0 0 2px rgba(196,125,14,.12);}
+
+  /* Toast */
+  #toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;pointer-events:none;}
+  .toast-msg{background:#0a2e4c;color:#fff;font-family:'Montserrat',sans-serif;font-size:.8125rem;font-weight:600;padding:.625rem 1rem;border-radius:.625rem;margin-top:.5rem;box-shadow:0 4px 18px -4px rgba(7,33,54,.5);transform:translateY(0);transition:opacity .25s,transform .25s;opacity:1;}
+  .toast-msg.toast-success{background:#166534;}
+  .toast-msg.toast-error{background:#991b1b;}
+  .toast-msg.fade-out{opacity:0;transform:translateY(6px);}
+</style>
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+
+<!-- NAV -->
+<nav style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,.55);" class="sticky top-0 z-40 text-white">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,.08);">
+    <a href="kirala.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/10 -ml-3 transition rounded-md">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="font-display font-semibold text-sm hidden sm:inline">Kiralık İlanlar</span>
+    </a>
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span style="color:#c47d0e;">◆</span> KALKAN <span style="color:#c47d0e;">INFO</span>
+    </a>
+    <div class="w-9 h-9 rounded-full bg-white/10 border border-white/20 grid place-items-center" id="nav-avatar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white/60"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header style="background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 60%,#134c79 100%);" class="relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#c47d0e 0%,transparent 70%);"></div>
+  <div class="relative max-w-5xl mx-auto px-4 py-10 md:py-12 text-white flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div>
+      <div class="inline-flex items-center gap-2 text-[11px] tracking-[.14em] uppercase bg-white/10 border border-white/20 px-3 py-1.5 rounded-full font-semibold mb-3" style="color:#f4a725;">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#f4a725]"></span> Kiralama Paneli
+      </div>
+      <h1 class="font-display text-2xl md:text-3xl font-extrabold leading-tight">Kiralamalarım</h1>
+      <p class="mt-1.5 text-white/65 text-sm max-w-lg">İlanlarını yönet, gelen rezervasyonları onayla, kendi seyahat planlarını takip et.</p>
+    </div>
+    <a href="kirala-ekle.html" class="btn-primary self-start sm:self-auto flex-shrink-0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+      Yeni İlan Ver
+    </a>
+  </div>
+</header>
+
+<!-- AUTH GATE -->
+<div id="auth-gate" class="hidden max-w-5xl mx-auto px-4 py-12 text-center">
+  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5" class="mx-auto mb-3"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <p class="font-display font-bold text-sea-800 mb-1">Giriş yapmalısın</p>
+  <p class="text-sm text-sea-600 mb-4">Kiralamalarını görmek için hesabına giriş yapman gerekiyor.</p>
+  <a href="login.html?next=kiralamalarim.html" class="btn-primary inline-flex">Giriş Yap</a>
+</div>
+
+<!-- MAIN PANEL (auth'd) -->
+<main id="main-panel" class="hidden max-w-5xl mx-auto px-4 py-6 space-y-6">
+
+  <!-- TABS -->
+  <div class="flex flex-wrap gap-2 bg-white/60 rounded-xl p-1.5 border border-white/80 w-fit backdrop-blur-sm">
+    <button class="tab-btn active" data-tab="host-bookings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Gelen Talepler
+    </button>
+    <button class="tab-btn" data-tab="my-bookings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Seyahatlerim
+    </button>
+    <button class="tab-btn" data-tab="my-stays">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      İlanlarım
+    </button>
+  </div>
+
+  <!-- ═══════ TAB: HOST BOOKINGS ═══════ -->
+  <div id="tab-host-bookings" class="tab-panel space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="font-display font-bold text-lg text-sea-800">Gelen Rezervasyon Talepleri</h2>
+      <button id="refresh-host" class="text-xs text-sea-500 hover:text-sea-800 transition flex items-center gap-1 font-semibold">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Yenile
+      </button>
+    </div>
+    <div id="host-bookings-list">
+      <div class="empty-state">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div class="spinner mx-auto mt-4 w-6 h-6 border-2 border-[#c47d0e] border-t-transparent rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ TAB: MY BOOKINGS ═══════ -->
+  <div id="tab-my-bookings" class="tab-panel hidden space-y-4">
+    <h2 class="font-display font-bold text-lg text-sea-800">Kendi Rezervasyonlarım</h2>
+    <div id="my-bookings-list">
+      <div class="empty-state">
+        <div class="spinner mx-auto w-6 h-6 border-2 border-[#c47d0e] border-t-transparent rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ TAB: MY STAYS ═══════ -->
+  <div id="tab-my-stays" class="tab-panel hidden space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="font-display font-bold text-lg text-sea-800">İlanlarım</h2>
+      <a href="kirala-ekle.html" class="btn-primary text-sm">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Yeni İlan
+      </a>
+    </div>
+    <div id="my-stays-list">
+      <div class="empty-state">
+        <div class="spinner mx-auto w-6 h-6 border-2 border-[#c47d0e] border-t-transparent rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BLOCKED DATES MODAL -->
+<div id="blocked-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4" style="background:rgba(7,33,54,.55);">
+  <div class="bg-white rounded-2xl w-full max-w-md max-h-[90vh] flex flex-col shadow-2xl" style="box-shadow:0 24px 64px -12px rgba(7,33,54,.45);">
+    <div class="flex items-center justify-between px-5 py-4 border-b border-sea-100">
+      <h3 class="font-display font-bold text-sea-800" id="blocked-modal-title">Kapalı Günler</h3>
+      <button id="blocked-modal-close" class="w-8 h-8 grid place-items-center rounded-full hover:bg-sea-50 transition" aria-label="Kapat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-5 space-y-4">
+      <!-- Add row -->
+      <div class="flex gap-2 items-end">
+        <div class="flex-1">
+          <label class="block text-xs font-semibold text-sea-700 mb-1">Tarih Ekle</label>
+          <input type="date" id="block-date-input" class="ob-input-sm w-full" />
+        </div>
+        <div class="flex-1">
+          <label class="block text-xs font-semibold text-sea-700 mb-1">Sebep (opsiyonel)</label>
+          <input type="text" id="block-reason-input" class="ob-input-sm w-full" placeholder="Örn. Bakım" maxlength="80" />
+        </div>
+        <button id="add-block-btn" class="btn-primary text-xs px-3 py-[.45rem] flex-shrink-0 self-end">Ekle</button>
+      </div>
+      <!-- List -->
+      <div id="blocked-dates-list" class="space-y-2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script type="module">
+import {
+  getIncomingBookings,
+  getMyBookings,
+  getMyStays,
+  confirmBooking,
+  rejectBooking,
+  cancelBooking,
+  getBlockedDates,
+  addBlockedDate,
+  removeBlockedDate,
+  BOOKING_STATUS_LABELS,
+} from './js/stays-host.js';
+import { supabase } from './js/supabase-client.js';
+import { isSupabaseConfigured } from './js/auth.js';
+
+// ── State ───────────────────────────────────────────────────────────────────
+let _user = null;
+let _activeBlockedStayId = null;
+
+// ── DOM ───────────────────────────────────────────────────────────────────────
+const authGate    = document.getElementById('auth-gate');
+const mainPanel   = document.getElementById('main-panel');
+const tabBtns     = [...document.querySelectorAll('.tab-btn')];
+const tabPanels   = [...document.querySelectorAll('.tab-panel')];
+
+// ── Auth ─────────────────────────────────────────────────────────────────────
+if (isSupabaseConfigured) {
+  const { data: { session } } = await supabase.auth.getSession();
+  _user = session?.user || null;
+  if (_user) onAuthed();
+  else showAuthGate();
+
+  supabase.auth.onAuthStateChange((_evt, sess) => {
+    _user = sess?.user || null;
+    if (_user) onAuthed();
+    else showAuthGate();
+  });
+} else {
+  showAuthGate();
+}
+
+function showAuthGate() { authGate.classList.remove('hidden'); mainPanel.classList.add('hidden'); }
+function onAuthed() {
+  authGate.classList.add('hidden');
+  mainPanel.classList.remove('hidden');
+  // Load data for visible tab
+  loadActiveTab();
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.tab;
+    tabPanels.forEach(p => p.classList.toggle('hidden', p.id !== `tab-${target}`));
+    loadTabData(target);
+  });
+});
+
+function loadActiveTab() {
+  const active = tabBtns.find(b => b.classList.contains('active'));
+  if (active) loadTabData(active.dataset.tab);
+}
+
+function loadTabData(tab) {
+  if (!_user) return;
+  if (tab === 'host-bookings') loadHostBookings();
+  else if (tab === 'my-bookings') loadMyBookings();
+  else if (tab === 'my-stays')   loadMyStays();
+}
+
+// ── Refresh button ────────────────────────────────────────────────────────────
+document.getElementById('refresh-host')?.addEventListener('click', () => loadHostBookings(true));
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HOST BOOKINGS
+// ═══════════════════════════════════════════════════════════════════════════════
+let _hostLoaded = false;
+async function loadHostBookings(force = false) {
+  if (_hostLoaded && !force) return;
+  _hostLoaded = true;
+  const el = document.getElementById('host-bookings-list');
+  el.innerHTML = spinner();
+  const bookings = await getIncomingBookings(_user.id);
+  if (!bookings.length) {
+    el.innerHTML = emptyState('Henüz gelen rezervasyon talebiniz yok.', 'rect');
+    return;
+  }
+  el.innerHTML = bookings.map(b => renderHostBookingCard(b)).join('');
+  attachHostBookingHandlers(el);
+}
+
+function renderHostBookingCard(b) {
+  const stay     = b.stays || {};
+  const status   = b.status;
+  const badge    = badgeHtml(status);
+  const nights   = b.nights || dateDiff(b.check_in, b.check_out);
+  const total    = fmtPrice(b.total_price);
+  const checkin  = fmtDate(b.check_in);
+  const checkout = fmtDate(b.check_out);
+  const created  = fmtDatetime(b.created_at);
+  const canAct   = status === 'requested';
+
+  return `
+  <div class="card" id="hb-${b.id}">
+    <div class="card-header">
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="min-w-0">
+          <p class="font-display font-bold text-sm text-sea-800 truncate">${esc(stay.title || 'İlan')}</p>
+          <p class="text-xs text-sea-500 mt-0.5">${created}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        ${badge}
+      </div>
+    </div>
+    <div class="card-body space-y-3">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+        <div>
+          <p class="text-xs text-sea-500 font-semibold mb-0.5">Giriş</p>
+          <p class="font-semibold text-sea-800">${checkin}</p>
+        </div>
+        <div>
+          <p class="text-xs text-sea-500 font-semibold mb-0.5">Çıkış</p>
+          <p class="font-semibold text-sea-800">${checkout}</p>
+        </div>
+        <div>
+          <p class="text-xs text-sea-500 font-semibold mb-0.5">Gece / Misafir</p>
+          <p class="font-semibold text-sea-800">${nights} gece · ${b.guests || 1} kişi</p>
+        </div>
+        <div>
+          <p class="text-xs text-sea-500 font-semibold mb-0.5">Toplam</p>
+          <p class="font-bold text-sea-800" style="color:#c47d0e;">${total}</p>
+        </div>
+      </div>
+      ${b.guest_message ? `<div class="bg-sea-50 rounded-lg px-3 py-2.5 border border-sea-100">
+        <p class="text-xs text-sea-500 font-semibold mb-1">Misafir Mesajı</p>
+        <p class="text-sm text-sea-800 leading-relaxed">${esc(b.guest_message)}</p>
+      </div>` : ''}
+      ${b.host_response ? `<div class="bg-amber-50 rounded-lg px-3 py-2.5 border border-amber-100">
+        <p class="text-xs font-semibold mb-1" style="color:#92400e;">Yanıtınız</p>
+        <p class="text-sm leading-relaxed" style="color:#78350f;">${esc(b.host_response)}</p>
+      </div>` : ''}
+
+      ${canAct ? `
+      <div class="pt-1 space-y-2">
+        <textarea id="resp-${b.id}" class="w-full border border-sea-100 rounded-lg px-3 py-2 text-sm resize-none focus:outline-none focus:border-[#c47d0e] text-sea-800" rows="2" placeholder="Opsiyonel yanıt mesajı..."></textarea>
+        <div class="flex flex-wrap gap-2">
+          <button class="btn-confirm" data-action="confirm" data-id="${b.id}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Onayla
+          </button>
+          <button class="btn-reject" data-action="reject" data-id="${b.id}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            Reddet
+          </button>
+        </div>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function attachHostBookingHandlers(container) {
+  container.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id     = btn.dataset.id;
+      const action = btn.dataset.action;
+      const resp   = (document.getElementById(`resp-${id}`)?.value || '').trim();
+
+      // Disable both action buttons for this card
+      const card   = document.getElementById(`hb-${id}`);
+      card?.querySelectorAll('[data-action]').forEach(b => { b.disabled = true; });
+
+      btn.textContent = action === 'confirm' ? 'Onaylanıyor...' : 'Reddediliyor...';
+
+      const result = action === 'confirm'
+        ? await confirmBooking(id, resp)
+        : await rejectBooking(id, resp);
+
+      if (result.ok) {
+        toast(action === 'confirm' ? 'Rezervasyon onaylandı.' : 'Rezervasyon reddedildi.', action === 'confirm' ? 'success' : 'error');
+        // Re-render card with updated status
+        await loadHostBookings(true);
+      } else {
+        toast(result.error || 'İşlem başarısız.', 'error');
+        card?.querySelectorAll('[data-action]').forEach(b => { b.disabled = false; });
+        btn.textContent = action === 'confirm' ? 'Onayla' : 'Reddet';
+      }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MY BOOKINGS (guest)
+// ═══════════════════════════════════════════════════════════════════════════════
+let _guestLoaded = false;
+async function loadMyBookings(force = false) {
+  if (_guestLoaded && !force) return;
+  _guestLoaded = true;
+  const el = document.getElementById('my-bookings-list');
+  el.innerHTML = spinner();
+  const bookings = await getMyBookings(_user.id);
+  if (!bookings.length) {
+    el.innerHTML = emptyState('Henüz hiç rezervasyon talebinde bulunmadınız.', 'person');
+    return;
+  }
+  el.innerHTML = bookings.map(b => renderGuestBookingCard(b)).join('');
+  attachGuestHandlers(el);
+}
+
+function renderGuestBookingCard(b) {
+  const stay     = b.stays || {};
+  const status   = b.status;
+  const badge    = badgeHtml(status);
+  const nights   = b.nights || dateDiff(b.check_in, b.check_out);
+  const total    = fmtPrice(b.total_price);
+  const checkin  = fmtDate(b.check_in);
+  const checkout = fmtDate(b.check_out);
+  const img      = stay.images?.[0] || '';
+  const canCancel = status === 'requested' || status === 'confirmed';
+
+  return `
+  <div class="card" id="gb-${b.id}">
+    <div class="card-header">
+      <div class="stay-row min-w-0 flex-1">
+        ${img ? `<img src="${esc(img)}" class="stay-thumb" alt="${esc(stay.title || '')}" loading="lazy"
+          onerror="this.src='https://placehold.co/72x56/dce6ef/5d97c4?text=?'">` : ''}
+        <div class="min-w-0">
+          <p class="font-display font-bold text-sm text-sea-800 truncate">${esc(stay.title || 'İlan')}</p>
+          <p class="text-xs text-sea-500 mt-0.5">${checkin} → ${checkout} · ${nights} gece</p>
+        </div>
+      </div>
+      <div class="flex-shrink-0">${badge}</div>
+    </div>
+    <div class="card-body space-y-2">
+      <div class="flex flex-wrap gap-4 text-sm">
+        <div><span class="text-sea-500 text-xs font-semibold">Misafir </span><span class="font-semibold text-sea-800">${b.guests || 1} kişi</span></div>
+        <div><span class="text-sea-500 text-xs font-semibold">Toplam </span><span class="font-bold" style="color:#c47d0e;">${total}</span></div>
+      </div>
+      ${b.host_response ? `<div class="bg-amber-50 rounded-lg px-3 py-2 border border-amber-100">
+        <p class="text-xs font-semibold mb-1" style="color:#92400e;">Host Yanıtı</p>
+        <p class="text-sm leading-relaxed" style="color:#78350f;">${esc(b.host_response)}</p>
+      </div>` : ''}
+      ${canCancel ? `
+      <div class="pt-1">
+        <button class="btn-cancel" data-action="cancel" data-id="${b.id}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          İptal Et
+        </button>
+      </div>` : ''}
+    </div>
+  </div>`;
+}
+
+function attachGuestHandlers(container) {
+  container.querySelectorAll('[data-action="cancel"]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!confirm('Rezervasyonu iptal etmek istediğinize emin misiniz?')) return;
+      btn.disabled = true;
+      btn.textContent = 'İptal ediliyor...';
+      const result = await cancelBooking(btn.dataset.id);
+      if (result.ok) {
+        toast('Rezervasyon iptal edildi.', 'success');
+        _guestLoaded = false;
+        loadMyBookings(true);
+      } else {
+        toast(result.error || 'İptal başarısız.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'İptal Et';
+      }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MY STAYS
+// ═══════════════════════════════════════════════════════════════════════════════
+let _staysLoaded = false;
+async function loadMyStays(force = false) {
+  if (_staysLoaded && !force) return;
+  _staysLoaded = true;
+  const el = document.getElementById('my-stays-list');
+  el.innerHTML = spinner();
+  const stays = await getMyStays(_user.id);
+  if (!stays.length) {
+    el.innerHTML = emptyState('Henüz hiç konaklama ilanınız yok.', 'home') +
+      `<div class="text-center mt-4"><a href="kirala-ekle.html" class="btn-primary inline-flex">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        İlk İlanımı Ver
+      </a></div>`;
+    return;
+  }
+  el.innerHTML = stays.map(s => renderStayRow(s)).join('');
+  attachStayHandlers(el, stays);
+}
+
+function renderStayRow(s) {
+  const img    = s.images?.[0] || '';
+  const badge  = stayBadge(s.status);
+  const price  = s.price_per_night != null ? `₺${Number(s.price_per_night).toLocaleString('tr-TR')}/gece` : '—';
+
+  return `
+  <div class="card" id="stay-${s.id}">
+    <div class="card-header">
+      <div class="stay-row min-w-0 flex-1">
+        ${img
+          ? `<img src="${esc(img)}" class="stay-thumb" alt="${esc(s.title)}" loading="lazy"
+              onerror="this.src='https://placehold.co/72x56/dce6ef/5d97c4?text=?'">`
+          : `<div class="stay-thumb bg-sea-50 grid place-items-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>`}
+        <div class="min-w-0">
+          <p class="font-display font-bold text-sm text-sea-800 truncate">${esc(s.title)}</p>
+          <p class="text-xs text-sea-500 mt-0.5">${esc(s.location || '—')} · ${price}</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        ${badge}
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="flex flex-wrap gap-2">
+        <a href="kirala-ekle.html?id=${s.id}" class="btn-edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Düzenle
+        </a>
+        <button class="btn-cancel" data-action="blocked-dates" data-id="${s.id}" data-title="${esc(s.title)}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M10 14l2 2 4-4"/></svg>
+          Kapalı Günler
+        </button>
+        ${s.slug ? `<a href="kirala-ilan.html?slug=${s.slug}" class="btn-cancel" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          İlanı Görüntüle
+        </a>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function attachStayHandlers(container, stays) {
+  container.querySelectorAll('[data-action="blocked-dates"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openBlockedModal(btn.dataset.id, btn.dataset.title);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// BLOCKED DATES MODAL
+// ═══════════════════════════════════════════════════════════════════════════════
+const blockedModal      = document.getElementById('blocked-modal');
+const blockedModalTitle = document.getElementById('blocked-modal-title');
+const blockedModalClose = document.getElementById('blocked-modal-close');
+const blockedDatesList  = document.getElementById('blocked-dates-list');
+const blockDateInput    = document.getElementById('block-date-input');
+const blockReasonInput  = document.getElementById('block-reason-input');
+const addBlockBtn       = document.getElementById('add-block-btn');
+
+blockedModalClose.addEventListener('click', closeBlockedModal);
+blockedModal.addEventListener('click', e => { if (e.target === blockedModal) closeBlockedModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBlockedModal(); });
+
+async function openBlockedModal(stayId, title) {
+  _activeBlockedStayId = stayId;
+  blockedModalTitle.textContent = `Kapalı Günler — ${title}`;
+  blockedModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  // Set min date to today
+  blockDateInput.min = new Date().toISOString().slice(0, 10);
+  blockDateInput.value = '';
+  blockReasonInput.value = '';
+  await refreshBlockedList();
+}
+
+function closeBlockedModal() {
+  blockedModal.classList.add('hidden');
+  document.body.style.overflow = '';
+  _activeBlockedStayId = null;
+}
+
+async function refreshBlockedList() {
+  blockedDatesList.innerHTML = `<div class="text-center py-4">${spinnerInline()}</div>`;
+  const rows = await getBlockedDates(_activeBlockedStayId);
+  if (!rows.length) {
+    blockedDatesList.innerHTML = `<p class="text-sm text-sea-400 text-center py-3">Kapalı gün yok. Yukarıdan ekleyebilirsiniz.</p>`;
+    return;
+  }
+  blockedDatesList.innerHTML = rows.map(r => `
+    <div class="blocked-row">
+      <div>
+        <p class="font-semibold text-sm text-sea-800">${fmtDate(r.day)}</p>
+        ${r.reason ? `<p class="text-xs text-sea-500">${esc(r.reason)}</p>` : ''}
+      </div>
+      <button class="btn-unblock" data-day="${r.day}">Kaldır</button>
+    </div>`).join('');
+
+  blockedDatesList.querySelectorAll('.btn-unblock').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.textContent = '...';
+      const result = await removeBlockedDate(_activeBlockedStayId, btn.dataset.day);
+      if (result.ok) {
+        toast('Tarih kaldırıldı.', 'success');
+        await refreshBlockedList();
+      } else {
+        toast(result.error || 'Kaldırılamadı.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Kaldır';
+      }
+    });
+  });
+}
+
+addBlockBtn.addEventListener('click', async () => {
+  const day    = blockDateInput.value;
+  const reason = blockReasonInput.value.trim();
+  if (!day) { toast('Lütfen bir tarih seçin.', 'error'); return; }
+  if (!_activeBlockedStayId) return;
+  addBlockBtn.disabled = true;
+  addBlockBtn.textContent = '...';
+  const result = await addBlockedDate(_activeBlockedStayId, day, reason);
+  if (result.ok) {
+    toast('Tarih eklendi.', 'success');
+    blockDateInput.value = '';
+    blockReasonInput.value = '';
+    await refreshBlockedList();
+  } else {
+    toast(result.error || 'Eklenemedi.', 'error');
+  }
+  addBlockBtn.disabled = false;
+  addBlockBtn.textContent = 'Ekle';
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Helpers
+// ═══════════════════════════════════════════════════════════════════════════════
+function badgeHtml(status) {
+  const label = BOOKING_STATUS_LABELS[status] || status;
+  return `<span class="badge badge-${status}">${label}</span>`;
+}
+
+function stayBadge(status) {
+  const labels = { active: 'Aktif', pending: 'Beklemede', paused: 'Duraklatıldı', removed: 'Kaldırıldı' };
+  const label = labels[status] || status;
+  return `<span class="badge badge-${status}">${label}</span>`;
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  const date = typeof d === 'string' ? new Date(d + (d.includes('T') ? '' : 'T00:00:00')) : new Date(d);
+  if (isNaN(date)) return d;
+  return date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+function fmtDatetime(d) {
+  if (!d) return '';
+  const date = new Date(d);
+  if (isNaN(date)) return '';
+  return date.toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+}
+function fmtPrice(p) {
+  if (p == null) return '—';
+  return `₺${Number(p).toLocaleString('tr-TR')}`;
+}
+function dateDiff(a, b) {
+  if (!a || !b) return '?';
+  return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+function esc(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function emptyState(msg, icon) {
+  const icons = {
+    rect: `<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>`,
+    person: `<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
+    home: `<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+  };
+  return `<div class="empty-state">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5" class="mx-auto mb-3">${icons[icon] || icons.rect}</svg>
+    <p>${esc(msg)}</p>
+  </div>`;
+}
+function spinner() {
+  return `<div class="empty-state"><div class="spinner mx-auto w-7 h-7 border-[3px] border-[#c47d0e] border-t-transparent rounded-full"></div></div>`;
+}
+function spinnerInline() {
+  return `<div class="spinner inline-block w-5 h-5 border-2 border-[#c47d0e] border-t-transparent rounded-full"></div>`;
+}
+
+// Toast
+function toast(msg, type = 'success') {
+  const toastEl = document.getElementById('toast');
+  const div = document.createElement('div');
+  div.className = `toast-msg toast-${type}`;
+  div.textContent = msg;
+  toastEl.appendChild(div);
+  setTimeout(() => {
+    div.classList.add('fade-out');
+    setTimeout(() => div.remove(), 280);
+  }, 3000);
+}
+</script>
+<script src="js/pwa.js?v=20260516c" defer></script>
+</body>
+</html>

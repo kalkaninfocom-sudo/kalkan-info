@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PLWTGK2G');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="dist/tw.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Kiralık İlan — Kalkan Stays</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<meta name="robots" content="index, follow">
+<script src="js/analytics.js" defer></script>
+<script src="js/i18n.js?v=20260519a" defer></script>
+<script src="js/cookie-banner.js" defer></script>
+
+<style>
+/* ── Base ────────────────────────────────────────────────────────────────── */
+html, body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #0a2e4c;
+  background: #dce6ef;
+}
+h1, h2, h3, .font-display {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ── Colour tokens ───────────────────────────────────────────────────────── */
+/* amber/gold: #e89812   sea-dark: #0a2e4c   sea-mid: #1a5e93   sea-light: #eaf2f9 */
+
+/* ── Nav ─────────────────────────────────────────────────────────────────── */
+.stays-nav {
+  background: linear-gradient(180deg, #0c3858 0%, #0a2e4c 100%);
+  box-shadow: 0 4px 24px -4px rgba(7,33,54,0.55);
+}
+
+/* ── Gallery ─────────────────────────────────────────────────────────────── */
+#stay-gallery {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #c8d8e6;
+  margin-bottom: 1.5rem;
+}
+.gallery-main {
+  width: 100%;
+  height: 340px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: background-image 0.2s;
+}
+@media (max-width: 640px) { .gallery-main { height: 220px; } }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,33,54,0.55) 0%, transparent 55%);
+}
+.gallery-count {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(7,33,54,0.7);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+.gallery-thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: #c8d8e6;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 72px;
+  height: 54px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color .18s, opacity .18s;
+  opacity: 0.65;
+}
+.gallery-thumb:hover { opacity: 0.9; }
+.gallery-thumb.active { border-color: #e89812; opacity: 1; }
+.gallery-placeholder {
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #7ea8c4;
+}
+
+/* ── Cards / surfaces ────────────────────────────────────────────────────── */
+.stays-card {
+  background: #fff;
+  border: 1px solid #c5d9e8;
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 3px rgba(7,33,54,0.06),
+    0 4px 16px -4px rgba(7,33,54,0.10),
+    0 0 0 0 transparent;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+.stays-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge-type  { background: #eaf2f9; color: #1a5e93; }
+.badge-verified { background: linear-gradient(90deg,#e89812,#f5a823); color: #fff; }
+
+/* ── Capacity row ────────────────────────────────────────────────────────── */
+.cap-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0.75rem 1rem;
+  background: #eaf2f9;
+  border-radius: 0.625rem;
+  flex: 1;
+  min-width: 70px;
+}
+.cap-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #0a2e4c;
+}
+.cap-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #5d97c4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Amenities pills ─────────────────────────────────────────────────────── */
+#stay-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stays-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: #eaf2f9;
+  border: 1px solid #b8d3e6;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0d3a5f;
+}
+
+/* ── Price display ───────────────────────────────────────────────────────── */
+.price-main {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0a2e4c;
+  letter-spacing: -0.03em;
+}
+.price-unit {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #5d97c4;
+  margin-left: 4px;
+}
+
+/* ── Calendar ────────────────────────────────────────────────────────────── */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+#cal-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #0a2e4c;
+  font-size: 1rem;
+}
+.cal-nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid #c5d9e8;
+  background: #fff;
+  color: #1a5e93;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.cal-nav-btn:hover:not(:disabled) { background: #eaf2f9; border-color: #1a5e93; }
+.cal-nav-btn:disabled { cursor: default; }
+
+#cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.cal-day-label {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #7ea8c4;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0 6px;
+}
+.cal-day {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #0a2e4c;
+  background: transparent;
+  cursor: pointer;
+  transition: background .12s, color .12s, box-shadow .12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cal-day:hover:not(:disabled) {
+  background: #eaf2f9;
+  box-shadow: 0 0 0 2px #9cc0dd;
+}
+.cal-disabled   { color: #b8cdd9 !important; cursor: default; }
+.cal-blocked    { background: #f5e6e6 !important; color: #c0392b !important; text-decoration: line-through; }
+.cal-out-season { background: #f2f5f8 !important; color: #b8cdd9 !important; }
+.cal-check-in  {
+  background: #e89812 !important;
+  color: #fff !important;
+  border-radius: 7px 0 0 7px;
+  box-shadow: 0 2px 8px rgba(232,152,18,0.35);
+}
+.cal-check-out {
+  background: #e89812 !important;
+  color: #fff !important;
+  border-radius: 0 7px 7px 0;
+  box-shadow: 0 2px 8px rgba(232,152,18,0.35);
+}
+.cal-in-range {
+  background: rgba(232,152,18,0.12) !important;
+  border-radius: 0;
+}
+.cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  color: #5d97c4;
+}
+.cal-legend-item { display: flex; align-items: center; gap: 5px; }
+.cal-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ── Booking form ────────────────────────────────────────────────────────── */
+.ob-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0d3a5f;
+  margin-bottom: 0.375rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.01em;
+}
+.ob-input, .ob-textarea, .ob-select {
+  width: 100%;
+  border: 1.5px solid #9cc0dd;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: #0a2e4c;
+  background: #fff;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+  font-family: 'Inter', sans-serif;
+}
+.ob-input:focus, .ob-textarea:focus {
+  border-color: #1a5e93;
+  box-shadow: 0 0 0 3px rgba(26,94,147,0.12);
+}
+.ob-textarea { min-height: 88px; resize: vertical; }
+
+/* ── Price summary ────────────────────────────────────────────────────────── */
+.price-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: #1a5e93;
+}
+.price-summary-row.total {
+  border-top: 2px solid #c5d9e8;
+  margin-top: 6px;
+  padding-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #0a2e4c;
+}
+
+/* ── Submit button ────────────────────────────────────────────────────────── */
+.btn-book {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #e89812 0%, #d4880a 100%);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow:
+    0 4px 14px rgba(232,152,18,0.40),
+    0 1px 3px rgba(7,33,54,0.15);
+  transition: background .18s, box-shadow .18s, transform .12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-book:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d4880a 0%, #c07808 100%);
+  box-shadow: 0 6px 20px rgba(232,152,18,0.50), 0 1px 3px rgba(7,33,54,0.15);
+  transform: translateY(-1px);
+}
+.btn-book:active:not(:disabled) { transform: translateY(0); }
+.btn-book:disabled { opacity: 0.6; cursor: default; }
+.btn-book:focus-visible { outline: 3px solid #e89812; outline-offset: 3px; }
+
+/* ── Auth notice ──────────────────────────────────────────────────────────── */
+.auth-notice-box {
+  background: linear-gradient(135deg, #eaf2f9 0%, #dce6ef 100%);
+  border: 1.5px solid #9cc0dd;
+  border-radius: 0.875rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+.btn-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.625rem 1.25rem;
+  background: #0a2e4c;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background .18s;
+  margin-top: 0.75rem;
+}
+.btn-login:hover { background: #134c79; }
+.btn-login:focus-visible { outline: 3px solid #e89812; outline-offset: 3px; }
+
+/* ── Success / error states ───────────────────────────────────────────────── */
+.booking-success-box {
+  background: linear-gradient(135deg,#eaf9f2 0%,#d4f0e4 100%);
+  border: 1.5px solid #6dcba0;
+  border-radius: 0.875rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+.stays-error-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #5d97c4;
+}
+.stays-back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #1a5e93;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.booking-error {
+  background: #fdf3f3;
+  border: 1.5px solid #e8a0a0;
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #c0392b;
+  margin-top: 0.75rem;
+}
+
+/* ── Loading shimmer ──────────────────────────────────────────────────────── */
+@keyframes shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+.shimmer {
+  background: linear-gradient(90deg,#d9e6f0 25%,#eaf2f9 50%,#d9e6f0 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+#detail-loading {
+  padding: 2rem 0;
+}
+.shimmer-block { height: 24px; margin-bottom: 12px; }
+
+/* ── Section heading ──────────────────────────────────────────────────────── */
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #0a2e4c;
+  margin-bottom: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #c5d9e8;
+}
+
+/* ── WhatsApp CTA ─────────────────────────────────────────────────────────── */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.625rem 1.25rem;
+  background: #25d366;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background .18s, box-shadow .18s;
+  box-shadow: 0 2px 8px rgba(37,211,102,0.30);
+}
+.btn-wa:hover {
+  background: #1da851;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.40);
+}
+.btn-wa:focus-visible { outline: 3px solid #25d366; outline-offset: 3px; }
+
+/* ── Sticky sidebar on desktop ────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .booking-sidebar {
+    position: sticky;
+    top: 76px;
+  }
+}
+</style>
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLWTGK2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ═══ NAV ════════════════════════════════════════════════════════════════ -->
+<nav class="stays-nav text-white sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="kirala.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/10 -ml-3 transition">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="font-display font-semibold tracking-wide text-sm hidden sm:inline">Kiralamalara Dön</span>
+    </a>
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span style="color:#e89812;">◆</span> KALKAN <span style="color:#e89812;">STAYS</span>
+    </a>
+    <!-- Avatar placeholder — auth.js varsa nav-avatar doldurulur -->
+    <div class="w-9 h-9 rounded-full border-2 border-white/20 overflow-hidden grid place-items-center" id="nav-avatar" style="background:#1a5e93;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white/60"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══════════════════════════════════════════════════════════════ -->
+<main class="max-w-6xl mx-auto px-4 py-8">
+
+  <!-- Loading state -->
+  <div id="detail-loading">
+    <div class="shimmer shimmer-block" style="height:340px;margin-bottom:1.5rem;border-radius:1rem;"></div>
+    <div class="shimmer shimmer-block" style="width:60%;height:32px;"></div>
+    <div class="shimmer shimmer-block" style="width:40%;height:20px;"></div>
+    <div class="shimmer shimmer-block" style="width:80%;height:16px;"></div>
+  </div>
+
+  <!-- Main content (hidden until loaded) -->
+  <div id="detail-container" class="hidden">
+
+    <!-- Gallery -->
+    <div id="stay-gallery"></div>
+
+    <!-- Detail layout: left col + right sidebar -->
+    <div class="detail-layout">
+
+      <!-- ══ LEFT COLUMN ══════════════════════════════════════════════════ -->
+      <div>
+
+        <!-- Title + badges -->
+        <div class="stays-card" style="margin-bottom:1rem;">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="stays-badge badge-type" id="stay-type-badge">—</span>
+            <span class="stays-badge badge-verified hidden" id="stay-verified">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              Doğrulandı
+            </span>
+          </div>
+          <h1 class="font-display font-extrabold text-2xl md:text-3xl text-sea-800 leading-tight" id="stay-title"></h1>
+          <div class="flex items-center gap-1.5 mt-2 text-sea-500 text-sm font-medium">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="stay-location"></span>
+          </div>
+
+          <!-- Kapasite row -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            <div class="cap-item">
+              <span class="cap-value" id="stay-capacity">—</span>
+              <span class="cap-label">Misafir</span>
+            </div>
+            <div class="cap-item">
+              <span class="cap-value" id="stay-bedrooms">—</span>
+              <span class="cap-label">Yatak Odası</span>
+            </div>
+            <div class="cap-item">
+              <span class="cap-value" id="stay-beds">—</span>
+              <span class="cap-label">Yatak</span>
+            </div>
+            <div class="cap-item">
+              <span class="cap-value" id="stay-bathrooms">—</span>
+              <span class="cap-label">Banyo</span>
+            </div>
+          </div>
+
+          <!-- Sezon -->
+          <div class="season-row mt-3">
+            <div class="flex items-center gap-1.5 text-sm text-sea-500" id="stay-season"></div>
+          </div>
+        </div>
+
+        <!-- Açıklama -->
+        <section class="stays-card">
+          <div class="section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Açıklama
+          </div>
+          <div id="stay-description" class="text-sea-700 text-sm leading-relaxed space-y-3"></div>
+        </section>
+
+        <!-- Olanaklar -->
+        <section class="stays-card">
+          <div class="section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Olanaklar
+          </div>
+          <div id="stay-amenities"></div>
+        </section>
+
+        <!-- Ev kuralları -->
+        <section class="stays-card" id="rules-section">
+          <div class="section-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Ev Kuralları
+          </div>
+          <p id="stay-rules" class="text-sea-700 text-sm leading-relaxed whitespace-pre-line"></p>
+        </section>
+
+        <!-- WhatsApp -->
+        <div class="stays-card" style="text-align:center;">
+          <p class="text-sea-600 text-sm mb-2">Host ile doğrudan iletişim</p>
+          <a href="#" id="stay-whatsapp" class="btn-wa hidden" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            WhatsApp ile Sor
+          </a>
+        </div>
+
+      </div><!-- /left col -->
+
+      <!-- ══ RIGHT SIDEBAR (Rezervasyon) ════════════════════════════════= -->
+      <aside class="booking-sidebar">
+
+        <!-- Fiyat kartı -->
+        <div class="stays-card" style="margin-bottom:0.875rem;">
+          <div class="flex items-baseline gap-1">
+            <span class="price-main" id="stay-price">₺—</span>
+            <span class="price-unit">/ gece</span>
+          </div>
+          <div class="text-sea-400 text-xs mt-1" id="stay-cleaning"></div>
+          <div class="text-sea-400 text-xs mt-0.5 hidden" id="stay-minmax"></div>
+        </div>
+
+        <!-- Takvim -->
+        <div class="stays-card" style="padding:1.25rem;">
+          <div class="section-title" style="font-size:0.875rem;margin-bottom:0.625rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Müsaitlik Takvimi
+          </div>
+          <div id="stay-calendar">
+            <div class="cal-header">
+              <button class="cal-nav-btn" id="cal-prev" aria-label="Önceki ay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <span id="cal-title" class="font-display font-bold text-sea-800"></span>
+              <button class="cal-nav-btn" id="cal-next" aria-label="Sonraki ay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+            <div id="cal-grid"></div>
+            <div class="cal-legend">
+              <div class="cal-legend-item">
+                <div class="cal-legend-dot" style="background:#e89812;"></div>
+                <span>Seçili</span>
+              </div>
+              <div class="cal-legend-item">
+                <div class="cal-legend-dot" style="background:#f5e6e6;border:1px solid #e8a0a0;"></div>
+                <span>Dolu</span>
+              </div>
+              <div class="cal-legend-item">
+                <div class="cal-legend-dot" style="background:#f2f5f8;border:1px solid #d9e6f0;"></div>
+                <span>Sezon dışı</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Auth notice (giriş yapılmamışsa) -->
+        <div id="auth-notice" class="auth-notice-box hidden" style="margin-bottom:0.875rem;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="1.5" class="mx-auto mb-2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <p class="font-display font-bold text-sea-800 text-sm">Rezervasyon için giriş yap</p>
+          <p class="text-sea-500 text-xs mt-1">Rezervasyon talebi göndermek için hesabına giriş yapman gerekiyor.</p>
+          <button class="btn-login" id="auth-login-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            Giriş Yap
+          </button>
+        </div>
+
+        <!-- Booking form -->
+        <form id="booking-form" class="stays-card hidden" style="padding:1.25rem;" novalidate>
+          <div class="section-title" style="font-size:0.875rem;margin-bottom:0.75rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5e93" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Rezervasyon Talebi
+          </div>
+
+          <!-- Tarihler -->
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <div>
+              <label class="ob-label" for="booking-checkin">Giriş</label>
+              <input type="date" id="booking-checkin" name="checkin" class="ob-input" required />
+            </div>
+            <div>
+              <label class="ob-label" for="booking-checkout">Çıkış</label>
+              <input type="date" id="booking-checkout" name="checkout" class="ob-input" required />
+            </div>
+          </div>
+
+          <!-- Misafir sayısı -->
+          <div class="mb-3">
+            <label class="ob-label" for="booking-guests">Misafir Sayısı</label>
+            <input type="number" id="booking-guests" name="guests" min="1" max="50" value="1" class="ob-input" required />
+          </div>
+
+          <!-- Mesaj -->
+          <div class="mb-3">
+            <label class="ob-label" for="booking-message">Mesajın <span class="font-normal text-sea-400">(opsiyonel)</span></label>
+            <textarea id="booking-message" name="message" class="ob-textarea" placeholder="Kendinizi tanıtın, özel isteklerinizi belirtin..." maxlength="2000"></textarea>
+          </div>
+
+          <!-- Fiyat özeti -->
+          <div id="price-summary" class="hidden mb-3 p-3 rounded-lg" style="background:#eaf2f9;border:1px solid #b8d3e6;">
+            <div class="price-summary-row">
+              <span id="summary-nights">—</span>
+              <span id="summary-subtotal">—</span>
+            </div>
+            <div class="price-summary-row hidden" id="summary-cleaning-row">
+              <span>Temizlik ücreti</span>
+              <span id="summary-cleaning">—</span>
+            </div>
+            <div class="price-summary-row total">
+              <span>Toplam</span>
+              <span id="summary-total">—</span>
+            </div>
+          </div>
+
+          <!-- Hata -->
+          <div id="booking-error" class="booking-error hidden"></div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-book mt-2" id="booking-submit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Rezervasyon Talebi Gönder
+          </button>
+
+          <p class="text-sea-400 text-xs mt-2 text-center leading-relaxed">
+            Talep gönderilir, host onayladıktan sonra rezervasyonun kesinleşir.
+          </p>
+        </form>
+
+        <!-- Success state -->
+        <div id="booking-success" class="booking-success-box hidden">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1a8a5a" stroke-width="2" class="mx-auto mb-3"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+          <p class="font-display font-extrabold text-sea-800 text-lg mb-1">Talebin Gönderildi!</p>
+          <p class="text-sea-600 text-sm leading-relaxed">
+            Host onayı bekleniyor. Onaylandığında e-posta ile bilgilendirileceksin.
+          </p>
+          <a href="kirala.html" class="stays-back-link block mt-3">← Diğer İlanlara Bak</a>
+        </div>
+
+      </aside><!-- /sidebar -->
+    </div><!-- /detail-layout -->
+  </div><!-- /detail-container -->
+</main>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════════════════ -->
+<footer class="mt-12" style="background:#072136;">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-white/50 text-xs">
+      <div class="font-display font-bold text-white/80 flex items-center gap-2">
+        <span style="color:#e89812;">◆</span> KALKAN STAYS
+      </div>
+      <div class="flex gap-4">
+        <a href="kirala.html" class="hover:text-white transition">Tüm İlanlar</a>
+        <a href="kirala-ekle.html" class="hover:text-white transition">İlan Ver</a>
+        <a href="kvkk.html" class="hover:text-white transition">KVKK</a>
+        <a href="index.html" class="hover:text-white transition">Kalkan Info</a>
+      </div>
+      <div>© 2026 Kalkan Info</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MODULE SCRIPT ════════════════════════════════════════════════════════ -->
+<script type="module" src="js/stays-detail.js"></script>
+<script src="js/pwa.js?v=20260516c" defer></script>
+</body>
+</html>
