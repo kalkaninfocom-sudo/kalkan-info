@@ -126,12 +126,15 @@
 
         <div>
           <label class="ob-label" for="title">İlan Başlığı *</label>
-          <input id="title" name="title" required maxlength="120" class="ob-input" placeholder="Örn. Deniz manzaralı butik daire — Kalkan merkez" />
+          <input id="title" name="title" required aria-required="true" maxlength="120" class="ob-input"
+            data-fv-required="İlan başlığı zorunludur."
+            data-fv-minlength="3" data-fv-minlength-msg="Başlık en az 3 karakter olmalıdır."
+            placeholder="Örn. Deniz manzaralı butik daire — Kalkan merkez" />
           <div class="ob-help">3–120 karakter. Net ve dikkat çekici olsun.</div>
         </div>
 
         <div>
-          <label class="ob-label">Konaklama Tipi *</label>
+          <label class="ob-label" id="listing-type-label">Konaklama Tipi *</label>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="type-cards">
             <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="room">
               <input type="radio" name="listing_type" value="room" class="hidden" />
@@ -174,7 +177,9 @@
 
         <div>
           <label class="ob-label" for="location">Lokasyon *</label>
-          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan, Kaş, Patara, İslamlar..." />
+          <input id="location" name="location" required aria-required="true" maxlength="80" class="ob-input"
+            data-fv-required="Lokasyon zorunludur."
+            placeholder="Örn. Kalkan, Kaş, Patara, İslamlar..." />
         </div>
 
       </div>
@@ -209,7 +214,9 @@
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
         <div>
           <label class="ob-label" for="price_per_night">Gecelik Fiyat (₺) *</label>
-          <input id="price_per_night" name="price_per_night" type="number" min="0" required class="ob-input" placeholder="2500" />
+          <input id="price_per_night" name="price_per_night" type="number" min="0" required aria-required="true" class="ob-input"
+            data-fv-required="Gecelik fiyat zorunludur."
+            placeholder="2500" />
         </div>
         <div>
           <label class="ob-label" for="cleaning_fee">Temizlik Ücreti (₺)</label>
@@ -633,6 +640,14 @@ function resetBtn() {
   submitBtn.disabled = false;
   submitLabel.textContent = _editId ? 'DEĞİŞİKLİKLERİ KAYDET' : 'İLANI YAYINLA';
 }
+</script>
+<script type="module">
+import { attachValidation } from './js/form-validate.js';
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('stay-form');
+  // Skip the photo file input and hidden inputs — validation handled by existing validate()
+  attachValidation(form);
+});
 </script>
 <script src="js/pwa.js?v=20260516c" defer></script>
 </body>

@@ -213,13 +213,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div>
         <label class="ob-label" for="title" data-en="Position Title *" data-de="Positionstitel *" data-ru="Название должности *" data-fr="Titre du poste *">Pozisyon Başlığı *</label>
-        <input id="title" name="title" required maxlength="100" class="ob-input" placeholder="Örn. Restoran Garson — Sezonluk" data-en-placeholder="e.g. Restaurant Waiter — Seasonal" / data-de-placeholder="z. B. Restaurant-Kellner — Saisonal" data-ru-placeholder="например: Официант ресторана — Сезонная работа" data-fr-placeholder="p. ex. Serveur de restaurant — Saisonnier">
+        <input id="title" name="title" required aria-required="true" maxlength="100" class="ob-input"
+          data-fv-required="Pozisyon başlığı zorunludur."
+          data-fv-minlength="3" data-fv-minlength-msg="Başlık en az 3 karakter olmalıdır."
+          placeholder="Örn. Restoran Garson — Sezonluk" data-en-placeholder="e.g. Restaurant Waiter — Seasonal" data-de-placeholder="z. B. Restaurant-Kellner — Saisonal" data-ru-placeholder="например: Официант ресторана — Сезонная работа" data-fr-placeholder="p. ex. Serveur de restaurant — Saisonnier" />
         <div class="ob-help" data-en="Keep it clear and searchable. Position + type (seasonal, full-time, etc.)." data-de="Halten Sie es klar und suchbar. Position + Typ (saisonal, Vollzeit, usw.)." data-ru="Делайте ясно и поддающимся поиску. Должность + тип (сезонная, полная занятость и т. д.)." data-fr="Restez clair et recherchable. Poste + type (saisonnier, temps plein, etc.).">Net ve aranabilir olsun. Pozisyon + tip (sezonluk, tam zamanlı vs.).</div>
       </div>
 
       <div>
-        <label class="ob-label" data-en="Category *" data-de="Kategorie *" data-ru="Категория *" data-fr="Catégorie *">Kategori *</label>
-        <select id="category" name="category" required class="ob-select">
+        <label class="ob-label" for="category" data-en="Category *" data-de="Kategorie *" data-ru="Kategorie *" data-fr="Catégorie *">Kategori *</label>
+        <select id="category" name="category" required aria-required="true"
+          data-fv-required="Lütfen bir kategori seçin." class="ob-select">
           <option value="" data-en="Select..." data-de="Auswählen..." data-ru="Выбрать..." data-fr="Sélectionner...">Seçiniz...</option>
           <option value="restoran">Restoran & Cafe</option>
           <option value="villa" data-en="Villa & Accommodation" data-de="Villa & Unterkunft" data-ru="Вилла и размещение" data-fr="Villa et hébergement">Villa & Konaklama</option>
@@ -232,7 +236,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div>
-        <label class="ob-label" data-en="Employment Type *" data-de="Beschäftigungstyp *" data-ru="Тип занятости *" data-fr="Type d'emploi *">İstihdam Tipi *</label>
+        <label class="ob-label" id="type-label" data-en="Employment Type *" data-de="Beschäftigungstyp *" data-ru="Тип занятости *" data-fr="Type d'emploi *">İstihdam Tipi *</label>
+        <div id="type-err-inline" class="ob-err hidden" role="alert">Lütfen bir istihdam tipi seçin.</div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5">
           <label class="type-card">
             <input type="radio" name="type" value="full" class="hidden type-radio" />
@@ -268,11 +273,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="grid md:grid-cols-2 gap-4">
         <div>
           <label class="ob-label" for="location" data-en="Location *" data-de="Standort *" data-ru="Местоположение *" data-fr="Localisation *">Lokasyon *</label>
-          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan Merkez" data-en-placeholder="e.g. Kalkan Centre" / data-de-placeholder="z. B. Kalkan Zentrum" data-ru-placeholder="например: Центр Kalkan" data-fr-placeholder="p. ex. Centre de Kalkan">
+          <input id="location" name="location" required aria-required="true" maxlength="80" class="ob-input"
+            data-fv-required="Lokasyon zorunludur."
+            placeholder="Örn. Kalkan Merkez" data-en-placeholder="e.g. Kalkan Centre" data-de-placeholder="z. B. Kalkan Zentrum" data-ru-placeholder="например: Центр Kalkan" data-fr-placeholder="p. ex. Centre de Kalkan" />
         </div>
         <div>
           <label class="ob-label" for="employerName" data-en="Employer / Company Name *" data-de="Arbeitgeber / Unternehmensname *" data-ru="Имя работодателя / компании *" data-fr="Nom de l'employeur / Entreprise *">İşveren / Şirket Adı *</label>
-          <input id="employerName" name="employerName" required maxlength="80" class="ob-input" placeholder="Örn. Aubergine Restaurant" data-en-placeholder="e.g. Aubergine Restaurant" / data-de-placeholder="z. B. Aubergine Restaurant" data-ru-placeholder="например: Ресторан Aubergine" data-fr-placeholder="p. ex. Restaurant Aubergine">
+          <input id="employerName" name="employerName" required aria-required="true" maxlength="80" class="ob-input"
+            data-fv-required="İşveren adı zorunludur."
+            placeholder="Örn. Aubergine Restaurant" data-en-placeholder="e.g. Aubergine Restaurant" data-de-placeholder="z. B. Aubergine Restaurant" data-ru-placeholder="например: Ресторан Aubergine" data-fr-placeholder="p. ex. Restaurant Aubergine" />
         </div>
       </div>
 
@@ -291,7 +300,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div>
         <label class="ob-label" for="description" data-en="Position Description *" data-de="Stellenbeschreibung *" data-ru="Описание должности *" data-fr="Description du poste *">Pozisyon Açıklaması *</label>
-        <textarea id="description" name="description" required rows="6" maxlength="2500" class="ob-textarea" placeholder="Pozisyonun ne yaptığı, çalışma saatleri, lokasyon detayları..." data-en-placeholder="What the role involves, working hours, location details..." data-de-placeholder="Was die Rolle beinhaltet, Arbeitszeiten, Standortdetails..." data-ru-placeholder="Описание должности, рабочее время, детали местоположения..." data-fr-placeholder="Description du poste, horaires de travail, détails de localisation..."></textarea>
+        <textarea id="description" name="description" required aria-required="true" rows="6" maxlength="2500" class="ob-textarea"
+          data-fv-required="Pozisyon açıklaması zorunludur."
+          placeholder="Pozisyonun ne yaptığı, çalışma saatleri, lokasyon detayları..." data-en-placeholder="What the role involves, working hours, location details..." data-de-placeholder="Was die Rolle beinhaltet, Arbeitszeiten, Standortdetails..." data-ru-placeholder="Описание должности, рабочее время, детали местоположения..." data-fr-placeholder="Description du poste, horaires de travail, détails de localisation..."></textarea>
         <div class="ob-help" data-en="Up to 2500 characters. Plain text, paragraphs are formatted automatically." data-de="Bis zu 2500 Zeichen. Nur Text, Absätze werden automatisch formatiert." data-ru="До 2500 символов. Обычный текст, абзацы форматируются автоматически." data-fr="Jusqu'à 2500 caractères. Texte brut, les paragraphes sont formatés automatiquement.">2500 karaktere kadar. Düz metin, paragraflar otomatik biçimlendirilir.</div>
       </div>
 
@@ -355,7 +366,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="grid md:grid-cols-2 gap-4">
         <div>
           <label class="ob-label" for="contactEmail" data-en="Contact Email *" data-de="Kontakt-E-Mail *" data-ru="Контактный email *" data-fr="Email de contact *">İletişim E-posta *</label>
-          <input id="contactEmail" name="contactEmail" required type="email" class="ob-input" placeholder="info@isletmen.com" data-en-placeholder="info@yourbusiness.com" / data-de-placeholder="info@yourbusiness.com" data-ru-placeholder="info@yourbusiness.com" data-fr-placeholder="info@votreentreprise.com">
+          <input id="contactEmail" name="contactEmail" required aria-required="true" type="email" class="ob-input"
+            data-fv-required="İletişim e-postası zorunludur."
+            data-fv-email="Geçerli bir e-posta adresi girin."
+            placeholder="info@isletmen.com" data-en-placeholder="info@yourbusiness.com" data-de-placeholder="info@yourbusiness.com" data-ru-placeholder="info@yourbusiness.com" data-fr-placeholder="info@votreentreprise.com" />
         </div>
         <div>
           <label class="ob-label" for="contactPhone" data-en="Phone (optional)" data-de="Telefon (optional)" data-ru="Телефон (опционально)" data-fr="Téléphone (facultatif)">Telefon (opsiyonel)</label>
@@ -574,21 +588,50 @@ document.querySelectorAll('[data-prev]').forEach(btn => {
   btn.addEventListener('click', () => goToStep(parseInt(btn.dataset.prev)));
 });
 
+function _showStepErr(msg) {
+  let el = document.getElementById('step-inline-error');
+  if (!el) {
+    el = document.createElement('p');
+    el.id = 'step-inline-error';
+    el.className = 'ob-err';
+    el.setAttribute('role', 'alert');
+    el.style.marginTop = '0.75rem';
+    form.querySelector('.flex.justify-end, .flex.justify-between')?.insertAdjacentElement('beforebegin', el);
+  }
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+  if (msg) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
 function validateStep(n) {
+  _showStepErr('');
   if (n === 1) {
     const title = form.title.value.trim();
     const cat = form.category.value;
     const type = form.querySelector('input[name=type]:checked')?.value;
     const loc = form.location.value.trim();
     const emp = form.employerName.value.trim();
-    if (!title || !cat || !type || !loc || !emp) {
-      alert('Lütfen tüm zorunlu alanları doldur.');
+    const missing = [];
+    if (!title) { missing.push('Pozisyon başlığı'); document.getElementById('title')?.classList.add('fv-invalid'); document.getElementById('title')?.setAttribute('aria-invalid','true'); }
+    if (!cat)   { missing.push('Kategori');          document.getElementById('category')?.classList.add('fv-invalid'); document.getElementById('category')?.setAttribute('aria-invalid','true'); }
+    if (!loc)   { missing.push('Lokasyon');          document.getElementById('location')?.classList.add('fv-invalid'); document.getElementById('location')?.setAttribute('aria-invalid','true'); }
+    if (!emp)   { missing.push('İşveren adı');       document.getElementById('employerName')?.classList.add('fv-invalid'); document.getElementById('employerName')?.setAttribute('aria-invalid','true'); }
+    if (!type) {
+      document.getElementById('type-err-inline')?.classList.remove('hidden');
+    } else {
+      document.getElementById('type-err-inline')?.classList.add('hidden');
+    }
+    if (missing.length || !type) {
+      _showStepErr('Lütfen zorunlu alanları doldurun: ' + (missing.length ? missing.join(', ') : '') + (!type ? (missing.length ? ', İstihdam tipi' : 'İstihdam tipi') : '') + '.');
       return false;
     }
   }
   if (n === 2) {
     if (!form.description.value.trim()) {
-      alert('Pozisyon açıklaması zorunlu.');
+      document.getElementById('description')?.classList.add('fv-invalid');
+      document.getElementById('description')?.setAttribute('aria-invalid','true');
+      _showStepErr('Pozisyon açıklaması zorunludur.');
+      document.getElementById('description')?.focus();
       return false;
     }
   }
@@ -740,6 +783,13 @@ form.addEventListener('submit', async (e) => {
 // init
 if (_editId) applyEditChrome();   // edit modunda başlığı/CTA'yı hemen değiştir (veri auth sonrası dolar)
 goToStep(1);
+</script>
+<script type="module">
+import { attachValidation } from './js/form-validate.js';
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('job-form');
+  attachValidation(form);
+});
 </script>
 <script src="js/pwa.js?v=20260516c" defer></script>
 </body>

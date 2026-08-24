@@ -1,0 +1,62 @@
+name: Translate venue summaries (i18n gap-fill)
+
+# Run manually or on a schedule until all gaps are filled.
+# Each run is idempotent — already-translated items are skipped.
+# Partial runs accumulate: if a provider rate-limits mid-run, the next
+# run resumes from where it left off (per-item persist).
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Scope: restoranlar | plajlar | (blank = both)'
+        required: false
+        default: ''
+  schedule:
+    # 02:30 UTC daily until all 168 gaps are closed; disable after.
+    - cron: '30 2 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: translate-venue-summaries
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Translate missing venue summaries
+        env:
+          # Provider order: gemini first (free tier, high RPM), groq fallback.
+          # At least one key must be set; the script logs and skips items that fail.
+          I18N_LLM_ORDER: gemini,groq,cerebras,nvidia
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          ONLY_ARG=""
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            ONLY_ARG="--only=${{ github.event.inputs.only }}"
+          fi
+          node scripts/translate-venue-summaries.mjs $ONLY_ARG
+
+      - name: Commit updated translations
+        run: |
+          git config user.name  "kalkaninfo-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add data/restoranlar.json data/plajlar.json
+          # Only commit if there are actual changes
+          git diff --cached --quiet || git commit -m "i18n: fill venue summaryI18n gaps [bot]"
+          git push

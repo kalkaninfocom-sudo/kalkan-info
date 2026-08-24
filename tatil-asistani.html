@@ -246,7 +246,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="mt-6">
-          <label class="form-label" data-en="Group size" data-de="Gruppengröße" data-ru="Размер группы" data-fr="Taille du groupe">Grup büyüklüğü</label>
+          <fieldset style="border:none;padding:0;margin:0;">
+          <legend class="form-label" data-en="Group size" data-de="Gruppengröße" data-ru="Размер группы" data-fr="Taille du groupe">Grup büyüklüğü</legend>
           <div class="grid grid-cols-2 gap-4 mt-1">
             <div class="flex items-center gap-3 bg-sea-50 rounded-xl p-3">
               <div class="flex-1">
@@ -256,7 +257,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="flex items-center gap-2">
                 <button type="button" class="counter-btn" onclick="adjustCounter('adults',-1)">−</button>
                 <span class="counter-val" id="adults-val">2</span>
-                <input type="hidden" name="adults" id="adults-input" value="2" />
+                <input type="hidden" name="adults" id="adults-input" value="2" aria-label="Yetişkin sayısı" />
                 <button type="button" class="counter-btn" onclick="adjustCounter('adults',1)">+</button>
               </div>
             </div>
@@ -268,23 +269,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="flex items-center gap-2">
                 <button type="button" class="counter-btn" onclick="adjustCounter('children',-1)">−</button>
                 <span class="counter-val" id="children-val">0</span>
-                <input type="hidden" name="children" id="children-input" value="0" />
+                <input type="hidden" name="children" id="children-input" value="0" aria-label="Çocuk sayısı" />
                 <button type="button" class="counter-btn" onclick="adjustCounter('children',1)">+</button>
               </div>
             </div>
           </div>
+          </fieldset>
         </div>
 
         <div class="mt-6">
-          <label class="form-label" data-en="Total budget" data-de="Gesamtbudget" data-ru="Общий бюджет" data-fr="Budget total">Toplam bütçe</label>
+          <label class="form-label" for="budget-slider" data-en="Total budget" data-de="Gesamtbudget" data-ru="Общий бюджет" data-fr="Budget total">Toplam bütçe</label>
           <div class="flex items-center gap-3 mt-1">
-            <select class="form-input" style="width:90px;flex-shrink:0;" name="currency" id="currency">
+            <label for="currency" class="sr-only" data-en="Currency" data-de="Währung" data-ru="Валюта" data-fr="Devise">Para Birimi</label>
+            <select class="form-input" style="width:90px;flex-shrink:0;" name="currency" id="currency" aria-label="Para birimi">
               <option value="TRY">₺</option>
               <option value="EUR">€</option>
               <option value="USD">$</option>
             </select>
             <div class="flex-1">
-              <input type="range" min="5000" max="200000" step="5000" value="50000" id="budget-slider" name="budget" class="w-full" oninput="updateBudgetDisplay(this.value)" />
+              <input type="range" min="5000" max="200000" step="5000" value="50000" id="budget-slider" name="budget" class="w-full"
+            aria-label="Toplam bütçe"
+            aria-valuemin="5000" aria-valuemax="200000"
+            oninput="updateBudgetDisplay(this.value)" />
               <div class="flex justify-between text-xs text-sea-400 mt-1">
                 <span>5K</span><span>50K</span><span>100K</span><span>200K</span>
               </div>
@@ -652,7 +658,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="flex items-center gap-3 mt-1">
             <button type="button" class="counter-btn" onclick="adjustCounter('rooms',-1)">−</button>
             <span class="counter-val" id="rooms-val">2</span>
-            <input type="hidden" name="rooms" id="rooms-input" value="2" />
+            <input type="hidden" name="rooms" id="rooms-input" value="2" aria-label="Oda sayısı" />
             <button type="button" class="counter-btn" onclick="adjustCounter('rooms',1)">+</button>
             <span class="text-sm text-sea-400 ml-2" data-en="rooms" data-de="Zimmer" data-ru="номеров" data-fr="chambres">oda</span>
           </div>

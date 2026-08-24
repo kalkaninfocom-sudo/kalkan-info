@@ -176,12 +176,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div>
             <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="email" data-en="Email" data-de="E-Mail" data-ru="Электронная почта" data-fr="Email">E-posta</label>
             <input class="input-field" type="email" id="email" name="email" autocomplete="email"
-              placeholder="ornek@email.com" data-en-placeholder="example@email.com" data-en-aria="Email address" required data-de-aria="E-Mail-Adresse" data-ru-aria="Адрес электронной почты" data-fr-aria="Adresse email">
+              placeholder="ornek@email.com" data-en-placeholder="example@email.com" data-en-aria="Email address" required
+              aria-required="true"
+              data-fv-required="E-posta adresi zorunludur."
+              data-fv-email="Geçerli bir e-posta adresi girin."
+              data-de-aria="E-Mail-Adresse" data-ru-aria="Адрес электронной почты" data-fr-aria="Adresse email">
           </div>
           <div>
             <label class="block text-sm font-semibold text-sea-700 mb-1.5" for="password" data-en="Password" data-de="Passwort" data-ru="Пароль" data-fr="Mot de passe">Şifre</label>
             <input class="input-field" type="password" id="password" name="password" autocomplete="current-password"
-              placeholder="••••••••" data-en-placeholder="••••••••" data-en-aria="Password" required data-de-aria="Passwort" data-ru-aria="Пароль" data-fr-aria="Mot de passe">
+              placeholder="••••••••" data-en-placeholder="••••••••" data-en-aria="Password" required
+              aria-required="true"
+              data-fv-required="Şifre zorunludur."
+              data-fv-minlength="6" data-fv-minlength-msg="Şifre en az 6 karakter olmalıdır."
+              data-de-aria="Passwort" data-ru-aria="Пароль" data-fr-aria="Mot de passe">
           </div>
         </div>
 
@@ -228,6 +236,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="mt-2" data-en="© 2026 Kalkan Info. All rights reserved." data-de="© 2026 Kalkan Info. Alle Rechte vorbehalten." data-ru="© 2026 Kalkan Info. Все права защищены." data-fr="© 2026 Kalkan Info. Tous droits réservés.">© 2026 Kalkan Info. Tüm hakları saklıdır.</p>
 </footer>
 
+<script type="module">
+import { attachValidation } from './js/form-validate.js';
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('[data-action="login-form"]');
+  attachValidation(form);
+});
+</script>
 <script type="module" src="js/auth.js"></script>
 <script src="js/pwa.js?v=20260516c" defer></script>
 </body>
