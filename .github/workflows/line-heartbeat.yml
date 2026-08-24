@@ -1,0 +1,41 @@
+name: Üretim hatları nöbeti (line-heartbeat)
+
+# Katman 2: TÜM üretim hatlarını (gazete/haber/brifing/reel/bülten/ilan) günlük prova eder.
+# Kritik bir hat bayatsa → Telegram alarm + job kırmızı. data/agency/production-lines.json registry'si.
+# Not: line-heartbeat.mjs main() Telegram'ı yalnız GITHUB_ACTIONS (CI) ortamında gönderir → yerel spam yok.
+
+on:
+  schedule:
+    - cron: '30 9 * * *'   # 12:30 Europe/Istanbul — sabah içeriği (gazete 07:45) üretildikten sonra
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: line-heartbeat
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Tüm üretim hatlarını prova et (kritikte Telegram alarm)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          # Reel/bülten/ilan hatlarını Supabase social_posts'tan izlemek için (yoksa graceful "izlenemiyor").
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Opsiyonel dış dead-man's-switch (Healthchecks.io ayrı check).
+          LINES_HEALTHCHECK_URL: ${{ secrets.LINES_HEALTHCHECK_URL }}
+        run: node scripts/agency/line-heartbeat.mjs
