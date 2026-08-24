@@ -93,6 +93,20 @@ async function sectionHealth() {
   };
 }
 
+// ── GAZETE (bugünkü sayı + baskı provası) — gazete-heartbeat reuse ──────────
+// ajansAI orkestrasyon katmanı: gazete kendi adanmış workflow'unda ÜRETİLİR (dokunmayız),
+// ama durumu tek karar ekranında görünür olur. Salt-okuma; üretim mantığına dokunmaz.
+async function sectionGazete() {
+  const { checkTodayIssue } = await import(pathToFileURL(join(ROOT, 'scripts', 'agency', 'gazete-heartbeat.mjs')).href);
+  const checks = checkTodayIssue(DATE); // [{name, ok, critical, detail}]
+  const icon = (c) => (c.ok ? '✅' : c.critical ? '🔴' : '🟡');
+  return {
+    title: '📰 GAZETE (bugünkü sayı + prova)',
+    lines: checks.map((c) => `  ${icon(c)} ${c.name}: ${c.detail}`),
+    flag: checks.some((c) => !c.ok && c.critical) ? 'crit' : checks.some((c) => !c.ok) ? 'warn' : 'ok',
+  };
+}
+
 // ── 3) INTELLIGENCE / TOPICS + 4) DUPLICATES (content-ideas.json) ───────────
 function readIdeas() {
   const ci = readJson('data/agency/content-ideas.json');
@@ -292,8 +306,10 @@ async function build() {
   const sales = safe(() => sectionSales(), '💼 SALES STATUS');
   ctx.salesDerive = sales._derive || null;
   const priorities = safe(() => sectionPriorities(ctx), "🎯 TODAY'S PRIORITIES");
+  // Gazete: her sabahki sayı + baskı provası tek karar ekranında (ajansAI orkestrasyon görünürlüğü).
+  const gazete = await (async () => { try { return await sectionGazete(); } catch (e) { return UNAVAIL('📰 GAZETE', e.message); } })();
 
-  const coreSections = [health, data, topics, dups, quality, content, sales, priorities].filter(Boolean);
+  const coreSections = [health, data, gazete, topics, dups, quality, content, sales, priorities].filter(Boolean);
   const actions = sectionActions(coreSections, ctx);
   const sections = [...coreSections, actions];
 
