@@ -210,9 +210,17 @@ async function main() {
   // ─── 5 DİL: her hedef dile ayrı statik sayfa (morning/magazine.<lang>.html) ───
   // TR base + render-öncesi çeviri (lib/i18n-translate, ücretsiz LLM). hreflang + dil switcher gömülü.
   // Non-fatal: bir dil/çeviri patlarsa TR gazete akışı ETKİLENMEZ (run bool döndürür, exception yok).
-  for (const l of ['en', 'de', 'ru', 'fr']) {
-    run(['newspaper/generator/build.mjs', 'morning', date, `--lang=${l}`], `Ön Sayfa ${l.toUpperCase()} (5-dil)`);
-    run(['newspaper/generator/build.mjs', 'magazine', date, `--lang=${l}`], `Magazin ${l.toUpperCase()} (5-dil)`);
+  //
+  // GAZETE_SKIP_I18N=1 → dil çevirisini ATLA (TR-önce ayrımı). Çeviri free-tier degrade olunca 30-45dk
+  // sürüp job'ı timeout'a götürüp TR yayınını da engelliyordu. Artık workflow TR'yi bu adımda hızlıca
+  // yayınlar, dilleri commit'ten SONRA ayrı best-effort adımda üretir. Bayrak yoksa eski davranış (hepsi burada).
+  if (!process.env.GAZETE_SKIP_I18N) {
+    for (const l of ['en', 'de', 'ru', 'fr']) {
+      run(['newspaper/generator/build.mjs', 'morning', date, `--lang=${l}`], `Ön Sayfa ${l.toUpperCase()} (5-dil)`);
+      run(['newspaper/generator/build.mjs', 'magazine', date, `--lang=${l}`], `Magazin ${l.toUpperCase()} (5-dil)`);
+    }
+  } else {
+    console.log('\n── GAZETE_SKIP_I18N: dil çevirisi atlandı (TR-önce; diller ayrı best-effort adımda) ──');
   }
 
   if (NO_SOCIAL) {
