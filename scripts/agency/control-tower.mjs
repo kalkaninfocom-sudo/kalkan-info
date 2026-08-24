@@ -112,7 +112,8 @@ async function sectionGazete() {
 // tek bakışta taze mi durdu mu. Registry: data/agency/production-lines.json. Salt-okuma.
 async function sectionLines() {
   const { runLineProofs } = await import(pathToFileURL(join(ROOT, 'scripts', 'agency', 'line-heartbeat.mjs')).href);
-  const results = await runLineProofs(); // [{title,cadence,ok,critical,detail}]
+  // gazete kendi detaylı bölümünde (sectionGazete) gösteriliyor → filoda tekrar etme (çift görünüm + çift I/O).
+  const results = (await runLineProofs()).filter((r) => r.key !== 'gazete'); // [{key,title,cadence,ok,critical,detail}]
   const icon = (c) => (c.ok ? '✅' : c.critical ? '🔴' : '🟡');
   return {
     title: '🏭 ÜRETİM HATLARI (filo)',

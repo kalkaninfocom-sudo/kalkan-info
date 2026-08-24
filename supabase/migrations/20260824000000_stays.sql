@@ -79,6 +79,21 @@ create index if not exists idx_bookings_guest on public.stay_bookings (guest_id,
 alter table public.stay_bookings drop constraint if exists stay_no_overlap;
 alter table public.stay_bookings add constraint stay_no_overlap exclude using gist (stay_id with =, daterange(check_in, check_out, '[)') with &&) where (status = 'confirmed');
 
+-- FİYAT SUNUCUDA HESAPLANIR (client'a GÜVENME): total_price + nights her zaman stays'ten türetilir.
+-- Kötü niyetli misafir total_price:0 gönderse bile trigger üzerine yazar. (NOT: db push ile uygula, elle paste değil — $ blok.)
+create or replace function public.stay_booking_price() returns trigger language plpgsql as $stay_price$
+declare s record;
+begin
+  select price_per_night, cleaning_fee into s from public.stays where id = new.stay_id;
+  new.nights := greatest((new.check_out - new.check_in), 0);
+  new.total_price := coalesce(s.price_per_night, 0) * new.nights + coalesce(s.cleaning_fee, 0);
+  new.currency := 'TRY';
+  return new;
+end
+$stay_price$;
+drop trigger if exists trg_stay_booking_price on public.stay_bookings;
+create trigger trg_stay_booking_price before insert on public.stay_bookings for each row execute function public.stay_booking_price();
+
 -- RLS
 alter table public.stays              enable row level security;
 alter table public.stay_blocked_dates enable row level security;
@@ -103,12 +118,17 @@ create policy blocked_owner_write on public.stay_blocked_dates for all to authen
 drop policy if exists bookings_guest_read on public.stay_bookings;
 create policy bookings_guest_read on public.stay_bookings for select to authenticated using (auth.uid() = guest_id or exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()) or public.is_admin());
 drop policy if exists bookings_guest_insert on public.stay_bookings;
-create policy bookings_guest_insert on public.stay_bookings for insert to authenticated with check (auth.uid() = guest_id and public.is_email_verified() and status = 'requested');
+create policy bookings_guest_insert on public.stay_bookings for insert to authenticated with check (auth.uid() = guest_id and public.is_email_verified() and status = 'requested' and not exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()));
+-- UPDATE: misafir yalnız KENDİ talebini İPTAL eder (self-confirm ENGELLİ) · host onaylar/reddeder/tamamlar · admin hepsi.
 drop policy if exists bookings_update on public.stay_bookings;
-create policy bookings_update on public.stay_bookings for update to authenticated using (auth.uid() = guest_id or exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()) or public.is_admin()) with check (auth.uid() = guest_id or exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()) or public.is_admin());
+drop policy if exists bookings_guest_cancel on public.stay_bookings;
+create policy bookings_guest_cancel on public.stay_bookings for update to authenticated using (auth.uid() = guest_id) with check (auth.uid() = guest_id and status = 'cancelled');
+drop policy if exists bookings_host_manage on public.stay_bookings;
+create policy bookings_host_manage on public.stay_bookings for update to authenticated using (exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()) or public.is_admin()) with check ((exists (select 1 from public.stays s where s.id = stay_id and s.owner_id = auth.uid()) and status in ('confirmed','rejected','completed')) or public.is_admin());
 
 -- Storage: ilan fotoğrafları (public okuma, host kendi <uid>/ klasörüne yükler)
 insert into storage.buckets (id, name, public) values ('stay-photos', 'stay-photos', true) on conflict (id) do nothing;
+update storage.buckets set file_size_limit = 8388608, allowed_mime_types = array['image/jpeg','image/png','image/webp'] where id = 'stay-photos';
 drop policy if exists stay_photos_read on storage.objects;
 create policy stay_photos_read on storage.objects for select to anon, authenticated using (bucket_id = 'stay-photos');
 drop policy if exists stay_photos_insert on storage.objects;

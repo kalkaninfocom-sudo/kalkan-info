@@ -34,7 +34,7 @@ async function proofLine(line) {
       const checks = checkTodayIssue(DATE);
       const crit = checks.filter((c) => !c.ok && c.critical);
       return { ...base, ok: crit.length === 0, detail: crit.length ? `${crit.length} kritik eksik: ${crit.map((c) => c.name).join(', ')}` : 'sayı + 5 dil + baskı provası ✓' };
-    } catch (e) { return { ...base, ok: false, critical: false, detail: `prova hatası: ${String(e.message).slice(0, 50)}` }; }
+    } catch (e) { return { ...base, ok: false, critical: base.critical, detail: `prova hatası: ${String(e.message).slice(0, 50)}` }; } // prova'nın kendisi patladıysa bu KRİTİK sinyaldir
   }
   // Tazelik: committed veri dosyası
   if (line.signal?.file) {
@@ -56,12 +56,16 @@ export async function runLineProofs() {
 }
 
 async function main() {
+  // Telegram yalnız CI'da (GitHub Actions) ya da --live ile gönderilir. Yerelde --dry veya bayrraksız
+  // çalıştırmak Berkay'a GERÇEK alarm SPAM'ı atmasın (memory: health-check footgun). Varsayılan güvenli.
+  const canSend = !!process.env.GITHUB_ACTIONS || process.argv.includes('--live');
   const results = await runLineProofs();
   const lines = results.map((r) => `${proofIcon(r)} ${r.title} (${r.cadence}): ${r.detail}`);
   console.log('── ÜRETİM HATLARI NÖBETİ ──\n' + lines.join('\n'));
   const problems = results.filter((r) => !r.ok && r.critical);
   if (problems.length) {
-    await sendTelegram(`🚨 ÜRETİM HATTI ALARMI — ${problems.length} kritik hat durdu\n\n` + lines.join('\n'));
+    if (canSend) await sendTelegram(`🚨 ÜRETİM HATTI ALARMI — ${problems.length} kritik hat durdu\n\n` + lines.join('\n'));
+    else console.log('ℹ (yerel/dry — Telegram atlandı; CI ya da --live ile gönderilir)');
     await pingHealthcheck(process.env.LINES_HEALTHCHECK_URL, false);
     console.log(`✗ ${problems.length} kritik hat sorunlu`);
     process.exit(1);

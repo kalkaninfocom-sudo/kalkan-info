@@ -58,11 +58,20 @@ export function checkTodayIssue(date = today) {
   checks.push({ name: 'Çeviri dosyaları', ok: missLang.length === 0, critical: false, detail: missLang.length ? `eksik dil: ${missLang.join(',')}` : '5 dil tam' });
 
   // 5) Çeviri GERÇEKTEN yapıldı mı? (Berkay: "5 dilde görünüyor ama haber TR")
-  // Manşeti TR sayfasıyla karşılaştır: birebir aynıysa o dil çevrilmemiş, TR-as-"l" yayınlanmış.
-  const leadOf = (rel) => { try { return (readFileSync(join(ROOT, rel), 'utf8').match(/class="lead-headline">([^<]{4,})/i) || [])[1]?.trim() || ''; } catch { return ''; } };
-  const trLead = leadOf(`newspaper/archive/${date}/morning.html`);
+  // Manşet TEK BAŞINA yanıltıcı: özel-isim başlık ("23. Likya Su Yolu Yürüyüşü") diller arası aynı
+  // kalabilir → yanlış alarm. Bu yüzden manşet VE deck (cümle) İKİSİ de TR ile birebir aynıysa
+  // "gerçekten çevrilmemiş" say. Deck bir cümle olduğundan çevrildiyse kesin farklılaşır.
+  const grab = (rel, cls) => { try { return (readFileSync(join(ROOT, rel), 'utf8').match(new RegExp(`class="${cls}">([^<]{4,})`, 'i')) || [])[1]?.trim() || ''; } catch { return ''; } };
+  const trLead = grab(`newspaper/archive/${date}/morning.html`, 'lead-headline');
+  const trDeck = grab(`newspaper/archive/${date}/morning.html`, 'lead-deck');
   if (trLead) {
-    const untranslated = ['en', 'de', 'ru', 'fr'].filter(l => { const h = leadOf(`newspaper/archive/${date}/morning.${l}.html`); return h && h === trLead; });
+    const untranslated = ['en', 'de', 'ru', 'fr'].filter(l => {
+      const h = grab(`newspaper/archive/${date}/morning.${l}.html`, 'lead-headline');
+      const d = grab(`newspaper/archive/${date}/morning.${l}.html`, 'lead-deck');
+      const headSame = h && h === trLead;
+      const deckSame = trDeck ? (d && d === trDeck) : true; // deck yoksa yalnız başlığa düş
+      return headSame && deckSame; // ikisi de TR → çeviri çökmüş
+    });
     checks.push({ name: 'Çeviri içeriği', ok: untranslated.length === 0, critical: true,
       detail: untranslated.length ? `TR içerikle yayınlanan dil(ler): ${untranslated.join(',')} — çeviri çökmüş (rate-limit/kota)` : 'diller gerçekten çevrildi' });
   }

@@ -15,6 +15,10 @@
 import { supabase } from './supabase-client.js';
 import { safeOnAuthStateChanged, isSupabaseConfigured } from './auth.js';
 
+// XSS koruması: ilan/host verisi (başlık, açıklama, amenity, foto URL) innerHTML'e girmeden ÖNCE kaçışlanır.
+// & ÖNCE (sıra önemli), sonra < > " '. Kötü niyetli host <img onerror> enjekte edemesin.
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
 // ─── State ───────────────────────────────────────────────────────────────────
 let _stay       = null;   // stays satırı
 let _blocked    = new Set(); // YYYY-MM-DD string'leri (blocked_dates + confirmed bookings)
@@ -221,9 +225,9 @@ function _render() {
   // Açıklama
   const descEl = document.getElementById('stay-description');
   if (descEl && s.description) {
-    descEl.innerHTML = s.description
+    descEl.innerHTML = esc(s.description)
       .split('\n\n')
-      .map(p => `<p>${p.replace(/\n/g, '<br>').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`)
+      .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
       .join('');
   }
 
@@ -233,7 +237,7 @@ function _render() {
     amenEl.innerHTML = s.amenities.map(a => `
       <span class="stays-pill">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="flex-shrink-0"><polyline points="20 6 9 17 4 12"/></svg>
-        ${AMENITY_TR[a] || a}
+        ${AMENITY_TR[a] || esc(a)}
       </span>`).join('');
   } else if (amenEl) {
     amenEl.closest('section')?.classList.add('hidden');
@@ -298,12 +302,12 @@ function _renderGallery(images) {
   const thumbs = images.slice(1);
 
   el.innerHTML = `
-    <div class="gallery-main" id="gallery-active" style="background-image:url('${main}')">
+    <div class="gallery-main" id="gallery-active" style="background-image:url('${esc(main)}')">
       <div class="gallery-overlay"></div>
       ${images.length > 1 ? `<div class="gallery-count">${images.length} fotoğraf</div>` : ''}
     </div>
     ${thumbs.length ? `<div class="gallery-thumbs">
-      ${images.map((img, i) => `<button class="gallery-thumb${i===0?' active':''}" data-idx="${i}" style="background-image:url('${img}')" aria-label="Fotoğraf ${i+1}"></button>`).join('')}
+      ${images.map((img, i) => `<button class="gallery-thumb${i===0?' active':''}" data-idx="${i}" style="background-image:url('${esc(img)}')" aria-label="Fotoğraf ${i+1}"></button>`).join('')}
     </div>` : ''}
   `;
 

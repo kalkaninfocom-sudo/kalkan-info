@@ -338,6 +338,10 @@ async function _updateBookingStatus(bookingId, status, hostResponse) {
 
 function _rls(err) {
   const msg = (err.message || '').toLowerCase();
+  // Çift-rezervasyon: aynı ilana çakışan İKİNCİ talebi onaylarken DB exclusion constraint (23P01) atar.
+  if (err.code === '23P01' || msg.includes('stay_no_overlap') || msg.includes('exclusion') || msg.includes('conflicting key')) {
+    return 'Bu tarihler başka ONAYLANMIŞ bir rezervasyonla çakışıyor — bu talebi onaylayamazsın.';
+  }
   if (msg.includes('row-level security') || msg.includes('policy') || msg.includes('unauthorized')) {
     return 'Bu işlem için yetkiniz yok. E-postanızı doğrulayıp tekrar deneyin.';
   }
