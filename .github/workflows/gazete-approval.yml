@@ -99,6 +99,7 @@ jobs:
           # alan başına 60sn×ölü-sağlayıcı israfını sınırla. Cold-cache run 45dk'yı aşıp timeout oluyordu;
           # kök: i18n her alanı her sağlayıcıda 60sn dener, 3 ölü sağlayıcı = 3dk/alan × 40 alan = 30dk+.
           I18N_LLM_ORDER: gemini,groq
+          GAZETE_SKIP_I18N: '1'   # TR-ÖNCE: bu adımda çeviri YOK → TR hızlı üretilip yayınlanır; diller commit sonrası best-effort
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
 
       # KRİTİK SIRA: Gazete web'i (HTML+kart) ÜRETİLDİ → HEMEN commit+push (YAYINLA) ve heartbeat.
@@ -125,6 +126,35 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           HEALTHCHECK_URL: ${{ secrets.GAZETE_HEALTHCHECK_URL }}
         run: node scripts/agency/gazete-heartbeat.mjs --verbose
+
+      # 5-DİL (best-effort): TR YAYINLANDIKTAN SONRA dilleri üret + ayrı commit. Yavaş/degrade free-tier
+      # TR yayınını ARTIK engellemez (eskiden çeviri 30-45dk sürüp job'ı timeout'a götürüp TR'yi de düşürüyordu).
+      # continue-on-error + 25dk step-timeout: çeviri patlasa/aşsa da job yeşil, TR zaten yayında.
+      - name: 5-dil çeviri sayfaları (best-effort, commit sonrası)
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          I18N_LLM_ORDER: gemini,groq
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          git config user.name "kalkan-info-bot"; git config user.email "bot@kalkaninfo.com"
+          D="${{ github.event.inputs.date }}"; [ -z "$D" ] && D=$(TZ=Europe/Istanbul date +%F)
+          for l in en de ru fr; do
+            node newspaper/generator/build.mjs morning  "$D" --lang=$l || echo "morning.$l atlandı"
+            node newspaper/generator/build.mjs magazine "$D" --lang=$l || echo "magazine.$l atlandı"
+          done
+          node scripts/build-newspaper-index.mjs || true
+          git add newspaper/archive data/newspaper-index.json data/i18n-cache || true
+          if ! git diff --cached --quiet; then
+            git commit -m "content(gazete): 5-dil çeviri $D [auto]"
+            git pull --rebase --autostash origin main || true
+            git push || echo "dil push atlandı"
+          else
+            echo "dil değişikliği yok"
+          fi
 
       # Faz 1.5: Reel için bayat onay satırını temizle (gazete-reel-<tarih>).
       # Gece üretilen + telegram_message_id dolu satır varsa siler → reel-approval taze onay gönderir.
