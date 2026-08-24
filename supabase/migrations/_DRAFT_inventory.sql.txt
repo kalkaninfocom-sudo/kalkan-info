@@ -1,0 +1,148 @@
+-- ═══════════════════════════════════════════════════════════════════════════
+-- ⚠️  DRAFT — TASARIM İSKELETİ. BU BİR .sql DEĞİL (.txt) → OTOMATİK UYGULANMAZ.
+--     supabase db push bunu ATLAR. Onaylanınca _DRAFT_inventory.sql.txt →
+--     YYYYMMDDHHMMSS_inventory.sql yeniden adlandırılıp gözden geçirilerek uygulanır.
+-- ═══════════════════════════════════════════════════════════════════════════
+--
+-- Kalkan Info — ENVANTER / İLAN İŞLEME (listings) — System #4
+-- Tasarım: INVENTORY-SYSTEM-DESIGN.md
+-- Desen: 20260711093000_marketplace.sql + 20260824000000_stays.sql ikizi.
+--   • Client-side supabase-js (YENİ Vercel api/ YOK — 12/12 dolu).
+--   • Yardımcılar mevcut varsayılır: public.is_email_verified(), public.is_admin().
+--   • $$ blok / generated column KULLANMA (Dashboard paste güvenliği — stays deseni).
+--
+-- İLİŞKİ: listings = kanonik envanter (tüm mekan: villa/otel-oda/restoran/mekan).
+--         Kiralanabilir + publishable satırlar → public.stays'e PUBLISH edilir (1:1).
+--         Restoran/mekan kayıtları envanterde durur ama stays'e ASLA gitmez.
+-- ---------------------------------------------------------------------------
+
+create extension if not exists pgcrypto;
+
+-- ── 1) KANONİK İLANLAR (envanter süperset) ────────────────────────────────
+create table if not exists public.listings (
+  id             uuid primary key default gen_random_uuid(),
+
+  -- Kaynak & sahiplik (stays'ten AYRILDIĞIMIZ nokta: owner NULL olabilir)
+  source         text not null default 'file'
+                   check (source in ('file','ig','host_form','google')),
+  source_ref     text,                    -- villalar.json id / IG handle / place_id
+  owner_id       uuid references auth.users(id) on delete set null,  -- publish anında atanır
+
+  -- Kimlik
+  slug           text unique,
+  listing_kind   text not null
+                   check (listing_kind in ('villa','room','apartment','whole_building',
+                                           'hotel','restaurant','venue')),
+  category       text,                    -- normalize kategori (Premium / Boutique / Fine Dining…)
+  title          text not null check (char_length(title) between 3 and 160),
+
+  -- Kapasite (villalar.json "8 kişi" string → int normalize)
+  capacity       int    check (capacity between 1 and 60),
+  bedrooms       int,
+  bathrooms      int,
+  beds           int,
+
+  -- Fiyat (DOĞRULANMIŞ olmadan null; null → stays'e publish YOK, sadece vitrin)
+  price_per_night numeric(12,2) check (price_per_night >= 0),
+  currency        text default 'TRY',
+  deposit_tl      numeric(12,2),          -- villalar.json deposit_tl
+  pet_fee_tl      numeric(12,2),
+
+  -- Konum + geo (restoranlar.json coordinates, oteller geo:null → enricher doldurur)
+  location        text,
+  neighborhood    text,
+  lat             numeric,
+  lng             numeric,
+
+  -- İçerik
+  amenities       text[] default '{}',    -- normalize amenity taksonomi
+  tags            text[] default '{}',
+  images          text[] default '{}',    -- DOĞRULANMIŞ (disk assets/img/** gerçeği) URL'ler
+  summary         text,
+
+  -- 5-dil (i18n editör çıktısı — jsonb {tr,en,de,ru,fr})
+  title_i18n       jsonb not null default '{}'::jsonb,
+  summary_i18n     jsonb not null default '{}'::jsonb,
+  description_i18n  jsonb not null default '{}'::jsonb,
+
+  -- İŞLEME HATTI DURUMU (kiralama-canlılığından AYRI — stays.status ile karışmaz)
+  proc_status    text not null default 'raw'
+                   check (proc_status in ('raw','verified','enriched','translated',
+                                          'ready','publishable','published','hold','rejected')),
+
+  -- Kapı çıktıları (rol kararları — denetim izi)
+  verification   jsonb not null default '{}'::jsonb,  -- {photos_ok,geo_ok,legal_ok,verdict,flags[]}
+  qa             jsonb not null default '{}'::jsonb,  -- prova 9-kontrol sonucu
+  processing_log jsonb not null default '[]'::jsonb,  -- [{role,verdict,at,notes}] gazete-newsroom izi
+  dedup_of       uuid references public.listings(id) on delete set null,  -- kopya ise orijinal
+
+  -- Yayın bağı
+  stay_id        uuid,                    -- publish edilince public.stays(id) (soft FK — stays sonra)
+  published_at   timestamptz,
+
+  is_verified    boolean default false,
+  created_at     timestamptz default now(),
+  updated_at     timestamptz default now()
+);
+
+create index if not exists idx_listings_proc    on public.listings (proc_status, updated_at desc);
+create index if not exists idx_listings_kind     on public.listings (listing_kind);
+create index if not exists idx_listings_source   on public.listings (source, source_ref);
+create index if not exists idx_listings_owner     on public.listings (owner_id);
+create index if not exists idx_listings_dedup     on public.listings (dedup_of);
+create unique index if not exists uq_listings_src on public.listings (source, source_ref)
+  where source_ref is not null;         -- idempotent seed (aynı kaynak 2 kez girmez)
+
+-- ── 2) İŞLEME DENETİM ADIMLARI (opsiyonel ayrık tablo — jsonb log yeterli değilse) ──
+create table if not exists public.listing_reviews (
+  id          uuid primary key default gen_random_uuid(),
+  listing_id  uuid not null references public.listings(id) on delete cascade,
+  role        text not null,             -- collector|verifier|enricher|i18n|chief|critic
+  verdict     text,                      -- ok|needs-proof|reject|pass|hold
+  score       int,
+  flags       text[] default '{}',
+  notes       text,
+  created_at  timestamptz default now()
+);
+create index if not exists idx_listing_reviews on public.listing_reviews (listing_id, created_at desc);
+
+-- ── 3) RLS SKETCH ──────────────────────────────────────────────────────────
+-- PRENSİP: sadece YAYINLANMIŞ (published) ilanlar anon'a açık. Ham işleme hattı
+-- (raw/verified/…) SIZMAZ — stays_public_read (status='active') deseninin envanter ikizi.
+alter table public.listings         enable row level security;
+alter table public.listing_reviews  enable row level security;
+
+-- Public: yalnız published ilanlar okunur (ham taslak gizli)
+drop policy if exists listings_public_read on public.listings;
+create policy listings_public_read on public.listings
+  for select to anon, authenticated
+  using (proc_status = 'published');
+
+-- Sahip/admin: kendi (veya tüm) satırlarını her durumda okur
+drop policy if exists listings_owner_read on public.listings;
+create policy listings_owner_read on public.listings
+  for select to authenticated
+  using (auth.uid() = owner_id or public.is_admin());
+
+-- Yazma: MVP'de yalnız admin (hat scriptleri service_role ile çalışır → RLS bypass).
+-- Host self-serve ilan gelecekte: (auth.uid()=owner_id and is_email_verified()).
+drop policy if exists listings_admin_write on public.listings;
+create policy listings_admin_write on public.listings
+  for all to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- İncelemeler: sadece admin okur/yazar (denetim izi, iç kullanım)
+drop policy if exists listing_reviews_admin on public.listing_reviews;
+create policy listing_reviews_admin on public.listing_reviews
+  for all to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- ── 4) PUBLISH KÖPRÜSÜ (NOT — trigger DEĞİL, uygulama/admin katmanı) ────────
+-- publish(listing_id): proc_status='publishable' + listing_kind IN (villa,room,apartment,
+--   whole_building) + price_per_night NOT NULL + owner atandı → public.stays'e upsert,
+--   listings.stay_id + published_at set, proc_status='published'. Restoran/venue → publish YOK.
+-- NOT: stays.owner_id NOT NULL → publish anında sistem-owner veya host owner_id şart.
+--
+-- ⚠️ TEKRAR: bu dosya .txt — uygulanmadan önce .sql'e çevir + gözden geçir + db push.

@@ -22,6 +22,74 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { groundPhoto } from '../../lib/news-photos.mjs';
 import { newsScore } from '../../lib/news-score.mjs';
 
+// ── 2. BEYİN ENGAGEMENT BOOST ──
+// strategy.json (strategist.mjs çıktısı) veya engagement.json (harvest çıktısı) okunur.
+// Her iki dosya da yoksa ya da okunamazsa → boost=null → newsScore davranışı HİÇ DEĞİŞMEZ.
+// Boost en fazla +3 (newsScore içinde sınırlı) → Kalkan-locality mantığını asla baskılamaz.
+async function loadEngagementBoost() {
+  // 1. Önce strategy.json'u dene (stratejist → LLM özeti + deterministik agregatlar).
+  //    plan.tomorrow[].topic alanları en performanslı konuları temsil eder.
+  // 2. Yoksa engagement.json'u dene (ham ölçüm snapshot).
+  //    En yüksek "saved+likes" postların caption'larından anahtar kelime çıkar.
+  const stratPath = join(ROOT, 'data', 'agency', 'strategy.json');
+  const engPath   = join(ROOT, 'data', 'agency', 'engagement.json');
+
+  const tryReadJSON = async (p) => {
+    try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; }
+  };
+
+  // -- strategy.json yolu --
+  const strat = await tryReadJSON(stratPath);
+  if (strat && strat.plan && Array.isArray(strat.plan.tomorrow) && strat.plan.tomorrow.length > 0) {
+    const boost = new Map();
+    for (const item of strat.plan.tomorrow) {
+      const topic = String(item.topic || '').toLocaleLowerCase('tr').trim();
+      if (topic.length >= 3) {
+        // Her plan kalemi eşit ağırlık (1). Birden fazla kelimeli konuyu da bütün olarak ekle.
+        boost.set(topic, (boost.get(topic) || 0) + 1);
+        // Ayrıca her belirgin token'ı ayrıca ekle (parçalı eşleşme için).
+        for (const tok of topic.split(/\s+/).filter(t => t.length >= 4)) {
+          boost.set(tok, (boost.get(tok) || 0) + 1);
+        }
+      }
+    }
+    if (boost.size > 0) {
+      console.log(`  ↳ engagement boost: strategy.json'dan ${boost.size} konu yüklendi`);
+      return boost;
+    }
+  }
+
+  // -- engagement.json yolu (ham ölçüm) --
+  const eng = await tryReadJSON(engPath);
+  if (eng && Array.isArray(eng.posts) && eng.posts.length > 0) {
+    // En performanslı postları saved > likes > reach önceliğiyle sırala, top-5 al.
+    const sorted = [...eng.posts].sort((a, b) => {
+      const va = (b.saved || 0) + (b.likes || 0);
+      const vb = (a.saved || 0) + (a.likes || 0);
+      return va - vb;
+    });
+    const top = sorted.slice(0, 5);
+    const boost = new Map();
+    const STOP_TR = new Set(['ve','ile','da','de','ta','te','bir','bu','için','olan','oldu','yeni','son','en','the','a','of','in','on','kalkan','kaş']); // kalkan/kaş zaten core bonus alıyor
+    for (const post of top) {
+      const caption = String(post.caption || '').toLocaleLowerCase('tr');
+      for (const tok of caption.split(/\s+/)) {
+        const w = tok.replace(/[^a-zçğıöşü0-9]/gi, '');
+        if (w.length >= 4 && !STOP_TR.has(w)) {
+          boost.set(w, Math.min(1, (boost.get(w) || 0) + 1));
+        }
+      }
+    }
+    if (boost.size > 0) {
+      console.log(`  ↳ engagement boost: engagement.json'dan ${boost.size} kelime yüklendi (top-${top.length} post)`);
+      return boost;
+    }
+  }
+
+  // Hiçbir sinyal yok → null (safe-default: boost yok)
+  return null;
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
@@ -41,7 +109,8 @@ const date = process.argv.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a)) ||
 // Editorial'in eski davranışı opts ile BİRE BİR korunur: sadece title+summary (tags yok),
 // featured bonusu yok, ulusal kaynak cezası -4 (sources -5). Tek bilinçli fark: çekirdek listede
 // artık 'kutso' da var (Kaş Ticaret Odası yereldir — düzeltme).
-const score = (it) => newsScore(it, { useTags: false, featuredBonus: false, srcPenalty: -4 });
+// boost parametresi main()'de yüklenir; null ise → engagement sinyali yok, davranış DEĞİŞMEZ.
+const score = (it, boost = null) => newsScore(it, { useTags: false, featuredBonus: false, srcPenalty: -4, boost });
 
 // ── TAZELİK GUARD ──
 // Rotasyon "son 6 günde yayınlanmadı"yı önceler; ama haberler.json'da 4-7 ay eski (yüksek yerel
@@ -188,7 +257,10 @@ async function main() {
   const items = (data.items || []).filter(it => it.title);
   if (!items.length) { console.warn('⚠ Haber yok — editöryal atlandı.'); return; }
 
-  const rankedRaw = items.map(it => ({ it, s: score(it) + freshBonus(it.date) }))
+  // 2. beyin engagement boost yükle (graceful: dosya yoksa null → davranış değişmez)
+  const engBoost = await loadEngagementBoost();
+
+  const rankedRaw = items.map(it => ({ it, s: score(it, engBoost) + freshBonus(it.date) }))
     .sort((a, b) => b.s - a.s || (b.it.date || '').localeCompare(a.it.date || ''))
     .map(r => r.it);
   const collapsed = collapseDupes(rankedRaw);       // near-duplicate hikayeleri tek'e indir

@@ -307,8 +307,18 @@ async function main() {
   // Idempotent: zaten işaretliyse tekrar eklemez (şablona sonradan gömülse de çift olmaz).
   if (!/name="ai-generated"/.test(html)) {
     const { metaTags, footerHtml } = aiContentMeta({ lang });
-    html = /<\/head>/i.test(html) ? html.replace(/<\/head>/i, `${metaTags}\n</head>`) : `${metaTags}\n${html}`;
-    html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, `${footerHtml}\n</body>`) : `${html}\n${footerHtml}`;
+    const hasHead = /<\/head>/i.test(html);
+    const hasBody = /<\/body>/i.test(html);
+    if (hasHead && hasBody) {
+      html = html.replace(/<\/head>/i, `${metaTags}\n</head>`).replace(/<\/body>/i, `${footerHtml}\n</body>`);
+    } else if (!hasHead && !hasBody) {
+      // Her iki tag da eksik: minimal geçerli HTML iskeleti oluştur (fallback yolu)
+      html = `<!doctype html><html><head>${metaTags}</head><body>${html}${footerHtml}</body></html>`;
+    } else {
+      // Tek tag eksik: mevcut davranışı koru (kısmi enjeksiyon)
+      html = hasHead ? html.replace(/<\/head>/i, `${metaTags}\n</head>`) : `${metaTags}\n${html}`;
+      html = hasBody ? html.replace(/<\/body>/i, `${footerHtml}\n</body>`) : `${html}\n${footerHtml}`;
+    }
   }
 
   const outDir = join(ROOT, 'archive', today);

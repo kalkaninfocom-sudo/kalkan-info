@@ -50,7 +50,7 @@
   "Kapasite": { "en": "Capacity", "de": "Kapazität", "ru": "Вместимость", "fr": "Capacité" },
   "Özellikler": { "en": "Features", "de": "Ausstattung", "ru": "Особенности", "fr": "Caractéristiques" },
   "Adınız Soyadınız": { "en": "Your Full Name", "de": "Ihr Vor- und Nachname", "ru": "Ваше имя и фамилия", "fr": "Vos nom et prénom" },
-  "Kişi sayısı": { "en": "Number of guests", "de": "Anzahl der Gäste", "ru": "Количество человек", "fr": "Nombre de personnes" },
+  "Kişi sayısı": { "en": "Number of guests", "de": "Anzahl der Gäste", "ru": "Количество человek", "fr": "Nombre de personnes" },
   "Not (özel istek, alerji, vs.)": { "en": "Note (special request, allergy, etc.)", "de": "Anmerkung (Sonderwunsch, Allergie usw.)", "ru": "Примечание (особые пожелания, аллергия и т. д.)", "fr": "Note (demande spéciale, allergie, etc.)" },
   "Tam Menüyü İndir (PDF)": { "en": "Download Full Menu (PDF)", "de": "Vollständige Speisekarte herunterladen (PDF)", "ru": "Скачать полное меню (PDF)", "fr": "Télécharger le menu complet (PDF)" },
   "Tam menü için yandaki PDF butonuna tıklayın.": { "en": "Click the PDF button for the full menu.", "de": "Klicken Sie für die vollständige Speisekarte auf die PDF-Schaltfläche.", "ru": "Нажмите кнопку PDF для полного меню.", "fr": "Cliquez sur le bouton PDF pour le menu complet." },
@@ -79,5 +79,29 @@
   "Filtrele": { "en": "Filter", "de": "Filtern", "ru": "Фильтр", "fr": "Filtrer" },
   "Tümü": { "en": "All", "de": "Alle", "ru": "Все", "fr": "Tout" },
   "Kapat": { "en": "Close", "de": "Schließen", "ru": "Закрыть", "fr": "Fermer" },
-  "Geri": { "en": "Back", "de": "Zurück", "ru": "Назад", "fr": "Retour" }
+  "Geri": { "en": "Back", "de": "Zurück", "ru": "Назад", "fr": "Retour" },
+  "__keep": {
+    "keep": [
+      "Kalkan İnfo",
+      "Kalkan Info",
+      "Kalkan Today",
+      "Kalkan Today Editor",
+      "Kalkan",
+      "Kaş",
+      "Patara",
+      "Kaputaş",
+      "Saklıkent",
+      "Kekova",
+      "İslamlar",
+      "Bezirgan",
+      "Çukurbağ",
+      "Demre",
+      "Likya",
+      "Letoon",
+      "Xanthos",
+      "Ksanthos"
+    ],
+    "venue_names": [],
+    "notes": "Terms in 'keep' must appear verbatim in every translation — never transliterated, localised, or omitted. 'venue_names' is a caller-populated slot for business/venue proper nouns that should also be kept as-is. Add new place names here rather than hardcoding them in prompts."
+  }
 }
