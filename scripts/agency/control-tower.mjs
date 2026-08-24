@@ -107,6 +107,20 @@ async function sectionGazete() {
   };
 }
 
+// ── ÜRETİM HATLARI FİLOSU — line-heartbeat reuse (Katman 2) ─────────────────
+// "Genel yayın yönetmeni" görünümü: tüm işletme hatları (gazete/haber/brifing/reel/bülten/ilan)
+// tek bakışta taze mi durdu mu. Registry: data/agency/production-lines.json. Salt-okuma.
+async function sectionLines() {
+  const { runLineProofs } = await import(pathToFileURL(join(ROOT, 'scripts', 'agency', 'line-heartbeat.mjs')).href);
+  const results = await runLineProofs(); // [{title,cadence,ok,critical,detail}]
+  const icon = (c) => (c.ok ? '✅' : c.critical ? '🔴' : '🟡');
+  return {
+    title: '🏭 ÜRETİM HATLARI (filo)',
+    lines: results.map((r) => `  ${icon(r)} ${r.title} — ${r.detail}`),
+    flag: results.some((r) => !r.ok && r.critical) ? 'crit' : results.some((r) => !r.ok) ? 'warn' : 'ok',
+  };
+}
+
 // ── 3) INTELLIGENCE / TOPICS + 4) DUPLICATES (content-ideas.json) ───────────
 function readIdeas() {
   const ci = readJson('data/agency/content-ideas.json');
@@ -308,8 +322,10 @@ async function build() {
   const priorities = safe(() => sectionPriorities(ctx), "🎯 TODAY'S PRIORITIES");
   // Gazete: her sabahki sayı + baskı provası tek karar ekranında (ajansAI orkestrasyon görünürlüğü).
   const gazete = await (async () => { try { return await sectionGazete(); } catch (e) { return UNAVAIL('📰 GAZETE', e.message); } })();
+  // Filo: tüm üretim hatları taze mi (genel yayın yönetmeni görünümü — Katman 2).
+  const fleet = await (async () => { try { return await sectionLines(); } catch (e) { return UNAVAIL('🏭 ÜRETİM HATLARI', e.message); } })();
 
-  const coreSections = [health, data, gazete, topics, dups, quality, content, sales, priorities].filter(Boolean);
+  const coreSections = [health, data, gazete, fleet, topics, dups, quality, content, sales, priorities].filter(Boolean);
   const actions = sectionActions(coreSections, ctx);
   const sections = [...coreSections, actions];
 
