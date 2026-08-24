@@ -6,7 +6,7 @@
  * (koordinat, foto, detay sayfası, kategori) zenginleştirir.
  *
  * Kullanım:
- *   import { eventsForDate, eventsForWeek } from './events-lib.mjs';
+ *   import { eventsForDate, eventsForWeek, todayIso, isWeekStale } from './events-lib.mjs';
  *   const bugun = await eventsForDate('2026-06-28');
  */
 
@@ -18,6 +18,39 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA = join(__dirname, '..', 'data');
 
 const DAYS_TR = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+
+/**
+ * Bugünün ISO tarihini Europe/Istanbul saat dilimine göre döner (YYYY-MM-DD).
+ * Date API'si yerel saat dilimine bağlıdır; sunucu UTC'de çalışıyorsa
+ * toLocaleString ile TR saatini kesin olarak alıyoruz.
+ */
+export function todayIso() {
+  try {
+    const parts = new Intl.DateTimeFormat('fr-CA', {
+      timeZone: 'Europe/Istanbul',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+    }).format(new Date());
+    return parts; // fr-CA locale YYYY-MM-DD formatı verir
+  } catch {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
+/**
+ * Verilen haftalık veri objesinin (etkinlik-haftalik.json yapısı) haftası
+ * geçmişte mi? weekEnd < bugün ise true döner.
+ * Tarih ayrıştırma hatalarında güvenli biçimde false döner (crash yok).
+ * @param {{ weekEnd?: string }} weekData
+ */
+export function isWeekStale(weekData) {
+  try {
+    if (!weekData || !weekData.weekEnd) return false;
+    const today = todayIso();
+    return weekData.weekEnd < today;
+  } catch {
+    return false;
+  }
+}
 
 export function dayNameTR(iso) {
   return DAYS_TR[new Date(iso + 'T08:00:00').getDay()];
@@ -102,8 +135,16 @@ export async function eventsForDate(iso, opts = {}) {
   const recurring = (tk.recurring || [])
     .filter(e => { const d = normalizeDay(e.day); return d === dn || /^her\s*g[üu]n$/i.test(d); })
     .map(e => ({ ...e, recurring: true, date: iso }));
+
+  // Geçmiş tarihli oneoff etkinlikleri filtrele (date < bugün → gösterme).
+  // Tarih ayrıştırma hatasında güvenli düşüş: e.date yoksa/bozuksa dahil et.
+  const today = todayIso();
   const oneoff = (tk.oneoff || [])
-    .filter(e => e.date === iso)
+    .filter(e => {
+      if (!e.date) return false;           // tarihsiz oneoff'ları atla
+      if (e.date < today) return false;    // geçmiş tarih → filtrele
+      return e.date === iso;               // bugün veya gelecekteki eşleşme
+    })
     .map(e => ({ ...e, recurring: false }));
 
   let all = [...oneoff, ...recurring];

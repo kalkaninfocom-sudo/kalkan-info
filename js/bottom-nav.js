@@ -263,8 +263,16 @@
     });
   }
 
+  function _isAuthPage() {
+    var p = location.pathname.split('/').pop() || '';
+    return /^(login|register|profil)\.html$/i.test(p);
+  }
+
   function _showInstallStrip() {
     try { if (sessionStorage.getItem('ki-bn-install-dismissed')) return; } catch(_) {}
+    if (_isAuthPage()) return;
+    // Don't show while consent banner is open
+    if (document.body.classList.contains('ki-consent-open')) return;
     document.getElementById('ki-bn-install')?.classList.add('show');
   }
   function _hideInstallStrip() {

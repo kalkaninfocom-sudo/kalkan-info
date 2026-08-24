@@ -54,15 +54,47 @@ window.__kalkan_install_mounted = true;
     });
   }
 
+  // ── Auth pages: never show install prompt on login / register / profil ───
+  function isAuthPage() {
+    var p = location.pathname.split('/').pop() || '';
+    return /^(login|register|profil)\.html$/i.test(p);
+  }
+
+  // ── Consent check: don't show until user has accepted/rejected consent ───
+  function hasConsent() {
+    try { return !!localStorage.getItem('ki-consent-v1'); } catch(e) { return false; }
+  }
+
+  // ── Show install only after consent resolved + 30s engagement ────────────
+  function maybeShowInstall(showFn) {
+    if (isAuthPage() || isStandalone() || isDismissed()) return;
+    if (hasConsent()) {
+      // Consent already given: wait 30s engagement before prompting
+      setTimeout(showFn, 30000);
+    } else {
+      // Consent pending: wait for it to resolve, then wait another 30s
+      var resolved = false;
+      function onConsent() {
+        if (resolved) return;
+        resolved = true;
+        document.removeEventListener('ki-consent-resolved', onConsent);
+        setTimeout(showFn, 30000);
+      }
+      document.addEventListener('ki-consent-resolved', onConsent);
+      // Fallback: if consent event never fires (e.g. dismissed via X), check after 60s
+      setTimeout(function() {
+        if (!resolved && hasConsent()) onConsent();
+      }, 60000);
+    }
+  }
+
   // ── Android / Chrome — beforeinstallprompt ────────────────────────────────
   let deferredPrompt = null;
 
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    if (!isStandalone() && !isDismissed()) {
-      showInstallBanner();
-    }
+    maybeShowInstall(showInstallBanner);
   });
 
   window.addEventListener('appinstalled', () => {
@@ -71,10 +103,10 @@ window.__kalkan_install_mounted = true;
   });
 
   // ── iOS Safari — show instructions if not standalone ─────────────────────
-  if (isIOS() && !isStandalone() && !isDismissed()) {
-    // Delay slightly so DOM is ready
+  if (isIOS() && !isAuthPage() && !isStandalone() && !isDismissed()) {
+    // Delay until DOM ready then gate behind consent + engagement
     window.addEventListener('DOMContentLoaded', () => {
-      showIOSBanner();
+      maybeShowInstall(showIOSBanner);
     });
   }
 
