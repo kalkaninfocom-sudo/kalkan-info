@@ -31,7 +31,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -95,6 +95,10 @@ jobs:
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
           GOOGLE_GEMINI_API_KEY: ${{ secrets.GOOGLE_GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # i18n çeviri HIZI: gemini önce (güvenilir/cömert), yalnız 2 sağlayıcı → degrade free-tier'da
+          # alan başına 60sn×ölü-sağlayıcı israfını sınırla. Cold-cache run 45dk'yı aşıp timeout oluyordu;
+          # kök: i18n her alanı her sağlayıcıda 60sn dener, 3 ölü sağlayıcı = 3dk/alan × 40 alan = 30dk+.
+          I18N_LLM_ORDER: gemini,groq
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
 
       # KRİTİK SIRA: Gazete web'i (HTML+kart) ÜRETİLDİ → HEMEN commit+push (YAYINLA) ve heartbeat.
