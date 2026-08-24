@@ -31,7 +31,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -97,6 +97,31 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/agency/gazete-approval.mjs ${{ github.event.inputs.date }}
 
+      # KRİTİK SIRA: Gazete web'i (HTML+kart) ÜRETİLDİ → HEMEN commit+push (YAYINLA) ve heartbeat.
+      # Yavaş reel'lerden ÖNCE. Eski sırada reel adımı 20dk job-timeout'a takılıp job'ı CANCEL edince
+      # commit adımı SKIP oluyordu → gazete üretilmesine rağmen 3 gün YAYINLANMADI (08-22..24). Artık reel
+      # ne olursa olsun gazete önce yayında.
+      - name: Commit & push arşiv (web canlı)
+        run: |
+          git config user.name "kalkan-info-bot"
+          git config user.email "bot@kalkaninfo.com"
+          git add newspaper/archive data/newspaper-index.json data/gazete-archive data/gazete-history.json data/i18n-cache
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok."
+            exit 0
+          fi
+          git commit -m "content(gazete): günlük sayı $(TZ=Europe/Istanbul date +%Y-%m-%d) [auto]"
+          git pull --rebase --autostash origin main || true
+          git push || echo "push atlandi (non-fatal)"
+
+      # G1 HEARTBEAT: bugünkü sayı GERÇEKTEN üretildi + yayınlandı mı doğrula. Reel'lerden ÖNCE → her zaman çalışır.
+      - name: Heartbeat — bugünkü sayı çıktı mı?
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          HEALTHCHECK_URL: ${{ secrets.GAZETE_HEALTHCHECK_URL }}
+        run: node scripts/agency/gazete-heartbeat.mjs --verbose
+
       # Faz 1.5: Reel için bayat onay satırını temizle (gazete-reel-<tarih>).
       # Gece üretilen + telegram_message_id dolu satır varsa siler → reel-approval taze onay gönderir.
       - name: Reel bayat onay satırını temizle
@@ -116,6 +141,8 @@ jobs:
       # Faz 1.5: Claude-tasarımı günlük gazete reel'i (aynı editöryal içerikten) → Supabase → Telegram video onayı.
       # Non-fatal: Remotion render CI'da patlarsa gazete akışı bozulmasın (|| echo).
       - name: Günlük gazete reel'i üret + video onayı
+        continue-on-error: true   # reel patlarsa/asılırsa job YEŞİL kalır (gazete zaten yayında)
+        timeout-minutes: 10       # asılı Remotion render'ı kes (job'ı 30dk cap'e götürme)
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
@@ -150,6 +177,8 @@ jobs:
       # build-gazete-reel-en içeride gazete-editorial-en.mjs'i çağırıp gazete-today.en.json üretir (cheap-llm çeviri).
       # Non-fatal: EN çeviri/Remotion CI'da patlarsa TR gazete akışı etkilenmez (|| echo).
       - name: İngilizce gazete reel'i üret + video onayı
+        continue-on-error: true
+        timeout-minutes: 10
         env:
           CHEAP_LLM_ORDER: groq,cerebras,nvidia,gemini,claude
           NVIDIA_MODEL: meta/llama-3.1-8b-instruct
@@ -164,26 +193,3 @@ jobs:
           TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
           SITE_BASE: https://www.kalkaninfo.com
         run: node scripts/agency/reel-approval-en.mjs || echo "EN reel adımı atlandı (gazete akışı etkilenmez)"
-
-      - name: Commit & push arşiv (web canlı)
-        run: |
-          git config user.name "kalkan-info-bot"
-          git config user.email "bot@kalkaninfo.com"
-          git add newspaper/archive data/newspaper-index.json data/gazete-archive data/gazete-history.json data/i18n-cache
-          if git diff --cached --quiet; then
-            echo "Değişiklik yok."
-            exit 0
-          fi
-          git commit -m "content(gazete): günlük sayı $(TZ=Europe/Istanbul date +%Y-%m-%d) [auto]"
-          git pull --rebase --autostash origin main || true
-          git push || echo "push atlandi (non-fatal)"
-
-      # G1 HEARTBEAT: bugünkü sayı GERÇEKTEN üretildi mi doğrula (varlık kontrolü).
-      # Eksikse Telegram alarm + exit 1 (job kırmızı = ikinci sinyal). Push'tan SONRA → yayını bloklamaz.
-      # HEALTHCHECK_URL varsa dış dead-man's-switch'i pingler (workflow HİÇ çalışmazsa o servis alarm verir).
-      - name: Heartbeat — bugünkü sayı çıktı mı?
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
-          HEALTHCHECK_URL: ${{ secrets.GAZETE_HEALTHCHECK_URL }}
-        run: node scripts/agency/gazete-heartbeat.mjs --verbose
