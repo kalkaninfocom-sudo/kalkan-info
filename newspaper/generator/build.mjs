@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { buildData as buildRealData, buildMagazineData } from './sources.mjs';
 import { translateFields, LANGS } from '../../lib/i18n-translate.mjs';
 import { aiContentMeta } from '../../lib/reklam-uyum.mjs';
+import { createCache } from '../../lib/i18n-cache.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -108,45 +109,64 @@ function dayLocale(iso, l) {
 // Her alan AYRI + PARALEL çevrilir (tek dev JSON batch'i groq json-mode'u 400'e düşürüyor;
 // HTML-liste'ler uzun → maxTokens taşıyor). Küçük tek-alan JSON'ları güvenilir. Başarısız alan TR kalır.
 const I18N_CTX = 'Günlük gazete web bölümü — HTML etiketlerini AYNEN koru, sadece metni çevir';
+// Sayfanın "gerçekten çevrildi" sayılması için gereken kritik metin alanları (eskalasyon + gate hedefi).
+const I18N_CRITICAL = new Set(['lead_headline', 'lead_deck', 'feature_title', 'feature_body', 'col1_title', 'col1_body', 'col2_title', 'col2_body', 'col3_title', 'col3_body']);
 
-async function translateOne(k, data, l) {
-  const t = await translateFields({ [k]: data[k] }, l, { context: I18N_CTX, maxTokens: 1400 }).catch(() => null);
-  // Çeviri başarılı SAYILSIN: string, dolu VE kaynaktan farklı (aynen dönen = çevrilmemiş/echo → başarısız say).
+// Bir alanı çevir (opsiyonel sağlayıcı sırası = eskalasyon). Echo/boş → null (başarısız).
+async function translateOne(k, data, l, order) {
+  const t = await translateFields({ [k]: data[k] }, l, { context: I18N_CTX, maxTokens: 1400, ...(order ? { order } : {}) }).catch(() => null);
   return (t && typeof t[k] === 'string' && t[k].trim() && t[k] !== data[k]) ? t[k] : null;
 }
 
+// SAĞLAM 5-dil çeviri: KALICI CACHE → throttle → sıralı retry → kritik eskalasyon.
+// "Hep ya da hiç" free-tier çöküşünü bitirir: her alan bir kez çevrilince git'e yazılır, bir daha çevrilmez;
+// kısmi ilerleme birikir; her sayı yalnız YENİ haber metnini çevirir (yük ~%80 düşer → rate-limit çökmez).
 async function translateWebData(data, l) {
   const keys = TRANSLATABLE.filter((k) => data[k] && String(data[k]).trim());
   if (!keys.length) return data;
+  const cache = createCache(l);
   const out = {};
-  const failed = [];
 
-  // Faz 1 — THROTTLED paralel. Eskiden ~20 alan AYNI ANDA groq/cerebras'a gidiyordu (Promise.all) →
-  // free-tier burst → 429 → tüm dil TR'ye düşüyor, sayfa yine "l" diye yayınlanıyordu
-  // (Berkay: "5 dilde görünüyor ama haber TR"). Eşzamanlılığı 4'e kısmak burst'ü keser.
+  // Faz 0 — KALICI CACHE: önceden çevrilmiş alanları LLM'siz doldur (UI/tekrar eden metin ömür boyu 1 kez).
+  const pending = [];
+  for (const k of keys) { const c = cache.get(data[k]); if (c !== null) out[k] = c; else pending.push(k); }
+  if (cache.hits()) console.log(`   ${l}: cache ✓ ${cache.hits()}/${keys.length} alan (LLM'siz)`);
+
+  // Faz 1 — THROTTLED paralel (yalnız cache-miss). Eşzamanlılık 4 → free-tier burst'ü keser.
+  const failed = [];
   const CONC = Math.max(1, Number(process.env.I18N_CONCURRENCY || 4));
   let idx = 0;
   const worker = async () => {
-    while (idx < keys.length) {
-      const k = keys[idx++];
+    while (idx < pending.length) {
+      const k = pending[idx++];
       const v = await translateOne(k, data, l);
-      if (v !== null) out[k] = v; else failed.push(k);
+      if (v !== null) { out[k] = v; cache.set(data[k], v); } else failed.push(k);
     }
   };
-  await Promise.all(Array.from({ length: Math.min(CONC, keys.length) }, worker));
+  await Promise.all(Array.from({ length: Math.min(CONC, pending.length) }, worker));
 
-  // Faz 2 — başarısızları SIRALI + küçük gecikmeyle tekrar dene (burst yok → rate-limit penceresi yenilenir).
-  for (const k of failed.splice(0)) {
+  // Faz 2 — başarısızları SIRALI + gecikmeyle tekrar dene (burst yok → rate-limit penceresi yenilenir).
+  const stillFailed = [];
+  for (const k of failed) {
     const v = await translateOne(k, data, l);
-    if (v !== null) out[k] = v; else failed.push(k);
+    if (v !== null) { out[k] = v; cache.set(data[k], v); } else stillFailed.push(k);
     await new Promise((r) => setTimeout(r, 250));
   }
 
-  const ok = keys.length - failed.length;
-  console.log(`   ${l}: ${ok}/${keys.length} alan çevrildi${failed.length ? ' — başarısız: ' + failed.join(',') : ''}`);
-  // KRİTİK GATE: manşet çevrilmediyse sayfa aslında TR içerikli → GÜRÜLTÜLÜ uyar (sessiz TR-as-"l" yayınını bildir).
+  // Faz 3 — ESKALASYON: hâlâ başarısız KRİTİK alanları gemini-önce farklı sırayla zorla (kota tükenen sağlayıcıyı atla).
+  const finalFailed = stillFailed.filter((k) => !I18N_CRITICAL.has(k));
+  for (const k of stillFailed.filter((k) => I18N_CRITICAL.has(k))) {
+    const v = await translateOne(k, data, l, ['gemini', 'groq', 'cerebras', 'nvidia', 'claude']);
+    if (v !== null) { out[k] = v; cache.set(data[k], v); } else finalFailed.push(k);
+    await new Promise((r) => setTimeout(r, 300));
+  }
+
+  cache.flush(); // kazanımları diske yaz (git commit ile kalıcı → sonraki run/gün tekrar çevirmez)
+  const ok = keys.length - finalFailed.length;
+  console.log(`   ${l}: ${ok}/${keys.length} alan hazır${finalFailed.length ? ' — başarısız: ' + finalFailed.join(',') : ''}`);
+  // KRİTİK GATE: manşet çevrilmediyse sayfa aslında TR → GÜRÜLTÜLÜ uyar (heartbeat de yakalar).
   if (data.lead_headline && out.lead_headline === undefined) {
-    console.error(`   ⛔ ${l}: MANŞET çevrilemedi → sayfa TR içerikle "${l}" olarak çıkıyor! (rate-limit/kota → I18N_LLM_ORDER/anahtarları kontrol et)`);
+    console.error(`   ⛔ ${l}: MANŞET çevrilemedi → sayfa TR içerikle "${l}" çıkıyor! (I18N_LLM_ORDER/anahtar/kota kontrol)`);
   }
   return { ...data, ...out };
 }
