@@ -18,12 +18,17 @@ const SEO_PAGES = [
   'index.html',
   'plajlar.html',
   'restoranlar.html',
+  'oteller.html',
   'villalar.html',
   'turlar.html',
   'hizmetler.html',
   'haberler.html',
   'aktiviteler.html',
   'antik-kentler.html',
+  'dolmus.html',
+  'pazar-yeri.html',
+  'pazarlar.html',
+  'rehber.html',
   'ilan-ver.html',
   'ilanlar.html',
   'hakkimizda.html',
@@ -101,21 +106,33 @@ const HOMEPAGE_LOCAL_BIZ_JSONLD = `<script type="application/ld+json">${JSON.str
   'areaServed': ['Kalkan','Kaş','Patara','Antalya']
 })}</script>`;
 
+// Temiz yol (cleanUrls:true → .html YOK, trailingSlash:false → sonda slash yok). index → "".
+function cleanPath(relPath) {
+  if (relPath === 'index.html') return '';
+  return relPath.replace(/\.html$/, '');
+}
+// Dil URL'i — DİZİN şeması (/en/<yol>), pre-render edilmiş dil sayfalarıyla RECIPROCAL.
+function langUrl(l, relPath) {
+  const p = cleanPath(relPath);
+  if (l === 'tr') return p === '' ? `${SITE}/` : `${SITE}/${p}`;
+  return p === '' ? `${SITE}/${l}/` : `${SITE}/${l}/${p}`;
+}
+
 function pickHrefForPath(relPath) {
-  // index.html -> https://kalkaninfo.com/ ; subpages -> full path
-  if (relPath === 'index.html') return SITE + '/';
-  return `${SITE}/${relPath}`;
+  // canonical/tr = temiz URL (index -> /, altsayfa -> /yol, .html'siz)
+  return langUrl('tr', relPath);
 }
 
 function buildHreflangBlockExact(relPath) {
-  const base = pickHrefForPath(relPath);
+  // DÜZELTME (denetim C1): eski `?lang=xx` query şeması non-reciprocal'di → Google hreflang'i yok
+  // sayıyordu. Artık dil dizinleri (/en/) ile birebir uyumlu, .html'siz, x-default = TR.
   return [
-    `<link rel="alternate" hreflang="tr" href="${base}">`,
-    `<link rel="alternate" hreflang="en" href="${base}${base.includes('?') ? '&' : '?'}lang=en">`,
-    `<link rel="alternate" hreflang="de" href="${base}${base.includes('?') ? '&' : '?'}lang=de">`,
-    `<link rel="alternate" hreflang="ru" href="${base}${base.includes('?') ? '&' : '?'}lang=ru">`,
-    `<link rel="alternate" hreflang="fr" href="${base}${base.includes('?') ? '&' : '?'}lang=fr">`,
-    `<link rel="alternate" hreflang="x-default" href="${base}">`,
+    `<link rel="alternate" hreflang="tr" href="${langUrl('tr', relPath)}">`,
+    `<link rel="alternate" hreflang="en" href="${langUrl('en', relPath)}">`,
+    `<link rel="alternate" hreflang="de" href="${langUrl('de', relPath)}">`,
+    `<link rel="alternate" hreflang="ru" href="${langUrl('ru', relPath)}">`,
+    `<link rel="alternate" hreflang="fr" href="${langUrl('fr', relPath)}">`,
+    `<link rel="alternate" hreflang="x-default" href="${langUrl('tr', relPath)}">`,
   ].join('\n');
 }
 
@@ -154,8 +171,8 @@ async function processPage(relPath) {
 
   // 2. hreflang replacement — remove existing hreflang lines, insert canonical block
   const hreflangBlock = buildHreflangBlockExact(relPath);
-  const expectedTr = `hreflang="tr" href="${pickHrefForPath(relPath)}"`;
-  const expectedEn = `hreflang="en" href="${pickHrefForPath(relPath)}${pickHrefForPath(relPath).includes('?') ? '&' : '?'}lang=en"`;
+  const expectedTr = `hreflang="tr" href="${langUrl('tr', relPath)}"`;
+  const expectedEn = `hreflang="en" href="${langUrl('en', relPath)}"`;
   const alreadyCorrect = html.includes(expectedTr) && html.includes(expectedEn);
   if (/hreflang=/i.test(html)) {
     if (!alreadyCorrect) {
