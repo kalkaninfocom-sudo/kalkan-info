@@ -1,0 +1,20 @@
+{
+  "_doc": "İşletme sistemleri kaydı (Katman 2). Her satır bir üretim hattı; line-heartbeat.mjs bunları prova eder, Control Tower gösterir. Yeni sistem eklemek = buraya satır. proof:'gazete-heartbeat' derin prova; signal.file tazelik; signal.supabasePack efemeral çıktı (anahtar yoksa graceful atlanır).",
+  "lines": [
+    { "key": "gazete", "title": "📰 Günlük Gazete", "cadence": "günlük 07:45", "proof": "gazete-heartbeat", "critical": true },
+    { "key": "haber", "title": "📡 Haber akışı (RSS)", "cadence": "6 saatte bir", "critical": true, "signal": { "file": "data/haberler.json", "fields": ["updated", "generated_at"], "maxAgeDays": 0.75 } },
+    { "key": "brifing", "title": "🌅 Sabah brifingi", "cadence": "günlük 07:00", "critical": true, "signal": { "file": "data/agency/content-ideas.json", "fields": ["generated_at", "date"], "maxAgeDays": 1.5 } },
+    { "key": "restoran-reel", "title": "🍽️ Restoran reel", "cadence": "haftalık Salı", "critical": false, "signal": { "supabasePack": "restoran-reel", "maxAgeDays": 8 } },
+    { "key": "antik-reel", "title": "🏛️ Antik kent reel", "cadence": "haftalık Çarşamba", "critical": false, "signal": { "supabasePack": "antik-reel", "maxAgeDays": 8 } },
+    { "key": "plaj-reel", "title": "🏖️ Plaj reel", "cadence": "haftalık Perşembe", "critical": false, "signal": { "supabasePack": "plaj-reel", "maxAgeDays": 8 } },
+    { "key": "villa-reel", "title": "🏠 Villa reel", "cadence": "haftalık Cumartesi", "critical": false, "signal": { "supabasePack": "villa-reel", "maxAgeDays": 8 } },
+    { "key": "bulten", "title": "🗞️ Haftalık bülten", "cadence": "haftalık Pazar", "critical": false, "signal": { "supabasePack": "bulten", "maxAgeDays": 8 } },
+    { "key": "ilan", "title": "📢 Haftalık ilan", "cadence": "haftalık Pazartesi", "critical": false, "signal": { "supabasePack": "ilan", "maxAgeDays": 8 } }
+  ],
+  "planned": [
+    { "key": "envanter", "title": "🏠 Envanter/İlan İşleme", "status": "planlı", "note": "villa/otel/mekan → doğrula→zenginleştir→5-dil ilan (Airbnb listings)" },
+    { "key": "musaitlik", "title": "📅 Müsaitlik & Fiyat Motoru", "status": "planlı", "note": "takvim senkron + dinamik fiyat + çift-rezervasyon önleme (en kritik eksik)" },
+    { "key": "rezervasyon", "title": "💳 Rezervasyon & Ödeme", "status": "planlı (iyzico bekliyor)", "note": "talep→müsaitlik→ödeme/escrow→onay→sözleşme" },
+    { "key": "guven", "title": "🛡️ Güven & Doğrulama", "status": "planlı", "note": "kimlik + ilan doğrulama + gerçek yorum + dispute" }
+  ]
+}
