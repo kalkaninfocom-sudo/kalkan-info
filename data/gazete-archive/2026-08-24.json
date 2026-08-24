@@ -1,0 +1,78 @@
+{
+  "date": "2026-08-24",
+  "generated_at": "2026-08-24T15:54:20.945Z",
+  "provider": "nvidia",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-24",
+    "cumhurbaskani-erdogan-dan-firat-kalkani-harekati-paylasimi-2026-08-24",
+    "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
+    "akulku-zi-raat-ve-halk-bankasi-kas-ve-kalkan-subeleri-ni-zi-yaret-etti-oz-finans-2026-08-18"
+  ],
+  "lead_headline": "Kaş'ta Etkinlik",
+  "lead_deck": "",
+  "lead_body": [
+    "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi."
+  ],
+  "lead_byline": "Kalkan Today Editör · Anadolu Ajansı",
+  "lead_source": "Anadolu Ajansı",
+  "lead_source_url": "https://www.aa.com.tr/tr/gundem/cumhurbaskani-erdogandan-firat-kalkani-harekati-paylasimi/4035735",
+  "lead_date": "2026-08-24",
+  "lead_image": "https://cdnuploads.aa.com.tr/uploads/Contents/2026/08/24/thumbs_b_c_47c88406047484feba8ebb95f2f2a6e8.jpg",
+  "lead_caption": "Foto: Anadolu Ajansı · Belediye",
+  "col1_title": "Kaş'ta Etkinlik",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "Kaş'ta 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "col3_title": "Mavi Kalkan",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Ege ve Akdeniz'e mavi kalkan olarak bilinen Kalkan, tatilciler için ideal bir destinasyon.",
+  "magazine_lead_headline": "Kalkan'da Gece Hayatı",
+  "magazine_lead_body": [
+    "Kalkan'da gece hayatı, müzik ve dansın keyfini çıkarın. Kalkan'da birçok bar ve kulüp, gece hayatı severlere keyifli bir deneyim sunuyor."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-24T15:54:24.128Z",
+    "roles": {
+      "muhabir": "nvidia",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET reddedildi (doğrulayıcı: sansasyonel dil) → \"col1\" manşete alındı (şef kararı)",
+      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı"
+    ],
+    "approved_slots": [
+      "col1",
+      "col3"
+    ]
+  }
+}
