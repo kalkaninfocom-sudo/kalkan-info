@@ -74,15 +74,17 @@ export function checkTodayIssue(date = today) {
     pages.push(`newspaper/archive/${date}/${type}${l ? '.' + l : ''}.html`);
   }
   const leaks = [], broken = [];
+  let scanned = 0;
   for (const rel of pages) {
-    let html; try { html = readFileSync(join(ROOT, rel), 'utf8'); } catch { continue; } // yoksa üstteki kontrol yakalar
+    let html; try { html = readFileSync(join(ROOT, rel), 'utf8'); } catch { continue; } // yoksa üstteki varlık kontrolü yakalar
+    scanned++;
     if (/\{\{\s*\w+\s*\}\}/.test(html)) leaks.push(rel.split('/').pop());           // doldurulmamış placeholder
     if (!/<\/html>/i.test(html) || html.length < 2000) broken.push(rel.split('/').pop()); // gövdesiz/yarım render
   }
   checks.push({ name: 'Baskı provası', ok: leaks.length === 0 && broken.length === 0, critical: true,
     detail: (leaks.length || broken.length)
       ? `${leaks.length ? 'dizgi sızıntısı {{}}: ' + leaks.join(',') : ''}${leaks.length && broken.length ? ' · ' : ''}${broken.length ? 'kırık/eksik sayfa: ' + broken.join(',') : ''}`
-      : `${pages.length} sayfa temiz (placeholder/kırık yok)` });
+      : (scanned ? `${scanned}/${pages.length} sayfa temiz (placeholder/kırık yok)` : 'sayfa yok — prova için üretim bekleniyor') });
 
   return checks;
 }
