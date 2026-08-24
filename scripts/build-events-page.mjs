@@ -18,7 +18,7 @@
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { eventsForWeek } from './events-lib.mjs';
+import { eventsForWeek, todayIso, isWeekStale } from './events-lib.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -183,6 +183,25 @@ function daySection(day, isActive) {
 }
 
 /* ----------------------------- SAYFA ----------------------------- */
+function emptyStateHtml() {
+  return `
+  <section class="py-14 text-center">
+    <div class="inline-flex flex-col items-center gap-4 bg-white rounded-2xl shadow px-8 py-10 max-w-md mx-auto">
+      <span class="text-4xl" aria-hidden="true">🎶</span>
+      <h2 class="font-display font-extrabold text-xl text-sea-900">Şu an planlı etkinlik yok</h2>
+      <p class="text-sea-600/80 text-sm leading-relaxed">
+        Bu hafta için henüz doğrulanmış etkinlik bulunmuyor.<br>
+        Güncel program ve gece hayatı için bizi takip edin.
+      </p>
+      <a href="https://www.instagram.com/kalkan.info/" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-xl font-display font-bold text-sm text-white transition"
+         style="background:linear-gradient(135deg,#e89812 0%,#c97b09 100%);">
+        Instagram'da Takip Et
+      </a>
+    </div>
+  </section>`;
+}
+
 function pageHtml(week, payload, featured) {
   const totalEvents = week.reduce((n, d) => n + d.events.length, 0);
   const weekStart = fmtDateTR(week[0].date);
@@ -433,6 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="text-xs text-sea-500">— gün seç</span>
     </div>
 
+    ${totalEvents === 0 ? emptyStateHtml() : `
     <!-- yatay gün seçici -->
     <div class="evt-days" role="tablist" aria-label="Gün seçimi">
       ${dayPills}
@@ -452,6 +472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 border border-amber-300 rounded-full px-1.5 py-0.5 shrink-0">Taslak</span>
       rozetli etkinlikler henüz doğrulanmadı; saat/mekan değişebilir.
     </p>
+    `}
   </section>
 
   <!-- MEKAN HARİTASI (katlanır, ikincil) -->
@@ -532,13 +553,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var ICONS = ${JSON.stringify(Object.fromEntries(Object.entries(TYPE_STYLE).map(([k, v]) => [k, v.icon])))};
   var KALKAN = [${KALKAN_CENTER.lat}, ${KALKAN_CENTER.lng}];
 
-  // Veriyi statik dosyadan çek; başarısız olursa gömülü JSON'a düş
+  // Veriyi statik dosyadan çek; başarısız olursa gömülü JSON'a düş.
+  // Ek guard: hafta geçmişte ise (weekEnd < bugün) null döner → harita boş kalır.
+  function todayIsoClient(){
+    try {
+      return new Intl.DateTimeFormat('fr-CA',{timeZone:'Europe/Istanbul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    } catch(e){ return new Date().toISOString().slice(0,10); }
+  }
+  function isStale(data){
+    try { return data && data.weekEnd && data.weekEnd < todayIsoClient(); }
+    catch(e){ return false; }
+  }
   function loadData(){
     return fetch('/data/etkinlik-haftalik.json', {cache:'no-cache'})
       .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(data){ return isStale(data) ? null : data; })
       .catch(function(){
-        try { return JSON.parse(document.getElementById('evt-data').textContent); }
-        catch(e){ return null; }
+        try {
+          var d = JSON.parse(document.getElementById('evt-data').textContent);
+          return isStale(d) ? null : d;
+        } catch(e){ return null; }
       });
   }
 
@@ -654,16 +688,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 
 /* ----------------------------- ÇALIŞTIR ----------------------------- */
-const refIso = process.argv[2] || new Date().toISOString().slice(0, 10);
+const refIso = process.argv[2] || todayIso();
 const week = await eventsForWeek(refIso);
 
 // Yaklaşan öne çıkanlar: bu haftanın DIŞINDA, önümüzdeki 21 gün içindeki DOĞRULANMIŞ tarihli (oneoff) etkinlikler.
+// Güvenli: tarih ayrıştırma hatasında atla, geçmiş tarihli oneoff'ları asla gösterme.
 const weekEndIso = week[6].date;
+const todayStr = todayIso();
 const horizon = new Date(week[6].date + 'T00:00:00');
 horizon.setDate(horizon.getDate() + 21);
 const cal = JSON.parse(await readFile(join(ROOT, 'data', 'etkinlik-takvimi.json'), 'utf8'));
 const featured = (cal.oneoff || [])
-  .filter((e) => e.verified && e.date > weekEndIso && new Date(e.date + 'T00:00:00') <= horizon)
+  .filter((e) => {
+    if (!e.verified || !e.date) return false;
+    if (e.date < todayStr) return false;             // geçmiş tarih → asla gösterme
+    if (e.date <= weekEndIso) return false;           // bu hafta içi → haftalık bölümde zaten var
+    try { return new Date(e.date + 'T00:00:00') <= horizon; }
+    catch { return false; }                           // bozuk tarih → güvenli düşüş
+  })
   .sort((a, b) => a.date.localeCompare(b.date));
 
 // Statik veri çıktısı (tarayıcı fetch eder)
