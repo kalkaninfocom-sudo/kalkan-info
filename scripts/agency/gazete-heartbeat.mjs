@@ -67,6 +67,23 @@ export function checkTodayIssue(date = today) {
       detail: untranslated.length ? `TR içerikle yayınlanan dil(ler): ${untranslated.join(',')} — çeviri çökmüş (rate-limit/kota)` : 'diller gerçekten çevrildi' });
   }
 
+  // 6) BASKI PROVASI — "tek harf hatası olmadan": tüm sayfalarda dizgi kusuru tara.
+  //    (a) {{placeholder}} sızıntısı = şablon dolmamış (dizgi hatası), (b) sayfa gövdesiz/kırık.
+  const pages = [];
+  for (const type of ['morning', 'magazine']) for (const l of ['', 'en', 'de', 'ru', 'fr']) {
+    pages.push(`newspaper/archive/${date}/${type}${l ? '.' + l : ''}.html`);
+  }
+  const leaks = [], broken = [];
+  for (const rel of pages) {
+    let html; try { html = readFileSync(join(ROOT, rel), 'utf8'); } catch { continue; } // yoksa üstteki kontrol yakalar
+    if (/\{\{\s*\w+\s*\}\}/.test(html)) leaks.push(rel.split('/').pop());           // doldurulmamış placeholder
+    if (!/<\/html>/i.test(html) || html.length < 2000) broken.push(rel.split('/').pop()); // gövdesiz/yarım render
+  }
+  checks.push({ name: 'Baskı provası', ok: leaks.length === 0 && broken.length === 0, critical: true,
+    detail: (leaks.length || broken.length)
+      ? `${leaks.length ? 'dizgi sızıntısı {{}}: ' + leaks.join(',') : ''}${leaks.length && broken.length ? ' · ' : ''}${broken.length ? 'kırık/eksik sayfa: ' + broken.join(',') : ''}`
+      : `${pages.length} sayfa temiz (placeholder/kırık yok)` });
+
   return checks;
 }
 
