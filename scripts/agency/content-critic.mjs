@@ -115,6 +115,7 @@ export async function runCritic(tip, icerik, opts = {}) {
     `Puanlar dürüst olsun; zayıf içeriğe yüksek puan verme. issues Türkçe olsun.`;
 
   const { cheapLLM } = await import(pathToFileURL(join(ROOT, 'lib', 'cheap-llm.mjs')).href);
+  const { routeOrder } = await import(pathToFileURL(join(ROOT, 'lib', 'llm-router.mjs')).href);
 
   let parsed = null, provider = '?';
   for (let attempt = 1; attempt <= 2 && !parsed; attempt++) {
@@ -123,7 +124,7 @@ export async function runCritic(tip, icerik, opts = {}) {
         system, json: true, maxTokens: 600, temperature: 0.2,
         // Kalite değerlendirmesi → GÜÇLÜ hakem önce (üretici≠hakem). Claude ilk sırada;
         // ucuz içeriği ucuz model onaylamasın (kör nokta). Ücretsiz fallback en sonda.
-        order: (process.env.CRITIC_LLM_ORDER || 'claude,routellm,gemini,groq,cerebras,nvidia').split(','),
+        order: (process.env.CRITIC_LLM_ORDER ? process.env.CRITIC_LLM_ORDER.split(',') : routeOrder('critic')),
         timeoutMs: 60000, verbose: opts.verbose,
       });
       parsed = parseJson(res.text);

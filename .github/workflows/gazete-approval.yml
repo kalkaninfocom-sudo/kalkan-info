@@ -169,7 +169,7 @@ jobs:
         run: |
           git config user.name "kalkan-info-bot"
           git config user.email "bot@kalkaninfo.com"
-          git add newspaper/archive data/newspaper-index.json data/gazete-archive data/gazete-history.json
+          git add newspaper/archive data/newspaper-index.json data/gazete-archive data/gazete-history.json data/i18n-cache
           if git diff --cached --quiet; then
             echo "Değişiklik yok."
             exit 0
@@ -177,3 +177,13 @@ jobs:
           git commit -m "content(gazete): günlük sayı $(TZ=Europe/Istanbul date +%Y-%m-%d) [auto]"
           git pull --rebase --autostash origin main || true
           git push || echo "push atlandi (non-fatal)"
+
+      # G1 HEARTBEAT: bugünkü sayı GERÇEKTEN üretildi mi doğrula (varlık kontrolü).
+      # Eksikse Telegram alarm + exit 1 (job kırmızı = ikinci sinyal). Push'tan SONRA → yayını bloklamaz.
+      # HEALTHCHECK_URL varsa dış dead-man's-switch'i pingler (workflow HİÇ çalışmazsa o servis alarm verir).
+      - name: Heartbeat — bugünkü sayı çıktı mı?
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+          HEALTHCHECK_URL: ${{ secrets.GAZETE_HEALTHCHECK_URL }}
+        run: node scripts/agency/gazete-heartbeat.mjs --verbose
