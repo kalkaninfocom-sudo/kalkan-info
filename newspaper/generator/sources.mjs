@@ -14,6 +14,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { newsScore } from '../../lib/news-score.mjs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { eventsForDate } from '../../scripts/events-lib.mjs';
 import { groundPhoto, pickNewsPhoto } from '../../lib/news-photos.mjs';
@@ -175,30 +176,8 @@ export async function getWeather() {
 // Kalkan-yerel skorlama: tatilci gazetesine ulusal/dünya politikası sızmasın.
 // ÇEKİRDEK yer adları (Kalkan/Kaş/Patara ekseni). 'antalya' KASITLI yok — il-geneli haber
 // çekirdek yer geçmiyorsa ön sayfayı basmasın (Berkay: "haber Antalya merkezli, Kalkan değil").
-const CORE_RX = [
-  /\bkalkan\b/i, /\bkaş\b/i, /\bpatara\b/i, /\bkaputaş\b/i, /\bletoon\b/i,
-  /\bksanthos\b/i, /\bxanthos\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
-  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i, /\bkutso\b/i, /\bdemre\b/i,
-];
-const TOURIST_CATS = { Turizm: 2, Plaj: 2, Etkinlik: 2, Kültür: 2, Belediye: 0, Gündem: 0, Hava: 1, Asayiş: -3 };
-
-function newsScore(it) {
-  const txt = `${it.title || ''} ${it.summary || ''} ${(it.tags || []).join(' ')}`;
-  let s = 0;
-  const hasCore = CORE_RX.some(rx => rx.test(txt));
-  if (hasCore) s += 3;                                   // Kalkan/Kaş/Patara ekseni → güçlü
-  else if (/\bantalya\b/i.test(txt)) s -= 4;             // yalnız Antalya (çekirdek yok) → tatilci gazetesine girmesin
-  if (/\bkalkan\b/i.test(txt)) s += 2;                   // Kalkan'ın kendisi ekstra
-  // Kaynak güveni: yerel > bölgesel > ulusal
-  const src = it.source || '';
-  if (/kalkan/i.test(src)) s += 3;
-  else if (/körfez|antalya/i.test(src)) s += 1;
-  else s -= 5; // Anadolu Ajansı vb. ulusal/dünya
-  // Tatilci kategorisi
-  s += TOURIST_CATS[it.category] ?? 0;
-  if (it.featured) s += 1;
-  return s;
-}
+// Skorlama + çekirdek yer listesi tek kaynağa taşındı: lib/news-score.mjs
+// (newsScore burada varsayılan opts ile = eski davranış: tags+featured dahil, srcPenalty -5).
 
 export async function getNews() {
   // ── EDİTÖRYAL KATMAN (Faz 1: ajans↔gazete) ── agent-yazımı bugünün dosyası varsa ÖNCE onu kullan.

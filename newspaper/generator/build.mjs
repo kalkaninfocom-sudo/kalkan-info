@@ -15,6 +15,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildData as buildRealData, buildMagazineData } from './sources.mjs';
 import { translateFields, LANGS } from '../../lib/i18n-translate.mjs';
+import { aiContentMeta } from '../../lib/reklam-uyum.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -106,19 +107,48 @@ function dayLocale(iso, l) {
 // TR data'nın çevrilebilir alanlarını hedef dile çevir.
 // Her alan AYRI + PARALEL çevrilir (tek dev JSON batch'i groq json-mode'u 400'e düşürüyor;
 // HTML-liste'ler uzun → maxTokens taşıyor). Küçük tek-alan JSON'ları güvenilir. Başarısız alan TR kalır.
+const I18N_CTX = 'Günlük gazete web bölümü — HTML etiketlerini AYNEN koru, sadece metni çevir';
+
+async function translateOne(k, data, l) {
+  const t = await translateFields({ [k]: data[k] }, l, { context: I18N_CTX, maxTokens: 1400 }).catch(() => null);
+  // Çeviri başarılı SAYILSIN: string, dolu VE kaynaktan farklı (aynen dönen = çevrilmemiş/echo → başarısız say).
+  return (t && typeof t[k] === 'string' && t[k].trim() && t[k] !== data[k]) ? t[k] : null;
+}
+
 async function translateWebData(data, l) {
   const keys = TRANSLATABLE.filter((k) => data[k] && String(data[k]).trim());
   if (!keys.length) return data;
-  let ok = 0;
-  const results = await Promise.all(keys.map(async (k) => {
-    const t = await translateFields({ [k]: data[k] }, l, {
-      context: 'Günlük gazete web bölümü — HTML etiketlerini AYNEN koru, sadece metni çevir', maxTokens: 1400,
-    });
-    if (t && typeof t[k] === 'string' && t[k].trim()) { ok++; return [k, t[k]]; }
-    return [k, data[k]]; // başarısız → TR (graceful)
-  }));
-  console.log(`   ${l}: ${ok}/${keys.length} alan çevrildi`);
-  return { ...data, ...Object.fromEntries(results) };
+  const out = {};
+  const failed = [];
+
+  // Faz 1 — THROTTLED paralel. Eskiden ~20 alan AYNI ANDA groq/cerebras'a gidiyordu (Promise.all) →
+  // free-tier burst → 429 → tüm dil TR'ye düşüyor, sayfa yine "l" diye yayınlanıyordu
+  // (Berkay: "5 dilde görünüyor ama haber TR"). Eşzamanlılığı 4'e kısmak burst'ü keser.
+  const CONC = Math.max(1, Number(process.env.I18N_CONCURRENCY || 4));
+  let idx = 0;
+  const worker = async () => {
+    while (idx < keys.length) {
+      const k = keys[idx++];
+      const v = await translateOne(k, data, l);
+      if (v !== null) out[k] = v; else failed.push(k);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(CONC, keys.length) }, worker));
+
+  // Faz 2 — başarısızları SIRALI + küçük gecikmeyle tekrar dene (burst yok → rate-limit penceresi yenilenir).
+  for (const k of failed.splice(0)) {
+    const v = await translateOne(k, data, l);
+    if (v !== null) out[k] = v; else failed.push(k);
+    await new Promise((r) => setTimeout(r, 250));
+  }
+
+  const ok = keys.length - failed.length;
+  console.log(`   ${l}: ${ok}/${keys.length} alan çevrildi${failed.length ? ' — başarısız: ' + failed.join(',') : ''}`);
+  // KRİTİK GATE: manşet çevrilmediyse sayfa aslında TR içerikli → GÜRÜLTÜLÜ uyar (sessiz TR-as-"l" yayınını bildir).
+  if (data.lead_headline && out.lead_headline === undefined) {
+    console.error(`   ⛔ ${l}: MANŞET çevrilemedi → sayfa TR içerikle "${l}" olarak çıkıyor! (rate-limit/kota → I18N_LLM_ORDER/anahtarları kontrol et)`);
+  }
+  return { ...data, ...out };
 }
 
 const DAY_TR = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
@@ -246,7 +276,16 @@ async function main() {
   data.hreflang_links = hreflangLinks(type);
   data.lang_switcher = langSwitcher(type, lang);
 
-  const html = render(tpl, data);
+  let html = render(tpl, data);
+
+  // ─── AB AI Act Madde 50: makine-okunur işaret + görünür AI ibaresi (dile göre) ───
+  // Gazete = kamuyu bilgilendirme amaçlı AI-üretimi metin → şeffaflık zorunlu (yür. 2 Ağu 2026).
+  // Idempotent: zaten işaretliyse tekrar eklemez (şablona sonradan gömülse de çift olmaz).
+  if (!/name="ai-generated"/.test(html)) {
+    const { metaTags, footerHtml } = aiContentMeta({ lang });
+    html = /<\/head>/i.test(html) ? html.replace(/<\/head>/i, `${metaTags}\n</head>`) : `${metaTags}\n${html}`;
+    html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, `${footerHtml}\n</body>`) : `${html}\n${footerHtml}`;
+  }
 
   const outDir = join(ROOT, 'archive', today);
   await ensureDir(outDir);

@@ -20,6 +20,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { groundPhoto } from '../../lib/news-photos.mjs';
+import { newsScore } from '../../lib/news-score.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -36,24 +37,11 @@ try {
 const date = process.argv.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a)) ||
   new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Istanbul' });
 
-// ── Kalkan-alaka skorlama (sources.mjs mantığının hafif kopyası) ──
-// ÇEKİRDEK yer adları — 'antalya' KASITLI yok (sources.mjs ile aynı Kalkan-merkez politikası).
-const CORE_RX = [/\bkalkan\b/i, /\bkaş\b/i, /\bpatara\b/i, /\bkaputaş\b/i, /\bletoon\b/i,
-  /\bksanthos\b/i, /\bxanthos\b/i, /\blik[iy]a\b/i, /\bsaklıkent\b/i,
-  /\bislamlar\b/i, /\bbezirgan\b/i, /\bçukurbağ\b/i, /\bkalamar\b/i, /\bdemre\b/i];
-const CATS = { Turizm: 2, Plaj: 2, Etkinlik: 2, Kültür: 2, Belediye: 0, Gündem: 0, Hava: 1, Asayiş: -3 };
-function score(it) {
-  const txt = `${it.title || ''} ${it.summary || ''}`;
-  let s = 0;
-  const hasCore = CORE_RX.some(rx => rx.test(txt));
-  if (hasCore) s += 3;
-  else if (/\bantalya\b/i.test(txt)) s -= 4;   // yalnız Antalya → manşet/sütun adayı olmasın
-  if (/\bkalkan\b/i.test(txt)) s += 2;
-  const src = it.source || '';
-  if (/kalkan/i.test(src)) s += 3; else if (/körfez|antalya/i.test(src)) s += 1; else s -= 4;
-  s += CATS[it.category] ?? 0;
-  return s;
-}
+// ── Kalkan-alaka skorlama ── skorlama + çekirdek yer listesi tek kaynağa taşındı: lib/news-score.mjs
+// Editorial'in eski davranışı opts ile BİRE BİR korunur: sadece title+summary (tags yok),
+// featured bonusu yok, ulusal kaynak cezası -4 (sources -5). Tek bilinçli fark: çekirdek listede
+// artık 'kutso' da var (Kaş Ticaret Odası yereldir — düzeltme).
+const score = (it) => newsScore(it, { useTags: false, featuredBonus: false, srcPenalty: -4 });
 
 // ── TAZELİK GUARD ──
 // Rotasyon "son 6 günde yayınlanmadı"yı önceler; ama haberler.json'da 4-7 ay eski (yüksek yerel

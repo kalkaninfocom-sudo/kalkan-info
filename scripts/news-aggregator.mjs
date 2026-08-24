@@ -3,6 +3,7 @@
 // Run: node scripts/news-aggregator.mjs
 
 import { writeFile, readFile } from 'node:fs/promises';
+import { dedupeNews } from '../lib/newsroom-dedup.mjs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { parseKasBel } from './scrapers/kasbel.mjs';
@@ -433,7 +434,11 @@ async function main() {
   unique.sort((a, b) =>
     localScore(b) - localScore(a) ||
     (new Date(b.pubDate || nowMs) - new Date(a.pubDate || nowMs)));
-  const top = unique.slice(0, 30).map(normalize);
+  // G3: kaynaklar-arası NEAR-DUP çökert (birebir başlık dedup yetmez — aynı hikaye farklı
+  // başlıkla 3 kaynaktan geliyor). Liste alaka-sıralı → en üstteki (en yüksek skor) tutulur.
+  const deduped = dedupeNews(unique, { threshold: 0.5 });
+  if (deduped.length < unique.length) console.log(`  ↯ near-dup çökertme: ${unique.length} → ${deduped.length}`);
+  const top = deduped.slice(0, 30).map(normalize);
 
   // Mark top 4 most recent as featured
   top.slice(0, 4).forEach(it => (it.featured = true));
