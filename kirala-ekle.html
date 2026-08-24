@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="tr" style="scroll-behavior:smooth;">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="dist/tw.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2e4c">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Konaklama İlanı Ver — Kalkan Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<meta name="robots" content="noindex, follow">
+<style>
+  html,body{font-family:'Inter',system-ui,sans-serif;color:#0a2e4c;background:#dce6ef;}
+  h1,h2,h3,.font-display{font-family:'Montserrat',system-ui,sans-serif;letter-spacing:-0.02em;}
+
+  /* Form elements — ilan-ver.html kalıplarıyla birebir */
+  .ob-label{display:block;font-size:.8125rem;font-weight:600;color:#0d3a5f;margin-bottom:.375rem;font-family:'Montserrat',sans-serif;letter-spacing:-.01em;}
+  .ob-input,.ob-textarea,.ob-select{width:100%;border:1.5px solid #9cc0dd;border-radius:.5rem;padding:.625rem .875rem;font-size:.9375rem;color:#0a2e4c;background:#fff;outline:none;transition:border-color .18s,box-shadow .18s;font-family:'Inter',sans-serif;}
+  .ob-input:focus,.ob-textarea:focus,.ob-select:focus{border-color:#c47d0e;box-shadow:0 0 0 3px rgba(196,125,14,.13);}
+  .ob-input:hover,.ob-select:hover{border-color:#c47d0e;}
+  .ob-textarea{min-height:110px;resize:vertical;}
+  .ob-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230d3a5f' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;padding-right:2.25rem;}
+  .ob-help{font-size:.7rem;color:#7aaccc;margin-top:.25rem;font-style:italic;}
+  .ob-err{color:#b03030;font-size:.75rem;margin-top:.25rem;font-weight:600;}
+
+  /* Type cards — ilan-ver.html deseni */
+  .type-card{padding:12px 14px;border:2px solid #cfdfee;border-radius:.75rem;background:#fff;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;text-align:center;user-select:none;}
+  .type-card:hover{border-color:#c47d0e;background:#fef6e6;}
+  .type-card.active{border-color:#c47d0e;background:linear-gradient(135deg,#fff 0%,#fef6e6 100%);box-shadow:0 0 0 3px rgba(196,125,14,.15);}
+  .type-card.active .tc-icon{color:#c47d0e;}
+  .type-card:focus-visible{outline:2px solid #c47d0e;outline-offset:2px;}
+
+  /* Amenity checkboxes */
+  .amenity-chip{display:inline-flex;align-items:center;gap:.375rem;padding:.375rem .75rem;border:1.5px solid #9cc0dd;border-radius:9999px;font-size:.8125rem;color:#0d3a5f;background:#fff;cursor:pointer;transition:all .15s;user-select:none;font-weight:500;}
+  .amenity-chip:hover{border-color:#c47d0e;background:#fef6e6;}
+  .amenity-chip.active{background:#c47d0e;border-color:#c47d0e;color:#fff;}
+  .amenity-chip:focus-visible{outline:2px solid #c47d0e;outline-offset:2px;}
+
+  /* Photo upload zone */
+  .photo-drop{border:2px dashed #9cc0dd;border-radius:.75rem;padding:2rem;text-align:center;cursor:pointer;transition:border-color .18s,background .18s;background:#fafcff;position:relative;}
+  .photo-drop:hover,.photo-drop.drag-over{border-color:#c47d0e;background:#fef6e6;}
+  .photo-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .photo-thumb{width:80px;height:80px;object-fit:cover;border-radius:.5rem;border:2px solid #cfdfee;}
+  .photo-remove{position:absolute;top:-6px;right:-6px;width:20px;height:20px;background:#b03030;color:#fff;border-radius:9999px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;line-height:1;border:none;font-weight:700;transition:background .15s;}
+  .photo-remove:hover{background:#8b0000;}
+
+  /* Action buttons */
+  .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#c47d0e 0%,#a86000 100%);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9375rem;padding:.75rem 1.5rem;border-radius:.75rem;border:none;cursor:pointer;transition:filter .18s,box-shadow .18s;box-shadow:0 4px 14px -2px rgba(196,125,14,.45);}
+  .btn-primary:hover{filter:brightness(1.08);box-shadow:0 6px 20px -2px rgba(196,125,14,.55);}
+  .btn-primary:active{filter:brightness(.95);}
+  .btn-primary:focus-visible{outline:2px solid #c47d0e;outline-offset:3px;}
+  .btn-primary:disabled{opacity:.55;cursor:not-allowed;filter:none;}
+  .btn-secondary{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:2px solid #9cc0dd;color:#0d3a5f;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.875rem;padding:.625rem 1.25rem;border-radius:.75rem;cursor:pointer;transition:border-color .18s,background .18s;}
+  .btn-secondary:hover{border-color:#c47d0e;background:#fef6e6;}
+  .btn-secondary:active{background:#fef0cc;}
+  .btn-secondary:focus-visible{outline:2px solid #c47d0e;outline-offset:2px;}
+
+  /* Section card */
+  .form-section{background:#fff;border-radius:1rem;border:1px solid #d8e8f4;padding:1.5rem;box-shadow:0 2px 12px -4px rgba(10,46,76,.08),0 8px 28px -8px rgba(10,46,76,.05);}
+  .section-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:#0a2e4c;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+  .section-num{width:26px;height:26px;background:#c47d0e;color:#fff;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0;}
+
+  /* Auth banner */
+  .auth-banner{background:rgba(196,125,14,.08);border:1.5px solid rgba(196,125,14,.3);border-radius:.875rem;padding:1rem 1.25rem;}
+</style>
+</head>
+<body class="bg-[#dce6ef] min-h-screen">
+
+<!-- NAV -->
+<nav style="background:linear-gradient(180deg,#0c3858 0%,#0a2e4c 100%);box-shadow:0 4px 24px -4px rgba(7,33,54,.55);" class="sticky top-0 z-40 text-white">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between" style="border-bottom:1px solid rgba(255,255,255,.08);">
+    <a href="kiralamalarim.html" class="flex items-center gap-2 px-3 py-3.5 hover:bg-white/10 -ml-3 transition rounded-md">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="font-display font-semibold text-sm hidden sm:inline">Kiralamalarım</span>
+    </a>
+    <a href="index.html" class="font-display font-extrabold text-lg tracking-tight flex items-center gap-2">
+      <span style="color:#c47d0e;">◆</span> KALKAN <span style="color:#c47d0e;">INFO</span>
+    </a>
+    <div class="w-9 h-9 rounded-full bg-white/10 border border-white/20 grid place-items-center" id="nav-avatar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-white/60"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header style="background:linear-gradient(135deg,#0a2e4c 0%,#0d3a5f 60%,#134c79 100%);" class="relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background:radial-gradient(ellipse 60% 100% at 80% 50%,#c47d0e 0%,transparent 70%);"></div>
+  <div class="relative max-w-3xl mx-auto px-4 py-10 md:py-14 text-white">
+    <div class="inline-flex items-center gap-2 text-[11px] tracking-[.14em] uppercase bg-white/10 border border-white/20 px-3 py-1.5 rounded-full font-semibold mb-4" style="color:#f4a725;">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#f4a725]"></span>
+      Host Paneli
+    </div>
+    <h1 id="page-title" class="font-display text-3xl md:text-4xl font-extrabold leading-tight">Konaklama İlanı Ver</h1>
+    <p class="mt-2 text-white/70 text-sm md:text-base max-w-xl leading-relaxed">
+      Odanı, daireni veya villanı kiraya ver. Fotoğrafları yükle, bilgileri doldur, anında yayınla.
+    </p>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="max-w-3xl mx-auto px-4 py-8 space-y-5">
+
+  <!-- Auth uyarı -->
+  <div id="auth-warning" class="hidden auth-banner">
+    <div class="flex items-start gap-3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c47d0e" stroke-width="2" class="flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <p class="font-display font-bold text-sm" style="color:#7a4800;">İlan vermek için giriş yapmalısın</p>
+        <p class="text-xs mt-1" style="color:#a06020;">E-posta doğrulamalı bir hesap gereklidir.</p>
+        <a href="login.html?next=kirala-ekle.html" class="inline-block mt-2 text-white text-xs font-semibold px-3 py-1.5 rounded-md transition hover:opacity-90 active:opacity-80" style="background:#0a2e4c;">GİRİŞ YAP</a>
+      </div>
+    </div>
+  </div>
+
+  <form id="stay-form" class="space-y-5">
+
+    <!-- 1. Temel Bilgiler -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">1</span> Temel Bilgiler</div>
+      <div class="space-y-4">
+
+        <div>
+          <label class="ob-label" for="title">İlan Başlığı *</label>
+          <input id="title" name="title" required maxlength="120" class="ob-input" placeholder="Örn. Deniz manzaralı butik daire — Kalkan merkez" />
+          <div class="ob-help">3–120 karakter. Net ve dikkat çekici olsun.</div>
+        </div>
+
+        <div>
+          <label class="ob-label">Konaklama Tipi *</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="type-cards">
+            <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="room">
+              <input type="radio" name="listing_type" value="room" class="hidden" />
+              <div class="tc-icon mb-1.5 text-[#5d97c4]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-sea-800">Oda</div>
+            </label>
+            <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="apartment">
+              <input type="radio" name="listing_type" value="apartment" class="hidden" />
+              <div class="tc-icon mb-1.5 text-[#5d97c4]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><path d="M3 21h18M6 21V7l6-4 6 4v14"/><path d="M9 9h.01M9 12h.01M9 15h.01M15 9h.01M15 12h.01M15 15h.01"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-sea-800">Daire</div>
+            </label>
+            <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="villa">
+              <input type="radio" name="listing_type" value="villa" class="hidden" />
+              <div class="tc-icon mb-1.5 text-[#5d97c4]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-sea-800">Villa</div>
+            </label>
+            <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="whole_building">
+              <input type="radio" name="listing_type" value="whole_building" class="hidden" />
+              <div class="tc-icon mb-1.5 text-[#5d97c4]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-sea-800">Tüm Bina</div>
+            </label>
+            <label class="type-card" tabindex="0" role="radio" aria-checked="false" data-value="couch">
+              <input type="radio" name="listing_type" value="couch" class="hidden" />
+              <div class="tc-icon mb-1.5 text-[#5d97c4]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mx-auto"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M4 18v2M20 18v2M12 4v9"/></svg>
+              </div>
+              <div class="font-display font-bold text-xs text-sea-800">Kanepe / Yer</div>
+            </label>
+          </div>
+          <div id="type-err" class="ob-err hidden">Konaklama tipi seçiniz.</div>
+        </div>
+
+        <div>
+          <label class="ob-label" for="location">Lokasyon *</label>
+          <input id="location" name="location" required maxlength="80" class="ob-input" placeholder="Örn. Kalkan, Kaş, Patara, İslamlar..." />
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2. Kapasite & Oda Düzeni -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">2</span> Kapasite & Oda Düzeni</div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div>
+          <label class="ob-label" for="capacity">Misafir *</label>
+          <input id="capacity" name="capacity" type="number" min="1" max="50" required value="2" class="ob-input" />
+        </div>
+        <div>
+          <label class="ob-label" for="bedrooms">Yatak Odası</label>
+          <input id="bedrooms" name="bedrooms" type="number" min="0" max="30" value="1" class="ob-input" />
+        </div>
+        <div>
+          <label class="ob-label" for="beds">Yatak</label>
+          <input id="beds" name="beds" type="number" min="0" max="30" value="1" class="ob-input" />
+        </div>
+        <div>
+          <label class="ob-label" for="bathrooms">Banyo</label>
+          <input id="bathrooms" name="bathrooms" type="number" min="0" max="20" value="1" class="ob-input" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Fiyatlandırma -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">3</span> Fiyatlandırma</div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="ob-label" for="price_per_night">Gecelik Fiyat (₺) *</label>
+          <input id="price_per_night" name="price_per_night" type="number" min="0" required class="ob-input" placeholder="2500" />
+        </div>
+        <div>
+          <label class="ob-label" for="cleaning_fee">Temizlik Ücreti (₺)</label>
+          <input id="cleaning_fee" name="cleaning_fee" type="number" min="0" value="0" class="ob-input" placeholder="0" />
+        </div>
+        <div>
+          <label class="ob-label" for="min_nights">Min. Gece</label>
+          <input id="min_nights" name="min_nights" type="number" min="1" value="1" class="ob-input" />
+        </div>
+        <div>
+          <label class="ob-label" for="max_nights">Max. Gece</label>
+          <input id="max_nights" name="max_nights" type="number" min="1" class="ob-input" placeholder="Sınırsız" />
+        </div>
+        <div>
+          <label class="ob-label" for="available_from">Müsait Başlangıç</label>
+          <input id="available_from" name="available_from" type="date" class="ob-input" />
+        </div>
+        <div>
+          <label class="ob-label" for="available_to">Müsait Bitiş</label>
+          <input id="available_to" name="available_to" type="date" class="ob-input" />
+        </div>
+      </div>
+      <div class="ob-help mt-2">Toplam = gece × gecelik fiyat + temizlik ücreti. Uygulama hesaplar.</div>
+    </div>
+
+    <!-- 4. Olanaklap / Amenities -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">4</span> Olanaklar</div>
+      <div class="flex flex-wrap gap-2" id="amenity-chips">
+        <!-- JS ile oluşturulacak -->
+      </div>
+    </div>
+
+    <!-- 5. Açıklama & Kurallar -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">5</span> Açıklama & Kurallar</div>
+      <div class="space-y-4">
+        <div>
+          <label class="ob-label" for="description">İlan Açıklaması</label>
+          <textarea id="description" name="description" maxlength="5000" class="ob-textarea" placeholder="Konaklama yerinizi, çevre, denize mesafe, özellikler... hakkında detayları yazın." style="min-height:140px;"></textarea>
+          <div class="ob-help">Maks. 5000 karakter.</div>
+        </div>
+        <div>
+          <label class="ob-label" for="house_rules">Ev Kuralları</label>
+          <textarea id="house_rules" name="house_rules" class="ob-textarea" placeholder="Örn. Sigara yasak, saat 23:00'den sonra sessizlik, evcil hayvan kabul edilmez..." style="min-height:90px;"></textarea>
+        </div>
+        <div>
+          <label class="ob-label" for="contact_whatsapp">WhatsApp / İletişim (opsiyonel)</label>
+          <input id="contact_whatsapp" name="contact_whatsapp" type="tel" class="ob-input" placeholder="+90 5XX XXX XX XX" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Fotoğraflar -->
+    <div class="form-section">
+      <div class="section-title"><span class="section-num">6</span> Fotoğraflar</div>
+      <div class="photo-drop" id="photo-drop" role="button" aria-label="Fotoğraf yükle">
+        <input type="file" id="photo-input" accept="image/*" multiple aria-label="Fotoğraf seç" />
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9cc0dd" stroke-width="1.5" class="mx-auto mb-2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p class="text-sm font-display font-semibold" style="color:#5d97c4;">Fotoğraf seç veya buraya sürükle</p>
+        <p class="text-xs mt-1" style="color:#7aaccc;">En fazla 12 fotoğraf · Her biri maks. 8 MB · JPEG/PNG</p>
+      </div>
+      <div id="photo-previews" class="flex flex-wrap gap-3 mt-3"></div>
+      <div id="photo-err" class="ob-err hidden mt-1"></div>
+      <div id="photo-upload-progress" class="hidden mt-2">
+        <div class="flex items-center gap-2 text-xs font-semibold" style="color:#c47d0e;">
+          <svg class="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"/></svg>
+          Fotoğraflar yükleniyor...
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit area -->
+    <div id="submit-error" class="hidden auth-banner" style="border-color:rgba(176,48,48,.35);background:rgba(176,48,48,.06);">
+      <p class="text-sm font-semibold" style="color:#8b0000;" id="submit-error-text"></p>
+    </div>
+    <div id="submit-success" class="hidden" style="background:#f0f9f4;border:1.5px solid #4caf50;border-radius:.875rem;padding:1rem 1.25rem;">
+      <div class="flex items-start gap-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <p class="font-display font-bold text-sm" style="color:#1b5e20;" id="success-msg">İlanın yayınlandı!</p>
+          <p class="text-xs mt-1" style="color:#2e7d32;">Kiralamalarım sayfasına yönlendiriliyorsun...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between gap-3 pt-1">
+      <a href="kiralamalarim.html" class="btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Vazgeç
+      </a>
+      <button type="submit" id="submit-btn" class="btn-primary">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        <span id="submit-label">İLANI YAYINLA</span>
+      </button>
+    </div>
+
+  </form>
+</main>
+
+<!-- FOOTER -->
+<footer class="mt-12" style="background:#072136;">
+  <div class="max-w-7xl mx-auto px-4 py-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-white/50 text-xs">
+      <div class="font-display font-bold text-white/80 flex items-center gap-2">
+        <span style="color:#c47d0e;">◆</span> KALKAN INFO
+      </div>
+      <div class="flex gap-4">
+        <a href="kirala.html" class="hover:text-white transition">Kiralık İlanlar</a>
+        <a href="kiralamalarim.html" class="hover:text-white transition">Kiralamalarım</a>
+        <a href="kvkk.html" class="hover:text-white transition">KVKK</a>
+      </div>
+      <div>© 2026 Kalkan Info</div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import {
+  uploadStayPhotos,
+  createStay,
+  updateStay,
+  getMyStay,
+  AMENITIES_LIST,
+} from './js/stays-host.js';
+import { supabase } from './js/supabase-client.js';
+import { isSupabaseConfigured } from './js/auth.js';
+
+// ── State ───────────────────────────────────────────────────────────────────
+let _user        = null;
+let _editId      = new URLSearchParams(location.search).get('id');
+let _editStay    = null;
+let _prefilled   = false;
+let _uploadedUrls = [];       // already-uploaded URLs (edit mode: existing + new)
+let _pendingFiles = [];       // File objects selected but not yet uploaded
+let _selectedAmenities = new Set();
+
+// ── DOM refs ─────────────────────────────────────────────────────────────────
+const form          = document.getElementById('stay-form');
+const authWarning   = document.getElementById('auth-warning');
+const submitBtn     = document.getElementById('submit-btn');
+const submitLabel   = document.getElementById('submit-label');
+const submitError   = document.getElementById('submit-error');
+const submitErrorTxt= document.getElementById('submit-error-text');
+const submitSuccess = document.getElementById('submit-success');
+const successMsg    = document.getElementById('success-msg');
+const typeCards     = [...document.querySelectorAll('#type-cards .type-card')];
+const typeErr       = document.getElementById('type-err');
+const photoInput    = document.getElementById('photo-input');
+const photoDrop     = document.getElementById('photo-drop');
+const photoPreviews = document.getElementById('photo-previews');
+const photoErr      = document.getElementById('photo-err');
+const photoProgress = document.getElementById('photo-upload-progress');
+const amenityWrap   = document.getElementById('amenity-chips');
+const pageTitle     = document.getElementById('page-title');
+
+// ── Auth ─────────────────────────────────────────────────────────────────────
+if (isSupabaseConfigured) {
+  const { data: { session } } = await supabase.auth.getSession();
+  _user = session?.user || null;
+  if (!_user) showAuthWarning();
+  else {
+    hideAuthWarning();
+    if (_editId && !_prefilled) await loadEditStay();
+  }
+
+  supabase.auth.onAuthStateChange((_evt, sess) => {
+    _user = sess?.user || null;
+    if (!_user) showAuthWarning();
+    else {
+      hideAuthWarning();
+      if (_editId && !_prefilled) loadEditStay();
+    }
+  });
+} else {
+  showAuthWarning();
+}
+
+function showAuthWarning() { authWarning.classList.remove('hidden'); form.classList.add('pointer-events-none', 'opacity-50'); }
+function hideAuthWarning() { authWarning.classList.add('hidden');    form.classList.remove('pointer-events-none', 'opacity-50'); }
+
+// ── Edit mode ─────────────────────────────────────────────────────────────────
+async function loadEditStay() {
+  if (_prefilled || !_editId || !_user) return;
+  const stay = await getMyStay(_editId, _user.id);
+  if (!stay) {
+    showErr('Düzenlenecek ilan bulunamadı veya bu ilan size ait değil.');
+    return;
+  }
+  _editStay  = stay;
+  _prefilled = true;
+  pageTitle.textContent = 'İlanı Düzenle';
+  document.title        = 'İlanı Düzenle — Kalkan Info';
+  submitLabel.textContent = 'DEĞİŞİKLİKLERİ KAYDET';
+  prefillForm(stay);
+}
+
+function prefillForm(s) {
+  form.title.value           = s.title           || '';
+  form.location.value        = s.location        || '';
+  form.capacity.value        = s.capacity        ?? 2;
+  form.bedrooms.value        = s.bedrooms        ?? 1;
+  form.beds.value            = s.beds            ?? 1;
+  form.bathrooms.value       = s.bathrooms       ?? 1;
+  form.price_per_night.value = s.price_per_night ?? '';
+  form.cleaning_fee.value    = s.cleaning_fee    ?? 0;
+  form.min_nights.value      = s.min_nights      ?? 1;
+  form.max_nights.value      = s.max_nights      || '';
+  form.description.value     = s.description     || '';
+  form.house_rules.value     = s.house_rules     || '';
+  form.contact_whatsapp.value= s.contact_whatsapp|| '';
+  if (s.available_from) form.available_from.value = s.available_from.slice(0, 10);
+  if (s.available_to)   form.available_to.value   = s.available_to.slice(0, 10);
+
+  // listing_type card
+  const card = typeCards.find(c => c.dataset.value === s.listing_type);
+  if (card) activateTypeCard(card);
+
+  // amenities
+  _selectedAmenities = new Set(Array.isArray(s.amenities) ? s.amenities : []);
+  document.querySelectorAll('.amenity-chip').forEach(chip => {
+    chip.classList.toggle('active', _selectedAmenities.has(chip.dataset.key));
+  });
+
+  // existing images
+  _uploadedUrls = Array.isArray(s.images) ? [...s.images] : [];
+  renderPhotoPreviews();
+}
+
+// ── Type cards ────────────────────────────────────────────────────────────────
+function activateTypeCard(card) {
+  typeCards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-checked', 'false'); });
+  card.classList.add('active');
+  card.setAttribute('aria-checked', 'true');
+  card.querySelector('input[type=radio]').checked = true;
+  typeErr.classList.add('hidden');
+}
+
+typeCards.forEach(card => {
+  card.addEventListener('click', () => activateTypeCard(card));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateTypeCard(card); } });
+});
+
+// ── Amenity chips ─────────────────────────────────────────────────────────────
+AMENITIES_LIST.forEach(({ key, label }) => {
+  const chip = document.createElement('span');
+  chip.className       = 'amenity-chip';
+  chip.dataset.key     = key;
+  chip.setAttribute('tabindex', '0');
+  chip.setAttribute('role', 'checkbox');
+  chip.setAttribute('aria-checked', 'false');
+  chip.textContent     = label;
+  chip.addEventListener('click', () => toggleAmenity(chip, key));
+  chip.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleAmenity(chip, key); } });
+  amenityWrap.appendChild(chip);
+});
+
+function toggleAmenity(chip, key) {
+  if (_selectedAmenities.has(key)) {
+    _selectedAmenities.delete(key);
+    chip.classList.remove('active');
+    chip.setAttribute('aria-checked', 'false');
+  } else {
+    _selectedAmenities.add(key);
+    chip.classList.add('active');
+    chip.setAttribute('aria-checked', 'true');
+  }
+}
+
+// ── Photo upload ──────────────────────────────────────────────────────────────
+photoInput.addEventListener('change', () => addFiles(photoInput.files));
+
+photoDrop.addEventListener('dragover', e => { e.preventDefault(); photoDrop.classList.add('drag-over'); });
+photoDrop.addEventListener('dragleave', () => photoDrop.classList.remove('drag-over'));
+photoDrop.addEventListener('drop', e => {
+  e.preventDefault();
+  photoDrop.classList.remove('drag-over');
+  addFiles(e.dataTransfer.files);
+});
+
+function addFiles(files) {
+  photoErr.classList.add('hidden');
+  const all = [..._pendingFiles, ...Array.from(files || [])];
+  const remaining = 12 - _uploadedUrls.length;
+  if (all.length > remaining) {
+    photoErr.textContent = `En fazla ${12 - _uploadedUrls.length} yeni fotoğraf ekleyebilirsiniz (toplam 12).`;
+    photoErr.classList.remove('hidden');
+  }
+  _pendingFiles = all.slice(0, remaining);
+  renderPhotoPreviews();
+}
+
+function renderPhotoPreviews() {
+  photoPreviews.innerHTML = '';
+
+  // Already-uploaded (edit mode: show existing)
+  _uploadedUrls.forEach((url, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'relative inline-block';
+    wrap.innerHTML = `
+      <img src="${url}" class="photo-thumb" alt="Fotoğraf ${i + 1}" loading="lazy"
+           onerror="this.src='https://placehold.co/80x80/dce6ef/5d97c4?text=?'">
+      <button type="button" class="photo-remove" title="Kaldır" data-idx="${i}" data-type="uploaded">×</button>
+    `;
+    photoPreviews.appendChild(wrap);
+  });
+
+  // Pending (not yet uploaded)
+  _pendingFiles.forEach((file, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'relative inline-block';
+    const localUrl = URL.createObjectURL(file);
+    wrap.innerHTML = `
+      <img src="${localUrl}" class="photo-thumb" alt="Yeni ${i + 1}" loading="lazy">
+      <button type="button" class="photo-remove" title="Kaldır" data-idx="${i}" data-type="pending">×</button>
+    `;
+    photoPreviews.appendChild(wrap);
+  });
+
+  // Remove button handlers
+  photoPreviews.querySelectorAll('.photo-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx  = parseInt(btn.dataset.idx);
+      const type = btn.dataset.type;
+      if (type === 'uploaded') {
+        _uploadedUrls.splice(idx, 1);
+      } else {
+        _pendingFiles.splice(idx, 1);
+      }
+      renderPhotoPreviews();
+    });
+  });
+}
+
+// ── Form submit ───────────────────────────────────────────────────────────────
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  hideErr();
+
+  if (!_user) { showErr('İlan vermek için giriş yapmalısın.'); return; }
+  if (!validate()) return;
+
+  submitBtn.disabled = true;
+  submitLabel.textContent = _editId ? 'KAYDEDİLİYOR...' : 'YAYINLANIYOR...';
+
+  // 1. Upload pending photos
+  if (_pendingFiles.length > 0) {
+    photoProgress.classList.remove('hidden');
+    const titleSlug = (form.title.value || 'konaklama').slice(0, 30);
+    const { ok, error: upErr, urls } = await uploadStayPhotos(_pendingFiles, _user.id, titleSlug);
+    photoProgress.classList.add('hidden');
+    if (!ok) {
+      showErr(upErr || 'Fotoğraf yüklenemedi.');
+      resetBtn();
+      return;
+    }
+    _uploadedUrls = [..._uploadedUrls, ...urls];
+    _pendingFiles = [];
+  }
+
+  // 2. Build payload
+  const fd = new FormData(form);
+  const payload = {
+    title:            fd.get('title')?.trim(),
+    listing_type:     form.querySelector('input[name=listing_type]:checked')?.value,
+    capacity:         fd.get('capacity'),
+    bedrooms:         fd.get('bedrooms'),
+    beds:             fd.get('beds'),
+    bathrooms:        fd.get('bathrooms'),
+    price_per_night:  fd.get('price_per_night'),
+    cleaning_fee:     fd.get('cleaning_fee') || '0',
+    min_nights:       fd.get('min_nights') || '1',
+    max_nights:       fd.get('max_nights') || null,
+    amenities:        [..._selectedAmenities],
+    location:         fd.get('location')?.trim(),
+    images:           _uploadedUrls,
+    description:      fd.get('description')?.trim() || null,
+    house_rules:      fd.get('house_rules')?.trim() || null,
+    available_from:   fd.get('available_from') || null,
+    available_to:     fd.get('available_to')   || null,
+    contact_whatsapp: fd.get('contact_whatsapp')?.trim() || null,
+  };
+
+  // 3. Insert or update
+  const result = _editId && _editStay
+    ? await updateStay(_editId, payload, _user.id)
+    : await createStay(payload, _user.id);
+
+  if (result.ok) {
+    submitSuccess.classList.remove('hidden');
+    successMsg.textContent = _editId ? 'İlanın güncellendi!' : 'İlanın yayınlandı!';
+    submitBtn.classList.add('hidden');
+    setTimeout(() => { window.location.href = 'kiralamalarim.html'; }, 2200);
+  } else {
+    showErr(result.error || 'İlan kaydedilemedi.');
+    resetBtn();
+  }
+});
+
+// ── Validation ─────────────────────────────────────────────────────────────────
+function validate() {
+  const title = form.title.value.trim();
+  if (!title || title.length < 3) { showErr('Başlık en az 3 karakter olmalı.'); return false; }
+  const type = form.querySelector('input[name=listing_type]:checked')?.value;
+  if (!type) { typeErr.classList.remove('hidden'); typeErr.scrollIntoView({ behavior: 'smooth', block: 'center' }); return false; }
+  const price = parseFloat(form.price_per_night.value);
+  if (isNaN(price) || price < 0) { showErr('Geçerli bir gecelik fiyat girin.'); return false; }
+  const loc = form.location.value.trim();
+  if (!loc) { showErr('Lokasyon zorunludur.'); return false; }
+  return true;
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function showErr(msg) {
+  submitErrorTxt.textContent = msg;
+  submitError.classList.remove('hidden');
+  submitError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function hideErr() { submitError.classList.add('hidden'); }
+function resetBtn() {
+  submitBtn.disabled = false;
+  submitLabel.textContent = _editId ? 'DEĞİŞİKLİKLERİ KAYDET' : 'İLANI YAYINLA';
+}
+</script>
+<script src="js/pwa.js?v=20260516c" defer></script>
+</body>
+</html>
