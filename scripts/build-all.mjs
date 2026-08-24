@@ -14,6 +14,7 @@ const steps = [
   { name: 'build-ads',       cmd: 'node', args: ['scripts/build-ads.mjs'],             required: false },
   { name: 'newspaper-index',  cmd: 'node', args: ['scripts/build-newspaper-index.mjs'], required: false },
   { name: 'agent-panel',     cmd: 'node', args: ['scripts/build-agent-panel.mjs'],     required: false },
+  { name: 'sitemap',         cmd: 'node', args: ['scripts/build-sitemap.mjs'],         required: false }, // i18n hreflang + taze lastmod (SEO C3/H2)
 ];
 
 let hardFail = false;
