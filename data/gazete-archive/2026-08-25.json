@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-25",
+  "generated_at": "2026-08-25T05:09:54.988Z",
+  "provider": "nvidia",
+  "source_ids": [
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-25",
+    "mavi-vatan-a-kalkan-cekildi-yunanistan-da-meis-panigi-star-haberler-2026-08-18",
+    "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
+    "mavi-vatan-a-kalkan-cekildi-yunanistan-da-meis-panigi-star-haberler-2026-08-18"
+  ],
+  "lead_headline": "Mavi Vatan'a Kalkan Çekildi!",
+  "lead_deck": "Yunanistan'da Meis Paniği",
+  "lead_body": [
+    "Yunanistan'da Mavi Vatan'a Kalkan çekildi. Yunanistan'ın Meis adası, Türkiye'nin Kalkan ilçesi ile sınırlıdır. 23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi. Ege ve Akdeniz'e mavi kalkan verildi. Kalkan, Türkiye'nin en güzel plajlarından biridir."
+  ],
+  "lead_byline": "Kalkan Today Editör · Kaş Belediyesi Haber",
+  "lead_source": "Kaş Belediyesi Haber",
+  "lead_source_url": "https://www.kas.bel.tr/haber/kas’ta-23-likya-su-yolu-yürüyüsü-ve-patara-yorük-gocü-etkinligi-gerceklestirildi--36641388",
+  "lead_date": "2026-08-25",
+  "lead_image": "https://www.kas.bel.tr/HaberGorsel/7715c67c-90f0-48ff-943b-b8db4263b981.jpeg?w=100%&h=198&mode=crop",
+  "lead_caption": "Foto: Kaş Belediyesi Haber · Belediye",
+  "col1_title": "Bugün Etkinlikler",
+  "col1_byline": "Bülten · Gündem",
+  "col1_body": "Kalkan'da bugün yoga, canlı müzik ve DJ etkinlikleri gerçekleşecek.",
+  "col3_title": "Kalkan Haberleri",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Kalkan'da yerel esnaf hikayeleri ve Kalkan'ın en iyi 5 plajı listesi yayınlandı.",
+  "magazine_lead_headline": "Kalkan Gizli Plajları",
+  "magazine_lead_body": [
+    "Kalkan'ın gizli plajlarından biri olan Kaputaş Plajı, doğası ve sessizliğiyle ziyaretçileri kendine hayran bırakır."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-25T05:09:56.689Z",
+    "roles": {
+      "muhabir": "nvidia",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 86
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 86
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1",
+      "col3",
+      "magazine"
+    ]
+  }
+}
