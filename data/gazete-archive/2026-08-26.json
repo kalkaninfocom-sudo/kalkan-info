@@ -1,17 +1,17 @@
 {
   "date": "2026-08-26",
-  "generated_at": "2026-08-26T05:01:14.798Z",
+  "generated_at": "2026-08-26T05:16:45.391Z",
   "provider": "nvidia",
   "source_ids": [
-    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-08-25",
+    "kadina-yoneli-k-si-ddetle-mucadele-antalya-i-l-eylem-plani-2026-2030-2026-08-25",
     "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-26",
     "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
-    "kadina-yoneli-k-si-ddetle-mucadele-antalya-i-l-eylem-plani-2026-2030-2026-08-25"
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-08-25"
   ],
-  "lead_headline": "Kalkan'da Asat Veznesi Açıldı",
-  "lead_deck": "Kalkan'da Asat Veznesi açıldı",
+  "lead_headline": "Kalkan'da Banka Ziyareti",
+  "lead_deck": "",
   "lead_body": [
-    "Kalkan'da Asat Veznesi açıldı. Kalkan'da turizm sezonunun başlangıcında önemli bir adım atıldı. Asat Veznesi, Kalkan'ın turizm potansiyelini artırmaya yardımcı olacak."
+    "Kalkan'da banka ziyareti gerçekleştirildi. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği de gerçekleştirildi."
   ],
   "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
   "lead_source": "Google News — Kalkan/Kaş",
@@ -24,13 +24,13 @@
   "col1_body": "23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
   "col3_title": "Ege ve Akdeniz'e Mavi Kalkan",
   "col3_byline": "Sahil · Plaj",
-  "col3_body": "Ege ve Akdeniz'e mavi kalkan.",
-  "magazine_lead_headline": "Kalkan Haberleri",
+  "col3_body": "Kalkan, Ege ve Akdeniz'e mavi bir kalkan olarak bilinmektedir.",
+  "magazine_lead_headline": "Kalkan'da Banka Ziyareti",
   "magazine_lead_body": [
-    "Kalkan'da Asat Veznesi açıldı. Kalkan'da turizm sezonunun başlangıcında önemli bir adım atıldı. Asat Veznesi, Kalkan'ın turizm potansiyelini artırmaya yardımcı olacak."
+    "Kalkan'da banka ziyareti gerçekleştirildi. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği de gerçekleştirildi."
   ],
   "editorial_review": {
-    "reviewed_at": "2026-08-26T05:01:16.740Z",
+    "reviewed_at": "2026-08-26T05:16:49.521Z",
     "roles": {
       "muhabir": "nvidia",
       "editor": "editor-gate",
@@ -41,7 +41,7 @@
         "slot": "lead",
         "editor": "approved",
         "editor_score": 80,
-        "verifier": "ok",
+        "verifier": "reject",
         "credibility": 80
       },
       {
@@ -55,25 +55,24 @@
         "slot": "col3",
         "editor": "approved",
         "editor_score": 80,
-        "verifier": "reject",
+        "verifier": "ok",
         "credibility": 80
       },
       {
         "slot": "magazine",
         "editor": "approved",
         "editor_score": 80,
-        "verifier": "reject",
-        "credibility": 80
+        "verifier": "ok",
+        "credibility": 86
       }
     ],
     "decisions": [
-      "MANŞET editöryal denetimden geçti",
-      "col3 YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı",
-      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı"
+      "MANŞET reddedildi (doğrulayıcı: sansasyonel dil) → \"magazine\" manşete alındı (şef kararı)"
     ],
     "approved_slots": [
-      "lead",
-      "col1"
+      "col1",
+      "col3",
+      "magazine"
     ]
   }
 }
