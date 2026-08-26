@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="de">
+<head>
+<link rel="alternate" hreflang="tr" href="./magazine.html">
+<link rel="alternate" hreflang="en" href="./magazine.en.html">
+<link rel="alternate" hreflang="de" href="./magazine.de.html">
+<link rel="alternate" hreflang="ru" href="./magazine.ru.html">
+<link rel="alternate" hreflang="fr" href="./magazine.fr.html">
+<meta charset="utf-8">
+<title>Kalkan Today Magazin — 2026-08-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,900&family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 210mm; height: 297mm;
+    background: #fbf9f4; color: #14181c;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8.5pt; line-height: 1.45;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    overflow: hidden;
+  }
+  body { padding: 9mm 10mm 7mm; display: flex; flex-direction: column; gap: 3.5mm; }
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  :root { --ink:#14181c; --wine:#b5314f; --gold:#b88a2f; --sea:#1a3a52; --cream:#fbf9f4; }
+
+  /* ─── MAGAZINE MASTHEAD ─── */
+  .mag-head { border-bottom: 3px solid var(--ink); padding-bottom: 3mm; }
+  .mag-head .row { display: flex; justify-content: space-between; align-items: flex-end; }
+  .mag-kicker {
+    font-family: 'IBM Plex Mono', monospace; font-size: 7pt; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--wine); font-weight: 600; margin-bottom: 1mm;
+  }
+  .mag-title {
+    font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic;
+    font-size: 40pt; line-height: 0.9; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .mag-title b { font-style: normal; color: var(--wine); }
+  .mag-meta {
+    text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 7pt;
+    letter-spacing: 0.06em; color: #2a313a; line-height: 1.6;
+  }
+  .mag-meta .big { font-family: 'Playfair Display', serif; font-size: 11pt; font-weight: 700; }
+
+  /* ─── HERO GOSSIP ─── */
+  .hero {
+    position: relative; width: 100%; height: 108mm; border: 1px solid var(--ink);
+    overflow: hidden;
+    background: linear-gradient(140deg, #16202b 0%, #1a3a52 55%, #b5314f 130%);
+  }
+  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,16,0) 32%, rgba(10,12,16,0.55) 62%, rgba(10,12,16,0.92) 100%);
+  }
+  .hero .tag {
+    position: absolute; top: 4mm; left: 4mm; background: var(--wine); color: #fff;
+    font-family: 'IBM Plex Mono', monospace; font-size: 7pt; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 1.2mm 3mm; font-weight: 600;
+  }
+  .hero .sponsor {
+    position: absolute; top: 4mm; right: 4mm; background: rgba(251,249,244,0.92); color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.18em;
+    text-transform: uppercase; padding: 1mm 2.5mm; border: 1px solid var(--ink);
+  }
+  .hero .cap { position: absolute; left: 5mm; right: 5mm; bottom: 5mm; color: #fff; }
+  .hero .cap .venue {
+    font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; letter-spacing: 0.16em;
+    text-transform: uppercase; color: #f4d27a; margin-bottom: 1.5mm;
+  }
+  .hero .cap h1 {
+    font-family: 'Playfair Display', serif; font-weight: 900; font-size: 30pt;
+    line-height: 0.98; letter-spacing: -0.015em; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+  .hero .cap p { font-size: 9.5pt; line-height: 1.4; margin-top: 2mm; max-width: 145mm; color: #ede7da; }
+  .hero.noimg { background: linear-gradient(135deg, #1a3a52 0%, #b5314f 120%); }
+
+  /* ─── 3 GOSSIP CARDS ─── */
+  .cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+  .card { border: 1px solid var(--ink); background: #fff; overflow: hidden; display: flex; flex-direction: column; }
+  .card .ph { position: relative; width: 100%; height: 30mm; background: linear-gradient(135deg, var(--sea), var(--wine)); }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .ph.noimg { background: linear-gradient(135deg, var(--sea), var(--wine)); }
+  .card .ph .badge {
+    position: absolute; bottom: 0; left: 0; background: var(--ink); color: #fff;
+    font-family: 'IBM Plex Mono', monospace; font-size: 6pt; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 0.8mm 2mm;
+  }
+  .card .body { padding: 2.5mm 3mm 3mm; flex: 1; }
+  .card h3 {
+    font-family: 'Playfair Display', serif; font-weight: 800; font-size: 12pt;
+    line-height: 1.08; color: var(--ink); margin-bottom: 1.5mm;
+  }
+  .card .meta {
+    font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--wine); margin-bottom: 1.5mm;
+  }
+  .card p { font-size: 8pt; line-height: 1.45; color: #2a313a; }
+
+  /* ─── BU AKŞAM PROGRAM ─── */
+  .program { border: 2px solid var(--ink); margin-top: auto; }
+  .program .bar {
+    background: var(--ink); color: var(--cream); padding: 2.5mm 4mm;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .program .bar .t {
+    font-family: 'Playfair Display', serif; font-weight: 800; font-size: 13pt; letter-spacing: -0.01em;
+  }
+  .program .bar .t b { color: #f4d27a; }
+  .program .bar .sub {
+    font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.18em;
+    text-transform: uppercase; color: #d7cfc0;
+  }
+  .program table { width: 100%; border-collapse: collapse; }
+  .program td { padding: 1.8mm 4mm; border-bottom: 1px solid #e4ddcf; vertical-align: middle; }
+  .program tr:last-child td { border-bottom: none; }
+  .program .time {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 10pt;
+    color: var(--wine); width: 18mm; white-space: nowrap;
+  }
+  .program .type {
+    font-family: 'IBM Plex Mono', monospace; font-size: 7pt; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #5a6675; width: 28mm;
+  }
+  .program .venue { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 11pt; }
+  .program .area { font-size: 7.5pt; color: #5a6675; }
+  .program .empty { padding: 4mm; text-align: center; color: #5a6675; font-style: italic; }
+
+  /* ─── FOOTER ─── */
+  .mag-foot {
+    display: flex; justify-content: space-between; align-items: center; padding-top: 2mm;
+    border-top: 1px solid var(--ink); font-family: 'IBM Plex Mono', monospace;
+    font-size: 6.5pt; letter-spacing: 0.1em; text-transform: uppercase; color: #5a6675;
+  }
+  .mag-foot .social { display: flex; gap: 4mm; }
+  .mag-foot .social b { color: var(--ink); }
+  .mag-foot .qr { display: flex; align-items: center; gap: 2mm; }
+  .mag-foot .qr img { width: 10mm; height: 10mm; }
+</style>
+<meta name="ai-generated" content="true">
+<meta name="generator" content="AI-assisted (kalkan-newsroom)">
+<meta name="robots-ai-disclosure" content="ai-assisted-content">
+</head>
+<body>
+<nav class="lang-switch" style="position:fixed;top:8px;right:10px;z-index:99;font:600 12px/1 system-ui,sans-serif;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.15)"><a href="./magazine.html">TR</a> · <a href="./magazine.en.html">EN</a> · <span class="cur" aria-current="true">DE</span> · <a href="./magazine.ru.html">RU</a> · <a href="./magazine.fr.html">FR</a></nav>
+
+  <!-- ═══ MASTHEAD ═══ -->
+  <header class="mag-head">
+    <div class="row">
+      <div>
+        <div class="mag-kicker">Kalkan Today · Gece Hayatı Eki</div>
+        <div class="mag-title"><b>MAGAZİN</b></div>
+      </div>
+      <div class="mag-meta">
+        <div class="big">26. August 2026</div>
+        <div>Mittwoch · Sayı № 087</div>
+        <div>kalkaninfo.com/etkinlikler</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO GOSSIP ═══ -->
+  <section class="hero ">
+    <img src="https://kalkaninfo.com/assets/img/restoran/the-mezzanine-bar-g1.jpg" alt="The Mezzanine Bar" onerror="this.style.display='none'">
+    <div class="scrim"></div>
+    <div class="tag">Gece · Quiz Gecesi</div>
+    <div class="sponsor">Sponsor İçerik · İLAN</div>
+    <div class="cap">
+      <div class="venue">The Mezzanine Bar · Kalkan, Mustafa Kocakaya Cd., 07580 Kaş/Antalya, Türkiye</div>
+      <h1>Kalkan Haberleri</h1>
+      <p>Kalkan'da Asat Veznesi açıldı. Kalkan'da turizm sezonunun başlangıcında önemli bir adım atıldı. Asat Veznesi, Kalkan'ın turizm potansiyelini artırmaya yardımcı olacak.</p>
+    </div>
+  </section>
+
+  <!-- ═══ 3 GOSSIP CARDS ═══ -->
+  <section class="cards">
+    <article class="card">
+      <div class="ph"><img src="https://kalkaninfo.com/assets/img/mezzanine-bar.jpg" alt="The Mezzanine Bar" onerror="this.style.display='none'"><span class="badge">Quiz Gecesi</span></div>
+      <div class="body">
+        <div class="meta">Mustafa Kocakaya Cd. No:9 (Mussakka üstü) · 21:00</div>
+        <h3>The Mezzanine Bar terasında gün batımı şöleni</h3>
+        <p>Mussakka Restaurant ile aynı binada, üst kat kokteyl barı.</p>
+      </div>
+    </article>
+<article class="card">
+      <div class="ph"><img src="https://kalkaninfo.com/assets/img/sherlock-holmes.jpg" alt="Sherlock Holmes Restaurant Bar Lounge" onerror="this.style.display='none'"><span class="badge">Pub &amp; Lounge</span></div>
+      <div class="body">
+        <div class="meta">221/B Baker Street, Harbour Kalkan</div>
+        <h3>Sherlock Holmes Restaurant Bar Lounge’ta zarif bir gece</h3>
+        <p>Sherlock Holmes temalı restaurant, bar ve lounge. Doğum günü, yıldönümü ve özel kutlamalar…</p>
+      </div>
+    </article>
+<article class="card">
+      <div class="ph"><img src="https://kalkaninfo.com/assets/img/restoran/deniz-cocktail-bar-g1.jpg" alt="Deniz Cocktail Bar" onerror="this.style.display='none'"><span class="badge">Bar &amp; Pub</span></div>
+      <div class="body">
+        <div class="meta">Kalkan, Cumhuriyet Cd. No:60, 07580 Kaş/Antalya, Türkiye</div>
+        <h3>Deniz Cocktail Bar’ta mavi saat keyfi</h3>
+        <p>Deniz Cocktail Bar Kalkan gece hayatının gözdesi.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══ BU AKŞAM PROGRAM ═══ -->
+  <section class="program">
+    <div class="bar">
+      <div class="t"><b>Bu Akşam Programı</b></div>
+      <div class="sub">4 Etkinlik · Mittwoch</div>
+    </div>
+    <table>
+      <tr><td class="time">21:00</td><td class="type">Quiz Gecesi</td><td><span class="venue">The Mezzanine Bar</span> <span class="area">Kalkan</span></td></tr>
+<tr><td class="time">23:00</td><td class="type">DJ</td><td><span class="venue">Chocolate Club Kalkan</span> <span class="area">Kalkan</span></td></tr>
+<tr><td class="time">23:00</td><td class="type">DJ</td><td><span class="venue">Mojito Club Kalkan</span> <span class="area">Kalkan</span></td></tr>
+<tr><td class="time">23:30</td><td class="type">Parti</td><td><span class="venue">Noema Community</span> <span class="area">Kalkan</span></td></tr>
+    </table>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="mag-foot">
+    <div class="social">
+      <span>📷 <b>@kalkaninfo</b></span>
+      <span>📘 <b>kalkaninfo</b></span>
+      <span>İLAN içeriklerinde sponsor etiketi zorunludur</span>
+      <span>Yapay zeka destekli hazırlanmıştır</span>
+    </div>
+    <div class="qr">
+      <span>Tüm program</span>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=https://kalkaninfo.com/etkinlikler" alt="etkinlikler">
+    </div>
+  </footer>
+
+<p class="ai-disclosure" data-ai-generated="true" role="note">🤖 Dieser Inhalt wurde mithilfe von künstlicher Intelligenz erstellt.</p>
+</body>
+</html>
