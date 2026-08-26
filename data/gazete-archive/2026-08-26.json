@@ -1,0 +1,79 @@
+{
+  "date": "2026-08-26",
+  "generated_at": "2026-08-26T05:01:14.798Z",
+  "provider": "nvidia",
+  "source_ids": [
+    "kalkan-da-asat-veznesi-acildi-antalya-son-haber-2026-08-25",
+    "kas-ta-23-likya-su-yolu-yuruyusu-ve-patara-yoruk-gocu-etkinligi-gerceklestirildi-2026-08-26",
+    "ege-ve-akdeniz-e-mavi-kalkan-sabah-2026-08-17",
+    "kadina-yoneli-k-si-ddetle-mucadele-antalya-i-l-eylem-plani-2026-2030-2026-08-25"
+  ],
+  "lead_headline": "Kalkan'da Asat Veznesi Açıldı",
+  "lead_deck": "Kalkan'da Asat Veznesi açıldı",
+  "lead_body": [
+    "Kalkan'da Asat Veznesi açıldı. Kalkan'da turizm sezonunun başlangıcında önemli bir adım atıldı. Asat Veznesi, Kalkan'ın turizm potansiyelini artırmaya yardımcı olacak."
+  ],
+  "lead_byline": "Kalkan Today Editör · Google News — Kalkan/Kaş",
+  "lead_source": "Google News — Kalkan/Kaş",
+  "lead_source_url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE55SXBObGNLWm8zMUVGeXRLd3JUYU9nY0k2eUVPUmh3MUNyRlVyRG5vNzBsbkRub0NhR2NEWXpiOXYyanhSeWFKQkNZWnlJSzlsUjI4OFo4V1llR0NRRS0wWnBncXRYaXJMenRMVHBWWklyRGF3U1QtTUZuQzI?oc=5",
+  "lead_date": "2026-08-25",
+  "lead_image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
+  "lead_caption": "Foto: Google News — Kalkan/Kaş · Gündem",
+  "col1_title": "Kaş'ta Etkinlik",
+  "col1_byline": "Bülten · Belediye",
+  "col1_body": "23. Likya Su Yolu Yürüyüşü ve Patara Yörük Göçü etkinliği gerçekleştirildi.",
+  "col3_title": "Ege ve Akdeniz'e Mavi Kalkan",
+  "col3_byline": "Sahil · Plaj",
+  "col3_body": "Ege ve Akdeniz'e mavi kalkan.",
+  "magazine_lead_headline": "Kalkan Haberleri",
+  "magazine_lead_body": [
+    "Kalkan'da Asat Veznesi açıldı. Kalkan'da turizm sezonunun başlangıcında önemli bir adım atıldı. Asat Veznesi, Kalkan'ın turizm potansiyelini artırmaya yardımcı olacak."
+  ],
+  "editorial_review": {
+    "reviewed_at": "2026-08-26T05:01:16.740Z",
+    "roles": {
+      "muhabir": "nvidia",
+      "editor": "editor-gate",
+      "dogrulayici": "news-verifier"
+    },
+    "slots": [
+      {
+        "slot": "lead",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 80
+      },
+      {
+        "slot": "col1",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "ok",
+        "credibility": 77
+      },
+      {
+        "slot": "col3",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      },
+      {
+        "slot": "magazine",
+        "editor": "approved",
+        "editor_score": 80,
+        "verifier": "reject",
+        "credibility": 80
+      }
+    ],
+    "decisions": [
+      "MANŞET editöryal denetimden geçti",
+      "col3 YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı",
+      "magazine YAYINLANMAZ (doğrulayıcı: sansasyonel dil) — insan onayı"
+    ],
+    "approved_slots": [
+      "lead",
+      "col1"
+    ]
+  }
+}
