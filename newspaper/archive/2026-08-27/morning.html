@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<link rel="alternate" hreflang="tr" href="./morning.html">
+<link rel="alternate" hreflang="en" href="./morning.en.html">
+<link rel="alternate" hreflang="de" href="./morning.de.html">
+<link rel="alternate" hreflang="ru" href="./morning.ru.html">
+<link rel="alternate" hreflang="fr" href="./morning.fr.html">
+<meta charset="utf-8">
+<title>Kalkan Info Gazetesi — 27 Ağustos 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,500;1,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 210mm;
+    background: #f6f1e7;
+    color: #16171a;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 8.4pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body { padding: 7mm 9mm 6mm; }
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .gold { color: #b47f1e; }
+  img { display: block; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 5mm; padding-bottom: 3mm; }
+  .tag-box { border: 1px solid #16171a; padding: 3mm 3.5mm; font-family: 'Playfair Display', serif; font-style: italic; font-size: 9pt; line-height: 1.25; max-width: 34mm; }
+  .nameplate { text-align: center; }
+  .nameplate .np-main { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42pt; letter-spacing: 0.01em; line-height: 0.9; }
+  .nameplate .np-sub { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 15pt; letter-spacing: 0.42em; padding-left: 0.42em; margin-top: 1mm; }
+  .weather-card { justify-self: end; border: 1px solid #16171a; padding: 2.5mm 3.5mm; text-align: center; min-width: 33mm; }
+  .weather-card .wc-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 6pt; letter-spacing: 0.16em; text-transform: uppercase; color: #6a6256; border-bottom: 1px solid #ccc2ad; padding-bottom: 1mm; margin-bottom: 1.5mm; }
+  .weather-card .wc-row { display: flex; align-items: center; justify-content: center; gap: 2mm; }
+  .weather-card .wc-sun { font-size: 15pt; }
+  .weather-card .wc-temp { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 20pt; line-height: 1; }
+  .weather-card .wc-deg { font-size: 10pt; font-weight: 700; vertical-align: baseline; }
+  .weather-card .wc-desc { font-size: 7.5pt; color: #3a352c; }
+  .weather-card .wc-wind { font-size: 6.5pt; color: #6a6256; margin-top: 1mm; }
+
+  /* ─── META RULE BAR ─── */
+  .meta-bar { display: flex; justify-content: space-between; align-items: center; border-top: 2.5px solid #16171a; border-bottom: 1px solid #16171a; padding: 1.5mm 0; font-family: 'IBM Plex Mono', monospace; font-size: 7pt; letter-spacing: 0.05em; }
+  .meta-bar .mb-date { font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ─── TOP: LEAD + RAIL ─── */
+  .top { display: grid; grid-template-columns: 1.62fr 1fr; gap: 6mm; padding: 4mm 0 3mm; border-bottom: 1.5px solid #16171a; }
+  .lead-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.2em; text-transform: uppercase; color: #b47f1e; }
+  .lead-headline { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 27pt; line-height: 1.0; letter-spacing: -0.01em; text-transform: uppercase; margin: 1mm 0 2mm; }
+  .lead-deck { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 11pt; line-height: 1.25; color: #2b2a26; text-transform: uppercase; letter-spacing: 0.01em; }
+  .lead-image { width: 100%; aspect-ratio: 16/10; background: #d8cfba center/cover no-repeat; border: 1px solid #16171a; margin: 3mm 0 1.5mm; }
+  .lead-caption { font-size: 6.8pt; font-style: italic; color: #6a6256; }
+  .lead-source { font-size: 7pt; color: #6a6256; margin-top: 0.5mm; }
+  .lead-source .src-link, .rail-list a { color: #0a5c9c; text-decoration: none; border-bottom: 1px solid rgba(10,92,156,.35); }
+  .lead-source .src-link:hover, .rail-list a:hover { color: #073e6b; border-bottom-color: #073e6b; }
+  .feature { margin-top: 3mm; padding-top: 3mm; border-top: 1px solid #cbc1ab; }
+  .feature h2 { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 13pt; line-height: 1.1; margin-bottom: 1.5mm; }
+  .feature p { text-align: justify; hyphens: auto; font-size: 8.2pt; line-height: 1.5; }
+  .feature p::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 22pt; float: left; line-height: 0.85; padding: 1mm 1.5mm 0 0; color: #16171a; }
+
+  /* ─── RIGHT RAIL ─── */
+  .rail-h { font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #16171a; border-bottom: 2px solid #16171a; padding-bottom: 1mm; margin-bottom: 2mm; font-weight: 500; }
+  .rail-list { list-style: none; }
+  .rail-list li { position: relative; padding: 1.2mm 0 1.2mm 4mm; font-size: 8pt; line-height: 1.3; border-bottom: 1px dotted #cbc1ab; }
+  .rail-list li::before { content: '•'; position: absolute; left: 1mm; color: #b47f1e; font-weight: 700; }
+  .rail-photo { width: 100%; aspect-ratio: 16/9; background: #d8cfba center/cover no-repeat; border: 1px solid #16171a; margin: 3mm 0; }
+  .rail-sub-h { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 11pt; line-height: 1.1; margin-bottom: 1.5mm; }
+
+  /* ─── MID BAND: RESTORANLAR | YORUMLAR | NEOMA ─── */
+  .mid { display: grid; grid-template-columns: 1fr 1fr 1.05fr; gap: 5mm; padding: 4mm 0; border-bottom: 1.5px solid #16171a; }
+  .sec-h { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 14pt; text-transform: uppercase; letter-spacing: 0.01em; border-bottom: 2px solid #16171a; padding-bottom: 1.5mm; margin-bottom: 3mm; }
+  .stars { color: #d99b1c; letter-spacing: 0.5px; font-size: 8pt; }
+  .stars.sm { font-size: 7pt; }
+  .stars .star-empty { color: #d8cdb4; }
+  .rate-num { font-weight: 700; font-size: 8pt; }
+
+  .resto-list { list-style: none; }
+  .resto-item { display: grid; grid-template-columns: auto 15mm 1fr; gap: 2.5mm; align-items: center; padding: 1.8mm 0; border-bottom: 1px solid #ddd3bd; }
+  .resto-item .rank { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 15pt; color: #16171a; width: 6mm; text-align: center; }
+  .resto-item .thumb { width: 15mm; height: 12mm; background: #d8cfba center/cover no-repeat; border: 1px solid #16171a; }
+  .resto-name { font-weight: 700; font-size: 8.6pt; line-height: 1.1; }
+  .resto-loc { font-size: 7pt; color: #6a6256; margin: 0.4mm 0 0.8mm; }
+
+  .review { padding: 2mm 0; border-bottom: 1px solid #ddd3bd; }
+  .rev-head { display: flex; align-items: center; gap: 1.5mm; flex-wrap: wrap; }
+  .rev-name { font-weight: 700; font-size: 8.6pt; }
+  .rev-text { font-size: 7.8pt; line-height: 1.4; color: #2b2a26; margin: 1mm 0; }
+  .rev-src { font-family: 'IBM Plex Mono', monospace; font-size: 6.3pt; letter-spacing: 0.06em; color: #6a6256; }
+
+  /* NEOMA dark ad */
+  .neoma { background: #0e0d10; color: #f3ead6; border: 1px solid #16171a; padding: 4mm; display: flex; flex-direction: column; }
+  .neoma .n-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 22pt; letter-spacing: 0.06em; color: #e7b84b; text-align: center; text-shadow: 0 0 6px rgba(231,184,75,0.5); }
+  .neoma .n-tag { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 6pt; letter-spacing: 0.3em; color: #b9ac90; margin: 1mm 0 3mm; text-transform: uppercase; }
+  .neoma .n-head { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 12pt; line-height: 1.1; text-align: center; color: #f3ead6; margin-bottom: 3mm; }
+  .neoma .n-feats { list-style: none; margin-bottom: auto; }
+  .neoma .n-feats li { font-size: 8pt; padding: 1.2mm 0; border-bottom: 1px solid rgba(231,184,75,0.15); display: flex; gap: 2mm; }
+  .neoma .n-feats li span { color: #e7b84b; }
+  .neoma .n-resv { margin-top: 3mm; font-family: 'IBM Plex Mono', monospace; font-size: 7pt; letter-spacing: 0.05em; color: #e7b84b; text-align: center; }
+
+  /* ─── BOTTOM BAND: ETKİNLİK | YARIN | DALIŞ ─── */
+  .bottom { display: grid; grid-template-columns: 1fr 1fr 1.05fr; gap: 5mm; padding-top: 4mm; }
+  .ev-list, .plan-list { list-style: none; }
+  .ev-item { display: flex; gap: 2.5mm; align-items: flex-start; padding: 1.8mm 0; border-bottom: 1px solid #ddd3bd; }
+  .ev-time { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 8pt; background: #16171a; color: #f6f1e7; padding: 0.8mm 1.8mm; border-radius: 1mm; white-space: nowrap; }
+  .ev-name { font-weight: 700; font-size: 8.4pt; line-height: 1.15; }
+  .ev-venue { font-size: 7pt; color: #6a6256; }
+  .plan-item { display: grid; grid-template-columns: auto auto 1fr; gap: 2.5mm; align-items: center; padding: 1.7mm 0; border-bottom: 1px solid #ddd3bd; }
+  .plan-ic { font-size: 11pt; width: 6mm; text-align: center; }
+  .plan-t { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 8pt; }
+  .plan-a { font-weight: 600; font-size: 8.4pt; }
+
+  /* DALIŞ dark ad */
+  .diving { background: #0b2230 center/cover no-repeat; color: #eaf3f6; border: 1px solid #16171a; padding: 4mm; display: flex; flex-direction: column; justify-content: flex-end; position: relative; min-height: 44mm; }
+  .diving::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,34,48,0.3), rgba(11,34,48,0.85)); }
+  .diving > * { position: relative; z-index: 1; }
+  .diving h3 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 16pt; line-height: 1.02; text-transform: uppercase; margin-bottom: 1.5mm; }
+  .diving p { font-size: 7.8pt; line-height: 1.4; color: #cfe2e8; margin-bottom: 3mm; }
+  .diving .d-cta { align-self: flex-start; border: 1px solid #eaf3f6; font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.14em; text-transform: uppercase; padding: 1.5mm 3mm; }
+
+  /* ─── FOOTER ─── */
+  .footer { display: flex; justify-content: space-between; align-items: center; border-top: 2.5px solid #16171a; margin-top: 5mm; padding-top: 2mm; font-family: 'IBM Plex Mono', monospace; font-size: 6.5pt; letter-spacing: 0.06em; color: #4a463d; }
+  .footer .f-brand { font-family: 'Playfair Display', serif; font-style: italic; font-size: 9pt; color: #16171a; letter-spacing: 0; }
+</style>
+<meta name="ai-generated" content="true">
+<meta name="generator" content="AI-assisted (kalkan-newsroom)">
+<meta name="robots-ai-disclosure" content="ai-assisted-content">
+</head>
+<body>
+<nav class="lang-switch" style="position:fixed;top:8px;right:10px;z-index:99;font:600 12px/1 system-ui,sans-serif;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.15)"><span class="cur" aria-current="true">TR</span> · <a href="./morning.en.html">EN</a> · <a href="./morning.de.html">DE</a> · <a href="./morning.ru.html">RU</a> · <a href="./morning.fr.html">FR</a></nav>
+
+  <!-- ═══ MASTHEAD ═══ -->
+  <header class="masthead">
+    <div class="tag-box">Kalkan’ın nabzı, bir sayfada.</div>
+    <div class="nameplate">
+      <div class="np-main">KALKAN INFO</div>
+      <div class="np-sub">GAZETESİ</div>
+    </div>
+    <div class="weather-card">
+      <div class="wc-lbl">Kalkan Hava Durumu</div>
+      <div class="wc-row"><span class="wc-sun">☀️</span><span class="wc-temp">31<span class="wc-deg">°C</span></span></div>
+      <div class="wc-desc">Güneşli</div>
+      <div class="wc-wind">Rüzgar: B 9 km/h</div>
+    </div>
+  </header>
+
+  <!-- ═══ META BAR ═══ -->
+  <div class="meta-bar">
+    <span>YIL: 1 &nbsp; SAYI: 088</span>
+    <span>kalkaninfo.com</span>
+    <span class="mb-date">27 Ağustos 2026 Perşembe</span>
+    <span>kalkaninfo@gmail.com</span>
+    <span>FİYAT: 10 TL</span>
+  </div>
+
+  <!-- ═══ LEAD + RAIL ═══ -->
+  <section class="top">
+    <div class="lead">
+      <div class="lead-kicker">Manşet</div>
+      <h1 class="lead-headline">Zafer Öztürk'ten Kaş Kalkan'da çifte mesai: Hem tatil yaptı hem Otelini yeni sezona hazırladı</h1>
+      <p class="lead-deck">Kalamar koyundan Kaputaş'a uzanan hatta yeni dönem başladı; belediye haziran sonu rekoru bekliyor.</p>
+      <div class="lead-image" style="background-image:url('https://kalkaninfo.com/assets/img/villa-seascape.webp')"></div>
+      <p class="lead-caption">Foto: Google News — Kalkan/Kaş · Turizm</p>
+      <p class="lead-source"><a class="src-link" href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNcF90VWFYVF9MblBjaElGX2dYeWV0WFJnUkc3Ymg2T2ZTQmZhUk91Z0FsVERPRlAyQkNTOXYtaE5qQkNhX2t0Rm5YOU5nNVJKNTNqeVdzcHJPdmNZVFJxTEJLeXZTc1lCYUJ2N19scHdxenY1amJlWjdUY2lvWnpGVTZuUFl3eEIyWjBIWGYtbjU1MzdtTS1YcHFtaEQyRjVBX3IyRnFtUENuT2ZmeU5lRG5zV29xSWtTaVlWQ3lEcGpZVG1FX1VtSG41VXNPakxLazlDeGRhVdIB2gFBVV95cUxQMV9pOHpMTmFwdk5JMVFEYk9VN3JldkRHbld0bkp2Zl8wZ3c2VlppRURhc3JQbmJ2ZVNIdDJqN1NzSUZQaGJacU41bU1jY3BxT0hIazZiRkh6eHo2a3psb2pmYnpvVGZ0VGdGcEZwYkpIYUNzV012Sl81T2ZmWWRJdDZrYWZGbzdJY0tlME5vYzNZV1hYb1JkSVBqY3U0S1lEeTNhM1BVQlVpcmlmbVB4TWROdG1xZEp6U2VNdmhZVkFVQktCM09TS3lNc0ZoTVdxOHc4TGtjN3Q1UQ?oc=5" target="_blank" rel="noopener noreferrer nofollow">Kaynak: Google News — Kalkan/Kaş ↗</a></p>
+      <div class="feature">
+        <h2>KALKAN’IN TAŞ EVLERİ: BİR MİMARİ MİRAS</h2>
+        <p>Kalkan’ın yamaçlara sıralanmış beyaz badanalı taş evleri, kentin en tanınan simgesidir. Rum ve Türk el işçiliğinin buluştuğu bu evler, ahşap balkonları ve begonvilleriyle limana bakar. Koruma altındaki tarihî doku, Kalkan’a butik bir kimlik kazandırır. Her sokak, denize inen bir hikâye anlatır.</p>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="rail-h">Günün Başlıkları</div>
+      <ul class="rail-list">
+        <li><a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNcF90VWFYVF9MblBjaElGX2dYeWV0WFJnUkc3Ymg2T2ZTQmZhUk91Z0FsVERPRlAyQkNTOXYtaE5qQkNhX2t0Rm5YOU5nNVJKNTNqeVdzcHJPdmNZVFJxTEJLeXZTc1lCYUJ2N19scHdxenY1amJlWjdUY2lvWnpGVTZuUFl3eEIyWjBIWGYtbjU1MzdtTS1YcHFtaEQyRjVBX3IyRnFtUENuT2ZmeU5lRG5zV29xSWtTaVlWQ3lEcGpZVG1FX1VtSG41VXNPakxLazlDeGRhVdIB2gFBVV95cUxQMV9pOHpMTmFwdk5JMVFEYk9VN3JldkRHbld0bkp2Zl8wZ3c2VlppRURhc3JQbmJ2ZVNIdDJqN1NzSUZQaGJacU41bU1jY3BxT0hIazZiRkh6eHo2a3psb2pmYnpvVGZ0VGdGcEZwYkpIYUNzV012Sl81T2ZmWWRJdDZrYWZGbzdJY0tlME5vYzNZV1hYb1JkSVBqY3U0S1lEeTNhM1BVQlVpcmlmbVB4TWROdG1xZEp6U2VNdmhZVkFVQktCM09TS3lNc0ZoTVdxOHc4TGtjN3Q1UQ?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">Zafer Öztürk'ten Kaş Kalkan'da çifte mesai: Hem tatil yaptı hem Otelini…</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxNTUhzX19CdU1QbzdKaTVWM3VSYlFYZEtTMlhvRDY3RHVtVngwTFJVYnk0aS1FZTlNaGkwTUg3RHVQY1FGaGZsTE0yY21TOFJlVWRQWDc1UlROazRUNDVmSmZ6RlM4Wmd5SU5UcXZ0MFJPT1lOUnNURjBGcE9IeWs3blA3M2FJRzlvNVRuQXR3d1R2U2RMSXAyWjdSTFRhWlBtOGlzSUxBQV9jbzlSNUN0UXFKcG5XQ2V0TnpDLXhUZGgwNWVI?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">Antalya'da Yeni Özelleştirme İhalesi: Side ve Kalkan’da Araziler Satışa…</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9TZnVobUN6Rkc3ZjIwclI0TUdFVEpIaklNZkRvTW1YZmlYZFhHSXlvbUJwZFhYYktGT292TXlwVU9vY3NJVmJkZDhwX2YwNkxHUnNPdWk3cktCXzNObzh5Mk1peDJaQUVjaF9kcXZZdGlPYTlDUDl4OHdFOXg?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">Kaş ve Kalkan'da villa turizmi zirveye çıkıyor</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNLTJHUlBiR0FuV0p6cFl4X0VEZUpvWU55V191VlFid3ByLUhYcnpZUmRFWnB1SUdENURYcW8zSlBhYi1QbnBYUmRpM3BOQThoMzE2NFpIYkEzYmpPQUJOaTk1QzdxV3YwdUpQbEZxcDM3TVViQnNaMkd5RnlqR3dLVklLNE5IUDIxSGZzZW0td0JmVmFuZkwwNlVHak9TQjBJQTNQdVBISnRaSkJXbHdwakx3bUlrTVNqTHJyM1N1T2JUdw?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">Kaş'ta ve Kalkan'da Villa Turizmi Hareketlendi: Dolulukta Yüzde 100 Hedef…</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNeXY0UjhVSzBSNDFfM3VlQ21IdGVrSmpNWExxRnpvUEFwSFpLUTlYVXpTWUVTT08xUlhRWG4wTllkc2dqOWh1OWZQRm1YdXlsdVhWSkNnZ3dCVmE3X0trZXplN21UT1BXejNmWGxFU2lwOGY0ZGJQbDA3U3AwREZ0MzVqVUIyMzVRQ3BrRHBRTTluLVZjTVJB?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">En İyi Kalkan, Kekova Olimpos ve Kaş Otelleri | 2026 Güncel</a></li>
+<li><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPWV9mbDNqdmlYRmp5bmtzclVyQ2hWQlc5NjFNcGVjUXBzeVpHLUpYZkZZVGhoYzlQRzUtMDBHcnlnOXczVG9ZRUR5dDg2U1NkNDlLNk5RZ1RHUWcyMkNNU042Y1ZtYVRrRkRYNU9oZVd4VVVQenU2MGJwdFpKdEZ5TEp2VkMxX1l4ejNFQTEyY3FZSjBqWVFZS1NYYlVaYVA1TGZPMDNXLWkzczh3SUE?oc=5" target="_blank" rel="noopener noreferrer nofollow" title="Kaynak: Google News — Kalkan/Kaş">İtiraz Reddedildi, Erdoğan İmzayı Attı: Kalkan'da İmar Planı Değişti</a></li>
+      </ul>
+      <div class="rail-photo" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/backyardno10-g1.jpg')"></div>
+      <div class="rail-sub-h">Bugün Kalkan’da Gezilecek Yerler</div>
+      <ul class="rail-list">
+        <li>Kalkan Halk Plajı</li>
+<li>Kaputaş Plajı</li>
+<li>Patara Antik Kenti</li>
+<li>Saklıkent Kanyonu</li>
+<li>İslamlar Köyü</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- ═══ MID: RESTORANLAR | YORUMLAR | NEOMA ═══ -->
+  <section class="mid">
+    <div>
+      <div class="sec-h">Haftanın Restoranları</div>
+      <ol class="resto-list">
+        <li class="resto-item">
+      <span class="rank">1</span>
+      <div class="thumb" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/istanbullu-gelin-cafe-lunch-g1.jpg')"></div>
+      <div class="resto-info">
+        <div class="resto-name">Istanbullu Gelin Cafe &amp;…</div>
+        <div class="resto-loc">Andifli, 07960…</div>
+        <div class="stars">★★★★★<span class="star-empty"></span> <span class="rate-num">4.9</span></div>
+      </div>
+    </li>
+<li class="resto-item">
+      <span class="rank">2</span>
+      <div class="thumb" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/taraca-lounge-kitchen-g1.jpg')"></div>
+      <div class="resto-info">
+        <div class="resto-name">Taraça Lounge &amp; Kitchen</div>
+        <div class="resto-loc">Yaliboyu) kapi, Kalkan…</div>
+        <div class="stars">★★★★★<span class="star-empty"></span> <span class="rate-num">4.9</span></div>
+      </div>
+    </li>
+<li class="resto-item">
+      <span class="rank">3</span>
+      <div class="thumb" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/woon-coffee-concept-g1.jpg')"></div>
+      <div class="resto-info">
+        <div class="resto-name">Woon Coffee &amp; Concept</div>
+        <div class="resto-loc">Kalkan, Şehitler Cd.</div>
+        <div class="stars">★★★★★<span class="star-empty"></span> <span class="rate-num">4.9</span></div>
+      </div>
+    </li>
+<li class="resto-item">
+      <span class="rank">4</span>
+      <div class="thumb" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/merkez-bar-g1.jpg')"></div>
+      <div class="resto-info">
+        <div class="resto-name">Merkez Bar</div>
+        <div class="resto-loc">Kalkan, 2. Sk. No:5,…</div>
+        <div class="stars">★★★★★<span class="star-empty"></span> <span class="rate-num">4.9</span></div>
+      </div>
+    </li>
+<li class="resto-item">
+      <span class="rank">5</span>
+      <div class="thumb" style="background-image:url('https://kalkaninfo.com/assets/img/restoran/papyon-cafe-fast-food-g1.jpg')"></div>
+      <div class="resto-info">
+        <div class="resto-name">Papyon cafe fast food</div>
+        <div class="resto-loc">Yeşilköy, Atatürk Blv.</div>
+        <div class="stars">★★★★★<span class="star-empty"></span> <span class="rate-num">4.9</span></div>
+      </div>
+    </li>
+      </ol>
+    </div>
+    <div>
+      <div class="sec-h">Google Puanları</div>
+      <div class="review">
+      <div class="rev-head"><span class="rev-name">Yeşilköy Kasap &amp;…</span> <span class="stars sm">★★★★★<span class="star-empty"></span></span> <span class="rate-num">4.9</span></div>
+      <p class="rev-text">Restoran · Yeşilköy, Atatürk Blv. — ziyaretçilerin beğenisini topluyor.</p>
+      <div class="rev-src">Google · 32 değerlendirme</div>
+    </div>
+<div class="review">
+      <div class="rev-head"><span class="rev-name">BLUE TERRACE RESTAURANT…</span> <span class="stars sm">★★★★★<span class="star-empty"></span></span> <span class="rate-num">4.8</span></div>
+      <p class="rev-text">Kafe · Kalkan, Süleyman Yılmaz Cd. — ziyaretçilerin beğenisini topluyor.</p>
+      <div class="rev-src">Google · 903 değerlendirme</div>
+    </div>
+<div class="review">
+      <div class="rev-head"><span class="rev-name">Sini cafe &amp; restaurant</span> <span class="stars sm">★★★★★<span class="star-empty"></span></span> <span class="rate-num">4.8</span></div>
+      <p class="rev-text">Kafe · Kalkan, Mustafa Kocakaya Cd.,… — ziyaretçilerin beğenisini topluyor.</p>
+      <div class="rev-src">Google · 523 değerlendirme</div>
+    </div>
+    </div>
+    <div class="neoma">
+      <div class="n-name">NEOMA</div>
+      <div class="n-tag">Entertainment Center</div>
+      <div class="n-head">BU AKŞAM SAHNEDE DJ PERFORMANCE!</div>
+      <ul class="n-feats">
+        <li><span>♫</span> Yemek &amp; İçki</li>
+        <li><span>♫</span> DJ Performansları</li>
+        <li><span>♫</span> Canlı Gösteriler</li>
+        <li><span>♫</span> VIP Lounge</li>
+      </ul>
+      <div class="n-resv">REZERVASYON: 0 555 123 45 67 · @neoma.kalkan</div>
+    </div>
+  </section>
+
+  <!-- ═══ BOTTOM: ETKİNLİK | YARIN | DALIŞ ═══ -->
+  <section class="bottom">
+    <div>
+      <div class="sec-h">Canlı Etkinlikler</div>
+      <ul class="ev-list">
+        <li class="ev-item"><span class="ev-time">07:45</span><div><div class="ev-name">Yoga</div><div class="ev-venue">Indigo Beach Club Kalkan · Kalkan</div></div></li>
+<li class="ev-item"><span class="ev-time">20:00</span><div><div class="ev-name">Canlı Müzik</div><div class="ev-venue">Korsan Fish Terrace · Kalkan</div></div></li>
+<li class="ev-item"><span class="ev-time">21:00</span><div><div class="ev-name">Sinema Gecesi</div><div class="ev-venue">Indigo Beach Club Kalkan · Kalkan</div></div></li>
+<li class="ev-item"><span class="ev-time">21:30</span><div><div class="ev-name">Canlı Müzik</div><div class="ev-venue">Black &amp; Gold Terrace Cocktail Bar · Kalkan</div></div></li>
+<li class="ev-item"><span class="ev-time">23:00</span><div><div class="ev-name">DJ</div><div class="ev-venue">Chocolate Club Kalkan · Kalkan</div></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="sec-h">Yarın İçin Yapılacaklar</div>
+      <ul class="plan-list">
+        <li class="plan-item"><span class="plan-ic">☕</span><span class="plan-t">09:00</span><span class="plan-a">Kahvaltı &amp; Manzara Keyfi</span></li>
+<li class="plan-item"><span class="plan-ic">⛵</span><span class="plan-t">10:30</span><span class="plan-a">Tekne Turu</span></li>
+<li class="plan-item"><span class="plan-ic">🍽</span><span class="plan-t">13:30</span><span class="plan-a">Lezzet Molası</span></li>
+<li class="plan-item"><span class="plan-ic">🏛</span><span class="plan-t">16:00</span><span class="plan-a">Patara Antik Kenti Ziyareti</span></li>
+<li class="plan-item"><span class="plan-ic">🌅</span><span class="plan-t">19:30</span><span class="plan-a">Gün Batımı Keyfi</span></li>
+<li class="plan-item"><span class="plan-ic">🎵</span><span class="plan-t">22:00</span><span class="plan-a">Gece Başlıyor</span></li>
+      </ul>
+    </div>
+    <div class="diving">
+      <h3>Dalış Turları Her Gün!</h3>
+      <p>Kalkan’ın berrak sularında unutulmaz bir deneyim.</p>
+      <span class="d-cta">Rezervasyon için bize ulaşın →</span>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="f-brand">Kalkan Info Gazetesi — Kalkan’ın sesi, bilginin kaynağı.</div>
+    <div>/kalkaninfo · www.kalkaninfo.com · Sorumlu: Berkay Elmastaş · Yapay zeka destekli hazırlanmıştır</div>
+  </footer>
+
+<p class="ai-disclosure" data-ai-generated="true" role="note">🤖 Bu içerik yapay zeka yardımıyla üretilmiştir.</p>
+</body>
+</html>
