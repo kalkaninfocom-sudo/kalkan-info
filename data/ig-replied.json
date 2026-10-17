@@ -16,8 +16,13 @@
       "skipped": true,
       "reason": "LLM hata: Tüm sağlayıcılar başarısız → ollama: fetch failed | groq: 401 {\"error\":{\"message\":\"Invalid API Key\",\"type\":\"invalid_request_error\",\"code\":\"expired_api_key\"}}\n | cerebras: yok/keysiz | nvidia: 410 {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.3-70b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is n | gemini: yok/keysiz | claude: yok/keysiz",
       "at": "2026-10-17T19:11:48.643Z"
+    },
+    "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDY0NzU1NTIzMjI3OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI2MDM1NzUzNDQyMzEwMjM0MDozMzA2MTYyMTgwOTA0ODQ2NTkzMTUyNjg5ODY0MzM2OTk4NAZDZD": {
+      "skipped": true,
+      "reason": "LLM hata: Tüm sağlayıcılar başarısız → ollama: fetch failed | groq: 401 {\"error\":{\"message\":\"Invalid API Key\",\"type\":\"invalid_request_error\",\"code\":\"expired_api_key\"}}\n | cerebras: yok/keysiz | nvidia: 410 {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.3-70b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is n | gemini: yok/keysiz | claude: yok/keysiz",
+      "at": "2026-10-17T23:21:07.584Z"
     }
   },
   "pending": {},
-  "updated": "2026-10-17T21:30:15.897Z"
+  "updated": "2026-10-17T23:21:07.584Z"
 }
