@@ -11,7 +11,13 @@
       "at": "2026-10-03T16:05:57.499Z"
     }
   },
-  "messages": {},
+  "messages": {
+    "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDY0NzU1NTIzMjI3OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTE3Njk0NzA4NjA2ODgwMzozMzA2MTE2NTkxMDU3MzI1MTc5MTA1MTIzNjIzMzQ0NTM3NgZDZD": {
+      "skipped": true,
+      "reason": "LLM hata: Tüm sağlayıcılar başarısız → ollama: fetch failed | groq: 401 {\"error\":{\"message\":\"Invalid API Key\",\"type\":\"invalid_request_error\",\"code\":\"expired_api_key\"}}\n | cerebras: yok/keysiz | nvidia: 410 {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'meta/llama-3.3-70b-instruct' has reached its end of life on 2026-08-26T09:00:00Z and is n | gemini: yok/keysiz | claude: yok/keysiz",
+      "at": "2026-10-17T19:11:48.643Z"
+    }
+  },
   "pending": {},
-  "updated": "2026-10-17T16:58:20.956Z"
+  "updated": "2026-10-17T19:11:48.643Z"
 }
