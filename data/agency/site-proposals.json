@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T09:47:56.112Z",
+  "generatedAt": "2026-10-26T09:59:55.564Z",
   "proposals": [
     {
       "key": "restoranlar",
@@ -135,9 +135,15 @@
       "agent": "muhabir",
       "agentPerson": "Elif Şahin",
       "total": 30,
-      "score": 100,
-      "issues": [],
-      "suggestion": "Haberler: güncel ✓"
+      "score": 40,
+      "issues": [
+        {
+          "type": "bayat",
+          "count": 154,
+          "text": "En yeni içerik 6 gün önce — güncelleme gerek"
+        }
+      ],
+      "suggestion": "Haberler: En yeni içerik 6 gün önce — güncelleme gerek"
     }
   ]
 }
