@@ -2,7 +2,7 @@
   "_meta": {
     "title": "Haberler",
     "subtitle": "Kalkan ve Antalya bölgesinden güncel haberler — canlı RSS akışı",
-    "updated": "2026-11-15T13:49:43.367Z",
+    "updated": "2026-11-15T22:43:01.474Z",
     "sources": [
       {
         "name": "Kaş Belediyesi Haber",
@@ -64,29 +64,15 @@
     "generated_by": "scripts/news-aggregator.mjs"
   },
   "categories": [
-    "Plaj",
     "Belediye",
     "Turizm",
     "Gündem",
-    "Kültür",
-    "Hava"
+    "Plaj",
+    "Etkinlik",
+    "Hava",
+    "Kültür"
   ],
   "items": [
-    {
-      "id": "resmi-gazete-de-yayimlandi-kas-kalkan-daki-kamu-arazisi-ozellestirildi-akdeniz-g-2026-11-03",
-      "title": "Resmi Gazete'de Yayımlandı: Kaş Kalkan'daki Kamu Arazisi Özelleştirildi - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2026-11-03",
-      "image": "https://kalkaninfo.com/assets/img/indigo-beach-real.jpg",
-      "summary": "Resmi Gazete'de Yayımlandı: Kaş Kalkan'daki Kamu Arazisi Özelleştirildi Akdeniz Gerçek",
-      "content": "Resmi Gazete'de Yayımlandı: Kaş Kalkan'daki Kamu Arazisi Özelleştirildi Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNY0FNOWtIQVUxUEpURDhtbkhLY1kyTEl5aDFrVXNGUF9CRVhhZGZxc3dZS2Q0d0c1X2VXb2RoQkZuU1cyZnFPMUxfXzBvTmNCYktGX3RIakFTQ2RYMlBha3ctODZQV2xDRnBXQ0R4ZzB6Y2paZFRabWo5R29YelVXR2VLS09kMnU4QmE0eWFPbTl3M3VMYW5iU0I1QXpfSjN6bm1BamMxWFhQYmFkX0k5akNR?oc=5",
-      "featured": true
-    },
     {
       "id": "geciken-haber-katlanan-sorumluluk-i-s-kazasi-bildirim-suresinin-asilmasi-ve-huku-2026-11-14",
       "title": "Geciken Haber, Katlanan Sorumluluk: İş Kazası Bildirim Süresinin Aşılması ve Hukuki Sonuçları",
@@ -100,21 +86,6 @@
       ],
       "source": "AntalyaBugün",
       "sourceUrl": "https://www.antalyabugun.com.tr/makale/geciken-haber-katlanan-sorumluluk-is-kazasi-bildirim-suresinin-asilmasi-ve-hukuki-sonuclari-30714",
-      "featured": true
-    },
-    {
-      "id": "kas-devlet-hastanesi-nde-10-kasim-krizi-genel-saglik-i-s-antalya-dan-bashekim-i--2026-11-13",
-      "title": "Kaş Devlet Hastanesi'nde 10 Kasım Krizi: Genel Sağlık-İş Antalya'dan Başhekim İçin Görevden Alma Talebi - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2026-11-13",
-      "image": "https://kalkaninfo.com/assets/img/incirli-real.jpg",
-      "summary": "Kaş Devlet Hastanesi'nde 10 Kasım Krizi: Genel Sağlık-İş Antalya'dan Başhekim İçin Görevden Alma Talebi Akdeniz Gerçek",
-      "content": "Kaş Devlet Hastanesi'nde 10 Kasım Krizi: Genel Sağlık-İş Antalya'dan Başhekim İçin Görevden Alma Talebi Akdeniz Gerçek",
-      "tags": [
-        "Kaş"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNemtBWVprQWhidWdBb0t0Sl9zQ3R3bC1MeXA4LXpnbHhfd1djOGpDakhzTG5FdFcyUU5DRlp2WExsc19oaUdzaXA0UHAzenF0TkZRdTFOS0ZaMU9qcTNvclg2cXVvbzVOTUhqMTJoRFhULTQtUHFlRUZjWmh0RGpkTUhqdnFRdzBDRDNncHRHVUZjSVpfd2lrNmUxMm5qRW9jNjRRdTZiaU5FZkxjU0MyV25EN2liZzFzcnhjSXhtejl5Ui1XTXlEUVBfOFFGZmJPYy1veWlpdWlpSmxCYzNSZEpfdWw?oc=5",
       "featured": true
     },
     {
@@ -145,7 +116,7 @@
       ],
       "source": "Kalkan Times",
       "sourceUrl": "https://www.kalkantimes.com/haber/zafer-öztürk-ten-kaş-kalkan-da-çifte-mesai-hem-tatil-yaptı-hem-otelini-yeni-sezona-hazırladı-1227",
-      "featured": false
+      "featured": true
     },
     {
       "id": "kas-belediye-baskani-erol-demirhan-ve-esi-sukriye-demirhan-ile-birlikte-kalkan-k-2026-09-01",
@@ -160,337 +131,81 @@
       ],
       "source": "Kalkan Times",
       "sourceUrl": "https://www.kalkantimes.com/haber/kaş-belediye-başkanı-erol-demirhan-ve-eşi-şükriye-demirhan-ile-birlikte-kalkan-kültür-evi-nde-binnur-tan-ın-iz-im-adlı-sergisinin-açılışına-katıldı-12269",
-      "featured": false
+      "featured": true
     },
     {
-      "id": "kas-ve-kalkan-da-villa-turizmi-hareketlendi-dolulukta-yuzde-100-hedef-akdeniz-ge-2026-06-26",
-      "title": "Kaş ve Kalkan'da Villa Turizmi Hareketlendi: Dolulukta Yüzde 100 Hedef - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2026-06-26",
-      "image": "https://kalkaninfo.com/assets/img/incirli-real.jpg",
-      "summary": "Kaş ve Kalkan'da Villa Turizmi Hareketlendi: Dolulukta Yüzde 100 Hedef Akdeniz Gerçek",
-      "content": "Kaş ve Kalkan'da Villa Turizmi Hareketlendi: Dolulukta Yüzde 100 Hedef Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNLTJHUlBiR0FuV0p6cFl4X0VEZUpvWU55V191VlFid3ByLUhYcnpZUmRFWnB1SUdENURYcW8zSlBhYi1QbnBYUmRpM3BOQThoMzE2NFpIYkEzYmpPQUJOaTk1QzdxV3YwdUpQbEZxcDM3TVViQnNaMkd5RnlqR3dLVklLNE5IUDIxSGZzZW0td0JmVmFuZkwwNlVHak9TQjBJQTNQdVBISnRaSkJXbHdwakx3bUlrTVNqTHJyM1N1T2JUdw?oc=5",
-      "featured": false
-    },
-    {
-      "id": "en-i-yi-kalkan-kekova-olimpos-ve-kas-otelleri-2026-guncel-oggusto-2026-06-12",
-      "title": "En İyi Kalkan, Kekova Olimpos ve Kaş Otelleri | 2026 Güncel - Oggusto",
-      "category": "Turizm",
-      "date": "2026-06-12",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "En İyi Kalkan, Kekova Olimpos ve Kaş Otelleri | 2026 Güncel Oggusto",
-      "content": "En İyi Kalkan, Kekova Olimpos ve Kaş Otelleri | 2026 Güncel Oggusto",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNeXY0UjhVSzBSNDFfM3VlQ21IdGVrSmpNWExxRnpvUEFwSFpLUTlYVXpTWUVTT08xUlhRWG4wTllkc2dqOWh1OWZQRm1YdXlsdVhWSkNnZ3dCVmE3X0trZXplN21UT1BXejNmWGxFU2lwOGY0ZGJQbDA3U3AwREZ0MzVqVUIyMzVRQ3BrRHBRTTluLVZjTVJB?oc=5",
-      "featured": false
-    },
-    {
-      "id": "antalya-kas-kalkan-kavsaginda-i-ki-arac-carpisti-bolgeye-gelen-ekipler-i-nceleme-2026-05-16",
-      "title": "Antalya Kaş Kalkan Kavşağında İki Araç Çarpıştı: Bölgeye Gelen Ekipler İnceleme Başlattı - NNC Haber",
+      "id": "kasim-sed-odemeleri-hak-sahiplerinin-hesaplarina-yatirildi-2026-11-15",
+      "title": "Kasım SED ödemeleri hak sahiplerinin hesaplarına yatırıldı",
       "category": "Gündem",
-      "date": "2026-05-16",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "Antalya Kaş Kalkan Kavşağında İki Araç Çarpıştı: Bölgeye Gelen Ekipler İnceleme Başlattı NNC Haber",
-      "content": "Antalya Kaş Kalkan Kavşağında İki Araç Çarpıştı: Bölgeye Gelen Ekipler İnceleme Başlattı NNC Haber",
+      "date": "2026-11-15",
+      "image": "https://cdnuploads.aa.com.tr/uploads/Contents/2026/11/16/thumbs_b_c_5be14c25893a32c9a406b8ffdb3b8e48.jpg",
+      "summary": "Aile ve Sosyal Hizmetler Bakanı Mahinur Özdemir Göktaş, kasım ayına ait Sosyal ve Ekonomik Destek (SED) ödemelerinin hesaplara yatırıldığını bildirdi.",
+      "content": "Aile ve Sosyal Hizmetler Bakanı Mahinur Özdemir Göktaş, kasım ayına ait Sosyal ve Ekonomik Destek (SED) ödemelerinin hesaplara yatırıldığını bildirdi.",
       "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQaUwxSWRkVmcwUXlOQTR6RE5rUmlPaFBSamtIUy1BVFEzeUF6RUlJS01valBmWDdZM2I5dkdVenp6bXJXWlpoUEpueDFMVmllWVRCTWs0SGZFa0NuTFpWX3lLVmQzQnVrc1VOQVprQTJsX3lfRUFnblo1RTZZanRseUt3REJ0bXdSNHlNekFRa05QRUFQR1FvUlZSbHZCYXhrYjRSSUQ0OGJaWlhDTUFmWVdn0gG3AUFVX3lxTE5VQzlNQXUyaEpNemxKWFhDTHVTNG1fbjJEUjd0VnktaGc4Z3AzUndkbjlHWUt4NXNQTGQ2bk5HMTJVNkdwOFBHMVVsQllMWXEyZzZkU25OTFp0V2ZPcFd0cFdfX3RZelBBMHVMUnNBY05oR3JBOElBMHU3VUYyUFNjR3Yyb0FXamYzOXFHR19WRTRubXdLZEZUTzNTaGRfQ29ScmwwVS1sRVkxaHFPSXVjRzRvUDltbw?oc=5",
-      "featured": false
-    },
-    {
-      "id": "i-tiraz-reddedildi-erdogan-i-mzayi-atti-kalkan-da-i-mar-plani-degisti-akdeniz-ge-2026-04-25",
-      "title": "İtiraz Reddedildi, Erdoğan İmzayı Attı: Kalkan'da İmar Planı Değişti - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2026-04-25",
-      "image": "https://kalkaninfo.com/assets/img/incirli-real.jpg",
-      "summary": "İtiraz Reddedildi, Erdoğan İmzayı Attı: Kalkan'da İmar Planı Değişti Akdeniz Gerçek",
-      "content": "İtiraz Reddedildi, Erdoğan İmzayı Attı: Kalkan'da İmar Planı Değişti Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPWV9mbDNqdmlYRmp5bmtzclVyQ2hWQlc5NjFNcGVjUXBzeVpHLUpYZkZZVGhoYzlQRzUtMDBHcnlnOXczVG9ZRUR5dDg2U1NkNDlLNk5RZ1RHUWcyMkNNU042Y1ZtYVRrRkRYNU9oZVd4VVVQenU2MGJwdFpKdEZ5TEp2VkMxX1l4ejNFQTEyY3FZSjBqWVFZS1NYYlVaYVA1TGZPMDNXLWkzczh3SUE?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kas-kalkan-da-dev-arazide-i-mar-degisikligi-ozellestirmeye-acildi-akdeniz-gercek-2026-01-24",
-      "title": "Kaş Kalkan'da Dev Arazide İmar Değişikliği! Özelleştirmeye Açıldı - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2026-01-24",
-      "image": "https://kalkaninfo.com/assets/img/kucuk-cakil-real.jpg",
-      "summary": "Kaş Kalkan'da Dev Arazide İmar Değişikliği! Özelleştirmeye Açıldı Akdeniz Gerçek",
-      "content": "Kaş Kalkan'da Dev Arazide İmar Değişikliği! Özelleştirmeye Açıldı Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPM0NPR3ZERUF5TmU2S3QwbmNZNDJnUlFZUkFMM1JMM0l2VmJMSjlyd25nUU1fbG5sUFZYNGZMSG00MUh2aUxpZFdYTFNjV2ZrNlB2Vy1YaE9keWJubTF3dXlkYlRVMkM4OWtpb2xZZVVVNnc4eEVIUGV1c3QtdDVTVHpfRGR3TWI2V090a1M1TkNYa0FVNW9IZGFXVTNGTVBMYmVrdGRwWXJ0LXc?oc=5",
-      "featured": false
-    },
-    {
-      "id": "finike-demre-kas-kalkan-yolu-projesinde-dogru-bilinen-yanlislar-akdeniz-gercek-2025-12-15",
-      "title": "Finike–Demre–Kaş–Kalkan Yolu Projesinde Doğru Bilinen Yanlışlar - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2025-12-15",
-      "image": "https://kalkaninfo.com/assets/img/likya-beach-real.jpg",
-      "summary": "Finike–Demre–Kaş–Kalkan Yolu Projesinde Doğru Bilinen Yanlışlar Akdeniz Gerçek",
-      "content": "Finike–Demre–Kaş–Kalkan Yolu Projesinde Doğru Bilinen Yanlışlar Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORFAyR1ZHNENKbElYZDg2enNNajhNaXdwdFpvNGVFR0tzWXN4b2F3UElUUWpzcmx2WWRnbG8yOFBCVWRoa01jV1BOTzBXaWRfLVpDVTV1N1FPbldKdW81U1JMWWp1VDgtWWg3WHBvdkRXMEpIakJQT2NnRjBNSWF3ZHAycy1hRmdmTHFFS0s4YkNaQXpWVDU2MkttUVNqOWJtLUpIVlppSDRrd1hDU2lzZVFQV3ZKb1JrN0lF?oc=5",
-      "featured": false
-    },
-    {
-      "id": "finike-demre-kas-kalkan-yoluna-ced-i-ptali-freni-akdeniz-gercek-2025-12-09",
-      "title": "Finike-Demre-Kaş-Kalkan Yoluna ‘ÇED İptali’ Freni - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2025-12-09",
-      "image": "https://kalkaninfo.com/assets/img/indigo-beach-real.jpg",
-      "summary": "Finike-Demre-Kaş-Kalkan Yoluna ‘ÇED İptali’ Freni Akdeniz Gerçek",
-      "content": "Finike-Demre-Kaş-Kalkan Yoluna ‘ÇED İptali’ Freni Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOeUFJTkE3bHRBS01JcjhpSVYzYUJHd2RrOEVwLUZzUlRZbXR4QXpCQUhKNmN2U1FYcUJrMUJneTVvZFFERmU3Y2VFX1N0RFZFbEdrOE1ITFRLTjVheXF6MzVUS0RmdWdzLUlTaEZNMGJHN3FMejViMW11bWVPZ2szaC10SXl0YnkxMVk2cl9PSXk1SmNYQmdLWXc4UQ?oc=5",
-      "featured": false
-    },
-    {
-      "id": "yazin-en-keyifli-anlari-simdi-kas-kalkan-da-analiz-gazetesi-2025-08-17",
-      "title": "Yazın En Keyifli Anları şimdi Kaş Kalkan'da - Analiz Gazetesi",
-      "category": "Gündem",
-      "date": "2025-08-17",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "Yazın En Keyifli Anları şimdi Kaş Kalkan'da Analiz Gazetesi",
-      "content": "Yazın En Keyifli Anları şimdi Kaş Kalkan'da Analiz Gazetesi",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNbWd2OEFvVG40elNYUE93dEk5cWZ5VHdaVjFROUY5VHZHbEJFdGFXdk5PVHFjc2dfc1BFRDM5Rmt2WjFWN0VwM1EzQUlKX1VneF9jZjVrVGdYdTRZaDNZMnhDWDc4NXRTbGw1ZnZPdnZkWWwxcGJWVURvZXRHU1liRHJRbHlfUUdvSzh3Tw?oc=5",
-      "featured": false
-    },
-    {
-      "id": "demre-kas-kalkan-otoban-projesi-antik-kentleri-tehdit-ediyor-arkeofili-2025-07-11",
-      "title": "Demre, Kaş, Kalkan Otoban Projesi̇ Antik Kentleri Tehdit Ediyor - Arkeofili",
-      "category": "Kültür",
-      "date": "2025-07-11",
-      "image": "https://kalkaninfo.com/assets/img/patara-wm.jpg",
-      "summary": "Demre, Kaş, Kalkan Otoban Projesi̇ Antik Kentleri Tehdit Ediyor Arkeofili",
-      "content": "Demre, Kaş, Kalkan Otoban Projesi̇ Antik Kentleri Tehdit Ediyor Arkeofili",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOQ0pMVzZvdFNvTEZwdzE2OWlPSks2eXMzenEwbklQMlJ0YmNZeENac0FJWHhFSjNyWHp1bEtkWkJHNTQ5RnRZR2xvbnJlZ0dtdVBrMFNXdi1rU1JJRl9rTXc0eVlxNkotTE5OdHpzVXBRd1UydGRXU25lM3J5c1pmNkg5c21YRkhxMFNEbXE4TllwVU0?oc=5",
-      "featured": false
-    },
-    {
-      "id": "finike-kalkan-otoyol-projesinin-iptali-icin-acilan-davalarda-bilirkisi-kesfi-tam-2025-06-20",
-      "title": "Finike- Kalkan otoyol projesinin iptali için açılan davalarda bilirkişi keşfi tamamlandı - DHA | Demirören Haber Ajansı",
-      "category": "Belediye",
-      "date": "2025-06-20",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "Finike- Kalkan otoyol projesinin iptali için açılan davalarda bilirkişi keşfi tamamlandı DHA | Demirören Haber Ajansı",
-      "content": "Finike- Kalkan otoyol projesinin iptali için açılan davalarda bilirkişi keşfi tamamlandı DHA | Demirören Haber Ajansı",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPcnd4dEZ1Q2EwclRJS3NYc3BLbDlhV1FMNHd4eUxGQVp3dzFfTnZsZGlwdzJEdjRKOEJPMHhuYnpTaUdreFUtMUlwbHFMUFJxMXV0a3NscGJJTjNMX183MG1ac2paN09hb2NGdWpoYWtXc1lzTlhSUTY2UW95bTN3dVpqOGMxVVdud1BhLWM4ZWRLcDhfY0QtcFg1MExxRDM5VFJ3ZGVibGxGVzRXenRDaTQ3RzVaZG9QUDM0bndhRkFjQVZCQjkyLUF30gHOAUFVX3lxTE9BZERJTVkzd0tqaXFnRWVVSzVzaGpNQVdFeXVWZTRZakNxd1pGSnlBdm5UVmI0QzZDWWlFMkJjQmoxTXdQMGt6Y1hCUmlPRG80M19ROWI3cmNjS01ER0FNbmJEanloQWlPUmhPcXRPVVNQQW91ZXN1U0NKOGxnRHpfMUMtUTN5eEo1OF93OHoyMG5JUHl3RWF5b2VQR3VKVEV5bVduQWhUR3hvdXFhaFdYeWsxc2VndDRwS2ZERmtkT1E3cU9EVHJzLWY4VnBn?oc=5",
-      "featured": false
-    },
-    {
-      "id": "finike-demre-kas-kalkan-yolu-bilirkisi-kesfi-yapildi-kaputas-tan-viyaduk-gececek-2025-06-20",
-      "title": "Finike-Demre-Kaş-Kalkan Yolu Bilirkişi Keşfi Yapıldı! Kaputaş'tan Viyadük Geçecek - Akdeniz Gerçek",
-      "category": "Plaj",
-      "date": "2025-06-20",
-      "image": "https://kalkaninfo.com/assets/img/kaputas-wm.jpg",
-      "summary": "Finike-Demre-Kaş-Kalkan Yolu Bilirkişi Keşfi Yapıldı! Kaputaş'tan Viyadük Geçecek Akdeniz Gerçek",
-      "content": "Finike-Demre-Kaş-Kalkan Yolu Bilirkişi Keşfi Yapıldı! Kaputaş'tan Viyadük Geçecek Akdeniz Gerçek",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQOWtwcnNMUm80ZWZScWJublY3d3NXdnI3dUdEUUxQS1FScVdqNFZ6eWY3UjYtTlYyWTBPTjNlTGF2QnZaWDFIODhTRWhIWGV1Qm44WGVGbTJqQnZLc0RNVWg5TTlCZDNoNVRsS0RIdlNocnRBQVZ0WGpxSVJGa1U2VFJjdzFzRzlkZlU2ejVubnZjc0lzcFBKWEdraC14bUtoTHdZRktfV3NzQlEtVmg3WUxxTEFzZUFvbElmSU1sSUlNZ09fNmc?oc=5",
-      "featured": false
-    },
-    {
-      "id": "akulku-zi-raat-ve-halk-bankasi-kinik-kalkan-kas-subesi-ni-zi-yaret-etti-oz-finan-2025-06-18",
-      "title": "AKÜLKÜ, ZİRAAT VE HALK BANKASI KINIK, KALKAN, KAŞ ŞUBESİNİ ZİYARET ETTİ - Öz Finans-İş Sendikası",
-      "category": "Gündem",
-      "date": "2025-06-18",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "AKÜLKÜ, ZİRAAT VE HALK BANKASI KINIK, KALKAN, KAŞ ŞUBESİNİ ZİYARET ETTİ Öz Finans-İş Sendikası",
-      "content": "AKÜLKÜ, ZİRAAT VE HALK BANKASI KINIK, KALKAN, KAŞ ŞUBESİNİ ZİYARET ETTİ Öz Finans-İş Sendikası",
-      "tags": [
-        "Kalkan",
         "Kaş"
       ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPUGxsRFpYc19CNkFicG51ZTdsaEtnQUxHRGdLNmJST0Q0d29vUVY3b2xQQzAxX09SeWJMcXhRRHpsY1NBbWFmZXFKbE8tbWdoWDFTUFB3OGRFWDFlMXpOOXc3S2x2LTJka0VmYTlDbnBuNXU2b3Y3TmJLTWZvRFA0d1B2OHFFamtrdDdZVjQ1aXlxVDVnWHF3ZnZ2OHRVRXNCVDV2aE5vVWtfbU9E?oc=5",
+      "source": "Anadolu Ajansı",
+      "sourceUrl": "https://www.aa.com.tr/tr/gundem/kasim-sed-odemeleri-hak-sahiplerinin-hesaplarina-yatirildi/4126060",
       "featured": false
     },
     {
-      "id": "turkiye-de-olduguna-kimse-inanmiyor-kas-ile-kalkan-arasinda-gizli-kalmis-hazine--2025-06-05",
-      "title": "Türkiye’de olduğuna kimse inanmıyor! Kaş ile Kalkan arasında gizli kalmış hazine - Antalya Hürses",
-      "category": "Gündem",
-      "date": "2025-06-05",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "Türkiye’de olduğuna kimse inanmıyor! Kaş ile Kalkan arasında gizli kalmış hazine Antalya Hürses",
-      "content": "Türkiye’de olduğuna kimse inanmıyor! Kaş ile Kalkan arasında gizli kalmış hazine Antalya Hürses",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNMXFYcTFTODFjcldldXUydzhxWmhRQnZkdGpwS1NxXzVWOVFWTUlfXzFzQ1BISWxwRV9HenM0OTI3cnR0RjdLajVFOWNBWkRiMVR3RFlnRTc1RjI5dk1pVzllcEdMZDh5c19hejlzeGNWZWYwQUVINTYwOTJPcTZTVkxMVnZkRDh4M0hkcW1sSU5Da0hjVW5WaXdxSHUtZXdUaGJnem16eUZVbThfcGkyQVBGUDNFdw?oc=5",
-      "featured": false
-    },
-    {
-      "id": "finike-demre-kas-kalkan-duble-yol-projesi-gec-olmadan-imza-atin-gazete-duvar-2024-01-21",
-      "title": "Finike-Demre-Kaş-Kalkan Duble Yol Projesi: Geç olmadan imza atın - Gazete Duvar",
-      "category": "Belediye",
-      "date": "2024-01-21",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "Finike-Demre-Kaş-Kalkan Duble Yol Projesi: Geç olmadan imza atın Gazete Duvar",
-      "content": "Finike-Demre-Kaş-Kalkan Duble Yol Projesi: Geç olmadan imza atın Gazete Duvar",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPeHR0Z05fcmFYVklfVjBQbzRqVE5veVA5TTU4b3VBRmt0V3ZXQklGck0zNU8zekxrOVpWQzYweEhCV2RTd195NWRmN29hWlBnN1htb3RBcVo2TTNrRk5pcWg3YlJKdGpnVm8wbXRsTUJGaGlFUUpLQlFlbjFuOXZFY09tV3YyM2FsRlV2dGJGZEpVcG5OWW1EWHV6MWVTQ3ZHbDhudTRaVnlaUW1r?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kas-taki-kalkan-balikci-barinagi-nin-zemini-yenilendi-trt-haber-2023-03-16",
-      "title": "Kaş'taki Kalkan Balıkçı Barınağı'nın zemini yenilendi - TRT Haber",
-      "category": "Gündem",
-      "date": "2023-03-16",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "Kaş'taki Kalkan Balıkçı Barınağı'nın zemini yenilendi TRT Haber",
-      "content": "Kaş'taki Kalkan Balıkçı Barınağı'nın zemini yenilendi TRT Haber",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQanJyQXJEUll4QkthbnFzclRRcjBtNS1YdFNqREk5akllWlc3QVNYTndDOUlzRlJoX1k1Q0FvZ2tyb0xHTTVmRFhPdjJ4Y0d6dVBUUG9JQlBCLUJYSmVJRnFad3FOX3VYbUpXWWVMM0hUZW1GWVFPcDVUR3YzbktHVWR3bWdEYjhqOS15SGVlSlNOV1cwMHJWWUZuQnVpZ1BZZWpR?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kas-kalkan-daki-hazineye-ait-arazi-dahil-bircok-yer-satisa-cikarildi-evrensel-ne-2021-04-16",
-      "title": "Kaş-Kalkan'daki Hazineye ait arazi dahil birçok yer satışa çıkarıldı - Evrensel.net",
-      "category": "Hava",
-      "date": "2021-04-16",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "Kaş-Kalkan'daki Hazineye ait arazi dahil birçok yer satışa çıkarıldı Evrensel.net",
-      "content": "Kaş-Kalkan'daki Hazineye ait arazi dahil birçok yer satışa çıkarıldı Evrensel.net",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQX0VEQnhfMUpuV2hpWFBwby1rN1Q3djM2ODBrYnpYRFFjWXF4Nkt4UmRsaUh3cnhIVHlyaTB1VV9TRHU0T2tIbGlBbW8wWnVnYjR3YU5ENEJUMUhBNTJTWmxFSTYtem83Tjh3ZEU0M3kxS2ozQXd0YVotakpjdG5DV09maVY2QVcyME4xY2wtbGk4R3c2OVhkTUszMW9jMnhvZ04xRTF0dzU?oc=5",
-      "featured": false
-    },
-    {
-      "id": "sifir-temasli-tatil-kalkan-ve-kas-ta-kiralik-luks-villalar-revacta-i-ndigo-dergi-2020-05-09",
-      "title": "Sıfır temaslı tatil: Kalkan ve Kaş’ta kiralık lüks villalar revaçta! - İndigo Dergisi",
-      "category": "Turizm",
-      "date": "2020-05-09",
-      "image": "https://kalkaninfo.com/assets/img/kalamar-beach-club-real.jpg",
-      "summary": "Sıfır temaslı tatil: Kalkan ve Kaş’ta kiralık lüks villalar revaçta! İndigo Dergisi",
-      "content": "Sıfır temaslı tatil: Kalkan ve Kaş’ta kiralık lüks villalar revaçta! İndigo Dergisi",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOdkxQN3JNcTVOS0NhdFlpc0tFWXRtUVpUbkVHR1BiMW5IT2dIWkZvMzUwR1ZxUlBXQU1WcHlBakQwQzFEUjlaYmJVNGpFOTExdWduZlhZQldDMVZuNWc2eUhNbzlfdmE5WHBmMElwSmNJY1dEQkIyZkk3b1ZZWllhTkU2WF9aWVdwYmxtYlZhTEE?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kaputas-plaji-nin-da-yer-aldigi-kas-kalkan-yoluna-ced-gerekli-degildir-karari-ip-2019-07-18",
-      "title": "Kaputaş Plajı’nın da yer aldığı Kaş-Kalkan yoluna ‘ÇED gerekli değildir’ kararı iptal - Birgün Gazetesi",
+      "id": "antalya-da-kasim-ortasinda-yazdan-kalma-goruntuler-2026-11-15",
+      "title": "Antalya’da kasım ortasında yazdan kalma görüntüler",
       "category": "Plaj",
-      "date": "2019-07-18",
-      "image": "https://kalkaninfo.com/assets/img/kucuk-cakil-real.jpg",
-      "summary": "Kaputaş Plajı’nın da yer aldığı Kaş-Kalkan yoluna ‘ÇED gerekli değildir’ kararı iptal Birgün Gazetesi",
-      "content": "Kaputaş Plajı’nın da yer aldığı Kaş-Kalkan yoluna ‘ÇED gerekli değildir’ kararı iptal Birgün Gazetesi",
+      "date": "2026-11-15",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/fadime/antalyada-kasim-ortasinda-yaz-esintisi.png",
+      "summary": "Türkiye’nin birçok bölgesinde kış mevsimi etkisini göstermeye başlarken, Antalya’da güneşli hava sahillere hareketlilik getirdi. Hava sıcaklığının 23, deniz suyu sıcaklığının 22 derece ölçüldüğü kentte vatandaşlar ve turistler Konyaaltı Sahili’nde denize girip güneşlendi.",
+      "content": "Türkiye’nin birçok bölgesinde kış mevsimi etkisini göstermeye başlarken, Antalya’da güneşli hava sahillere hareketlilik getirdi. Hava sıcaklığının 23, deniz suyu sıcaklığının 22 derece ölçüldüğü kentte vatandaşlar ve turistler Konyaaltı Sahili’nde denize girip güneşlendi.",
       "tags": [
-        "Kalkan"
+        "Kaş"
       ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPNnEtVFp1VWZ4YTZGNTRTWW9aSk5ISkFVUmhiTmNocDJXME4tQ1M2ODB4b1dSVUFrWTVzbVpHN2tmMktUWnVJa0RNU21VN3d3ZkdpMmdfQ2Vzd19qeFdNNEkydEJlQklzVG9vRHh2OEFRUGFvbnJ4S2YyT1hwcGxzTzRwOHNyTjhWcXJ4dFBTV0E4SUtGU05wNG9Reko0RC1LTjh2ZTcyOTY1RHlGaUpzM2hQSUxHUXNOT3V3?oc=5",
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/antalyada-kasim-ortasinda-yazdan-kalma-goruntuler",
       "featured": false
     },
     {
-      "id": "firtina-kalkan-da-agaclari-devirdi-catilari-ucurdu-hurriyet-2019-02-06",
-      "title": "Fırtına, Kalkan'da ağaçları devirdi, çatıları uçurdu - Hürriyet",
-      "category": "Hava",
-      "date": "2019-02-06",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "Fırtına, Kalkan'da ağaçları devirdi, çatıları uçurdu Hürriyet",
-      "content": "Fırtına, Kalkan'da ağaçları devirdi, çatıları uçurdu Hürriyet",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQUU0xN3FVVlRlVGxPVlU1bEVIYWtHeWFvZTh0azdINi1sYUhlejRwY0ZzdnAyQnNHLXlQT1otYThDZTJUUTN5ekdsTVhDSm1sakstWENGQmxZNXZxaEhseVY3dHZFT2xTUE5OQjBWOU41aWdzOTB4NkRVZEhhbEFFaFlJOXQxVkQtQk9uZnhsN19KLXd4bGhFbw?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kas-kalkan-otoyolu-icin-kritik-karar-hurriyet-2018-03-13",
-      "title": "Kaş-Kalkan otoyolu için kritik karar - Hürriyet",
-      "category": "Belediye",
-      "date": "2018-03-13",
-      "image": "https://kalkaninfo.com/assets/img/seaport-kalkan.jpg",
-      "summary": "Kaş-Kalkan otoyolu için kritik karar Hürriyet",
-      "content": "Kaş-Kalkan otoyolu için kritik karar Hürriyet",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNZERBLTYtdGJzOGthd2lWUzhwcXBVdHI2TjdpcXhBVlZBUlVZRjdzZ3VkbTM2UVg3cUNCLVFsTkNGMlRSN2xDNEFNTXduMGdWVnBHdHJlMmw5bF9SS3J2UjFJTlRkczhiQ1RiVGltVHZLZUlDODBGY2NpWS1TTVVRVmV6V0dXRmFE?oc=5",
-      "featured": false
-    },
-    {
-      "id": "kalkan-antalya-turkiye-uc-gunluk-hava-durumu-tahmini-accuweather-2017-03-03",
-      "title": "Kalkan, Antalya, Türkiye Üç Günlük Hava Durumu Tahmini - AccuWeather",
-      "category": "Hava",
-      "date": "2017-03-03",
-      "image": "https://kalkaninfo.com/assets/img/panorama-kalkan.jpg",
-      "summary": "Kalkan, Antalya, Türkiye Üç Günlük Hava Durumu Tahmini AccuWeather",
-      "content": "Kalkan, Antalya, Türkiye Üç Günlük Hava Durumu Tahmini AccuWeather",
-      "tags": [
-        "Kalkan"
-      ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRUDRJY2V2VHptbXNGV2VoWDRpcWI0Szk0T2EtZ2ZsUEQ1c1Q1ZmMyMHZYZzVBTnRTMkN0TUhoR0xfWWdlRFFZOGJ3M2VlRnl5RmxjdTg3ZU1zT0N2Z283bzd3MEZ4dFJfOENsR1h3aThLSHVydUxDdHIyQQ?oc=5",
-      "featured": false
-    },
-    {
-      "id": "stratejik-arkeolojik-mitolojik-kiyilarimiz-kas-kalkan-hurriyet-2006-08-21",
-      "title": "Stratejik, arkeolojik mitolojik kıyılarımız KAŞ, KALKAN - Hürriyet",
+      "id": "kis-geldi-antalya-da-deniz-sezonu-bitmedi-2026-11-15",
+      "title": "Kış geldi, Antalya'da deniz sezonu bitmedi",
       "category": "Plaj",
-      "date": "2006-08-21",
-      "image": "https://kalkaninfo.com/assets/img/incirli-real.jpg",
-      "summary": "Stratejik, arkeolojik mitolojik kıyılarımız KAŞ, KALKAN Hürriyet",
-      "content": "Stratejik, arkeolojik mitolojik kıyılarımız KAŞ, KALKAN Hürriyet",
+      "date": "2026-11-15",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/11/tasarim-konyalalti-g.jpg",
+      "summary": "Türkiye'nin birçok bölgesinde kış mevsimi etkisini hissettirmeye başlarken, Antalya'da yazdan kalma günler yaşanmaya devam ediyor. Güneşli havayı fırsat bilen vatandaşlar ve yabancı turistler Konyaaltı Sahili'ne akın ederek kasım ayında denizin keyfini çıkardı.",
+      "content": "Türkiye'nin birçok bölgesinde kış mevsimi etkisini hissettirmeye başlarken, Antalya'da yazdan kalma günler yaşanmaya devam ediyor. Güneşli havayı fırsat bilen vatandaşlar ve yabancı turistler Konyaaltı Sahili'ne akın ederek kasım ayında denizin keyfini çıkardı.",
       "tags": [
-        "Kalkan"
+        "Kaş"
       ],
-      "source": "Google News — Kalkan/Kaş",
-      "sourceUrl": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQVXlZMXZ1ZUFGWU1Vc1A5TUx4elFUQXJCUklDRHItcWVORjRNeFdXNXlDa1FsemZwS0o3cWpNVlhLYVIyUHJYd3N5RE8zVEVYa0tfdVdWS0M0SDRVSVBlM2RJNWFUSWxQU00xdGFMRWNZRklQN0trV212V09zYmVPbGYwNUxvY3lQVmdSU1dDU2lITmRCWnBWZEtta0RTbmVCcld5NXhta2pzTy1t?oc=5",
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/kis-geldi-antalyada-deniz-sezonu-bitmedi",
+      "featured": false
+    },
+    {
+      "id": "cop31-de-mavi-bolge-de-sessizlik-yesil-bolge-de-hareketlilik-2026-11-15",
+      "title": "COP31'de Mavi Bölge’de sessizlik, Yeşil Bölge’de hareketlilik",
+      "category": "Etkinlik",
+      "date": "2026-11-15",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/fadime/cop31-yesil-bolge.jpg",
+      "summary": "Antalya’da düzenlenen COP31’in resmi müzakere alanı Mavi Bölge’de 15 Kasım’da etkinliklere ara verilirken, halka açık Yeşil Bölge’de ise etkinlikler gün boyunca devam etti. Yeşil Bölge girişinde görev yapan atlı polis birimi de ziyaretçilerden ilgi gördü.",
+      "content": "Antalya’da düzenlenen COP31’in resmi müzakere alanı Mavi Bölge’de 15 Kasım’da etkinliklere ara verilirken, halka açık Yeşil Bölge’de ise etkinlikler gün boyunca devam etti. Yeşil Bölge girişinde görev yapan atlı polis birimi de ziyaretçilerden ilgi gördü.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/cop31de-mavi-bolgede-sessizlik-yesil-bolgede-hareketlilik",
+      "featured": false
+    },
+    {
+      "id": "cop31-in-yesil-bolgesi-nde-atli-polislere-yogun-ilgi-2026-11-15",
+      "title": "COP31'in Yeşil Bölgesi'nde atlı polislere yoğun ilgi",
+      "category": "Etkinlik",
+      "date": "2026-11-15",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/11/atli-birlik-cop31.jpg",
+      "summary": "Antalya'da düzenlenen COP31'de 15 Kasım'da Mavi Bölge'deki etkinliklere ara verilirken, halka açık Yeşil Bölge'de programlar devam etti. Yeşil Bölge girişinde görev yapan atlı polisler ziyaretçilerin ilgi odağı oldu.",
+      "content": "Antalya'da düzenlenen COP31'de 15 Kasım'da Mavi Bölge'deki etkinliklere ara verilirken, halka açık Yeşil Bölge'de programlar devam etti. Yeşil Bölge girişinde görev yapan atlı polisler ziyaretçilerin ilgi odağı oldu.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/cop31in-yesil-bolgesinde-atli-polislere-yogun-ilgi",
       "featured": false
     },
     {
@@ -509,18 +224,293 @@
       "featured": false
     },
     {
-      "id": "eylemlerin-surdugu-fransa-da-havai-fisek-satislari-yasaklandi-2026-11-15",
-      "title": "Eylemlerin sürdüğü Fransa'da havai fişek satışları yasaklandı",
-      "category": "Hava",
+      "id": "16-kasim-basak-burcu-burc-yorumu-2026-11-15",
+      "title": "16 Kasım Başak Burcu Burç Yorumu",
+      "category": "Belediye",
       "date": "2026-11-15",
-      "image": "https://cdnuploads.aa.com.tr/uploads/Contents/2026/11/15/thumbs_b_c_860b8967f3e1901d5817ae6450a9d30e.jpg",
-      "summary": "Fransa’da farklı şehirlerde haftalardır eylemler sürerken hükümet havai fişek satışlarını 27 Kasım'a kadar yasakladı.",
-      "content": "Fransa’da farklı şehirlerde haftalardır eylemler sürerken hükümet havai fişek satışlarını 27 Kasım'a kadar yasakladı.",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/basak-10.jpg",
+      "summary": "Başak burcu için 16 Kasım 2026 Pazartesi günü, yeni haftaya düzenli ve planlı bir başlangıç yapmak açısından önemli fırsatlar sunabilir. Detaycı yapınız ve sorumluluk bilinciniz sayesinde işlerinizi yoluna koymak isteyebilirsiniz. Kariyer hayatınızda yeni gelişmeler gündeme geleb",
+      "content": "Başak burcu için 16 Kasım 2026 Pazartesi günü, yeni haftaya düzenli ve planlı bir başlangıç yapmak açısından önemli fırsatlar sunabilir. Detaycı yapınız ve sorumluluk bilinciniz sayesinde işlerinizi yoluna koymak isteyebilirsiniz. Kariyer hayatınızda yeni gelişmeler gündeme gelebilir, maddi konularda bütçenizi yeniden değerlendirme ihtiyacı duyabilirsiniz.",
       "tags": [
         "Kaş"
       ],
-      "source": "Anadolu Ajansı",
-      "sourceUrl": "https://www.aa.com.tr/tr/dunya/eylemlerin-surdugu-fransada-havai-fisek-satislari-yasaklandi/4125796",
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/16-kasim-basak-burcu-burc-yorumu",
+      "featured": false
+    },
+    {
+      "id": "antalya-da-acili-aileden-adalet-cagrisi-alkollu-surucu-kardesime-carpip-katletti-2026-11-15",
+      "title": "Antalya’da acılı aileden adalet çağrısı: \"Alkollü sürücü kardeşime çarpıp katletti\"",
+      "category": "Hava",
+      "date": "2026-11-15",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/fadime/antalyada-adalet-cagrisi.png",
+      "summary": "Antalya’nın Kemer ilçesinde 11 Eylül 2025’te meydana gelen kazada, 1.69 promil alkollü sürücünün çarptığı 51 yaşındaki Mehmet Erzik hayatını kaybetti. Kazanın ardından tutuklanan sürücünün 25 yıla kadar hapis istemiyle yargılandığı davanın 17 Kasım’daki duruşması öncesinde ailesi",
+      "content": "Antalya’nın Kemer ilçesinde 11 Eylül 2025’te meydana gelen kazada, 1.69 promil alkollü sürücünün çarptığı 51 yaşındaki Mehmet Erzik hayatını kaybetti. Kazanın ardından tutuklanan sürücünün 25 yıla kadar hapis istemiyle yargılandığı davanın 17 Kasım’daki duruşması öncesinde ailesi ve avukatları, sanığın gerekli cezayı almasını istedi.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/antalyada-acili-aileden-adalet-cagrisi-alkollu-surucu-kardesime-carpip-katletti",
+      "featured": false
+    },
+    {
+      "id": "16-kasim-oglak-burcu-gunluk-burc-yorumlari-2026-11-15",
+      "title": "16 Kasım Oğlak Burcu Günlük Burç Yorumları!",
+      "category": "Kültür",
+      "date": "2026-11-15",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/og-2.jpg",
+      "summary": "Gökyüzündeki hareketlilik son günlerde oldukça yoğun bir tempoyu beraberinde getirirken, 16 Kasım tarihinde Ay doğrudan Oğlak burcunda konumlanıyor.",
+      "content": "Gökyüzündeki hareketlilik son günlerde oldukça yoğun bir tempoyu beraberinde getirirken, 16 Kasım tarihinde Ay doğrudan Oğlak burcunda konumlanıyor.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/16-kasim-oglak-burcu-gunluk-burc-yorumlari",
+      "featured": false
+    },
+    {
+      "id": "antalya-havalimani-nda-cop31-yogunlugu-i-lk-haftada-373-bin-yolcuya-hizmet-veril-2026-11-15",
+      "title": "Antalya Havalimanı'nda COP31 yoğunluğu! İlk haftada 373 bin yolcuya hizmet verildi",
+      "category": "Belediye",
+      "date": "2026-11-15",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/11/antalya-havalimaninda-cop31-yogunlugu-ilk-haftada-373-bin-yolcuya-hizmet-verildi.jpg",
+      "summary": "Antalya Havalimanı, COP31'in ilk haftasında 2 bin 793 uçak trafiğine ve 373 bin 884 yolcuya ev sahipliği yaptı. Devlet Hava Meydanları İşletmesi, 7-12 Kasım 2026 dönemine ilişkin verileri paylaştı.",
+      "content": "Antalya Havalimanı, COP31'in ilk haftasında 2 bin 793 uçak trafiğine ve 373 bin 884 yolcuya ev sahipliği yaptı. Devlet Hava Meydanları İşletmesi, 7-12 Kasım 2026 dönemine ilişkin verileri paylaştı.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/antalya-havalimaninda-cop31-yogunlugu-ilk-haftada-373-bin-yolcuya-hizmet-verildi",
+      "featured": false
+    },
+    {
+      "id": "antalya-da-16-kasim-hava-durumu-gunesli-hava-etkisini-surdurecek-sicaklik-24-der-2026-11-15",
+      "title": "Antalya’da 16 Kasım Hava Durumu: Güneşli Hava Etkisini Sürdürecek! Sıcaklık 24 Derece Olacak",
+      "category": "Hava",
+      "date": "2026-11-15",
+      "image": "https://antalyahakkindacom.teimg.com/crop/1280x720/antalyahakkinda-com/uploads/2026/11/hava-9.jpg",
+      "summary": "Antalya’da 16 Kasım 2026 Pazartesi günü bol güneşli ve açık bir havanın etkili olması bekleniyor. Haftanın ilk gününde kent genelinde güneşli gökyüzü dikkat çekecek. Sabah saatlerinde serin bir havanın hakim olacağı Antalya’da, öğle saatlerinden itibaren sıcaklıkların yükselerek ",
+      "content": "Antalya’da 16 Kasım 2026 Pazartesi günü bol güneşli ve açık bir havanın etkili olması bekleniyor. Haftanın ilk gününde kent genelinde güneşli gökyüzü dikkat çekecek. Sabah saatlerinde serin bir havanın hakim olacağı Antalya’da, öğle saatlerinden itibaren sıcaklıkların yükselerek 24 dereceye kadar ulaşması tahmin ediliyor.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber (antalyahakkinda)",
+      "sourceUrl": "https://www.antalyahakkinda.com/antalyada-16-kasim-hava-durumu-gunesli-hava-etkisini-surdurecek-sicaklik-24-derece-olacak",
+      "featured": false
+    },
+    {
+      "id": "kemer-de-alkollu-surucunun-carptigi-mehmet-erzik-in-ailesi-adalet-bekliyor-2026-11-15",
+      "title": "Kemer'de alkollü sürücünün çarptığı Mehmet Erzik’in ailesi adalet bekliyor",
+      "category": "Gündem",
+      "date": "2026-11-15",
+      "image": "https://antalyakorfezcom.teimg.com/crop/1280x720/antalyakorfez-com/uploads/2026/11/kemer-kaza-icin-adalet-bekliyorlar.jpg",
+      "summary": "Kemer'de 1.69 promil alkollü sürücünün çarptığı 51 yaşındaki Mehmet Erzik’in hayatını kaybetmesinin ardından ailesi, 17 Kasım’da görülecek duruşma öncesi sanığın hak ettiği cezayı almasını isteyerek adalet çağrısında bulundu.",
+      "content": "Kemer'de 1.69 promil alkollü sürücünün çarptığı 51 yaşındaki Mehmet Erzik’in hayatını kaybetmesinin ardından ailesi, 17 Kasım’da görülecek duruşma öncesi sanığın hak ettiği cezayı almasını isteyerek adalet çağrısında bulundu.",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Körfez",
+      "sourceUrl": "https://www.antalyakorfez.com/kemerde-alkollu-surucunun-carptigi-mehmet-erzikin-ailesi-adalet-bekliyor",
+      "featured": false
+    },
+    {
+      "id": "gombe-mahallesi-muhteli-f-parsellerde-yapilan-parselasyon-plani-2026-11-11",
+      "title": "GÖMBE MAHALLESİ MUHTELİF PARSELLERDE YAPILAN PARSELASYON PLANI",
+      "category": "Belediye",
+      "date": "2026-11-11",
+      "image": "https://www.kas.bel.tr/assets/images/duyuru-img.png",
+      "summary": "GÖMBE MAHALLESİ MUHTELİF PARSELLERDE YAPILAN PARSELASYON PLANI",
+      "content": "GÖMBE MAHALLESİ MUHTELİF PARSELLERDE YAPILAN PARSELASYON PLANI",
+      "tags": [],
+      "source": "Kaş Belediyesi Duyuru",
+      "sourceUrl": "https://www.kas.bel.tr/duyuru/gombe-mahallesi-muhtelif-parsellerde-yapılan-parselasyon-planı-7254293",
+      "featured": false
+    },
+    {
+      "id": "29-ekim-cumhuriyet-bayrami-kas-ta-coskuyla-kutlandi-2026-11-15",
+      "title": "29 Ekim Cumhuriyet Bayramı Kaş’ta coşkuyla kutlandı",
+      "category": "Belediye",
+      "date": "2026-11-15",
+      "image": "https://www.kas.bel.tr/HaberGorsel/3a849327-9b98-4fb3-9591-f6610c01d889.jpeg?w=100%&h=198&mode=crop",
+      "summary": "29 Ekim Cumhuriyet Bayramı Kaş’ta coşkuyla kutlandı",
+      "content": "29 Ekim Cumhuriyet Bayramı Kaş’ta coşkuyla kutlandı",
+      "tags": [],
+      "source": "Kaş Belediyesi Haber",
+      "sourceUrl": "https://www.kas.bel.tr/haber/29-ekim-cumhuriyet-bayrami-kas’ta-coskuyla-kutlandi-9352401",
+      "featured": false
+    },
+    {
+      "id": "5-geleneksel-kas-belediyesi-yagli-pehlivan-guresleri-nin-baspehlivani-erkan-tas--2026-11-15",
+      "title": "5. Geleneksel Kaş Belediyesi Yağlı Pehlivan Güreşleri'nin Başpehlivanı Erkan Taş oldu",
+      "category": "Belediye",
+      "date": "2026-11-15",
+      "image": "https://www.kas.bel.tr/HaberGorsel/cfa3fe14-6a52-4cf7-a6e6-a6c7b0dbbea8.jpeg?w=100%&h=198&mode=crop",
+      "summary": "5. Geleneksel Kaş Belediyesi Yağlı Pehlivan Güreşleri'nin Başpehlivanı Erkan Taş oldu",
+      "content": "5. Geleneksel Kaş Belediyesi Yağlı Pehlivan Güreşleri'nin Başpehlivanı Erkan Taş oldu",
+      "tags": [],
+      "source": "Kaş Belediyesi Haber",
+      "sourceUrl": "https://www.kas.bel.tr/haber/5-geleneksel-kas-belediyesi-yagli-pehlivan-güreslerinin-baspehlivani-erkan-tas-oldu-629",
+      "featured": false
+    },
+    {
+      "id": "kas-belediyesi-yagli-guresleri-17-ekim-de-yapilacak-2026-11-15",
+      "title": "Kaş Belediyesi Yağlı Güreşleri 17 Ekim’de yapılacak",
+      "category": "Belediye",
+      "date": "2026-11-15",
+      "image": "https://www.kas.bel.tr/HaberGorsel/fa8967a1-65d6-4d55-87e5-687b162b1314.jpeg?w=100%&h=198&mode=crop",
+      "summary": "Kaş Belediyesi Yağlı Güreşleri 17 Ekim’de yapılacak",
+      "content": "Kaş Belediyesi Yağlı Güreşleri 17 Ekim’de yapılacak",
+      "tags": [],
+      "source": "Kaş Belediyesi Haber",
+      "sourceUrl": "https://www.kas.bel.tr/haber/kas-belediyesi-yagli-güresleri-17-ekim’de-yapilacak-3489",
+      "featured": false
+    },
+    {
+      "id": "kas-belediyesinde-olaganustu-meclis-toplantisi-yapildi-2026-11-15",
+      "title": "Kaş Belediyesinde Olağanüstü Meclis Toplantısı yapıldı",
+      "category": "Belediye",
+      "date": "2026-11-15",
+      "image": "https://www.kas.bel.tr/HaberGorsel/8250e161-dcba-4fb2-96b1-a38961f02325.jpeg?w=100%&h=198&mode=crop",
+      "summary": "Kaş Belediyesinde Olağanüstü Meclis Toplantısı yapıldı",
+      "content": "Kaş Belediyesinde Olağanüstü Meclis Toplantısı yapıldı",
+      "tags": [],
+      "source": "Kaş Belediyesi Haber",
+      "sourceUrl": "https://www.kas.bel.tr/haber/kas-belediyesinde-olaganüstü-meclis-toplantisi-yapildi-53831397",
+      "featured": false
+    },
+    {
+      "id": "talebimiz-gelecegimiz-kampanyasi-kapsaminda-basin-aciklamasi-gerceklestirildi-2026-11-12",
+      "title": "“Talebimiz Geleceğimiz” Kampanyasi Kapsaminda Basin Açiklamasi Gerçekleştirildi",
+      "category": "Kültür",
+      "date": "2026-11-12",
+      "image": "https://www.antalyahabertakip.com/images/haber/talebimiz-gelecegimiz-kampanyasi-kapsaminda-basin-aciklamasi-gerceklestirildi-210005-20261112.webp",
+      "summary": "TMMOB İnşaat Mühendisleri Odası Genel Merkezi öncülüğünde yürütülen “Talebimiz Geleceğimiz” kampanyası kapsamında, 12 Kasım 2026 tarihinde saat 12.00’de Türkiye genelinde 81 ilde tüm şube ve temsilciliklerde eş zamanlı basın açıklamaları gerçekleştirildi.",
+      "content": "antalyahabertakip.com-İnşaat Mühendisleri Odası Antalya Şubesi tarafından Su Hotel’de düzenlenen kahvaltının ardından gerçekleştirilen basın açıklamasına, basın mensupları, Şube Yönetim Kurulu üyeleri ve çok sayıda inşaat mühendisi katıldı. Programın açılış konuşmasını gerçekleştiren İnşaat Mühendisleri Odası Antalya Şubesi Başkanı Mehmet Soner Akdoğan, “Talebimiz Geleceğimiz” kampanyasının amacı ve kapsamı hakkında bilgilendirmelerde bulundu. İnşaat mühendislerinin toplumu ve medeniyeti inşa eden bir meslek grubu olarak hayatın her alanında önemli bir yere sahip olduğunu belirten Akdoğan; mesleki ve özlük haklarının korunması, çalışma koşullarının iyileştirilmesi, inşaat mühendislerinin ağır hukuki sorumluluklarının yeniden düzenlenmesi, emeğin karşılığının alınması, mesleki itibarın güçl",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-talebimiz-gelecegimiz-kampanyasi-kapsaminda-basin-aciklamasi-gerceklestirildi-43782.html",
+      "featured": false
+    },
+    {
+      "id": "anadolu-birligi-partisi-ve-muratpasa-belediyesi-nden-10-kasim-da-ataturk-e-anlam-2026-11-10",
+      "title": "Anadolu Birliği Partisi ve Muratpaşa Belediyesi’nden 10 Kasım’da Atatürk’e Anlamlı Vefa: Mevlid-i Şerif Okutuldu",
+      "category": "Belediye",
+      "date": "2026-11-10",
+      "image": "https://www.antalyahabertakip.com/images/haber/anadolu-birligi-partisi-ve-muratpasa-belediyesinden-10-kasimda-ataturke-anlamli-vefa-mevlid-i-serif-okutuldu-203300-20261110.webp",
+      "summary": "Gazi Mustafa Kemal Atatürk, vefatının yıl dönümünde Muratpaşa Camisi’nde düzenlenen Mevlid-i Şerif programıyla dualarla anıldı. Anadolu Birliği Partisi ve Muratpaşa Belediyesi’nin katkılarıyla gerçekleştirilen programda, Atatürk’ün fikirleri, mücadelesi ve Türkiye’ye bıraktığı mi",
+      "content": "antalyahabertakip.com-Anadolu Birliği Partisi ile Muratpaşa Belediyesi, 10 Kasım Atatürk’ü Anma Günü kapsamında anlamlı bir programa imza attı. Her yıl geleneksel olarak gerçekleştirilen anma etkinlikleri çerçevesinde Muratpaşa Camisi’nde Mevlid-i Şerif okutularak Gazi Mustafa Kemal Atatürk dualarla anıldı. Programa katılan Ümit Uysal, yaptığı konuşmada Gazi Mustafa Kemal Atatürk’ün yalnızca bir milletin kurtuluş mücadelesine önderlik eden büyük bir komutan değil, aynı zamanda Türkiye’nin geleceğine ışık tutan önemli bir devlet adamı olduğunu ifade etti. Atatürk’ün fikirlerinin, ilkelerinin ve gösterdiği çağdaş uygarlık hedefinin bugün de toplum için önemli bir rehber niteliği taşıdığını belirten Uysal, Cumhuriyet'in kazanımlarının korunmasının ve gelecek nesillere aktarılmasının önemine d",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-anadolu-birligi-partisi-ve-muratpasa-belediyesinden-10-kasimda-ataturke-anlamli-vefa-mevlid-i-serif-okutuldu-43771.html",
+      "featured": false
+    },
+    {
+      "id": "kepez-de-atasina-vefa-10-kasim-da-saygi-ve-minnetle-2026-11-10",
+      "title": "Kepez’de Atasına Vefa: 10 Kasım’da Saygı ve Minnetle",
+      "category": "Belediye",
+      "date": "2026-11-10",
+      "image": "https://www.antalyahabertakip.com/images/haber/kepezde-atasina-vefa-10-kasimda-saygi-ve-minnetle-202943-20261110.webp",
+      "summary": "Kepez Belediyesi, Türkiye Cumhuriyeti’nin kurucusu Büyük Önder Gazi Mustafa Kemal Atatürk’ü ebediyete intikalinin 88’inci yılında saygı, sevgi, özlem ve minnetle andı.",
+      "content": "antalyahabertakip.com-Büyük Önder Gazi Mustafa Kemal Atatürk, ebediyete intikalinin 88’inci yıl dönümünde Kepez’de düzenlenen törenle anıldı. 10 Kasım Atatürk’ü Anma Töreni, Kepez Belediyesi hizmet binası önünde gerçekleştirildi. Törene Kepez Belediye Başkanı Mesut Kocagöz, belediye meclis üyeleri, başkan yardımcıları, birim müdürleri ve belediye personeli katıldı. Anma programı, Başkan Mesut Kocagöz’ün Atatürk büstüne çelenk sunmasıyla başladı. Saat 09.05’te sirenlerin çalmasıyla birlikte Büyük Önder Atatürk için saygı duruşunda bulunuldu. Kepez Belediyesi zabıta ekiplerinin araçlarından yükselen siren sesleri de anma törenine eşlik etti. Saygı duruşu sırasında Türk bayrakları yarıya indirildi. ATATÜRK SAYGI VE ÖZLEMLE ANILDI Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk, yalnızca ",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-kepezde-atasina-vefa-10-kasimda-saygi-ve-minnetle-43769.html",
+      "featured": false
+    },
+    {
+      "id": "vali-hulusi-sahin-in-10-kasim-ataturk-u-anma-gunu-mesaji-2026-11-09",
+      "title": "Vali Hulusi Şahin’in 10 Kasım Atatürk’ü Anma Günü Mesajı",
+      "category": "Gündem",
+      "date": "2026-11-09",
+      "image": "https://www.antalyahabertakip.com/images/haber/vali-hulusi-sahinin-10-kasim-ataturku-anma-gunu-mesaji-201935-20261109.webp",
+      "summary": "Cumhuriyetimizin kurucu lideri, Millî Mücadele’mizin Başkomutanı Gazi Mustafa Kemal Atatürk’ü, ebediyete irtihalinin 88’inci yıl dönümünde rahmet, minnet ve saygıyla anıyoruz.",
+      "content": "antalyahabertakip.com-Türk milleti, tarihinin en zor dönemlerinden birinde Gazi Mustafa Kemal Atatürk’ün önderliğinde verdiği büyük mücadeleyle bağımsızlığına ve geleceğine sahip çıkmıştır. Anadolu’da yakılan bağımsızlık meşalesi, milletimizin ortak iradesiyle büyümüş ve Türkiye Cumhuriyeti’nin kuruluşuyla yeni bir geleceğin kapısını aralamıştır. Atatürk, milletimize bağımsız bir vatan ve Cumhuriyet kazandırmanın yanı sıra geleceğimizi hangi hedeflere yöneltmemiz gerektiğini de göstermiştir. Bugün bizlere düşen görev, bu büyük mirasa sahip çıkmak, Cumhuriyetimizi koruyup yaşatmak ve ülkemizi her alanda daha ileriye taşımak için azimle çalışmaktır. Antalya’mız da bu sorumluluk bilinciyle gelişen, üreten ve her geçen gün yeni başarılara imza atan şehirlerimizden biridir. Turizmdeki öncü rolü",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-vali-hulusi-sahinin-10-kasim-ataturku-anma-gunu-mesaji-43767.html",
+      "featured": false
+    },
+    {
+      "id": "antalya-buyuksehir-belediye-baskan-vekili-busra-ozdemir-in-10-kasim-mesaji-2026-11-09",
+      "title": "Antalya Büyükşehir Belediye Başkan Vekili Büşra Özdemir’in 10 Kasım Mesajı",
+      "category": "Belediye",
+      "date": "2026-11-09",
+      "image": "https://www.antalyahabertakip.com/images/haber/antalya-buyuksehir-belediye-baskan-vekili-busra-ozdemirin-10-kasim-mesaji-201725-20261109.webp",
+      "summary": "“En büyük mirasım” dediği Türkiye Cumhuriyeti’ni bizlere armağan eden Cumhuriyetimizin kurucusu Gazi Mustafa Kemal Atatürk’ü aramızdan ayrılışının 88. yıl dönümünde sevgi, saygı, rahmet, minnet ve özlemle anıyor, aziz hatırası önünde saygıyla eğiliyoruz.",
+      "content": "antalyahabertakip.com- Zafer Partisi Genel Başkan Yardımcısı Musa Ertuğan, Türkiye Cumhuriyeti’nin kurucusu Gazi Mustafa Kemal Atatürk’ün ebediyete intikalinin yıl dönümü olan 10 Kasım dolayısıyla bir anma mesajı yayımladı. Ertuğan mesajında, Atatürk’ün yalnızca bir komutan ve devlet adamı değil, aynı zamanda bağımsızlık mücadelesinin simgesi ve Türk milletinin ortak tarihindeki önemli bir lider olduğunu ifade etti. Atatürk’ün ortaya koyduğu bağımsızlık iradesinin, Cumhuriyet değerlerinin ve milli egemenlik anlayışının gelecek nesillere aktarılmasının önemine dikkat çeken Ertuğan, Cumhuriyet'in temel değerlerine sahip çıkmanın herkesin ortak sorumluluğu olduğunu vurguladı. Musa Ertuğan, mesajında şu ifadelere yer verdi: “Gazi Mustafa Kemal Atatürk, milletimizin bağımsızlık mücadelesine önd",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-antalya-buyuksehir-belediye-baskan-vekili-busra-ozdemirin-10-kasim-mesaji-43766.html",
+      "featured": false
+    },
+    {
+      "id": "zafer-partisi-genel-baskan-yardimcisi-musa-ertugan-dan-10-kasim-mesaji-ataturk-u-2026-11-09",
+      "title": "Zafer Partisi Genel Başkan Yardımcısı Musa Ertuğan’dan 10 Kasım Mesajı: “Atatürk’ü Saygı, Özlem ve Minnetle Anıyoruz”",
+      "category": "Belediye",
+      "date": "2026-11-09",
+      "image": "https://www.antalyahabertakip.com/images/haber/zafer-partisi-genel-baskan-yardimcisi-musa-ertugandan-10-kasim-mesaji-ataturku-saygi-ozlem-ve-minnetle-aniyoruz-201527-20261109.webp",
+      "summary": "Zafer Partisi Genel Başkan Yardımcısı Musa Ertuğan, 10 Kasım Atatürk’ü Anma Günü dolayısıyla yayımladığı mesajda, Gazi Mustafa Kemal Atatürk’ü saygı, özlem ve minnetle andı.",
+      "content": "antalyahabertakip.com- Zafer Partisi Genel Başkan Yardımcısı Musa Ertuğan, Türkiye Cumhuriyeti’nin kurucusu Gazi Mustafa Kemal Atatürk’ün ebediyete intikalinin yıl dönümü olan 10 Kasım dolayısıyla bir anma mesajı yayımladı. Ertuğan mesajında, Atatürk’ün yalnızca bir komutan ve devlet adamı değil, aynı zamanda bağımsızlık mücadelesinin simgesi ve Türk milletinin ortak tarihindeki önemli bir lider olduğunu ifade etti. Atatürk’ün ortaya koyduğu bağımsızlık iradesinin, Cumhuriyet değerlerinin ve milli egemenlik anlayışının gelecek nesillere aktarılmasının önemine dikkat çeken Ertuğan, Cumhuriyet'in temel değerlerine sahip çıkmanın herkesin ortak sorumluluğu olduğunu vurguladı. Musa Ertuğan, mesajında şu ifadelere yer verdi: “Gazi Mustafa Kemal Atatürk, milletimizin bağımsızlık mücadelesine önd",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-zafer-partisi-genel-baskan-yardimcisi-musa-ertugandan-10-kasim-mesaji-ataturku-saygi-ozlem-ve-minnetle-aniyoruz-43765.html",
+      "featured": false
+    },
+    {
+      "id": "baskan-kotan-ataturk-un-yolundan-asla-ayrilmayacagiz-2026-11-09",
+      "title": "Başkan Kotan: “Atatürk’ün Yolundan Asla Ayrılmayacağız”",
+      "category": "Belediye",
+      "date": "2026-11-09",
+      "image": "https://www.antalyahabertakip.com/images/haber/baskan-kotan-ataturkun-yolundan-asla-ayrilmayacagiz-200946-20261109.webp",
+      "summary": "Konyaaltı Belediye Başkanı Cem Kotan, Türkiye Cumhuriyeti’nin kurucusu Ulu Önder Gazi Mustafa Kemal Atatürk’ün ebediyete intikalinin 88’inci yıl dönümü dolayısıyla bir anma mesajı yayımladı. Başkan Kotan, “10 Kasım, yalnızca bir anma günü değil, Atatürk’ün fikirlerine, ilkelerine",
+      "content": "antalyahabertakip.com-Başkan Cem Kotan, Ulu Önder Gazi Mustafa Kemal Atatürk’ün aramızdan ayrılışının 88’inci yıl dönümü dolayısıyla yayımladığı mesajda, Atatürk’ün düşüncelerinin ve Cumhuriyet değerlerinin gelecek nesillere aktarılmasının önemine dikkat çekti. Atatürk’ün gösterdiği çağdaş uygarlık hedefi doğrultusunda çalışmaya devam edeceklerini vurgulayan Başkan Kotan, Cumhuriyetin kazanımlarını korumanın ve daha ileriye taşımanın herkesin ortak sorumluluğu olduğunu ifade etti. 10 KASIM, ATATÜRK’ÜN FİKİRLERİNİ YAŞATMA GÜNÜDÜR Her 10 Kasım’da olduğu gibi yüreklerinde aynı özlemi ve hüznü hissettiklerini belirten Kotan, mesajında şu ifadelere yer verdi: “Ancak biliyoruz ki 10 Kasım, yalnızca bir yas günü değildir. 10 Kasım, Atatürk’ü anlamanın, fikirlerini yaşatmanın ve bizlere bıraktığı ",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya Haber Takip",
+      "sourceUrl": "https://www.antalyahabertakip.com/haber-baskan-kotan-ataturkun-yolundan-asla-ayrilmayacagiz-43763.html",
+      "featured": false
+    },
+    {
+      "id": "dunyanin-iklim-gundemi-antalya-da-cop31-basladi-2026-11-09",
+      "title": "Dünyanın iklim gündemi Antalya'da; COP31 başladı",
+      "category": "Hava",
+      "date": "2026-11-09",
+      "image": "https://www.antalyadanhaberler.com/images/haber/dunyanin-iklim-gundemi-antalyada-cop31-basladi-113120-20261109.webp",
+      "summary": "Dünyanın en büyük iklim organizasyonlarından Birleşmiş Milletler İklim Değişikliği Çerçeve Sözleşmesi 31'inci Taraflar Konferansı (COP31), Antalya'da başladı. 9-20 Kasım tarihleri arasında gerçekleştirilecek zirvede; iklim değişikliğiyle mücadele, küresel sıcaklık artışının 1,5 d",
+      "content": "Antalya'nın Aksu ilçesindeki EXPO yerleşkesinde düzenlenen COP31, Türkiye'nin ev sahipliğinde, Avustralya ile oluşturulan ortaklık çerçevesinde gerçekleştiriliyor. COP31 Başkanlığı görevini Çevre, Şehircilik ve İklim Değişikliği Bakanı Murat Kurum, müzakereler başkanlığını ise Avustralya İklim Değişikliği ve Enerji Bakanı Chris Bowen üstleniyor. Birleşmiş Milletler İklim Değişikliği İcra Sekreteri Simon Stiell'in de katıldığı zirvenin resmi açılış programında, Kurum, Stiell ve Bowen'ın konuşmaları yer alıyor. Konferans boyunca ülkelerin iklim taahhütleri, sera gazı emisyonlarının azaltılması, iklim değişikliğine uyum ve gelişmekte olan ülkelerin finansmana erişimi gibi konular müzakere edilecek. RESMİ AÇILIŞ SAAT 11.00'DE COP31'in resmi açılış töreni, saat 11.00'de Genel Kurul 1 'Anadolu' ",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "Antalya'dan Haberler",
+      "sourceUrl": "https://www.antalyadanhaberler.com/haber-dunyanin-iklim-gundemi-antalyada-cop31-basladi-4029.html",
+      "featured": false
+    },
+    {
+      "id": "i-flas-hukukunun-gelecegi-cesme-de-masaya-yatirildi-alti-ulkenin-hukuk-sistemi-k-2026-11-09",
+      "title": "İflas Hukukunun Geleceği Çeşme'de Masaya Yatırıldı: Altı Ülkenin Hukuk Sistemi Karşılaştırıldı",
+      "category": "Hava",
+      "date": "2026-11-09",
+      "image": "https://kalkaninfo.com/assets/img/kaputas-wm.jpg",
+      "summary": "Türk Medenî Usûl ve İcra İflâs Hukukçuları Birliği (MİHBİR) tarafından düzenlenen XXII. Medenî Usûl ve İcra İflâs Hukukçuları Toplantısı, 6–7 Kasım 2026 tarihlerinde İzmir'in...",
+      "content": "Türk Medenî Usûl ve İcra İflâs Hukukçuları Birliği (MİHBİR) tarafından düzenlenen XXII. Medenî Usûl ve İcra İflâs Hukukçuları Toplantısı, 6–7 Kasım 2026 tarihlerinde İzmir'in...",
+      "tags": [
+        "Kaş"
+      ],
+      "source": "AntalyaBugün",
+      "sourceUrl": "https://www.antalyabugun.com.tr/news/iflas-hukukunun-gelecegi-cesmede-masaya-yatirildi-alti-ulkenin-hukuk-sistemi-karsilastirildi-95472",
       "featured": false
     }
   ]
